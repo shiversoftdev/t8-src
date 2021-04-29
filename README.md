@@ -7,7 +7,6 @@ I was able to make educated guesses on a lot of them, though, so we do have *som
 Some stuff recently got leaked that will allow people to more easily achieve this, and I've had these decompiled for many months,\
 so id rather release it ahead of time since there are a few other people who would do it anyways\
 \
-I kept these private for a long time because I didn't want to leak anything, and I still will not be releasing cold war scripts any time soon
 # Special Thanks
 Taleb - resources\
 SyGnUs - string decryption help\
