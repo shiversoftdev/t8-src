@@ -1,0 +1,175 @@
+// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\ai_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\util_shared.csc;
+
+#namespace namespace_f9871db2;
+
+/*
+	Name: function_89f2df9
+	Namespace: namespace_f9871db2
+	Checksum: 0xFD247509
+	Offset: 0x2D0
+	Size: 0x44
+	Parameters: 0
+	Flags: AutoExec
+*/
+autoexec function function_89f2df9()
+{
+	system::register(#"hash_37a1eb5ecb8d6c9f", &__init__, undefined, #"hash_26aeac851e7602d1");
+}
+
+/*
+	Name: __init__
+	Namespace: namespace_f9871db2
+	Checksum: 0xE57F2DA8
+	Offset: 0x320
+	Size: 0x1E4
+	Parameters: 0
+	Flags: Linked
+*/
+function __init__()
+{
+	level._effect[#"hash_49da2356dfdd52ee"] = "zm_ai/fx8_nova_crawler_zombie_buff";
+	level._effect[#"hash_fa591e70e810d4a"] = "zm_ai/fx8_nova_crawler_gas_cloud_lg";
+	clientfield::register("actor", "nova_buff_aura_clientfield", 8000, 1, "int", &function_be621cc7, 0, 0);
+	clientfield::register("actor", "white_nova_crawler_phase_end_clientfield", 8000, 1, "counter", &function_18c564d0, 0, 0);
+	clientfield::register("actor", "nova_gas_cloud_fx_clientfield", 8000, 1, "counter", &function_c9ef107f, 0, 0);
+	clientfield::register("actor", "white_nova_crawler_spore_impact_clientfield", 8000, 1, "counter", &function_2a92d45, 0, 0);
+	clientfield::register("scriptmover", "white_nova_crawler_spore_clientfield", 16000, 1, "int", &function_9ed375e1, 0, 0);
+	ai::add_archetype_spawn_function(#"nova_crawler", &function_582a3075);
+}
+
+/*
+	Name: function_582a3075
+	Namespace: namespace_f9871db2
+	Checksum: 0xDD0C08A1
+	Offset: 0x510
+	Size: 0xEE
+	Parameters: 1
+	Flags: Linked, Private
+*/
+private function function_582a3075(localclientnum)
+{
+	if(!isdefined(self._effect))
+	{
+		self._effect = [];
+	}
+	self._effect[#"hash_219e13e8868d7af4"] = "zm_ai/fx8_nova_crawler_explode";
+	if(isdefined(self.var_9fde8624))
+	{
+		if(self.var_9fde8624 == #"hash_536e9f304d677717")
+		{
+			self._effect[#"hash_219e13e8868d7af4"] = "zm_ai/fx8_nova_crawler_mq_explode";
+		}
+		else if(self.var_9fde8624 == #"hash_3a67e595e19f61b2")
+		{
+			self._effect[#"hash_219e13e8868d7af4"] = "zm_ai/fx8_nova_crawler_elec_explode";
+			self._effect[#"nova_crawler_phase_teleport_end_fx"] = "zm_ai/fx8_nova_crawler_elec_teleport_appear";
+		}
+	}
+}
+
+/*
+	Name: function_be621cc7
+	Namespace: namespace_f9871db2
+	Checksum: 0x56A28960
+	Offset: 0x608
+	Size: 0xC6
+	Parameters: 7
+	Flags: Linked, Private
+*/
+private function function_be621cc7(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+{
+	if(newval === 1)
+	{
+		self.var_f09d143c = util::playfxontag(localclientnum, level._effect[#"hash_49da2356dfdd52ee"], self, "j_spine4");
+	}
+	else if(isdefined(self.var_f09d143c))
+	{
+		stopfx(localclientnum, self.var_f09d143c);
+		self.var_f09d143c = undefined;
+	}
+}
+
+/*
+	Name: function_18c564d0
+	Namespace: namespace_f9871db2
+	Checksum: 0xA5A78595
+	Offset: 0x6D8
+	Size: 0x9C
+	Parameters: 7
+	Flags: Linked, Private
+*/
+private function function_18c564d0(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+{
+	if(isdefined(self._effect) && isdefined(self._effect[#"nova_crawler_phase_teleport_end_fx"]))
+	{
+		util::playfxontag(localclientnum, self._effect[#"nova_crawler_phase_teleport_end_fx"], self, "j_spine4");
+	}
+}
+
+/*
+	Name: function_c9ef107f
+	Namespace: namespace_f9871db2
+	Checksum: 0xDEEA54F3
+	Offset: 0x780
+	Size: 0xA4
+	Parameters: 7
+	Flags: Linked, Private
+*/
+private function function_c9ef107f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+{
+	fx_location = self gettagorigin("j_mainroot");
+	if(isdefined(fx_location))
+	{
+		playfx(localclientnum, level._effect[#"hash_fa591e70e810d4a"], fx_location);
+	}
+}
+
+/*
+	Name: function_2a92d45
+	Namespace: namespace_f9871db2
+	Checksum: 0x44237E3E
+	Offset: 0x830
+	Size: 0x8C
+	Parameters: 7
+	Flags: Linked
+*/
+function function_2a92d45(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+{
+	util::waittill_dobj(localclientnum);
+	if(isdefined(self) && newval)
+	{
+		function_239993de(localclientnum, "zm_ai/fx8_nova_crawler_gas_projectile_impact", self, "j_spine4");
+	}
+}
+
+/*
+	Name: function_9ed375e1
+	Namespace: namespace_f9871db2
+	Checksum: 0x295CDDA8
+	Offset: 0x8C8
+	Size: 0xCE
+	Parameters: 7
+	Flags: Linked
+*/
+function function_9ed375e1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+{
+	util::waittill_dobj(localclientnum);
+	if(!isdefined(self))
+	{
+		return;
+	}
+	if(newval)
+	{
+		self.var_48c65dc6 = function_239993de(localclientnum, "zm_ai/fx8_nova_crawler_gas_projectile", self, "tag_origin");
+	}
+	else if(isdefined(self.var_48c65dc6))
+	{
+		stopfx(localclientnum, self.var_48c65dc6);
+		self.var_48c65dc6 = undefined;
+	}
+}
+
