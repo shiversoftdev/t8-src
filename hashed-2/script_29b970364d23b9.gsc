@@ -329,6 +329,7 @@ function function_4f89089b()
 function function_963edada()
 {
 	level endon_callback(&function_19af3d1b, #"hash_59cfca3c898df56d", #"hash_732657441f7793dc", #"end_game");
+	var_d98d7f94 = getent("t_cell_block_vista_vo", "targetname");
 	while(isdefined(var_d98d7f94))
 	{
 		var_88706ea7 = undefined;

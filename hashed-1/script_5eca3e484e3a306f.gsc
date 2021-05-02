@@ -242,6 +242,7 @@ private function function_7dac3bb6(localclientnum)
 		return;
 	}
 	self.e_fx = util::spawn_model(localclientnum, #"tag_origin", var_9d68990a.origin);
+	self.var_64153c56 = util::playfxontag(localclientnum, level._effect[#"lightning_arc"], self.e_fx, "tag_origin");
 	while(true)
 	{
 		var_a05eed18 = self gettagorigin(self zm_utility::function_467efa7b());

@@ -375,6 +375,7 @@ function function_ca35fa36()
 	level function_24394e8f(1);
 	zm_utility::open_door(array("door_cafeteria_to_times_square", "door_cell_block_floor_3", "door_cafeteria_to_infirmary", "door_shower_to_citadel", "door_model_warden_office_to_warden_house"), undefined, undefined, 1);
 	wait(4);
+	var_f79ff5ec = array::random(array(#"roof", #"hash_15323b1239b630c7", #"hash_138d8403dc78d80d", #"showers"));
 	while(true)
 	{
 		zm_utility::function_11101458(var_f79ff5ec);

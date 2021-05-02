@@ -501,6 +501,7 @@ private function function_e73fbbf7()
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
 	self.var_4ced1fcf = 0;
+	var_fa5d7ea0 = 0;
 	while(true)
 	{
 		if(isdefined(level.var_19b2578f) && level.var_19b2578f)

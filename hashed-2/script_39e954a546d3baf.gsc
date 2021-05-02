@@ -1232,6 +1232,7 @@ function function_3b09971f(var_ed1db1a7, var_de0f1997, a_str_zones)
 	n_time = var_de0f1997;
 	n_time_elapsed = 0;
 	var_d2f964c9 = 0;
+	var_959457a1 = 0;
 	while(var_de0f1997 >= 0)
 	{
 		var_33e8cae6 = 0;
@@ -1459,6 +1460,7 @@ function function_766eff6(var_31721422, a_str_zones, var_de0f1997, var_f7c3c527)
 	level.var_f995ece6 zm_trial_timer::function_8ede8e82(self, var_31721422);
 	self namespace_b22c99a5::start_timer(var_de0f1997);
 	s_defend_area = struct::get(level.var_9149f3ac);
+	n_time = var_de0f1997;
 	while(n_time >= 0)
 	{
 		if(n_time <= 30 && n_time % 5 == 0 || n_time <= 10)
@@ -1821,6 +1823,7 @@ function function_1aaa4f63(var_3534ec82 = 1, var_f24b3f7a = 0)
 	level flag::clear("spawn_zombies");
 	if(var_3534ec82)
 	{
+		a_ai_enemies = getaiteamarray(level.zombie_team);
 		while(a_ai_enemies.size > var_f24b3f7a)
 		{
 			a_ai_enemies = getaiteamarray(level.zombie_team);
@@ -1829,6 +1832,7 @@ function function_1aaa4f63(var_3534ec82 = 1, var_f24b3f7a = 0)
 	}
 	else
 	{
+		a_ai_enemies = zombie_utility::get_round_enemy_array();
 		while(a_ai_enemies.size > var_f24b3f7a)
 		{
 			a_ai_enemies = zombie_utility::get_round_enemy_array();

@@ -148,6 +148,7 @@ function get_active_vortex_count()
 private function stop_vortex_fx_after_time(vortex_fx_handle, vortex_position, vortex_explosion_fx, n_vortex_time)
 {
 	n_starttime = gettime();
+	n_curtime = gettime() - n_starttime;
 	while(n_curtime < n_vortex_time)
 	{
 		waitframe(1);
@@ -281,6 +282,7 @@ function vortex_z_extension(a_ai_zombies, v_vortex_origin, n_vortex_radius)
 {
 	a_ai_zombies_extended = array::get_all_closest(v_vortex_origin, getaiteamarray(#"axis"), undefined, undefined, n_vortex_radius + 72);
 	a_ai_zombies_extended_filtered = array::exclude(a_ai_zombies_extended, a_ai_zombies);
+	i = 0;
 	while(i < a_ai_zombies_extended_filtered.size)
 	{
 		if(a_ai_zombies_extended_filtered[i].origin[2] < v_vortex_origin[2] && bullettracepassed(a_ai_zombies_extended_filtered[i].origin + vectorscale((0, 0, 1), 5), v_vortex_origin + vectorscale((0, 0, 1), 20), 0, self, undefined, 0, 0))

@@ -584,6 +584,7 @@ function function_74b930af(n_time, n_state)
 function function_71399d9c()
 {
 	self endon(#"death", #"hash_1aa56851d9d4ec0d");
+	vh_target = spawner::simple_spawn_single(getent("virgil", "targetname"));
 	while(!isdefined(vh_target))
 	{
 		waitframe(1);
@@ -1204,6 +1205,7 @@ function function_27789c73()
 {
 	self endon(#"trap_done");
 	var_76b556c9 = 0;
+	var_dac21b13 = 0;
 	while(true)
 	{
 		if(isdefined(level.var_f18fbea5) && isdefined(level.var_f18fbea5.s_placement) && level.var_f18fbea5.s_placement.var_4eed727b istouching(self))

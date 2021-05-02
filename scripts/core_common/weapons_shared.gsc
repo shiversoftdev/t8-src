@@ -224,6 +224,7 @@ function function_e870d33d()
 	player endon(#"death", #"disconnect");
 	gameobject_link = undefined;
 	vehicle = undefined;
+	var_13ab34e1 = undefined;
 	while(isdefined(player.var_766deb67))
 	{
 		wait(float(function_60d95f53()) / 1000);
@@ -351,6 +352,7 @@ function function_e870d33d()
 			var_94e17956 = 0;
 			player thread function_18a9a4e4(settings);
 			ads_fraction = player playerads();
+			var_4308b3d8 = gettime() + 1 - ads_fraction * current_weapon.var_e5db3b95;
 			while(player playerads() < 1)
 			{
 				if(player playerads() == 0)
@@ -380,6 +382,7 @@ function function_e870d33d()
 				vehicle turretsettargetangles(0, var_a3a6eba5 - player_angles);
 				player.var_ca876b0f = 1;
 				player.var_e7e2e3e5 = 1;
+				player.var_766deb67 = vehicle;
 				while(player adsbuttonpressed())
 				{
 					wait(float(function_60d95f53()) / 1000);

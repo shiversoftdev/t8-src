@@ -113,6 +113,7 @@ function function_a425bf07()
 	s_unitrigger = var_c597d89a zm_unitrigger::create(undefined, 32);
 	var_c597d89a waittill(#"trigger_activated");
 	var_39dbb29f thread function_e7fd1a33();
+	var_2c8f1222 = array(#"hash_49744335f38f8111", #"hash_1fceaa1fb6e9fcac", #"hash_49744235f38f7f5e", #"hash_49744135f38f7dab", #"hash_1fceab1fb6e9fe5f", #"hash_1fceac1fb6ea0012", #"hash_1fcead1fb6ea01c5", #"hash_49744035f38f7bf8", #"hash_1fcea61fb6e9f5e0", #"hash_1fcea71fb6e9f793", #"hash_49744735f38f87dd", #"hash_49744635f38f862a", #"hash_49744535f38f8477", #"hash_1fcea81fb6e9f946", #"hash_1fcea91fb6e9faf9", #"hash_49744435f38f82c4", #"hash_49743b35f38f7379", #"hash_1fceb21fb6ea0a44", #"hash_49743a35f38f71c6", #"hash_1fceb31fb6ea0bf7");
 	while(true)
 	{
 		for(i = 0; i < var_2c8f1222.size; i++)
@@ -141,6 +142,7 @@ function function_e7fd1a33()
 {
 	self endon(#"death");
 	var_f21d9eb3 = int(self.origin[0] - 12);
+	n_max_x = int(self.origin[0] + 12);
 	while(isdefined(self))
 	{
 		wait(randomintrange(15, 30));
@@ -193,6 +195,7 @@ function function_7b89f32a()
 	var_ff4b3a13 val::set(#"hash_53b16633b6e88995", "takedamage", 1);
 	var_ff4b3a13 val::set(#"hash_53b16633b6e88995", "allowdeath", 0);
 	w_weapon = getweapon(#"bowie_knife");
+	var_61456417 = 0;
 	while(var_61456417 < 9)
 	{
 		var_88706ea7 = undefined;
@@ -244,6 +247,7 @@ function function_c3a5f1fe(a_ents)
 	var_e96b5d4f val::set(#"hash_6917ff944158c40d", "takedamage", 1);
 	var_e96b5d4f val::set(#"hash_6917ff944158c40d", "allowdeath", 0);
 	w_weapon = getweapon(#"hash_95dd69e40d99560");
+	var_eb115bf1 = getweapon(#"hash_337a0bfc51449d31");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -275,6 +279,7 @@ function function_59ecbee4()
 {
 	level waittill(#"hash_29cfd2a7a3f9f175");
 	level thread function_240b713f();
+	var_5c608f55 = getent("yoshi_doshi", "targetname");
 	while(true)
 	{
 		b_show = 0;
@@ -341,6 +346,7 @@ function function_240b713f()
 function function_d3a41243()
 {
 	t_damage = spawn("trigger_damage", struct::get(#"hash_7dc6a17096359ecd").origin, 0, 6, 6);
+	var_1bdfceb3 = getweapon(#"eq_acid_bomb");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -1009,6 +1015,7 @@ function function_a7ae2066()
 function function_678d6318()
 {
 	var_c597d89a = struct::get(#"hash_2ca9b43546a096e3");
+	s_unitrigger = var_c597d89a zm_unitrigger::create(undefined, (180, 180, 64), &zm_unitrigger::function_69168e61, 0, 1);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -1132,6 +1139,7 @@ function function_678d6318()
 */
 function function_bef7f017(var_c597d89a)
 {
+	var_cefd4edd = undefined;
 	while(true)
 	{
 		a_players = util::get_active_players();

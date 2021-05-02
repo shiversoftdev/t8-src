@@ -117,6 +117,7 @@ private function function_3658663()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
+	var_407eb07 = 0;
 	while(true)
 	{
 		var_f2b6fe6e = 0;

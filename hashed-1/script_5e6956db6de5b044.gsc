@@ -464,6 +464,7 @@ function function_a8f79714()
 function function_2a5a929(str_location, var_b7eee573)
 {
 	a_s_locs = struct::get_array("s_firegate_energy_src_" + str_location, "targetname");
+	var_d0ed2a4c = 0;
 	while(!var_d0ed2a4c)
 	{
 		s_loc = array::random(a_s_locs);
@@ -880,6 +881,7 @@ function function_21fd7c39()
 	self.bulletclip solid();
 	self.bulletclip.health = 100000;
 	self.bulletclip setcandamage(1);
+	var_aa6459db = 0;
 	while(!var_aa6459db)
 	{
 		var_385703b7 = undefined;

@@ -1295,6 +1295,7 @@ private function function_4a065e66(id, color)
 	/#
 		self endon_callback(&function_9aa982db, #"death", #"hash_6e3d9f8c484e3d01");
 		level endon_callback(&function_9aa982db, #"hash_6e3d9f8c484e3d01");
+		self.var_30acf8aa = 1;
 		while(true)
 		{
 			record3dtext(function_9e72a96(id), self.origin + (0, 0, self.maxs[2]), color);

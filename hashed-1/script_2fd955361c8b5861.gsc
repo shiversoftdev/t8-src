@@ -372,6 +372,7 @@ function function_cbb2f05b(watcher)
 	self.maxhealth = 100000;
 	self.health = self.maxhealth;
 	self.var_18acfe18 = 0;
+	self.var_966835e3 = 150;
 	while(true)
 	{
 		waitresult = undefined;

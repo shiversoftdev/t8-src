@@ -1459,6 +1459,7 @@ private function function_d7864087(var_dbce0c44)
 	var_29c2b5cc = array::sort_by_value(getarraykeys(level.var_33e85fa1));
 	foreach(var_376db024 in var_29c2b5cc)
 	{
+		var_4ddf7815 = 0;
 		while(var_376db024 <= var_dbce0c44 && !var_4ddf7815)
 		{
 			var_4ddf7815 = 1;
@@ -1530,6 +1531,7 @@ private function function_d7864087(var_dbce0c44)
 				continue;
 			}
 			var_d2e7fe2e = 1;
+			var_63839dc9 = 1;
 			while(var_d2e7fe2e)
 			{
 				if(var_63839dc9)

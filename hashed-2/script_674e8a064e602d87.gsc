@@ -129,6 +129,7 @@ function start_carpenter(var_264cf1f9, var_ea1d8f06 = 1)
 		{
 			window = boards_near_players[i];
 			num_chunks_checked = 0;
+			last_repaired_chunk = undefined;
 			while(true)
 			{
 				if(zm_utility::all_chunks_intact(window, window.barrier_chunks))

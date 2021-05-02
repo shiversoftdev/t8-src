@@ -331,6 +331,7 @@ function function_d2845186()
 function function_1aeaebae()
 {
 	level.allowspecialistdialog = 0;
+	e_player = getplayers(#"allies")[0];
 	while(!isdefined(e_player))
 	{
 		e_player = getplayers(#"allies")[0];

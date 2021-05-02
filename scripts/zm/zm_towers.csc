@@ -1344,6 +1344,7 @@ function function_d431f37a()
 {
 	level notify(#"hash_53c191bb10cd9670");
 	level endon(#"hash_53c191bb10cd9670");
+	var_1cc68a25 = 0;
 	while(true)
 	{
 		level thread function_1e3bd96a(array("siege_crowd_stand_a_grp27", "siege_crowd_stand_b_grp27", "siege_crowd_stand_c_grp27", "siege_crowd_stand_d_grp27")[var_1cc68a25], "seated_to_cheer", 2);

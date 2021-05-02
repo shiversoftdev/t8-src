@@ -789,11 +789,13 @@ function function_f7a190a8(str_wait_flag, var_ab660f9a, str_location, var_39acfd
 	{
 		wait(var_ab660f9a);
 	}
+	var_33625d75 = function_ab7f70b9(self);
 	while(var_33625d75 !== str_location)
 	{
 		wait(0.5);
 		var_33625d75 = function_ab7f70b9(self);
 	}
+	var_33625d75 = function_ab7f70b9(self);
 	while(var_33625d75 === str_location)
 	{
 		wait(0.5);
@@ -863,6 +865,7 @@ function function_58db1b78()
 {
 	level endon(#"end_game");
 	level waittill(#"start_zombie_round_logic");
+	var_4d44c98e = getentarray("lighthouse_level_4_ext", "targetname");
 	while(true)
 	{
 		foreach(var_a99d350e in var_4d44c98e)
@@ -896,6 +899,7 @@ function function_cbb8e588()
 {
 	level endon(#"end_game");
 	level waittill(#"start_zombie_round_logic");
+	blood = getent("mq_blood", "targetname");
 	while(true)
 	{
 		foreach(player in getplayers())

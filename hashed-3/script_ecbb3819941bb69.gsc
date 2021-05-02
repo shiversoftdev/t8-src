@@ -541,7 +541,7 @@ System.InvalidOperationException: Stack empty.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at System.Collections.Generic.Stack`1.Pop()
    at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2527
-   at Cerberus.Logic.Decompiler.FindForLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1618
+   at Cerberus.Logic.Decompiler.FindForLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1619
    at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 207
 /*
 No Output
@@ -712,6 +712,7 @@ function function_9e2a452e(localclientnum, var_9e58fecb)
 	var_6f9f5fef = fadeout_duration * (jammed ? var_8ac8d61d : 1);
 	var_42a54adc = var_6f9f5fef * (isdefined(level.var_2e3031be.var_a2d7b97c) ? level.var_2e3031be.var_a2d7b97c : 0.8);
 	elapsedtime = 0;
+	owner = self gadgetpulsegetowner(localclientnum);
 	while(true)
 	{
 		waitframe(1);

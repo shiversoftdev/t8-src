@@ -692,6 +692,7 @@ function demo_jump_monitor()
 	{
 		return;
 	}
+	oldlerps = [];
 	while(true)
 	{
 		level waittill(#"demo_jump", #"demo_player_switch", #"visionset_mgr_reset");

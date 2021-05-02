@@ -484,6 +484,7 @@ function javelin_losetargetatrighttime(target, gunnerindex)
 	self endon(#"death");
 	if(isdefined(gunnerindex))
 	{
+		firedgunnerindex = -1;
 		while(firedgunnerindex != gunnerindex)
 		{
 			waitresult = undefined;
@@ -522,6 +523,7 @@ function javelin_losetargetatrighttimeprojectile(proj, target)
 	self endon(#"death");
 	proj endon(#"death");
 	wait(2);
+	sound_played = undefined;
 	while(isdefined(target))
 	{
 		if(proj getvelocity()[2] < -150)
@@ -626,6 +628,7 @@ function waittill_asm_complete(substate_to_wait, timeout = 10)
 	self endon(#"death");
 	self thread waittill_asm_terminated();
 	self thread waittill_asm_timeout(timeout);
+	substate = undefined;
 	while(!isdefined(substate) || (substate != substate_to_wait && substate != "__terminated__" && substate != "__timeout__"))
 	{
 		waitresult = undefined;
@@ -848,6 +851,7 @@ function burning_thread(attacker, inflictor)
 	}
 	starttime = gettime();
 	interval = max(secondsperonedamage, 0.5);
+	damage = 0;
 	while(util::timesince(starttime) < lastingtime)
 	{
 		previoustime = gettime();

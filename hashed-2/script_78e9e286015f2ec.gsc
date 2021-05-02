@@ -351,6 +351,7 @@ function function_e8bd25f9()
 */
 function function_4696e086(var_5c0c59ca = undefined, var_64d0790a = undefined)
 {
+	n_random_int = randomintrange(0, 10000);
 	while(isdefined(level.var_f13364b4.var_132bd718[n_random_int]))
 	{
 		n_random_int = randomintrange(0, 10000);
@@ -1824,6 +1825,7 @@ function function_450060dd()
 	self notify(#"hash_23cb7679bd15f5aa");
 	self endon(#"end_game", #"hash_23cb7679bd15f5aa");
 	self thread function_a196c54b();
+	n_start_time = gettime();
 	while(gettime() < n_start_time + 60000)
 	{
 		wait(0.5);
@@ -1843,6 +1845,7 @@ function function_450060dd()
 function function_cafaeead()
 {
 	self endon(#"end_game");
+	self.is_idling = 0;
 	while(true)
 	{
 		if(self.is_idling && (!(isdefined(self.var_1549a0a5) && self.var_1549a0a5)))
@@ -2046,6 +2049,7 @@ function rushmore_speech_hamilton()
 		level.var_70407389 = array(level.var_70407389);
 	}
 	level.var_70407389[level.var_70407389.size] = s_interact;
+	var_805dab64 = 0;
 	while(!var_805dab64)
 	{
 		s_interact zm_unitrigger::function_fac87205(&function_a74f51a8, 32);
@@ -2082,6 +2086,7 @@ function rushmore_speech_franklin()
 		level.var_70407389 = array(level.var_70407389);
 	}
 	level.var_70407389[level.var_70407389.size] = s_interact;
+	var_805dab64 = 0;
 	while(!var_805dab64)
 	{
 		s_interact zm_unitrigger::function_fac87205(&function_a74f51a8, 32);
@@ -2118,6 +2123,7 @@ function rushmore_speech_madison()
 		level.var_70407389 = array(level.var_70407389);
 	}
 	level.var_70407389[level.var_70407389.size] = s_interact;
+	var_805dab64 = 0;
 	while(!var_805dab64)
 	{
 		s_interact zm_unitrigger::function_fac87205(&function_a74f51a8, 32);
@@ -2154,6 +2160,7 @@ function rushmore_speech_jefferson()
 		level.var_70407389 = array(level.var_70407389);
 	}
 	level.var_70407389[level.var_70407389.size] = s_interact;
+	var_805dab64 = 0;
 	while(!var_805dab64)
 	{
 		s_interact zm_unitrigger::function_fac87205(&function_a74f51a8, 32);
@@ -2190,6 +2197,7 @@ function rushmore_speech_flag()
 		level.var_70407389 = array(level.var_70407389);
 	}
 	level.var_70407389[level.var_70407389.size] = s_interact;
+	var_805dab64 = 0;
 	while(!var_805dab64)
 	{
 		s_interact zm_unitrigger::function_fac87205(&function_a74f51a8, 32);

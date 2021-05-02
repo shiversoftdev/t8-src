@@ -1658,6 +1658,7 @@ function stuck_to_player_team_change(player)
 {
 	self endon(#"death");
 	player endon(#"disconnect");
+	originalteam = player.pers[#"team"];
 	while(true)
 	{
 		player waittill(#"joined_team");

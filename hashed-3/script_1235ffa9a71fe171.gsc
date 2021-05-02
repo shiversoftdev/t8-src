@@ -1592,6 +1592,7 @@ function function_a6a20b2c(var_3797b49d)
 function function_b2be1340(starting_health)
 {
 	self endon(#"detonated");
+	self.n_health = starting_health;
 	while(self.n_health > 0)
 	{
 		var_385703b7 = undefined;
@@ -1640,6 +1641,7 @@ private function function_581a06c7(forward_dir, var_ced3ec54, var_27e1ee12, max_
 private function function_5f3390fd(var_61622673, var_4fee43d4)
 {
 	self endon(#"death", #"detonated");
+	var_892397fd = self;
 	while(isdefined(var_892397fd))
 	{
 		var_b5b576a7 = [];

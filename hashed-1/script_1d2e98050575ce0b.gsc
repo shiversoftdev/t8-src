@@ -191,6 +191,7 @@ function function_6d2fce2a()
 	{
 		objective_setprogress(player.var_e9791ff9, var_9c4a70ee);
 	}
+	dps = player status_effect::function_7f14a56f();
 	while(dps == 0)
 	{
 		waitframe(1);
@@ -208,6 +209,7 @@ function function_6d2fce2a()
 		}
 		return;
 	}
+	cur_time = 0;
 	while(true)
 	{
 		wait(rate);
@@ -443,6 +445,7 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 	var_345ed991 = max_radius - min_radius / var_ccd505f8;
 	var_a9e00cb3 = max_height - min_height / var_ccd505f8;
 	player_radius = 10;
+	var_1d93ec08 = int(level.var_6712d3ab.var_533b6b6e * 1000);
 	while(true)
 	{
 		fwd = vecscale(vectornormalize(anglestoforward(player.angles)), 20);
@@ -699,6 +702,7 @@ function function_579fff1b()
 	if(player function_d79b93e(player.var_c9b769a6.var_44c79c09))
 	{
 		var_78da5708 = player fragbuttonpressed();
+		var_5aea88c3 = var_78da5708;
 		while(!var_5aea88c3 || var_78da5708 && player function_ff04e054())
 		{
 			waitframe(1);

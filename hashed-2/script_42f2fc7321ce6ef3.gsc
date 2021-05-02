@@ -331,6 +331,7 @@ function function_1f84fa6b(var_58928a4b, e_attacker, weapon)
 function zombie_kill_tracker(e_attacker)
 {
 	self endon(#"death");
+	var_a57adbdc = 1;
 	while(self.n_aat_turned_zombie_kills < 6)
 	{
 		if(!isdefined(self.favoriteenemy))

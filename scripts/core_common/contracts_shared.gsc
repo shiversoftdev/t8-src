@@ -545,6 +545,7 @@ function function_d589391f()
 		level.var_e054dd5c = 0;
 	}
 	level endon(#"game_ended");
+	players = getplayers();
 	while(players.size == 0 || gamestate::function_4c5eea28("pregame"))
 	{
 		wait(1);

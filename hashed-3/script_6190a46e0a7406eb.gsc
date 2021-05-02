@@ -225,6 +225,7 @@ function tomahawk_the_macguffin(e_grenade, n_grenade_charge_power)
 */
 function give_player_macguffin_upon_receipt(var_6e6ec518, var_a2a0a44e)
 {
+	v_org = self.origin;
 	while(isdefined(var_6e6ec518))
 	{
 		waitframe(1);
@@ -248,6 +249,7 @@ function give_player_macguffin_upon_receipt(var_6e6ec518, var_a2a0a44e)
 function check_sq_bg_progress()
 {
 	n_macguffins_total = level.sq_bg_macguffins.size;
+	n_macguffins_collected = 0;
 	while(true)
 	{
 		var_88706ea7 = undefined;

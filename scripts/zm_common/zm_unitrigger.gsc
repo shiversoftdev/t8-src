@@ -1806,6 +1806,7 @@ private function function_bb454fe6()
 {
 	level flag::wait_till("start_zombie_round_logic");
 	valid_range = level._unitriggers.largest_radius + 15;
+	valid_range_sq = valid_range * valid_range;
 	while(!isdefined(level.active_zone_names))
 	{
 		wait(0.1);

@@ -615,6 +615,7 @@ function function_1da54a84(var_841324bd)
 		level.var_f4f73ef7[0] = "";
 		level.var_f4f73ef7[1] = "";
 		level.var_f4f73ef7[2] = "";
+		level.var_f4f73ef7[3] = "";
 		while(!level.gameended)
 		{
 			level.var_82bc4b98 setvalue(level.var_105dad71);
@@ -2010,8 +2011,8 @@ function function_82569431(einflictor, attacker, idamage, smeansofdeath, weapon,
 function function_7e8fcca2()
 {
 System.ArgumentException: Expecting While Loop At FirstArrayKey
-   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1493
-   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1297
+   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1494
+   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1298
    at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 206
 /*
 No Output
@@ -2048,6 +2049,7 @@ function function_59458966(nd_spawn, n_state)
 	self endon(#"death");
 	self setorigin(nd_spawn.origin);
 	self setplayerangles(nd_spawn.angles);
+	self.waypoint = self namespace_73e1c3e3::create_waypoint(#"hash_4b08047cf5e74f2e", self.origin, self.angles, #"any", undefined, 0, undefined);
 	while(isdefined(nd_spawn.target))
 	{
 		a_nd_targets = getnodearray(nd_spawn.target, "targetname");

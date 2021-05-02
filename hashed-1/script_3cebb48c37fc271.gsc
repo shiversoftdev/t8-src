@@ -1594,6 +1594,7 @@ function function_8d419972(var_cfba456e)
 	player = level.players[0];
 	player endon(#"disconnect");
 	var_78e5d9d1 = player.origin;
+	v_start_angles = player.angles;
 	while(isdefined(level.var_2a40310c) && level.var_2a40310c)
 	{
 		player function_a78584c0(s_loc);

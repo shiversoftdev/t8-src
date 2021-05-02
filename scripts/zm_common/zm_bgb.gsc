@@ -1307,6 +1307,7 @@ private function function_af43111c(var_f205d85d, percent, var_5f12e334 = 0)
 	}
 	start_time = gettime();
 	end_time = start_time + 1000;
+	var_2cd46f25 = var_f205d85d;
 	while(var_2cd46f25 > percent)
 	{
 		var_2cd46f25 = lerpfloat(percent, var_f205d85d, calc_remaining_duration_lerp(start_time, end_time));
@@ -1389,6 +1390,7 @@ function run_timer(max)
 	self notify(#"hash_35f9c692474b1b10");
 	self endon(#"hash_35f9c692474b1b10");
 	current = max;
+	self.var_ec8a9710 = 1;
 	while(current > 0)
 	{
 		self set_timer(current, max);
@@ -2117,6 +2119,7 @@ function function_3fa57f3f()
 function function_f51e3503(n_max_distance, var_5250f4f6, var_8bc18989)
 {
 	self endon(#"disconnect", #"bled_out", #"bgb_update");
+	self.var_9c42f3fe = [];
 	while(true)
 	{
 		foreach(e_player in level.players)

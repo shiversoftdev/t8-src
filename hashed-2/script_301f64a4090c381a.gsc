@@ -381,6 +381,7 @@ function devgui()
 		level.var_8e9d88b6[#"hash_4a896918f453f7d6"] = 3;
 		level.var_8e9d88b6[#"hash_356b191335bab8"] = 4;
 		level.var_8e9d88b6[#"hash_34ad5ed8d296ff88"] = 5;
+		level.var_8e9d88b6[#"hash_ffc38cdd7774e8b"] = 6;
 		while(true)
 		{
 			waitframe(1);

@@ -398,6 +398,7 @@ private function function_1395e596()
 function fan_trap_timeout()
 {
 	self endon(#"hash_2133afbbd7534561");
+	n_duration = 0;
 	while(n_duration < 25)
 	{
 		wait(0.05);
@@ -1269,6 +1270,7 @@ private function function_c846fd12()
 function function_4a15e725()
 {
 	self endon(#"hash_2133afbbd7534561");
+	n_duration = 0;
 	while(n_duration < 25)
 	{
 		wait(0.05);

@@ -96,6 +96,7 @@ function __init__()
 private function function_89ec3604()
 {
 	self endon(#"disconnect");
+	self.var_bcc8f4f0 = 0;
 	while(true)
 	{
 		w_current = self getcurrentweapon();
@@ -106,6 +107,7 @@ private function function_89ec3604()
 				self.var_bcc8f4f0 = 0;
 			}
 			self clientfield::set("" + #"hash_290836b72f987780", 1);
+			var_276d45bf = 0;
 			while(self attackbuttonpressed() && function_5399634d(w_current) && !self meleebuttonpressed() && !self laststand::player_is_in_laststand())
 			{
 				if(!var_276d45bf && function_c6da1395(w_current, self))
@@ -221,6 +223,7 @@ function function_7157628d()
 	self notify("6e0a9e3b0455824");
 	self endon("6e0a9e3b0455824");
 	self endon_callback(&function_a4d47b95, #"death", #"disconnect", #"hash_72be12bd6b55fdab");
+	self.var_5e9be59f = 0;
 	while(true)
 	{
 		w_current = self getcurrentweapon();

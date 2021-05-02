@@ -309,6 +309,7 @@ function function_ebad0e52(var_88f1eaa8)
 {
 	self endon(#"disconnect");
 	var_88f1eaa8 endon(#"death");
+	v_org = var_88f1eaa8.origin;
 	while(self.var_e60ec8e9)
 	{
 		var_88f1eaa8 movey(-600, 3);
@@ -399,6 +400,7 @@ function waittill_player_nearby(e_player, var_5a365909 = 0)
 			return;
 		}
 	#/
+	var_9d3d31a = 0;
 	while(true)
 	{
 		if(isdefined(e_player))
@@ -517,6 +519,7 @@ function function_da5cd631(var_abc1506e = vectorscale((0, 0, 1), 180))
 {
 	self endon(#"death", #"hash_3946eb0fdd8a2c0e");
 	self notify(#"hash_7e05ecbcf6c25592");
+	n_wait = 6;
 	while(true)
 	{
 		self rotateto(self.angles + var_abc1506e, n_wait);
@@ -1200,6 +1203,7 @@ function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round
 	n_spawn_delay = n_spawn_delay / n_players;
 	var_e8711f44 = 14 + n_players * 2;
 	var_3a615dd8 = getspawnerarray("spawner_zm_zombie", "targetname");
+	var_7c332548 = arraycopy(var_eb3b90d);
 	while(true)
 	{
 		while(getaiteamarray(level.zombie_team).size >= var_e8711f44 || level flag::get(#"hash_29b12646045186fa"))

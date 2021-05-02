@@ -869,6 +869,7 @@ private function function_2b2ed159(entity, var_dbd1a594)
 	}
 	var_3d69d460 = 0;
 	lasttime = gettime();
+	var_9b4cc45c = gettime();
 	while(var_3d69d460 < var_87bdc7d3 && var_87bdc7d3 > 0)
 	{
 		if(!isdefined(entity) || (isdefined(entity.leaving) && entity.leaving))
@@ -1216,6 +1217,7 @@ private function function_f255c737(var_11a83c3a)
 		assert(isdefined(var_11a83c3a));
 	#/
 	var_11a83c3a endon(#"death", #"hash_18b5dd5fa60e89ba");
+	var_51d5c26f = function_13f4415c();
 	while(gettime() <= var_11a83c3a.var_e92132fd && level.gameended !== 1)
 	{
 		duration = var_11a83c3a.var_e92132fd - var_11a83c3a.var_9b4cc45c;
@@ -1392,6 +1394,7 @@ private function function_d1f6e8d0(player)
 	player function_de8a54a6(1);
 	var_559f4f0a = function_4d1e7b48("hacking");
 	var_8b745faa = getweapon(#"gadget_icepick");
+	var_51d5c26f = function_13f4415c();
 	while(true)
 	{
 		if(player.var_46fccfba && !var_3e6425fc)
@@ -1545,6 +1548,7 @@ private function function_b76c8353(hacker)
 	var_51d5c26f = function_13f4415c();
 	var_a1a18ce2 = (isdefined(var_51d5c26f.var_679962fc) ? var_51d5c26f.var_679962fc : 1000);
 	var_49c01cfb = gettime() + var_a1a18ce2;
+	starttime = gettime();
 	while(gettime() < var_49c01cfb)
 	{
 		timeelapsed = gettime() - starttime;

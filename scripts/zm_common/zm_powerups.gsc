@@ -159,6 +159,7 @@ function powerup_hud_monitor()
 	flashing_delta_time = 0;
 	flashing_is_on = 0;
 	flashing_value = 3;
+	flashing_min_timer = 0.15;
 	while(flashing_timer >= flashing_min_timer)
 	{
 		if(flashing_timer < 5)
@@ -197,6 +198,7 @@ function powerup_hud_monitor()
 			client_fields[powerup_name].on_name = level.zombie_powerups[powerup_name].on_name;
 		}
 	}
+	client_field_keys = getarraykeys(client_fields);
 	while(true)
 	{
 		waittillframeend();
@@ -1518,6 +1520,7 @@ function powerup_grab(powerup_team)
 		return;
 	}
 	self endon(#"powerup_timedout", #"powerup_grabbed");
+	range_squared = 4096;
 	while(isdefined(self))
 	{
 		if(isdefined(self.powerup_player))
@@ -2596,6 +2599,7 @@ function function_de41121d(str_powerup)
 	str_index_on = "zombie_powerup_" + str_powerup + "_on";
 	str_index_time = "zombie_powerup_" + str_powerup + "_time";
 	str_sound_loop = "zmb_" + str_powerup + "_loop";
+	str_sound_off = "zmb_" + str_powerup + "_loop_off";
 	while(zombie_utility::function_73061b82(str_index_time) >= 0)
 	{
 		waitframe(1);

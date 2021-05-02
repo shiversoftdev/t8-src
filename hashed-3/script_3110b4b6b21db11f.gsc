@@ -690,6 +690,7 @@ function function_bad6907c()
 		if(isdefined(var_2e07b8ff) && var_2e07b8ff.size > 0)
 		{
 			self switchtoweapon(var_2e07b8ff[0], 1);
+			var_5a7831c4 = 0;
 			while(!var_5a7831c4)
 			{
 				waitframe(1);
@@ -936,6 +937,7 @@ function function_142c254b()
 function function_e8485ac0()
 {
 	self endon(#"death");
+	n_counter = 0;
 	while(true)
 	{
 		wait(0.1);
@@ -1103,6 +1105,7 @@ function function_615d3be0()
 {
 	level endon(#"end_game");
 	var_2481807a = array::get_all_closest(self.origin, level.var_2481807a);
+	var_98698d94 = var_2481807a[0];
 	while(true)
 	{
 		var_7c1bf084 = self function_e2d41c8d(var_98698d94);

@@ -604,6 +604,7 @@ function aoe_friendlies(weapon, aoe)
 	has_reapply_check = isdefined(aoe.check_reapply_time_func);
 	aoe_team = self.team;
 	aoe_applied = 0;
+	frac = 0;
 	while(frac < 1 || aoe_applied > 0)
 	{
 		settings = getscriptbundle(weapon.var_4dd46f8a);

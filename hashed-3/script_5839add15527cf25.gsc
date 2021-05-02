@@ -360,6 +360,7 @@ function function_27cd9d6(var_41f1a085 = 0)
 {
 	self endon(#"disconnect", #"hash_14795fd12c6dae32");
 	level endon(#"hash_7646638df88a3656");
+	n_time = 0;
 	while(!isalive(self) || self laststand::player_is_in_laststand() || self isusingoffhand() || self function_55acff10() || self zm_laststand::is_reviving_any() || n_time < var_41f1a085)
 	{
 		waitframe(1);

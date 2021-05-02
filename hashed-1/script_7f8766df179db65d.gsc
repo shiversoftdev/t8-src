@@ -150,8 +150,10 @@ function aptoggleloop()
 	{
 		waitresult = undefined;
 		waitresult = self waittill(#"weapon_change");
+		weapon = waitresult.weapon;
 		while(weapon.lockontype == "AP Single")
 		{
+			abort = 0;
 			while(!self playerads() == 1)
 			{
 				waitframe(1);

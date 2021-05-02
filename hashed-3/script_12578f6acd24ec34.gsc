@@ -136,6 +136,7 @@ function stop_light_fx(localclientnum)
 */
 function spike_detonation(localclientnum)
 {
+	spike_position = self.origin;
 	while(isdefined(self))
 	{
 		waitframe(1);

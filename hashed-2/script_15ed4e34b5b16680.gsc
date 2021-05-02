@@ -460,6 +460,7 @@ function function_62449dad()
 	self endon(#"death", #"crashing", #"leaving");
 	level endon(#"game_ended");
 	var_df0dfc2d = self.var_6982e1d6 * self.var_6982e1d6;
+	level.heli_turretreloadtime = 5;
 	while(true)
 	{
 		if(isdefined(self.primarytarget))
@@ -467,12 +468,14 @@ function function_62449dad()
 			self.primarytarget.antithreat = undefined;
 			self.turrettarget = self.primarytarget;
 			antithreat = 0;
+			last_pos = undefined;
 			while(isdefined(self.turrettarget) && isalive(self.turrettarget))
 			{
 				if(distance2dsquared(self.turrettarget.origin, self.origin) <= var_df0dfc2d)
 				{
 					self vehlookat(self.turrettarget);
 				}
+				helicopterturretmaxangle = getdvar(#"scr_helicopterturretmaxangle", level.helicopterturretmaxangle);
 				while(isdefined(self.turrettarget) && isalive(self.turrettarget) && self helicopter::turret_target_check(self.turrettarget, helicopterturretmaxangle) == 0)
 				{
 					wait(0.1);
@@ -588,6 +591,7 @@ function function_303fcbd8()
 		{
 			self.secondarytarget.antithreat = undefined;
 			self.missiletarget = self.secondarytarget;
+			antithreat = 0;
 			while(isdefined(self.missiletarget) && isalive(self.missiletarget))
 			{
 				if(self helicopter::target_cone_check(self.missiletarget, level.heli_missile_target_cone))
@@ -685,6 +689,7 @@ function function_560c5174(currentnode, startwait, hardpointtype)
 		{
 			if(isdefined(self.primarytarget))
 			{
+				nextnode = undefined;
 				while(var_e2c8c9b6.size > 0 && (!isdefined(nextnode) || currentnode === nextnode))
 				{
 					nextnode = arraygetclosest(self.primarytarget.origin, var_e2c8c9b6);
@@ -817,6 +822,7 @@ function function_ab637f96(waittime, var_f49cf7e0 = 0)
 function function_40c7d949(n_range = 2000)
 {
 	self endon(#"hash_1ef47c427ec739d7");
+	var_d6326c12 = n_range * n_range;
 	while(true)
 	{
 		if(isdefined(self.primarytarget) && distance2dsquared(self.origin, self.primarytarget.origin) > var_d6326c12)

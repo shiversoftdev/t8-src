@@ -274,6 +274,7 @@ function perk_machine_think(str_key, s_custom_perk)
 	level endon(str_endon);
 	str_on = s_custom_perk.alias + "_on";
 	str_off = s_custom_perk.alias + "_off";
+	str_notify = str_key + "_power_on";
 	while(true)
 	{
 		machine = getentarray(s_custom_perk.radiant_machine_name, "targetname");
@@ -492,6 +493,7 @@ function electric_perks_dialog()
 	}
 	self endon(#"warning_dialog");
 	level endon(#"switch_flipped");
+	timer = 0;
 	while(true)
 	{
 		wait(0.5);
@@ -1836,6 +1838,7 @@ function check_player_has_perk(perk)
 			return;
 		}
 	#/
+	dist = 16384;
 	while(true)
 	{
 		players = getplayers();
@@ -4545,6 +4548,7 @@ function function_ba56adf1(var_c188cf87, var_59ad3e22)
 function function_c99f4d81(var_c188cf87, var_59ad3e22)
 {
 	self endon(#"death", #"disconnect");
+	b_first_loop = 1;
 	while(function_66c0d837(self, var_c188cf87, var_59ad3e22))
 	{
 		if(b_first_loop)
@@ -4829,6 +4833,7 @@ private function function_67bdfe40(var_bbb2c705, var_b0696a17)
 		var_bbb2c705 = 0.001;
 	}
 	var_73db1c5d = 0;
+	n_time_elapsed = 0;
 	while(var_73db1c5d < 4)
 	{
 		var_21243f81 = math::clamp(n_time_elapsed / var_bbb2c705, 0, 1);

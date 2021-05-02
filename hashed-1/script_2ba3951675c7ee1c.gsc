@@ -836,6 +836,7 @@ function function_6222e98f()
 	self thread function_95a4deeb();
 	self thread function_6b09dab1();
 	self thread function_7f19d274();
+	self.n_cooldown_time = 25;
 	while(isdefined(self) && self.n_cooldown_time > 0 && (isdefined(self.var_1ea09849) && self.var_1ea09849))
 	{
 		self.n_cooldown_time = self.n_cooldown_time - 0.5;
@@ -1038,6 +1039,7 @@ function function_bc77319a(player)
 */
 function function_3e6b7a2d()
 {
+	var_fbab1c11 = undefined;
 	while(true)
 	{
 		var_d249c0e6 = 25;
@@ -1244,6 +1246,7 @@ function function_d3db303d()
 	v_weapon_origin_offset = vectorscale((0, 0, 1), 9);
 	v_weapon_angles_offset = vectorscale((0, -1, 0), 90);
 	self.stub.v_weapon_origin = level.var_bff24582.origin + anglestoforward(level.var_bff24582.angles) * 15 + v_weapon_origin_offset;
+	self.stub.v_weapon_angles = level.var_bff24582.angles + v_weapon_angles_offset;
 	while(true)
 	{
 		var_88706ea7 = undefined;

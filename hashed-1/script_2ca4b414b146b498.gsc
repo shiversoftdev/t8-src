@@ -578,6 +578,7 @@ function function_5479b133(team, killstreak_id)
 function function_b60b8174()
 {
 	self endon(#"death", #"changed_specialist", #"disconnect", #"joined_team", #"joined_spectators");
+	killstreakweapon = killstreaks::get_killstreak_weapon("tank_robot");
 	while(true)
 	{
 		quantity = killstreaks::get_killstreak_quantity(killstreakweapon);
@@ -2802,6 +2803,7 @@ function emp_crazy_death()
 	self clientfield::set("stun", 1);
 	self notify(#"death");
 	time = 0;
+	randomangle = randomint(360);
 	while(time < 1.45)
 	{
 		if(isdefined(self) && function_3238d10d(self.origin))
@@ -2854,6 +2856,7 @@ function emp_crazy_death()
 function function_3bb5ae4()
 {
 	self endon(#"death");
+	origin = self.origin;
 	while(isdefined(self))
 	{
 		self.origin = origin;
@@ -3429,6 +3432,7 @@ function watchwater()
 	self endon(#"death");
 	var_8a7edebd = 25;
 	var_29ed3475 = 12.5;
+	inwater = 0;
 	while(!inwater)
 	{
 		wait(0.3);

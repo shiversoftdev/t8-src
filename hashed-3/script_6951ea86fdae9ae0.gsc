@@ -132,6 +132,7 @@ private function function_1633056a(var_a9dd1993, var_2953986a, var_3790b4e4, var
 		var_df94cf3e = getweapon(var_edc5a14f);
 	}
 	wait(1);
+	var_407eb07 = 0;
 	while(true)
 	{
 		if(self function_26f124d8() && var_407eb07)

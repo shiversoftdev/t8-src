@@ -350,6 +350,7 @@ function zombie_faller_watch_player(player)
 	closerange = 60;
 	closerangesqr = closerange * closerange;
 	dirtoplayerenter = (0, 0, 0);
+	incloserange = 0;
 	while(true)
 	{
 		distsqr = distance2dsquared(self.origin, player.origin);
@@ -415,6 +416,7 @@ function zombie_fall_wait()
 	{
 		if(isdefined(level.zones) && isdefined(level.zones[self.zone_name]))
 		{
+			zone = level.zones[self.zone_name];
 			while(true)
 			{
 				if(!zone.is_enabled || !zone.is_active)
@@ -664,6 +666,7 @@ function zombie_fall_dust_fx(zombie)
 	self thread stop_zombie_fall_dust_fx(zombie);
 	dust_time = 4.5;
 	dust_interval = 0.3;
+	t = 0;
 	while(t < dust_time)
 	{
 		playfxontag(level._effect[#"rise_dust"], zombie, dust_tag);
@@ -878,6 +881,7 @@ function zombie_emerge_dust_fx(zombie)
 	self thread stop_zombie_fall_dust_fx(zombie);
 	dust_time = 3.5;
 	dust_interval = 0.5;
+	t = 0;
 	while(t < dust_time)
 	{
 		playfxontag(level._effect[#"rise_dust"], zombie, dust_tag);

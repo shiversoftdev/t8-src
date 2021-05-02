@@ -69,6 +69,7 @@ function magic_box_update()
 	{
 		return;
 	}
+	box_mode = "no_power";
 	while(true)
 	{
 		if(!level flag::get("power_on") || level flag::get("moving_chest_now") && level.zombie_vars[#"zombie_powerup_fire_sale_on"] === 0)

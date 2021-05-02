@@ -325,6 +325,7 @@ function function_5e056d93(str_notify)
 */
 function function_60b99c5a(grenade)
 {
+	mdl_anchor = grenade.mdl_anchor;
 	while(!grenade flag::get(#"hash_5e780b1a8f2d1e3b"))
 	{
 		a_zombies = zombie_utility::get_zombie_array();
@@ -424,6 +425,7 @@ function function_32b5113(ai_zombie)
 function function_cc9535d0(var_c4a5788c, var_bbab4f84, var_2f916462)
 {
 	self endon(#"death", #"explode");
+	b_first_loop = 1;
 	while(true)
 	{
 		var_387977f = 0;

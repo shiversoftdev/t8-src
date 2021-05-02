@@ -224,6 +224,7 @@ function function_94c0714()
 	level.var_8200dc81 thread namespace_509a75d1::function_6a0d675d(#"hash_46be55ed9729001b", 0, 0);
 	level flag::clear("world_is_paused");
 	namespace_617a54f4::function_3f808d3d("sc_toast_apd");
+	var_3935385d = struct::get("cp_toast_apd", "script_noteworthy");
 	while(!var_3935385d.charged)
 	{
 		wait(1);
@@ -422,6 +423,7 @@ function function_ca3759b1()
 	#/
 	level thread function_26739c84();
 	exploder::exploder("fxexp_pyramid_capture");
+	level.vol_toast_trap = getent("vol_toast_trap", "targetname");
 	while(isdefined(level.var_43c333a8) && !level.var_43c333a8 istouching(level.vol_toast_trap))
 	{
 		wait(0.1);
@@ -577,6 +579,7 @@ function function_c88a99db(str_hint)
 	vol_apd_console = getent("vol_apd_console", "targetname");
 	vol_apd_console show();
 	vol_apd_console sethintstring(str_hint);
+	b_wait = 1;
 	while(b_wait)
 	{
 		b_wait = 0;
@@ -608,6 +611,7 @@ function function_3b0da1a8(str_hint)
 	vol_apd_console = getent("vol_apd_console", "targetname");
 	vol_apd_console show();
 	vol_apd_console sethintstring(str_hint);
+	b_wait = 1;
 	while(b_wait)
 	{
 		foreach(player in getplayers())
@@ -1029,6 +1033,7 @@ function function_c6c9b014(e_player)
 function function_297251d8()
 {
 	level endon(#"game_ended", #"hash_686caa0c15c47f93");
+	var_5b857980 = function_4d1e7b48(#"hash_320c81d91eb89d73");
 	while(!level flag::get(#"hash_2d4c12349ae2f7cd"))
 	{
 		foreach(player in getplayers())
@@ -1144,6 +1149,7 @@ function function_abb0b62()
 	var_51f3793d = 0;
 	var_733f4178 = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 	var_733f4178 = array::randomize(var_733f4178);
+	i = 0;
 	while(true)
 	{
 		wait(function_21a3a673(5, 10));
@@ -1350,6 +1356,7 @@ function function_1fba7fc2()
 	var_a4511239[#"udem"] = array::randomize(array(0, 1, 2, 3));
 	var_a4511239[#"uric"] = array::randomize(array(0, 1, 2, 3));
 	var_a4511239[#"utak"] = array::randomize(array(0, 1, 2, 3));
+	var_4854a91b = "vox_boss_taunt_";
 	while(true)
 	{
 		var_805dab64 = 0;
@@ -1655,6 +1662,7 @@ function function_ffa1c335()
 {
 	level endon(#"game_ended");
 	var_681e3f31 = getent(self.soul_goo, "script_noteworthy");
+	v_start_pos = var_681e3f31.origin;
 	while(true)
 	{
 		var_681e3f31 moveto(v_start_pos + (0, 0, self.var_fe96dcd4), 1);

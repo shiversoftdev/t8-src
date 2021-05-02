@@ -626,6 +626,7 @@ function function_593bdda2(n_level, var_e8d6f89, var_eed14f5e, var_ec3da253, var
 function function_c6e7b0d9()
 {
 	level endon(#"combattraining_logic_finished");
+	var_a14cd67 = 0;
 	while(!var_a14cd67)
 	{
 		level thread namespace_8c007aa6::function_14b08e49(array(#"hash_4aaf37a6e822c717"), "stop_nag");
@@ -721,6 +722,7 @@ function function_f58c42e2()
 		e_player = getplayers()[0];
 		waitresult = undefined;
 		waitresult = e_player waittill(#"grenade_fire");
+		n_start_time = gettime() / 1000;
 		while(true)
 		{
 			var_beeee781 = namespace_73e1c3e3::function_ee33a140();
@@ -772,6 +774,7 @@ function function_9d1bba67()
 	var_3608d414 = array(#"hash_622d320255f505fa");
 	level thread namespace_8c007aa6::function_14b08e49(var_3608d414, "shield_deployed");
 	e_player = getplayers()[0];
+	var_7c59ef25 = e_player gadgetgetslot(getweapon(#"sig_buckler_dw"));
 	while(!e_player gadgetisactive(var_7c59ef25))
 	{
 		waitframe(1);
@@ -872,6 +875,7 @@ function function_9f3ecaf2()
 	namespace_8c007aa6::function_3ca1b77d();
 	namespace_8c007aa6::function_831e0584(array(#"hash_381485398b9476c4"), 1);
 	level.var_e72728b8 = undefined;
+	var_e29ee6bf = 0;
 	while(!var_e29ee6bf)
 	{
 		level thread function_c99618be();
@@ -879,6 +883,7 @@ function function_9f3ecaf2()
 		level thread namespace_8c007aa6::function_14b08e49(var_3608d414, "shield_cooked");
 		e_player = getplayers()[0];
 		e_player thread namespace_73e1c3e3::function_61c3d59c(#"hash_15ea928b21f90ff", undefined);
+		var_b509dacb = 0;
 		while(!var_b509dacb)
 		{
 			while(!e_player fragbuttonpressed())
@@ -888,6 +893,7 @@ function function_9f3ecaf2()
 			e_player = getplayers()[0];
 			e_player thread namespace_73e1c3e3::function_61c3d59c(#"hash_481e857eee7f2a9c", undefined);
 			s_loc = struct::get("s_cooked_shield_door_obj", "targetname");
+			waypoint = namespace_73e1c3e3::create_waypoint(#"hash_1f1deaa6bff12db8", s_loc.origin, s_loc.angles, #"any", undefined, 40, undefined);
 			while(true)
 			{
 				if(!e_player fragbuttonpressed())
@@ -1145,6 +1151,7 @@ function function_b73895e1()
 function function_4e24aa26()
 {
 	level endon(#"hash_4161e19c15c58c8c", #"combattraining_logic_finished");
+	var_6ee32682 = 0;
 	while(true)
 	{
 		n_time = gettime() / 1000;
@@ -1204,6 +1211,7 @@ function function_4a9cfde5()
 	var_c897b566 = array(#"hash_369d22fddac9484d");
 	level thread namespace_8c007aa6::function_14b08e49(var_c897b566, "player_damaged");
 	b_vo_played = 0;
+	var_ddf0f271 = 0;
 	while(!var_ddf0f271)
 	{
 		level.var_e72728b8 = [];
@@ -1297,6 +1305,7 @@ function function_109c0cc2()
 	e_player thread namespace_73e1c3e3::function_68848e5("recon_car");
 	callback::on_player_killed_with_params(&namespace_73e1c3e3::function_944e4110);
 	level.var_28cfc859 = 50;
+	b_success = 0;
 	while(true)
 	{
 		level notify(#"start_init_killstreak_collision");
@@ -1345,6 +1354,7 @@ function wait_for_car()
 	level endon(#"combattraining_logic_finished");
 	e_player = getplayers()[0];
 	e_player thread namespace_73e1c3e3::function_61c3d59c(undefined, undefined, "dynobj_KillToEarnRCXD");
+	level.var_f9242904 = 1;
 	while(level.var_f9242904)
 	{
 		if(!isdefined(e_player.killstreaks) || e_player.killstreaks.size == 0)
@@ -1365,6 +1375,7 @@ function wait_for_car()
 		var_9bff2467 = var_3f21ce47.size;
 		var_e2bcb756 = struct::get_array("bot_killstreak_respawn_pos", "targetname");
 		var_16bd65fd = 0;
+		var_5f07f07c = 0;
 		while(!(isdefined(var_5f07f07c) && var_5f07f07c) && level.var_f9242904)
 		{
 			e_player = getplayers()[0];
@@ -1704,6 +1715,7 @@ function player_grenade_watcher()
 		waitresult = self waittill(#"grenade_fire");
 		if(waitresult.weapon.name == #"eq_swat_grenade")
 		{
+			v_pos = waitresult.projectile.origin;
 			while(isdefined(waitresult.projectile))
 			{
 				v_pos = waitresult.projectile.origin;
@@ -1899,6 +1911,7 @@ function function_4e23716d()
 	self endon(#"death", #"hash_1ee5e1328a4dfd77");
 	var_5a984899 = getweapon(#"sig_buckler_turret");
 	var_7f7f77b6 = getweapon(#"sig_buckler_dw");
+	var_6af5e1d4 = self function_f09c133d(var_5a984899);
 	while(true)
 	{
 		wpn_current = self getcurrentweapon();

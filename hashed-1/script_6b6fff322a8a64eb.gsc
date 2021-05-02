@@ -936,6 +936,7 @@ function function_dbb49281()
 	self notify(#"hash_2ca5123c06ec42f0");
 	self endon(#"disconnect", #"hash_2ca5123c06ec42f0");
 	b_saw_the_wth = 0;
+	var_616e76c5 = struct::get("sq_scare_lighthouse", "targetname");
 	while(!b_saw_the_wth)
 	{
 		for(n_time = 0; self adsbuttonpressed() && n_time < 30; n_time++)
@@ -1002,6 +1003,7 @@ function function_b6b24d3a()
 	self endon(#"disconnect", #"hash_7bbb3fe051fd6c74");
 	var_11dc5e9d = 144;
 	b_saw_the_wth = 0;
+	var_616e76c5 = struct::get("sq_scare_note", "targetname");
 	while(!b_saw_the_wth)
 	{
 		for(n_time = 0; self zm_utility::is_player_looking_at(var_616e76c5.origin, 0.9975, 0, self) && distance(self.origin, var_616e76c5.origin) <= var_11dc5e9d && self getstance() === "crouch" && n_time < 30; n_time++)
@@ -1170,6 +1172,7 @@ function function_8bc27fd3(var_5ea5c94d)
 		{
 			namespace_509a75d1::function_314447b(1, 0);
 		}
+		var_67dae760 = getent("edge_of_the_world", "targetname");
 		while(true)
 		{
 			foreach(player in getplayers())
@@ -1362,6 +1365,7 @@ function function_cabcfdd2()
 {
 	level endon(#"hash_778a2b8282d704f");
 	level endon(#"hash_431a5026505d71aa");
+	var_b3ee22cc = 0;
 	while(true)
 	{
 		self waittill(#"trigger_activated");

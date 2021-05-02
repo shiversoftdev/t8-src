@@ -170,6 +170,7 @@ function function_70594057()
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	level waittill(#"zombie_total_set");
+	n_kills = 0;
 	while(true)
 	{
 		level waittill(#"trap_kill", #"hash_528d7b7f7d6c51a1", #"hash_317f58ba0d580c27", #"hash_148b3ce521088846");

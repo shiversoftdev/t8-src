@@ -949,6 +949,7 @@ function function_aab4eb23()
 	level endon(#"hash_dc34ebe02d09532");
 	self endon(#"death");
 	self val::set(#"hash_380f047d8df05b1", "takedamage", 1);
+	self.health = 99999999;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -1058,6 +1059,7 @@ function function_8efba1b4()
 	mdl_blocker endon(#"death");
 	mdl_blocker setinvisibletoplayer(self);
 	level flag::wait_till(#"hash_dc34ebe02d09532");
+	var_8ded56d0 = getent("vol_power_quest_kill_zone", "targetname");
 	while(true)
 	{
 		while(!self istouching(var_8ded56d0))
@@ -1144,14 +1146,17 @@ function function_30da273d()
 			}
 		}
 	}
+	level.n_index = 0;
 	while(level.var_19819980 < 4)
 	{
 		wait(1);
 	}
+	level.n_index = 1;
 	while(level.var_19819980 < 7)
 	{
 		wait(1);
 	}
+	level.n_index = 2;
 	while(level.var_19819980 < 10)
 	{
 		wait(1);
@@ -1332,6 +1337,7 @@ function function_c577b1bf()
 function function_ce24f67b()
 {
 	nd_entry = getvehiclenode("pegasus_exit_start", "targetname");
+	var_b56bded7 = undefined;
 	while(!isdefined(var_b56bded7))
 	{
 		var_b56bded7 = spawner::simple_spawn_single("cam_vehicle");
@@ -1702,6 +1708,7 @@ function function_3c2c7054()
 function function_4fe65f31(n_zombies, n_timeout)
 {
 	level endon(#"end_game");
+	n_start_time = gettime();
 	while(true)
 	{
 		if(getaiteamarray(level.zombie_team).size <= n_zombies)
@@ -1758,6 +1765,7 @@ function function_72d7e85b(var_1c6bf395, var_29826eea, n_timeout)
 	}
 	if(var_29826eea.size > 0)
 	{
+		n_start_time = gettime();
 		while(true)
 		{
 			foreach(n_section in var_29826eea)
@@ -1821,6 +1829,7 @@ function reinforcements_think(var_17e78c4a, var_f153be86 = 0, var_a294702 = 0)
 {
 	level endon(#"end_game", #"hash_a3780ca3fcd7d5f", #"hash_4d8091aa6a26d815");
 	var_eb3b90d = struct::get_array(var_17e78c4a);
+	var_8e8ab42 = array::randomize(var_eb3b90d);
 	while(true)
 	{
 		if(getaiteamarray(level.zombie_team).size < level.zombie_ai_limit)
@@ -1956,6 +1965,7 @@ function function_d8db57f6()
 		{
 			v_origin = a_info[#"point"];
 		}
+		s_spawn = struct::spawn(v_origin, v_angles);
 		while(true)
 		{
 			var_862206ea = namespace_bc12435c::function_1ea880bd(1, s_spawn, level.round_number);
@@ -2153,6 +2163,7 @@ function function_342bd17b()
 {
 	self endon(#"death");
 	s_center = struct::get(#"hash_4ede0d513d23996b");
+	v_center = s_center.origin;
 	while(true)
 	{
 		self waittill(#"zombie_melee");

@@ -103,6 +103,7 @@ function function_c2342058(s_window)
 {
 	carp_ent = spawn("script_origin", (0, 0, 0));
 	carp_ent playloopsound(#"evt_carpenter");
+	num_chunks_checked = 0;
 	while(true)
 	{
 		if(zm_utility::all_chunks_intact(s_window, s_window.barrier_chunks))

@@ -436,6 +436,7 @@ function function_279e31b8(e_owner)
 	self endon("b24e157aae48642");
 	self endon_callback(&function_26c2620, #"death", #"hash_7199d465a80b4f59", #"scene_ready", #"hash_36b9957a693185ea" + "_take");
 	var_bbf6e7fd = 16384;
+	var_fc7bb684 = e_owner.var_c153f587.origin;
 	while(isdefined(e_owner.var_c153f587) && distancesquared(self.origin, var_fc7bb684) < var_bbf6e7fd && self hasperk(#"hash_4c14ed37c4038671"))
 	{
 		if(!isdefined(self.var_9c1c5b59))

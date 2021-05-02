@@ -566,6 +566,7 @@ function function_3e31854(e_player, v_color)
 		self endon(#"death", #"hash_199d88acd54c89d4");
 		var_7b890daf = self.origin + vectorscale((0, 0, 1), 96);
 		var_14113491 = self.origin - vectorscale((0, 0, 1), 96);
+		var_3ac02792 = vectorscale(anglestoforward(self.angles), 450);
 		while(getdvarint(#"hash_3c4df2fe4b1618d5", 0))
 		{
 			circle(var_7b890daf, 450, v_color, 0, 1);
@@ -642,6 +643,7 @@ function ghost_impact_fx(localclientnum)
 {
 	self endon(#"death");
 	var_35144d9b = (0, 0, 0);
+	var_c2b3e9bf = var_35144d9b;
 	while(isdefined(self))
 	{
 		v_start = self gettagorigin("j_spinelower");
@@ -768,6 +770,7 @@ function function_6812bd74(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_466c2fa3(str_fx, newval)
 {
 	/#
+		str_hint = function_f415205b(newval);
 		while(getdvarint(#"hash_3c4df2fe4b1618d5", 0) && isdefined(self))
 		{
 			debug2dtext((100, 800, 0), "" + newval + "" + str_hint + "" + function_9e72a96(str_fx), (1, 1, 1));
@@ -801,6 +804,7 @@ function function_5545acc1(newval)
 		}
 		level.var_d23472c9[str_hint] = newval;
 		v_pos = vectorscale((1, 1, 0), 128);
+		n_offset = 24;
 		while(getdvarint(#"hash_3c4df2fe4b1618d5", 0))
 		{
 			var_8b7c6b64 = 0;

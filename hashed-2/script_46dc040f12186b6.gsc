@@ -473,6 +473,7 @@ function function_836b3d02()
 {
 	level endon(#"combattraining_logic_finished");
 	wait(20);
+	var_6207d37d = 0;
 	while(true)
 	{
 		if(1)
@@ -588,6 +589,7 @@ function function_e268297c(var_1639ae86)
 	v_angles = vectortoangles(v_dir);
 	self.var_5ab7c19c = v_angles;
 	var_e47f9e94 = 0;
+	n_start_time = undefined;
 	while(true)
 	{
 		if(!isalive(self))
@@ -697,6 +699,7 @@ function function_52a2e58a(a_players)
 */
 function function_e60bbaf4()
 {
+	level.var_cea5b696 = 0;
 	while(true)
 	{
 		e_player = getplayers()[0];
@@ -740,6 +743,7 @@ function function_e60bbaf4()
 function function_9087a4b6()
 {
 	level endon(#"combattraining_logic_finished");
+	level.var_3bdcb692 = 0;
 	while(true)
 	{
 		level waittill(#"hash_1b2f366c8974d17a");
@@ -773,6 +777,7 @@ function function_6b37f8a5()
 	level.var_8a300598 = 1;
 	self namespace_73e1c3e3::function_7b70bd74(level.var_e8c8fc4, level.xpos, level.ypos, level.width, level.height);
 	level.var_e8c8fc4 luielembar_ct::set_color(self, 1, 0, 0);
+	level.var_db674473 = 0;
 	while(isdefined(level.var_f78f9034))
 	{
 		level.var_e8c8fc4 luielembar_ct::function_fd8c13fb(self, level.var_db674473);
@@ -892,6 +897,7 @@ function function_3a3bc266()
 function function_5f17f29()
 {
 	level endon(#"hash_2459a7f38b7c48c2");
+	e_player = getplayers()[0];
 	while(true)
 	{
 		level waittill(#"hash_4467c8999d018835");

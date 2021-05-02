@@ -280,6 +280,7 @@ private function cover_think()
 {
 	level endon(#"end_game", #"hash_6ba951b37826e520");
 	self endon(#"death");
+	trigger = getent(self.target, "targetname");
 	while(true)
 	{
 		var_88706ea7 = undefined;

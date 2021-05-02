@@ -1122,6 +1122,7 @@ function function_37106789(player, weapon)
 	{
 		return;
 	}
+	n_time_started = gettime() / 1000;
 	while(true)
 	{
 		n_time_current = gettime() / 1000;

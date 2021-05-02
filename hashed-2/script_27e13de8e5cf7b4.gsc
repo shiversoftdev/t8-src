@@ -241,6 +241,7 @@ private function function_e0537f19(var_4052dd74)
 	var_bcd1c2ff = self gadgetgetslot(var_4052dd74);
 	if(self function_36dfc05f(var_bcd1c2ff))
 	{
+		var_966dad48 = self gadgetpowerget(var_bcd1c2ff);
 		while(var_966dad48 > 0)
 		{
 			waitframe(1);
@@ -1098,6 +1099,7 @@ function function_c9830e97(var_c34665fc)
 private function gravity_trap_loop(var_4052dd74)
 {
 	self endon(#"disconnect", #"bled_out", #"death");
+	is_gravity_trap_fx_on = 1;
 	while(true)
 	{
 		if(self gadgetpowerget(self gadgetgetslot(var_4052dd74)) > 0)

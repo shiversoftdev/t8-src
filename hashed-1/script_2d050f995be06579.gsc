@@ -22,6 +22,7 @@ function function_ce66ebf2()
 	}
 	level.var_f0eb9bca = getgametypesetting(#"hash_6aba2f652c6f4e07");
 	level.var_fdd4b16 = getgametypesetting(#"hash_926bf70c5a0d23b");
+	level.var_e4cfa0c3 = getgametypesetting(#"hash_3da025c068c34bcb");
 	while(game.state !== "playing")
 	{
 		wait(1);

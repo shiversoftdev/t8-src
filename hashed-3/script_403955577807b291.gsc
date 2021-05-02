@@ -599,6 +599,7 @@ function function_d96f79be(local_client_num, oldval, newval, bwastimejump)
 	{
 		return;
 	}
+	starttime = gettime();
 	while(isdefined(self) && !self hasdobj(local_client_num))
 	{
 		if(gettime() - starttime > 1000)
@@ -685,6 +686,7 @@ private function function_34aba8d8(local_client_num, targetid, newval)
 */
 function function_91803954(local_client_num, oldval, newval)
 {
+	starttime = gettime();
 	while(isdefined(self) && !self hasdobj(local_client_num))
 	{
 		if(gettime() - starttime > 1000)

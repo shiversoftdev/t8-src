@@ -77,6 +77,7 @@ function fall()
 		iprintlnbold("");
 	#/
 	level thread namespace_9cf755b::function_ec34b5ee(#"hash_2c4fa652fb89d231");
+	n_end_time = gettime() + 300000;
 	while(gettime() < n_end_time)
 	{
 		wait(randomfloatrange(2, 4));

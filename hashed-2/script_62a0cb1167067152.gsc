@@ -242,6 +242,7 @@ function function_a2c337dc(var_5ea5c94d, ended_early)
 		level.var_f5624728 = getplayers()[0];
 	}
 	s_look = struct::get("mee_3_look_target", "targetname");
+	watcher = spawn("script_origin", s_look.origin);
 	while(watcher function_7f971d26())
 	{
 		waitframe(1);
@@ -260,6 +261,7 @@ function function_a2c337dc(var_5ea5c94d, ended_early)
 	watcher delete();
 	var_74370e46 = getent("mee3_reward", "targetname");
 	level thread trigger::look_trigger(var_74370e46);
+	b_saw_the_wth = 0;
 	while(!b_saw_the_wth)
 	{
 		waitresult = undefined;
@@ -636,6 +638,7 @@ function function_edcadf04()
 	if(zm_utility::function_e51dc2d8() || level flag::get(#"hash_502f2e83a538c679"))
 	{
 		pixbeginevent(#"hash_76daa837c3b1d91b");
+		var_7c6d8d1a = 0;
 		while(!var_7c6d8d1a)
 		{
 			self.health = 999;
@@ -736,6 +739,7 @@ function function_6e678915()
 	self endon(#"death");
 	while(isdefined(self))
 	{
+		b_player_in_range = 0;
 		while(!b_player_in_range)
 		{
 			wait(function_21a3a673(4, 8));
@@ -1155,6 +1159,7 @@ function function_800ff39e()
 	level.var_5f4eaf85 thread function_d10bf985();
 	level.var_57ce903d = getent("mee_2_female", "targetname");
 	level.var_57ce903d show();
+	level.var_7b22edab = spawn("script_origin", level.var_57ce903d.origin + vectorscale((0, 0, 1), 10));
 	while(!level.var_5f4eaf85 is_near("mee_2_follow_trigger"))
 	{
 		waitframe(1);
@@ -1164,6 +1169,7 @@ function function_800ff39e()
 	level.var_5f4eaf85.var_3d366381 = getclosestpointonnavmesh(s_goal.origin, 32);
 	level.var_5f4eaf85.team = #"allies";
 	level.var_5f4eaf85 zombie_utility::set_zombie_run_cycle("run");
+	level.var_5f4eaf85.var_72411ccf = &function_589845fe;
 	while(!level.var_5f4eaf85 is_near("mee_2_shed"))
 	{
 		waitframe(1);
@@ -1174,6 +1180,7 @@ function function_800ff39e()
 	e_door playsound("zmb_shed_door_open");
 	e_door rotateto(vectorscale((0, 1, 0), 202), 1);
 	wait(2);
+	var_e979d075 = getentarray("e_mee_2_weeper_final", "targetname");
 	while(level.var_5f4eaf85 function_7f971d26() || level.var_57ce903d function_7f971d26() || var_e979d075[0] function_7f971d26())
 	{
 		waitframe(1);

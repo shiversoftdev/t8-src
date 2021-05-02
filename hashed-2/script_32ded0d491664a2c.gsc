@@ -433,6 +433,7 @@ function function_bc194310()
 			level notify(#"start_grapple_fail_door_collision");
 			level thread namespace_8c007aa6::function_831e0584(array(#"vox_tvoi_tutor_ruin_slide_3_miss_nag"));
 			var_d21ccff6 = 1;
+			n_start_time = gettime() / 1000;
 			while(true)
 			{
 				e_player = getplayers()[0];
@@ -498,6 +499,7 @@ function function_bc194310()
 function function_cc2f8b4()
 {
 	level endon(#"combattraining_logic_finished", #"grapple_fail_complete");
+	level.var_9d2a5e6d = 0;
 	while(true)
 	{
 		e_player = getplayers()[0];
@@ -559,6 +561,7 @@ function function_af9bb307()
 	e_player thread namespace_73e1c3e3::function_61c3d59c(#"hash_46099ddc56532a3", undefined);
 	s_loc = struct::get("s_grapple_available_loc", "targetname");
 	var_56b89658 = 3;
+	vo_played = 0;
 	while(!(isdefined(level.var_801f2e81) && level.var_801f2e81))
 	{
 		if(isdefined(level.var_97aaa7c6) && level.var_97aaa7c6)
@@ -622,6 +625,7 @@ function function_8d8bad52()
 	level.var_3a8650d5 = 0;
 	n_start_time = gettime() / 1000;
 	var_c6f9dd1f = gettime() / 1000;
+	var_2d3e1b92 = 0;
 	while(true)
 	{
 		if(isdefined(level.b_player_in_range) && level.b_player_in_range)
@@ -723,6 +727,7 @@ function function_acfa05d1(var_4b28bc8)
 {
 	level endon(#"combattraining_logic_finished");
 	s_target = struct::get("s_grapple_hook_dist_fail", "targetname");
+	b_played_vo = 0;
 	while(!(isdefined(level.var_801f2e81) && level.var_801f2e81))
 	{
 		e_player = getplayers()[0];
@@ -825,6 +830,7 @@ function function_c4629797()
 {
 	level endon(#"combattraining_logic_finished", #"hash_c6d4041766f9315");
 	level.var_8d109684 = undefined;
+	var_f5552ee9 = getent("vol_player_chase_jump", "targetname");
 	while(true)
 	{
 		e_player = getplayers()[0];
@@ -931,6 +937,7 @@ function function_baae9a51()
 	e_player namespace_64a487a9::function_fd2d220e();
 	level thread namespace_8c007aa6::function_14b08e49(array(#"hash_3c9d4e83f2a8c9cd"), "stop_nag");
 	level thread function_96e7c232();
+	var_24593a52 = 0;
 	while(level.var_209e2e90.size > 0)
 	{
 		if(level.var_209e2e90.size == 1)
@@ -999,6 +1006,7 @@ function function_baae9a51()
 function function_96e7c232()
 {
 	level endon(#"combattraining_logic_finished");
+	b_vo_played = 0;
 	while(!b_vo_played)
 	{
 		foreach(beacon in level.var_209e2e90)
@@ -1079,6 +1087,7 @@ function function_8678055f()
 	level notify(#"stop_beginning_area_ajax_collision");
 	level notify(#"start_ajax_area_collision");
 	var_d1eb86be = 0;
+	var_dbddceb5 = 0;
 	while(var_dbddceb5 == 0)
 	{
 		var_9e9cfef1 = level.var_7cab580;
@@ -1119,6 +1128,7 @@ function function_8678055f()
 		e_player thread namespace_73e1c3e3::function_61c3d59c(#"hash_2f23ec2a153dce52", var_3608d414);
 		s_loc = struct::get("s_ruin_jump_over_ajax_obj", "targetname");
 		waypoint = namespace_73e1c3e3::create_waypoint(#"hash_43f27b76957da4d2", s_loc.origin, s_loc.angles, #"any", undefined, 30, undefined);
+		var_6a9e5fbd = 1;
 		while(true)
 		{
 			e_player = getplayers()[0];
@@ -1178,6 +1188,7 @@ function function_8678055f()
 		level notify(#"stop_grav_slam_charge", var_6a9e5fbd);
 		if(!b_timeout)
 		{
+			n_start_time = gettime() / 1000;
 			while(true)
 			{
 				n_time = gettime() / 1000;
@@ -1374,6 +1385,7 @@ function function_e340db61()
 	namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_1_hell_0"), 0);
 	namespace_73e1c3e3::function_9aca2fa0("ct_action2");
 	namespace_8c007aa6::function_3ca1b77d();
+	b_first_time = 1;
 	while(true)
 	{
 		e_player = namespace_73e1c3e3::get_player();
@@ -1585,6 +1597,7 @@ function earn_the_hellstorm_objective()
 	level.var_6425ca79 = 0;
 	level notify(#"stop_earn_hellstorm_enter_collision");
 	namespace_73e1c3e3::function_9aca2fa0("ct_action2");
+	var_78a31a59 = killstreaks::get_killstreak_momentum_cost(e_player, #"remote_missile");
 	while(true)
 	{
 		namespace_73e1c3e3::function_fdfeb384();
@@ -1703,6 +1716,7 @@ function function_209f3386()
 	level endon(#"combattraining_logic_finished", #"earn_the_hellstorm_objective");
 	e_player = namespace_73e1c3e3::get_player();
 	kills = e_player.kills;
+	var_a0aa3390 = struct::get_array("s_enemy_event2", "targetname").size;
 	while(true)
 	{
 		var_3f21ce47 = e_player namespace_64a487a9::function_dde6edbd();
@@ -1747,6 +1761,7 @@ function function_356af630()
 	level endon(#"combattraining_logic_finished", #"earn_the_hellstorm_objective");
 	e_player = namespace_73e1c3e3::get_player();
 	wait(10);
+	drone = undefined;
 	while(true)
 	{
 		otherteam = util::getotherteam(e_player.team);
@@ -1838,6 +1853,7 @@ function function_bbdd4fa9()
 	namespace_73e1c3e3::function_e9ab1003();
 	var_6a58d9ed = killstreaks::get_killstreak_momentum_cost(e_player, #"remote_missile");
 	namespace_73e1c3e3::function_9aca2fa0("ct_action2");
+	level.var_bbd2b179 = level.play_taacom_dialog;
 	while(true)
 	{
 		level.play_taacom_dialog = level.var_bbd2b179;

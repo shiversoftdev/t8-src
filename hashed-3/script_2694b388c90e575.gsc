@@ -1023,6 +1023,7 @@ private function function_b1abe6ab(t_damage, weapon)
 	{
 		return;
 	}
+	self.var_bfe9b833 = 1;
 	while(isdefined(t_damage) && self istouching(t_damage))
 	{
 		self dodamage(1, t_damage.origin, undefined, undefined, "torso_lower", "MOD_BURNED", 0, weapon);
@@ -1382,6 +1383,7 @@ private function function_7f95d262(eattacker, weapon)
 		return;
 	}
 	n_start_time = gettime();
+	n_total_time = 0;
 	while(n_total_time < 4)
 	{
 		self thread namespace_9ff9f642::slowdown(#"hash_716657b9842cfd1b");
@@ -1593,6 +1595,7 @@ function function_b1347a6()
 	v_weapon_origin_offset = anglestoforward(v_angles) * 2 + anglestoright(v_angles) * 21 + anglestoup(v_angles) * 1.75;
 	v_weapon_angles_offset = (0, 90, -90);
 	var_13202c94.v_weapon_origin = var_13202c94 gettagorigin("tag_origin") + v_weapon_origin_offset;
+	var_13202c94.v_weapon_angles = v_angles + v_weapon_angles_offset;
 	while(true)
 	{
 		var_88706ea7 = undefined;

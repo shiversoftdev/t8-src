@@ -225,6 +225,7 @@ function playerzombie_downed_hud()
 function playerzombie_infinite_health()
 {
 	self endon(#"death", #"disconnect");
+	bighealth = 100000;
 	while(true)
 	{
 		if(self.health < bighealth)
@@ -389,6 +390,7 @@ function playerzombie_waitfor_buttonrelease(inputtype)
 	self endon(notifystring);
 	if(inputtype == "use")
 	{
+		self.buttonpressed_use = 1;
 		while(self usebuttonpressed())
 		{
 			waitframe(1);
@@ -397,6 +399,7 @@ function playerzombie_waitfor_buttonrelease(inputtype)
 	}
 	else if(inputtype == "attack")
 	{
+		self.buttonpressed_attack = 1;
 		while(self attackbuttonpressed())
 		{
 			waitframe(1);
@@ -405,6 +408,7 @@ function playerzombie_waitfor_buttonrelease(inputtype)
 	}
 	else if(inputtype == "ads")
 	{
+		self.buttonpressed_ads = 1;
 		while(self adsbuttonpressed())
 		{
 			waitframe(1);

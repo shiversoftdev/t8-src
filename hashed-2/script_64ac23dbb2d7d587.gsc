@@ -487,6 +487,7 @@ function equipmentwatchplayerteamchanged(localclientnum, fxhandle)
 	self endon(#"death");
 	self notify(#"team_changed_watcher");
 	self endon(#"team_changed_watcher");
+	watcherplayer = function_5c10bd79(localclientnum);
 	while(true)
 	{
 		waitresult = undefined;

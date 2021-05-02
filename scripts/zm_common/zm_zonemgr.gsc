@@ -1634,6 +1634,7 @@ function _debug_show_zone(zone, color, alpha)
 */
 function _debug_zones()
 {
+	enabled = 0;
 	while(true)
 	{
 		wasenabled = enabled;

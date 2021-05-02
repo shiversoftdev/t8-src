@@ -1679,6 +1679,7 @@ function abilities_devgui_add_power(add_cmd_with_root, pid, menu_index)
 		root = add_cmd_with_root + "" + menu_index + "";
 		abilities_devgui_add_player_command(root, pid, "", 1, "", "");
 		abilities_devgui_add_player_command(root, pid, "", 2, "", "");
+		power = 0;
 		while(power <= 1)
 		{
 			abilities_devgui_add_player_command(root, pid, "" + power, 2, "", "" + power);

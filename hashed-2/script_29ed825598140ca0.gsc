@@ -2439,6 +2439,7 @@ function function_a932bf9c()
 		return;
 	}
 	timeperoneteamkillreduction = 20;
+	reductionpersecond = 1 / timeperoneteamkillreduction;
 	while(true)
 	{
 		if(isalive(self))

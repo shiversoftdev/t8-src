@@ -17,6 +17,7 @@ function wait_for_puppet_pickup()
 {
 	/#
 		self endon(#"death");
+		self.iscurrentlypuppet = 0;
 		while(true)
 		{
 			if(isdefined(self.ispuppet) && self.ispuppet && !self.iscurrentlypuppet)

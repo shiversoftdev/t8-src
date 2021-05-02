@@ -141,6 +141,7 @@ function function_53e45f4e()
 {
 	level endon(#"hash_767a32d351763f32");
 	self endon(#"death");
+	var_8618ad82 = 1250 * 1250;
 	while(true)
 	{
 		foreach(e_player in getplayers())
@@ -485,6 +486,7 @@ function function_229f868f(var_3aadd17)
 function function_175e4696(var_1e30344b)
 {
 	level endon(#"hash_767a32d351763f32");
+	self.n_rotation = 0;
 	while(true)
 	{
 		self waittill(#"hash_17ed60240cc5b0a8");

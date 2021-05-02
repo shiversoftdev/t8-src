@@ -357,6 +357,7 @@ function function_7922664f()
 function function_90ede8a9()
 {
 	level endon(#"end_game");
+	var_a41818b5 = spawner::simple_spawn_single(getent("virgil", "targetname"));
 	while(!isdefined(var_a41818b5))
 	{
 		waitframe(1);

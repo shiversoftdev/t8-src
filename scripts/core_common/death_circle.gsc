@@ -190,6 +190,7 @@ private function function_b36ed270()
 	}
 	var_8e3c3c5b = level.var_fb91af8[finalindex];
 	attempts = 0;
+	oobtriggers = getentarray("trigger_out_of_bounds_new", "classname");
 	while(attempts < 20)
 	{
 		attempts++;
@@ -780,6 +781,7 @@ private function function_9229c3b3(var_fdd51794, var_85ba7700, neworigin)
 	frames = var_fdd51794 / float(function_60d95f53()) / 1000;
 	var_cbc2cea3 = var_76c954d6 / frames;
 	progress = 0;
+	var_6e09d4b7 = 1 / frames;
 	while(time < endtime)
 	{
 		self.radius = self.radius + var_cbc2cea3;
@@ -881,6 +883,7 @@ private function function_dc15ad60()
 		waitframe(1);
 	}
 	var_f4d9a132 = gettime() + int(level.var_9766eb97.var_c71fc4f4 * 1000);
+	var_1a1c0d86 = 0;
 	while(isdefined(level.var_9766eb97))
 	{
 		radiussq = level.var_9766eb97.radius * level.var_9766eb97.radius;

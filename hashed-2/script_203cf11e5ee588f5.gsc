@@ -168,6 +168,7 @@ function function_b589dae1()
 private function function_a3661fef()
 {
 	level waittill(#"start_zombie_round_logic");
+	var_6645c992 = namespace_a1d9b01d::function_b18074d0(#"zblueprint_trap_hellpools");
 	while(true)
 	{
 		level waittill(#"hash_78451720bf647f70");

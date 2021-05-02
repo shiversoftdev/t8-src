@@ -595,6 +595,7 @@ function function_6728bf85()
 	level notify(#"start_flanking_collision");
 	level notify(#"start_flanking_exit_collision");
 	level thread namespace_64a487a9::function_4d9cfd95(1, #"axis");
+	var_1d00e3e1 = struct::get("s_enemy_sensor_dart_target", "targetname");
 	while(!isdefined(level.var_2a5b7055))
 	{
 		waitframe(1);
@@ -794,6 +795,7 @@ function function_cc52d21a(var_260aad25, var_6f8083d4, var_75efba72)
 	level thread namespace_64a487a9::function_4d9cfd95(var_e8d6f89, #"axis");
 	n_start_time = gettime() / 1000;
 	wait(1);
+	level.var_e6db911d = 0;
 	while(true)
 	{
 		n_time = gettime() / 1000;
@@ -921,6 +923,7 @@ function function_f6c6baf3()
 	e_player thread namespace_64a487a9::function_fd2d220e(0);
 	wait(7);
 	level thread namespace_8c007aa6::function_41e59aeb(array(#"hash_75d35181fe648687", #"hash_75d35081fe6484d4"), 1);
+	var_6ee32682 = gettime() / 1000;
 	while(isalive(level.var_a7530fbc))
 	{
 		n_time = gettime() / 1000;
@@ -954,6 +957,7 @@ function function_f6c6baf3()
 function function_ffd0b345()
 {
 	level endon(#"combattraining_logic_finished", #"stop_nag");
+	var_6ee32682 = 0;
 	while(true)
 	{
 		n_time = gettime() / 1000;
@@ -1036,6 +1040,7 @@ function function_39f9d433()
 	n_cost = killstreaks::get_killstreak_momentum_cost(e_player, level.var_b4a06c5b);
 	n_max_zombies = n_cost / 50 - 6;
 	level thread function_bb44f289(10, n_max_zombies, 1);
+	level.var_a86320e8 = gettime() / 1000;
 	while(!(isdefined(e_player.var_d5d10814) && e_player.var_d5d10814))
 	{
 		e_player = getplayers()[0];
@@ -1086,6 +1091,7 @@ function function_94c8f1d8(n_max_zombies)
 	level endon(#"combattraining_logic_finished");
 	var_856f9e3e = struct::get_array("s_vp_zombie_loc", "targetname");
 	var_856f9e3e = array::randomize(var_856f9e3e);
+	var_4001313 = 0;
 	while(true)
 	{
 		a_ai = getaiarray();
@@ -1174,6 +1180,7 @@ function function_bb44f289(var_7e6c18d7, var_d8036031, var_8a787b15)
 	var_856f9e3e = struct::get_array("s_zombie_spawn_loc", "targetname");
 	var_856f9e3e = array::randomize(var_856f9e3e);
 	var_4001313 = 0;
+	level.var_6f71c916 = var_d8036031;
 	while(true)
 	{
 		e_player = getplayers()[0];
@@ -1311,6 +1318,7 @@ function function_79d4c106()
 	e_player thread namespace_d82263d5::function_1be7e4f(#"ray_gun");
 	level thread function_bb44f289(10, 19, 0);
 	wait(0.5);
+	var_6256b329 = gettime() / 1000 + 40;
 	while(level.var_6f71c916)
 	{
 		n_time = gettime() / 1000;
@@ -1321,6 +1329,7 @@ function function_79d4c106()
 		}
 		waitframe(1);
 	}
+	n_start_time = gettime() / 1000;
 	while(true)
 	{
 		a_zombies = function_75c5b3ae();
@@ -1600,6 +1609,7 @@ function function_9b0a398a(s_loc)
 	n_start_time = gettime() / 1000;
 	var_3a9de7bb = 0;
 	var_e4e157c8 = 0;
+	var_49f58f36 = 1;
 	while(true)
 	{
 		n_time = gettime() / 1000;

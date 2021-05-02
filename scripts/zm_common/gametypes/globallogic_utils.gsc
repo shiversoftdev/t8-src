@@ -236,6 +236,7 @@ function playtickingsound(gametype_tick_sound)
 {
 	self endon(#"death", #"stop_ticking");
 	level endon(#"game_ended");
+	time = level.bombtimer;
 	while(true)
 	{
 		self playsound(gametype_tick_sound);
@@ -297,6 +298,7 @@ function gametimer()
 		level.starttime = level.starttime - game.roundmillisecondsalreadypassed;
 		game.roundmillisecondsalreadypassed = undefined;
 	}
+	prevtime = gettime();
 	while(game.state == "playing")
 	{
 		if(!level.timerstopped)

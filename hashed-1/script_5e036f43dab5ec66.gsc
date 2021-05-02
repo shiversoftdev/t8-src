@@ -68,6 +68,7 @@ function function_e5f05a92()
 	mdl_gate clientfield::set("entry_gate_dust", 1);
 	wait(3);
 	var_ac1242dd = 0;
+	vol_spawn_area = getent("vol_spawn_area", "targetname");
 	while(!var_ac1242dd)
 	{
 		var_5f98e272 = [];
@@ -170,6 +171,7 @@ function function_c49fe830()
 	level endon(#"end_game");
 	self endon(#"disconnect");
 	level.var_c9942395 = 0;
+	var_7529ade9 = array("zone_starting_area_tunnel", "zone_starting_area_center", "zone_starting_area_danu", "zone_starting_area_ra", "zone_starting_area_odin", "zone_starting_area_zeus", "zone_danu_hallway", "zone_ra_hallway", "zone_odin_hallway", "zone_zeus_hallway");
 	while(true)
 	{
 		str_zone = self zm_zonemgr::get_player_zone();
@@ -184,6 +186,7 @@ function function_c49fe830()
 		}
 		wait(1);
 	}
+	var_d4061661 = array("zone_starting_area_center", "zone_starting_area_danu", "zone_starting_area_ra", "zone_starting_area_odin", "zone_starting_area_zeus");
 	while(true)
 	{
 		str_zone = self zm_zonemgr::get_player_zone();

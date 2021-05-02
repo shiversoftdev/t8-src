@@ -141,6 +141,7 @@ function function_fe65f5a6(var_b7358df3, e_player, n_timeout = 1)
 			}
 		}
 	}
+	n_timer = 0;
 	while(n_timer < n_timeout)
 	{
 		if(isalive(e_player) && distance(e_player.origin, self.origin) < 100)

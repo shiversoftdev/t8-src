@@ -221,6 +221,7 @@ function spawnkilltrigger()
 function watchkilltrigger()
 {
 	level endon(#"game_ended");
+	trigger = self;
 	while(true)
 	{
 		waitresult = undefined;
@@ -467,6 +468,7 @@ function movetarget(dir, dis, speed)
 	self.railpoints[0] = startpos;
 	self.railpoints[1] = farpos;
 	self.preferrednextpos = 1;
+	self.playertrigger = 0;
 	while(true)
 	{
 		nextpos = self.railpoints[self.preferrednextpos];

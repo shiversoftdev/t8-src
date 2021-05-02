@@ -152,6 +152,7 @@ function function_847080fa(localclientnum)
 		e_model thread scene::play(var_99d5ab4f, e_model);
 	}
 	var_1f698175 = 1;
+	var_cf6d072d = 0.02;
 	while(var_1f698175 > 0.1)
 	{
 		waitframe(1);

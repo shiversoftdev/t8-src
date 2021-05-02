@@ -228,6 +228,7 @@ function function_8ba3d474(var_a276c861)
 */
 function function_f77c5d83()
 {
+	var_e9e6d25a = 0;
 	while(!var_e9e6d25a)
 	{
 		var_88706ea7 = undefined;
@@ -445,6 +446,7 @@ function function_80794c22(var_a276c861)
 function function_cf298764()
 {
 	a_players_in_zone = 0;
+	is_done = 0;
 	while(!is_done)
 	{
 		a_players_in_zone = zm_zonemgr::get_players_in_zone("upper_catwalk", 1);
@@ -479,6 +481,7 @@ function function_cf298764()
 */
 function function_7c1a1d9a()
 {
+	var_910d5c0c = 0;
 	while(!var_910d5c0c)
 	{
 		var_88706ea7 = undefined;

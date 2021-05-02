@@ -115,6 +115,7 @@ function function_8753f2b1()
 */
 function function_97346595()
 {
+	var_2e0b8925 = getdvarint(#"hash_6d3c5317001d4fc6", 0);
 	while(true)
 	{
 		new_value = getdvarint(#"hash_6d3c5317001d4fc6", 0);

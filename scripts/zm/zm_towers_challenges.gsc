@@ -405,6 +405,7 @@ function function_702ac990(e_player, e_trig)
 		if(isdefined(self.var_25276720) && e_player != self.var_25276720 && self.var_25276720 flag::get(#"flag_player_initialized_reward") && !self.var_25276720 flag::get(#"hash_6534297bbe7e180d"))
 		{
 			self.var_4931480f sethintstringforplayer(e_player, #"hash_5501784aa04e0df2");
+			var_a9bf0d0d = self.var_12afc433;
 			while(isdefined(self.var_25276720) && self.var_25276720 flag::get(#"flag_player_initialized_reward") && !self.var_25276720 flag::get(#"hash_6534297bbe7e180d"))
 			{
 				wait(0.5);
@@ -1548,6 +1549,7 @@ function function_29c490cf(var_31e6bd22)
 {
 	self endon(#"death", #"hash_7df55853368e6305");
 	var_31e6bd22 endon(#"hash_2818df4f7bf04998");
+	var_24f5d9f8 = array("zone_pap_room", "zone_pap_room_balcony_flooded_crypt");
 	while(true)
 	{
 		str_zone = self zm_zonemgr::get_player_zone();
@@ -1633,6 +1635,7 @@ function function_1fe5e1a3(e_player)
 	{
 		return;
 	}
+	n_progress = 0;
 	while(self.var_4b213d1b < 120)
 	{
 		n_amount = e_player.var_7df228aa.var_def266a8;
@@ -2170,6 +2173,7 @@ function function_fc8ff5f4(e_player)
 		return;
 	}
 	e_player.var_29f318bb = 0;
+	var_9b5260f3 = getent("e_challenge_center_stage", "targetname");
 	while(self.var_83798eab < 20)
 	{
 		if(e_player === self.var_25276720)
@@ -2368,6 +2372,7 @@ function function_51aa96c6(var_8efcfa9f)
 	{
 		return;
 	}
+	self.var_561f7ea3 = 0;
 	while(true)
 	{
 		self.var_561f7ea3 = 0;

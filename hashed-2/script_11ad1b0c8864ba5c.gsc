@@ -568,6 +568,7 @@ function function_ccbee20()
 	a_s_spawn_locs = struct::get_array("werewolf_location", "script_noteworthy");
 	if(isarray(a_s_spawn_locs))
 	{
+		i = 0;
 		while(i < a_s_spawn_locs.size)
 		{
 			if(!zm_zonemgr::zone_is_enabled(a_s_spawn_locs[i].zone_name))
@@ -1988,6 +1989,7 @@ private function function_e79ce40a()
 		adddebugcommand("");
 		adddebugcommand("");
 		function_91180121();
+		level.var_abe0b71d = 0;
 		while(true)
 		{
 			waitframe(1);
@@ -2138,6 +2140,7 @@ function function_8fa45bb0()
 	laststance = "";
 	var_76ed16d4 = 99;
 	var_628a2951 = 10;
+	var_83773814 = "ambient";
 	while(true)
 	{
 		currentstance = self getblackboardattribute("_werewolf_stance");

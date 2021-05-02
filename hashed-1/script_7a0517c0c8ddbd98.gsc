@@ -344,6 +344,7 @@ private function function_d79b3357(entity, origin)
 private function function_4632879c(entity)
 {
 	effectarea = spawn("trigger_radius", entity.origin, 0, 125, 100);
+	gas_time = 0;
 	while(gas_time <= 7)
 	{
 		players = getplayers();

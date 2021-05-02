@@ -519,6 +519,7 @@ function function_a4fa2df0(n_index)
 	}
 	else
 	{
+		self.zone = "";
 		while(!self.b_frozen)
 		{
 			zone = "";
@@ -563,6 +564,7 @@ function function_a4fa2df0(n_index)
 			var_3a253a6f = max(distance(self.origin, loc.origin) / 1000, 1);
 			self moveto(loc.origin + vectorscale((0, 0, 1), 50), var_3a253a6f, 0.2, 0.2);
 			wait(var_3a253a6f);
+			self.var_9f048f2f = 0;
 			while(!self.var_9f048f2f)
 			{
 				a_players = namespace_891c9bac::function_347f7d34();

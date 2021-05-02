@@ -213,6 +213,7 @@ function function_23da5626()
 function function_21334921()
 {
 	var_519cd38c = array(#"connect_main_hall_to_forest_entrance", #"connect_ground_floor_to_cellar", #"connect_main_hall_to_library", #"connect_main_hall_to_dining_room", #"connect_library_to_cemetery_entrance", #"connect_dining_room_to_greenhouse_entrance");
+	n_count = 0;
 	while(n_count < level.var_403919f2.size)
 	{
 		var_be17187b = undefined;
@@ -517,6 +518,7 @@ function function_8ead19be()
 	self endon(#"hash_189a9352bff55b80");
 	self thread function_84eca8f8();
 	self.var_ce3d3ff6 setcandamage(1);
+	self.var_ce3d3ff6.health = 9999;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -546,6 +548,7 @@ function function_84eca8f8()
 {
 	level endon(#"game_ended");
 	self endon(#"hash_189a9352bff55b80");
+	var_4acd2b1 = self.origin + vectorscale((0, 0, 1), 8);
 	while(true)
 	{
 		if(!self.var_81c30c53)
@@ -596,6 +599,7 @@ function function_3a57d343()
 	self endon("69c331ec544efd5c");
 	self endon(#"death");
 	level endon(#"hash_33d9d5dbe3f1e8c2");
+	var_65c41cdf = getweapon(#"hash_c78156ba6aeda14");
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -718,6 +722,7 @@ function function_c7da583f(var_a276c861)
 				var_29c75f3 thread function_95b6c945();
 			#/
 		}
+		level.var_a690f86 = array::exclude(level.var_a690f86, var_c58e489b);
 		while(level.var_352e1e6f < level.var_a690f86.size)
 		{
 			var_be17187b = undefined;
@@ -903,6 +908,7 @@ function function_ae072499(var_a276c861)
 			zm_unitrigger::unregister_unitrigger(var_10372151.s_unitrigger_stub);
 			if(level.var_55a2003d.script_noteworthy !== "last_spot")
 			{
+				var_40388281 = var_10372151;
 				while(isdefined(var_40388281))
 				{
 					var_40388281 = function_5579efc3(var_40388281);
@@ -1357,6 +1363,7 @@ function function_70d155c5()
 function function_1704df5e()
 {
 	self endon(#"death");
+	var_94899c49 = self getcurrentweapon();
 	while(!isinarray(self getweaponslistprimaries(), var_94899c49))
 	{
 		var_94899c49 = self getcurrentweapon();
@@ -1536,6 +1543,7 @@ function function_eb269563()
 {
 	self endon(#"death");
 	s_lookat = struct::get(#"hash_435c10185189155d", "targetname");
+	var_1611e2c0 = s_lookat.origin;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -1703,6 +1711,7 @@ function function_e6440e06()
 {
 	/#
 		var_5245371c = 0;
+		var_972ed7e7 = 0;
 		while(true)
 		{
 			var_8a4bff6d = getdvarint(#"hash_7a278441046d0a08", 0);

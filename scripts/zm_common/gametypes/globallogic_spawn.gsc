@@ -649,6 +649,7 @@ function spawnintermission(usedefaultcallback)
 				self playlocalsound(#"mus_contract_complete");
 			}
 			self closeingamemenu();
+			waittime = 4;
 			while(waittime)
 			{
 				wait(0.25);

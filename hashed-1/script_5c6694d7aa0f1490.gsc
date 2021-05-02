@@ -125,6 +125,7 @@ function function_b5f900c3()
 function function_39c9e020()
 {
 	level endon(#"end_game");
+	a_str_zones = array("main_entrance", "loading_platform");
 	while(true)
 	{
 		if(namespace_509a75d1::any_player_in_zone(a_str_zones))
@@ -287,6 +288,7 @@ function function_39d9b290()
 */
 function function_bf106bdf()
 {
+	vh_wisp = spawner::simple_spawn_single(getent("virgil", "targetname"));
 	while(!isdefined(vh_wisp))
 	{
 		waitframe(1);

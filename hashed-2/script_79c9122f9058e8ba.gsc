@@ -861,6 +861,7 @@ function function_4c71848e()
 	a_s_spawn_locs = level.zm_loc_types[#"nosferatu_location"];
 	if(isarray(a_s_spawn_locs))
 	{
+		i = 0;
 		while(i < a_s_spawn_locs.size)
 		{
 			if(isdefined(a_s_spawn_locs[i].scriptbundlename))
@@ -1089,6 +1090,7 @@ private function function_76d6482e(entity)
 function function_13b48cdd(var_c9528359, queryresult)
 {
 	self endon(#"death");
+	point_index = 0;
 	while(var_c9528359 > 0)
 	{
 		var_18f8f237 = 5;

@@ -49,6 +49,7 @@ private function function_33f98f4(animation, mocomp, blendout)
 	var_278cadb0.status = 0;
 	animationstatenetwork::runanimationmocomp(var_278cadb0);
 	animlength = getanimlength(animation);
+	animtime = self getanimtime(animation) * animlength;
 	while(self isplayinganimscripted() && animtime < var_278cadb0.duration)
 	{
 		animtime = self getanimtime(animation) * animlength;

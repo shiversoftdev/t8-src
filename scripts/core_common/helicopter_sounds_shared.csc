@@ -1288,6 +1288,7 @@ function drone_button_watch()
 {
 	self endon(#"death");
 	player = getlocalplayers()[0];
+	return_to_zero = 1;
 	while(true)
 	{
 		if(abs(self.qrdrone_z_difference) > 5 && return_to_zero)

@@ -1348,6 +1348,7 @@ function count_keys(keycounts, bundle, dialogkey)
 {
 	i = 0;
 	field = dialogkey + i;
+	fieldvalue = bundle.(field);
 	while(isdefined(fieldvalue))
 	{
 		aliasarray[i] = fieldvalue;

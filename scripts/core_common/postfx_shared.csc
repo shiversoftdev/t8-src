@@ -115,6 +115,7 @@ function function_764eb053()
 		var_986c8888 = 0;
 		var_4828f60f = 0;
 		var_e0f0fb1d = "";
+		ent = undefined;
 		while(true)
 		{
 			showmodel = getdvarint(#"hash_56d8c90edb7a97b6", 0);

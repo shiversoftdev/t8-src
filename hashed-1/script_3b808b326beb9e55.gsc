@@ -330,6 +330,7 @@ function state_stationary_update(params)
 	losepatienttime = 3 + randomfloat(2);
 	starttime = gettime();
 	util::cooldown("rocket", 2);
+	evade_now = 0;
 	while(true)
 	{
 		evade_now = self.settings.evade_enemies_locked_on_me === 1 && self.locked_on || (self.settings.evade_enemies_locking_on_me === 1 && self.locking_on);

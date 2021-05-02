@@ -643,6 +643,7 @@ function function_fb89ba8a(params)
 	self endon(#"change_state");
 	self thread function_13ade03e();
 	starttime = gettime();
+	var_b2c9484f = int(self.settings.var_e0c78652 * 1000);
 	while(starttime + var_b2c9484f > gettime() && !isdefined(self.var_290ed3ab) || (isdefined(self.var_290ed3ab) && self.var_290ed3ab > gettime()) || (isdefined(self.var_e19bcce0) && self.var_e19bcce0))
 	{
 		if(isdefined(self.var_c43010fc))
@@ -732,6 +733,7 @@ function function_c82edc1a()
 private function function_d00f14e3()
 {
 	self endon(#"death");
+	self.ai.var_b0f9c1a3 = gettime();
 	while(true)
 	{
 		self waittill(#"hash_47fe95a0475dea3d");

@@ -461,6 +461,7 @@ function function_c37caebd()
 {
 	level endon(#"combattraining_logic_finished");
 	self endon_callback(&function_344aee09, #"death", #"hash_34a524e09eb9209f");
+	level.var_5b4739ff = 0;
 	while(isdefined(level.var_29324553) && level.var_29324553 || (!(isdefined(level.var_86b67c3f) && level.var_86b67c3f)))
 	{
 		waitframe(1);
@@ -558,6 +559,7 @@ function function_23f8245b()
 {
 	level endon(#"combattraining_logic_finished");
 	self endon_callback(&function_344aee09, #"death", #"hash_34a524e09eb9209f");
+	level.var_274a72ee = 0;
 	while(isdefined(level.var_29324553) && level.var_29324553 || (!(isdefined(level.var_86b67c3f) && level.var_86b67c3f)))
 	{
 		waitframe(1);
@@ -733,6 +735,7 @@ function function_b2770e99()
 {
 	level endon(#"combattraining_logic_finished");
 	self endon_callback(&function_344aee09, #"death", #"hash_34a524e09eb9209f");
+	level.var_89961b65 = 0;
 	while(isdefined(level.var_29324553) && level.var_29324553 || (!(isdefined(level.var_86b67c3f) && level.var_86b67c3f)))
 	{
 		waitframe(1);
@@ -1957,6 +1960,7 @@ function function_d8b20bcd(s_loc)
 				if(self.e_target.var_d1da3a83 == "cover_barricade" && (!(isdefined(self.e_target.var_3e83dee9) && self.e_target.var_3e83dee9)))
 				{
 					s_loc = undefined;
+					var_189ff975 = arraycopy(self.e_target.var_189ff975);
 					while(var_189ff975.size > 0 && !isdefined(s_loc))
 					{
 						var_50d76fb9 = arraygetclosest(self.origin, var_189ff975);
@@ -2054,6 +2058,7 @@ function function_a1692d5d()
 {
 	level endon(#"combattraining_logic_finished");
 	self endon(#"death");
+	e_player = namespace_73e1c3e3::get_player();
 	while(true)
 	{
 		var_385703b7 = undefined;
@@ -2575,6 +2580,7 @@ function function_e96cc63f(n_count = 3, var_d7172908, var_810b40e6 = 1, var_4837
 	{
 		a_s_targets = array::randomize(a_s_targets);
 	}
+	level.var_a76a5221[str_targetname] = a_s_targets;
 	while(true)
 	{
 		a_enemies = function_3dd59a93(str_targetname);
@@ -3343,6 +3349,7 @@ function function_84fcafbc()
 function function_1df46b8d(var_c2093736 = 0.25)
 {
 	self endon(#"death");
+	n_health_min = self.health * var_c2093736;
 	while(self.health > n_health_min)
 	{
 		var_385703b7 = undefined;
@@ -3544,6 +3551,7 @@ function function_907568bb(str_volume = "trig_torque_tut_finale_area")
 	e_player = getplayers()[0];
 	e_volume = getent(str_volume, "targetname");
 	n_total = 0;
+	n_mode = -1;
 	while(true)
 	{
 		e_player = getplayers()[0];

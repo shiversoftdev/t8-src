@@ -4477,6 +4477,7 @@ function timelimitclock()
 			}
 			else
 			{
+				oldtimeleftint = timeleftint;
 				while(!level.timerstopped && oldtimeleftint == timeleftint && timeleftint > 0)
 				{
 					waitframe(1);
@@ -4707,6 +4708,7 @@ function waitforplayers()
 	activeplayercount = 0;
 	accepttestclient = 0;
 	activeteamcount = [];
+	player_ready = [];
 	while(!playerready || activeplayercount == 0 || !isprematchrequirementconditionmet(activeteamcount))
 	{
 		activeplayercount = 0;
@@ -5905,6 +5907,7 @@ function function_a4156fb2()
 	self endon("52ea5c232e4bcf");
 	self endon(#"hash_4d16c1276e5f13ba", #"death");
 	level.var_b6a8b043 = getdvarint(#"hash_4c9c0fc41c430462", 500);
+	level.var_6090be3a = cos(getdvarint(#"hash_fa482274b5600cc", 45));
 	while(true)
 	{
 		var_193fd4c6 = getplayers("all", self.origin, level.var_b6a8b043 * 2);

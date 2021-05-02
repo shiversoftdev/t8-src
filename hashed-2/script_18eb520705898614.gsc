@@ -996,6 +996,7 @@ private function function_eabb32ca()
 */
 private function function_9e01297e()
 {
+	var_7e2d2356 = getent("stick_guide", "targetname");
 	while(!isdefined(level.var_8491c913))
 	{
 		level.var_8491c913 = util::spawn_model("c_t8_zmb_dlc1_catherine_ghost_body", var_7e2d2356.origin, var_7e2d2356.angles);
@@ -1097,6 +1098,7 @@ function function_c5c7d880()
 	level endon(#"end_game");
 	level endon_callback(&function_707f7801, #"hash_445e2c5cadd58523");
 	self endon_callback(&function_707f7801, #"death");
+	self.var_54cb40e6 = 1;
 	while(true)
 	{
 		var_385703b7 = undefined;
@@ -1379,6 +1381,7 @@ function function_50955e48()
 {
 	self endon(#"player_downed", #"death", #"hash_1544918b5f670dae");
 	var_4e7ea1ce = 0;
+	s_scene = struct::get(#"hash_25ced25ceb6150ae", "scriptbundlename");
 	while(!var_4e7ea1ce)
 	{
 		n_dist_sq = distance2dsquared(self.origin, s_scene.origin);
@@ -1633,6 +1636,7 @@ private function function_be4a0b7a(n_timeout)
 	level endon(#"hash_6cc69676a56eb05a");
 	self endon(#"disconnect", #"hash_1544918b5f670dae");
 	n_start_time = gettime();
+	n_total_time = 0;
 	while(!self util::stance_button_held() && n_total_time < n_timeout)
 	{
 		waitframe(1);
@@ -2338,6 +2342,7 @@ function function_642fbf42()
 		{
 			var_c3e7058b = arraycopy(array::randomize(var_4275b4d6));
 		}
+		s_loc = array::pop(var_c3e7058b, undefined, 0);
 		while(level.var_a908db33 >= n_active)
 		{
 			level flag::clear(#"hash_29b12646045186fa");

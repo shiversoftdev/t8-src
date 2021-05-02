@@ -67,6 +67,7 @@ function function_dab39bb8(rocket)
 {
 	self endon(#"remotemissile_done");
 	rocket endon(#"death");
+	var_b5e50364 = 0;
 	while(!var_b5e50364)
 	{
 		enemy = self.owner battlechatter::get_closest_player_enemy(self.origin, 1);

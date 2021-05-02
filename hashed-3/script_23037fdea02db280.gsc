@@ -314,6 +314,7 @@ function ragdoll_impact_watch(localclientnum)
 	n_prev_speed = length(v_prev_vel);
 	v_prev_origin = self.origin;
 	waitframe(1);
+	b_first_loop = 1;
 	while(true)
 	{
 		if(!isdefined(self))

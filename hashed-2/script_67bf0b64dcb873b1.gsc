@@ -164,6 +164,7 @@ function function_4a81e337()
 	level endon(#"hash_2588983e2be22ca5");
 	self setcandamage(1);
 	self thread function_292dd34f();
+	self.health = 10000;
 	while(true)
 	{
 		var_385703b7 = undefined;

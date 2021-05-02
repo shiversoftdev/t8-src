@@ -854,6 +854,7 @@ function zombie_wait_explode(localclientnum)
 	{
 		where = self.origin;
 	}
+	start = gettime();
 	while(gettime() - start < 2000)
 	{
 		if(isdefined(self))
@@ -1557,6 +1558,7 @@ function rise_dust_fx(clientnum, type, billow_fx, burst_fx)
 	{
 		return;
 	}
+	t = 0;
 	while(t < dust_time)
 	{
 		if(!isdefined(self))
@@ -1624,6 +1626,7 @@ function last_stand_thread(clientnum)
 		println("" + clientnum);
 	#/
 	pause = 0.5;
+	vol = 0.5;
 	while(true)
 	{
 		id = playsound(clientnum, #"chr_heart_beat");

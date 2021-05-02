@@ -429,6 +429,7 @@ function function_98530904(localclientnum, var_276d45bf = 0)
 	{
 		var_4479e2e1 = var_a132edb9 zm_utility::function_467efa7b();
 		var_24157b39 = self zm_utility::function_467efa7b();
+		var_e4ecc2aa = level beam::launch(var_a132edb9, var_4479e2e1, self, var_24157b39, var_c172d994);
 		while(isdefined(self) && isdefined(var_a132edb9) && (isdefined(self.var_427e5396) && self.var_427e5396) && (isdefined(var_a132edb9.var_2c2980d3) && var_a132edb9.var_2c2980d3))
 		{
 			waitframe(1);

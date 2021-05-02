@@ -277,6 +277,7 @@ function function_140ebf0d(var_bcd1c2ff)
 			var_fd11502e = var_fd11502e + var_e9571d8b * 6;
 			var_fd11502e = int(var_fd11502e);
 		}
+		var_1574e1cf = [];
 		while(self issliding())
 		{
 			var_fe40b467 = self function_bdda420f(self.origin, 80);

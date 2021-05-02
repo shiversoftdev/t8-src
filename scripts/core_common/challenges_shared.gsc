@@ -710,6 +710,7 @@ function spawnwatcher()
 	self.pers[#"stickexplosivekill"] = 0;
 	self.pers[#"pistolheadshot"] = 0;
 	self.pers[#"assaultrifleheadshot"] = 0;
+	self.pers[#"killnemesis"] = 0;
 	while(true)
 	{
 		self waittill(#"spawned_player");
@@ -737,6 +738,7 @@ function spawnwatcher()
 function watchfordtp()
 {
 	self endon(#"disconnect", #"death", #"killdtpmonitor");
+	self.dtptime = 0;
 	while(true)
 	{
 		self waittill(#"dtp_end");
@@ -756,6 +758,7 @@ function watchfordtp()
 function watchformantle()
 {
 	self endon(#"disconnect", #"death", #"killmantlemonitor");
+	self.mantletime = 0;
 	while(true)
 	{
 		waitresult = undefined;

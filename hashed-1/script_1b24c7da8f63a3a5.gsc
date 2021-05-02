@@ -472,6 +472,7 @@ function function_2d6e2fb(var_715c83d9)
 */
 function function_cee7424b(v_impact, var_bdbde2d2, n_duration)
 {
+	n_time_passed = 0;
 	while(n_time_passed <= n_duration)
 	{
 		var_ae51959e = getaiteamarray(level.zombie_team);

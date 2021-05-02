@@ -75,8 +75,10 @@ function function_f77ced93(s_params)
 function function_54922a21()
 {
 	self endon_callback(&function_a059fe7f, #"death", #"hash_414b2baf34e01af8");
+	w_current = self getcurrentweapon();
 	while(true)
 	{
+		var_276d45bf = 0;
 		while(self attackbuttonpressed() && !self meleebuttonpressed() && !self laststand::player_is_in_laststand())
 		{
 			if(!var_276d45bf && isdefined(self.chargeshotlevel) && self.chargeshotlevel > 1)

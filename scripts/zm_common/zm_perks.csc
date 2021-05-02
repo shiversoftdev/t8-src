@@ -342,6 +342,7 @@ function perk_start_up()
 	if(isdefined(self.script_int))
 	{
 		power_zone = self.script_int;
+		int = undefined;
 		while(int != power_zone)
 		{
 			waitresult = undefined;
@@ -354,6 +355,7 @@ function perk_start_up()
 		level waittill(#"power_on");
 	}
 	timer = 0;
+	duration = 0.1;
 	while(true)
 	{
 		if(isdefined(level._custom_perks[self.script_noteworthy]) && isdefined(level._custom_perks[self.script_noteworthy].machine_light_effect))

@@ -235,6 +235,7 @@ private function function_28663a8f()
 	{
 		self waittill(#"completed_emerging_into_playable_area");
 	}
+	self.b_ignore_cleanup = 1;
 	while(true)
 	{
 		var_f1b2ce83 = struct::get_array("wait_location", "script_noteworthy");
@@ -245,6 +246,7 @@ private function function_28663a8f()
 		}
 		if(isdefined(var_b8db7c29) & !(isdefined(self.aat_turned) && self.aat_turned))
 		{
+			var_b1756ffd = 20;
 			while(var_b1756ffd > 0)
 			{
 				if(isarray(level.zombie_poi_array) && level.zombie_poi_array.size > 0)
@@ -372,6 +374,7 @@ private function function_31f197c2()
 {
 	self endon(#"disconnect");
 	wait(0.5);
+	var_9a703be9 = level.var_869f4c31;
 	while(var_9a703be9 == level.var_869f4c31)
 	{
 		waitframe(1);
@@ -400,6 +403,7 @@ private function function_14a98a41(str_label, n_time_limit)
 	self endon("4efb28cb64a876c9");
 	level endon(#"end_of_round", #"host_migration_begin", #"end_game");
 	level.var_489d6aa2 = str_label;
+	level.var_869f4c31 = n_time_limit;
 	while(true)
 	{
 		wait(1);

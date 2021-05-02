@@ -1072,6 +1072,7 @@ function _dynamic_paths()
 */
 function run_wait(wait_time)
 {
+	wait_start_time = 0;
 	while(wait_start_time < wait_time && !is_skipping_scene())
 	{
 		wait_start_time = wait_start_time + float(function_60d95f53()) / 1000;
@@ -2354,6 +2355,7 @@ function function_5c082667()
 	}
 	self._e endon(#"death", #"scene_stop");
 	s_current_struct = struct::get(s_start_spot.target);
+	n_move_time = (isdefined(s_start_spot.script_float) ? s_start_spot.script_float : 1);
 	while(isdefined(s_current_struct))
 	{
 		if(!isdefined(self._e.var_645ab05a))
@@ -2388,7 +2390,7 @@ function function_5c082667()
 	}
 	self._e unlink();
 	self._e animation::stop();
-	self._e notify(#"hash_456b12fb28128d17", (isdefined(s_start_spot.script_float) ? s_start_spot.script_float : 1));
+	self._e notify(#"hash_456b12fb28128d17");
 }
 
 /*
@@ -5072,6 +5074,7 @@ function run_next(str_current_shot)
 			var_8b188654 = is_skipping_scene();
 			if(var_8b188654)
 			{
+				var_43cf9254 = 0;
 				while(!flagsys::get(#"hash_5a8a0284760e5913") || var_43cf9254 > 5)
 				{
 					var_43cf9254 = var_43cf9254 + float(function_60d95f53()) / 1000;

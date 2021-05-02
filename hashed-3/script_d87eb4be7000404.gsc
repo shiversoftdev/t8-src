@@ -149,6 +149,7 @@ private function function_b6824ff0(entity, player, duration, color)
 private function function_e5ffb77c(start, end, duration, color)
 {
 	/#
+		current_time = duration * 20;
 		while(current_time > 0)
 		{
 			waitframe(1);

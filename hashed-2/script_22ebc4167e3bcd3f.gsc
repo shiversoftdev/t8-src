@@ -179,6 +179,7 @@ function function_3fcb1e5e()
 {
 	var_8171dd3a = randomint(10);
 	var_8dfff656 = randomint(10);
+	var_44e1e41b = randomint(10);
 	while(!namespace_1063645::function_aac7105a(var_8171dd3a, var_8dfff656, var_44e1e41b))
 	{
 		var_8171dd3a = randomint(10);
@@ -720,6 +721,7 @@ function function_5753ae89()
 	{
 		var_88706ea7 = undefined;
 		var_88706ea7 = self waittill(#"throwing_tomahawk");
+		var_288eb627 = var_88706ea7.e_grenade;
 		while(isdefined(var_288eb627))
 		{
 			if(distancesquared(var_288eb627.origin, level.var_5c14fe03.origin) < 10000)

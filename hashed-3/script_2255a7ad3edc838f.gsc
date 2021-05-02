@@ -192,6 +192,7 @@ function add_balanced_bot(allies, maxallies, axis, maxaxis)
 function fixed_spawn_override(origin, yaw, node = undefined, force = 1)
 {
 	self endon(#"disconnect");
+	angles = (0, yaw, 0);
 	while(isdefined(self.bot))
 	{
 		self waittill(#"spawned_player");
@@ -3031,6 +3032,7 @@ function monitor_bot_team_population(maxallies, maxaxis)
 function fill_balanced_teams(maxallies, maxaxis)
 {
 	allies = getplayers(#"allies");
+	axis = getplayers(#"axis");
 	while(allies.size < maxallies || axis.size < maxaxis && add_balanced_bot(allies, maxallies, axis, maxaxis))
 	{
 		waitframe(1);
@@ -3055,6 +3057,7 @@ function monitor_bot_population(maxfree)
 	{
 		return;
 	}
+	players = getplayers();
 	while(players.size < maxfree)
 	{
 		add_bot();

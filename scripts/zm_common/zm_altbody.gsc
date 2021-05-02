@@ -689,6 +689,7 @@ function trigger_monitor_visibility(name, whenvisible)
 	level flagsys::wait_till("start_zombie_round_logic");
 	self setvisibletoall();
 	pid = 0;
+	self.is_unlocked = 1;
 	while(isdefined(self))
 	{
 		players = level.players;

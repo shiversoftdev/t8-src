@@ -81,6 +81,7 @@ function function_da63d789(localclientnum, oldval, newval, bnewent, binitialsnap
 				self endon(#"hash_4df59fed1b90332a");
 				var_77e629d2 = undefined;
 				var_6ab87412 = undefined;
+				var_7aacc21 = undefined;
 				while(isdefined(self) && function_65b9eb0f(localclientnum))
 				{
 					if(zm_utility::function_f8796df3(localclientnum) && !isthirdperson(localclientnum))

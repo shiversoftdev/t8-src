@@ -639,6 +639,7 @@ function slot_watcher(equipment)
 {
 	self notify(#"kill_equipment_slot_watcher");
 	self endon(#"kill_equipment_slot_watcher", #"disconnect");
+	notify_strings = get_notify_strings(equipment);
 	while(true)
 	{
 		waitresult = undefined;

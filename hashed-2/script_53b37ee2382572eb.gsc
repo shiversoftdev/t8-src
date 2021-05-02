@@ -15,6 +15,7 @@ function function_755c26d1()
 	level.var_1a7a3f05 = spawnstruct();
 	i = 0;
 	level.var_1a7a3f05.var_23e0aef1 = [];
+	var_23e0aef1 = getentarray("vol_tregion_lane_" + i, "targetname");
 	while(isdefined(var_23e0aef1) && isarray(var_23e0aef1) && var_23e0aef1.size > 0)
 	{
 		level.var_1a7a3f05.var_23e0aef1[i] = var_23e0aef1;

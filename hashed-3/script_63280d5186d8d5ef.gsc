@@ -107,6 +107,7 @@ function function_ed4d5d4(var_38282db8)
 	self namespace_b22c99a5::function_2190356a(int(var_d114080c), 1);
 	self namespace_b22c99a5::function_c2cd0cba(var_38282db8);
 	wait(12);
+	var_31409e15 = self.origin;
 	while(true)
 	{
 		var_abf38d09 = distance(self.origin, var_31409e15) * 0.0254;

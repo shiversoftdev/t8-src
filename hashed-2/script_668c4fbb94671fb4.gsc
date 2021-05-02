@@ -330,6 +330,7 @@ private function function_486ef0f6()
 		arrayremovevalue(level.var_85cc9fcc, var_aa11c23c.script_string);
 	}
 	level.var_bbc27d0e thread namespace_69ddf44f::function_9e723e9();
+	var_c699e2b5 = struct::get("s_p_s2_ins");
 	while(level.var_dd650b0e.size < 6)
 	{
 		var_c699e2b5.s_unitrigger_stub waittill(#"hash_4c6ab2a4a99f9539");
@@ -383,6 +384,7 @@ private function function_23fa3cae()
 {
 	var_8171dd3a = randomint(10);
 	var_8dfff656 = randomint(10);
+	var_44e1e41b = randomint(10);
 	while(!namespace_1063645::function_aac7105a(var_8171dd3a, var_8dfff656, var_44e1e41b))
 	{
 		var_8171dd3a = randomint(10);
@@ -569,6 +571,7 @@ private function function_b264ca4d()
 	level.var_a33f961e playsound(#"hash_2cd9134632e7f398");
 	level.var_a33f961e playloopsound(#"hash_5ca999a30dd19c01");
 	var_b9526d6f = struct::get("gh_b_pos", "targetname");
+	level.var_aca3d5e = spawn("trigger_radius_new", var_b9526d6f.origin, 512 | 2 + 8, var_b9526d6f.radius);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -795,6 +798,7 @@ private function function_76e46dd1(e_player)
 				level notify(#"hash_31bf59ee8be67433");
 			}
 			n_start_time = gettime();
+			n_total_time = 0;
 			while(n_total_time < 8 && e_player istouching(self) && (w_current == level.var_4e845c84 || w_current == level.var_58e17ce3) && e_player util::is_looking_at(self.s_lookat.origin))
 			{
 				wait(0.1);
@@ -1061,6 +1065,7 @@ private function function_bfe4e5a9(var_5faf08a9, n_entry)
 	}
 	for(i = 0; i < var_5faf08a9.size; i++)
 	{
+		var_6dcb990a = var_5faf08a9[i];
 		while(isdefined(self) && !self usebuttonpressed() && (isdefined(self.var_da61dab6) && self.var_da61dab6))
 		{
 			waitframe(1);
@@ -1129,6 +1134,7 @@ private function function_bb47b90d(var_dcd55ef2)
 {
 	self endon(#"death", #"hash_fdbf10dbf063a82");
 	var_25d70459 = var_dcd55ef2;
+	s_next_pos = struct::get(var_dcd55ef2.target, "targetname");
 	while(true)
 	{
 		n_dist = distance(s_next_pos.origin, var_25d70459.origin);
@@ -1178,6 +1184,7 @@ private function function_c3923440()
 	level.var_558993a0 waittill(#"hash_17de7292d988f537");
 	level.var_558993a0.var_2ef9b50a = 1;
 	level.var_558993a0 thread function_4e69659c();
+	var_5e7c3fee = getent("pa_do_vol", "targetname");
 	while(!level.var_558993a0 istouching(var_5e7c3fee))
 	{
 		wait(1);
@@ -1199,6 +1206,7 @@ function function_744712bc(s_params)
 	if(!isdefined(level.var_558993a0) && isplayer(s_params.eattacker) && (self zm_zonemgr::entity_in_zone("zone_infirmary") || self zm_zonemgr::entity_in_zone("zone_infirmary_roof")))
 	{
 		var_48940c64 = self.origin + vectorscale((0, 0, 1), 5);
+		level.var_558993a0 = zombie_utility::spawn_zombie(getent("g_zombie_spawner", "targetname"), "gh_bm");
 		while(!isdefined(level.var_558993a0))
 		{
 			waitframe(1);
@@ -1230,6 +1238,7 @@ function function_744712bc(s_params)
 private function function_e5801a77()
 {
 	self endon(#"death", #"hash_71716a8e79096aee");
+	self.var_7fbed236 = 0;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -1545,6 +1554,7 @@ function function_9ee74e2c()
 private function function_67a6f551()
 {
 	self endon(#"death");
+	var_9cdf5d68 = 10;
 	while(isalive(self))
 	{
 		var_88706ea7 = undefined;
@@ -1574,6 +1584,7 @@ private function function_1b049b47()
 	self endon(#"death");
 	self setcandamage(0);
 	var_a94e126 = 0;
+	is_visible = 1;
 	while(var_a94e126 < 7)
 	{
 		if(isdefined(is_visible) && is_visible)
@@ -1836,6 +1847,7 @@ private function function_7c71661a()
 	var_fe69e6bb = 0;
 	var_adf35a34 = 0;
 	var_70edc3d5 = 0;
+	var_629eec30 = 0;
 	while(!var_629eec30)
 	{
 		str_zone = zm_zonemgr::get_zone_from_position(self.origin);
@@ -2014,6 +2026,7 @@ private function function_eee2ccd4(str_zone)
 	for(i = 0; i < var_8f2dfb2c; i++)
 	{
 		var_86febf77 = array::random(var_5ab4bb90);
+		e_enemy = undefined;
 		while(!isdefined(e_enemy))
 		{
 			e_enemy = zombie_utility::spawn_zombie(level.zombie_spawners[0], undefined, var_86febf77);
@@ -2105,6 +2118,7 @@ function function_59945272(s_params)
 	{
 		callback::remove_on_ai_killed(&function_59945272);
 		var_48940c64 = self.origin + vectorscale((0, 0, 1), 5);
+		level.var_7b71cdb7 = zombie_utility::spawn_zombie(getent("g_rob_zombie_spawner", "targetname"), "cb_gh");
 		while(!isdefined(level.var_7b71cdb7))
 		{
 			waitframe(1);
@@ -2311,6 +2325,7 @@ function function_995231f6(s_params)
 	{
 		callback::remove_on_ai_killed(&function_995231f6);
 		var_48940c64 = self.origin + vectorscale((0, 0, 1), 5);
+		level.var_acc853e7 = zombie_utility::spawn_zombie(getent("g_rob_zombie_spawner", "targetname"), "ni_gh");
 		while(!isdefined(level.var_acc853e7))
 		{
 			waitframe(1);
@@ -2340,6 +2355,7 @@ private function function_3f90c49f()
 	self endon(#"death");
 	var_14a84ac9 = struct::get_array("ni_sp_pos", "targetname");
 	v_pos = undefined;
+	var_14a84ac9 = array::randomize(var_14a84ac9);
 	while(!isdefined(v_pos))
 	{
 		foreach(var_24f2b6cf in var_14a84ac9)
@@ -2362,6 +2378,7 @@ private function function_3f90c49f()
 		}
 	}
 	level.var_9e23e046 = util::spawn_model(#"hash_630bdbfa8e91025e", v_pos, v_angles);
+	self.goalradius = 64;
 	while(distance2d(self.origin, v_pos) > 80)
 	{
 		self setgoal(v_pos);
@@ -2463,6 +2480,7 @@ private function function_685fffc4()
 	var_9636ee0 = function_ae0bae8();
 	var_31adaadb = 0;
 	var_e5b1f8d7 = undefined;
+	var_49154180 = 10;
 	while(var_31adaadb <= var_9636ee0)
 	{
 		if(isdefined(self.var_c95261d) && self.var_c95261d && (isdefined(self.var_5bf7575e) && self.var_5bf7575e))
@@ -2516,6 +2534,7 @@ private function function_a50552d1()
 	self endon(#"death");
 	var_38da48af = struct::get("ni_gh_fi", "targetname");
 	var_38da48af.origin = (7888, 11072, 320);
+	self.goalradius = 64;
 	while(distance2d(self.origin, var_38da48af.origin) > 92)
 	{
 		self setgoal(var_38da48af.origin);
@@ -2538,6 +2557,7 @@ private function function_7f71a2b2(var_aa11c23c)
 	self endon(#"death");
 	var_aa11c23c endon(#"hash_300e9fed7925cd69");
 	var_48bbb849 = struct::get("gh_vi_pos", "targetname");
+	self.goalradius = 24;
 	while(distance2d(self.origin, var_48bbb849.origin) > self.goalradius)
 	{
 		self setgoal(var_48bbb849.origin, 1);
@@ -2647,6 +2667,7 @@ private function function_b80b6749()
 	self endon_callback(&function_549f1fcd, #"death", #"hash_300e9fed7925cd69");
 	b_success = undefined;
 	var_aa851834 = undefined;
+	a_str_zones = array("cellblock_shower");
 	while(!(isdefined(var_aa851834) && var_aa851834))
 	{
 		foreach(e_player in util::get_players())
@@ -2869,6 +2890,7 @@ private function function_33701563()
 	self endon(#"death", #"hash_300e9fed7925cd69");
 	var_64aaa12a = struct::get_array("showers_kill_pos", "targetname");
 	callback::on_ai_killed(&function_c8d4b885);
+	level.var_b1060d52 = 0;
 	while(true)
 	{
 		var_45143585 = array::random(var_64aaa12a);
@@ -2973,6 +2995,7 @@ private function function_6bb299fa()
 {
 	self endon(#"death", #"hash_60f9171b687c9d06", #"hash_4636f041ae52f0fa", #"hash_300e9fed7925cd69");
 	var_9cdf5d68 = 2;
+	var_202d423f = function_841bb7a7();
 	while(level.var_b1060d52 < var_202d423f)
 	{
 		n_percent = level.var_b1060d52 / 29;
@@ -3129,6 +3152,7 @@ private function function_c11e25eb()
 	self endon_callback(&function_bc57a72c, #"death", #"hash_300e9fed7925cd69");
 	b_success = undefined;
 	var_4c18a58 = undefined;
+	a_str_zones = array("zone_powerhouse");
 	while(!(isdefined(var_4c18a58) && var_4c18a58))
 	{
 		foreach(e_player in util::get_players())
@@ -3196,6 +3220,7 @@ private function function_adf8de89(e_player)
 	if(!isdefined(level.var_8eec9430))
 	{
 		var_bc84fb2a = struct::get("ph_gh_sp", "targetname");
+		level.var_8eec9430 = zombie_utility::spawn_zombie(getent("g_zombie_spawner", "targetname"), "ph_gh", var_bc84fb2a);
 		while(!isdefined(level.var_8eec9430))
 		{
 			waitframe(1);
@@ -3225,6 +3250,7 @@ private function function_dc369dee(var_b51b4b08)
 	level.var_8eec9430 waittill_timeout(20, #"goal");
 	var_922f086e = 1;
 	s_next_pos = array::random(var_3741f4b0);
+	level.var_ed42611e = [];
 	while(!(isdefined(level.var_8eec9430.var_ecdd7879) && level.var_8eec9430.var_ecdd7879))
 	{
 		level.var_8eec9430 setgoal(s_next_pos.origin);
@@ -3427,6 +3453,7 @@ private function function_3f41df11(var_aa11c23c)
 	var_888f63a1 = level.var_e2279748[var_bef01ba5] + 6;
 	var_6695748c = var_fda10a91[var_888f63a1];
 	self setmodel(var_d7fe6e89);
+	var_a9ef48ba = var_6695748c;
 	while(isdefined(self.t_interact))
 	{
 		var_88706ea7 = undefined;
@@ -3461,6 +3488,7 @@ private function function_cadaca27()
 {
 	self endon(#"death", #"hash_300e9fed7925cd69");
 	level.var_8eec9430 endon(#"death");
+	level.var_8eec9430.script_noteworthy = "blast_attack_interactables";
 	while(!(isdefined(level.var_8eec9430.var_ecdd7879) && level.var_8eec9430.var_ecdd7879))
 	{
 		level.var_8eec9430 waittill(#"hash_6fd7f8e1f00deffe");
@@ -3629,6 +3657,7 @@ private function function_718e6106()
 		}
 		wait(6);
 		var_a94e126 = 0;
+		var_47df32b8 = 1;
 		while(var_a94e126 < 7)
 		{
 			foreach(var_307df34b in var_abad41d)
@@ -3725,6 +3754,7 @@ private function function_dc164d78()
 	var_56eace20 = 1;
 	b_trace_passed = 0;
 	n_start_time = gettime();
+	n_total_time = 0;
 	while(!(isdefined(b_trace_passed) && b_trace_passed) & n_total_time < 6.1)
 	{
 		foreach(e_player in util::get_players())
@@ -4234,6 +4264,7 @@ private function function_ac1d7a0e(var_5b9ba5a5, e_player)
 			break;
 		}
 	}
+	var_a8d847a7 = undefined;
 	while(!(isdefined(var_a8d847a7) && var_a8d847a7))
 	{
 		namespace_891c9bac::function_3c173d37(e_player.origin, 512);
@@ -4245,6 +4276,7 @@ private function function_ac1d7a0e(var_5b9ba5a5, e_player)
 	}
 	e_richtofen namespace_891c9bac::function_57b8cd17();
 	var_26e0e1ec = e_richtofen namespace_891c9bac::function_8e0f4696(var_6d4b089d, 0, 1, 9999, 1, 1, 1);
+	var_350e5be3 = undefined;
 	while(!(isdefined(var_350e5be3) && var_350e5be3) && isalive(e_richtofen))
 	{
 		namespace_891c9bac::function_3c173d37(e_richtofen.origin, 512);
@@ -4562,6 +4594,7 @@ private function function_b952c1b(var_4bdd091b, str_tag = "j_spinelower")
 	n_move_time = n_dist / 800;
 	n_dist_sq = distance2dsquared(var_88f24b00.origin, var_4bdd091b gettagorigin(str_tag));
 	n_start_time = gettime();
+	n_total_time = 0;
 	while(n_dist_sq > 576 && isalive(var_4bdd091b))
 	{
 		var_88f24b00 moveto(var_4bdd091b gettagorigin(str_tag), n_move_time);

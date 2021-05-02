@@ -150,6 +150,7 @@ function function_6e60e5b8()
 	level endon(#"end_game");
 	self endon(#"death", #"hash_5a83ec4a73b3dc6");
 	level waittill(#"start_of_round");
+	var_980ea73 = level.round_number;
 	while(true)
 	{
 		level waittill(#"end_of_round");
@@ -173,6 +174,7 @@ function function_934d3464()
 {
 	level endon(#"end_game");
 	self endon(#"hash_10404a179a65cd64", #"disconnect");
+	var_6bf54ff2 = array(#"zone_cargo");
 	while(true)
 	{
 		if(isdefined(self.zone_name))
@@ -343,6 +345,7 @@ function function_46c56964()
 {
 	level endon(#"end_game");
 	self endon(#"disconnect", #"hash_7ef6edd06b06d480");
+	self.var_574b5261 = 0;
 	while(true)
 	{
 		/#
@@ -417,6 +420,7 @@ function function_ec3040dd()
 	level endon(#"end_game");
 	self endon(#"disconnect");
 	self.var_5b0772a7 = undefined;
+	self.var_7f491224 = 0;
 	while(true)
 	{
 		if(self.var_7f491224 >= 3)

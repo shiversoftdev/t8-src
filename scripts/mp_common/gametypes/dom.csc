@@ -39,6 +39,7 @@ event main(eventstruct)
 */
 function on_localclient_connect(localclientnum)
 {
+	self.domflags = [];
 	while(!isdefined(level.domflags[#"a"]))
 	{
 		self.domflags[#"a"] = serverobjective_getobjective(localclientnum, "dom_a");
@@ -80,6 +81,7 @@ function monitor_flag_fx(localclientnum, flag_objective, flag_name)
 	}
 	fx_name = get_base_fx(flag, #"neutral");
 	play_base_fx(localclientnum, flag, fx_name, #"neutral");
+	flag.last_progress = 0;
 	while(true)
 	{
 		team = serverobjective_getobjectiveteam(localclientnum, flag_objective);

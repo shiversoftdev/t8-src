@@ -393,6 +393,7 @@ function function_a3a23636()
 	level flag::wait_till_any(array(#"power_on", #"power_on1", #"hash_2daf5bdda85cc660"));
 	var_79bd8bd4 = getent("knight_model_cemetery", "targetname");
 	var_38c25a0c = getent("knight_model_greenhouse", "targetname");
+	var_170ef705 = getent("knight_model_main_hall", "targetname");
 	while(!(isdefined(level.var_d2867f97) && level.var_d2867f97) && !level flag::get_all(array(#"knight_main_hall_stationed", #"knight_cemetery_stationed", #"knight_greenhouse_stationed")))
 	{
 		b_play_vo = 0;
@@ -517,6 +518,7 @@ function function_70c90053()
 {
 	level endon(#"end_game");
 	self endon(#"death", #"flag_gazing_stone_in_use");
+	var_b5bcbba9 = self.origin + vectorscale((0, 0, 1), 8);
 	while(true)
 	{
 		wait(randomintrange(27, 31));
@@ -862,6 +864,7 @@ function function_a3a92098()
 {
 	level endon(#"hash_5c0a5172c4d5bee7");
 	self endon(#"death");
+	var_39ef2390 = getent("cellar_location_vo", "targetname");
 	while(true)
 	{
 		var_88706ea7 = undefined;

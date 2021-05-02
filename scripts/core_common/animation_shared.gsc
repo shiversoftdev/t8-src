@@ -380,6 +380,7 @@ function function_2adc2518(str_notify)
 function _blend_out(animation, n_blend, n_rate, n_start_time)
 {
 	self endon(#"death", #"end", #"scriptedanim", #"new_scripted_anim");
+	n_server_length = floor(getanimlength(animation) / float(function_60d95f53()) / 1000) * float(function_60d95f53()) / 1000;
 	while(true)
 	{
 		n_current_time = self getanimtime(animation) * n_server_length;

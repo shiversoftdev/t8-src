@@ -110,6 +110,7 @@ function monitor_smoke(local_client_num)
 	{
 		return;
 	}
+	radius = function_709fad19();
 	while(isdefined(var_d3f60df1))
 	{
 		waitresult = undefined;
@@ -183,6 +184,7 @@ function function_e69d0e4d(local_client_num)
 {
 	self notify(#"hash_2286178f49f4601d");
 	self endon(#"hash_2286178f49f4601d", #"death", #"disconnect");
+	var_e098466f = 0;
 	while(true)
 	{
 		var_7bf0773f = function_7bf0773f(local_client_num);

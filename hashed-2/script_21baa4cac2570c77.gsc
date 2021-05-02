@@ -58,6 +58,7 @@ function __init__()
 function event()
 {
 	self endon(#"disconnect", #"death", #"bgb_update");
+	self.var_727695ba = 5;
 	while(self.var_727695ba > 0)
 	{
 		wait(0.1);

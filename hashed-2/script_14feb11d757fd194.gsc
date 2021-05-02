@@ -306,6 +306,7 @@ private function function_6df99cfa()
 {
 	self endon_callback(&function_9db28e7, #"death", #"entering_last_stand", #"disconnect", #"hash_5335c8b16b1bd8aa");
 	level endon(#"game_ended");
+	level.var_3e8bd5c[level.var_3e8bd5c.size] = self;
 	while(isdefined(self.var_78566c82) && self.var_78566c82)
 	{
 		waitframe(1);
@@ -521,6 +522,7 @@ private function function_7924f3ca()
 	self endon(#"death", #"disconnect");
 	if(isdefined(self.var_556f910a))
 	{
+		i = 0;
 		while(i < self.var_556f910a.size)
 		{
 			if(isdefined(self.var_556f910a[i]) && isdefined(self.var_556f910a[i].scriptkey))

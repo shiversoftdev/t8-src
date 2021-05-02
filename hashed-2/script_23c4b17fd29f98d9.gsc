@@ -150,6 +150,7 @@ function function_74872db6()
 function function_6a9c3eb3(n_round_number)
 {
 	level endon(#"hash_7a04a7fb98fa4e4d");
+	n_spawn_count = 0;
 	while(n_spawn_count < 3)
 	{
 		var_b88c4823 = namespace_c402654::function_62db7b1c(1, undefined);
@@ -189,6 +190,7 @@ function function_b4cae8b9()
 function function_e76696af(n_round_number)
 {
 	level endon(#"hash_7a04a7fb98fa4e4d");
+	n_spawn_count = 0;
 	while(n_spawn_count < 3)
 	{
 		var_b88c4823 = namespace_c71ecd1b::function_dd836251();
@@ -409,6 +411,7 @@ function function_eede094a(n_obj_id)
 function function_fa0d0109(var_37b7b46a, var_7f66a3c0, var_f79ff5ec)
 {
 	self endon(#"hash_282d6ac23c7b5831", #"disconnect");
+	str_player_zone = self zm_zonemgr::get_player_zone();
 	while(!isdefined(str_player_zone) || (str_player_zone != "cage" && str_player_zone != "cage_upper"))
 	{
 		str_player_zone = self zm_zonemgr::get_player_zone();
@@ -658,6 +661,7 @@ function function_466fb0ff(var_3cf55c1)
 {
 	level endon(#"end_game");
 	var_f79ff5ec = zm_utility::function_40ef77ab(var_3cf55c1);
+	var_679cd7a8 = zm_utility::function_a877cd10(var_f79ff5ec);
 	while(true)
 	{
 		if(var_f79ff5ec != #"groom_lake")

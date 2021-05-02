@@ -3513,6 +3513,7 @@ function preshootlaserandglinton(ai)
 	{
 		ai.laserstatus = 0;
 	}
+	sniper_glint = #"hash_3db1ecb54b192a49";
 	while(true)
 	{
 		self waittill(#"about_to_fire");

@@ -90,6 +90,7 @@ private function function_653f23be()
 	{
 		return;
 	}
+	var_76f21e6b = array("zone_temple_of_apollo", "zone_temple_of_apollo_left_path", "zone_temple_of_apollo_right_path", "zone_temple_of_apollo_back");
 	while(level.round_number <= 20)
 	{
 		str_zone = self zm_zonemgr::get_player_zone();
@@ -447,6 +448,7 @@ private function function_b3786a8a()
 */
 private function function_f31369ae()
 {
+	e_player = undefined;
 	while(isalive(self))
 	{
 		var_88706ea7 = undefined;

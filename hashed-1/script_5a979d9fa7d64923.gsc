@@ -781,6 +781,7 @@ function function_6c891578(var_a993e05e, var_a85d39a2)
 	self endon(#"death", #"hash_2ca901b5ada4f20f");
 	var_2ddb51af = self.v_start + vectorscale((0, 0, 1), 16);
 	var_d825e9dd = 1;
+	v_start_pos = self.v_start + vectorscale((0, 0, 1), 16);
 	while(true)
 	{
 		if(isdefined(var_d825e9dd) && var_d825e9dd)

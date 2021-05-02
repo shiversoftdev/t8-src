@@ -121,6 +121,7 @@ function trackriotshield()
 	currentweapon = self getcurrentweapon();
 	self.hasriotshield = self hasriotshield();
 	self.hasriotshieldequipped = currentweapon.isriotshield;
+	self.lastnonshieldweapon = level.weaponnone;
 	while(true)
 	{
 		self thread watchriotshieldpickup();

@@ -376,6 +376,7 @@ function function_1abf5396(var_cba19e17)
 */
 function function_b5ac159d()
 {
+	self.var_47d0d442 = spawn("trigger_radius_new", self.origin, 0, 256, 96);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -464,6 +465,7 @@ function function_6a1500f1()
 	a_bad_zones[6] = "zone_infirmary_roof";
 	a_bad_zones[7] = "zone_citadel_shower";
 	level flag::wait_till("start_zombie_round_logic");
+	var_f3b29ae8 = 0;
 	while(true)
 	{
 		wait(randomfloatrange(1, 20));

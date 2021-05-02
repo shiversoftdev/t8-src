@@ -579,6 +579,7 @@ private function lc_debug_arc(origin, distance)
 		{
 			return;
 		}
+		start = gettime();
 		while(gettime() < start + 3000)
 		{
 			waitframe(1);

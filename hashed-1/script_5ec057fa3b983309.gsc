@@ -258,6 +258,7 @@ function function_65bda766(var_2eac42a2)
 		hand thread function_95a52218();
 	}
 	level flag::wait_till("power_on");
+	var_6b9abaa9 = getent("vol_ww_oracle", "targetname");
 	while(true)
 	{
 		foreach(e_player in util::get_active_players())
@@ -578,6 +579,7 @@ function function_aaaf780e(var_87658653, t_damage)
 {
 	self endon(#"disconnect");
 	var_87658653 endon(#"hash_656721b8c4297ad5");
+	var_fdc48fc2 = (var_87658653.origin[0], var_87658653.origin[1], var_87658653.origin[2] + var_87658653.n_trigger_height * 0.5);
 	while(true)
 	{
 		self waittill(#"weapon_melee");
@@ -1910,6 +1912,7 @@ function function_6b3c32b6(var_fc6baa64, e_player)
 	e_player endon(#"disconnect", #"hash_7fe6ca08732b8a1d");
 	self.a_ai_spawned = [];
 	var_eb3b90d = struct::get_array(self.var_4a8b8254, "script_objective");
+	var_417b0320 = arraycopy(var_eb3b90d);
 	while(true)
 	{
 		self.a_ai_spawned = array::remove_dead(self.a_ai_spawned);
@@ -2430,6 +2433,7 @@ function function_3c79dc29(e_player)
 		waitframe(1);
 	}
 	self.var_d1e11af4.origin = nd_entry.origin;
+	self.var_d1e11af4.angles = nd_entry.angles;
 	while(!isdefined(self.var_b0338f1d))
 	{
 		self.var_b0338f1d = util::spawn_model("p8_zm_red_shrine_charron_boat_styx_full", self.var_d1e11af4.origin, self.var_d1e11af4.angles);
@@ -2564,6 +2568,7 @@ function disable_health_regen()
 private function function_e9127e33()
 {
 	self endon(#"death");
+	var_b338fe44 = 0;
 	while(!(isdefined(self.heal.enabled) && self.heal.enabled))
 	{
 		if(self hasperk(#"hash_650a97787905913f"))
@@ -2598,6 +2603,7 @@ function function_e6e126b4(e_target, w_weapon)
 		e_target.var_4fcc6fa6 = 1;
 		e_target thread namespace_76c5fc73::function_ccd87945(self);
 		n_start_time = gettime();
+		n_total_time = 0;
 		while(isdefined(e_target) && n_total_time < 5)
 		{
 			waitframe(1);
@@ -2648,6 +2654,7 @@ function function_e6e126b4(e_target, w_weapon)
 */
 function function_cdbadaff(var_a06d0f4f, var_2d8a1db5, n_time)
 {
+	starttime = gettime();
 	while(gettime() <= starttime + int(n_time * 1000))
 	{
 		ratio = gettime() - starttime / int(n_time * 1000);
@@ -2941,6 +2948,7 @@ function function_4771e682(var_542837e6)
 {
 	level endon(#"game_ended");
 	var_542837e6 endon(#"hash_2b524e51784167cc");
+	var_919d328 = getent(var_542837e6.target, "targetname");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -3431,6 +3439,7 @@ function function_dbe1d7b8()
 function light_countdown(n_time)
 {
 	self endon(#"hash_3f0faacb0cc98a9");
+	n_duration = 1;
 	while(true)
 	{
 		n_time = n_time - n_duration;
@@ -3804,6 +3813,7 @@ function function_6d466962(var_8290a028, var_5bc443f6, var_9bf51af3, e_player = 
 function function_381519d9(var_8290a028, var_9bf51af3, n_max_height, var_5bc443f6)
 {
 	var_8290a028 endon(#"movedone");
+	var_83cc3879 = 32;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -4692,6 +4702,7 @@ function function_88edd220(e_player, var_4d248f0c)
 	}
 	e_player disableweaponcycling();
 	e_player waittill(#"weapon_change_complete");
+	var_70d77f0f = e_player function_b7f1fd2c(var_4d248f0c);
 	while(true)
 	{
 		if(e_player getweaponammoclip(var_4d248f0c) < var_70d77f0f)
@@ -4715,6 +4726,7 @@ function function_8ad28be8(e_player)
 {
 	e_player endon(#"disconnect", #"hash_4d89e2bb8e3d1eb3");
 	e_player.var_ac8a5779 = 0;
+	n_time = 0;
 	while(n_time < 120 && !level flag::get("round_reset"))
 	{
 		if(e_player.var_ac8a5779 > 60)
@@ -4877,6 +4889,7 @@ function function_f3a9ad8c(e_player)
 				a_ai_zombies = getaiteamarray(level.zombie_team);
 				waitframe(1);
 			}
+			s_spawn = array::random(var_eb3b90d);
 			while(true)
 			{
 				ai_zombie = zombie_utility::spawn_zombie(array::random(level.zombie_spawners), undefined, s_spawn);
@@ -5787,6 +5800,7 @@ function function_6df333f3(e_player)
 				a_ai_zombies = getaiteamarray(level.zombie_team);
 				waitframe(1);
 			}
+			s_spawn = array::random(var_eb3b90d);
 			while(true)
 			{
 				if(self.targetname === #"earth")
@@ -5985,6 +5999,7 @@ function function_b2a3182b(e_player)
 	e_player.var_8331cf3d = 0;
 	n_start_time = gettime();
 	n_time_passed = 0;
+	var_1715a29f = undefined;
 	while(n_time_passed < 300)
 	{
 		if(e_player.var_8331cf3d >= self.var_6486fc00)

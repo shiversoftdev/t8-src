@@ -63,6 +63,7 @@ function fill(n_length, str_fill)
 		{
 			str_fill = "";
 		}
+		str_return = "";
 		while(n_length > 0)
 		{
 			str = getsubstr(str_fill, 0, n_length);

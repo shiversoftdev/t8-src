@@ -357,6 +357,7 @@ private function function_f9a794dc(localclientnum)
 	self.var_23c215c = 25;
 	self.var_c183198c = self playloopsound(#"hash_1bc434008189933f");
 	self.var_fa938ed8 = 0;
+	self.var_d9ebae63 = gettime();
 	while(isdefined(self) && self.var_23c215c > 0)
 	{
 		n_current_time = gettime();
@@ -611,6 +612,7 @@ function function_84e77740(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_bbfe3432(localclientnum)
 {
 	self endon(#"hash_4236253d10aeec5e");
+	var_be5f61d5 = 0.5;
 	while(var_be5f61d5 >= 5E-07 && isdefined(self))
 	{
 		self function_78233d29(#"hash_68ee9247aaae4517", "", "Alpha", var_be5f61d5);

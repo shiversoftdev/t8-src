@@ -52,6 +52,7 @@ function main()
 	var_50f6b3f4.start_angles = var_50f6b3f4.angles;
 	var_d02e9cd = getent("counter_ones", "targetname");
 	var_d02e9cd.start_angles = var_d02e9cd.angles;
+	level.var_b691023c = 0;
 	while(true)
 	{
 		if(isdefined(level.var_dc22f98))
@@ -308,6 +309,7 @@ function function_497362b5(n_threshold)
 	{
 		self namespace_f7516cdf::function_ed39491e(4);
 		exploder::exploder("fxexp_pyramid_capture");
+		level.vol_toast_trap = getent("vol_toast_trap", "targetname");
 		while(isdefined(level.var_43c333a8) && !level.var_43c333a8 istouching(level.vol_toast_trap))
 		{
 			wait(0.1);

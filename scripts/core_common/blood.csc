@@ -197,6 +197,7 @@ private function enter_critical_health(localclientnum)
 private function play_critical_health_rumble(localclientnum)
 {
 	self endon(#"death", #"disconnect", #"critical_health_end", #"spawned");
+	var_cf155b98 = "new_health_stage_critical";
 	while(true)
 	{
 		self waittill(#"hash_7b55313d89ce26ed");

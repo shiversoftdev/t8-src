@@ -132,6 +132,7 @@ function __init__()
 */
 function count_network_frames()
 {
+	level.network_frame = 0;
 	while(true)
 	{
 		util::wait_network_frame();
@@ -391,12 +392,14 @@ function map_is_early_in_the_game()
 function player_throwgrenade_timer()
 {
 	self endon(#"death", #"disconnect");
+	self.lastgrenadetime = 0;
 	while(true)
 	{
 		while(!self isthrowinggrenade())
 		{
 			wait(0.05);
 		}
+		self.lastgrenadetime = gettime();
 		while(self isthrowinggrenade())
 		{
 			wait(0.05);

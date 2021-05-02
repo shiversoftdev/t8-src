@@ -784,6 +784,7 @@ private function function_3adb0798(e_target, n_kills)
 			{
 				var_2f067119 = e_target.origin;
 			}
+			v_target = var_2f067119 + anglestoforward(e_target.angles) * 24;
 			while(isdefined(n_kills) && n_kills < var_fc51fa3d)
 			{
 				s_trace = bullettrace(self.var_89e9a4ce.origin, v_target, 1, self.var_89e9a4ce);

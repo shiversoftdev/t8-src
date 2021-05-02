@@ -381,6 +381,7 @@ function create_looper(clientnum)
 function loop(clientnum)
 {
 	validate(self.v[#"fxid"], self.v[#"origin"]);
+	self.looperfx = playfx(clientnum, level._effect[self.v[#"fxid"]], self.v[#"origin"], self.v[#"forward"], self.v[#"up"], self.v[#"delay"], self.v[#"primlightfrac"], self.v[#"lightoriginoffs"]);
 	while(true)
 	{
 		if(isdefined(self.v[#"delay"]))

@@ -363,6 +363,7 @@ private function function_d422ab54()
 private function function_734195be()
 {
 	self endon(#"death");
+	self.var_69a981e6 = 1;
 	while(true)
 	{
 		var_385703b7 = undefined;
@@ -715,6 +716,7 @@ private function function_e13aa91c()
 	self endon(#"death");
 	self endon_callback(&function_d4953883, #"hash_11d4cfae418fcfe1");
 	self clientfield::set("corrosive_miasma_clientfield", 1);
+	var_7a79774b = function_4d1e7b48("dot_corrosive_catalyst");
 	while(true)
 	{
 		var_319aa551 = self.origin + (0, 0, self ai::function_9139c839().var_2a523c14 / 2);

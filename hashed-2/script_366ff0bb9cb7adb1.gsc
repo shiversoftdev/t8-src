@@ -787,6 +787,7 @@ function function_95d17a51(startstruct)
 		targets[targets.size] = startstruct.target;
 		var_5842dd6c[startstruct.target] = 1;
 	}
+	structs[structs.size] = startstruct;
 	while(targets.size > 0)
 	{
 		target = targets[0];

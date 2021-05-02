@@ -403,6 +403,7 @@ private function function_eddc2ed3()
 private function function_fe82c566()
 {
 	self endon(#"death", #"hash_530fc6e3ae75d439");
+	level.var_23674b8f.var_c8a6d360 = 0;
 	while(true)
 	{
 		self.e_model setcandamage(1);
@@ -583,6 +584,7 @@ private function function_2b0060b8()
 	self endon(#"death");
 	var_a28e7c1f = self.origin + (0, 0, 1);
 	var_ae661658 = self.origin - (0, 0, 1);
+	var_4814cac6 = 1;
 	while(true)
 	{
 		if(var_4814cac6)

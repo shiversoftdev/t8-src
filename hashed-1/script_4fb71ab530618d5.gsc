@@ -99,6 +99,7 @@ function function_c0c566d4(localclientnum)
 	self notify("1904df9d4730174b");
 	self endon("1904df9d4730174b");
 	self endon(#"death");
+	self.var_50e5da45 = 0;
 	while(true)
 	{
 		if(function_c5afdb1b(localclientnum) && !self.var_50e5da45)

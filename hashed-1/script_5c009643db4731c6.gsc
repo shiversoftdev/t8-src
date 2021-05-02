@@ -166,6 +166,7 @@ private function function_989d336d(localclientnum)
 	#/
 	basehealth = 100;
 	playerhealth = renderhealthoverlayhealth(localclientnum, basehealth);
+	var_8e5bb835 = playerhealth;
 	while(true)
 	{
 		if(!isdefined(self.var_d6b8c684))
@@ -323,6 +324,7 @@ private function splatter(localclientnum)
 		end_splatter(localclientnum);
 		return;
 	}
+	lasttime = self getclienttime();
 	while(splatter_opacity > 0.9 && isdefined(self))
 	{
 		now = self getclienttime();
@@ -343,6 +345,7 @@ private function splatter(localclientnum)
 		end_splatter(localclientnum);
 		return;
 	}
+	lasttime = self getclienttime();
 	while(splatter_opacity > 0 && isdefined(self))
 	{
 		now = self getclienttime();

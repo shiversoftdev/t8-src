@@ -783,6 +783,7 @@ function function_dd7bc108(weapon)
 	{
 		v_forward = anglestoforward(self.angles) * n_inc;
 		v_target = v_org + v_forward;
+		v_ground = undefined;
 		while(!isdefined(v_ground))
 		{
 			v_trace = groundtrace(v_target + vectorscale((0, 0, 1), 200), v_target + vectorscale((0, 0, -1), 2000), 0, self, 1)[#"position"];

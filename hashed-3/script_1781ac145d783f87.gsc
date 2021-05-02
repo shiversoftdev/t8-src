@@ -291,12 +291,14 @@ function function_ad85b216()
 	{
 		var_10cba649 = 7;
 	}
+	level.var_c1549bc8.var_782576f8 = level.round_number + var_10cba649;
 	while(level.round_number < level.var_c1549bc8.var_782576f8)
 	{
 		level waittill(#"end_of_round");
 	}
 	playsoundatposition("zmb_ee_brewing_done", (0, 0, 0));
 	s_loc = struct::get("s_perk_drop");
+	perk = zm_powerups::specific_powerup_drop("free_perk", s_loc.origin, #"allies", undefined, undefined, 1, 1);
 	while(!isdefined(perk))
 	{
 		waitframe(1);
@@ -430,6 +432,7 @@ function function_294c9ea7(var_d7a9a6d6)
 	{
 		return;
 	}
+	var_3520f942 = trigger::wait_till(var_d7a9a6d6, "targetname", self);
 	while(true)
 	{
 		t_exit = trigger::wait_till(var_d7a9a6d6, "targetname", self);
@@ -720,6 +723,7 @@ function function_5d0d1807()
 function function_1eddbf9e()
 {
 	level endon(#"end_game", #"hash_205c15aeab8e14c4");
+	var_c265cd7f = 0;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -752,6 +756,7 @@ function function_1eddbf9e()
 function function_c74f4cf4()
 {
 	level endon(#"end_game", #"hash_5bc627cff03bad5");
+	var_22fbe1cc = 0;
 	while(true)
 	{
 		level waittill(#"end_of_round");

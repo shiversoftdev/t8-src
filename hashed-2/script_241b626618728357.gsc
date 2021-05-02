@@ -184,6 +184,7 @@ function function_f95fab30(n_round_number)
 function function_b03369f()
 {
 	var_d5d4e4c5 = struct::get(#"p8_fxanim_zm_towers_pap_door_red_bundle", "scriptbundlename");
+	var_ef946c5f = struct::get(#"p8_fxanim_zm_towers_pap_door_blue_bundle", "scriptbundlename");
 	while(true)
 	{
 		var_e43d143e = 0;
@@ -287,6 +288,7 @@ function function_aa78bcdf()
 {
 	level thread function_bbbc20bf();
 	level clientfield::set("pap_force_stream", 1);
+	var_35103e6d = struct::get(#"p8_fxanim_zm_towers_pap_sarcophagus_bundle", "scriptbundlename");
 	while(true)
 	{
 		var_52eeb37 = 0;
@@ -476,6 +478,7 @@ function function_ca35fa36()
 	zm_utility::function_33798535(s_defend_area.var_39c44288, s_defend_area.a_str_zones, s_defend_area.var_ed1db1a7);
 	var_f79ff5ec = zm_utility::function_40ef77ab(var_f79ff5ec);
 	n_wait_time = 45;
+	var_837cd1b4 = 0;
 	while(true)
 	{
 		zm_utility::function_11101458(var_f79ff5ec);

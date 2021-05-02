@@ -1188,6 +1188,7 @@ function createplannerfromasset(assetname)
 				#/
 				childnum = htnnode.childindexes[childindex];
 				childnode = plannernodes[childnum];
+				htnchildnode = htnasset.nodes[childnum];
 				while(htnchildnode.type === #"goto")
 				{
 					/#

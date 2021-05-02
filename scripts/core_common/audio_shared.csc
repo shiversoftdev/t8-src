@@ -780,6 +780,7 @@ function function_a3010aae(ent, on_enter_payload, on_exit_payload)
 */
 function audio_step_trigger(localclientnum)
 {
+	var_887fc615 = self getentitynumber();
 	while(true)
 	{
 		waitresult = undefined;
@@ -2150,6 +2151,7 @@ function function_d6bc7279(sound)
 {
 	self endon(#"death");
 	self endon(#"hash_4e899fa9b2775b4d");
+	self.var_29054134 = 1;
 	while(true)
 	{
 		self playsound(0, sound);

@@ -787,6 +787,7 @@ private function function_d82de95f(entity)
 private function function_60164697()
 {
 	self endon(#"death", #"disconnect");
+	time = gettime() + 2000;
 	while(true)
 	{
 		if(gettime() > time)

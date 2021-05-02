@@ -335,6 +335,7 @@ function function_e8ad1d81(position, owner, normal, velocity, killcament, weapon
 			x = var_4f9d7296[0];
 			y = var_4f9d7296[1];
 			lowestz = var_69d15ad0[#"position"][2];
+			z = var_4f9d7296[2];
 			while(z > lowestz)
 			{
 				newpos = (x, y, z);
@@ -835,6 +836,7 @@ function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd4
 	{
 		fireeffectarea = spawn("trigger_radius", trigger_radius_position, 0, radius, trigger_radius_height);
 	}
+	self.var_ebf0b1c9 = [];
 	while(gettime() < damageendtime)
 	{
 		damageapplied = 0;

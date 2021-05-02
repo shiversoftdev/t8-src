@@ -1079,6 +1079,7 @@ function function_8f0594cb(s_challenge)
 	level thread [[level.var_51d3a718.var_c376bcd5]]();
 	namespace_159b5b5b::start_timer(s_challenge.var_6346e7b + 1);
 	var_be17187b = undefined;
+	var_be17187b = level waittill_timeout(s_challenge.var_6346e7b + 1, #"round_reset");
 	while(isdefined(level.var_dc6fce4f) && level.var_dc6fce4f)
 	{
 		waitframe(1);
@@ -1127,6 +1128,7 @@ function function_8d1fd2d8()
 function function_4a88eb80()
 {
 	level endon(#"hash_61075af70fbd9082");
+	var_53a794b0 = gettime() / 1000;
 	while(true)
 	{
 		wait(2);
@@ -1335,6 +1337,7 @@ function function_1d60215()
 		player thread namespace_159b5b5b::show_text(var_9862b6f2, 0, "stop_challenge", 0);
 		player thread function_173c3ce8(level.var_51d3a718.n_id, undefined, vol_area);
 	}
+	level.var_ae2ad596 = zm_utility::function_d7db256e(level.var_c699da9d, undefined, 1);
 	while(true)
 	{
 		n_time = gettime() / 1000;
@@ -1768,6 +1771,7 @@ function function_bf582bc8(var_ecffa2a8, n_damage)
 	self endon("406b5cd97f3e3fe");
 	self endon(#"death");
 	level endon(#"hash_61075af70fbd9082");
+	n_start_health = self.health;
 	while(is_challenge_active(var_ecffa2a8))
 	{
 		if(self laststand::player_is_in_laststand())
@@ -1946,6 +1950,7 @@ function function_173c3ce8(var_ecffa2a8, var_2c5f83d, var_25b32f6c = undefined)
 	self notify(#"hash_6daf8e8dc22cab08");
 	self endon(#"hash_6daf8e8dc22cab08", #"death");
 	self.var_95cfa01d = 1;
+	self.var_b05f25ad = 0;
 	while(is_challenge_active(var_ecffa2a8))
 	{
 		if(isdefined(var_25b32f6c))
@@ -2069,6 +2074,7 @@ function function_8ff7b0bb()
 	level flag::wait_till("all_players_connected");
 	level flag::wait_till("power_on");
 	var_6a5f8169 = struct::get("s_apollo_bowl_vo", "targetname");
+	b_play_vo = 0;
 	while(!b_play_vo)
 	{
 		foreach(player in getplayers())

@@ -526,6 +526,7 @@ function function_1263065a(n_shot = 0)
 */
 function run_wait(wait_time)
 {
+	wait_start_time = 0;
 	while(wait_start_time < wait_time && !is_skipping_scene())
 	{
 		wait_start_time = wait_start_time + 0.016;
@@ -2800,14 +2801,17 @@ function postfx_igc(localclientnum, oldval, newval, bnewent, binitialsnap, field
 	filter::set_filter_base_frame_transition_boost(self, 5, 1);
 	n_hex = 0;
 	b_streamer_wait = 1;
+	i = 0;
 	while(i < 2000)
 	{
 		st = float(i) / 1000;
 		if(b_streamer_wait && st >= 0.65)
 		{
+			n_streamer_time_total = 0;
 			while(!isstreamerready() && n_streamer_time_total < 5000)
 			{
 				n_streamer_time = gettime();
+				j = int(0.65 * 1000);
 				while(j < 1150)
 				{
 					jt = float(j) / 1000;
@@ -2815,6 +2819,7 @@ function postfx_igc(localclientnum, oldval, newval, bnewent, binitialsnap, field
 					waitframe(1);
 					j = j + int(0.016 * 1000);
 				}
+				j = int(1.15 * 1000);
 				while(j < 650)
 				{
 					jt = float(j) / 1000;
@@ -2989,6 +2994,7 @@ function postfx_igc_short(localclientnum, oldval, newval, bnewent, binitialsnap,
 	filter::enable_filter_frame_transition(self, 5);
 	filter::set_filter_frame_transition_iris(self, 5, 0);
 	b_streamer_wait = 1;
+	i = 0;
 	while(i < 850)
 	{
 		st = float(i) / 1000;
@@ -3558,6 +3564,7 @@ function fixup_scenedef(s_scenedef)
 	}
 	if(isdefined(level.scene_sequence_names) && !isdefined(level.scene_sequence_names[s_scenedef.name]))
 	{
+		s_next_bundle = s_scenedef;
 		while(isdefined(s_next_bundle))
 		{
 			level.scene_sequence_names[s_next_bundle.name] = s_scenedef.name;
@@ -3577,6 +3584,7 @@ function fixup_scenedef(s_scenedef)
 	}
 	if(isstring(s_scenedef.nextscenebundle) || function_7a600918(s_scenedef.nextscenebundle))
 	{
+		s_next_bundle = s_scenedef;
 		while(isdefined(s_next_bundle))
 		{
 			if(isdefined(s_next_bundle.nextscenebundle))

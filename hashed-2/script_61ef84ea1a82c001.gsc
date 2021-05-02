@@ -212,6 +212,7 @@ function function_cd53088e(params)
 private function function_5ec2f851()
 {
 	self endon(#"disconnect", #"hash_17b0a36fa17ca61a");
+	var_5c4729d5 = getent("t_r_br_sp2_7", "targetname");
 	while(true)
 	{
 		if(self istouching(var_5c4729d5) && self zm_utility::is_player_looking_at(level.var_4b9d0136.origin, 0.7, 0))

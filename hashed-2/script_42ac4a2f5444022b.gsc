@@ -721,6 +721,7 @@ function function_2aa04f9f()
 {
 	level endon(#"hash_12cb63ce83e1c017");
 	self endon(self.script_noteworthy + "_done");
+	self.t_dmg = spawn("trigger_damage", self.origin, 0, 46, 64);
 	while(true)
 	{
 		var_385703b7 = undefined;
@@ -1225,6 +1226,7 @@ function function_d409a74f(var_9e7c3935)
 	self endon(#"death");
 	self.var_7988eee5 = undefined;
 	n_timer = 0;
+	self.var_199faf5e = 1;
 	while(distance2dsquared(self.origin, var_9e7c3935.origin) > 40000)
 	{
 		if(isdefined(self.var_7988eee5) && zm_utility::is_player_valid(self.var_7988eee5) && n_timer < 30)
@@ -1928,6 +1930,7 @@ function function_a78b58f6(n_active, var_e05ded9, var_39cddd2a)
 			var_4275b4d6[var_4275b4d6.size] = s_loc;
 		}
 	}
+	s_loc = array::random(var_4275b4d6);
 	while(!level flag::get(var_39cddd2a))
 	{
 		if(isdefined(var_e05ded9) && var_70bce1d6 >= var_e05ded9)
@@ -2508,6 +2511,7 @@ function function_d217c492()
 	}
 	var_18f3c565 = [];
 	var_a1fc54b0 = 0;
+	var_3833f77b = 0;
 	while(!level flag::get(#"hash_6402d013069eb3a"))
 	{
 		wait(1);
@@ -2671,11 +2675,13 @@ function function_de7be188(a_ents)
 */
 function function_988b015e()
 {
+	e_door = getent("forest_stone_holder", "targetname");
 	while(true)
 	{
 		self waittill(#"trigger_activated");
 		e_door playsound(#"hash_4a0656a938f60847");
 		var_3ba1f680 = 1;
+		n_time = 0;
 		while(n_time < 2.5)
 		{
 			foreach(player in getplayers())

@@ -48,6 +48,7 @@ function __init__()
 function enable()
 {
 	self endon(#"disconnect", #"bled_out", #"bgb_update");
+	level.powerup_drop_count = 0;
 	while(true)
 	{
 		level waittill(#"powerup_dropped");

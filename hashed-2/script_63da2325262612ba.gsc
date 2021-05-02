@@ -201,6 +201,7 @@ function function_29aabbb3()
 		return;
 	}
 	wait_time = 0;
+	self.var_46c276a4 = 1;
 	while(!isdefined(self.favoriteenemy))
 	{
 		wait(1);
@@ -229,6 +230,7 @@ function function_fa5d232f()
 		return;
 	}
 	self endon(#"death");
+	var_906c0a07 = 32;
 	while(true)
 	{
 		if(self.goalradius < 1)

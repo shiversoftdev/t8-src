@@ -107,6 +107,7 @@ private function function_452ec7b3()
 {
 	level endon(#"end_of_round");
 	wait(12);
+	var_2fe28f97 = 1;
 	while(isdefined(self.var_247c8132))
 	{
 		level.var_c8b84806 = [];
@@ -348,6 +349,7 @@ private function function_209fb197(challenge, var_2d5ebf67, var_530e040f, timeou
 	self.var_4cb0b91f = 0;
 	self zm_utility::function_ba39d198(challenge.var_df62490a, 1);
 	self thread start_timer(timeout, var_2d5ebf67);
+	var_60fa6139 = level.time + timeout * 1000;
 	while(true)
 	{
 		var_a5096cb5 = self function_2191cc5d();

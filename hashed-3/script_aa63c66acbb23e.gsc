@@ -70,6 +70,7 @@ private function function_ee3d20f5(entity, points)
 	path = undefined;
 	shortestpath = undefined;
 	start = entity getclosestpointonnavvolume(entity.origin, 200);
+	index = 0;
 	while(index < points.size)
 	{
 		goalpoints = [];
@@ -107,6 +108,7 @@ private function _calculatepathtopoints(entity, points)
 	shortestpath = undefined;
 	var_551173dc = entity getpathfindingradius();
 	var_bb52d328 = getclosestpointonnavmesh(entity.origin, 200, var_551173dc);
+	index = 0;
 	while(index < points.size)
 	{
 		goalpoints = [];
@@ -506,6 +508,7 @@ private function function_75df771f()
 		yoffset = 100;
 		var_2f7868e6 = 850;
 		var_608ee9cd = 50;
+		var_f7059c = getdvarint(#"hash_2010e59417406d5f", 0);
 		while(true)
 		{
 			waitframe(1);

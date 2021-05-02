@@ -1450,6 +1450,7 @@ function function_73d6c609(n_duration)
 	self endon_callback(&function_a7f11faa, #"player_revived", #"zombified", #"bled_out", #"disconnect");
 	level endon(#"end_game");
 	var_722c6f25 = 0;
+	b_success = 0;
 	while(true)
 	{
 		while(self function_550c4ac4())

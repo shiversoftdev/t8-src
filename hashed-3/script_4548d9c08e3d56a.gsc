@@ -111,6 +111,7 @@ private function function_4f363fd4()
 	var_444cfef5 = getweapon(#"hash_32a584f5a65c70d1");
 	var_f0511818 = getweapon(#"smg_thompson_t8");
 	var_149c244d = getweapon(#"hash_3273c6574279dea9");
+	b_continue = 1;
 	while(true)
 	{
 		self waittill(#"weapon_change");
@@ -171,6 +172,7 @@ private function function_e5df009()
 	}
 	else
 	{
+		var_76f21e6b = array("zone_model_industries", "zone_model_industries_upper", "zone_west_side_exterior_upper", "zone_west_side_exterior_upper_02", "zone_west_side_exterior_lower", "zone_powerhouse", "zone_west_side_exterior_tunnel", "zone_new_industries", "zone_new_industries_transverse_tunnel");
 		while(level.round_number < 20)
 		{
 			str_zone = self zm_zonemgr::get_player_zone();
@@ -222,6 +224,7 @@ private function function_8b752e69()
 	self endon(#"disconnect");
 	self.var_cd7cfb60 = 0;
 	self.var_8179ae74 = 0;
+	self.var_3ad4276f = 0;
 	while(!self.var_cd7cfb60 || !self.var_8179ae74 || !self.var_3ad4276f)
 	{
 		var_88706ea7 = undefined;

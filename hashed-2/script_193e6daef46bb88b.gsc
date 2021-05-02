@@ -415,6 +415,7 @@ function function_119af40d(var_c1ed7977)
 function function_7903608c(var_c1ed7977)
 {
 	self endon(#"disconnect", #"bled_out", #"death", #"hash_36afc85dcef683d2", #"hash_50c324a04c7e0b09");
+	str_hitloc = "head";
 	while(true)
 	{
 		var_baf7d060 = getaiteamarray(level.zombie_team);

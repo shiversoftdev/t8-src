@@ -58,6 +58,7 @@ function init()
 	level.pablo_npc.var_cb3ed98f[12] = {#hash_b9c65b69:9, #hash_23d421c1:undefined, #hash_e7b75754:#"", #hash_fcab5f41:#"hash_14448cae6cbf526"};
 	level.pablo_npc.var_cb3ed98f[13] = {#hash_b9c65b69:3, #hash_23d421c1:undefined, #hash_e7b75754:#"", #hash_fcab5f41:#"hash_38aad0b1eae4093a"};
 	level.pablo_npc.var_cb3ed98f[14] = {#hash_b9c65b69:3, #hash_23d421c1:undefined, #hash_e7b75754:#"", #hash_fcab5f41:#"hash_38aad0b1eae4093a"};
+	level.var_d827e909 = spawner::simple_spawn_single(getent("pablo_spawner", "targetname"));
 	while(!isdefined(level.var_d827e909))
 	{
 		waitframe(1);
@@ -130,6 +131,7 @@ function function_b9e15919(var_a377d572 = 1)
 */
 private function function_b85344d1()
 {
+	var_de23a374 = array("lighthouse_level_1", "lighthouse_level_2", "lighthouse_level_3");
 	while(true)
 	{
 		if(namespace_509a75d1::any_player_in_zone(var_de23a374) && level.pablo_npc zm_audio::function_65e5c19a())
@@ -193,6 +195,7 @@ private function function_57c115a8()
 	self endon(#"death");
 	i = 0;
 	var_8be6334f = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+	var_de23a374 = array("lighthouse_level_1");
 	while(true)
 	{
 		if(self.isspeaking == 0 && self.var_f75b1f16.size > 0 && namespace_509a75d1::any_player_in_zone(var_de23a374) && !namespace_509a75d1::any_player_in_zone("lighthouse_level_4"))
@@ -632,6 +635,7 @@ function function_e435077()
 {
 	self endon(#"hash_276524e7f5657e50");
 	s_info = self.var_cb3ed98f[self.var_df3d62aa];
+	var_a3992d9c = 0;
 	while(var_a3992d9c < 10)
 	{
 		var_a10acf3c = zm_zonemgr::get_players_in_zone("lighthouse_level_4", 1);

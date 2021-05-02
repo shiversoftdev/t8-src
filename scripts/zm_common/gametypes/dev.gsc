@@ -1345,6 +1345,7 @@ function print_weapon_name()
 		{
 			waitresult = undefined;
 			waitresult = self waittill(#"weapon_change_complete");
+			fail_safe = 0;
 			while(waitresult.weapon == level.weaponnone)
 			{
 				waitresult = undefined;
@@ -1650,6 +1651,7 @@ function devhelipathdebugdraw()
 		maxdrawtime = 10;
 		drawtime = maxdrawtime;
 		origintextoffset = vectorscale((0, 0, -1), 50);
+		endonmsg = "";
 		while(true)
 		{
 			if(getdvarint(#"scr_devhelipathsdebugdraw", 0) > 0)
@@ -1845,6 +1847,7 @@ function drawpath(linecolor, textcolor, textalpha, textscale, textoffset, drawti
 	/#
 		level endon(endonmsg);
 		ent = self;
+		entfirsttarget = ent.targetname;
 		while(isdefined(ent.target))
 		{
 			enttarget = getent(ent.target, "");

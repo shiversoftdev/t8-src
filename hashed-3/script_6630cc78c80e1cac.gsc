@@ -150,6 +150,7 @@ function function_2d023c13()
 function function_d10bef80()
 {
 	self endon(#"death");
+	var_b45fe0b3 = 0;
 	while(!var_b45fe0b3)
 	{
 		waitresult = undefined;

@@ -417,6 +417,7 @@ function prevent_stuck()
 	self endon(#"end_prevent_stuck");
 	wait(2);
 	count = 0;
+	previous_origin = undefined;
 	while(true)
 	{
 		if(isdefined(previous_origin) && distancesquared(previous_origin, self.origin) < 0.1 * 0.1 && (!(isdefined(level.bzm_worldpaused) && level.bzm_worldpaused)))
@@ -477,6 +478,7 @@ function jump_detonate()
 	self launchvehicle((0, 0, 1) * self.jumpforce, (0, 0, 0), 1);
 	self.is_jumping = 1;
 	wait(0.4);
+	time_to_land = 0.6;
 	while(time_to_land > 0)
 	{
 		if(check_detonation_dist(self.origin, self.enemy))
@@ -541,6 +543,7 @@ function detonate(attacker = self)
 function detonation_monitor()
 {
 	self endon(#"death", #"change_state");
+	lastenemy = undefined;
 	while(true)
 	{
 		wait(0.2);

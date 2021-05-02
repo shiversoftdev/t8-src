@@ -246,6 +246,7 @@ function function_516663f8(localclientnum, oldval, newval, bnewent, binitialsnap
 private function function_37c86e6e(localclientnum)
 {
 	level endon(#"hash_46a6202f04dd1722");
+	s_sound_origin = struct::get("s_b_64_sound");
 	while(true)
 	{
 		wait(randomfloatrange(3, 5));

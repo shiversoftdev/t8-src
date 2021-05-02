@@ -1907,6 +1907,7 @@ private function function_fbc2806e(var_a4388d06, var_9e7687f8)
 	axe playloopsound(#"zmb_ai_gladiator_axe_lp");
 	var_6b72740e = undefined;
 	var_1fed6c4e = undefined;
+	var_285f5e05 = vectortoangles(var_7900b267);
 	while(true)
 	{
 		enemy = self.favoriteenemy;

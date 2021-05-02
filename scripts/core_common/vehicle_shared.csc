@@ -290,6 +290,7 @@ function on_shutdown(localclientnum)
 function function_529fa01()
 {
 	self endon(#"death");
+	self.notifyonbulletimpact = 1;
 	while(isdefined(self))
 	{
 		waitresult = undefined;

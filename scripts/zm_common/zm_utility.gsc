@@ -1059,6 +1059,7 @@ function generated_radius_attract_positions(forward, offset, num_positions, attr
 	self endon(#"death");
 	failed = 0;
 	degs_per_pos = 360 / num_positions;
+	i = offset;
 	while(i < 360 + offset)
 	{
 		altforward = forward * attract_radius;
@@ -2040,6 +2041,7 @@ function get_closest_valid_player(origin, ignore_player = array(), var_b106b254 
 			arrayremovevalue(players, var_7dfcc4b7);
 		}
 	}
+	done = 0;
 	while(players.size && !done)
 	{
 		done = 1;
@@ -2130,6 +2132,7 @@ function update_valid_players(origin, ignore_player)
 			arrayremovevalue(players, ignore_player[i]);
 		}
 	}
+	done = 0;
 	while(players.size && !done)
 	{
 		done = 1;
@@ -3385,6 +3388,7 @@ function float_print3d(msg, time)
 	/#
 		self endon(#"death");
 		time = gettime() + time * 1000;
+		offset = vectorscale((0, 0, 1), 72);
 		while(gettime() < time)
 		{
 			offset = offset + vectorscale((0, 0, 1), 2);
@@ -4463,6 +4467,7 @@ function waittill_not_moving()
 	}
 	else
 	{
+		prevorigin = self.origin;
 		while(true)
 		{
 			wait(0.15);
@@ -6309,6 +6314,7 @@ function function_71071944(n_obj_id, var_b96be97f)
 	level endon(#"game_ended", #"hash_1dabaf25a56177a1");
 	self endon(#"disconnect");
 	self.var_fbb52104 = n_obj_id;
+	self.var_d4778e21 = var_b96be97f;
 	while([[var_b96be97f]]())
 	{
 		objective_setinvisibletoplayer(n_obj_id, self);

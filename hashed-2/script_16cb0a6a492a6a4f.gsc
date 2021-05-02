@@ -948,6 +948,7 @@ function function_a9822793()
 				{
 					continue;
 				}
+				current_count = level.maxteamplayers - var_a787dfe7;
 				while(current_count < level.maxteamplayers)
 				{
 					var_6f782d8f = function_b25f48bf(team, var_a787dfe7, distribution[platoon], var_ed0a1ecc[platoon]);

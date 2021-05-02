@@ -87,6 +87,7 @@ private function function_b656013e()
 {
 	level endon(#"game_over");
 	bundle = level.var_b3d6ef3b[0] ai::function_9139c839();
+	bundle.var_250a1683 = 750;
 	while(!level flag::exists(#"pap_quest_completed"))
 	{
 		waitframe(1);

@@ -151,6 +151,7 @@ function function_124362b5(var_634ce82e)
 			{
 				level flag::wait_till("power_on1");
 				var_a8d69fbd = getent("pap_shock_box", "script_string");
+				var_24c740a5 = 0;
 				while(!var_24c740a5)
 				{
 					var_88706ea7 = undefined;
@@ -587,6 +588,7 @@ function function_c0bc0375()
 			self zm_pack_a_punch::set_state_hidden();
 			level waittill(#"hash_79b5f8e539d36a49", #"hash_1fc69d74f13da62e", #"hash_6d668f3614ed2393");
 			var_9cb363eb = getentarray("zm_pack_a_punch", "targetname");
+			var_ec37ff4e = self;
 			while(self == var_ec37ff4e)
 			{
 				var_ec37ff4e = array::random(var_9cb363eb);

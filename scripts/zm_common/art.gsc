@@ -163,6 +163,7 @@ function tweakart()
 		setdvar(#"scr_dof_farblur", level.dofdefault[#"farblur"]);
 		file = undefined;
 		filename = undefined;
+		tweak_toggle = 1;
 		for(;;)
 		{
 			while(getdvarint(#"scr_art_tweak", 0) == 0)

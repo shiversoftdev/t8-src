@@ -473,6 +473,7 @@ function random_normal_distribution(mean, std_deviation, lower_bound, upper_boun
 	x1 = 0;
 	x2 = 0;
 	w = 1;
+	y1 = 0;
 	while(w >= 1)
 	{
 		x1 = 2 * randomfloatrange(0, 1) - 1;

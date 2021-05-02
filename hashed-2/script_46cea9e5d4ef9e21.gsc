@@ -267,8 +267,10 @@ function function_ba25a76f(n_max_time, var_62002857 = 0)
 	var_ba528742 hidepart("tag_nixie_off");
 	n_start_time = gettime();
 	n_total_time = 0;
+	var_cddd0f11 = self.script_int;
 	while(n_total_time < n_max_time)
 	{
+		var_2fadea46 = randomint(10);
 		while(var_2fadea46 == var_cddd0f11)
 		{
 			var_2fadea46 = randomint(10);
@@ -390,6 +392,7 @@ function function_bad2e505(player)
 function function_290d172d()
 {
 	function_dae4ab9b(self, 0.05);
+	var_7a452f77 = struct::get_array("nixie_tubes", "script_noteworthy");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -596,6 +599,7 @@ private function function_f2f53f97()
 	var_86febf77 = struct::get("nixie_tube_zombie_blood_start");
 	var_9c0bf2db = util::spawn_model(var_86febf77.model, var_86febf77.origin, var_86febf77.angles);
 	var_9c0bf2db clientfield::set("" + #"hash_3e57db9b106dff0a", 1);
+	s_target = struct::get(var_86febf77.target);
 	while(isdefined(s_target))
 	{
 		n_time = distance(var_9c0bf2db.origin, s_target.origin) / 300;
@@ -699,6 +703,7 @@ function function_4b17c9f6(n_max_time)
 	var_9229dbba = randomfloat(0.2);
 	wait(var_9229dbba);
 	n_current_time = gettime();
+	n_total_time = n_current_time - n_start_time / 1000;
 	while(n_total_time < n_max_time)
 	{
 		if(var_e9e6d25a)

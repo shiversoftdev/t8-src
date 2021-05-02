@@ -389,6 +389,7 @@ function function_3db52483()
 	{
 		self.var_23688a5e = array(self.var_23688a5e);
 	}
+	self.var_23688a5e[self.var_23688a5e.size] = n_time;
 	while(n_time > self.var_23688a5e[0] + 60000)
 	{
 		arrayremoveindex(self.var_23688a5e, 0);

@@ -1091,6 +1091,7 @@ function watchfordamage()
 	{
 		spawnbeacon.health = level.var_b8701e49;
 	}
+	spawnbeacon.maxhealth = spawnbeacon.health;
 	while(true)
 	{
 		waitresult = undefined;

@@ -513,8 +513,10 @@ function function_da2c37fc()
 	self endon("49bddca4a088db84");
 	level endon(#"end_game", #"hash_407e0345ce2708de");
 	self endon(#"disconnect");
+	var_935fb3a3 = getent("vol_narrative_smash", "targetname");
 	while(true)
 	{
+		var_4618dc52 = self.var_4618dc52;
 		while(!isdefined(var_4618dc52))
 		{
 			waitframe(1);
@@ -564,6 +566,7 @@ function function_964ec142()
 {
 	level endon(#"end_game");
 	self endon(#"death", #"weapon_change");
+	var_30814c10 = getent("vol_narrative_dirt", "targetname");
 	while(true)
 	{
 		self waittill(#"weapon_melee");
@@ -835,6 +838,7 @@ function function_ca4e26c3()
 	self endon("45c9a4f55b11e032");
 	level endon(#"end_game", #"hash_aab8ed14df98649");
 	self endon(#"disconnect");
+	var_59795ba5 = array(level.hero_weapon[#"sword_pistol"][0].dualwieldweapon, level.hero_weapon[#"sword_pistol"][1].dualwieldweapon, level.hero_weapon[#"sword_pistol"][2].dualwieldweapon);
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -943,6 +947,7 @@ function function_e6f26f04()
 {
 	level endon(#"end_game");
 	self endon(#"death");
+	str_id = self.script_string;
 	while(true)
 	{
 		var_33f252eb = undefined;
@@ -1018,6 +1023,7 @@ function function_81c8a125()
 	else
 	{
 		var_8b789c96 = 0;
+		var_63e5fc38 = var_4fa6e6eb.size;
 		while(true)
 		{
 			var_357aadcd = trigger::wait_till("t_narrative_destiny");
@@ -1114,6 +1120,7 @@ function function_cb2c487d()
 	level flag::wait_till(#"hash_1dedcdbd1e528077");
 	var_3b2c2d10 = level.var_abf198ff[3];
 	var_9f02e39c = var_3b2c2d10.var_1171b93e[0];
+	var_f9b9263d = 0;
 	while(true)
 	{
 		while(!(isdefined(var_9f02e39c.var_94de9684) && var_9f02e39c.var_94de9684))
@@ -1196,12 +1203,14 @@ function function_cab1990a()
 	self endon("68d0201c4315e715");
 	level endon(#"end_game", #"hash_4863d7214aa660e2");
 	self endon(#"disconnect");
+	var_b0cba1ff = getent("vol_narrative_wipe", "targetname");
 	while(true)
 	{
 		while(!(isdefined(self.var_1de56cc8) && self.var_1de56cc8))
 		{
 			waitframe(1);
 		}
+		var_465d3af = 0;
 		while(isdefined(self.var_1de56cc8) && self.var_1de56cc8)
 		{
 			v_origin = self getweaponmuzzlepoint();

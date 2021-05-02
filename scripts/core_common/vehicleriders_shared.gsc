@@ -1200,6 +1200,7 @@ private function forward_euler_integration(e_move, v_target_landing, n_initial_s
 	landed = 0;
 	position = self.origin;
 	velocity = (0, 0, n_initial_speed * -1);
+	gravity = vectorscale((0, 0, -1), 385.8);
 	while(!landed)
 	{
 		previousposition = position;

@@ -408,6 +408,7 @@ private function function_b952c1b(ai_zombie)
 	n_move_time = n_dist / 1200;
 	n_dist_sq = distance2dsquared(var_88f24b00.origin, self function_7eae6d92(var_88f24b00));
 	n_start_time = gettime();
+	n_total_time = 0;
 	while(n_dist_sq > 256 && isalive(self))
 	{
 		var_88f24b00 moveto(self function_7eae6d92(var_88f24b00), n_move_time);
@@ -1130,6 +1131,7 @@ private function function_423e10ee()
 function function_d1a7390b(var_f2a06582)
 {
 	self endon(#"disconnect", #"hash_7a5ea8904c04f16b");
+	n_dist_sq_max = 173056;
 	while(true)
 	{
 		var_24bae834 = 0;

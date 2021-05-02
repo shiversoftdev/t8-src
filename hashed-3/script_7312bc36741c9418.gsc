@@ -897,6 +897,7 @@ private function _calculatepositionquerypath(queryresult, position, entity)
 	longestpath = 0;
 	if(queryresult.data.size > 0)
 	{
+		index = 0;
 		while(index < queryresult.data.size)
 		{
 			goalpoints = [];

@@ -286,6 +286,7 @@ function updatemicrowaveaim(microwavefxent)
 	turret = self;
 	turret endon(#"death");
 	turret endon(#"beam_stop");
+	last_angles = turret gettagangles("tag_flash");
 	while(true)
 	{
 		angles = turret gettagangles("tag_flash");

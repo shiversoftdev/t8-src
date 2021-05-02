@@ -498,6 +498,7 @@ function function_d7f0e50e()
 			{
 				level flag::set(#"hash_40f20925227353f4");
 				b_active = 1;
+				str_id = e_trap.script_string;
 				while(b_active)
 				{
 					var_385703b7 = undefined;
@@ -705,8 +706,10 @@ function function_dd053937(var_77104def)
 			var_a0788e41 = 0;
 		}
 	#/
+	var_5cdeb51c = 0;
 	while(!var_5cdeb51c)
 	{
+		var_ecc87a75 = 0;
 		while(!var_ecc87a75)
 		{
 			var_9345b0e9 = [];
@@ -802,6 +805,7 @@ function function_6f7d36ec()
 {
 	level endon(#"hash_d9ce740cc4b8285", #"hash_200151b21f16734f");
 	self endon(#"death");
+	var_5d275db0 = 0;
 	while(!var_5d275db0)
 	{
 		var_7df228aa = self.var_7df228aa;
@@ -952,6 +956,7 @@ function function_ac4e38bc(var_77104def)
 	{
 		return;
 	}
+	var_7fe47fba = 0;
 	while(!var_7fe47fba)
 	{
 		var_be17187b = trigger::wait_till("t_ww_quest_spile_damage_trigger");

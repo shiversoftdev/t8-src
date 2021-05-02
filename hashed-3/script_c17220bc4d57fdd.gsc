@@ -554,6 +554,7 @@ function function_4e849ab()
 function pap_watcher()
 {
 	self endon(#"disconnect");
+	self.var_1ab0a315 = 1;
 	while(true)
 	{
 		self waittill(#"hash_12922c9c5f12df1");

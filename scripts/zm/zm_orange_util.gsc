@@ -142,6 +142,7 @@ private function function_3e0d878f()
 function function_af205e69(table)
 {
 	index = 0;
+	row = tablelookuprow(table, index);
 	while(isdefined(row))
 	{
 		category = zm_audio::checkstringvalid(row[0]);
@@ -312,6 +313,7 @@ function function_51b752a9(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 		{
 			self notify(#"hash_7efd5bdf8133ff7b");
 			self endon(#"hash_7efd5bdf8133ff7b");
+			var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 			while(!zm_audio::function_65e5c19a(self.var_8dd99641, var_215d4efb))
 			{
 				waitframe(1);
@@ -596,6 +598,7 @@ function function_3d6809e9()
 	level endon(#"end_game");
 	n_round = namespace_a28acff3::get_round_number();
 	zm_utility::function_fdb0368(3);
+	level.var_b2b15659 = 1;
 	while(true)
 	{
 		level waittill(#"end_of_round");

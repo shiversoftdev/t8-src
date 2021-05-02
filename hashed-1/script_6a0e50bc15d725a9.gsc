@@ -185,6 +185,7 @@ function function_b7608e70(localclientnum, oldval, newval, bnewent, binitialsnap
 private function function_85e7adcf(localclientnum)
 {
 	self endon(#"death", #"hash_eefcf8215207987");
+	var_61467197 = level.var_22a393d4.size;
 	while(true)
 	{
 		if(var_61467197 !== level.var_22a393d4.size)

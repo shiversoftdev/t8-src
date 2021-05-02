@@ -977,6 +977,7 @@ function function_4944c76f()
 		var_c1f4ccaf = self.origin + vectornormalize(anglestoforward(self.angles)) * 160 + vectorscale((0, 0, 1), 60);
 		var_743fd60c = self.origin + vectornormalize(anglestoforward(self.angles)) * 160 + vectorscale((0, 0, 1), 40);
 		var_56692417 = self.origin + vectornormalize(anglestoforward(self.angles)) * 160 + vectorscale((0, 0, 1), 20);
+		var_1e3527a8 = self.origin + vectornormalize(anglestoforward(self.angles)) * 160 + (0, 0, 0);
 		while(true)
 		{
 			print3d(var_710f09a8, "" + self getzbarrierpiecestate(0));

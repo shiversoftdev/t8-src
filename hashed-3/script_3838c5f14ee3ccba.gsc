@@ -1114,6 +1114,7 @@ function function_a55a0339(str_loc)
 	}
 	self.var_86698449[self.var_86698449.size] = var_461e7e58;
 	self.n_path_start = 0;
+	n_path_index = 0;
 	while(isdefined(var_461e7e58.linkto))
 	{
 		n_path_index++;
@@ -1752,6 +1753,7 @@ function function_1b11b43(str_loc, var_765a63f)
 			{
 				self.var_3c63665[i] = array(self.var_3c63665[i]);
 			}
+			self.var_3c63665[i][self.var_3c63665[i].size] = var_2a64b584;
 			while(isdefined(var_2a64b584.linkto))
 			{
 				var_2a64b584 = struct::get(var_2a64b584.linkto, "linkname");
@@ -1996,6 +1998,7 @@ function function_3d6eaad5()
 	self notify("470dfc850103a920");
 	self endon("470dfc850103a920");
 	self.var_18acfe18 = 0;
+	var_7350b8a6 = 0;
 	while(true)
 	{
 		var_2cf6a874 = 0;
@@ -2066,6 +2069,7 @@ function function_ae4a013d()
 	level endon(#"hash_38f29f9cb03586ea", #"hash_2e4b6b86e99b024b", #"intermission");
 	self.var_18acfe18 = 0;
 	var_8ce07a9c = 0;
+	var_7350b8a6 = 0;
 	while(true)
 	{
 		var_385703b7 = undefined;
@@ -2151,6 +2155,7 @@ function function_542eeaa7(var_23cac703, var_890ce7a8 = 1)
 	level endon(#"hash_38f29f9cb03586ea", #"intermission");
 	self function_26e02ac9(0);
 	self.var_57badb98 = 0;
+	var_a4d5d85c = 0;
 	while(true)
 	{
 		if(!(isdefined(self.var_575f3097) && self.var_575f3097))
@@ -2493,6 +2498,7 @@ function function_47073904(v_loc, n_time = 8)
 	e_target clientfield::set("bs_att_mst_cf", 1);
 	e_target thread function_65bd10f6();
 	wait(1);
+	n_time_passed = 0;
 	while(n_time_passed <= n_time)
 	{
 		a_players = util::get_active_players();
@@ -2789,6 +2795,7 @@ function function_f142f73c(var_1ee74d52, var_a3d1842b, var_6df65756)
 	var_b68dd8d0 = [];
 	var_a50ac7ec = 0;
 	a_path = arraycopy(self.var_3c63665[var_1ee74d52]);
+	var_d9ad5cc8 = a_path[0];
 	while(isdefined(var_d9ad5cc8.linkto))
 	{
 		var_cd22b387 = var_d9ad5cc8.origin;
@@ -3609,6 +3616,7 @@ function function_de60e752(var_533ac894)
 	}
 	a_s_spawnpoints = array::filter(a_s_spawnpoints, 0, &function_62b1d725);
 	var_c5cc6b59 = array::randomize(a_s_spawnpoints);
+	n_index = 0;
 	while(true)
 	{
 		while(getaiteamarray(level.zombie_team).size >= n_max_active_ai)
@@ -3735,6 +3743,7 @@ function function_f5b2d086()
 	wait(6);
 	var_e8ebec1d = array(#"hash_7c89b1397a38e3ad", #"hash_7c89ae397a38de94", #"hash_7c89af397a38e047", #"hash_7c89ac397a38db2e");
 	level.var_8a64ef3a = 0;
+	var_ffd2fe87 = 4 + level.var_f3c4bd00;
 	while(true)
 	{
 		if(getaiteamarray(level.zombie_team).size > 0 && level.var_8a64ef3a / getaiteamarray(level.zombie_team).size * 100 < var_ffd2fe87)
@@ -3881,6 +3890,7 @@ function function_f6e1e56f(var_238eb6ec, var_b5a033fe = 0, var_533ac894)
 		}
 		var_bb492495 = array::randomize(var_bb492495);
 		var_c979da59 = 0;
+		var_1e8caeb1 = var_1e8caeb1 + var_5dc704a7;
 		while(var_8b999044.size < var_36f58c64)
 		{
 			while(!isdefined(var_9cc45d9e))
@@ -3998,6 +4008,7 @@ function function_776c95e2(var_61e1a92c, var_dbb23c7)
 	while(var_24b27265 < var_dbb23c7)
 	{
 		wait(randomfloatrange(20, 25));
+		var_50e016a7 = level.var_83c0592c + var_61e1a92c;
 		while(level.var_83c0592c <= var_50e016a7)
 		{
 			util::wait_network_frame(2);
@@ -4036,9 +4047,11 @@ function function_770486e1(var_61e1a92c)
 	level endon(#"hash_38f29f9cb03586ea", #"spawn_zombies", #"intermission");
 	var_2208179c = struct::get_array(#"hash_1145e9b37016a8bd");
 	var_7bb1ca00 = level.var_f3c4bd00;
+	var_ab2645b = undefined;
 	while(true)
 	{
 		wait(randomfloatrange(20, 25));
+		var_50e016a7 = level.var_83c0592c + var_61e1a92c;
 		while(level.var_83c0592c <= var_50e016a7)
 		{
 			util::wait_network_frame(2);
@@ -4053,6 +4066,7 @@ function function_770486e1(var_61e1a92c)
 			wait(0.2);
 		}
 		var_b036ebfb = getaiarchetypearray(#"blight_father");
+		var_791efa17 = var_b036ebfb.size;
 		while(var_791efa17 > 0)
 		{
 			foreach(var_ab2645b in var_b036ebfb)

@@ -73,6 +73,7 @@ function function_664d0a50(localclientnum)
 	self endon("16bdee31b75b050b");
 	player = self;
 	var_e413b7c3 = undefined;
+	var_e562bc9b = undefined;
 	while(isdefined(player))
 	{
 		var_6e521a44 = function_15f112c3(localclientnum);
@@ -152,6 +153,7 @@ function function_2297363d(localclientnum)
 	self endon("567d59ecc92fd8f5");
 	player = self;
 	doearthquake = 1;
+	var_30f9f328 = 0;
 	while(isdefined(player))
 	{
 		if(function_fd33f2ef(localclientnum) == 3)

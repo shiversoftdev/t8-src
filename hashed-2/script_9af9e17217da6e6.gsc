@@ -486,6 +486,7 @@ function function_70d8a7cb()
 {
 	level endon(#"ley_start");
 	self val::set("ley_source", "takedamage", 1);
+	self.health = 99999;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -1102,6 +1103,7 @@ function function_5164d716()
 	level endon(#"hash_76ea4b1b1c7ac757", #"hash_10693cfc20e83df1");
 	level flag::wait_till(#"hash_702dbaf6695a5607");
 	var_e0cc1e20 = getent("trigger_obs_wheel_lock", "targetname");
+	var_e0cc1e20.health = 99999;
 	while(true)
 	{
 		var_385703b7 = undefined;
@@ -1171,6 +1173,7 @@ function function_3f64b455()
 	var_da3daf09.s_unitrigger = var_da3daf09 zm_unitrigger::create(undefined, 48, &function_5e54642e);
 	zm_unitrigger::function_89380dda(var_da3daf09.s_unitrigger);
 	level.var_779d8f63 = 1;
+	var_88706ea7 = undefined;
 	while(true)
 	{
 		if(!isdefined(var_88706ea7) || (isalive(var_88706ea7.e_who) && (!var_88706ea7.e_who usebuttonpressed() || (isdefined(var_da3daf09.s_unitrigger.trigger) && !var_88706ea7.e_who istouching(var_da3daf09.s_unitrigger.trigger)))))
@@ -1516,6 +1519,7 @@ function function_1c760913()
 {
 	level endon(#"hash_426c0f5a9e34edc2");
 	var_da3daf09 = getent("mdl_tel_wheel", "targetname");
+	mdl_base = getent("mdl_tel_base", "targetname");
 	while(true)
 	{
 		level flag::wait_till(#"hash_3e3ae137d6c07f8d");
@@ -1726,6 +1730,7 @@ function function_3d93d103()
 */
 function function_b87ae607(var_5839811b)
 {
+	e_trap = getent("werewolfer_trap_touch", "targetname");
 	while(true)
 	{
 		level flag::wait_till(#"hash_6f483dda6f8ab19d");

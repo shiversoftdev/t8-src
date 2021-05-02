@@ -372,6 +372,7 @@ function function_1c744b3f()
 function function_557d25c1()
 {
 	level endon(#"hash_3a8a317fc0b5e5b0");
+	level.var_6b37a126.s_unitrigger = level.var_6b37a126 zm_unitrigger::create("", 128);
 	while(true)
 	{
 		level.var_6b37a126 thread function_2b438f6f();

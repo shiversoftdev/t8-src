@@ -346,6 +346,7 @@ function function_6e54af92(endpos, ledgetop, normal)
 	trace = bullettrace(ledgetop, ledgetop - vectorscale((0, 0, 1), 1024), 0, self);
 	var_82c7381e = trace[#"position"];
 	self botsetmovepoint(endpos);
+	var_ccaaa590 = vectordot(self.origin - var_82c7381e, normal);
 	while(var_ccaaa590 > 20)
 	{
 		waitframe(1);
@@ -424,6 +425,7 @@ function function_18cd6cbc(params)
 	self botsetmovemagnitude(1);
 	self botsetmovepoint(params.endpos);
 	dist = distance2dsquared(self.origin, params.endpos);
+	prev_dist = dist;
 	while(dist > 256 && prev_dist >= dist)
 	{
 		waitframe(1);
@@ -522,6 +524,7 @@ function function_b34ef250(var_f125b440, normal, dist = 0)
 	#/
 	self botsetmovepoint(var_f125b440);
 	self botsetmovemagnitude(1);
+	var_459ca70 = vectordot(self.origin - var_f125b440, normal);
 	while(var_459ca70 > dist)
 	{
 		waitframe(1);

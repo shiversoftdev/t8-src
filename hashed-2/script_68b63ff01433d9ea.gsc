@@ -310,6 +310,7 @@ function function_34f6d80a()
 {
 	level endon(#"game_ended");
 	level.var_969e8ac2.var_dbba0608 = 0;
+	b_failed = 0;
 	while(!b_failed && level.var_969e8ac2.var_dbba0608 < level.var_969e8ac2.var_22796fad.size)
 	{
 		var_be17187b = undefined;
@@ -891,6 +892,7 @@ function function_68e49445()
 {
 	level endon_callback(&function_784a41d1, #"hash_4207012c64662b4d");
 	level flagsys::wait_till(#"load_main_complete");
+	var_f103be47 = 0;
 	while(true)
 	{
 		if(var_f103be47)
@@ -1426,6 +1428,7 @@ function function_840d0d56()
 	/#
 		assert(isdefined(var_e699d494), "" + self.origin);
 	#/
+	var_8259b1e9 = namespace_57ff8cbb::get_adjacencies_to_zone(var_e699d494);
 	while(true)
 	{
 		n_players_in_zone = 0;

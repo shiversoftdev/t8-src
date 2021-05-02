@@ -307,6 +307,7 @@ function function_17e6f9f3(localclientnum)
 	{
 		self.var_f809ca21 = 0.5;
 	}
+	self.var_7c8ad424 = 0;
 	while(!self.var_7c8ad424 && isalive(self) && self.var_f809ca21 > 0.5)
 	{
 		self.var_f809ca21 = self.var_f809ca21 - 0.1 / 10;

@@ -205,6 +205,7 @@ function function_51b752a9(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 		{
 			self notify(#"hash_7efd5bdf8133ff7b");
 			self endon(#"hash_7efd5bdf8133ff7b");
+			var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 			while(!zm_audio::function_65e5c19a(self.var_8dd99641, var_215d4efb))
 			{
 				waitframe(1);
@@ -240,6 +241,7 @@ function function_6a0d675d(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 	{
 		self notify(#"hash_7efd5bdf8133ff7b");
 		self endon(#"hash_7efd5bdf8133ff7b");
+		var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 		while(!zm_audio::function_65e5c19a(self.var_8dd99641, var_215d4efb))
 		{
 			waitframe(1);
@@ -1002,10 +1004,12 @@ function function_6099877a(n_radius = 96, str_endon, str_hint = "", var_a33304ba
 function function_715588b3()
 {
 	self endon(#"death");
+	s_unitrigger = self.stub;
 	while(true)
 	{
 		self waittill(#"trigger");
 		var_3ba1f680 = 1;
+		n_time = 0;
 		while(n_time < 0.5)
 		{
 			foreach(player in util::get_active_players())

@@ -263,6 +263,7 @@ function function_a546fd97()
 {
 	self endon(#"death");
 	var_863c08bb = 0;
+	var_c327a579 = 0;
 	while(!var_c327a579)
 	{
 		var_385703b7 = undefined;
@@ -432,6 +433,7 @@ function function_445e3d3d()
 function function_54db89ef()
 {
 	self endon(#"death");
+	var_ab007509 = 0;
 	while(true)
 	{
 		self waittill(#"hash_73aeb9311d5e314e");

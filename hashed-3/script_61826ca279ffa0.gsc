@@ -618,6 +618,7 @@ function function_6c45e814(n_range)
 	else
 	{
 		e_player = get_player();
+		n_range_sq = n_range * n_range;
 		while(true)
 		{
 			dist_sq = distancesquared(e_player.origin, self.origin);
@@ -683,6 +684,7 @@ function minutesandsecondsstring(milliseconds)
 */
 function onscoreclosemusic()
 {
+	teamscores = [];
 	while(!level.gameended)
 	{
 		scorelimit = level.scorelimit;
@@ -927,6 +929,7 @@ function function_662c2d7e()
 		{
 			if(level.var_c48d861d.size > 0)
 			{
+				var_1b788263 = -1;
 				while(var_1b788263 == -1)
 				{
 					var_1b788263 = function_f14d1a25();
@@ -1128,6 +1131,7 @@ function function_bfa522d1(b_looping, n_cycles = 3)
 	{
 		return;
 	}
+	var_fb1ab1b7 = n_cycles;
 	while(var_fb1ab1b7 > 0)
 	{
 		level.var_5f96112c = 1;
@@ -1184,6 +1188,7 @@ function timelimitclock_intermission()
 {
 	level endon(#"hash_42057c28bd084d77", #"hash_19a2268f375ca51f");
 	clockobject = spawn("script_origin", (0, 0, 0));
+	n_time_left = 100;
 	while(n_time_left > 0)
 	{
 		n_end_time = function_4c27be22("A") / 1000;
@@ -1261,6 +1266,7 @@ function function_c94d8a8a(var_58d4bf93)
 	e_fx setmodel("tag_origin");
 	e_fx clientfield::set("follow_path_fx", 1);
 	n_dist = 1000;
+	s_loc = struct::get(s_loc.target, "targetname");
 	while(true)
 	{
 		while(n_dist > 90)
@@ -1405,6 +1411,7 @@ function function_5ccd53d5(var_9e2a4c29)
 	self function_7b70bd74(level.var_f6c80c41, level.xpos, level.ypos, level.width, level.height);
 	level.var_f6c80c41 luielembar_ct::set_color(self, 0.94, 0.37, 0.07);
 	level.var_a6d09364 = 1;
+	level.var_33682199 = 0;
 	while(level.var_33682199 < 1)
 	{
 		level.var_f6c80c41 luielembar_ct::function_fd8c13fb(self, level.var_33682199);
@@ -1467,6 +1474,7 @@ function function_1ca79c02(str_volume, var_7a037bc3, var_224fccce, var_c088c2dd)
 	e_player thread function_5ccd53d5(var_c088c2dd);
 	e_volume = getent(str_volume, "targetname");
 	n_total = 0;
+	n_mode = -1;
 	while(true)
 	{
 		e_player = get_player();
@@ -1775,6 +1783,7 @@ function function_289b4b9f(str_message, var_520123e0, var_8e90b9b5, var_f031f5a,
 	{
 		wait(var_520123e0);
 	}
+	var_6ee32682 = gettime() / 1000;
 	while(true)
 	{
 		if(level flag::get("mission_success") || level flag::get("mission_failed"))
@@ -3439,6 +3448,7 @@ function function_32e977f(e_target, n_range)
 {
 	self endon(#"death");
 	e_target endon(#"death");
+	n_range_sq = n_range * n_range;
 	while(distancesquared(self.origin, e_target.origin) > n_range_sq)
 	{
 		waitframe(1);
@@ -3509,6 +3519,7 @@ function function_1746776e()
 	self endon(#"death");
 	e_player = get_player();
 	self.var_38b6161f = 1;
+	self.var_ef59b90 = 6;
 	while(true)
 	{
 		self.var_2925fedc = e_player.origin;
@@ -3841,6 +3852,7 @@ function function_e0d36a2c(str_vo, var_8a30c2bf, var_aa62f5bf, var_41bc026a, var
 function function_654280be()
 {
 	level endon(#"combattraining_logic_finished");
+	e_player = get_player();
 	while(true)
 	{
 		var_3f21ce47 = e_player namespace_64a487a9::function_dde6edbd();
@@ -4103,6 +4115,7 @@ function function_df8f80c4(e_target, n_wait_min = 0.1, n_wait_max = 0.5)
 {
 	self endon(#"death", #"hash_624290b3f2248336");
 	wpn_current = self getcurrentweapon();
+	var_2276fbea = self function_f09c133d(wpn_current);
 	while(true)
 	{
 		if(isdefined(e_target))
@@ -4491,6 +4504,7 @@ function function_15e01238(s_loc, n_max_dist, var_9c8d914, var_c9af632d, var_4df
 			level notify(str_notify);
 		}
 	}
+	b_success = 0;
 	while(true)
 	{
 		level waittill(#"hash_48e959cf81e020f3");
@@ -4532,6 +4546,7 @@ function function_821edb7e(str_endon)
 	{
 		level endon(str_endon);
 	}
+	level.var_7deb7684 = 0;
 	while(true)
 	{
 		e_player = get_player();
@@ -4661,6 +4676,7 @@ function function_eeb4cff6(var_9d4f2d1, var_f11dba7e, var_260aad25, var_3608d414
 {
 	if(isdefined(var_9d4f2d1))
 	{
+		s_dest = struct::get(var_9d4f2d1, "targetname");
 		while(true)
 		{
 			e_player = get_player();
@@ -4720,6 +4736,7 @@ function function_d3fd7ef7()
 	var_e870c98e = "warnHeal";
 	if(!function_7d281f19(var_e870c98e))
 	{
+		n_health_threshold = 50;
 		while(true)
 		{
 			var_2a0a2872 = 0;
@@ -4813,6 +4830,7 @@ function function_e96cc63f(n_count = 3, var_d7172908, var_810b40e6 = 1, var_4837
 	{
 		a_s_targets = array::randomize(a_s_targets);
 	}
+	level.var_a76a5221[str_targetname] = a_s_targets;
 	while(true)
 	{
 		a_enemies = function_3dd59a93(str_targetname);
@@ -5031,6 +5049,7 @@ function function_51d33352(str_id, str_key = "targetname")
 function function_d00e0eeb(n_left = 0)
 {
 	level endon(#"combattraining_logic_finished", #"hash_6ebe7e4ea0726f0b");
+	e_player = get_player();
 	while(true)
 	{
 		var_3f21ce47 = e_player namespace_64a487a9::function_dde6edbd();
@@ -5062,6 +5081,7 @@ function kill_bots(str_team, var_4e15a2e9)
 			var_3f21ce47[var_3f21ce47.size] = bot;
 		}
 	}
+	e_player = get_player();
 	while(var_4e15a2e9)
 	{
 		foreach(bot in var_3f21ce47)
@@ -5137,6 +5157,7 @@ function function_c008bffa(var_f58e81b8)
 {
 	self endon(#"death");
 	wait(1);
+	n_start_health = self.health;
 	while(true)
 	{
 		e_player = get_player();
@@ -5305,6 +5326,7 @@ function function_9ab507a9(var_76b15be0, var_8e92afbd, var_da2d40e, var_e380ff6c
 	/#
 		assert(var_e62fe646.size > 0, "");
 	#/
+	level.var_85697102[var_76b15be0].var_e62fe646 = var_e62fe646;
 	while(true)
 	{
 		level thread colbounds_off(var_76b15be0, 1);
@@ -5647,6 +5669,7 @@ function function_31a67d65(e_target, var_6ae0852b)
 	self endon(#"death");
 	e_target endon(#"death");
 	var_1defcd75 = getweapon(#"cobra_20mm_comlink");
+	n_start_time = gettime() / 1000;
 	while(isalive(e_target))
 	{
 		self setvehweapon(var_1defcd75);
@@ -5697,6 +5720,7 @@ function function_be7bc7b2(var_eb8df0c3, var_a8d88c43, var_2d222ffc, var_d69032e
 	}
 	var_9bff2467 = var_3f21ce47.size;
 	var_8e1da8f9 = 0;
+	var_8346a4d8 = 0;
 	while(true)
 	{
 		e_player = get_player();
@@ -6324,6 +6348,7 @@ function function_a7a72476()
 */
 function function_9a4e412e(s_loc, str_notify)
 {
+	v_forward = anglestoforward(s_loc.angles);
 	while(true)
 	{
 		e_player = get_player();
@@ -6349,6 +6374,7 @@ function function_9a4e412e(s_loc, str_notify)
 */
 function function_c444a920(s_loc, var_9c8d914)
 {
+	waypoint = create_waypoint(#"hash_43f27b76957da4d2", s_loc.origin, s_loc.angles, #"any", undefined, var_9c8d914);
 	while(!(isdefined(level.var_20fb90aa) && level.var_20fb90aa))
 	{
 		e_player = get_player();

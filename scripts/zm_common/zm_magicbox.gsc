@@ -1148,6 +1148,7 @@ function function_e4dcca48()
 	{
 		var_63f52acb endon(#"death");
 	}
+	var_1e99deea = undefined;
 	while(!isdefined(var_1e99deea))
 	{
 		util::wait_network_frame();
@@ -1501,6 +1502,7 @@ function check_for_desirable_chest_location()
 function rotateroll_box()
 {
 	angles = 40;
+	angles2 = 0;
 	while(isdefined(self))
 	{
 		self rotateroll(angles + angles2, 0.5);
@@ -1780,6 +1782,7 @@ function function_4aa1f177(player)
 */
 function weapon_show_hint_choke()
 {
+	level._weapon_show_hint_choke = 0;
 	while(true)
 	{
 		waitframe(1);
@@ -2815,6 +2818,7 @@ function function_4873c058()
 			{
 				var_bbab3105 = vectornormalize(anglestoright(chest.zbarrier.angles)) * -64;
 				chest.zone_name = zm_zonemgr::get_zone_from_position(chest.zbarrier.origin + var_bbab3105, 1);
+				n_z_offset = 8;
 				while(!isdefined(chest.zone_name) && n_z_offset <= 64)
 				{
 					chest.zone_name = zm_zonemgr::get_zone_from_position(chest.zbarrier.origin + var_bbab3105 + (0, 0, n_z_offset), 1);
@@ -2834,6 +2838,7 @@ function function_4873c058()
 		return;
 	}
 	level.var_9c9ba8d5 = 0;
+	var_f6497afb = 0;
 	while(true)
 	{
 		a_players = getplayers();

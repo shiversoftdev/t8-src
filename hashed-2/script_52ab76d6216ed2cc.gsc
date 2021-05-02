@@ -383,6 +383,7 @@ function function_1697bc59(localclientnum, oldval, newval, bnewent, binitialsnap
 			waitframe(1);
 		}
 		s_loc = struct::get(#"hash_1f307b5cf6d83aff");
+		n_z_offset = 400;
 		while(level flag::get(#"hash_13dc8f128d50bada"))
 		{
 			physicsexplosionsphere(localclientnum, s_loc.origin + (0, 0, n_z_offset), 3200, 32, 0.1, undefined, undefined, 1, 1, 1);
@@ -533,6 +534,7 @@ function function_9491a41e(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_bcb676b9()
 {
 	self endon(#"hash_6aa4f28f27ab4c64", #"death");
+	n_val = 0.1;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -552,6 +554,7 @@ function function_bcb676b9()
 		}
 	}
 	waitframe(1);
+	n_val = n_val - 0.1;
 	while(n_val > 0)
 	{
 		self function_116b95e5(#"pstfx_frost_loop", "Reveal Threshold", n_val);
@@ -1015,9 +1018,11 @@ function function_e7c0fb8c(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_14dcccc6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"hash_628b6c90517cab87");
+	n_pulse = 0.4;
 	while(isdefined(self))
 	{
 		n_cycle_time = randomfloatrange(2, 8);
+		n_pulse_increment = 1 - 0.4 / n_cycle_time / 0.1;
 		while(n_pulse < 1 && isdefined(self))
 		{
 			self mapshaderconstant(0, 0, "scriptVector0", 1, n_pulse, 0, 0);
@@ -1025,6 +1030,7 @@ function function_14dcccc6(localclientnum, oldval, newval, bnewent, binitialsnap
 			wait(0.1);
 		}
 		n_cycle_time = randomfloatrange(2, 8);
+		n_pulse_increment = 1 - 0.4 / n_cycle_time / 0.1;
 		while(0.4 < n_pulse && isdefined(self))
 		{
 			self mapshaderconstant(0, 0, "scriptVector0", 1, n_pulse, 0, 0);

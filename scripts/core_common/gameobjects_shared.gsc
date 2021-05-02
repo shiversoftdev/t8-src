@@ -604,6 +604,7 @@ private function function_d85d429b(var_7d01398c)
 	{
 		var_7d01398c.var_bb7aca0c = array(var_7d01398c.var_bb7aca0c);
 	}
+	var_7d01398c.var_bb7aca0c[var_7d01398c.var_bb7aca0c.size] = self;
 	while(true)
 	{
 		if(isdefined(var_7d01398c.carrier))
@@ -2170,6 +2171,7 @@ function watchholdusedrop()
 	/#
 		assert(isdefined(self.carryobject.droptrigger));
 	#/
+	trigger = self.carryobject.droptrigger;
 	while(true)
 	{
 		waitresult = undefined;
@@ -2255,6 +2257,7 @@ function function_2544bab6()
 		{
 			waitframe(1);
 		}
+		var_f783260f = gettime();
 		while(self usebuttonpressed() && var_f783260f + 500 > gettime())
 		{
 			waitframe(1);
@@ -4306,6 +4309,7 @@ function use_hold_think_loop(player)
 	self endon(#"disabled");
 	useweapon = self.useweapon;
 	waitforweapon = 1;
+	timedout = 0;
 	while(self continue_hold_think_loop(player, waitforweapon, timedout, self.usetime))
 	{
 		timedout = timedout + 0.05;
@@ -6732,6 +6736,7 @@ function function_768739b6()
 		return;
 	}
 	var_9c2f0815 = (isdefined(self.e_object.var_f66cebb1) ? self.m_str_team : #"none");
+	var_fb20e730 = util::get_players(self.m_str_team);
 	while(var_fb20e730.size)
 	{
 		foreach(e_player in var_fb20e730)

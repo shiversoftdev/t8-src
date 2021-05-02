@@ -420,6 +420,7 @@ function function_2141ca97()
 private function function_83c0bb0d()
 {
 	level endon(#"power_on1");
+	var_41ac1ae7 = 0;
 	while(true)
 	{
 		n_players = zm_zonemgr::get_players_in_zone("zone_studio");

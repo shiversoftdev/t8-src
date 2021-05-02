@@ -184,6 +184,7 @@ function damageeffectarea(owner, position, radius, height)
 function smokeblocksight(smokeweapon, radius)
 {
 	self endon(#"death");
+	smokeradius = function_79d42bea(smokeweapon);
 	while(true)
 	{
 		fxblocksight(self, radius);
@@ -448,6 +449,7 @@ function function_87d0a127(grenadeent, smokeweapon)
 		return;
 	}
 	var_ce7665b1 = grenadeent.team;
+	owner = grenadeent.var_b999539c.owner;
 	while(true)
 	{
 		waitresult = undefined;
@@ -485,6 +487,7 @@ function function_8b6ddd71(grenadeent, smokeweapon)
 	{
 		return;
 	}
+	var_ce7665b1 = grenadeent.team;
 	while(true)
 	{
 		waitresult = undefined;

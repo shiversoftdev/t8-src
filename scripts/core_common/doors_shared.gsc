@@ -802,6 +802,7 @@ function run_lock_fx()
 	}
 	e_fx = undefined;
 	v_pos = get_hack_pos();
+	v_angles = get_hack_angles();
 	while(true)
 	{
 		self flag::wait_till("locked");
@@ -965,6 +966,7 @@ function function_54605e70()
 				wait((isdefined(self.m_s_bundle.var_be86269a) ? self.m_s_bundle.var_be86269a : 0));
 				if(isdefined(self.m_e_trigger_player))
 				{
+					var_ceedbc10 = self.m_e_trigger.maxs[0] * self.m_e_trigger.maxs[0];
 					while(isdefined(self.m_e_trigger_player) && self.m_e_trigger_player istouching(self.m_e_trigger))
 					{
 						waitframe(1);
@@ -1391,6 +1393,7 @@ function function_ea9e96ca(delay_time)
 function function_670cd4a3()
 {
 	self endon(#"death");
+	self.var_19fde5b7 = [];
 	while(true)
 	{
 		waitresult = undefined;
@@ -2541,6 +2544,7 @@ function waittill_door_opened(str_value, str_key = "targetname")
 	}
 	else
 	{
+		a_e_doors = get_doors(str_value, str_key);
 		while(true)
 		{
 			var_8c4538df = 1;
@@ -2579,6 +2583,7 @@ function waittill_door_closed(str_value, str_key = "targetname")
 	}
 	else
 	{
+		a_e_doors = get_doors(str_value, str_key);
 		while(true)
 		{
 			var_a644cd9e = 1;

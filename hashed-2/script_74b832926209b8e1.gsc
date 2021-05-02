@@ -209,6 +209,7 @@ private function function_213f1c48()
 		iprintlnbold("" + 1.75 + "");
 	#/
 	level flag::clear(#"hash_6a417acc02a28c9d");
+	level.var_97da986d.n_start_time = gettime();
 	while(gettime() < level.var_97da986d.n_start_time + level.var_97da986d.var_7d4c9076)
 	{
 		wait(0.5);

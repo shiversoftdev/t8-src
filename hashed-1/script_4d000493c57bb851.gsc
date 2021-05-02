@@ -1009,6 +1009,7 @@ private function function_514b8f17(player)
 	self notify(#"hash_295a022a1c72a359");
 	self endon(#"hash_295a022a1c72a359", #"hash_d0ee404fc39206");
 	player endon(#"death");
+	player.var_270241e9 = 0;
 	while(isdefined(player))
 	{
 		var_28d406fe = player meleebuttonpressed();

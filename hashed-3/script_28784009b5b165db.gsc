@@ -428,6 +428,7 @@ function sentry_turret_fire_for_time(totalfiretime, enemy)
 	weapon = self seatgetweapon(0);
 	firetime = weapon.firetime;
 	time = 0;
+	is_minigun = 0;
 	while(time < totalfiretime)
 	{
 		self fireweapon(0, enemy);

@@ -122,6 +122,7 @@ function function_7f3b4877()
 	self endon(#"disconnect");
 	waitframe(1);
 	n_start_time = gettime();
+	n_total_time = 0;
 	while(isdefined(level.active_powerups) && level.active_powerups.size)
 	{
 		wait(0.5);

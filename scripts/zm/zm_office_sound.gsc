@@ -104,6 +104,7 @@ function function_bc327ddf()
 {
 	level endon(#"end_game");
 	var_f0f25516 = array(1, 2, 3, 4, 5);
+	var_5ffc6bcc = 0;
 	while(true)
 	{
 		var_88706ea7 = undefined;

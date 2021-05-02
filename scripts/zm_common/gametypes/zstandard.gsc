@@ -1200,6 +1200,7 @@ function function_c48750b()
 {
 	self endon(#"disconnect");
 	level endon(#"end_game");
+	var_273349fe = 1;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -1366,6 +1367,7 @@ function function_a79dd957(var_f2c28d86, str_event, ai_killed)
 	var_6d420b43 = 70;
 	var_861aa403 = floor(var_f2c28d86 / var_6d420b43);
 	var_21349718 = var_f2c28d86 % var_6d420b43;
+	var_29cc1091 = 10;
 	while(var_6d420b43 > 0 && var_29cc1091 > 0)
 	{
 		for(i = 0; i < var_861aa403; i++)
@@ -1650,6 +1652,7 @@ function function_ac4cc1ba()
 		level endon(#"kill_round");
 	#/
 	a_ai_zombies = zombie_utility::get_round_enemy_array();
+	n_time = 0;
 	while(a_ai_zombies.size > 0 || level.zombie_total > 0)
 	{
 		var_f235658b = (isdefined(level.var_d7853f35) ? level.var_d7853f35 : 25);
@@ -2909,6 +2912,7 @@ function function_21669ebc(restart = 0)
 		}
 	}
 	setroundsplayed(level.round_number);
+	level.var_21e22beb = gettime();
 	while(true)
 	{
 		zombie_utility::set_zombie_var("rebuild_barrier_cap_per_round", min(500, 50 * level.round_number));
@@ -2938,6 +2942,7 @@ function function_21669ebc(restart = 0)
 		/#
 			println("" + level.round_number + "" + players.size);
 		#/
+		level.round_start_time = gettime();
 		while(level.zm_loc_types[#"zombie_location"].size <= 0)
 		{
 			wait(0.1);
@@ -3078,6 +3083,7 @@ function function_cab8ebff(var_5707265b = 120)
 		level thread namespace_a28acff3::print_zombie_counts();
 		level thread namespace_a28acff3::sndmusiconkillround();
 	#/
+	var_fcf7225b = gettime();
 	while(true)
 	{
 		if(function_5a2c9b1c(level.round_number))
@@ -3187,6 +3193,7 @@ function function_f26f8251(str_archetype, n_player_count)
 		{
 			wait(self.var_37dc6df8);
 		}
+		ai = undefined;
 		while(!isdefined(ai))
 		{
 			if(isdefined(self.var_8857c54d))

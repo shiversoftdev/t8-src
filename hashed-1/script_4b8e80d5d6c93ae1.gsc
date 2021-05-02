@@ -131,6 +131,7 @@ function function_2dd3c5bc(localclientnum, vortex_fx_handle, var_3d2b5c8c, var_8
 	e_player = function_5c10bd79(localclientnum);
 	n_starttime = e_player getclienttime();
 	n_currtime = e_player getclienttime() - n_starttime;
+	n_vortex_time = int(n_vortex_time * 1000);
 	while(n_currtime < n_vortex_time)
 	{
 		waitframe(1);

@@ -313,6 +313,7 @@ function function_7512675b(e_who)
 */
 function function_d6a4619a()
 {
+	var_e9e6d25a = 0;
 	while(!var_e9e6d25a)
 	{
 		var_88706ea7 = undefined;

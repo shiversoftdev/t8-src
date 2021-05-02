@@ -2408,6 +2408,7 @@ function function_94335f4a(var_1aa5a6d6)
 {
 	level.var_1aa5a6d6 = var_1aa5a6d6;
 	level.var_ad5d54b = [];
+	n_row = 0;
 	while(true)
 	{
 		var_7e4a7213 = tablelookupcolumnforrow(#"hash_76ee9df26d2df66a", n_row, 0);

@@ -591,6 +591,7 @@ function waitanddetonate(object, delay, attacker, weapon)
 		{
 			return;
 		}
+		object.armed_detonation_wait = 1;
 		while(!(isdefined(object.proximity_deployed) && object.proximity_deployed))
 		{
 			waitframe(1);
@@ -1631,6 +1632,7 @@ function proximityalarmloop(watcher, owner)
 	self.proximity_deployed = 1;
 	alarmstatusold = "notify";
 	alarmstatus = "off";
+	var_af12fba0 = undefined;
 	while(true)
 	{
 		wait(0.05);
@@ -2023,6 +2025,7 @@ function showcone(angle, range, color)
 		right = vectorcross(forward, (0, 0, 1));
 		up = vectorcross(forward, right);
 		fullforward = forward * range * cos(angle);
+		sideamnt = range * sin(angle);
 		while(true)
 		{
 			prevpoint = (0, 0, 0);
@@ -2658,6 +2661,7 @@ function proximityweaponobject_spawnprotect(watcher, ent)
 	ent endon(#"death");
 	self.protected_entities[self.protected_entities.size] = ent;
 	self thread proximityweaponobject_removespawnprotectondeath(ent);
+	radius_sqr = watcher.detonateradius * watcher.detonateradius;
 	while(true)
 	{
 		if(distancesquared(ent.origin, self.origin) > radius_sqr)

@@ -108,6 +108,7 @@ function startrewindableevent(localclientnum, timekey)
 	player = function_5c10bd79(localclientnum);
 	level endon("demo_jump" + localclientnum);
 	self.event[timekey].inprogress = 1;
+	allfunctionsstarted = 0;
 	while(allfunctionsstarted == 0)
 	{
 		allfunctionsstarted = 1;

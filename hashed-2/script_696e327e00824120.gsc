@@ -469,6 +469,7 @@ function function_cf680b18()
 */
 function function_39364bed()
 {
+	var_f79ff5ec = array::random(array(#"hash_413cdf3a155d7eb5", #"cellar", #"library"));
 	while(true)
 	{
 		zm_utility::function_11101458(var_f79ff5ec);

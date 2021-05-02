@@ -220,6 +220,7 @@ private function function_e9aa9e80(localclientnum)
 		return;
 	}
 	self.e_fx = util::spawn_model(localclientnum, #"tag_origin", var_9d68990a.origin);
+	self.var_64153c56 = util::playfxontag(localclientnum, level._effect[#"lightning_arc"], self.e_fx, "tag_origin");
 	while(true)
 	{
 		str_fx_tag = (isdefined(self gettagorigin("j_mainroot")) ? "j_mainroot" : "tag_driver");

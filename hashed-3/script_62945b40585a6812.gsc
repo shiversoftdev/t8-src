@@ -174,6 +174,7 @@ private function function_b2fa4678()
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
 	var_c43a6efa = 0;
+	var_58161ed2 = function_e242d7a8();
 	while(true)
 	{
 		var_54e16eaa = function_d2a5d1f0();

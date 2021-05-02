@@ -177,6 +177,7 @@ function function_f6d301b(var_c1e98979)
 */
 function onscoreclosemusic()
 {
+	teamscores = [];
 	while(!level.gameended)
 	{
 		scorelimit = level.scorelimit;

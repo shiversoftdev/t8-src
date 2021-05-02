@@ -733,6 +733,7 @@ function start_perk_bottle_cycling()
 {
 	self endon(#"done_cycling");
 	array_key = getarraykeys(level.perk_bottle_weapon_array);
+	timer = 0;
 	while(true)
 	{
 		for(i = 0; i < array_key.size; i++)
@@ -783,6 +784,7 @@ function perk_random_vending()
 function perk_random_loop_anim(n_piece, s_anim_1, s_anim_2)
 {
 	self endon(#"zbarrier_state_change");
+	current_state = self.state;
 	while(self.state == current_state)
 	{
 		self setzbarrierpiecestate(n_piece, s_anim_1);

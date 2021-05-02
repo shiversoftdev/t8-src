@@ -187,6 +187,7 @@ private function function_607b1eb0()
 {
 	level endon(#"end_game");
 	self endon(#"hash_34c48ce219158e58", #"death");
+	self.var_d675d730.var_af84e9df = 0;
 	while(true)
 	{
 		if(self.var_d675d730.var_d566ea4 === 1 || !function_69153101())
@@ -338,6 +339,7 @@ function function_aeda9580(var_8e317f6c)
 	self.var_d675d730.var_4aee0032 = 1;
 	self.var_d675d730.var_e09a4919 = gettime();
 	var_fa1d6773 = cos(15);
+	var_63883896 = 0;
 	while(true)
 	{
 		var_405918e8 = lerpfloat(0.2, 1, var_63883896 / 3);

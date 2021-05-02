@@ -1091,6 +1091,7 @@ function function_cf100865()
 {
 	function_4f60590c();
 	level flag::wait_till("power_on1");
+	var_cfa7dc7e = level flag::get("dog_round");
 	while(var_cfa7dc7e == 1)
 	{
 		var_cfa7dc7e = level flag::get("dog_round");

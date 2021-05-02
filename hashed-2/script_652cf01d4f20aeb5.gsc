@@ -501,6 +501,7 @@ function function_36db86a9(e_player)
 function function_3590cb58()
 {
 	level endon(#"end_game");
+	self.var_1a304a2f = struct::get(self.target, "targetname");
 	while(true)
 	{
 		var_88706ea7 = undefined;

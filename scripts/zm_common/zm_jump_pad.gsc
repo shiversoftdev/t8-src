@@ -420,6 +420,7 @@ function jump_pad_move(vec_direction, flt_time, struct_poi, trigger)
 	num_attractors = 30;
 	added_poi_value = 0;
 	start_turned_on = 1;
+	poi_start_func = undefined;
 	while(isdefined(self.divetoprone) && self.divetoprone || (isdefined(self._padded) && self._padded))
 	{
 		waitframe(1);

@@ -52,6 +52,7 @@ private function _debugsquad(squad)
 			}
 		}
 		level.__plannersquaddebug[index] = squad;
+		squadid = index + 1;
 		while(isdefined(squad) && !squad.shutdown)
 		{
 			var_deb0d0ec = 0;

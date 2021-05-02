@@ -337,6 +337,7 @@ private function function_aed5650e(var_a276c861)
 	level endon(#"end_game");
 	if(!var_a276c861)
 	{
+		level.var_e2ce1fe1 = 0;
 		while(level.var_e2ce1fe1 < 3)
 		{
 			function_887ad605();
@@ -674,6 +675,7 @@ private function function_e0fe80db()
 	level endon(#"end_game", #"hash_2889330d50a4cc38");
 	self endon(#"kill_trigger");
 	waitresult = undefined;
+	waitresult = self waittill(#"trigger");
 	while(!function_557328cc(waitresult))
 	{
 		waitresult = undefined;
@@ -738,6 +740,7 @@ private function function_707a3db7()
 	level endon(#"end_game", #"hash_477e8ec5d0789334");
 	self endon(#"disconnect");
 	waitresult = undefined;
+	waitresult = self waittill(#"weapon_change");
 	while(waitresult.weapon != level.var_1cf75f1d)
 	{
 		waitresult = undefined;
@@ -1301,6 +1304,7 @@ function function_7edbaf3a(v_origin)
 	self waittill(#"movedone");
 	self clientfield::set("" + #"hash_1c8f8a5e03b36070", 1);
 	wait(randomfloat(2));
+	n_wait = 3;
 	while(true)
 	{
 		wait(n_wait);

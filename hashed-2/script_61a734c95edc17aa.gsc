@@ -929,6 +929,7 @@ function function_7dd2a9c9(n_index, var_628a2951)
 		var_c2093736 = 0.01 * var_628a2951 / 20;
 		n_step = 1 / var_628a2951 * 20;
 		var_729b3c2f = 0;
+		n_count = 0;
 		while(var_729b3c2f <= 1)
 		{
 			wait(0.05);
@@ -973,6 +974,7 @@ private function function_d84ec5ee(var_707fd977)
 		var_c2093736 = 0.01 * var_628a2951 / 20;
 		n_step = 1 / var_628a2951 * 20;
 		var_729b3c2f = 0;
+		n_count = 0;
 		while(var_729b3c2f < 1)
 		{
 			wait(0.05);

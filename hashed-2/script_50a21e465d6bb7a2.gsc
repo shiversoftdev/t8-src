@@ -349,6 +349,7 @@ function function_dba32984()
 	if(isdefined(self.var_ef55363f))
 	{
 		var_c299518b = 1;
+		a_e_players = getplayers();
 		while(var_c299518b)
 		{
 			wait(0.25);
@@ -425,6 +426,7 @@ function function_77a0aab6(var_5ea5c94d)
 	{
 		pixbeginevent(#"hash_7e38a18c8bc5484c");
 		level thread namespace_7d8e6ec3::function_5fbede7a();
+		var_7a5bbd26 = getent("insanity_mode_damage_trigger", "targetname");
 		while(true)
 		{
 			waitresult = undefined;
@@ -471,6 +473,7 @@ function function_6699867f(var_5ea5c94d)
 	if(!var_5ea5c94d)
 	{
 		var_9152e2cb = struct::get("insanity_mode_confirmation");
+		str_hint = zm_utility::function_d6046228(#"hash_209b7a0a83ce0276", #"hash_683c616025752252");
 		while(!flag::get(#"hash_7cd09ec15b9808a9"))
 		{
 			/#

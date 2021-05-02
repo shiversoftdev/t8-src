@@ -276,6 +276,7 @@ function function_6e094214()
 		}
 		level.var_b7a0ccb2[level.var_b7a0ccb2.size] = struct::get(var_74f1c6f6.target, "targetname");
 	}
+	level.var_52d4b640 = util::spawn_model("tag_origin");
 	while(!level flag::get("flag_player_grabbed_catalyst_material"))
 	{
 		level.var_5f2726dc = undefined;
@@ -457,6 +458,7 @@ function function_927ac839()
 function function_30210e26()
 {
 	self endon(#"death");
+	b_seen = 0;
 	while(!b_seen)
 	{
 		if(isdefined(self.var_5a1faad3) && self.var_5a1faad3)
@@ -489,6 +491,7 @@ function function_7229d73c()
 {
 	self endon(#"death", #"hash_b59af7576a97635");
 	a_str_zones = array("zone_cemetery_entrance", "zone_cemetery_path_left", "zone_cemetery_path_right", "zone_cemetery_graveyard", "zone_cemetery_mausoleum", "zone_underground");
+	b_continue = 1;
 	while(b_continue)
 	{
 		b_continue = 0;
@@ -521,6 +524,7 @@ function function_4999f099(var_9427f9e7)
 	var_d17bd352 = 1;
 	var_6219bef = (0, 0, 1.6 * 256);
 	var_409d46fe = 0.5 + 1.6 * 0.1;
+	var_daa7e03a = var_409d46fe * 4;
 	while(true)
 	{
 		self setneargoalnotifydist(64);
@@ -1610,6 +1614,7 @@ function function_de394c52()
 function function_4eca0031()
 {
 	level endon(#"hash_5966d6342dbd6f82");
+	var_f1935ec8 = getclosestpointonnavmesh(self.origin, 128);
 	while(true)
 	{
 		foreach(var_f8a1403f in level.var_105c6f35)

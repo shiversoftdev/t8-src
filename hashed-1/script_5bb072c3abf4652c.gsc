@@ -113,6 +113,7 @@ private function function_fb728280()
 	function_396064c0(1);
 	level flag::wait_till("start_zombie_round_logic");
 	function_396064c0(0);
+	var_ad829e86 = 0;
 	while(true)
 	{
 		n_round = namespace_a28acff3::get_round_number();

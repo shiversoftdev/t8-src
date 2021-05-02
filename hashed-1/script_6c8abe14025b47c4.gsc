@@ -498,6 +498,7 @@ function function_1110a5de(killstreaktype, informdialog, taacomdialogbundlekey, 
 			bundle.pilotbundles[killstreaktype] = [];
 			i = 0;
 			field = pilotdialogarraykey + i;
+			fieldvalue = bundle.(field);
 			while(isdefined(fieldvalue))
 			{
 				bundle.pilotbundles[killstreaktype][i] = fieldvalue;
@@ -2157,6 +2158,7 @@ function get_killstreak_team_kill_penalty_scale(weapon)
 function wait_till_heavy_weapon_is_fully_on(weapon)
 {
 	self endon(#"death", #"disconnect");
+	slot = self gadgetgetslot(weapon);
 	while(weapon == self getcurrentweapon())
 	{
 		if(self util::gadget_is_in_use(slot))
@@ -3154,6 +3156,7 @@ function killstreak_data_dump()
 				/#
 					assert(type_data.size < 4);
 				#/
+				type_keys = getarraykeys(type_data);
 				while(type < type_keys.size)
 				{
 					if(type_data[type_keys[type]] == 1)

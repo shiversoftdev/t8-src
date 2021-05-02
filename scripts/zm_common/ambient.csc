@@ -111,6 +111,7 @@ function ambient_flak_think(point)
 	level thread ambient_flak_flash(point, min_burst_time, max_burst_time);
 	for(;;)
 	{
+		timer = randomfloatrange(min_burst_time, max_burst_time);
 		while(timer > 0)
 		{
 			point.is_firing = 1;
@@ -647,6 +648,7 @@ function clock_run(time_values)
 		self rotatepitch(time_values[#"first_rotate"], 0.05);
 		self waittill(#"rotatedone");
 	}
+	prev_time = getsystemtime();
 	while(true)
 	{
 		curr_time = getsystemtime();

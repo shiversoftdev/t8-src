@@ -378,6 +378,7 @@ private function function_2562ba62(var_637dcf3d, startlocation, var_a4e8554b)
 	lasttime = gettime();
 	var_97dd8ca1 = 1 / level.var_87226c31.bundle.var_d8e2166d;
 	var_28cd159a = 0;
+	var_ea8ed4c6 = 0;
 	while(var_16482870 <= var_a4e8554b)
 	{
 		var_637dcf3d clientfield::set("concertinaWire_placed", 1 - var_16482870);
@@ -426,6 +427,7 @@ private function function_4e7c57c1(var_637dcf3d, startorigin, direction, var_164
 {
 	var_b26653b3 = var_16482870 * level.var_87226c31.bundle.maxwidth;
 	lasttime = gettime();
+	var_97dd8ca1 = 1 / level.var_87226c31.bundle.var_d8e2166d;
 	while(var_16482870 <= var_a4e8554b)
 	{
 		var_637dcf3d clientfield::set("concertinaWire_placed", 1 - var_16482870);
@@ -926,6 +928,7 @@ function function_dac69ad1(player, var_d66fadb5)
 function function_b842eab8()
 {
 	level endon(#"game_ended");
+	params = function_4d1e7b48(level.var_87226c31.bundle.var_f6fdbda7);
 	while(true)
 	{
 		foreach(player in level.players)

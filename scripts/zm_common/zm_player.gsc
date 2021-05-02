@@ -182,6 +182,7 @@ function getfreespawnpoint(spawnpoints, player)
 	}
 	if(isdefined(player) && isdefined(player.team))
 	{
+		i = 0;
 		while(isdefined(spawnpoints) && i < spawnpoints.size)
 		{
 			if(side_selection == 1)
@@ -1192,6 +1193,7 @@ function player_monitor_travel_dist()
 	self notify(#"stop_player_monitor_travel_dist");
 	self endon(#"stop_player_monitor_travel_dist", #"disconnect");
 	n_current_distance = 0;
+	prevpos = self.origin;
 	while(isdefined(self))
 	{
 		wait(0.1);
@@ -1340,6 +1342,7 @@ function player_grenade_watcher()
 	self notify(#"stop_player_grenade_watcher");
 	self endon(#"stop_player_grenade_watcher", #"disconnect");
 	self.grenade_multiattack_count = 0;
+	self.grenade_multikill_count = 0;
 	while(true)
 	{
 		waitresult = undefined;
@@ -2093,6 +2096,7 @@ function get_safe_breadcrumb_pos(player)
 function play_door_dialog()
 {
 	self endon(#"warning_dialog");
+	timer = 0;
 	while(true)
 	{
 		waitframe(1);
@@ -2750,6 +2754,7 @@ function update_is_player_valid()
 	self notify("48751ec765e7e853");
 	self endon("48751ec765e7e853");
 	self endon(#"disconnect");
+	self.am_i_valid = 0;
 	while(isdefined(self))
 	{
 		self.am_i_valid = zm_utility::is_player_valid(self, 1);

@@ -483,6 +483,7 @@ function function_cdcbe19(roundwinner, var_2cd61e6c)
 */
 function onscoreclosemusic()
 {
+	teamscores = [];
 	while(!level.gameended)
 	{
 		scorelimit = level.scorelimit;
@@ -1335,6 +1336,7 @@ function function_6fd396()
 {
 	level endon(#"game_ended", #"props_hide_over");
 	var_fb3f700 = int(level.phsettings.prophidetime + gettime() / 1000);
+	totaltimepassed = 0;
 	while(true)
 	{
 		level waittill(#"host_migration_begin");
@@ -2263,6 +2265,7 @@ function function_63d4897()
 		var_309e583f.anglesoffset = self.prop.info.anglesoffset;
 		var_309e583f.propheight = self.prop.info.propheight;
 		var_309e583f.proprange = self.prop.info.proprange;
+		var_309e583f.var_9846ca56 = self.prop.info.var_9846ca56;
 		while(true)
 		{
 			var_94903b3f = 0;
@@ -3312,6 +3315,7 @@ function function_7bd9c9c2()
 */
 function function_70d75619()
 {
+	level.var_ac79a938 = 0;
 	while(true)
 	{
 		level waittill(#"host_migration_begin");
@@ -4843,6 +4847,7 @@ function function_e63a6b8b()
 		}
 		attempts = 9;
 		newlocation = location.origin;
+		rand = randomfloat(1);
 		while(attempts > 0)
 		{
 			var_15df23ab = dist * rand;

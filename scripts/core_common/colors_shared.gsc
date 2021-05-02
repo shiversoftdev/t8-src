@@ -444,6 +444,7 @@ function debugcolorfriendliestogglewatch()
 {
 	/#
 		just_turned_on = 0;
+		just_turned_off = 0;
 		while(true)
 		{
 			if(getdvar(#"debug_colornodes", 0) == 1 && !just_turned_on)
@@ -1776,6 +1777,7 @@ function add_path_node(type)
 function colornode_spawn_reinforcement(classname, fromcolor)
 {
 	level endon(#"kill_color_replacements");
+	friendly_spawners_type = getclasscolorhash(classname, fromcolor);
 	while(level.friendly_spawners_types[friendly_spawners_type] > 0)
 	{
 		spawn = undefined;

@@ -679,6 +679,7 @@ function start_challenge()
 {
 	level endon(#"end_game");
 	level.var_b42f4f4b = self;
+	var_d6578e1f = self.var_d6578e1f;
 	while(level.pablo_npc.isspeaking)
 	{
 		waitframe(1);
@@ -1356,6 +1357,7 @@ function function_1e4147b3(var_a5d77ed0, var_a5bc211a)
 		self.var_8aa74ff0 = 4;
 	}
 	var_77ba553d = 0;
+	self.var_d71fc7c = 0;
 	while(var_77ba553d < var_a5d77ed0)
 	{
 		b_success = 0;
@@ -2017,6 +2019,7 @@ function function_c607ac40(var_d6578e1f)
 {
 	level endon(#"end_game");
 	var_d6578e1f endon(var_d6578e1f.str_notify);
+	self.var_5637fcf9 = 0;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -3000,6 +3003,7 @@ function function_b49b8fc6()
 	self.e_player endon(#"disconnect", #"hash_5d2057864469af2a", #"hash_4ac0558a94ba3fd7");
 	self endon(#"hash_5d2057864469af2a", #"hash_4ac0558a94ba3fd7");
 	self.var_561f7ea3 = 0;
+	var_4d0b3b87 = self.var_d6578e1f.var_4d0b3b87;
 	while(true)
 	{
 		if(isdefined(self.s_unitrigger.trigger) && (isdefined(self.var_54596501) && self.var_54596501) && isdefined(var_4d0b3b87))

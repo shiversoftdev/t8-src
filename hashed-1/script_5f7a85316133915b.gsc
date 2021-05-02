@@ -610,6 +610,7 @@ function start_perk_bottle_cycling()
 		level.bottle_spawn_location setmodel(zm_perks::get_perk_weapon_model(var_f0f641ad[0]));
 		return;
 	}
+	var_77bb17ca = undefined;
 	while(true)
 	{
 		for(i = 0; i < var_f0f641ad.size; i++)

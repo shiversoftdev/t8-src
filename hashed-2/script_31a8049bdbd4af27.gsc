@@ -156,6 +156,7 @@ function function_15652808(str_archetype)
 	}
 	else
 	{
+		e_target_player = zm_utility::function_372a1e12();
 		while(!isdefined(e_target_player))
 		{
 			e_target_player = zm_utility::function_372a1e12();

@@ -452,6 +452,7 @@ function function_eef19056()
 	player thread namespace_73e1c3e3::function_61c3d59c(#"hash_77fa7edf837436cb", undefined);
 	level thread namespace_8c007aa6::play_vo(#"hash_14876e22977a8688", 0);
 	level thread namespace_8c007aa6::function_14b08e49(array(#"hash_7b37d7228954ffca"), "stop_target_nag");
+	s_loc = struct::get("s_grenade_rock_target", "targetname");
 	while(!level flag::get("grenade_rock"))
 	{
 		player = level.players[0];
@@ -1578,6 +1579,7 @@ function function_ae3fa0e0()
 {
 	level endon(#"combattraining_logic_finished");
 	self thread function_5346b39d();
+	var_2cad1fb5 = self.origin;
 	while(isalive(self))
 	{
 		var_2cad1fb5 = self.origin;
@@ -1907,6 +1909,7 @@ function function_fdf5f193(s_loc)
 	self thread namespace_64a487a9::function_35e77034(getweapon(#"ar_accurate_t8"), 1);
 	self val::set(#"hash_505a4c7da62f0c37", "ignoreall", 1);
 	wait(4);
+	self.var_2925fedc = s_target.origin;
 	while(isalive(self))
 	{
 		self bot::function_b78e1ebf();
@@ -2002,6 +2005,7 @@ function function_8486a84b()
 		return;
 	}
 	var_9bc826aa = getweapon(#"hero_pineapplegun");
+	var_333fa936 = self function_f09c133d(var_9bc826aa);
 	while(true)
 	{
 		w_current = self getcurrentweapon();
@@ -2149,6 +2153,7 @@ function function_abd58b32()
 function function_5e9629d8(waypoint)
 {
 	self endon(#"death");
+	var_fae5f77 = getent("vol_grenade_room", "targetname");
 	while(true)
 	{
 		waitresult = undefined;
@@ -2490,6 +2495,7 @@ function function_76f5d2dc(str_s_target)
 {
 	level endon(#"enemy_arrived");
 	self endon(#"death");
+	s_loc = struct::get(str_s_target, "targetname");
 	while(true)
 	{
 		waitresult = undefined;
@@ -2599,6 +2605,7 @@ function function_e7a8d041()
 	level.players[0] endon(#"death");
 	self endon(#"death", #"explode");
 	level endon(#"window_hit");
+	var_e5784d10 = getent("vol_window_target", "targetname");
 	while(true)
 	{
 		if(self istouching(var_e5784d10))

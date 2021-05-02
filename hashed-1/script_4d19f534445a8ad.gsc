@@ -273,6 +273,7 @@ function remove_temp_chest(chest_index)
 	{
 		return;
 	}
+	level.chests[chest_index].being_removed = 1;
 	while(isdefined(level.chests[chest_index]) && (isdefined(level.chests[chest_index].chest_user) || (isdefined(level.chests[chest_index]._box_open) && level.chests[chest_index]._box_open == 1)))
 	{
 		util::wait_network_frame();

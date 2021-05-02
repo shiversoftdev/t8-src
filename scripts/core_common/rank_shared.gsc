@@ -821,6 +821,7 @@ function updaterank()
 	}
 	oldrank = self.pers[#"rank"];
 	rankid = self.pers[#"rank"];
+	self.pers[#"rank"] = newrankid;
 	while(rankid <= newrankid)
 	{
 		self stats::function_4db3fba1(#"rank", rankid, 1);

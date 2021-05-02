@@ -391,6 +391,7 @@ function function_19bef771(weapon)
 	self switchtooffhand(level.var_2e3031be);
 	waitframe(1);
 	self ability_player::function_f2250880(weapon, 0);
+	played = 0;
 	while(!played)
 	{
 		played = self gestures::function_b6cc48ed("ges_vision_pulse_deactivate", undefined, 1);

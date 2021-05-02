@@ -225,6 +225,7 @@ function brutus_spawning_logic()
 private function function_f332f2b7(n_spawn, str_zone_name, var_dde9ff11, var_68ffecfb)
 {
 	level endon(#"end_of_round", #"end_game");
+	var_33882d9b = 0;
 	while(var_33882d9b < n_spawn)
 	{
 		ai_brutus = zombie_utility::spawn_zombie(level.var_d668eae7[0]);
@@ -1033,6 +1034,7 @@ function check_craftable_table_valid(player)
 function brutus_check_zone()
 {
 	self endon(#"death", #"brutus_cleanup");
+	self.in_player_zone = 0;
 	while(true)
 	{
 		self.in_player_zone = 0;
@@ -1230,6 +1232,7 @@ function function_ba497d2d(var_de86a1af)
 		var_de86a1af notify(#"brutus_cleanup");
 		var_de86a1af delete();
 	}
+	var_103768a7 = 0;
 	while(!var_103768a7)
 	{
 		var_1cc3df76 = util::get_active_players();

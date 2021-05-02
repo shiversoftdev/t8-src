@@ -304,6 +304,7 @@ function function_af39e9d5()
 	level endon(#"end_game", #"hash_18c97556779d2ace");
 	var_a28e7c1f = self.origin + vectorscale((0, 0, 1), 2);
 	var_ae661658 = self.origin - vectorscale((0, 0, 1), 2);
+	var_4814cac6 = 1;
 	while(!level flag::get(#"hash_43c116bdb3a96e16"))
 	{
 		if(var_4814cac6)

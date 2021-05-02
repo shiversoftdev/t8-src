@@ -295,6 +295,7 @@ private function function_269f27a9()
 	var_ee327079 = zombie_utility::function_d2dfacfd(#"hash_3f4e6b25f57677da" + n_players);
 	zombie_utility::set_zombie_var(#"hash_434b3261c607850" + n_players, n_players * 5);
 	zombie_utility::set_zombie_var(#"hash_3f4e6b25f57677da" + n_players, n_players * 5);
+	level.var_1dce56cc = n_players * 5;
 	while(isdefined(level.var_ab5b85bf))
 	{
 		waitframe(1);
@@ -880,6 +881,7 @@ function function_a5f3cb45(s_spawn)
 */
 function function_9f8c0587()
 {
+	self.var_3816dc63 = 1;
 	while(true)
 	{
 		ai_zombie = zombie_utility::spawn_zombie(array::random(level.zombie_spawners), undefined, self);
@@ -985,6 +987,7 @@ function function_a4e2970b(var_4e4cc9a9 = 1, var_293aacbe)
 	}
 	self.var_a7cbb3cb = 1;
 	s_spawn = struct::spawn(self.origin, self.angles);
+	s_spawn.var_3816dc63 = 1;
 	while(true)
 	{
 		if(isdefined(self.sp_model))
@@ -1138,6 +1141,7 @@ function function_fb3ab798(var_4e4cc9a9 = 1)
 {
 	self endon(#"death");
 	self val::set(#"hash_58d304d03782fc3c", "takedamage", 1);
+	self.health = 99999999;
 	while(true)
 	{
 		var_be17187b = undefined;

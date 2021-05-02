@@ -246,6 +246,7 @@ function function_410dbfe(e_player)
 {
 	level endon(#"end_game");
 	n_total_time = 0;
+	weapon = getweapon(#"hash_13a204ba6887b18f");
 	while(n_total_time < 60)
 	{
 		var_890584df = [];

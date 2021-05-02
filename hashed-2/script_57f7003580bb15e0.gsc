@@ -875,6 +875,7 @@ function function_150a8541()
 	self notify(#"hash_5839b9fabbec3015");
 	self endon(#"hash_5839b9fabbec3015", #"hash_13d72ca5a7cfd2bd");
 	self.owner endon(#"death", #"disconnect");
+	var_eff9d37f = self.owner function_3c54ae98(self.var_67e2281d);
 	while(true)
 	{
 		self.owner waittill(#"loadout_given");

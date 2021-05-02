@@ -124,6 +124,7 @@ private function _destructhandler(localclientnum, oldvalue, newvalue, bnewent, b
 		return;
 	}
 	currentdestructflag = 2;
+	piecenumber = 1;
 	while(destructflags >= currentdestructflag)
 	{
 		if(destructflags & currentdestructflag)

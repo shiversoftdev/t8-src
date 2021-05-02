@@ -47,6 +47,7 @@ function function_1de14ea4()
 {
 	self endon(#"death");
 	self val::set("power_event", "takedamage", 1);
+	self.health = 99999;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -867,6 +868,7 @@ function cleanup_zombie()
 function function_643916c9()
 {
 	self endon(#"death");
+	self.ignore_poi = [];
 	while(true)
 	{
 		if(isdefined(level.zombie_poi_array) && level.zombie_poi_array.size)

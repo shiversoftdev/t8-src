@@ -153,6 +153,7 @@ function function_1183b860(localclientnum)
 {
 	self endon(#"death");
 	level endon(#"game_ended");
+	player = function_5c10bd79(localclientnum);
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
 		player waittill(#"weapon_fired");
@@ -208,6 +209,7 @@ function function_1edfdbc1(localclientnum)
 {
 	self endon(#"death");
 	self endon(#"disconnect");
+	var_7beb3a32 = array("key_f1", "key_f2", "key_f3", "key_f4");
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
 		var_38d92d79 = function_5c10bd79(localclientnum);
@@ -262,6 +264,7 @@ function function_1edfdbc1(localclientnum)
 function function_161106e1(localclientnum)
 {
 	self endon(#"death");
+	var_834a617c = array("key_f8", "key_f7", "key_f6", "key_f5");
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
 		var_4fa59c0d = getcurrentweapon(localclientnum);
@@ -481,6 +484,7 @@ function function_1d13e2db(localclientnum)
 	var_7f1c5ce2 = createuimodel(parentmodel, "timeRemaining");
 	var_f4ae48e2 = createuimodel(controllermodel, "PositionDraft");
 	var_a5976120 = createuimodel(var_f4ae48e2, "stage");
+	previoustime = 0;
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
 		var_e2f47a8e = getuimodelvalue(var_a5976120);
@@ -553,6 +557,7 @@ function function_af712255(localclientnum)
 	var_7bb0cd4 = createuimodel(parentmodel, "killstreak2");
 	var_57e596e3 = createuimodel(parentmodel, "killstreak3");
 	var_a74def26 = array(var_2163222, var_e6eb8fc9, var_7bb0cd4, var_57e596e3);
+	var_80324f69 = array(self function_c2a5ba97("scorestreak1"), self function_c2a5ba97("scorestreak2"), self function_c2a5ba97("scorestreak3"), self function_c2a5ba97("scorestreak4"));
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
 		var_e1c5622e = getuimodelvalue(var_f15e30b1);
@@ -594,6 +599,7 @@ function function_88dc3170(localclientnum)
 		level waittill(#"hash_7d7ad8f95ddcdcbd");
 	}
 	var_fdbf663f = array(var_3e4e5ffe, var_af86a313, var_9c05084e, var_3904e6a2);
+	var_524f546 = array(self function_c2a5ba97("usebgb1"), self function_c2a5ba97("usebgb2"), self function_c2a5ba97("usebgb3"), self function_c2a5ba97("usebgb4"));
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
 		for(i = 0; i < var_fdbf663f.size; i++)

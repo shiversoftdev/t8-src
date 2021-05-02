@@ -144,6 +144,7 @@ function function_670dda89()
 */
 function function_408fcb87()
 {
+	var_9bda8088 = getent("werewolfer", "script_noteworthy");
 	while(level flag::get(#"hash_6f483dda6f8ab19d"))
 	{
 		foreach(player in getplayers())

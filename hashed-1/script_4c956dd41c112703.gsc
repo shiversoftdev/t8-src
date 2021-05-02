@@ -801,6 +801,7 @@ function function_e29e2b0b()
 function timer_actual(kills, time)
 {
 	self endon(#"disconnect", #"death");
+	timer = gettime() + time * 1000;
 	while(gettime() < timer)
 	{
 		if(self.killcounter > kills)

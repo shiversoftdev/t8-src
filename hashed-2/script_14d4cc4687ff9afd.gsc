@@ -315,6 +315,7 @@ function function_665b4fa6()
 		var_bd1bdc73 = undefined;
 		var_bd1bdc73 = self waittill(#"trigger_activated");
 		e_who = var_bd1bdc73.e_who;
+		var_3ba1f680 = 1;
 		while(var_3ba1f680)
 		{
 			var_3ba1f680 = 1;
@@ -355,6 +356,7 @@ function function_665b4fa6()
 function function_e76a1a06()
 {
 	self endon(#"death");
+	var_efc198c = 0;
 	while(var_efc198c < 10)
 	{
 		if(self.var_9b3f6525 > 0)
@@ -690,6 +692,7 @@ function function_5dbd6a40(s_zipline_use)
 		wait(1);
 	}
 	vnd_start = getvehiclenode(s_zipline_use.target, "targetname");
+	self.var_b20b0960 = spawner::simple_spawn_single(getent("veh_fasttravel", "targetname"));
 	while(!isdefined(self.var_b20b0960))
 	{
 		waitframe(1);
@@ -812,6 +815,7 @@ function function_fc9707f4(vnd_start, s_zipline_use)
 		if(isdefined(var_2e07b8ff) && var_2e07b8ff.size > 0)
 		{
 			self switchtoweapon(var_2e07b8ff[0]);
+			var_5a7831c4 = 0;
 			while(!var_5a7831c4)
 			{
 				waitframe(1);

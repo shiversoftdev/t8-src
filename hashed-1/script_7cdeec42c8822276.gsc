@@ -179,8 +179,10 @@ function round_spawning()
 {
 	level endon(#"hash_3e95ff63d623d736");
 	function_b741acea();
+	n_spawn_delay = namespace_a28acff3::get_zombie_spawn_delay(level.var_37769559);
 	while(level.var_bdc8b034.size > 0)
 	{
+		var_404e4288 = zombie_utility::get_current_zombie_count();
 		while(var_404e4288 >= level.zombie_ai_limit)
 		{
 			wait(0.1);

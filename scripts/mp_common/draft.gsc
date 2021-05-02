@@ -248,6 +248,7 @@ function function_693430fa()
 	#/
 	player endon(#"disconnect", #"hash_7fa9c275efb510e2");
 	cooldowntime = getgametypesetting(#"hash_2b88c6ac064e9c59");
+	var_e5e81b59 = cooldowntime * 1000 + gettime();
 	while(gettime() < var_e5e81b59)
 	{
 		timeleft = var_e5e81b59 - gettime() / 1000;
@@ -597,6 +598,7 @@ function wait_for_players()
 	}
 	level.var_b318d3d1 = getgametypesetting(#"drafttime") + getgametypesetting(#"hash_4e4352bd1aaeedfe") + 20;
 	function_ee80d2e8(int(max(0, level.var_b318d3d1)));
+	starttime = gettime();
 	while(!all_players_connected())
 	{
 		wait(0.2);
@@ -688,6 +690,7 @@ function draft_run()
 	{
 		level.var_9205f2e8 = gettime();
 		level clientfield::set_world_uimodel("PositionDraft.timeRemaining", 0);
+		ready = 0;
 		while(!ready)
 		{
 			ready = 1;
@@ -712,6 +715,7 @@ function draft_run()
 		{
 			wait(1);
 		}
+		level.var_9205f2e8 = gettime();
 		while(timeremaining > 0 && !level.gameended)
 		{
 			level clientfield::set_world_uimodel("PositionDraft.timeRemaining", timeremaining);

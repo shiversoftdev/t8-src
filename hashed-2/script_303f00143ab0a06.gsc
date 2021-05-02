@@ -374,6 +374,7 @@ function function_72e84e64()
 	var_806acf86 = int(gettime() + 1000 + int(480 * 1000));
 	setmatchflag("bomb_timer_a", 1);
 	setbombtimer("A", var_806acf86);
+	level.var_a2cbd584 = 0;
 	while(true)
 	{
 		var_e8d6f89 = namespace_64a487a9::function_2a8fc6b2();
@@ -584,6 +585,7 @@ function function_95f8a9b5()
 {
 	level endon(#"combattraining_logic_finished");
 	level.var_6bac32f8 = 0;
+	var_b01b427f = -1000;
 	while(true)
 	{
 		if(level.var_6bac32f8 >= 2)

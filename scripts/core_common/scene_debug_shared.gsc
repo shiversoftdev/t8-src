@@ -71,6 +71,7 @@ function run_scene_tests()
 {
 	/#
 		level endon(#"run_scene_tests");
+		var_cdb63291 = 0;
 		while(true)
 		{
 			str_run_scene = getdvarstring(#"run_scene");
@@ -198,6 +199,7 @@ function toggle_scene_menu()
 {
 	/#
 		setdvar(#"scene_menu", 0);
+		n_scene_menu_last = -1;
 		while(true)
 		{
 			n_scene_menu = getdvarstring(#"scene_menu");
@@ -405,6 +407,7 @@ function display_scene_menu(str_type, str_scene)
 		up_pressed = 0;
 		down_pressed = 0;
 		held = 0;
+		old_selected = selected;
 		while(true)
 		{
 			if(b_shot_menu)
@@ -561,6 +564,7 @@ function display_scene_menu(str_type, str_scene)
 				{
 					if(names[selected] == "")
 					{
+						level.scene_menu_shot_index = selected;
 						while(function_606f1f21())
 						{
 							waitframe(1);

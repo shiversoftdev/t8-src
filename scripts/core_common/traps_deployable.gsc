@@ -1758,6 +1758,7 @@ function function_ef942626()
 function function_3b7cb719()
 {
 	/#
+		level.var_d39c38bf = getdvarint(#"hash_419d8c0b944095dd", 0);
 		while(true)
 		{
 			var_d39c38bf = level.var_d39c38bf;

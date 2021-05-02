@@ -562,6 +562,7 @@ function setup_death_watch_for_new_targets()
 {
 	turretvehicle = self;
 	turretvehicle endon(#"death");
+	old_target = undefined;
 	while(true)
 	{
 		waitresult = undefined;

@@ -278,6 +278,7 @@ function function_32854cb2(watcher, player)
 function function_15566346(ent)
 {
 	self endon(#"death");
+	oldpos = ent.origin;
 	while(true)
 	{
 		if(!isdefined(ent))
@@ -641,6 +642,7 @@ function function_d334c3fa(endpoint)
 function function_15de8daf()
 {
 	self endon_callback(&function_84101bb5, #"death");
+	self.var_d33355ff = [];
 	while(true)
 	{
 		if(self.var_c2f0f6da)

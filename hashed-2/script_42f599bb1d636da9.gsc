@@ -247,6 +247,7 @@ function sticky_indicator(localclientnum, indicator)
 	controllermodel = getuimodelforcontroller(localclientnum);
 	stickyimagemodel = createuimodel(controllermodel, "hudItems.stuckImageIndex");
 	setuimodelvalue(stickyimagemodel, indicator);
+	player = function_5c10bd79(localclientnum);
 	while(isdefined(self))
 	{
 		waitframe(1);

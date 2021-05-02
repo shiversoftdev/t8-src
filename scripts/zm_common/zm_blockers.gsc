@@ -452,6 +452,7 @@ function force_open_door(var_64c09f7f)
 function blocker_update_prompt_visibility()
 {
 	self endon(#"kill_door_think", #"kill_debris_prompt_thread", #"death");
+	dist = 16384;
 	while(true)
 	{
 		a_players = util::get_active_players();

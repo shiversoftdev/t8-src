@@ -200,6 +200,7 @@ function function_e6937bfa()
 	{
 		wait(3);
 	}
+	a_ai_zombies = zombie_utility::get_round_enemy_array();
 	while(a_ai_zombies.size > 0 || level.zombie_total > 0)
 	{
 		if(a_ai_zombies.size <= 3)
@@ -1066,6 +1067,7 @@ function round_think(restart = 0)
 		/#
 			println("" + level.round_number + "" + level.players.size);
 		#/
+		level.round_start_time = gettime();
 		while(level.zm_loc_types[#"zombie_location"].size <= 0)
 		{
 			wait(0.1);
@@ -1355,6 +1357,7 @@ function round_spawn_failsafe_debug()
 		level notify(#"failsafe_debug_stop");
 		level endon(#"failsafe_debug_stop");
 		start = gettime();
+		level.chunk_time = 0;
 		while(true)
 		{
 			level.failsafe_time = gettime() - start;

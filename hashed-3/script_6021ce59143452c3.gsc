@@ -853,6 +853,7 @@ private function function_4dbf2663()
 	}
 	var_a183f42b = tablelookupcolumncount(table);
 	var_e1617d73 = tablelookuprowcount(table);
+	row = 0;
 	while(row < var_e1617d73)
 	{
 		var_189d26ca = tablelookupcolumnforrow(table, row, 1);
@@ -911,6 +912,7 @@ private function function_4dbf2663()
 */
 private function function_17b04fd7()
 {
+	end_time = gettime() + 10000;
 	while(gettime() < end_time)
 	{
 		all_players_spawned = 1;

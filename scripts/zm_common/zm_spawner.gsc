@@ -362,6 +362,7 @@ function zombie_damage_failsafe()
 		v_starting_origin = self.enemy.origin;
 		var_f2ca854b = self.enemy.health;
 		var_65a69eba = undefined;
+		var_f3a1b629 = 0;
 		while(isalive(self.enemy) && isplayer(self.enemy) && e_enemy == self.enemy && self istouching(self.enemy) && !self.enemy laststand::player_is_in_laststand())
 		{
 			if(distancesquared(v_starting_origin, self.enemy.origin) > 60 * 60)
@@ -2578,6 +2579,7 @@ function zombie_rise_dust_fx(ai_zombie)
 			}
 		}
 	}
+	t = 0;
 	while(t < 5.5)
 	{
 		playfxontag(level._effect[str_fx], ai_zombie, "J_SpineUpper");

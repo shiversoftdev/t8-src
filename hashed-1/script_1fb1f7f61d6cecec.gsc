@@ -266,6 +266,7 @@ function function_23287dd()
 			}
 			if(isalive(ai_zombie))
 			{
+				level.var_23d44713.origin = ai_zombie.origin + vectorscale((0, 0, 1), 60);
 				while(isalive(ai_zombie) && !ai_zombie clientfield::get("zombie_eye_glow"))
 				{
 					wait(1);

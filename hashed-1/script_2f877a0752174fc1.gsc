@@ -188,6 +188,7 @@ function function_9e497c58()
 	foreach(var_f711229a in var_96fdae0e)
 	{
 		var_f711229a.var_8dd6242b = randomintrange(0, 5);
+		var_f711229a.var_8ace5ace = randomintrange(0, 5);
 		while(var_f711229a.var_8dd6242b == var_f711229a.var_8ace5ace)
 		{
 			var_f711229a.var_8ace5ace = randomintrange(0, 5);
@@ -629,6 +630,7 @@ function function_aa07edab()
 function function_8352562a()
 {
 	self endon(#"death");
+	var_e578920c = 0;
 	while(true)
 	{
 		self waittill(#"hash_73aeb9311d5e314e");
@@ -757,6 +759,7 @@ function function_6b2499f9()
 		}
 		var_a5e8d5c7[var_a5e8d5c7.size] = i;
 	}
+	n_index = 0;
 	while(n_index < var_a5e8d5c7.size)
 	{
 		self waittill(#"hash_73aeb9311d5e314e");
@@ -867,6 +870,7 @@ function function_93040a5d()
 	var_28999578 = array::randomize(array(0, 1, 2, 3, 4, 5, 6, 7, 8));
 	var_4854a91b = "vox_tedd_melee_tedd_";
 	self endon(#"death");
+	level.var_5da5aff4 = 0;
 	while(!level.var_5da5aff4)
 	{
 		var_7c6d8d1a = 0;
@@ -936,6 +940,7 @@ function function_ce7e594b()
 */
 function function_cf1b4a16()
 {
+	var_5b857980 = function_4d1e7b48(#"hash_320c81d91eb89d73");
 	while(level flag::get(#"hash_398e4b1e72edb4ee"))
 	{
 		foreach(player in getplayers())
@@ -978,6 +983,7 @@ function function_4bda6193()
 		var_a5e8d5c7[var_a5e8d5c7.size] = i;
 	}
 	var_a5e8d5c7 = array::randomize(var_a5e8d5c7);
+	n_index = 0;
 	while(true)
 	{
 		self waittill(#"hash_73aeb9311d5e314e");

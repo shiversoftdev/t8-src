@@ -1390,6 +1390,7 @@ function function_588dcdff()
 {
 	self endon(#"disconnect");
 	t_r_br_sp2_7 = getent("t_r_br_sp2_7", "targetname");
+	self.var_946c0773 = 0;
 	while(!self flag::get(#"hash_7bcf95ea12236f0d"))
 	{
 		if(self istouching(t_r_br_sp2_7))

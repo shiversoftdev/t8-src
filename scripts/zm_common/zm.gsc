@@ -473,6 +473,7 @@ function onallplayersready()
 	/#
 		println("" + getnumexpectedplayers(1));
 	#/
+	player_count_actual = 0;
 	while(player_count_actual < getnumexpectedplayers(1))
 	{
 		players = getplayers();

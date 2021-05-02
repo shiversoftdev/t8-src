@@ -154,6 +154,7 @@ private function function_932e24b(w_weapon)
 	var_eec22f7e = 100 / 8 / 0.25;
 	n_start_time = gettime();
 	n_total_time = 0;
+	n_power = 0;
 	while(n_total_time < 8)
 	{
 		n_power = n_power + var_eec22f7e;
@@ -209,6 +210,7 @@ private function play_charge_fx(w_grenade)
 {
 	self endon(#"death", #"disconnect", #"grenade_fire", #"grenade_throw_cancelled");
 	waittillframeend();
+	var_673471b1 = 1000;
 	while(true)
 	{
 		time = gettime() - self.n_tomahawk_cooking_time;

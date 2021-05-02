@@ -283,6 +283,7 @@ private function function_776e45e5()
 			self.var_d880e556 = 1;
 			if(!level flag::get("special_round"))
 			{
+				ai = function_2e37549f(1);
 				while(!isdefined(ai))
 				{
 					waitframe(1);
@@ -721,6 +722,7 @@ function state_combat_enter(params)
 function function_2b369c9f()
 {
 	self endon(#"change_state", #"death");
+	self.ai.var_e7d26c0f = 0;
 	while(true)
 	{
 		if(self.ai.var_e7d26c0f > 3)

@@ -208,6 +208,7 @@ private function function_a14072bf()
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
 	self.var_41d5077e = 0;
+	self.var_14361e0c = 0.1;
 	while(true)
 	{
 		self namespace_b22c99a5::function_2190356a(self.var_41d5077e);

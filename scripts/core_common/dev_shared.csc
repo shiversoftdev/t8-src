@@ -35,6 +35,7 @@ function function_b49b1b6b(localclientnum)
 		var_39073e7a = undefined;
 		var_b49b1b6b = undefined;
 		var_1585e0a4 = array("", "", "");
+		var_767a6d22 = 0;
 		while(true)
 		{
 			n_dist = getdvarint(#"hash_4348ec71a8b13ef1", 0);

@@ -372,6 +372,7 @@ function function_7b3abf7b()
 function function_6a9c3eb3(n_round_number)
 {
 	level endon(#"hash_7a04a7fb98fa4e4d");
+	n_spawn_count = 0;
 	while(n_spawn_count < 3)
 	{
 		var_b88c4823 = namespace_c402654::function_62db7b1c(1, undefined);
@@ -411,6 +412,7 @@ function function_b4cae8b9()
 function function_b60250(n_round_number)
 {
 	level endon(#"hash_7a04a7fb98fa4e4d");
+	n_spawn_count = 0;
 	while(n_spawn_count < 3)
 	{
 		var_2b12a83f = namespace_16c9989b::function_27695a82();
@@ -531,6 +533,7 @@ function function_466fb0ff(var_3cf55c1)
 {
 	level endon(#"end_game");
 	var_f79ff5ec = zm_utility::function_40ef77ab(var_3cf55c1);
+	var_679cd7a8 = zm_utility::function_a877cd10(var_f79ff5ec);
 	while(true)
 	{
 		util::delay(4, undefined, &zm_utility::function_11101458, var_f79ff5ec);

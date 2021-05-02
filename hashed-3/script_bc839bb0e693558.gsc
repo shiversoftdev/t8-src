@@ -372,6 +372,7 @@ function power_consume_timer_think(slot, weapon)
 	{
 		return;
 	}
+	time = gettime();
 	while(true)
 	{
 		wait(0.1);

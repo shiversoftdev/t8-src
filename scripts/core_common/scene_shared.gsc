@@ -292,6 +292,7 @@ function fixup_scenedef(s_scenedef)
 	}
 	if(isdefined(level.scene_sequence_names) && !isdefined(level.scene_sequence_names[s_scenedef.name]))
 	{
+		s_next_bundle = s_scenedef;
 		while(isdefined(s_next_bundle))
 		{
 			level.scene_sequence_names[s_next_bundle.name] = s_scenedef.name;
@@ -311,6 +312,7 @@ function fixup_scenedef(s_scenedef)
 	}
 	if(isstring(s_scenedef.nextscenebundle) || function_7a600918(s_scenedef.nextscenebundle))
 	{
+		s_next_bundle = s_scenedef;
 		while(isdefined(s_next_bundle))
 		{
 			if(isdefined(s_next_bundle.nextscenebundle))
@@ -2229,6 +2231,7 @@ function _play_instance(s_tracker, str_scenedef = self.scriptbundlename, a_ents,
 	if(level flag::get(str_scenedef + "_scene_done"))
 	{
 		level flag::clear(str_scenedef + "_scene_done");
+		var_d43c0257 = getscriptbundle(str_scenedef);
 		while(isdefined(var_d43c0257.nextscenebundle))
 		{
 			var_d43c0257 = getscriptbundle(var_d43c0257.nextscenebundle);

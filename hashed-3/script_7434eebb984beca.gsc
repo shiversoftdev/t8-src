@@ -1001,6 +1001,7 @@ function function_416a0a80(owner)
 		objective_setvisibletoplayer(self.var_134eefb9, owner);
 	}
 	self.ai.var_b6554c59 = gettime();
+	maxhealth = self.maxhealth;
 	while(true)
 	{
 		var_d350f9d0 = gettime() >= self.ai.var_b6554c59;
@@ -2563,6 +2564,7 @@ private function function_820e7c92(owner, var_1c996690, nodes, context)
 		context.var_b32dac6a notify(#"hash_1e4c945d50deb21d");
 	}
 	helicopter thread function_5ca48510(helicopter, var_1c996690);
+	var_19f450c9 = gettime();
 	while(helicopter.origin[2] - var_1c996690[2] > 620 && gettime() - var_19f450c9 < 1000)
 	{
 		wait(0.1);

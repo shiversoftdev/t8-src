@@ -354,6 +354,7 @@ function waitforplaceabletobebuilt(player)
 	}
 	starttime = gettime();
 	endtime = starttime + buildlength;
+	finishedbuilding = 1;
 	while(gettime() < endtime)
 	{
 		if(!player attackbuttonpressed())
@@ -422,6 +423,7 @@ function watchplacement(placeable)
 	player thread function_e222876f(placeable);
 	lastattempt = -1;
 	placeable.canbeplaced = 0;
+	waitingforattackbuttonrelease = 1;
 	while(true)
 	{
 		placement = player canplayerplaceturret();

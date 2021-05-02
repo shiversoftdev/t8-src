@@ -1127,6 +1127,7 @@ function function_d2429d4f(str_weapon)
 function timer_actual(kills, time)
 {
 	self endon(#"disconnect", #"death");
+	timer = gettime() + time * 1000;
 	while(gettime() < timer)
 	{
 		if(self.killcounter > kills)
@@ -1228,6 +1229,7 @@ function custom_kill_damaged_vo(player)
 function loadplayervoicecategories(table)
 {
 	index = 0;
+	row = tablelookuprow(table, index);
 	while(isdefined(row))
 	{
 		category = checkstringvalid(row[0]);
@@ -1525,6 +1527,7 @@ function create_and_play_dialog(category, subcategory, force_variant, b_wait_if_
 		{
 			self endon(var_d0acc84f);
 		}
+		var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 		while(!function_65e5c19a(self.var_8dd99641, var_215d4efb))
 		{
 			waitframe(1);
@@ -2545,6 +2548,7 @@ function playstate(state)
 	}
 	aliasname = "mus_" + mustoplay + "_intro";
 	playbacktime = (isdefined(soundgetplaybacktime(aliasname)) ? soundgetplaybacktime(aliasname) : 1000);
+	var_6f451dc0 = gettime() + playbacktime;
 	while(gettime() < var_6f451dc0)
 	{
 		wait(0.1);
@@ -2571,6 +2575,7 @@ function sndmusicsystem_queuestate(state)
 	{
 		return;
 	}
+	m.queue = 1;
 	while(m.currentplaytype > 0)
 	{
 		wait(0.5);
@@ -2762,6 +2767,7 @@ function function_b9d832a0(var_790f33a7)
 function function_85c0295a()
 {
 	level endon(#"hash_78615fca09ef53a");
+	n_counter = 0;
 	while(level.musicsystem.currentplaytype > 0)
 	{
 		wait(0.5);

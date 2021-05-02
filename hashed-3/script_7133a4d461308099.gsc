@@ -1264,6 +1264,7 @@ function function_a80cb651(var_bd02cf1, var_d1a848d9)
 	{
 		return;
 	}
+	weapon = var_bd02cf1.weapon;
 	while(true)
 	{
 		if(stage.info.var_bf8f1a70 > 0 && isdefined(stage.info.resetnotify))

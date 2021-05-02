@@ -518,6 +518,7 @@ function soul_catchers_charged()
 function soul_catcher_check()
 {
 	self endon(#"hash_13c5316203561c4f");
+	self.is_charged = 0;
 	while(true)
 	{
 		if(self.var_43bd3b5 >= 6)
@@ -857,6 +858,7 @@ function function_6300f001()
 	self endon(#"disconnect");
 	var_6668e57a = getent("rt_pickup_trigger", "script_noteworthy");
 	var_fd22f9df = struct::get("tom_pil");
+	var_6e6ec518 = var_fd22f9df.scene_ents[#"hash_7aff0fe60ddd952e"];
 	while(isplayer(self))
 	{
 		if(isdefined(var_6668e57a))

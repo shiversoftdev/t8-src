@@ -235,6 +235,7 @@ function damage(n_damage, mod_type, e_attacker)
 	}
 	self.armor = self.armor - var_ee47fd1b;
 	var_c5aebd9f = 0;
+	n_index = 0;
 	while(var_c5aebd9f < var_ee47fd1b && n_index < a_keys.size)
 	{
 		var_b12ac727 = a_keys[n_index];

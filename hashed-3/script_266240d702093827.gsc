@@ -731,6 +731,7 @@ function function_693527ec(str_piece)
 	}
 	self.var_7788a78c = var_f4c9f09a;
 	self.var_5cff93b1 = var_f00b4f9f;
+	s_unitrigger = self zm_unitrigger::create(&function_fb466de8, 96);
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -839,6 +840,7 @@ function function_cf5cc33b(var_77104def = 0)
 	{
 		return;
 	}
+	self.var_12c9426e = [];
 	while(true)
 	{
 		waitframe(1);

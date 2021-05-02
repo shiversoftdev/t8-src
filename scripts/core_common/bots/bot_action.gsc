@@ -1583,6 +1583,7 @@ function look_for_enemy_weight(var_b594a2cd)
 function look_for_enemy(var_b594a2cd)
 {
 	var_47851891 = self.enemy;
+	weapon = self getcurrentweapon();
 	while(!self function_cf788c22() && self function_ab4c3550() && self bot::in_combat() && self function_bb2a8f1b(var_b594a2cd) && !self is_target_visible(var_b594a2cd))
 	{
 		self function_d273d4e7();
@@ -1665,6 +1666,7 @@ function function_e0dcb8c1(var_b594a2cd)
 {
 	target = var_b594a2cd.target;
 	self setentitytarget(target);
+	self.bot.var_2a98e9ea = 1;
 	while(!self function_cf788c22() && !self.ignoreall && isdefined(target) && self function_bb2a8f1b(var_b594a2cd) && isalive(target) && !self is_target_visible(var_b594a2cd))
 	{
 		self function_8a2b82ad(var_b594a2cd);
@@ -1720,6 +1722,7 @@ function scan_for_threats_weight(var_b594a2cd)
 function scan_for_threats(var_b594a2cd)
 {
 	var_fdfb592e = self is_target_visible(var_b594a2cd);
+	var_b594a2cd.var_fdfb592e = var_fdfb592e;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && var_b594a2cd.var_fdfb592e == var_fdfb592e)
 	{
 		if(var_fdfb592e && self function_ee402bf6(var_b594a2cd))
@@ -1762,6 +1765,7 @@ function scan_for_threats(var_b594a2cd)
 function function_9e1d8dfe(var_b594a2cd)
 {
 	var_fdfb592e = self is_target_visible(var_b594a2cd);
+	var_b594a2cd.var_fdfb592e = var_fdfb592e;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && var_b594a2cd.var_fdfb592e == var_fdfb592e)
 	{
 		if(var_fdfb592e && self function_ee402bf6(var_b594a2cd))
@@ -1924,6 +1928,7 @@ function revive_player(var_b594a2cd)
 		#/
 		return;
 	}
+	self.attackeraccuracy = 0.01;
 	while(isalive(player) && isdefined(player.revivetrigger) && self istouching(player.revivetrigger))
 	{
 		if(isdefined(player.revivetrigger.beingrevived) && player.revivetrigger.beingrevived)
@@ -2038,6 +2043,7 @@ function function_3cb4c00e(var_b594a2cd)
 function function_29904346(var_b594a2cd)
 {
 	gameobject = var_b594a2cd.gameobject;
+	lookpoint = gameobject.trigger.origin;
 	while(isdefined(gameobject) && gameobject === self bot::function_f47bf51d() && self istouching(gameobject.trigger))
 	{
 		self look_at_point(lookpoint, "Gameobject Trigger", (1, 1, 1));
@@ -2628,6 +2634,7 @@ function function_36505c2d(var_b594a2cd)
 */
 function function_a314673(var_b594a2cd)
 {
+	weapon = var_b594a2cd.weapon;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && self is_target_visible(var_b594a2cd) && self bot::function_828da7a9(weapon))
 	{
 		self function_8a2b82ad(var_b594a2cd);
@@ -2745,6 +2752,7 @@ function function_294f4909(var_b594a2cd)
 */
 function function_e73c8946(var_b594a2cd)
 {
+	weapon = var_b594a2cd.weapon;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && self is_target_visible(var_b594a2cd) && self bot::function_828da7a9(weapon))
 	{
 		self function_8a2b82ad(var_b594a2cd);
@@ -3035,6 +3043,7 @@ function function_6eeebed3(var_b594a2cd)
 */
 function function_7ff3a4df(var_b594a2cd)
 {
+	weapon = var_b594a2cd.weapon;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && self is_target_visible(var_b594a2cd) && self bot::function_828da7a9(weapon))
 	{
 		self function_8a2b82ad(var_b594a2cd);
@@ -3143,6 +3152,7 @@ function fire_locked_rocketlauncher(var_b594a2cd)
 {
 	target = var_b594a2cd.target;
 	weapon = var_b594a2cd.weapon;
+	lockedflag = 1 << self getentitynumber();
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && self is_target_visible(var_b594a2cd) && self function_daa4968(var_b594a2cd) && self bot::function_828da7a9(weapon))
 	{
 		self function_ab6b1fc9(var_b594a2cd);
@@ -3247,6 +3257,7 @@ function function_a365f27e(var_b594a2cd)
 function fire_rocketlauncher(var_b594a2cd)
 {
 	target = var_b594a2cd.target;
+	weapon = var_b594a2cd.weapon;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && self is_target_visible(var_b594a2cd) && self bot::function_828da7a9(weapon))
 	{
 		self function_8a2b82ad(var_b594a2cd);
@@ -3381,6 +3392,7 @@ function function_90c011d5(var_b594a2cd)
 		self bottapbutton(button);
 		self waittill(#"hash_347a612b61067eb3");
 	}
+	holding = 1;
 	while(!self function_cf788c22() && self isthrowinggrenade())
 	{
 		self function_5aa9dd1b(var_b594a2cd);
@@ -4415,6 +4427,7 @@ function function_2b8f7067()
 		var_d56aeea7 = [0:var_7607a546];
 		var_144c6266 = [];
 		var_4a39f740 = [];
+		self.var_77ae9678 = [];
 		while(var_b43277fd.size > 0)
 		{
 			currentpoint = var_b43277fd[0];

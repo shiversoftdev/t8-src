@@ -332,6 +332,7 @@ function round_spawn()
 */
 function function_47a88a0c(n_to_spawn = 1, var_1fafa3fc, b_force_spawn = 0, var_eb3a8721, n_round)
 {
+	n_spawned = 0;
 	while(n_spawned < n_to_spawn)
 	{
 		if(!b_force_spawn && !function_15d944aa())

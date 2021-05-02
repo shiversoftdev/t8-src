@@ -191,6 +191,7 @@ private function function_ef1b9d42()
 private function function_79e38cc4(origin)
 {
 	var_74d136f5 = 0;
+	time_step = 0.5;
 	while(var_74d136f5 <= 1.5)
 	{
 		players = getplayers();

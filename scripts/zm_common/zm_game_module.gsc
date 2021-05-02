@@ -325,6 +325,7 @@ function fireworks_launch(launch_spot)
 	util::wait_network_frame();
 	playfxontag(level._effect[#"fw_trail_cheap"], firework, "tag_origin");
 	firework playloopsound(#"zmb_souls_loop", 0.75);
+	dest = launch_spot;
 	while(isdefined(dest) && isdefined(dest.target))
 	{
 		random_offset = (randomintrange(-60, 60), randomintrange(-60, 60), 0);

@@ -230,6 +230,7 @@ function function_594bb7bd(player)
 function function_35eac38d(pathnode)
 {
 	path_struct = {#loops:0, #path:array(pathnode)};
+	var_592eaf7 = pathnode;
 	while(isdefined(var_592eaf7.target))
 	{
 		var_592eaf7 = getnode(var_592eaf7.target, "targetname");

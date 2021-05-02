@@ -600,6 +600,7 @@ function debugorigin()
 function draw_line_for_time(org1, org2, r, g, b, timer)
 {
 	/#
+		timer = gettime() + timer * 1000;
 		while(gettime() < timer)
 		{
 			line(org1, org2, (r, g, b), 1);
@@ -2393,6 +2394,7 @@ function waittill_player_looking_at(origin, arc_angle_degrees = 90, do_trace, e_
 {
 	self endon(#"death");
 	arc_angle_degrees = absangleclamp360(arc_angle_degrees);
+	dot = cos(arc_angle_degrees * 0.5);
 	while(!is_player_looking_at(origin, dot, do_trace, e_ignore))
 	{
 		waitframe(1);
@@ -3032,6 +3034,7 @@ function button_held_think(which_button)
 		self._holding_button = [];
 	}
 	self._holding_button[which_button] = 0;
+	time_started = 0;
 	while(true)
 	{
 		usinggamepad = self gamepadusedlast();
@@ -3766,6 +3769,7 @@ function waittillnotmoving()
 	}
 	else
 	{
+		prevorigin = self.origin;
 		while(true)
 		{
 			wait(0.15);
@@ -5658,6 +5662,7 @@ function trackwallrunningdistance()
 	self.movementtracking.wallrunning = spawnstruct();
 	self.movementtracking.wallrunning.distance = 0;
 	self.movementtracking.wallrunning.count = 0;
+	self.movementtracking.wallrunning.time = 0;
 	while(true)
 	{
 		self waittill(#"wallrun_begin");
@@ -5685,6 +5690,7 @@ function tracksprintdistance()
 	self.movementtracking.sprinting = spawnstruct();
 	self.movementtracking.sprinting.distance = 0;
 	self.movementtracking.sprinting.count = 0;
+	self.movementtracking.sprinting.time = 0;
 	while(true)
 	{
 		self waittill(#"sprint_begin");
@@ -5712,6 +5718,7 @@ function trackdoublejumpdistance()
 	self.movementtracking.doublejump = spawnstruct();
 	self.movementtracking.doublejump.distance = 0;
 	self.movementtracking.doublejump.count = 0;
+	self.movementtracking.doublejump.time = 0;
 	while(true)
 	{
 		self waittill(#"doublejump_begin");
@@ -7428,6 +7435,7 @@ function function_d608a743()
 {
 	self notify(#"hash_29bf696e43d4a08b");
 	self endon(#"hash_29bf696e43d4a08b", #"death");
+	var_9bc12626 = getarraykeys(self.var_c18fbf49);
 	while(true)
 	{
 		var_88706ea7 = undefined;

@@ -144,6 +144,7 @@ private function function_31f197c2()
 	level endon(#"hash_7646638df88a3656");
 	self endon(#"disconnect");
 	wait(0.5);
+	var_9a703be9 = level.var_869f4c31;
 	while(var_9a703be9 == level.var_869f4c31)
 	{
 		waitframe(1);
@@ -172,6 +173,7 @@ private function function_14a98a41(str_label, n_time_limit)
 	self endon("6b2c93b0788dd738");
 	level endon(#"end_of_round", #"host_migration_begin");
 	level.var_489d6aa2 = str_label;
+	level.var_869f4c31 = n_time_limit;
 	while(true)
 	{
 		wait(1);

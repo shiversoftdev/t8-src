@@ -65,6 +65,7 @@ function weapon_switch_watcher(driver)
 function air_vehicle1_initialize()
 {
 	self.first_weapon = self seatgetweapon(0);
+	self.second_weapon = self seatgetweapon(1);
 	while(true)
 	{
 		waitresult = undefined;

@@ -1060,6 +1060,7 @@ function cancel_on_use_specific_button(pressingbuttonfunc, finishedfunc)
 			waitframe(1);
 			continue;
 		}
+		buttontime = 0;
 		while(self [[pressingbuttonfunc]]())
 		{
 			buttontime = buttontime + 0.05;
@@ -1069,6 +1070,7 @@ function cancel_on_use_specific_button(pressingbuttonfunc, finishedfunc)
 		{
 			continue;
 		}
+		buttontime = 0;
 		while(!self [[pressingbuttonfunc]]() && buttontime < 0.5)
 		{
 			buttontime = buttontime + 0.05;

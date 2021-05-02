@@ -171,6 +171,7 @@ function function_b4a1f06a()
 	{
 		self.m_s_bundle.var_89af4052 = 0;
 	}
+	var_1913ccf5 = self.m_s_bundle.var_89af4052;
 	while(true)
 	{
 		self.m_e_door waittill(#"damage");

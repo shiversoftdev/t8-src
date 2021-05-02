@@ -340,6 +340,7 @@ function function_e8ad1d81(position, owner, normal, velocity, killcament, weapon
 			x = var_4f9d7296[0];
 			y = var_4f9d7296[1];
 			lowestz = var_69d15ad0[#"position"][2];
+			z = var_4f9d7296[2];
 			while(z > lowestz)
 			{
 				newpos = (x, y, z);
@@ -729,6 +730,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 	self.var_ebf0b1c9 = [];
 	burntime = 0;
 	var_d0603aba = 1;
+	damageendtime = int(gettime() + var_4dd46f8a.var_b79d64a9 * 1000);
 	while(gettime() < damageendtime)
 	{
 		damageapplied = 0;
@@ -937,6 +939,7 @@ function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd4
 		fireeffectarea function_4e5a1dd3(mdl_anchor);
 	}
 	self.var_ebf0b1c9 = [];
+	damageendtime = int(gettime() + var_4dd46f8a.var_b79d64a9 * 1000);
 	while(gettime() < damageendtime)
 	{
 		damageapplied = 0;

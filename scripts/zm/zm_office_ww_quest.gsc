@@ -191,6 +191,7 @@ function function_74c94af4()
 	s_unitrigger = level.var_50e17082 zm_unitrigger::create(&function_469495ed, 64, &function_4bda6e6c, 1, 0);
 	zm_unitrigger::function_89380dda(s_unitrigger);
 	level.var_50e17082.var_132bd718 = [];
+	n_count = 0;
 	while(n_count < 4)
 	{
 		n_code = function_4696e086();

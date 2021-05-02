@@ -464,6 +464,7 @@ function slowdown(str_type, var_a47cf2b2)
 	{
 		self.a_n_slowdown_timeouts[str_type] = n_timeout;
 	}
+	var_1cd2ff30 = self.a_n_slowdown_timeouts.size;
 	while(var_1cd2ff30)
 	{
 		str_lowest_type = undefined;

@@ -150,8 +150,10 @@ event function_bfb94991(eventstruct)
 */
 function function_f77ced93(params)
 {
+	weapon = params.weapon;
 	while(weapon.lockontype == "AP Multi")
 	{
+		abort = 0;
 		while(!self playerads() == 1)
 		{
 			waitframe(1);

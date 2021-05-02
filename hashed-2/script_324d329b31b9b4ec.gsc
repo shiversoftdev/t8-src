@@ -43,6 +43,7 @@ function updatemarkerthread(localclientnum)
 	{
 		return;
 	}
+	killstreakcorebundle = struct::get_script_bundle("killstreak", "killstreak_core");
 	while(isdefined(player.markerobj))
 	{
 		viewangles = getlocalclientangles(localclientnum);

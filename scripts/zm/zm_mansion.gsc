@@ -1044,6 +1044,7 @@ function function_802dde1f()
 		level thread namespace_a28acff3::print_zombie_counts();
 		level thread namespace_a28acff3::sndmusiconkillround();
 	#/
+	level.var_4b5a684c = namespace_a28acff3::get_zombie_count_for_round(level.round_number, level.players.size);
 	while(true)
 	{
 		var_7e5b8365 = zombie_utility::get_current_zombie_count() > 0 || level.zombie_total > 0 || level.intermission;

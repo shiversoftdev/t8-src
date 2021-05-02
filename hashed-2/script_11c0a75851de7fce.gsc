@@ -195,6 +195,7 @@ private function function_1b26ce66()
 private function function_5ef1fdde(w_minigun)
 {
 	self endon(#"disconnect");
+	var_bcd1c2ff = self gadgetgetslot(w_minigun);
 	while(self function_36dfc05f(var_bcd1c2ff))
 	{
 		waitframe(1);
@@ -477,6 +478,7 @@ function function_9d166ae8(w_minigun)
 			var_4bbea62c = var_a993e05e[2] * 850 + 150;
 			var_a460aa94 = (var_70346f17, var_5a76439b, var_4bbea62c);
 			var_40076092 = vectorscale((0, 0, 1), 12);
+			e_grenade = self magicgrenadetype(getweapon(#"hash_628d99860c78650f"), var_79db2feb, var_a460aa94, 2);
 			while(isdefined(e_grenade))
 			{
 				var_88706ea7 = undefined;

@@ -896,6 +896,7 @@ function dog_behind_audio()
 function dog_clip_monitor()
 {
 	clips_on = 0;
+	level.dog_clips = getentarray("dog_clips", "targetname");
 	while(true)
 	{
 		for(i = 0; i < level.dog_clips.size; i++)
@@ -912,6 +913,7 @@ function dog_clip_monitor()
 			level.dog_clips[i] disconnectpaths();
 			util::wait_network_frame();
 		}
+		dog_is_alive = 1;
 		while(dog_is_alive || level flag::get("dog_round"))
 		{
 			dog_is_alive = 0;

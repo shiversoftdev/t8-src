@@ -1258,6 +1258,7 @@ function function_9e7129d2(e_player, s_stone, var_6cf4ded4, str_hint)
 	}
 	if(isdefined(n_time))
 	{
+		n_timeout = int(3 * 1000);
 		while(isplayer(e_player) && gettime() - n_time < n_timeout)
 		{
 			waitframe(1);
@@ -2140,6 +2141,7 @@ function function_f7b04d9c(var_6f1036dd)
 		}
 	}
 	s_pos = array::random(var_3779c48);
+	var_ad728f = undefined;
 	while(!level flag::get("nosferatu_pap_event_done"))
 	{
 		level flag::wait_till("nosferatu_defend");
@@ -2315,6 +2317,7 @@ function function_57fcbf3f()
 function function_b7e42989()
 {
 	level endon(#"nosferatu_pap_event_done");
+	n_time = 40;
 	while(n_time > 0)
 	{
 		wait(0.05);
@@ -2520,6 +2523,7 @@ function function_11886796(a_ents)
 private function function_b0e1c435()
 {
 	self endon(#"disconnect");
+	var_1a1cbe5a = 0;
 	while(!var_1a1cbe5a && isarray(level.var_219a33e2) && isalive(self))
 	{
 		foreach(var_67335db8 in array::remove_undefined(level.var_219a33e2))
@@ -3083,6 +3087,7 @@ function function_d78c0280(nd_start, var_ff4b3a13)
 	}
 	self.mdl_head linkto(self);
 	self util::delay(0.1, #"death", &clientfield::set, "" + #"ghost_trail", 1);
+	self.var_c176969a = spawner::simple_spawn_single(getent("veh_power_on_projectile", "targetname"));
 	while(!isdefined(self.var_c176969a))
 	{
 		waitframe(1);
@@ -3212,6 +3217,7 @@ function function_900b7dca(var_878f0f0a, var_5a365909 = 0, e_player, var_a797e72
 	self endon(#"death");
 	self.var_c176969a endon(#"reached_end_node");
 	self.var_9c715b4f = 0;
+	self.var_aa273e8b = 0;
 	while(true)
 	{
 		if(math::cointoss())
@@ -3705,6 +3711,7 @@ function function_e8355769(vol_defend, str_flag)
 {
 	level endon(#"end_game");
 	wait(3);
+	var_ef6d594a = namespace_c05f06c7::function_91dfc9d4(vol_defend);
 	while(!level flag::get(str_flag))
 	{
 		var_840c2f31 = namespace_c05f06c7::function_91dfc9d4(vol_defend);
@@ -3876,6 +3883,7 @@ function function_1a82ca71(str_flag, b_delete = 1)
 function function_3088c773(str_flag)
 {
 	n_time = 40;
+	var_a780e211 = 0;
 	while(n_time > 0)
 	{
 		if(var_a780e211 >= 3.2)
@@ -3953,6 +3961,7 @@ function function_d48fb847(var_ffba68db, str_flag, e_volume, e_player)
 	}
 	var_a1e469f3 = arraycombine(var_2815c876, var_6aea2f76, 0, 0);
 	s_pos = array::random(var_a1e469f3);
+	var_ad728f = undefined;
 	while(!level flag::get(str_flag))
 	{
 		level flag::wait_till("clock_defend");

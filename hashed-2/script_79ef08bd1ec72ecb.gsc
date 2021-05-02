@@ -86,6 +86,7 @@ function function_4017174b(localclientnum, w_weapon)
 	self endon(#"weapon_change");
 	self endon(#"death");
 	n_old_ammo = -1;
+	n_shader_val = 0;
 	while(true)
 	{
 		wait(0.1);

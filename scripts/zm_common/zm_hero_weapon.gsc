@@ -715,6 +715,7 @@ function function_9a100883(weapon_level, enabled)
 	self.var_39b77a76 = 1;
 	self.var_c9279111 = 0;
 	self.var_821c9bf3 = 0;
+	self.var_dc37311e = 0;
 	while(self gadgetisactive(level.var_a53a05b5) || (isdefined(self.var_fbe120be) && self.var_fbe120be) || (isdefined(self.var_61950f95) && self.var_61950f95))
 	{
 		wait(1);
@@ -1049,6 +1050,7 @@ function function_60878f7f(w_weapon)
 	var_bcf2cdde = w_weapon.var_fb22040b;
 	if(isdefined(var_a01a1f92) && var_a01a1f92 > 0)
 	{
+		var_e3108f57 = self gadgetpowerget(level.var_a53a05b5);
 		while(true)
 		{
 			var_a5be660b = self gadgetpowerget(level.var_a53a05b5);

@@ -202,6 +202,7 @@ function function_3335f286()
 function function_91be5845()
 {
 	level.var_a0a9b19d = array::randomize(struct::get_array(#"hash_b29f24eab97a1d"));
+	var_ffba1428 = array(#"hash_41a5c5168ffb2a97", #"hash_400a481490a4e390", #"hash_5562e324d230f057", #"hash_41fae186552f1259");
 	while(level.var_a0a9b19d.size > var_ffba1428.size)
 	{
 		arrayremoveindex(level.var_a0a9b19d, 0, 0);
@@ -494,6 +495,7 @@ function function_bdf27083(str_script_noteworthy)
 	var_c0028c4a = struct::get(str_script_noteworthy, "script_noteworthy");
 	var_52c5bb4 = struct::get(var_c0028c4a.var_46f0b81a, "script_noteworthy");
 	var_c0028c4a.var_d0b3106f = function_23153807(var_c0028c4a);
+	var_52c5bb4.var_d0b3106f = function_23153807(var_52c5bb4);
 	while(var_52c5bb4.var_d0b3106f == 11 && var_c0028c4a.var_d0b3106f == 8)
 	{
 		var_52c5bb4.var_d0b3106f = 8;
@@ -571,6 +573,7 @@ function function_f4e792d3(var_d0b3106f, var_b267963b, var_a761a549)
 	self rotateroll(n_angle + var_b267963b, 0.5 * var_d0b3106f + var_a761a549);
 	self waittill(#"rotatedone");
 	var_e23f4bd9 = combineangles(-1 * self.original_angles, self.angles);
+	var_a3ea9bcc = var_e23f4bd9[2];
 	while(var_a3ea9bcc >= 0)
 	{
 		var_a3ea9bcc = var_a3ea9bcc - 360;
@@ -2016,6 +2019,7 @@ function function_818b63da()
 	var_585c95aa = n_players + 1 * 6;
 	var_70050170 = 1 / n_players;
 	var_9cc45d9e = undefined;
+	n_round = max(level.round_number, 15);
 	while(var_feee5228 < var_244fb6e4)
 	{
 		var_8b999044 = [];
@@ -2190,6 +2194,7 @@ function function_a5946754(var_874906b3, var_c8e72b9, var_7d847dee = 24, var_430
 {
 	var_cbdd8fe5 = 0;
 	var_7c332548 = arraycopy(var_874906b3);
+	n_round_number = max(level.round_number, 15);
 	while(var_cbdd8fe5 < var_c8e72b9)
 	{
 		function_9c6147b1(var_7d847dee);
@@ -2331,6 +2336,7 @@ function function_6a9df1b1()
 	for(i = 0; i < 10; i++)
 	{
 		var_75c89236 = 0;
+		var_3d5dc4ac = undefined;
 		while(!isdefined(var_3d5dc4ac) && var_75c89236 < 10)
 		{
 			var_75c89236++;
@@ -2676,6 +2682,7 @@ function function_9b60ef24()
 	wait(1);
 	trigger = spawn("trigger_damage", self.origin, 0, 12, 24);
 	var_542eec4d = getweapon(#"hash_95dd69e40d99560");
+	var_15b49ebc = getweapon(#"hash_337a0bfc51449d31");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -2737,6 +2744,7 @@ function function_22651585()
 		level flag::clear(#"hash_452df3df817c57f9");
 		level.var_7759c77d.var_e9b06709 = undefined;
 	}
+	var_bfa067ca = 0;
 	while(var_bfa067ca !== 1)
 	{
 		var_bfa067ca = function_bdddfbe6();
@@ -2972,6 +2980,7 @@ function function_9d73036a()
 function function_4f658ef7()
 {
 	self endon(#"death");
+	var_af0a8dfc = self.stub.related_parent;
 	while(!level flag::get(#"hash_63a102a7ae564e99"))
 	{
 		var_af0a8dfc.var_6eb21a54 show();
@@ -4272,6 +4281,7 @@ function function_cfd304b3()
 		}
 	}
 	n_increment = n_time / 9;
+	var_398f5909 = n_time;
 	while(var_398f5909 > 0)
 	{
 		streamermodelhint(#"hash_55657a69ddb2f287" + "dmg_01", n_increment);
@@ -4441,6 +4451,7 @@ function function_a68ae7b5(var_1e6f32c8, n_health)
 	var_e4eccdc0 = 0;
 	var_cf6ec580 = n_health * 0.666;
 	var_3f5e36d1 = n_health * 0.333;
+	var_22733eff = int(n_health / 8 + util::get_active_players().size * 2);
 	while(self.health > 0)
 	{
 		var_67ed7be7 = self.health;
@@ -4576,6 +4587,7 @@ function function_365aa198()
 			{
 				waitframe(1);
 			}
+			a_ai_enemies = getaiteamarray(level.zombie_team);
 			while(getaiteamarray(level.zombie_team).size >= n_max)
 			{
 				var_9dfc9362 = 0;
@@ -4759,6 +4771,7 @@ function function_204d58b0(s_spawn_point, n_round_number)
 */
 function function_7c85a743()
 {
+	n_max_dist = 2500;
 	while(!level flag::get("spawn_zombies") && !level flag::get(#"hash_349bc60cedc7491e"))
 	{
 		var_2b267dc2 = undefined;
@@ -5613,6 +5626,7 @@ function function_715588b3()
 	{
 		self waittill(#"trigger");
 		var_3ba1f680 = 1;
+		n_time = 0;
 		while(n_time < 0.5)
 		{
 			foreach(player in util::get_active_players())

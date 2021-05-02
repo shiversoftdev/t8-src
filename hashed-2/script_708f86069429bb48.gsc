@@ -54,6 +54,7 @@ function __init__()
 function function_fd7e329b()
 {
 	self endon(#"disconnect");
+	self.var_135a4148 = 0;
 	while(true)
 	{
 		self waittill(#"bled_out");
@@ -81,6 +82,7 @@ function function_49849a2f()
 	{
 		wait(1);
 	}
+	n_target_kills = level.zombie_player_killed_count + 100;
 	while(level.zombie_player_killed_count < n_target_kills && level.zombie_total >= 3)
 	{
 		waitframe(1);

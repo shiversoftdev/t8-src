@@ -288,6 +288,7 @@ function start_defcon_countdown()
 	level flag::set("open_pack_hideaway");
 	level.defcon_activated = 1;
 	level notify(#"defcon_activated");
+	level.defcon_countdown_time = 30;
 	while(level.defcon_level > 1)
 	{
 		wait(level.defcon_countdown_time / 4);

@@ -1651,6 +1651,7 @@ function spawngraph()
 				endspawni = spawni + fakespawnpoints.size / numiters;
 				if(i == numiters - 1)
 				{
+					endspawni = fakespawnpoints.size;
 				}
 				while(spawni < endspawni)
 				{
@@ -1806,6 +1807,7 @@ function loopbotspawns()
 					for(index = 0; index < numkills; index++)
 					{
 						killer = bots[randomint(bots.size)];
+						victim = bots[randomint(bots.size)];
 						while(isdefined(lastvictim) && victim == lastvictim)
 						{
 							victim = bots[randomint(bots.size)];
@@ -2081,6 +2083,7 @@ function debugnearbyplayers(players, origin)
 		{
 			return;
 		}
+		starttime = gettime();
 		while(true)
 		{
 			for(i = 0; i < players.size; i++)
@@ -2229,6 +2232,7 @@ function avoidweapondamage(spawnpoints)
 */
 function spawnperframeupdate()
 {
+	spawnpointindex = 0;
 	while(true)
 	{
 		waitframe(1);

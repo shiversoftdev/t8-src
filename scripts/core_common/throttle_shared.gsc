@@ -113,6 +113,7 @@ function waitinqueue(entity = randomint(2147483647))
 	{
 		nextqueueindex = (self.queue_.size > 0 ? getlastarraykey(self.queue_) + 1 : 0);
 		self.queue_[nextqueueindex] = entity;
+		firstinqueue = 0;
 		while(!firstinqueue)
 		{
 			if(!isdefined(entity))

@@ -120,6 +120,7 @@ function function_55d09221()
 {
 	self endon(#"death");
 	level endon(#"end_game");
+	var_b49c3a1f = getentarray("t_crowd_damage", "targetname");
 	while(true)
 	{
 		foreach(t_crowd_damage in var_b49c3a1f)
@@ -593,6 +594,7 @@ function function_5d6119de()
 	level flag::wait_till("start_zombie_round_logic");
 	while(true)
 	{
+		level.var_8cdff3aa = 20;
 		while(level.var_8cdff3aa > 0 && !level flag::get("crowd_throw_item_immediate"))
 		{
 			wait(1);
@@ -656,6 +658,7 @@ function function_5d6119de()
 		}
 		str_player_zone = e_target_player zm_zonemgr::get_player_zone();
 		var_2bd26cff = e_target_player.var_7df228aa.var_def266a8;
+		n_time = 10;
 		while(isalive(e_target_player) && !level flag::get(#"crowd_throw_item_immediate") && n_time > 0)
 		{
 			if(str_player_zone === "zone_starting_area_ra" || str_player_zone === "zone_starting_area_odin" || str_player_zone === "zone_starting_area_danu" || str_player_zone === "zone_starting_area_zeus")

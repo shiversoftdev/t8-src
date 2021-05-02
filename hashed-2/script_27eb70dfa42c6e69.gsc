@@ -130,6 +130,7 @@ private function function_545d53bf()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
+	var_407eb07 = 0;
 	while(true)
 	{
 		var_972e1f84 = 0;

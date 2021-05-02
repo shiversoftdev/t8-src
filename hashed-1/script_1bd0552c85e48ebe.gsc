@@ -48,6 +48,7 @@ function spectate_player_watcher()
 			}
 		}
 	#/
+	self.watchingactiveclient = 1;
 	while(true)
 	{
 		if(self.pers[#"team"] != #"spectator" || level.gameended)

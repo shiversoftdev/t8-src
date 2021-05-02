@@ -1293,6 +1293,7 @@ function unlinkwhenclose(selectedtarget, targetorigin, plane)
 	plane endon(#"death");
 	self notify(#"unlink_when_close");
 	self endon(#"unlink_when_close");
+	distsqr = 1000000;
 	while(true)
 	{
 		if(isdefined(selectedtarget))

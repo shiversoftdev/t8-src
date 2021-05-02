@@ -1168,6 +1168,7 @@ function function_6d38ea52(localclientnum, oldval, newval, bnewent, binitialsnap
 	var_90b58ce = 0;
 	var_5f70b16e = 0;
 	var_1a66f701 = 0;
+	n_start_time = gettime();
 	while(true)
 	{
 		waitframe(1);
@@ -2393,6 +2394,7 @@ function function_83a7c416(localclientnum)
 	level endon(#"end_game");
 	s_fx = struct::get(#"hash_3ad02ac72362ec5c");
 	var_4c53e2d7 = 0;
+	var_43997e53 = 2;
 	while(!(isdefined(level.var_656b74db) && level.var_656b74db))
 	{
 		n_offset = randomfloatrange(128 * -1, 128);

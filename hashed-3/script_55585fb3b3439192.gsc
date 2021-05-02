@@ -200,6 +200,7 @@ function rock_emissive_fade(localclientnum, n_max_val, n_min_val)
 {
 	n_start_time = gettime();
 	n_end_time = n_start_time + 0.5 * 1000;
+	b_is_updating = 1;
 	while(b_is_updating)
 	{
 		n_time = gettime();

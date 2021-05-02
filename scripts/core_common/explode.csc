@@ -110,6 +110,7 @@ function watchforplayerfalldamage(localclientnum)
 	self endon(#"death");
 	seed = 0;
 	xdir = 0;
+	ydir = 270;
 	while(true)
 	{
 		self waittill(#"fall_damage");
@@ -132,6 +133,7 @@ function watchforplayerslide(localclientnum)
 	seed = 0;
 	self.wasplayersliding = 0;
 	xdir = 0;
+	ydir = 6000;
 	while(true)
 	{
 		self.isplayersliding = self isplayersliding();

@@ -78,6 +78,7 @@ function player_init(localclientnum)
 private function function_73021afc(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
+	starttime = gettime();
 	while(isdefined(self) && !self hasdobj(localclientnum))
 	{
 		if(gettime() - starttime > 1000)

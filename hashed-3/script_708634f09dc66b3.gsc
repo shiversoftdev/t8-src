@@ -347,6 +347,7 @@ function chainisactive(chain)
 function cleanupproximitychainent()
 {
 	self.cleanup = 1;
+	any_active = 1;
 	while(any_active)
 	{
 		wait(1);

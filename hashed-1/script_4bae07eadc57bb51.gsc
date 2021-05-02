@@ -236,6 +236,7 @@ function function_8352562a()
 	self endon(#"death");
 	var_e578920c = 0;
 	var_1ecdf017 = getent("projecter_screen_a", "targetname");
+	var_59b0e5dc = getent("projecter_screen_b", "targetname");
 	while(true)
 	{
 		self waittill(#"hash_73aeb9311d5e314e");
@@ -913,6 +914,7 @@ function function_8213feb8()
 function function_43d7897e()
 {
 	level endon(#"hash_4a19fd40add44b83");
+	var_c470ac43 = 1;
 	while(var_c470ac43)
 	{
 		foreach(e_player in level.activeplayers)
@@ -983,6 +985,7 @@ function function_9209d032()
 function function_db17af3a()
 {
 	self endon(#"death");
+	n_timer = 0;
 	while(n_timer < 1)
 	{
 		if(namespace_47276bad::function_9dd97963(self))
@@ -1021,6 +1024,7 @@ function function_1abaab3d()
 	}
 	hold_round_end(1);
 	wait(randomfloatrange(3, 15));
+	var_a9e4d1ee = randomintrange(3, 6);
 	while(var_a9e4d1ee > 0)
 	{
 		var_c6bd50df = self zm_zonemgr::get_player_zone();

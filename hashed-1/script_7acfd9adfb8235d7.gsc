@@ -937,6 +937,7 @@ function function_9ee098d5()
 	level endon(#"hash_aa10db1b6143db9");
 	var_ac3fdee1 = 0;
 	var_b82ff340 = undefined;
+	e_trigger = getent("e_possess_trigger", "targetname");
 	while(var_ac3fdee1 < 4)
 	{
 		while(isdefined(level.var_8491c913))
@@ -1183,6 +1184,7 @@ function function_3c1f242b()
 {
 	level endon(#"hash_38fe2a57d5f9d6ba");
 	var_ce72b8cb = self.stub.var_ce72b8cb;
+	var_9d29e393 = self.stub.script_int;
 	while(true)
 	{
 		waitresult = undefined;
@@ -1500,6 +1502,7 @@ function function_520a8a02()
 {
 	level endon(#"hash_69c33933b1ab3e2b");
 	var_77663e28 = getent("t_imp_in", "targetname");
+	var_a5b74fed = getentarray("mdl_crp_gates", "targetname");
 	while(!level flag::get(#"hash_61263135b6fb6340"))
 	{
 		if(array::is_touching(util::get_active_players(), var_77663e28))

@@ -52,6 +52,7 @@ private function drawtraversal(traversal, entity, animation, mocompanimblendoutt
 	currentposition = traversal.startposition;
 	nextposition = currentposition;
 	segments = 0;
+	segmenttime = 0;
 	while(segmenttime <= animlength)
 	{
 		nexttime = segmenttime + float(function_60d95f53()) / 1000;
@@ -122,6 +123,7 @@ private function drawtraversalsection(section, entity, animation, mocompanimblen
 	nextposition = currentposition;
 	segments = 0;
 	deltatoendtotal = (0, 0, 0);
+	segmenttime = section.starttime;
 	while(segmenttime <= section.endtime)
 	{
 		nexttime = segmenttime + float(function_60d95f53()) / 1000;
@@ -829,6 +831,7 @@ private function debuglocoexplosion(entity)
 		startorigin = entity.origin;
 		startyawforward = anglestoforward((0, entity.angles[1], 0));
 		damageyawforward = anglestoforward((0, entity.damageyaw - entity.angles[1], 0));
+		starttime = gettime();
 		while(gettime() - starttime < 10000)
 		{
 			recordsphere(startorigin, 5, (1, 0, 0), "", entity);

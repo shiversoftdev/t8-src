@@ -138,6 +138,7 @@ function function_2dca9b5b(localclientnum, var_630fc8b)
 {
 	level endon(#"game_ended");
 	self endon_callback(&function_853e8354, #"death");
+	var_50a1494c = var_630fc8b;
 	while(isalive(self))
 	{
 		if(self isplayerswimmingunderwater())
@@ -893,6 +894,7 @@ function function_b7fc06b2(localclientnum, oldval, newval, bnewent, binitialsnap
 	wait(25);
 	var_17623425 = 4;
 	n_time = 0;
+	var_1713b028 = 4 - 1 / 45 - 25 / 1;
 	while(var_17623425 > 1)
 	{
 		n_time = n_time + 1;

@@ -1366,6 +1366,7 @@ function server_wait(localclientnum, seconds, waitbetweenchecks, level_endon)
 		waitcompletedsuccessfully = 0;
 		starttime = getservertime(0);
 		lasttime = starttime;
+		endtime = starttime + int(seconds * 1000);
 		while(getservertime(0) < endtime && getservertime(0) >= lasttime)
 		{
 			lasttime = getservertime(0);
@@ -2168,6 +2169,7 @@ function button_held_think(which_button)
 			self._holding_button = [];
 		}
 		self._holding_button[which_button] = 0;
+		time_started = 0;
 		while(true)
 		{
 			if(self._holding_button[which_button])
@@ -2390,6 +2392,7 @@ function lerp_generic(localclientnum, duration, callback, vararg)
 	currenttime = starttime;
 	elapsedtime = 0;
 	defaultargs = array(currenttime, elapsedtime, localclientnum, duration);
+	args = arraycombine(defaultargs, vararg, 1, 0);
 	while(elapsedtime < duration)
 	{
 		if(isdefined(callback))

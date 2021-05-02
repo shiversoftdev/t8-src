@@ -206,6 +206,7 @@ private function boss_fight()
 	level thread function_95785950(187, level.var_8b66546e, "m_quest", "basket_nag");
 	level thread function_95785950(211, level.var_49328379, "m_quest", "heart_nag");
 	array::thread_all(level.players, &function_3d487e02);
+	var_e1892f1c = spawner::simple_spawn_single(sp_spawner, &function_f9da4403, var_47312393, #"hash_266f53fb994e6120");
 	while(!isdefined(var_e1892f1c.ai.riders) || var_e1892f1c.ai.riders.size < 2)
 	{
 		wait(0.1);
@@ -266,6 +267,7 @@ private function function_33935d5f()
 	self notify("51b1374f19c0864a");
 	self endon("51b1374f19c0864a");
 	self.b_exploded = 0;
+	e_clip = getent(self.target, "targetname");
 	while(!self.b_exploded)
 	{
 		waitresult = undefined;
@@ -352,6 +354,7 @@ private function function_3d487e02()
 	self endon(#"disconnect");
 	b_success = 0;
 	params = function_4d1e7b48(#"hash_12a64221f4d27f9b");
+	weapon = getweapon(#"eq_molotov");
 	while(true)
 	{
 		waitresult = undefined;
@@ -475,6 +478,7 @@ private function function_1a05e10c(str_notify, var_f13787ad, var_ca8a3a53)
 	self notify("588886ce796505cd");
 	self endon("588886ce796505cd");
 	level endon(#"end_game", #"boss_battle_done");
+	b_success = 0;
 	while(!b_success)
 	{
 		level waittill(str_notify);

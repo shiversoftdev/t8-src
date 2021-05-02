@@ -491,6 +491,7 @@ function function_e1629752()
 	level endon(#"end_game");
 	var_9b1b2f2d = struct::get(#"hash_224dd0372d9a6eff");
 	var_9b1b2f2d zm_unitrigger::create(&function_104e396b, (96, 180, 96), undefined, undefined, 1);
+	var_4d573637 = getentarray("mdl_fertilizer_component_1", "targetname");
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -545,6 +546,7 @@ function function_12944b2e()
 	{
 		var_4059c402 = 3;
 	}
+	var_4d573637 = getentarray("mdl_fertilizer_component_1", "targetname");
 	while(true)
 	{
 		level waittill(#"end_of_round");
@@ -840,6 +842,7 @@ function function_9774bbc6()
 	mdl_grinder playsound(#"hash_40a6a28923cf0f3e");
 	mdl_grinder showpart("skull_jnt");
 	mdl_grinder val::set(#"grinder", "takedamage", 1);
+	mdl_grinder.health = 9999;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -1375,9 +1378,11 @@ function function_f082568e(var_eb3b90d)
 {
 	level endon(#"end_game", #"hash_1958c9ee2f84d722", #"hash_498204258011f15e");
 	var_e2f55613 = getspawnerarray("spawner_zm_zombie", "targetname")[0];
+	var_3a5e9cb8 = 0;
 	while(true)
 	{
 		s_spawn = array::random(var_eb3b90d);
+		ai = undefined;
 		while(!isdefined(ai))
 		{
 			ai = zombie_utility::spawn_zombie(var_e2f55613, "fertilizer_zombies", s_spawn, max(15, level.round_number));
@@ -1432,6 +1437,7 @@ function function_d1499d43(var_4d6e64ec = 0)
 	self.maxhealth = self.health;
 	self.var_dcef4be8 = 0;
 	self.var_f3ab07e = 0;
+	var_11ecbb2b = arraygetclosest(self.origin, level.players);
 	while(self.health > 0)
 	{
 		var_be17187b = undefined;
@@ -1688,6 +1694,7 @@ function function_d4bfb8bd(var_95f17a69, str_zone = "")
 			}
 		}
 	}
+	var_4611619a = undefined;
 	while(!isdefined(var_4611619a))
 	{
 		var_4611619a = namespace_acd9c698::function_69f309b(1, "ranged", &function_59d775d2, 1, s_spawn);
@@ -2295,6 +2302,7 @@ function function_ee7d29f3(var_eb3b90d)
 		n_players = util::get_active_players().size;
 		var_55924268 = max(7, n_players * 4);
 		s_spawn = array::random(var_eb3b90d);
+		ai = undefined;
 		while(!isdefined(ai))
 		{
 			ai = zombie_utility::spawn_zombie(var_e2f55613, "ra_puzzle_add_zombies", s_spawn, level.round_number);
@@ -2362,6 +2370,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		case "hash_2d6ef2a2d01b0435":
 		{
 			var_1c62893d = getspawnerarray("zombie_spawner_marauder", "targetname")[0];
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(var_1c62893d, "ra_puzzle_answer_spawn", s_spawn, level.round_number);
@@ -2378,6 +2387,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		case "hash_5354e8c97036ff7d":
 		{
 			var_1c62893d = getspawnerarray("zombie_spawner_destroyer", "targetname")[0];
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(var_1c62893d, "ra_puzzle_answer_spawn", s_spawn, level.round_number);
@@ -2394,6 +2404,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		case "hash_6d02ee72a5e9eff5":
 		{
 			var_1c62893d = getspawnerarray("zombie_spawner_tiger", "targetname")[0];
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(var_1c62893d, "ra_puzzle_answer_spawn", s_spawn, level.round_number);
@@ -2409,6 +2420,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		}
 		case "hash_4bea88a8c87cd187":
 		{
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "ra_puzzle_answer_spawn", var_acfc7a32, level.round_number);
@@ -2419,6 +2431,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 			ai.b_ignore_cleanup = 1;
 			ai.ignore_enemy_count = 1;
 			ai.var_dd6fe31f = 1;
+			ai.no_powerups = 1;
 			while(namespace_3fffba66::function_abf1dcb4(#"blight_father"))
 			{
 				waitframe(1);
@@ -2428,6 +2441,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		}
 		case "hash_227a3eb9d70c67d4":
 		{
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "ra_puzzle_answer_spawn", s_spawn, level.round_number);
@@ -2438,6 +2452,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 			ai.b_ignore_cleanup = 1;
 			ai.ignore_enemy_count = 1;
 			ai.var_dd6fe31f = 1;
+			ai.no_powerups = 1;
 			while(namespace_3fffba66::function_abf1dcb4(#"hash_5cfa99582cc66c59"))
 			{
 				waitframe(1);
@@ -2447,6 +2462,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		}
 		case "hash_415ec8ad41ee9f10":
 		{
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "ra_puzzle_answer_spawn", s_spawn, level.round_number);
@@ -2457,6 +2473,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 			ai.b_ignore_cleanup = 1;
 			ai.ignore_enemy_count = 1;
 			ai.var_dd6fe31f = 1;
+			ai.no_powerups = 1;
 			while(namespace_3fffba66::function_abf1dcb4(#"hash_78ca8e8e6bdbc8ab"))
 			{
 				waitframe(1);
@@ -2466,6 +2483,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		}
 		case "hash_2b9da12cd545c065":
 		{
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "ra_puzzle_answer_spawn", var_acfc7a32, level.round_number);
@@ -2476,6 +2494,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 			ai.b_ignore_cleanup = 1;
 			ai.ignore_enemy_count = 1;
 			ai.var_dd6fe31f = 1;
+			ai.no_powerups = 1;
 			while(namespace_3fffba66::function_abf1dcb4(#"hash_5d6b55906fc82ff2"))
 			{
 				waitframe(1);
@@ -2485,6 +2504,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 		}
 		case "hash_61b7012ad3572345":
 		{
+			ai = undefined;
 			while(!isdefined(ai))
 			{
 				ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "ra_puzzle_answer_spawn", s_spawn, level.round_number);
@@ -2495,6 +2515,7 @@ function function_bf12114b(str_spawner, var_eb3b90d)
 			ai.b_ignore_cleanup = 1;
 			ai.ignore_enemy_count = 1;
 			ai.var_dd6fe31f = 1;
+			ai.no_powerups = 1;
 			while(namespace_3fffba66::function_abf1dcb4(#"hash_266b62e342076a90"))
 			{
 				waitframe(1);
@@ -3082,6 +3103,7 @@ function function_d6a5d146()
 	var_1cbe19ec = 0;
 	n_health = 8500;
 	var_e41dced6 = 1416.667;
+	var_45ad4c92 = 0;
 	while(!var_1cbe19ec)
 	{
 		var_be17187b = undefined;
@@ -3759,6 +3781,7 @@ function function_43bf2fcf()
 {
 	level endon(#"hash_50e2bacfe0486f6a");
 	self function_f5f48814();
+	b_activated = 0;
 	while(!b_activated)
 	{
 		var_be17187b = undefined;
@@ -3818,6 +3841,7 @@ function function_ee1297e4(var_9110c374)
 {
 	level endon(#"hash_50e2bacfe0486f6a");
 	self endon(#"death");
+	var_82dde107 = getent("e_challenge_center_stage", "targetname");
 	while(self istouching(var_82dde107))
 	{
 		waitframe(1);
@@ -4202,6 +4226,7 @@ function function_65a317ae(str_spawn)
 	var_eb3b90d = struct::get_array(str_spawn);
 	var_c18ec884 = min(1 + level.players.size, 3);
 	var_e482422a = array(#"destroyer", #"marauder", #"tiger");
+	a_ai_spawned = [];
 	while(true)
 	{
 		a_ai_spawned = array::remove_dead(a_ai_spawned);
@@ -4252,6 +4277,7 @@ function function_64afc2b6(str_spawn)
 	n_players = level.players.size;
 	var_c18ec884 = min(2 + level.players.size, 4);
 	var_e482422a = array(#"destroyer", #"marauder");
+	a_ai_spawned = [];
 	while(true)
 	{
 		a_ai_spawned = array::remove_dead(a_ai_spawned);
@@ -4332,6 +4358,7 @@ function function_4ffa3775()
 	}
 	var_c51ddfeb = array::randomize(var_78db5c6a);
 	var_38b6dcc0 = 7 + level.players.size;
+	a_ai_spawned = [];
 	while(true)
 	{
 		a_ai_spawned = array::remove_dead(a_ai_spawned);
@@ -4390,6 +4417,7 @@ function function_ba568d37(str_enemy, var_eb3b90d)
 		var_eb3b90d = array(var_eb3b90d);
 	}
 	s_spawn = array::random(var_eb3b90d);
+	ai_enemy = undefined;
 	while(!isdefined(ai_enemy))
 	{
 		switch(str_enemy)
@@ -4697,6 +4725,7 @@ private function function_1b37b8c4()
 		waitresult = self.t_trig waittill(#"hash_76cfb14a2d03f74b");
 		if(self function_4c6f5906(waitresult.position, waitresult.direction, waitresult.attacker))
 		{
+			var_370a1aca = self;
 			while(isdefined(var_370a1aca))
 			{
 				var_370a1aca thread function_8970492e(1);
@@ -5075,6 +5104,7 @@ function function_ad6024e7(var_77104def, var_19e802fa)
 function function_61ab53d1()
 {
 	level endon(#"end_game");
+	var_89bffd7b = getent("defend_pplate_trig", "targetname");
 	while(true)
 	{
 		a_e_players = util::get_active_players();
@@ -5106,6 +5136,7 @@ function function_61ab53d1()
 function function_2eb4a526()
 {
 	level endon(#"end_game", #"special_round", #"hash_4fd3d0c01f9b4c30");
+	var_89bffd7b = getent("defend_pplate_trig", "targetname");
 	while(true)
 	{
 		a_e_players = util::get_active_players();
@@ -5135,6 +5166,7 @@ private function function_1d8a7744()
 	/#
 		level endon(#"hash_70e0ed1ceb5f639");
 		level flag::wait_till(#"hash_2bf040db75b1dac7");
+		var_d411b102 = getent("", "");
 		while(true)
 		{
 			var_88706ea7 = undefined;
@@ -5328,6 +5360,7 @@ private function defend_timer()
 	level flag::set(#"hash_2bf040db75b1dac7");
 	n_total_time = 300;
 	var_45fb490a = 0;
+	var_fc655932 = 0;
 	while(level.var_ec9554ad <= n_total_time)
 	{
 		wait(0.1);
@@ -5485,6 +5518,7 @@ private function function_faee09d2()
 	var_617c504e = 9;
 	var_76ed7b30 = 9;
 	var_3cb006b6 = 9.230769;
+	level.var_34a4aede = array({#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"normal", #time:0}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 1.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 2}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 3}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:var_617c504e * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"tiger", #time:var_617c504e * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"tiger", #time:var_617c504e * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 6}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:var_617c504e * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 7.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 7.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:3, #archetype:#"tiger", #time:var_617c504e * 8}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:var_617c504e * 9}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:var_617c504e * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 2}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"corrosive", #time:90 + var_76ed7b30 * 4}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 4}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:90 + var_76ed7b30 * 4}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + var_76ed7b30 * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + var_76ed7b30 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"corrosive", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"corrosive", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + var_76ed7b30 * 8}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"tiger", #time:180 + var_3cb006b6 * 2}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 2.5}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + var_3cb006b6 * 3}, {#hash_6d1df6c7:3, #lanes:array(1, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 4}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + var_3cb006b6 * 4}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:180 + var_3cb006b6 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:180 + var_3cb006b6 * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + var_3cb006b6 * 7}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 8}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 8.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:2, #archetype:#"hash_59e711c9eeda26ca", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:1, #archetype:#"corrosive", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:3, #archetype:#"tiger", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:2, #lanes:array(2), #quantity:2, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:4, #lanes:array(1, 3), #quantity:2, #archetype:#"hash_59e711c9eeda26ca", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + var_3cb006b6 * 11}, {#hash_6d1df6c7:1, #lanes:array(1), #quantity:1, #archetype:#"hash_5e93d18e6d59f68f", #time:180 + var_3cb006b6 * 11}, {#hash_6d1df6c7:2, #lanes:array(3), #quantity:1, #archetype:#"hash_5e93d18e6d59f68f", #time:180 + var_3cb006b6 * 11}, {#hash_6d1df6c7:4, #lanes:array(3), #quantity:1, #archetype:#"hash_5e93d18e6d59f68f", #time:180 + var_3cb006b6 * 11.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + var_3cb006b6 * 12}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + var_3cb006b6 * 12.5});
 	while(!level flag::get(#"hash_277d03629ade12e8"))
 	{
 		level waittill(#"hash_54e0394dae6dd7");
@@ -5548,6 +5582,7 @@ private function function_daaf6587(var_4bf95f4c)
 			{
 				case "normal":
 				{
+					ai = undefined;
 					while(!isdefined(ai))
 					{
 						wait(0.5);
@@ -5557,6 +5592,7 @@ private function function_daaf6587(var_4bf95f4c)
 				}
 				case "plasma":
 				{
+					ai = undefined;
 					while(!isdefined(ai))
 					{
 						ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_trilane_spawn", var_6454115e, function_92d8f779());
@@ -5574,6 +5610,7 @@ private function function_daaf6587(var_4bf95f4c)
 				}
 				case "corrosive":
 				{
+					ai = undefined;
 					while(!isdefined(ai))
 					{
 						ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_trilane_spawn", var_6454115e, function_92d8f779());
@@ -5601,6 +5638,7 @@ private function function_daaf6587(var_4bf95f4c)
 				}
 				case "hash_5e93d18e6d59f68f":
 				{
+					ai = undefined;
 					while(!isdefined(ai))
 					{
 						ai = zombie_utility::spawn_zombie(level.zombie_spawners[0], "defend_trilane_spawn", var_6454115e, level.round_number);
@@ -5619,6 +5657,7 @@ private function function_daaf6587(var_4bf95f4c)
 				case "tiger":
 				{
 					var_1c62893d = getspawnerarray("zombie_spawner_tiger", "targetname")[0];
+					ai = undefined;
 					while(!isdefined(ai))
 					{
 						ai = zombie_utility::spawn_zombie(var_1c62893d, "defend_trilane_spawn", var_6454115e, max(20, level.round_number));
@@ -5655,6 +5694,7 @@ private function function_aa67baee()
 {
 	level endon(#"end_game");
 	level.var_e7f6d6dd = array({#delay:&function_c12ff921, #powerup:"full_ammo", #time:95}, {#delay:&function_c12ff921, #powerup:"full_ammo", #time:185});
+	s_loc = struct::get(#"hash_74b68c7b7af8e368");
 	while(!level flag::get(#"hash_277d03629ade12e8"))
 	{
 		level waittill(#"hash_68337916c80885b2");
@@ -5945,6 +5985,7 @@ function function_d4e923e7()
 	self endon(#"disconnect");
 	var_3de22b91 = struct::get_array("s_zm_towers_port_to_boss", "targetname");
 	i = 0;
+	s_loc = var_3de22b91[i];
 	while(positionwouldtelefrag(s_loc.origin))
 	{
 		i++;
@@ -6111,6 +6152,7 @@ function boss_fight()
 	var_47312393 = struct::get("towers_boss_location_1", "script_noteworthy");
 	sp_spawner = getent("zombie_towers_boss_spawner", "script_noteworthy");
 	trigger::wait_till("large_gate_l_trigger", "targetname");
+	var_e1892f1c = spawner::simple_spawn_single(sp_spawner, &function_f9da4403, var_47312393, #"hash_266f53fb994e6120");
 	while(!isdefined(var_e1892f1c.ai.riders) || var_e1892f1c.ai.riders.size < 2)
 	{
 		wait(0.1);
@@ -6434,6 +6476,7 @@ function function_e9d463a0()
 					{
 						var_6454115e = function_30868c0b(var_52f2e0ec, "tiger_location");
 						var_1c62893d = getspawnerarray("zombie_spawner_tiger", "targetname")[0];
+						ai = undefined;
 						while(!isdefined(ai))
 						{
 							ai = zombie_utility::spawn_zombie(var_1c62893d, "boss_filler", var_6454115e, max(25, level.round_number));
@@ -6635,6 +6678,7 @@ private function function_3a3bf6e8()
 {
 	level endon(#"end_game");
 	t_spawn = getent("tiger_obelisk_trig", "targetname");
+	var_8c57f589 = struct::get_array("tiger_boss_obelisk_scene", "targetname");
 	while(true)
 	{
 		waitresult = undefined;
@@ -6735,6 +6779,7 @@ function function_9959381()
 private function function_33935d5f()
 {
 	self.b_exploded = 0;
+	e_clip = getent(self.target, "targetname");
 	while(!self.b_exploded)
 	{
 		if(isdefined(self.var_7475d82e) && self.var_7475d82e)
@@ -6779,6 +6824,7 @@ function function_3d487e02()
 	self endon(#"disconnect");
 	b_success = 0;
 	params = function_4d1e7b48(#"hash_12a64221f4d27f9b");
+	weapon = getweapon(#"eq_molotov");
 	while(true)
 	{
 		waitresult = undefined;
@@ -6948,6 +6994,7 @@ function function_1a05e10c(str_notify, var_f13787ad, var_ca8a3a53)
 	{
 		self endon(#"death");
 	}
+	b_success = 0;
 	while(true)
 	{
 		self waittill(str_notify);

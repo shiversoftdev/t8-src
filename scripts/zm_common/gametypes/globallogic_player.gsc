@@ -322,6 +322,7 @@ function callback_playerconnect()
 function spectate_player_watcher()
 {
 	self endon(#"disconnect");
+	self.watchingactiveclient = 1;
 	while(true)
 	{
 		if(self.pers[#"team"] != "spectator" || level.gameended)

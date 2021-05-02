@@ -154,6 +154,7 @@ function function_790e5d6()
 	self endon(#"death");
 	self endon(#"disconnect");
 	self endon(#"hash_285d5f0628929bdb");
+	var_a3404ecb = 0;
 	while(!var_a3404ecb)
 	{
 		self waittill(#"hash_2a12c37201945891");

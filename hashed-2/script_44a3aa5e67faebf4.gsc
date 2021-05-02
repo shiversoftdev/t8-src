@@ -188,6 +188,7 @@ function function_dc61ccae(vnd_start, var_6f06d19d, var_ca144d1e)
 					record3dtext("" + var_c246e8d5, var_8e89eaf2 + var_c246e8d5, (1, 1, 1), "");
 				#/
 			}
+			var_31120f24 = vnd_start;
 			while(isdefined(var_31120f24.target))
 			{
 				var_bb4eaebf = getvehiclenode(var_31120f24.target, "targetname");

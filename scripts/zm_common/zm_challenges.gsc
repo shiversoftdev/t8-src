@@ -769,6 +769,7 @@ function perk_drink_tracking()
 function function_73696786()
 {
 	self endon(#"disconnect");
+	var_c0e0819a = 1;
 	while(true)
 	{
 		var_88706ea7 = undefined;

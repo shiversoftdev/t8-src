@@ -143,6 +143,7 @@ function function_f89a4434(localclientnum)
 	self.enemy endon(#"death");
 	var_82dde107 = getent(localclientnum, "vol_ww_ouranos_center_fletching", "targetname");
 	var_8ba8f5fa = getent(localclientnum, "vol_ww_ouranos_cliff_fletching", "targetname");
+	var_97d203c3 = getent(localclientnum, "vol_ww_ouranos_serpent_fletching", "targetname");
 	while(isdefined(self))
 	{
 		if(isdefined(var_82dde107) && istouching(self.origin, var_82dde107))

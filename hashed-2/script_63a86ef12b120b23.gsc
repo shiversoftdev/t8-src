@@ -1371,6 +1371,7 @@ function function_d14a3750(var_c34665fc)
 function function_d3dc001e(var_a23636f4)
 {
 	self endon_callback(&function_e7e5d6f5, #"hash_43074b8aec1899da", #"death");
+	self.var_80612bea = 1;
 	while(true)
 	{
 		slot = self gadgetgetslot(var_a23636f4);

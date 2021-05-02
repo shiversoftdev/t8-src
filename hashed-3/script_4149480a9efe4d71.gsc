@@ -422,6 +422,7 @@ function track_player_eyes()
 	self notify(#"track_player_eyes");
 	self endon(#"disconnect", #"track_player_eyes");
 	b_saw_the_wth = 0;
+	var_616e76c5 = struct::get("s_sq_wth", "targetname");
 	while(!b_saw_the_wth)
 	{
 		for(n_time = 0; self adsbuttonpressed() && n_time < 25; n_time++)
@@ -490,6 +491,7 @@ function laundry_day(var_a276c861)
 {
 	var_5b4aa809 = struct::get("s_laundry_day", "targetname");
 	var_5b4aa809.t_damage = spawn("trigger_damage", var_5b4aa809.origin, 0, 64, 64);
+	var_57724709 = 0;
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -589,6 +591,7 @@ private function function_35a7187c()
 	var_3253d8db = getent("graphic_01_mover", "targetname");
 	var_474ede10 linkto(var_3253d8db);
 	t_damage = spawn("trigger_damage", var_3253d8db.origin, 0, 64, 64);
+	v_end_pos = (-1052.89, 8901.02, 1362);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -617,6 +620,7 @@ private function function_35a7187c()
 private function function_7f53281f()
 {
 	var_915a9896 = getent("graphic_02_mover", "targetname");
+	t_damage = spawn("trigger_damage", var_915a9896.origin, 0, 64, 64);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -647,6 +651,7 @@ private function function_62878c3d()
 	var_a6fa1406 = getent("graphic_03_mover", "targetname");
 	t_damage = spawn("trigger_damage", var_a6fa1406.origin + vectorscale((0, 0, -1), 10), 0, 64, 64);
 	v_end_pos = (-432, 9110, 1397);
+	v_end_angles = (38, 90, 0);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -676,6 +681,7 @@ private function function_62878c3d()
 private function function_83abdd2b()
 {
 	var_e33915d6 = getent("graphic_04", "targetname");
+	t_damage = spawn("trigger_damage", var_e33915d6.origin - vectorscale((0, 0, 1), 30), 0, 64, 64);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -704,6 +710,7 @@ private function function_83abdd2b()
 private function function_c7c805fa()
 {
 	var_ffa14ea6 = getent("graphic_05", "targetname");
+	v_end_pos = (139.543, 6704.51, 98.597);
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -819,10 +826,12 @@ function function_6272b55b()
 {
 	self endon_callback(&function_96c2cea0, #"disconnect");
 	level endon(#"hash_3698278a3a5d8beb", #"hash_23a4d169a87154ff");
+	var_f67ecd64 = getent("box_lock", "targetname");
 	while(isdefined(var_f67ecd64))
 	{
 		var_88706ea7 = undefined;
 		var_88706ea7 = self waittill(#"throwing_tomahawk");
+		var_288eb627 = var_88706ea7.e_grenade;
 		while(isdefined(var_288eb627))
 		{
 			if(distancesquared(var_288eb627.origin, var_f67ecd64.origin) < 10000 && (isdefined(var_f67ecd64.var_1e4fbc72) && var_f67ecd64.var_1e4fbc72) && !isdefined(var_f67ecd64.var_3d3748c4) && !self hasweapon(getweapon(#"hash_78e66b21aa05c753")))
@@ -1039,6 +1048,7 @@ function function_766c869a(var_288eb627)
 {
 	self notify(#"hash_381a1d8c3e2bdb50");
 	self endon(#"disconnect", #"hash_18c7b52cebad7171", #"hash_381a1d8c3e2bdb50");
+	var_e9d35a09 = getent("t_pebble_is_on_fire", "targetname");
 	while(true)
 	{
 		if(self istouching(var_e9d35a09) || (isdefined(var_288eb627) && var_288eb627 istouching(var_e9d35a09)))
@@ -1081,6 +1091,7 @@ function function_1877cfe4(var_288eb627)
 {
 	self notify(#"hash_67898531e66a70ff");
 	self endon(#"disconnect", #"hash_18c7b52cebad7171", #"hash_67898531e66a70ff");
+	var_76f21e6b = array("zone_catwalk_03", "zone_catwalk_04");
 	while(true)
 	{
 		str_zone = self zm_zonemgr::get_player_zone();
@@ -1217,6 +1228,7 @@ function function_dab3dcc3()
 {
 	self endon(#"disconnect");
 	var_64de1b5a = struct::get_array("hr_step_2_glyph");
+	var_c6b58daa = array::random(var_64de1b5a);
 	while(isdefined(var_c6b58daa.e_owner))
 	{
 		var_c6b58daa = array::random(var_64de1b5a);
@@ -1431,6 +1443,7 @@ function function_13ebfa5e(var_a276c861, var_19e802fa)
 */
 function function_90dac8fa()
 {
+	var_b2afb550 = getent("zombie_ghost_dog_spawner", "script_noteworthy");
 	while(true)
 	{
 		if(!namespace_59ff1d6c::function_901b751c(#"hash_4deb3ae7a73c87f3"))
@@ -1447,6 +1460,7 @@ function function_90dac8fa()
 		{
 			if(e_player flag::exists(#"hash_120fbb364796cd32") && e_player flag::get(#"hash_120fbb364796cd32") && !e_player flag::get(#"hash_11ab20934759ebc3"))
 			{
+				var_3c29eed1 = array::random(var_e6a69e36);
 				while(!zm_utility::is_point_inside_enabled_zone(var_3c29eed1.origin))
 				{
 					var_3c29eed1 = array::random(var_e6a69e36);
@@ -1736,6 +1750,7 @@ function function_ef5a3a9d()
 function function_f5a3ba79()
 {
 	level flag::wait_till("power_on1");
+	a_items = getitemarray();
 	while(true)
 	{
 		var_eecd6160 = getitemarray();

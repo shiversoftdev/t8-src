@@ -253,6 +253,7 @@ function function_abf0bf8c()
 {
 	self.var_740e1e0e endon(#"death");
 	self.var_740e1e0e setcandamage(1);
+	self.var_740e1e0e.health = 9999;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -432,6 +433,7 @@ function function_6941c919()
 {
 	self.t_damage = spawn("trigger_damage_new", self.origin, 0, 8, 8);
 	self.t_damage endon(#"death");
+	var_54cae2d8 = getweapon(#"zhield_dw");
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -464,6 +466,7 @@ function function_1dc8ad86()
 {
 	self endon(#"death");
 	var_1fc5672 = 0;
+	var_e0812068 = 0;
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -578,6 +581,7 @@ function function_15c82a8a(var_a276c861)
 private function function_eb6f728f()
 {
 	self endon(#"hash_20911f4af4e75472");
+	var_6d66c4ba = getweapon(#"hash_19a4271a5452dc0b");
 	while(true)
 	{
 		if(level flag::get("round_reset"))
@@ -674,6 +678,7 @@ function function_9bb74431(var_f0e6c7a2, ent)
 */
 function function_ed59d8e4()
 {
+	var_d9d51621 = undefined;
 	while(!isdefined(var_d9d51621))
 	{
 		a_players = util::get_active_players(#"allies");

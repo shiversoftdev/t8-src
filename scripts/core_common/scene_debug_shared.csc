@@ -60,6 +60,7 @@ function run_scene_tests()
 		level endon(#"run_scene_tests");
 		level.scene_test_struct = spawnstruct();
 		level.scene_test_struct.origin = (0, 0, 0);
+		level.scene_test_struct.angles = (0, 0, 0);
 		while(true)
 		{
 			str_scene = getdvarstring(#"run_client_scene");
@@ -168,6 +169,7 @@ function toggle_scene_menu()
 {
 	/#
 		setdvar(#"client_scene_menu", 0);
+		n_scene_menu_last = -1;
 		while(true)
 		{
 			n_scene_menu = getdvarstring(#"client_scene_menu");
@@ -314,6 +316,7 @@ function display_scene_menu(str_type, str_scene)
 		up_pressed = 0;
 		down_pressed = 0;
 		held = 0;
+		old_selected = selected;
 		while(true)
 		{
 			if(held)
@@ -424,6 +427,7 @@ function display_scene_menu(str_type, str_scene)
 				{
 					if(names[selected] == "")
 					{
+						level.scene_menu_shot_index = selected;
 						while(level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed(""))
 						{
 							waitframe(1);
@@ -758,6 +762,7 @@ function debug_display()
 		self endon(#"death");
 		if(!(isdefined(self.debug_display) && self.debug_display) && self != level)
 		{
+			self.debug_display = 1;
 			while(true)
 			{
 				level flagsys::wait_till("");

@@ -328,6 +328,7 @@ function function_dc9c5c32()
 		level.var_8200dc81 namespace_509a75d1::function_6a0d675d(#"hash_38a4d1f9d149b97b", 0, 0);
 		if(!(isdefined(level.var_15747fb1) && level.var_15747fb1 || (isdefined(level.var_4a03b294) && level.var_4a03b294) || !namespace_59ff1d6c::function_901b751c(#"zmpowerstate") == 1))
 		{
+			var_a9e4d1ee = zm_utility::get_number_of_valid_players() + 2;
 			while(isdefined(level.intermission) && level.intermission)
 			{
 				wait(1);
@@ -773,12 +774,14 @@ function function_53ffbb2e(var_cf2bbe1e)
 */
 function function_778aec95()
 {
+	self.var_a1edb69e = 0;
 	while(self.var_a1edb69e < 10)
 	{
 		var_bd1bdc73 = undefined;
 		var_bd1bdc73 = self waittill(#"trigger_activated");
 		e_who = var_bd1bdc73.e_who;
 		var_3ba1f680 = 1;
+		var_f1c779a7 = self.script_string + "_" + self.script_int;
 		while(var_3ba1f680 && (!level flag::get(#"hash_1478cafcd626c361") || level flag::get(#"circuit_step_complete")))
 		{
 			if(isdefined(e_who))
@@ -1257,6 +1260,7 @@ function function_993de6f7()
 	while(level.var_bcaf8591 < 4 && n_spawned < n_to_spawn)
 	{
 		s_spawn_loc = undefined;
+		var_63cf6c7b = 0;
 		while(isdefined(level.intermission) && level.intermission)
 		{
 			var_63cf6c7b = 1;
@@ -1406,6 +1410,7 @@ function function_751e9580()
 	if(level.var_154aee78 <= namespace_a28acff3::get_round_number() && level.var_bcaf8591 > 0 && (!level flag::get(#"hash_1478cafcd626c361") || level flag::get(#"circuit_step_complete")))
 	{
 		n_zombie_count = level.var_38b15968;
+		var_26d4dd52 = floor(randomfloatrange(floor(n_zombie_count / 5), floor(n_zombie_count * 2 / 3)));
 		while(level.var_9427911d > var_26d4dd52)
 		{
 			wait(1);
@@ -1755,6 +1760,7 @@ function function_2791c411()
 	{
 		level flag::wait_till(#"bunker_beds_to_bunker_power");
 	}
+	level.var_9808f4d = zombie_utility::function_d2dfacfd(#"hash_7d5a25e2463f7fc5");
 	while(!level flag::get(#"hash_40856b65dff0f6eb"))
 	{
 		level function_2330b278();
@@ -2062,6 +2068,7 @@ function function_2330b278()
 */
 function function_748fcb3c()
 {
+	is_complete = 0;
 	while(!is_complete)
 	{
 		var_be17187b = undefined;
@@ -2288,6 +2295,7 @@ function function_7ca1064d(s_params)
 */
 function function_696a0eca()
 {
+	var_e6da0a39 = 0;
 	while(level flag::get(#"hash_639e8274a1b57729") && !level flag::get(#"hash_40856b65dff0f6eb"))
 	{
 		var_d1ef124f = 0;

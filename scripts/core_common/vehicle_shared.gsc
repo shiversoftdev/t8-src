@@ -192,6 +192,7 @@ function trigger_process(trigger)
 	gates = setup_script_gatetrigger(trigger);
 	script_vehicledetour = isdefined(trigger.script_vehicledetour) && (is_node_script_origin(trigger) || is_node_script_struct(trigger));
 	detoured = isdefined(trigger.detoured) && (!(is_node_script_origin(trigger) || is_node_script_struct(trigger)));
+	gotrigger = 1;
 	while(gotrigger)
 	{
 		trigger trigger::wait_till();
@@ -674,6 +675,7 @@ function paths(node)
 	/#
 		self thread debug_vehicle_paths();
 	#/
+	currentpoint = pathstart;
 	while(isdefined(currentpoint))
 	{
 		waitresult = undefined;
@@ -2225,6 +2227,7 @@ function _play_looped_fx_on_tag_origin_update(tag, effectorigin)
 	effectorigin.angles = self gettagangles(tag);
 	effectorigin.origin = self gettagorigin(tag);
 	effectorigin.forwardvec = anglestoforward(effectorigin.angles);
+	effectorigin.upvec = anglestoup(effectorigin.angles);
 	while(isdefined(self) && self.classname == "script_vehicle" && self getspeedmph() > 0)
 	{
 		emodel = get_dummy();
@@ -2604,6 +2607,7 @@ function liftoff(height = 512)
 */
 function wait_till_stable()
 {
+	timer = gettime() + 400;
 	while(isdefined(self))
 	{
 		if(self.angles[0] > 12 || self.angles[0] < -1 * 12)
@@ -3618,6 +3622,7 @@ function debug_vehicle_paths()
 {
 	/#
 		self endon(#"death", #"newpath", #"endpath", #"reached_dynamic_path_end");
+		nextnode = self.currentnode;
 		while(true)
 		{
 			if(getdvarint(#"debug_vehicle_paths", 0) > 0)
@@ -4581,6 +4586,7 @@ function vehicle_spawner_tool()
 		{
 			return;
 		}
+		type_index = 0;
 		while(true)
 		{
 			if(getdvarint(#"debug_vehicle_spawn", 0) > 0)
@@ -4780,6 +4786,7 @@ private function function_bbd487c2()
 	self endon(#"death", #"enter_vehicle");
 	e_player endon(#"disconnect");
 	level endon(#"game_ended");
+	b_do_delete = 0;
 	while(!b_do_delete)
 	{
 		wait(5);
@@ -5310,6 +5317,7 @@ function update_flare_ability(player, var_55716d54, active_time = 5, cooldown_ti
 	{
 		waitframe(1);
 	}
+	self.var_40d7d1f2 = 0;
 	while(isdefined(player) && (isdefined(player.vh_vehicle) || self.var_40d7d1f2))
 	{
 		/#
@@ -5523,6 +5531,7 @@ function function_3ff1d5d6(owner, gravity, var_2434a7ac, var_2d0d8b66, max_time,
 		var_abfdfad5 = 0;
 	}
 	velocity = function_e863c9af(owner, anglestoforward(var_4626a28f), var_abfdfad5);
+	var_c1ad7c79 = vectornormalize(velocity);
 	while(gettime() < end_time)
 	{
 		if(gettime() > var_6de53efa)
@@ -5635,6 +5644,7 @@ function function_9ff1a886(owner)
 {
 	self endon(#"death");
 	owner endon(#"death");
+	self.var_8dfaef6b = 0;
 	while(!self.var_8dfaef6b)
 	{
 		self.var_8dfaef6b = self function_d6c00549(owner);
@@ -5671,6 +5681,7 @@ function function_1bb979ca(n_cooldown_time, e_player, var_a18a512)
 {
 	e_player endon(#"death");
 	var_e41dced6 = 0;
+	var_d969828b = n_cooldown_time / 0.05;
 	while(var_e41dced6 <= var_d969828b)
 	{
 		var_50d0d640 = mapfloat(0, var_d969828b, 0, 1, var_e41dced6);
@@ -5705,6 +5716,7 @@ function function_78cfd053()
 		}
 		var_8ac0fa8[n] = var_c56865cf - var_70fdf0cb * n;
 	}
+	var_8ac0fa8[var_8ac0fa8.size] = 0;
 	while(true)
 	{
 		self waittill(#"damage");
@@ -5740,6 +5752,7 @@ function function_f2fa0421(n_health)
 	{
 		wait(3);
 	}
+	var_ab73d707 = int(self.healthdefault * 0.0083);
 	while(self.health < n_health)
 	{
 		self.health = self.health + var_ab73d707;

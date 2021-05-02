@@ -552,6 +552,7 @@ function function_ebe4d15c()
 		level thread namespace_a28acff3::print_zombie_counts();
 		level thread namespace_a28acff3::sndmusiconkillround();
 	#/
+	level.var_4b5a684c = namespace_a28acff3::get_zombie_count_for_round(level.round_number, level.players.size);
 	while(true)
 	{
 		var_7e5b8365 = level flag::get(#"infinite_round_spawning") || (zombie_utility::get_current_zombie_count() > 0 || level.zombie_total > 0 || level.intermission);
@@ -975,6 +976,7 @@ function function_dccf4bb9(mdl_gate)
 function function_6f26118c(mdl_gate)
 {
 	self endon_callback(&function_f493ba80, #"death");
+	var_dec013fd = getent(mdl_gate.target, "targetname");
 	while(!self istouching(var_dec013fd))
 	{
 		waitframe(1);
@@ -1363,6 +1365,7 @@ function function_72e2cc56()
 	/#
 		level endon(#"end_game");
 		var_99c3b610 = struct::get("");
+		var_75062807 = struct::get("");
 		while(level.var_68d47b4e)
 		{
 			level waittill(#"hash_1ea7a5302de9c85e");

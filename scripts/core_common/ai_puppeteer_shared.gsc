@@ -80,6 +80,7 @@ function ai_puppeteer_think()
 function ai_puppeteer()
 {
 	/#
+		player = undefined;
 		while(!isplayer(player))
 		{
 			player = getplayers()[0];
@@ -633,6 +634,7 @@ function ai_puppeteer_highlight_point(point, normal, forward, color)
 		level endon(#"hash_1cbbb18d9beca1f3");
 		self endon(#"death");
 		level.ai_puppet_highlighting = 1;
+		timer = 0;
 		while(timer < 0.7)
 		{
 			ai_puppeteer_render_point(point, normal, forward, color);
@@ -658,6 +660,7 @@ function ai_puppeteer_highlight_node(node)
 		level endon(#"hash_1cbbb18d9beca1f3");
 		self endon(#"death");
 		level.ai_puppet_highlighting = 1;
+		timer = 0;
 		while(timer < 0.7)
 		{
 			ai_puppeteer_render_node(node, (0, 1, 0));
@@ -683,6 +686,7 @@ function ai_puppeteer_highlight_ai(ai, color)
 		level endon(#"hash_1cbbb18d9beca1f3");
 		self endon(#"death");
 		level.ai_puppet_highlighting = 1;
+		timer = 0;
 		while(timer < 0.7 && isdefined(ai))
 		{
 			ai_puppeteer_render_ai(ai, color);

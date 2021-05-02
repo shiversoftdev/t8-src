@@ -392,6 +392,7 @@ private function _debugcommander(commander)
 private function function_9962ffd8(commander)
 {
 	team = blackboard::getstructblackboardattribute(commander, #"team");
+	pause = 1;
 	while(isdefined(commander) && !commander.shutdown)
 	{
 		if(getdvarint(#"hash_3335f636d26687d3", 0))

@@ -1155,6 +1155,7 @@ function function_7ea1db75(params)
 	if(isdefined(params.var_d8cb38a9) && params.var_d8cb38a9 && isdefined(params.scene))
 	{
 		self.var_9bea772f = params.scene;
+		var_a942d0c7 = 1;
 		while(!forcestreambundle(params.scene))
 		{
 			if(var_a942d0c7)

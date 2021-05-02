@@ -716,6 +716,7 @@ function waitforspawnselection()
 function watchforselectiontimeout()
 {
 	self endon(#"disconnect", #"end_respawn");
+	self.spawnselect_start_time = gettime();
 	while(true)
 	{
 		if(level.spawnselect_timelimit_ms - gettime() - self.spawnselect_start_time <= 0)

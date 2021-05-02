@@ -109,6 +109,7 @@ function zone_init()
 function function_fb29f7ca()
 {
 	level endon(#"game_ended");
+	level.var_5fa2f970 = [];
 	while(zm_zonemgr::any_player_in_zone("zone_security_checkpoint"))
 	{
 		waitframe(1);

@@ -756,6 +756,7 @@ private function function_9e8c41f4(e_target)
 	{
 		return 0;
 	}
+	b_finished = 0;
 	while(!b_finished)
 	{
 		self function_c7a3202c(var_5f3b05e8);
@@ -1464,6 +1465,7 @@ function function_7a7b5e79()
 	level endon(#"hash_4ef385daf35dd0c2", #"hash_7646638df88a3656");
 	var_52cc6165 = 0;
 	var_22f02aa3 = struct::get_array("boss_attack_1");
+	s_loc = struct::get("first_strike", "script_string");
 	while(true)
 	{
 		while(level flag::get(#"hash_7be183aa6a4cbe7") || level flag::get(#"hash_6dab61ca45a8eaea"))
@@ -1805,6 +1807,7 @@ function function_d9802986()
 	var_a0a81d4b = struct::get("s_pinnacle_center");
 	var_d185d097 = level.var_90a3a956.var_3edd432d;
 	b_target_found = 0;
+	e_target = undefined;
 	while(!b_target_found)
 	{
 		var_b774ce41 = util::get_active_players(#"allies");
@@ -1868,6 +1871,7 @@ function function_d9802986()
 private function function_732c74f7(n_max_time)
 {
 	var_5f3b05e8 = self zm_zonemgr::get_player_zone();
+	n_time = 0;
 	while(!isdefined(var_5f3b05e8))
 	{
 		wait(0.3);
@@ -2040,6 +2044,7 @@ private function function_325b6d95(v_origin)
 	level endon(#"hash_7646638df88a3656");
 	n_radius = 1000;
 	n_iterations = int(20);
+	var_e71dffbb = getweapon(#"incendiary_fire");
 	while(n_iterations > 0)
 	{
 		foreach(e_player in getplayers())
@@ -3390,6 +3395,7 @@ function function_d5a70078()
 {
 	/#
 		var_cab6e065 = 0;
+		var_9df8166f = 0;
 		while(true)
 		{
 			if(!var_cab6e065 && getdvarint(#"hash_336a4b6a4bdec400", 0))

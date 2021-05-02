@@ -101,6 +101,7 @@ function function_ea0dd5e6(b_pause, str_perk, str_result, var_bcd1c2ff)
 function function_815172d1()
 {
 	self endon(#"disconnect", #"hash_19d583212e9b3200");
+	var_be3643e6 = 0;
 	while(true)
 	{
 		self.var_e9571d8b = undefined;

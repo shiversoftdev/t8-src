@@ -151,6 +151,7 @@ function function_95600a05(var_b594a2cd)
 function function_9393f3df(var_b594a2cd)
 {
 	weapon = var_b594a2cd.weapon;
+	dualwieldweapon = weapon.dualwieldweapon;
 	while(!self bot_action::function_cf788c22() && self bot::function_828da7a9(dualwieldweapon))
 	{
 		self bot_action::function_8a2b82ad(var_b594a2cd);
@@ -698,6 +699,7 @@ function function_3c22de9a(var_b594a2cd)
 function function_3061f67f(var_b594a2cd)
 {
 	var_fdfb592e = self bot_action::is_target_visible(var_b594a2cd);
+	var_b594a2cd.var_fdfb592e = var_fdfb592e;
 	while(!self bot_action::function_cf788c22() && self bot_action::function_bb2a8f1b(var_b594a2cd) && var_b594a2cd.var_fdfb592e == var_fdfb592e)
 	{
 		trigger = function_d41104ab(bot::function_f47bf51d());

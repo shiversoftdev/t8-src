@@ -116,6 +116,7 @@ private function function_9e7b3f4d(round_reset)
 private function function_738e3a43()
 {
 	level endon(#"hash_7646638df88a3656");
+	var_812095a3 = 0;
 	while(self.var_28433a54)
 	{
 		waitresult = undefined;

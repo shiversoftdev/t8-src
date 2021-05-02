@@ -677,6 +677,7 @@ function trap_activate_rotating()
 	}
 	wait(5);
 	step = 1.5;
+	t = 0;
 	while(t < self._trap_duration)
 	{
 		for(i = 0; i < self._trap_movers.size; i++)
@@ -861,6 +862,7 @@ function function_783361ed(e_trap)
 function trig_update(parent)
 {
 	self endon(#"trap_done");
+	start_angles = self.angles;
 	while(true)
 	{
 		self.angles = parent.angles;
@@ -1161,6 +1163,7 @@ function trap_dialog()
 {
 	self endon(#"warning_dialog");
 	level endon(#"switch_flipped");
+	timer = 0;
 	while(true)
 	{
 		wait(0.5);

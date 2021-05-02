@@ -634,6 +634,7 @@ function function_91ecec97(a_e_lights, str_model)
 function function_9492f89b(var_394e1495, var_1e034eed)
 {
 	self endon(#"disconnect");
+	self.var_58538bef = var_1e034eed;
 	while(isalive(self) && self istouching(var_394e1495))
 	{
 		waitframe(1);

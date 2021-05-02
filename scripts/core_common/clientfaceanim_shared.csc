@@ -235,6 +235,7 @@ private function function_26ff990a(local_client_num)
 */
 private function function_cf386505(local_client_num)
 {
+	var_40425722 = 1;
 	while(true)
 	{
 		function_26ff990a(local_client_num);

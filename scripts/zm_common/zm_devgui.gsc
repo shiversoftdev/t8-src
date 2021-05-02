@@ -1458,6 +1458,7 @@ function function_bb54e671(weapon)
 		{
 			self.var_8d5839f4 = array(self.var_8d5839f4);
 		}
+		self.var_8d5839f4[self.var_8d5839f4.size] = weapon;
 		while(true)
 		{
 			self waittill(#"weapon_change_complete");
@@ -3608,6 +3609,7 @@ function zombie_devgui_preserve_turbines()
 		self endon(#"preserve_turbines");
 		if(!(isdefined(self.preserving_turbines) && self.preserving_turbines))
 		{
+			self.preserving_turbines = 1;
 			while(true)
 			{
 				self.turbine_health = 1200;
@@ -3635,6 +3637,7 @@ function zombie_devgui_equipment_stays_healthy()
 		self endon(#"preserve_equipment");
 		if(!(isdefined(self.preserving_equipment) && self.preserving_equipment))
 		{
+			self.preserving_equipment = 1;
 			while(true)
 			{
 				self.equipment_damage = [];
@@ -4137,6 +4140,17 @@ function zombie_devgui_kill()
 */
 function zombie_devgui_toggle_ammo()
 {
+System.InvalidOperationException: Stack empty.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Stack`1.Pop()
+   at Cerberus.Logic.Decompiler.BuildExpression(ScriptOp startOp) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1186
+   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2344
+   at Cerberus.Logic.Decompiler.DecompileBlock(DecompilerBlock decompilerBlock, Int32 tabs) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 999
+   at Cerberus.Logic.Decompiler.DecompileBlock(DecompilerBlock decompilerBlock, Int32 tabs) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 969
+   at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 223
+/*
+function zombie_devgui_toggle_ammo()
+{
 	/#
 		/#
 			assert(isdefined(self));
@@ -4149,42 +4163,35 @@ function zombie_devgui_toggle_ammo()
 		#/
 		self notify(#"devgui_toggle_ammo");
 		self endon(#"devgui_toggle_ammo");
-		while(isdefined(self) && self.ammo4evah)
-		{
-			if(!self zm_utility::is_drinking())
-			{
-				weapon = self getcurrentweapon();
-				if(weapon != level.weaponnone && weapon != level.weaponzmfists && (!(isdefined(weapon.isflourishweapon) && weapon.isflourishweapon)))
-				{
-					self setweaponoverheating(0, 0);
-					max = weapon.maxammo;
-					if(isdefined(max))
-					{
-						self setweaponammostock(weapon, max);
-					}
-					if(isdefined(self namespace_2ba51478::get_player_tactical_grenade()))
-					{
-						self givemaxammo(self namespace_2ba51478::get_player_tactical_grenade());
-					}
-					if(isdefined(self namespace_2ba51478::get_player_lethal_grenade()))
-					{
-						self givemaxammo(self namespace_2ba51478::get_player_lethal_grenade());
-					}
-				}
-				for(i = 0; i < 3; i++)
-				{
-					if(isdefined(self._gadgets_player[i]) && self hasweapon(self._gadgets_player[i]))
-					{
-						if(!self util::gadget_is_in_use(i) && self gadgetcharging(i))
-						{
-							self gadgetpowerset(i, self._gadgets_player[i].gadget_powermax);
-						}
-					}
-				}
-			}
-			wait(1);
-		}
-	#/
+
+*/
+
+	/* ======== */
+
+/* 
+	Stack: 
+*/
+	/* ======== */
+
+/* 
+	Blocks: 
+	Cerberus.Logic.BasicBlock at 0xA750, end at 0xAA39
+	Cerberus.Logic.DevBlock at 0xA76A, end at 0xAA36
+	Cerberus.Logic.DevBlock at 0xA76E, end at 0xA78A
+	Cerberus.Logic.DevBlock at 0xA78A, end at 0xA7B2
+	Cerberus.Logic.DevBlock at 0xA7B2, end at 0xA7DA
+	Cerberus.Logic.WhileLoop at 0xA81C, end at 0xAA32
+	Cerberus.Logic.IfBlock at 0xA832, end at 0xAA2C
+	Cerberus.Logic.IfBlock at 0xA864, end at 0xA97A
+	Cerberus.Logic.IfBlock at 0xA8D8, end at 0xA8FA
+	Cerberus.Logic.IfBlock at 0xA8FA, end at 0xA93A
+	Cerberus.Logic.IfBlock at 0xA93A, end at 0xA97A
+	Cerberus.Logic.ForLoopBlock at 0xA980, end at 0xAA28
+	Cerberus.Logic.IfBlock at 0xA98C, end at 0xAA22
+	Cerberus.Logic.IfBlock at 0xA9C6, end at 0xAA22
+*/
+	/* ======== */
+
 }
 
 /*
@@ -4276,6 +4283,7 @@ function zombie_devgui_give_health()
 		#/
 		self notify(#"devgui_health");
 		self endon(#"devgui_health", #"disconnect", #"death");
+		level.devcheater = 1;
 		while(true)
 		{
 			self.maxhealth = 100000;
@@ -4309,6 +4317,7 @@ function function_dcb98669()
 		#/
 		self notify(#"devgui_health");
 		self endon(#"devgui_health", #"disconnect", #"death");
+		level.devcheater = 1;
 		while(true)
 		{
 			self.maxhealth = 10;
@@ -5809,6 +5818,7 @@ function function_92523b12()
 function wait_for_zombie(crawler)
 {
 	/#
+		nodes = getallnodes();
 		while(true)
 		{
 			ai = getactorarray();
@@ -5873,6 +5883,7 @@ function zombie_draw_traversals()
 	/#
 		level thread wait_for_zombie();
 		level thread wait_for_zombie(1);
+		nodes = getallnodes();
 		while(true)
 		{
 			if(isdefined(level.toggle_draw_traversals) && level.toggle_draw_traversals)
@@ -6940,6 +6951,7 @@ function function_5cfae413()
 				array::add(var_5c9847ad, ent);
 			}
 		}
+		var_d11cab29 = arraycombine(var_3e119e75, var_5c9847ad, 0, 0);
 		while(getdvarint(#"hash_4cebb1d3b0ee545a", 0))
 		{
 			foreach(key in var_d11cab29)

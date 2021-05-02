@@ -617,6 +617,7 @@ function function_1ca2497b()
 	self notify("6b4310a91dda8e0b");
 	self endon("6b4310a91dda8e0b");
 	self endon_callback(&function_43ec7ca3, #"death", #"hash_6bc06e9af30f987");
+	var_e935ecce = 0;
 	while(!var_e935ecce)
 	{
 		var_37159c8c = self.var_7fd3b200;

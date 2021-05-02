@@ -214,6 +214,7 @@ function nuked_population_sign_think(n_base = 99)
 			var_d02e9cd rotateroll(n_step * var_b09f093e, 0.05);
 			var_d02e9cd waittill(#"rotatedone");
 		}
+		level.population_count = n_base;
 		while(level.population_count > 0)
 		{
 			if(var_aa6e55d3 < level.total_zombies_killed - level.zombie_total_subtract)
@@ -293,6 +294,7 @@ private function function_a4adaedb()
 {
 	level endon(#"hash_7646638df88a3656");
 	level.var_382a24b0 = 1;
+	n_threshold = level.total_zombies_killed + level.zombie_total;
 	while(n_threshold < level.total_zombies_killed)
 	{
 		waitframe(1);

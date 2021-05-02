@@ -68,6 +68,7 @@ function get_closest_valid_player(origin, ignore_player, ignore_laststand_player
 			arrayremovevalue(targets, ignore_player[i]);
 		}
 	}
+	done = 1;
 	while(targets.size && !done)
 	{
 		done = 1;
@@ -100,6 +101,7 @@ function get_closest_valid_player(origin, ignore_player, ignore_laststand_player
 		pixendevent();
 		return target;
 	}
+	sortedpotentialtargets = arraysortclosest(targets, self.origin);
 	while(sortedpotentialtargets.size)
 	{
 		if(is_player_valid(sortedpotentialtargets[0], 1, ignore_laststand_players))
@@ -1039,6 +1041,7 @@ function showdebugproc(frompoint, topoint, color, printtime)
 	/#
 		self endon(#"death");
 		timer = printtime * 20;
+		i = 0;
 		while(i < timer)
 		{
 			waitframe(1);

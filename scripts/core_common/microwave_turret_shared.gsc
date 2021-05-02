@@ -258,6 +258,7 @@ function microwaveentity(entity)
 		viewkickscalar = getdvarfloat(#"specialty_microwaveprotection_viewkick_scalar", 0.5);
 		damagescalar = getdvarfloat(#"specialty_microwaveprotection_damage_scalar", 0.5);
 	}
+	turretweapon = getweapon(#"microwave_turret");
 	while(true)
 	{
 		if(!isdefined(turret) || !turret microwaveturretaffectsentity(entity) || !isdefined(turret.trigger))

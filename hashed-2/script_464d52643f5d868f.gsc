@@ -215,6 +215,7 @@ function function_1646f141(var_e8ba54a2 = 0)
 	{
 		waitframe(1);
 	}
+	var_7ffb217b = getentarray("catwalk_event_zombie", "script_noteworthy");
 	while(var_7ffb217b.size > 0)
 	{
 		waitframe(1);
@@ -955,6 +956,7 @@ function function_82a43802(var_65500f70)
 function function_ddadfe7()
 {
 	self endon(#"disconnect");
+	a_str_zones = array("zone_catwalk_01", "zone_catwalk_02", "zone_catwalk_03", "zone_catwalk_04");
 	while(!level flag::get(#"hash_28ba359808d9a123"))
 	{
 		str_zone = self zm_zonemgr::get_player_zone();

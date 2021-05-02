@@ -150,6 +150,7 @@ function track_player_eyes()
 	self notify(#"track_player_eyes");
 	self endon(#"disconnect", #"track_player_eyes");
 	b_saw_the_wth = 0;
+	var_616e76c5 = struct::get("sq_gl_scare", "targetname");
 	while(!b_saw_the_wth)
 	{
 		for(n_time = 0; self adsbuttonpressed() && n_time < 25; n_time++)

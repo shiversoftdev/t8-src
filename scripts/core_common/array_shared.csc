@@ -780,6 +780,7 @@ function slice(array, var_12692bcf = 0, var_d88b3814 = 2147483647, n_increment =
 {
 	var_d88b3814 = min(var_d88b3814, array.size - 1);
 	a_ret = [];
+	i = var_12692bcf;
 	while(i <= var_d88b3814)
 	{
 		a_ret[a_ret.size] = array[i];
@@ -1153,6 +1154,7 @@ function merge(left, right, func_sort, param)
 {
 	result = [];
 	li = 0;
+	ri = 0;
 	while(li < left.size && ri < right.size)
 	{
 		b_result = undefined;
@@ -1201,6 +1203,7 @@ function function_b63fcb3(array, sort_func)
 {
 	start = 0;
 	end = array.size;
+	var_f9038db1 = 1;
 	while(var_f9038db1 && start < end)
 	{
 		var_f9038db1 = 0;
@@ -1219,6 +1222,7 @@ function function_b63fcb3(array, sort_func)
 		{
 			var_f9038db1 = 0;
 			i = end - 2;
+			j = i + 1;
 			while(i >= start)
 			{
 				if([[sort_func]](array[j], array[i]))

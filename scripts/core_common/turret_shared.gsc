@@ -1161,6 +1161,7 @@ function _waittill_user_change(n_index)
 function _check_for_paused(n_index)
 {
 	s_turret = _get_turret_data(n_index);
+	s_turret.pause_start_time = gettime();
 	while(isdefined(s_turret.pause))
 	{
 		if(s_turret.pause_time > 0)
@@ -1511,6 +1512,7 @@ function _burst_fire(n_max_time, n_index)
 	}
 	w_weapon = get_weapon(n_index);
 	n_fire_time = w_weapon.firetime;
+	n_total_time = 0;
 	while(n_total_time < n_burst_time)
 	{
 		fire(n_index);

@@ -1405,6 +1405,7 @@ function function_c0174de(var_f02fb354, var_e531b8b8)
 function function_f6f230af()
 {
 	var_54cae2d8 = getweapon(#"zhield_dw");
+	var_2bc04483 = 1;
 	while(var_2bc04483)
 	{
 		waitresult = undefined;
@@ -1582,6 +1583,7 @@ function function_50f4cc80()
 {
 	s_unitrigger = self zm_unitrigger::create();
 	zm_unitrigger::function_89380dda(s_unitrigger);
+	self.b_taken = 0;
 	while(level flag::get(#"hash_2aaea7cd22f44712") == 0)
 	{
 		waitresult = undefined;
@@ -1683,6 +1685,7 @@ function function_ae4e9016()
 {
 	s_unitrigger = self zm_unitrigger::create();
 	zm_unitrigger::function_47625e58(s_unitrigger, self.origin + vectorscale((0, 0, 1), 32));
+	self.var_2aba91c4 = 1;
 	while(!isdefined(self.var_d6249c56))
 	{
 		waitresult = undefined;
@@ -2057,6 +2060,7 @@ function function_f80bde48(player)
 	if(isplayer(player) && player getstance() === #"crouch" && player usebuttonpressed())
 	{
 		player endon(#"death", #"weapon_fired", #"weapon_ads");
+		e_path = getent("berths_walk", "targetname");
 		while(player getstance() === #"crouch" && player usebuttonpressed() && player istouching(e_path))
 		{
 			wait(0.2);
@@ -2328,6 +2332,7 @@ function function_9693e041(player)
 function function_a5214a8d(var_95f83c9)
 {
 	self endon(#"disconnect");
+	var_a8abef1d = getweapon(#"hash_5ce0422cff84b2b3");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -2388,6 +2393,7 @@ function function_62c5099d()
 	}
 	level.var_fd1d03ff = struct::get_array(#"hash_4f342e0539cf25df");
 	level.var_252b49cc = struct::get_array(#"hash_499aa18783aee42a");
+	level.var_ba8e1acf = array(#"red", #"green", #"blue");
 	while(true)
 	{
 		level waittill(#"start_of_round");
@@ -2641,6 +2647,7 @@ function function_7ae29395()
 	level endon(#"end_game");
 	self endon_callback(&function_a65045b6, #"death");
 	v_offset = vectorscale((0, 0, -1), 8);
+	self.trigger = spawn("trigger_damage", self.origin + v_offset, 0, 2.5, 24.5);
 	while(true)
 	{
 		waitresult = undefined;
@@ -3129,6 +3136,7 @@ function function_2c343fd8()
 	self clientfield::set("" + #"hash_2c387ea19f228b5d", 1);
 	wait(2);
 	self clientfield::set("" + #"hash_2c387ea19f228b5d", 0);
+	var_5912c181 = getweapon(#"hash_6a9069969e6fa287");
 	while(true)
 	{
 		var_88706ea7 = undefined;
@@ -3251,6 +3259,7 @@ function function_f003a04b()
 function function_41ee4286()
 {
 	self endon(#"death");
+	var_6bfbf04e = self.stub.related_parent;
 	while(true)
 	{
 		waitresult = undefined;
@@ -3394,6 +3403,7 @@ function function_9a209775(var_a276c861)
 	if(!(isdefined(level.var_7812c982) && level.var_7812c982))
 	{
 		level.var_7812c982 = 1;
+		var_365259de = struct::get_array(#"hash_238f2635f6e0454a");
 		while(true)
 		{
 			foreach(var_6bfbf04e in var_365259de)

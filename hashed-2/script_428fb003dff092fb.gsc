@@ -133,6 +133,7 @@ function damageeffectarea(owner, position, radius, height, killcament)
 		owner thread [[level.dogsonflashdogs]](gaseffectarea);
 	}
 	loopwaittime = 0.5;
+	durationoftabun = level.tabungasduration;
 	while(durationoftabun > 0)
 	{
 		players = getplayers();
@@ -204,6 +205,7 @@ function damageinpoisonarea(gaseffectarea, killcament, trace, position)
 	tabunshocksound.origin = position;
 	tabunshocksound playsound(level.sound_shock_tabun_start);
 	tabunshocksound playloopsound(level.sound_shock_tabun_loop);
+	timer = 0;
 	while(trace[#"fraction"] == 1 && isdefined(gaseffectarea) && self istouching(gaseffectarea) && self.sessionstate == "playing" && isdefined(self.lastpoisonedby))
 	{
 		damage = level.poisondamage;

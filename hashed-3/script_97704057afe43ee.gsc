@@ -480,6 +480,7 @@ function function_cf680b18()
 */
 function function_39364bed()
 {
+	var_f79ff5ec = array::random(array(#"center", #"temple", #"spartan"));
 	while(true)
 	{
 		zm_utility::function_11101458(var_f79ff5ec);

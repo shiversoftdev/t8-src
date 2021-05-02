@@ -2443,6 +2443,7 @@ function weapondata_take(weapondata)
 		}
 	}
 	alt_weapon = weapon.altweapon;
+	var_15e41636 = [];
 	while(alt_weapon != level.weaponnone)
 	{
 		if(!isdefined(var_15e41636))

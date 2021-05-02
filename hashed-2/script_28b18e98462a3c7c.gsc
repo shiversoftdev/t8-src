@@ -1384,6 +1384,7 @@ function function_360c6be0()
 	self endon(#"death");
 	while(self.b_active)
 	{
+		e_user = undefined;
 		while(self.b_active && !isdefined(e_user))
 		{
 			foreach(player in level.players)

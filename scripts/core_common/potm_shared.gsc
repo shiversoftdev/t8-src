@@ -1290,6 +1290,7 @@ function function_b6a5e7fa(var_a7f35e6d = 1)
 	wait(0.25);
 	exit = 0;
 	count = 0;
+	game.var_142de1de = 1;
 	while(!exit && count < var_a7f35e6d)
 	{
 		/#

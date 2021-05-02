@@ -23,6 +23,7 @@ function function_7e1a12ce(radius)
 	info.var_d1e06a5f = [];
 	info.var_2fae95e = [];
 	update_interval = (isdefined(self.var_ab84134) ? self.var_ab84134 : min(0.25, 1));
+	var_dd3b2438 = int(update_interval * 1000);
 	while(true)
 	{
 		var_97248341 = self function_bdda420f(self.origin, radius);

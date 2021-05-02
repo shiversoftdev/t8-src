@@ -1373,6 +1373,7 @@ function function_45a968e4()
 	}
 	while(true)
 	{
+		self.var_9f43786e = n_cycle_time;
 		while(self.var_9f43786e > 0)
 		{
 			wait(1);

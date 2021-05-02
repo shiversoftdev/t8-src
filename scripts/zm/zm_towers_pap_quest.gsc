@@ -489,6 +489,7 @@ function function_199b1814(var_5542e979, var_32af2882)
 	t_trigger = getent(str_trigger, "targetname");
 	var_190d5d80 = getent(t_trigger.target, "targetname");
 	var_190d5d80 thread scene::init("p8_fxanim_zm_towers_challenge_gong_bundle", var_190d5d80);
+	var_35abfaab = 0;
 	while(!var_35abfaab)
 	{
 		waitresult = undefined;
@@ -781,6 +782,7 @@ function function_199b1814(var_5542e979, var_32af2882)
 */
 function function_79071b9a(str_enemy, s_spawn, s_scene)
 {
+	ai_enemy = undefined;
 	while(!isdefined(ai_enemy))
 	{
 		switch(str_enemy)
@@ -1025,6 +1027,7 @@ function function_9e59c6f0(v_origin, var_5542e979, var_5570d8de)
 function function_499b080d(var_5542e979, var_32af2882)
 {
 	level endon(#"hash_47472704726954cf");
+	var_903152eb = 0;
 	while(!var_903152eb)
 	{
 		a_e_players = level.players;

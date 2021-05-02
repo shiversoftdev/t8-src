@@ -80,6 +80,7 @@ function disable()
 function function_c0c85fe()
 {
 	self endon(#"death", #"hash_fcaa137035db4e");
+	var_47624402 = 0;
 	while(true)
 	{
 		var_197c85d1 = self getvelocity();

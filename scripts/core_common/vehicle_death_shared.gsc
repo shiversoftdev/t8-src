@@ -995,6 +995,7 @@ function crash_stop()
 	self endon(#"death");
 	self setphysacceleration((0, 0, 0));
 	self setrotorspeed(0);
+	speed = self getspeedmph();
 	while(speed > 2)
 	{
 		velocity = self.velocity;
@@ -1598,6 +1599,7 @@ function get_switch_node(nd_crash_path)
 function watch_for_crash_detour_scene(nd_crash_path)
 {
 	self endon(#"delete");
+	nd_current = nd_crash_path;
 	while(isdefined(nd_current))
 	{
 		if(isdefined(nd_current.target))
@@ -1787,6 +1789,7 @@ function waittill_crash_done_or_stopped()
 		{
 			self function_d4c687c9();
 			self cancelaimove();
+			stable_count = 0;
 			while(stable_count < 3)
 			{
 				if(self.var_4217cfcb === 1)

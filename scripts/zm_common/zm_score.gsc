@@ -307,6 +307,7 @@ function player_add_points(event, mod, hit_location, e_target, zombie_team, dama
 					player_points = 0;
 				}
 				var_dd71ee3e = player_points;
+				var_dc75a3a1 = 0;
 				while(var_dd71ee3e > 0)
 				{
 					while(var_dd71ee3e < level.var_697c8943[var_dc75a3a1] && var_dc75a3a1 < level.var_697c8943.size)

@@ -181,6 +181,7 @@ private function function_5236325e(var_84171a6c, killcament)
 {
 	self endon(#"hash_13d72ca5a7cfd2bd");
 	var_6307def9 = 0;
+	var_f3fdc692 = 0;
 	while(true)
 	{
 		self function_1d5bd9af();

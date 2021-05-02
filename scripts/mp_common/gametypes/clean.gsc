@@ -713,6 +713,7 @@ function function_fd08eb25()
 	}
 	setbombtimer("A", 0);
 	setmatchflag("bomb_timer_a", 0);
+	var_696c0ca5 = -1;
 	while(true)
 	{
 		if(level.var_2576eaeb > 0)

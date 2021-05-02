@@ -207,6 +207,7 @@ function look_trigger(trigger)
 	{
 		a_parameters = strtok(trigger.script_parameters, ",; ");
 	}
+	b_ads_check = isinarray(a_parameters, "check_ads");
 	while(true)
 	{
 		waitresult = undefined;
