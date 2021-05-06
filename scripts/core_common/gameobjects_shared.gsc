@@ -3111,9 +3111,9 @@ function use_object_prox_think()
 			{
 				if(self.decayprogress && !self.numtouching[self.claimteam])
 				{
-					if(isdefined(self.var_5fefcd28) && self.var_5fefcd28 > 0 && self.curprogress > 0)
+					if(isdefined(self.autodecaytime) && self.autodecaytime > 0 && self.curprogress > 0)
 					{
-						self.curprogress = self.curprogress - level.var_9fee970c * self.usetime / int(self.var_5fefcd28 * 1000);
+						self.curprogress = self.curprogress - level.var_9fee970c * self.usetime / int(self.autodecaytime * 1000);
 						deltaprogress = self.curprogress - previousprogress;
 						function_72307b09(deltaprogress);
 						self update_current_progress();

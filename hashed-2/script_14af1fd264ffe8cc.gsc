@@ -2,7 +2,6 @@
 #using script_14f4a3c583c77d4b;
 #using script_39347d985163e17;
 #using script_4e7e6989b5aa7989;
-#using script_5b31180f39b8a810;
 #using script_6c983b627f4a3d51;
 #using script_6e3c826b1814cab6;
 #using scripts\core_common\aat_shared.gsc;
@@ -14,6 +13,7 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm\zm_red_challenges.gsc;
 #using scripts\zm\zm_red_util.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_bullet_boost.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
 #using scripts\zm_common\zm_laststand.gsc;
@@ -1098,17 +1098,17 @@ function function_a8243f37()
 	}
 	if(namespace_59ff1d6c::function_901b751c(#"hash_edfb07f798aaab5"))
 	{
-		level.var_fc2d4a2[level.var_fc2d4a2.size] = #"hash_7a7bda9ab5e9bf35";
+		level.var_fc2d4a2[level.var_fc2d4a2.size] = #"shotgun_fullauto_t8";
 	}
 	if(namespace_59ff1d6c::function_901b751c(#"hash_1f6665b5581f6b6e"))
 	{
-		level.var_fc2d4a2[level.var_fc2d4a2.size] = #"hash_5d7835133aa2daa1";
+		level.var_fc2d4a2[level.var_fc2d4a2.size] = #"smg_folding_t8";
 	}
 	level.var_e3d39f70 = 0;
 	level.var_24b50714 = [];
 	if(namespace_59ff1d6c::function_901b751c(#"hash_1f6665b5581f6b6e"))
 	{
-		level.var_24b50714[level.var_24b50714.size] = #"hash_62032b32d0d142be";
+		level.var_24b50714[level.var_24b50714.size] = #"smg_fastburst_t8";
 	}
 	if(namespace_59ff1d6c::function_901b751c(#"hash_1d5c8e6f0e20201a"))
 	{

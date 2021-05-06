@@ -117,23 +117,23 @@ private function function_a1acece9()
 	self callback::function_d8abfc3d(#"hash_dfbeaa068b23e7c", &function_10f99a8b);
 	if(self.var_9fde8624 == #"hash_fd7b9665529dd42")
 	{
-		self attach(#"hash_441d5e2c1aae0345", "j_head");
-		self attach(#"hash_7e1badc7ac536289", "tag_weapon_right");
-		self attach(#"hash_1b523c16d67a9729", "tag_weapon_left");
+		self attach(#"c_t8_zmb_dlc2_skeleton_helmet", "j_head");
+		self attach(#"c_t8_zmb_dlc2_skeleton_sword", "tag_weapon_right");
+		self attach(#"c_t8_zmb_dlc2_skeleton_shield", "tag_weapon_left");
 	}
 	else if(self.var_9fde8624 == #"hash_1520c8987a671df0")
 	{
-		self attach(#"hash_441d5e2c1aae0345", "j_head");
-		self attach(#"hash_2136319e22931559", "tag_weapon_right");
+		self attach(#"c_t8_zmb_dlc2_skeleton_helmet", "j_head");
+		self attach(#"c_t8_zmb_dlc2_skeleton_spear", "tag_weapon_right");
 	}
 	else if(self.var_9fde8624 == #"hash_342763a42d8fbca")
 	{
-		self attach(#"hash_7e1badc7ac536289", "tag_weapon_right");
-		self attach(#"hash_1b523c16d67a9729", "tag_weapon_left");
+		self attach(#"c_t8_zmb_dlc2_skeleton_sword", "tag_weapon_right");
+		self attach(#"c_t8_zmb_dlc2_skeleton_shield", "tag_weapon_left");
 	}
 	else if(self.var_9fde8624 == #"skeleton_spear")
 	{
-		self attach(#"hash_2136319e22931559", "tag_weapon_right");
+		self attach(#"c_t8_zmb_dlc2_skeleton_spear", "tag_weapon_right");
 	}
 	aiutility::addaioverridedamagecallback(self, &function_abab78a7);
 	self callback::on_ai_killed(&function_4ac532fd);

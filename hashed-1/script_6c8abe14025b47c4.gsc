@@ -3350,7 +3350,7 @@ function function_73566ec7(attacker, weapon, owner)
 	if(isdefined(bundle) && isdefined(bundle.var_ebd92bbc))
 	{
 		scoreevents::processscoreevent(bundle.var_ebd92bbc, attacker, owner, weapon);
-		attacker stats::function_dad108fa(#"hash_15697173945f676c", 1);
+		attacker stats::function_dad108fa(#"stats_destructions", 1);
 		attacker contracts::function_a54e2068(#"hash_317a8b8df3aa8838");
 		self.var_c5bb583d = 1;
 		if(isdefined(self.attackers) && self.attackers.size > 0)
@@ -3383,7 +3383,7 @@ function function_73566ec7(attacker, weapon, owner)
 					}
 				}
 				scoreevents::processscoreevent(bundle.var_74711af9, assister, owner, self.attackerdamage[assister.clientid].weapon);
-				assister stats::function_dad108fa(#"hash_15697173945f676c", 1);
+				assister stats::function_dad108fa(#"stats_destructions", 1);
 				assister contracts::function_a54e2068(#"hash_317a8b8df3aa8838");
 			}
 		}

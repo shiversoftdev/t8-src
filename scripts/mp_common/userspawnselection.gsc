@@ -45,7 +45,7 @@ function __init__()
 	level.spawnselect.vox_plr_1_revive_down_2 = [];
 	level.spawnselect.lastchosenplayerspawns = [];
 	level.spawnselectenabled = getgametypesetting(#"spawnselectenabled");
-	level.var_f13359cc = getgametypesetting(#"hash_579160ea3f0ec623");
+	level.usespawngroups = getgametypesetting(#"usespawngroups");
 	level.spawngroups = [];
 	level.next_spawn_group_index = 0;
 	level.var_abb55703 = &function_a316ca82;
@@ -953,7 +953,7 @@ function on_start_gametype()
 	{
 		return;
 	}
-	if(level.var_f13359cc)
+	if(level.usespawngroups)
 	{
 		spawngroupssorted = arraysort(spawngroups, (0, 0, 0), 1);
 		foreach(spawngroup in spawngroupssorted)

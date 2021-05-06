@@ -8,7 +8,6 @@
 #using script_30ba61ad5559c51d;
 #using script_3225d67f8e4a63cb;
 #using script_32db4ab8dcf85b70;
-#using script_33fd053376f47476;
 #using script_3657077a08b7f19e;
 #using script_3f9e0dc8454d98e1;
 #using script_43642da1b2402e5c;
@@ -30,6 +29,7 @@
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\scene_shared.gsc;
 #using scripts\core_common\struct.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_powerups.gsc;
 
 #namespace namespace_309bc702;

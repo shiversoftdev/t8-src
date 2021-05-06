@@ -529,7 +529,7 @@ function function_4186be5f()
 			n_trigger_height = 23;
 			break;
 		}
-		case "hash_292fa8191ab6fb":
+		case "p8_fxanim_zm_red_ww_shell_mound_dks_mod":
 		{
 			n_trigger_radius = 22;
 			n_trigger_height = 13;

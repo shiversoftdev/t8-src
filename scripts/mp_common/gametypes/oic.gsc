@@ -120,7 +120,7 @@ event main(eventstruct)
 	{
 		var_1f99b9e8 = array(var_1f99b9e8);
 	}
-	var_1f99b9e8[var_1f99b9e8.size] = getweapon(#"hash_1f48082b20588e4e" + "_oic", "");
+	var_1f99b9e8[var_1f99b9e8.size] = getweapon(#"pistol_fullauto_t8" + "_oic", "");
 	if(!isdefined(var_1f99b9e8))
 	{
 		var_1f99b9e8 = [];

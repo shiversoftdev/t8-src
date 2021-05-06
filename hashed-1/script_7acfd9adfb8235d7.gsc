@@ -1141,22 +1141,22 @@ function function_7de84c26(var_b82ff340, n_drop)
 	{
 		case 0:
 		{
-			var_8dd283dd = #"hash_5dec945778e394c6";
+			var_8dd283dd = #"p8_zm_man_watch_pocket_gold";
 			break;
 		}
 		case 1:
 		{
-			var_8dd283dd = #"hash_59fed9f5ca4fb350";
+			var_8dd283dd = #"p8_zm_man_jewelry_ring";
 			break;
 		}
 		case 2:
 		{
-			var_8dd283dd = #"hash_71fabfe21d3e3eaa";
+			var_8dd283dd = #"p8_zm_man_jewelry_necklace";
 			break;
 		}
 		case 3:
 		{
-			var_8dd283dd = #"hash_4b3c8cf802555ee2";
+			var_8dd283dd = #"p8_zm_man_jewelry_bracelet";
 			break;
 		}
 	}

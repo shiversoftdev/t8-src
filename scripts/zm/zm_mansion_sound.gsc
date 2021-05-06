@@ -58,7 +58,7 @@ private function function_96da6081()
 	var_765617b7 = struct::get_array("s_roll");
 	foreach(s_roll in var_765617b7)
 	{
-		s_roll.var_255658de = util::spawn_model(#"hash_376a0011f26a90aa", s_roll.origin, s_roll.angles);
+		s_roll.var_255658de = util::spawn_model(#"p8_zm_zod_phonograph_opera_roll", s_roll.origin, s_roll.angles);
 		s_roll.s_unitrigger_stub = s_roll zm_unitrigger::create("", 64, &function_aba430c2);
 	}
 	var_b12143bd = struct::get("s_phono_roll");
@@ -121,7 +121,7 @@ private function function_63c3fd24()
 		e_player = var_88706ea7.activator;
 		if(!isdefined(self.stub.related_parent.var_255658de) && isdefined(e_player.var_a3f51886))
 		{
-			self.stub.related_parent.var_255658de = util::spawn_model(#"hash_376a0011f26a90aa", self.stub.related_parent.origin, self.stub.related_parent.angles);
+			self.stub.related_parent.var_255658de = util::spawn_model(#"p8_zm_zod_phonograph_opera_roll", self.stub.related_parent.origin, self.stub.related_parent.angles);
 			self.stub.related_parent.var_255658de playsound(#"hash_343bf66b64f5830e");
 			self.stub.related_parent.var_255658de thread function_f2d27140(e_player.var_a3f51886);
 			self.stub.related_parent.var_255658de.var_a3f51886 = e_player.var_a3f51886;

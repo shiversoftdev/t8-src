@@ -2,7 +2,6 @@
 #using script_14af1fd264ffe8cc;
 #using script_14f4a3c583c77d4b;
 #using script_1b10fdf0addd52e;
-#using script_33fd053376f47476;
 #using script_3aa54d3cb36ea43f;
 #using script_3cebb48c37fc271;
 #using script_3e77545072bcbd08;
@@ -39,6 +38,7 @@
 #using scripts\core_common\vehicle_shared.gsc;
 #using scripts\zm\zm_red.gsc;
 #using scripts\zm\zm_red_challenges.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_devgui.gsc;
 #using scripts\zm_common\zm_hero_weapon.gsc;

@@ -89,19 +89,19 @@ function function_2ce5cb7e()
 						self.pers[#"hash_33112f192fb3c234"][#"current"][stat.var_82670522] = self stats::function_441050ca(stat.var_82670522);
 						break;
 					}
-					case "hash_5605584f19a26c68":
+					case "razorwireekia":
 					{
-						var_a556466d = self stats::function_441050ca(#"hash_3d06dfa608b3b520") + self stats::function_441050ca(#"hash_2dc93d1e6de62f4c");
-						self.pers[#"hash_33112f192fb3c234"][#"base"][stat.stattype] = var_a556466d;
-						self.pers[#"hash_33112f192fb3c234"][#"current"][stat.stattype] = var_a556466d;
+						razorwireekia = self stats::function_441050ca(#"hash_3d06dfa608b3b520") + self stats::function_441050ca(#"hash_2dc93d1e6de62f4c");
+						self.pers[#"hash_33112f192fb3c234"][#"base"][stat.stattype] = razorwireekia;
+						self.pers[#"hash_33112f192fb3c234"][#"current"][stat.stattype] = razorwireekia;
 						break;
 					}
 					case "highestkillstreak":
-					case "hash_282813eec7b5b9ca":
+					case "objectivescore":
 					case "objectivetime":
 					case "damagedone":
 					case "highestmultikill":
-					case "hash_73786dd8290616a2":
+					case "objectiveekia":
 					default:
 					{
 						self.pers[#"hash_33112f192fb3c234"][#"base"][stat.stattype] = 0;
@@ -173,17 +173,17 @@ function function_59d3154f()
 					var_d6155829[stat.var_82670522] = var_6fda3763;
 					break;
 				}
-				case "hash_5605584f19a26c68":
+				case "razorwireekia":
 				{
-					var_a556466d = self stats::function_441050ca(#"hash_3d06dfa608b3b520") + self stats::function_441050ca(#"hash_2dc93d1e6de62f4c");
-					self function_b535c32e(stat, var_a556466d, var_aa1fbd8c);
-					var_d6155829[stat.stattype] = var_a556466d;
+					razorwireekia = self stats::function_441050ca(#"hash_3d06dfa608b3b520") + self stats::function_441050ca(#"hash_2dc93d1e6de62f4c");
+					self function_b535c32e(stat, razorwireekia, var_aa1fbd8c);
+					var_d6155829[stat.stattype] = razorwireekia;
 					break;
 				}
-				case "hash_282813eec7b5b9ca":
+				case "objectivescore":
 				case "objectivetime":
 				case "damagedone":
-				case "hash_73786dd8290616a2":
+				case "objectiveekia":
 				{
 					var_6fda3763 = self function_b535c32e(stat, self.pers[stat.stattype], var_aa1fbd8c);
 					var_d6155829[stat.stattype] = var_6fda3763;
@@ -274,16 +274,16 @@ function function_323c6715()
 						score = player function_cd851b02(stat, var_9b4eeccc, stat.stattype);
 						break;
 					}
-					case "hash_5605584f19a26c68":
+					case "razorwireekia":
 					{
-						var_a556466d = player stats::function_441050ca(#"hash_3d06dfa608b3b520") + player stats::function_441050ca(#"hash_2dc93d1e6de62f4c");
-						score = player function_1fa30a47(stat, var_a556466d, var_9b4eeccc);
+						razorwireekia = player stats::function_441050ca(#"hash_3d06dfa608b3b520") + player stats::function_441050ca(#"hash_2dc93d1e6de62f4c");
+						score = player function_1fa30a47(stat, razorwireekia, var_9b4eeccc);
 						break;
 					}
-					case "hash_282813eec7b5b9ca":
+					case "objectivescore":
 					case "objectivetime":
 					case "damagedone":
-					case "hash_73786dd8290616a2":
+					case "objectiveekia":
 					{
 						score = player function_1fa30a47(stat, player.pers[stat.stattype], var_9b4eeccc);
 						break;

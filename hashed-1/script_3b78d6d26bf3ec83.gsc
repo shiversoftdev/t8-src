@@ -21,7 +21,7 @@ function init_shared()
 	{
 		level.var_578f7c6d = spawnstruct();
 	}
-	level.var_578f7c6d.weapon = getweapon(#"hash_3a651f053c0fa15a");
+	level.var_578f7c6d.weapon = getweapon(#"gadget_jammer");
 	if(!isdefined(level.var_6d8e6535))
 	{
 		level.var_6d8e6535 = [];

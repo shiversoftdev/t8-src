@@ -1,5 +1,4 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_33fd053376f47476;
 #using script_52c6c2d1a2ef1b46;
 #using script_6a3f43063dfd1bdc;
 #using script_6c5b51f98cd04fa3;
@@ -11,6 +10,7 @@
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm\zm_orange_util.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_unitrigger.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;

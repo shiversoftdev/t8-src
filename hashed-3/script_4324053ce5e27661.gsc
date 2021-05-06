@@ -611,9 +611,9 @@ function function_48f6761d(elephant, waittime = 0)
 	{
 		elephant detach(#"hash_4fa83b5b64e75887", "tag_origin");
 	}
-	if(elephant isattached(#"hash_4fa83a5b64e756d4", "tag_origin"))
+	if(elephant isattached(#"c_t8_zmb_dlc0_elephant_chain5", "tag_origin"))
 	{
-		elephant detach(#"hash_4fa83a5b64e756d4", "tag_origin");
+		elephant detach(#"c_t8_zmb_dlc0_elephant_chain5", "tag_origin");
 	}
 	if(elephant isattached(#"hash_4fa83d5b64e75bed", "tag_origin"))
 	{
@@ -696,7 +696,7 @@ private function function_423390f2()
 		self attach(#"hash_4fa8395b64e75521", "tag_origin");
 		self attach(#"hash_4fa8385b64e7536e", "tag_origin");
 		self attach(#"hash_4fa83b5b64e75887", "tag_origin");
-		self attach(#"hash_4fa83a5b64e756d4", "tag_origin");
+		self attach(#"c_t8_zmb_dlc0_elephant_chain5", "tag_origin");
 		self attach(#"hash_4fa83d5b64e75bed", "tag_origin");
 	}
 	else
@@ -1397,7 +1397,7 @@ function function_74fba881(elephant)
 		if(elephant isattached(#"hash_4fa83b5b64e75887", "tag_origin"))
 		{
 			elephant detach(#"hash_4fa83b5b64e75887", "tag_origin");
-			elephant detach(#"hash_4fa83a5b64e756d4", "tag_origin");
+			elephant detach(#"c_t8_zmb_dlc0_elephant_chain5", "tag_origin");
 			elephant attach(#"hash_4f282785ef50ec6d", "tag_origin");
 			elephant playsound(#"hash_55bac56f7a46775c");
 		}

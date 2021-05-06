@@ -1,6 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_1b10fdf0addd52e;
-#using script_33fd053376f47476;
 #using script_3e8c1d1a6e50b75b;
 #using script_3f9e0dc8454d98e1;
 #using script_508e64253010d13c;
@@ -22,6 +21,7 @@
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm\zm_zodt8.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_devgui.gsc;
 #using scripts\zm_common\zm_laststand.gsc;
@@ -499,7 +499,7 @@ function function_51e51897(var_5ea5c94d)
 		util::wait_network_frame();
 		level notify(#"hash_fbdf766a8b47229");
 	#/
-	level.var_6c390c77 function_500cb0be(#"hash_678aaf8e37498e9a", #"hash_48d376e92022fee8");
+	level.var_6c390c77 function_500cb0be(#"hash_678aaf8e37498e9a", #"p8_fxanim_zm_zod_eye_01_bundle");
 	level thread zm_zodt8::change_water_height_aft(1);
 	if(!var_5ea5c94d)
 	{
@@ -1215,9 +1215,9 @@ function function_8f3497ee(var_5839811b, str_loc)
 			self playsound("zmb_eyeball_vox_intro_s3");
 			level thread function_f74b38da("zm_power_on_rumble");
 			self function_671e8d37();
-			level thread function_a6f08a79(#"hash_33bad2b73372fb4d");
+			level thread function_a6f08a79(#"p8_fxanim_zm_zod_state_lft_hall_bundle");
 			self function_c7c928e9(0, 1, 0);
-			level thread function_a6f08a79(#"hash_651c866df079d05d");
+			level thread function_a6f08a79(#"p8_fxanim_zm_zod_state_rt_hall_bundle");
 			self function_c7c928e9(0, 1, 1);
 			self function_a8a76e18();
 			wait(0.5);
@@ -1228,7 +1228,7 @@ function function_8f3497ee(var_5839811b, str_loc)
 		case 4:
 		{
 			function_d21f5b58(1);
-			self function_500cb0be(#"hash_32a51dafb1c7344f", #"hash_778aa1db2592594f");
+			self function_500cb0be(#"hash_32a51dafb1c7344f", #"p8_fxanim_zm_zod_eye_02_bundle");
 			wait(3);
 			self function_1122d832("event_impact", "pro", 4);
 			self playsound("zmb_eyeball_vox_intro_s4");
@@ -1237,9 +1237,9 @@ function function_8f3497ee(var_5839811b, str_loc)
 			self clientfield::set("bs_bdy_dmg_fx_cf", self.var_914750d);
 			wait(0.5);
 			function_901c5ffe("pro", 1);
-			level thread function_3681a3ac(#"hash_5da478c959d34c54");
-			level thread function_3681a3ac(#"hash_2c398eb908863afb");
-			level thread function_3681a3ac(#"hash_6385c188c2623daa");
+			level thread function_3681a3ac(#"p8_fxanim_zm_zod_prom_icicles_01_bundle");
+			level thread function_3681a3ac(#"p8_fxanim_zm_zod_prom_icicles_02_bundle");
+			level thread function_3681a3ac(#"p8_fxanim_zm_zod_prom_icicles_03_bundle");
 			self scene::play(self.str_scene, "roar1", self);
 			self.str_idle = "idle1";
 			self animation::stop(0);
@@ -1253,7 +1253,7 @@ function function_8f3497ee(var_5839811b, str_loc)
 		case 5:
 		{
 			function_d21f5b58(1);
-			self function_500cb0be(#"hash_597bdc83a7c9e8c", #"hash_7760b698f6aeafbe");
+			self function_500cb0be(#"hash_597bdc83a7c9e8c", #"p8_fxanim_zm_zod_eye_03_bundle");
 			wait(2);
 			self function_1122d832("event_high_impact", "pd", 5);
 			self playsound("zmb_eyeball_vox_intro_s5");
@@ -4216,17 +4216,17 @@ function function_d25f8fbc(cmd)
 			}
 			case "hash_42e3fa83d357e8e0":
 			{
-				level.var_6c390c77 function_500cb0be(#"hash_678aaf8e37498e9a", #"hash_48d376e92022fee8");
+				level.var_6c390c77 function_500cb0be(#"hash_678aaf8e37498e9a", #"p8_fxanim_zm_zod_eye_01_bundle");
 				return 1;
 			}
 			case "hash_42e3fd83d357edf9":
 			{
-				level.var_6c390c77 function_500cb0be(#"hash_32a51dafb1c7344f", #"hash_778aa1db2592594f");
+				level.var_6c390c77 function_500cb0be(#"hash_32a51dafb1c7344f", #"p8_fxanim_zm_zod_eye_02_bundle");
 				return 1;
 			}
 			case "hash_42e3fc83d357ec46":
 			{
-				level.var_6c390c77 function_500cb0be(#"hash_597bdc83a7c9e8c", #"hash_7760b698f6aeafbe");
+				level.var_6c390c77 function_500cb0be(#"hash_597bdc83a7c9e8c", #"p8_fxanim_zm_zod_eye_03_bundle");
 				return 1;
 			}
 			case "hash_5dad3801740fa24a":
@@ -4434,7 +4434,7 @@ function function_5e792125(var_4c971546)
 		}
 		if(!isdefined(self.str_scene))
 		{
-			self function_500cb0be(#"hash_678aaf8e37498e9a", #"hash_48d376e92022fee8");
+			self function_500cb0be(#"hash_678aaf8e37498e9a", #"p8_fxanim_zm_zod_eye_01_bundle");
 		}
 		level clientfield::set("", 1);
 		util::wait_network_frame();

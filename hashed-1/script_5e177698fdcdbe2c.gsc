@@ -2,7 +2,6 @@
 #using script_14d4cc4687ff9afd;
 #using script_1c72973fb240f263;
 #using script_2fcb47e3735a6edd;
-#using script_33fd053376f47476;
 #using script_35598499769dbb3d;
 #using script_3e5ec44cfab7a201;
 #using script_3f9e0dc8454d98e1;
@@ -27,6 +26,7 @@
 #using scripts\core_common\vehicle_shared.gsc;
 #using scripts\zm\zm_orange_util.gsc;
 #using scripts\zm\zm_orange_zones.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_devgui.gsc;
 #using scripts\zm_common\zm_pack_a_punch.gsc;

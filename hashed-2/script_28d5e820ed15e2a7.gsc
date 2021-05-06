@@ -73,7 +73,7 @@ function init()
 	level._effect[#"hash_508055920f327121"] = #"hash_8c3d3c756b91f54";
 	level._effect[#"hash_201ef69f0a0a5dce"] = #"hash_1f06be75e7efc6a2";
 	level._effect["" + #"hash_3fafd72f00908d53"] = #"hash_992fe8f8e8dfb1";
-	scene::add_scene_func(#"hash_7af5018bdb9ec63c", &function_bbf4268e, "shot_1");
+	scene::add_scene_func(#"p8_fxanim_zm_esc_blast_afterlife_seagull_ghost_bundle", &function_bbf4268e, "shot_1");
 }
 
 /*
@@ -316,7 +316,7 @@ function function_430edc4e(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			self.var_8eef2f82 = util::playfxontag(localclientnum, level._effect[#"hash_568709b6dd3a62e2"], self, "tag_origin");
 			var_6e967983 = util::spawn_model(localclientnum, "tag_origin", self.origin + vectorscale((0, 0, 1), 20), self.angles);
-			var_6e967983 scene::play(#"hash_7af5018bdb9ec63c", "shot_1");
+			var_6e967983 scene::play(#"p8_fxanim_zm_esc_blast_afterlife_seagull_ghost_bundle", "shot_1");
 			var_6e967983 delete();
 		}
 		if(isdefined(level._effect[#"hash_1839aae8f96148af"]))
@@ -738,7 +738,7 @@ function function_d7aca1d6(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval == 1)
 	{
 		var_e0630bbb = struct::get("p_s_4_bag");
-		self.var_c5996c09 = util::spawn_model(localclientnum, #"hash_2fcda02aa3b4e1b6", var_e0630bbb.origin, var_e0630bbb.angles);
+		self.var_c5996c09 = util::spawn_model(localclientnum, #"p8_zm_esc_laundry_bag", var_e0630bbb.origin, var_e0630bbb.angles);
 	}
 	else if(isdefined(self.var_c5996c09))
 	{

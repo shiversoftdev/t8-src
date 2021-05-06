@@ -2612,7 +2612,7 @@ function treasure_chest_give_weapon(weapon, var_75c86f89, var_545bb17f)
 			str_vo_line = #"ballistic";
 		}
 	}
-	else if(weapon === getweapon(#"hash_18a2b56939a972ee"))
+	else if(weapon === getweapon(#"special_crossbow_t8"))
 	{
 		if(zm_audio::function_63f85f39(#"magicbox", #"hash_36b817536004725"))
 		{

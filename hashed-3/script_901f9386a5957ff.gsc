@@ -202,7 +202,7 @@ function gadget_combat_efficiency_on_activate(slot, weapon)
 	self.combatefficiencylastontime = gettime();
 	self function_f53ac86e();
 	self thread function_6a9d7105(slot, weapon);
-	result = self gestures::function_56e00fbf(#"hash_7ad077e650ead562", undefined, 0);
+	result = self gestures::function_56e00fbf(#"gestable_battle_cry", undefined, 0);
 }
 
 /*

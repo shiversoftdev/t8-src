@@ -495,8 +495,8 @@ function function_7569c0fb()
 	self persistence::set_recent_stat(0, 0, #"timeplayed", self.pers[#"totaltimeplayed"]);
 	self persistence::set_recent_stat(0, 0, #"score", self.pers[#"score"]);
 	self persistence::set_recent_stat(0, 0, #"damage", self.pers[#"damagedone"]);
-	self persistence::set_recent_stat(0, 0, #"hash_73786dd8290616a2", self.pers[#"hash_73786dd8290616a2"]);
-	self persistence::set_recent_stat(0, 0, #"hash_282813eec7b5b9ca", self.pers[#"hash_282813eec7b5b9ca"]);
+	self persistence::set_recent_stat(0, 0, #"objectiveekia", self.pers[#"objectiveekia"]);
+	self persistence::set_recent_stat(0, 0, #"objectivescore", self.pers[#"objectivescore"]);
 	self persistence::set_recent_stat(0, 0, #"hash_2dadc7ba42ffd04d", self.pers[#"hash_2dadc7ba42ffd04d"]);
 	self persistence::set_recent_stat(0, 0, #"objectivetime", self.pers[#"objectivetime"]);
 	self function_ea5da381();
@@ -517,7 +517,7 @@ function function_7569c0fb()
 		case "hash_44e4ea594e784497":
 		case "dom":
 		case "bounty":
-		case "hash_59202cb1d2f5336b":
+		case "control_cwl":
 		case "hash_5fab537230960e87":
 		case "hash_60af7b31f15b60dc":
 		case "hash_69aed4920e1ebe82":
@@ -529,7 +529,7 @@ function function_7569c0fb()
 		case "hash_7eee54ba2b077140":
 		case "hash_7f1055ba2b245959":
 		{
-			self stats::function_81f5c0fe(#"stat1", self.pers[#"hash_282813eec7b5b9ca"]);
+			self stats::function_81f5c0fe(#"stat1", self.pers[#"objectivescore"]);
 			self stats::function_81f5c0fe(#"stat2", self.ekia);
 			break;
 		}

@@ -68,7 +68,7 @@ function function_98a0917d()
 	wait(getdvarfloat(#"hash_68cf1e8e429452b0", 0));
 	if(util::isfirstround())
 	{
-		level thread scene::play(#"hash_6f21f534621fe2ee", "Shot 2");
+		level thread scene::play(#"p8_fxanim_mp_fir_flyover_bundle", "Shot 2");
 	}
 }
 
@@ -93,10 +93,10 @@ function function_2cdcf5c3()
 		{
 			waitframe(1);
 		}
-		level thread scene::play(#"hash_6f21f534621fe2ee", "Shot 1");
+		level thread scene::play(#"p8_fxanim_mp_fir_flyover_bundle", "Shot 1");
 		return;
 	}
-	level scene::skipto_end(#"hash_6f21f534621fe2ee");
+	level scene::skipto_end(#"p8_fxanim_mp_fir_flyover_bundle");
 }
 
 /*

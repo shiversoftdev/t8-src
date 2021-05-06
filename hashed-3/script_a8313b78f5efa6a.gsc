@@ -44,9 +44,9 @@ function __init__()
 */
 function function_27473e44()
 {
-	zm_perks::register_perk_clientfields(#"hash_6c2d5bb068417557", &function_12161a30, &function_b10a7225);
-	zm_perks::register_perk_effects(#"hash_6c2d5bb068417557", "sleight_light");
-	zm_perks::register_perk_init_thread(#"hash_6c2d5bb068417557", &function_5243c950);
+	zm_perks::register_perk_clientfields(#"specialty_mod_extraammo", &function_12161a30, &function_b10a7225);
+	zm_perks::register_perk_effects(#"specialty_mod_extraammo", "sleight_light");
+	zm_perks::register_perk_init_thread(#"specialty_mod_extraammo", &function_5243c950);
 }
 
 /*

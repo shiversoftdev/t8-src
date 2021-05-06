@@ -304,7 +304,7 @@ function give_sq_bg_reward(var_dd7441ab)
 	t_near thread sq_bg_spawn_rumble();
 	var_4d0b3b87 = zm_utility::spawn_weapon_model(getweapon(#"hash_19c157f2230454ad"), undefined, var_dd7441ab.origin + vectorscale((0, 0, 1), 6), var_dd7441ab.angles);
 	var_4d0b3b87 clientfield::set("" + #"hash_f03061885875815", 1);
-	var_4d0b3b87 thread scene::play(#"hash_2fe3067b201e6610", var_4d0b3b87);
+	var_4d0b3b87 thread scene::play(#"p8_fxanim_zm_esc_blundergat_fireplace_hover_bundle", var_4d0b3b87);
 	while(isdefined(self))
 	{
 		var_88706ea7 = undefined;

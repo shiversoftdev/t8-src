@@ -197,7 +197,7 @@ function function_f89c4b81()
 	{
 		return 0;
 	}
-	if(isdefined(self.weapon) && self.weapon.statname == #"hash_7b2cb0cda291ae11")
+	if(isdefined(self.weapon) && self.weapon.statname == #"tr_flechette_t8")
 	{
 		return 0;
 	}

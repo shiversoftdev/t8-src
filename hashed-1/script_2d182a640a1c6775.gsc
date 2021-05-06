@@ -1,7 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_1b10fdf0addd52e;
 #using script_2892d932ac4f3e3c;
-#using script_33fd053376f47476;
 #using script_35598499769dbb3d;
 #using script_39e954a546d3baf;
 #using script_3f9e0dc8454d98e1;
@@ -30,6 +29,7 @@
 #using scripts\core_common\vehicle_shared.gsc;
 #using scripts\zm\zm_red.gsc;
 #using scripts\zm\zm_red_util.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_powerups.gsc;
 #using scripts\zm_common\zm_score.gsc;

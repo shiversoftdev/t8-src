@@ -72,9 +72,9 @@ private function function_3b8e5273(localclientnum)
 		if(!(isdefined(level.var_a08217e1) && level.var_a08217e1))
 		{
 			level.var_a08217e1 = 1;
-			forcestreamxmodel(#"hash_1b523c16d67a9729");
+			forcestreamxmodel(#"c_t8_zmb_dlc2_skeleton_shield");
 			wait(3);
-			stopforcestreamingxmodel(#"hash_1b523c16d67a9729");
+			stopforcestreamingxmodel(#"c_t8_zmb_dlc2_skeleton_shield");
 			level.var_a08217e1 = 0;
 		}
 	}

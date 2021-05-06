@@ -42,7 +42,7 @@ function init_shared()
 	level.spawnbeaconsettings.availablespawnlists = [];
 	level.spawnbeaconsettings.var_d6a27a84 = [];
 	level.spawnbeaconsettings.var_d741a6a4 = [];
-	if(getgametypesetting(#"hash_332d856eb0e6a511") === 1)
+	if(getgametypesetting(#"competitivesettings") === 1)
 	{
 		level.spawnbeaconsettings.var_51d5c26f = getscriptbundle("spawnbeacon_custom_settings_comp");
 	}

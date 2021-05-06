@@ -29,7 +29,7 @@
 event main(eventstruct)
 {
 	namespace_13777bae::function_46e95cc7();
-	level.select_character = namespace_73e1c3e3::function_d153452e(#"hash_927088c511744e0");
+	level.select_character = namespace_73e1c3e3::function_d153452e(#"prt_mp_mercenary");
 	level.var_820c5561 = "RUIN";
 	namespace_73e1c3e3::function_be3a76b7(level.var_820c5561);
 	namespace_13777bae::function_fa03fc55();

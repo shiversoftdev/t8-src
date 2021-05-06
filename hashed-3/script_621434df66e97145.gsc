@@ -1074,7 +1074,7 @@ function function_bcfd9acb(var_3b2c2d10)
 	var_e72c9959 thread scene::init(#"hash_6a81729051de85ac", self);
 	playsoundatposition(#"hash_42c6cc2204b7fbbd", self.origin);
 	var_3b2c2d10 waittill(#"hash_4334e5d9747e57ef");
-	var_44342e79 = var_e72c9959 scene::function_8582657c(#"hash_3ca93b4e1742ee26", "Shot 2");
+	var_44342e79 = var_e72c9959 scene::function_8582657c(#"p8_fxanim_zm_esc_trap_fan_play", "Shot 2");
 	var_e72c9959 scene::play(#"hash_6a81729051de85ac", self);
 	if(isdefined(self))
 	{

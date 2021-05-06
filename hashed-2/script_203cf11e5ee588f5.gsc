@@ -176,7 +176,7 @@ private function function_a3661fef()
 		{
 			if(namespace_a1d9b01d::function_6d1e4410(e_player, var_6645c992))
 			{
-				level scene::function_27f5972e(#"hash_68370211ae6abc31");
+				level scene::function_27f5972e(#"p8_fxanim_zm_towers_trap_acid_bundle");
 				level notify(#"hash_476cae376318f3d5");
 				return;
 			}
@@ -300,7 +300,7 @@ function function_55d14d78()
 		}
 	}
 	level thread namespace_a1d9b01d::function_ca244624("zblueprint_trap_hellpools");
-	level scene::function_f81475ae(#"hash_68370211ae6abc31");
+	level scene::function_f81475ae(#"p8_fxanim_zm_towers_trap_acid_bundle");
 }
 
 /*

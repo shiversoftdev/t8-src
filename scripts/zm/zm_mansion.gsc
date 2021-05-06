@@ -377,12 +377,12 @@ function function_d7bc28f1()
 */
 function function_4db79562(a_ents)
 {
-	if(isplayer(a_ents[#"hash_210212f859dd4b63"]))
+	if(isplayer(a_ents[#"player 1"]))
 	{
-		a_ents[#"hash_210212f859dd4b63"] waittill(#"fade_out", #"disconnect");
-		if(isplayer(a_ents[#"hash_210212f859dd4b63"]))
+		a_ents[#"player 1"] waittill(#"fade_out", #"disconnect");
+		if(isplayer(a_ents[#"player 1"]))
 		{
-			a_ents[#"hash_210212f859dd4b63"] thread lui::screen_fade_out(0.5, "black");
+			a_ents[#"player 1"] thread lui::screen_fade_out(0.5, "black");
 		}
 	}
 }
@@ -398,13 +398,13 @@ function function_4db79562(a_ents)
 */
 function function_78276077(a_ents)
 {
-	if(isplayer(a_ents[#"hash_210212f859dd4b63"]))
+	if(isplayer(a_ents[#"player 1"]))
 	{
-		a_ents[#"hash_210212f859dd4b63"] thread lui::screen_fade_in(0.1, "black");
-		a_ents[#"hash_210212f859dd4b63"] waittill(#"hash_30795d8b5cd79089", #"hide_equipment_hint_text", #"disconnect");
-		if(isplayer(a_ents[#"hash_210212f859dd4b63"]))
+		a_ents[#"player 1"] thread lui::screen_fade_in(0.1, "black");
+		a_ents[#"player 1"] waittill(#"hash_30795d8b5cd79089", #"hide_equipment_hint_text", #"disconnect");
+		if(isplayer(a_ents[#"player 1"]))
 		{
-			a_ents[#"hash_210212f859dd4b63"] thread lui::screen_fade_out(0, "black");
+			a_ents[#"player 1"] thread lui::screen_fade_out(0, "black");
 		}
 	}
 }
@@ -420,12 +420,12 @@ function function_78276077(a_ents)
 */
 function function_48276a5e(a_ents)
 {
-	if(isplayer(a_ents[#"hash_210212f859dd4b63"]))
+	if(isplayer(a_ents[#"player 1"]))
 	{
-		a_ents[#"hash_210212f859dd4b63"] waittill(#"fade_in", #"disconnect");
-		if(isplayer(a_ents[#"hash_210212f859dd4b63"]))
+		a_ents[#"player 1"] waittill(#"fade_in", #"disconnect");
+		if(isplayer(a_ents[#"player 1"]))
 		{
-			a_ents[#"hash_210212f859dd4b63"] thread lui::screen_fade_in(0.3, "black");
+			a_ents[#"player 1"] thread lui::screen_fade_in(0.3, "black");
 		}
 	}
 }
@@ -3224,9 +3224,9 @@ function function_1aba9a64()
 	/#
 		var_b49229c2 = struct::get("");
 		function_a8dfebca("");
-		level thread scene::play(#"hash_79dc3cec0f9c544f", "");
-		level thread scene::play(#"hash_79dc3cec0f9c544f", "");
-		level thread scene::play(#"hash_79dc3cec0f9c544f", "");
+		level thread scene::play(#"p8_fxanim_zm_man_ooze_clump_bundle", "");
+		level thread scene::play(#"p8_fxanim_zm_man_ooze_clump_bundle", "");
+		level thread scene::play(#"p8_fxanim_zm_man_ooze_clump_bundle", "");
 		level flag::set("");
 		level flag::set("");
 		level flag::set("");

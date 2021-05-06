@@ -35,7 +35,7 @@ function __init__()
 {
 	level.renderoverridebundle = {#hash_383fe4d6:[], #hash_275d5e63:[]};
 	callback::on_localclient_connect(&function_d7ae6bbb);
-	function_f72f089c(#"hash_ebb37dab2ee0ae3", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"hash_462904942fe18ec3"), &function_6803f977);
+	function_f72f089c(#"hash_ebb37dab2ee0ae3", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"rob_sonar_set_friendlyequip_mp"), &function_6803f977);
 	function_f72f089c(#"hash_16bdbd0b3de5c91a", #"hash_71fbf1094f57b910", &function_fac25f84);
 }
 

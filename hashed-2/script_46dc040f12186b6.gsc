@@ -33,7 +33,7 @@
 event main(eventstruct)
 {
 	namespace_13777bae::function_46e95cc7();
-	level.select_character = namespace_73e1c3e3::function_d153452e(#"hash_6a1542e55603990");
+	level.select_character = namespace_73e1c3e3::function_d153452e(#"prt_mp_buffassault");
 	level.var_820c5561 = "CRASH";
 	namespace_73e1c3e3::function_be3a76b7(level.var_820c5561);
 	level.var_d6d98fbe = 1;

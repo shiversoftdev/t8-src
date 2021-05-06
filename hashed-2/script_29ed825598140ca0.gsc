@@ -1090,7 +1090,7 @@ function function_d5c8119d()
 	}
 	if(level.var_52b56362 === var_8e3c3c5b)
 	{
-		return isdefined(level.var_9766eb97.scaling) && level.var_9766eb97.scaling || level.var_9766eb97.radius <= 0;
+		return isdefined(level.deathcircle.scaling) && level.deathcircle.scaling || level.deathcircle.radius <= 0;
 	}
 	return 0;
 }
@@ -1106,7 +1106,7 @@ function function_d5c8119d()
 */
 function function_9956f107()
 {
-	if(isdefined(level.var_9766eb97) && !isdefined(level.var_9766eb97.var_7aec140c))
+	if(isdefined(level.deathcircle) && !isdefined(level.deathcircle.var_7aec140c))
 	{
 		return 1;
 	}
@@ -2135,7 +2135,7 @@ private function function_a5517625()
 	}
 	if(game.lives[self.team] > 0)
 	{
-		if(isdefined(level.var_b72f10f3) && level.var_b72f10f3)
+		if(isdefined(level.competitiveteamlives) && level.competitiveteamlives)
 		{
 		}
 		else if(self.attackers.size < 1)

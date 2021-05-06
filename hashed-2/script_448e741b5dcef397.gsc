@@ -57,7 +57,7 @@ function watchdeath(localclientnum)
 	self waittill(#"death");
 	if(isdefined(self) && self hasdobj(localclientnum))
 	{
-		self clearanim(#"hash_a5ebd0abbbb7824", 0.1);
+		self clearanim(#"ai_nomad_dog_additive_bark_01", 0.1);
 	}
 }
 
@@ -76,7 +76,7 @@ private function function_654bd68b(localclientnum, oldvalue, newvalue, bnewent, 
 	{
 		if(self flag::exists(#"friendly"))
 		{
-			self renderoverridebundle::function_40d0d1e0(#"friendly", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"hash_462904942fe18ec3"), 0);
+			self renderoverridebundle::function_40d0d1e0(#"friendly", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"rob_sonar_set_friendlyequip_mp"), 0);
 		}
 	}
 }
@@ -96,12 +96,12 @@ function function_14740469(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(isdefined(self) && self hasdobj(localclientnum))
 		{
-			self setflaggedanimknobrestart(#"hash_506d2ece42569653", #"hash_a5ebd0abbbb7824", 1, 0.1, 1);
+			self setflaggedanimknobrestart(#"hash_506d2ece42569653", #"ai_nomad_dog_additive_bark_01", 1, 0.1, 1);
 		}
 	}
 	else if(isdefined(self) && self hasdobj(localclientnum))
 	{
-		self clearanim(#"hash_a5ebd0abbbb7824", 0.1);
+		self clearanim(#"ai_nomad_dog_additive_bark_01", 0.1);
 	}
 }
 

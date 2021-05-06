@@ -130,8 +130,8 @@ function function_959fcbff(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else if(newval == 2)
 	{
-		forcestreamxmodel(#"hash_10ad36f3d6ec9cba");
-		util::delay(2, undefined, &stopforcestreamingxmodel, #"hash_10ad36f3d6ec9cba");
+		forcestreamxmodel(#"p8_zm_man_dead_tree_branches_burned");
+		util::delay(2, undefined, &stopforcestreamingxmodel, #"p8_zm_man_dead_tree_branches_burned");
 		self.var_d8243293 = util::playfxontag(localclientnum, level._effect[#"hash_7e5a6f88110635fc"], self, "tag_origin");
 		if(!isdefined(self.var_a0bfa25b))
 		{

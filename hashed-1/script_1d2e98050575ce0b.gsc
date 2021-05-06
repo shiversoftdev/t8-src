@@ -25,7 +25,7 @@
 */
 function init_shared()
 {
-	if(getgametypesetting(#"hash_332d856eb0e6a511") === 1)
+	if(getgametypesetting(#"competitivesettings") === 1)
 	{
 		level.var_6712d3ab = getscriptbundle("radiation_field_custom_settings_comp");
 	}

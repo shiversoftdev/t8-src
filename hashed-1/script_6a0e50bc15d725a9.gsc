@@ -1001,7 +1001,7 @@ function function_6b58c030(localclientnum, oldval, newval, bnewent, binitialsnap
 	util::playfxontag(localclientnum, level._effect[#"hash_568709b6dd3a62e2"], self, "tag_origin");
 	var_d58aab0e = util::spawn_model(localclientnum, "tag_origin", self gettagorigin("tag_flash_window"), self gettagangles("tag_flash_window"));
 	var_d58aab0e linkto(self, "tag_flash_window");
-	var_d58aab0e scene::play(#"hash_78007ca609fa544");
+	var_d58aab0e scene::play(#"p8_fxanim_zm_esc_blast_afterlife_bundle");
 	var_d58aab0e unlink();
 	var_d58aab0e delete();
 	if(isdefined(self))

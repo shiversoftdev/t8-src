@@ -1178,7 +1178,7 @@ function function_d8648a1e(e_player)
 function function_42c889b7(e_player)
 {
 	level thread scene::init(#"hash_1f7947f335a89821", self);
-	level thread scene::play(#"hash_4ef2ee22a6e7fe81");
+	level thread scene::play(#"p8_fxanim_zm_man_grave_lid_break_bundle");
 	level waittill(#"hash_771956e8f5a4a301");
 	scene::add_scene_func(#"hash_1f7947f335a89821", &function_79b81681, "play");
 	scene::add_scene_func(#"hash_1f7947f335a89821", &function_2c0edc3d, "done");

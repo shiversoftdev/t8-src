@@ -2976,7 +2976,7 @@ function function_8821879c(killstreak_id)
 				else
 				{
 					self.var_5f43fa0c = "swat_escort";
-					self gestures::function_56e00fbf(#"hash_448b4b6b1587754f", undefined, 0);
+					self gestures::function_56e00fbf(#"gestable_order_follow", undefined, 0);
 					self function_d738127f();
 					self thread swat_escort();
 					if(isdefined(self.var_6c0553ea.remoteweapon))
@@ -3423,7 +3423,7 @@ function swat_escort(playgesture = 1)
 	owner function_d738127f();
 	if(isdefined(owner) && playgesture)
 	{
-		owner gestures::function_56e00fbf(#"hash_448b4b6b1587754f", undefined, 0);
+		owner gestures::function_56e00fbf(#"gestable_order_follow", undefined, 0);
 	}
 	while(true)
 	{
@@ -3497,7 +3497,7 @@ function swat_guard()
 		return;
 	}
 	self function_59f58b93(position);
-	self gestures::function_56e00fbf(#"hash_7ad077e650ead562", undefined, 0);
+	self gestures::function_56e00fbf(#"gestable_battle_cry", undefined, 0);
 	for(i = 0; i < 2; i++)
 	{
 		if(!isdefined(self.swat_team[i]))

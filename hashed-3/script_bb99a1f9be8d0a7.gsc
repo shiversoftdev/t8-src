@@ -2011,8 +2011,8 @@ function function_82569431(einflictor, attacker, idamage, smeansofdeath, weapon,
 function function_7e8fcca2()
 {
 System.ArgumentException: Expecting While Loop At FirstArrayKey
-   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1494
-   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1298
+   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1493
+   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1297
    at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 206
 /*
 No Output

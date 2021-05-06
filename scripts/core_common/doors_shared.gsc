@@ -1501,7 +1501,7 @@ function __init__()
 function __main__()
 {
 	level flagsys::wait_till("radiant_gameobjects_initialized");
-	var_1cde154f = getgametypesetting(#"hash_7dd9cf85afadee0a");
+	var_1cde154f = getgametypesetting(#"use_doors");
 	var_5a23774b = getdvarint(#"hash_1da83e9a3dca0a70", 0);
 	if(!(isdefined(var_1cde154f) && var_1cde154f) || (isdefined(var_5a23774b) && var_5a23774b))
 	{

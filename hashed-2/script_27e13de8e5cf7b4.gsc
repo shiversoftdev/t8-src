@@ -75,7 +75,7 @@ function __init__()
 	callback::on_connect(&function_984185e0);
 	callback::on_bleedout(&function_569653b);
 	callback::on_revived(&function_569653b);
-	scene::add_scene_func(#"hash_64f1b658ba524d5d", &function_8d31d238, "init");
+	scene::add_scene_func(#"p8_zm_gravityspikes_miniboss_trap_scene", &function_8d31d238, "init");
 	register_clientfields();
 }
 
@@ -1438,7 +1438,7 @@ private function zombie_lift(player, v_attack_source, n_push_away, n_lift_height
 				v_pos = self.origin;
 			}
 			self.var_68f4c9de = util::spawn_model("tag_origin", v_pos, self.angles);
-			self.var_68f4c9de thread scene::init(#"hash_64f1b658ba524d5d", self);
+			self.var_68f4c9de thread scene::init(#"p8_zm_gravityspikes_miniboss_trap_scene", self);
 			self clientfield::set("sparky_beam_fx", 1);
 			self clientfield::set("sparky_zombie_fx", 1);
 			self thread gravity_trap_notify_watcher(player);
@@ -1451,7 +1451,7 @@ private function zombie_lift(player, v_attack_source, n_push_away, n_lift_height
 				self clientfield::set("sparky_zombie_trail_fx", 1);
 				if(isdefined(self.var_68f4c9de))
 				{
-					self.var_68f4c9de scene::play(#"hash_64f1b658ba524d5d", self);
+					self.var_68f4c9de scene::play(#"p8_zm_gravityspikes_miniboss_trap_scene", self);
 				}
 				if(isdefined(self))
 				{

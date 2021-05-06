@@ -1003,7 +1003,7 @@ function function_8c6b7af7(params)
 {
 	if(self.var_c31e86ed)
 	{
-		return #"hash_c45afc89ecb6840";
+		return #"c_t8_mp_swatbuddy_head2";
 	}
 	if(![[ self ]]->function_ef6f931f(params))
 	{
@@ -1061,7 +1061,7 @@ function function_d5e754c6()
 {
 	if(self.var_c31e86ed)
 	{
-		return #"hash_4b59d8cc6ef5e2a";
+		return #"c_t8_mp_swatbuddy_body2";
 	}
 	return character_customization::function_6bca50af(&function_92ea4100, self.var_1d73bad9, self.var_cf55444c, self.var_f5c0467b[6], self.var_ea1ac6a5);
 }
@@ -1663,8 +1663,8 @@ private function function_2e77aae4(localclientnum, weaponmodel, var_6f2ae9c0, va
 {
 	stage = function_5442be13(var_6f2ae9c0);
 	camoindex = getcamoindex(var_6f2ae9c0);
-	var_5c040783 = namespace_bd02cf1::function_ae141bf2(camoindex);
-	if(!isdefined(var_5c040783))
+	activecamoinfo = namespace_bd02cf1::function_ae141bf2(camoindex);
+	if(!isdefined(activecamoinfo))
 	{
 		return 0;
 	}
@@ -1673,7 +1673,7 @@ private function function_2e77aae4(localclientnum, weaponmodel, var_6f2ae9c0, va
 	{
 		stage = 1;
 	}
-	var_3594168e = var_5c040783.stages[stage];
+	var_3594168e = activecamoinfo.stages[stage];
 	return namespace_bd02cf1::function_374e37a0(localclientnum, weaponmodel, var_3594168e, var_49daa2f6);
 }
 

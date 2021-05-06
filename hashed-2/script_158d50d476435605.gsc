@@ -43,7 +43,7 @@ function __init__()
 	{
 		level.var_ab319180 = [];
 	}
-	level.var_ab319180[getweapon(#"hash_59618269d014e1fe")] = 1;
+	level.var_ab319180[getweapon(#"sniper_mini14_t8")] = 1;
 }
 
 /*
@@ -188,13 +188,13 @@ function on_player_spawned(localclientnum)
 */
 function function_ae141bf2(camoindex)
 {
-	var_5c040783 = undefined;
+	activecamoinfo = undefined;
 	var_8968c2ce = function_11c873a(camoindex);
 	if(isdefined(var_8968c2ce) && var_8968c2ce != #"")
 	{
-		var_5c040783 = getscriptbundle(var_8968c2ce);
+		activecamoinfo = getscriptbundle(var_8968c2ce);
 	}
-	return var_5c040783;
+	return activecamoinfo;
 }
 
 /*
@@ -221,9 +221,9 @@ function function_3d96ad48(var_6f2ae9c0)
 	Parameters: 4
 	Flags: Linked
 */
-function function_451a49f4(localclientnum, var_5c040783, weapon, var_d1a848d9)
+function function_451a49f4(localclientnum, activecamoinfo, weapon, var_d1a848d9)
 {
-	var_bd02cf1 = self function_6f08b691(var_5c040783);
+	var_bd02cf1 = self function_6f08b691(activecamoinfo);
 	if(isdefined(var_bd02cf1))
 	{
 		if(!isdefined(var_bd02cf1.var_fe56592))
@@ -260,8 +260,8 @@ function function_451a49f4(localclientnum, var_5c040783, weapon, var_d1a848d9)
 function function_130e0542(localclientnum, weapon, camoindex)
 {
 	init_stage = 0;
-	var_5c040783 = function_ae141bf2(camoindex);
-	var_bd02cf1 = self function_6f08b691(var_5c040783);
+	activecamoinfo = function_ae141bf2(camoindex);
+	var_bd02cf1 = self function_6f08b691(activecamoinfo);
 	if(isdefined(var_bd02cf1))
 	{
 		if(isdefined(var_bd02cf1.info.stages))
@@ -285,7 +285,7 @@ function function_130e0542(localclientnum, weapon, camoindex)
 				}
 			}
 		}
-		return function_451a49f4(localclientnum, var_5c040783, weapon, init_stage);
+		return function_451a49f4(localclientnum, activecamoinfo, weapon, init_stage);
 	}
 }
 
@@ -302,8 +302,8 @@ function function_95f12bac(localclientnum, weapon, weaponoptions)
 {
 	camoindex = getcamoindex(weaponoptions);
 	var_d1a848d9 = function_5442be13(weaponoptions);
-	var_5c040783 = function_ae141bf2(camoindex);
-	return function_451a49f4(localclientnum, var_5c040783, weapon, var_d1a848d9);
+	activecamoinfo = function_ae141bf2(camoindex);
+	return function_451a49f4(localclientnum, activecamoinfo, weapon, var_d1a848d9);
 }
 
 /*
@@ -335,13 +335,13 @@ function function_19a5d7e7(localclientnum, weapon, tagname, var_d1a848d9, impuls
 {
 	var_d1460f46 = tagname == "tag_stowed_back";
 	self function_7a55e60a(var_d1460f46);
-	var_5c040783 = function_3d96ad48(var_6f2ae9c0);
-	if(!isdefined(var_5c040783))
+	activecamoinfo = function_3d96ad48(var_6f2ae9c0);
+	if(!isdefined(activecamoinfo))
 	{
 		function_3e27a7cb(localclientnum, tagname);
 		return;
 	}
-	var_bd02cf1 = self function_6f08b691(var_5c040783);
+	var_bd02cf1 = self function_6f08b691(activecamoinfo);
 	if(!isdefined(var_bd02cf1) || !isdefined(var_bd02cf1.info) || !isdefined(var_bd02cf1.info.stages))
 	{
 		function_3e27a7cb(localclientnum, tagname);
@@ -681,32 +681,32 @@ function function_42887bfe(stage, tagname, layer, impulse, var_d71e8c6e)
 	Parameters: 1
 	Flags: Linked
 */
-function function_3aa81e0e(var_5c040783)
+function function_3aa81e0e(activecamoinfo)
 {
 	info = undefined;
-	if(isdefined(var_5c040783) && isdefined(var_5c040783.name))
+	if(isdefined(activecamoinfo) && isdefined(activecamoinfo.name))
 	{
-		if(!isdefined(level.var_5c040783))
+		if(!isdefined(level.activecamoinfo))
 		{
-			level.var_5c040783 = [];
+			level.activecamoinfo = [];
 		}
-		if(isdefined(level.var_5c040783[var_5c040783.name]))
+		if(isdefined(level.activecamoinfo[activecamoinfo.name]))
 		{
-			return level.var_5c040783[var_5c040783.name];
+			return level.activecamoinfo[activecamoinfo.name];
 		}
-		if(!isdefined(level.var_5c040783[var_5c040783.name]))
+		if(!isdefined(level.activecamoinfo[activecamoinfo.name]))
 		{
-			level.var_5c040783[var_5c040783.name] = {};
+			level.activecamoinfo[activecamoinfo.name] = {};
 		}
-		info = level.var_5c040783[var_5c040783.name];
-		if(isdefined(var_5c040783.stages))
+		info = level.activecamoinfo[activecamoinfo.name];
+		if(isdefined(activecamoinfo.stages))
 		{
 			if(!isdefined(info.stages))
 			{
 				info.stages = [];
 			}
 			var_d3daabe = 0;
-			foreach(key, var_3594168e in var_5c040783.stages)
+			foreach(key, var_3594168e in activecamoinfo.stages)
 			{
 				if(isdefined(var_3594168e.disabled) && var_3594168e.disabled)
 				{
@@ -780,24 +780,24 @@ function function_3aa81e0e(var_5c040783)
 	Parameters: 1
 	Flags: Linked
 */
-function function_6f08b691(var_5c040783)
+function function_6f08b691(activecamoinfo)
 {
-	if(isdefined(var_5c040783))
+	if(isdefined(activecamoinfo))
 	{
 		if(!isdefined(self.var_9413f8b4))
 		{
 			self.var_9413f8b4 = [];
 		}
-		if(isdefined(self.var_9413f8b4[var_5c040783.name]))
+		if(isdefined(self.var_9413f8b4[activecamoinfo.name]))
 		{
-			return self.var_9413f8b4[var_5c040783.name];
+			return self.var_9413f8b4[activecamoinfo.name];
 		}
-		if(!isdefined(self.var_9413f8b4[var_5c040783.name]))
+		if(!isdefined(self.var_9413f8b4[activecamoinfo.name]))
 		{
-			self.var_9413f8b4[var_5c040783.name] = {};
+			self.var_9413f8b4[activecamoinfo.name] = {};
 		}
-		var_bd02cf1 = self.var_9413f8b4[var_5c040783.name];
-		var_bd02cf1.info = function_3aa81e0e(var_5c040783);
+		var_bd02cf1 = self.var_9413f8b4[activecamoinfo.name];
+		var_bd02cf1.info = function_3aa81e0e(activecamoinfo);
 		return var_bd02cf1;
 	}
 	return undefined;
@@ -869,11 +869,11 @@ function function_cbfd8fd6(localclientnum)
 	{
 		weaponoptions = self function_e10e6c37();
 		camoindex = getcamoindex(weaponoptions);
-		var_5c040783 = function_ae141bf2(camoindex);
-		if(isdefined(var_5c040783))
+		activecamoinfo = function_ae141bf2(camoindex);
+		if(isdefined(activecamoinfo))
 		{
 			var_d1a848d9 = function_5442be13(weaponoptions);
-			self function_b3a0e4f0(localclientnum, var_5c040783, var_d1a848d9);
+			self function_b3a0e4f0(localclientnum, activecamoinfo, var_d1a848d9);
 		}
 	}
 }
@@ -891,13 +891,13 @@ function function_e40c785a(localclientnum)
 {
 	weaponoptions = self function_e10e6c37();
 	camoindex = getcamoindex(weaponoptions);
-	var_5c040783 = function_ae141bf2(camoindex);
-	if(isdefined(var_5c040783))
+	activecamoinfo = function_ae141bf2(camoindex);
+	if(isdefined(activecamoinfo))
 	{
-		if(isdefined(var_5c040783.stages))
+		if(isdefined(activecamoinfo.stages))
 		{
 			init_stage = 0;
-			foreach(key, var_3594168e in var_5c040783.stages)
+			foreach(key, var_3594168e in activecamoinfo.stages)
 			{
 				if(isdefined(var_3594168e.var_d2eac588))
 				{
@@ -906,7 +906,7 @@ function function_e40c785a(localclientnum)
 				init_stage = key;
 				break;
 			}
-			self function_b3a0e4f0(localclientnum, var_5c040783, init_stage);
+			self function_b3a0e4f0(localclientnum, activecamoinfo, init_stage);
 		}
 	}
 }
@@ -923,11 +923,11 @@ function function_e40c785a(localclientnum)
 function function_6efb762c(localclientnum, var_e827f698, weaponoptions)
 {
 	camoindex = getcamoindex(weaponoptions);
-	var_5c040783 = function_ae141bf2(camoindex);
-	if(isdefined(var_5c040783))
+	activecamoinfo = function_ae141bf2(camoindex);
+	if(isdefined(activecamoinfo))
 	{
 		player = function_27673a7(localclientnum);
-		var_bd02cf1 = player function_6f08b691(var_5c040783);
+		var_bd02cf1 = player function_6f08b691(activecamoinfo);
 		baseweapon = function_c14cb514(var_e827f698);
 		if(isdefined(var_bd02cf1))
 		{
@@ -944,9 +944,9 @@ function function_6efb762c(localclientnum, var_e827f698, weaponoptions)
 					init_stage = var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
 				}
 			}
-			if(isdefined(var_5c040783.stages))
+			if(isdefined(activecamoinfo.stages))
 			{
-				var_3594168e = var_5c040783.stages[init_stage];
+				var_3594168e = activecamoinfo.stages[init_stage];
 				if(isdefined(var_3594168e))
 				{
 					var_19b6044e = function_8b51d9d1(var_3594168e.var_879c8798);
@@ -954,7 +954,7 @@ function function_6efb762c(localclientnum, var_e827f698, weaponoptions)
 					self function_a6fc2979(init_stage);
 				}
 			}
-			self function_b3a0e4f0(localclientnum, var_5c040783, init_stage);
+			self function_b3a0e4f0(localclientnum, activecamoinfo, init_stage);
 		}
 	}
 }
@@ -968,11 +968,11 @@ function function_6efb762c(localclientnum, var_e827f698, weaponoptions)
 	Parameters: 3
 	Flags: Linked
 */
-function function_b3a0e4f0(localclientnum, var_5c040783, init_stage)
+function function_b3a0e4f0(localclientnum, activecamoinfo, init_stage)
 {
-	if(isdefined(var_5c040783) && isdefined(var_5c040783.stages))
+	if(isdefined(activecamoinfo) && isdefined(activecamoinfo.stages))
 	{
-		var_3594168e = var_5c040783.stages[init_stage];
+		var_3594168e = activecamoinfo.stages[init_stage];
 		if(isdefined(var_3594168e))
 		{
 			if(!isdefined(self.var_49daa2f6))

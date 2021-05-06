@@ -43,7 +43,7 @@ function __init__()
 	callback::on_connect(&function_d863663f);
 	weaponobjects::function_e6400478(#"eq_tripwire", &function_9f97e1a3, 1);
 	level.var_c27600b0 = getweapon("eq_tripwire");
-	if(getgametypesetting(#"hash_332d856eb0e6a511") === 1)
+	if(getgametypesetting(#"competitivesettings") === 1)
 	{
 		level.var_c72e8c51 = getscriptbundle("tripwire_custom_settings_comp");
 	}

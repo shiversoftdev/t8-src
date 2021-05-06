@@ -393,11 +393,11 @@ private function function_192c82f8(localclientnum, oldval, newval, bnewent, bini
 	{
 		if(newval)
 		{
-			self setanim(#"hash_322363540c70ba81", 1, 0.1, 1);
+			self setanim(#"ai_t8_zm_zod_bltfthr_backsacs_add", 1, 0.1, 1);
 		}
 		else
 		{
-			self clearanim(#"hash_322363540c70ba81", 0.2);
+			self clearanim(#"ai_t8_zm_zod_bltfthr_backsacs_add", 0.2);
 		}
 	}
 }

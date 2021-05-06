@@ -308,7 +308,7 @@ function function_e40e9d94(n_eating_anim, ai_zombie, var_64c09f7f)
 	a_scene_ents = self.s_scene.scene_ents;
 	foreach(ent in a_scene_ents)
 	{
-		if(ent.model === #"hash_32decb2346b04974")
+		if(ent.model === #"c_t8_zmb_mob_wolf_head")
 		{
 			var_3e1900e4 = ent;
 			break;
@@ -682,7 +682,7 @@ function tomahawk_pickup()
 {
 	level flag::wait_till(#"soul_catchers_charged");
 	var_fd22f9df = struct::get("tom_pil");
-	var_6e6ec518 = var_fd22f9df.scene_ents[#"hash_7aff0fe60ddd952e"];
+	var_6e6ec518 = var_fd22f9df.scene_ents[#"prop 2"];
 	var_6e6ec518 waittill(#"hash_72879554ff8d0b60");
 	wait(0.5);
 	var_6e6ec518 playloopsound(#"amb_tomahawk_swirl");
@@ -768,7 +768,7 @@ function function_f0ef3897(e_player)
 	e_player notify(#"hash_78d7f70251d51f7c");
 	e_player endon(#"hash_78d7f70251d51f7c", #"disconnect");
 	var_fd22f9df = struct::get("tom_pil");
-	var_6e6ec518 = var_fd22f9df.scene_ents[#"hash_7aff0fe60ddd952e"];
+	var_6e6ec518 = var_fd22f9df.scene_ents[#"prop 2"];
 	var_6e6ec518 setinvisibletoplayer(e_player);
 	self setinvisibletoplayer(e_player);
 	e_player zm_utility::disable_player_move_states(1);
@@ -858,7 +858,7 @@ function function_6300f001()
 	self endon(#"disconnect");
 	var_6668e57a = getent("rt_pickup_trigger", "script_noteworthy");
 	var_fd22f9df = struct::get("tom_pil");
-	var_6e6ec518 = var_fd22f9df.scene_ents[#"hash_7aff0fe60ddd952e"];
+	var_6e6ec518 = var_fd22f9df.scene_ents[#"prop 2"];
 	while(isplayer(self))
 	{
 		if(isdefined(var_6668e57a))

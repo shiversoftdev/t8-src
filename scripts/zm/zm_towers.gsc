@@ -1572,7 +1572,7 @@ function function_8d6c5e6e(cmd)
 			case "hash_63968ec6789bd654":
 			{
 				mdl_wall = level.var_f2dc2287.a_objects[14];
-				mdl_wall scene::play(#"hash_4369f8ac99b40c13", mdl_wall);
+				mdl_wall scene::play(#"p8_fxanim_zm_towers_wall_2_bundle", mdl_wall);
 				break;
 			}
 			case "hash_36c98a2b5fcf250c":

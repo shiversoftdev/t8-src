@@ -181,7 +181,7 @@ function function_93eab559()
 	{
 		return;
 	}
-	level thread function_2a2428df();
+	level thread p9_wood_lumber_01_1x4_64_01();
 	wait(1);
 	level thread zm_audio::sndannouncerplayvox("dogstart");
 }
@@ -568,7 +568,7 @@ function function_38c0c907()
 }
 
 /*
-	Name: function_2a2428df
+	Name: p9_wood_lumber_01_1x4_64_01
 	Namespace: namespace_9d27962b
 	Checksum: 0x424B4CE0
 	Offset: 0x13C0
@@ -576,7 +576,7 @@ function function_38c0c907()
 	Parameters: 0
 	Flags: Linked
 */
-function function_2a2428df()
+function p9_wood_lumber_01_1x4_64_01()
 {
 	players = getplayers();
 	num = randomintrange(0, players.size);

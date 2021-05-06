@@ -50,22 +50,22 @@ function function_65b179f4(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	switch(self.model)
 	{
-		case "hash_3f1a1b12f956a381":
+		case "c_t8_zmb_concentrated_catalyst_foot":
 		{
 			util::playfxontag(localclientnum, level._effect[#"hash_619321730ebe1b49"], self, "tag_origin");
 			break;
 		}
-		case "hash_33896cd3e525552b":
+		case "c_t8_zmb_concentrated_catalyst_heart":
 		{
 			util::playfxontag(localclientnum, level._effect[#"hash_3547af665773df36"], self, "tag_origin");
 			break;
 		}
-		case "hash_5c6262e324d23668":
+		case "c_t8_zmb_concentrated_catalyst_hand":
 		{
 			util::playfxontag(localclientnum, level._effect[#"hash_e24c17449fcb2f6"], self, "tag_origin");
 			break;
 		}
-		case "hash_63663ddb971b5932":
+		case "c_t8_zmb_concentrated_catalyst_skull":
 		{
 			util::playfxontag(localclientnum, level._effect[#"hash_39f5cccf6d3254d0"], self, "tag_origin");
 			break;

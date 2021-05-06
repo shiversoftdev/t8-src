@@ -140,10 +140,10 @@ function on_player_loadout()
 function function_8d3b94ea(weapon, owned, b_has_weapon)
 {
 	weapon = function_94c2605(weapon);
-	var_5c040783 = function_a108c50e(weapon, b_has_weapon);
-	if(isdefined(var_5c040783))
+	activecamoinfo = function_a108c50e(weapon, b_has_weapon);
+	if(isdefined(activecamoinfo))
 	{
-		self function_6f08b691(weapon, var_5c040783, owned);
+		self function_6f08b691(weapon, activecamoinfo, owned);
 	}
 }
 
@@ -156,20 +156,20 @@ function function_8d3b94ea(weapon, owned, b_has_weapon)
 	Parameters: 3
 	Flags: Linked
 */
-function function_6f08b691(weapon, var_5c040783, owned)
+function function_6f08b691(weapon, activecamoinfo, owned)
 {
-	if(isdefined(var_5c040783) && isdefined(var_5c040783.name))
+	if(isdefined(activecamoinfo) && isdefined(activecamoinfo.name))
 	{
 		if(!isdefined(self.pers[#"hash_50096a2a31e9111b"]))
 		{
 			self.pers[#"hash_50096a2a31e9111b"] = [];
 		}
-		if(!isdefined(self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name]))
+		if(!isdefined(self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name]))
 		{
-			self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name] = {};
+			self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name] = {};
 		}
-		var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name];
-		var_bd02cf1.info = function_3aa81e0e(var_5c040783);
+		var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name];
+		var_bd02cf1.info = function_3aa81e0e(activecamoinfo);
 		/#
 			assert(isdefined(var_bd02cf1.info));
 		#/
@@ -207,7 +207,7 @@ function function_6f08b691(weapon, var_5c040783, owned)
 function function_b008f9e9(weapon)
 {
 	/#
-		if(!isdefined(level.var_5c040783))
+		if(!isdefined(level.activecamoinfo))
 		{
 			return;
 		}
@@ -216,10 +216,10 @@ function function_b008f9e9(weapon)
 			self switchtoweapon(weapon);
 			self waittill_timeout(2, #"weapon_change");
 		}
-		foreach(info in level.var_5c040783)
+		foreach(info in level.activecamoinfo)
 		{
-			var_5c040783 = getscriptbundle(info.name);
-			self function_6f08b691(weapon, var_5c040783, 1);
+			activecamoinfo = getscriptbundle(info.name);
+			self function_6f08b691(weapon, activecamoinfo, 1);
 			waitframe(1);
 		}
 	#/
@@ -234,38 +234,38 @@ function function_b008f9e9(weapon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_3aa81e0e(var_5c040783)
+function function_3aa81e0e(activecamoinfo)
 {
 	info = undefined;
-	if(isdefined(var_5c040783) && isdefined(var_5c040783.name))
+	if(isdefined(activecamoinfo) && isdefined(activecamoinfo.name))
 	{
-		if(!isdefined(level.var_5c040783))
+		if(!isdefined(level.activecamoinfo))
 		{
-			level.var_5c040783 = [];
+			level.activecamoinfo = [];
 		}
-		if(!isdefined(level.var_5c040783[var_5c040783.name]))
+		if(!isdefined(level.activecamoinfo[activecamoinfo.name]))
 		{
-			level.var_5c040783[var_5c040783.name] = {};
+			level.activecamoinfo[activecamoinfo.name] = {};
 		}
-		info = level.var_5c040783[var_5c040783.name];
-		info.name = var_5c040783.name;
-		info.var_e639aa37 = var_5c040783.var_e639aa37;
-		info.var_cd82182a = var_5c040783.var_cd82182a;
-		info.var_e0b0d8cc = var_5c040783.var_e0b0d8cc;
-		info.var_ed6f91d5 = var_5c040783.var_ed6f91d5;
-		info.var_bd863267 = var_5c040783.var_bd863267;
-		info.var_26c1d493 = var_5c040783.var_26c1d493;
-		info.var_fa0465c6 = var_5c040783.var_fa0465c6;
-		info.var_2034fabe = var_5c040783.var_2034fabe;
-		info.var_9ae5a2b8 = var_5c040783.var_9ae5a2b8;
+		info = level.activecamoinfo[activecamoinfo.name];
+		info.name = activecamoinfo.name;
+		info.var_e639aa37 = activecamoinfo.var_e639aa37;
+		info.var_cd82182a = activecamoinfo.var_cd82182a;
+		info.var_e0b0d8cc = activecamoinfo.var_e0b0d8cc;
+		info.var_ed6f91d5 = activecamoinfo.var_ed6f91d5;
+		info.var_bd863267 = activecamoinfo.var_bd863267;
+		info.var_26c1d493 = activecamoinfo.var_26c1d493;
+		info.var_fa0465c6 = activecamoinfo.var_fa0465c6;
+		info.var_2034fabe = activecamoinfo.var_2034fabe;
+		info.var_9ae5a2b8 = activecamoinfo.var_9ae5a2b8;
 		var_d3daabe = 0;
-		if(isdefined(var_5c040783.stages))
+		if(isdefined(activecamoinfo.stages))
 		{
 			if(!isdefined(info.stages))
 			{
 				info.stages = [];
 			}
-			foreach(key, var_3594168e in var_5c040783.stages)
+			foreach(key, var_3594168e in activecamoinfo.stages)
 			{
 				if(isdefined(var_3594168e.disabled) && var_3594168e.disabled)
 				{
@@ -337,7 +337,7 @@ function function_3aa81e0e(var_5c040783)
 */
 function function_a108c50e(weapon, b_has_weapon = 1)
 {
-	var_5c040783 = undefined;
+	activecamoinfo = undefined;
 	if(b_has_weapon)
 	{
 		weaponoptions = self getweaponoptions(weapon);
@@ -350,9 +350,9 @@ function function_a108c50e(weapon, b_has_weapon = 1)
 	var_8968c2ce = function_11c873a(camoindex);
 	if(isdefined(var_8968c2ce) && var_8968c2ce != #"")
 	{
-		var_5c040783 = getscriptbundle(var_8968c2ce);
+		activecamoinfo = getscriptbundle(var_8968c2ce);
 	}
-	return var_5c040783;
+	return activecamoinfo;
 }
 
 /*
@@ -833,10 +833,10 @@ function function_896ac347(var_8659b480, statname, value)
 		#/
 		return;
 	}
-	var_5c040783 = function_a108c50e(weapon);
-	if(isdefined(var_5c040783))
+	activecamoinfo = function_a108c50e(weapon);
+	if(isdefined(activecamoinfo))
 	{
-		var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name];
+		var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name];
 		if(isdefined(var_bd02cf1))
 		{
 			var_bd02cf1.weapon = weapon;
@@ -918,7 +918,7 @@ function function_896ac347(var_8659b480, statname, value)
 						}
 						if(sessionmodeismultiplayergame())
 						{
-							if(var_5c040783.name == #"hash_391b1d38f4d65c14")
+							if(activecamoinfo.name == #"hash_391b1d38f4d65c14")
 							{
 								if(var_d1a848d9 == 1 && stage.var_dd54a13b[var_bd02cf1.baseweapon].statvalue == 5)
 								{
@@ -929,7 +929,7 @@ function function_896ac347(var_8659b480, statname, value)
 									self function_c0fa0ecb(weapon);
 								}
 							}
-							else if(var_5c040783.name == #"hash_4cc835f621014977")
+							else if(activecamoinfo.name == #"hash_4cc835f621014977")
 							{
 								if(var_d1a848d9 == 1 && stage.var_dd54a13b[var_bd02cf1.baseweapon].statvalue == 1)
 								{
@@ -1761,10 +1761,10 @@ function function_779a9561(var_d1a848d9)
 	/#
 		weapon = self getcurrentweapon();
 		weapon = function_94c2605(weapon);
-		var_5c040783 = function_a108c50e(weapon);
-		if(isdefined(var_5c040783))
+		activecamoinfo = function_a108c50e(weapon);
+		if(isdefined(activecamoinfo))
 		{
-			var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name];
+			var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name];
 			if(isdefined(var_bd02cf1) && isdefined(var_bd02cf1.stages) && var_d1a848d9 < var_bd02cf1.stages.size)
 			{
 				var_bd02cf1.weapon = weapon;
@@ -1841,11 +1841,11 @@ function function_779a9561(var_d1a848d9)
 function function_9c361e56(var_8968c2ce)
 {
 	/#
-		var_5c040783 = getscriptbundle(var_8968c2ce);
+		activecamoinfo = getscriptbundle(var_8968c2ce);
 		weapon = self getcurrentweapon();
-		if(isdefined(var_5c040783))
+		if(isdefined(activecamoinfo))
 		{
-			self function_6f08b691(weapon, var_5c040783, 1);
+			self function_6f08b691(weapon, activecamoinfo, 1);
 		}
 	#/
 }
@@ -1883,10 +1883,10 @@ function function_633fbf17(weapon, back)
 		{
 			self function_8d3b94ea(weapon, 1);
 			weapon = function_94c2605(weapon);
-			var_5c040783 = function_a108c50e(weapon);
-			if(isdefined(var_5c040783))
+			activecamoinfo = function_a108c50e(weapon);
+			if(isdefined(activecamoinfo))
 			{
-				var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name];
+				var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name];
 				if(isdefined(var_bd02cf1))
 				{
 					if(isdefined(var_bd02cf1.stages))
@@ -1943,10 +1943,10 @@ function function_3d928fb4(weapon)
 		{
 			self function_8d3b94ea(weapon, 1);
 			weapon = function_94c2605(weapon);
-			var_5c040783 = function_a108c50e(weapon);
-			if(isdefined(var_5c040783))
+			activecamoinfo = function_a108c50e(weapon);
+			if(isdefined(activecamoinfo))
 			{
-				var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name];
+				var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name];
 				if(isdefined(var_bd02cf1))
 				{
 					var_bd02cf1.weapon = weapon;
@@ -2043,10 +2043,10 @@ function function_14a9eb5b(weapon)
 		{
 			self function_8d3b94ea(weapon, 1);
 			weapon = function_94c2605(weapon);
-			var_5c040783 = function_a108c50e(weapon);
-			if(isdefined(var_5c040783))
+			activecamoinfo = function_a108c50e(weapon);
+			if(isdefined(activecamoinfo))
 			{
-				var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_5c040783.name];
+				var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][activecamoinfo.name];
 				if(isdefined(var_bd02cf1))
 				{
 					var_bd02cf1.weapon = weapon;

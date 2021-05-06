@@ -134,7 +134,7 @@ function function_27b91fdb()
 function function_6b6712e3()
 {
 	level flagsys::wait_till("start_zombie_round_logic");
-	var_ca45945a = scene::get_active_scenes(#"hash_9411aca938811e6");
+	var_ca45945a = scene::get_active_scenes(#"p8_fxanim_zm_man_bookcase_04_bundle");
 	var_48e18d96 = var_ca45945a[0];
 	var_80c684f = var_48e18d96.scene_ents[#"hash_7aff0ee60ddd937b"];
 	var_728bcf6e = getent("ww_l2_part_clip_right", "targetname");
@@ -196,7 +196,7 @@ function function_292dd34f(var_d42a9ac5)
 {
 	level waittill(#"hash_2588983e2be22ca5");
 	self setcandamage(0);
-	level scene::play(#"hash_9411aca938811e6");
+	level scene::play(#"p8_fxanim_zm_man_bookcase_04_bundle");
 }
 
 /*

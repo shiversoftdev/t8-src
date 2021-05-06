@@ -61,7 +61,7 @@ function __init__()
 	}
 	if(sessionmodeismultiplayergame())
 	{
-		level.var_e2b2396a = getgametypesetting(#"hash_2fac738fe61117e8");
+		level.var_e2b2396a = getgametypesetting(#"specialisthealspeed_allies_1");
 	}
 	level thread function_b506b922();
 }

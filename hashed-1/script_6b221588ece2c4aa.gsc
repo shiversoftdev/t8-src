@@ -21,7 +21,7 @@ function function_b455d5d8()
 	function_e6400478(#"rcbomb", &creatercbombwatcher, 1);
 	function_e6400478(#"qrdrone", &createqrdronewatcher, 1);
 	function_e6400478(#"helicopter_player", &createplayerhelicopterwatcher, 1);
-	function_e6400478(#"hash_7b2cb0cda291ae11", &function_1eaa3e20);
+	function_e6400478(#"tr_flechette_t8", &function_1eaa3e20);
 	function_e6400478(#"hash_17ac9a2101b6ff2d", &function_1eaa3e20);
 	if(isdefined(level.var_b68902c4) && level.var_b68902c4)
 	{
@@ -67,7 +67,7 @@ function createspecialcrossbowwatchertypes(watcher)
 */
 function function_f297d773()
 {
-	function_e6400478(#"hash_18a2b56939a972ee", &createspecialcrossbowwatchertypes, 1);
+	function_e6400478(#"special_crossbow_t8", &createspecialcrossbowwatchertypes, 1);
 	function_e6400478(#"special_crossbowlh", &createspecialcrossbowwatchertypes, 1);
 	function_e6400478(#"special_crossbow_dw", &createspecialcrossbowwatchertypes, 1);
 	if(isdefined(level.b_create_upgraded_crossbow_watchers) && level.b_create_upgraded_crossbow_watchers)

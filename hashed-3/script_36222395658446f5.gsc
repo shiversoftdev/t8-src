@@ -1149,7 +1149,7 @@ function function_a88a6e6a()
 	var_531107f7 = struct::get("s_g_n_o_sp2");
 	var_9db87c23 = getent("mdl_g_o_s4", "targetname");
 	var_9db87c23 setinvisibletoplayer(self);
-	scene::add_scene_func(#"hash_4fbc96a433e78193", &function_ca9bfe21, "play", self);
+	scene::add_scene_func(#"p8_fxanim_zm_esc_golden_nugget_bundle", &function_ca9bfe21, "play", self);
 	var_531107f7 thread scene::play();
 }
 

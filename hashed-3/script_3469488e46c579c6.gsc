@@ -20,8 +20,8 @@ function init_shared()
 	weaponobjects::function_e6400478(#"special_ballisticknife_t8_dw", &createballisticknifewatcher, 0);
 	weaponobjects::function_e6400478(#"special_ballisticknife_t8_dw_dw", &createballisticknifewatcher, 0);
 	weaponobjects::function_e6400478(#"hash_4646a4e86c781e84", &createballisticknifewatcher, 0);
-	weaponobjects::function_e6400478(#"hash_18a2b56939a972ee", &createballisticknifewatcher, 0);
-	weaponobjects::function_dcc8b5d5(#"hash_18a2b56939a972ee", "pistolscope", #"hash_6c40a7a156b05224");
+	weaponobjects::function_e6400478(#"special_crossbow_t8", &createballisticknifewatcher, 0);
+	weaponobjects::function_dcc8b5d5(#"special_crossbow_t8", "pistolscope", #"hash_6c40a7a156b05224");
 	weaponobjects::function_e6400478(#"hash_6c40a7a156b05224", &createballisticknifewatcher, 0);
 	if(isdefined(level.var_b68902c4) && level.var_b68902c4)
 	{

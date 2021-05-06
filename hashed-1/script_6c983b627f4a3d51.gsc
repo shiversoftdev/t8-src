@@ -131,10 +131,10 @@ function function_f4472adf(a_ents)
 {
 	level.var_bb7822b7 = [];
 	level.var_bb7822b7[0] = a_ents[#"hash_7aff0ee60ddd937b"];
-	level.var_bb7822b7[1] = a_ents[#"hash_7aff0fe60ddd952e"];
-	level.var_bb7822b7[2] = a_ents[#"hash_7aff10e60ddd96e1"];
-	level.var_bb7822b7[3] = a_ents[#"hash_7aff11e60ddd9894"];
-	level.var_bb7822b7[4] = a_ents[#"hash_7aff12e60ddd9a47"];
+	level.var_bb7822b7[1] = a_ents[#"prop 2"];
+	level.var_bb7822b7[2] = a_ents[#"prop 3"];
+	level.var_bb7822b7[3] = a_ents[#"prop 4"];
+	level.var_bb7822b7[4] = a_ents[#"prop 5"];
 }
 
 /*

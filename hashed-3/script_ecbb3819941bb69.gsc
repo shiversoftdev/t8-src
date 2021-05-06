@@ -77,8 +77,8 @@ function on_player_spawned(local_client_num)
 	{
 		return;
 	}
-	self clearanim(#"hash_9b3a79721aa8a1f", 0);
-	self clearanim(#"hash_650fcb95cba68c51", 0);
+	self clearanim(#"pt_recon_t8_stand_vision_pulse_goggles_down_loop", 0);
+	self clearanim(#"pt_recon_t8_prone_vision_pulse_goggles_down_loop", 0);
 }
 
 /*
@@ -198,13 +198,13 @@ function function_5f4276b8()
 	{
 		if(self function_e2f34c3())
 		{
-			self clearanim(#"hash_9b3a79721aa8a1f", 0);
-			self setanimknob(#"hash_650fcb95cba68c51", 1, 0, 1);
+			self clearanim(#"pt_recon_t8_stand_vision_pulse_goggles_down_loop", 0);
+			self setanimknob(#"pt_recon_t8_prone_vision_pulse_goggles_down_loop", 1, 0, 1);
 		}
 		else
 		{
-			self clearanim(#"hash_650fcb95cba68c51", 0);
-			self setanimknob(#"hash_9b3a79721aa8a1f", 1, 0, 1);
+			self clearanim(#"pt_recon_t8_prone_vision_pulse_goggles_down_loop", 0);
+			self setanimknob(#"pt_recon_t8_stand_vision_pulse_goggles_down_loop", 1, 0, 1);
 		}
 		waitframe(1);
 	}
@@ -264,8 +264,8 @@ function function_ab898b2d(notifystring)
 	}
 	else if(notifystring == "visor_up")
 	{
-		self clearanim(#"hash_9b3a79721aa8a1f", 0);
-		self clearanim(#"hash_650fcb95cba68c51", 0);
+		self clearanim(#"pt_recon_t8_stand_vision_pulse_goggles_down_loop", 0);
+		self clearanim(#"pt_recon_t8_prone_vision_pulse_goggles_down_loop", 0);
 		self notify(#"hash_f57a252dea202");
 		level.var_6f74e5a9[localclientnum] = 0;
 	}
@@ -414,8 +414,8 @@ function function_844dbcb7(localclientnum)
 	if(isdefined(self) && self function_da43934d())
 	{
 		self function_e9f518c7(1);
-		self clearanim(#"hash_9b3a79721aa8a1f", 0);
-		self clearanim(#"hash_650fcb95cba68c51", 0);
+		self clearanim(#"pt_recon_t8_stand_vision_pulse_goggles_down_loop", 0);
+		self clearanim(#"pt_recon_t8_prone_vision_pulse_goggles_down_loop", 0);
 	}
 }
 
@@ -540,8 +540,8 @@ function do_vision_local_pulse()
 System.InvalidOperationException: Stack empty.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at System.Collections.Generic.Stack`1.Pop()
-   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2527
-   at Cerberus.Logic.Decompiler.FindForLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1619
+   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2526
+   at Cerberus.Logic.Decompiler.FindForLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1618
    at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 207
 /*
 No Output

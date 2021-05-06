@@ -98,12 +98,12 @@ autoexec function registerbehaviorscriptfunctions()
 		assert(!isdefined(&function_d65e3f15) || isscriptfunctionptr(&function_d65e3f15));
 	#/
 	/#
-		assert(!isdefined(&function_f6f4282f) || isscriptfunctionptr(&function_f6f4282f));
+		assert(!isdefined(&p8_usa_farm_tools_hoe_lod2_s1_geo_rigid_bs_7cqeqf2k2nw2binsrm67nqzdzf) || isscriptfunctionptr(&p8_usa_farm_tools_hoe_lod2_s1_geo_rigid_bs_7cqeqf2k2nw2binsrm67nqzdzf));
 	#/
 	/#
 		assert(!isdefined(&function_4fc73b37) || isscriptfunctionptr(&function_4fc73b37));
 	#/
-	behaviortreenetworkutility::registerbehaviortreeaction(#"hash_167c243dad6945a8", &function_d65e3f15, &function_f6f4282f, &function_4fc73b37);
+	behaviortreenetworkutility::registerbehaviortreeaction(#"hash_167c243dad6945a8", &function_d65e3f15, &p8_usa_farm_tools_hoe_lod2_s1_geo_rigid_bs_7cqeqf2k2nw2binsrm67nqzdzf, &function_4fc73b37);
 	/#
 		assert(isscriptfunctionptr(&function_40b8200d));
 	#/
@@ -843,7 +843,7 @@ private function function_d65e3f15(entity, asmstatename)
 }
 
 /*
-	Name: function_f6f4282f
+	Name: p8_usa_farm_tools_hoe_lod2_s1_geo_rigid_bs_7cqeqf2k2nw2binsrm67nqzdzf
 	Namespace: namespace_dea34b6a
 	Checksum: 0x556A9CD9
 	Offset: 0x27A0
@@ -851,7 +851,7 @@ private function function_d65e3f15(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f6f4282f(entity, asmstatename)
+private function p8_usa_farm_tools_hoe_lod2_s1_geo_rigid_bs_7cqeqf2k2nw2binsrm67nqzdzf(entity, asmstatename)
 {
 	if(entity asmgetstatus() == "asm_status_complete")
 	{

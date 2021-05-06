@@ -985,7 +985,7 @@ private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_h
 		[[ level.var_f2f67d17 ]]->waitinqueue(self);
 		if(var_ab287846 function_58942bba(self) && self.var_6f84b820 == #"miniboss")
 		{
-			var_ab287846 thread scene::init(#"hash_67ff5bdcf045241b", self);
+			var_ab287846 thread scene::init(#"p8_zm_flame_tornado_miniboss_scene", self);
 			self dodamage(self.maxhealth * 0.18, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
 			self.var_42d5176d = 1;
 			self val::set(#"hash_77bfbbee3d2c15d", "ignoreall", 1);
@@ -995,12 +995,12 @@ private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_h
 				v_pos = self.origin;
 			}
 			self.var_68f4c9de = util::spawn_model("tag_origin", v_pos, self.angles);
-			self.var_68f4c9de thread scene::init(#"hash_67ff5bdcf045241b", self);
+			self.var_68f4c9de thread scene::init(#"p8_zm_flame_tornado_miniboss_scene", self);
 			self thread function_e6f0a2c7(var_ab287846);
 			var_ab287846 waittill(#"death", #"hash_751e0293eed9a1cf", #"hash_124840b260697eb9");
 			if(isdefined(self) && isdefined(self.var_68f4c9de))
 			{
-				self.var_68f4c9de scene::play(#"hash_67ff5bdcf045241b", self);
+				self.var_68f4c9de scene::play(#"p8_zm_flame_tornado_miniboss_scene", self);
 			}
 			if(isdefined(self) && isdefined(self.var_68f4c9de))
 			{

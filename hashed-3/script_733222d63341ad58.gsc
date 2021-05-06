@@ -902,7 +902,7 @@ function function_bc253abc()
 	zm_unitrigger::unregister_unitrigger(self.s_unitrigger);
 	var_ec2a4d18 = scene::get_active_scenes(#"p8_fxanim_zm_zod_sentinel_chaos_bundle");
 	var_e0c609e3 = var_ec2a4d18[0];
-	var_b62e2cca = var_e0c609e3.scene_ents[#"hash_7aff10e60ddd96e1"];
+	var_b62e2cca = var_e0c609e3.scene_ents[#"prop 3"];
 	var_7349be2e = (self.script_noteworthy === #"hash_5db5a7e2cb1cab66" ? "chaos_tops_left_jnt" : "chaos_tops_right_jnt");
 	self.var_3501cf51.var_9090fb06 = self.var_3501cf51.angles;
 	self.var_9fb69ce.var_9090fb06 = self.var_9fb69ce.angles;
@@ -5252,42 +5252,42 @@ function function_6fef3bc3(nd_path)
 		{
 			case "hash_7762924fc6051394":
 			{
-				str_model = #"hash_35143a3837c30ca7";
+				str_model = #"p8_zm_zod_planets_mercury_large";
 				break;
 			}
 			case "hash_7762954fc60518ad":
 			{
-				str_model = #"hash_20293533dd5cd1f";
+				str_model = #"p8_zm_zod_planets_venus_large";
 				break;
 			}
 			case "hash_7762944fc60516fa":
 			{
-				str_model = #"hash_5cb7bd1921e8ae2b";
+				str_model = #"p8_zm_zod_planets_mars_large";
 				break;
 			}
 			case "hash_77628f4fc6050e7b":
 			{
-				str_model = #"hash_71e39633e69916af";
+				str_model = #"p8_zm_zod_planets_jupiter_large";
 				break;
 			}
 			case "hash_77628e4fc6050cc8":
 			{
-				str_model = #"hash_1d31bd15d9341be9";
+				str_model = #"p8_zm_zod_planets_saturn_large";
 				break;
 			}
 			case "hash_7762914fc60511e1":
 			{
-				str_model = #"hash_1633ad90751425f6";
+				str_model = #"p8_zm_zod_planets_uranus_large";
 				break;
 			}
 			case "hash_7762904fc605102e":
 			{
-				str_model = #"hash_2d45e74ea61b784f";
+				str_model = #"p8_zm_zod_planets_neptune_large";
 				break;
 			}
 			case "hash_7762934fc6051547":
 			{
-				str_model = #"hash_1bd05503abf9b318";
+				str_model = #"p8_zm_zod_planets_sun_large";
 				break;
 			}
 		}

@@ -62,7 +62,7 @@ function function_14d9fa2d()
 		globallogic_score::registercontractwinevent(&contract_win);
 		register_player_contract_event(#"score", &on_player_score, 2);
 		register_player_contract_event(#"ekia", &function_71eb8a5a, 1);
-		register_player_contract_event(#"hash_601fb6a20acee22b", &function_660b0026);
+		register_player_contract_event(#"objective_ekia", &function_660b0026);
 		register_player_contract_event(#"damagedone", &function_6d90b18a, 1);
 		level.var_79a93566 = &function_902ef0de;
 		level.var_c3e2bb05 = 2;
@@ -86,25 +86,25 @@ function function_7364a587()
 {
 	level.var_9d6b3096 = [];
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"] = spawnstruct();
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"] = spawnstruct();
+	level.var_9d6b3096[#"control_cwl"] = spawnstruct();
 	level.var_9d6b3096[#"hash_5fab537230960e87"] = spawnstruct();
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"].var_9dd75c18 = 3000;
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"].var_9dd75c18 = 2500;
+	level.var_9d6b3096[#"control_cwl"].var_9dd75c18 = 2500;
 	level.var_9d6b3096[#"hash_5fab537230960e87"].var_9dd75c18 = 500;
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"].var_9a5a8dcf = 4000;
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"].var_9a5a8dcf = 3000;
+	level.var_9d6b3096[#"control_cwl"].var_9a5a8dcf = 3000;
 	level.var_9d6b3096[#"hash_5fab537230960e87"].var_9a5a8dcf = 1000;
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"].var_f703cb6c = 20;
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"].var_f703cb6c = 15;
+	level.var_9d6b3096[#"control_cwl"].var_f703cb6c = 15;
 	level.var_9d6b3096[#"hash_5fab537230960e87"].var_f703cb6c = 3;
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"].var_39027dc7 = 30;
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"].var_39027dc7 = 25;
+	level.var_9d6b3096[#"control_cwl"].var_39027dc7 = 25;
 	level.var_9d6b3096[#"hash_5fab537230960e87"].var_39027dc7 = 7;
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"].var_81bbb381 = 3500;
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"].var_81bbb381 = 2500;
+	level.var_9d6b3096[#"control_cwl"].var_81bbb381 = 2500;
 	level.var_9d6b3096[#"hash_5fab537230960e87"].var_81bbb381 = 500;
 	level.var_9d6b3096[#"hash_3573521d07ef71f6"].var_9037b57b = 15;
-	level.var_9d6b3096[#"hash_59202cb1d2f5336b"].var_9037b57b = 10;
+	level.var_9d6b3096[#"control_cwl"].var_9037b57b = 10;
 	level.var_9d6b3096[#"hash_5fab537230960e87"].var_9037b57b = 1;
 }
 
@@ -240,8 +240,8 @@ function function_660b0026()
 		return;
 	}
 	player = self;
-	var_443213f9 = player.pers[#"hash_73786dd8290616a2"] + 1;
-	if(var_443213f9 == level.var_9d6b3096[gametype].var_9037b57b)
+	objective_ekia = player.pers[#"objectiveekia"] + 1;
+	if(objective_ekia == level.var_9d6b3096[gametype].var_9037b57b)
 	{
 		player function_9defb976(#"hash_518ce6f8a5567a08");
 	}

@@ -1096,7 +1096,7 @@ function function_8678055f()
 		{
 			level.var_7b46025 = struct::get_array("s_ruin_enemy_ajax_spawn_loc", "targetname");
 			level.var_47cd3e56 = 0;
-			var_3d11a5cb = namespace_73e1c3e3::function_d153452e(#"hash_3e52518ec3ffd40d");
+			var_3d11a5cb = namespace_73e1c3e3::function_d153452e(#"prt_mp_swatpolice");
 			level thread namespace_64a487a9::function_263aa67d(#"axis", undefined, 0, var_3d11a5cb);
 			level.var_6b1458ad notsolid();
 			level.var_6b1458ad.var_b1fd680c = 1;

@@ -6,7 +6,6 @@
 #using script_28bfe6df1650ab79;
 #using script_2c5e325003fa52e2;
 #using script_3110b4b6b21db11f;
-#using script_33fd053376f47476;
 #using script_3605d6b6522b3f7a;
 #using script_3657077a08b7f19e;
 #using script_3b2485bc23c27132;
@@ -37,6 +36,7 @@
 #using scripts\core_common\scene_shared.gsc;
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
 #using scripts\zm_common\zm_player.gsc;
 #using scripts\zm_common\zm_powerups.gsc;

@@ -49,7 +49,7 @@ function init()
 	zm_powerups::powerup_set_statless_powerup("dung");
 	zm_powerups::powerup_set_statless_powerup("rock");
 	zm_powerups::register_powerup("dung", &function_1493a309);
-	zm_powerups::add_zombie_powerup("dung", #"hash_8e136d0af55e88b", #"zombie_powerup_free_perk", &zm_powerups::func_should_never_drop, 1, 0, 0);
+	zm_powerups::add_zombie_powerup("dung", #"p7_dung_camel_pile_03", #"zombie_powerup_free_perk", &zm_powerups::func_should_never_drop, 1, 0, 0);
 	zm_powerups::function_f0eb47d8("dung", 1);
 	zm_powerups::function_80b4c5e0("dung", 1);
 	level thread function_5d6119de();
@@ -913,7 +913,7 @@ function function_fce0d3b3(var_2bd26cff)
 	else
 	{
 		playsoundatposition(#"hash_339b376fb02738f5", var_4d611aa2.origin);
-		var_354ec191 = array::random(array(#"hash_3faf54e1959102df", #"hash_1bf5e8d33258cd2a", #"hash_31ea6efe6576be6d"));
+		var_354ec191 = array::random(array(#"p8_fxanim_zm_towers_crowd_jar_01_mod", #"p8_fxanim_zm_towers_crowd_jar_02_mod", #"p8_fxanim_zm_towers_crowd_jar_03_mod"));
 		var_2e1f34dd = util::spawn_model(var_354ec191, var_4d611aa2.origin, var_4d611aa2.angles);
 		var_2e1f34dd fx::play(#"hash_4c4f96aa02c32a2a", var_2e1f34dd.origin, var_2e1f34dd.angles, "crowd_item_fly_fx_stop", 1);
 		n_time = var_2e1f34dd zm_utility::fake_physicslaunch(var_edbc66b6.origin, 600);
@@ -923,17 +923,17 @@ function function_fce0d3b3(var_2bd26cff)
 		var_2e1f34dd.origin = var_edbc66b6.origin;
 		switch(var_354ec191)
 		{
-			case "hash_3faf54e1959102df":
+			case "p8_fxanim_zm_towers_crowd_jar_01_mod":
 			{
 				var_edbc66b6 thread scene::play("p8_fxanim_zm_towers_crowd_jar_01_bundle", var_2e1f34dd);
 				break;
 			}
-			case "hash_1bf5e8d33258cd2a":
+			case "p8_fxanim_zm_towers_crowd_jar_02_mod":
 			{
 				var_edbc66b6 thread scene::play("p8_fxanim_zm_towers_crowd_jar_02_bundle", var_2e1f34dd);
 				break;
 			}
-			case "hash_31ea6efe6576be6d":
+			case "p8_fxanim_zm_towers_crowd_jar_03_mod":
 			{
 				var_edbc66b6 thread scene::play("p8_fxanim_zm_towers_crowd_jar_03_bundle", var_2e1f34dd);
 				break;

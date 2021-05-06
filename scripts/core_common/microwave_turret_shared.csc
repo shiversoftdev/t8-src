@@ -223,7 +223,7 @@ function startmicrowavefx(localclientnum)
 	while(true)
 	{
 		/#
-			if(getdvarint(#"scr_microwave_turret_fx_debug", 0))
+			if(getdvarint(#"hash_93503b23ed2be27", 0))
 			{
 				turret.should_update_fx = 1;
 				microwavefxent.fxhashs[#"center"] = 0;
@@ -249,7 +249,7 @@ function startmicrowavefx(localclientnum)
 		traceright = bullettrace(origin, origin - var_e2e9fefa, 0, turret);
 		traceleft = bullettrace(origin, origin + var_e2e9fefa, 0, turret);
 		/#
-			if(getdvarint(#"scr_microwave_turret_fx_debug", 0))
+			if(getdvarint(#"hash_93503b23ed2be27", 0))
 			{
 				debug_trace(origin, trace);
 				debug_trace(origin, traceright);
@@ -411,7 +411,7 @@ function stop_fx_on_tag(localclientnum, fxname, tag)
 function render_debug_sphere(tag, color, fxname)
 {
 	/#
-		if(getdvarint(#"scr_microwave_turret_fx_debug", 0))
+		if(getdvarint(#"hash_93503b23ed2be27", 0))
 		{
 			origin = self gettagorigin(tag);
 			sphere(origin, 2, color, 0.75, 1, 10, 100);

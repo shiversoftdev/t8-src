@@ -433,7 +433,7 @@ function function_5829abe3(attacker, weapon, var_651b6171)
 	if(!(isdefined(var_629fbd5c) && var_629fbd5c) || (isdefined(destroyedkillstreak) && destroyedkillstreak) && isdefined(var_3c727edf) && isdefined(var_3c727edf.var_3143c814) && util::function_fbce7263(attacker.team, self.team))
 	{
 		scoreevents::processscoreevent(var_3c727edf.var_3143c814, attacker, self, var_651b6171);
-		attacker stats::function_dad108fa(#"hash_15697173945f676c", 1);
+		attacker stats::function_dad108fa(#"stats_destructions", 1);
 	}
 	if(var_651b6171.var_b76e0a09)
 	{
@@ -752,7 +752,7 @@ function function_f7f7b14e(data)
 	{
 		scoreevents::processscoreevent(var_3d2a11cf.var_3143c814, attacker, victim, weapon);
 		victim.var_ad1472a2 = 1;
-		attacker stats::function_dad108fa(#"hash_12256299ec873e24", 1);
+		attacker stats::function_dad108fa(#"stats_shutdowns", 1);
 		attacker contracts::function_a54e2068(#"hash_26f8726bc08d080c");
 	}
 	baseweapon = weapons::getbaseweapon(weapon);

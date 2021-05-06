@@ -1722,7 +1722,7 @@ function function_ef5a3a9d()
 		{
 			e_attacker flag::set(#"hash_11ab20934759ebc3");
 			var_fd22f9df = struct::get("tom_pil");
-			var_6e6ec518 = var_fd22f9df.scene_ents[#"hash_7aff0fe60ddd952e"];
+			var_6e6ec518 = var_fd22f9df.scene_ents[#"prop 2"];
 			var_6e6ec518 setvisibletoplayer(e_attacker);
 			var_e041507a = e_attacker getentitynumber() + 1;
 			var_6e6ec518 clientfield::set("" + #"hash_51657261e835ac7c", var_e041507a);

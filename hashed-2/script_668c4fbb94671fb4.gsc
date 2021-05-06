@@ -1,5 +1,4 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_33fd053376f47476;
 #using script_35598499769dbb3d;
 #using script_3f9e0dc8454d98e1;
 #using script_46cea9e5d4ef9e21;
@@ -27,6 +26,7 @@
 #using scripts\core_common\values_shared.gsc;
 #using scripts\core_common\vehicle_shared.gsc;
 #using scripts\zm\zm_escape_util.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_devgui.gsc;
@@ -1071,13 +1071,13 @@ private function function_bfe4e5a9(var_5faf08a9, n_entry)
 			waitframe(1);
 		}
 		n_start_time = gettime();
-		var_628c4a3a thread scene::play(#"hash_764de91b689294b4", "DOWN", var_628c4a3a);
+		var_628c4a3a thread scene::play(#"p8_zm_esc_kmc_bundle", "DOWN", var_628c4a3a);
 		var_628c4a3a clientfield::set("" + #"hash_7f7790ca43a7fffe", 1);
 		while(isdefined(self) && self usebuttonpressed() && (isdefined(self.var_da61dab6) && self.var_da61dab6))
 		{
 			waitframe(1);
 		}
-		var_628c4a3a thread scene::play(#"hash_764de91b689294b4", "UP", var_628c4a3a);
+		var_628c4a3a thread scene::play(#"p8_zm_esc_kmc_bundle", "UP", var_628c4a3a);
 		var_628c4a3a clientfield::set("" + #"hash_7f7790ca43a7fffe", 0);
 		if(!isdefined(self) || (!(isdefined(self.var_da61dab6) && self.var_da61dab6)))
 		{
@@ -2377,7 +2377,7 @@ private function function_3f90c49f()
 			#/
 		}
 	}
-	level.var_9e23e046 = util::spawn_model(#"hash_630bdbfa8e91025e", v_pos, v_angles);
+	level.var_9e23e046 = util::spawn_model(#"wpn_t8_zm_spoon_world", v_pos, v_angles);
 	self.goalradius = 64;
 	while(distance2d(self.origin, v_pos) > 80)
 	{
@@ -2390,7 +2390,7 @@ private function function_3f90c49f()
 	{
 		level.var_9e23e046 delete();
 	}
-	self.var_6b6eb535 = util::spawn_model(#"hash_630bdbfa8e91025e", self gettagorigin("tag_weapon_right"), self gettagangles("tag_weapon_right"));
+	self.var_6b6eb535 = util::spawn_model(#"wpn_t8_zm_spoon_world", self gettagorigin("tag_weapon_right"), self gettagangles("tag_weapon_right"));
 	self.var_6b6eb535 linkto(self, "tag_weapon_right");
 	self.var_6b6eb535 clientfield::set("" + #"hash_28a1a80b64f97e05", 1);
 }
@@ -3399,7 +3399,7 @@ private function function_34e153c7()
 	self waittill(#"death", #"hash_300e9fed7925cd69");
 	foreach(var_a001c66d in level.var_6df70f90)
 	{
-		var_a001c66d setmodel(#"hash_15811ad0143213e9");
+		var_a001c66d setmodel(#"p8_zm_esc_comm_monitor_sml_01_screen_off");
 		var_a001c66d.t_interact delete();
 		var_a001c66d thread function_a9c796c9(0);
 	}
@@ -3648,7 +3648,7 @@ private function function_718e6106()
 				{
 					var_abad41d[var_abad41d.size] = var_7b2c16b1.var_307df34b;
 				}
-				var_7b2c16b1.var_307df34b setmodel(#"hash_41eb00e7f82d89ea");
+				var_7b2c16b1.var_307df34b setmodel(#"p8_zm_zod_light_bulb_01_on");
 				var_7b2c16b1.var_307df34b clientfield::set("" + #"hash_119729072e708651", 1);
 				continue;
 			}
@@ -3669,7 +3669,7 @@ private function function_718e6106()
 					var_47df32b8 = 0;
 					continue;
 				}
-				var_307df34b setmodel(#"hash_41eb00e7f82d89ea");
+				var_307df34b setmodel(#"p8_zm_zod_light_bulb_01_on");
 				var_7b2c16b1.var_307df34b clientfield::set("" + #"hash_119729072e708651", 1);
 				var_47df32b8 = 1;
 			}
@@ -3774,7 +3774,7 @@ private function function_dc164d78()
 	{
 		for(i = 0; i < var_56eace20; i++)
 		{
-			level.var_84fbe7bc[i].var_307df34b setmodel(#"hash_41eb00e7f82d89ea");
+			level.var_84fbe7bc[i].var_307df34b setmodel(#"p8_zm_zod_light_bulb_01_on");
 			level.var_84fbe7bc[i].var_307df34b clientfield::set("" + #"hash_119729072e708651", 1);
 			wait(3.9);
 			level.var_84fbe7bc[i].var_307df34b setmodel(#"hash_2fc1262ab54a0c5c");
@@ -3835,7 +3835,7 @@ private function function_81650808(var_aa11c23c, var_56eace20)
 	{
 		var_88706ea7 = undefined;
 		var_88706ea7 = self.t_interact waittill(#"trigger");
-		self.var_307df34b setmodel(#"hash_41eb00e7f82d89ea");
+		self.var_307df34b setmodel(#"p8_zm_zod_light_bulb_01_on");
 		self.var_307df34b clientfield::set("" + #"hash_119729072e708651", 1);
 		wait(1);
 		self.var_307df34b setmodel(#"hash_2fc1262ab54a0c5c");
@@ -4044,10 +4044,10 @@ private function function_ca9ddf1b()
 */
 private function function_fb553d70()
 {
-	level scene::add_scene_func(#"hash_ebbd500183a767f", &function_23467a20, "play");
-	level scene::add_scene_func(#"hash_ebbd600183a7832", &function_23467a20, "play");
-	level scene::add_scene_func(#"hash_ebbd700183a79e5", &function_23467a20, "play");
-	level scene::add_scene_func(#"hash_ebbd000183a6e00", &function_23467a20, "play");
+	level scene::add_scene_func(#"p8_fxanim_zm_escape_pigeon_standing_01", &function_23467a20, "play");
+	level scene::add_scene_func(#"p8_fxanim_zm_escape_pigeon_standing_02", &function_23467a20, "play");
+	level scene::add_scene_func(#"p8_fxanim_zm_escape_pigeon_standing_03", &function_23467a20, "play");
+	level scene::add_scene_func(#"p8_fxanim_zm_escape_pigeon_standing_04", &function_23467a20, "play");
 	var_fd2e212e = struct::get_array("ph_gh_pi", "targetname");
 	foreach(var_6c72ee3e in var_fd2e212e)
 	{
@@ -4674,7 +4674,7 @@ private function function_56e41aa6(var_7df17d61)
 */
 private function function_252499a3(v_pos)
 {
-	var_b7eee573 = util::spawn_model(#"hash_27ac5ad4aaeb197", v_pos + vectorscale((0, 0, 1), 5));
+	var_b7eee573 = util::spawn_model(#"p8_zm_esc_orb_red_small", v_pos + vectorscale((0, 0, 1), 5));
 	var_b7eee573 setscale(4);
 	var_b7eee573 playsound(#"hash_748c338212771d3");
 	var_b7eee573.t_interact = spawn("trigger_radius_use", v_pos + vectorscale((0, 0, 1), 20), 0, 64, 64);

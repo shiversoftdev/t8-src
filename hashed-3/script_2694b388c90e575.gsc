@@ -1739,7 +1739,7 @@ function blundergat_upgrade_station_inject(var_f2528cbc, e_player)
 	level flag::set(#"hash_72c4671390c83158");
 	wait(0.5);
 	self playsound(#"zmb_acidgat_upgrade_machine");
-	self thread scene::init(#"hash_48ceab086c16de3", self);
+	self thread scene::init(#"p8_fxanim_zm_esc_packasplat_bundle", self);
 	wait(5);
 	if(isdefined(self.worldgun))
 	{
@@ -1753,7 +1753,7 @@ function blundergat_upgrade_station_inject(var_f2528cbc, e_player)
 	{
 		self.worldgun = zm_utility::spawn_weapon_model(getweapon(#"hash_4c157b1aeefae09e"), undefined, self.v_weapon_origin, self.v_weapon_angles);
 	}
-	self thread scene::play(#"hash_48ceab086c16de3", self);
+	self thread scene::play(#"p8_fxanim_zm_esc_packasplat_bundle", self);
 	wait(1);
 	level flag::clear(#"hash_72c4671390c83158");
 	level flag::set(#"hash_634424410f574c1c");

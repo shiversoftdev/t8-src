@@ -1815,7 +1815,7 @@ function init_powerups()
 	zombie_utility::set_zombie_var(#"hash_4d2cc817490bcca", 8);
 	zombie_utility::set_zombie_var(#"hash_4edd68174a79580", 14);
 	level.var_2aab843 = randomintrange(zombie_utility::function_d2dfacfd(#"hash_4d2cc817490bcca"), zombie_utility::function_d2dfacfd(#"hash_4edd68174a79580"));
-	zm_powerups::add_zombie_powerup("bonus_points_player", #"hash_68035b4c9717ad0a", #"zombie_powerup_bonus_points", &zm_powerups::func_should_never_drop, 1, 0, 0);
+	zm_powerups::add_zombie_powerup("bonus_points_player", #"p8_zm_powerup_rush_point", #"zombie_powerup_bonus_points", &zm_powerups::func_should_never_drop, 1, 0, 0);
 	zm_powerups::powerup_remove_from_regular_drops("hero_weapon_power");
 	zm_powerups::powerup_remove_from_regular_drops("bonus_points_team");
 	zm_powerups::powerup_remove_from_regular_drops("fire_sale");
@@ -1848,7 +1848,7 @@ function init_powerups()
 */
 function function_705c5a95()
 {
-	self setmodel(#"hash_68035b4c9717ad0a");
+	self setmodel(#"p8_zm_powerup_rush_point");
 }
 
 /*

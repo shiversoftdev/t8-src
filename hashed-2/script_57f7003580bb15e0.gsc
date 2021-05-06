@@ -729,7 +729,7 @@ private function function_cc42cac2(var_756fda07, var_b0144580, var_ab5b905e, var
 	{
 		var_fb887b00 = 1;
 	}
-	if(getgametypesetting(#"hash_332d856eb0e6a511") !== 1 || weapon !== getweapon("eq_concertina_wire"))
+	if(getgametypesetting(#"competitivesettings") !== 1 || weapon !== getweapon("eq_concertina_wire"))
 	{
 		if(resistance > 0 && isdefined(var_84171a6c) && var_f8f8abaa && var_756fda07.var_42c00474 === 1 && !var_b0144580 && var_67e2281d !== 0)
 		{
@@ -795,7 +795,7 @@ private function function_57f33b96(var_756fda07, var_b0144580, var_ab5b905e, var
 	{
 		var_fb887b00 = 1;
 	}
-	if(getgametypesetting(#"hash_332d856eb0e6a511") !== 1 || weapon !== getweapon("eq_concertina_wire"))
+	if(getgametypesetting(#"competitivesettings") !== 1 || weapon !== getweapon("eq_concertina_wire"))
 	{
 		if(resistance > 0 && var_67e2281d != 0 && var_67e2281d != 3 && isdefined(var_84171a6c) && var_f8f8abaa && var_756fda07.var_42c00474 === 1 && !var_b0144580)
 		{

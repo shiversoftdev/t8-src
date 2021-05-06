@@ -44,8 +44,8 @@ function __init__()
 */
 function function_27473e44()
 {
-	zm_perks::function_7f42e14e(#"hash_6c2d5bb068417557", "mod_bandolier", #"hash_420c7fd6609f0966", #"specialty_extraammo", 3500);
-	zm_perks::register_perk_threads(#"hash_6c2d5bb068417557", &function_dde8cedc, &function_3781ff37);
+	zm_perks::function_7f42e14e(#"specialty_mod_extraammo", "mod_bandolier", #"hash_420c7fd6609f0966", #"specialty_extraammo", 3500);
+	zm_perks::register_perk_threads(#"specialty_mod_extraammo", &function_dde8cedc, &function_3781ff37);
 }
 
 /*

@@ -237,7 +237,7 @@ function function_1646f141(var_e8ba54a2 = 0)
 function function_dc212e9f()
 {
 	var_4947b277 = getent("catwalk_wires", "targetname");
-	bundle = #"hash_15d8e2b5298bfdd3";
+	bundle = #"p8_fxanim_zm_esc_wires_catwalk_bundle";
 	var_4947b277 thread scene::play(bundle, "LOOP", var_4947b277);
 	level flag::wait_till(#"hash_19272529ecde0188");
 	var_4947b277 thread scene::play(bundle, "SHOCKED", var_4947b277);

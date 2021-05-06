@@ -4120,25 +4120,25 @@ function function_a30c73b9(str_state)
 					case 0:
 					{
 						var_1d373a09 = #"hash_52ea8d11cd7fefd0";
-						self.var_2839b015 = #"hash_69f65a0ce5d4fe1c";
+						self.var_2839b015 = #"p8_fxanim_zm_perk_vending_brew_bundle";
 						break;
 					}
 					case 1:
 					{
 						var_1d373a09 = #"hash_72ce199a2f767495";
-						self.var_2839b015 = #"hash_3aec0133b598de9f";
+						self.var_2839b015 = #"p8_fxanim_zm_perk_vending_cola_bundle";
 						break;
 					}
 					case 2:
 					{
 						var_1d373a09 = #"hash_412846638d8a5d6d";
-						self.var_2839b015 = #"hash_46b210876e3e6267";
+						self.var_2839b015 = #"p8_fxanim_zm_perk_vending_soda_bundle";
 						break;
 					}
 					case 3:
 					{
 						var_1d373a09 = #"hash_d0a02c268fb65bf";
-						self.var_2839b015 = #"hash_1e23d78fbd7865c9";
+						self.var_2839b015 = #"p8_fxanim_zm_perk_vending_tonic_bundle";
 						break;
 					}
 				}
@@ -4150,26 +4150,26 @@ function function_a30c73b9(str_state)
 					case 0:
 					{
 						var_1d373a09 = #"p8_fxanim_zm_vapor_altar_danu_mod";
-						self.var_2839b015 = #"hash_71501ae9dfc53ff9";
+						self.var_2839b015 = #"p8_fxanim_zm_vapor_altar_danu_bundle";
 						break;
 					}
 					case 1:
 					{
 						var_1d373a09 = #"p8_fxanim_zm_vapor_altar_ra_mod";
-						self.var_2839b015 = #"hash_6ed4215d236f0a68";
+						self.var_2839b015 = #"p8_fxanim_zm_vapor_altar_ra_bundle";
 						break;
 					}
 					case 2:
 					{
 						var_1d373a09 = #"p8_fxanim_zm_vapor_altar_zeus_mod";
-						self.var_2839b015 = #"hash_6742f2c7792b4d3c";
+						self.var_2839b015 = #"p8_fxanim_zm_vapor_altar_zeus_bundle";
 						var_30a7cd8c = 1;
 						break;
 					}
 					case 3:
 					{
 						var_1d373a09 = #"p8_fxanim_zm_vapor_altar_odin_mod";
-						self.var_2839b015 = #"hash_f8183da6c613b03";
+						self.var_2839b015 = #"p8_fxanim_zm_vapor_altar_odin_bundle";
 						break;
 					}
 				}

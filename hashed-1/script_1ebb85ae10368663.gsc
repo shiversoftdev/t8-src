@@ -184,19 +184,19 @@ function function_4e782d34(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			self.var_dd761cc9 = util::playfxontag(localclientnum, level._effect[#"hash_338e6c710a21b0c"], self, "tag_origin");
 			playsound(localclientnum, #"hash_6dda9e544bcd6f0d", self.origin);
-			if(self.model == #"hash_5dec945778e394c6")
+			if(self.model == #"p8_zm_man_watch_pocket_gold")
 			{
 				var_a0cc5b31 = self playloopsound(#"hash_5354467970ab7b00");
 			}
-			if(self.model == #"hash_59fed9f5ca4fb350")
+			if(self.model == #"p8_zm_man_jewelry_ring")
 			{
 				var_a0cc5b31 = self playloopsound(#"hash_1555e7c9f5c441db");
 			}
-			if(self.model == #"hash_71fabfe21d3e3eaa")
+			if(self.model == #"p8_zm_man_jewelry_necklace")
 			{
 				var_a0cc5b31 = self playloopsound(#"hash_21148ffbe9af801d");
 			}
-			if(self.model == #"hash_4b3c8cf802555ee2")
+			if(self.model == #"p8_zm_man_jewelry_bracelet")
 			{
 				var_a0cc5b31 = self playloopsound(#"hash_35715829aad8de55");
 			}

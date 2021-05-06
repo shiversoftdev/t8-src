@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_27c22e1d8df4d852;
-#using script_510a7c58311cd7b5;
 #using script_6021ce59143452c3;
 #using script_61a734c95edc17aa;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_newtonian_negation.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
 
 #namespace namespace_da8b7efe;

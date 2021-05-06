@@ -930,7 +930,7 @@ function function_f18e2775()
 function function_9e59c6f0(v_origin, var_5542e979, var_5570d8de)
 {
 	v_position = v_origin + vectorscale((0, 0, 1), 40);
-	var_53f30181 = #"hash_575c3e28b7bf5e89";
+	var_53f30181 = #"c_t8_zmb_dlc0_zombie_corpse_head_2";
 	var_32af2882 = function_67fffa0(var_5542e979);
 	var_1a471dce = 0;
 	if(var_32af2882 == #"both")
@@ -951,7 +951,7 @@ function function_9e59c6f0(v_origin, var_5542e979, var_5570d8de)
 		}
 		case "marauder":
 		{
-			var_53f30181 = #"hash_689b65d0eb8d29fd";
+			var_53f30181 = #"c_t8_zmb_dlc0_zombie_marauder_decapitated_head1";
 			break;
 		}
 		case "tigers":
@@ -1371,7 +1371,7 @@ function function_f3c4aeac()
 		case "marauder":
 		{
 			str_fx_tag = undefined;
-			self setmodel(#"hash_689b65d0eb8d29fd");
+			self setmodel(#"c_t8_zmb_dlc0_zombie_marauder_decapitated_head1");
 			break;
 		}
 		case "tigers":

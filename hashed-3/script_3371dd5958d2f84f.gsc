@@ -151,7 +151,7 @@ private function registerclientfields()
 	if(isdefined(level.var_a9f35be1))
 	{
 		var_2b5b08bd = int(ceil(function_53f6489c(level.var_a9f35be1.size + 1)));
-		var_ff35ecd8 = getgametypesetting(#"hash_655796336823ac5d");
+		var_ff35ecd8 = getgametypesetting(#"bountybagomoneymoney");
 		var_19302641 = getgametypesetting(#"hash_63f8d60d122e755b");
 		if(var_19302641 > 0)
 		{

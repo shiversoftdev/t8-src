@@ -1,7 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_2595527427ea71eb;
 #using script_27c22e1d8df4d852;
-#using script_33fd053376f47476;
 #using script_3a3c430eb58ed475;
 #using script_57f7003580bb15e0;
 #using script_5bb072c3abf4652c;
@@ -20,6 +19,7 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm\zm_towers.gsc;
 #using scripts\zm\zm_towers_main_quest.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_powerups.gsc;
 #using scripts\zm_common\zm_utility.gsc;
@@ -409,7 +409,7 @@ private function function_dd2db3df()
 	if(isdefined(tower))
 	{
 		tower thread scene::play();
-		wait(scene::function_12479eba(#"hash_1e883e0d41a2189c"));
+		wait(scene::function_12479eba(#"p8_fxanim_zm_towers_boss_arena_tower_entrance_bundle"));
 		if(isdefined(level.boss_entry_tower_remains))
 		{
 			level.boss_entry_tower_remains show();

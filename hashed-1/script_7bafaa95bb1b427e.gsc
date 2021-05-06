@@ -38,8 +38,8 @@ function init_shared()
 	level.weaponbasemelee = getweapon(#"knife");
 	level.weaponbasemeleeheld = getweapon(#"knife_held");
 	level.weaponballisticknife = getweapon(#"special_ballisticknife_t8_dw");
-	level.weaponspecialcrossbow = getweapon(#"hash_18a2b56939a972ee");
-	level.var_9e188c0b = getweapon(#"hash_7b2cb0cda291ae11");
+	level.weaponspecialcrossbow = getweapon(#"special_crossbow_t8");
+	level.var_9e188c0b = getweapon(#"tr_flechette_t8");
 	level.weaponriotshield = getweapon(#"riotshield");
 	level.weaponflashgrenade = getweapon(#"flash_grenade");
 	level.weaponsatchelcharge = getweapon(#"satchel_charge");

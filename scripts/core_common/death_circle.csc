@@ -31,7 +31,7 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	level.var_d8958e58 = isdefined(getgametypesetting(#"hash_8d6ce9f5ce69451")) && getgametypesetting(#"hash_8d6ce9f5ce69451");
+	level.var_d8958e58 = isdefined(getgametypesetting(#"deathcircle")) && getgametypesetting(#"deathcircle");
 	if(!level.var_d8958e58)
 	{
 		return;
@@ -471,10 +471,10 @@ private function function_63d6411e()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_32f7227c(var_9766eb97, currentradius, localclientnum)
+private function function_32f7227c(deathcircle, currentradius, localclientnum)
 {
 	localplayer = function_5c10bd79(localclientnum);
-	startpos = (var_9766eb97.origin[0], var_9766eb97.origin[1], 0);
+	startpos = (deathcircle.origin[0], deathcircle.origin[1], 0);
 	var_fc612cde = (0, 0, 0);
 	eyepos = startpos + vectorscale((0, 0, 1), 60);
 	if(isdefined(localplayer))
@@ -483,7 +483,7 @@ private function function_32f7227c(var_9766eb97, currentradius, localclientnum)
 		var_fc612cde = vectornormalize(endpos - startpos) * currentradius;
 		eyepos = localplayer geteyeapprox();
 	}
-	var_ba5c9ce6 = var_9766eb97.origin + var_fc612cde;
+	var_ba5c9ce6 = deathcircle.origin + var_fc612cde;
 	return (var_ba5c9ce6[0], var_ba5c9ce6[1], eyepos[2]);
 }
 

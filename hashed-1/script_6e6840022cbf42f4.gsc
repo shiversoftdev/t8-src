@@ -53,9 +53,9 @@ function __init__()
 	forcestreamxmodel(#"hash_77da47a49c46d7cf");
 	forcestreamxmodel(#"hash_2aaed6f517eedff1");
 	forcestreamxmodel(#"hash_648f3e9c3b9bf102");
-	forcestreamxmodel(#"hash_4da7c3ae9c725bd2");
-	forcestreamxmodel(#"hash_743356ff7004923a");
-	forcestreamxmodel(#"hash_35362ad372612693");
+	forcestreamxmodel(#"p8_zm_wall_buy_symbol_01");
+	forcestreamxmodel(#"p8_zm_wall_buy_symbol_01_middle");
+	forcestreamxmodel(#"p8_zm_wall_buy_symbol_01_reverse");
 	forcestreamxmodel(#"hash_38b107b1b645837d");
 }
 

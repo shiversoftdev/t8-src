@@ -228,8 +228,8 @@ function function_7b89f32a()
 */
 function function_8a44027()
 {
-	scene::add_scene_func(#"hash_35a9b11128e1f7c9", &function_c3a5f1fe);
-	scene::play(#"hash_35a9b11128e1f7c9");
+	scene::add_scene_func(#"p8_fxanim_gp_raven_idle_standing_bundle", &function_c3a5f1fe);
+	scene::play(#"p8_fxanim_gp_raven_idle_standing_bundle");
 }
 
 /*

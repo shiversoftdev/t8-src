@@ -898,7 +898,7 @@ function acid_trap_think()
 		var_8a88c4c8 delete();
 		return;
 	}
-	scene::add_scene_func(#"hash_2008d0df7ef0533c", &function_89add587, "play");
+	scene::add_scene_func(#"p8_fxanim_zm_towers_trap_acid_02_bundle", &function_89add587, "play");
 	var_74331c2 = level.var_482bcfef;
 	var_4d42c97f = arraygetclosest(var_8a88c4c8.origin, var_74331c2);
 	var_4d42c97f thread function_e6f26f04();
@@ -1332,7 +1332,7 @@ function function_98d6ce32()
 	playsoundatposition(#"hash_46233f5f75541000", var_1ed67804.origin);
 	function_d24a0f09(#"hash_46233f5f75541000");
 	mdl_wall = level.var_f2dc2287.a_objects[level.var_f2dc2287.var_12b6c455];
-	mdl_wall scene::play(#"hash_4369f8ac99b40c13", mdl_wall);
+	mdl_wall scene::play(#"p8_fxanim_zm_towers_wall_2_bundle", mdl_wall);
 	level.var_b2b15659 = 0;
 }
 

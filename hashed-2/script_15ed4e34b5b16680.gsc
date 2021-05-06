@@ -41,7 +41,7 @@
 event main(eventstruct)
 {
 	namespace_13777bae::function_46e95cc7();
-	level.select_character = namespace_73e1c3e3::function_d153452e(#"hash_6294aa09f1128925");
+	level.select_character = namespace_73e1c3e3::function_d153452e(#"prt_mp_battery");
 	level.var_820c5561 = "BATTERY";
 	namespace_73e1c3e3::function_be3a76b7(level.var_820c5561);
 	level.var_d6d98fbe = 1;

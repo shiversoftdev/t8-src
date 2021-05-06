@@ -998,8 +998,8 @@ function function_d27e566()
 	level notify(#"hash_60e26e14a51c5211");
 	level notify(#"colbounds_tut_4_5_doorway_on");
 	waitframe(1);
-	level.var_7cab580 = namespace_73e1c3e3::function_d153452e(#"hash_3512703e2c793e0d");
-	level.select_character = namespace_73e1c3e3::function_d153452e(#"hash_3512703e2c793e0d");
+	level.var_7cab580 = namespace_73e1c3e3::function_d153452e(#"prt_mp_engineer");
+	level.select_character = namespace_73e1c3e3::function_d153452e(#"prt_mp_engineer");
 	namespace_64a487a9::function_4d9cfd95(1, #"axis");
 	self thread function_fd0b81b();
 	self namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_torq_enemy_razor_wire_0", "vox_tvoi_tutor_torq_enemy_razor_wire_1"));
@@ -3017,8 +3017,8 @@ function function_44776cd(var_f3aa6dfe, s_loc, n_range = 24)
 	var_45006933[2] = "barricade_placed_near_spot";
 	var_45006933[1] = "razorwire_placed_near_spot";
 	var_4633cf09 = [];
-	var_4633cf09[2] = #"hash_2795b0a91f5f4841";
-	var_4633cf09[1] = #"hash_4b6be40066c2e92";
+	var_4633cf09[2] = #"wpn_t8_eqp_smartcover_cover_blue_fac_10";
+	var_4633cf09[1] = #"p8_fxanim_test_concertina_wire_mod";
 	var_88b303ee = [];
 	var_88b303ee[2] = #"hash_390cef32b1105c1d";
 	var_88b303ee[1] = #"hash_5885b4abb984f9df";

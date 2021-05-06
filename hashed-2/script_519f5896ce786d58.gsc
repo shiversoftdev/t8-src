@@ -106,8 +106,8 @@ function function_716f2019()
 */
 function function_5d870c2c()
 {
-	scene::add_scene_func(#"hash_397b4423676a9894", &function_20d38ac0, "init");
-	scene::init(#"hash_397b4423676a9894");
+	scene::add_scene_func(#"p8_fxanim_zm_man_cryptex_case_bundle", &function_20d38ac0, "init");
+	scene::init(#"p8_fxanim_zm_man_cryptex_case_bundle");
 }
 
 /*
@@ -323,7 +323,7 @@ function function_2325482e()
 		var_cb31d9aa delete();
 	}
 	level thread zm_unitrigger::unregister_unitrigger(level.var_44cff72.s_unitrigger);
-	scene::play(#"hash_397b4423676a9894");
+	scene::play(#"p8_fxanim_zm_man_cryptex_case_bundle");
 	level.var_44cff72 zm_unitrigger::create(&function_9ffdf1be, 64, &function_f4f7650b);
 	level flag::wait_till("ww_obtained");
 	level thread zm_unitrigger::unregister_unitrigger(level.var_44cff72.s_unitrigger);

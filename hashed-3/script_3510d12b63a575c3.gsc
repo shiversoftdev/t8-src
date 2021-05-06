@@ -3,7 +3,6 @@
 #using script_174ebb9642933bf7;
 #using script_28b18e98462a3c7c;
 #using script_32db4ab8dcf85b70;
-#using script_33fd053376f47476;
 #using script_3bdc2bccbfc95114;
 #using script_3e5ec44cfab7a201;
 #using script_3ed4043a74fa517b;
@@ -37,6 +36,7 @@
 #using scripts\core_common\vehicle_shared.gsc;
 #using scripts\zm\zm_white.gsc;
 #using scripts\zm\zm_white_util.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_pack_a_punch.gsc;
 #using scripts\zm_common\zm_perks.gsc;

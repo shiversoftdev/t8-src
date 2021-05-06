@@ -54,7 +54,7 @@ function turret_open(localclientnum, oldval, newval, bnewent, binitialsnap, fiel
 	if(isdefined(self))
 	{
 		self useanimtree("generic");
-		self setanimrestart(#"hash_7d361a7bb5f2ce39", 1, 0, 1);
+		self setanimrestart(#"o_turret_mini_deploy", 1, 0, 1);
 	}
 }
 

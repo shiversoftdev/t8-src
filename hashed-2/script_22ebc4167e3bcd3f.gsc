@@ -551,7 +551,7 @@ function function_32fbad12(a_ents)
 		else if(n_chance >= 4 && n_chance < 20 || (isdefined(level.var_18d2e3aa) && level.var_18d2e3aa))
 		{
 			level.var_18d2e3aa = undefined;
-			var_d147b93a = #"hash_3088c04cdb6ddea1";
+			var_d147b93a = #"p8_zm_vending_three_gun_sign";
 			v_origin = var_965869c9 gettagorigin("tag_net_3") + (-15, -10, -13);
 			v_angles = (324, 135, 72);
 		}
@@ -623,7 +623,7 @@ function function_4afd150e(a_ents)
 	}
 	else if(var_ef78f209 > 67)
 	{
-		var_d147b93a = #"hash_3088c04cdb6ddea1";
+		var_d147b93a = #"p8_zm_vending_three_gun_sign";
 		v_origin = var_965869c9 gettagorigin("tag_net_3") + (-15, -10, -15);
 		v_angles = (324, 135, 72);
 	}

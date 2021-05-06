@@ -294,10 +294,10 @@ private function function_8f2f3bcd()
 {
 	center = (0, 0, 0);
 	radius = 0;
-	if(isdefined(level.var_9766eb97))
+	if(isdefined(level.deathcircle))
 	{
-		center = level.var_9766eb97.origin;
-		radius = level.var_9766eb97.radius * 0.75;
+		center = level.deathcircle.origin;
+		radius = level.deathcircle.radius * 0.75;
 	}
 	goal = center + anglestoforward((0, randomint(360), 0)) * radius;
 	return goal;

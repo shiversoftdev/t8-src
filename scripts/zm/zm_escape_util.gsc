@@ -587,7 +587,7 @@ function function_a8024c77()
 function function_c2237c03()
 {
 	self setmodel(#"hash_233df8109c680010");
-	self thread scene::play(#"hash_597b82b9b723ae5a", "Activated", self);
+	self thread scene::play(#"p8_fxanim_zm_esc_shockbox_bundle", "Activated", self);
 }
 
 /*
@@ -602,7 +602,7 @@ function function_c2237c03()
 function function_3ef2d2c6()
 {
 	self setmodel(#"hash_6af35b192ddcbfd6");
-	self thread scene::play(#"hash_597b82b9b723ae5a", "Desactivated", self);
+	self thread scene::play(#"p8_fxanim_zm_esc_shockbox_bundle", "Desactivated", self);
 }
 
 /*
@@ -617,7 +617,7 @@ function function_3ef2d2c6()
 function function_ad6125f0()
 {
 	self setmodel(#"hash_6ef14a3a2f07236e");
-	self thread scene::play(#"hash_338787761b8c1462", self);
+	self thread scene::play(#"p8_fxanim_zm_esc_shockbox_damaged_bundle", self);
 }
 
 /*

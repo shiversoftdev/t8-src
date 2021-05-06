@@ -387,8 +387,8 @@ function function_610d3790(einflictor, victim, idamage, weapon)
 	if(inbombzone && isplayer(attacker) && attacker.pers[#"team"] != victim.pers[#"team"])
 	{
 		attacker challenges::function_2f462ffd(victim, weapon, einflictor, currentobjective);
-		attacker.pers[#"hash_73786dd8290616a2"]++;
-		attacker.var_e7229608 = attacker.pers[#"hash_73786dd8290616a2"];
+		attacker.pers[#"objectiveekia"]++;
+		attacker.objectiveekia = attacker.pers[#"objectiveekia"];
 		attacker.pers[#"objectives"]++;
 		attacker.objectives = attacker.pers[#"objectives"];
 		if(game.defenders == victim.pers[#"team"])
@@ -691,7 +691,7 @@ function bombs()
 		level.sdbomb.onpickup = &onpickup;
 		level.sdbomb.ondrop = &ondrop;
 		level.sdbomb.var_22389d70 = 0;
-		var_a319c814 = getgametypesetting(#"hash_f19f478050cc11b");
+		var_a319c814 = getgametypesetting(#"carrier_manualdrop");
 		if(var_a319c814 === 1)
 		{
 			level.sdbomb gameobjects::function_a8c842d6(1, 1);
@@ -1027,7 +1027,7 @@ function onuseplantobject(player)
 	potm::bookmark(#"event", gettime(), player);
 	player stats::function_bb7eedf0(#"plants", 1);
 	player stats::function_dad108fa(#"hash_6ed8aab88512306b", 1);
-	player globallogic_score::incpersstat(#"hash_282813eec7b5b9ca", 1, 0, 1);
+	player globallogic_score::incpersstat(#"objectivescore", 1, 0, 1);
 	globallogic_audio::leader_dialog("bombPlanted");
 	scoreevents::processscoreevent(#"planted_bomb", player, undefined, undefined);
 	player recordgameevent("plant");

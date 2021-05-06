@@ -683,7 +683,7 @@ function function_5ff83684()
 	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_standard_t8");
 	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_burst_t8");
 	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_revolver_t8");
-	level.pistol_values[level.pistol_values.size] = getweapon(#"hash_1f48082b20588e4e");
+	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_fullauto_t8");
 	level.pistol_value_solo_replace_below = level.pistol_values.size - 1;
 	level.pistol_values[level.pistol_values.size] = level.default_solo_laststandpistol;
 	level.pistol_values[level.pistol_values.size] = getweapon(#"hash_cd53ea4d4ee864c");

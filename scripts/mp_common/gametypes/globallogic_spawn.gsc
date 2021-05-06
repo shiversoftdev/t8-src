@@ -1108,7 +1108,7 @@ function spawnplayer()
 			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_7f98574cf2a03360", var_9cc50881);
 			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_38198df3d9b2c8b8", var_be574bd8);
 			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_77e4495eb46e7e2b", var_8fa79650);
-			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_20d97f7c8385553e", outfitindex);
+			self match_record::set_stat(#"lives", var_f8e6b703, #"character_outfit", outfitindex);
 			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_3e4aa1baa6e0dd0f", var_34ba1b60);
 			for(i = 0; i < var_b3d9cfaa.size; i++)
 			{

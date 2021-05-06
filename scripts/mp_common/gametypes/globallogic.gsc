@@ -205,8 +205,8 @@ function init()
 	#/
 	level.multiteam = level.teamcount > 2;
 	level.maxteamplayers = getgametypesetting(#"maxteamplayers");
-	level.var_71c35c9f = getgametypesetting(#"hash_332d856eb0e6a511") === 1;
-	level.var_b72f10f3 = getgametypesetting(#"hash_3bf6c917303dbcdc") === 1;
+	level.var_71c35c9f = getgametypesetting(#"competitivesettings") === 1;
+	level.competitiveteamlives = getgametypesetting(#"competitiveteamlives") === 1;
 	gametype::init();
 	function_44c8af7f();
 	level.var_724cf71 = 1;
@@ -240,7 +240,7 @@ function init()
 	level.dropteam = getdvarint(#"sv_maxclients", 0);
 	level.infinalkillcam = 0;
 	level.new_health_model = getdvarint(#"new_health_model", 1) > 0;
-	setdvar(#"hash_6028c4687677bbc9", getgametypesetting(#"hash_321db600709b0707"));
+	setdvar(#"hash_6028c4687677bbc9", getgametypesetting(#"boastenabled"));
 	setdvar(#"hash_e099986c072eb0f", getgametypesetting(#"hash_104f124f56f0f20a"));
 	setdvar(#"hash_553ad8f9db24bf22", int(1000 * getgametypesetting(#"hash_1614b9cbe0df6f75")));
 	function_9afe34e3();
@@ -5142,9 +5142,9 @@ function function_b9b7618()
 	level.playerhealthregentime = getgametypesetting(#"playerhealthregentime");
 	if(sessionmodeismultiplayergame())
 	{
-		level.var_90bb9821 = getgametypesetting(#"hash_2fbdfa4970acbb83") - 150;
-		level.minimumallowedteamkills = getgametypesetting(#"hash_372f12f52b6f7975") - 1;
-		level.onlyheadshots = getgametypesetting(#"hash_577ff2f6488f6ce8");
+		level.var_90bb9821 = getgametypesetting(#"specialistmaxhealth_allies_1") - 150;
+		level.minimumallowedteamkills = getgametypesetting(#"specialistteamkillsallowed_allies_1") - 1;
+		level.onlyheadshots = getgametypesetting(#"specialistonlyheadshots_allies_1");
 		level.allowhitmarkers = getgametypesetting(#"hash_7477eea36687a960");
 	}
 	else

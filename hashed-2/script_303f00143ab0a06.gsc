@@ -34,7 +34,7 @@ event main(eventstruct)
 {
 	namespace_13777bae::function_46e95cc7();
 	level.var_d6d98fbe = 0;
-	level.select_character = namespace_73e1c3e3::function_d153452e(#"hash_77bb98ae1ba6c32b");
+	level.select_character = namespace_73e1c3e3::function_d153452e(#"prt_mp_firebreak");
 	level.var_820c5561 = "FIREBREAK";
 	namespace_73e1c3e3::function_be3a76b7(level.var_820c5561);
 	namespace_13777bae::function_fa03fc55();

@@ -193,7 +193,7 @@ function function_c5868f47(var_a276c861, var_19e802fa)
 	if(var_a276c861 || var_19e802fa)
 	{
 		level notify(#"hash_425e8c53dcecb85d");
-		s_scene = struct::get(#"hash_25ced25ceb6150ae", "scriptbundlename");
+		s_scene = struct::get(#"p8_fxanim_zm_man_wm_01_bundle", "scriptbundlename");
 		s_scene thread scene::play("Shot 1");
 		var_fe0f27ef = getentarray("living_tree", "targetname");
 		foreach(var_3303f46 in var_fe0f27ef)
@@ -558,7 +558,7 @@ private function function_2345b68a()
 		}
 	}
 	level.stick_player.var_d62b4d4 = s_loc;
-	var_24b5be21.var_1b275ac9 setmodel(#"hash_236ba2264741837d");
+	var_24b5be21.var_1b275ac9 setmodel(#"p8_zm_headstone_engraving_1912");
 	level.var_76c1632f = s_trig zm_unitrigger::create(undefined, (64, 64, 100), &function_6ae66179);
 	level.var_76c1632f.var_d62b4d4 = s_loc;
 	/#
@@ -664,7 +664,7 @@ private function function_36d70cbd()
 	{
 		level.var_e34d55ef setmodel(level.var_e34d55ef.var_71c444c7);
 	}
-	s_scene = struct::get(#"hash_25ced25ceb6150ae", "scriptbundlename");
+	s_scene = struct::get(#"p8_fxanim_zm_man_wm_01_bundle", "scriptbundlename");
 	if(isdefined(s_scene))
 	{
 		s_scene thread scene::play("Shot 1");
@@ -804,7 +804,7 @@ private function function_959fcbff(player)
 		level.var_d2ff3b06 = undefined;
 	}
 	wait(2);
-	level.var_e34d55ef setmodel(#"hash_10ad36f3d6ec9cba");
+	level.var_e34d55ef setmodel(#"p8_zm_man_dead_tree_branches_burned");
 	if(player namespace_48f3568::function_69e9e553(array(#"hash_5ebf024e1559c04a")))
 	{
 		player thread function_3ce20299();
@@ -1381,7 +1381,7 @@ function function_50955e48()
 {
 	self endon(#"player_downed", #"death", #"hash_1544918b5f670dae");
 	var_4e7ea1ce = 0;
-	s_scene = struct::get(#"hash_25ced25ceb6150ae", "scriptbundlename");
+	s_scene = struct::get(#"p8_fxanim_zm_man_wm_01_bundle", "scriptbundlename");
 	while(!var_4e7ea1ce)
 	{
 		n_dist_sq = distance2dsquared(self.origin, s_scene.origin);
@@ -1391,8 +1391,8 @@ function function_50955e48()
 		}
 		waitframe(1);
 	}
-	scene::remove_scene_func(#"hash_25ced25ceb6150ae", &function_599edfb8, "Shot 2");
-	scene::add_scene_func(#"hash_25ced25ceb6150ae", &function_599edfb8, "Shot 2");
+	scene::remove_scene_func(#"p8_fxanim_zm_man_wm_01_bundle", &function_599edfb8, "Shot 2");
+	scene::add_scene_func(#"p8_fxanim_zm_man_wm_01_bundle", &function_599edfb8, "Shot 2");
 	s_scene scene::play("Shot 2");
 	self thread function_79ad31a0();
 	level flag::set(#"hash_7ffc33bb45377f5e");
@@ -1479,7 +1479,7 @@ private function function_a0a113c9(str_notify)
 */
 private function function_79ad31a0()
 {
-	s_scene = struct::get(#"hash_25ced25ceb6150ae", "scriptbundlename");
+	s_scene = struct::get(#"p8_fxanim_zm_man_wm_01_bundle", "scriptbundlename");
 	if(!isdefined(level.var_d2ff3b06))
 	{
 		level.var_d2ff3b06 = s_scene zm_unitrigger::create(undefined, (96, 96, 100), &function_e24adab5);
@@ -1896,7 +1896,7 @@ function function_bafa7a2b(var_5ea5c94d, ended_early)
 	level flag::set(#"hash_44ef51ef07d5d8f2");
 	level notify(#"hash_3c7945247db32d89");
 	var_6372f21f = struct::get("relic_cemetery");
-	mdl_relic = util::spawn_model(#"hash_ba31145749fdb8", var_6372f21f.origin, var_6372f21f.angles);
+	mdl_relic = util::spawn_model(#"p8_zm_man_druid_door_stone_square", var_6372f21f.origin, var_6372f21f.angles);
 	util::wait_network_frame();
 	if(isdefined(mdl_relic))
 	{
@@ -2561,10 +2561,10 @@ function function_2c554640()
 	var_1b2ca394 = getent("pic_brigadier", "targetname");
 	var_3c9ce3a9 = getent("pic_butler", "targetname");
 	var_36ebb951 = getent("pic_gunslinger", "targetname");
-	var_6adbf325.var_3916fb8b = #"hash_235e08264735f373";
-	var_1b2ca394.var_3916fb8b = #"hash_236b98264741727f";
-	var_3c9ce3a9.var_3916fb8b = #"hash_23618d2647390b49";
-	var_36ebb951.var_3916fb8b = #"hash_235a9f2647330b31";
+	var_6adbf325.var_3916fb8b = #"p8_zm_headstone_engraving_1950";
+	var_1b2ca394.var_3916fb8b = #"p8_zm_headstone_engraving_1918";
+	var_3c9ce3a9.var_3916fb8b = #"p8_zm_headstone_engraving_1927";
+	var_36ebb951.var_3916fb8b = #"p8_zm_headstone_engraving_1945";
 	level.var_d70578ff = array(var_6adbf325, var_1b2ca394, var_3c9ce3a9, var_36ebb951);
 	for(i = 0; i < level.var_d70578ff.size; i++)
 	{

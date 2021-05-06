@@ -881,7 +881,7 @@ function function_a616131a(var_77104def)
 	}
 	namespace_11c28b18::function_afd37143(#"hash_28dbb5b91d8a954e");
 	var_8fa68ef = struct::get(var_1a472b57.target);
-	var_69450ec5 = util::spawn_model(#"hash_4996ce2cddc1c6b7", var_1a472b57.origin, var_1a472b57.angles);
+	var_69450ec5 = util::spawn_model(#"p8_zm_gla_jar_gold_01", var_1a472b57.origin, var_1a472b57.angles);
 	if(!isdefined(var_69450ec5))
 	{
 		/#
@@ -1043,7 +1043,7 @@ function function_4877f171(var_77104def, var_19e802fa)
 	var_bee9a635 = struct::get("s_ww_quest_jar_under_tree");
 	v_origin = var_bee9a635.origin;
 	v_angles = var_bee9a635.angles;
-	var_69450ec5 = util::spawn_model(#"hash_4996ce2cddc1c6b7", v_origin, v_angles);
+	var_69450ec5 = util::spawn_model(#"p8_zm_gla_jar_gold_01", v_origin, v_angles);
 	var_f3747cdd = util::spawn_model(#"hash_2b0b7a64db1fe73d", v_origin - vectorscale((0, 0, 1), 2048), v_angles);
 	level.var_6d6bbd67 = var_69450ec5;
 	level.var_1028e128 = var_f3747cdd;

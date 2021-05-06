@@ -141,11 +141,11 @@ function registernotetracks()
 	anim.notetracks[#"hash_2c94246462ac6748"] = &notetrackmovementrun;
 	anim.notetracks[#"hash_40fdc55d0cf02732"] = &notetrackalertnesscasual;
 	anim.notetracks[#"hash_404f1950633f51b"] = &notetrackalertnessalert;
-	anim.notetracks[#"hash_1b96ceef2116dd9a"] = &notetrackgravity;
-	anim.notetracks[#"hash_78046c5539c419ec"] = &notetrackgravity;
+	anim.notetracks[#"gravity on"] = &notetrackgravity;
+	anim.notetracks[#"gravity off"] = &notetrackgravity;
 	anim.notetracks[#"hash_3a65333187809d2e"] = &notetrackgravity;
-	anim.notetracks[#"hash_2a9218bffea0dc3f"] = &notetrackbodyfall;
-	anim.notetracks[#"hash_66b7cb6507846fe7"] = &notetrackbodyfall;
+	anim.notetracks[#"bodyfall large"] = &notetrackbodyfall;
+	anim.notetracks[#"bodyfall small"] = &notetrackbodyfall;
 	anim.notetracks[#"footstep"] = &notetrackfootstep;
 	anim.notetracks[#"step"] = &notetrackfootstep;
 	anim.notetracks[#"footstep_right_large"] = &notetrackfootstep;
@@ -498,7 +498,7 @@ function handlenotetrack(note, flagname, customfunction, var1)
 			self.a.meleestate = "left";
 			break;
 		}
-		case "hash_69623fe211acb01d":
+		case "swap taghelmet to tagleft":
 		{
 			if(isdefined(self.hatmodel))
 			{

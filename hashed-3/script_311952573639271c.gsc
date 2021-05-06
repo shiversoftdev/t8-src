@@ -499,20 +499,20 @@ function function_9e34f29()
 	{
 		var_1198639d = var_4cd65fb6[getfirstarraykey(var_4cd65fb6)].scene_ents;
 	}
-	var_5b572ef1 = scene::get_active_scenes(#"hash_bc873286c6cb73e");
+	var_5b572ef1 = scene::get_active_scenes(#"p8_fxanim_zm_zod_engine_propeller_shafts_01_idle_bundle");
 	if(var_5b572ef1.size)
 	{
 		var_f1d8c9e3 = var_5b572ef1[getfirstarraykey(var_5b572ef1)].scene_ents;
 	}
-	var_6997cb72 = scene::get_active_scenes(#"hash_5ebb0535dddb5caf");
+	var_6997cb72 = scene::get_active_scenes(#"p8_fxanim_zm_zod_engine_propeller_shafts_02_idle_bundle");
 	if(var_6997cb72.size)
 	{
 		var_ff6de50d = var_6997cb72[getfirstarraykey(var_6997cb72)].scene_ents;
 	}
 	level thread scene::play(#"p8_fxanim_zm_zod_engine_pistons_idle_01_bundle", "stop");
 	level thread scene::play(#"p8_fxanim_zm_zod_engine_pistons_idle_02_bundle", "stop");
-	level thread scene::play(#"hash_bc873286c6cb73e", "stop");
-	level thread scene::play(#"hash_5ebb0535dddb5caf", "stop");
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_propeller_shafts_01_idle_bundle", "stop");
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_propeller_shafts_02_idle_bundle", "stop");
 	level thread scene::play(#"p8_fxanim_zm_zod_skybox_bundle", "event_impact");
 	level flag::wait_till(#"hash_598d4e6af1cf4c39");
 	level thread function_ec3ffba();
@@ -525,10 +525,10 @@ function function_9e34f29()
 	exploder::exploder("exp_lgt_switchboard_warning_redflash");
 	exploder::exploder("exp_lgt_engine_warning_redflash");
 	wait(1.5);
-	level thread scene::play(#"hash_2f978fcd718fc014", var_d8b371d4);
-	level thread scene::play(#"hash_135ff0d3934b07bb", var_1198639d);
-	level thread scene::play(#"hash_673894a7073051e", var_f1d8c9e3);
-	level thread scene::play(#"hash_72186222d438a8dd", var_ff6de50d);
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_pistons_full_speed_01_bundle", var_d8b371d4);
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_pistons_full_speed_02_bundle", var_1198639d);
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_propeller_shafts_01_fullspeed_bundle", var_f1d8c9e3);
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_propeller_shafts_02_fullspeed_bundle", var_ff6de50d);
 	level thread scene::play(#"p8_fxanim_zm_zod_skybox_bundle", "event_impact");
 	level thread function_a0f5819b();
 	wait(30);
@@ -537,14 +537,14 @@ function function_9e34f29()
 	exploder::stop_exploder("exp_lgt_switchboard_gameplay");
 	exploder::stop_exploder("exp_lgt_switchboard_warning_redflash");
 	exploder::stop_exploder("exp_lgt_engine_warning_redflash");
-	scene::stop(#"hash_2f978fcd718fc014");
-	scene::stop(#"hash_135ff0d3934b07bb");
-	scene::stop(#"hash_673894a7073051e");
-	scene::stop(#"hash_72186222d438a8dd");
+	scene::stop(#"p8_fxanim_zm_zod_engine_pistons_full_speed_01_bundle");
+	scene::stop(#"p8_fxanim_zm_zod_engine_pistons_full_speed_02_bundle");
+	scene::stop(#"p8_fxanim_zm_zod_engine_propeller_shafts_01_fullspeed_bundle");
+	scene::stop(#"p8_fxanim_zm_zod_engine_propeller_shafts_02_fullspeed_bundle");
 	level thread scene::play(#"p8_fxanim_zm_zod_engine_pistons_idle_01_bundle", var_d8b371d4);
 	level thread scene::play(#"p8_fxanim_zm_zod_engine_pistons_idle_02_bundle", var_1198639d);
-	level thread scene::play(#"hash_bc873286c6cb73e", var_f1d8c9e3);
-	level thread scene::play(#"hash_5ebb0535dddb5caf", var_ff6de50d);
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_propeller_shafts_01_idle_bundle", var_f1d8c9e3);
+	level thread scene::play(#"p8_fxanim_zm_zod_engine_propeller_shafts_02_idle_bundle", var_ff6de50d);
 	level flag::clear(#"hash_598d4e6af1cf4c39");
 	level thread function_a0f5819b(0);
 }
@@ -1067,7 +1067,7 @@ function function_16d4b0d1(var_5ea5c94d, ended_early)
 */
 function function_282743a6(var_5ea5c94d)
 {
-	array::run_all(util::get_players(), &forcestreambundle, #"hash_475742bf38e2ed65");
+	array::run_all(util::get_players(), &forcestreambundle, #"p8_fxanim_zm_zod_tentacle_bundle");
 	s_trigger = struct::get(#"hash_693bda099c0710af");
 	var_64c09f7f = s_trigger zm_unitrigger::function_fac87205();
 	playsoundatposition(#"hash_42f8105535463377", s_trigger.origin);
@@ -1080,9 +1080,9 @@ function function_282743a6(var_5ea5c94d)
 	#/
 	showmiscmodels("dead_offering");
 	s_scene = struct::get(s_trigger.target);
-	scene::add_scene_func(#"hash_475742bf38e2ed65", &function_a343f892);
+	scene::add_scene_func(#"p8_fxanim_zm_zod_tentacle_bundle", &function_a343f892);
 	s_scene scene::play();
-	array::run_all(util::get_players(), &function_66b6e720, #"hash_475742bf38e2ed65");
+	array::run_all(util::get_players(), &function_66b6e720, #"p8_fxanim_zm_zod_tentacle_bundle");
 	if(isalive(var_64c09f7f))
 	{
 		var_64c09f7f zm_audio::create_and_play_dialog(#"fish", #"hash_567e7f4586f90cfc");
@@ -1115,7 +1115,7 @@ function function_a343f892(a_ents)
 {
 	if(self.targetname === #"hash_d57edbfd2d86a0c")
 	{
-		scene::remove_scene_func(#"hash_475742bf38e2ed65", &function_a343f892);
+		scene::remove_scene_func(#"p8_fxanim_zm_zod_tentacle_bundle", &function_a343f892);
 		var_d636c7a5 = a_ents[#"hash_3712f07fe0e1166c"];
 		var_d636c7a5 hide();
 		wait(1.5);
@@ -1378,7 +1378,7 @@ function function_c0174de(var_f02fb354, var_e531b8b8)
 	self rotateto(var_e531b8b8.angles, n_move_time);
 	self waittill(#"movedone");
 	self playsound(#"hash_6df06ef021cd1a4");
-	self thread scene::init(#"hash_3a8dd9e5169105bd", self);
+	self thread scene::init(#"p8_fxanim_zm_zod_safe_cracker_ee_bundle", self);
 	s_unitrigger = self zm_unitrigger::create();
 	zm_unitrigger::function_47625e58(s_unitrigger, s_unitrigger.origin + vectorscale((0, 0, 1), 32), s_unitrigger.angles);
 	var_88706ea7 = undefined;
@@ -1700,12 +1700,12 @@ function function_ae4e9016()
 				level.var_8237e7d3 show();
 				playsoundatposition(#"hash_674add1cacda8f0a", level.var_8237e7d3.origin);
 				level.var_8237e7d3 playloopsound(#"hash_648b3ad720f4123", 0.1);
-				level.var_8237e7d3 thread scene::play(#"hash_3a8dd9e5169105bd", "combo_" + self.var_83fad8a9, level.var_8237e7d3);
+				level.var_8237e7d3 thread scene::play(#"p8_fxanim_zm_zod_safe_cracker_ee_bundle", "combo_" + self.var_83fad8a9, level.var_8237e7d3);
 				wait(4);
 				playsoundatposition(#"hash_d47a6b375de9091", level.var_8237e7d3.origin);
 				level.var_8237e7d3 stoploopsound(0.05);
 				wait(1);
-				level.var_8237e7d3 scene::stop(#"hash_3a8dd9e5169105bd");
+				level.var_8237e7d3 scene::stop(#"p8_fxanim_zm_zod_safe_cracker_ee_bundle");
 				level.var_8237e7d3 unlink();
 				level.var_8237e7d3 linkto(self.var_6f7cfe6d);
 				self.var_6f7cfe6d rotateyaw(90, 0.25, 0.25);
@@ -1986,7 +1986,7 @@ function function_75bdcb53(var_3bac6db4)
 */
 function function_cd85b198()
 {
-	var_2e1f34dd = util::spawn_model(#"hash_3faf54e1959102df", self.origin, self.angles);
+	var_2e1f34dd = util::spawn_model(#"p8_fxanim_zm_towers_crowd_jar_01_mod", self.origin, self.angles);
 	var_2e1f34dd linkto(self);
 	level waittill(#"hash_7faa53de48fa73b0");
 	var_2e1f34dd unlink();
@@ -2146,7 +2146,7 @@ function function_1a1d203a(var_a276c861)
 	if(!var_a276c861)
 	{
 		function_23c7360a();
-		level scene::play(#"hash_5b7b89dec3940924");
+		level scene::play(#"p8_fxanim_zm_zod_table_icechunk_bundle");
 		function_73bdaf30();
 	}
 }
@@ -2428,7 +2428,7 @@ function function_a68ce358()
 	var_a4bb6a54 = function_80b485e9(var_2cb1cbce.origin + vectorscale((0, 0, -1), 8), var_2cb1cbce.angles, str_color);
 	var_a4bb6a54 moveto(var_2cb1cbce.origin, 0.2);
 	var_a4bb6a54 waittill(#"movedone");
-	var_a4bb6a54 thread scene::play(#"hash_494d52beb6a3c7d", var_a4bb6a54);
+	var_a4bb6a54 thread scene::play(#"p8_fxanim_zm_zod_pneumatic_tube_flare_bundle", var_a4bb6a54);
 	n_index = randomint(level.var_252b49cc.size);
 	var_46a3f206 = level.var_252b49cc[n_index];
 	arrayremoveindex(level.var_252b49cc, n_index);
@@ -2517,7 +2517,7 @@ function function_e01b477f(var_2cb1cbce, var_46a3f206)
 	{
 		waitresult.attacker util::show_hit_marker();
 	}
-	self scene::stop(#"hash_494d52beb6a3c7d");
+	self scene::stop(#"p8_fxanim_zm_zod_pneumatic_tube_flare_bundle");
 	self moveto(self.origin + vectorscale((0, 0, 1), 8), 0.35);
 	self playsound(#"hash_33fa1a9c8d819b09");
 	self waittill(#"movedone");
@@ -3319,17 +3319,17 @@ function function_1f7f2030(var_2c2d042a)
 	{
 		case 0:
 		{
-			self setmodel(#"hash_2195d81842bd44a3");
+			self setmodel(#"p8_zm_zod_music_sheet_03");
 			break;
 		}
 		case 1:
 		{
-			self setmodel(#"hash_2195da1842bd4809");
+			self setmodel(#"p8_zm_zod_music_sheet_01");
 			break;
 		}
 		case 2:
 		{
-			self setmodel(#"hash_2195dd1842bd4d22");
+			self setmodel(#"p8_zm_zod_music_sheet_04");
 			break;
 		}
 	}
@@ -3439,17 +3439,17 @@ function function_ff05eb5()
 	{
 		case 2:
 		{
-			str_bundle = #"hash_5ae2da71d65aa04b";
+			str_bundle = #"p8_fxanim_zm_zod_piano_vintage_bundle";
 			break;
 		}
 		case 1:
 		{
-			str_bundle = #"hash_50917738c07be1c3";
+			str_bundle = #"p8_fxanim_zm_zod_grand_piano_bundle";
 			break;
 		}
 		case 0:
 		{
-			str_bundle = #"hash_7a535f4edb72581e";
+			str_bundle = #"p8_fxanim_zm_zod_piano_victorian_bundle";
 			break;
 		}
 	}

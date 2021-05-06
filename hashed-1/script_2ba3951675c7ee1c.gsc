@@ -318,7 +318,7 @@ function function_d74a3faf(e_player)
 		level.var_cc5631a6 clientfield::set("" + #"hash_228caf5cb0610875", 1);
 		playsoundatposition(#"hash_2c4234f291620027", self.origin);
 		self.var_607f49de = zm_utility::spawn_weapon_model(getweapon(var_f2528cbc), undefined, self.v_weapon_origin, self.v_weapon_angles);
-		self.var_607f49de thread scene::play(#"hash_2fe3067b201e6610", self.var_607f49de);
+		self.var_607f49de thread scene::play(#"p8_fxanim_zm_esc_blundergat_fireplace_hover_bundle", self.var_607f49de);
 		level flag::clear(#"hash_3ec656e276ceee53");
 		e_player thread function_4022d369(self);
 		e_player thread function_8b619951();

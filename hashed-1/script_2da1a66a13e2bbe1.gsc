@@ -1,13 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_24c32478acf44108;
 #using script_28b18e98462a3c7c;
-#using script_33fd053376f47476;
 #using script_3cebb48c37fc271;
 #using script_3f9e0dc8454d98e1;
 #using script_43e752475599d64c;
 #using script_48dd035d23bf8844;
 #using script_50a21e465d6bb7a2;
-#using script_510a7c58311cd7b5;
 #using script_6a3f43063dfd1bdc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\ai_shared.gsc;
@@ -23,6 +21,8 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm\zm_white.gsc;
 #using scripts\zm\zm_white_util.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_newtonian_negation.gsc;
 #using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_laststand.gsc;
 #using scripts\zm_common\zm_pack_a_punch.gsc;

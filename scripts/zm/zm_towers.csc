@@ -865,13 +865,13 @@ function function_5eaabec(localclientnum, oldval, newval, bnewent, binitialsnap,
 	{
 		forcestreamxmodel(#"hash_7046550bbfeaf740");
 		forcestreamxmodel(#"hash_7c166ef26a8ce946");
-		forcestreamxmodel(#"hash_689b65d0eb8d29fd");
+		forcestreamxmodel(#"c_t8_zmb_dlc0_zombie_marauder_decapitated_head1");
 	}
 	else
 	{
 		stopforcestreamingxmodel(#"hash_7046550bbfeaf740");
 		stopforcestreamingxmodel(#"hash_7c166ef26a8ce946");
-		stopforcestreamingxmodel(#"hash_689b65d0eb8d29fd");
+		stopforcestreamingxmodel(#"c_t8_zmb_dlc0_zombie_marauder_decapitated_head1");
 	}
 }
 
@@ -2729,12 +2729,12 @@ function function_98d53b6b(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		forcestreamxmodel(#"hash_3d4f2e38cdf19caa");
+		forcestreamxmodel(#"p8_zm_gla_artifact_podium");
 		forcestreamxmodel(#"hash_77c082bfbea9adca");
 	}
 	else
 	{
-		stopforcestreamingxmodel(#"hash_3d4f2e38cdf19caa");
+		stopforcestreamingxmodel(#"p8_zm_gla_artifact_podium");
 		stopforcestreamingxmodel(#"hash_77c082bfbea9adca");
 	}
 }

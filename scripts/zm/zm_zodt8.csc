@@ -351,23 +351,23 @@ function function_5b0384a(localclientnum, oldval, newval, bnewent, binitialsnap,
 	{
 		case 0:
 		{
-			level scene::stop(#"hash_1c8acc6c63abae2b", 1);
-			level scene::delete_scene_spawned_ents(localclientnum, #"hash_1c8acc6c63abae2b");
+			level scene::stop(#"p8_fxanim_zm_zod_cargo_hold_net_bundle", 1);
+			level scene::delete_scene_spawned_ents(localclientnum, #"p8_fxanim_zm_zod_cargo_hold_net_bundle");
 			break;
 		}
 		case 1:
 		{
-			level thread scene::init(#"hash_1c8acc6c63abae2b");
+			level thread scene::init(#"p8_fxanim_zm_zod_cargo_hold_net_bundle");
 			break;
 		}
 		case 2:
 		{
-			level thread scene::play(#"hash_1c8acc6c63abae2b", "Shot 2");
+			level thread scene::play(#"p8_fxanim_zm_zod_cargo_hold_net_bundle", "Shot 2");
 			break;
 		}
 		case 3:
 		{
-			level thread scene::play(#"hash_1c8acc6c63abae2b", "Shot 3");
+			level thread scene::play(#"p8_fxanim_zm_zod_cargo_hold_net_bundle", "Shot 3");
 			break;
 		}
 	}

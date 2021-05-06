@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_44a4275d592cdd26;
 #using script_6e3c826b1814cab6;
 #using scripts\core_common\system_shared.gsc;
+#using scripts\zm_common\bgbs\zm_bgb_extra_credit.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
 
 #namespace zm_bgb_reign_drops;

@@ -43,7 +43,7 @@ function init_shared()
 		}
 		function_8ac48939(level.killstreakcorebundle);
 		level.emp_killstreaks = [];
-		renderoverridebundle::function_f72f089c(#"hash_7d4b6b0d84ddafa3", #"friendly", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"hash_462904942fe18ec3"), &function_95f96f3e);
+		renderoverridebundle::function_f72f089c(#"hash_7d4b6b0d84ddafa3", #"friendly", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"rob_sonar_set_friendlyequip_mp"), &function_95f96f3e);
 	}
 }
 

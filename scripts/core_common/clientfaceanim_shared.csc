@@ -35,7 +35,7 @@ function main()
 	callback::on_spawned(&on_player_spawned);
 	callback::on_localclient_connect(&on_localclient_connect);
 	buildandvalidatefacialanimationlist(0);
-	animation::add_notetrack_func(#"hash_2316a6cbda163a5b", &function_d55dc6af);
+	animation::add_notetrack_func(#"clientfaceanim::deathanimshutdown", &function_d55dc6af);
 }
 
 /*
@@ -112,16 +112,16 @@ function buildandvalidatefacialanimationlist(localclientnum)
 	if(!isdefined(level.__clientfacialanimationslist))
 	{
 		level.__clientfacialanimationslist = [];
-		level.__clientfacialanimationslist[#"combat"] = array(#"hash_183f1e41f0815236", #"hash_183f1d41f0815083", #"hash_183f1c41f0814ed0");
-		level.__clientfacialanimationslist[#"combat_shoot"] = array(#"hash_5972ddb71f356df0", #"hash_5972e0b71f357309");
-		level.__clientfacialanimationslist[#"death"] = array(#"hash_24e52cb860b2588e", #"hash_24e52bb860b256db", #"hash_24e52ab860b25528");
-		level.__clientfacialanimationslist[#"melee"] = array(#"hash_6afc71f1a820b962");
-		level.__clientfacialanimationslist[#"pain"] = array(#"hash_2d075a32eae3362e");
-		level.__clientfacialanimationslist[#"swimming"] = array(#"hash_6fa1d2bd4a127da0");
-		level.__clientfacialanimationslist[#"jumping"] = array(#"hash_5dde6974560b8720");
-		level.__clientfacialanimationslist[#"sliding"] = array(#"hash_7837591ef0e8552f");
-		level.__clientfacialanimationslist[#"sprinting"] = array(#"hash_7ab4b2f012c54551");
-		level.__clientfacialanimationslist[#"wallrunning"] = array(#"hash_767102ecb16ad39f");
+		level.__clientfacialanimationslist[#"combat"] = array(#"ai_t8_face_hero_generic_idle_1", #"ai_t8_face_hero_generic_idle_2", #"ai_t8_face_hero_generic_idle_3");
+		level.__clientfacialanimationslist[#"combat_shoot"] = array(#"ai_t8_face_hero_aim_fire_1", #"ai_t8_face_hero_aim_fire_2");
+		level.__clientfacialanimationslist[#"death"] = array(#"ai_t8_face_hero_dth_1", #"ai_t8_face_hero_dth_2", #"ai_t8_face_hero_dth_3");
+		level.__clientfacialanimationslist[#"melee"] = array(#"ai_t8_face_hero_melee_1");
+		level.__clientfacialanimationslist[#"pain"] = array(#"ai_t8_face_hero_pain_1");
+		level.__clientfacialanimationslist[#"swimming"] = array(#"mp_t8_face_hero_swim_idle_1");
+		level.__clientfacialanimationslist[#"jumping"] = array(#"mp_t8_face_hero_jump_idle_1");
+		level.__clientfacialanimationslist[#"sliding"] = array(#"mp_t8_face_hero_slides_1");
+		level.__clientfacialanimationslist[#"sprinting"] = array(#"mp_t8_face_hero_sprint_1");
+		level.__clientfacialanimationslist[#"wallrunning"] = array(#"mp_t8_face_hero_wall_run_1");
 		deathanims = level.__clientfacialanimationslist[#"death"];
 		foreach(deathanim in deathanims)
 		{

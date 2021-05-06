@@ -766,7 +766,7 @@ function function_5ccf9075()
 		}
 		if(level flag::get_all(array("crystal_main_hall_key", "crystal_library_key", "crystal_greenhouse_key")))
 		{
-			scene::add_scene_func(#"hash_79dc3cec0f9c544f", &function_93e11617, "trails", player);
+			scene::add_scene_func(#"p8_fxanim_zm_man_ooze_clump_bundle", &function_93e11617, "trails", player);
 			level thread function_94fc7512();
 			zm_unitrigger::unregister_unitrigger(self.stub);
 		}
@@ -809,10 +809,10 @@ function function_94fc7512(var_b374fe7b)
 	}
 	level flag::wait_till(#"hash_6453fae6f9a19033");
 	level flag::clear(#"hash_6453fae6f9a19033");
-	s_scene = struct::get(#"hash_79dc3cec0f9c544f", "scriptbundlename");
+	s_scene = struct::get(#"p8_fxanim_zm_man_ooze_clump_bundle", "scriptbundlename");
 	a_shots = s_scene.scenes[0].var_5a2219f0;
 	str_shot = a_shots[s_scene.scene_played.size];
-	s_scene thread scene::play(#"hash_79dc3cec0f9c544f", str_shot);
+	s_scene thread scene::play(#"p8_fxanim_zm_man_ooze_clump_bundle", str_shot);
 	if(isstring(var_b374fe7b))
 	{
 		level flag::set("crystal_" + var_b374fe7b);
@@ -1004,14 +1004,14 @@ function function_2605cb3d()
 {
 	level endon("end_game");
 	/#
-		var_e9c37042 = array(#"hash_3a12b0691a5968f4", #"hash_349cad5bdc476f5", #"hash_42d8759d5a398a6", #"hash_28ebc7d3102c59be", #"hash_41477d8303362a8d", #"hash_3931279051b1dc2a", #"hash_1fdfb3bd877d5285", #"hash_133997d9f533752b", #"hash_1bf5f65ab2f15df6", #"hash_588b0b516267e4", #"hash_5169247c53c5cd08", #"hash_201696a50c5e07b2", #"hash_7b4d637ef9852e75", #"hash_1505e411bb11029c");
+		var_e9c37042 = array(#"p8_fxanim_zm_man_pap_drawers_bundle", #"p8_fxanim_zm_man_pap_graveyard_bundle", #"p8_fxanim_zm_man_pap_lantern_bundle", #"p8_fxanim_zm_man_pap_platter_bundle", #"p8_fxanim_zm_man_pap_quest_entrance_room_bundle", #"p8_fxanim_zm_man_pap_quest_statue_fountain_bundle", #"p8_fxanim_zm_man_pap_quest_statue_garden_bundle", #"p8_fxanim_zm_man_pap_safe_bundle", #"p8_fxanim_zm_man_pap_sarcophagus_bundle", #"p8_fxanim_zm_man_pap_terrace_bundle", #"p8_fxanim_zm_man_pap_wall_bundle", #"p8_fxanim_zm_man_clock_01_bundle", #"p8_fxanim_zm_man_clock_02_bundle", #"p8_fxanim_zm_man_clock_03_bundle");
 		foreach(str_scene in var_e9c37042)
 		{
 			scene::add_scene_func(str_scene, &function_11886796, "");
 		}
 	#/
-	scene::add_scene_func(#"hash_42d8759d5a398a6", &function_62561ed8, "done");
-	util::delay(10, "end_game", &scene::init, #"hash_5169247c53c5cd08");
+	scene::add_scene_func(#"p8_fxanim_zm_man_pap_lantern_bundle", &function_62561ed8, "done");
+	util::delay(10, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_wall_bundle");
 	level flag::wait_till_any(array(#"power_on1", #"hash_2daf5bdda85cc660"));
 	/#
 		foreach(str_scene in var_e9c37042)
@@ -1019,16 +1019,16 @@ function function_2605cb3d()
 			scene::remove_scene_func(str_scene, &function_11886796, "");
 		}
 	#/
-	util::delay(5, "end_game", &scene::init, #"hash_3a12b0691a5968f4");
-	util::delay(6, "end_game", &scene::init, #"hash_349cad5bdc476f5");
-	util::delay(7, "end_game", &scene::init, #"hash_42d8759d5a398a6");
-	util::delay(8, "end_game", &scene::init, #"hash_28ebc7d3102c59be");
-	util::delay(9, "end_game", &scene::init, #"hash_41477d8303362a8d");
-	util::delay(10, "end_game", &scene::init, #"hash_3931279051b1dc2a");
-	util::delay(11, "end_game", &scene::init, #"hash_1fdfb3bd877d5285");
-	util::delay(12, "end_game", &scene::init, #"hash_133997d9f533752b");
-	util::delay(13, "end_game", &scene::init, #"hash_1bf5f65ab2f15df6");
-	util::delay(14, "end_game", &scene::init, #"hash_588b0b516267e4");
+	util::delay(5, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_drawers_bundle");
+	util::delay(6, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_graveyard_bundle");
+	util::delay(7, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_lantern_bundle");
+	util::delay(8, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_platter_bundle");
+	util::delay(9, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_quest_entrance_room_bundle");
+	util::delay(10, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_quest_statue_fountain_bundle");
+	util::delay(11, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_quest_statue_garden_bundle");
+	util::delay(12, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_safe_bundle");
+	util::delay(13, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_sarcophagus_bundle");
+	util::delay(14, "end_game", &scene::init, #"p8_fxanim_zm_man_pap_terrace_bundle");
 }
 
 /*
@@ -1042,11 +1042,11 @@ function function_2605cb3d()
 */
 function function_a865c184()
 {
-	scene::add_scene_func(#"hash_79dc3cec0f9c544f", &function_cf336ef1, "init");
-	scene::add_scene_func(#"hash_79dc3cec0f9c544f", &function_d9ad128c, "clump01_rise", "clump01_rise");
-	scene::add_scene_func(#"hash_79dc3cec0f9c544f", &function_d9ad128c, "clump02_rise", "clump02_rise");
-	scene::add_scene_func(#"hash_79dc3cec0f9c544f", &function_d9ad128c, "clump03_rise", "clump03_rise");
-	util::delay(4, "end_game", &scene::init, #"hash_79dc3cec0f9c544f");
+	scene::add_scene_func(#"p8_fxanim_zm_man_ooze_clump_bundle", &function_cf336ef1, "init");
+	scene::add_scene_func(#"p8_fxanim_zm_man_ooze_clump_bundle", &function_d9ad128c, "clump01_rise", "clump01_rise");
+	scene::add_scene_func(#"p8_fxanim_zm_man_ooze_clump_bundle", &function_d9ad128c, "clump02_rise", "clump02_rise");
+	scene::add_scene_func(#"p8_fxanim_zm_man_ooze_clump_bundle", &function_d9ad128c, "clump03_rise", "clump03_rise");
+	util::delay(4, "end_game", &scene::init, #"p8_fxanim_zm_man_ooze_clump_bundle");
 }
 
 /*
@@ -1229,7 +1229,7 @@ function function_9e7129d2(e_player, s_stone, var_6cf4ded4, str_hint)
 	var_fd99631b = util::spawn_model(#"hash_106db0f970e1faec", var_f47bd7b8.origin, var_f47bd7b8.angles);
 	e_player util::create_streamer_hint(var_8bdd5ec1, var_26bb76e2.angles, 1);
 	e_player waittill(#"hash_18259ed594f164dc", #"disconnect");
-	var_f47bd7b8 thread scene::play(#"hash_372e0cfc81423fd0", var_fd99631b);
+	var_f47bd7b8 thread scene::play(#"p8_fxanim_zm_man_wormhole_bundle_vision_stone", var_fd99631b);
 	/#
 		if(!isdefined(var_6cf4ded4))
 		{
@@ -1952,9 +1952,9 @@ function function_16288b92(str_type, s_loc, mdl_key, var_a46fb584)
 		}
 		switch(s_loc.var_50ed3bae)
 		{
-			case "hash_1505e411bb11029c":
-			case "hash_201696a50c5e07b2":
-			case "hash_7b4d637ef9852e75":
+			case "p8_fxanim_zm_man_clock_03_bundle":
+			case "p8_fxanim_zm_man_clock_01_bundle":
+			case "p8_fxanim_zm_man_clock_02_bundle":
 			{
 				var_8a9c5e4f = 1;
 				var_1f24f68d = 0;
@@ -2414,7 +2414,7 @@ function function_ff4485b6(a_ents, mdl_key, var_3128fb28)
 			str_tag = "tag_grave_tuning_fork_jnt";
 			break;
 		}
-		case "hash_191523feac2770be":
+		case "p8_fxanim_zm_man_clock_01_mod":
 		{
 			str_tag = "tag_clock_01_tuning_fork_jnt";
 			break;

@@ -585,7 +585,7 @@ private function function_dafd9cd(attacker)
 	{
 		return 0;
 	}
-	if(isdefined(level.var_9766eb97) && level.var_9766eb97 === attacker)
+	if(isdefined(level.deathcircle) && level.deathcircle === attacker)
 	{
 		return 0;
 	}
