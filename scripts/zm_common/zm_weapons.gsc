@@ -236,9 +236,9 @@ event player_gunchallengecomplete(s_event)
 function function_efd851e()
 {
 	var_4e81c501 = [];
-	foreach(var_57e2f3cf in level.zombie_weapons)
+	foreach(s_weapon in level.zombie_weapons)
 	{
-		switch(var_57e2f3cf.weapon_classname)
+		switch(s_weapon.weapon_classname)
 		{
 			case 0:
 			case "equipment":
@@ -248,7 +248,7 @@ function function_efd851e()
 				continue;
 			}
 		}
-		if(is_wonder_weapon(var_57e2f3cf.weapon))
+		if(is_wonder_weapon(s_weapon.weapon))
 		{
 			continue;
 		}
@@ -260,7 +260,7 @@ function function_efd851e()
 		{
 			var_4e81c501 = array(var_4e81c501);
 		}
-		var_4e81c501[var_4e81c501.size] = var_57e2f3cf.weapon;
+		var_4e81c501[var_4e81c501.size] = s_weapon.weapon;
 	}
 	return var_4e81c501;
 }
@@ -322,7 +322,7 @@ function watchforgrenadeduds()
 		waitresult = self waittill(#"grenade_fire");
 		grenade = waitresult.projectile;
 		weapon = waitresult.weapon;
-		if(!zm_equipment::is_equipment(weapon) && !namespace_2ba51478::is_placeable_mine(weapon))
+		if(!zm_equipment::is_equipment(weapon) && !zm_loadout::is_placeable_mine(weapon))
 		{
 			grenade thread checkgrenadefordud(weapon, 1, self);
 		}
@@ -543,15 +543,15 @@ function switch_from_alt_weapon(weapon)
 */
 function give_start_weapons(takeallweapons, alreadyspawned)
 {
-	if(isdefined(self.var_c9780fe7) && zombie_utility::function_d2dfacfd("retain_weapons") && namespace_59ff1d6c::function_901b751c(#"hash_589c0366b1458c7e"))
+	if(isdefined(self.s_loadout) && zombie_utility::function_d2dfacfd("retain_weapons") && namespace_59ff1d6c::function_901b751c(#"hash_589c0366b1458c7e"))
 	{
-		self player_give_loadout(self.var_c9780fe7, 1, 0);
-		self.var_c9780fe7 = undefined;
+		self player_give_loadout(self.s_loadout, 1, 0);
+		self.s_loadout = undefined;
 	}
 	else
 	{
-		self namespace_2ba51478::give_start_weapon(1);
-		self namespace_2ba51478::init_player_offhand_weapons();
+		self zm_loadout::give_start_weapon(1);
+		self zm_loadout::init_player_offhand_weapons();
 	}
 }
 
@@ -598,7 +598,7 @@ function switch_back_primary_weapon(oldprimary, immediate = 0, var_6d4494f9 = 0)
 	{
 		return;
 	}
-	if(!isdefined(oldprimary) || oldprimary == level.weaponnone || oldprimary.isflourishweapon || namespace_2ba51478::is_melee_weapon(oldprimary) || namespace_2ba51478::is_placeable_mine(oldprimary) || namespace_2ba51478::is_lethal_grenade(oldprimary) || namespace_2ba51478::is_tactical_grenade(oldprimary, !var_6d4494f9) || !self hasweapon(oldprimary))
+	if(!isdefined(oldprimary) || oldprimary == level.weaponnone || oldprimary.isflourishweapon || zm_loadout::is_melee_weapon(oldprimary) || zm_loadout::is_placeable_mine(oldprimary) || zm_loadout::is_lethal_grenade(oldprimary) || zm_loadout::is_tactical_grenade(oldprimary, !var_6d4494f9) || !self hasweapon(oldprimary))
 	{
 		oldprimary = undefined;
 	}
@@ -708,7 +708,7 @@ function default_check_firesale_loc_valid_func()
 	Parameters: 12
 	Flags: Linked
 */
-function add_zombie_weapon(weapon_name, upgrade_name, var_39b82bcb, cost, weaponvo, weaponvoresp, ammo_cost, create_vox, weapon_class, is_wonder_weapon, tier = 0, in_box)
+function add_zombie_weapon(weapon_name, upgrade_name, is_ee, cost, weaponvo, weaponvoresp, ammo_cost, create_vox, weapon_class, is_wonder_weapon, tier = 0, in_box)
 {
 	weapon = getweapon(weapon_name);
 	upgrade = undefined;
@@ -764,7 +764,7 @@ function add_zombie_weapon(weapon_name, upgrade_name, var_39b82bcb, cost, weapon
 	}
 	level.zombie_weapons[weapon] = struct;
 	/#
-		if(isdefined(level.devgui_add_weapon) && (!var_39b82bcb || getdvarint(#"hash_11ad6a9695943217", 0)))
+		if(isdefined(level.devgui_add_weapon) && (!is_ee || getdvarint(#"hash_11ad6a9695943217", 0)))
 		{
 			level thread [[level.devgui_add_weapon]](weapon, upgrade, in_box, cost, weaponvo, weaponvoresp, ammo_cost);
 		}
@@ -1155,7 +1155,7 @@ function get_ammo_cost_for_weapon(w_current, n_base_non_wallbuy_cost = 750, n_up
 	is_wonder_weapon = is_wonder_weapon(w_root);
 	if(self has_upgrade(w_root))
 	{
-		if(namespace_e613822d::is_wallbuy(w_root))
+		if(zm_wallbuy::is_wallbuy(w_root))
 		{
 			n_ammo_cost = 4000;
 		}
@@ -1168,7 +1168,7 @@ function get_ammo_cost_for_weapon(w_current, n_base_non_wallbuy_cost = 750, n_up
 			n_ammo_cost = n_upgraded_non_wallbuy_cost;
 		}
 	}
-	else if(namespace_e613822d::is_wallbuy(w_root))
+	else if(zm_wallbuy::is_wallbuy(w_root))
 	{
 		n_ammo_cost = get_ammo_cost(w_root);
 		n_ammo_cost = zm_utility::halve_score(n_ammo_cost);
@@ -1475,8 +1475,8 @@ function can_upgrade_weapon(weapon)
 	rootweapon = function_386dacbc(weapon);
 	if(!is_weapon_upgraded(rootweapon))
 	{
-		var_61685cd = level.zombie_weapons[rootweapon].upgrade;
-		return isdefined(var_61685cd) && var_61685cd != level.weaponnone;
+		upgraded_weapon = level.zombie_weapons[rootweapon].upgrade;
+		return isdefined(upgraded_weapon) && upgraded_weapon != level.weaponnone;
 	}
 	return 0;
 }
@@ -1795,7 +1795,7 @@ function get_pack_a_punch_weapon_options(weapon)
 	{
 		return self.pack_a_punch_weapon_options[weapon];
 	}
-	camo_index = self namespace_f063c3a8::function_4f727cf5(weapon);
+	camo_index = self zm_camos::function_4f727cf5(weapon);
 	reticle_index = randomintrange(0, 16);
 	var_eb2e3f90 = 0;
 	plain_reticle_index = 16;
@@ -1825,7 +1825,7 @@ function get_pack_a_punch_weapon_options(weapon)
 */
 function function_17512fb3()
 {
-	lethal_grenade = self namespace_2ba51478::get_player_lethal_grenade();
+	lethal_grenade = self zm_loadout::get_player_lethal_grenade();
 	if(!self hasweapon(lethal_grenade))
 	{
 		self giveweapon(lethal_grenade);
@@ -1848,30 +1848,30 @@ function give_build_kit_weapon(weapon, var_51ec4e93, var_bd5d43c6, b_switch_weap
 {
 	if(isdefined(var_51ec4e93))
 	{
-		var_b65bef79 = var_51ec4e93;
+		n_camo = var_51ec4e93;
 	}
 	else
 	{
-		var_b65bef79 = self namespace_f063c3a8::function_79be4786(weapon);
+		n_camo = self zm_camos::function_79be4786(weapon);
 	}
 	base_weapon = weapon;
 	if(is_weapon_upgraded(weapon))
 	{
 		level notify(#"hash_6dead3931d3e708a", {#weapon:weapon, #player:self});
-		if(!isdefined(var_b65bef79))
+		if(!isdefined(n_camo))
 		{
-			var_b65bef79 = self namespace_f063c3a8::function_4f727cf5(weapon);
+			n_camo = self zm_camos::function_4f727cf5(weapon);
 		}
 		base_weapon = get_base_weapon(weapon);
 	}
 	/#
 		if(isdefined(self.var_8d5839f4) && isinarray(self.var_8d5839f4, weapon) && weapon.attachments.size)
 		{
-			if(!isdefined(var_b65bef79))
+			if(!isdefined(n_camo))
 			{
-				var_b65bef79 = 0;
+				n_camo = 0;
 			}
-			weapon_options = self calcweaponoptions(var_b65bef79, 0, 0);
+			weapon_options = self calcweaponoptions(n_camo, 0, 0);
 			self giveweapon(weapon, weapon_options);
 			return weapon;
 		}
@@ -1879,10 +1879,10 @@ function give_build_kit_weapon(weapon, var_51ec4e93, var_bd5d43c6, b_switch_weap
 	weapon = self getbuildkitweapon(weapon);
 	weapon = function_1242e467(weapon);
 	w_root = function_386dacbc(weapon);
-	weapon_options = self getbuildkitweaponoptions(w_root, var_b65bef79, var_bd5d43c6);
-	if(!isdefined(var_b65bef79))
+	weapon_options = self getbuildkitweaponoptions(w_root, n_camo, var_bd5d43c6);
+	if(!isdefined(n_camo))
 	{
-		var_b65bef79 = getcamoindex(weapon_options);
+		n_camo = getcamoindex(weapon_options);
 	}
 	if(!(isdefined(b_switch_weapon) && b_switch_weapon))
 	{
@@ -2044,10 +2044,10 @@ function weapon_type_check(weapon)
 	Parameters: 2
 	Flags: Linked
 */
-function ammo_give(weapon, var_b5f26b1a = 1)
+function ammo_give(weapon, b_purchased = 1)
 {
 	var_cd9d17e0 = 0;
-	if(!namespace_2ba51478::is_offhand_weapon(weapon) || weapon.isriotshield)
+	if(!zm_loadout::is_offhand_weapon(weapon) || weapon.isriotshield)
 	{
 		weapon = self get_weapon_with_attachments(weapon);
 		if(isdefined(weapon))
@@ -2118,7 +2118,7 @@ function ammo_give(weapon, var_b5f26b1a = 1)
 	}
 	if(var_cd9d17e0)
 	{
-		if(var_b5f26b1a)
+		if(b_purchased)
 		{
 			self zm_utility::play_sound_on_ent("purchase");
 		}
@@ -2247,7 +2247,7 @@ function get_player_weapondata(weapon)
 	{
 		weapondata[#"aat"] = self aat::getaatonweapon(weapon, 1);
 	}
-	weapondata[#"hash_5ce9ac14ae787fd6"] = self zm_pap_util::function_83c29ddb(weapon);
+	weapondata[#"repacks"] = self zm_pap_util::function_83c29ddb(weapon);
 	return weapondata;
 }
 
@@ -2408,9 +2408,9 @@ function weapondata_give(weapondata)
 	{
 		self aat::acquire(weapon, weapondata[#"aat"]);
 	}
-	if(isdefined(weapondata[#"hash_5ce9ac14ae787fd6"]) && weapondata[#"hash_5ce9ac14ae787fd6"] > 0)
+	if(isdefined(weapondata[#"repacks"]) && weapondata[#"repacks"] > 0)
 	{
-		self zm_pap_util::function_18994aca(weapon, weapondata[#"hash_5ce9ac14ae787fd6"]);
+		self zm_pap_util::repack_weapon(weapon, weapondata[#"repacks"]);
 	}
 	return weapon;
 }
@@ -2569,9 +2569,9 @@ function player_give_loadout(loadout, replace_existing = 1, immediate_switch = 0
 	}
 	if(self getweaponslistprimaries().size == 0)
 	{
-		self namespace_2ba51478::give_start_weapon(1);
+		self zm_loadout::give_start_weapon(1);
 	}
-	if(!namespace_2ba51478::is_offhand_weapon(loadout.current))
+	if(!zm_loadout::is_offhand_weapon(loadout.current))
 	{
 		if(immediate_switch)
 		{
@@ -2741,7 +2741,7 @@ function load_weapon_spec_from_table(table, first_row)
 		}
 		level.var_c60359dc[level.var_c60359dc.size] = weapon_name;
 		upgrade_name = checkstringvalid(row[1]);
-		var_39b82bcb = row[2];
+		is_ee = row[2];
 		cost = row[3];
 		weaponvo = checkstringvalid(row[4]);
 		weaponvoresp = checkstringvalid(row[5]);
@@ -2764,7 +2764,7 @@ function load_weapon_spec_from_table(table, first_row)
 		{
 			zm_utility::include_weapon(upgrade_name, upgrade_in_box);
 		}
-		add_zombie_weapon(weapon_name, upgrade_name, var_39b82bcb, cost, weaponvo, weaponvoresp, ammo_cost, create_vox, weapon_class, is_wonder_weapon, tier, in_box);
+		add_zombie_weapon(weapon_name, upgrade_name, is_ee, cost, weaponvo, weaponvoresp, ammo_cost, create_vox, weapon_class, is_wonder_weapon, tier, in_box);
 		if(is_limited)
 		{
 			if(isdefined(limit))
@@ -2881,7 +2881,7 @@ function function_f5a0899d(weapon, var_d921715f = 1)
 */
 function function_7c5dd4bd(w_weapon)
 {
-	if(namespace_2ba51478::function_2ff6913(w_weapon))
+	if(zm_loadout::function_2ff6913(w_weapon))
 	{
 		return;
 	}
@@ -2963,9 +2963,9 @@ function function_35746b9c(weapon, str_mod = "MOD_MELEE")
 function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 {
 	a_weapons = [];
-	foreach(var_57e2f3cf in level.zombie_weapons)
+	foreach(s_weapon in level.zombie_weapons)
 	{
-		if(var_57e2f3cf.weapon_classname === var_947d01ee)
+		if(s_weapon.weapon_classname === var_947d01ee)
 		{
 			if(var_609a8d33)
 			{
@@ -2977,7 +2977,7 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 				{
 					a_weapons = array(a_weapons);
 				}
-				a_weapons[a_weapons.size] = var_57e2f3cf.weapon.name;
+				a_weapons[a_weapons.size] = s_weapon.weapon.name;
 			}
 			else if(!isdefined(a_weapons))
 			{
@@ -2987,7 +2987,7 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 			{
 				a_weapons = array(a_weapons);
 			}
-			a_weapons[a_weapons.size] = var_57e2f3cf.weapon;
+			a_weapons[a_weapons.size] = s_weapon.weapon;
 			if(var_ccd1bc81)
 			{
 				if(var_609a8d33)
@@ -3000,7 +3000,7 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 					{
 						a_weapons = array(a_weapons);
 					}
-					a_weapons[a_weapons.size] = var_57e2f3cf.upgrade.name;
+					a_weapons[a_weapons.size] = s_weapon.upgrade.name;
 				}
 				else if(!isdefined(a_weapons))
 				{
@@ -3010,12 +3010,12 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 				{
 					a_weapons = array(a_weapons);
 				}
-				a_weapons[a_weapons.size] = var_57e2f3cf.upgrade;
+				a_weapons[a_weapons.size] = s_weapon.upgrade;
 			}
 		}
-		if(var_57e2f3cf.weapon_classname === "shield" && var_947d01ee != "shield")
+		if(s_weapon.weapon_classname === "shield" && var_947d01ee != "shield")
 		{
-			if(var_57e2f3cf.weapon.weapclass === var_947d01ee)
+			if(s_weapon.weapon.weapclass === var_947d01ee)
 			{
 				if(var_609a8d33)
 				{
@@ -3027,8 +3027,8 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 					{
 						a_weapons = array(a_weapons);
 					}
-					a_weapons[a_weapons.size] = var_57e2f3cf.weapon.name;
-					if(var_57e2f3cf.weapon.dualwieldweapon != level.weaponnone)
+					a_weapons[a_weapons.size] = s_weapon.weapon.name;
+					if(s_weapon.weapon.dualwieldweapon != level.weaponnone)
 					{
 						if(!isdefined(a_weapons))
 						{
@@ -3038,7 +3038,7 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 						{
 							a_weapons = array(a_weapons);
 						}
-						a_weapons[a_weapons.size] = var_57e2f3cf.weapon.dualwieldweapon.name;
+						a_weapons[a_weapons.size] = s_weapon.weapon.dualwieldweapon.name;
 					}
 				}
 				else if(!isdefined(a_weapons))
@@ -3049,8 +3049,8 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 				{
 					a_weapons = array(a_weapons);
 				}
-				a_weapons[a_weapons.size] = var_57e2f3cf.weapon;
-				if(var_57e2f3cf.weapon.dualwieldweapon != level.weaponnone)
+				a_weapons[a_weapons.size] = s_weapon.weapon;
+				if(s_weapon.weapon.dualwieldweapon != level.weaponnone)
 				{
 					if(!isdefined(a_weapons))
 					{
@@ -3060,10 +3060,10 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 					{
 						a_weapons = array(a_weapons);
 					}
-					a_weapons[a_weapons.size] = var_57e2f3cf.weapon.dualwieldweapon;
+					a_weapons[a_weapons.size] = s_weapon.weapon.dualwieldweapon;
 				}
 			}
-			if(var_57e2f3cf.weapon.altweapon.weapclass === var_947d01ee)
+			if(s_weapon.weapon.altweapon.weapclass === var_947d01ee)
 			{
 				if(var_609a8d33)
 				{
@@ -3075,7 +3075,7 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 					{
 						a_weapons = array(a_weapons);
 					}
-					a_weapons[a_weapons.size] = var_57e2f3cf.weapon.altweapon.name;
+					a_weapons[a_weapons.size] = s_weapon.weapon.altweapon.name;
 					continue;
 				}
 				if(!isdefined(a_weapons))
@@ -3086,7 +3086,7 @@ function function_ed29dde5(var_947d01ee, var_ccd1bc81 = 0, var_609a8d33 = 0)
 				{
 					a_weapons = array(a_weapons);
 				}
-				a_weapons[a_weapons.size] = var_57e2f3cf.weapon.altweapon;
+				a_weapons[a_weapons.size] = s_weapon.weapon.altweapon;
 			}
 		}
 	}

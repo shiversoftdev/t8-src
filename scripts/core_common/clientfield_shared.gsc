@@ -54,9 +54,9 @@ function function_346f95ba(var_a832fdfa, field_name, n_version, n_bits, str_type
 	Parameters: 5
 	Flags: Linked
 */
-function function_78175813(poolname, var_b693fec6, uniqueid, var_948bda55, var_59f69872)
+function function_78175813(poolname, var_b693fec6, uniqueid, version, var_59f69872)
 {
-	function_3ff577e6(poolname, var_b693fec6, uniqueid, var_948bda55, var_59f69872);
+	function_3ff577e6(poolname, var_b693fec6, uniqueid, version, var_59f69872);
 }
 
 /*

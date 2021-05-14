@@ -240,7 +240,7 @@ function teamoutcomenotify(outcome)
 		return;
 	}
 	outcometext = function_5b0c08ec(self, outcome);
-	if(level.gametype == "ctf" || level.gametype == "escort" || level.gametype == "ball" && overtime::function_96f8fef2())
+	if(level.gametype == "ctf" || level.gametype == "escort" || level.gametype == "ball" && overtime::is_overtime_round())
 	{
 		if(outcome::function_5f24faac(outcome, "overtime"))
 		{
@@ -322,7 +322,7 @@ function teamoutcomenotify(outcome)
 		}
 		self luinotifyevent(#"show_outcome", 7, var_14f94126, outcometext, int(matchbonus), winnerenum, var_277c7d47, int(float(winningtime) / 1000), int(float(losingtime) / 1000));
 	}
-	else if(level.gametype == "ball" && !outcome::function_5f24faac(outcome, "tie") && game.roundsplayed < level.roundlimit && isdefined(game.round_time_to_beat) && !overtime::function_96f8fef2())
+	else if(level.gametype == "ball" && !outcome::function_5f24faac(outcome, "tie") && game.roundsplayed < level.roundlimit && isdefined(game.round_time_to_beat) && !overtime::is_overtime_round())
 	{
 		winningtime = game.round_time_to_beat;
 		if(!isdefined(losingtime))
@@ -471,7 +471,7 @@ function function_5b0c08ec(player, outcome)
 	{
 		return game.strings[#"tie"];
 	}
-	if(outcome::function_2d4168be(outcome, player))
+	if(outcome::is_winner(outcome, player))
 	{
 		return level.var_c3abe983[outcome.var_c1e98979].winner_text;
 	}
@@ -489,7 +489,7 @@ function function_5b0c08ec(player, outcome)
 */
 function function_b5b53318(outcome)
 {
-	if(!outcome::function_2d4168be(outcome, self))
+	if(!outcome::is_winner(outcome, self))
 	{
 		if(level.rankedmatch || level.leaguematch && self.pers[#"latejoin"] === 1)
 		{

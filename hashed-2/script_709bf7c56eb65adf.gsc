@@ -15,11 +15,11 @@
 #using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
 
-#namespace namespace_2ba51478;
+#namespace zm_loadout;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_2ba51478
+	Namespace: zm_loadout
 	Checksum: 0x311BB2D
 	Offset: 0x118
 	Size: 0x3C
@@ -28,12 +28,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1f11cdc1b149b62b", &__init__, undefined, undefined);
+	system::register(#"zm_loadout", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_2ba51478
+	Namespace: zm_loadout
 	Checksum: 0xCA82CDEE
 	Offset: 0x160
 	Size: 0x3C
@@ -52,7 +52,7 @@ function __init__()
 
 /*
 	Name: on_localplayer_spawned
-	Namespace: namespace_2ba51478
+	Namespace: zm_loadout
 	Checksum: 0x2DF0B8D6
 	Offset: 0x1A8
 	Size: 0x1FE
@@ -82,7 +82,7 @@ function on_localplayer_spawned(localclientnum)
 
 /*
 	Name: function_622d8349
-	Namespace: namespace_2ba51478
+	Namespace: zm_loadout
 	Checksum: 0x1003D3E0
 	Offset: 0x3B0
 	Size: 0x48
@@ -92,7 +92,7 @@ function on_localplayer_spawned(localclientnum)
 function function_622d8349(localclientnum)
 {
 	level endon(#"demo_jump");
-	while(!self function_22e5ebee(localclientnum))
+	while(!self registerrabbitshouldreset(localclientnum))
 	{
 		waitframe(1);
 	}
@@ -100,7 +100,7 @@ function function_622d8349(localclientnum)
 
 /*
 	Name: function_2dfb9150
-	Namespace: namespace_2ba51478
+	Namespace: zm_loadout
 	Checksum: 0xCCC93D89
 	Offset: 0x400
 	Size: 0x92
@@ -126,7 +126,7 @@ function function_2dfb9150(localclientnum, slot)
 
 /*
 	Name: function_439b009a
-	Namespace: namespace_2ba51478
+	Namespace: zm_loadout
 	Checksum: 0x801F5CE5
 	Offset: 0x4A0
 	Size: 0x92

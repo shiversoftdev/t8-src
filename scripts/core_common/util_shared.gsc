@@ -5353,17 +5353,17 @@ function queued_debug_commands()
 				level.dbg_cmd_queue = undefined;
 				return;
 			}
-			var_1b824fd2 = 0;
+			trickle = 0;
 			if(level.players.size > 1)
 			{
-				var_1b824fd2 = 1;
+				trickle = 1;
 				var_1085858 = 12;
 			}
-			while(!var_1b824fd2 || var_1085858 > 0 && canadddebugcommand() && level.dbg_cmd_queue.size > 0)
+			while(!trickle || var_1085858 > 0 && canadddebugcommand() && level.dbg_cmd_queue.size > 0)
 			{
 				cmd = array::pop_front(level.dbg_cmd_queue, 0);
 				adddebugcommand(cmd);
-				if(var_1b824fd2)
+				if(trickle)
 				{
 					var_1085858--;
 				}
@@ -6843,17 +6843,17 @@ function show_hit_marker(var_554cb812 = 0, var_1ed250ec = 0)
 		{
 			/#
 				currenttime = gettime();
-				if((isdefined(self.hud_damagefeedback.time) ? self.hud_damagefeedback.time : 0) != currenttime || (!(isdefined(self.hud_damagefeedback.var_8ea1e539) && self.hud_damagefeedback.var_8ea1e539)))
+				if((isdefined(self.hud_damagefeedback.time) ? self.hud_damagefeedback.time : 0) != currenttime || (!(isdefined(self.hud_damagefeedback.feedback_dead) && self.hud_damagefeedback.feedback_dead)))
 				{
 					if(var_554cb812)
 					{
 						self.hud_damagefeedback setshader(#"damage_feedback_glow_orange", 24, 48);
-						self.hud_damagefeedback.var_8ea1e539 = 1;
+						self.hud_damagefeedback.feedback_dead = 1;
 					}
 					else
 					{
 						self.hud_damagefeedback setshader(#"damage_feedback", 24, 48);
-						self.hud_damagefeedback.var_8ea1e539 = 0;
+						self.hud_damagefeedback.feedback_dead = 0;
 					}
 					self.hud_damagefeedback.alpha = 1;
 					self.hud_damagefeedback fadeovertime(1);
@@ -7211,7 +7211,7 @@ function function_8eb53136(radius)
 }
 
 /*
-	Name: function_bf5a8f5c
+	Name: is_spectating
 	Namespace: util
 	Checksum: 0x43A25827
 	Offset: 0xDB90
@@ -7219,7 +7219,7 @@ function function_8eb53136(radius)
 	Parameters: 0
 	Flags: Linked
 */
-function function_bf5a8f5c()
+function is_spectating()
 {
 	if(self.sessionstate == #"spectator")
 	{
@@ -7438,16 +7438,16 @@ function function_d608a743()
 	var_9bc12626 = getarraykeys(self.var_c18fbf49);
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(var_9bc12626);
-		s_callback = self.var_c18fbf49[hash(var_88706ea7._notify)];
+		s_result = undefined;
+		s_result = self waittill(var_9bc12626);
+		s_callback = self.var_c18fbf49[hash(s_result._notify)];
 		if(isdefined(s_callback.params))
 		{
 			util::single_thread_argarray(self, s_callback.func, s_callback.params);
 		}
-		else if(isdefined(var_88706ea7.params))
+		else if(isdefined(s_result.params))
 		{
-			util::single_thread_argarray(self, s_callback.func, var_88706ea7.params);
+			util::single_thread_argarray(self, s_callback.func, s_result.params);
 		}
 		else
 		{

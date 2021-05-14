@@ -89,7 +89,7 @@ function function_f52ee680()
 function gadget_health_regen_on_give(slot, weapon)
 {
 	self.gadget_health_regen_slot = slot;
-	self.var_1340f214 = weapon;
+	self.gadget_health_regen_weapon = weapon;
 	weapon.ignore_grenade = 1;
 	if(isdefined(weapon) && weapon.var_44377ea6)
 	{
@@ -455,14 +455,14 @@ function function_d91a057d(slot = ability_util::gadget_slot_for_type(23))
 	{
 		self function_820a63e9(slot, 0);
 	}
-	if(function_25bbe128())
+	if(is_healing())
 	{
 		self function_7993d50e();
 	}
 }
 
 /*
-	Name: function_25bbe128
+	Name: is_healing
 	Namespace: gadget_health_regen
 	Checksum: 0x8CC2AD99
 	Offset: 0xFD8
@@ -470,7 +470,7 @@ function function_d91a057d(slot = ability_util::gadget_slot_for_type(23))
 	Parameters: 0
 	Flags: Linked
 */
-function function_25bbe128()
+function is_healing()
 {
 	return isdefined(self) && isdefined(self.heal) && (isdefined(self.heal.enabled) && self.heal.enabled);
 }
@@ -495,7 +495,7 @@ function function_4e449209()
 			level [[level.var_d9ae19f0]](self);
 		}
 		self callback::function_52ac9652(#"hash_25663702210244cc", &function_4e449209);
-		if(self function_25bbe128())
+		if(self is_healing())
 		{
 			if(isdefined(level.var_da2d586a) && !isdefined(self.var_c443b227))
 			{
@@ -521,7 +521,7 @@ function on_player_damage(params)
 	{
 		return;
 	}
-	if(!self function_25bbe128())
+	if(!self is_healing())
 	{
 		return;
 	}
@@ -564,7 +564,7 @@ function function_aba28004()
 */
 private function function_18e0320b()
 {
-	if(self function_25bbe128())
+	if(self is_healing())
 	{
 		self function_d91a057d();
 	}
@@ -604,7 +604,7 @@ private function function_dafd9cd(attacker)
 function function_831bf182()
 {
 	var_6b3b55da = isdefined(self.gadget_health_regen_slot);
-	if(!var_6b3b55da || "ammo" == self.var_1340f214.var_11389297)
+	if(!var_6b3b55da || "ammo" == self.gadget_health_regen_weapon.var_11389297)
 	{
 		return 0;
 	}
@@ -641,7 +641,7 @@ function power_on()
 {
 	if(self function_831bf182())
 	{
-		self gadgetpowerset(self.gadget_health_regen_slot, self.var_1340f214.gadget_powermax);
+		self gadgetpowerset(self.gadget_health_regen_slot, self.gadget_health_regen_weapon.gadget_powermax);
 	}
 }
 

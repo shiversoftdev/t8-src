@@ -5,7 +5,7 @@
 #namespace namespace_6ecedca5;
 
 /*
-	Name: function_8ce69ab0
+	Name: registerwerewolfinterfaceattributes
 	Namespace: namespace_6ecedca5
 	Checksum: 0x1E64ECBC
 	Offset: 0x78
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_8ce69ab0()
+function registerwerewolfinterfaceattributes()
 {
 	ai::registermatchedinterface(#"werewolf", #"patrol", 0, array(1, 0), &namespace_4719c045::function_2341cdf0);
 	ai::registermatchedinterface(#"werewolf", #"summon_wolves", 0, array(1, 0), &namespace_4719c045::function_2c67c3e1);

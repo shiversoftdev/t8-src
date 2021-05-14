@@ -46,7 +46,7 @@ event main(eventstruct)
 	globallogic_audio::set_leader_gametype_dialog("startFreeForAll", "hcStartFreeForAll", "gameBoost", "gameBoost", "bbStartFreeForAll", "hcbbStartFreeForAll");
 	if(util::function_8570168d())
 	{
-		level.var_eedd99ab = 1;
+		level.is_dm = 1;
 		namespace_9096c917::init();
 	}
 }

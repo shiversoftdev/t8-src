@@ -21,9 +21,9 @@
 autoexec function main()
 {
 	registerbehaviorscriptfunctions();
-	spawner::add_archetype_spawn_function(#"hash_1bab8a0ba811401e", &function_728127b);
-	spawner::add_archetype_spawn_function(#"hash_1bab8a0ba811401e", &function_5608540a);
-	namespace_c61045a2::function_25f7b3bf();
+	spawner::add_archetype_spawn_function(#"catalyst", &function_728127b);
+	spawner::add_archetype_spawn_function(#"catalyst", &function_5608540a);
+	namespace_c61045a2::registercatalystinterfaceattributes();
 }
 
 /*
@@ -55,7 +55,7 @@ private function registerbehaviorscriptfunctions()
 */
 function function_1fbc23ff(entity)
 {
-	return self.archetype === #"hash_1bab8a0ba811401e";
+	return self.archetype === #"catalyst";
 }
 
 /*

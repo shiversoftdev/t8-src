@@ -257,7 +257,7 @@ function function_d52c51c6(killstreaktype)
 	drone_squadron.goalheight = 500;
 	drone_squadron.enable_guard = 1;
 	drone_squadron.always_face_enemy = 1;
-	drone_squadron.var_817f15dd = getweapon("drone_squadron");
+	drone_squadron.identifier_weapon = getweapon("drone_squadron");
 	drone_squadron thread killstreaks::waitfortimeout("drone_squadron", 45000, &ontimeout, "drone_squadron_shutdown");
 	drone_squadron thread killstreaks::waitfortimecheck(45000 * 0.5, &ontimecheck, "death", "drone_squadron_shutdown");
 	drone_squadron thread watchwater();
@@ -273,11 +273,11 @@ function function_d52c51c6(killstreaktype)
 	{
 		drone_squadron.wing_drone = [];
 	}
-	var_ecea9e72 = anglestoright(drone_squadron.angles);
-	var_3daa0416 = var_ecea9e72 * -1;
+	drone_right = anglestoright(drone_squadron.angles);
+	var_3daa0416 = drone_right * -1;
 	var_1b4e1739 = anglestoforward(drone_squadron.angles) * -1;
 	waitframe(1);
-	var_91edb2b7 = drone_squadron.origin + var_ecea9e72 * 128 + var_1b4e1739 * 128;
+	var_91edb2b7 = drone_squadron.origin + drone_right * 128 + var_1b4e1739 * 128;
 	var_91edb2b7 = getclosestpointonnavvolume(var_91edb2b7, "navvolume_small", 2000);
 	wing_drone = spawnvehicle("spawner_boct_mp_wing_drone", var_91edb2b7, drone_squadron.angles, "wing_drone_ai");
 	if(isdefined(level.var_14151f16))
@@ -293,7 +293,7 @@ function function_d52c51c6(killstreaktype)
 	wing_drone.owner = player;
 	wing_drone clientfield::set("enemyvehicle", 1);
 	wing_drone.killstreaktype = "drone_squadron";
-	wing_drone.var_817f15dd = getweapon("drone_squadron");
+	wing_drone.identifier_weapon = getweapon("drone_squadron");
 	wing_drone.var_c5bb583d = 1;
 	drone_squadron.wing_drone[drone_squadron.wing_drone.size] = wing_drone;
 	player.drone_squadron = drone_squadron;
@@ -309,7 +309,7 @@ function function_d52c51c6(killstreaktype)
 	wing_drone setrotorspeed(1);
 	wing_drone.protectent = self;
 	wing_drone.owner = player;
-	wing_drone.var_817f15dd = getweapon("drone_squadron");
+	wing_drone.identifier_weapon = getweapon("drone_squadron");
 	wing_drone.killstreaktype = "drone_squadron";
 	wing_drone.var_c5bb583d = 1;
 	if(isdefined(level.var_14151f16))

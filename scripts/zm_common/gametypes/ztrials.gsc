@@ -62,7 +62,7 @@ event main(eventstruct)
 	level.round_end_custom_logic = &function_61fd0e87;
 	level.round_number = 0;
 	level.var_df8480a0 = 0;
-	level flag::init(#"hash_76661dbc6e5fe2b", 1);
+	level flag::init(#"ztrial", 1);
 	callback::on_connect(&function_8277ff43);
 	level._supress_survived_screen = 1;
 	setscoreboardcolumns("score", "kills", "headshots", "revives", "downs");
@@ -95,7 +95,7 @@ event function_a97958c3(eventstruct)
 	/#
 		assert(var_189d26ca != "", "");
 	#/
-	level.var_6d87ac05 = namespace_f551babc::function_d02ffd(var_189d26ca);
+	level.var_6d87ac05 = zm_trial::function_d02ffd(var_189d26ca);
 	/#
 		assert(isdefined(level.var_6d87ac05), "");
 	#/
@@ -196,11 +196,11 @@ private function function_491101ba(player)
 	}
 	if(var_57807cdc.size > 1)
 	{
-		namespace_f551babc::fail(#"hash_60e5e8df8709ad64", var_57807cdc);
+		zm_trial::fail(#"hash_60e5e8df8709ad64", var_57807cdc);
 	}
 	else if(var_57807cdc.size == 1)
 	{
-		namespace_f551babc::fail(#"hash_272fae998263208b", var_57807cdc);
+		zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
 	}
 	else if(!isdefined(var_57807cdc))
 	{
@@ -214,7 +214,7 @@ private function function_491101ba(player)
 	{
 		var_57807cdc[var_57807cdc.size] = player;
 	}
-	namespace_f551babc::fail(#"hash_272fae998263208b", var_57807cdc);
+	zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
 	if(level flag::get("round_reset"))
 	{
 		return 1;
@@ -241,7 +241,7 @@ private function function_61fd0e87()
 	#/
 	if(!level flag::get("round_reset") && level.round_number >= level.var_6d87ac05.rounds.size)
 	{
-		level thread namespace_f551babc::function_361e2cb0();
+		level thread zm_trial::function_361e2cb0();
 	}
 	if(!level flag::get("round_reset") && !level flag::get(#"hash_6acab8bde7078239"))
 	{
@@ -420,12 +420,12 @@ private function function_9a6b2309()
 				strikes = int(cmd[0]);
 				if(strikes == 3)
 				{
-					namespace_f551babc::function_fe2ecb6(strikes - 1);
-					namespace_f551babc::fail();
+					zm_trial::function_fe2ecb6(strikes - 1);
+					zm_trial::fail();
 				}
 				else
 				{
-					namespace_f551babc::function_fe2ecb6(strikes);
+					zm_trial::function_fe2ecb6(strikes);
 				}
 				setdvar(#"hash_25a4cfc19b09ae41", "");
 			}
@@ -440,7 +440,7 @@ private function function_9a6b2309()
 			cmd = strtok(string, "");
 			if(cmd.size > 0)
 			{
-				namespace_f551babc::fail(undefined, getplayers());
+				zm_trial::fail(undefined, getplayers());
 				setdvar(#"hash_5a32209acb1f54a0", "");
 			}
 			string = getdvarstring(#"hash_1576c65ebdf43de0", "");

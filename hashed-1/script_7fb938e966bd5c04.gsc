@@ -10,11 +10,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_2502c4c8;
+#namespace zm_talisman_perk_start_1;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_2502c4c8
+	Namespace: zm_talisman_perk_start_1
 	Checksum: 0x442B3502
 	Offset: 0xD0
 	Size: 0x3C
@@ -23,12 +23,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_3d3a70fc3c1aceac", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_perk_start_1", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_2502c4c8
+	Namespace: zm_talisman_perk_start_1
 	Checksum: 0xB0CBC9A6
 	Offset: 0x118
 	Size: 0x2C
@@ -37,19 +37,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_perk_start_1", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_perk_start_1", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_2502c4c8
+	Name: activate_talisman
+	Namespace: zm_talisman_perk_start_1
 	Checksum: 0x5A4F5694
 	Offset: 0x150
 	Size: 0x3E
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	if(isdefined(self.var_c27f1e90) && namespace_59ff1d6c::function_d9f0defb(self.var_c27f1e90[0]))
 	{

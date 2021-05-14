@@ -71,7 +71,7 @@ function function_74650d7()
 }
 
 /*
-	Name: function_bf46a7aa
+	Name: is_infected
 	Namespace: infection
 	Checksum: 0xA2A1DC9D
 	Offset: 0x280
@@ -79,7 +79,7 @@ function function_74650d7()
 	Parameters: 0
 	Flags: Linked
 */
-function function_bf46a7aa()
+function is_infected()
 {
 	return isdefined(self.infected) && self.infected;
 }
@@ -375,7 +375,7 @@ private function function_896b35be()
 {
 	if(level.infection.platoon != #"invalid")
 	{
-		if(self function_bf46a7aa())
+		if(self is_infected())
 		{
 			return self.team;
 		}
@@ -428,7 +428,7 @@ function function_d3da95cf()
 	if(platoon != #"invalid")
 	{
 		level.infection.var_c0879807[self.team] = team;
-		namespace_aa9b5883::function_334c4bec(team, platoon);
+		platoons::function_334c4bec(team, platoon);
 	}
 	if(!isdefined(level.everexisted[team]))
 	{

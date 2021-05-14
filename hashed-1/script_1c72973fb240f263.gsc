@@ -43,11 +43,11 @@ private function function_95fad035()
 	self endon(#"death");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"trigger_activated");
-		if(!isdefined(self.var_4bac8510) || [[self.var_4bac8510]](var_385703b7.e_who))
+		s_notify = undefined;
+		s_notify = self waittill(#"trigger_activated");
+		if(!isdefined(self.var_4bac8510) || [[self.var_4bac8510]](s_notify.e_who))
 		{
-			level thread [[self.var_b4a870af]](self, var_385703b7.e_who);
+			level thread [[self.var_b4a870af]](self, s_notify.e_who);
 			self function_d6812b9d();
 		}
 	}
@@ -104,9 +104,9 @@ private function function_8769717c()
 	waitresult = undefined;
 	waitresult = self waittill(#"trigger");
 	s_stub = self.stub;
-	if(isdefined(waitresult.activator) && s_stub.var_a7b08eba !== 1)
+	if(isdefined(waitresult.activator) && s_stub.b_picked_up !== 1)
 	{
-		s_stub.var_a7b08eba = 1;
+		s_stub.b_picked_up = 1;
 		foreach(func_callback in s_stub.var_92eb5126)
 		{
 			waitresult.activator thread [[func_callback]](s_stub.related_parent);

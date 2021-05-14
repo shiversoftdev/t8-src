@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_79a710e660651843", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_79a710e660651843", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -54,11 +54,11 @@ private function function_d1de6a85(enemy_type, var_6b96eb7b, var_46cce0c5, var_6
 {
 	if(getplayers().size > 1)
 	{
-		self.enemy_count = namespace_f551babc::function_5769f26a(var_46cce0c5);
+		self.enemy_count = zm_trial::function_5769f26a(var_46cce0c5);
 	}
 	else
 	{
-		self.enemy_count = namespace_f551babc::function_5769f26a(var_6b96eb7b);
+		self.enemy_count = zm_trial::function_5769f26a(var_6b96eb7b);
 	}
 	level.var_9a0fbcb9 = 0;
 	self.enemy_type = enemy_type;
@@ -112,7 +112,7 @@ private function function_9e7b3f4d(round_reset)
 */
 private function on_ai_killed(params)
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_79a710e660651843");
+	challenge = zm_trial::function_a36e8c38(#"hash_79a710e660651843");
 	/#
 		assert(isdefined(challenge), "");
 	#/
@@ -126,7 +126,7 @@ private function on_ai_killed(params)
 	}
 	if(level.var_44445188 === #"hash_6a1ae478973ee12" && isplayer(params.eattacker) && zm_utility::is_headshot(params.weapon, params.shitloc, params.smeansofdeath))
 	{
-		namespace_f551babc::fail(#"hash_11e532a4f9c3e482", array(params.eattacker));
+		zm_trial::fail(#"hash_11e532a4f9c3e482", array(params.eattacker));
 		return;
 	}
 	challenge.enemies_killed++;
@@ -161,7 +161,7 @@ private function get_zombie_count_for_round(round_number, player_count)
 */
 private function spawn_enemy()
 {
-	var_f63f3454 = namespace_f551babc::function_a36e8c38(#"hash_a0e875894ebc5ff");
+	var_f63f3454 = zm_trial::function_a36e8c38(#"hash_a0e875894ebc5ff");
 	if(isdefined(var_f63f3454))
 	{
 		var_47ab7d31 = util::get_active_players().size;
@@ -178,7 +178,7 @@ private function spawn_enemy()
 			return 1;
 		}
 	}
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_79a710e660651843");
+	challenge = zm_trial::function_a36e8c38(#"hash_79a710e660651843");
 	/#
 		assert(isdefined(challenge));
 	#/
@@ -190,9 +190,9 @@ private function spawn_enemy()
 			assert(isdefined(level.var_1cc18005[challenge.enemy_type]), "" + function_9e72a96(challenge.enemy_type));
 		#/
 	#/
-	var_cdcbbb56 = level.var_1cc18005[challenge.enemy_type];
-	var_6e7e6c5e = [[var_cdcbbb56]]();
-	if(isdefined(var_6e7e6c5e) && var_6e7e6c5e)
+	spawn_callback = level.var_1cc18005[challenge.enemy_type];
+	spawn_success = [[spawn_callback]]();
+	if(isdefined(spawn_success) && spawn_success)
 	{
 		level.zombie_total--;
 	}
@@ -208,9 +208,9 @@ private function spawn_enemy()
 	Parameters: 2
 	Flags: Linked
 */
-function function_95c1dd81(name, var_cdcbbb56)
+function function_95c1dd81(name, spawn_callback)
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
@@ -221,7 +221,7 @@ function function_95c1dd81(name, var_cdcbbb56)
 	/#
 		assert(!isdefined(level.var_1cc18005[name]), "" + name);
 	#/
-	level.var_1cc18005[name] = var_cdcbbb56;
+	level.var_1cc18005[name] = spawn_callback;
 }
 
 /*
@@ -235,7 +235,7 @@ function function_95c1dd81(name, var_cdcbbb56)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_79a710e660651843");
+	challenge = zm_trial::function_a36e8c38(#"hash_79a710e660651843");
 	return isdefined(challenge);
 }
 

@@ -428,7 +428,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, sweapon, v
 		}
 		if(self.pers[#"lives"] == 0)
 		{
-			scoreevents::processscoreevent(#"hash_301cbc24ac8b5bba", attacker, self, sweapon);
+			scoreevents::processscoreevent(#"eliminated_enemy", attacker, self, sweapon);
 		}
 	}
 }

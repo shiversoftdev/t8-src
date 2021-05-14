@@ -17,7 +17,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_720ffeebde5ac7cc", &__init__, &__main__, undefined);
+	system::register(#"galvaknuckles", &__init__, &__main__, undefined);
 }
 
 /*
@@ -31,7 +31,7 @@ autoexec function function_89f2df9()
 */
 private function __init__()
 {
-	namespace_2ba51478::register_melee_weapon_for_level(#"galvaknuckles_t8");
+	zm_loadout::register_melee_weapon_for_level(#"galvaknuckles_t8");
 	level.var_b77d3496 = getweapon(#"galvaknuckles_t8");
 	callback::on_ai_killed(&on_ai_killed);
 }

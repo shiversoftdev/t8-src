@@ -412,9 +412,9 @@ function function_59a204ea(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 2
 	Flags: Linked
 */
-function function_98530904(localclientnum, var_276d45bf = 0)
+function function_98530904(localclientnum, b_charged = 0)
 {
-	if(var_276d45bf)
+	if(b_charged)
 	{
 		var_c172d994 = "beam8_elec_catalyst_arc_attack";
 	}

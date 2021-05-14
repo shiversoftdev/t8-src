@@ -318,7 +318,7 @@ private function function_938d798a()
 			var_a9682cef[2] = float(var_aae1fec0);
 			var_4e94b449 = strtok2(var_aae1fec0, "");
 			v_origin = (var_a9682cef[0], var_a9682cef[1], var_a9682cef[2]);
-			var_27128cf9 = getclosestpointonnavmesh(v_origin, 192);
+			v_stand = getclosestpointonnavmesh(v_origin, 192);
 			switch(var_4e94b449[2])
 			{
 				case "overlaps":
@@ -336,7 +336,7 @@ private function function_938d798a()
 					break;
 				}
 			}
-			var_7099d03[var_7099d03.size] = {#hash_d8aec942:var_d8aec942, #hash_e45e8f33:var_e45e8f33, #stand:var_27128cf9, #origin:v_origin};
+			var_7099d03[var_7099d03.size] = {#hash_d8aec942:var_d8aec942, #hash_e45e8f33:var_e45e8f33, #stand:v_stand, #origin:v_origin};
 		}
 		closefile(file);
 		wait(0.5);

@@ -24,7 +24,7 @@ function register_killstreak_bundle(type)
 }
 
 /*
-	Name: function_25ce781d
+	Name: register_bundle
 	Namespace: killstreak_bundles
 	Checksum: 0x7BB645C
 	Offset: 0x2B0
@@ -32,7 +32,7 @@ function register_killstreak_bundle(type)
 	Parameters: 2
 	Flags: None
 */
-function function_25ce781d(type, bundle)
+function register_bundle(type, bundle)
 {
 	level.killstreakbundle[type] = bundle;
 	level.killstreakmaxhealthfunction = &get_max_health;

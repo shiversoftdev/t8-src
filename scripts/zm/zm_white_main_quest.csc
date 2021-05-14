@@ -29,7 +29,7 @@ function init_clientfields()
 {
 	clientfield::register("scriptmover", "fx_steam_lab_dry_ice", 1, 1, "int", &function_9bc657a7, 0, 0);
 	clientfield::register("world", "portal_map_to_nuclear_state", 20000, 1, "int", &portal_map_to_nuclear_state, 0, 0);
-	clientfield::register("scriptmover", "fx_shard_glow_clientfield", 20000, 1, "int", &function_d2bee3bb, 0, 0);
+	clientfield::register("scriptmover", "fx_shard_glow_clientfield", 20000, 1, "int", &registerooze_gate_colcontrolrobotmelee, 0, 0);
 	clientfield::register("toplayer", "clock_interact_feedback", 20000, 1, "counter", &clock_interact_feedback, 0, 0);
 	clientfield::register("toplayer", "server_carry_feedback", 20000, 1, "counter", &server_carry_feedback, 0, 0);
 	clientfield::register("toplayer", "server_carry_fail_feedback", 20000, 1, "counter", &server_carry_fail_feedback, 0, 0);
@@ -95,11 +95,11 @@ function function_a290f1b0(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_5059f634 = util::playfxontag(localclientnum, level._effect[#"fx8_quest_mannequin_charging"], self, "tag_origin");
+		self.fx_charge = util::playfxontag(localclientnum, level._effect[#"fx8_quest_mannequin_charging"], self, "tag_origin");
 	}
 	else
 	{
-		killfx(localclientnum, self.var_5059f634);
+		killfx(localclientnum, self.fx_charge);
 	}
 }
 
@@ -254,7 +254,7 @@ function function_9bc657a7(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_d2bee3bb
+	Name: registerooze_gate_colcontrolrobotmelee
 	Namespace: namespace_4e1a75d3
 	Checksum: 0xC45B6276
 	Offset: 0xFC0
@@ -262,7 +262,7 @@ function function_9bc657a7(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_d2bee3bb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function registerooze_gate_colcontrolrobotmelee(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(newval == 1)
 	{

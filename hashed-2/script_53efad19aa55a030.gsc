@@ -15,11 +15,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_3b85ee2b;
+#namespace zm_progress;
 
 /*
 	Name: main
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x9223E836
 	Offset: 0x138
 	Size: 0x2E
@@ -33,7 +33,7 @@ event main(eventstruct)
 
 /*
 	Name: function_53a680b8
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0xB7A1F5F0
 	Offset: 0x170
 	Size: 0x156
@@ -48,7 +48,7 @@ function function_53a680b8(var_deac51dd, var_5301f4f1, var_13c55557, var_4737bdd
 	params.var_8dfc1be0 = int(3000);
 	params.var_69681160 = getweapon(#"zombie_builder");
 	params.fx_name = level._effect[#"building_dust"];
-	params.var_856efd68 = 0.5;
+	params.fx_loop = 0.5;
 	params.var_deac51dd = var_deac51dd;
 	params.var_5301f4f1 = var_5301f4f1;
 	params.var_13c55557 = var_13c55557;
@@ -60,7 +60,7 @@ function function_53a680b8(var_deac51dd, var_5301f4f1, var_13c55557, var_4737bdd
 
 /*
 	Name: function_163442cb
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x753DE3E8
 	Offset: 0x2D0
 	Size: 0x22
@@ -74,14 +74,14 @@ function function_163442cb(params, w_weapon)
 
 /*
 	Name: function_89769800
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x15E3D583
 	Offset: 0x300
 	Size: 0x282
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_89769800(params, unitrigger, var_1aaf801c, var_c060d2c8)
+private function function_89769800(params, unitrigger, b_start, var_c060d2c8)
 {
 	if(!isdefined(self))
 	{
@@ -104,7 +104,7 @@ private function function_89769800(params, unitrigger, var_1aaf801c, var_c060d2c
 	{
 		return 0;
 	}
-	if(var_1aaf801c)
+	if(b_start)
 	{
 		if(isdefined(params.var_deac51dd) && ![[params.var_deac51dd]](self, unitrigger))
 		{
@@ -138,7 +138,7 @@ private function function_89769800(params, unitrigger, var_1aaf801c, var_c060d2c
 
 /*
 	Name: function_1b125050
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x371367AC
 	Offset: 0x590
 	Size: 0x3A
@@ -152,7 +152,7 @@ private function function_1b125050(params, unitrigger, var_c060d2c8)
 
 /*
 	Name: function_a82534d
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x109D8C01
 	Offset: 0x5D8
 	Size: 0x3A
@@ -166,7 +166,7 @@ private function function_a82534d(params, unitrigger, var_c060d2c8)
 
 /*
 	Name: player_progress_bar_update
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x1B81671C
 	Offset: 0x620
 	Size: 0xCE
@@ -194,7 +194,7 @@ private function player_progress_bar_update(start_time, use_time)
 
 /*
 	Name: player_progress_bar
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x3D3BF0A9
 	Offset: 0x6F8
 	Size: 0xA4
@@ -214,7 +214,7 @@ private function player_progress_bar(start_time, use_time)
 
 /*
 	Name: function_48098d30
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x43751234
 	Offset: 0x7A8
 	Size: 0xF2
@@ -229,9 +229,9 @@ function function_48098d30(player, params)
 		angles = player getplayerangles();
 		forwarddir = anglestoforward(angles);
 		playfx(params.fx_name, player getplayercamerapos(), forwarddir, (0, 1, 0));
-		if(params.var_856efd68 > 0)
+		if(params.fx_loop > 0)
 		{
-			wait(params.var_856efd68);
+			wait(params.fx_loop);
 		}
 		else
 		{
@@ -242,7 +242,7 @@ function function_48098d30(player, params)
 
 /*
 	Name: function_f8b39299
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x12B3F6C4
 	Offset: 0x8A8
 	Size: 0x48E
@@ -251,15 +251,15 @@ function function_48098d30(player, params)
 */
 private function function_f8b39299(player, params, var_c060d2c8)
 {
-	var_4f9308d2 = 0;
+	b_waited = 0;
 	if(!isdefined(self))
 	{
 		/#
 			assertmsg("");
 		#/
-		if(!(isdefined(var_4f9308d2) && var_4f9308d2))
+		if(!(isdefined(b_waited) && b_waited))
 		{
-			var_4f9308d2 = 1;
+			b_waited = 1;
 			waitframe(1);
 		}
 		return;
@@ -272,13 +272,13 @@ private function function_f8b39299(player, params, var_c060d2c8)
 	self.var_46bb2c21 = gettime();
 	use_time = self.use_time;
 	var_46bb2c21 = self.var_46bb2c21;
-	var_964e6714 = params.var_69681160 != level.weaponnone;
+	_from_temple_geyser = params.var_69681160 != level.weaponnone;
 	if(use_time > 0)
 	{
 		player zm_utility::disable_player_move_states(1);
 		player.var_1f8802c9 = 1;
 		player zm_utility::increment_is_drinking();
-		if(var_964e6714)
+		if(_from_temple_geyser)
 		{
 			orgweapon = player getcurrentweapon();
 			build_weapon = params.var_69681160;
@@ -288,16 +288,16 @@ private function function_f8b39299(player, params, var_c060d2c8)
 		player thread player_progress_bar(var_46bb2c21, use_time);
 		while(isdefined(self) && player function_a82534d(params, self, var_c060d2c8) && gettime() - self.var_46bb2c21 < self.use_time)
 		{
-			var_4f9308d2 = 1;
+			b_waited = 1;
 			waitframe(1);
 			if(!isdefined(self))
 			{
 				/#
 					assertmsg("");
 				#/
-				if(!(isdefined(var_4f9308d2) && var_4f9308d2))
+				if(!(isdefined(b_waited) && b_waited))
 				{
-					var_4f9308d2 = 1;
+					b_waited = 1;
 					waitframe(1);
 				}
 				return;
@@ -306,7 +306,7 @@ private function function_f8b39299(player, params, var_c060d2c8)
 		if(isdefined(player))
 		{
 			player notify(#"hash_17d245ea00b65b48");
-			if(var_964e6714)
+			if(_from_temple_geyser)
 			{
 				player zm_weapons::switch_back_primary_weapon(orgweapon);
 				player takeweapon(build_weapon);
@@ -337,9 +337,9 @@ private function function_f8b39299(player, params, var_c060d2c8)
 	{
 		thread [[params.var_3e17832]](player, self);
 	}
-	if(!(isdefined(var_4f9308d2) && var_4f9308d2))
+	if(!(isdefined(b_waited) && b_waited))
 	{
-		var_4f9308d2 = 1;
+		b_waited = 1;
 		waitframe(1);
 	}
 	if(!isdefined(self))
@@ -347,9 +347,9 @@ private function function_f8b39299(player, params, var_c060d2c8)
 		/#
 			assertmsg("");
 		#/
-		if(!(isdefined(var_4f9308d2) && var_4f9308d2))
+		if(!(isdefined(b_waited) && b_waited))
 		{
-			var_4f9308d2 = 1;
+			b_waited = 1;
 			waitframe(1);
 		}
 		return;
@@ -359,7 +359,7 @@ private function function_f8b39299(player, params, var_c060d2c8)
 
 /*
 	Name: function_4335011a
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x72BA2598
 	Offset: 0xD40
 	Size: 0xAC
@@ -381,7 +381,7 @@ private function function_4335011a(player, params, var_c060d2c8)
 
 /*
 	Name: progress_think
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0x19F489A2
 	Offset: 0xDF8
 	Size: 0xB2

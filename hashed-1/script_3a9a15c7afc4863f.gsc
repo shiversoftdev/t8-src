@@ -227,11 +227,11 @@ function function_f6515ba2(inflictor, attacker, damage, flags, meansofdeath, wea
 			attacker thread function_81622feb();
 		}
 		var_5a8c565a = damage * 3;
-		if(self.archetype === #"zombie" || self.archetype === #"hash_1bab8a0ba811401e")
+		if(self.archetype === #"zombie" || self.archetype === #"catalyst")
 		{
 			self thread electric_cherry_death_fx();
 			/#
-				attacker namespace_ff457ca2::debug_print("");
+				attacker zm_challenges::debug_print("");
 			#/
 			attacker zm_stats::increment_challenge_stat(#"hash_783ec74bf31f604d");
 			return self.health;
@@ -240,7 +240,7 @@ function function_f6515ba2(inflictor, attacker, damage, flags, meansofdeath, wea
 		{
 			self thread electric_cherry_death_fx();
 			/#
-				attacker namespace_ff457ca2::debug_print("");
+				attacker zm_challenges::debug_print("");
 			#/
 			attacker zm_stats::increment_challenge_stat(#"hash_783ec74bf31f604d");
 			return var_5a8c565a;
@@ -375,10 +375,10 @@ function function_857ced89()
 		wait(0.1);
 		n_time_left = n_time_left - 0.1;
 		n_time_left = math::clamp(n_time_left, 0, var_9ade76c0);
-		var_c2093736 = n_time_left / var_9ade76c0;
-		var_c2093736 = var_c2093736 * var_8b3ae2d6;
-		var_c2093736 = math::clamp(var_c2093736, 0.02, var_9ade76c0);
-		self zm_perks::function_13880aa5(3, var_c2093736, #"perk_electric_cherry");
+		n_percentage = n_time_left / var_9ade76c0;
+		n_percentage = n_percentage * var_8b3ae2d6;
+		n_percentage = math::clamp(n_percentage, 0.02, var_9ade76c0);
+		self zm_perks::function_13880aa5(3, n_percentage, #"perk_electric_cherry");
 	}
 }
 
@@ -413,7 +413,7 @@ function function_b107ce52()
 	Parameters: 4
 	Flags: Linked
 */
-function function_cfba6046(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_cfba6046(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_3eac84d6fe51944b" + "_take");
 	self.var_c25a91ee = undefined;

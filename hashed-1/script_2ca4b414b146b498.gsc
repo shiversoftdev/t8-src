@@ -70,10 +70,10 @@ function init_shared(bundlename)
 		}
 		bundle = struct::get_script_bundle("killstreak", bundlename);
 		level.var_400ded61.aitankkillstreakbundle = bundle;
-		killstreaks::function_25ce781d(bundle, &usekillstreakaitankdrop);
+		killstreaks::register_bundle(bundle, &usekillstreakaitankdrop);
 		killstreaks::register_remote_override_weapon("tank_robot", "killstreak_ai_tank");
 		killstreaks::function_e37b061("tank_robot", getweapon(#"tank_robot_launcher_turret"));
-		ir_strobe::function_8806675d(#"ai_tank_marker", &function_f6aefa4c);
+		ir_strobe::function_8806675d(#"ai_tank_marker", &spawn_tank_robot);
 		level.killstreaks[#"tank_robot"].threatonkill = 1;
 		if(function_8b1a219a())
 		{
@@ -136,21 +136,21 @@ function function_1c601b99()
 	Parameters: 1
 	Flags: None
 */
-function function_1210a3d6(var_a016da27)
+function function_1210a3d6(mantis)
 {
-	var_a016da27 endon(#"death");
+	mantis endon(#"death");
 	if(isdefined(level.var_5d492b75))
 	{
-		[[level.var_5d492b75]](var_a016da27, 1);
+		[[level.var_5d492b75]](mantis, 1);
 	}
 	wait(3);
-	if(!isdefined(var_a016da27))
+	if(!isdefined(mantis))
 	{
 		return;
 	}
 	if(isdefined(level.var_5d492b75))
 	{
-		[[level.var_5d492b75]](var_a016da27, 0);
+		[[level.var_5d492b75]](mantis, 0);
 	}
 }
 
@@ -163,16 +163,16 @@ function function_1210a3d6(var_a016da27)
 	Parameters: 2
 	Flags: None
 */
-function function_127fb8f3(var_a016da27, var_dbd1a594)
+function function_127fb8f3(mantis, var_dbd1a594)
 {
 	if(isdefined(level.var_1794f85f))
 	{
 		[[level.var_1794f85f]](var_dbd1a594, "disrupted_mantis");
 	}
-	if(!(isdefined(var_a016da27.isstunned) && var_a016da27.isstunned))
+	if(!(isdefined(mantis.isstunned) && mantis.isstunned))
 	{
-		var_a016da27 thread tank_stun(3, 1);
-		var_a016da27 thread function_1210a3d6(var_a016da27);
+		mantis thread tank_stun(3, 1);
+		mantis thread function_1210a3d6(mantis);
 	}
 	return 1;
 }
@@ -405,7 +405,7 @@ function usekillstreakaitankdrop(killstreaktype)
 }
 
 /*
-	Name: function_f6aefa4c
+	Name: spawn_tank_robot
 	Namespace: ai_tank
 	Checksum: 0x4A5879FC
 	Offset: 0x1730
@@ -413,7 +413,7 @@ function usekillstreakaitankdrop(killstreaktype)
 	Parameters: 3
 	Flags: None
 */
-function function_f6aefa4c(owner, context, origin)
+function spawn_tank_robot(owner, context, origin)
 {
 	location = spawnstruct();
 	location.origin = origin;
@@ -861,7 +861,7 @@ function function_9b13ebf(drone)
 	drone.var_6e9e073d = 1;
 	drone vehicle_ai::init_state_machine_for_role("default");
 	drone vehicle_ai::get_state_callbacks("combat").enter_func = &state_combat_enter;
-	drone.var_817f15dd = getweapon("ai_Tank_marker");
+	drone.identifier_weapon = getweapon("ai_Tank_marker");
 	if(drone.vehicletype == #"hash_153a326c2357a196")
 	{
 		drone vehicle_ai::get_state_callbacks("combat").update_func = &function_dd91d091;
@@ -1382,7 +1382,7 @@ private function state_combat_enter(params)
 	{
 		var_8f3583cf = ai::t_cylinder(self.origin, 30, 30);
 		goalarray = tacticalquery("ai_tank_wander", self.origin, self, var_8f3583cf);
-		goalarray = function_c559e721(self, goalarray);
+		goalarray = damage_armor_activati_(self, goalarray);
 		if(goalarray.size)
 		{
 			goal = arraygetclosest(self.origin, goalarray);
@@ -1885,13 +1885,13 @@ function function_dd91d091(params)
 				if(isdefined(self.enemy))
 				{
 					goalarray = tacticalquery("ai_tank_combat", var_1f2328d0.goalpos, self, self.enemy);
-					goalarray = function_c559e721(self, goalarray);
+					goalarray = damage_armor_activati_(self, goalarray);
 				}
 				else
 				{
 					var_8f3583cf = ai::t_cylinder(self.origin, 200, 100);
 					goalarray = tacticalquery("ai_tank_wander", var_1f2328d0.goalpos, self, var_8f3583cf);
-					goalarray = function_c559e721(self, goalarray);
+					goalarray = damage_armor_activati_(self, goalarray);
 				}
 				var_817e8fd0 = [];
 				if(isdefined(goalarray) && goalarray.size)
@@ -1985,7 +1985,7 @@ function function_d15dd929(radius, origin)
 }
 
 /*
-	Name: function_c559e721
+	Name: damage_armor_activati_
 	Namespace: ai_tank
 	Checksum: 0xA5BF9519
 	Offset: 0x61A0
@@ -1993,7 +1993,7 @@ function function_d15dd929(radius, origin)
 	Parameters: 2
 	Flags: None
 */
-function function_c559e721(entity, tacpoints)
+function damage_armor_activati_(entity, tacpoints)
 {
 	validpoints = [];
 	radius = entity getpathfindingradius();
@@ -2036,7 +2036,7 @@ function function_4ae23c85()
 		cylinder = ai::t_cylinder(origin, searchradius, 200);
 		var_8f3583cf = ai::t_cylinder(self.origin, 100, 200);
 		tacpoints = tacticalquery("tank_robot_tacquery_wander", origin, cylinder, self, var_8f3583cf);
-		tacpoints = function_c559e721(self, tacpoints);
+		tacpoints = damage_armor_activati_(self, tacpoints);
 		if(isdefined(tacpoints) && tacpoints.size > 0)
 		{
 			tacpoints = array::randomize(tacpoints);
@@ -2089,7 +2089,7 @@ function state_combat_update(params)
 		{
 			var_8f3583cf = ai::t_cylinder(self.origin, 100, 200);
 			tacpoints = tacticalquery("tank_robot_tacquery_combat", self.enemy.origin, self, var_8f3583cf);
-			tacpoints = function_c559e721(self, tacpoints);
+			tacpoints = damage_armor_activati_(self, tacpoints);
 			if(isdefined(tacpoints) && tacpoints.size > 0)
 			{
 				newpos = getclosestpointonnavmesh(tacpoints[0].origin, self.goalradius, self getpathfindingradius(), self.var_6e9e073d);
@@ -2130,7 +2130,7 @@ function state_combat_update(params)
 					cylinder = ai::t_cylinder(origin, searchradius, 500);
 					var_8f3583cf = ai::t_cylinder(self.origin, 100, 200);
 					tacpoints = tacticalquery("tank_robot_tacquery_seek", origin, cylinder, self, var_8f3583cf, forwardpos);
-					tacpoints = function_c559e721(self, tacpoints);
+					tacpoints = damage_armor_activati_(self, tacpoints);
 					if(isdefined(tacpoints) && tacpoints.size > 0)
 					{
 						newpos = getclosestpointonnavmesh(tacpoints[0].origin, self.goalradius, self getpathfindingradius(), self.var_6e9e073d);
@@ -2944,9 +2944,9 @@ function tank_death_think(hardpointname)
 		self.damage_fx delete();
 	}
 	var_d3213f00 = 0;
-	if(isdefined(level.var_882921fa))
+	if(isdefined(level.aitank_explode))
 	{
-		var_d3213f00 = [[level.var_882921fa]](attacker, weapon);
+		var_d3213f00 = [[level.aitank_explode]](attacker, weapon);
 	}
 	var_4dd90b81 = 0;
 	if(isdefined(var_d3213f00) && var_d3213f00 && isdefined(self.owner))
@@ -3246,7 +3246,7 @@ function watch_target(owner, target_index)
 }
 
 /*
-	Name: function_aa983cec
+	Name: shoot_targets
 	Namespace: ai_tank
 	Checksum: 0x42CA04D4
 	Offset: 0x96B8
@@ -3254,7 +3254,7 @@ function watch_target(owner, target_index)
 	Parameters: 2
 	Flags: None
 */
-function function_aa983cec(projectile, max_missiles)
+function shoot_targets(projectile, max_missiles)
 {
 	var_e3a3ecd3 = 0;
 	weapon = getweapon("tank_robot_launcher_turret");
@@ -3334,7 +3334,7 @@ function tank_rocket_watch(player)
 			waitresult.projectile.ignore_team_kills = self.ignore_team_kills;
 			if(!(isdefined(level.var_9f011465) && level.var_9f011465))
 			{
-				var_e3a3ecd3 = player function_aa983cec(waitresult.projectile, self.numberrockets);
+				var_e3a3ecd3 = player shoot_targets(waitresult.projectile, self.numberrockets);
 			}
 		}
 		self.numberrockets = self.numberrockets - var_e3a3ecd3;

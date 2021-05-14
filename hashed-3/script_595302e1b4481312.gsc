@@ -61,7 +61,7 @@ function function_294117a0()
 	self.ignore_death_jolt = 1;
 	self.var_92043a49 = 1;
 	self.overridevehicledamage = &function_371a151b;
-	self.var_54ebfda9 = &vehicle::function_eb183ffe;
+	self.is_staircase_up = &vehicle::function_eb183ffe;
 }
 
 /*
@@ -73,9 +73,9 @@ function function_294117a0()
 	Parameters: 3
 	Flags: Linked
 */
-function function_3711499d(vehicle, var_5c78ae2d, traceresult)
+function function_3711499d(vehicle, deployable_weapon, traceresult)
 {
-	var_d1b2ddd5 = (isdefined(var_5c78ae2d.var_76127e14) ? var_5c78ae2d.var_76127e14 : 0);
+	var_d1b2ddd5 = (isdefined(deployable_weapon.var_76127e14) ? deployable_weapon.var_76127e14 : 0);
 	if(var_d1b2ddd5 > 0 && traceresult.waterdepth > var_d1b2ddd5)
 	{
 		return 0;

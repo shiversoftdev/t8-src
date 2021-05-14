@@ -188,7 +188,7 @@ function function_6b437265(team)
 function function_cfabb62c(watcher)
 {
 	watcher.watchforfire = 1;
-	watcher.onspawn = &function_f0edbdf5;
+	watcher.onspawn = &beacon_spawned;
 	watcher.ontimeout = &function_13ac856e;
 	watcher.var_994b472b = &function_f9d3fff8;
 	watcher.deleteonplayerspawn = 0;
@@ -278,7 +278,7 @@ function function_f8930fa1(time)
 }
 
 /*
-	Name: function_f0edbdf5
+	Name: beacon_spawned
 	Namespace: spawn_beacon
 	Checksum: 0x2DA8470B
 	Offset: 0xAB0
@@ -286,7 +286,7 @@ function function_f8930fa1(time)
 	Parameters: 2
 	Flags: None
 */
-function function_f0edbdf5(watcher, owner)
+function beacon_spawned(watcher, owner)
 {
 	self endon(#"death");
 	self.var_52a68abf = 1;
@@ -402,7 +402,7 @@ function function_45a43bd6()
 */
 private function setupcallbacks()
 {
-	ability_player::register_gadget_activation_callbacks(26, &function_184fe5a4, &function_bd482609);
+	ability_player::register_gadget_activation_callbacks(26, &gadget_spawnbeacon_on, &gadget_spawnbeacon_off);
 	callback::on_player_killed_with_params(&on_player_killed);
 	callback::on_spawned(&on_player_spawned);
 	callback::on_loadout(&on_loadout);
@@ -533,12 +533,12 @@ function function_a8549b52()
 {
 	level endon(#"game_ended");
 	spawnbeacon = self;
-	spawnbeacon endon(#"hash_d0a2bdefbbff6f6");
+	spawnbeacon endon(#"beacon_removed");
 	while(isdefined(spawnbeacon))
 	{
 		if(isdefined(spawnbeacon.isdisabled) && spawnbeacon.isdisabled)
 		{
-			spawnbeacon waittill(#"hash_390d1d75264c4e9f");
+			spawnbeacon waittill(#"beacon_enabled");
 		}
 		spawnbeacon function_41a037e6();
 		if(spawnbeacon.threatlevel >= (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_ba2632d3) ? level.spawnbeaconsettings.var_51d5c26f.var_ba2632d3 : 0))
@@ -602,7 +602,7 @@ function freespawnbeaconspawnlist(spawnlistname)
 }
 
 /*
-	Name: function_184fe5a4
+	Name: gadget_spawnbeacon_on
 	Namespace: spawn_beacon
 	Checksum: 0xFB7646E5
 	Offset: 0x16A8
@@ -610,16 +610,16 @@ function freespawnbeaconspawnlist(spawnlistname)
 	Parameters: 2
 	Flags: None
 */
-function function_184fe5a4(slot, playerweapon)
+function gadget_spawnbeacon_on(slot, playerweapon)
 {
 	/#
 		assert(isplayer(self));
 	#/
-	self notify(#"hash_4537c6dac90cc3f2", {#weapon:playerweapon});
+	self notify(#"start_killstreak", {#weapon:playerweapon});
 }
 
 /*
-	Name: function_bd482609
+	Name: gadget_spawnbeacon_off
 	Namespace: spawn_beacon
 	Checksum: 0x243B075F
 	Offset: 0x1718
@@ -627,7 +627,7 @@ function function_184fe5a4(slot, playerweapon)
 	Parameters: 2
 	Flags: None
 */
-function function_bd482609(slot, weapon)
+function gadget_spawnbeacon_off(slot, weapon)
 {
 	self.var_c11172a1 = 0;
 }
@@ -854,11 +854,11 @@ function function_a9ff3efb(var_d3213f00)
 		level.spawnbeaconsettings.userspawnbeacons[self.owner.clientid] = array::remove_index(level.spawnbeaconsettings.userspawnbeacons[self.owner.clientid], var_10432750, 0);
 	}
 	self stoploopsound();
-	self notify(#"hash_d0a2bdefbbff6f6");
+	self notify(#"beacon_removed");
 	self callback::remove_callback(#"on_end_game", &function_438ca4e0);
 	if(isdefined(player))
 	{
-		player notify(#"hash_d0a2bdefbbff6f6");
+		player notify(#"beacon_removed");
 		player clientfield::set_player_uimodel("hudItems.spawnbeacon.active", 0);
 		player.var_9698a18d = 0;
 		player.var_583f6cce = undefined;
@@ -1017,10 +1017,10 @@ function createspawngroupforspawnbeacon(associatedspawnbeacon, spawnstoadd)
 function function_425d8006()
 {
 	spawnbeacon = self;
-	spawnbeacon endon(#"hash_d0a2bdefbbff6f6");
+	spawnbeacon endon(#"beacon_removed");
 	level endon(#"game_ended");
 	spawnbeacon.isdisabled = 1;
-	spawnbeacon notify(#"hash_11330668dbb5f2aa");
+	spawnbeacon notify(#"beacon_disabled");
 	objective_setgamemodeflags(spawnbeacon.objectiveid, 3);
 	var_d7760961 = (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_26f4f5f0) ? level.spawnbeaconsettings.var_51d5c26f.var_26f4f5f0 : 0);
 	var_f1c32a14 = "";
@@ -1037,7 +1037,7 @@ function function_425d8006()
 	setbombtimer(var_f1c32a14, gettime() + int(var_d7760961 * 1000));
 	wait(var_d7760961);
 	spawnbeacon.isdisabled = 0;
-	spawnbeacon notify(#"hash_390d1d75264c4e9f");
+	spawnbeacon notify(#"beacon_enabled");
 }
 
 /*
@@ -1195,7 +1195,7 @@ function function_b3608e1(spawnbeacon)
 }
 
 /*
-	Name: function_2a54cacd
+	Name: retreatedstartmelee
 	Namespace: spawn_beacon
 	Checksum: 0x10FC4A0A
 	Offset: 0x3328
@@ -1203,7 +1203,7 @@ function function_b3608e1(spawnbeacon)
 	Parameters: 2
 	Flags: None
 */
-function function_2a54cacd(var_a820f9, spawns)
+function retreatedstartmelee(var_a820f9, spawns)
 {
 	player = self;
 	if(isdefined(level.spawnbeaconsettings.userspawnbeacons[player.clientid]) && level.spawnbeaconsettings.userspawnbeacons[player.clientid].size >= (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_e3d3bd15) ? level.spawnbeaconsettings.var_51d5c26f.var_e3d3bd15 : 1))
@@ -1288,7 +1288,7 @@ function function_2a54cacd(var_a820f9, spawns)
 		player function_19ed70ca(slot, 1);
 	}
 	player.var_583f6cce = var_60dbfaf8;
-	player notify(#"hash_5cc0dbbb9afaf340");
+	player notify(#"beacon_added");
 }
 
 /*
@@ -1348,7 +1348,7 @@ function onplacespawnbeacon(spawnbeacon)
 	}
 	if(isdefined(spawnbeacon.var_9bab32d9) && isdefined(spawnbeacon.var_9bab32d9.spawns))
 	{
-		self function_2a54cacd(spawnbeacon, spawnbeacon.var_9bab32d9.spawns);
+		self retreatedstartmelee(spawnbeacon, spawnbeacon.var_9bab32d9.spawns);
 	}
 }
 

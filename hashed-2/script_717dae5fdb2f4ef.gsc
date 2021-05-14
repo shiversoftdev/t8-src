@@ -6,11 +6,11 @@
 #using scripts\core_common\postfx_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_c03dca7e;
+#namespace shockrifle;
 
 /*
 	Name: init_shared
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x73642FB
 	Offset: 0x130
 	Size: 0xDC
@@ -26,7 +26,7 @@ function init_shared()
 
 /*
 	Name: shock_rifle_shocked
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x6BD0C252
 	Offset: 0x218
 	Size: 0xCC
@@ -47,7 +47,7 @@ function shock_rifle_shocked(localclientnum, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: shock_rifle_damage
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x48FADA4E
 	Offset: 0x2F0
 	Size: 0x76
@@ -58,14 +58,14 @@ function shock_rifle_damage(localclientnum, oldval, newval, bnewent, binitialsna
 {
 	if(newval)
 	{
-		splatter = blood::function_d18a9e97(localclientnum);
-		splatter.var_c03dca7e = 1;
+		splatter = blood::getsplatter(localclientnum);
+		splatter.shockrifle = 1;
 	}
 }
 
 /*
 	Name: shock_rifle_sound
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xC2B0B69E
 	Offset: 0x370
 	Size: 0x7C

@@ -805,7 +805,7 @@ private function function_d3fbb5ec(entity, stub, current_zone)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9c7d5271(entity, var_9c3aab26, range)
+private function function_9c7d5271(entity, registerlotus_right, range)
 {
 	current_zone = entity zm_utility::get_current_zone();
 	stubs = arraysortclosest(level.var_f17bdf53, entity.origin, undefined, 0, range);
@@ -830,17 +830,17 @@ private function function_9c7d5271(entity, var_9c3aab26, range)
 			continue;
 		}
 		stub.var_895b6b = "lockdown_stub_type_wallbuys";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, stub))
+		if(!isinarray(registerlotus_right, stub))
 		{
-			var_9c3aab26[var_9c3aab26.size] = stub;
+			registerlotus_right[registerlotus_right.size] = stub;
 		}
 	}
 }
@@ -882,7 +882,7 @@ private function function_fea6f0c0(entity, stub, current_zone)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_db989a2a(entity, var_9c3aab26, range)
+private function function_db989a2a(entity, registerlotus_right, range)
 {
 	current_zone = entity zm_utility::get_current_zone();
 	stubs = arraysortclosest(level.var_9235b607, entity.origin, undefined, 0, range);
@@ -907,17 +907,17 @@ private function function_db989a2a(entity, var_9c3aab26, range)
 			continue;
 		}
 		stub.var_895b6b = "lockdown_stub_type_perks";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, stub))
+		if(!isinarray(registerlotus_right, stub))
 		{
-			var_9c3aab26[var_9c3aab26.size] = stub;
+			registerlotus_right[registerlotus_right.size] = stub;
 		}
 	}
 }
@@ -952,7 +952,7 @@ private function function_ea677a9a(entity, stub, current_zone)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d0e1d38c(entity, var_9c3aab26, range)
+private function function_d0e1d38c(entity, registerlotus_right, range)
 {
 	current_zone = entity zm_utility::get_current_zone();
 	stubs = arraysortclosest(level.var_16cfe3ef, entity.origin, undefined, 0, range);
@@ -977,17 +977,17 @@ private function function_d0e1d38c(entity, var_9c3aab26, range)
 			continue;
 		}
 		stub.var_895b6b = "lockdown_stub_type_crafting_tables";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, stub))
+		if(!isinarray(registerlotus_right, stub))
 		{
-			var_9c3aab26[var_9c3aab26.size] = stub;
+			registerlotus_right[registerlotus_right.size] = stub;
 		}
 	}
 }
@@ -1043,7 +1043,7 @@ private function function_95250640(entity, stub)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e6761711(entity, var_9c3aab26, range)
+private function function_e6761711(entity, registerlotus_right, range)
 {
 	chests = arraysortclosest(level.chests, entity.origin, undefined, 0, range);
 	foreach(chest in chests)
@@ -1067,17 +1067,17 @@ private function function_e6761711(entity, var_9c3aab26, range)
 			continue;
 		}
 		chest.unitrigger_stub.var_895b6b = "lockdown_stub_type_magic_box";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, chest.unitrigger_stub))
+		if(!isinarray(registerlotus_right, chest.unitrigger_stub))
 		{
-			var_9c3aab26[var_9c3aab26.size] = chest.unitrigger_stub;
+			registerlotus_right[registerlotus_right.size] = chest.unitrigger_stub;
 		}
 	}
 }
@@ -1119,7 +1119,7 @@ private function function_790e3eb0(entity, trigger)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_165e2bd6(entity, var_9c3aab26, range)
+private function function_165e2bd6(entity, registerlotus_right, range)
 {
 	if(!level flag::get("pap_machine_active"))
 	{
@@ -1146,17 +1146,17 @@ private function function_165e2bd6(entity, var_9c3aab26, range)
 			continue;
 		}
 		stub.var_895b6b = "lockdown_stub_type_pap";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, stub))
+		if(!isinarray(registerlotus_right, stub))
 		{
-			var_9c3aab26[var_9c3aab26.size] = stub;
+			registerlotus_right[registerlotus_right.size] = stub;
 		}
 	}
 }
@@ -1191,7 +1191,7 @@ private function function_809ae5cb(entity, blocker)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_8850974b(entity, var_9c3aab26, range)
+private function function_8850974b(entity, registerlotus_right, range)
 {
 	blockers = arraysortclosest(level.exterior_goals, entity.origin, undefined, 0, range);
 	foreach(blocker in blockers)
@@ -1218,17 +1218,17 @@ private function function_8850974b(entity, var_9c3aab26, range)
 			continue;
 		}
 		blocker.var_895b6b = "lockdown_stub_type_boards";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, blocker))
+		if(!isinarray(registerlotus_right, blocker))
 		{
-			var_9c3aab26[var_9c3aab26.size] = blocker;
+			registerlotus_right[registerlotus_right.size] = blocker;
 		}
 	}
 }
@@ -1263,7 +1263,7 @@ private function function_387fd27e(entity, var_d59d25cc)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d2ce5ac1(entity, var_9c3aab26, range)
+private function function_d2ce5ac1(entity, registerlotus_right, range)
 {
 	trap_trigs = arraysortclosest(level.var_2510f3e4, entity.origin, undefined, 0, range);
 	foreach(var_d59d25cc in trap_trigs)
@@ -1280,17 +1280,17 @@ private function function_d2ce5ac1(entity, var_9c3aab26, range)
 			continue;
 		}
 		var_d59d25cc.var_895b6b = "lockdown_stub_type_traps";
-		if(!isdefined(var_9c3aab26))
+		if(!isdefined(registerlotus_right))
 		{
-			var_9c3aab26 = [];
+			registerlotus_right = [];
 		}
-		else if(!isarray(var_9c3aab26))
+		else if(!isarray(registerlotus_right))
 		{
-			var_9c3aab26 = array(var_9c3aab26);
+			registerlotus_right = array(registerlotus_right);
 		}
-		if(!isinarray(var_9c3aab26, var_d59d25cc))
+		if(!isinarray(registerlotus_right, var_d59d25cc))
 		{
-			var_9c3aab26[var_9c3aab26.size] = var_d59d25cc;
+			registerlotus_right[registerlotus_right.size] = var_d59d25cc;
 		}
 	}
 }
@@ -1412,19 +1412,19 @@ function function_9b84bb88(entity, var_f2b00446, var_d05e79c8, var_c7455683)
 			entity.var_d187874c = [];
 		}
 	#/
-	var_9c3aab26 = [];
+	registerlotus_right = [];
 	foreach(var_b7d35f70 in var_f2b00446)
 	{
-		[[level.var_492142a5[var_b7d35f70]]](entity, var_9c3aab26, var_d05e79c8);
+		[[level.var_492142a5[var_b7d35f70]]](entity, registerlotus_right, var_d05e79c8);
 	}
-	var_9c3aab26 = array::filter(var_9c3aab26, 0, &function_9f952db3, entity, var_c7455683);
+	registerlotus_right = array::filter(registerlotus_right, 0, &function_9f952db3, entity, var_c7455683);
 	/#
 		if(getdvarint(#"hash_3ec02cda135af40f", 0) == 1 && getdvarint(#"recorder_enablerec", 0) == 1)
 		{
-			function_6351d1c3(entity, var_9c3aab26, var_d05e79c8);
+			function_6351d1c3(entity, registerlotus_right, var_d05e79c8);
 		}
 	#/
-	return arraysortclosest(var_9c3aab26, entity.origin);
+	return arraysortclosest(registerlotus_right, entity.origin);
 }
 
 /*
@@ -1478,17 +1478,17 @@ function function_7258b5cc(entity, var_410a8c7, var_2baba799, var_22c317cc)
 	else
 	{
 		stub triggerenable(0);
-		var_f7847972 = stub zm_unitrigger::function_9267812e(stub.maxs[0] - stub.mins[0], stub.maxs[1] - stub.mins[1], stub.maxs[2] - stub.mins[2]);
-		var_f7847972.prompt_and_visibility_func = var_410a8c7;
-		var_f7847972.var_6f08706b = stub;
-		var_f7847972.var_895b6b = stub.var_895b6b;
-		var_f7847972.script_string = stub.script_string;
+		newstub = stub zm_unitrigger::function_9267812e(stub.maxs[0] - stub.mins[0], stub.maxs[1] - stub.mins[1], stub.maxs[2] - stub.mins[2]);
+		newstub.prompt_and_visibility_func = var_410a8c7;
+		newstub.var_6f08706b = stub;
+		newstub.var_895b6b = stub.var_895b6b;
+		newstub.script_string = stub.script_string;
 		stub.var_895b6b = undefined;
-		stub.var_25df04b4 = var_f7847972;
-		var_a0692a89.stub = var_f7847972;
+		stub.var_25df04b4 = newstub;
+		var_a0692a89.stub = newstub;
 		var_a0692a89.var_6f08706b = stub;
-		stub = var_f7847972;
-		zm_unitrigger::register_unitrigger(var_f7847972, var_2baba799);
+		stub = newstub;
+		zm_unitrigger::register_unitrigger(newstub, var_2baba799);
 	}
 	if(stub.var_895b6b === "lockdown_stub_type_perks")
 	{
@@ -1831,10 +1831,10 @@ function function_f3cff6ff(entity)
 	Parameters: 3
 	Flags: Private
 */
-private function function_6351d1c3(entity, var_9c3aab26, var_d05e79c8)
+private function function_6351d1c3(entity, registerlotus_right, var_d05e79c8)
 {
 	/#
-		foreach(stub in var_9c3aab26)
+		foreach(stub in registerlotus_right)
 		{
 			dist = distancesquared(entity.origin, stub.origin);
 			if(dist > var_d05e79c8 * var_d05e79c8)

@@ -37,7 +37,7 @@ function __postload_init__()
 }
 
 /*
-	Name: function_d18a9e97
+	Name: getsplatter
 	Namespace: blood
 	Checksum: 0x1AFC697A
 	Offset: 0x440
@@ -45,7 +45,7 @@ function __postload_init__()
 	Parameters: 1
 	Flags: Linked
 */
-function function_d18a9e97(localclientnum)
+function getsplatter(localclientnum)
 {
 	return level.blood.var_de10c136.var_51036e02[localclientnum];
 }
@@ -87,7 +87,7 @@ private function function_e79ccfd8(localclientnum)
 	self.var_36732900 = "rob_wound_blood_splatter";
 	function_162fe6ec(localclientnum);
 	self.var_9861062 = 0;
-	if(level.blood.var_14a2badb.stage == 0)
+	if(level.blood.rob.stage == 0)
 	{
 		self.var_28fdff3c = 1;
 		self.var_dff3bb2c = 1;
@@ -317,7 +317,7 @@ private function wait_game_ended(localclientnum)
 */
 private function function_8e228a1d(localclientnum, damage)
 {
-	if(damage > level.blood.var_14a2badb.damage_threshold)
+	if(damage > level.blood.rob.damage_threshold)
 	{
 		self function_bf9d3071(self.var_36732900);
 		self thread function_f192f00b(localclientnum, self.var_36732900);
@@ -333,19 +333,19 @@ private function function_8e228a1d(localclientnum, damage)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f192f00b(localclientnum, var_14a2badb)
+private function function_f192f00b(localclientnum, rob)
 {
 	self notify("5572d7357c805da5");
 	self endon("5572d7357c805da5");
 	self endon(#"death");
 	self endon(#"killbloodoverlay");
-	self function_78233d29(var_14a2badb, "", "U Offset", randomfloatrange(0, 1));
-	self function_78233d29(var_14a2badb, "", "V Offset", randomfloatrange(0, 1));
-	self function_78233d29(var_14a2badb, "", "Threshold", 1);
-	wait(float(level.blood.var_14a2badb.hold_time) / 1000);
-	self thread ramprobsetting(localclientnum, 1, 0, level.blood.var_14a2badb.fade_time, "Threshold");
-	wait(float(level.blood.var_14a2badb.fade_time) / 1000);
-	self function_5d482e78(var_14a2badb);
+	self function_78233d29(rob, "", "U Offset", randomfloatrange(0, 1));
+	self function_78233d29(rob, "", "V Offset", randomfloatrange(0, 1));
+	self function_78233d29(rob, "", "Threshold", 1);
+	wait(float(level.blood.rob.hold_time) / 1000);
+	self thread ramprobsetting(localclientnum, 1, 0, level.blood.rob.fade_time, "Threshold");
+	wait(float(level.blood.rob.fade_time) / 1000);
+	self function_5d482e78(rob);
 }
 
 /*
@@ -375,11 +375,11 @@ function ramprobsetting(localclientnum, from, to, ramptime, key)
 	Parameters: 8
 	Flags: Linked
 */
-function function_1126eb8c(currenttime, elapsedtime, localclientnum, duration, var_2347e08e, var_991d3376, key, var_14a2badb)
+function function_1126eb8c(currenttime, elapsedtime, localclientnum, duration, var_2347e08e, var_991d3376, key, rob)
 {
 	percent = elapsedtime / duration;
 	amount = var_991d3376 * percent + var_2347e08e * 1 - percent;
-	self function_78233d29(var_14a2badb, "", key, amount);
+	self function_78233d29(rob, "", key, amount);
 }
 
 /*
@@ -391,9 +391,9 @@ function function_1126eb8c(currenttime, elapsedtime, localclientnum, duration, v
 	Parameters: 2
 	Flags: Linked
 */
-function function_672c739(localclientnum, var_c03dca7e)
+function function_672c739(localclientnum, shockrifle)
 {
-	if(isdefined(var_c03dca7e) && var_c03dca7e)
+	if(isdefined(shockrifle) && shockrifle)
 	{
 		function_4238734d(localclientnum, #"hash_73c750f53749d44d", "Enable Tint", 0.9);
 		function_4238734d(localclientnum, #"hash_73c750f53749d44d", "Tint Color R", 4);
@@ -447,10 +447,10 @@ private function function_27d3ba05(localclientnum)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_47d0632f(localclientnum, damage, death, dot, var_c03dca7e)
+private function function_47d0632f(localclientnum, damage, death, dot, shockrifle)
 {
-	splatter = function_d18a9e97(localclientnum);
-	splatter.var_c03dca7e = var_c03dca7e;
+	splatter = getsplatter(localclientnum);
+	splatter.shockrifle = shockrifle;
 	splatter.var_120a7b2c++;
 	var_cd141ca2 = splatter.var_120a7b2c % 4;
 	if(function_27d3ba05(localclientnum))
@@ -504,18 +504,18 @@ private function player_splatter(localclientnum)
 		level waittill(#"hash_518e8873ad943492");
 		while(true)
 		{
-			splatter = function_d18a9e97(localclientnum);
+			splatter = getsplatter(localclientnum);
 			blur = 0;
 			opacity = 0;
 			for(i = 0; i < 4; i++)
 			{
-				if(isdefined(splatter.var_d47f98a4[i][#"hash_2151e5b1dafa374"]) && splatter.var_d47f98a4[i][#"hash_2151e5b1dafa374"] > blur)
+				if(isdefined(splatter.splatters[i][#"hash_2151e5b1dafa374"]) && splatter.splatters[i][#"hash_2151e5b1dafa374"] > blur)
 				{
-					blur = splatter.var_d47f98a4[i][#"hash_2151e5b1dafa374"];
+					blur = splatter.splatters[i][#"hash_2151e5b1dafa374"];
 				}
-				if(isdefined(splatter.var_d47f98a4[i][#"opacity"]) && splatter.var_d47f98a4[i][#"opacity"] > opacity)
+				if(isdefined(splatter.splatters[i][#"opacity"]) && splatter.splatters[i][#"opacity"] > opacity)
 				{
-					opacity = splatter.var_d47f98a4[i][#"opacity"];
+					opacity = splatter.splatters[i][#"opacity"];
 				}
 			}
 			if(blur > 0 || opacity > 0)
@@ -523,12 +523,12 @@ private function player_splatter(localclientnum)
 				splatter.var_9e4cc220 = 1;
 				function_a837926b(localclientnum, #"hash_73c750f53749d44d");
 				function_4238734d(localclientnum, #"hash_73c750f53749d44d", "Blur Amount", blur);
-				if(isdefined(splatter.var_c03dca7e) && splatter.var_c03dca7e)
+				if(isdefined(splatter.shockrifle) && splatter.shockrifle)
 				{
 					opacity = opacity * 0.05;
 				}
 				function_4238734d(localclientnum, #"hash_73c750f53749d44d", "Opacity", opacity);
-				function_672c739(localclientnum, splatter.var_c03dca7e);
+				function_672c739(localclientnum, splatter.shockrifle);
 			}
 			else if(isdefined(splatter.var_9e4cc220) && splatter.var_9e4cc220)
 			{
@@ -588,7 +588,7 @@ private function splatter_postfx(localclientnum, player, damage, var_cd141ca2, d
 	var_587ce5b0 = 0;
 	var_49774f1 = 0;
 	hold_time = 0;
-	splatter = function_d18a9e97(localclientnum);
+	splatter = getsplatter(localclientnum);
 	if(dot && !death)
 	{
 		splatter.var_90495387 = getservertime(localclientnum);
@@ -661,12 +661,12 @@ function function_441ef0ca(currenttime, elapsedtime, localclientnum, duration, v
 		percent = elapsedtime / duration;
 	}
 	amount = var_991d3376 * percent + var_2347e08e * 1 - percent;
-	splatter = function_d18a9e97(localclientnum);
-	if(amount > 0 && isdefined(splatter.var_d47f98a4[var_cd141ca2][key]) && splatter.var_d47f98a4[var_cd141ca2][key] == 0)
+	splatter = getsplatter(localclientnum);
+	if(amount > 0 && isdefined(splatter.splatters[var_cd141ca2][key]) && splatter.splatters[var_cd141ca2][key] == 0)
 	{
 		level notify(#"hash_518e8873ad943492");
 	}
-	splatter.var_d47f98a4[var_cd141ca2][key] = amount;
+	splatter.splatters[var_cd141ca2][key] = amount;
 }
 
 /*
@@ -854,7 +854,7 @@ private function function_493a8fbc(localclientnum)
 */
 private function function_1cf17bbc(localclientnum, new_blood_stage, prior_blood_stage)
 {
-	if(new_blood_stage >= level.blood.var_14a2badb.stage)
+	if(new_blood_stage >= level.blood.rob.stage)
 	{
 		self.var_28fdff3c = 1;
 	}
@@ -1324,22 +1324,22 @@ private function function_dd830dee()
 	}
 	function_f50652a9();
 	function_b0e51f43();
-	level.blood.var_14a2badb = spawnstruct();
-	if(!isdefined(level.blood.var_14a2badb.stage))
+	level.blood.rob = spawnstruct();
+	if(!isdefined(level.blood.rob.stage))
 	{
-		level.blood.var_14a2badb.stage = (isdefined(level.blood.scriptbundle.var_5e7ac43f) ? level.blood.scriptbundle.var_5e7ac43f : 0);
+		level.blood.rob.stage = (isdefined(level.blood.scriptbundle.var_5e7ac43f) ? level.blood.scriptbundle.var_5e7ac43f : 0);
 	}
-	if(!isdefined(level.blood.var_14a2badb.hold_time))
+	if(!isdefined(level.blood.rob.hold_time))
 	{
-		level.blood.var_14a2badb.hold_time = (isdefined(level.blood.scriptbundle.var_ae06158b) ? level.blood.scriptbundle.var_ae06158b : 0);
+		level.blood.rob.hold_time = (isdefined(level.blood.scriptbundle.var_ae06158b) ? level.blood.scriptbundle.var_ae06158b : 0);
 	}
-	if(!isdefined(level.blood.var_14a2badb.fade_time))
+	if(!isdefined(level.blood.rob.fade_time))
 	{
-		level.blood.var_14a2badb.fade_time = (isdefined(level.blood.scriptbundle.var_356550c9) ? level.blood.scriptbundle.var_356550c9 : 0);
+		level.blood.rob.fade_time = (isdefined(level.blood.scriptbundle.var_356550c9) ? level.blood.scriptbundle.var_356550c9 : 0);
 	}
-	if(!isdefined(level.blood.var_14a2badb.damage_threshold))
+	if(!isdefined(level.blood.rob.damage_threshold))
 	{
-		level.blood.var_14a2badb.damage_threshold = (isdefined(level.blood.scriptbundle.var_8635c7a1) ? level.blood.scriptbundle.var_8635c7a1 : 0);
+		level.blood.rob.damage_threshold = (isdefined(level.blood.scriptbundle.var_8635c7a1) ? level.blood.scriptbundle.var_8635c7a1 : 0);
 	}
 	if(!isdefined(level.blood.var_f5479429))
 	{
@@ -1365,10 +1365,10 @@ private function function_dd830dee()
 private function function_162fe6ec(localclientnum)
 {
 	splatter = spawnstruct();
-	splatter.var_d47f98a4 = [];
+	splatter.splatters = [];
 	for(j = 0; j < 4; j++)
 	{
-		splatter.var_d47f98a4[j] = [];
+		splatter.splatters[j] = [];
 	}
 	splatter.var_120a7b2c = 0;
 	level.blood.var_de10c136.var_51036e02[localclientnum] = splatter;
@@ -1386,7 +1386,7 @@ private function function_162fe6ec(localclientnum)
 private function function_b0e51f43()
 {
 	level.blood.var_de10c136 = spawnstruct();
-	level.blood.var_de10c136.var_ff95fcfe = [];
+	level.blood.var_de10c136.localclients = [];
 	for(i = 0; i < getmaxlocalclients(); i++)
 	{
 		function_162fe6ec(i);

@@ -31,11 +31,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_3ad93d68c19802af", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_3ad93d68c19802af", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -86,7 +86,7 @@ private function function_9e7b3f4d(round_reset)
 		}
 		if(var_696c3b4.size)
 		{
-			namespace_f551babc::fail(#"hash_6a7d01641de1f5c3", var_696c3b4);
+			zm_trial::fail(#"hash_6a7d01641de1f5c3", var_696c3b4);
 		}
 	}
 	foreach(player in getplayers())
@@ -114,7 +114,7 @@ private function function_7bc122af()
 	while(true)
 	{
 		a_weapons = self getweaponslistprimaries();
-		var_1a3ca504 = self namespace_2ba51478::get_player_lethal_grenade();
+		var_1a3ca504 = self zm_loadout::get_player_lethal_grenade();
 		if(!isdefined(a_weapons))
 		{
 			a_weapons = [];

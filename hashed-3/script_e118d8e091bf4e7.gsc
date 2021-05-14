@@ -70,7 +70,7 @@ private function function_cef412a7(einflictor, eattacker, idamage, idflags, smea
 			idamage = self.health + 1;
 		}
 	#/
-	if(isplayer(eattacker) && eattacker infection::function_bf46a7aa())
+	if(isplayer(eattacker) && eattacker infection::is_infected())
 	{
 		return 0;
 	}
@@ -553,7 +553,7 @@ function function_648f6c9b(behaviortreeentity)
 */
 function function_a5c4f83b(behaviortreeentity)
 {
-	behaviortreeentity notify(#"hash_5eba2531770c06e3");
+	behaviortreeentity notify(#"is_underground");
 }
 
 /*

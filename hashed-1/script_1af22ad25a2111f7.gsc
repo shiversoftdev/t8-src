@@ -363,11 +363,11 @@ private function function_e27c41b4(jammer, entity, var_dbd1a594)
 	{
 		return 0;
 	}
-	if(isalive(entity) && isvehicle(entity) && isdefined(level.var_54ebfda9))
+	if(isalive(entity) && isvehicle(entity) && isdefined(level.is_staircase_up))
 	{
 		function_1c430dad(entity, 1);
 		function_58f8bf08(jammer, var_dbd1a594, undefined);
-		entity thread [[level.var_54ebfda9]](var_dbd1a594, jammer);
+		entity thread [[level.is_staircase_up]](var_dbd1a594, jammer);
 		return 1;
 	}
 	if(isalive(entity) && isactor(entity))
@@ -377,7 +377,7 @@ private function function_e27c41b4(jammer, entity, var_dbd1a594)
 		entity callback::callback(#"hash_7140c3848cbefaa1", {#jammer:jammer, #hash_dbd1a594:var_dbd1a594});
 		return 1;
 	}
-	weapon = (isdefined(entity.var_817f15dd) ? entity.var_817f15dd : entity.weapon);
+	weapon = (isdefined(entity.identifier_weapon) ? entity.identifier_weapon : entity.weapon);
 	if(!isdefined(weapon))
 	{
 		return 0;
@@ -411,7 +411,7 @@ private function function_b8c5ab9c(jammer, player, var_dbd1a594)
 	player.isjammed = 1;
 	player.var_fe1ebada = var_dbd1a594;
 	player setempjammed(1);
-	scoreevents::processscoreevent(#"hash_eb00d04b91f2200", var_dbd1a594, undefined, level.var_578f7c6d.weapon);
+	scoreevents::processscoreevent(#"disrupted_enemy", var_dbd1a594, undefined, level.var_578f7c6d.weapon);
 	function_58f8bf08(jammer, var_dbd1a594, player);
 	wait(level.var_578f7c6d.var_4dd46f8a.var_f29418f1);
 	if(!isdefined(player))

@@ -6,11 +6,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_2c9e6caa;
+#namespace zm_hud;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0xE1C2EAA8
 	Offset: 0xA8
 	Size: 0x54
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_431ed482b5f316ae", &__init__, &__main__, #"hash_12378771db09fde7");
+	system::register(#"zm_hud", &__init__, &__main__, #"zm_crafting");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0xBE41D796
 	Offset: 0x108
 	Size: 0x1C
@@ -38,7 +38,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0x80F724D1
 	Offset: 0x130
 	Size: 0x4

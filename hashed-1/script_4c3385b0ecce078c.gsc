@@ -6,11 +6,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_f186f7c5;
+#namespace zm_demo;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_f186f7c5
+	Namespace: zm_demo
 	Checksum: 0xDF6B57F3
 	Offset: 0xC8
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_7c5d4b3e361abd3e", &__init__, undefined, undefined);
+	system::register(#"zm_demo", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_f186f7c5
+	Namespace: zm_demo
 	Checksum: 0xAC2E80C8
 	Offset: 0x110
 	Size: 0x54
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: player_on_connect
-	Namespace: namespace_f186f7c5
+	Namespace: zm_demo
 	Checksum: 0x217F2F9D
 	Offset: 0x170
 	Size: 0x24
@@ -59,7 +59,7 @@ function player_on_connect(localclientnum)
 
 /*
 	Name: watch_predicted_player_changes
-	Namespace: namespace_f186f7c5
+	Namespace: zm_demo
 	Checksum: 0xD9E2A2BB
 	Offset: 0x1A0
 	Size: 0x294

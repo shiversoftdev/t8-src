@@ -16,7 +16,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_4b7e4696d38d13e3", &__init__, undefined, undefined);
+	system::register(#"snowball", &__init__, undefined, undefined);
 }
 
 /*

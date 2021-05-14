@@ -148,7 +148,7 @@ function function_b05ed2fa()
 	self endon(#"hash_7b9527a0182f9b4f");
 	self callback::callback(#"hash_c3f225c9fa3cb25");
 	self.ai.leave.state = 1;
-	if(!isdefined(self.var_b3b7f47d))
+	if(!isdefined(self.exit_spawn))
 	{
 		util::wait_network_frame(2);
 		self delete();
@@ -156,7 +156,7 @@ function function_b05ed2fa()
 	self thread function_e35eee4d();
 	self function_d4c687c9();
 	self pathmode("move allowed");
-	self setgoal(self.var_b3b7f47d.origin, 0, 32);
+	self setgoal(self.exit_spawn.origin, 0, 32);
 	self waittill_timeout(10, #"goal");
 	waittillframeend();
 	self delete();

@@ -22,17 +22,17 @@ function preload()
 	level._effect[#"hash_2b1060af0c8f9976"] = #"hash_73e8d2cf76175901";
 	level._effect[#"hash_3f0f201f556a272f"] = #"hash_4f1f3e18228ac0a0";
 	level._effect[#"hash_62ef18672d041a6f"] = #"hash_7af8fa2d13abeeb1";
-	level._effect[#"hash_c7009c612824425"] = #"hash_306c49d67fca8485";
+	level._effect[#"lantern_explode"] = #"hash_306c49d67fca8485";
 	level._effect[#"hash_5f479f0ba680df7b"] = #"hash_59977c4c851916e0";
 	level._effect[#"hash_7336b7a4cc9d2581"] = #"hash_1a06427eff8dfe13";
 	clientfield::register("scriptmover", "" + #"hash_6aaf03a4358f45f5", 24000, 1, "counter", &function_f1749965, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_6a4317183d0ca452", 24000, 1, "counter", &function_44aa40e0, 0, 0);
-	clientfield::register("world", "" + #"hash_96866bbb1f4c6fe", 24000, 1, "int", &function_56336c80, 0, 0);
-	clientfield::register("world", "" + #"hash_3e034844d2b9d971", 24000, 2, "int", &function_50d386b6, 0, 0);
+	clientfield::register("world", "" + #"lava_init", 24000, 1, "int", &lava_init, 0, 0);
+	clientfield::register("world", "" + #"lava_control", 24000, 2, "int", &lava_control, 0, 0);
 	clientfield::register("world", "" + #"hash_72b5b0359ca48427", 24000, 1, "int", &function_bd0807f3, 0, 0);
 	clientfield::register("world", "" + #"hash_5e69ee96304ec40b", 24000, 1, "int", &function_eb481d38, 0, 0);
 	clientfield::register("vehicle", "" + #"lantern_fx", 24000, 2, "int", &function_f490f0e5, 0, 0);
-	clientfield::register("vehicle", "" + #"hash_7d7ccc494e9c4580", 24000, 1, "counter", &function_8c0856ff, 0, 0);
+	clientfield::register("vehicle", "" + #"lantern_explode_fx", 24000, 1, "counter", &play_lantern_explode_fx, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_78b8d89d34b32241", 24000, 2, "int", &function_19f2f0f2, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_54e24ec6e84ad6e6", 24000, 1, "int", &function_cbc22c9d, 0, 0);
 	namespace_617a54f4::function_d8383812(#"sc_lantern_1", 24000, "sc_lantern_1", 400, level._effect[#"hash_5f479f0ba680df7b"], level._effect[#"hash_7336b7a4cc9d2581"], undefined, undefined, 1);
@@ -92,7 +92,7 @@ function function_e378599(n_radius)
 }
 
 /*
-	Name: function_56336c80
+	Name: lava_init
 	Namespace: namespace_bfc8ee03
 	Checksum: 0x7075690A
 	Offset: 0x9E0
@@ -100,7 +100,7 @@ function function_e378599(n_radius)
 	Parameters: 7
 	Flags: Linked
 */
-function function_56336c80(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function lava_init(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	level.var_eb7fcc70 = getentarray(localclientnum, "lava_entity", "targetname");
 	foreach(var_59bd23de in level.var_eb7fcc70)
@@ -111,7 +111,7 @@ function function_56336c80(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_50d386b6
+	Name: lava_control
 	Namespace: namespace_bfc8ee03
 	Checksum: 0xF94EB21E
 	Offset: 0xAE8
@@ -119,7 +119,7 @@ function function_56336c80(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_50d386b6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function lava_control(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(!isdefined(level.var_eb7fcc70))
 	{
@@ -233,7 +233,7 @@ function function_cbc22c9d(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_8c0856ff
+	Name: play_lantern_explode_fx
 	Namespace: namespace_bfc8ee03
 	Checksum: 0xFCB79ABF
 	Offset: 0x1080
@@ -241,9 +241,9 @@ function function_cbc22c9d(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_8c0856ff(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function play_lantern_explode_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	util::playfxontag(localclientnum, level._effect[#"hash_c7009c612824425"], self, "tag_origin");
+	util::playfxontag(localclientnum, level._effect[#"lantern_explode"], self, "tag_origin");
 }
 
 /*

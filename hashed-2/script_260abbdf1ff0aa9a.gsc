@@ -4,11 +4,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_3fffba66;
+#namespace zm_transform;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_3fffba66
+	Namespace: zm_transform
 	Checksum: 0xF5131257
 	Offset: 0xD0
 	Size: 0x3C
@@ -17,12 +17,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_4acf2a20bb34dae3", &__init__, undefined, undefined);
+	system::register(#"zm_transform", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_3fffba66
+	Namespace: zm_transform
 	Checksum: 0xDC142A64
 	Offset: 0x118
 	Size: 0x94
@@ -37,7 +37,7 @@ function __init__()
 
 /*
 	Name: function_201c2cb7
-	Namespace: namespace_3fffba66
+	Namespace: zm_transform
 	Checksum: 0x7043FD0A
 	Offset: 0x1B8
 	Size: 0x74
@@ -51,7 +51,7 @@ function function_201c2cb7(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_341e5a97
-	Namespace: namespace_3fffba66
+	Namespace: zm_transform
 	Checksum: 0x225D298C
 	Offset: 0x238
 	Size: 0x156
@@ -78,13 +78,13 @@ function function_341e5a97(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else
 	{
-		self notify(#"hash_799138bf6352de8b");
+		self notify(#"unlock_model");
 	}
 }
 
 /*
 	Name: function_8a817bd6
-	Namespace: namespace_3fffba66
+	Namespace: zm_transform
 	Checksum: 0xC5C64C4C
 	Offset: 0x398
 	Size: 0x4C
@@ -93,7 +93,7 @@ function function_341e5a97(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_8a817bd6(model)
 {
-	self waittill_timeout(60, #"death", #"hash_799138bf6352de8b");
-	util::function_722c0c0(model);
+	self waittill_timeout(60, #"death", #"unlock_model");
+	util::unlock_model(model);
 }
 

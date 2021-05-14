@@ -166,9 +166,9 @@ function is_valid_target(e_player)
 	{
 		return 0;
 	}
-	if(isdefined(level.var_b5c27895))
+	if(isdefined(level.registerquest_key_pickup_explode))
 	{
-		return [[level.var_b5c27895]](e_player);
+		return [[level.registerquest_key_pickup_explode]](e_player);
 	}
 	if(e_player != self && e_player laststand::player_is_in_laststand() && (!(isdefined(e_player.var_16735873) && e_player.var_16735873)) && !e_player zm_utility::function_ab9a9770())
 	{
@@ -200,10 +200,10 @@ function validation()
 	{
 		if(is_valid_target(player))
 		{
-			var_453ce4c3 = self get_best_spawnpoint(player);
-			if(isdefined(var_453ce4c3))
+			s_player_respawn = self get_best_spawnpoint(player);
+			if(isdefined(s_player_respawn))
 			{
-				var_453ce4c3 struct::delete();
+				s_player_respawn struct::delete();
 				return 1;
 			}
 		}
@@ -254,10 +254,10 @@ private function function_fdc3c7c4()
 	var_fded3d81[var_fded3d81.size] = self;
 	foreach(player in var_fded3d81)
 	{
-		var_453ce4c3 = self get_best_spawnpoint(player);
-		if(isdefined(var_453ce4c3))
+		s_player_respawn = self get_best_spawnpoint(player);
+		if(isdefined(s_player_respawn))
 		{
-			return var_453ce4c3;
+			return s_player_respawn;
 		}
 	}
 	return undefined;

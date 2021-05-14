@@ -194,7 +194,7 @@ private function onconnect()
 	{
 		self.pers[#"hash_50251e63e4a703b5"] = spawnstruct();
 		self.pers[#"hash_50251e63e4a703b5"].weapons = [];
-		self.pers[#"hash_50251e63e4a703b5"].var_7e21e375 = [];
+		self.pers[#"hash_50251e63e4a703b5"].talents = [];
 		self.pers[#"hash_50251e63e4a703b5"].armor = undefined;
 		self.pers[#"hash_50251e63e4a703b5"].scorestreak = undefined;
 		self.pers[#"hash_50251e63e4a703b5"].clientfields = [];
@@ -450,15 +450,15 @@ private function function_40eb02fc(response, intpayload)
 private function function_5b8256ca(package, isammo = 0, var_e120a933 = undefined, var_eb3ffe17 = 0)
 {
 	money = self.pers[#"money"];
-	var_4244d28c = (var_eb3ffe17 ? 1 : (isdefined(getgametypesetting(#"hash_1b34b26470f4368")) ? getgametypesetting(#"hash_1b34b26470f4368") : 1));
-	cost = package.purchasecost * var_4244d28c;
+	registerend_prestige_imp = (var_eb3ffe17 ? 1 : (isdefined(getgametypesetting(#"hash_1b34b26470f4368")) ? getgametypesetting(#"hash_1b34b26470f4368") : 1));
+	cost = package.purchasecost * registerend_prestige_imp;
 	if(isdefined(isammo) && isammo)
 	{
 		cost = package.var_847b7691 * (isdefined(getgametypesetting(#"hash_71b2b43696e16252")) ? getgametypesetting(#"hash_71b2b43696e16252") : 1);
 	}
 	else if(isdefined(var_e120a933))
 	{
-		cost = package.var_95c30fc5[var_e120a933 - 1].purchasecost * var_4244d28c;
+		cost = package.var_95c30fc5[var_e120a933 - 1].purchasecost * registerend_prestige_imp;
 	}
 	cost = int(cost);
 	if(!isdefined(cost))
@@ -526,15 +526,15 @@ private function function_14e4d700(slot, package)
 {
 	foreach(talent in package.var_60f86f10)
 	{
-		if(!isdefined(self.pers[#"hash_50251e63e4a703b5"].var_7e21e375))
+		if(!isdefined(self.pers[#"hash_50251e63e4a703b5"].talents))
 		{
-			self.pers[#"hash_50251e63e4a703b5"].var_7e21e375 = [];
+			self.pers[#"hash_50251e63e4a703b5"].talents = [];
 		}
-		else if(!isarray(self.pers[#"hash_50251e63e4a703b5"].var_7e21e375))
+		else if(!isarray(self.pers[#"hash_50251e63e4a703b5"].talents))
 		{
-			self.pers[#"hash_50251e63e4a703b5"].var_7e21e375 = array(self.pers[#"hash_50251e63e4a703b5"].var_7e21e375);
+			self.pers[#"hash_50251e63e4a703b5"].talents = array(self.pers[#"hash_50251e63e4a703b5"].talents);
 		}
-		self.pers[#"hash_50251e63e4a703b5"].var_7e21e375[self.pers[#"hash_50251e63e4a703b5"].var_7e21e375.size] = talent.item;
+		self.pers[#"hash_50251e63e4a703b5"].talents[self.pers[#"hash_50251e63e4a703b5"].talents.size] = talent.item;
 	}
 }
 
@@ -878,7 +878,7 @@ private function function_f14e5ee3()
 */
 private function function_898839b4()
 {
-	var_81b9af1a = self.pers[#"hash_50251e63e4a703b5"].var_7e21e375;
+	var_81b9af1a = self.pers[#"hash_50251e63e4a703b5"].talents;
 	foreach(item in var_81b9af1a)
 	{
 		if(item == #"hash_7932008294f0d876")
@@ -928,7 +928,7 @@ private function function_6a829089()
 	var_2b15e2fe = getweapon(#"hash_76d1218de27081f6");
 	if(isdefined(self.var_c7e6d7c7) && self.var_c7e6d7c7)
 	{
-		var_2b15e2fe = getweapon(#"hash_1d58c6214174d3d8");
+		var_2b15e2fe = getweapon(#"gadget_medicalinjectiongun");
 	}
 	self giveweapon(var_2b15e2fe);
 	self loadout::function_442539("specialgrenade", var_2b15e2fe);
@@ -947,7 +947,7 @@ private function function_422164cd()
 {
 	self function_e6f9e3cd();
 	self clearperks();
-	foreach(talent in self.pers[#"hash_50251e63e4a703b5"].var_7e21e375)
+	foreach(talent in self.pers[#"hash_50251e63e4a703b5"].talents)
 	{
 		if(talent == #"hash_7932008294f0d876")
 		{

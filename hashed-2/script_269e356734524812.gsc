@@ -335,7 +335,7 @@ function function_88770699(spawnlist)
 			level.var_3da2623a = [];
 			for(spawn_point_index = 0; spawn_point_index < spawnlist.size; spawn_point_index++)
 			{
-				if(!function_5650f4ee(var_7a594c78, var_55a94d2c, spawnlist[spawn_point_index].team, (isdefined(spawnlist[spawn_point_index].var_a3c53936) ? spawnlist[spawn_point_index].var_a3c53936 : 0)))
+				if(!function_5650f4ee(var_7a594c78, var_55a94d2c, spawnlist[spawn_point_index].team, (isdefined(spawnlist[spawn_point_index]._human_were) ? spawnlist[spawn_point_index]._human_were : 0)))
 				{
 					continue;
 				}

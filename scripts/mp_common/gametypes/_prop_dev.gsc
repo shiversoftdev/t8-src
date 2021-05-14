@@ -60,7 +60,7 @@ function function_93440c52()
 		var_f4098dd1 = 0;
 		var_94dbbfd9 = 0;
 		var_b948ae6c = 0;
-		var_ffe2f24 = getdvarint(#"scr_prop_minigame", 1);
+		minigame_on = getdvarint(#"scr_prop_minigame", 1);
 		var_95ae3da3 = getdvarint(#"hash_38ca626afad6fe7d", 1);
 		var_f6fe53f9 = getdvarfloat(#"player_swimdamage", 10);
 		util::set_dvar_int_if_unset("", 0);
@@ -318,10 +318,10 @@ function function_93440c52()
 			{
 				function_b7c018a7();
 			}
-			if(getdvarint(#"scr_prop_minigame", 1) != var_ffe2f24 && isdefined(level.players) && level.players.size > 0)
+			if(getdvarint(#"scr_prop_minigame", 1) != minigame_on && isdefined(level.players) && level.players.size > 0)
 			{
-				var_ffe2f24 = getdvarint(#"scr_prop_minigame", 1);
-				iprintlnbold((var_ffe2f24 ? "" : ""));
+				minigame_on = getdvarint(#"scr_prop_minigame", 1);
+				iprintlnbold((minigame_on ? "" : ""));
 			}
 			if(getdvarint(#"hash_6132db0becb8f98", 0) != var_b948ae6c && isdefined(level.players) && level.players.size > 0)
 			{
@@ -1067,7 +1067,7 @@ function function_62b9b9ac(file, propsizetext)
 }
 
 /*
-	Name: function_726ec7c0
+	Name: plaza_dom_point_neutral_b_secured
 	Namespace: namespace_829e1a63
 	Checksum: 0x9EDD8097
 	Offset: 0x3F50
@@ -1075,7 +1075,7 @@ function function_62b9b9ac(file, propsizetext)
 	Parameters: 2
 	Flags: None
 */
-function function_726ec7c0(file, propsizetext)
+function plaza_dom_point_neutral_b_secured(file, propsizetext)
 {
 	/#
 		foreach(var_8889f985 in level.proplist)
@@ -1214,19 +1214,19 @@ function function_2b23b2b6()
 			return;
 		}
 		fprintln(file, "");
-		function_726ec7c0(file, "");
+		plaza_dom_point_neutral_b_secured(file, "");
 		fprintln(file, "");
 		fprintln(file, "");
-		function_726ec7c0(file, "");
+		plaza_dom_point_neutral_b_secured(file, "");
 		fprintln(file, "");
 		fprintln(file, "");
-		function_726ec7c0(file, "");
+		plaza_dom_point_neutral_b_secured(file, "");
 		fprintln(file, "");
 		fprintln(file, "");
-		function_726ec7c0(file, "");
+		plaza_dom_point_neutral_b_secured(file, "");
 		fprintln(file, "");
 		fprintln(file, "");
-		function_726ec7c0(file, "");
+		plaza_dom_point_neutral_b_secured(file, "");
 		iprintlnbold("" + var_b522696f + var_7e52c89c + "" + var_d6ade535);
 		println("" + var_b522696f + var_7e52c89c + "" + var_d6ade535);
 		closefile(file);

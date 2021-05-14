@@ -175,14 +175,14 @@ function get_player_zone()
 	Parameters: 3
 	Flags: Linked
 */
-function get_zone_from_position(v_pos, ignore_enabled_check = 0, var_1ea110b6 = 0)
+function get_zone_from_position(v_pos, ignore_enabled_check = 0, registerchaos_round_end_vo_done_wait_ = 0)
 {
 	if(zm_utility::function_21f4ac36())
 	{
 		node = function_52c1730(v_pos, level.var_5f6d543e, 500);
 		if(isdefined(node))
 		{
-			if(var_1ea110b6 && !isdefined(getnoderegion(node)))
+			if(registerchaos_round_end_vo_done_wait_ && !isdefined(getnoderegion(node)))
 			{
 				return undefined;
 			}
@@ -626,14 +626,14 @@ function zone_init(zone_name, zone_tag)
 	var_34065104 = array("inner_zigzag_radius", "outer_zigzag_radius", "zigzag_distance_min", "zigzag_distance_max", "zigzag_activation_distance", "zigzag_enabled");
 	foreach(node in zone.nodes)
 	{
-		foreach(var_72fd8204 in var_34065104)
+		foreach(override_name in var_34065104)
 		{
-			if(isdefined(node.(var_72fd8204)))
+			if(isdefined(node.(override_name)))
 			{
 				/#
-					assert(!isdefined(zone.(var_72fd8204)), "" + var_72fd8204 + "" + zone_name);
+					assert(!isdefined(zone.(override_name)), "" + override_name + "" + zone_name);
 				#/
-				zone.(var_72fd8204) = node.(var_72fd8204);
+				zone.(override_name) = node.(override_name);
 			}
 		}
 	}
@@ -1803,10 +1803,10 @@ private function function_8a9003ae()
 				for(index = 0; index < zone.a_loc_types[var_4b0b7fff].size; index++)
 				{
 					node = zone.a_loc_types[var_4b0b7fff][index];
-					var_560220f0 = node.origin;
+					node_location = node.origin;
 					/#
-						line(var_db6c400c, var_560220f0, line_color, 1, 0, 1);
-						sphere(var_560220f0, 6, var_8a28016b, 1, 0, 10, 1);
+						line(var_db6c400c, node_location, line_color, 1, 0, 1);
+						sphere(node_location, 6, var_8a28016b, 1, 0, 10, 1);
 					#/
 				}
 			}

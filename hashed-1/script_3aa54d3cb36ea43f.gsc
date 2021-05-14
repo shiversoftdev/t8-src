@@ -46,7 +46,7 @@ autoexec function function_89f2df9()
 function __init__()
 {
 	function_ea46ca6f();
-	namespace_57ff8cbb::function_cdf5a512(#"gegenees", &function_7640eac2);
+	zm_cleanup::function_cdf5a512(#"gegenees", &function_7640eac2);
 	zm_player::register_player_damage_callback(&function_7e791d5d);
 	level thread function_b656013e();
 	if(zm_utility::is_standard())
@@ -117,7 +117,7 @@ function function_ea46ca6f()
 		#/
 		return;
 	}
-	spawner::add_archetype_spawn_function(#"gegenees", &function_a3572921);
+	spawner::add_archetype_spawn_function(#"gegenees", &gegenees_init);
 	foreach(var_6ad43ef7 in level.var_b3d6ef3b)
 	{
 		var_6ad43ef7.is_enabled = 1;
@@ -126,7 +126,7 @@ function function_ea46ca6f()
 }
 
 /*
-	Name: function_a3572921
+	Name: gegenees_init
 	Namespace: namespace_75cbf125
 	Checksum: 0x10040D60
 	Offset: 0x650
@@ -134,13 +134,13 @@ function function_ea46ca6f()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a3572921()
+function gegenees_init()
 {
 	self.maxhealth = int(self namespace_e0710ee6::function_8d44707e(1, self._starting_round_number) * (isdefined(level.var_9503486c) ? level.var_9503486c : 1));
 	self.health = self.maxhealth;
 	self zm_score::function_82732ced();
 	self.var_ab8f2b90 = 3;
-	namespace_81245006::function_b8cf6ebd(self, "c_t8_zmb_gegenees_weakpoint_def");
+	namespace_81245006::initweakpoints(self, "c_t8_zmb_gegenees_weakpoint_def");
 }
 
 /*
@@ -342,7 +342,7 @@ function function_7107da88(var_dbce0c44)
 */
 function round_spawn()
 {
-	ai = function_6249817();
+	ai = spawn_single();
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
@@ -352,7 +352,7 @@ function round_spawn()
 }
 
 /*
-	Name: function_6249817
+	Name: spawn_single
 	Namespace: namespace_75cbf125
 	Checksum: 0x7BFA1897
 	Offset: 0x1020
@@ -360,7 +360,7 @@ function round_spawn()
 	Parameters: 3
 	Flags: Linked
 */
-function function_6249817(b_force_spawn = 0, var_eb3a8721, var_bc66d64b)
+function spawn_single(b_force_spawn = 0, var_eb3a8721, var_bc66d64b)
 {
 	if(!b_force_spawn && !function_48c60fc2())
 	{

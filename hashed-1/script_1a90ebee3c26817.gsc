@@ -152,7 +152,7 @@ function usekillstreakstraferun(hardpointtype)
 	plane.maxhealth = 999999;
 	plane clientfield::set("enemyvehicle", 1);
 	plane.targetname = "strafePlane";
-	plane.var_817f15dd = getweapon("straferun");
+	plane.identifier_weapon = getweapon("straferun");
 	plane.numstrafes = 0;
 	plane.numflares = 1;
 	plane.soundmod = "straferun";

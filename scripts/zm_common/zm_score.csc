@@ -51,11 +51,11 @@ function __init__()
 	Parameters: 4
 	Flags: Linked
 */
-function score_cf_register_info(name, var_948bda55, max_count, func_callback)
+function score_cf_register_info(name, version, max_count, func_callback)
 {
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".score_cf_" + name, var_948bda55, getminbitcountfornum(max_count), "counter", func_callback, 0, 0);
+		clientfield::register("worlduimodel", "PlayerList.client" + i + ".score_cf_" + name, version, getminbitcountfornum(max_count), "counter", func_callback, 0, 0);
 	}
 }
 

@@ -1922,12 +1922,12 @@ private function function_166d74b2(planner, constants)
 	for(i = 0; i < var_3d32e488.size; i++)
 	{
 		var_b44338e1 = 1;
-		foreach(var_a709b579 in var_3d32e488[i])
+		foreach(possiblemember in var_3d32e488[i])
 		{
 			var_5dc382b8 = 0;
-			foreach(var_5214ba9b in currentsquad)
+			foreach(currentmember in currentsquad)
 			{
-				if(var_a709b579[#"entnum"] == var_5214ba9b[#"entnum"])
+				if(possiblemember[#"entnum"] == currentmember[#"entnum"])
 				{
 					var_5dc382b8 = 1;
 					break;

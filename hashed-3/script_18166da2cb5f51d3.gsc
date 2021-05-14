@@ -429,7 +429,7 @@ function function_a94fc02e(entity)
 		entity zombie_utility::set_zombie_run_cycle("sprint");
 	}
 	entity.var_a2691e6b = gettime() + randomintrange(5000, 7500);
-	entity.var_1891dea6 = 1;
+	entity.is_charging = 1;
 	var_b7eca892 = {#enemy:entity.enemy};
 	blackboard::addblackboardevent("skeleton_speed_update", var_b7eca892, randomintrange(1000, 2000));
 	if(isdefined(level.var_a5007a40))
@@ -449,7 +449,7 @@ function function_a94fc02e(entity)
 */
 function function_9f7eb359(entity)
 {
-	entity.var_1891dea6 = 0;
+	entity.is_charging = 0;
 	entity.var_a9bb453f = gettime() + randomintrange(5000, 7500);
 	if(entity.zombie_move_speed === "run")
 	{
@@ -480,7 +480,7 @@ private function function_7ef4937e(entity)
 	{
 		return 0;
 	}
-	if(isdefined(self.var_1891dea6) && self.var_1891dea6)
+	if(isdefined(self.is_charging) && self.is_charging)
 	{
 		if(distance2dsquared(self.enemy.origin, entity.origin) >= 1000 * 1000 || gettime() >= self.var_a2691e6b)
 		{

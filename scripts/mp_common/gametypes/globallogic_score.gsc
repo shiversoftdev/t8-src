@@ -936,13 +936,13 @@ function _setplayerscore(player, score, var_e21e8076, var_53c3aa0b)
 	{
 		if(isarenamode())
 		{
-			amount = var_e21e8076 - player.pers[#"hash_6061882505788180"] + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"hash_755d58b1e8338e55", #"arenavalue");
-			player stats::set_stat(#"playerstatsbygametype", level.var_12323003, #"hash_755d58b1e8338e55", #"arenavalue", amount);
+			amount = var_e21e8076 - player.pers[#"hash_6061882505788180"] + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"arenavalue");
+			player stats::set_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"arenavalue", amount);
 		}
 		else
 		{
-			amount = var_e21e8076 - player.pers[#"hash_6061882505788180"] + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"hash_755d58b1e8338e55", #"statvalue");
-			player stats::set_stat(#"playerstatsbygametype", level.var_12323003, #"hash_755d58b1e8338e55", #"statvalue", amount);
+			amount = var_e21e8076 - player.pers[#"hash_6061882505788180"] + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"statvalue");
+			player stats::set_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"statvalue", amount);
 		}
 		player.pers[#"hash_6061882505788180"] = var_e21e8076;
 		player.var_f22ee5e = player.pers[#"hash_6061882505788180"];
@@ -2391,8 +2391,8 @@ function givekillstats(smeansofdeath, weapon, evictim, var_e7a369ea)
 	pixbeginevent(#"givekillstats");
 	if(self === var_e7a369ea)
 	{
-		self namespace_bd02cf1::function_896ac347(weapon, #"kills", 1);
-		self namespace_bd02cf1::function_1af985ba(weapon);
+		self activecamo::function_896ac347(weapon, #"kills", 1);
+		self activecamo::function_1af985ba(weapon);
 		self incpersstat(#"kills", 1, 1, 1);
 		self.kills = self getpersstat(#"kills");
 		self updatestatratio("kdratio", "kills", "deaths");
@@ -2418,7 +2418,7 @@ function givekillstats(smeansofdeath, weapon, evictim, var_e7a369ea)
 	attacker = self;
 	if(smeansofdeath === "MOD_HEAD_SHOT" && !killstreaks::is_killstreak_weapon(weapon))
 	{
-		self namespace_bd02cf1::function_896ac347(weapon, #"headshots", 1);
+		self activecamo::function_896ac347(weapon, #"headshots", 1);
 		attacker thread incpersstat(#"headshots", 1, 1, 0);
 		attacker.headshots = attacker.pers[#"headshots"];
 		if(isdefined(evictim))

@@ -50,7 +50,7 @@ function function_45057dc4()
 {
 	level endon(#"end_game");
 	self endon(#"disconnect");
-	self waittill(#"hash_1e863eee64a1b13f");
+	self waittill(#"challenges_complete");
 	self zm_utility::giveachievement_wrapper("zm_towers_challenges");
 	/#
 		self function_53b04cab("");
@@ -159,11 +159,11 @@ function function_7b7ba154(s_params)
 */
 function function_9bb7596b()
 {
-	var_661c10f3 = self zm_stats::function_eb50d9bf("towers_acid_trap_built_ra");
-	var_9f76fc5e = self zm_stats::function_eb50d9bf("towers_acid_trap_built_danu");
-	var_d3e78100 = self zm_stats::function_eb50d9bf("towers_acid_trap_built_odin");
-	var_2e93c0d1 = self zm_stats::function_eb50d9bf("towers_acid_trap_built_zeus");
-	if(var_661c10f3 && var_9f76fc5e && var_d3e78100 && var_2e93c0d1)
+	b_ra = self zm_stats::function_eb50d9bf("towers_acid_trap_built_ra");
+	b_danu = self zm_stats::function_eb50d9bf("towers_acid_trap_built_danu");
+	b_odin = self zm_stats::function_eb50d9bf("towers_acid_trap_built_odin");
+	b_zeus = self zm_stats::function_eb50d9bf("towers_acid_trap_built_zeus");
+	if(b_ra && b_danu && b_odin && b_zeus)
 	{
 		self zm_utility::giveachievement_wrapper("zm_towers_trap_build");
 	}
@@ -219,7 +219,7 @@ function function_5180cfce(s_params)
 {
 	e_projectile = s_params.einflictor;
 	w_weapon = s_params.weapon;
-	if(!isdefined(w_weapon) || !namespace_10f9f462::function_5399634d(w_weapon) || namespace_10f9f462::function_c6da1395(w_weapon))
+	if(!isdefined(w_weapon) || !namespace_10f9f462::is_crossbow(w_weapon) || namespace_10f9f462::function_c6da1395(w_weapon))
 	{
 		return undefined;
 	}
@@ -228,7 +228,7 @@ function function_5180cfce(s_params)
 		return undefined;
 	}
 	var_73e48d1a = e_projectile.weapon;
-	if(!isdefined(var_73e48d1a) || !namespace_10f9f462::function_5399634d(var_73e48d1a) || namespace_10f9f462::function_c6da1395(var_73e48d1a))
+	if(!isdefined(var_73e48d1a) || !namespace_10f9f462::is_crossbow(var_73e48d1a) || namespace_10f9f462::function_c6da1395(var_73e48d1a))
 	{
 		return undefined;
 	}
@@ -314,10 +314,10 @@ function function_a24ba4fc()
 	/#
 		self function_53b04cab("");
 	#/
-	self namespace_ff457ca2::function_9a9ab6f6(#"hash_6d5340d9e43ed73d");
+	self zm_challenges::function_9a9ab6f6(#"hash_6d5340d9e43ed73d");
 	if(isdefined(level.var_2d744147) && level.var_2d744147 <= 5940000)
 	{
-		self namespace_ff457ca2::function_979f4cc0(#"hash_69f53cb2579fba3e");
+		self zm_challenges::function_979f4cc0(#"hash_69f53cb2579fba3e");
 	}
 }
 

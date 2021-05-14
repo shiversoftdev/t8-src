@@ -75,7 +75,7 @@ private function setupcallbacks()
 	callback::on_joined_team(&onplayerjoinedteam);
 	callback::on_disconnect(&onplayerdisconnect);
 	callback::add_callback(#"hash_4acc79bbf6402a39", &function_d3805306);
-	ability_player::register_gadget_activation_callbacks(8, &gadget_icepick_on, &function_b1652708);
+	ability_player::register_gadget_activation_callbacks(8, &gadget_icepick_on, &gadget_icepick_off);
 }
 
 /*
@@ -441,9 +441,9 @@ function onplayerdisconnect()
 */
 private function function_70ed4baf(entity)
 {
-	if(isdefined(entity.var_817f15dd))
+	if(isdefined(entity.identifier_weapon))
 	{
-		return entity.var_817f15dd;
+		return entity.identifier_weapon;
 	}
 	if(isdefined(entity.weapon))
 	{
@@ -1127,7 +1127,7 @@ private function function_aadad2c(var_dbd1a594, var_11a83c3a)
 		assert(isdefined(var_11a83c3a));
 	#/
 	var_8b745faa = getweapon(#"gadget_icepick");
-	scoreevents::processscoreevent(#"hash_1407346ac663aa4e", var_dbd1a594, var_11a83c3a, var_8b745faa);
+	scoreevents::processscoreevent(#"hacked_enemy", var_dbd1a594, var_11a83c3a, var_8b745faa);
 	var_11a83c3a clientfield::set_player_uimodel("hudItems.hackedRebootProgress", 0);
 	var_11a83c3a thread killstreaks::play_taacom_dialog("specialistHackBegin", undefined, undefined, undefined, undefined, undefined, 1);
 	var_11a83c3a.var_9b4cc45c = gettime();
@@ -1193,7 +1193,7 @@ private function function_bf744a1e(var_dbd1a594, var_11a83c3a)
 {
 	var_11a83c3a.var_e2131267 = var_dbd1a594;
 	var_8b745faa = getweapon(#"gadget_icepick");
-	scoreevents::processscoreevent(#"hash_1407346ac663aa4e", var_dbd1a594, var_11a83c3a, var_8b745faa);
+	scoreevents::processscoreevent(#"hacked_enemy", var_dbd1a594, var_11a83c3a, var_8b745faa);
 	var_51d5c26f = function_13f4415c();
 	var_e7af1dd4 = (var_11a83c3a function_6c32d092(#"talent_resistance") ? (isdefined(var_51d5c26f.var_4624074e) ? var_51d5c26f.var_4624074e : 1) : 1);
 	statuseffect = function_4d1e7b48("hacked");
@@ -1348,7 +1348,7 @@ private function function_30fe16c7()
 }
 
 /*
-	Name: function_b1652708
+	Name: gadget_icepick_off
 	Namespace: namespace_94f334ac
 	Checksum: 0xD0DAA5A0
 	Offset: 0x3BA0
@@ -1356,7 +1356,7 @@ private function function_30fe16c7()
 	Parameters: 2
 	Flags: Private
 */
-private function function_b1652708(slot, weapon)
+private function gadget_icepick_off(slot, weapon)
 {
 	self clientfield::set_to_player("gadget_icepick_on", 0);
 	self notify(#"hash_2945c35e0b146804");

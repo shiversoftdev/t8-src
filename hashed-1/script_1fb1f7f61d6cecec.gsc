@@ -26,7 +26,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_d287d6d0be9f28c", &__init__, &__main__, #"hash_1f11cdc1b149b62b");
+	system::register(#"hash_d287d6d0be9f28c", &__init__, &__main__, #"zm_loadout");
 }
 
 /*
@@ -44,7 +44,7 @@ function __init__()
 	{
 		clientfield::register("actor", "" + #"hash_59e8c30d5e28dad3", 14000, 1, "int");
 		clientfield::register("scriptmover", "" + #"hash_d260ef4191c5b3d", 14000, 1, "int");
-		namespace_2ba51478::register_lethal_grenade_for_level(#"hash_2b3a2f2eeada34a8");
+		zm_loadout::register_lethal_grenade_for_level(#"hash_2b3a2f2eeada34a8");
 	}
 }
 
@@ -95,9 +95,9 @@ function function_e95f47c2()
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill(#"start_of_round");
-		if(var_88706ea7.n_round_number == 17)
+		s_result = undefined;
+		s_result = level waittill(#"start_of_round");
+		if(s_result.n_round_number == 17)
 		{
 			level thread function_da29ac13();
 			return;
@@ -141,7 +141,7 @@ function function_e12bc077()
 	if(randomint(100) < 100)
 	{
 		level.var_17bf15ba = self;
-		namespace_3fffba66::function_5db4f2f5(self, 1);
+		zm_transform::function_5db4f2f5(self, 1);
 		while(isalive(self) && !self clientfield::get("zombie_eye_glow"))
 		{
 			wait(1);
@@ -250,7 +250,7 @@ function function_23287dd()
 		if(ai_zombie.archetype === #"zombie" && ai_zombie !== level.var_17bf15ba)
 		{
 			n_move_time = 1.5;
-			namespace_3fffba66::function_5db4f2f5(ai_zombie, 1);
+			zm_transform::function_5db4f2f5(ai_zombie, 1);
 			while(isalive(ai_zombie))
 			{
 				if(100 > distancesquared(ai_zombie.origin + vectorscale((0, 0, 1), 60), level.var_23d44713.origin))
@@ -374,12 +374,12 @@ function function_4634a866()
 	level flag::wait_till("magicbox_initialized");
 	level._effect[#"hash_2ff87d61167ea531"] = #"hash_4bd4c9b0fb97f425";
 	level._effect[#"hash_21167096dfea3409"] = #"hash_4bd4c9b0fb97f425";
-	foreach(var_d6524d4e in level.chests)
+	foreach(s_chest in level.chests)
 	{
-		if(isdefined(var_d6524d4e.pandora_light))
+		if(isdefined(s_chest.pandora_light))
 		{
-			var_d6524d4e.pandora_light delete();
-			var_d6524d4e thread [[level.pandora_show_func]]();
+			s_chest.pandora_light delete();
+			s_chest thread [[level.pandora_show_func]]();
 		}
 		wait(0.1);
 	}
@@ -467,7 +467,7 @@ private function devgui()
 					level thread function_74441f15();
 					break;
 				}
-				case "hash_29b0c2e33f1c9ff9":
+				case "toggle_debug":
 				{
 					if(!isdefined(level.var_fa38e985))
 					{

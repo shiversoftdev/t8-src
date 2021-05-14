@@ -14,11 +14,11 @@
 #using scripts\zm_common\zm_score.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_ad4d960b;
+#namespace zm_armor;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0x612BEAED
 	Offset: 0xD8
 	Size: 0x3C
@@ -27,12 +27,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_2846f29abff60a6c", &__init__, undefined, undefined);
+	system::register(#"zm_armor", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0x2C64099D
 	Offset: 0x120
 	Size: 0x24
@@ -46,7 +46,7 @@ function __init__()
 
 /*
 	Name: on_connect
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0x812B01DA
 	Offset: 0x150
 	Size: 0x1C
@@ -60,14 +60,14 @@ function on_connect()
 
 /*
 	Name: register
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0x3286EF6E
 	Offset: 0x178
 	Size: 0xA6
 	Parameters: 2
 	Flags: Linked
 */
-function register(var_7c8fcded, var_86d1efe5 = 1)
+function register(var_7c8fcded, is_permanent = 1)
 {
 	if(!isdefined(level.var_9555ebfb))
 	{
@@ -77,12 +77,12 @@ function register(var_7c8fcded, var_86d1efe5 = 1)
 	{
 		level.var_9555ebfb = array(level.var_9555ebfb);
 	}
-	level.var_9555ebfb[var_7c8fcded] = var_86d1efe5;
+	level.var_9555ebfb[var_7c8fcded] = is_permanent;
 }
 
 /*
 	Name: function_49f4b6ee
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0xA84B8BB8
 	Offset: 0x228
 	Size: 0x136
@@ -111,7 +111,7 @@ function function_49f4b6ee()
 
 /*
 	Name: add
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0xD4AE85D9
 	Offset: 0x368
 	Size: 0x13E
@@ -150,7 +150,7 @@ function add(var_7c8fcded, var_3ed63752, var_28066539, var_df7ee5d1 = #"hash_208
 
 /*
 	Name: remove
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0xDEACFF90
 	Offset: 0x4B0
 	Size: 0x1DE
@@ -182,7 +182,7 @@ function remove(var_7c8fcded, var_2cd89ceb = 0)
 
 /*
 	Name: get
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0xC77D5107
 	Offset: 0x698
 	Size: 0x30
@@ -200,7 +200,7 @@ function get(var_7c8fcded)
 
 /*
 	Name: damage
-	Namespace: namespace_ad4d960b
+	Namespace: zm_armor
 	Checksum: 0x637FCE26
 	Offset: 0x6D0
 	Size: 0x310

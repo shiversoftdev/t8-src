@@ -25,7 +25,7 @@ function init()
 	clientfield::register("scriptmover", "" + #"hash_1f572bbcdde55d9d", 1, getminbitcountfornum(5), "int", &function_49b054dd, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_7e426bfd123d0beb", 1, var_440ad52e, "int", &function_d36b21ad, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_4bea78fdf78a2613", 1, 1, "int", &function_c8043066, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_757f7e5e6c2f5c8e", 1, 1, "int", &function_91d5ceaf, 0, 0);
+	clientfield::register("scriptmover", "" + #"orb_explosion", 1, 1, "int", &orb_explosion, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_6e2f9a57d1bc4b6a", 1, 1, "int", &function_e5437696, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_3eb94ba53dd09196", 1, 1, "int", &function_d598fd7e, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_3d147d21de9de5c7", 1, 1, "int", &function_23d38bdc, 0, 0);
@@ -42,7 +42,7 @@ function init()
 	clientfield::register("toplayer", "" + #"hash_1ee540924e569350", 1, 1, "int", &function_e83bf3a, 0, 0);
 	clientfield::register("actor", "" + #"hash_27db1707c088563c", 1, 1, "int", &function_e33e10b9, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_376c030aee1d6ccb", 1, 2, "int", &function_3537ad19, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_201ef69f0a0a5dce", 1, 1, "int", &function_e86db015, 0, 0);
+	clientfield::register("scriptmover", "" + #"hash_201ef69f0a0a5dce", 1, 1, "int", &group_bot_mp, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_b8601726e1e4a6a", 1, 1, "int", &function_5688631d, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_624198b41791933f", 1, 1, "int", &function_8fe4f2a7, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_5cab8aa95fc9ea84", 1, 1, "counter", &function_d663c13e, 0, 0);
@@ -154,7 +154,7 @@ function function_c8043066(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_91d5ceaf
+	Name: orb_explosion
 	Namespace: namespace_69ddf44f
 	Checksum: 0x6D163663
 	Offset: 0x13B0
@@ -162,7 +162,7 @@ function function_c8043066(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_91d5ceaf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function orb_explosion(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_1865ffb80a76c1b"], self, "tag_origin");
 }
@@ -694,7 +694,7 @@ function function_3537ad19(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_e86db015
+	Name: group_bot_mp
 	Namespace: namespace_69ddf44f
 	Checksum: 0x1BA1EE41
 	Offset: 0x2AC0
@@ -702,7 +702,7 @@ function function_3537ad19(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_e86db015(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function group_bot_mp(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(isdefined(self.var_f756621f))
 	{

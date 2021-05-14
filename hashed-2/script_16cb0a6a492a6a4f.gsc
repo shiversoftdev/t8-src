@@ -138,9 +138,9 @@ function function_ee150fcc(team, team_players)
 */
 private function function_f18da875(platoon, player_counts)
 {
-	foreach(var_3613939d, count in player_counts)
+	foreach(test_platoon, count in player_counts)
 	{
-		if(var_3613939d != platoon && count >= player_counts[platoon])
+		if(test_platoon != platoon && count >= player_counts[platoon])
 		{
 			return 0;
 		}
@@ -166,12 +166,12 @@ function function_efe5a681(team)
 	}
 	if(getdvarint(#"hash_aecb27a63d1fcee", 0) == 0)
 	{
-		if(namespace_aa9b5883::function_382a49e0())
+		if(platoons::function_382a49e0())
 		{
 			platoon = function_22448d6c(team);
 			if(platoon != #"invalid" && platoon != #"none")
 			{
-				player_counts = namespace_aa9b5883::count_players();
+				player_counts = platoons::count_players();
 				if(player_counts[platoon] >= level.platoon.max_players)
 				{
 					return 0;
@@ -1044,20 +1044,20 @@ private function function_6c66cc64(team)
 			voip = voip + "";
 		}
 		platoon = function_22448d6c(team);
-		var_39e16cb3 = "";
+		platoon_name = "";
 		if(platoon == #"invalid")
 		{
-			var_39e16cb3 = var_39e16cb3 + "";
+			platoon_name = platoon_name + "";
 		}
 		else if(platoon == #"none")
 		{
-			var_39e16cb3 = var_39e16cb3 + "";
+			platoon_name = platoon_name + "";
 		}
-		else if(isdefined(level.var_aa9b5883[platoon]))
+		else if(isdefined(level.platoons[platoon]))
 		{
-			var_39e16cb3 = var_39e16cb3 + level.var_aa9b5883[platoon].name;
+			platoon_name = platoon_name + level.platoons[platoon].name;
 		}
-		println("" + "" + var_39e16cb3 + "" + var_54e8d52e + "" + voip);
+		println("" + "" + platoon_name + "" + var_54e8d52e + "" + voip);
 		foreach(player in players)
 		{
 			party = player function_491311f4();

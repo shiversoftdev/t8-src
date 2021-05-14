@@ -427,13 +427,13 @@ function create_trigger(clientnum)
 	Parameters: 4
 	Flags: Linked
 */
-function function_3539a829(local_client_num, var_976f287, var_6b440f5c, tag)
+function function_3539a829(local_client_num, friendly_fx, enemy_fx, tag)
 {
 	if(self function_4e0ca360())
 	{
-		return util::playfxontag(local_client_num, var_976f287, self, tag);
+		return util::playfxontag(local_client_num, friendly_fx, self, tag);
 	}
-	return util::playfxontag(local_client_num, var_6b440f5c, self, tag);
+	return util::playfxontag(local_client_num, enemy_fx, self, tag);
 }
 
 /*
@@ -445,13 +445,13 @@ function function_3539a829(local_client_num, var_976f287, var_6b440f5c, tag)
 	Parameters: 4
 	Flags: None
 */
-function function_94d3d1d(local_client_num, var_976f287, var_6b440f5c, origin)
+function function_94d3d1d(local_client_num, friendly_fx, enemy_fx, origin)
 {
 	if(self function_4e0ca360())
 	{
-		return playfx(local_client_num, var_976f287, origin);
+		return playfx(local_client_num, friendly_fx, origin);
 	}
-	return playfx(local_client_num, var_6b440f5c, origin);
+	return playfx(local_client_num, enemy_fx, origin);
 }
 
 /*

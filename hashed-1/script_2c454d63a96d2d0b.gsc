@@ -6,11 +6,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_48f3568;
+#namespace zm_characters;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_48f3568
+	Namespace: zm_characters
 	Checksum: 0x70086407
 	Offset: 0xE98
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_577c04066f66691", &__init__, undefined, undefined);
+	system::register(#"zm_characters", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_48f3568
+	Namespace: zm_characters
 	Checksum: 0xDBCED7AC
 	Offset: 0xEE0
 	Size: 0x1E
@@ -38,7 +38,7 @@ function __init__()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_48f3568
+	Namespace: zm_characters
 	Checksum: 0x20DC8385
 	Offset: 0xF08
 	Size: 0x1982

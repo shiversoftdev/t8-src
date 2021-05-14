@@ -34,7 +34,7 @@ function __init__()
 		level._deployable_weapons = [];
 	}
 	level.var_c442de72 = &function_c1ee2dce;
-	level thread function_77b223db();
+	level thread group_mega_round_end_abcd_talking();
 	if(!isdefined(level.var_1765ad79))
 	{
 		level.var_1765ad79 = 1;
@@ -72,12 +72,12 @@ function function_2e088f73(weapon, var_7ec218c6)
 	Parameters: 1
 	Flags: None
 */
-function function_3e8d9b27(var_bd0cf7ac)
+function function_3e8d9b27(previs_weapon)
 {
 	previs_model = self;
-	if(isdefined(var_bd0cf7ac.var_4bcd08b0))
+	if(isdefined(previs_weapon.var_4bcd08b0))
 	{
-		previs_model setmodel(var_bd0cf7ac.var_4bcd08b0);
+		previs_model setmodel(previs_weapon.var_4bcd08b0);
 	}
 	else
 	{
@@ -129,7 +129,7 @@ function function_35d1c69f(localclientnum, player, weapon)
 }
 
 /*
-	Name: function_77b223db
+	Name: group_mega_round_end_abcd_talking
 	Namespace: deployable
 	Checksum: 0x976F6A51
 	Offset: 0x560
@@ -137,19 +137,19 @@ function function_35d1c69f(localclientnum, player, weapon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_77b223db(localclientnum = 0)
+function group_mega_round_end_abcd_talking(localclientnum = 0)
 {
 	level notify("previs_deployable_" + localclientnum);
 	level endon("previs_deployable_" + localclientnum);
 	wait(10);
 	previs_model = spawn(localclientnum, (0, 0, 0), "script_model");
-	var_bd0cf7ac = getweapon(#"hash_49441cf211e409b9");
+	previs_weapon = getweapon(#"hash_49441cf211e409b9");
 	var_5929417d = 0;
 	var_2e40ce22 = 0;
 	var_d4d81eb4 = 0;
 	while(true)
 	{
-		var_fdadca2a = var_bd0cf7ac;
+		var_fdadca2a = previs_weapon;
 		if(!var_5929417d)
 		{
 			if(var_2e40ce22 == 1)
@@ -186,16 +186,16 @@ function function_77b223db(localclientnum = 0)
 		{
 			continue;
 		}
-		var_bd0cf7ac = undefined;
+		previs_weapon = undefined;
 		if(function_96d4f30e(localclientnum))
 		{
-			var_bd0cf7ac = function_e9fe14ee(localclientnum);
+			previs_weapon = function_e9fe14ee(localclientnum);
 		}
 		else
 		{
-			var_bd0cf7ac = player.weapon;
+			previs_weapon = player.weapon;
 		}
-		if(!var_bd0cf7ac.deployable || var_bd0cf7ac.var_e0d42861)
+		if(!previs_weapon.deployable || previs_weapon.var_e0d42861)
 		{
 			continue;
 		}
@@ -204,7 +204,7 @@ function function_77b223db(localclientnum = 0)
 			var_5929417d = 1;
 			continue;
 		}
-		var_314a434f = function_35d1c69f(localclientnum, player, var_bd0cf7ac);
+		var_314a434f = function_35d1c69f(localclientnum, player, previs_weapon);
 		player function_bf191832(var_314a434f.isvalid, var_314a434f.origin, var_314a434f.angles);
 	}
 }

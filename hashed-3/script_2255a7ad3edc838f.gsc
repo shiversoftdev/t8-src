@@ -54,7 +54,7 @@ function __init__()
 		level thread devgui_bot_loop();
 		level thread bot_joinleave_loop();
 	#/
-	namespace_13f469d::function_529ab7eb();
+	namespace_13f469d::registerbotinterfaceattributes();
 }
 
 /*
@@ -87,7 +87,7 @@ function add_bot(team, name = undefined, clanabbrev = undefined)
 	{
 		return undefined;
 	}
-	bot function_79cb401b();
+	bot init_bot();
 	bot.goalradius = 512;
 	if(isdefined(level.disableclassselection) && level.disableclassselection)
 	{
@@ -499,7 +499,7 @@ function on_player_connect()
 	#/
 	if(!self initialized())
 	{
-		self function_79cb401b();
+		self init_bot();
 	}
 	waitframe(1);
 	if(isdefined(level.onbotconnect))
@@ -651,7 +651,7 @@ function function_c6e29bdf()
 	#/
 	if(!self initialized())
 	{
-		self function_79cb401b();
+		self init_bot();
 	}
 	self.goalradius = 512;
 	self thread update_loop();
@@ -951,7 +951,7 @@ function update_swim()
 }
 
 /*
-	Name: function_79cb401b
+	Name: init_bot
 	Namespace: bot
 	Checksum: 0x6FEE2BDE
 	Offset: 0x2468
@@ -959,7 +959,7 @@ function update_swim()
 	Parameters: 0
 	Flags: Linked
 */
-function function_79cb401b()
+function init_bot()
 {
 	self.bot = spawnstruct();
 	ai::createinterfaceforentity(self);
@@ -1404,9 +1404,9 @@ function fwd_dot(point)
 	Parameters: 2
 	Flags: Linked
 */
-function function_7aeb27f1(var_a938fc10, var_6afe40bc)
+function function_7aeb27f1(smin, smax)
 {
-	return gettime() + 1000 * randomfloatrange(var_a938fc10, var_6afe40bc);
+	return gettime() + 1000 * randomfloatrange(smin, smax);
 }
 
 /*
@@ -2582,9 +2582,9 @@ function function_7090aa98()
 	Parameters: 1
 	Flags: None
 */
-function function_5524bfd5(var_ea7b59ed)
+function function_5524bfd5(companionname)
 {
-	setdvar(#"companion", var_ea7b59ed);
+	setdvar(#"companion", companionname);
 }
 
 /*

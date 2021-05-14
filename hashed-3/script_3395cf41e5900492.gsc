@@ -48,7 +48,7 @@ function function_91ea9492()
 	namespace_c2dce87e::function_c6f75619();
 	self.detonate_sides_disabled = 1;
 	self useanimtree("generic");
-	self function_97ee9e6b();
+	self initsounds();
 	if(isdefined(level.vehicle_initializer_cb))
 	{
 		[[level.vehicle_initializer_cb]](self);
@@ -77,7 +77,7 @@ function defaultrole()
 }
 
 /*
-	Name: function_97ee9e6b
+	Name: initsounds
 	Namespace: rcxd
 	Checksum: 0x79CD6361
 	Offset: 0x2F8
@@ -85,7 +85,7 @@ function defaultrole()
 	Parameters: 0
 	Flags: None
 */
-function function_97ee9e6b()
+function initsounds()
 {
 	self.sndalias = [];
 	self.sndalias[#"inair"] = #"hash_65ec2e5d43b62423";

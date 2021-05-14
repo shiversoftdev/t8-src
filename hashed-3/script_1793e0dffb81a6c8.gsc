@@ -37,14 +37,14 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
 	clientfield::register("zbarrier", "" + #"hash_100f180bf5d2a517", 14000, 1, "int", &function_b245db69, 0, 0);
 	level._effect[#"hash_1d15a2dad558ac8c"] = "zombie/fx8_packapunch_zmb_red_gauntlet";
 	level._effect[#"hash_1d15a5dad558b1a5"] = "zombie/fx8_packapunch_zmb_red_gauntlet";
-	namespace_f551babc::register_challenge(#"hash_28d1b9857e2ca681", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_28d1b9857e2ca681", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -84,7 +84,7 @@ private function function_9e7b3f4d(localclientnum)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_28d1b9857e2ca681");
+	challenge = zm_trial::function_a36e8c38(#"hash_28d1b9857e2ca681");
 	return isdefined(challenge);
 }
 

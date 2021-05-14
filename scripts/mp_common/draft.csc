@@ -923,7 +923,7 @@ function function_20811f66(localclientnum)
 	{
 		foreach(char in level.draftcharacters[localclientnum][team])
 		{
-			[[ char ]]->function_aded9641();
+			[[ char ]]->delete_models();
 		}
 		level.draftcharacters[localclientnum][team] = [];
 	}

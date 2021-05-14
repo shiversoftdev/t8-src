@@ -139,15 +139,15 @@ function function_eb218e8d()
 {
 	level endon(#"hash_26b4b7b0dcb290a6");
 	self endon(#"death");
-	var_b88b2cd9 = self.origin[2] - 4;
-	var_3cae7377 = 0;
+	n_elev = self.origin[2] - 4;
+	b_correct = 0;
 	/#
 		self thread function_c7673785();
 	#/
 	while(true)
 	{
 		self.health = 99999;
-		if(self.origin[2] <= var_b88b2cd9)
+		if(self.origin[2] <= n_elev)
 		{
 			setdynentenabled(self, 0);
 			if(self.script_int == 8 && distance2dsquared(self.origin, struct::get("corner_target", "script_noteworthy").origin) <= 30 * 30)

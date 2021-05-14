@@ -89,7 +89,7 @@ function function_da70ffac()
 	Parameters: 1
 	Flags: Linked
 */
-function function_8b96ace8(var_3b614763 = 1)
+function function_8b96ace8(b_walk = 1)
 {
 	a_ai = getaiarray();
 	for(i = 0; i < a_ai.size; i++)
@@ -105,7 +105,7 @@ function function_8b96ace8(var_3b614763 = 1)
 		}
 		if(var_5d66253)
 		{
-			if(var_3b614763)
+			if(b_walk)
 			{
 				a_ai[i].zombie_move_speed_restore = a_ai[i].zombie_move_speed;
 				a_ai[i].var_b518759e = 1;

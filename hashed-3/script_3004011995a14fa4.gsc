@@ -6,11 +6,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_3b85ee2b;
+#namespace zm_progress;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0xB0C73883
 	Offset: 0xB0
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_344d00f81a62733e", &__init__, undefined, undefined);
+	system::register(#"zm_progress", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_3b85ee2b
+	Namespace: zm_progress
 	Checksum: 0xFCC13C3
 	Offset: 0xF8
 	Size: 0x1C

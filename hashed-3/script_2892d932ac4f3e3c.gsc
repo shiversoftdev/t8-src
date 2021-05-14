@@ -575,7 +575,7 @@ function electric_cherry_reload_fx(n_fraction)
 	Parameters: 4
 	Flags: Linked
 */
-function electric_cherry_perk_lost(b_pause, str_perk, str_result, var_bcd1c2ff)
+function electric_cherry_perk_lost(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"specialty_electriccherry" + "_take");
 }

@@ -905,10 +905,10 @@ function updatedevsettings()
 		}
 		if(getdvarstring(#"hash_2d9131ec76baa766") != "")
 		{
-			var_52b27367 = getdvarstring(#"hash_2d9131ec76baa766");
-			var_2fe3f7e3 = hash(var_52b27367);
+			talentname = getdvarstring(#"hash_2d9131ec76baa766");
+			var_2fe3f7e3 = hash(talentname);
 			players = getplayers();
-			iprintln("" + var_52b27367 + "");
+			iprintln("" + talentname + "");
 			foreach(player in players)
 			{
 				if(!isdefined(player))
@@ -937,10 +937,10 @@ function updatedevsettings()
 		}
 		if(getdvarstring(#"hash_5b311cf6da67afb") != "")
 		{
-			var_52b27367 = getdvarstring(#"hash_5b311cf6da67afb");
-			var_2fe3f7e3 = hash(var_52b27367);
+			talentname = getdvarstring(#"hash_5b311cf6da67afb");
+			var_2fe3f7e3 = hash(talentname);
 			players = getplayers();
-			iprintln("" + var_52b27367 + "");
+			iprintln("" + talentname + "");
 			foreach(player in players)
 			{
 				if(!isdefined(player))

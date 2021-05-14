@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 8
 	Flags: Linked
 */
-function register_info(type, name, var_948bda55, priority, lerp_step_count, should_activate_per_player, lerp_thread, ref_count_lerp_thread)
+function register_info(type, name, version, priority, lerp_step_count, should_activate_per_player, lerp_thread, ref_count_lerp_thread)
 {
 	/#
 		assert(level.vsmgr_initializing, "");
@@ -61,10 +61,10 @@ function register_info(type, name, var_948bda55, priority, lerp_step_count, shou
 	add_sorted_name_key(type, lower_name);
 	add_sorted_priority_key(type, lower_name, priority);
 	level.vsmgr[type].info[lower_name] = spawnstruct();
-	level.vsmgr[type].info[lower_name] add_info(type, lower_name, var_948bda55, priority, lerp_step_count, should_activate_per_player, lerp_thread, ref_count_lerp_thread);
-	if(level.vsmgr[type].highest_version < var_948bda55)
+	level.vsmgr[type].info[lower_name] add_info(type, lower_name, version, priority, lerp_step_count, should_activate_per_player, lerp_thread, ref_count_lerp_thread);
+	if(level.vsmgr[type].highest_version < version)
 	{
-		level.vsmgr[type].highest_version = var_948bda55;
+		level.vsmgr[type].highest_version = version;
 	}
 }
 
@@ -560,7 +560,7 @@ function finalize_type_clientfields()
 			self.cf_lerp_bit_count = self.info[self.sorted_name_keys[i]].lerp_bit_count;
 		}
 		/#
-			println("" + self.info[self.sorted_name_keys[i]].name + "" + self.info[self.sorted_name_keys[i]].var_948bda55 + "" + self.info[self.sorted_name_keys[i]].lerp_step_count + "");
+			println("" + self.info[self.sorted_name_keys[i]].name + "" + self.info[self.sorted_name_keys[i]].version + "" + self.info[self.sorted_name_keys[i]].lerp_step_count + "");
 		#/
 	}
 	clientfield::register("toplayer", self.cf_slot_name, self.highest_version, self.cf_slot_bit_count, "int");
@@ -654,11 +654,11 @@ function add_sorted_priority_key(type, name, priority)
 	Parameters: 8
 	Flags: Linked
 */
-function add_info(type, name, var_948bda55, priority, lerp_step_count, should_activate_per_player, lerp_thread, ref_count_lerp_thread)
+function add_info(type, name, version, priority, lerp_step_count, should_activate_per_player, lerp_thread, ref_count_lerp_thread)
 {
 	self.type = type;
 	self.name = name;
-	self.var_948bda55 = var_948bda55;
+	self.version = version;
 	self.priority = priority;
 	self.lerp_step_count = lerp_step_count;
 	self.lerp_bit_count = getminbitcountfornum(lerp_step_count);

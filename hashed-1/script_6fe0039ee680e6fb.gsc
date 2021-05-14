@@ -52,18 +52,18 @@ function __init__()
 {
 	clientfield::register("scriptmover", "hemera_shoot", 16000, 1, "counter");
 	clientfield::register("scriptmover", "" + #"hash_47f6efd679c0437d", 16000, 1, "int");
-	clientfield::register("scriptmover", "" + #"hash_551f6ae1cc666550", 16000, 1, "counter");
+	clientfield::register("scriptmover", "" + #"hemera_impact", 16000, 1, "counter");
 	clientfield::register("allplayers", "hemera_proj_flash", 16000, 1, "int");
 	clientfield::register("allplayers", "hemera_beam_flash", 16000, 1, "int");
 	clientfield::register("actor", "hemera_proj_death", 16000, 1, "int");
 	clientfield::register("actor", "" + #"hash_5a8f1796382ec694", 16000, 1, "int");
 	level.var_45072d7d = getweapon(#"hash_67c8dba04eccef92");
 	level.var_f10d87a1 = getweapon(#"hash_4f2a3ad24337dd19");
-	level.var_e8ffa40 = getweapon(#"hash_64a8e509557af3d0");
+	level.var_e8ffa40 = getweapon(#"ww_hand_h_uncharged");
 	level.var_836fa4da = getweapon(#"hash_403bfa4250f7a743");
 	zm_weapons::include_zombie_weapon(#"hash_67c8dba04eccef92", 0);
 	zm_weapons::include_zombie_weapon(#"hash_4f2a3ad24337dd19", 0);
-	zm_weapons::include_zombie_weapon(#"hash_64a8e509557af3d0", 0);
+	zm_weapons::include_zombie_weapon(#"ww_hand_h_uncharged", 0);
 	zm_weapons::include_zombie_weapon(#"hash_403bfa4250f7a743", 0);
 	callback::on_connect(&on_player_connect);
 	if(!isdefined(level.var_ab6fef61))
@@ -110,12 +110,12 @@ function function_3f8da82c()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"weapon_change");
-		if(var_385703b7.weapon === level.var_e8ffa40)
+		s_notify = undefined;
+		s_notify = self waittill(#"weapon_change");
+		if(s_notify.weapon === level.var_e8ffa40)
 		{
 		}
-		else if(var_385703b7.weapon === level.var_45072d7d || var_385703b7.weapon === level.var_836fa4da)
+		else if(s_notify.weapon === level.var_45072d7d || s_notify.weapon === level.var_836fa4da)
 		{
 			self.var_e34577ca = undefined;
 			self thread function_54922a21();
@@ -158,31 +158,31 @@ function function_d8a9b5a6(weapon)
 	if(weapon == level.var_836fa4da)
 	{
 		n_damage = 8500;
-		var_a4c20abe = 1;
+		b_up = 1;
 	}
 	else
 	{
 		n_damage = 5000;
-		var_a4c20abe = 0;
+		b_up = 0;
 	}
 	self clientfield::set("hemera_proj_flash", 1);
-	a_e_targets = function_6880852f(var_a4c20abe);
+	a_e_targets = function_6880852f(b_up);
 	if(isdefined(a_e_targets))
 	{
 		if(isdefined(a_e_targets[0]) && a_e_targets[0].var_6f84b820 === #"boss")
 		{
-			var_e753f573 = 3;
+			n_proj = 3;
 		}
 		else if(!a_e_targets.size || (a_e_targets.size === 1 && !isactor(a_e_targets[0])))
 		{
-			var_e753f573 = 1;
+			n_proj = 1;
 		}
 		else
 		{
-			var_e753f573 = 3;
+			n_proj = 3;
 		}
 	}
-	for(i = 0; i < var_e753f573; i++)
+	for(i = 0; i < n_proj; i++)
 	{
 		e_projectile = util::spawn_model("tag_origin", self gettagorigin("tag_flash"), self gettagangles("tag_flash"));
 		if(isdefined(e_projectile))
@@ -270,9 +270,9 @@ function function_dd7bc108(weapon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_6880852f(var_a4c20abe)
+function function_6880852f(b_up)
 {
-	if(var_a4c20abe)
+	if(b_up)
 	{
 		n_range = 3000;
 	}
@@ -454,7 +454,7 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 	{
 		e_projectile moveto(v_end, n_time);
 		e_projectile waittill(#"movedone");
-		e_projectile clientfield::increment("" + #"hash_551f6ae1cc666550");
+		e_projectile clientfield::increment("" + #"hemera_impact");
 		waitframe(1);
 	}
 	else
@@ -535,19 +535,19 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 					}
 					if(e_projectile.n_index === 1)
 					{
-						var_8ffd01b1 = v_target + anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target + anglestoright(ai_zombie.angles) * 100;
 					}
 					else if(e_projectile.n_index === 2)
 					{
-						var_8ffd01b1 = v_target - anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target - anglestoright(ai_zombie.angles) * 100;
 					}
 					else
 					{
-						var_8ffd01b1 = v_target;
+						v_horz = v_target;
 					}
-					if(isdefined(var_8ffd01b1))
+					if(isdefined(v_horz))
 					{
-						v_end = var_8ffd01b1 + (0, 0, var_4d8b7233);
+						v_end = v_horz + (0, 0, var_4d8b7233);
 					}
 				}
 				else
@@ -663,7 +663,7 @@ function function_723b1d66()
 	Parameters: 4
 	Flags: Linked
 */
-function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_276d45bf)
+function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, b_charged)
 {
 	self endon(#"disconnect");
 	e_target endon(#"death");
@@ -694,7 +694,7 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 				}
 				else if(isdefined(e_target.marked_for_death) && e_target.marked_for_death)
 				{
-					self thread function_e56c350e(e_target, var_276d45bf, n_damage);
+					self thread function_e56c350e(e_target, b_charged, n_damage);
 				}
 				else
 				{
@@ -704,7 +704,7 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 			}
 			case "heavy":
 			{
-				if(!isdefined(var_276d45bf))
+				if(!isdefined(b_charged))
 				{
 					n_damage = n_damage * 0.75;
 				}
@@ -713,7 +713,7 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 			}
 			case "miniboss":
 			{
-				if(isdefined(var_276d45bf))
+				if(isdefined(b_charged))
 				{
 					n_damage = int(n_damage * 0.2);
 				}
@@ -737,7 +737,7 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 			{
 				if(!isactor(e_target))
 				{
-					e_target clientfield::increment("" + #"hash_551f6ae1cc666550");
+					e_target clientfield::increment("" + #"hemera_impact");
 				}
 				n_damage = 175;
 				e_target dodamage(n_damage, self.origin, self, undefined, "none", "MOD_UNKNOWN", 0, weapon);
@@ -866,7 +866,7 @@ function function_b27148c8(weapon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8a56ed15(var_385703b7)
+function function_8a56ed15(s_notify)
 {
 	self endon(#"death");
 	self clientfield::set("hemera_beam_flash", 0);
@@ -1009,7 +1009,7 @@ function function_6e71e724()
 	Parameters: 3
 	Flags: Linked
 */
-function function_e56c350e(e_target, var_276d45bf, n_damage)
+function function_e56c350e(e_target, b_charged, n_damage)
 {
 	self endon(#"death");
 	e_target endon(#"death");
@@ -1022,7 +1022,7 @@ function function_e56c350e(e_target, var_276d45bf, n_damage)
 	e_target.marked_for_death = 1;
 	[[ level.var_ab6fef61 ]]->waitinqueue(e_target);
 	w_weapon = level.var_e8ffa40;
-	if(isdefined(var_276d45bf))
+	if(isdefined(b_charged))
 	{
 		e_target clientfield::set("" + #"hash_5a8f1796382ec694", 1);
 		e_target.var_4dcd7a1c = 1;

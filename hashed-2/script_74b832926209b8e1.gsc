@@ -152,10 +152,10 @@ private function function_f16c0259()
 	level endon(#"end_game", #"hash_478e70a97b556206");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"damage");
-		level.var_97da986d.var_af9bf642 = var_385703b7.inflictor;
-		var_b6d64a72 = isdefined(var_385703b7.weapon) && (var_385703b7.weapon.rootweapon === level.var_ad5d43cf || var_385703b7.weapon.rootweapon === level.var_f8934665 || var_385703b7.weapon.rootweapon === level.var_bf70d56c || var_385703b7.weapon.rootweapon === level.var_d879215);
+		s_notify = undefined;
+		s_notify = self waittill(#"damage");
+		level.var_97da986d.var_af9bf642 = s_notify.inflictor;
+		var_b6d64a72 = isdefined(s_notify.weapon) && (s_notify.weapon.rootweapon === level.var_ad5d43cf || s_notify.weapon.rootweapon === level.var_f8934665 || s_notify.weapon.rootweapon === level.var_bf70d56c || s_notify.weapon.rootweapon === level.var_d879215);
 		var_d35fda46 = level.var_97da986d.var_2759714a === level.var_97da986d.var_af9bf642 || level.var_97da986d.var_6f9b20c6 === 0;
 		if(var_b6d64a72 && var_d35fda46)
 		{
@@ -257,26 +257,26 @@ function function_219876e0(var_5ea5c94d)
 	/#
 		iprintlnbold("");
 	#/
-	var_aa345c88 = struct::get("ee_tundragun_weapon");
-	level.var_97da986d.var_aa345c88 = var_aa345c88;
-	e_weapon = util::spawn_model(var_aa345c88.model, var_aa345c88.origin, var_aa345c88.angles);
-	level.var_97da986d.var_aa345c88.e_weapon = e_weapon;
+	s_weapon_pickup = struct::get("ee_tundragun_weapon");
+	level.var_97da986d.s_weapon_pickup = s_weapon_pickup;
+	e_weapon = util::spawn_model(s_weapon_pickup.model, s_weapon_pickup.origin, s_weapon_pickup.angles);
+	level.var_97da986d.s_weapon_pickup.e_weapon = e_weapon;
 	var_9dd10753 = level.var_97da986d.var_5fbb6b48.e_model;
 	var_9dd10753 playsound(#"hash_1cfa90c531f36b92");
 	var_9dd10753 rotatepitch(-100, 1.5);
 	var_9dd10753 waittill(#"rotatedone");
-	if(isdefined(var_aa345c88))
+	if(isdefined(s_weapon_pickup))
 	{
 		e_weapon moveto(e_weapon.origin + vectorscale((0, 0, 1), 16), 1.5);
 		e_weapon waittill(#"movedone");
-		level.var_97da986d.var_aa345c88.e_weapon namespace_3263198e::function_dfa12910(getweapon("tundragun"), &function_37d390f8);
+		level.var_97da986d.s_weapon_pickup.e_weapon namespace_3263198e::start_zombies_collision_manager(getweapon("tundragun"), &function_37d390f8);
 	}
 	if(!var_5ea5c94d)
 	{
 		level flag::wait_till(#"hash_6b5e9a7b23ad25a5");
-		if(isdefined(level.var_97da986d.var_aa345c88) && isdefined(level.var_97da986d.var_aa345c88.e_weapon))
+		if(isdefined(level.var_97da986d.s_weapon_pickup) && isdefined(level.var_97da986d.s_weapon_pickup.e_weapon))
 		{
-			level.var_97da986d.var_aa345c88.e_weapon delete();
+			level.var_97da986d.s_weapon_pickup.e_weapon delete();
 		}
 	}
 }

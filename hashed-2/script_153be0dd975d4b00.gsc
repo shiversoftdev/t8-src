@@ -169,25 +169,25 @@ function function_eac89317()
 	level endon(#"game_ended");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = level waittill(#"traps_activated", #"traps_available", #"hash_3c662e7b29cfc3dd");
-		if(isdefined(var_385703b7.var_be3f58a))
+		s_notify = undefined;
+		s_notify = level waittill(#"traps_activated", #"traps_available", #"hash_3c662e7b29cfc3dd");
+		if(isdefined(s_notify.var_be3f58a))
 		{
-			switch(var_385703b7._notify)
+			switch(s_notify._notify)
 			{
 				case "traps_activated":
 				{
-					function_81badccf(var_385703b7.var_be3f58a);
+					function_81badccf(s_notify.var_be3f58a);
 					break;
 				}
 				case "traps_available":
 				{
-					function_6087ebc2(var_385703b7.var_be3f58a);
+					function_6087ebc2(s_notify.var_be3f58a);
 					break;
 				}
 				case "hash_3c662e7b29cfc3dd":
 				{
-					function_1b229077(var_385703b7.var_be3f58a);
+					function_1b229077(s_notify.var_be3f58a);
 					break;
 				}
 			}
@@ -251,10 +251,10 @@ function function_baf2d8eb()
 	Parameters: 2
 	Flags: Linked
 */
-function function_ea998c9(var_458e12fe = 0, var_1798e06d = 0)
+function function_ea998c9(b_unitrigger = 0, b_eyes = 0)
 {
 	self endon(#"death");
-	if(var_458e12fe)
+	if(b_unitrigger)
 	{
 		if(self.script_noteworthy === "danu")
 		{
@@ -268,7 +268,7 @@ function function_ea998c9(var_458e12fe = 0, var_1798e06d = 0)
 		{
 			waitframe(1);
 		}
-		var_9fe17f24 = self.prompt_and_visibility_func;
+		visibility_func = self.prompt_and_visibility_func;
 		self.prompt_and_visibility_func = &function_504d501c;
 	}
 	else
@@ -277,15 +277,15 @@ function function_ea998c9(var_458e12fe = 0, var_1798e06d = 0)
 	}
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till(self.script_flag);
-	if(var_1798e06d)
+	if(b_eyes)
 	{
 		var_541193d8 = struct::get_array(#"s_trap_button");
 		s_switch = arraygetclosest(self.origin, var_541193d8);
 		s_switch.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_green", 1);
 	}
-	if(var_458e12fe)
+	if(b_unitrigger)
 	{
-		self.prompt_and_visibility_func = var_9fe17f24;
+		self.prompt_and_visibility_func = visibility_func;
 	}
 	else
 	{

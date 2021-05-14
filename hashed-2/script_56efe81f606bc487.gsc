@@ -37,17 +37,17 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	namespace_b20b4885::function_e9e03d6f(#"hash_6eae126c7e2d0bf0", &function_49abc910);
+	namespace_b20b4885::function_e9e03d6f(#"zombie_in_combat", &zombie_in_combat);
 	namespace_b20b4885::function_e9e03d6f(#"hash_7cf5d8ae94c74382", &function_6300517d);
 	namespace_b20b4885::function_e9e03d6f(#"hash_26e050bc0c121f1b", &function_a3d8f155);
-	namespace_b20b4885::function_e9e03d6f(#"hash_9790ddd6a109086", &function_1d32f58d);
+	namespace_b20b4885::function_e9e03d6f(#"zombie_interact", &zombie_interact);
 	namespace_b20b4885::function_e9e03d6f(#"zombie_weapon_upgrade", &zombie_weapon_upgrade);
-	namespace_b20b4885::function_aa8c6854(#"hash_9790ddd6a109086", &function_a0b3c01e);
+	namespace_b20b4885::function_aa8c6854(#"zombie_interact", &function_a0b3c01e);
 	namespace_b20b4885::function_aa8c6854(#"zombie_weapon_upgrade", &function_957ba503);
 }
 
 /*
-	Name: function_49abc910
+	Name: zombie_in_combat
 	Namespace: namespace_8c6426a5
 	Checksum: 0xD51D8BE1
 	Offset: 0x270
@@ -55,7 +55,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked
 */
-function function_49abc910(params, tacbundle)
+function zombie_in_combat(params, tacbundle)
 {
 	if(!isdefined(self.enemy))
 	{
@@ -120,7 +120,7 @@ function function_a3d8f155(params, tacbundle)
 }
 
 /*
-	Name: function_1d32f58d
+	Name: zombie_interact
 	Namespace: namespace_8c6426a5
 	Checksum: 0xC1A86CB5
 	Offset: 0x490
@@ -128,7 +128,7 @@ function function_a3d8f155(params, tacbundle)
 	Parameters: 2
 	Flags: Linked
 */
-function function_1d32f58d(params, tacbundle)
+function zombie_interact(params, tacbundle)
 {
 	if(!self bot::function_43a720c7())
 	{

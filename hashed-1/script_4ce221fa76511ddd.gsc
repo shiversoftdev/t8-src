@@ -170,8 +170,8 @@ function function_408fcb87()
 function function_38b44aab()
 {
 	level notify(#"hash_3c662e7b29cfc3dd", {#hash_be3f58a:self.script_string});
-	var_628a2951 = zm_traps::function_da13db45(self._trap_cooldown_time, self.activated_by_player);
-	wait(var_628a2951);
+	n_cooldown = zm_traps::function_da13db45(self._trap_cooldown_time, self.activated_by_player);
+	wait(n_cooldown);
 	self.var_fe043be4 rotatepitch(-90, 0.5);
 	wait(0.5);
 	level.var_4cca20a9 clientfield::set("" + #"hash_17df66ef5f71c0de", 1);

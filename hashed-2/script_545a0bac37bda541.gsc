@@ -378,7 +378,7 @@ private function function_b78294bf(victim, weapon, attackerweapon, var_67660cb2,
 			}
 		}
 		self function_662aaa65(weapon);
-		self.var_fee0b504[weapon.name].var_3e9f80b2++;
+		self.multikills[weapon.name].var_3e9f80b2++;
 		if(isdefined(scoreevents) && isdefined(scoreevents.var_a6bfdc5f))
 		{
 			scoreevents::processscoreevent(scoreevents.var_a6bfdc5f, self, victim, weapon);
@@ -386,7 +386,7 @@ private function function_b78294bf(victim, weapon, attackerweapon, var_67660cb2,
 	}
 	else if(isdefined(var_67660cb2))
 	{
-		if(!isdefined(var_67660cb2.var_6d794427) || ![[var_67660cb2.var_6d794427]](self, victim, weapon, attackerweapon, meansofdeath))
+		if(!isdefined(var_67660cb2.kill_callback) || ![[var_67660cb2.kill_callback]](self, victim, weapon, attackerweapon, meansofdeath))
 		{
 			return;
 		}
@@ -437,7 +437,7 @@ function function_5829abe3(attacker, weapon, var_651b6171)
 	}
 	if(var_651b6171.var_b76e0a09)
 	{
-		attacker namespace_bd02cf1::function_896ac347(weapon, #"showstopper", 1);
+		attacker activecamo::function_896ac347(weapon, #"showstopper", 1);
 	}
 	scoreevents = function_3cbc4c6c(weapon.var_2e4a8800);
 	if(isdefined(scoreevents) && isdefined(scoreevents.var_84eddb70))
@@ -458,7 +458,7 @@ function function_5829abe3(attacker, weapon, var_651b6171)
 function function_a890cac2(attacker, owningteam, weapon, scoreevents, var_4ed35da2, var_1bbdd8b0)
 {
 	attacker function_662aaa65(weapon);
-	attacker.var_fee0b504[weapon.name].var_3e9f80b2++;
+	attacker.multikills[weapon.name].var_3e9f80b2++;
 	if(level.teambased && isdefined(owningteam) && attacker.team == owningteam)
 	{
 		if(isdefined(level.var_b13d1f9b) && isdefined(level.var_b13d1f9b[weapon.name]) && isdefined(level.var_b13d1f9b[weapon.name].var_826b85e7))
@@ -469,13 +469,13 @@ function function_a890cac2(attacker, owningteam, weapon, scoreevents, var_4ed35d
 		{
 			scoreevents::processscoreevent(scoreevents.var_867de225, attacker, self, weapon);
 		}
-		if((isdefined(attacker.var_fee0b504[attacker.var_fee0b504[weapon.name].name].var_3e9f80b2) ? attacker.var_fee0b504[weapon.name].var_3e9f80b2 : 0) > 2 && (isdefined(var_4ed35da2.var_4e02c9bd) ? var_4ed35da2.var_4e02c9bd : 0) < gettime())
+		if((isdefined(attacker.multikills[attacker.multikills[weapon.name].name].var_3e9f80b2) ? attacker.multikills[weapon.name].var_3e9f80b2 : 0) > 2 && (isdefined(var_4ed35da2.var_4e02c9bd) ? var_4ed35da2.var_4e02c9bd : 0) < gettime())
 		{
 			enemies = attacker function_bdda420f(var_4ed35da2.origin, var_1bbdd8b0);
 			if(enemies.size == 0)
 			{
 				var_4ed35da2.var_4e02c9bd = gettime() + 4000;
-				attacker.var_fee0b504[weapon.name].var_d6089e48 = 1;
+				attacker.multikills[weapon.name].var_d6089e48 = 1;
 			}
 		}
 	}
@@ -647,7 +647,7 @@ function function_24d66e59(inflictor, meansofdeath, victim, attacker, weapon, va
 		if((isdefined(victim.var_60a9eae7) ? victim.var_60a9eae7 : 0) && (isdefined(scoreevents.var_a6bfdc5f) || isdefined(scoreevents.var_8600aca4)))
 		{
 			attacker function_662aaa65(effect);
-			attacker.var_fee0b504[effect.name].var_3e9f80b2++;
+			attacker.multikills[effect.name].var_3e9f80b2++;
 			if(isdefined(effect.var_4b22e697) && isplayer(effect.var_4b22e697) && attacker != effect.var_4b22e697)
 			{
 				if(isdefined(scoreevents.var_a6bfdc5f))
@@ -674,9 +674,9 @@ function function_24d66e59(inflictor, meansofdeath, victim, attacker, weapon, va
 		}
 		if(attacker == effect.var_4b22e697)
 		{
-			if(isdefined(level.var_f19c99e1) && isdefined(level.var_f19c99e1[effect.name]) && isdefined(level.var_f19c99e1[effect.name].var_6d794427))
+			if(isdefined(level.var_f19c99e1) && isdefined(level.var_f19c99e1[effect.name]) && isdefined(level.var_f19c99e1[effect.name].kill_callback))
 			{
-				if(![[level.var_f19c99e1[effect.name].var_6d794427]](self, victim, effect.var_3d1ed4bd, weapon, meansofdeath))
+				if(![[level.var_f19c99e1[effect.name].kill_callback]](self, victim, effect.var_3d1ed4bd, weapon, meansofdeath))
 				{
 					return;
 				}
@@ -719,7 +719,7 @@ function function_f7f7b14e(data)
 	{
 		foreach(var_25f92d1d in level.var_b13d1f9b)
 		{
-			if(isdefined(var_25f92d1d.var_6d794427))
+			if(isdefined(var_25f92d1d.kill_callback))
 			{
 				var_a6f160ea = var_25f92d1d.weapon;
 				var_b6f366b = function_3cbc4c6c(var_a6f160ea.var_2e4a8800);
@@ -733,13 +733,13 @@ function function_f7f7b14e(data)
 		var_3d2a11cf = function_3cbc4c6c(data.victimweapon.var_2e4a8800);
 		if(data.victimweapon.var_b76e0a09)
 		{
-			attacker namespace_bd02cf1::function_896ac347(weapon, #"showstopper", 1);
+			attacker activecamo::function_896ac347(weapon, #"showstopper", 1);
 		}
 	}
 	if(!isdefined(var_3d2a11cf) && isdefined(victim.heroability) && isdefined(victim.heroabilityactivatetime) && victim.heroabilityactivatetime + 700 > time)
 	{
 		var_3d2a11cf = function_3cbc4c6c(victim.heroability.var_2e4a8800);
-		attacker namespace_bd02cf1::function_896ac347(weapon, #"showstopper", 1);
+		attacker activecamo::function_896ac347(weapon, #"showstopper", 1);
 	}
 	if(isdefined(weapon) && isdefined(level.iskillstreakweapon))
 	{
@@ -790,7 +790,7 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 			attacker contracts::function_a54e2068(#"hash_7aa4c7b37c66fcc1");
 		}
 	}
-	if(!isdefined(attacker.var_fee0b504) || !isdefined(attacker.var_fee0b504[var_ac4c1]))
+	if(!isdefined(attacker.multikills) || !isdefined(attacker.multikills[var_ac4c1]))
 	{
 		return;
 	}
@@ -798,7 +798,7 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 	waitresult = attacker waittill_timeout(4, #"death", #"team_changed");
 	if(var_ac4c1 == #"frag_grenade" || var_ac4c1 == #"eq_molotov" || var_ac4c1 == #"hatchet")
 	{
-		if(attacker.var_fee0b504[var_ac4c1].kills >= 2)
+		if(attacker.multikills[var_ac4c1].kills >= 2)
 		{
 			if(!isdefined(attacker.pers[#"hash_52e978325c91fe24"]))
 			{
@@ -813,21 +813,21 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 	}
 	if(var_ac4c1 == #"frag_grenade")
 	{
-		if(attacker.var_fee0b504[var_ac4c1].kills >= 2)
+		if(attacker.multikills[var_ac4c1].kills >= 2)
 		{
 			attacker contracts::function_a54e2068(#"hash_6696408f54c6ada7");
 		}
 	}
 	if(var_ac4c1 == #"eq_molotov")
 	{
-		if(attacker.var_fee0b504[var_ac4c1].kills >= 2)
+		if(attacker.multikills[var_ac4c1].kills >= 2)
 		{
 			attacker contracts::function_a54e2068(#"hash_4a7d49c14e026e91");
 		}
 	}
 	if(isdefined(scoreevents))
 	{
-		switch((isdefined(attacker.var_fee0b504[var_ac4c1].kills) ? attacker.var_fee0b504[var_ac4c1].kills : 0))
+		switch((isdefined(attacker.multikills[var_ac4c1].kills) ? attacker.multikills[var_ac4c1].kills : 0))
 		{
 			case 0:
 			case 1:
@@ -868,20 +868,20 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 			}
 			default:
 			{
-				if(attacker.var_fee0b504[var_ac4c1].kills > 5 && isdefined(scoreevents.var_67b4a761))
+				if(attacker.multikills[var_ac4c1].kills > 5 && isdefined(scoreevents.var_67b4a761))
 				{
 					scoreevents::processscoreevent(scoreevents.var_67b4a761, attacker, victim, weapon);
 				}
 				break;
 			}
 		}
-		if((isdefined(attacker.var_fee0b504[var_ac4c1].kills) ? attacker.var_fee0b504[var_ac4c1].kills : 0) >= 2)
+		if((isdefined(attacker.multikills[var_ac4c1].kills) ? attacker.multikills[var_ac4c1].kills : 0) >= 2)
 		{
 			attacker specialistmedalachievement(weapon, scoreevents);
 		}
 	}
-	attacker.var_fee0b504[var_ac4c1].kills = 0;
-	switch((isdefined(attacker.var_fee0b504[var_ac4c1].var_3e9f80b2) ? attacker.var_fee0b504[var_ac4c1].var_3e9f80b2 : 0))
+	attacker.multikills[var_ac4c1].kills = 0;
+	switch((isdefined(attacker.multikills[var_ac4c1].var_3e9f80b2) ? attacker.multikills[var_ac4c1].var_3e9f80b2 : 0))
 	{
 		case 0:
 		case 1:
@@ -891,18 +891,18 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 		}
 		default:
 		{
-			if(attacker.var_fee0b504[var_ac4c1].var_3e9f80b2 > 2)
+			if(attacker.multikills[var_ac4c1].var_3e9f80b2 > 2)
 			{
 				if(isdefined(scoreevents) && isdefined(scoreevents.var_3655354))
 				{
 					scoreevents::processscoreevent(scoreevents.var_3655354, attacker, undefined, weapon);
 				}
-				if((isdefined(attacker.var_fee0b504[var_ac4c1].var_d6089e48) ? attacker.var_fee0b504[var_ac4c1].var_d6089e48 : 0))
+				if((isdefined(attacker.multikills[var_ac4c1].var_d6089e48) ? attacker.multikills[var_ac4c1].var_d6089e48 : 0))
 				{
 					if(isdefined(scoreevents) && isdefined(scoreevents.var_7b590f90))
 					{
 						scoreevents::processscoreevent(scoreevents.var_7b590f90, attacker, undefined, weapon);
-						attacker.var_fee0b504[var_ac4c1].var_d6089e48 = 0;
+						attacker.multikills[var_ac4c1].var_d6089e48 = 0;
 					}
 					if(isarray(level.var_b13d1f9b))
 					{
@@ -919,7 +919,7 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 			break;
 		}
 	}
-	attacker.var_fee0b504[var_ac4c1].var_3e9f80b2 = 0;
+	attacker.multikills[var_ac4c1].var_3e9f80b2 = 0;
 }
 
 /*
@@ -938,9 +938,9 @@ private function function_4d412da8(inflictor, meansofdeath, victim, attacker, sc
 	{
 		inflictor = attacker;
 	}
-	if(isdefined(level.var_b13d1f9b) && isdefined(level.var_b13d1f9b[var_f801f37e.name]) && isdefined(level.var_b13d1f9b[var_f801f37e.name].var_6d794427))
+	if(isdefined(level.var_b13d1f9b) && isdefined(level.var_b13d1f9b[var_f801f37e.name]) && isdefined(level.var_b13d1f9b[var_f801f37e.name].kill_callback))
 	{
-		if(![[level.var_b13d1f9b[var_f801f37e.name].var_6d794427]](self, victim, weapon, attackerweapon, meansofdeath))
+		if(![[level.var_b13d1f9b[var_f801f37e.name].kill_callback]](self, victim, weapon, attackerweapon, meansofdeath))
 		{
 			return;
 		}
@@ -984,7 +984,7 @@ private function function_4d412da8(inflictor, meansofdeath, victim, attacker, sc
 			}
 		}
 	}
-	self.var_fee0b504[var_f801f37e.name].kills++;
+	self.multikills[var_f801f37e.name].kills++;
 	if(!isdefined(inflictor.var_a6b00192))
 	{
 		inflictor.var_a6b00192 = 0;
@@ -1089,16 +1089,16 @@ function function_8279d8bf(weapon, scoreevents)
 */
 function function_662aaa65(var_f801f37e)
 {
-	if(!isdefined(self.var_fee0b504))
+	if(!isdefined(self.multikills))
 	{
-		self.var_fee0b504 = [];
+		self.multikills = [];
 	}
-	if(isdefined(var_f801f37e) && !isdefined(self.var_fee0b504[var_f801f37e.name]))
+	if(isdefined(var_f801f37e) && !isdefined(self.multikills[var_f801f37e.name]))
 	{
 		struct = spawnstruct();
 		struct.kills = 0;
 		struct.var_3e9f80b2 = 0;
-		self.var_fee0b504[var_f801f37e.name] = struct;
+		self.multikills[var_f801f37e.name] = struct;
 	}
 }
 
@@ -1139,7 +1139,7 @@ function function_1f9441d7(weapon)
 function function_5a241bd8(weapon, callback)
 {
 	function_1f9441d7(weapon);
-	level.var_b13d1f9b[weapon.name].var_6d794427 = callback;
+	level.var_b13d1f9b[weapon.name].kill_callback = callback;
 }
 
 /*
@@ -1161,7 +1161,7 @@ function function_a458dbe1(var_b03e560d, callback)
 	{
 		level.var_f19c99e1[var_b03e560d] = spawnstruct();
 	}
-	level.var_f19c99e1[var_b03e560d].var_6d794427 = callback;
+	level.var_f19c99e1[var_b03e560d].kill_callback = callback;
 }
 
 /*

@@ -49,7 +49,7 @@ function __init__()
 	clientfield::register("toplayer", "" + #"hash_14c746e550d9f3ca", 1, 2, "counter");
 	function_d5ccdca1();
 	zm_player::register_player_damage_callback(&function_9808e44f);
-	spawner::add_archetype_spawn_function(#"tiger", &function_9e36d009);
+	spawner::add_archetype_spawn_function(#"tiger", &tiger_init);
 	/#
 		spawner::add_archetype_spawn_function(#"tiger", &zombie_utility::function_27ba8249);
 	#/
@@ -370,7 +370,7 @@ function function_6c513e36(entity)
 }
 
 /*
-	Name: function_9e36d009
+	Name: tiger_init
 	Namespace: namespace_983c37ea
 	Checksum: 0x46C50CFD
 	Offset: 0xFC0
@@ -378,7 +378,7 @@ function function_6c513e36(entity)
 	Parameters: 0
 	Flags: Linked
 */
-function function_9e36d009()
+function tiger_init()
 {
 	self.allowdeath = 1;
 	self.allowpain = 0;

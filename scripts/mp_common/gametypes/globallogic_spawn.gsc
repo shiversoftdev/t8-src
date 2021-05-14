@@ -267,7 +267,7 @@ function function_82ca1565(spawnpoint, gametype)
 		}
 		case "control_defend_add_0":
 		{
-			return isdefined(spawnpoint.var_b74e1e14) && spawnpoint.var_b74e1e14;
+			return isdefined(spawnpoint.registerlast_mapshouldstun) && spawnpoint.registerlast_mapshouldstun;
 			break;
 		}
 		case "control_defend_add_1":
@@ -403,7 +403,7 @@ function addspawnsforteamname(teamname, searchentity, spawnarray, startspawns)
 					continue;
 				}
 			}
-			var_61a53e63 = ((isdefined(spawn.var_a3c53936) ? spawn.var_a3c53936 : 0) ? startspawns : spawnarray);
+			var_61a53e63 = ((isdefined(spawn._human_were) ? spawn._human_were : 0) ? startspawns : spawnarray);
 			if(!isdefined(var_61a53e63[teamname]))
 			{
 				var_61a53e63[teamname] = [];
@@ -565,7 +565,7 @@ function function_8acd9309()
 				{
 					continue;
 				}
-				var_61a53e63 = ((isdefined(spawn.var_a3c53936) ? spawn.var_a3c53936 : 0) ? startspawns : spawnarray);
+				var_61a53e63 = ((isdefined(spawn._human_were) ? spawn._human_were : 0) ? startspawns : spawnarray);
 				if(!isdefined(spawn.enabled))
 				{
 					spawn.enabled = -1;
@@ -892,7 +892,7 @@ function stoppoisoningandflareonspawn()
 function spawnplayerprediction()
 {
 	self endon(#"disconnect", #"end_respawn", #"game_ended", #"joined_spectators", #"spawned");
-	var_3c5f0b42 = teams::count_players();
+	plrs = teams::count_players();
 	nolivesleft = level.numlives && !self.pers[#"lives"] || (level.numteamlives && game.lives[self.team] > 0);
 	if(nolivesleft)
 	{
@@ -1160,7 +1160,7 @@ function spawnplayer()
 		setdvar(#"scr_showperksonspawn", 0);
 	}
 	/#
-		if(getdvarint(#"scr_showperksonspawn", 0) == 1 && !gamestate::function_674fd868())
+		if(getdvarint(#"scr_showperksonspawn", 0) == 1 && !gamestate::is_game_over())
 		{
 			pixbeginevent(#"showperksonspawn");
 			if(level.perksenabled == 1)
@@ -1185,7 +1185,7 @@ function spawnplayer()
 		print("" + self.origin[0] + "" + self.origin[1] + "" + self.origin[2] + "");
 	#/
 	setdvar(#"scr_selecting_location", "");
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		/#
 			assert(!level.intermission);
@@ -1998,7 +1998,7 @@ function function_6f7bedf0(origin, angles, team, gamemode)
 	}
 	spawnpoint.origin = origin;
 	spawnpoint.angles = angles;
-	spawnpoint.var_a3c53936 = 1;
+	spawnpoint._human_were = 1;
 	spawnpoint.tdm = 1;
 	spawnpoint.var_446998f8 = 1;
 	if(!isdefined(level.spawn_start))

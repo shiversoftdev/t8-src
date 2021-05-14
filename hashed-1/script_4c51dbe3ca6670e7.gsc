@@ -235,8 +235,8 @@ function electric_trap_think()
 		}
 		if(zm_utility::is_player_valid(e_who) && self.stub.related_parent.trap_struct.var_41ee2ddc === 1)
 		{
-			var_b5f26b1a = self.stub.related_parent.trap_struct.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, 1000);
-			if(!var_b5f26b1a)
+			b_purchased = self.stub.related_parent.trap_struct.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, 1000);
+			if(!b_purchased)
 			{
 				continue;
 			}
@@ -297,8 +297,8 @@ function function_f118c57a(e_player)
 		}
 		self.var_6b64b967 = 0;
 		self.var_41ee2ddc = 0;
-		var_628a2951 = zm_traps::function_da13db45(60, e_who);
-		wait(var_628a2951);
+		n_cooldown = zm_traps::function_da13db45(60, e_who);
+		wait(n_cooldown);
 		function_91ecec97(self.a_e_lights, "p8_zm_off_trap_switch_light_green_on");
 		self.var_41ee2ddc = 1;
 		playsoundatposition(#"zmb_trap_ready", self.origin);
@@ -319,7 +319,7 @@ function function_193dbfbb()
 	level endon(#"end_game");
 	n_total_time = 0;
 	n_check_time = 0.1;
-	var_ac5cd5d = 1;
+	n_sequence = 1;
 	var_34e4f6b8 = spawn("script_origin", self.origin);
 	var_34e4f6b8 playsound(#"hash_1fb395621513432f");
 	var_34e4f6b8 playloopsound(#"hash_177d7a6df8ed0d7b");
@@ -329,19 +329,19 @@ function function_193dbfbb()
 	}
 	while(n_total_time < 40)
 	{
-		if(var_ac5cd5d == 1)
+		if(n_sequence == 1)
 		{
-			var_ac5cd5d = 0;
+			n_sequence = 0;
 		}
 		else
 		{
-			var_ac5cd5d = 1;
+			n_sequence = 1;
 		}
-		self function_70557fa2(var_ac5cd5d);
+		self function_70557fa2(n_sequence);
 		for(i = 0; i < 2 / n_check_time; i++)
 		{
-			self thread function_a01c3869(var_ac5cd5d);
-			self thread function_fae74a9e(var_ac5cd5d);
+			self thread function_a01c3869(n_sequence);
+			self thread function_fae74a9e(n_sequence);
 			wait(n_check_time);
 		}
 		n_total_time = n_total_time + 2;
@@ -363,11 +363,11 @@ function function_193dbfbb()
 	Parameters: 1
 	Flags: Linked
 */
-function function_70557fa2(var_ac5cd5d)
+function function_70557fa2(n_sequence)
 {
 	foreach(var_131f4c21 in self.var_5aecd907)
 	{
-		if(var_131f4c21.script_int === var_ac5cd5d)
+		if(var_131f4c21.script_int === n_sequence)
 		{
 			if(var_131f4c21.var_7f831216 === 2)
 			{
@@ -392,14 +392,14 @@ function function_70557fa2(var_ac5cd5d)
 	Parameters: 1
 	Flags: Linked
 */
-function function_a01c3869(var_ac5cd5d)
+function function_a01c3869(n_sequence)
 {
 	a_ai_zombies = getaiteamarray(level.zombie_team);
 	foreach(ai_zombie in a_ai_zombies)
 	{
 		foreach(var_6cc24199 in self.var_1be9f510)
 		{
-			if(var_6cc24199.script_int === var_ac5cd5d && isalive(ai_zombie) && ai_zombie istouching(var_6cc24199))
+			if(var_6cc24199.script_int === n_sequence && isalive(ai_zombie) && ai_zombie istouching(var_6cc24199))
 			{
 				ai_zombie thread zm_trap_electric::damage(var_6cc24199);
 			}
@@ -416,14 +416,14 @@ function function_a01c3869(var_ac5cd5d)
 	Parameters: 1
 	Flags: Linked
 */
-function function_fae74a9e(var_ac5cd5d)
+function function_fae74a9e(n_sequence)
 {
 	a_e_players = getplayers();
 	foreach(e_player in a_e_players)
 	{
 		foreach(var_6cc24199 in self.var_1be9f510)
 		{
-			if(var_6cc24199.script_int === var_ac5cd5d && isalive(e_player) && e_player istouching(var_6cc24199))
+			if(var_6cc24199.script_int === n_sequence && isalive(e_player) && e_player istouching(var_6cc24199))
 			{
 				e_player thread function_93284efd(var_6cc24199);
 				continue;
@@ -538,7 +538,7 @@ function function_8f250fa1()
 }
 
 /*
-	Name: function_c0d65ddd
+	Name: electrocute_zombie
 	Namespace: namespace_a6437486
 	Checksum: 0x4E5E4B35
 	Offset: 0x1AE8
@@ -546,7 +546,7 @@ function function_8f250fa1()
 	Parameters: 2
 	Flags: None
 */
-function function_c0d65ddd(var_64c09f7f, e_volume)
+function electrocute_zombie(var_64c09f7f, e_volume)
 {
 	self endon(#"death");
 	self clientfield::set("" + #"electrocute_ai_fx", 1);
@@ -631,11 +631,11 @@ function function_91ecec97(a_e_lights, str_model)
 	Parameters: 2
 	Flags: Linked
 */
-function function_9492f89b(var_394e1495, var_1e034eed)
+function function_9492f89b(v_volume, var_1e034eed)
 {
 	self endon(#"disconnect");
 	self.var_58538bef = var_1e034eed;
-	while(isalive(self) && self istouching(var_394e1495))
+	while(isalive(self) && self istouching(v_volume))
 	{
 		waitframe(1);
 	}

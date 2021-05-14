@@ -33,7 +33,7 @@ function __init__()
 {
 	clientfield::register("toplayer", "tomahawk_in_use", 1, 2, "int", &tomahawk_in_use, 0, 1);
 	clientfield::register("toplayer", "" + #"upgraded_tomahawk_in_use", 1, 1, "int", &tomahawk_in_use, 0, 1);
-	clientfield::register("scriptmover", "play_tomahawk_fx", 1, 2, "int", &function_c4d14a96, 0, 0);
+	clientfield::register("scriptmover", "play_tomahawk_fx", 1, 2, "int", &play_tomahawk_pickup_fx, 0, 0);
 	clientfield::register("actor", "play_tomahawk_hit_sound", 1, 1, "int", &function_9a3953ea, 0, 0);
 	clientfield::register("toplayer", "tomahawk_rumble", 1, 2, "counter", &tomahawk_rumble, 0, 0);
 	clientfield::register("actor", "tomahawk_impact_fx", 1, 2, "int", &tomahawk_impact_fx, 0, 0);
@@ -80,7 +80,7 @@ function tomahawk_in_use(localclientnum, oldval, newval, bnewent, binitialsnap, 
 }
 
 /*
-	Name: function_c4d14a96
+	Name: play_tomahawk_pickup_fx
 	Namespace: namespace_268fc37c
 	Checksum: 0x84EC4035
 	Offset: 0x800
@@ -88,7 +88,7 @@ function tomahawk_in_use(localclientnum, oldval, newval, bnewent, binitialsnap, 
 	Parameters: 7
 	Flags: Linked
 */
-function function_c4d14a96(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function play_tomahawk_pickup_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(bwasdemojump)
@@ -140,7 +140,7 @@ function function_c4d14a96(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_9a3953ea(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	self playsound(localclientnum, #"hash_2b4ab150500aa982", self.origin + vectorscale((0, 0, 1), 75));
+	self playsound(localclientnum, #"wpn_tomahawk_impact", self.origin + vectorscale((0, 0, 1), 75));
 }
 
 /*

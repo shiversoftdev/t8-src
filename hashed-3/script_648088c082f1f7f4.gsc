@@ -247,7 +247,7 @@ function function_79a59d11()
 	self disabledriverfiring(1);
 	self.ignore_death_jolt = 1;
 	self.var_92043a49 = 1;
-	self.var_54ebfda9 = &function_5f9c568d;
+	self.is_staircase_up = &function_5f9c568d;
 	self.vehcheckforpredictedcrash = 1;
 	self.predictedcollisiontime = 0.2;
 	self.var_4ab08c1d = 1;

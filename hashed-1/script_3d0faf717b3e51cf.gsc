@@ -49,7 +49,7 @@ function __init__()
 function function_5dfbc20a()
 {
 	auto_turret::function_f17009ff();
-	function_2dae59e4();
+	guardian_init();
 	function_4dc5ff34();
 }
 
@@ -192,7 +192,7 @@ function function_e341abb9(totalfiretime, enemy)
 }
 
 /*
-	Name: function_2dae59e4
+	Name: guardian_init
 	Namespace: namespace_a16f7863
 	Checksum: 0x9C460B2
 	Offset: 0x5A0
@@ -200,7 +200,7 @@ function function_e341abb9(totalfiretime, enemy)
 	Parameters: 0
 	Flags: None
 */
-function function_2dae59e4()
+function guardian_init()
 {
 	guardian = self;
 	guardian.maxsightdistsqrd = 450 * 450;

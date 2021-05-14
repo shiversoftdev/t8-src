@@ -93,7 +93,7 @@ function function_9c8540b4(e_player, n_amount)
 			level flag::set("fl_oracle_unlocked");
 			foreach(player in getplayers())
 			{
-				player namespace_891c9bac::function_8e0f4696(#"hash_4c29e41ef47ad9b2", 0, 1, 9999, 1, 1, 1);
+				player zm_vo::function_8e0f4696(#"hash_4c29e41ef47ad9b2", 0, 1, 9999, 1, 1, 1);
 			}
 		}
 	}

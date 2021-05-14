@@ -326,30 +326,30 @@ function function_a78bbf22(localclientnum)
 	}
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
-		for(var_9adc5613 = 0; var_9adc5613 < a_keys.size; var_9adc5613++)
+		for(ga = 0; ga < a_keys.size; ga++)
 		{
-			gadgetpower = getgadgetpower(localclientnum, var_9adc5613);
+			gadgetpower = getgadgetpower(localclientnum, ga);
 			if(sessionmodeiszombiesgame())
 			{
-				if(var_9adc5613 == 0)
+				if(ga == 0)
 				{
 					continue;
 				}
-				else if(var_9adc5613 == 1)
+				else if(ga == 1)
 				{
-					gadgetpower = gadgetisready(localclientnum, var_9adc5613);
+					gadgetpower = gadgetisready(localclientnum, ga);
 				}
 			}
-			if(isdefined(gadgetpower) && gadgetpower == 1 && (isdefined(self.var_9623f1d5[var_9adc5613]) && !self.var_9623f1d5[var_9adc5613]))
+			if(isdefined(gadgetpower) && gadgetpower == 1 && (isdefined(self.var_9623f1d5[ga]) && !self.var_9623f1d5[ga]))
 			{
-				self.var_9623f1d5[var_9adc5613] = 1;
-				self thread function_c6bcf243(a_keys[var_9adc5613], var_9adc5613, localclientnum);
+				self.var_9623f1d5[ga] = 1;
+				self thread function_c6bcf243(a_keys[ga], ga, localclientnum);
 				continue;
 			}
 			if(isdefined(gadgetpower) && gadgetpower != 1)
 			{
-				function_b4c6383f(a_keys[var_9adc5613], 1, 855309);
-				self.var_9623f1d5[var_9adc5613] = 0;
+				function_b4c6383f(a_keys[ga], 1, 855309);
+				self.var_9623f1d5[ga] = 0;
 			}
 		}
 		wait(0.5);
@@ -487,11 +487,11 @@ function function_1d13e2db(localclientnum)
 	previoustime = 0;
 	while(!(isdefined(level.gameended) && level.gameended))
 	{
-		var_e2f47a8e = getuimodelvalue(var_a5976120);
+		_town_mansion_primary_weapons = getuimodelvalue(var_a5976120);
 		var_20ef87f3 = getuimodelvalue(var_7f1c5ce2);
-		if(isdefined(var_e2f47a8e) && isdefined(var_20ef87f3))
+		if(isdefined(_town_mansion_primary_weapons) && isdefined(var_20ef87f3))
 		{
-			if(var_e2f47a8e == 6 && var_20ef87f3 != previoustime)
+			if(_town_mansion_primary_weapons == 6 && var_20ef87f3 != previoustime)
 			{
 				if(!function_f99d2668())
 				{
@@ -525,7 +525,7 @@ function function_1d13e2db(localclientnum)
 				}
 				previoustime = var_20ef87f3;
 			}
-			else if(var_e2f47a8e == 0 && previoustime == 1)
+			else if(_town_mansion_primary_weapons == 0 && previoustime == 1)
 			{
 				previoustime = 0;
 				function_13861db4(3);

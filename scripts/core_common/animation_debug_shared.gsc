@@ -21,8 +21,8 @@ autoexec function function_c3c9d0e5()
 		setdvar(#"anim_debug_pause", 0);
 		while(true)
 		{
-			var_d5601b22 = getdvarint(#"anim_debug", 0) || getdvarint(#"anim_debug_pause", 0);
-			if(var_d5601b22 && !level flagsys::get(""))
+			b_anim_debug = getdvarint(#"anim_debug", 0) || getdvarint(#"anim_debug_pause", 0);
+			if(b_anim_debug && !level flagsys::get(""))
 			{
 				level flagsys::set("");
 				a_ents = getentarray("", "", 1);
@@ -31,7 +31,7 @@ autoexec function function_c3c9d0e5()
 					ent thread anim_info_render_thread(ent.var_6c4bb19.animation, ent.var_6c4bb19.v_origin_or_ent, ent.var_6c4bb19.v_angles_or_tag, ent.var_6c4bb19.var_f4b34dc1);
 				}
 			}
-			else if(!var_d5601b22 && level flagsys::get(""))
+			else if(!b_anim_debug && level flagsys::get(""))
 			{
 				level notify(#"kill_anim_debug");
 				level flagsys::clear("");

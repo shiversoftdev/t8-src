@@ -42,11 +42,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_a0e875894ebc5ff", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_a0e875894ebc5ff", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -85,7 +85,7 @@ private function function_d1de6a85(var_7720abf7, var_2d5ebf67, var_530e040f, zon
 	}
 	foreach(player in getplayers())
 	{
-		player thread function_209fb197(self, var_2d5ebf67, var_530e040f);
+		player thread zone_watcher(self, var_2d5ebf67, var_530e040f);
 		if(isdefined(level.var_b691023c))
 		{
 			player thread damage_watcher(level.var_b691023c);
@@ -280,7 +280,7 @@ private function function_1802ad1e(challenge, var_2d5ebf67, var_530e040f, timeou
 }
 
 /*
-	Name: function_209fb197
+	Name: zone_watcher
 	Namespace: namespace_115c602a
 	Checksum: 0xB776D65
 	Offset: 0xC80
@@ -288,7 +288,7 @@ private function function_1802ad1e(challenge, var_2d5ebf67, var_530e040f, timeou
 	Parameters: 3
 	Flags: Private
 */
-private function function_209fb197(challenge, var_2d5ebf67, var_530e040f)
+private function zone_watcher(challenge, var_2d5ebf67, var_530e040f)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -407,14 +407,14 @@ private function function_dae80de6()
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
 	wait(5);
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_a0e875894ebc5ff");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_a0e875894ebc5ff");
 	s_defend_area = struct::get(s_challenge.var_f7f308cd);
-	var_88706ea7 = positionquery_source_navigation(s_defend_area.origin, 64, 1500, 100, 32);
+	s_result = positionquery_source_navigation(s_defend_area.origin, 64, 1500, 100, 32);
 	a_str_zones = getarraykeys(level.var_c8b84806);
 	zm_zonemgr::function_8caa21df(a_str_zones);
 	var_3dbf02b9 = [];
-	var_88706ea7.data = array::randomize(var_88706ea7.data);
-	foreach(var_c310df8c in var_88706ea7.data)
+	s_result.data = array::randomize(s_result.data);
+	foreach(var_c310df8c in s_result.data)
 	{
 		foreach(str_zone in a_str_zones)
 		{
@@ -487,7 +487,7 @@ private function function_e1378d07()
 */
 function is_active()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_a0e875894ebc5ff");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_a0e875894ebc5ff");
 	return isdefined(s_challenge);
 }
 

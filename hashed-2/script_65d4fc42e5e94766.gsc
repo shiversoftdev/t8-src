@@ -145,7 +145,7 @@ function function_cb5864fc()
 function function_b76a2e3f(ispredictedspawn)
 {
 	self.var_7070a94c = 0;
-	if(infection::function_74650d7() && self infection::function_bf46a7aa())
+	if(infection::function_74650d7() && self infection::is_infected())
 	{
 		self infection::function_f488681f();
 		return 1;

@@ -494,7 +494,7 @@ private function player_use_can_pack_now(pap_machine)
 }
 
 /*
-	Name: function_18994aca
+	Name: repack_weapon
 	Namespace: zm_pap_util
 	Checksum: 0x82F1FE9E
 	Offset: 0x11F8
@@ -502,7 +502,7 @@ private function player_use_can_pack_now(pap_machine)
 	Parameters: 2
 	Flags: Linked
 */
-function function_18994aca(weapon, var_27bfdd42)
+function repack_weapon(weapon, n_repacks)
 {
 	if(!isdefined(self.var_2843d3cc))
 	{
@@ -514,10 +514,10 @@ function function_18994aca(weapon, var_27bfdd42)
 	}
 	var_c0bd8719 = weapon;
 	weapon = zm_weapons::function_93cd8e76(weapon);
-	if(isdefined(var_27bfdd42))
+	if(isdefined(n_repacks))
 	{
-		var_27bfdd42 = math::clamp(var_27bfdd42, 0, 4);
-		self.var_2843d3cc[weapon] = var_27bfdd42;
+		n_repacks = math::clamp(n_repacks, 0, 4);
+		self.var_2843d3cc[weapon] = n_repacks;
 	}
 	else if(!isdefined(self.var_2843d3cc[weapon]))
 	{
@@ -529,7 +529,7 @@ function function_18994aca(weapon, var_27bfdd42)
 	}
 	if(self.var_2843d3cc[weapon] == 4)
 	{
-		self namespace_bd02cf1::function_896ac347(var_c0bd8719, #"hash_300fdf15a515feda", 1);
+		self activecamo::function_896ac347(var_c0bd8719, #"hash_300fdf15a515feda", 1);
 	}
 }
 
@@ -549,7 +549,7 @@ function function_c01d9f22(weapon)
 	if(isdefined(self.var_2843d3cc) && isdefined(self.var_2843d3cc[weapon]))
 	{
 		self.var_2843d3cc[weapon] = undefined;
-		self namespace_f063c3a8::function_a24c564f(#"hash_bc45c49c8304dc8", weapon);
+		self zm_camos::function_a24c564f(#"hash_bc45c49c8304dc8", weapon);
 	}
 }
 

@@ -5,11 +5,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_93829f86;
+#namespace zm_items;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x4A38B31E
 	Offset: 0xC8
 	Size: 0x3C
@@ -18,12 +18,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1215b02cab483ee7", &__init__, undefined, undefined);
+	system::register(#"zm_items", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x390E7327
 	Offset: 0x110
 	Size: 0x4C
@@ -37,7 +37,7 @@ function __init__()
 
 /*
 	Name: function_39e7c9dd
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0xE212F465
 	Offset: 0x168
 	Size: 0x84

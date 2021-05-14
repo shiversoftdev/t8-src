@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"reset_loadout", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"reset_loadout", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -86,7 +86,7 @@ private function function_d1de6a85(var_30dbb2e5, var_f2c84b6b)
 */
 function is_active(var_61ee083c = 0)
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"reset_loadout");
+	s_challenge = zm_trial::function_a36e8c38(#"reset_loadout");
 	if(var_61ee083c)
 	{
 		if(isdefined(s_challenge) && isdefined(s_challenge.var_f2c84b6b))
@@ -123,23 +123,23 @@ private function function_af55104(var_f2c84b6b)
 	a_weapons = self getweaponslist(0);
 	foreach(weapon in a_weapons)
 	{
-		if(namespace_2ba51478::is_hero_weapon(weapon))
+		if(zm_loadout::is_hero_weapon(weapon))
 		{
-			var_bcd1c2ff = self gadgetgetslot(weapon);
-			self gadgetpowerset(var_bcd1c2ff, 0);
+			n_slot = self gadgetgetslot(weapon);
+			self gadgetpowerset(n_slot, 0);
 			continue;
 		}
-		if(namespace_2ba51478::is_lethal_grenade(weapon))
+		if(zm_loadout::is_lethal_grenade(weapon))
 		{
-			var_bcd1c2ff = self gadgetgetslot(weapon);
+			n_slot = self gadgetgetslot(weapon);
 			if(weapon == getweapon(#"tomahawk_t8") || weapon == getweapon(#"tomahawk_t8_upgraded"))
 			{
-				while(self function_36dfc05f(var_bcd1c2ff))
+				while(self function_36dfc05f(n_slot))
 				{
 					waitframe(1);
 				}
 				self notify(#"hash_3d73720d4588203c");
-				self gadgetpowerset(var_bcd1c2ff, 0);
+				self gadgetpowerset(n_slot, 0);
 				if(isdefined(level.var_6d0e2c1b) && isdefined(level.var_6d0e2c1b[weapon]))
 				{
 					self thread [[level.var_6d0e2c1b[weapon]]](weapon);
@@ -148,7 +148,7 @@ private function function_af55104(var_f2c84b6b)
 			}
 			else
 			{
-				self gadgetpowerset(var_bcd1c2ff, 0);
+				self gadgetpowerset(n_slot, 0);
 			}
 			continue;
 		}
@@ -196,11 +196,11 @@ private function reset_loadout(var_96288bc8 = 0)
 		self zm_weapons::weapon_give(level.weaponzmfists, 1);
 		if(isdefined(level.var_7f7fd2ac))
 		{
-			level waittill(#"hash_27c0f37184262bcd", #"hash_7646638df88a3656");
+			level waittill(#"enable_equipment", #"hash_7646638df88a3656");
 		}
 	}
-	self namespace_2ba51478::give_start_weapon(1);
-	self namespace_2ba51478::init_player_offhand_weapons();
+	self zm_loadout::give_start_weapon(1);
+	self zm_loadout::init_player_offhand_weapons();
 	for(slot = 0; slot < 3; slot++)
 	{
 		if(isdefined(self._gadgets_player[slot]))
@@ -265,7 +265,7 @@ private function function_d1dabace(n_time = 30)
 */
 private function function_59d771f7()
 {
-	level notify(#"hash_27c0f37184262bcd");
+	level notify(#"enable_equipment");
 	level.var_236b9f7a = undefined;
 	level.func_override_wallbuy_prompt = undefined;
 	level.var_7f7fd2ac = undefined;

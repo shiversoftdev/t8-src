@@ -75,9 +75,9 @@ function function_e752a980(localclientnum)
 {
 	self endon(#"hash_747b48d62f4fbad1", #"disconnect");
 	var_f42481ac = 0;
-	var_3c8a6d1a = getdynentarray();
+	a_dynents = getdynentarray();
 	a_corpses = getentarraybytype(localclientnum, 17);
-	var_f74f1323 = arraycombine(var_3c8a6d1a, a_corpses, 1, 0);
+	var_f74f1323 = arraycombine(a_dynents, a_corpses, 1, 0);
 	var_f74f1323 = array::randomize(var_f74f1323);
 	foreach(var_863ce745 in var_f74f1323)
 	{

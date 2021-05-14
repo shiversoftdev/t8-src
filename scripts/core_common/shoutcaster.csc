@@ -248,12 +248,12 @@ private function function_4c4946d4(local_client_num, localplayerteam, var_52fe68
 	{
 		entity = array[0];
 		var_c43ac0da = array[1];
-		var_14a2badb = array[2];
+		rob = array[2];
 		if(!var_52fe6881 || var_faa7a3fb == 0)
 		{
 			if(entity flag::exists(#"hash_3a8caf1d07ba0251"))
 			{
-				entity renderoverridebundle::function_40d0d1e0(#"hash_3a8caf1d07ba0251", var_14a2badb, 0);
+				entity renderoverridebundle::stop_bundle(#"hash_3a8caf1d07ba0251", rob, 0);
 			}
 			continue;
 		}
@@ -261,11 +261,11 @@ private function function_4c4946d4(local_client_num, localplayerteam, var_52fe68
 		{
 			if(entity flag::exists(#"hash_3a8caf1d07ba0251"))
 			{
-				entity renderoverridebundle::function_40d0d1e0(#"hash_3a8caf1d07ba0251", var_14a2badb, 0);
+				entity renderoverridebundle::stop_bundle(#"hash_3a8caf1d07ba0251", rob, 0);
 			}
 			continue;
 		}
-		entity function_a0b844f1(local_client_num, var_c43ac0da, var_14a2badb);
+		entity function_a0b844f1(local_client_num, var_c43ac0da, rob);
 	}
 }
 
@@ -278,7 +278,7 @@ private function function_4c4946d4(local_client_num, localplayerteam, var_52fe68
 	Parameters: 3
 	Flags: Linked
 */
-function function_a0b844f1(local_client_num, var_c6fc7911, var_14a2badb)
+function function_a0b844f1(local_client_num, var_c6fc7911, rob)
 {
 	var_52fe6881 = getshoutcastersetting(local_client_num, "shoutcaster_qs_xray");
 	loc_00000E16:
@@ -297,16 +297,16 @@ function function_a0b844f1(local_client_num, var_c6fc7911, var_14a2badb)
 		return;
 	}
 	self renderoverridebundle::function_c8d97b8e(local_client_num, #"hash_3a8caf1d07ba0251", var_c6fc7911);
-	var_a8cb10a = (self.team == #"allies" ? (0.13, 0.87, 0.94) : (0.98, 0.18, 0.1));
+	teamcolor = (self.team == #"allies" ? (0.13, 0.87, 0.94) : (0.98, 0.18, 0.1));
 	if(is_shoutcaster_using_team_identity(local_client_num))
 	{
 		var_f90afe60 = get_team_color_id(local_client_num, self.team);
-		var_a8cb10a = function_4823f055(var_f90afe60);
+		teamcolor = function_4823f055(var_f90afe60);
 	}
-	self function_78233d29(var_14a2badb, "", #"tintr", var_a8cb10a[0]);
-	self function_78233d29(var_14a2badb, "", #"tintg", var_a8cb10a[1]);
-	self function_78233d29(var_14a2badb, "", #"tintb", var_a8cb10a[2]);
-	self function_78233d29(var_14a2badb, "", #"alpha", 1);
+	self function_78233d29(rob, "", #"tintr", teamcolor[0]);
+	self function_78233d29(rob, "", #"tintg", teamcolor[1]);
+	self function_78233d29(rob, "", #"tintb", teamcolor[2]);
+	self function_78233d29(rob, "", #"alpha", 1);
 }
 
 /*

@@ -101,7 +101,7 @@ function activation()
 		}
 		if(can_revive)
 		{
-			player thread bgb::function_da81178e();
+			player thread bgb::bgb_revive_watcher();
 			player zm_laststand::auto_revive(self);
 			self zm_stats::increment_challenge_stat(#"gum_gobbler_phoenix_up");
 		}

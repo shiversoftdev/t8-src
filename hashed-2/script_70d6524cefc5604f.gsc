@@ -71,7 +71,7 @@ function function_ffa39915()
 	Parameters: 4
 	Flags: Linked
 */
-function function_8f205daa(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_8f205daa(b_pause, str_perk, str_result, n_slot)
 {
 }
 

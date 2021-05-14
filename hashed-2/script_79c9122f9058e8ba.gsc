@@ -81,20 +81,20 @@ function __init__()
 {
 	registerbehaviorscriptfunctions();
 	init();
-	level.var_d040fb05 = &function_6502a84d;
-	spawner::add_archetype_spawn_function(#"hash_50f4e0eea9f4e4a4", &function_c12f7b53);
-	namespace_57ff8cbb::function_cdf5a512(#"hash_50f4e0eea9f4e4a4", &function_4c71848e);
+	level.nosferatu_spawn_func = &function_6502a84d;
+	spawner::add_archetype_spawn_function(#"nosferatu", &function_c12f7b53);
+	zm_cleanup::function_cdf5a512(#"nosferatu", &function_4c71848e);
 	callback::on_player_damage(&function_8dc028ba);
 	clientfield::register("toplayer", "nosferatu_damage_fx", 8000, 1, "counter");
 	clientfield::register("actor", "nosferatu_spawn_fx", 8000, 1, "counter");
 	clientfield::register("actor", "nfrtu_silver_hit_fx", 8000, 1, "counter");
 	clientfield::register("actor", "summon_nfrtu", 8000, 1, "int");
 	clientfield::register("actor", "nfrtu_move_dash", 8000, 1, "int");
-	zm_score::function_e5d6e6dd(#"hash_50f4e0eea9f4e4a4", 60);
-	zm_score::function_e5d6e6dd(#"hash_69eff09684574252", 80);
-	namespace_c3287616::register_archetype(#"hash_50f4e0eea9f4e4a4", &function_cf877849, &round_spawn, &function_74f25f8a, 25);
-	namespace_c3287616::register_archetype(#"hash_69eff09684574252", &function_97f1f86e, &function_a8a8c2fb, undefined, 100);
-	namespace_c3287616::function_306ce518(#"hash_69eff09684574252", &function_57abef39);
+	zm_score::function_e5d6e6dd(#"nosferatu", 60);
+	zm_score::function_e5d6e6dd(#"crimson_nosferatu", 80);
+	namespace_c3287616::register_archetype(#"nosferatu", &function_cf877849, &round_spawn, &function_74f25f8a, 25);
+	namespace_c3287616::register_archetype(#"crimson_nosferatu", &function_97f1f86e, &function_a8a8c2fb, undefined, 100);
+	namespace_c3287616::function_306ce518(#"crimson_nosferatu", &function_57abef39);
 	level.var_243137e = getentarray("zombie_nosferatu_spawner", "script_noteworthy");
 	level.var_13bc407f = getentarray("zombie_crimson_nosferatu_spawner", "script_noteworthy");
 	/#
@@ -156,9 +156,9 @@ private function registerbehaviorscriptfunctions()
 	#/
 	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_6bf97c8d416da898", &function_7856b311);
 	/#
-		assert(isscriptfunctionptr(&function_abf11998));
+		assert(isscriptfunctionptr(&nosferatushouldstun));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_3addb79d5fb2e4a3", &function_abf11998);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"nosferatushouldstun", &nosferatushouldstun);
 	/#
 		assert(isscriptfunctionptr(&function_81c78981));
 	#/
@@ -181,7 +181,7 @@ private function registerbehaviorscriptfunctions()
 }
 
 /*
-	Name: function_abf11998
+	Name: nosferatushouldstun
 	Namespace: namespace_2fa8319f
 	Checksum: 0x2392A03B
 	Offset: 0xBC8
@@ -189,7 +189,7 @@ private function registerbehaviorscriptfunctions()
 	Parameters: 1
 	Flags: Linked
 */
-function function_abf11998(entity)
+function nosferatushouldstun(entity)
 {
 	if(zm_behavior::zombieshouldstun(entity) && function_e060c994(entity))
 	{
@@ -214,7 +214,7 @@ private function function_e060c994(entity)
 	{
 		foreach(event in var_7a69f7e9)
 		{
-			if(event.var_81270d79 === entity)
+			if(event.nosferatu === entity)
 			{
 				return 0;
 			}
@@ -236,7 +236,7 @@ function function_7856b311(entity)
 {
 	zm_behavior::function_bdedea72(entity);
 	var_268f1415 = spawnstruct();
-	var_268f1415.var_81270d79 = entity;
+	var_268f1415.nosferatu = entity;
 	blackboard::addblackboardevent("nfrtu_stun", var_268f1415, randomintrange(10000, 12000));
 }
 
@@ -310,7 +310,7 @@ private function function_c12f7b53()
 	self.is_zombie = 1;
 	self.var_fad2bca9 = 1;
 	self.var_ccb2e201 = 0;
-	if(self.var_9fde8624 === #"hash_69eff09684574252")
+	if(self.var_9fde8624 === #"crimson_nosferatu")
 	{
 		self.var_dd6fe31f = 1;
 		self.var_f46fbf3f = 1;
@@ -348,7 +348,7 @@ private function function_c12f7b53()
 */
 private function function_8a2cb5ed(params)
 {
-	if(self.archetype === #"hash_50f4e0eea9f4e4a4")
+	if(self.archetype === #"nosferatu")
 	{
 		attackerdistance = 0;
 		isexplosive = 0;
@@ -456,7 +456,7 @@ private function function_c9a2941c(notifyhash)
 {
 	if(isdefined(self) && isdefined(self.heal))
 	{
-		self val::reset(#"hash_50f4e0eea9f4e4a4", "health_regen");
+		self val::reset(#"nosferatu", "health_regen");
 	}
 }
 
@@ -474,13 +474,13 @@ private function function_e05b2c36()
 	self notify("1aeb0156174acfac");
 	self endon("1aeb0156174acfac");
 	self endon_callback(&function_c9a2941c, #"death");
-	self.var_1c152654 = 1;
-	self val::set(#"hash_50f4e0eea9f4e4a4", "health_regen", 0);
+	self.b_nosferatu_damage_fx = 1;
+	self val::set(#"nosferatu", "health_regen", 0);
 	wait(self.var_cd35302f);
-	self val::reset(#"hash_50f4e0eea9f4e4a4", "health_regen");
+	self val::reset(#"nosferatu", "health_regen");
 	waitframe(5);
 	self.var_cd35302f = undefined;
-	self.var_1c152654 = 0;
+	self.b_nosferatu_damage_fx = 0;
 }
 
 /*
@@ -495,7 +495,7 @@ private function function_e05b2c36()
 function function_8dc028ba(s_params)
 {
 	attacker = s_params.eattacker;
-	if(isdefined(attacker) && isdefined(attacker.archetype) && attacker.archetype == #"hash_50f4e0eea9f4e4a4" && s_params.idamage > 0)
+	if(isdefined(attacker) && isdefined(attacker.archetype) && attacker.archetype == #"nosferatu" && s_params.idamage > 0)
 	{
 		self function_2b35beda();
 		attacker function_c59b482e();
@@ -552,7 +552,7 @@ function function_57abef39(n_round_number)
 	while(true)
 	{
 		level waittill(#"hash_5d3012139f083ccb");
-		if(namespace_c3287616::function_d0db51fc(#"hash_69eff09684574252"))
+		if(namespace_c3287616::function_d0db51fc(#"crimson_nosferatu"))
 		{
 			level.var_da92f51a = level.round_number + function_21a3a673(2, 3);
 		}
@@ -628,7 +628,7 @@ function function_a8a8c2fb()
 	Parameters: 4
 	Flags: Linked
 */
-function function_74f25f8a(b_force_spawn = 0, var_eb3a8721, var_950c7b6b = 0, round_number)
+function function_74f25f8a(b_force_spawn = 0, var_eb3a8721, b_crimson = 0, round_number)
 {
 	if(!b_force_spawn && !function_1c0cad2c())
 	{
@@ -639,9 +639,9 @@ function function_74f25f8a(b_force_spawn = 0, var_eb3a8721, var_950c7b6b = 0, ro
 	{
 		s_spawn_loc = var_eb3a8721;
 	}
-	else if(isdefined(level.var_d040fb05))
+	else if(isdefined(level.nosferatu_spawn_func))
 	{
-		s_spawn_loc = [[level.var_d040fb05]]();
+		s_spawn_loc = [[level.nosferatu_spawn_func]]();
 	}
 	else if(level.zm_loc_types[#"nosferatu_location"].size > 0)
 	{
@@ -651,7 +651,7 @@ function function_74f25f8a(b_force_spawn = 0, var_eb3a8721, var_950c7b6b = 0, ro
 	{
 		return undefined;
 	}
-	if(var_950c7b6b)
+	if(b_crimson)
 	{
 		e_spawner = level.var_13bc407f[0];
 	}
@@ -746,7 +746,7 @@ function function_fc977dee()
 */
 function function_853b43e8()
 {
-	var_219a33e2 = getaiarchetypearray(#"hash_50f4e0eea9f4e4a4");
+	var_219a33e2 = getaiarchetypearray(#"nosferatu");
 	var_e02fe4cb = var_219a33e2.size;
 	foreach(var_7afd04dc in var_219a33e2)
 	{
@@ -932,7 +932,7 @@ private function function_82785646(entity)
 	{
 		return 0;
 	}
-	if(!isdefined(self.var_9fde8624) || self.var_9fde8624 != #"hash_69eff09684574252")
+	if(!isdefined(self.var_9fde8624) || self.var_9fde8624 != #"crimson_nosferatu")
 	{
 		return 0;
 	}
@@ -978,7 +978,7 @@ private function function_c16e1ca1(entity)
 	{
 		return 0;
 	}
-	if(entity.var_9fde8624 !== #"hash_69eff09684574252")
+	if(entity.var_9fde8624 !== #"crimson_nosferatu")
 	{
 		return 0;
 	}
@@ -1065,7 +1065,7 @@ private function function_76d6482e(entity)
 		#/
 		for(i = 0; i < var_c9528359; i++)
 		{
-			a_ai_zombies[i] thread namespace_57ff8cbb::cleanup_zombie();
+			a_ai_zombies[i] thread zm_cleanup::cleanup_zombie();
 		}
 	}
 	if(var_c9528359)
@@ -1156,7 +1156,7 @@ function function_b2a2b29e()
 function nosferatu_spawn_fx(ai, ent)
 {
 	ai endon(#"death");
-	ai val::set(#"hash_3cb0026a111e57dc", "allowdeath", 0);
+	ai val::set(#"nosferatu_spawn", "allowdeath", 0);
 	ai setfreecameralockonallowed(0);
 	wait(1.5);
 	earthquake(0.5, 0.75, ent.origin, 1000);
@@ -1178,11 +1178,11 @@ function nosferatu_spawn_fx(ai, ent)
 	/#
 		assert(isalive(ai), "");
 	#/
-	ai val::reset(#"hash_3cb0026a111e57dc", "allowdeath");
+	ai val::reset(#"nosferatu_spawn", "allowdeath");
 	wait(0.1);
 	ai show();
 	ai setfreecameralockonallowed(1);
-	ai val::reset(#"hash_3cb0026a111e57dc", "ignoreme");
+	ai val::reset(#"nosferatu_spawn", "ignoreme");
 	ai notify(#"visible");
 }
 

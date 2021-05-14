@@ -15,7 +15,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1bab8a0ba811401e", &__init__, undefined, undefined);
+	system::register(#"catalyst", &__init__, undefined, undefined);
 }
 
 /*
@@ -42,7 +42,7 @@ autoexec function precache()
 */
 function __init__()
 {
-	ai::add_archetype_spawn_function(#"hash_1bab8a0ba811401e", &function_5608540a);
+	ai::add_archetype_spawn_function(#"catalyst", &function_5608540a);
 }
 
 /*

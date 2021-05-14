@@ -48,7 +48,7 @@ function __init__()
 }
 
 /*
-	Name: function_8753f2b1
+	Name: zombie_open_sesame
 	Namespace: namespace_8eb9bc0a
 	Checksum: 0x125944B0
 	Offset: 0x208
@@ -56,7 +56,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked
 */
-function function_8753f2b1()
+function zombie_open_sesame()
 {
 	setdvar(#"zombie_unlock_all", 1);
 	level flag::set("power_on");
@@ -139,7 +139,7 @@ function function_97346595()
 			{
 				if(new_value == 2)
 				{
-					level thread function_8753f2b1();
+					level thread zombie_open_sesame();
 				}
 				var_b2efd61b = 4 - players.size;
 				/#

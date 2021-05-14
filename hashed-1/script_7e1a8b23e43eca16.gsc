@@ -72,7 +72,7 @@ function result(death, attacker, mod, weapon)
 	}
 	if(death && function_a2e05e6(attacker))
 	{
-		level thread function_2b6d6eb0(self, self.origin, attacker, mod, weapon);
+		level thread frostbite_explosion(self, self.origin, attacker, mod, weapon);
 	}
 	else
 	{
@@ -94,11 +94,11 @@ private function function_a2e05e6(e_attacker)
 	n_current_time = float(gettime()) / 1000;
 	if(isplayer(e_attacker))
 	{
-		if(!isdefined(e_attacker.aat_cooldown_start[#"hash_68ef7da42ca9713e"]))
+		if(!isdefined(e_attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"]))
 		{
 			return 1;
 		}
-		if(isdefined(e_attacker.aat_cooldown_start[#"hash_68ef7da42ca9713e"]) && n_current_time >= e_attacker.aat_cooldown_start[#"hash_68ef7da42ca9713e"] + 30)
+		if(isdefined(e_attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"]) && n_current_time >= e_attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"] + 30)
 		{
 			return 1;
 		}
@@ -197,7 +197,7 @@ function function_35d3ac3b(attacker, mod, weapon)
 	{
 		if(self.var_cbf4894c <= 0.6 && function_a2e05e6(attacker))
 		{
-			level thread function_2b6d6eb0(self, self.origin, attacker, mod, weapon);
+			level thread frostbite_explosion(self, self.origin, attacker, mod, weapon);
 		}
 		else
 		{
@@ -207,7 +207,7 @@ function function_35d3ac3b(attacker, mod, weapon)
 }
 
 /*
-	Name: function_2b6d6eb0
+	Name: frostbite_explosion
 	Namespace: zm_aat_frostbite
 	Checksum: 0x3E6F324A
 	Offset: 0x910
@@ -215,7 +215,7 @@ function function_35d3ac3b(attacker, mod, weapon)
 	Parameters: 5
 	Flags: Linked
 */
-function function_2b6d6eb0(var_4589e270, var_23255fc5, attacker, mod, weapon)
+function frostbite_explosion(var_4589e270, var_23255fc5, attacker, mod, weapon)
 {
 	if(randomfloat(100) > 40)
 	{
@@ -224,7 +224,7 @@ function function_2b6d6eb0(var_4589e270, var_23255fc5, attacker, mod, weapon)
 	var_4589e270 clientfield::increment("zm_aat_frostbite_explosion_clientfield");
 	if(isplayer(attacker))
 	{
-		attacker.aat_cooldown_start[#"hash_68ef7da42ca9713e"] = float(gettime()) / 1000;
+		attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"] = float(gettime()) / 1000;
 		attacker zm_stats::increment_challenge_stat(#"hash_4b615433ed6a8afd");
 	}
 	a_potential_targets = array::get_all_closest(var_23255fc5, level.ai[#"axis"], undefined, undefined, 128);

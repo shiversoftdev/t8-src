@@ -442,8 +442,8 @@ function function_831dcf3e()
 		mdl_fx delete();
 		var_2f1adb8e delete();
 	}
-	var_935fb3a3 = getent("vol_narrative_smash", "targetname");
-	var_935fb3a3 delete();
+	vol_pedestal = getent("vol_narrative_smash", "targetname");
+	vol_pedestal delete();
 }
 
 /*
@@ -513,7 +513,7 @@ function function_da2c37fc()
 	self endon("49bddca4a088db84");
 	level endon(#"end_game", #"hash_407e0345ce2708de");
 	self endon(#"disconnect");
-	var_935fb3a3 = getent("vol_narrative_smash", "targetname");
+	vol_pedestal = getent("vol_narrative_smash", "targetname");
 	while(true)
 	{
 		var_4618dc52 = self.var_4618dc52;
@@ -522,7 +522,7 @@ function function_da2c37fc()
 			waitframe(1);
 			var_4618dc52 = self.var_4618dc52;
 		}
-		if(var_4618dc52 istouching(var_935fb3a3))
+		if(var_4618dc52 istouching(vol_pedestal))
 		{
 			self thread function_2160d544();
 			level flag::set(#"hash_407e0345ce2708de");
@@ -566,7 +566,7 @@ function function_964ec142()
 {
 	level endon(#"end_game");
 	self endon(#"death", #"weapon_change");
-	var_30814c10 = getent("vol_narrative_dirt", "targetname");
+	vol_cipher = getent("vol_narrative_dirt", "targetname");
 	while(true)
 	{
 		self waittill(#"weapon_melee");
@@ -577,7 +577,7 @@ function function_964ec142()
 			v_end = v_origin + vectorscale(v_dir, 20000);
 			a_trace = beamtrace(v_origin, v_end, 0, self);
 			v_hit = a_trace[#"position"];
-			if(isdefined(v_hit) && istouching(v_hit, var_30814c10))
+			if(isdefined(v_hit) && istouching(v_hit, vol_cipher))
 			{
 				level flag::set(#"hash_3eea1302aae8fea1");
 				break;
@@ -600,19 +600,19 @@ function function_7c66ee1b()
 	level endon(#"end_game");
 	var_8a88c4c8 = getent("mdl_narrative_flop", "targetname");
 	s_loc = struct::get(#"hash_41008b60aedc6f40");
-	var_146c21 = struct::get(#"hash_723303fe45c13f65");
+	s_hand = struct::get(#"hash_723303fe45c13f65");
 	if(!zm_utility::function_e51dc2d8())
 	{
 		var_8a88c4c8 delete();
 		s_loc struct::delete();
-		scene::add_scene_func(var_146c21.var_450f5117, &function_f3c29d33, "init");
-		var_146c21 struct::delete();
+		scene::add_scene_func(s_hand.var_450f5117, &function_f3c29d33, "init");
+		s_hand struct::delete();
 		return;
 	}
 	s_loc zm_unitrigger::function_fac87205(&function_bc24a9ea);
-	level thread scene::play(var_146c21.var_450f5117);
+	level thread scene::play(s_hand.var_450f5117);
 	s_loc struct::delete();
-	var_146c21 struct::delete();
+	s_hand struct::delete();
 	var_8a88c4c8 clientfield::set("" + #"hash_2407f687f7d24a83", 1);
 }
 
@@ -644,9 +644,9 @@ function function_f3c29d33(a_ents)
 */
 function function_bc24a9ea(e_player)
 {
-	var_146c21 = struct::get(#"hash_723303fe45c13f65");
+	s_hand = struct::get(#"hash_723303fe45c13f65");
 	str_stance = e_player getstance();
-	var_39b20ef6 = e_player zm_utility::is_player_looking_at(var_146c21.origin, 0.99, 0);
+	var_39b20ef6 = e_player zm_utility::is_player_looking_at(s_hand.origin, 0.99, 0);
 	var_4e28e4e2 = str_stance == "crouch" || str_stance == "prone";
 	return var_39b20ef6 && var_4e28e4e2;
 }
@@ -855,12 +855,12 @@ function function_ca4e26c3()
 			if(isdefined(v_hit))
 			{
 				var_946f7f31 = getentarray("vol_narrative_payback", "targetname");
-				foreach(var_7f4907ff in var_946f7f31)
+				foreach(vol_statue in var_946f7f31)
 				{
-					if(istouching(v_hit, var_7f4907ff))
+					if(istouching(v_hit, vol_statue))
 					{
 						var_1044cdc7 = level.var_1a87adb6 + 1;
-						if(var_1044cdc7 == var_7f4907ff.script_int)
+						if(var_1044cdc7 == vol_statue.script_int)
 						{
 							level.var_1a87adb6 = var_1044cdc7;
 							if(level.var_1a87adb6 >= level.var_4cc66ca4)
@@ -1110,16 +1110,16 @@ function function_cb2c487d()
 {
 	level endon(#"end_game");
 	var_8a88c4c8 = getent("mdl_narrative_death", "targetname");
-	var_6ba3e24d = getent("vol_narrative_death", "targetname");
+	vol_grate = getent("vol_narrative_death", "targetname");
 	if(!zm_utility::function_e51dc2d8())
 	{
 		var_8a88c4c8 delete();
-		var_6ba3e24d delete();
+		vol_grate delete();
 		return;
 	}
 	level flag::wait_till(#"hash_1dedcdbd1e528077");
-	var_3b2c2d10 = level.var_abf198ff[3];
-	var_9f02e39c = var_3b2c2d10.var_1171b93e[0];
+	s_trap = level.var_abf198ff[3];
+	var_9f02e39c = s_trap.var_1171b93e[0];
 	var_f9b9263d = 0;
 	while(true)
 	{
@@ -1132,7 +1132,7 @@ function function_cb2c487d()
 			b_show = 0;
 			foreach(e_player in level.players)
 			{
-				if(zm_utility::is_player_valid(e_player, 0, 0) && (isdefined(e_player.var_eb319d10) && e_player.var_eb319d10) && e_player istouching(var_6ba3e24d))
+				if(zm_utility::is_player_valid(e_player, 0, 0) && (isdefined(e_player.var_eb319d10) && e_player.var_eb319d10) && e_player istouching(vol_grate))
 				{
 					b_show = 1;
 					break;
@@ -1184,8 +1184,8 @@ function function_c8230683()
 		var_dd3ac19c = getent("narsho", "targetname");
 		var_dd3ac19c show();
 	}
-	var_b0cba1ff = getent("vol_narrative_wipe", "targetname");
-	var_b0cba1ff delete();
+	vol_roof = getent("vol_narrative_wipe", "targetname");
+	vol_roof delete();
 }
 
 /*
@@ -1203,25 +1203,25 @@ function function_cab1990a()
 	self endon("68d0201c4315e715");
 	level endon(#"end_game", #"hash_4863d7214aa660e2");
 	self endon(#"disconnect");
-	var_b0cba1ff = getent("vol_narrative_wipe", "targetname");
+	vol_roof = getent("vol_narrative_wipe", "targetname");
 	while(true)
 	{
 		while(!(isdefined(self.var_1de56cc8) && self.var_1de56cc8))
 		{
 			waitframe(1);
 		}
-		var_465d3af = 0;
+		b_tracking = 0;
 		while(isdefined(self.var_1de56cc8) && self.var_1de56cc8)
 		{
 			v_origin = self getweaponmuzzlepoint();
 			v_dir = self getweaponforwarddir();
 			a_trace = beamtrace(v_origin, v_origin + v_dir * 20000, 1, self);
 			v_hit = a_trace[#"position"];
-			if(isdefined(v_hit) && istouching(v_hit, var_b0cba1ff))
+			if(isdefined(v_hit) && istouching(v_hit, vol_roof))
 			{
-				if(!var_465d3af)
+				if(!b_tracking)
 				{
-					var_465d3af = 1;
+					b_tracking = 1;
 					n_start_time = gettime();
 				}
 				n_current_time = gettime();
@@ -1235,7 +1235,7 @@ function function_cab1990a()
 			}
 			else
 			{
-				var_465d3af = 0;
+				b_tracking = 0;
 			}
 			waitframe(1);
 		}
@@ -1328,8 +1328,8 @@ function function_98d6ce32()
 	level.var_f2dc2287.a_objects[level.var_f2dc2287.var_12b6c455] zm_unitrigger::function_fac87205("");
 	level.var_f2dc2287.var_12b6c455++;
 	level.var_b2b15659 = 1;
-	var_1ed67804 = struct::get("s_remvox");
-	playsoundatposition(#"hash_46233f5f75541000", var_1ed67804.origin);
+	s_skull = struct::get("s_remvox");
+	playsoundatposition(#"hash_46233f5f75541000", s_skull.origin);
 	function_d24a0f09(#"hash_46233f5f75541000");
 	mdl_wall = level.var_f2dc2287.a_objects[level.var_f2dc2287.var_12b6c455];
 	mdl_wall scene::play(#"p8_fxanim_zm_towers_wall_2_bundle", mdl_wall);
@@ -1363,16 +1363,16 @@ function function_801b77c0()
 function function_2cb83322(var_1600546f, var_759598cf)
 {
 	level.var_f2dc2287.var_12b6c455++;
-	var_ec2af5b5 = level.var_f2dc2287.a_objects[level.var_f2dc2287.var_12b6c455];
-	var_9185084 = spawn("script_origin", var_ec2af5b5.origin);
-	level thread function_415b58b1(var_1600546f, var_ec2af5b5, var_9185084);
-	var_ec2af5b5 zm_unitrigger::function_fac87205("");
+	s_crying = level.var_f2dc2287.a_objects[level.var_f2dc2287.var_12b6c455];
+	var_9185084 = spawn("script_origin", s_crying.origin);
+	level thread function_415b58b1(var_1600546f, s_crying, var_9185084);
+	s_crying zm_unitrigger::function_fac87205("");
 	level notify(#"hash_53319c10defe971b");
 	var_9185084 stopsounds();
-	playsoundatposition(#"hash_70d9fd993e01154d", var_ec2af5b5.origin);
+	playsoundatposition(#"hash_70d9fd993e01154d", s_crying.origin);
 	wait(0.75);
 	level.var_b2b15659 = 1;
-	playsoundatposition(var_759598cf, var_ec2af5b5.origin);
+	playsoundatposition(var_759598cf, s_crying.origin);
 	function_d24a0f09(var_759598cf);
 	var_9185084 delete();
 	level.var_b2b15659 = 0;
@@ -1387,7 +1387,7 @@ function function_2cb83322(var_1600546f, var_759598cf)
 	Parameters: 3
 	Flags: Linked
 */
-function function_415b58b1(var_1600546f, var_ec2af5b5, var_9185084)
+function function_415b58b1(var_1600546f, s_crying, var_9185084)
 {
 	level endon(#"game_end", #"hash_53319c10defe971b");
 	while(true)

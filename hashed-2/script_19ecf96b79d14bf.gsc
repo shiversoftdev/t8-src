@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_cb9d8a572a95c71", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_cb9d8a572a95c71", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -53,7 +53,7 @@ private function function_d1de6a85()
 {
 	str_targetname = "trials_shoot_from_water";
 	callback::function_33f0ddd3(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 	foreach(player in getplayers())
 	{
 		player thread function_9e0e99e1();
@@ -72,7 +72,7 @@ private function function_d1de6a85()
 private function function_9e7b3f4d(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	foreach(player in getplayers())
 	{
 		player thread namespace_b22c99a5::function_dc0859e();
@@ -98,7 +98,7 @@ private function function_9e0e99e1()
 	while(true)
 	{
 		var_f2b6fe6e = 0;
-		if(self.var_3236cdc2 === 1)
+		if(self.b_in_water === 1)
 		{
 			var_f2b6fe6e = 1;
 		}
@@ -120,7 +120,7 @@ private function function_9e0e99e1()
 			self namespace_b22c99a5::function_bf710271();
 			foreach(weapon in self getweaponslist(1))
 			{
-				if(namespace_2ba51478::function_2ff6913(weapon) == 1)
+				if(zm_loadout::function_2ff6913(weapon) == 1)
 				{
 					self unlockweapon(weapon);
 					if(weapon.isdualwield && weapon.dualwieldweapon != level.weaponnone)
@@ -155,7 +155,7 @@ private function function_33f0ddd3(s_event)
 	if(s_event.event === "give_weapon" || s_event.event === "give_weapon_alt" || s_event.event == "give_weapon_dual")
 	{
 		var_f2b6fe6e = 0;
-		if(self.var_3236cdc2 === 1)
+		if(self.b_in_water === 1)
 		{
 			var_f2b6fe6e = 1;
 		}
@@ -163,7 +163,7 @@ private function function_33f0ddd3(s_event)
 		{
 			foreach(weapon in self getweaponslist(1))
 			{
-				if(namespace_2ba51478::function_2ff6913(weapon) == 1)
+				if(zm_loadout::function_2ff6913(weapon) == 1)
 				{
 					self unlockweapon(weapon);
 					if(weapon.isdualwield && weapon.dualwieldweapon != level.weaponnone)

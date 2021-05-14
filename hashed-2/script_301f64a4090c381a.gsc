@@ -229,7 +229,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath,
 		}
 		case 6:
 		{
-			if(meansofdeath == "MOD_MELEE" && isdefined(weapon) && !weapon.isriotshield && !namespace_2ba51478::is_hero_weapon(weapon))
+			if(meansofdeath == "MOD_MELEE" && isdefined(weapon) && !weapon.isriotshield && !zm_loadout::is_hero_weapon(weapon))
 			{
 				damage = damage + 200;
 			}
@@ -346,13 +346,13 @@ function function_3da195ec(weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_68992377(var_c5b25bc5, var_97f3fbb7)
+private function function_68992377(var_c5b25bc5, n_cash_back)
 {
 	self endon(#"disconnect");
 	if(self function_6a7a1533(var_c5b25bc5))
 	{
 		wait(1);
-		self zm_score::add_to_player_score(var_97f3fbb7);
+		self zm_score::add_to_player_score(n_cash_back);
 	}
 }
 

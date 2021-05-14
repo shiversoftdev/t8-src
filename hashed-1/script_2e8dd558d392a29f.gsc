@@ -9,11 +9,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_8f0c3a1f;
+#namespace zm_talisman_perk_reducecost_3;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_8f0c3a1f
+	Namespace: zm_talisman_perk_reducecost_3
 	Checksum: 0x873FB6A4
 	Offset: 0xD0
 	Size: 0x3C
@@ -22,12 +22,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1c7eee984eb6ea75", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_perk_reducecost_3", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_8f0c3a1f
+	Namespace: zm_talisman_perk_reducecost_3
 	Checksum: 0x10B5A5E0
 	Offset: 0x118
 	Size: 0x2C
@@ -36,19 +36,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_perk_reducecost_3", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_perk_reducecost_3", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_8f0c3a1f
+	Name: activate_talisman
+	Namespace: zm_talisman_perk_reducecost_3
 	Checksum: 0xC707F6E9
 	Offset: 0x150
 	Size: 0x12
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self.talisman_perk_reducecost_3 = 1000;
 }

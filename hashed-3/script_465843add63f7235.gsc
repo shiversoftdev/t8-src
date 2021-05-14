@@ -82,7 +82,7 @@ function function_8d51d9a8()
 	Parameters: 4
 	Flags: Linked
 */
-function function_754453a(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_754453a(b_pause, str_perk, str_result, n_slot)
 {
 }
 

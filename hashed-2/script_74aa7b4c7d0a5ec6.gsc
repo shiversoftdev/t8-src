@@ -167,8 +167,8 @@ function __init__()
 	clientfield::register("scriptmover", "white_nova_crawler_spore_clientfield", 8000, 1, "int");
 	zm::function_84d343d(#"white_nova_crawler_projectile", &function_51ab2a44);
 	zm::register_actor_damage_callback(&function_ac651298);
-	level.var_b389ecc9 = struct::get_array("white_nova_crawler_sniper_location", "script_noteworthy");
-	level.var_ae29c1ce = struct::get_array("white_nova_crawler_sniper_escape_location", "script_noteworthy");
+	level.white_nova_crawler_sniper_locations = struct::get_array("white_nova_crawler_sniper_location", "script_noteworthy");
+	level.white_nova_crawler_sniper_escape_locations = struct::get_array("white_nova_crawler_sniper_escape_location", "script_noteworthy");
 	level.var_e6cea2c0 = 0;
 }
 
@@ -949,7 +949,7 @@ private function function_677d42d1(entity)
 private function function_5b7e50b0(entity)
 {
 	result = 0;
-	if(isdefined(entity.var_b421bafe) && entity.var_b421bafe && (isdefined(entity.can_shoot) && entity.can_shoot) && isdefined(level.var_b389ecc9) && level.var_b389ecc9.size > 0 && isdefined(level.var_ae29c1ce) && level.var_ae29c1ce.size > 0)
+	if(isdefined(entity.var_b421bafe) && entity.var_b421bafe && (isdefined(entity.can_shoot) && entity.can_shoot) && isdefined(level.white_nova_crawler_sniper_locations) && level.white_nova_crawler_sniper_locations.size > 0 && isdefined(level.white_nova_crawler_sniper_escape_locations) && level.white_nova_crawler_sniper_escape_locations.size > 0)
 	{
 		result = 1;
 	}
@@ -1046,12 +1046,12 @@ private function function_46aa5dda()
 */
 private function function_90388f5b(entity)
 {
-	var_4a106fbe = function_51e81aba(level.var_b389ecc9);
-	if(isdefined(var_4a106fbe))
+	minigun_climb_up_tank_anim = function_51e81aba(level.white_nova_crawler_sniper_locations);
+	if(isdefined(minigun_climb_up_tank_anim))
 	{
-		entity forceteleport(var_4a106fbe.origin, var_4a106fbe.angles);
-		entity.var_3fc4c097 = var_4a106fbe;
-		var_4a106fbe.is_claimed = 1;
+		entity forceteleport(minigun_climb_up_tank_anim.origin, minigun_climb_up_tank_anim.angles);
+		entity.var_3fc4c097 = minigun_climb_up_tank_anim;
+		minigun_climb_up_tank_anim.is_claimed = 1;
 		entity clientfield::increment("white_nova_crawler_phase_end_clientfield");
 		entity.var_2208281f = gettime() + 30000;
 		entity.no_powerups = 1;
@@ -1096,7 +1096,7 @@ private function function_fc9e257f(entity)
 */
 private function function_c708afa4(entity)
 {
-	var_96820b80 = function_51e81aba(level.var_ae29c1ce);
+	var_96820b80 = function_51e81aba(level.white_nova_crawler_sniper_escape_locations);
 	if(isdefined(var_96820b80))
 	{
 		playfx(self._effect[#"hash_571a3bab8b805854"], entity.origin);
@@ -1260,8 +1260,8 @@ private function function_91582c6(entity, start_location, var_85e6dc61)
 	{
 		weapon_name = "blue_nova_crawler_projectile";
 	}
-	var_34f24190 = getweapon(weapon_name);
-	projectile = magicbullet(var_34f24190, start_location, var_85e6dc61, entity, entity.favoriteenemy);
+	projectile_weapon = getweapon(weapon_name);
+	projectile = magicbullet(projectile_weapon, start_location, var_85e6dc61, entity, entity.favoriteenemy);
 }
 
 /*
@@ -1325,13 +1325,13 @@ function function_c36cef22(origin)
 private function function_5c3c88fe(location)
 {
 	var_d0feb0fe = spawn("trigger_radius", location, 0, 80, 100);
-	var_86784148 = 0;
+	n_gas_time = 0;
 	var_d0feb0fe thread function_6d9aeb0f();
 	var_d0feb0fe thread function_3ec863f5();
-	while(var_86784148 <= 7)
+	while(n_gas_time <= 7)
 	{
 		wait(1);
-		var_86784148 = var_86784148 + 1;
+		n_gas_time = n_gas_time + 1;
 	}
 	var_d0feb0fe delete();
 }
@@ -1397,13 +1397,13 @@ function function_3ec863f5()
 	Parameters: 1
 	Flags: Linked
 */
-function function_850768d1(var_2df73abb = 0)
+function function_850768d1(b_respawn = 0)
 {
 	self notify("4757156a6fd357df");
 	self endon("4757156a6fd357df");
 	if(!isdefined(self.var_6e2628f7) && self.archetype == #"zombie")
 	{
-		if(!var_2df73abb)
+		if(!b_respawn)
 		{
 			self.health = int(self.health * 2);
 		}
@@ -1427,8 +1427,8 @@ function function_850768d1(var_2df73abb = 0)
 		wait(0.5);
 		if(isdefined(self) && isalive(self))
 		{
-			var_6084ae3f = self zombie_utility::function_33da7a07();
-			if(var_6084ae3f == "sprint")
+			s_movespeed = self zombie_utility::function_33da7a07();
+			if(s_movespeed == "sprint")
 			{
 				self zombie_utility::set_zombie_run_cycle("super_sprint");
 			}
@@ -1556,10 +1556,10 @@ private function function_1ded4b3e(entity)
 	result = 0;
 	if(isdefined(entity.var_f1f44412) && entity.var_f1f44412 && gettime() > entity.var_ce83fefe && !entity function_68469a59())
 	{
-		var_107cc2db = array::get_all_closest(entity.origin, getaiteamarray(entity.team), undefined, undefined, 300);
-		if(var_107cc2db.size > 0)
+		ai_zombies = array::get_all_closest(entity.origin, getaiteamarray(entity.team), undefined, undefined, 300);
+		if(ai_zombies.size > 0)
 		{
-			foreach(zombie in var_107cc2db)
+			foreach(zombie in ai_zombies)
 			{
 				if(zombie.archetype == #"zombie" && isalive(zombie) && (!(isdefined(zombie.var_6e2628f7) && zombie.var_6e2628f7)))
 				{
@@ -1599,10 +1599,10 @@ private function function_13d38964(entity)
 {
 	if(isdefined(entity) && isalive(entity) && isdefined(entity.favoriteenemy))
 	{
-		var_107cc2db = array::get_all_closest(entity.origin, getaiteamarray(entity.team), undefined, undefined, 300);
-		if(var_107cc2db.size > 0)
+		ai_zombies = array::get_all_closest(entity.origin, getaiteamarray(entity.team), undefined, undefined, 300);
+		if(ai_zombies.size > 0)
 		{
-			foreach(zombie in var_107cc2db)
+			foreach(zombie in ai_zombies)
 			{
 				if(zombie.archetype == #"zombie" && isalive(zombie) && (!(isdefined(zombie.var_6e2628f7) && zombie.var_6e2628f7)))
 				{
@@ -1610,7 +1610,7 @@ private function function_13d38964(entity)
 					if(isdefined(spore))
 					{
 						function_a7cc9606(entity, spore);
-						entity thread function_9cb66cd8(spore, zombie);
+						entity thread shoot_spore(spore, zombie);
 						continue;
 					}
 					break;
@@ -1714,7 +1714,7 @@ private function function_b262d632(start, end, duration)
 }
 
 /*
-	Name: function_9cb66cd8
+	Name: shoot_spore
 	Namespace: namespace_f9871db2
 	Checksum: 0xBF7F829F
 	Offset: 0x44E8
@@ -1722,7 +1722,7 @@ private function function_b262d632(start, end, duration)
 	Parameters: 2
 	Flags: Linked
 */
-function function_9cb66cd8(spore, target)
+function shoot_spore(spore, target)
 {
 	spore endon(#"death");
 	start_location = self gettagorigin("j_spine4");

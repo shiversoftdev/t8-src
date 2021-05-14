@@ -51,9 +51,9 @@ function __init__()
 	level.hero_weapon[#"katana"][0] = getweapon(#"hash_6627879099b8a337");
 	level.hero_weapon[#"katana"][1] = getweapon(#"hash_6627889099b8a4ea");
 	level.hero_weapon[#"katana"][2] = getweapon(#"hash_6627899099b8a69d");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_6627879099b8a337");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_6627889099b8a4ea");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_6627899099b8a69d");
+	zm_loadout::register_hero_weapon_for_level(#"hash_6627879099b8a337");
+	zm_loadout::register_hero_weapon_for_level(#"hash_6627889099b8a4ea");
+	zm_loadout::register_hero_weapon_for_level(#"hash_6627899099b8a69d");
 	level.var_9ea358cc = 0;
 	if(!isdefined(level.var_3594d33a))
 	{
@@ -354,15 +354,15 @@ function function_8d02f57b(var_c1ed7977)
 	{
 		if(var_c1ed7977.name == #"hash_6627899099b8a69d")
 		{
-			var_88706ea7 = undefined;
-			var_88706ea7 = self waittill(#"weapon_melee_power");
+			s_result = undefined;
+			s_result = self waittill(#"weapon_melee_power");
 		}
 		else
 		{
-			var_88706ea7 = undefined;
-			var_88706ea7 = self waittill(#"weapon_melee_power", #"weapon_melee");
+			s_result = undefined;
+			s_result = self waittill(#"weapon_melee_power", #"weapon_melee");
 		}
-		if(var_88706ea7.weapon == var_c1ed7977)
+		if(s_result.weapon == var_c1ed7977)
 		{
 			self thread function_269ad6a5(var_c1ed7977);
 		}
@@ -383,11 +383,11 @@ function function_119af40d(var_c1ed7977)
 	self endon(#"disconnect", #"bled_out", #"death", #"hash_36afc85dcef683d2");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee_juke");
-		if(var_88706ea7.weapon == var_c1ed7977)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee_juke");
+		if(s_result.weapon == var_c1ed7977)
 		{
-			self playsound(#"hash_7cc521281b7c7388");
+			self playsound(#"wpn_katana_dash");
 			self thread flagsys::set_for_time(1, "katana_dash");
 			self.var_5605c31e = 1;
 			self thread function_7903608c(var_c1ed7977);
@@ -503,9 +503,9 @@ function function_fcc26273(var_c1ed7977)
 	self endon(#"disconnect", #"bled_out", #"death", #"hash_36afc85dcef683d2");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee");
-		if(var_88706ea7.weapon == var_c1ed7977)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee");
+		if(s_result.weapon == var_c1ed7977)
 		{
 			self thread function_bed1fd9f();
 		}
@@ -624,9 +624,9 @@ function function_478a4910(var_c1ed7977)
 	self endon(#"disconnect", #"bled_out", #"death", #"hash_36afc85dcef683d2");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee_juke");
-		if(var_88706ea7.weapon == var_c1ed7977)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee_juke");
+		if(s_result.weapon == var_c1ed7977)
 		{
 			if(1 === zm_audio::create_and_play_dialog(#"hash_6a87ca13e3ecd52d", #"katana"))
 			{
@@ -650,9 +650,9 @@ function function_68ff89f7(var_c1ed7977)
 	self endon(#"disconnect", #"bled_out", #"death", #"hash_36afc85dcef683d2");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee");
-		if(var_88706ea7.weapon == var_c1ed7977)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee");
+		if(s_result.weapon == var_c1ed7977)
 		{
 			if(1 === zm_audio::create_and_play_dialog(#"hash_6a87c913e3ecd37a", #"katana"))
 			{

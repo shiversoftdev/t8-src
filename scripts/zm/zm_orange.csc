@@ -48,11 +48,11 @@
 #using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
 
-#namespace namespace_b57826b5;
+#namespace zm_orange;
 
 /*
 	Name: opt_in
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x4FBF7D9A
 	Offset: 0x4D8
 	Size: 0x22
@@ -67,7 +67,7 @@ autoexec function opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xB2D20871
 	Offset: 0x508
 	Size: 0x3FC
@@ -118,7 +118,7 @@ event main(eventstruct)
 
 /*
 	Name: function_b8da6f44
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x22A05EEB
 	Offset: 0x910
 	Size: 0x152
@@ -138,7 +138,7 @@ function function_b8da6f44()
 
 /*
 	Name: function_72f1cddb
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x1FFD80
 	Offset: 0xA70
 	Size: 0x2C
@@ -152,7 +152,7 @@ function function_72f1cddb()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x4FD2633
 	Offset: 0xAA8
 	Size: 0x288
@@ -181,7 +181,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: sndactorunderwater
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xDA93B0C8
 	Offset: 0xD38
 	Size: 0x94

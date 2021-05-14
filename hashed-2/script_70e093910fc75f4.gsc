@@ -10,11 +10,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm.csc;
 
-#namespace namespace_b19ed8b9;
+#namespace zm_ai_brutus;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_b19ed8b9
+	Namespace: zm_ai_brutus
 	Checksum: 0xE4AA031F
 	Offset: 0x1D8
 	Size: 0x3C
@@ -23,12 +23,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_3ef1a17c32ba1759", &__init__, undefined, undefined);
+	system::register(#"zm_ai_brutus", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_b19ed8b9
+	Namespace: zm_ai_brutus
 	Checksum: 0x66C96DB8
 	Offset: 0x220
 	Size: 0x10C
@@ -37,7 +37,7 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("actor", "brutus_shock_attack", 1, 1, "counter", &function_87e5eed0, 0, 0);
+	clientfield::register("actor", "brutus_shock_attack", 1, 1, "counter", &brutus_shock_attack_fx, 0, 0);
 	clientfield::register("actor", "brutus_spawn_clientfield", 1, 1, "int", &function_80adaab1, 0, 0);
 	clientfield::register("toplayer", "brutus_shock_attack_player", 1, 1, "counter", &brutus_shock_attack_player, 0, 0);
 	footsteps::registeraitypefootstepcb(#"brutus", &function_6e2a738c);
@@ -45,7 +45,7 @@ function __init__()
 
 /*
 	Name: function_80adaab1
-	Namespace: namespace_b19ed8b9
+	Namespace: zm_ai_brutus
 	Checksum: 0x9078650D
 	Offset: 0x338
 	Size: 0x10C
@@ -72,15 +72,15 @@ function function_80adaab1(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_87e5eed0
-	Namespace: namespace_b19ed8b9
+	Name: brutus_shock_attack_fx
+	Namespace: zm_ai_brutus
 	Checksum: 0x4A01E520
 	Offset: 0x450
 	Size: 0xFC
 	Parameters: 7
 	Flags: Linked
 */
-function function_87e5eed0(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function brutus_shock_attack_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
@@ -98,7 +98,7 @@ function function_87e5eed0(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: brutus_shock_attack_player
-	Namespace: namespace_b19ed8b9
+	Namespace: zm_ai_brutus
 	Checksum: 0xAF7A0D55
 	Offset: 0x558
 	Size: 0x5C
@@ -112,7 +112,7 @@ function brutus_shock_attack_player(localclientnum, oldval, newval, bnewent, bin
 
 /*
 	Name: function_6e2a738c
-	Namespace: namespace_b19ed8b9
+	Namespace: zm_ai_brutus
 	Checksum: 0x49D559E
 	Offset: 0x5C0
 	Size: 0x12E

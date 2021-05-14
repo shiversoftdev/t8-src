@@ -136,17 +136,17 @@ autoexec function registerbehaviorscriptfunctions()
 	#/
 	behaviorstatemachine::registerbsmscriptapiinternal(#"traverseactionstart", &traverseactionstart);
 	/#
-		assert(isscriptfunctionptr(&function_81e82ba9));
+		assert(isscriptfunctionptr(&wpn_debug_bot_joinleave));
 	#/
-	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_5d1b3df7dd4e60c0", &function_81e82ba9);
+	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_5d1b3df7dd4e60c0", &wpn_debug_bot_joinleave);
 	/#
 		assert(isscriptfunctionptr(&traverseactionstart));
 	#/
 	behaviortreenetworkutility::registerbehaviortreescriptapi(#"traverseactionstart", &traverseactionstart);
 	/#
-		assert(isscriptfunctionptr(&function_81e82ba9));
+		assert(isscriptfunctionptr(&wpn_debug_bot_joinleave));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_5d1b3df7dd4e60c0", &function_81e82ba9);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_5d1b3df7dd4e60c0", &wpn_debug_bot_joinleave);
 	/#
 		assert(!isdefined(&traverseactionstart) || isscriptfunctionptr(&traverseactionstart));
 	#/
@@ -154,9 +154,9 @@ autoexec function registerbehaviorscriptfunctions()
 		assert(!isdefined(undefined) || isscriptfunctionptr(undefined));
 	#/
 	/#
-		assert(!isdefined(&function_81e82ba9) || isscriptfunctionptr(&function_81e82ba9));
+		assert(!isdefined(&wpn_debug_bot_joinleave) || isscriptfunctionptr(&wpn_debug_bot_joinleave));
 	#/
-	behaviortreenetworkutility::registerbehaviortreeaction(#"traverseactionstart", &traverseactionstart, undefined, &function_81e82ba9);
+	behaviortreenetworkutility::registerbehaviortreeaction(#"traverseactionstart", &traverseactionstart, undefined, &wpn_debug_bot_joinleave);
 	/#
 		assert(isscriptfunctionptr(&traversesetup));
 	#/
@@ -678,7 +678,7 @@ function traverseactionstart(behaviortreeentity, asmstatename)
 }
 
 /*
-	Name: function_81e82ba9
+	Name: wpn_debug_bot_joinleave
 	Namespace: aiutility
 	Checksum: 0x7D3DA67
 	Offset: 0x25A0
@@ -686,7 +686,7 @@ function traverseactionstart(behaviortreeentity, asmstatename)
 	Parameters: 2
 	Flags: Linked
 */
-function function_81e82ba9(behaviortreeentity, asmstatename)
+function wpn_debug_bot_joinleave(behaviortreeentity, asmstatename)
 {
 	behaviortreeentity allowpitchangle(isdefined(behaviortreeentity.var_efe0efe7) && behaviortreeentity.var_efe0efe7);
 	if(isdefined(behaviortreeentity.var_846d7e33) && behaviortreeentity.var_846d7e33)

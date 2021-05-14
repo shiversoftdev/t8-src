@@ -74,7 +74,7 @@ function init()
 */
 function function_37236662()
 {
-	clientfield::register("allplayers", "death_dash_pulse", 24000, 1, "counter", &function_fb7c7bbf, 0, 0);
+	clientfield::register("allplayers", "death_dash_pulse", 24000, 1, "counter", &play_death_dash_pulse, 0, 0);
 }
 
 /*
@@ -91,7 +91,7 @@ function function_6705773b()
 }
 
 /*
-	Name: function_fb7c7bbf
+	Name: play_death_dash_pulse
 	Namespace: namespace_256d0f31
 	Checksum: 0x9FCF479D
 	Offset: 0x2C8
@@ -99,7 +99,7 @@ function function_6705773b()
 	Parameters: 7
 	Flags: Linked
 */
-function function_fb7c7bbf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function play_death_dash_pulse(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_flame_pulse", self, "j_spine4");
 	self playsound(localclientnum, #"hash_531770ad2c5bf052");

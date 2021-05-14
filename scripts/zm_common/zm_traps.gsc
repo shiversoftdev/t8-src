@@ -344,8 +344,8 @@ function function_783f63e9(var_1c9c3123 = 1)
 	}
 	else if(zm_utility::is_standard() || namespace_b28d86fd::is_active())
 	{
-		var_77379189 = zm_utility::function_d6046228(#"hash_24a438482954901", #"hash_61d85c966dd9e83f");
-		self trap_set_string(var_77379189);
+		cheat_too_friendly_s_ = zm_utility::function_d6046228(#"hash_24a438482954901", #"hash_61d85c966dd9e83f");
+		self trap_set_string(cheat_too_friendly_s_);
 		if(var_1c9c3123)
 		{
 			self trap_lights_green();
@@ -353,8 +353,8 @@ function function_783f63e9(var_1c9c3123 = 1)
 	}
 	else
 	{
-		var_77379189 = zm_utility::function_d6046228(#"hash_23c1c09e94181fdb", #"hash_6e8ef1b690e98e51");
-		self trap_set_string(var_77379189, self.zombie_cost);
+		cheat_too_friendly_s_ = zm_utility::function_d6046228(#"hash_23c1c09e94181fdb", #"hash_6e8ef1b690e98e51");
+		self trap_set_string(cheat_too_friendly_s_, self.zombie_cost);
 		if(var_1c9c3123)
 		{
 			self trap_lights_green();
@@ -388,8 +388,8 @@ function trap_use_think(trap)
 		}
 		if(zm_utility::is_player_valid(e_player) && !trap._trap_in_use)
 		{
-			var_b5f26b1a = self function_3f0a4c65(e_player, trap.zombie_cost);
-			if(!var_b5f26b1a)
+			b_purchased = self function_3f0a4c65(e_player, trap.zombie_cost);
+			if(!b_purchased)
 			{
 				continue;
 			}
@@ -462,8 +462,8 @@ function trap_activate(trap, who)
 			trap._trap_cooldown_time = 5;
 		}
 	#/
-	var_628a2951 = function_da13db45(trap._trap_cooldown_time, who);
-	wait(var_628a2951);
+	n_cooldown = function_da13db45(trap._trap_cooldown_time, who);
+	wait(n_cooldown);
 	playsoundatposition(#"zmb_trap_ready", trap.origin);
 	if(isdefined(level.sndtrapfunc))
 	{
@@ -1452,13 +1452,13 @@ function function_19d61a68()
 	Parameters: 2
 	Flags: Linked
 */
-function function_da13db45(var_628a2951, e_player)
+function function_da13db45(n_cooldown, e_player)
 {
 	if(isdefined(e_player) && e_player hasperk(#"hash_37aa3a5919757781"))
 	{
-		var_628a2951 = var_628a2951 * 0.5;
+		n_cooldown = n_cooldown * 0.5;
 	}
-	return var_628a2951;
+	return n_cooldown;
 }
 
 /*

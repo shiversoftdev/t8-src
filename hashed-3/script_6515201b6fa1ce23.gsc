@@ -37,7 +37,7 @@ function init_shared()
 		namespace_c3527dc1::init();
 		clientfield::register("clientuimodel", "hudItems.dogState", 1, 2, "int");
 		clientfield::register("actor", "dogState", 1, 1, "int");
-		ability_player::function_92292af6(34, undefined, &function_5ade95a3);
+		ability_player::function_92292af6(34, undefined, &deployed_off);
 		level thread function_8d543b98();
 	}
 }
@@ -65,7 +65,7 @@ function function_8d543b98()
 }
 
 /*
-	Name: function_5ade95a3
+	Name: deployed_off
 	Namespace: dog
 	Checksum: 0xB51419FC
 	Offset: 0x3B8
@@ -73,7 +73,7 @@ function function_8d543b98()
 	Parameters: 2
 	Flags: None
 */
-function function_5ade95a3(slot, weapon)
+function deployed_off(slot, weapon)
 {
 	self gadgetpowerset(slot, 0);
 	if(isdefined(self.pers[#"held_gadgets_power"]) && isdefined(self._gadgets_player[slot]) && isdefined(self.pers[#"held_gadgets_power"][self._gadgets_player[slot]]))
@@ -415,7 +415,7 @@ function function_8296c0eb(owner)
 }
 
 /*
-	Name: function_13fb8260
+	Name: toggle_state
 	Namespace: dog
 	Checksum: 0x351A00A7
 	Offset: 0x1398
@@ -423,17 +423,17 @@ function function_8296c0eb(owner)
 	Parameters: 1
 	Flags: None
 */
-function function_13fb8260(owner)
+function toggle_state(owner)
 {
 	if(function_8296c0eb(owner))
 	{
 		owner gestures::function_56e00fbf(#"hash_2c75f3bef8443438", undefined, 0);
 	}
-	if(self ai_state::function_4c5eea28(1))
+	if(self ai_state::is_state(1))
 	{
 		self set_state(0, 0);
 	}
-	else if(self ai_state::function_4c5eea28(0))
+	else if(self ai_state::is_state(0))
 	{
 		self set_state(1, 0);
 	}
@@ -473,7 +473,7 @@ function function_458bc8de(dog)
 	{
 		if(!(isdefined(level.var_347a87db) && level.var_347a87db) && self offhandspecialbuttonpressed() && !self function_104d7b4d() && !self isusingoffhand())
 		{
-			dog function_13fb8260(self);
+			dog toggle_state(self);
 			wait(0.5);
 		}
 		waitframe(1);
@@ -606,7 +606,7 @@ private function function_e74b21de(owner)
 */
 function function_3fb68a86()
 {
-	self.var_b3b7f47d = function_e74b21de(self.script_owner);
+	self.exit_spawn = function_e74b21de(self.script_owner);
 	function_3fda709e(self.script_owner, 0);
 }
 

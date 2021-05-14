@@ -2233,7 +2233,7 @@ function defaultstate_off_exit(params)
 			[[level.enable_thermal]]();
 		}
 	}
-	if(!(isdefined(self.var_cf24c481) && self.var_cf24c481))
+	if(!(isdefined(self.nolights) && self.nolights))
 	{
 		self vehicle::lights_on();
 	}
@@ -2470,7 +2470,7 @@ function debugscore(entity, num, sorted)
 		foreach(score in self._scoredebug)
 		{
 			count++;
-			record3dtext(score.var_4b5e0304 + "" + score.score, self.origin - (0, 0, 10 * count), color);
+			record3dtext(score.scorename + "" + score.score, self.origin - (0, 0, 10 * count), color);
 		}
 	#/
 }
@@ -2553,7 +2553,7 @@ function positionquery_filter_random(queryresult, min, max)
 				point._scoredebug[#"random"] = spawnstruct();
 			}
 			point._scoredebug[#"random"].score = score;
-			point._scoredebug[#"random"].var_4b5e0304 = "";
+			point._scoredebug[#"random"].scorename = "";
 		#/
 		point.score = point.score + score;
 	}
@@ -2601,7 +2601,7 @@ function positionquery_filter_outofgoalanchor(queryresult, tolerance = 1)
 					point._scoredebug[#"outofgoalanchor"] = spawnstruct();
 				}
 				point._scoredebug[#"outofgoalanchor"].score = score;
-				point._scoredebug[#"outofgoalanchor"].var_4b5e0304 = "";
+				point._scoredebug[#"outofgoalanchor"].scorename = "";
 			#/
 			point.score = point.score + score;
 		}
@@ -2711,7 +2711,7 @@ function positionquery_filter_distawayfromtarget(queryresult, targetarray, dista
 					point._scoredebug[#"tooclosetoothers"] = spawnstruct();
 				}
 				point._scoredebug[#"tooclosetoothers"].score = tooclosepenalty;
-				point._scoredebug[#"tooclosetoothers"].var_4b5e0304 = "";
+				point._scoredebug[#"tooclosetoothers"].scorename = "";
 			#/
 			point.score = point.score + tooclosepenalty;
 		}
@@ -3050,7 +3050,7 @@ private function function_4ab1a63a(goal)
 					point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 				}
 				point._scoredebug[#"inclaimedlocation"].score = -5000;
-				point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+				point._scoredebug[#"inclaimedlocation"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}
@@ -3065,7 +3065,7 @@ private function function_4ab1a63a(goal)
 				point._scoredebug[#"random"] = spawnstruct();
 			}
 			point._scoredebug[#"random"].score = score;
-			point._scoredebug[#"random"].var_4b5e0304 = "";
+			point._scoredebug[#"random"].scorename = "";
 		#/
 		point.score = point.score + score;
 	}
@@ -3141,7 +3141,7 @@ function function_1e0d693b(goal, enemy)
 					point._scoredebug[#"outofgoalanchor"] = spawnstruct();
 				}
 				point._scoredebug[#"outofgoalanchor"].score = score;
-				point._scoredebug[#"outofgoalanchor"].var_4b5e0304 = "";
+				point._scoredebug[#"outofgoalanchor"].scorename = "";
 			#/
 			point.score = point.score + score;
 		}
@@ -3157,7 +3157,7 @@ function function_1e0d693b(goal, enemy)
 					point._scoredebug[#"hash_3f8a9579ce4600de"] = spawnstruct();
 				}
 				point._scoredebug[#"hash_3f8a9579ce4600de"].score = -5000;
-				point._scoredebug[#"hash_3f8a9579ce4600de"].var_4b5e0304 = "";
+				point._scoredebug[#"hash_3f8a9579ce4600de"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}
@@ -3171,7 +3171,7 @@ function function_1e0d693b(goal, enemy)
 				point._scoredebug[#"engagementdist"] = spawnstruct();
 			}
 			point._scoredebug[#"engagementdist"].score = point.distawayfromengagementarea * -1;
-			point._scoredebug[#"engagementdist"].var_4b5e0304 = "";
+			point._scoredebug[#"engagementdist"].scorename = "";
 		#/
 		point.score = point.score + point.distawayfromengagementarea * -1;
 		/#
@@ -3184,7 +3184,7 @@ function function_1e0d693b(goal, enemy)
 				point._scoredebug[#"hash_6c444b535ec20313"] = spawnstruct();
 			}
 			point._scoredebug[#"hash_6c444b535ec20313"].score = mapfloat(0, prefereddistawayfromorigin, -5000, 0, point.disttoorigin2d);
-			point._scoredebug[#"hash_6c444b535ec20313"].var_4b5e0304 = "";
+			point._scoredebug[#"hash_6c444b535ec20313"].scorename = "";
 		#/
 		point.score = point.score + mapfloat(0, prefereddistawayfromorigin, -5000, 0, point.disttoorigin2d);
 		if(point.inclaimedlocation)
@@ -3199,7 +3199,7 @@ function function_1e0d693b(goal, enemy)
 					point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 				}
 				point._scoredebug[#"inclaimedlocation"].score = -5000;
-				point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+				point._scoredebug[#"inclaimedlocation"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}
@@ -3217,7 +3217,7 @@ function function_1e0d693b(goal, enemy)
 					point._scoredebug[#"height"] = spawnstruct();
 				}
 				point._scoredebug[#"height"].score = heightscore;
-				point._scoredebug[#"height"].var_4b5e0304 = "";
+				point._scoredebug[#"height"].scorename = "";
 			#/
 			point.score = point.score + heightscore;
 		}
@@ -3232,7 +3232,7 @@ function function_1e0d693b(goal, enemy)
 				point._scoredebug[#"random"] = spawnstruct();
 			}
 			point._scoredebug[#"random"].score = score;
-			point._scoredebug[#"random"].var_4b5e0304 = "";
+			point._scoredebug[#"random"].scorename = "";
 		#/
 		point.score = point.score + score;
 	}
@@ -3282,7 +3282,7 @@ private function function_4646fb11(goal)
 					point._scoredebug[#"outofgoalanchor"] = spawnstruct();
 				}
 				point._scoredebug[#"outofgoalanchor"].score = score;
-				point._scoredebug[#"outofgoalanchor"].var_4b5e0304 = "";
+				point._scoredebug[#"outofgoalanchor"].scorename = "";
 			#/
 			point.score = point.score + score;
 		}
@@ -3298,7 +3298,7 @@ private function function_4646fb11(goal)
 					point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 				}
 				point._scoredebug[#"inclaimedlocation"].score = -5000;
-				point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+				point._scoredebug[#"inclaimedlocation"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}
@@ -3313,7 +3313,7 @@ private function function_4646fb11(goal)
 				point._scoredebug[#"random"] = spawnstruct();
 			}
 			point._scoredebug[#"random"].score = score;
-			point._scoredebug[#"random"].var_4b5e0304 = "";
+			point._scoredebug[#"random"].scorename = "";
 		#/
 		point.score = point.score + score;
 	}

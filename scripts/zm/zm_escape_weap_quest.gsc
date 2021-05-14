@@ -54,9 +54,9 @@ function __init__()
 	clientfield::register("actor", "" + #"hash_588871862d19b97d", 1, 1, "int");
 	clientfield::register("scriptmover", "" + #"hash_2be4ce9b84bd3b58", 1, 1, "counter");
 	clientfield::register("actor", "" + #"hash_338ecd1287d0623b", 1, 1, "counter");
-	clientfield::register("scriptmover", "" + #"hash_661cd5b850004033", 1, n_bits, "int");
+	clientfield::register("scriptmover", "" + #"tomahawk_pickup_fx", 1, n_bits, "int");
 	clientfield::register("scriptmover", "" + #"hash_51657261e835ac7c", 1, n_bits, "int");
-	clientfield::register("toplayer", "" + #"hash_661cd5b850004033", 13000, 1, "int");
+	clientfield::register("toplayer", "" + #"tomahawk_pickup_fx", 13000, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_51657261e835ac7c", 13000, 1, "int");
 	callback::on_start_gametype(&function_bad944b5);
 }
@@ -81,7 +81,7 @@ function function_bad944b5()
 	level.var_4952e1 = [];
 	level.var_b5ca4338 = [];
 	level.var_6aa46602 = [];
-	level.var_9376487e = 0;
+	level.n_soul_catchers_charged = 0;
 	level.var_22f00ccf = array("idle", "scan", "shake", "yawn");
 	level.no_gib_in_wolf_area = &check_for_zombie_in_wolf_area;
 	level.var_49662f50 = struct::get_array("wolf_position");
@@ -140,7 +140,7 @@ function on_player_connect()
 		var_29b8f3d0 = undefined;
 		var_29b8f3d0 = self waittill("new_" + "lethal_grenade");
 		var_3759bc11 = var_29b8f3d0.weapon;
-		var_22e180dd = self namespace_2ba51478::get_player_lethal_grenade();
+		var_22e180dd = self zm_loadout::get_player_lethal_grenade();
 		var_f92d6c6e = getweapon(#"tomahawk_t8");
 		if(var_3759bc11 == var_f92d6c6e || var_22e180dd === var_f92d6c6e)
 		{
@@ -478,7 +478,7 @@ function function_ee929ece()
 function wolf_head_removal(wolf_head_model_string)
 {
 	wolf_head_model = getent(wolf_head_model_string, "targetname");
-	wolf_head_model setmodel(#"hash_246ff9e0e91c14c");
+	wolf_head_model setmodel(#"p8_zm_esc_dream_catcher_off");
 	self waittill(#"fully_charged");
 	wolf_head_model setmodel(#"p8_zm_esc_dream_catcher");
 }
@@ -496,7 +496,7 @@ function soul_catchers_charged()
 {
 	while(true)
 	{
-		if(level.var_9376487e >= level.var_4952e1.size)
+		if(level.n_soul_catchers_charged >= level.var_4952e1.size)
 		{
 			level flag::set(#"soul_catchers_charged");
 			level notify(#"soul_catchers_charged");
@@ -523,7 +523,7 @@ function soul_catcher_check()
 	{
 		if(self.var_43bd3b5 >= 6)
 		{
-			level.var_9376487e++;
+			level.n_soul_catchers_charged++;
 			self.is_charged = 1;
 			self notify(#"fully_charged");
 			level thread function_5fd2c72e();
@@ -532,7 +532,7 @@ function soul_catcher_check()
 		waitframe(1);
 	}
 	self thread function_41b1af8c();
-	if(level.var_9376487e >= level.var_4952e1.size)
+	if(level.n_soul_catchers_charged >= level.var_4952e1.size)
 	{
 		level flag::set(#"soul_catchers_charged");
 	}
@@ -558,7 +558,7 @@ function function_e07f0c65(var_64c09f7f)
 	{
 		if(!(isdefined(a_closest[i].dontspeak) && a_closest[i].dontspeak))
 		{
-			a_closest[i] thread zm_audio::create_and_play_dialog(#"hash_3c4b055dee40946c", #"feed");
+			a_closest[i] thread zm_audio::create_and_play_dialog(#"wolf_head", #"feed");
 			break;
 		}
 	}
@@ -586,7 +586,7 @@ function function_41b1af8c()
 	{
 		if(!(isdefined(a_closest[i].dontspeak) && a_closest[i].dontspeak))
 		{
-			a_closest[i] thread zm_audio::create_and_play_dialog(#"hash_3c4b055dee40946c", #"comp", level.var_9376487e - 1);
+			a_closest[i] thread zm_audio::create_and_play_dialog(#"wolf_head", #"comp", level.n_soul_catchers_charged - 1);
 			break;
 		}
 	}
@@ -609,7 +609,7 @@ function first_wolf_encounter_vo(var_64c09f7f)
 	{
 		if(!(isdefined(a_closest[i].dontspeak) && a_closest[i].dontspeak))
 		{
-			a_closest[i] thread zm_audio::create_and_play_dialog(#"hash_3c4b055dee40946c", #"hash_4c424d9a6fe3214c", undefined, 1);
+			a_closest[i] thread zm_audio::create_and_play_dialog(#"wolf_head", #"hash_4c424d9a6fe3214c", undefined, 1);
 			level.wolf_encounter_vo_played = 1;
 			break;
 		}
@@ -726,7 +726,7 @@ function tomahawk_pickup()
 function function_5fd2c72e()
 {
 	var_f14a8b00 = struct::get("tom_pil");
-	str_shot_name = "Shot " + level.var_9376487e + 1;
+	str_shot_name = "Shot " + level.n_soul_catchers_charged + 1;
 	var_f14a8b00 thread scene::play(str_shot_name);
 }
 
@@ -743,9 +743,9 @@ function tomahawk_pickup_trigger()
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		if(!e_player hasweapon(getweapon(#"tomahawk_t8")) && !e_player hasweapon(getweapon(#"tomahawk_t8_upgraded")))
 		{
 			self thread function_f0ef3897(e_player);
@@ -875,14 +875,14 @@ function function_6300f001()
 					}
 					else
 					{
-						self clientfield::set_to_player("" + #"hash_661cd5b850004033", 1);
+						self clientfield::set_to_player("" + #"tomahawk_pickup_fx", 1);
 					}
 				}
 				else
 				{
 					var_6668e57a setinvisibletoplayer(self);
 					var_6e6ec518 setinvisibletoplayer(self);
-					self clientfield::set_to_player("" + #"hash_661cd5b850004033", 0);
+					self clientfield::set_to_player("" + #"tomahawk_pickup_fx", 0);
 					self clientfield::set_to_player("" + #"hash_51657261e835ac7c", 0);
 					waitframe(1);
 				}
@@ -891,7 +891,7 @@ function function_6300f001()
 			{
 				var_6668e57a setinvisibletoplayer(self);
 				var_6e6ec518 setinvisibletoplayer(self);
-				self clientfield::set_to_player("" + #"hash_661cd5b850004033", 0);
+				self clientfield::set_to_player("" + #"tomahawk_pickup_fx", 0);
 				self clientfield::set_to_player("" + #"hash_51657261e835ac7c", 0);
 				waitframe(1);
 			}

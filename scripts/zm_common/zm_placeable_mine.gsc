@@ -81,10 +81,10 @@ private function init_internal()
 */
 function get_first_available()
 {
-	if(isdefined(namespace_2ba51478::function_5a5a742a("placeable_mine")) && namespace_2ba51478::function_5a5a742a("placeable_mine").size > 0)
+	if(isdefined(zm_loadout::function_5a5a742a("placeable_mine")) && zm_loadout::function_5a5a742a("placeable_mine").size > 0)
 	{
-		str_key = getarraykeys(namespace_2ba51478::function_5a5a742a("placeable_mine"))[0];
-		return namespace_2ba51478::function_5a5a742a("placeable_mine")[str_key];
+		str_key = getarraykeys(zm_loadout::function_5a5a742a("placeable_mine"))[0];
+		return zm_loadout::function_5a5a742a("placeable_mine")[str_key];
 	}
 	return level.weaponnone;
 }
@@ -101,7 +101,7 @@ function get_first_available()
 function add_mine_type(mine_name, str_retrieval_prompt)
 {
 	init_internal();
-	namespace_2ba51478::function_e884e095("placeable_mine", mine_name);
+	zm_loadout::function_e884e095("placeable_mine", mine_name);
 	level.placeable_mine_planted_callbacks[mine_name] = [];
 }
 
@@ -298,7 +298,7 @@ function setup_for_player(wpn_type, ui_model = "hudItems.showDpadRight")
 		self thread mine_watch(wpn_type);
 	}
 	self giveweapon(wpn_type);
-	self namespace_2ba51478::set_player_placeable_mine(wpn_type);
+	self zm_loadout::set_player_placeable_mine(wpn_type);
 	self setactionslot(4, "weapon", wpn_type);
 	startammo = wpn_type.startammo;
 	if(startammo)
@@ -337,7 +337,7 @@ function disable_prompt_for_player(wpn_type)
 */
 function disable_all_prompts_for_player()
 {
-	foreach(mine in namespace_2ba51478::function_5a5a742a("placeable_mine"))
+	foreach(mine in zm_loadout::function_5a5a742a("placeable_mine"))
 	{
 		self disable_prompt_for_player(mine);
 	}
@@ -360,7 +360,7 @@ private function pickup_placeable_mine()
 	{
 		return;
 	}
-	current_player_mine = player namespace_2ba51478::get_player_placeable_mine();
+	current_player_mine = player zm_loadout::get_player_placeable_mine();
 	if(current_player_mine != wpn_type)
 	{
 		player takeweapon(current_player_mine);
@@ -369,7 +369,7 @@ private function pickup_placeable_mine()
 	{
 		player thread mine_watch(wpn_type);
 		player giveweapon(wpn_type);
-		player namespace_2ba51478::set_player_placeable_mine(wpn_type);
+		player zm_loadout::set_player_placeable_mine(wpn_type);
 		player setactionslot(4, "weapon", wpn_type);
 		player setweaponammoclip(wpn_type, 0);
 		player notify("zmb_enable_" + wpn_type.name + "_prompt");
@@ -554,12 +554,12 @@ private function replenish_after_rounds()
 			players = getplayers();
 			for(i = 0; i < players.size; i++)
 			{
-				foreach(mine in namespace_2ba51478::function_5a5a742a("placeable_mine"))
+				foreach(mine in zm_loadout::function_5a5a742a("placeable_mine"))
 				{
-					if(players[i] namespace_2ba51478::is_player_placeable_mine(mine) && is_true_placeable_mine(mine.name))
+					if(players[i] zm_loadout::is_player_placeable_mine(mine) && is_true_placeable_mine(mine.name))
 					{
 						players[i] giveweapon(mine);
-						players[i] namespace_2ba51478::set_player_placeable_mine(mine);
+						players[i] zm_loadout::set_player_placeable_mine(mine);
 						players[i] setactionslot(4, "weapon", mine);
 						players[i] setweaponammoclip(mine, 2);
 						break;
@@ -581,17 +581,17 @@ private function replenish_after_rounds()
 */
 function setup_watchers()
 {
-	if(isdefined(namespace_2ba51478::function_5a5a742a("placeable_mine")))
+	if(isdefined(zm_loadout::function_5a5a742a("placeable_mine")))
 	{
-		foreach(mine_type in namespace_2ba51478::function_5a5a742a("placeable_mine"))
+		foreach(mine_type in zm_loadout::function_5a5a742a("placeable_mine"))
 		{
-			weaponobjects::function_e6400478(mine_type.name, &function_c7e3a5fd, 1);
+			weaponobjects::function_e6400478(mine_type.name, &zm_red_challenges_hud_wear, 1);
 		}
 	}
 }
 
 /*
-	Name: function_c7e3a5fd
+	Name: zm_red_challenges_hud_wear
 	Namespace: zm_placeable_mine
 	Checksum: 0xEC300F23
 	Offset: 0x1398
@@ -599,7 +599,7 @@ function setup_watchers()
 	Parameters: 1
 	Flags: Linked
 */
-function function_c7e3a5fd(watcher)
+function zm_red_challenges_hud_wear(watcher)
 {
 	watcher.onspawnretrievetriggers = &on_spawn_retrieve_trigger;
 	watcher.adjusttriggerorigin = &adjust_trigger_origin;

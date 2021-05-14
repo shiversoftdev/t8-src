@@ -30,11 +30,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_647805dc769488c2", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_647805dc769488c2", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*

@@ -118,7 +118,7 @@ function function_24167ed8()
 	level flag::init(#"hash_2120a14c5eeab590");
 	level flag::init(#"shield_built");
 	level flag::init(#"hash_2a5fb4f6bae2e180");
-	namespace_a1d9b01d::function_d1f16587(#"hash_33a1f55aa9d0ac8e", &function_5702b2e7);
+	zm_crafting::function_d1f16587(#"hash_33a1f55aa9d0ac8e", &function_5702b2e7);
 }
 
 /*
@@ -270,8 +270,8 @@ function teleporter_init()
 	level.teleport_ae_funcs = [];
 	level flag::init(#"hash_53a41180dac96fff");
 	level.var_868c98df = 0;
-	level thread function_ea37146e();
-	level.var_7e3ab2e4 = struct::get("zombie_teleport_room", "targetname");
+	level thread setup_portals();
+	level.s_zombie_teleport_room = struct::get("zombie_teleport_room", "targetname");
 	level clientfield::set("portal_maps_clear_lights", 1);
 }
 
@@ -305,11 +305,11 @@ function function_2113985()
 function teleport_pad_init()
 {
 	self.b_active = 1;
-	self.var_77d3cd77 = 0;
-	self.var_59aa5add = 0;
-	self.var_24d6f778 = [];
-	var_7e3d76ad = self function_d9e2dc1f();
-	self.fx_pos = var_7e3d76ad.origin;
+	self.b_locked = 0;
+	self.b_placed = 0;
+	self.a_portal_used = [];
+	s_zombie_pos = self function_d9e2dc1f();
+	self.fx_pos = s_zombie_pos.origin;
 	self thread player_teleporting();
 }
 
@@ -332,11 +332,11 @@ function player_teleporting()
 		waitresult = self waittill(#"trigger");
 		user = waitresult.activator;
 		player_used = 0;
-		if(isdefined(self.var_24d6f778))
+		if(isdefined(self.a_portal_used))
 		{
-			for(i = 0; i < self.var_24d6f778.size; i++)
+			for(i = 0; i < self.a_portal_used.size; i++)
 			{
-				if(self.var_24d6f778[i] == user)
+				if(self.a_portal_used[i] == user)
 				{
 					player_used = 1;
 				}
@@ -384,82 +384,82 @@ function teleport_player(user)
 	{
 		case 0:
 		{
-			var_298e4578 = level.var_2235a60e;
+			var_298e4578 = level.s_portal_yellow_backyard;
 			break;
 		}
 		case 1:
 		{
-			var_298e4578 = level.var_67c98b74;
+			var_298e4578 = level.s_portal_yellow_house;
 			break;
 		}
 		case 2:
 		{
-			var_298e4578 = level.var_e550a8d4;
+			var_298e4578 = level.s_portal_red_house;
 			break;
 		}
 		case 3:
 		{
-			var_298e4578 = level.var_60b53c0c;
+			var_298e4578 = level.s_portal_green_house;
 			break;
 		}
 		case 4:
 		{
-			var_298e4578 = level.var_87e73da8;
+			var_298e4578 = level.s_portal_green_backyard;
 			break;
 		}
 		case 5:
 		{
-			var_298e4578 = level.var_2bcfd0bb;
+			var_298e4578 = level.s_portal_street_mid;
 			break;
 		}
 		case 6:
 		{
-			var_298e4578 = level.var_2ef1913a;
+			var_298e4578 = level.s_portal_street_start;
 			break;
 		}
 		case 7:
 		{
-			var_298e4578 = level.var_6a08c9fc;
+			var_298e4578 = level.s_portal_prisoner_holding;
 			break;
 		}
 		case 8:
 		{
-			var_298e4578 = level.var_abae151e;
+			var_298e4578 = level.s_portal_operations;
 			break;
 		}
 		case 9:
 		{
-			var_298e4578 = level.var_6044134e;
+			var_298e4578 = level.s_portal_transfusion_facility;
 			break;
 		}
 		case 10:
 		{
-			var_298e4578 = level.var_1693730d;
+			var_298e4578 = level.s_portal_apd_interrogation;
 			break;
 		}
 		case 11:
 		{
-			var_298e4578 = level.var_e3b4a049;
+			var_298e4578 = level.s_portal_diner;
 			break;
 		}
 		case 12:
 		{
-			var_298e4578 = level.var_e0d2f199;
+			var_298e4578 = level.s_portal_beds;
 			break;
 		}
 		case 13:
 		{
-			var_298e4578 = level.var_56585625;
+			var_298e4578 = level.s_portal_lounge;
 			break;
 		}
 		case 14:
 		{
-			var_298e4578 = level.var_752f8086;
+			var_298e4578 = level.s_portal_power;
 			break;
 		}
 		case 15:
 		{
-			var_298e4578 = level.var_467bb24f;
+			var_298e4578 = level.s_portal_storage;
 			break;
 		}
 	}
@@ -469,7 +469,7 @@ function teleport_player(user)
 	playsoundatposition(#"evt_teleporter_out", self.origin);
 	level thread function_fe50866d(user, self, var_298e4578);
 	self function_134670b9(1);
-	user namespace_eaaeba61::function_66d020b0(undefined, undefined, undefined, undefined, destination, undefined, string(self.n_dest), 0);
+	user zm_fasttravel::function_66d020b0(undefined, undefined, undefined, undefined, destination, undefined, string(self.n_dest), 0);
 	user clientfield::increment_to_player("teleporter_transition", 1);
 	var_298e4578 thread cooldown_portal_timer(user);
 	user thread function_c234a5ce();
@@ -701,7 +701,7 @@ function find_portal_destination(var_210b4680)
 		{
 			continue;
 		}
-		if(isdefined(var_210b4680) && s_portal.var_93bcf9b9 != var_210b4680)
+		if(isdefined(var_210b4680) && s_portal.n_floor != var_210b4680)
 		{
 			continue;
 		}
@@ -776,7 +776,7 @@ function function_e9848fa7()
 	var_ba7bf98e = [];
 	foreach(s_portal in level.var_63fca02d)
 	{
-		if(s_portal.var_93bcf9b9 == var_9d761d98)
+		if(s_portal.n_floor == var_9d761d98)
 		{
 			if(!isdefined(var_ba7bf98e))
 			{
@@ -891,15 +891,15 @@ function function_2ef25d40(str_notify)
 	Parameters: 3
 	Flags: Linked
 */
-function function_71be28e1(zombie, var_472a2fa3, end_portal)
+function function_71be28e1(zombie, start_portal, end_portal)
 {
 	self endon(#"death");
 	playfx(level._effect[#"hash_61fb06e6b1e29b45"], zombie.origin);
-	playfx(level._effect[#"hash_42067f50e6d7e946"], var_472a2fa3.origin, (1, 0, 0), (0, 0, 1));
+	playfx(level._effect[#"hash_42067f50e6d7e946"], start_portal.origin, (1, 0, 0), (0, 0, 1));
 	playsoundatposition(#"evt_teleporter_out", zombie.origin);
 	zombie function_1f034d46(end_portal.origin);
 	zombie.b_ignore_cleanup = 1;
-	zombie forceteleport(level.var_7e3ab2e4.origin);
+	zombie forceteleport(level.s_zombie_teleport_room.origin);
 	zombie setentitypaused(1);
 	wait(3);
 	if(!isdefined(zombie))
@@ -955,7 +955,7 @@ function function_1f034d46(destination)
 }
 
 /*
-	Name: function_ea37146e
+	Name: setup_portals
 	Namespace: namespace_1846c963
 	Checksum: 0xB9086E97
 	Offset: 0x2B08
@@ -963,35 +963,35 @@ function function_1f034d46(destination)
 	Parameters: 0
 	Flags: Linked
 */
-function function_ea37146e()
+function setup_portals()
 {
 	var_63fca02d = struct::get_array("white_portal");
 	foreach(s_portal in var_63fca02d)
 	{
-		s_portal function_a003c9ab();
+		s_portal portal_init();
 	}
-	level.var_2235a60e = struct::get("PORTAL_YELLOW_BACKYARD", "script_noteworthy");
-	level.var_67c98b74 = struct::get("PORTAL_YELLOW_HOUSE", "script_noteworthy");
-	level.var_e550a8d4 = struct::get("PORTAL_RED_HOUSE", "script_noteworthy");
-	level.var_60b53c0c = struct::get("PORTAL_GREEN_HOUSE", "script_noteworthy");
-	level.var_87e73da8 = struct::get("PORTAL_GREEN_BACKYARD", "script_noteworthy");
-	level.var_2bcfd0bb = struct::get("PORTAL_STREET_MID", "script_noteworthy");
-	level.var_2ef1913a = struct::get("PORTAL_STREET_START", "script_noteworthy");
-	level.var_6a08c9fc = struct::get("PORTAL_PRISONER_HOLDING", "script_noteworthy");
-	level.var_abae151e = struct::get("PORTAL_OPERATIONS", "script_noteworthy");
-	level.var_6044134e = struct::get("PORTAL_TRANSFUSION_FACILITY", "script_noteworthy");
-	level.var_1693730d = struct::get("PORTAL_APD_INTERROGATION", "script_noteworthy");
-	level.var_e3b4a049 = struct::get("PORTAL_DINER", "script_noteworthy");
-	level.var_e0d2f199 = struct::get("PORTAL_BEDS", "script_noteworthy");
-	level.var_56585625 = struct::get("PORTAL_LOUNGE", "script_noteworthy");
-	level.var_752f8086 = struct::get("PORTAL_POWER", "script_noteworthy");
-	level.var_467bb24f = struct::get("PORTAL_STORAGE", "script_noteworthy");
+	level.s_portal_yellow_backyard = struct::get("PORTAL_YELLOW_BACKYARD", "script_noteworthy");
+	level.s_portal_yellow_house = struct::get("PORTAL_YELLOW_HOUSE", "script_noteworthy");
+	level.s_portal_red_house = struct::get("PORTAL_RED_HOUSE", "script_noteworthy");
+	level.s_portal_green_house = struct::get("PORTAL_GREEN_HOUSE", "script_noteworthy");
+	level.s_portal_green_backyard = struct::get("PORTAL_GREEN_BACKYARD", "script_noteworthy");
+	level.s_portal_street_mid = struct::get("PORTAL_STREET_MID", "script_noteworthy");
+	level.s_portal_street_start = struct::get("PORTAL_STREET_START", "script_noteworthy");
+	level.s_portal_prisoner_holding = struct::get("PORTAL_PRISONER_HOLDING", "script_noteworthy");
+	level.s_portal_operations = struct::get("PORTAL_OPERATIONS", "script_noteworthy");
+	level.s_portal_transfusion_facility = struct::get("PORTAL_TRANSFUSION_FACILITY", "script_noteworthy");
+	level.s_portal_apd_interrogation = struct::get("PORTAL_APD_INTERROGATION", "script_noteworthy");
+	level.s_portal_diner = struct::get("PORTAL_DINER", "script_noteworthy");
+	level.s_portal_beds = struct::get("PORTAL_BEDS", "script_noteworthy");
+	level.s_portal_lounge = struct::get("PORTAL_LOUNGE", "script_noteworthy");
+	level.s_portal_power = struct::get("PORTAL_POWER", "script_noteworthy");
+	level.s_portal_storage = struct::get("PORTAL_STORAGE", "script_noteworthy");
 	function_ea199c46();
 	function_a6bb56f6();
 }
 
 /*
-	Name: function_a003c9ab
+	Name: portal_init
 	Namespace: namespace_1846c963
 	Checksum: 0xE93EE376
 	Offset: 0x2E58
@@ -999,7 +999,7 @@ function function_ea37146e()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a003c9ab()
+function portal_init()
 {
 	if(!isdefined(level.var_63fca02d))
 	{
@@ -1047,119 +1047,119 @@ function function_a003c9ab()
 		case "portal_yellow_backyard":
 		{
 			self.var_7b89ada3 = 0;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_yellow_house":
 		{
 			self.var_7b89ada3 = 1;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_red_house":
 		{
 			self.var_7b89ada3 = 2;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_green_house":
 		{
 			self.var_7b89ada3 = 3;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_green_backyard":
 		{
 			self.var_7b89ada3 = 4;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_street_mid":
 		{
 			self.var_7b89ada3 = 5;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_street_start":
 		{
 			self.var_7b89ada3 = 6;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_prisoner_holding":
 		{
 			self.var_7b89ada3 = 7;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_operations":
 		{
 			self.var_7b89ada3 = 8;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_transfusion_facility":
 		{
 			self.var_7b89ada3 = 9;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_apd_interrogation":
 		{
 			self.var_7b89ada3 = 10;
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			self.e_model hide();
 			break;
 		}
 		case "portal_diner":
 		{
 			self.var_7b89ada3 = 11;
-			self.var_93bcf9b9 = 2;
+			self.n_floor = 2;
 			self.e_model hide();
 			break;
 		}
 		case "portal_beds":
 		{
 			self.var_7b89ada3 = 12;
-			self.var_93bcf9b9 = 2;
+			self.n_floor = 2;
 			self.e_model hide();
 			break;
 		}
 		case "portal_lounge":
 		{
 			self.var_7b89ada3 = 13;
-			self.var_93bcf9b9 = 2;
+			self.n_floor = 2;
 			self.e_model hide();
 			break;
 		}
 		case "portal_power":
 		{
 			self.var_7b89ada3 = 14;
-			self.var_93bcf9b9 = 2;
+			self.n_floor = 2;
 			self.e_model hide();
 			break;
 		}
 		case "portal_storage":
 		{
 			self.var_7b89ada3 = 15;
-			self.var_93bcf9b9 = 2;
+			self.n_floor = 2;
 			self.e_model hide();
 			break;
 		}
 	}
 	self.b_active = 0;
-	self.var_59aa5add = 0;
-	self.var_77d3cd77 = 0;
+	self.b_placed = 0;
+	self.b_locked = 0;
 }
 
 /*
@@ -1177,7 +1177,7 @@ function function_688df525()
 	var_46b8d72b = [];
 	foreach(s_portal in var_63fca02d)
 	{
-		if(s_portal.var_59aa5add)
+		if(s_portal.b_placed)
 		{
 			if(!isdefined(var_46b8d72b))
 			{
@@ -1210,7 +1210,7 @@ function function_a09d62f1()
 		waitresult = undefined;
 		waitresult = self waittill(#"trigger_activated");
 		e_user = waitresult.e_who;
-		if(level.var_868c98df > 0 && !self.var_59aa5add)
+		if(level.var_868c98df > 0 && !self.b_placed)
 		{
 			if(zm_utility::is_player_valid(e_user) && math::cointoss())
 			{
@@ -1218,7 +1218,7 @@ function function_a09d62f1()
 			}
 			level.var_868c98df--;
 			self.b_active = 1;
-			self.var_59aa5add = 1;
+			self.b_placed = 1;
 			if(isdefined(self.e_model))
 			{
 				self.e_model show();
@@ -1237,12 +1237,12 @@ function function_a09d62f1()
 				level thread function_3566160b(s_portal.script_noteworthy, 1);
 			}
 		}
-		else if(self.var_59aa5add && !self.var_77d3cd77 && !function_26ddb915())
+		else if(self.b_placed && !self.b_locked && !function_26ddb915())
 		{
 			level.var_46b8d72b = function_688df525();
 			level.var_868c98df++;
 			self.b_active = 0;
-			self.var_59aa5add = 0;
+			self.b_placed = 0;
 			if(isdefined(self.e_model))
 			{
 				self.e_model hide();
@@ -1348,7 +1348,7 @@ function function_99407d66(e_player)
 			self sethintstring(#"hash_79fc5d02a880a44b");
 			return 1;
 		}
-		if(self.stub.related_parent.var_77d3cd77 === 1)
+		if(self.stub.related_parent.b_locked === 1)
 		{
 			self sethintstring(#"hash_4a621c0c0f51fef9");
 			return 1;
@@ -1420,16 +1420,16 @@ function function_360c6be0()
 function function_a54a70b3()
 {
 	self endon(#"death");
-	self.var_77d3cd77 = 1;
+	self.b_locked = 1;
 	for(time = 0; time < 20; time++)
 	{
 		wait(1);
 	}
-	self.var_77d3cd77 = 0;
+	self.b_locked = 0;
 }
 
 /*
-	Name: function_a9a46ba4
+	Name: portal_activate
 	Namespace: namespace_1846c963
 	Checksum: 0x6B7EC20B
 	Offset: 0x4118
@@ -1437,7 +1437,7 @@ function function_a54a70b3()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a9a46ba4()
+function portal_activate()
 {
 	level.var_63fca02d[self.script_noteworthy] = self;
 	self function_98cd139();
@@ -1460,7 +1460,7 @@ function function_ea199c46()
 	exploder::exploder("fxexp_power_on");
 	for(i = 0; i < var_63fca02d.size; i++)
 	{
-		var_63fca02d[i] function_a9a46ba4();
+		var_63fca02d[i] portal_activate();
 		var_63fca02d[i] portal_ready();
 	}
 	level flag::set(#"hash_53a41180dac96fff");

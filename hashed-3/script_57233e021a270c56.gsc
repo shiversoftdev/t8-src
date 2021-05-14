@@ -37,7 +37,7 @@ function __init__()
 {
 	level.var_96059a93 = getweapon(#"zhield_zpear_dw");
 	level.var_85ed93f4 = getweapon(#"hash_136814846f94f0cd");
-	level.var_ce3aa8a8 = getweapon(#"hash_1a385be4d5103a33");
+	level.var_ce3aa8a8 = getweapon(#"zhield_zpear_turret");
 }
 
 /*

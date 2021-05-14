@@ -88,20 +88,20 @@ function seeker_mine_fx(localclientnum, oldval, newval, bnewent, binitialsnap, f
 {
 	if(newval > 0)
 	{
-		if(isdefined(self.var_93be3992))
+		if(isdefined(self.seeker_fx))
 		{
-			stopfx(localclientnum, self.var_93be3992);
+			stopfx(localclientnum, self.seeker_fx);
 			self notify(#"hash_6b4bac2b8c2122ef");
 		}
 		if(newval == 1)
 		{
-			self.var_93be3992 = util::playfxontag(localclientnum, "player/fx8_plyr_shocked_stage1_3p", self, "tag_origin");
+			self.seeker_fx = util::playfxontag(localclientnum, "player/fx8_plyr_shocked_stage1_3p", self, "tag_origin");
 		}
 		else
 		{
-			self.var_93be3992 = util::playfxontag(localclientnum, "player/fx8_plyr_shocked_stage2_3p", self, "tag_origin");
+			self.seeker_fx = util::playfxontag(localclientnum, "player/fx8_plyr_shocked_stage2_3p", self, "tag_origin");
 		}
-		self thread function_fc90058e(localclientnum, self.var_93be3992);
+		self thread function_fc90058e(localclientnum, self.seeker_fx);
 	}
 }
 

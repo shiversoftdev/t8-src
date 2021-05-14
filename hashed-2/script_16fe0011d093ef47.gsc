@@ -58,7 +58,7 @@ function __init__()
 	clientfield::register("allplayers", "" + #"hash_7f4f3fbb9ccded2e", 20000, 1, "int");
 	clientfield::register("actor", "" + #"hash_784061e6c2684e58", 20000, 1, "int");
 	clientfield::register("actor", "" + #"hash_3b193ae69f9f4fac", 20000, 1, "counter");
-	clientfield::register("actor", "" + #"hash_25590af32a20d96e", 20000, 1, "int");
+	clientfield::register("actor", "" + #"ray_gun_mk2v_death", 20000, 1, "int");
 	clientfield::register("scriptmover", "" + #"hash_278ec0c224a81e7", 20000, 1, "int");
 	if(!isdefined(level.var_46a7950a))
 	{
@@ -110,7 +110,7 @@ function on_ai_killed(s_params)
 {
 	if(function_4e923311(s_params.weapon))
 	{
-		self clientfield::set("" + #"hash_25590af32a20d96e", 1);
+		self clientfield::set("" + #"ray_gun_mk2v_death", 1);
 	}
 }
 
@@ -154,7 +154,7 @@ function function_8d93c592(var_f2a06582)
 		if(isdefined(a_trace[#"entity"]))
 		{
 			e_last_target = a_trace[#"entity"];
-			if(isdefined(e_last_target.var_6f84b820) && e_last_target.team !== #"allies" || isdefined(e_last_target.var_9382cbf9))
+			if(isdefined(e_last_target.var_6f84b820) && e_last_target.team !== #"allies" || isdefined(e_last_target.male_head))
 			{
 				self thread function_5c035588(e_last_target, var_1c218ece, var_f2a06582);
 			}
@@ -193,7 +193,7 @@ function function_f8fdc6ad(var_f2a06582)
 	Parameters: 1
 	Flags: Linked
 */
-function function_d3f42ccc(var_385703b7)
+function function_d3f42ccc(s_notify)
 {
 	self clientfield::set("" + #"hash_15cff60ea68de320", 0);
 	self clientfield::set("" + #"hash_7f4f3fbb9ccded2e", 0);
@@ -316,7 +316,7 @@ private function function_5c035588(e_target, v_target_pos, var_f2a06582, b_launc
 	Parameters: 2
 	Flags: Linked
 */
-function function_3ac73c92(e_player, var_6026cca1)
+function function_3ac73c92(e_player, b_upgraded)
 {
 	if(!isdefined(self.var_a8f3f795))
 	{
@@ -325,7 +325,7 @@ function function_3ac73c92(e_player, var_6026cca1)
 	self.var_a8f3f795++;
 	if(self.var_a8f3f795 >= 5)
 	{
-		self thread function_58fb8f5e(e_player, var_6026cca1);
+		self thread function_58fb8f5e(e_player, b_upgraded);
 		self.var_a8f3f795 = 0;
 		self notify(#"hash_3def847106434aab");
 	}
@@ -361,7 +361,7 @@ function function_3821f26e()
 	Parameters: 2
 	Flags: Linked
 */
-function function_58fb8f5e(e_player, var_6026cca1 = 0)
+function function_58fb8f5e(e_player, b_upgraded = 0)
 {
 	self endon(#"death");
 	if(gettime() === self.spawn_time)
@@ -372,7 +372,7 @@ function function_58fb8f5e(e_player, var_6026cca1 = 0)
 	{
 		self clientfield::increment("" + #"hash_3b193ae69f9f4fac", 1);
 	}
-	if(!var_6026cca1)
+	if(!b_upgraded)
 	{
 		self function_2c08b6ac(e_player);
 	}

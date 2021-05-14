@@ -45,11 +45,11 @@ function __init__()
 		clientfield::register("actor", "stoker_fx_stop_clientfield", 1, 3, "int", &function_6942a7f6, 0, 0);
 		clientfield::register("actor", "stoker_death_explosion", 1, 2, "int", &stoker_death_explosion, 0, 0);
 	}
-	ai::add_archetype_spawn_function(#"stoker", &function_4f622e5c);
+	ai::add_archetype_spawn_function(#"stoker", &stoker_spawn_init);
 }
 
 /*
-	Name: function_4f622e5c
+	Name: stoker_spawn_init
 	Namespace: namespace_823c357e
 	Checksum: 0x834986C2
 	Offset: 0x540
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked
 */
-function function_4f622e5c(localclientnum)
+function stoker_spawn_init(localclientnum)
 {
 	self zm_utility::function_3a020b0f(localclientnum, undefined, "zm_ai/fx8_stoker_eye_glow");
 	self callback::on_shutdown(&on_entity_shutdown);
@@ -287,7 +287,7 @@ function stoker_death_explosion(localclientnum, oldvalue, newvalue, bnewent, bin
 		}
 		case 2:
 		{
-			self notify(#"hash_799138bf6352de8b");
+			self notify(#"unlock_model");
 			v_origin = self gettagorigin("j_shoulder_le");
 			if(!isdefined(v_origin))
 			{
@@ -388,7 +388,7 @@ private function function_d58cd2d5(localclientnum)
 */
 private function function_a88c80a3(model)
 {
-	self waittill_timeout(10, #"death", #"hash_799138bf6352de8b");
-	util::function_722c0c0(model);
+	self waittill_timeout(10, #"death", #"unlock_model");
+	util::unlock_model(model);
 }
 

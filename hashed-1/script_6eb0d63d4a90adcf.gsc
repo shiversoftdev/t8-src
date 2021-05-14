@@ -279,7 +279,7 @@ private function function_729bf68e()
 		}
 		distance = distance(self.origin, prevpos);
 		self.pers[#"total_distance_travelled"] = self.pers[#"total_distance_travelled"] + distance;
-		if(gamestate::function_4c5eea28("playing") && distance > 0)
+		if(gamestate::is_state("playing") && distance > 0)
 		{
 			if(!self isinvehicle())
 			{

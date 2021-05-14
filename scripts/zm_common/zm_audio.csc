@@ -222,13 +222,13 @@ function sndvonotifyplain(localclientnum, var_3d2dc382)
 	self endon(#"death");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(var_3d2dc382);
+		s_result = undefined;
+		s_result = self waittill(var_3d2dc382);
 		if(isdefined(self.is_player_zombie) && self.is_player_zombie)
 		{
 			continue;
 		}
-		self playerexert(localclientnum, var_88706ea7._notify);
+		self playerexert(localclientnum, s_result._notify);
 	}
 }
 

@@ -15,8 +15,8 @@
 */
 function init()
 {
-	clientfield::register("scriptmover", "gear_box_spark", 24000, 1, "int", &function_3d076ada, 0, 0);
-	clientfield::register("scriptmover", "flinger_impact_wood", 24000, 1, "int", &function_632b4139, 0, 0);
+	clientfield::register("scriptmover", "gear_box_spark", 24000, 1, "int", &gear_box_spark_fx, 0, 0);
+	clientfield::register("scriptmover", "flinger_impact_wood", 24000, 1, "int", &flinger_impact_wood_fx, 0, 0);
 	clientfield::register("clientuimodel", "ZMInventoryPersonal.heat_pack", 1, 1, "int", undefined, 0, 0);
 	level._effect[#"hash_5bea6497d336bbf"] = #"hash_299249c1ff22e1c2";
 	level._effect[#"flinger_impact_wood"] = #"hash_7677e82b27eada6f";
@@ -24,7 +24,7 @@ function init()
 }
 
 /*
-	Name: function_3d076ada
+	Name: gear_box_spark_fx
 	Namespace: namespace_6036de69
 	Checksum: 0x40270E23
 	Offset: 0x280
@@ -32,7 +32,7 @@ function init()
 	Parameters: 7
 	Flags: Linked
 */
-function function_3d076ada(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function gear_box_spark_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -46,7 +46,7 @@ function function_3d076ada(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_632b4139
+	Name: flinger_impact_wood_fx
 	Namespace: namespace_6036de69
 	Checksum: 0xCCFE278C
 	Offset: 0x348
@@ -54,7 +54,7 @@ function function_3d076ada(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_632b4139(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function flinger_impact_wood_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{

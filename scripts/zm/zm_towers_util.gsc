@@ -112,10 +112,10 @@ function function_6408c105()
 		s_target = struct::get(wallbuy.target, "targetname");
 		if(isdefined(s_target) && isdefined(s_target.target))
 		{
-			var_697c4d67 = getent(s_target.target, "targetname");
-			if(isdefined(var_697c4d67))
+			fx_wallbuy = getent(s_target.target, "targetname");
+			if(isdefined(fx_wallbuy))
 			{
-				var_697c4d67 ghost();
+				fx_wallbuy ghost();
 			}
 		}
 		model = struct::get(wallbuy.target, "targetname");
@@ -167,10 +167,10 @@ function function_1008e277()
 		target_struct = struct::get(wallbuy.target, "targetname");
 		if(isdefined(target_struct) && isdefined(target_struct.target))
 		{
-			var_e75c951b = getent(target_struct.target, "targetname");
-			if(isdefined(var_e75c951b))
+			wallbuy_fx = getent(target_struct.target, "targetname");
+			if(isdefined(wallbuy_fx))
 			{
-				var_e75c951b show();
+				wallbuy_fx show();
 			}
 		}
 		model = struct::get(wallbuy.target, "targetname");

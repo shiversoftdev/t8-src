@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_69330ea47008c27f", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_69330ea47008c27f", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -69,9 +69,9 @@ private function function_9e7b3f4d(round_reset)
 	namespace_b22c99a5::function_f3dbeda7();
 	if(!round_reset && !level flag::get(#"hash_4207012c64662b4d"))
 	{
-		namespace_f551babc::fail(#"hash_2c061f4e3509c0f4");
+		zm_trial::fail(#"hash_2c061f4e3509c0f4");
 	}
-	function_63ec8741();
+	enable_newtonian_negation();
 }
 
 /*
@@ -91,7 +91,7 @@ private function function_b7bc0616()
 	level flag::wait_till(#"hash_4207012c64662b4d");
 	waitframe(1);
 	namespace_b22c99a5::function_7d32b7d0(1);
-	function_63ec8741();
+	enable_newtonian_negation();
 }
 
 /*
@@ -119,7 +119,7 @@ private function function_f5ad51bd()
 }
 
 /*
-	Name: function_63ec8741
+	Name: enable_newtonian_negation
 	Namespace: namespace_da8b7efe
 	Checksum: 0xC10BAF82
 	Offset: 0x3B0
@@ -127,7 +127,7 @@ private function function_f5ad51bd()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_63ec8741()
+private function enable_newtonian_negation()
 {
 	foreach(player in getplayers())
 	{

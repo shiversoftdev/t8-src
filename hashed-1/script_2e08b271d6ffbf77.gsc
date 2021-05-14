@@ -173,7 +173,7 @@ function function_3be2d17f(watcher, player)
 	level endon(#"game_ended");
 	self endon(#"death");
 	slot = player gadgetgetslot(self.weapon);
-	if(isdefined(player.var_bd8a5474) && player.var_bd8a5474)
+	if(isdefined(player.b_talisman_extra_miniturret) && player.b_talisman_extra_miniturret)
 	{
 		n_charge = player gadgetpowerget(slot);
 		player gadgetpowerset(slot, n_charge - 50);

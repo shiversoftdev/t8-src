@@ -50,11 +50,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"friendly_fire", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"friendly_fire", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -68,7 +68,7 @@ function __init__()
 */
 function __main__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
@@ -108,7 +108,7 @@ private function function_d1de6a85(var_9e0a2a85 = 1)
 	level endon(#"hash_7646638df88a3656");
 	if(function_7a600918(var_9e0a2a85))
 	{
-		var_9e0a2a85 = namespace_f551babc::function_5769f26a(var_9e0a2a85);
+		var_9e0a2a85 = zm_trial::function_5769f26a(var_9e0a2a85);
 	}
 	level.var_3c2226ce = namespace_59ff1d6c::function_901b751c(#"hash_3f8f02e8109b6e93");
 	namespace_59ff1d6c::function_928be07c(var_9e0a2a85);
@@ -126,7 +126,7 @@ private function function_d1de6a85(var_9e0a2a85 = 1)
 		while(!isdefined(bot));
 		bot.var_247fdf5 = 1;
 		wait(1);
-		if(bot util::function_bf5a8f5c())
+		if(bot util::is_spectating())
 		{
 			bot zm_player::spectator_respawn_player();
 		}
@@ -193,12 +193,12 @@ private function on_player_damage(params)
 {
 	if(isplayer(params.eattacker) && !isbot(params.eattacker) && params.idamage >= self.health && params.eattacker != self)
 	{
-		namespace_f551babc::fail(#"hash_6e2a00b7d2d6e510", array(params.eattacker));
+		zm_trial::fail(#"hash_6e2a00b7d2d6e510", array(params.eattacker));
 		return;
 	}
 	if(isbot(self) && isdefined(params.einflictor) && isplayer(params.einflictor.activated_by_player) && !isbot(params.einflictor.activated_by_player) && params.idamage >= self.health)
 	{
-		namespace_f551babc::fail(#"hash_6e2a00b7d2d6e510", array(params.einflictor.activated_by_player));
+		zm_trial::fail(#"hash_6e2a00b7d2d6e510", array(params.einflictor.activated_by_player));
 		return;
 	}
 }
@@ -279,7 +279,7 @@ private function function_c4e6367a(inflictor, attacker, damage, flags, meansofde
 function function_6aa8dd73()
 {
 	self endon(#"disconnect");
-	if(self laststand::player_is_in_laststand() || !isalive(self) || self util::function_bf5a8f5c())
+	if(self laststand::player_is_in_laststand() || !isalive(self) || self util::is_spectating())
 	{
 		self waittill(#"player_revived", #"spawned");
 	}
@@ -287,14 +287,14 @@ function function_6aa8dd73()
 	{
 		self zm_hero_weapon::function_1bb7f7b1(3);
 		var_98cb6e9 = array::randomize(array(#"hash_4dfeb08c20a14b8b", #"hash_2b648e8ce3814bbb", #"hash_2c8e9cd5fbd53e70", #"hash_e1311542f5782b5", #"hash_354b896513d0581d", #"hash_81c373345c076c1"));
-		var_27bfdd42 = 4;
+		n_repacks = 4;
 		self zm_perks::function_cc24f525();
 	}
 	else if(level.round_number >= 10)
 	{
 		self zm_hero_weapon::function_1bb7f7b1(2);
 		var_98cb6e9 = array::randomize(array(#"hash_4dfeb08c20a14b8b", #"hash_2b648e8ce3814bbb", #"hash_2c8e9cd5fbd53e70", #"hash_e1311542f5782b5", #"hash_354b896513d0581d", #"hash_81c373345c076c1"));
-		var_27bfdd42 = 2;
+		n_repacks = 2;
 	}
 	else
 	{
@@ -309,10 +309,10 @@ function function_6aa8dd73()
 	{
 		weapon = getweapon(var_98cb6e9[i]);
 		weapon = self zm_weapons::give_build_kit_weapon(weapon);
-		if(isdefined(level.aat_in_use) && level.aat_in_use && zm_weapons::weapon_supports_aat(weapon) && isdefined(var_27bfdd42))
+		if(isdefined(level.aat_in_use) && level.aat_in_use && zm_weapons::weapon_supports_aat(weapon) && isdefined(n_repacks))
 		{
 			self thread aat::acquire(weapon);
-			self zm_pap_util::function_18994aca(weapon, var_27bfdd42);
+			self zm_pap_util::repack_weapon(weapon, n_repacks);
 		}
 	}
 	self switchtoweapon(weapon);

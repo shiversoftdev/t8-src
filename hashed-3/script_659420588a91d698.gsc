@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_1b6ebc56a697d63d", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_1b6ebc56a697d63d", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -165,7 +165,7 @@ private function function_33f0ddd3(s_event)
 				break;
 			}
 		}
-		if(!var_f2b6fe6e && !namespace_2ba51478::function_2ff6913(s_event.weapon))
+		if(!var_f2b6fe6e && !zm_loadout::function_2ff6913(s_event.weapon))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 		}

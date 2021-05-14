@@ -59,7 +59,7 @@ function __init__()
 {
 	vehicle::add_main_callback("bat", &function_6c223039);
 	spawner::function_89a2cd87(#"bat", &function_141c342b);
-	namespace_3fffba66::function_cfca77a7(#"hash_6937d645fe2be5b5", #"hash_791d597ac0457860", undefined, 0, undefined, undefined);
+	zm_transform::function_cfca77a7(#"hash_6937d645fe2be5b5", #"hash_791d597ac0457860", undefined, 0, undefined, undefined);
 	level thread function_1b029905();
 	namespace_c3287616::register_archetype(#"bat", &function_84cd2223, &function_9471b7f9, &function_2e37549f, 25);
 	zm_score::function_e5d6e6dd(#"bat", 60);
@@ -82,7 +82,7 @@ function __init__()
 function function_6c223039()
 {
 	self useanimtree("generic");
-	function_d648a30();
+	initblackboard();
 	self.b_ignore_cleanup = 1;
 	self.var_5dd07a80 = 1;
 	self.var_232915af = 1;
@@ -291,7 +291,7 @@ private function function_776e45e5()
 				}
 				ai.health = self.health;
 			}
-			self namespace_57ff8cbb::cleanup_zombie();
+			self zm_cleanup::cleanup_zombie();
 			return;
 		}
 		wait(1);
@@ -299,7 +299,7 @@ private function function_776e45e5()
 }
 
 /*
-	Name: function_d648a30
+	Name: initblackboard
 	Namespace: bat
 	Checksum: 0x3084B4AE
 	Offset: 0xD48
@@ -307,7 +307,7 @@ private function function_776e45e5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d648a30()
+private function initblackboard()
 {
 	blackboard::createblackboardforentity(self);
 	self blackboard::registervehicleblackboardattributes();
@@ -532,7 +532,7 @@ function function_c48c2d66()
 	{
 		return 0;
 	}
-	if(namespace_3fffba66::function_abf1dcb4(#"hash_791d597ac0457860"))
+	if(zm_transform::function_abf1dcb4(#"hash_791d597ac0457860"))
 	{
 		return 0;
 	}
@@ -644,7 +644,7 @@ function function_47c795bc(params)
 	mover waittill(#"movedone");
 	self clientfield::set("bat_transform_fx", 1);
 	self.overridevehicledamage = undefined;
-	namespace_3fffba66::function_9acf76e6(self, #"hash_791d597ac0457860", &function_607df9c6, 0);
+	zm_transform::function_9acf76e6(self, #"hash_791d597ac0457860", &function_607df9c6, 0);
 	radiusdamage(self.origin, 200, 15, 5, self);
 	self.ai.var_15916e52 = undefined;
 	if(isdefined(mover))
@@ -764,7 +764,7 @@ function function_1c4cd527(origin, owner, innerradius, outerradius, halfheight, 
 					point._scoredebug[#"hash_3f8a9579ce4600de"] = spawnstruct();
 				}
 				point._scoredebug[#"hash_3f8a9579ce4600de"].score = -5000;
-				point._scoredebug[#"hash_3f8a9579ce4600de"].var_4b5e0304 = "";
+				point._scoredebug[#"hash_3f8a9579ce4600de"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}

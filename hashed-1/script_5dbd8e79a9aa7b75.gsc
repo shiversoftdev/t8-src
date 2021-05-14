@@ -17,7 +17,7 @@
 */
 autoexec function init()
 {
-	namespace_70571b3::function_7b67f76e();
+	namespace_70571b3::registernovacrawlerinterfaceattributes();
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"nova_crawler", &function_ea4610a7);
 }

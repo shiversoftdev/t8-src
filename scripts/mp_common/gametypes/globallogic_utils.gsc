@@ -14,7 +14,7 @@
 #namespace globallogic_utils;
 
 /*
-	Name: function_2d4168be
+	Name: is_winner
 	Namespace: globallogic_utils
 	Checksum: 0x90EC7D4D
 	Offset: 0x118
@@ -22,7 +22,7 @@
 	Parameters: 2
 	Flags: None
 */
-function function_2d4168be(outcome, var_512330f1)
+function is_winner(outcome, var_512330f1)
 {
 	if(isplayer(var_512330f1))
 	{

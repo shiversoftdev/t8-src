@@ -97,7 +97,7 @@ function on_ai_spawned()
 		if(var_85574d7a)
 		{
 			self attach("p8_zm_red_floatie_duck", "j_spinelower", 1);
-			self.var_3e9cc3df = 1;
+			self.sinkhole_charges_detonatedteleportterminate = 1;
 		}
 	}
 }
@@ -113,7 +113,7 @@ function on_ai_spawned()
 */
 function actor_death_override(s_data)
 {
-	if(isdefined(self) && (isdefined(self.var_3e9cc3df) && self.var_3e9cc3df))
+	if(isdefined(self) && (isdefined(self.sinkhole_charges_detonatedteleportterminate) && self.sinkhole_charges_detonatedteleportterminate))
 	{
 		if(gettime() >= level.var_5bf2be84 && randomint(100) < 40)
 		{

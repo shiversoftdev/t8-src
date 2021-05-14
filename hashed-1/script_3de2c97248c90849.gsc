@@ -195,7 +195,7 @@ function function_19ce1aa5(cmd)
 				zm_devgui::zombie_devgui_give_powerup(cmd, 1);
 				break;
 			}
-			case "hash_32357649951b4389":
+			case "next_shield_charge":
 			{
 				zm_devgui::zombie_devgui_give_powerup(getsubstr(cmd, 5), 0);
 				break;

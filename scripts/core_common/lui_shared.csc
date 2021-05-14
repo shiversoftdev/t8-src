@@ -792,9 +792,9 @@ function function_b48acaf1(uid)
 	Parameters: 5
 	Flags: None
 */
-function function_da693cbe(field_name, var_948bda55, bits, type, callback)
+function function_da693cbe(field_name, version, bits, type, callback)
 {
-	[[ self ]]->function_da693cbe(field_name, var_948bda55, bits, type, callback);
+	[[ self ]]->function_da693cbe(field_name, version, bits, type, callback);
 }
 
 /*
@@ -806,9 +806,9 @@ function function_da693cbe(field_name, var_948bda55, bits, type, callback)
 	Parameters: 3
 	Flags: None
 */
-function function_dcb34c80(var_2a0de052, field_name, var_948bda55)
+function function_dcb34c80(var_2a0de052, field_name, version)
 {
-	[[ self ]]->function_dcb34c80(var_2a0de052, field_name, var_948bda55);
+	[[ self ]]->function_dcb34c80(var_2a0de052, field_name, version);
 }
 
 #namespace namespace_6aaccc24;
@@ -850,12 +850,12 @@ function setup_clientfields(uid)
 	Parameters: 5
 	Flags: Linked
 */
-function function_da693cbe(field_name, var_948bda55, bits, type, callback)
+function function_da693cbe(field_name, version, bits, type, callback)
 {
 	/#
 		assert(!self.var_47d8642e, "");
 	#/
-	clientfield::function_346f95ba(self.var_47e79fc, field_name, var_948bda55, bits, type, callback, 0, 0);
+	clientfield::function_346f95ba(self.var_47e79fc, field_name, version, bits, type, callback, 0, 0);
 }
 
 /*
@@ -867,12 +867,12 @@ function function_da693cbe(field_name, var_948bda55, bits, type, callback)
 	Parameters: 3
 	Flags: Linked
 */
-function function_dcb34c80(var_2a0de052, field_name, var_948bda55)
+function function_dcb34c80(var_2a0de052, field_name, version)
 {
 	/#
 		assert(!self.var_47d8642e, "");
 	#/
-	clientfield::function_78175813("clientuimodel", var_2a0de052, "luielement." + self.var_47e79fc + "." + field_name, var_948bda55, undefined, 0, 0);
+	clientfield::function_78175813("clientuimodel", var_2a0de052, "luielement." + self.var_47e79fc + "." + field_name, version, undefined, 0, 0);
 }
 
 /*

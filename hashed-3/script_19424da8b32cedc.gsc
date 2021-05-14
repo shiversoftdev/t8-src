@@ -81,7 +81,7 @@ function __init__()
 	spawner::add_archetype_spawn_function(#"gladiator", &function_5b145800);
 	registerbehaviorscriptfunctions();
 	zm_player::register_player_damage_callback(&function_83ac16b5);
-	namespace_ec52743e::function_66e26b6f();
+	namespace_ec52743e::registergladiatorinterfaceattributes();
 	spawner::add_archetype_spawn_function(#"gladiator", &function_caed4d61);
 	clientfield::register("toplayer", "gladiator_melee_effect", 1, 1, "counter");
 	clientfield::register("actor", "gladiator_arm_effect", 1, 2, "int");
@@ -191,9 +191,9 @@ private function function_a19a24bf(entity)
 function registerbehaviorscriptfunctions()
 {
 	/#
-		assert(isscriptfunctionptr(&function_96642d1a));
+		assert(isscriptfunctionptr(&gladiatortargetservice));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_78487cc80b785c66", &function_96642d1a);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"gladiatortargetservice", &gladiatortargetservice);
 	/#
 		assert(isscriptfunctionptr(&function_4f73587a));
 	#/
@@ -322,7 +322,7 @@ function registerbehaviorscriptfunctions()
 		assert(isscriptfunctionptr(&function_c6c44df1));
 	#/
 	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_3378ea427701f557", &function_c6c44df1);
-	animationstatenetwork::registeranimationmocomp("mocomp_gladiator_leap", &function_c7748c4a, &function_3f15e557, &function_96f1cbf6);
+	animationstatenetwork::registeranimationmocomp("mocomp_gladiator_leap", &registerhud_message_electricity_, &function_3f15e557, &function_96f1cbf6);
 	animationstatenetwork::registeranimationmocomp("mocomp_gladiator_throw", &function_3137174f, &function_64cd870, &function_d9e4ebc8);
 	animationstatenetwork::registeranimationmocomp("mocomp_gladiator_run_melee", &function_37d33f09, &function_3f7c46a, &function_2bc1ffb8);
 	animationstatenetwork::registernotetrackhandlerfunction("gladiator_melee", &function_cdef55f0);
@@ -358,7 +358,7 @@ private function function_83ac16b5(einflictor, eattacker, idamage, idflags, smea
 }
 
 /*
-	Name: function_96642d1a
+	Name: gladiatortargetservice
 	Namespace: namespace_c49f9e2b
 	Checksum: 0x9D0EAC14
 	Offset: 0x1BE0
@@ -366,7 +366,7 @@ private function function_83ac16b5(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_96642d1a(entity)
+private function gladiatortargetservice(entity)
 {
 	if(isdefined(entity.ignoreall) && entity.ignoreall)
 	{
@@ -437,20 +437,20 @@ private function function_96642d1a(entity)
 			{
 				var_2ddabcd3 = anglestoforward(entity.angles);
 				var_2ddabcd3 = (var_2ddabcd3[0], var_2ddabcd3[1], 0);
-				var_9bb7f123 = anglestoright(entity.angles);
-				var_9bb7f123 = (var_9bb7f123[0], var_9bb7f123[1], 0);
+				gladiator_right = anglestoright(entity.angles);
+				gladiator_right = (gladiator_right[0], gladiator_right[1], 0);
 				to_enemy = entity.favoriteenemy.origin - entity.origin;
 				to_enemy = (to_enemy[0], to_enemy[1], 0);
 				var_f67f7d03 = vectordot(var_2ddabcd3, to_enemy);
-				var_8a995f7 = vectordot(var_9bb7f123, to_enemy);
-				if(abs(var_f67f7d03) > abs(var_8a995f7))
+				dot_right = vectordot(gladiator_right, to_enemy);
+				if(abs(var_f67f7d03) > abs(dot_right))
 				{
 					dot = var_f67f7d03;
 					directions = array("front", "back");
 				}
 				else
 				{
-					dot = var_8a995f7;
+					dot = dot_right;
 					directions = array("right", "left");
 				}
 				if(dot >= 0)
@@ -1238,7 +1238,7 @@ private autoexec function function_52f0d01d()
 }
 
 /*
-	Name: function_c7748c4a
+	Name: registerhud_message_electricity_
 	Namespace: namespace_c49f9e2b
 	Checksum: 0xB203AF0D
 	Offset: 0x3430
@@ -1246,7 +1246,7 @@ private autoexec function function_52f0d01d()
 	Parameters: 5
 	Flags: Linked
 */
-function function_c7748c4a(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function registerhud_message_electricity_(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity animmode("gravity", 1);
 	entity orientmode("face angle", entity.angles[1]);
@@ -1686,13 +1686,13 @@ private function function_75f32da6(inflictor, attacker, damage, idflags, meansof
 		self.var_cb89528d = 1;
 	}
 	var_ae30c5b0 = 0;
-	if(isdefined(weapon) && (namespace_2ba51478::is_hero_weapon(weapon) || (isdefined(weapon.ignorespowerarmor) && weapon.ignorespowerarmor)))
+	if(isdefined(weapon) && (zm_loadout::is_hero_weapon(weapon) || (isdefined(weapon.ignorespowerarmor) && weapon.ignorespowerarmor)))
 	{
 		var_ae30c5b0 = 1;
 	}
 	var_786d7e06 = namespace_e0710ee6::function_422fdfd4(self, attacker, weapon, boneindex, hitloc, point);
 	var_dd54fdb1 = var_786d7e06.var_84ed9a13;
-	var_88e794fb = var_786d7e06.var_7d87f2d4;
+	var_88e794fb = var_786d7e06.registerzombie_bgb_used_reinforce;
 	if(!isdefined(var_dd54fdb1) && var_ae30c5b0)
 	{
 		weakpoints = namespace_81245006::function_fab3ee3e(self);
@@ -1856,7 +1856,7 @@ private function function_3b8907b9(s_params)
 	{
 		return;
 	}
-	self val::set(#"hash_17e1302844e03dab", "takedamage", 0);
+	self val::set(#"gladiator_death", "takedamage", 0);
 	if(isdefined(self.axe_model))
 	{
 		self.axe_model clientfield::set("gladiator_axe_effect", 0);
@@ -1923,16 +1923,16 @@ private function function_fbc2806e(var_a4388d06, var_9e7687f8)
 				var_6b72740e = 1;
 			}
 		}
-		var_30aed4da = axe.origin + var_7900b267 * interval_dist;
+		move_pos = axe.origin + var_7900b267 * interval_dist;
 		if(isdefined(var_6b72740e) && var_6b72740e && !isdefined(var_1fed6c4e))
 		{
 			if(isdefined(enemy))
 			{
-				if(distance2dsquared(enemy.origin, var_30aed4da) > 45 * 45)
+				if(distance2dsquared(enemy.origin, move_pos) > 45 * 45)
 				{
 					/#
 						recordsphere(enemy.origin, 3, (0, 1, 0), "");
-						var_b013c31 = distance2d(enemy.origin, var_30aed4da);
+						var_b013c31 = distance2d(enemy.origin, move_pos);
 						record3dtext("" + var_b013c31, enemy.origin + vectorscale((0, 0, 1), 60), (0, 1, 0), "");
 					#/
 					var_1fed6c4e = 1;
@@ -1947,11 +1947,11 @@ private function function_fbc2806e(var_a4388d06, var_9e7687f8)
 				}
 			}
 		}
-		else if(self function_88d65504(axe, var_7900b267, var_30aed4da))
+		else if(self function_88d65504(axe, var_7900b267, move_pos))
 		{
 			break;
 		}
-		axe moveto(var_30aed4da, 0.1);
+		axe moveto(move_pos, 0.1);
 		wait(0.1);
 		total_dist = total_dist + interval_dist;
 		if(total_dist >= max_dist)
@@ -2002,9 +2002,9 @@ function function_78b33d6c(var_9e7687f8 = 1)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_88d65504(axe, var_7900b267, var_30aed4da)
+private function function_88d65504(axe, var_7900b267, move_pos)
 {
-	trace = physicstrace(axe.origin, var_30aed4da, (-16, -16, -12), (16, 16, 12), self);
+	trace = physicstrace(axe.origin, move_pos, (-16, -16, -12), (16, 16, 12), self);
 	if(trace[#"fraction"] < 1)
 	{
 		hit_ent = trace[#"entity"];
@@ -2041,7 +2041,7 @@ private function function_88d65504(axe, var_7900b267, var_30aed4da)
 					if(isalive(hit_ent) && (!(isdefined(hit_ent.magic_bullet_shield) && hit_ent.magic_bullet_shield)) && !zm_utility::is_magic_bullet_shield_enabled(hit_ent))
 					{
 						gibserverutils::gibhead(hit_ent);
-						hit_ent namespace_57ff8cbb::function_23621259();
+						hit_ent zm_cleanup::function_23621259();
 						hit_ent kill();
 						function_6eac4ca1(hit_ent, "attack_melee_notetrack");
 					}
@@ -2110,9 +2110,9 @@ private function function_137ed431(axe, var_a4388d06, var_9e7687f8)
 	{
 		tag_pos = self gettagorigin(var_a4388d06);
 		var_7900b267 = vectornormalize(tag_pos - axe.origin);
-		var_30aed4da = axe.origin + var_7900b267 * interval_dist;
-		self function_88d65504(axe, var_7900b267, var_30aed4da);
-		axe moveto(var_30aed4da, 0.1);
+		move_pos = axe.origin + var_7900b267 * interval_dist;
+		self function_88d65504(axe, var_7900b267, move_pos);
+		axe moveto(move_pos, 0.1);
 		wait(0.1);
 		var_8abea022 = distancesquared(axe.origin, tag_pos);
 		if(var_8abea022 < var_6cdcefc1)
@@ -2484,24 +2484,24 @@ private function function_24a38427()
 			waitframe(1);
 			string = getdvarstring(#"hash_1a45d40a78c47d72", "");
 			cmd = strtok(string, "");
-			var_5c1488b2 = getaiarchetypearray(#"gladiator");
+			gladiators = getaiarchetypearray(#"gladiator");
 			if(cmd.size > 0)
 			{
 				switch(cmd[0])
 				{
-					case "hash_da614a7da6a75a4":
+					case "spawn_marauder":
 					{
-						zm_devgui::function_fc475b3b("");
+						zm_devgui::spawn_archetype("");
 						break;
 					}
-					case "hash_11c6432cb77a15d6":
+					case "spawn_destroyer":
 					{
-						zm_devgui::function_fc475b3b("");
+						zm_devgui::spawn_archetype("");
 						break;
 					}
 					case "kill":
 					{
-						zm_devgui::function_2422a10c(#"gladiator");
+						zm_devgui::kill_archetype(#"gladiator");
 						break;
 					}
 					case "spread":
@@ -2522,17 +2522,17 @@ private function function_24a38427()
 					}
 					case "hash_250613ea7c45ec3e":
 					{
-						var_5c1488b2[0] hidepart("", "", 1);
-						name = getpartname(var_5c1488b2[0], 83);
+						gladiators[0] hidepart("", "", 1);
+						name = getpartname(gladiators[0], 83);
 						break;
 					}
-					case "hash_f6e5eb7740bcc39":
+					case "attach_right":
 					{
 						break;
 					}
-					case "hash_18b7fa653969d733":
+					case "detach_right":
 					{
-						var_5c1488b2[0] hidepart("", "", 1);
+						gladiators[0] hidepart("", "", 1);
 						break;
 					}
 					default:

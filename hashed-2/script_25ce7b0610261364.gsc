@@ -45,7 +45,7 @@ function __init__()
 		clientfield::function_346f95ba("hawk_target_lockon" + ti, "target_visible", 13000, 1, "int", undefined, 0, 0);
 	}
 	clientfield::register("vehicle", "hawk_range", 13000, 1, "int", &function_6701affc, 0, 1);
-	vehicle::add_vehicletype_callback("veh_hawk_player_mp", &function_41d7e28b);
+	vehicle::add_vehicletype_callback("veh_hawk_player_mp", &hawk_spawned);
 	vehicle::function_2f97bc52("veh_hawk_player_mp", &function_fbdbb841);
 	vehicle::function_2f97bc52("veh_hawk_player_far_range_mp", &function_1ed9ef6a);
 	vehicle::function_cd2ede5("veh_hawk_player_mp", &function_500d3fa7);
@@ -54,7 +54,7 @@ function __init__()
 }
 
 /*
-	Name: function_41d7e28b
+	Name: hawk_spawned
 	Namespace: namespace_25e7a951
 	Checksum: 0x8DE05FD1
 	Offset: 0x490
@@ -62,7 +62,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_41d7e28b(localclientnum)
+private function hawk_spawned(localclientnum)
 {
 	self.var_51d5c26f = level.hawk_settings.bundle;
 	self thread function_23a9e4af(localclientnum);

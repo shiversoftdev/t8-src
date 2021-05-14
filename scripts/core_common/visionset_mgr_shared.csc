@@ -66,9 +66,9 @@ function __init__()
 	Parameters: 6
 	Flags: Linked
 */
-function register_visionset_info(name, var_948bda55, lerp_step_count, visionset_from, visionset_to, visionset_type = 0)
+function register_visionset_info(name, version, lerp_step_count, visionset_from, visionset_to, visionset_type = 0)
 {
-	if(!register_info("visionset", name, var_948bda55, lerp_step_count))
+	if(!register_info("visionset", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -86,9 +86,9 @@ function register_visionset_info(name, var_948bda55, lerp_step_count, visionset_
 	Parameters: 3
 	Flags: Linked
 */
-function register_overlay_info_style_none(name, var_948bda55, lerp_step_count)
+function register_overlay_info_style_none(name, version, lerp_step_count)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -104,9 +104,9 @@ function register_overlay_info_style_none(name, var_948bda55, lerp_step_count)
 	Parameters: 7
 	Flags: None
 */
-function register_overlay_info_style_filter(name, var_948bda55, lerp_step_count, filter_index, pass_index, material_name, constant_index)
+function register_overlay_info_style_filter(name, version, lerp_step_count, filter_index, pass_index, material_name, constant_index)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -126,9 +126,9 @@ function register_overlay_info_style_filter(name, var_948bda55, lerp_step_count,
 	Parameters: 6
 	Flags: None
 */
-function register_overlay_info_style_blur(name, var_948bda55, lerp_step_count, transition_in, transition_out, magnitude)
+function register_overlay_info_style_blur(name, version, lerp_step_count, transition_in, transition_out, magnitude)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -147,9 +147,9 @@ function register_overlay_info_style_blur(name, var_948bda55, lerp_step_count, t
 	Parameters: 4
 	Flags: None
 */
-function register_overlay_info_style_electrified(name, var_948bda55, lerp_step_count, duration)
+function register_overlay_info_style_electrified(name, version, lerp_step_count, duration)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -166,9 +166,9 @@ function register_overlay_info_style_electrified(name, var_948bda55, lerp_step_c
 	Parameters: 4
 	Flags: None
 */
-function register_overlay_info_style_burn(name, var_948bda55, lerp_step_count, duration)
+function register_overlay_info_style_burn(name, version, lerp_step_count, duration)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -185,9 +185,9 @@ function register_overlay_info_style_burn(name, var_948bda55, lerp_step_count, d
 	Parameters: 3
 	Flags: None
 */
-function register_overlay_info_style_poison(name, var_948bda55, lerp_step_count)
+function register_overlay_info_style_poison(name, version, lerp_step_count)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -203,9 +203,9 @@ function register_overlay_info_style_poison(name, var_948bda55, lerp_step_count)
 	Parameters: 4
 	Flags: None
 */
-function register_overlay_info_style_transported(name, var_948bda55, lerp_step_count, duration)
+function register_overlay_info_style_transported(name, version, lerp_step_count, duration)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -222,9 +222,9 @@ function register_overlay_info_style_transported(name, var_948bda55, lerp_step_c
 	Parameters: 11
 	Flags: Linked
 */
-function register_overlay_info_style_speed_blur(name, var_948bda55, lerp_step_count, amount, inner_radius, outer_radius, velocity_should_scale, velocity_scale, blur_in, blur_out, should_offset)
+function register_overlay_info_style_speed_blur(name, version, lerp_step_count, amount, inner_radius, outer_radius, velocity_should_scale, velocity_scale, blur_in, blur_out, should_offset)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -248,9 +248,9 @@ function register_overlay_info_style_speed_blur(name, var_948bda55, lerp_step_co
 	Parameters: 5
 	Flags: None
 */
-function register_overlay_info_style_postfx_bundle(name, var_948bda55, lerp_step_count, bundle, duration)
+function register_overlay_info_style_postfx_bundle(name, version, lerp_step_count, bundle, duration)
 {
-	if(!register_info("overlay", name, var_948bda55, lerp_step_count))
+	if(!register_info("overlay", name, version, lerp_step_count))
 	{
 		return;
 	}
@@ -369,7 +369,7 @@ function finalize_type_clientfields()
 			self.cf_lerp_bit_count = self.info[self.sorted_name_keys[i]].lerp_bit_count;
 		}
 		/#
-			println("" + self.info[self.sorted_name_keys[i]].name + "" + self.info[self.sorted_name_keys[i]].var_948bda55 + "" + self.info[self.sorted_name_keys[i]].lerp_step_count + "");
+			println("" + self.info[self.sorted_name_keys[i]].name + "" + self.info[self.sorted_name_keys[i]].version + "" + self.info[self.sorted_name_keys[i]].lerp_step_count + "");
 		#/
 	}
 	clientfield::register("toplayer", self.cf_slot_name, self.highest_version, self.cf_slot_bit_count, "int", self.cf_slot_cb, 0, 1);
@@ -388,7 +388,7 @@ function finalize_type_clientfields()
 	Parameters: 3
 	Flags: Linked
 */
-function validate_info(type, name, var_948bda55)
+function validate_info(type, name, version)
 {
 	keys = getarraykeys(level.vsmgr);
 	for(i = 0; i < keys.size; i++)
@@ -401,13 +401,13 @@ function validate_info(type, name, var_948bda55)
 	/#
 		assert(i < keys.size, "" + type + "");
 	#/
-	if(var_948bda55 > level.vsmgr[type].server_version)
+	if(version > level.vsmgr[type].server_version)
 	{
 		return 0;
 	}
-	if(isdefined(level.vsmgr[type].info[name]) && var_948bda55 < level.vsmgr[type].info[name].var_948bda55)
+	if(isdefined(level.vsmgr[type].info[name]) && version < level.vsmgr[type].info[name].version)
 	{
-		if(var_948bda55 < level.vsmgr[type].info[name].var_948bda55)
+		if(version < level.vsmgr[type].info[name].version)
 		{
 			return 0;
 		}
@@ -446,11 +446,11 @@ function add_sorted_name_key(type, name)
 	Parameters: 4
 	Flags: Linked
 */
-function add_info(type, name, var_948bda55, lerp_step_count)
+function add_info(type, name, version, lerp_step_count)
 {
 	self.type = type;
 	self.name = name;
-	self.var_948bda55 = var_948bda55;
+	self.version = version;
 	self.lerp_step_count = lerp_step_count;
 	self.lerp_bit_count = getminbitcountfornum(lerp_step_count);
 }
@@ -464,22 +464,22 @@ function add_info(type, name, var_948bda55, lerp_step_count)
 	Parameters: 4
 	Flags: Linked
 */
-function register_info(type, name, var_948bda55, lerp_step_count)
+function register_info(type, name, version, lerp_step_count)
 {
 	/#
 		assert(level.vsmgr_initializing, "");
 	#/
 	lower_name = tolower(name);
-	if(!validate_info(type, lower_name, var_948bda55))
+	if(!validate_info(type, lower_name, version))
 	{
 		return 0;
 	}
 	add_sorted_name_key(type, lower_name);
 	level.vsmgr[type].info[lower_name] = spawnstruct();
-	level.vsmgr[type].info[lower_name] add_info(type, lower_name, var_948bda55, lerp_step_count);
-	if(var_948bda55 > level.vsmgr[type].highest_version)
+	level.vsmgr[type].info[lower_name] add_info(type, lower_name, version, lerp_step_count);
+	if(version > level.vsmgr[type].highest_version)
 	{
-		level.vsmgr[type].highest_version = var_948bda55;
+		level.vsmgr[type].highest_version = version;
 	}
 	return 1;
 }

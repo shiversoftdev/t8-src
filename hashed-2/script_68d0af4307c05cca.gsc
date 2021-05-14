@@ -10,11 +10,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_e45694cd;
+#namespace zm_talisman_box_guarantee_box_only;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_e45694cd
+	Namespace: zm_talisman_box_guarantee_box_only
 	Checksum: 0xCFBDE237
 	Offset: 0x110
 	Size: 0x3C
@@ -23,12 +23,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_12e90c9606123e96", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_box_guarantee_box_only", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_e45694cd
+	Namespace: zm_talisman_box_guarantee_box_only
 	Checksum: 0x2028F879
 	Offset: 0x158
 	Size: 0x2C
@@ -37,19 +37,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_box_guarantee_box_only", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_box_guarantee_box_only", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_e45694cd
+	Name: activate_talisman
+	Namespace: zm_talisman_box_guarantee_box_only
 	Checksum: 0xB20D7ECE
 	Offset: 0x190
 	Size: 0x26
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self.var_afb3ba4e = &function_543a48f0;
 	self.var_c21099c0 = 1;
@@ -57,7 +57,7 @@ function function_fd7e329b()
 
 /*
 	Name: function_543a48f0
-	Namespace: namespace_e45694cd
+	Namespace: zm_talisman_box_guarantee_box_only
 	Checksum: 0x27E8ACE1
 	Offset: 0x1C0
 	Size: 0x1EA
@@ -66,7 +66,7 @@ function function_fd7e329b()
 */
 function function_543a48f0(a_keys)
 {
-	var_5dfcc1de = array();
+	a_wallbuys = array();
 	a_valid = array();
 	var_52fb84b5 = [];
 	var_52fb84b5 = struct::get_array("weapon_upgrade", "targetname");
@@ -74,7 +74,7 @@ function function_543a48f0(a_keys)
 	for(i = 0; i < var_52fb84b5.size; i++)
 	{
 		var_38e724e6 = getweapon(var_52fb84b5[i].zombie_weapon_upgrade);
-		array::add(var_5dfcc1de, var_38e724e6);
+		array::add(a_wallbuys, var_38e724e6);
 	}
 	foreach(var_e64c7df8 in a_keys)
 	{
@@ -83,7 +83,7 @@ function function_543a48f0(a_keys)
 			array::add(a_valid, var_e64c7df8);
 		}
 	}
-	a_keys = array::exclude(a_valid, var_5dfcc1de);
+	a_keys = array::exclude(a_valid, a_wallbuys);
 	a_keys = array::randomize(a_keys);
 	self.var_afb3ba4e = undefined;
 	self.var_c21099c0 = undefined;

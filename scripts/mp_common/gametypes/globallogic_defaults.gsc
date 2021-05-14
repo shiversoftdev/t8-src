@@ -61,7 +61,7 @@ function default_onforfeit(params)
 	{
 		round::function_d1e740f6(level.players[0]);
 	}
-	else if(namespace_aa9b5883::function_382a49e0() && params.var_b2ee6c67.size)
+	else if(platoons::function_382a49e0() && params.var_b2ee6c67.size)
 	{
 		round::function_35702443(params.var_b2ee6c67[0]);
 	}
@@ -113,21 +113,21 @@ function default_ondeadevent(team)
 */
 function function_dcf41142(params)
 {
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return;
 	}
-	if(infection::function_74650d7() && namespace_aa9b5883::function_382a49e0() && params.var_dfa2cc2c.size)
+	if(infection::function_74650d7() && platoons::function_382a49e0() && params.var_dfa2cc2c.size)
 	{
 		round::function_af2e264f(params.var_dfa2cc2c[0]);
 	}
-	else if(namespace_aa9b5883::function_382a49e0() && params.var_39ee8eb2.size)
+	else if(platoons::function_382a49e0() && params.platoons_alive.size)
 	{
-		round::function_35702443(params.var_39ee8eb2[0]);
+		round::function_35702443(params.platoons_alive[0]);
 	}
-	else if(params.var_48787ba8.size && isdefined(level.teams[params.var_48787ba8[0]]))
+	else if(params.teams_alive.size && isdefined(level.teams[params.teams_alive[0]]))
 	{
-		round::function_af2e264f(params.var_48787ba8[0]);
+		round::function_af2e264f(params.teams_alive[0]);
 	}
 	else
 	{
@@ -412,7 +412,7 @@ function get_alive_players(players)
 */
 function function_108c4b65()
 {
-	if(namespace_aa9b5883::function_382a49e0())
+	if(platoons::function_382a49e0())
 	{
 		teammates = getplayers(self.team);
 		var_2927adba = get_alive_players(teammates);
@@ -421,7 +421,7 @@ function function_108c4b65()
 			return var_2927adba[0];
 		}
 		platoon = function_22448d6c(self.team);
-		var_bf97e486 = namespace_aa9b5883::function_a214d798(platoon);
+		var_bf97e486 = platoons::function_a214d798(platoon);
 		return spectating::function_18b8b7e4(var_bf97e486, self.origin);
 	}
 }

@@ -417,10 +417,10 @@ function function_e16b5033(actor)
 	}
 	if(level.var_faf67c27[actor.archetype].round_number != level.round_number)
 	{
-		var_1b823c04 = undefined;
+		override_round_num = undefined;
 		if(isdefined(actor._starting_round_number))
 		{
-			var_1b823c04 = actor._starting_round_number;
+			override_round_num = actor._starting_round_number;
 		}
 		if(actor.archetype == #"zombie")
 		{
@@ -428,7 +428,7 @@ function function_e16b5033(actor)
 		}
 		else
 		{
-			max_health = float(actor namespace_e0710ee6::function_8d44707e(level.var_faf67c27[actor.archetype].var_6109b81d, var_1b823c04));
+			max_health = float(actor namespace_e0710ee6::function_8d44707e(level.var_faf67c27[actor.archetype].var_6109b81d, override_round_num));
 		}
 		level.var_faf67c27[actor.archetype].scale = max_health / level.var_faf67c27[actor.archetype].min_health;
 		level.var_faf67c27[actor.archetype].round_number = level.round_number;

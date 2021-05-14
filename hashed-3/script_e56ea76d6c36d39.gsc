@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_6fd9b42462e3c33c", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_6fd9b42462e3c33c", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(n_count, var_27bfdd42)
+private function function_d1de6a85(n_count, n_repacks)
 {
 	/#
 		assert(isdefined(level.zombie_weapons_upgraded));
@@ -73,10 +73,10 @@ private function function_d1de6a85(n_count, var_27bfdd42)
 			}
 		}
 	}
-	self.var_5ba20db5 = namespace_f551babc::function_5769f26a(n_count);
-	if(isdefined(var_27bfdd42))
+	self.var_5ba20db5 = zm_trial::function_5769f26a(n_count);
+	if(isdefined(n_repacks))
 	{
-		self.var_5027af68 = namespace_f551babc::function_5769f26a(var_27bfdd42);
+		self.var_5027af68 = zm_trial::function_5769f26a(n_repacks);
 	}
 	else
 	{
@@ -133,11 +133,11 @@ private function function_9e7b3f4d(round_reset)
 		}
 		if(var_696c3b4.size == 1)
 		{
-			namespace_f551babc::fail(#"hash_753fe45bee19e131", var_696c3b4);
+			zm_trial::fail(#"hash_753fe45bee19e131", var_696c3b4);
 		}
 		else if(var_696c3b4.size > 1)
 		{
-			namespace_f551babc::fail(#"hash_3539a53b7cf9ea2", var_696c3b4);
+			zm_trial::fail(#"hash_3539a53b7cf9ea2", var_696c3b4);
 		}
 	}
 	self.var_5ba20db5 = undefined;
@@ -174,9 +174,9 @@ private function function_e73fbbf7(var_5ba20db5, var_27f8d634)
 		{
 			self namespace_b22c99a5::function_63060af4(0);
 			self namespace_b22c99a5::function_f3aacffb();
-			var_27bfdd42 = zm_pap_util::function_83c29ddb(var_f2a06582);
+			n_repacks = zm_pap_util::function_83c29ddb(var_f2a06582);
 			self namespace_b22c99a5::function_c2cd0cba(var_27f8d634);
-			self namespace_b22c99a5::function_2190356a(var_27bfdd42);
+			self namespace_b22c99a5::function_2190356a(n_repacks);
 			var_fa5d7ea0 = 0;
 		}
 		else if(zm_weapons::is_weapon_upgraded(var_f2a06582))

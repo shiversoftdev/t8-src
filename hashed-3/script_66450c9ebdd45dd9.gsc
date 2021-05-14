@@ -45,7 +45,7 @@ event function_d8f1209f(eventstruct)
 	banter = var_1518f1fb[index];
 	var_bfc07183 = player1 function_7b99157b();
 	var_d6c29f87 = player2 function_7b99157b();
-	level thread function_3720b375(var_bfc07183, var_d6c29f87, banter[2], banter[3]);
+	level thread play_banter(var_bfc07183, var_d6c29f87, banter[2], banter[3]);
 }
 
 /*
@@ -78,7 +78,7 @@ function function_86492662(player1, player2)
 }
 
 /*
-	Name: function_3720b375
+	Name: play_banter
 	Namespace: namespace_12d19e59
 	Checksum: 0x5600264B
 	Offset: 0x378
@@ -86,7 +86,7 @@ function function_86492662(player1, player2)
 	Parameters: 4
 	Flags: Linked
 */
-function function_3720b375(player1, player2, alias1, alias2)
+function play_banter(player1, player2, alias1, alias2)
 {
 	player1 endon(#"death");
 	player2 endon(#"death");

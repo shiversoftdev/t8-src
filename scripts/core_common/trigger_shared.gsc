@@ -582,18 +582,18 @@ function get_all(vararg)
 	{
 		var_b00e97e6 = vararg;
 	}
-	var_a98c3aa9 = getentarraybytype(20);
+	a_all = getentarraybytype(20);
 	if(var_b00e97e6.size)
 	{
-		for(i = var_a98c3aa9.size - 1; i >= 0; i--)
+		for(i = a_all.size - 1; i >= 0; i--)
 		{
-			if(!isinarray(var_b00e97e6, var_a98c3aa9[i].classname))
+			if(!isinarray(var_b00e97e6, a_all[i].classname))
 			{
-				arrayremoveindex(var_a98c3aa9, i);
+				arrayremoveindex(a_all, i);
 			}
 		}
 	}
-	return var_a98c3aa9;
+	return a_all;
 }
 
 /*

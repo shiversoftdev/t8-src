@@ -150,14 +150,14 @@ function teleporter_init()
 {
 	level.teleport_ae_funcs = [];
 	level flag::init(#"hash_53a41180dac96fff");
-	level thread function_ea37146e();
+	level thread setup_portals();
 	poi1 = getent("pack_room_poi1", "targetname");
 	poi2 = getent("pack_room_poi2", "targetname");
 	poi1 zm_utility::create_zombie_point_of_interest(undefined, 30, 0, 0);
 	poi1 zm_utility::create_zombie_point_of_interest_attractor_positions(undefined, undefined, 128);
 	poi2 zm_utility::create_zombie_point_of_interest(undefined, 30, 0, 0);
 	poi2 zm_utility::create_zombie_point_of_interest_attractor_positions(undefined, undefined, 128);
-	level.var_7e3ab2e4 = struct::get("zombie_teleport_room", "targetname");
+	level.s_zombie_teleport_room = struct::get("zombie_teleport_room", "targetname");
 }
 
 /*
@@ -268,8 +268,8 @@ function teleport_pad_init()
 {
 	self.active = 1;
 	self.portal_used = [];
-	var_7e3d76ad = self function_d9e2dc1f();
-	self.fx_pos = var_7e3d76ad.origin;
+	s_zombie_pos = self function_d9e2dc1f();
+	self.fx_pos = s_zombie_pos.origin;
 	self thread player_teleporting();
 }
 
@@ -282,7 +282,7 @@ function teleport_pad_init()
 	Parameters: 1
 	Flags: Linked
 */
-function function_9b917fd5(var_634ce82e)
+function function_9b917fd5(is_powered)
 {
 	if(self.script_string === "pap_hideaway")
 	{
@@ -410,7 +410,7 @@ function teleport_player(user)
 	level thread function_fe50866d(user, self, var_298e4578);
 	user.var_298e4578 = var_298e4578;
 	self function_134670b9(1);
-	user namespace_eaaeba61::function_66d020b0(undefined, undefined, undefined, undefined, destination, undefined, string(self.n_dest), 0);
+	user zm_fasttravel::function_66d020b0(undefined, undefined, undefined, undefined, destination, undefined, string(self.n_dest), 0);
 	if(var_298e4578.script_noteworthy == "portal_panic_room")
 	{
 		level thread namespace_6cd64b2b::start_defcon_countdown();
@@ -556,7 +556,7 @@ function function_fe50866d(target, portal_enter, portal_exit)
 	{
 		return;
 	}
-	if(isdefined(level.var_4d648134) && portal_enter == level.var_4d648134)
+	if(isdefined(level.s_cage_portal) && portal_enter == level.s_cage_portal)
 	{
 		return;
 	}
@@ -634,7 +634,7 @@ function find_portal_destination(var_210b4680)
 		{
 			continue;
 		}
-		if(isdefined(var_210b4680) && s_portal.var_93bcf9b9 != var_210b4680)
+		if(isdefined(var_210b4680) && s_portal.n_floor != var_210b4680)
 		{
 			continue;
 		}
@@ -711,8 +711,8 @@ function open_portal_rooms()
 function function_3e7ccc56()
 {
 	yellow_conf_screen = getent("yellow_conf_screen", "targetname");
-	var_b610fee7 = getentarray("yellow_conf_screen_part", "script_noteworthy");
-	foreach(part in var_b610fee7)
+	yellow_conf_screen_parts = getentarray("yellow_conf_screen_part", "script_noteworthy");
+	foreach(part in yellow_conf_screen_parts)
 	{
 		part linkto(yellow_conf_screen);
 	}
@@ -835,36 +835,36 @@ function function_e9848fa7()
 {
 	var_84a6eef7 = undefined;
 	var_9d761d98 = namespace_47276bad::function_35babccd(self);
-	var_8a67544 = [];
+	test_portals = [];
 	foreach(s_portal in level.var_63fca02d)
 	{
-		if(s_portal.var_93bcf9b9 == var_9d761d98)
+		if(s_portal.n_floor == var_9d761d98)
 		{
-			if(!isdefined(var_8a67544))
+			if(!isdefined(test_portals))
 			{
-				var_8a67544 = [];
+				test_portals = [];
 			}
-			else if(!isarray(var_8a67544))
+			else if(!isarray(test_portals))
 			{
-				var_8a67544 = array(var_8a67544);
+				test_portals = array(test_portals);
 			}
-			var_8a67544[var_8a67544.size] = s_portal;
+			test_portals[test_portals.size] = s_portal;
 		}
 	}
-	if(var_8a67544.size > 0)
+	if(test_portals.size > 0)
 	{
 		if(isdefined(self.var_b940d6ea))
 		{
-			var_72b618ae = self.var_b940d6ea;
+			test_pos = self.var_b940d6ea;
 		}
 		else
 		{
-			var_72b618ae = self.origin;
+			test_pos = self.origin;
 		}
 		var_2bb91264 = 1410065408;
-		foreach(portal in var_8a67544)
+		foreach(portal in test_portals)
 		{
-			var_d9c76d4b = distancesquared(portal.origin, var_72b618ae);
+			var_d9c76d4b = distancesquared(portal.origin, test_pos);
 			if(var_d9c76d4b < var_2bb91264)
 			{
 				var_2bb91264 = var_d9c76d4b;
@@ -953,16 +953,16 @@ function function_2ef25d40(str_notify)
 	Parameters: 3
 	Flags: Linked
 */
-function function_71be28e1(zombie, var_472a2fa3, end_portal)
+function function_71be28e1(zombie, start_portal, end_portal)
 {
 	zombie endon(#"death");
 	zombie disableaimassist();
 	playfx(level._effect[#"hash_61fb06e6b1e29b45"], zombie.origin);
-	playfx(level._effect[#"hash_42067f50e6d7e946"], var_472a2fa3.origin, (1, 0, 0), (0, 0, 1));
+	playfx(level._effect[#"hash_42067f50e6d7e946"], start_portal.origin, (1, 0, 0), (0, 0, 1));
 	playsoundatposition(#"evt_teleporter_out", zombie.origin);
 	zombie function_1f034d46(end_portal.origin);
 	zombie.b_ignore_cleanup = 1;
-	zombie forceteleport(level.var_7e3ab2e4.origin);
+	zombie forceteleport(level.s_zombie_teleport_room.origin);
 	zombie setentitypaused(1);
 	wait(3);
 	end_target = end_portal.var_52a6f692[0];
@@ -1036,11 +1036,11 @@ function function_bb3f9afd()
 	s_portal = level.var_905aea40;
 	if(util::function_5df4294() == #"zstandard")
 	{
-		s_portal.var_93bcf9b9 = -1;
+		s_portal.n_floor = -1;
 	}
 	level.var_63fca02d[s_portal.script_noteworthy] = s_portal;
 	s_portal zm_unitrigger::create("", 32, &portal_think, 0, 0);
-	playfx(level._effect[#"hash_aa418180622c853"], s_portal.origin, (1, 0, 0), (0, 0, 1));
+	playfx(level._effect[#"portal_spawn"], s_portal.origin, (1, 0, 0), (0, 0, 1));
 	if(level flag::get("defcon_active") || util::function_5df4294() == #"zstandard")
 	{
 		s_portal function_79e8b4c6(2);
@@ -1053,11 +1053,11 @@ function function_bb3f9afd()
 	{
 		s_portal function_cb7c6fc7(e_player, 1);
 	}
-	function_5c549e0c();
+	cage_portal_init();
 }
 
 /*
-	Name: function_ea37146e
+	Name: setup_portals
 	Namespace: namespace_a701220b
 	Checksum: 0x7577F04
 	Offset: 0x3498
@@ -1065,7 +1065,7 @@ function function_bb3f9afd()
 	Parameters: 0
 	Flags: Linked
 */
-function function_ea37146e()
+function setup_portals()
 {
 	var_63fca02d = struct::get_array("office_portal");
 	foreach(s_portal in var_63fca02d)
@@ -1074,7 +1074,7 @@ function function_ea37146e()
 		{
 			level.var_905aea40 = s_portal;
 		}
-		s_portal function_a003c9ab();
+		s_portal portal_init();
 	}
 	level.var_3f3c65c7 = struct::get("cage_enter_portal");
 	level.var_3f3c65c7.var_52a6f692 = namespace_509a75d1::function_2719d4c0(level.var_3f3c65c7.target, "targetname", "script_int");
@@ -1082,7 +1082,7 @@ function function_ea37146e()
 }
 
 /*
-	Name: function_a003c9ab
+	Name: portal_init
 	Namespace: namespace_a701220b
 	Checksum: 0x51E00D86
 	Offset: 0x3600
@@ -1090,7 +1090,7 @@ function function_ea37146e()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a003c9ab()
+function portal_init()
 {
 	if(!isdefined(level.var_63fca02d))
 	{
@@ -1120,7 +1120,7 @@ function function_a003c9ab()
 		case "portal_conference_level1":
 		case "portal_offices_level1":
 		{
-			self.var_93bcf9b9 = 1;
+			self.n_floor = 1;
 			break;
 		}
 		case "portal_war_room_server_room":
@@ -1128,7 +1128,7 @@ function function_a003c9ab()
 		case "portal_war_room":
 		case "portal_war_room_map":
 		{
-			self.var_93bcf9b9 = 2;
+			self.n_floor = 2;
 			break;
 		}
 		case "portal_labs_power_room":
@@ -1137,7 +1137,7 @@ function function_a003c9ab()
 		case "portal_labs_hall2_east":
 		case "portal_labs_hall1_west":
 		{
-			self.var_93bcf9b9 = 3;
+			self.n_floor = 3;
 			break;
 		}
 	}
@@ -1210,7 +1210,7 @@ function portal_think()
 }
 
 /*
-	Name: function_a9a46ba4
+	Name: portal_activate
 	Namespace: namespace_a701220b
 	Checksum: 0x469763FC
 	Offset: 0x3AE8
@@ -1218,7 +1218,7 @@ function portal_think()
 	Parameters: 0
 	Flags: Linked
 */
-function function_a9a46ba4()
+function portal_activate()
 {
 	level.var_63fca02d[self.script_noteworthy] = self;
 	if(self.script_noteworthy == "portal_war_room")
@@ -1257,7 +1257,7 @@ function function_ea199c46()
 	{
 		if(var_63fca02d[i].script_noteworthy != "portal_war_room_map")
 		{
-			var_63fca02d[i] function_a9a46ba4();
+			var_63fca02d[i] portal_activate();
 		}
 		if(i == 5)
 		{
@@ -1434,7 +1434,7 @@ function function_c71dfad1(b_enable = 1)
 }
 
 /*
-	Name: function_5c549e0c
+	Name: cage_portal_init
 	Namespace: namespace_a701220b
 	Checksum: 0xBCD93877
 	Offset: 0x41D8
@@ -1442,11 +1442,11 @@ function function_c71dfad1(b_enable = 1)
 	Parameters: 0
 	Flags: Linked
 */
-function function_5c549e0c()
+function cage_portal_init()
 {
-	level.var_4d648134 = struct::get("cage_portal");
-	level.var_4d648134.var_a1cf77d2 = util::spawn_model("tag_origin", level.var_4d648134.origin, level.var_4d648134.angles);
-	level.var_4d648134.n_dest = 3;
+	level.s_cage_portal = struct::get("cage_portal");
+	level.s_cage_portal.var_a1cf77d2 = util::spawn_model("tag_origin", level.s_cage_portal.origin, level.s_cage_portal.angles);
+	level.s_cage_portal.n_dest = 3;
 	level.var_a23b5c5 = getent("cage_portal_blocker", "targetname");
 	level.var_a23b5c5.v_start_pos = level.var_a23b5c5.origin;
 	getent("bunker_gate", "targetname") linkto(level.var_a23b5c5);
@@ -1455,7 +1455,7 @@ function function_5c549e0c()
 }
 
 /*
-	Name: function_f50254c1
+	Name: enable_cage_portal
 	Namespace: namespace_a701220b
 	Checksum: 0xB88CA6D0
 	Offset: 0x4360
@@ -1463,7 +1463,7 @@ function function_5c549e0c()
 	Parameters: 1
 	Flags: Linked
 */
-function function_f50254c1(b_enable = 1)
+function enable_cage_portal(b_enable = 1)
 {
 	if(self.b_active === b_enable)
 	{
@@ -1472,14 +1472,14 @@ function function_f50254c1(b_enable = 1)
 	self.b_active = b_enable;
 	if(self.b_active)
 	{
-		level.var_4d648134 zm_unitrigger::create("", 32, &portal_think, 0, 0);
+		level.s_cage_portal zm_unitrigger::create("", 32, &portal_think, 0, 0);
 		function_60abbae4(1);
 		level.var_a23b5c5 playsound(#"hash_123af2d6dc30025a");
 		level.var_a23b5c5 movez(150, 1);
 	}
 	else
 	{
-		zm_unitrigger::unregister_unitrigger(level.var_4d648134.s_unitrigger);
+		zm_unitrigger::unregister_unitrigger(level.s_cage_portal.s_unitrigger);
 		function_60abbae4(0);
 	}
 }
@@ -1562,11 +1562,11 @@ function function_60abbae4(b_enable)
 {
 	if(b_enable)
 	{
-		level.var_4d648134.var_a1cf77d2 clientfield::set("cage_portal_fx", 1);
+		level.s_cage_portal.var_a1cf77d2 clientfield::set("cage_portal_fx", 1);
 	}
 	else
 	{
-		level.var_4d648134.var_a1cf77d2 clientfield::set("cage_portal_fx", 0);
+		level.s_cage_portal.var_a1cf77d2 clientfield::set("cage_portal_fx", 0);
 	}
 }
 

@@ -231,10 +231,10 @@ function play_defcon5_alarms()
 {
 	var_566c062 = struct::get_array("defcon_alarms");
 	var_674c8f1b = [];
-	foreach(var_494ac784 in var_566c062)
+	foreach(s_alarm in var_566c062)
 	{
-		var_9844b012 = spawn("script_origin", var_494ac784.origin);
-		var_9844b012 playloopsound(var_494ac784.script_sound, 0.25);
+		var_9844b012 = spawn("script_origin", s_alarm.origin);
+		var_9844b012 playloopsound(s_alarm.script_sound, 0.25);
 		if(!isdefined(var_674c8f1b))
 		{
 			var_674c8f1b = [];

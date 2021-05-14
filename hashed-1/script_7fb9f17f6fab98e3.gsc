@@ -43,11 +43,11 @@ function init()
 	{
 		level.var_3958c9ff = array(level.var_3958c9ff);
 	}
-	foreach(var_a181b729 in level.var_91f96fcd)
+	foreach(s_fasttravel in level.var_91f96fcd)
 	{
-		if(var_a181b729.script_noteworthy === "traverse")
+		if(s_fasttravel.script_noteworthy === "traverse")
 		{
-			level.var_3958c9ff[var_a181b729.script_string] = var_a181b729;
+			level.var_3958c9ff[s_fasttravel.script_string] = s_fasttravel;
 		}
 	}
 	callback::on_spawned(&on_player_spawned);
@@ -67,7 +67,7 @@ function init()
 */
 function main()
 {
-	namespace_eaaeba61::function_44a82004(#"zm_red_fasttravel_open");
+	zm_fasttravel::function_44a82004(#"zm_red_fasttravel_open");
 	level thread function_706b7928();
 	level thread function_63cbb9f();
 	level thread function_7ebbc601();
@@ -153,21 +153,21 @@ function function_fe50c802(str_model, n_z_diff)
 	Parameters: 2
 	Flags: Linked
 */
-function function_91fabcb(var_e007f14b, var_801728be = 0)
+function function_91fabcb(var_e007f14b, b_clean_up = 0)
 {
 	self endon(#"death");
-	if(var_801728be)
+	if(b_clean_up)
 	{
 		self thread function_9aec1610(var_e007f14b);
 	}
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
 		var_e007f14b clientfield::set("" + #"hash_1c11bf07cb27dfaa", 1);
 		wait(3);
 		var_e007f14b clientfield::set("" + #"hash_1c11bf07cb27dfaa", 0);
-		while(isdefined(var_88706ea7.activator) && var_88706ea7.activator istouching(self))
+		while(isdefined(s_result.activator) && s_result.activator istouching(self))
 		{
 			wait(1.6);
 		}
@@ -204,9 +204,9 @@ function function_25f97da0()
 	self endon(#"death");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"hash_1c35eb15aa210d6");
-		if(isdefined(var_88706ea7.var_9fa6220c) && isdefined(var_88706ea7.var_9fa6220c.script_string) && var_88706ea7.var_9fa6220c.script_string == "spartan_monument")
+		s_result = undefined;
+		s_result = self waittill(#"hash_1c35eb15aa210d6");
+		if(isdefined(s_result.var_9fa6220c) && isdefined(s_result.var_9fa6220c.script_string) && s_result.var_9fa6220c.script_string == "spartan_monument")
 		{
 			self forcestreambundle(#"hash_4703db4679985a0a");
 			wait(3);
@@ -229,9 +229,9 @@ function function_e968fd4f()
 	self endon(#"death");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"hash_1c35eb15aa210d6");
-		if(isdefined(var_88706ea7.var_9fa6220c) && isdefined(var_88706ea7.var_9fa6220c.script_string) && var_88706ea7.var_9fa6220c.script_string == "center_of_the_world")
+		s_result = undefined;
+		s_result = self waittill(#"hash_1c35eb15aa210d6");
+		if(isdefined(s_result.var_9fa6220c) && isdefined(s_result.var_9fa6220c.script_string) && s_result.var_9fa6220c.script_string == "center_of_the_world")
 		{
 			level clientfield::set("" + #"hash_761511e09cb8324e", 1);
 			wait(3);
@@ -251,7 +251,7 @@ function function_e968fd4f()
 */
 function function_a5689564(s_loc)
 {
-	namespace_eaaeba61::function_2d4bda34(s_loc);
+	zm_fasttravel::function_2d4bda34(s_loc);
 	if(s_loc.script_noteworthy === "traverse")
 	{
 		if(isdefined(s_loc.var_85e825a7))
@@ -337,7 +337,7 @@ function function_c52e8ba(e_player, var_8d5d092c)
 		self.hint_string = [];
 	}
 	n_player_index = e_player getentitynumber();
-	if(!self namespace_eaaeba61::function_d06e636b(e_player))
+	if(!self zm_fasttravel::function_d06e636b(e_player))
 	{
 		self.hint_string[n_player_index] = #"";
 	}
@@ -443,7 +443,7 @@ function function_c52e8ba(e_player, var_8d5d092c)
 				}
 				break;
 			}
-			case "hash_1a6b6934fe6548df":
+			case "amphitheater":
 			{
 				if(zm_utility::is_standard())
 				{

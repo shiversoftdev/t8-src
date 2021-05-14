@@ -277,9 +277,9 @@ function function_561d9cff()
 	exploder::stop_exploder("fxexp_narr_campfire_blue");
 	exploder::exploder("fxexp_narr_campfire");
 	level flag::clear(#"hash_e8247a060147428");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"trigger_activated");
-	e_who = var_88706ea7.e_who;
+	s_result = undefined;
+	s_result = self waittill(#"trigger_activated");
+	e_who = s_result.e_who;
 	if(level.var_96eedc2a === 2)
 	{
 		e_who thread namespace_3263198e::function_51b752a9(#"hash_6f774fe92d5d01b6", -1, 1, 0);

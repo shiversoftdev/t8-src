@@ -43,11 +43,11 @@ function __init__()
 	register_handler(#"hash_59db68c04af7aab5", &function_e4f752b9);
 	register_handler(#"hash_51f609ea675fecde", &function_d22ff818);
 	register_handler(#"hash_21f619ce507cec96", &function_1989cfaf);
-	function_bef13b7e(#"stand", &stand);
-	function_bef13b7e(#"sprint", &sprint);
-	function_bef13b7e(#"crouch", &crouch);
-	function_bef13b7e(#"prone", &prone);
-	function_bef13b7e(#"slide", &slide);
+	register_stance(#"stand", &stand);
+	register_stance(#"sprint", &sprint);
+	register_stance(#"crouch", &crouch);
+	register_stance(#"prone", &prone);
+	register_stance(#"slide", &slide);
 }
 
 /*
@@ -179,7 +179,7 @@ function register_handler(name, func)
 }
 
 /*
-	Name: function_bef13b7e
+	Name: register_stance
 	Namespace: namespace_9c817acd
 	Checksum: 0xC9504E68
 	Offset: 0x6C8
@@ -187,7 +187,7 @@ function register_handler(name, func)
 	Parameters: 2
 	Flags: Linked
 */
-function function_bef13b7e(name, func)
+function register_stance(name, func)
 {
 	level.var_4381b72a[name] = func;
 }
@@ -267,7 +267,7 @@ function function_ab5be907(tacbundle, params, node)
 }
 
 /*
-	Name: function_8f722922
+	Name: g_stop_player_too_many_weapons_monitor
 	Namespace: namespace_9c817acd
 	Checksum: 0x13B1B17D
 	Offset: 0xA20
@@ -275,7 +275,7 @@ function function_ab5be907(tacbundle, params, node)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8f722922(name)
+function g_stop_player_too_many_weapons_monitor(name)
 {
 	if(!isdefined(name))
 	{
@@ -307,7 +307,7 @@ function function_8f722922(name)
 */
 function function_51cc7d9a(tacbundle, params, node)
 {
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -341,7 +341,7 @@ function function_7857357b(tacbundle, params, node)
 			self bot::record_text("", (1, 0, 0), "");
 		#/
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -376,7 +376,7 @@ function function_f1b497ec(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -411,7 +411,7 @@ function function_41d967fe(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -457,7 +457,7 @@ function function_f71302f4(tacbundle, params, node)
 	{
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -499,7 +499,7 @@ function function_821cce69(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -527,7 +527,7 @@ function function_5485fc7b(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -578,7 +578,7 @@ function function_e4f752b9(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -651,7 +651,7 @@ function function_d22ff818(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*
@@ -728,7 +728,7 @@ function function_1989cfaf(tacbundle, params, node)
 		#/
 		return 0;
 	}
-	return self function_8f722922(params.stance);
+	return self g_stop_player_too_many_weapons_monitor(params.stance);
 }
 
 /*

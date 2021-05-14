@@ -133,7 +133,7 @@ function function_6c288c45(spawnorigin, spawnangles)
 	turretvehicle vehicle::disconnect_paths(0, 0);
 	turretvehicle function_bc7568f1();
 	turretvehicle thread function_d4f9ecb(turretvehicle.killstreak_duration);
-	turretvehicle.var_54ebfda9 = &function_54ebfda9;
+	turretvehicle.is_staircase_up = &is_staircase_up;
 	turretvehicle util::function_c596f193();
 	turretvehicle thread turretscanning();
 	turretvehicle thread function_fefefcc4();
@@ -295,7 +295,7 @@ function onturretdeath(einflictor, eattacker, idamage, smeansofdeath, weapon, vd
 }
 
 /*
-	Name: function_54ebfda9
+	Name: is_staircase_up
 	Namespace: ultimate_turret
 	Checksum: 0x117C0DC2
 	Offset: 0x1210
@@ -303,7 +303,7 @@ function onturretdeath(einflictor, eattacker, idamage, smeansofdeath, weapon, vd
 	Parameters: 1
 	Flags: Linked
 */
-function function_54ebfda9(params)
+function is_staircase_up(params)
 {
 	turretvehicle = self;
 	turretvehicle function_21f16a35();

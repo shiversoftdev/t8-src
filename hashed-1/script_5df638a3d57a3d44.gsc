@@ -10,11 +10,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_3cf5e4cf;
+#namespace zm_talisman_extra_self_revive;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_3cf5e4cf
+	Namespace: zm_talisman_extra_self_revive
 	Checksum: 0x423DBC12
 	Offset: 0xD8
 	Size: 0x3C
@@ -23,12 +23,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_7b573f6f3650105e", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_extra_self_revive", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_3cf5e4cf
+	Namespace: zm_talisman_extra_self_revive
 	Checksum: 0xB039978C
 	Offset: 0x120
 	Size: 0x2C
@@ -37,19 +37,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_extra_self_revive", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_extra_self_revive", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_3cf5e4cf
+	Name: activate_talisman
+	Namespace: zm_talisman_extra_self_revive
 	Checksum: 0xA4A6CFD
 	Offset: 0x158
 	Size: 0x1C
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self zm_laststand::function_3a00302e(1);
 }

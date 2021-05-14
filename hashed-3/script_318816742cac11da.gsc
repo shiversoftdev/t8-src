@@ -50,7 +50,7 @@ function register_clientfields()
 	clientfield::register("world", "portal_map_gas_indicator_reinsel_house", 1, 1, "int", &portal_map_gas_indicator_reinsel_house, 0, 0);
 	clientfield::register("world", "portal_map_gas_indicator_yellow_house", 1, 1, "int", &portal_map_gas_indicator_yellow_house, 0, 0);
 	clientfield::register("world", "portal_map_gas_indicator_generators", 1, 1, "int", &portal_map_gas_indicator_generators, 0, 0);
-	clientfield::register("world", "generator_sound_sweetner", 1, 1, "int", &function_2496442c, 0, 0);
+	clientfield::register("world", "generator_sound_sweetner", 1, 1, "int", &play_generator_sound_sweetner, 0, 0);
 	clientfield::register("world", "" + #"hash_1c11f70bb8445095", 1, 3, "int", &function_88991669, 0, 0);
 	clientfield::register("toplayer", "vent_interact_feedback", 20000, 1, "counter", &vent_interact_feedback, 0, 0);
 }
@@ -407,7 +407,7 @@ function function_88991669(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_2496442c
+	Name: play_generator_sound_sweetner
 	Namespace: namespace_5c160465
 	Checksum: 0xC0AA3C1D
 	Offset: 0x1870
@@ -415,7 +415,7 @@ function function_88991669(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_2496442c(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function play_generator_sound_sweetner(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	audio::playloopat(#"hash_3f579b3632b29a2", (-158, -352, -379));
 	audio::playloopat(#"hash_3f579b3632b29a2", (86, -345, -367));

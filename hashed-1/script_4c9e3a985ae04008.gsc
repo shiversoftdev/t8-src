@@ -86,22 +86,22 @@ function main()
 function init_clientfields()
 {
 	clientfield::register("scriptmover", "portal_dest_fx", 20000, 3, "int", &function_e4ea441, 0, 0);
-	clientfield::register("toplayer", "PORTAL_YELLOW_BACKYARD", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_YELLOW_HOUSE", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_RED_HOUSE", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_GREEN_HOUSE", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_GREEN_BACKYARD", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_STREET_MID", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_STREET_START", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_PRISONER_HOLDING", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_OPERATIONS", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_TRANSFUSION_FACILITY", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_APD_INTERROGATION", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_DINER", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_BEDS", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_LOUNGE", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_POWER", 20000, 2, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "PORTAL_STORAGE", 20000, 2, "int", &function_ed565c80, 0, 0);
+	clientfield::register("toplayer", "PORTAL_YELLOW_BACKYARD", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_YELLOW_HOUSE", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_RED_HOUSE", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_GREEN_HOUSE", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_GREEN_BACKYARD", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_STREET_MID", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_STREET_START", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_PRISONER_HOLDING", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_OPERATIONS", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_TRANSFUSION_FACILITY", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_APD_INTERROGATION", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_DINER", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_BEDS", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_LOUNGE", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_POWER", 20000, 2, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "PORTAL_STORAGE", 20000, 2, "int", &portal_ready_fx, 0, 0);
 	clientfield::register("actor", "crawler_portal_spawn_fx", 20000, 1, "counter", &crawler_portal_spawn_fx, 0, 0);
 	clientfield::register("toplayer", "teleporter_transition", 20000, 1, "counter", &function_38a241a1, 0, 0);
 	clientfield::register("toplayer", "teleporter_depart", 20000, 1, "counter", &function_69108708, 0, 0);
@@ -268,7 +268,7 @@ function function_e4ea441(localclientnum, oldval, newval, bnewent, binitialsnap,
 }
 
 /*
-	Name: function_ed565c80
+	Name: portal_ready_fx
 	Namespace: namespace_1846c963
 	Checksum: 0x181647F2
 	Offset: 0x19D8
@@ -276,7 +276,7 @@ function function_e4ea441(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked
 */
-function function_ed565c80(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function portal_ready_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	while(!isdefined(level.var_22677da8))
 	{
@@ -308,11 +308,11 @@ function function_ed565c80(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function crawler_portal_spawn_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	var_aa13d75a = util::playfxontag(localclientnum, "maps/zm_office/fx8_teleporter_ready", self, "j_spine2");
+	warmup_fx = util::playfxontag(localclientnum, "maps/zm_office/fx8_teleporter_ready", self, "j_spine2");
 	wait(1.5);
-	if(isdefined(var_aa13d75a))
+	if(isdefined(warmup_fx))
 	{
-		deletefx(localclientnum, var_aa13d75a);
+		deletefx(localclientnum, warmup_fx);
 	}
 	util::playfxontag(localclientnum, "maps/zm_office/fx8_teleporter_destination", self, "j_spine2");
 }

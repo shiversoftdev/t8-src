@@ -103,7 +103,7 @@ private function function_e5ba4473()
 	self setavoidancemask("avoid none");
 	if(self.aitype == "spawner_zm_pablo")
 	{
-		self.var_f6f10811 = 1;
+		self.is_pablo = 1;
 	}
 	else if(!isdefined(level.var_8a8728c6))
 	{
@@ -141,8 +141,8 @@ function function_1c989dc4()
 		samantha.pushable = 0;
 		eddie.pushable = 0;
 		var_e625df22 = anglestoforward(samantha.angles);
-		var_3af1c728 = vectorcross((0, 0, 1), var_e625df22) * -1;
-		eddie forceteleport(samantha.origin + var_3af1c728 * 25, samantha.angles);
+		samantha_right = vectorcross((0, 0, 1), var_e625df22) * -1;
+		eddie forceteleport(samantha.origin + samantha_right * 25, samantha.angles);
 	}
 }
 
@@ -376,7 +376,7 @@ private function function_2165e851()
 private function function_b4b7cd20(entity)
 {
 	result = 0;
-	if(isdefined(entity.var_f6f10811) && entity.var_f6f10811)
+	if(isdefined(entity.is_pablo) && entity.is_pablo)
 	{
 		result = 1;
 	}

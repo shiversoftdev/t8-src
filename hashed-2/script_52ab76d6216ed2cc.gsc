@@ -44,7 +44,7 @@ function init()
 function init_clientfields()
 {
 	clientfield::register("world", "" + #"hash_3c58464f16d8a1be", 1, 1, "int", &function_503f6096, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_21fc641f8717e48f", 1, 1, "int", &function_48719840, 0, 0);
+	clientfield::register("scriptmover", "" + #"land_fx", 1, 1, "int", &function_48719840, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_1f082a274b1fb6e8", 1, 1, "int", &function_92436a06, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_599b6bf8d2df1c68", 1, getminbitcountfornum(9), "int", &function_e7c0fb8c, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_4b07b3e5d4729ba", 1, getminbitcountfornum(9), "int", &function_ab685dea, 0, 0);
@@ -52,7 +52,7 @@ function init_clientfields()
 	clientfield::register("scriptmover", "" + #"hash_4e114afae67f749f", 1, 1, "int", &function_b59986cf, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_3400ccffbd3d73b3", 1, 2, "int", &function_49661954, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_15b23de7589e61a", 1, 1, "int", &function_25a6443, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_4b4f7c300315b9d0", 1, 1, "int", &function_74e395f7, 0, 0);
+	clientfield::register("scriptmover", "" + #"blocker_fx", 1, 1, "int", &function_74e395f7, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_68e2384b254175da", 1, 1, "counter", &function_9a686624, 0, 0);
 	clientfield::register("scriptmover", "" + #"pipe_fx", 1, 2, "int", &pipe_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_4ddbb35b49d9bb61", 1, 1, "int", &function_a0798cf4, 0, 0);
@@ -60,14 +60,14 @@ function init_clientfields()
 	clientfield::register("scriptmover", "" + #"hash_60291a1e604377a9", 1, 1, "int", &function_2d798d9a, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_6e41de51a0092771", 1, 1, "int", &function_dd0c6ccb, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_53c7d27cc9130e8f", 1, getminbitcountfornum(4), "int", &function_33aa16f0, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_2c247373d6b00b33", 1, 1, "int", &function_d592393d, 0, 0);
+	clientfield::register("toplayer", "" + #"boiler_fx", 1, 1, "int", &function_d592393d, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_2bde374c37c3f679", 1, 1, "int", &function_94822f89, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_7e72564bf065f2df", 1, 1, "int", &function_ac4395b, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_7a927551ca199a1c", 1, 1, "counter", &function_9491a41e, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_77165188f21e5ca0", 1, 1, "int", &function_c6880d07, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_58b44c320123e829", 1, 1, "int", &function_1697bc59, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_6f4c448cda667cc8", 1, 1, "int", &function_eacfeb8, 0, 0);
-	clientfield::register("vehicle", "" + #"hash_5373aac3875b5361", 1, 1, "int", &function_57196646, 0, 0);
+	clientfield::register("vehicle", "" + #"orb_fx", 1, 1, "int", &function_57196646, 0, 0);
 }
 
 /*
@@ -106,7 +106,7 @@ function init_fx()
 	level._effect[#"hash_4c972c53bdb84540"] = #"zombie/fx_ritual_glow_relic_zod_zmb";
 	level._effect[#"hash_5d6a93a7922b821b"] = #"hash_5b773dbbac0012ff";
 	level._effect[#"hash_4e794284db75a3f5"] = #"hash_3def678deb7f4078";
-	level._effect[#"hash_493ce8ba1e437ab7"] = #"hash_464f27bfbf0ce7bf";
+	level._effect[#"sentinel_activate"] = #"hash_464f27bfbf0ce7bf";
 	level._effect[#"hash_2b40b14fc8577053"] = #"hash_41b2c270f26faabc";
 	level._effect[#"hash_51b3154a00c79a96"] = #"hash_55ea6f0ddba66d44";
 	level._effect[#"hash_4725bfd390369cc6"] = #"hash_69afd734b3a42e4";
@@ -116,8 +116,8 @@ function init_fx()
 	level._effect[#"hash_3e85368d0aae4e37"] = #"hash_7ff11c8ee1217d6f";
 	level._effect[#"hash_53e257eb5e950096"] = #"hash_22922c09fc971250";
 	level._effect[#"hash_28ae96e5e5900d42"] = #"hash_74fd337197b421f8";
-	level._effect[#"hash_2f74b3d9f5d2a35f"] = #"hash_6a4db7ffc84cf7fc";
-	level._effect[#"hash_91da44e288581b5"] = #"hash_6d900123df67f4ce";
+	level._effect[#"glyph_activate"] = #"hash_6a4db7ffc84cf7fc";
+	level._effect[#"orb_trail"] = #"hash_6d900123df67f4ce";
 	level._effect[#"hash_503bcedb83031e6b"] = #"hash_2aac2efa85bfb786";
 	level._effect[#"hash_2dd4629ae81753e5"] = #"hash_203548b984de70a4";
 	level._effect[#"hash_23c18b717592a89d"] = #"hash_43cec289a09441e9";
@@ -142,11 +142,11 @@ function init_fx()
 	level._effect[#"hash_5c7f484e340fdde6"] = #"hash_728126700110e700";
 	level._effect[#"hash_331f4a597e6c0189"] = #"hash_1899ecdfcd7daa00";
 	level._effect[#"hash_345b045ea57a58e8"] = #"hash_231dd4d8a69cc3b2";
-	level._effect[#"hash_3611c4f98f9c87d1"] = #"hash_454a052cba35b654";
-	level._effect[#"hash_7c9e7b0f06e3ef6d"] = #"hash_22f995964a88d0e0";
-	level._effect[#"hash_754edd15bdb86004"] = #"hash_39b325729fc733ae";
-	level._effect[#"hash_5c7955474ae2180a"] = #"hash_4d7b9b72e10c3737";
-	level._effect[#"hash_2c6e7e3b94da406f"] = #"hash_6776cc88134ba740";
+	level._effect[#"sigil_on"] = #"hash_454a052cba35b654";
+	level._effect[#"sigil_off"] = #"hash_22f995964a88d0e0";
+	level._effect[#"tree_impact"] = #"hash_39b325729fc733ae";
+	level._effect[#"tree_trail"] = #"hash_4d7b9b72e10c3737";
+	level._effect[#"tree_activate"] = #"hash_6776cc88134ba740";
 }
 
 /*
@@ -179,7 +179,7 @@ function function_91be5845()
 	Parameters: 3
 	Flags: Linked
 */
-function function_7729e81c(localclientnum, def, var_db04a0a4)
+function function_7729e81c(localclientnum, def, s_capture_point)
 {
 }
 
@@ -351,9 +351,9 @@ function function_2d798d9a(localclientnum, oldval, newval, bnewent, binitialsnap
 			var_4cf7f9d1 = randomintrange(-64, 64);
 			var_c53a4cdc = randomintrange(-64, 64);
 			self moveto(self.origin + (var_5a5f5d36, var_4cf7f9d1, var_c53a4cdc), randomintrange(10, 20));
-			var_88706ea7 = undefined;
-			var_88706ea7 = self waittill(#"movedone", #"death");
-			if(var_88706ea7._notify == "death")
+			s_result = undefined;
+			s_result = self waittill(#"movedone", #"death");
+			if(s_result._notify == "death")
 			{
 				return;
 			}
@@ -487,9 +487,9 @@ function function_c6880d07(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_9ecc1074(localclientnum)
 {
 	self endon(#"underwaterwatchbegin");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"underwater_begin", #"death");
-	if(var_88706ea7._notify == "underwater_begin")
+	s_result = undefined;
+	s_result = self waittill(#"underwater_begin", #"death");
+	if(s_result._notify == "underwater_begin")
 	{
 		while(isalive(self))
 		{
@@ -537,9 +537,9 @@ function function_bcb676b9()
 	n_val = 0.1;
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill_timeout(20, #"hash_5010527c7518e767");
-		if(isalive(self) && var_88706ea7._notify == #"hash_5010527c7518e767")
+		s_result = undefined;
+		s_result = level waittill_timeout(20, #"hash_5010527c7518e767");
+		if(isalive(self) && s_result._notify == #"hash_5010527c7518e767")
 		{
 			self function_116b95e5(#"pstfx_frost_loop", "Reveal Threshold", n_val);
 			n_val = n_val + 0.1;
@@ -582,11 +582,11 @@ function function_a0798cf4(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(newval == 1)
 	{
-		self.var_2880a6b3 = playfx(localclientnum, level._effect[#"hash_7c9e7b0f06e3ef6d"], self.origin, (1, 0, 0));
+		self.var_2880a6b3 = playfx(localclientnum, level._effect[#"sigil_off"], self.origin, (1, 0, 0));
 	}
 	else
 	{
-		self.var_2880a6b3 = playfx(localclientnum, level._effect[#"hash_3611c4f98f9c87d1"], self.origin, (1, 0, 0));
+		self.var_2880a6b3 = playfx(localclientnum, level._effect[#"sigil_on"], self.origin, (1, 0, 0));
 	}
 	level thread function_8b8f2a41(localclientnum, self, self.var_2880a6b3);
 }
@@ -663,11 +663,11 @@ function function_25a6443(localclientnum, oldval, newval, bnewent, binitialsnap,
 	self util::waittill_dobj(localclientnum);
 	if(newval == 1)
 	{
-		self.var_ac501e8e = util::playfxontag(localclientnum, level._effect[#"hash_3316f2b0a2dcecda"], self, "tag_origin");
+		self.fx_iceberg = util::playfxontag(localclientnum, level._effect[#"hash_3316f2b0a2dcecda"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_ac501e8e))
+	else if(isdefined(self.fx_iceberg))
 	{
-		stopfx(localclientnum, self.var_ac501e8e);
+		stopfx(localclientnum, self.fx_iceberg);
 	}
 }
 
@@ -770,7 +770,7 @@ function function_9a686624(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		fx = util::playfxontag(localclientnum, level._effect[#"hash_2f74b3d9f5d2a35f"], self, "tag_origin");
+		fx = util::playfxontag(localclientnum, level._effect[#"glyph_activate"], self, "tag_origin");
 		playsound(localclientnum, #"hash_6dfc68e5f7739824", self.origin);
 		wait(3.5);
 		if(isdefined(fx))
@@ -794,16 +794,16 @@ function function_74e395f7(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval)
 	{
 		v_forward = anglestoforward(self.angles);
-		self.var_96715094 = playfx(localclientnum, level._effect[#"hash_5d6a93a7922b821b"], self.origin, v_forward);
+		self.blocker_fx = playfx(localclientnum, level._effect[#"hash_5d6a93a7922b821b"], self.origin, v_forward);
 		if(!isdefined(self.var_99a9007b))
 		{
 			self playsound(localclientnum, #"hash_2c71df73b17cd28a");
 			self.var_99a9007b = self playloopsound(#"hash_7e4a7312ab58161e");
 		}
 	}
-	else if(isdefined(self.var_96715094))
+	else if(isdefined(self.blocker_fx))
 	{
-		stopfx(localclientnum, self.var_96715094);
+		stopfx(localclientnum, self.blocker_fx);
 	}
 	if(isdefined(self.var_99a9007b))
 	{
@@ -846,16 +846,16 @@ function function_b59986cf(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_d592393d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	var_50a1494c = self isplayerswimmingunderwater();
+	b_underwater = self isplayerswimmingunderwater();
 	if(newval)
 	{
 		self thread postfx::playpostfxbundle(#"hash_5513ce472ffeb0f3");
-		if(!var_50a1494c)
+		if(!b_underwater)
 		{
 			setpbgactivebank(localclientnum, 4);
 		}
 	}
-	else if(!var_50a1494c)
+	else if(!b_underwater)
 	{
 		setpbgactivebank(localclientnum, 1);
 	}
@@ -912,7 +912,7 @@ function function_92436a06(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			self.var_92d5024f = util::playfxontag(localclientnum, level._effect[#"hash_503bcedb83031e6b"], self, "tag_origin");
 		}
-		self.var_ad85891 = util::playfxontag(localclientnum, level._effect[#"hash_91da44e288581b5"], self, "tag_origin");
+		self.var_ad85891 = util::playfxontag(localclientnum, level._effect[#"orb_trail"], self, "tag_origin");
 	}
 	else if(isdefined(self.var_92d5024f))
 	{
@@ -1056,7 +1056,7 @@ function function_9f92e675(localclientnum, oldval, newval, bnewent, binitialsnap
 	self endon(#"death");
 	if(newval == 1)
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_2c6e7e3b94da406f"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"tree_activate"], self, "tag_origin");
 		self playsound(localclientnum, #"hash_35bdc93fbbad3294");
 		self.var_3765ceb0 = self playloopsound(#"hash_453bd80432d8f383");
 		wait(0.25);
@@ -1081,12 +1081,12 @@ function function_57196646(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_5c7955474ae2180a"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"tree_trail"], self, "tag_origin");
 		self playsound(localclientnum, #"hash_c5737dedcdad3a8");
 	}
 	else
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_754edd15bdb86004"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"tree_impact"], self, "tag_origin");
 		self playsound(localclientnum, #"hash_3d9dcef3d979480b");
 		function_36e4ebd4(localclientnum, #"hash_2e8bb4e737eaf9b0");
 	}

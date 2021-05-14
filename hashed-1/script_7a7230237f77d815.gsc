@@ -681,10 +681,10 @@ function incendiary_debug_line(from, to, color, depthtest, time)
 	Parameters: 11
 	Flags: Linked
 */
-function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46f8a, var_7dc72343, var_e76400c0, wallnormal, var_cbaaea69, damageendtime)
+function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46f8a, radius_multiplier, var_e76400c0, wallnormal, var_cbaaea69, damageendtime)
 {
 	level endon(#"game_ended");
-	radius = var_4dd46f8a.var_6193a41b * var_7dc72343;
+	radius = var_4dd46f8a.var_6193a41b * radius_multiplier;
 	height = var_4dd46f8a.var_cbd86f3e;
 	trigger_radius_position = position - (0, 0, height);
 	trigger_radius_height = height * 2;
@@ -820,10 +820,10 @@ function stopfiresound()
 	Parameters: 11
 	Flags: Linked
 */
-function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd46f8a, var_7dc72343, var_e76400c0, wallnormal, var_cbaaea69, damageendtime)
+function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd46f8a, radius_multiplier, var_e76400c0, wallnormal, var_cbaaea69, damageendtime)
 {
 	level endon(#"game_ended");
-	radius = var_4dd46f8a.var_6193a41b * var_7dc72343;
+	radius = var_4dd46f8a.var_6193a41b * radius_multiplier;
 	height = var_4dd46f8a.var_cbd86f3e;
 	trigger_radius_position = position - (0, 0, height);
 	trigger_radius_height = height * 2;

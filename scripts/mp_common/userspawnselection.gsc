@@ -552,7 +552,7 @@ function shouldshowspawnselectionmenu()
 {
 	isbot = isbot(self);
 	var_1367cd2a = (isdefined(level.spawnselect.lastchosenplayerspawns[self.clientid]) ? level.spawnselect.lastchosenplayerspawns[self.clientid] : -1) == -2;
-	gameended = gamestate::function_674fd868();
+	gameended = gamestate::is_game_over();
 	var_e39674d4 = level.numteamlives > 0 && game.lives[self.team] < 0;
 	var_d302b268 = (isdefined(level.spawnselect.var_d302b268) ? level.spawnselect.var_d302b268 : 0) && function_127864f2(self);
 	return !isbot && !var_1367cd2a && !level.infinalkillcam && !gameended && !var_e39674d4 || var_d302b268;

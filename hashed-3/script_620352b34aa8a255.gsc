@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_252ca56770c46935", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_252ca56770c46935", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -54,7 +54,7 @@ function __init__()
 private function function_d1de6a85(timeout_time, var_b2c60867)
 {
 	callback::add_callback(#"hash_137b937fd26992be", &function_ff66b979);
-	self.timeout_time = namespace_f551babc::function_5769f26a(timeout_time);
+	self.timeout_time = zm_trial::function_5769f26a(timeout_time);
 	foreach(player in getplayers())
 	{
 		player thread function_ad32d69(var_b2c60867, self.timeout_time, 0, 1);

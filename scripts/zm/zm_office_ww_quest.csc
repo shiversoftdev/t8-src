@@ -43,11 +43,11 @@ function __init__()
 */
 function init_clientfields()
 {
-	clientfield::register("toplayer", "" + #"hash_61ff06b1f8850806", 1, 1, "int", &function_800c9ffb, 0, 0);
+	clientfield::register("toplayer", "" + #"hash_61ff06b1f8850806", 1, 1, "int", &drawer_rumble, 0, 0);
 }
 
 /*
-	Name: function_800c9ffb
+	Name: drawer_rumble
 	Namespace: namespace_d8d92c8b
 	Checksum: 0xFBA82297
 	Offset: 0x160
@@ -55,7 +55,7 @@ function init_clientfields()
 	Parameters: 7
 	Flags: Linked
 */
-function function_800c9ffb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function drawer_rumble(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{

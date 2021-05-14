@@ -96,7 +96,7 @@ function function_68acd38e()
 	self clientfield::set("zm_bgb_near_death_experience_3p_fx", 1);
 	self waittill(#"bled_out", #"bgb_update");
 	self clientfield::set("zm_bgb_near_death_experience_3p_fx", 0);
-	self notify(#"hash_693e7b7d9f65606b");
+	self notify(#"zm_bgb_near_death_experience_complete");
 }
 
 /*
@@ -260,7 +260,7 @@ function function_db295169(e_player)
 {
 	var_4cd31497 = "zm_bgb_near_death_experience_proximity_end_" + self getentitynumber();
 	e_player endon(var_4cd31497, #"disconnect");
-	self endon(#"disconnect", #"hash_693e7b7d9f65606b");
+	self endon(#"disconnect", #"zm_bgb_near_death_experience_complete");
 	while(true)
 	{
 		if(!e_player laststand::player_is_in_laststand() && !self laststand::player_is_in_laststand())
@@ -319,7 +319,7 @@ function function_b7269898(e_player, str_notify)
 function function_991be229(e_player, str_notify)
 {
 	e_player endon(str_notify, #"disconnect");
-	self endon(#"disconnect", #"hash_693e7b7d9f65606b");
+	self endon(#"disconnect", #"zm_bgb_near_death_experience_complete");
 	while(!self function_d5c9a81(e_player) && !e_player function_d5c9a81(self))
 	{
 		wait(0.1);
@@ -339,7 +339,7 @@ function function_991be229(e_player, str_notify)
 function function_3895d86(e_player, str_notify)
 {
 	e_player endon(str_notify, #"disconnect");
-	self endon(#"disconnect", #"hash_693e7b7d9f65606b");
+	self endon(#"disconnect", #"zm_bgb_near_death_experience_complete");
 	while(self function_d5c9a81(e_player) || e_player function_d5c9a81(self))
 	{
 		wait(0.1);
@@ -413,10 +413,10 @@ function function_68790c5a()
 function function_765e5d1c()
 {
 	n_step = 120 / 600;
-	var_5e6ba433 = self clientfield::get_player_uimodel("zmhud.bgb_timer");
+	n_original = self clientfield::get_player_uimodel("zmhud.bgb_timer");
 	self.var_718eafbc++;
 	var_4bfcf47f = 1 - self.var_718eafbc * n_step;
-	if(var_5e6ba433 > var_4bfcf47f)
+	if(n_original > var_4bfcf47f)
 	{
 		self bgb::set_timer(600 * var_4bfcf47f, 600, 1);
 	}

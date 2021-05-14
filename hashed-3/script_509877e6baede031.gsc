@@ -192,11 +192,11 @@ function setup_phone_audio()
 	level.var_2363fbdb = 0;
 	level.var_c2e6ed5a = 0;
 	level.var_1c33dba2 = getentarray("secret_phone_trig", "targetname");
-	array::thread_all(level.var_1c33dba2, &function_63ab32c8);
+	array::thread_all(level.var_1c33dba2, &phone_init);
 }
 
 /*
-	Name: function_63ab32c8
+	Name: phone_init
 	Namespace: namespace_3417f8d2
 	Checksum: 0xE48C2454
 	Offset: 0x608
@@ -204,7 +204,7 @@ function setup_phone_audio()
 	Parameters: 0
 	Flags: Linked
 */
-function function_63ab32c8()
+function phone_init()
 {
 	if(!isdefined(self))
 	{
@@ -234,9 +234,9 @@ function function_a546fd97()
 	self endon(#"death");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"damage");
-		var_16829d93 = var_385703b7.attacker aat::getaatonweapon(var_385703b7.weapon);
+		s_notify = undefined;
+		s_notify = self waittill(#"damage");
+		var_16829d93 = s_notify.attacker aat::getaatonweapon(s_notify.weapon);
 		if(isdefined(var_16829d93) && var_16829d93.name === "zm_aat_kill_o_watt")
 		{
 			/#

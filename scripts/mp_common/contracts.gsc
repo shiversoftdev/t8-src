@@ -44,11 +44,11 @@ function __init__()
 		level.challengescallbacks = [];
 	}
 	init_player_contract_events();
-	callback::on_finalize_initialization(&function_14d9fa2d);
+	callback::on_finalize_initialization(&finalize_init);
 }
 
 /*
-	Name: function_14d9fa2d
+	Name: finalize_init
 	Namespace: contracts
 	Checksum: 0x2896F08F
 	Offset: 0x1A8
@@ -56,7 +56,7 @@ function __init__()
 	Parameters: 0
 	Flags: None
 */
-function function_14d9fa2d()
+function finalize_init()
 {
 	callback::on_connect(&on_player_connect);
 	if(can_process_contracts())

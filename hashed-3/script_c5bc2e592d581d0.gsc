@@ -412,12 +412,12 @@ private function function_14c67eb3(planner, constants)
 	}
 	var_5f1842bf = [];
 	distancesq = constants[#"distance"] * constants[#"distance"];
-	var_a8c95395 = planner::getblackboardattribute(planner, #"hash_789c87157aa8ed0c");
-	if(!isdefined(var_a8c95395))
+	altars = planner::getblackboardattribute(planner, #"hash_789c87157aa8ed0c");
+	if(!isdefined(altars))
 	{
-		var_a8c95395 = [];
+		altars = [];
 	}
-	foreach(var_509f4558 in var_a8c95395)
+	foreach(var_509f4558 in altars)
 	{
 		if(isdefined(var_509f4558))
 		{
@@ -1014,7 +1014,7 @@ private function function_557051df(planner, constants)
 	}
 	var_8498b0f1 = [];
 	distancesq = constants[#"distance"] * constants[#"distance"];
-	switches = planner::getblackboardattribute(planner, #"hash_655d50e4f7338685");
+	switches = planner::getblackboardattribute(planner, #"zm_switches");
 	if(!isdefined(switches))
 	{
 		switches = [];
@@ -1173,7 +1173,7 @@ private function function_393b9c76(planner, constants)
 	}
 	var_8c60fdb3 = [];
 	distancesq = constants[#"distance"] * constants[#"distance"];
-	wallbuys = planner::getblackboardattribute(planner, #"hash_3585a796b6aa9990");
+	wallbuys = planner::getblackboardattribute(planner, #"zm_wallbuys");
 	if(!isdefined(wallbuys))
 	{
 		wallbuys = [];

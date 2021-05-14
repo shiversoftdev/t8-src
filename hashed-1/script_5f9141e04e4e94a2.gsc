@@ -349,14 +349,14 @@ private function function_87e09347()
 	/#
 		iprintlnbold("" + level.var_23674b8f.var_80284ca5[0].script_noteworthy + "" + level.var_23674b8f.var_80284ca5[1].script_noteworthy);
 	#/
-	var_6952e7ef = level.var_23674b8f.var_5dca8c75;
-	level.var_23674b8f.var_ce68e849 = util::spawn_model(#"tag_origin", var_6952e7ef.origin - vectorscale((0, 0, 1), 64), var_6952e7ef.angles);
+	s_canister = level.var_23674b8f.var_5dca8c75;
+	level.var_23674b8f.var_ce68e849 = util::spawn_model(#"tag_origin", s_canister.origin - vectorscale((0, 0, 1), 64), s_canister.angles);
 	var_ce68e849 = level.var_23674b8f.var_ce68e849;
 	var_ce68e849.e_model = util::spawn_model(#"hash_baa35cbefc71b6c", var_ce68e849.origin, var_ce68e849.angles);
 	var_ce68e849.e_model linkto(var_ce68e849);
 	var_ce68e849.e_model ghost();
 	var_ce68e849 clientfield::set("" + #"hash_b0298e980bd8da0", 1);
-	var_ce68e849 moveto(var_6952e7ef.origin + vectorscale((0, 0, 1), 64), 0.75);
+	var_ce68e849 moveto(s_canister.origin + vectorscale((0, 0, 1), 64), 0.75);
 	var_ce68e849 waittill(#"movedone");
 	level thread function_eddc2ed3();
 	wait(3);
@@ -408,8 +408,8 @@ private function function_fe82c566()
 	{
 		self.e_model setcandamage(1);
 		self.e_model val::set("quest_mk2y", "allowDeath", 0);
-		var_385703b7 = undefined;
-		var_385703b7 = self.e_model waittill(#"damage");
+		s_notify = undefined;
+		s_notify = self.e_model waittill(#"damage");
 		self.e_model setcandamage(0);
 		var_bc569584 = level.var_23674b8f.var_80284ca5[level.var_23674b8f.var_c8a6d360].origin;
 		self moveto(var_bc569584, 0.3);
@@ -706,9 +706,9 @@ private function function_2ac1278b()
 	self endon(#"death");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"trigger_activated");
-		e_player = var_385703b7.e_who;
+		s_notify = undefined;
+		s_notify = self waittill(#"trigger_activated");
+		e_player = s_notify.e_who;
 		if(function_18a1849f(e_player))
 		{
 			namespace_bd74bbd2::start(#"sc_mk2y");
@@ -737,9 +737,9 @@ function function_bafa7a2b()
 	}
 	else
 	{
-		var_3b901e6a = struct::get("mk2y_defend");
-		var_3b901e6a notify(#"stop_think");
-		zm_unitrigger::unregister_unitrigger(var_3b901e6a.s_unitrigger);
+		s_sc = struct::get("mk2y_defend");
+		s_sc notify(#"stop_think");
+		zm_unitrigger::unregister_unitrigger(s_sc.s_unitrigger);
 	}
 }
 

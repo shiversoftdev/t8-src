@@ -43,7 +43,7 @@ function __init__()
 	clientfield::register("scriptmover", "" + #"hash_77a1a7cd8eb3e86c", 1, 1, "int");
 	clientfield::register("actor", "" + #"hash_4881cb6bc59fdc49", 24000, 1, "int");
 	callback::function_20263b9e(&function_20263b9e);
-	namespace_2ba51478::register_lethal_grenade_for_level(#"music_box");
+	zm_loadout::register_lethal_grenade_for_level(#"music_box");
 	if(!isdefined(level.var_14160fb0))
 	{
 		object = new throttle();
@@ -79,7 +79,7 @@ function function_20263b9e(s_params)
 		e_grenade.weapon = s_params.weapon;
 		var_be17187b = undefined;
 		var_be17187b = s_params.projectile waittill(#"stationary");
-		if(e_grenade function_8066d695(self))
+		if(e_grenade _second_compass_map_mp_ruins(self))
 		{
 			e_grenade thread function_9d9bff80(var_be17187b.position, self);
 		}
@@ -267,7 +267,7 @@ private function function_3710157f(e_zombie)
 	Parameters: 1
 	Flags: None
 */
-function function_da6a44df(var_88706ea7)
+function function_da6a44df(s_result)
 {
 	if(isdefined(self.var_42d5176d))
 	{
@@ -298,7 +298,7 @@ function function_4ada560e()
 }
 
 /*
-	Name: function_8066d695
+	Name: _second_compass_map_mp_ruins
 	Namespace: music_box
 	Checksum: 0x81B7F9B2
 	Offset: 0x1150
@@ -306,7 +306,7 @@ function function_4ada560e()
 	Parameters: 1
 	Flags: None
 */
-function function_8066d695(e_owner)
+function _second_compass_map_mp_ruins(e_owner)
 {
 	if(ispointonnavmesh(self.origin, 60))
 	{

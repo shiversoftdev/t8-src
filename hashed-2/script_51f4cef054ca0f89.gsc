@@ -944,7 +944,7 @@ function on_player_spawned()
 	if(isdefined(self.pers) && isdefined(self.pers[#"lives"]))
 	{
 		self spawn::function_1390f875(self.pers[#"lives"]);
-		if(infection::function_74650d7() && self infection::function_bf46a7aa())
+		if(infection::function_74650d7() && self infection::is_infected())
 		{
 			if(function_47851c07())
 			{
@@ -978,7 +978,7 @@ function on_player_spawned()
 			level function_73b0f715();
 		}
 	}
-	else if(infection::function_74650d7() && self infection::function_bf46a7aa())
+	else if(infection::function_74650d7() && self infection::is_infected())
 	{
 		self infection::function_8bdd6715();
 	}
@@ -1096,12 +1096,12 @@ function function_f1394038()
 		}
 		return;
 	}
-	if(namespace_aa9b5883::function_382a49e0())
+	if(platoons::function_382a49e0())
 	{
 		placement = 1;
-		foreach(platoon, _ in level.var_aa9b5883)
+		foreach(platoon, _ in level.platoons)
 		{
-			if(!namespace_aa9b5883::function_6ce0360d(platoon))
+			if(!platoons::is_all_dead(platoon))
 			{
 				foreach(team in function_37d3bfcb(platoon))
 				{
@@ -1110,9 +1110,9 @@ function function_f1394038()
 				placement++;
 			}
 		}
-		foreach(platoon, _ in level.var_aa9b5883)
+		foreach(platoon, _ in level.platoons)
 		{
-			if(namespace_aa9b5883::function_6ce0360d(platoon))
+			if(platoons::is_all_dead(platoon))
 			{
 				foreach(team in function_37d3bfcb(platoon))
 				{
@@ -1278,7 +1278,7 @@ function function_c7eae573()
 	var_d72df62 = [];
 	foreach(team, _ in level.teams)
 	{
-		if(teams::function_9dd75dad(team) && (!(isdefined(level.var_606becce[team]) && level.var_606becce[team])) && teams::function_6ce0360d(team))
+		if(teams::function_9dd75dad(team) && (!(isdefined(level.var_606becce[team]) && level.var_606becce[team])) && teams::is_all_dead(team))
 		{
 			players = getplayers(team);
 			last_alive = function_94203702(team, players);
@@ -1359,7 +1359,7 @@ function team_eliminated(team, var_293493b)
 	foreach(teammember in var_3aef38fd)
 	{
 		teammember notify(#"end_respawn");
-		if(!namespace_aa9b5883::function_382a49e0())
+		if(!platoons::function_382a49e0())
 		{
 			teammember luinotifyevent(#"team_eliminated", 1, var_293493b);
 		}
@@ -1404,17 +1404,17 @@ function function_40843d72(team)
 			level.var_eed7c027[team] = var_293493b;
 			namespace_d3564fd8::team_eliminated(team, var_293493b);
 		}
-		else if(namespace_aa9b5883::function_382a49e0() && (platoon != #"none" && platoon != #"invalid"))
+		else if(platoons::function_382a49e0() && (platoon != #"none" && platoon != #"invalid"))
 		{
-			if(teams::function_9dd75dad(team) && (!(isdefined(level.var_606becce[team]) && level.var_606becce[team])) && namespace_aa9b5883::function_6ce0360d(platoon))
+			if(teams::function_9dd75dad(team) && (!(isdefined(level.var_606becce[team]) && level.var_606becce[team])) && platoons::is_all_dead(platoon))
 			{
 				foreach(team in function_37d3bfcb(platoon))
 				{
-					team_eliminated(team, namespace_aa9b5883::function_cea75f29() + 1);
+					team_eliminated(team, platoons::function_cea75f29() + 1);
 				}
 			}
 		}
-		else if(teams::function_9dd75dad(team) && (!(isdefined(level.var_606becce[team]) && level.var_606becce[team])) && teams::function_6ce0360d(team))
+		else if(teams::function_9dd75dad(team) && (!(isdefined(level.var_606becce[team]) && level.var_606becce[team])) && teams::is_all_dead(team))
 		{
 			team_eliminated(team, globallogic::function_e9e52d05() + 1);
 		}
@@ -1450,7 +1450,7 @@ function function_61c315e0()
 */
 function function_a40b79b1(team)
 {
-	if(!isdefined(team) || teams::function_6ce0360d(team))
+	if(!isdefined(team) || teams::is_all_dead(team))
 	{
 		return 1;
 	}
@@ -1596,9 +1596,9 @@ function function_5af3a29(params)
 	{
 		level function_ded0be06(params);
 	}
-	else if(namespace_aa9b5883::function_382a49e0())
+	else if(platoons::function_382a49e0())
 	{
-		platoon = function_22448d6c(params.var_48787ba8[0]);
+		platoon = function_22448d6c(params.teams_alive[0]);
 		foreach(team in function_37d3bfcb(platoon))
 		{
 			if(teams::function_9dd75dad(team))
@@ -1610,8 +1610,8 @@ function function_5af3a29(params)
 	}
 	else
 	{
-		level thread function_3832a0d2(params.var_48787ba8[0]);
-		function_5fed3908(params.var_48787ba8[0]);
+		level thread function_3832a0d2(params.teams_alive[0]);
+		function_5fed3908(params.teams_alive[0]);
 	}
 }
 
@@ -1830,7 +1830,7 @@ function function_c1a417ee(params)
 */
 function function_75134917()
 {
-	if(infection::function_74650d7() && !self infection::function_bf46a7aa())
+	if(infection::function_74650d7() && !self infection::is_infected())
 	{
 		foreach(player in getplayers())
 		{
@@ -2075,7 +2075,7 @@ function function_de15dc32(killed_player, var_67bb0009)
 				continue;
 			}
 			player_count.total++;
-			if(isalive(player) || (infection::function_74650d7() && player infection::function_bf46a7aa()))
+			if(isalive(player) || (infection::function_74650d7() && player infection::is_infected()))
 			{
 				var_40073db2++;
 				continue;
@@ -2160,7 +2160,7 @@ function function_e91890a7()
 	{
 		var_dcf52474 = player_counts.alive;
 		player clientfield::set_player_uimodel("presence.modeparam", var_dcf52474);
-		if(!namespace_aa9b5883::function_382a49e0())
+		if(!platoons::function_382a49e0())
 		{
 			player clientfield::set_player_uimodel("hudItems.alivePlayerCount", var_dcf52474);
 		}
@@ -2675,7 +2675,7 @@ private function function_2a3d483d(start)
 	for(index = 1; index <= steps; index++)
 	{
 		newpoint = start + var_fa57b4b3 * index * jumpdistance;
-		if(!oob::function_e3fdd830(newpoint))
+		if(!oob::chr_party(newpoint))
 		{
 			return newpoint;
 		}
@@ -2933,7 +2933,7 @@ function function_10dc43bc(params)
 		{
 			return 0;
 		}
-		if(params.var_39ee8eb2.size == 1 && params.var_39ee8eb2[0] == infection::function_76601b7d())
+		if(params.platoons_alive.size == 1 && params.platoons_alive[0] == infection::function_76601b7d())
 		{
 			return 1;
 		}
@@ -2957,8 +2957,8 @@ function function_10dc43bc(params)
 */
 function function_b3f02397()
 {
-	var_e29c5f3b = "0" + randomintrange(1, 2);
-	game.musicset = "_za_" + var_e29c5f3b;
+	n_variant = "0" + randomintrange(1, 2);
+	game.musicset = "_za_" + n_variant;
 }
 
 /*

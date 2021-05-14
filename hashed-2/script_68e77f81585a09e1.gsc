@@ -80,7 +80,7 @@ function function_1d4f22e4(cmd)
 				{
 					if(var_d1017f27.var_30c47a21 == var_762ca590)
 					{
-						self namespace_1d5cedd9::function_4368582a(var_d1017f27, var_d1017f27.var_e226ec4f);
+						self zm_callings::function_4368582a(var_d1017f27, var_d1017f27.var_e226ec4f);
 						var_fe8112e6 = 1;
 					}
 				}
@@ -130,7 +130,7 @@ function function_8a37e046(n_interval)
 	/#
 		foreach(var_d1017f27 in self.var_96d6f6d1)
 		{
-			progress = self namespace_1d5cedd9::function_4368582a(var_d1017f27, 0);
+			progress = self zm_callings::function_4368582a(var_d1017f27, 0);
 			if(isdefined(progress))
 			{
 				target = var_d1017f27.var_e226ec4f;

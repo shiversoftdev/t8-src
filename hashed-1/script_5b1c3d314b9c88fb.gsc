@@ -429,7 +429,7 @@ function function_c9a1a3bd(spot_origin, spot_angles, anim_name, var_c2a69066)
 		return;
 	}
 	self clientfield::set("zombie_riser_fx", 1);
-	self.var_64a15979 = 1;
+	self.is_digging = 1;
 	self animscripted("dig_anim", self.origin, self.angles, anim_name, "normal");
 	self waittill_match({#notetrack:"end"}, #"dig_anim");
 	self ghost();
@@ -443,7 +443,7 @@ function function_c9a1a3bd(spot_origin, spot_angles, anim_name, var_c2a69066)
 	self pathmode("move allowed");
 	self solid();
 	self function_55625f76(spawn_point.origin, spawn_point.angles, self.spawn_anim);
-	self.var_64a15979 = 0;
+	self.is_digging = 0;
 	if(isdefined(var_c2a69066))
 	{
 		self [[var_c2a69066]]();
@@ -626,7 +626,7 @@ function is_player_valid(player)
 	{
 		return 0;
 	}
-	if(player infection::function_bf46a7aa())
+	if(player infection::is_infected())
 	{
 		return 0;
 	}

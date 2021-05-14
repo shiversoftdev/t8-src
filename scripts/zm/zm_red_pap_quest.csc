@@ -22,14 +22,14 @@ function function_842831cf()
 {
 	clientfield::register("scriptmover", "" + #"hash_38dbf4f346c0b609", -15000, 1, "counter", &function_56b9111c, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_9055852bfeb9f00", -15000, 1, "counter", &function_f2332be2, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_2673c66b0c995805", 16000, 1, "counter", &function_cf38f546, 0, 0);
+	clientfield::register("scriptmover", "" + #"crystal_explosion", 16000, 1, "counter", &crystal_explosion_func, 0, 0);
 	clientfield::register("vehicle", "" + #"hash_68f13836e5123974", 16000, 1, "counter", &function_417c12e1, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_687fbbd292ea6be0", 16000, 1, "int", &function_5783c958, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_25518e9ed7ed3a00", 16000, 1, "int", &function_e83bf3a, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_63d76935e1b33990", 16000, 1, "int", &function_11d62eb0, 0, 0);
 	clientfield::register("world", "" + #"hash_28eb5e403f599ce2", 17000, 1, "int", &function_6c40f793, 0, 0);
 	level._effect[#"hash_38dbf4f346c0b609"] = #"hash_66e87f89740f4b2c";
-	level._effect[#"hash_2673c66b0c995805"] = #"hash_6e87fbd77320ada5";
+	level._effect[#"crystal_explosion"] = #"hash_6e87fbd77320ada5";
 	level._effect[#"hash_641b95473df6f630"] = #"hash_1a06427eff8dfe13";
 }
 
@@ -116,7 +116,7 @@ function function_417c12e1(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_cf38f546
+	Name: crystal_explosion_func
 	Namespace: namespace_b4ea833c
 	Checksum: 0xABC79EEC
 	Offset: 0x6A0
@@ -124,9 +124,9 @@ function function_417c12e1(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_cf38f546(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function crystal_explosion_func(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self util::playfxontag(localclientnum, level._effect[#"hash_2673c66b0c995805"], self, "tag_origin");
+	self util::playfxontag(localclientnum, level._effect[#"crystal_explosion"], self, "tag_origin");
 	playsound(localclientnum, #"hash_66b733441d74cd21", self.origin);
 }
 

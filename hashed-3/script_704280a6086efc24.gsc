@@ -12,11 +12,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_7acfe099;
+#namespace zm_talisman_extra_claymore;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_7acfe099
+	Namespace: zm_talisman_extra_claymore
 	Checksum: 0x96A5728
 	Offset: 0xE8
 	Size: 0x3C
@@ -25,12 +25,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_72c3b59c3095714", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_extra_claymore", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_7acfe099
+	Namespace: zm_talisman_extra_claymore
 	Checksum: 0xD0D2937B
 	Offset: 0x130
 	Size: 0x2C
@@ -39,28 +39,28 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_extra_claymore", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_extra_claymore", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_7acfe099
+	Name: activate_talisman
+	Namespace: zm_talisman_extra_claymore
 	Checksum: 0x85E00E8A
 	Offset: 0x168
 	Size: 0x54
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	callback::on_spawned(&function_4a46cf14);
-	self.var_42f47bd9 = 1;
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_4a5efaceb780ecb0");
+	self.b_talisman_extra_claymore = 1;
+	zm_loadout::register_lethal_grenade_for_level(#"hash_4a5efaceb780ecb0");
 }
 
 /*
 	Name: function_4a46cf14
-	Namespace: namespace_7acfe099
+	Namespace: zm_talisman_extra_claymore
 	Checksum: 0x692598E1
 	Offset: 0x1C8
 	Size: 0xF4
@@ -70,7 +70,7 @@ function function_fd7e329b()
 function function_4a46cf14()
 {
 	self endon(#"disconnect");
-	if(!(isdefined(self.var_42f47bd9) && self.var_42f47bd9))
+	if(!(isdefined(self.b_talisman_extra_claymore) && self.b_talisman_extra_claymore))
 	{
 		return;
 	}

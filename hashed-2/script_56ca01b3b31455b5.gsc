@@ -320,13 +320,13 @@ function function_46b37314(var_1b3c4c24)
 {
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_a7e7cb46))
 	{
-		var_c9b769a6 = getweapon(self.playerrole.var_a7e7cb46);
-		if(isdefined(var_c9b769a6))
+		gadget_weapon = getweapon(self.playerrole.var_a7e7cb46);
+		if(isdefined(gadget_weapon))
 		{
-			self function_1a38f0b0(var_c9b769a6);
+			self function_1a38f0b0(gadget_weapon);
 			if(isdefined(var_1b3c4c24) && var_1b3c4c24)
 			{
-				self function_36a15b60(var_c9b769a6);
+				self function_36a15b60(gadget_weapon);
 			}
 		}
 	}
@@ -345,13 +345,13 @@ function function_ffd29673(var_1b3c4c24)
 {
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_c21d61e9))
 	{
-		var_c9b769a6 = getweapon(self.playerrole.var_c21d61e9);
-		if(isdefined(var_c9b769a6))
+		gadget_weapon = getweapon(self.playerrole.var_c21d61e9);
+		if(isdefined(gadget_weapon))
 		{
-			self function_1a38f0b0(var_c9b769a6);
+			self function_1a38f0b0(gadget_weapon);
 			if(isdefined(var_1b3c4c24) && var_1b3c4c24)
 			{
-				self function_36a15b60(var_c9b769a6);
+				self function_36a15b60(gadget_weapon);
 			}
 		}
 	}
@@ -370,13 +370,13 @@ function function_b6d7e7e0(var_1b3c4c24)
 {
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_ec20b2a))
 	{
-		var_c9b769a6 = getweapon(self.playerrole.var_ec20b2a);
-		if(isdefined(var_c9b769a6))
+		gadget_weapon = getweapon(self.playerrole.var_ec20b2a);
+		if(isdefined(gadget_weapon))
 		{
-			self function_1a38f0b0(var_c9b769a6);
+			self function_1a38f0b0(gadget_weapon);
 			if(isdefined(var_1b3c4c24) && var_1b3c4c24)
 			{
-				self function_36a15b60(var_c9b769a6);
+				self function_36a15b60(gadget_weapon);
 			}
 		}
 	}
@@ -395,10 +395,10 @@ function function_e5c7425d()
 {
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_a7e7cb46))
 	{
-		var_c9b769a6 = getweapon(self.playerrole.var_a7e7cb46);
-		if(isdefined(var_c9b769a6))
+		gadget_weapon = getweapon(self.playerrole.var_a7e7cb46);
+		if(isdefined(gadget_weapon))
 		{
-			self function_e8aa75b8(var_c9b769a6);
+			self function_e8aa75b8(gadget_weapon);
 		}
 	}
 }
@@ -416,10 +416,10 @@ function function_2bf97041()
 {
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_c21d61e9))
 	{
-		var_c9b769a6 = getweapon(self.playerrole.var_c21d61e9);
-		if(isdefined(var_c9b769a6))
+		gadget_weapon = getweapon(self.playerrole.var_c21d61e9);
+		if(isdefined(gadget_weapon))
 		{
-			self function_e8aa75b8(var_c9b769a6);
+			self function_e8aa75b8(gadget_weapon);
 		}
 	}
 }
@@ -437,10 +437,10 @@ function function_791aef0d()
 {
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_ec20b2a))
 	{
-		var_c9b769a6 = getweapon(self.playerrole.var_ec20b2a);
-		if(isdefined(var_c9b769a6))
+		gadget_weapon = getweapon(self.playerrole.var_ec20b2a);
+		if(isdefined(gadget_weapon))
 		{
-			self function_e8aa75b8(var_c9b769a6);
+			self function_e8aa75b8(gadget_weapon);
 		}
 	}
 }

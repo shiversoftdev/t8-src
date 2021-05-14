@@ -55,7 +55,7 @@ function __init__()
 	clientfield::register("vehicle", "toggle_ambient_anim_group2", 1, 1, "int", &field_toggle_ambient_anim_handler2, 0, 0);
 	clientfield::register("vehicle", "toggle_ambient_anim_group3", 1, 1, "int", &field_toggle_ambient_anim_handler3, 0, 0);
 	clientfield::register("vehicle", "toggle_control_bone_group1", 1, 1, "int", &function_d427b534, 0, 0);
-	clientfield::register("vehicle", "toggle_control_bone_group2", 1, 1, "int", &function_5435354d, 0, 0);
+	clientfield::register("vehicle", "toggle_control_bone_group2", 1, 1, "int", &nova_crawler_spawnerbamfterminate, 0, 0);
 	clientfield::register("vehicle", "toggle_control_bone_group3", 1, 1, "int", &function_48a01e23, 0, 0);
 	clientfield::register("vehicle", "toggle_control_bone_group4", 1, 1, "int", &function_6ad96295, 0, 0);
 	clientfield::register("vehicle", "toggle_emp_fx", 1, 1, "int", &field_toggle_emp, 0, 0);
@@ -552,17 +552,17 @@ function play_boost(localclientnum, var_a7ba3864)
 			{
 				self thread function_5ce3e74e(localclientnum, var_1ca9b241);
 			}
-			self thread function_81460bcd(localclientnum, var_1ca9b241);
+			self thread kill_boost(localclientnum, var_1ca9b241);
 			if(isdefined(var_4dfb2154))
 			{
-				self thread function_81460bcd(localclientnum, var_4dfb2154);
+				self thread kill_boost(localclientnum, var_4dfb2154);
 			}
 		}
 	}
 }
 
 /*
-	Name: function_81460bcd
+	Name: kill_boost
 	Namespace: vehicle
 	Checksum: 0xCCF76029
 	Offset: 0x27A8
@@ -570,7 +570,7 @@ function play_boost(localclientnum, var_a7ba3864)
 	Parameters: 2
 	Flags: Linked
 */
-function function_81460bcd(localclientnum, var_1ca9b241)
+function kill_boost(localclientnum, var_1ca9b241)
 {
 	self endon(#"death");
 	wait(self.var_686515e3 + 0.5);
@@ -906,7 +906,7 @@ function function_7927d9b1(settings, groupid)
 	{
 		case 1:
 		{
-			return settings.var_34b20308;
+			return settings.setup_lgt_glowyriver;
 		}
 		case 2:
 		{
@@ -979,7 +979,7 @@ function function_d427b534(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_5435354d
+	Name: nova_crawler_spawnerbamfterminate
 	Namespace: vehicle
 	Checksum: 0x3114172F
 	Offset: 0x3888
@@ -987,7 +987,7 @@ function function_d427b534(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_5435354d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function nova_crawler_spawnerbamfterminate(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self function_34105b89(localclientnum, 2, newval);
 }
@@ -1052,17 +1052,17 @@ event function_ca9b286c(eventstruct)
 		var_8730ee3e = getscriptbundle(var_fd110a27);
 		if(isdefined(var_8730ee3e))
 		{
-			if(isdefined(var_8730ee3e.var_b99b6e3c) && var_8730ee3e.var_b99b6e3c)
+			if(isdefined(var_8730ee3e.zmenhancedstatejukeinit) && var_8730ee3e.zmenhancedstatejukeinit)
 			{
-				if(!isdefined(vehicle.var_26fb6644))
+				if(!isdefined(vehicle.t_sarah_foy_objective__indicator_))
 				{
-					vehicle.var_26fb6644 = [];
+					vehicle.t_sarah_foy_objective__indicator_ = [];
 				}
-				if(isdefined(vehicle.var_26fb6644[seatindex]) && vehicle.var_26fb6644[seatindex])
+				if(isdefined(vehicle.t_sarah_foy_objective__indicator_[seatindex]) && vehicle.t_sarah_foy_objective__indicator_[seatindex])
 				{
 					return;
 				}
-				vehicle.var_26fb6644[seatindex] = 1;
+				vehicle.t_sarah_foy_objective__indicator_[seatindex] = 1;
 			}
 			animation = var_8730ee3e.vehicleenteranim;
 			if(isdefined(animation))
@@ -1109,17 +1109,17 @@ event function_124469f4(eventstruct)
 			{
 				return;
 			}
-			if(isdefined(var_8730ee3e.var_b99b6e3c) && var_8730ee3e.var_b99b6e3c)
+			if(isdefined(var_8730ee3e.zmenhancedstatejukeinit) && var_8730ee3e.zmenhancedstatejukeinit)
 			{
-				if(!isdefined(vehicle.var_26fb6644))
+				if(!isdefined(vehicle.t_sarah_foy_objective__indicator_))
 				{
-					vehicle.var_26fb6644 = [];
+					vehicle.t_sarah_foy_objective__indicator_ = [];
 				}
-				if(isdefined(vehicle.var_26fb6644[seatindex]) && vehicle.var_26fb6644[seatindex])
+				if(isdefined(vehicle.t_sarah_foy_objective__indicator_[seatindex]) && vehicle.t_sarah_foy_objective__indicator_[seatindex])
 				{
 					return;
 				}
-				vehicle.var_26fb6644[seatindex] = 1;
+				vehicle.t_sarah_foy_objective__indicator_[seatindex] = 1;
 			}
 			animation = var_8730ee3e.vehicleenteranim;
 			if(isdefined(animation))
@@ -2625,10 +2625,10 @@ function function_d7a2c2f(localclientnum, oldval, newval, bnewent, binitialsnap,
 */
 function start_stun_fx(localclientnum)
 {
-	stunfx = (isdefined(self.var_d69eb978) ? self.var_d69eb978 : #"killstreaks/fx_agr_emp_stun");
-	var_7f088366 = (isdefined(self.stunfxtag) ? self.stunfxtag : "tag_origin");
+	stunfx = (isdefined(self.global_zm_specialty_staminup_drankdie) ? self.global_zm_specialty_staminup_drankdie : #"killstreaks/fx_agr_emp_stun");
+	_exp_special_web_dissolve = (isdefined(self.stunfxtag) ? self.stunfxtag : "tag_origin");
 	var_6dc7131c = (isdefined(self.var_c254489e) ? self.var_c254489e : #"veh_talon_shutdown");
-	self.stun_fx = util::playfxontag(localclientnum, stunfx, self, var_7f088366);
+	self.stun_fx = util::playfxontag(localclientnum, stunfx, self, _exp_special_web_dissolve);
 	playsound(localclientnum, var_6dc7131c, self.origin);
 }
 

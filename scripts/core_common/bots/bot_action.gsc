@@ -66,7 +66,7 @@ function function_66dacac1()
 	register_action(#"hash_434716893aa869f3", &weapon_rank, &function_294f4909, &function_e73c8946);
 	register_action(#"hash_4c707ba80bf09cec", &weapon_rank, &function_294f4909, &function_22e2ba8c);
 	register_action(#"hash_3d7dd2878425bcce", &weapon_rank, &function_2bc7472b, &function_36ca6d92);
-	register_action(#"hash_220292032758ecf8", &weapon_rank, &function_6eeebed3, &function_7ff3a4df);
+	register_action(#"fire_grenade", &weapon_rank, &registersndrampend_death, &fire_grenade);
 	register_action(#"fire_rocketlauncher", &weapon_rank, &function_a365f27e, &fire_rocketlauncher);
 	register_action(#"fire_locked_rocketlauncher", &weapon_rank, &function_4de5fcc3, &fire_locked_rocketlauncher);
 }
@@ -743,9 +743,9 @@ private function action_timeout(actionname)
 	Parameters: 2
 	Flags: Linked
 */
-function function_fef5423c(var_a938fc10, var_6afe40bc)
+function function_fef5423c(smin, smax)
 {
-	self.bot.var_bdbba2cd = bot::function_7aeb27f1(var_a938fc10, var_6afe40bc);
+	self.bot.var_bdbba2cd = bot::function_7aeb27f1(smin, smax);
 }
 
 /*
@@ -1219,7 +1219,7 @@ function function_317d4797(weapon, var_c300ee65)
 }
 
 /*
-	Name: function_6d366261
+	Name: registermus_gramophone_electricreactidgunterminate
 	Namespace: bot_action
 	Checksum: 0xB843615C
 	Offset: 0x3558
@@ -1227,7 +1227,7 @@ function function_317d4797(weapon, var_c300ee65)
 	Parameters: 2
 	Flags: None
 */
-function function_6d366261(weapon, var_c300ee65)
+function registermus_gramophone_electricreactidgunterminate(weapon, var_c300ee65)
 {
 	self set_weapon_rank(weapon, 998, "Secondary offhand weapon");
 	self factor_ammo(weapon, var_c300ee65);
@@ -2938,7 +2938,7 @@ function function_36ca6d92(var_b594a2cd)
 }
 
 /*
-	Name: function_6eeebed3
+	Name: registersndrampend_death
 	Namespace: bot_action
 	Checksum: 0xC64AAB23
 	Offset: 0x7C10
@@ -2946,7 +2946,7 @@ function function_36ca6d92(var_b594a2cd)
 	Parameters: 1
 	Flags: Linked
 */
-function function_6eeebed3(var_b594a2cd)
+function registersndrampend_death(var_b594a2cd)
 {
 	var_b594a2cd.target = self.enemy;
 	weapon = var_b594a2cd.weapon;
@@ -3033,7 +3033,7 @@ function function_6eeebed3(var_b594a2cd)
 }
 
 /*
-	Name: function_7ff3a4df
+	Name: fire_grenade
 	Namespace: bot_action
 	Checksum: 0x4622BCD3
 	Offset: 0x8030
@@ -3041,7 +3041,7 @@ function function_6eeebed3(var_b594a2cd)
 	Parameters: 1
 	Flags: Linked
 */
-function function_7ff3a4df(var_b594a2cd)
+function fire_grenade(var_b594a2cd)
 {
 	weapon = var_b594a2cd.weapon;
 	while(!self function_cf788c22() && self function_bb2a8f1b(var_b594a2cd) && self is_target_visible(var_b594a2cd) && self bot::function_828da7a9(weapon))
@@ -4425,7 +4425,7 @@ function function_2b8f7067()
 		var_7607a546.searched = 1;
 		var_b43277fd = [0:var_7607a546];
 		var_d56aeea7 = [0:var_7607a546];
-		var_144c6266 = [];
+		v_start_hardpoint_navmesh_collision = [];
 		var_4a39f740 = [];
 		self.var_77ae9678 = [];
 		while(var_b43277fd.size > 0)
@@ -4440,9 +4440,9 @@ function function_2b8f7067()
 					var_d56aeea7[var_d56aeea7.size] = point;
 					if(var_7607a546.region != point.region)
 					{
-						if(!array::contains(var_144c6266, currentpoint))
+						if(!array::contains(v_start_hardpoint_navmesh_collision, currentpoint))
 						{
-							var_144c6266[var_144c6266.size] = currentpoint;
+							v_start_hardpoint_navmesh_collision[v_start_hardpoint_navmesh_collision.size] = currentpoint;
 						}
 						continue;
 					}
@@ -4463,7 +4463,7 @@ function function_2b8f7067()
 		{
 			point.searched = undefined;
 		}
-		self.var_77ae9678 = arraycombine(var_144c6266, var_4a39f740, 0, 0);
+		self.var_77ae9678 = arraycombine(v_start_hardpoint_navmesh_collision, var_4a39f740, 0, 0);
 	}
 	if(isdefined(self.var_77ae9678) && self.var_77ae9678.size > 0)
 	{
@@ -4778,7 +4778,7 @@ function function_ec16df22(weapon)
 }
 
 /*
-	Name: function_3eff74d6
+	Name: test_gadget
 	Namespace: bot_action
 	Checksum: 0x1CCE020D
 	Offset: 0xBE80
@@ -4786,7 +4786,7 @@ function function_ec16df22(weapon)
 	Parameters: 1
 	Flags: None
 */
-function function_3eff74d6(var_b594a2cd)
+function test_gadget(var_b594a2cd)
 {
 	weapon = var_b594a2cd.weapon;
 	if(!isdefined(weapon))

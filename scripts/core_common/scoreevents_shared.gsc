@@ -599,11 +599,11 @@ function thief_shutdown_enemy_event()
 */
 function function_dcdf1105()
 {
-	self callback::add_callback(#"fully_healed", &function_fbf4ce12);
+	self callback::add_callback(#"fully_healed", &player_fully_healed);
 }
 
 /*
-	Name: function_fbf4ce12
+	Name: player_fully_healed
 	Namespace: scoreevents
 	Checksum: 0xB9F795C0
 	Offset: 0x1648
@@ -611,7 +611,7 @@ function function_dcdf1105()
 	Parameters: 0
 	Flags: Linked
 */
-function function_fbf4ce12()
+function player_fully_healed()
 {
 	self.var_ae639436 = undefined;
 }

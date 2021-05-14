@@ -65,8 +65,8 @@ function __init__()
 {
 	spawner::add_archetype_spawn_function(#"gegenees", &function_aad04bcc);
 	registerbehaviorscriptfunctions();
-	namespace_7bed886b::function_ce64b76b();
-	spawner::add_archetype_spawn_function(#"gegenees", &function_7a9d4231);
+	namespace_7bed886b::registergegeneesinterfaceattributes();
+	spawner::add_archetype_spawn_function(#"gegenees", &supplypodtank);
 	clientfield::register("actor", "gegenees_shield_blast_effect", 16000, 1, "counter");
 	clientfield::register("actor", "gegenees_shield_guard_effect", 16000, 1, "int");
 	clientfield::register("actor", "gegenees_spear_tip_effect", 16000, 1, "int");
@@ -148,9 +148,9 @@ private function function_a6dba7fd(entity)
 function registerbehaviorscriptfunctions()
 {
 	/#
-		assert(isscriptfunctionptr(&function_1ee28008));
+		assert(isscriptfunctionptr(&gegeneestargetservice));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_5bc9e3d90931788", &function_1ee28008, 1);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"gegeneestargetservice", &gegeneestargetservice, 1);
 	/#
 		assert(isscriptfunctionptr(&function_d5d3aa77));
 	#/
@@ -456,7 +456,7 @@ private function watch_for_death(projectile)
 {
 	projectile waittill(#"death");
 	waittillframeend();
-	projectile notify(#"hash_2f76a2bbdf38f407");
+	projectile notify(#"spear_death");
 }
 
 /*
@@ -524,7 +524,7 @@ private function function_7e633e59()
 */
 private function function_7d162bd0(projectile, entity)
 {
-	projectile endon(#"hash_2f76a2bbdf38f407");
+	projectile endon(#"spear_death");
 	result = undefined;
 	result = projectile waittill(#"projectile_impact_player", #"death");
 	if(result._notify != "projectile_impact_player")
@@ -728,7 +728,7 @@ private function function_75db4aba(entity)
 private function function_3133f922(entity)
 {
 	entity.var_7b0667d9 = 1;
-	entity.var_8a43ee27 = entity.favoriteenemy;
+	entity.locked_enemy = entity.favoriteenemy;
 }
 
 /*
@@ -743,36 +743,36 @@ private function function_3133f922(entity)
 private function function_d82de95f(entity)
 {
 	var_d7c9d429 = spawnstruct();
-	var_d7c9d429.favoriteenemy = entity.var_8a43ee27;
+	var_d7c9d429.favoriteenemy = entity.locked_enemy;
 	blackboard::addblackboardevent("geg_shield_attack", var_d7c9d429, randomintrange(2000, 3000));
 	entity notify(#"hash_10501c0a873461f9");
 	entity clientfield::increment("gegenees_shield_blast_effect");
-	if(isdefined(entity.var_8a43ee27))
+	if(isdefined(entity.locked_enemy))
 	{
-		var_336c515d = 1;
+		hit_enemy = 1;
 		blast_origin = entity gettagorigin("j_gegenees_shield");
 		forward_angles = anglestoforward(entity.angles);
 		if(isdefined(blast_origin) && isdefined(forward_angles))
 		{
 			end_pos = blast_origin + forward_angles * 1200;
-			test_origin = entity.var_8a43ee27 getcentroid();
+			test_origin = entity.locked_enemy getcentroid();
 			radial_origin = pointonsegmentnearesttopoint(blast_origin, end_pos, test_origin);
 			var_caf24228 = distancesquared(test_origin, radial_origin);
 			if(var_caf24228 > 4096)
 			{
-				var_336c515d = 0;
+				hit_enemy = 0;
 			}
-			var_336c515d = bullettracepassed(blast_origin, test_origin, 0, undefined);
-			if(var_336c515d)
+			hit_enemy = bullettracepassed(blast_origin, test_origin, 0, undefined);
+			if(hit_enemy)
 			{
-				entity.var_8a43ee27 status_effect::status_effect_apply(function_4d1e7b48(#"hash_706608d269d2fefc"), undefined, entity, undefined, 2000);
-				entity.var_8a43ee27 thread function_60164697();
-				entity.var_8a43ee27 clientfield::increment_to_player("gegenees_damage_cf");
+				entity.locked_enemy status_effect::status_effect_apply(function_4d1e7b48(#"hash_706608d269d2fefc"), undefined, entity, undefined, 2000);
+				entity.locked_enemy thread function_60164697();
+				entity.locked_enemy clientfield::increment_to_player("gegenees_damage_cf");
 			}
 		}
 	}
 	entity.shielddamage = 0;
-	entity.var_8a43ee27 = undefined;
+	entity.locked_enemy = undefined;
 }
 
 /*
@@ -894,8 +894,8 @@ private function function_7505908b(entity)
 {
 	entity.var_7b0667d9 = 1;
 	entity clientfield::set("gegenees_spear_tip_tell_effect", 1);
-	entity.var_5613e89f = 1;
-	entity.var_378ab780 = gettime() + 250;
+	entity.tell_fx = 1;
+	entity.tell_off = gettime() + 250;
 }
 
 /*
@@ -909,11 +909,11 @@ private function function_7505908b(entity)
 */
 private function function_9175e656(entity)
 {
-	if(isdefined(entity.var_5613e89f) && entity.var_5613e89f)
+	if(isdefined(entity.tell_fx) && entity.tell_fx)
 	{
-		if(gettime() > entity.var_378ab780)
+		if(gettime() > entity.tell_off)
 		{
-			entity.var_5613e89f = 0;
+			entity.tell_fx = 0;
 			entity clientfield::set("gegenees_spear_tip_tell_effect", 0);
 		}
 	}
@@ -934,7 +934,7 @@ private function function_c81af561(entity)
 }
 
 /*
-	Name: function_1ee28008
+	Name: gegeneestargetservice
 	Namespace: namespace_bd668ff
 	Checksum: 0x76DF42DF
 	Offset: 0x2B40
@@ -942,7 +942,7 @@ private function function_c81af561(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1ee28008(entity)
+private function gegeneestargetservice(entity)
 {
 	if(isdefined(entity.ignoreall) && entity.ignoreall)
 	{
@@ -1072,7 +1072,7 @@ private function function_4334cc3b(entity)
 private function function_a953d80d(entity)
 {
 	enemies = getaiarchetypearray(#"zombie");
-	enemies = arraycombine(enemies, getaiarchetypearray(#"hash_1bab8a0ba811401e"), 0, 0);
+	enemies = arraycombine(enemies, getaiarchetypearray(#"catalyst"), 0, 0);
 	enemies = array::filter(enemies, 0, &function_3d752709, entity);
 	foreach(enemy in enemies)
 	{
@@ -1129,9 +1129,9 @@ private function function_3d752709(enemy, target)
 */
 function function_d645d2ec(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
-	if(isdefined(entity.var_8a43ee27))
+	if(isdefined(entity.locked_enemy))
 	{
-		to_enemy = entity.var_8a43ee27.origin - entity.origin;
+		to_enemy = entity.locked_enemy.origin - entity.origin;
 		angles_to_enemy = vectortoangles(to_enemy);
 		entity orientmode("face angle", angles_to_enemy);
 	}
@@ -1154,9 +1154,9 @@ function function_f6bb8a07(entity, mocompanim, mocompanimblendouttime, mocompani
 {
 	if(isdefined(entity.track_enemy) && entity.track_enemy)
 	{
-		if(isdefined(entity.var_8a43ee27))
+		if(isdefined(entity.locked_enemy))
 		{
-			to_enemy = entity.var_8a43ee27.origin - entity.origin;
+			to_enemy = entity.locked_enemy.origin - entity.origin;
 			angles_to_enemy = vectortoangles(to_enemy);
 			entity orientmode("face angle", angles_to_enemy);
 		}
@@ -1228,7 +1228,7 @@ private function function_376a5549(enemy)
 }
 
 /*
-	Name: function_7a9d4231
+	Name: supplypodtank
 	Namespace: namespace_bd668ff
 	Checksum: 0x1A0C36F3
 	Offset: 0x3740
@@ -1236,7 +1236,7 @@ private function function_376a5549(enemy)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7a9d4231()
+private function supplypodtank()
 {
 	self.var_126d7bef = 1;
 	self.ignore_nuke = 1;
@@ -1360,7 +1360,7 @@ private function function_ca5688e3(inflictor, attacker, damage, idflags, meansof
 	}
 	var_786d7e06 = namespace_e0710ee6::function_422fdfd4(self, attacker, weapon, boneindex, hitloc, point);
 	var_dd54fdb1 = var_786d7e06.var_84ed9a13;
-	var_88e794fb = var_786d7e06.var_7d87f2d4;
+	var_88e794fb = var_786d7e06.registerzombie_bgb_used_reinforce;
 	adjusted_damage = int(damage * var_786d7e06.damage_scale);
 	if(isdefined(var_dd54fdb1))
 	{
@@ -1466,7 +1466,7 @@ private function function_a231dd3b(s_params)
 	{
 		return;
 	}
-	self val::set(#"hash_3c0685f1a63892e5", "takedamage", 0);
+	self val::set(#"gegenees_death", "takedamage", 0);
 	if(level flag::get("zombie_drop_powerups") && !zm_utility::is_standard() && (!(isdefined(self.no_powerups) && self.no_powerups)))
 	{
 		var_67a1b262 = 1;
@@ -1538,12 +1538,12 @@ private function function_c03e8d05()
 				{
 					case "spawn":
 					{
-						zm_devgui::function_fc475b3b("");
+						zm_devgui::spawn_archetype("");
 						break;
 					}
 					case "kill":
 					{
-						zm_devgui::function_2422a10c(#"gegenees");
+						zm_devgui::kill_archetype(#"gegenees");
 						break;
 					}
 					case "shield_attack":

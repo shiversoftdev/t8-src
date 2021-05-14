@@ -33,7 +33,7 @@ autoexec function function_89f2df9()
 */
 private function __init__()
 {
-	namespace_2ba51478::register_melee_weapon_for_level(#"bowie_knife");
+	zm_loadout::register_melee_weapon_for_level(#"bowie_knife");
 }
 
 /*

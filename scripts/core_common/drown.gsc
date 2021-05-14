@@ -182,12 +182,12 @@ function watch_player_drowning()
 				self.var_cdefe788 = gettime();
 				self stopsounds();
 			}
-			var_6af4d0a6 = int(self.playerrole.swimtime * 1000);
+			n_swimtime = int(self.playerrole.swimtime * 1000);
 			if(self hasperk(#"hash_4ef368f54cd86ab7"))
 			{
-				var_6af4d0a6 = int(var_6af4d0a6 * 1.5);
+				n_swimtime = int(n_swimtime * 1.5);
 			}
-			if(gettime() - self.lastwaterdamagetime > var_6af4d0a6 - var_c1e8fa5d && self.drownstage == 0)
+			if(gettime() - self.lastwaterdamagetime > n_swimtime - var_c1e8fa5d && self.drownstage == 0)
 			{
 				if(isdefined(level.var_9f155bf4))
 				{
@@ -195,7 +195,7 @@ function watch_player_drowning()
 				}
 				var_c1e8fa5d = var_c1e8fa5d - int(self.playerrole.var_f0886300 * 1000);
 			}
-			if(gettime() - self.lastwaterdamagetime > var_6af4d0a6 - level.drown_pre_damage_stage_time && self.drownstage == 0)
+			if(gettime() - self.lastwaterdamagetime > n_swimtime - level.drown_pre_damage_stage_time && self.drownstage == 0)
 			{
 				self.drownstage++;
 				self clientfield::set_to_player("drown_stage", self.drownstage);
@@ -204,12 +204,12 @@ function watch_player_drowning()
 			{
 				self.drownstage++;
 				self clientfield::set_to_player("drown_stage", self.drownstage);
-				self.lastwaterdamagetime = gettime() - var_6af4d0a6 + int(self.playerrole.var_f0886300 * 1000);
+				self.lastwaterdamagetime = gettime() - n_swimtime + int(self.playerrole.var_f0886300 * 1000);
 			}
-			if(gettime() - self.lastwaterdamagetime > var_6af4d0a6)
+			if(gettime() - self.lastwaterdamagetime > n_swimtime)
 			{
 				self.lastwaterdamagetime = self.lastwaterdamagetime + int(self.playerrole.var_f0886300 * 1000);
-				self dodamage(self.playerrole.var_f6cd6e9e, self.origin, undefined, undefined, undefined, "MOD_DROWN", 6);
+				self dodamage(self.playerrole.swimdamage, self.origin, undefined, undefined, undefined, "MOD_DROWN", 6);
 				self activate_player_health_visionset();
 				if(self.drownstage < 4)
 				{

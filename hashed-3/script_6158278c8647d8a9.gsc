@@ -45,7 +45,7 @@ function __init__()
 	function_e9e03d6f(#"revive_player", &function_8adaa75f);
 	function_e9e03d6f(#"hash_d6dff7ae81e65db", &function_daab6847);
 	function_e9e03d6f(#"hash_797d652ff338b7d4", &function_90ff35fc);
-	function_e9e03d6f(#"hash_52f5c6fab621d506", &function_a0da5bb);
+	function_e9e03d6f(#"visible_enemy", &function_a0da5bb);
 	function_e9e03d6f(#"hash_608fe62234892b49", &function_7ed3ada6);
 	function_aa8c6854(#"goal", &get_goal_center);
 	function_aa8c6854(#"hash_d6dff7ae81e65db", &function_4fa26afe);
@@ -186,7 +186,7 @@ function update(tacbundle)
 		}
 		self function_e027100a();
 	}
-	else if([[ level.var_d1a4558d ]]->function_18b95af8(self))
+	else if([[ level.var_d1a4558d ]]->wm_ht_posidlestart(self))
 	{
 		return;
 	}

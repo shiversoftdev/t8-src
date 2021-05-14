@@ -99,7 +99,7 @@ private function function_25996839(var_166900a8, bundle, validity_func, var_35a2
 	Parameters: 6
 	Flags: Linked
 */
-function function_f72f089c(var_166900a8, bundle, validity_func, var_35a2c593, var_5b9ba288, var_e156fd4)
+function function_f72f089c(var_166900a8, bundle, validity_func, var_35a2c593, default_bundle, var_e156fd4)
 {
 	/#
 		assert(isdefined(level.renderoverridebundle));
@@ -113,7 +113,7 @@ function function_f72f089c(var_166900a8, bundle, validity_func, var_35a2c593, va
 			assert(!function_25996839(var_166900a8, bundle, validity_func, var_35a2c593));
 		#/
 	#/
-	level.renderoverridebundle.var_383fe4d6[var_166900a8] = {#hash_e156fd4:var_e156fd4, #hash_5b9ba288:var_5b9ba288, #hash_1a5b7293:0, #hash_35a2c593:var_35a2c593, #validity_func:validity_func, #bundle:bundle};
+	level.renderoverridebundle.var_383fe4d6[var_166900a8] = {#hash_e156fd4:var_e156fd4, #default_bundle:default_bundle, #hash_1a5b7293:0, #hash_35a2c593:var_35a2c593, #validity_func:validity_func, #bundle:bundle};
 }
 
 /*
@@ -200,7 +200,7 @@ function function_9129cbe3(local_client_num)
 }
 
 /*
-	Name: function_1bde0473
+	Name: start_bundle
 	Namespace: renderoverridebundle
 	Checksum: 0x7362613D
 	Offset: 0x8D8
@@ -208,7 +208,7 @@ function function_9129cbe3(local_client_num)
 	Parameters: 2
 	Flags: Linked
 */
-function function_1bde0473(flag, bundle)
+function start_bundle(flag, bundle)
 {
 	is_set = flag::get(flag);
 	if(!flag::get(flag))
@@ -220,7 +220,7 @@ function function_1bde0473(flag, bundle)
 }
 
 /*
-	Name: function_40d0d1e0
+	Name: stop_bundle
 	Namespace: renderoverridebundle
 	Checksum: 0xA0663A59
 	Offset: 0x978
@@ -228,7 +228,7 @@ function function_1bde0473(flag, bundle)
 	Parameters: 3
 	Flags: Linked
 */
-function function_40d0d1e0(flag, bundle, var_e156fd4)
+function stop_bundle(flag, bundle, var_e156fd4)
 {
 	self notify("kill" + flag + bundle);
 	if(flag::get(flag))
@@ -246,7 +246,7 @@ function function_40d0d1e0(flag, bundle, var_e156fd4)
 }
 
 /*
-	Name: function_769858d4
+	Name: fade_bundle
 	Namespace: renderoverridebundle
 	Checksum: 0x71026D37
 	Offset: 0xA28
@@ -254,7 +254,7 @@ function function_40d0d1e0(flag, bundle, var_e156fd4)
 	Parameters: 4
 	Flags: None
 */
-function function_769858d4(localclientnum, flag, bundle, fadeduration)
+function fade_bundle(localclientnum, flag, bundle, fadeduration)
 {
 	self endon(#"death");
 	if(flag::get(flag))
@@ -262,7 +262,7 @@ function function_769858d4(localclientnum, flag, bundle, fadeduration)
 		util::lerp_generic(localclientnum, fadeduration, &function_9e7290f5, 1, 0, bundle);
 	}
 	wait(float(fadeduration) / 1000);
-	function_40d0d1e0(flag, bundle, 0);
+	stop_bundle(flag, bundle, 0);
 }
 
 /*
@@ -336,24 +336,24 @@ function function_c8d97b8e(local_client_num, flag, var_166900a8)
 	var_80292ef8 = function_2dbeddb5(local_client_num, var_166900a8);
 	if(function_318de8bd(local_client_num, var_80292ef8))
 	{
-		if(isdefined(var_80292ef8.var_5b9ba288))
+		if(isdefined(var_80292ef8.default_bundle))
 		{
-			self function_40d0d1e0(flag, var_80292ef8.var_5b9ba288, 1);
+			self stop_bundle(flag, var_80292ef8.default_bundle, 1);
 		}
-		self function_1bde0473(flag, var_80292ef8.bundle);
+		self start_bundle(flag, var_80292ef8.bundle);
 	}
-	else if(var_80292ef8.var_1a5b7293 && isdefined(var_80292ef8.var_5b9ba288))
+	else if(var_80292ef8.var_1a5b7293 && isdefined(var_80292ef8.default_bundle))
 	{
-		self function_40d0d1e0(flag, var_80292ef8.bundle, 1);
-		self function_1bde0473(flag, var_80292ef8.var_5b9ba288);
+		self stop_bundle(flag, var_80292ef8.bundle, 1);
+		self start_bundle(flag, var_80292ef8.default_bundle);
 		var_80292ef8.var_1a5b7293 = 0;
 	}
 	else
 	{
-		self function_40d0d1e0(flag, var_80292ef8.bundle, var_80292ef8.var_e156fd4);
-		if(isdefined(var_80292ef8.var_5b9ba288))
+		self stop_bundle(flag, var_80292ef8.bundle, var_80292ef8.var_e156fd4);
+		if(isdefined(var_80292ef8.default_bundle))
 		{
-			self function_40d0d1e0(flag, var_80292ef8.var_5b9ba288, var_80292ef8.var_e156fd4);
+			self stop_bundle(flag, var_80292ef8.default_bundle, var_80292ef8.var_e156fd4);
 		}
 	}
 	entity_num = self getentitynumber();

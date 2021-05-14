@@ -235,7 +235,7 @@ function electric_switch()
 			{
 				case "elec_switch":
 				{
-					function_8d8fc6c5(master_switch, fx_pos);
+					elec_switch_on(master_switch, fx_pos);
 					break;
 				}
 				case "hash_47bde376753a03c9":
@@ -245,7 +245,7 @@ function electric_switch()
 				}
 				case "artifact_mind":
 				{
-					function_f6c747ea(master_switch, fx_pos, user);
+					artifact_mind_on(master_switch, fx_pos, user);
 					break;
 				}
 			}
@@ -288,7 +288,7 @@ function electric_switch()
 			{
 				case "elec_switch":
 				{
-					function_2fe70dbc(master_switch);
+					elec_switch_off(master_switch);
 					break;
 				}
 			}
@@ -302,7 +302,7 @@ function electric_switch()
 }
 
 /*
-	Name: function_8d8fc6c5
+	Name: elec_switch_on
 	Namespace: zm_power
 	Checksum: 0x870D4386
 	Offset: 0xC78
@@ -310,7 +310,7 @@ function electric_switch()
 	Parameters: 2
 	Flags: Linked
 */
-function function_8d8fc6c5(master_switch, fx_pos)
+function elec_switch_on(master_switch, fx_pos)
 {
 	master_switch rotateroll(-90, 0.3);
 	master_switch playsound(#"zmb_switch_flip");
@@ -323,7 +323,7 @@ function function_8d8fc6c5(master_switch, fx_pos)
 }
 
 /*
-	Name: function_2fe70dbc
+	Name: elec_switch_off
 	Namespace: zm_power
 	Checksum: 0xF94A7EEC
 	Offset: 0xD48
@@ -331,7 +331,7 @@ function function_8d8fc6c5(master_switch, fx_pos)
 	Parameters: 1
 	Flags: Linked
 */
-function function_2fe70dbc(master_switch)
+function elec_switch_off(master_switch)
 {
 	master_switch rotateroll(90, 0.3);
 	master_switch waittill(#"rotatedone");
@@ -348,9 +348,9 @@ function function_2fe70dbc(master_switch)
 */
 function function_9d9892d2(master_switch)
 {
-	if(isdefined(master_switch.var_ff6ca26))
+	if(isdefined(master_switch.model_on))
 	{
-		master_switch setmodel(master_switch.var_ff6ca26);
+		master_switch setmodel(master_switch.model_on);
 	}
 	if(isdefined(master_switch.bundle))
 	{
@@ -359,7 +359,7 @@ function function_9d9892d2(master_switch)
 }
 
 /*
-	Name: function_f6c747ea
+	Name: artifact_mind_on
 	Namespace: zm_power
 	Checksum: 0xEAC5B61C
 	Offset: 0xE18
@@ -367,7 +367,7 @@ function function_9d9892d2(master_switch)
 	Parameters: 3
 	Flags: Linked
 */
-function function_f6c747ea(master_switch, fx_pos, user)
+function artifact_mind_on(master_switch, fx_pos, user)
 {
 	level notify(#"hash_3e80d503318a5674", {#player:user});
 }

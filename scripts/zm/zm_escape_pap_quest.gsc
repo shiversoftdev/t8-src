@@ -58,7 +58,7 @@ function __init__()
 	scene::add_scene_func(#"hash_4a8917199f6efb09", &function_cf48a8f2, "play");
 	scene::add_scene_func(#"hash_41fada5e44b023a9", &function_86f1ed70, "play");
 	scene::add_scene_func(#"hash_c09d814252d9522", &function_8d3078dc, "play");
-	scene::add_scene_func(#"hash_7cc7d9f749a02418", &function_a340ee90, "play");
+	scene::add_scene_func(#"hash_7cc7d9f749a02418", &registeree_command_heart_, "play");
 	function_842831cf();
 }
 
@@ -139,7 +139,7 @@ function function_62933c32()
 	Parameters: 1
 	Flags: Linked
 */
-function function_124362b5(var_634ce82e)
+function function_124362b5(is_powered)
 {
 	level flag::wait_till("start_zombie_round_logic");
 	switch(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2"))
@@ -154,11 +154,11 @@ function function_124362b5(var_634ce82e)
 				var_24c740a5 = 0;
 				while(!var_24c740a5)
 				{
-					var_88706ea7 = undefined;
-					var_88706ea7 = var_a8d69fbd waittill(#"hash_7e1d78666f0be68b");
-					if(isalive(var_88706ea7.e_player))
+					s_result = undefined;
+					s_result = var_a8d69fbd waittill(#"hash_7e1d78666f0be68b");
+					if(isalive(s_result.e_player))
 					{
-						str_zone = var_88706ea7.e_player zm_zonemgr::get_player_zone();
+						str_zone = s_result.e_player zm_zonemgr::get_player_zone();
 						if(isdefined(str_zone) && (str_zone == "zone_roof" || str_zone == "zone_roof_infirmary"))
 						{
 							var_24c740a5 = 1;
@@ -219,13 +219,13 @@ private function function_26cff57(a_ents)
 	a_ents[#"pap"] thread function_59093304("roof", 1);
 	if(!level flag::get(#"pap_quest_completed"))
 	{
-		var_c684828e = struct::get("lightning_bridge");
+		s_lightning_bridge = struct::get("lightning_bridge");
 		level clientfield::increment("" + #"hash_3fcd3bbe36f86e4b");
-		playsoundatposition(#"hash_7804a63a2ff82145", var_c684828e.origin);
+		playsoundatposition(#"hash_7804a63a2ff82145", s_lightning_bridge.origin);
 		a_ents[#"pap"] waittill(#"fade_in_end");
-		var_50083f49 = struct::get("lightning_near");
+		s_lightning_near = struct::get("lightning_near");
 		wait(1);
-		e_player = zm_utility::get_closest_player(var_50083f49.origin);
+		e_player = zm_utility::get_closest_player(s_lightning_near.origin);
 		e_player zm_audio::create_and_play_dialog(#"pap", #"react", undefined, 1);
 	}
 }
@@ -275,8 +275,8 @@ private function function_59093304(str_zone, var_e07ad59f = 0)
 	self clientfield::set("" + #"hash_504d26c38b96651c", 1);
 	if(var_e07ad59f)
 	{
-		var_50083f49 = struct::get("lightning_near");
-		playsoundatposition(#"hash_6c4553b9c8847808", var_50083f49.origin);
+		s_lightning_near = struct::get("lightning_near");
+		playsoundatposition(#"hash_6c4553b9c8847808", s_lightning_near.origin);
 	}
 	else
 	{
@@ -319,7 +319,7 @@ private function function_8d3078dc(a_ents)
 }
 
 /*
-	Name: function_a340ee90
+	Name: registeree_command_heart_
 	Namespace: pap_quest
 	Checksum: 0x9EDA8F36
 	Offset: 0x1148
@@ -327,7 +327,7 @@ private function function_8d3078dc(a_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a340ee90(a_ents)
+private function registeree_command_heart_(a_ents)
 {
 	a_ents[#"pap"] thread function_25adf2e0("power_house", #"hash_6d668f3614ed2393");
 	a_ents[#"pap"] clientfield::set("" + #"hash_504d26c38b96651c", 1);

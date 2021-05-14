@@ -48,9 +48,9 @@ function function_6889bb61(var_74d544ba)
 		self [[level.var_e92a00d3]]();
 	}
 	self namespace_d82263d5::function_d77271ae();
-	if(isdefined(level.var_aae00bf))
+	if(isdefined(level._objective_zapper_tall))
 	{
-		self [[level.var_aae00bf]](#"hash_2ac3b79c708dcfd5");
+		self [[level._objective_zapper_tall]](#"hash_2ac3b79c708dcfd5");
 	}
 	self disableweapons();
 	self val::set(#"hash_784a49b49cc8c292", "freezecontrols", 1);
@@ -102,10 +102,10 @@ function function_c7106205()
 		level thread namespace_8c007aa6::function_831e0584(level.var_ae120f18, 1);
 		level.var_ae120f18 = undefined;
 	}
-	if(isdefined(level.var_aae00bf))
+	if(isdefined(level._objective_zapper_tall))
 	{
 		level thread function_4b4ca178();
-		self [[level.var_aae00bf]](#"hash_3319eaa2c590a2ac");
+		self [[level._objective_zapper_tall]](#"hash_3319eaa2c590a2ac");
 	}
 }
 

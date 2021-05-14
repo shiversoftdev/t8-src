@@ -46,7 +46,7 @@ function __init__()
 */
 function function_ce65aae8()
 {
-	zm_perks::register_perk_clientfields(#"hash_3e2f955cd85b5532", &function_9a94c2b0, &function_170260ee);
+	zm_perks::register_perk_clientfields(#"hash_3e2f955cd85b5532", &registermelee_leader_guntookpain, &function_170260ee);
 	zm_perks::register_perk_init_thread(#"hash_3e2f955cd85b5532", &function_c24062a0);
 }
 
@@ -64,7 +64,7 @@ function function_c24062a0()
 }
 
 /*
-	Name: function_9a94c2b0
+	Name: registermelee_leader_guntookpain
 	Namespace: namespace_a061685d
 	Checksum: 0x80F724D1
 	Offset: 0x188
@@ -72,7 +72,7 @@ function function_c24062a0()
 	Parameters: 0
 	Flags: Linked
 */
-function function_9a94c2b0()
+function registermelee_leader_guntookpain()
 {
 }
 

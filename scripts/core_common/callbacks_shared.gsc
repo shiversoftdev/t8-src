@@ -22,10 +22,10 @@
 */
 function callback(event, params)
 {
-	function_375dac48(level, event, params);
+	mpl_heatwave_fx(level, event, params);
 	if(self != level)
 	{
-		function_375dac48(self, event, params);
+		mpl_heatwave_fx(self, event, params);
 	}
 }
 
@@ -43,7 +43,7 @@ function function_bea20a96(event, params)
 	ais = getaiarray();
 	foreach(ai in ais)
 	{
-		ai function_375dac48(ai, event, params);
+		ai mpl_heatwave_fx(ai, event, params);
 	}
 }
 
@@ -58,16 +58,16 @@ function function_bea20a96(event, params)
 */
 function function_daed27e8(event, params)
 {
-	function_375dac48(level, event, params);
+	mpl_heatwave_fx(level, event, params);
 	players = getplayers();
 	foreach(player in players)
 	{
-		player function_375dac48(player, event, params);
+		player mpl_heatwave_fx(player, event, params);
 	}
 }
 
 /*
-	Name: function_375dac48
+	Name: mpl_heatwave_fx
 	Namespace: callback
 	Checksum: 0xCCE64424
 	Offset: 0x320
@@ -75,7 +75,7 @@ function function_daed27e8(event, params)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_375dac48(ent, event, params)
+private function mpl_heatwave_fx(ent, event, params)
 {
 	if(isdefined(ent) && isdefined(ent._callbacks) && isdefined(ent._callbacks[event]))
 	{
@@ -1578,7 +1578,7 @@ function function_ed93a653(func, obj)
 */
 function function_1ae8059(func, obj)
 {
-	add_callback(#"hash_155c52f2d8c6fdbb", func, obj);
+	add_callback(#"contract_complete", func, obj);
 }
 
 /*

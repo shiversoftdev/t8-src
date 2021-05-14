@@ -145,27 +145,27 @@ function function_7f3b4877()
 	Parameters: 1
 	Flags: Linked
 */
-function function_dfc73f65(var_366fdb85)
+function function_dfc73f65(n_position)
 {
-	var_f30d2206 = self bgb::function_2bbfb816();
+	v_powerup = self bgb::function_2bbfb816();
 	v_up = vectorscale((0, 0, 1), 5);
-	var_85660237 = var_f30d2206 + anglestoforward(self.angles) * 60 + v_up;
+	var_85660237 = v_powerup + anglestoforward(self.angles) * 60 + v_up;
 	var_97efa74a = var_85660237 + anglestoforward(self.angles) * 60 + v_up;
-	switch(var_366fdb85)
+	switch(n_position)
 	{
 		case 1:
 		{
-			v_origin = var_f30d2206 + anglestoright(self.angles) * -60 + v_up;
+			v_origin = v_powerup + anglestoright(self.angles) * -60 + v_up;
 			break;
 		}
 		case 2:
 		{
-			v_origin = var_f30d2206;
+			v_origin = v_powerup;
 			break;
 		}
 		case 3:
 		{
-			v_origin = var_f30d2206 + anglestoright(self.angles) * 60 + v_up;
+			v_origin = v_powerup + anglestoright(self.angles) * 60 + v_up;
 			break;
 		}
 		case 4:
@@ -200,7 +200,7 @@ function function_dfc73f65(var_366fdb85)
 		}
 		default:
 		{
-			v_origin = var_f30d2206;
+			v_origin = v_powerup;
 			break;
 		}
 	}

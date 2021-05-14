@@ -935,7 +935,7 @@ function getnextmoveposition_evasive(client_flags)
 					point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 				}
 				point._scoredebug[#"inclaimedlocation"].score = -500;
-				point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+				point._scoredebug[#"inclaimedlocation"].scorename = "";
 			#/
 			point.score = point.score + -500;
 		}
@@ -966,7 +966,7 @@ function getnextmoveposition_evasive(client_flags)
 								point._scoredebug[#"evading_directness"] = spawnstruct();
 							}
 							point._scoredebug[#"evading_directness"].score = 200;
-							point._scoredebug[#"evading_directness"].var_4b5e0304 = "";
+							point._scoredebug[#"evading_directness"].scorename = "";
 						#/
 						point.score = point.score + 200;
 						continue;
@@ -983,7 +983,7 @@ function getnextmoveposition_evasive(client_flags)
 								point._scoredebug[#"evading_directness_line_of_sight"] = spawnstruct();
 							}
 							point._scoredebug[#"evading_directness_line_of_sight"].score = -101;
-							point._scoredebug[#"evading_directness_line_of_sight"].var_4b5e0304 = "";
+							point._scoredebug[#"evading_directness_line_of_sight"].scorename = "";
 						#/
 						point.score = point.score + -101;
 					}
@@ -1009,7 +1009,7 @@ function getnextmoveposition_evasive(client_flags)
 					point._scoredebug[#"hash_3c71f4605004afec"] = spawnstruct();
 				}
 				point._scoredebug[#"hash_3c71f4605004afec"].score = 105;
-				point._scoredebug[#"hash_3c71f4605004afec"].var_4b5e0304 = "";
+				point._scoredebug[#"hash_3c71f4605004afec"].scorename = "";
 			#/
 			point.score = point.score + 105;
 		}
@@ -1114,7 +1114,7 @@ function getnextmoveposition_tactical(enemy)
 				point._scoredebug[#"directnessraw"] = spawnstruct();
 			}
 			point._scoredebug[#"directnessraw"].score = point.directness;
-			point._scoredebug[#"directnessraw"].var_4b5e0304 = "";
+			point._scoredebug[#"directnessraw"].scorename = "";
 		#/
 		point.score = point.score + point.directness;
 		/#
@@ -1127,7 +1127,7 @@ function getnextmoveposition_tactical(enemy)
 				point._scoredebug[#"directness"] = spawnstruct();
 			}
 			point._scoredebug[#"directness"].score = directnessscore;
-			point._scoredebug[#"directness"].var_4b5e0304 = "";
+			point._scoredebug[#"directness"].scorename = "";
 		#/
 		point.score = point.score + directnessscore;
 		/#
@@ -1140,7 +1140,7 @@ function getnextmoveposition_tactical(enemy)
 				point._scoredebug[#"disttoorigin"] = spawnstruct();
 			}
 			point._scoredebug[#"disttoorigin"].score = mapfloat(0, prefereddistawayfromorigin, 0, 100, point.disttoorigin2d);
-			point._scoredebug[#"disttoorigin"].var_4b5e0304 = "";
+			point._scoredebug[#"disttoorigin"].scorename = "";
 		#/
 		point.score = point.score + mapfloat(0, prefereddistawayfromorigin, 0, 100, point.disttoorigin2d);
 		targetdistscore = 0;
@@ -1160,7 +1160,7 @@ function getnextmoveposition_tactical(enemy)
 					point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 				}
 				point._scoredebug[#"inclaimedlocation"].score = -500;
-				point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+				point._scoredebug[#"inclaimedlocation"].scorename = "";
 			#/
 			point.score = point.score + -500;
 		}
@@ -1174,7 +1174,7 @@ function getnextmoveposition_tactical(enemy)
 				point._scoredebug[#"disttotarget"] = spawnstruct();
 			}
 			point._scoredebug[#"disttotarget"].score = targetdistscore;
-			point._scoredebug[#"disttotarget"].var_4b5e0304 = "";
+			point._scoredebug[#"disttotarget"].scorename = "";
 		#/
 		point.score = point.score + targetdistscore;
 		/#
@@ -1187,7 +1187,7 @@ function getnextmoveposition_tactical(enemy)
 				point._scoredebug[#"random"] = spawnstruct();
 			}
 			point._scoredebug[#"random"].score = randomfloatrange(0, randomness);
-			point._scoredebug[#"random"].var_4b5e0304 = "";
+			point._scoredebug[#"random"].scorename = "";
 		#/
 		point.score = point.score + randomfloatrange(0, randomness);
 		if(point.score > best_score)

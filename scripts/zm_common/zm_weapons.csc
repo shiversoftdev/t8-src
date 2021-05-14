@@ -92,7 +92,7 @@ private function on_player_connect(localclientnum)
 	{
 		foreach(weaponcost in level.weapon_costs)
 		{
-			player_cost = compute_player_weapon_ammo_cost(weaponcost.weapon, weaponcost.ammo_cost, weaponcost.upgraded, undefined, undefined, weaponcost.var_47e904be);
+			player_cost = compute_player_weapon_ammo_cost(weaponcost.weapon, weaponcost.ammo_cost, weaponcost.upgraded, undefined, undefined, weaponcost.wonderweapon);
 			setweaponcosts(localclientnum, weaponcost.weapon, weaponcost.cost, weaponcost.ammo_cost, player_cost, weaponcost.upgradedweapon);
 			if(isdefined(level.var_5a069e6[weaponcost.weapon]))
 			{
@@ -140,7 +140,7 @@ function compute_player_weapon_ammo_cost(weapon, cost, upgraded, n_base_non_wall
 	w_root = function_386dacbc(weapon);
 	if(upgraded)
 	{
-		if(namespace_e613822d::is_wallbuy(level.zombie_weapons_upgraded[w_root]))
+		if(zm_wallbuy::is_wallbuy(level.zombie_weapons_upgraded[w_root]))
 		{
 			n_ammo_cost = 4000;
 		}
@@ -153,7 +153,7 @@ function compute_player_weapon_ammo_cost(weapon, cost, upgraded, n_base_non_wall
 			n_ammo_cost = n_upgraded_non_wallbuy_cost;
 		}
 	}
-	else if(namespace_e613822d::is_wallbuy(w_root))
+	else if(zm_wallbuy::is_wallbuy(w_root))
 	{
 		n_ammo_cost = cost;
 		n_ammo_cost = zm_utility::halve_score(n_ammo_cost);
@@ -195,7 +195,7 @@ function include_weapon(weapon_name, display_in_box, cost, ammo_cost, upgraded =
 		level.weapon_costs[weapon_name] = spawnstruct();
 		level.weapon_costs[weapon_name].weapon = weapon;
 		level.weapon_costs[weapon_name].upgradedweapon = level.weaponnone;
-		level.weapon_costs[weapon_name].var_47e904be = is_wonder_weapon;
+		level.weapon_costs[weapon_name].wonderweapon = is_wonder_weapon;
 	}
 	level.weapon_costs[weapon_name].cost = cost;
 	if(!isdefined(ammo_cost) || ammo_cost == 0)

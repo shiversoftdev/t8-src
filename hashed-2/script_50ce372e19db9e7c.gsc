@@ -382,7 +382,7 @@ private function function_d13a21cb(entity, projectile)
 */
 private function function_7d162bd0(projectile, var_e15d8b1f, var_c3f91959)
 {
-	projectile endon(#"hash_2f76a2bbdf38f407");
+	projectile endon(#"spear_death");
 	result = undefined;
 	result = projectile waittill(#"projectile_impact_explode");
 	if(!(isdefined(projectile.isdamaged) && projectile.isdamaged))
@@ -412,15 +412,15 @@ private function function_7d162bd0(projectile, var_e15d8b1f, var_c3f91959)
 			{
 				if(isdefined(var_c3f91959))
 				{
-					aoe = namespace_65dba40e::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + vectorscale((0, 0, -1), 100000), 0, projectile)[#"position"], var_c3f91959);
+					aoe = zm_aoe::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + vectorscale((0, 0, -1), 100000), 0, projectile)[#"position"], var_c3f91959);
 				}
 				else
 				{
-					aoe = namespace_65dba40e::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + vectorscale((0, 0, -1), 100000), 0, projectile)[#"position"]);
+					aoe = zm_aoe::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + vectorscale((0, 0, -1), 100000), 0, projectile)[#"position"]);
 				}
 			}
 			var_a5a1f99c = getaiarchetypearray(#"zombie");
-			var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"hash_1bab8a0ba811401e"), 0, 0);
+			var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"catalyst"), 0, 0);
 			var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"tiger"), 0, 0);
 			var_a5a1f99c = array::filter(var_a5a1f99c, 0, &function_5ae551a6, projectile);
 			function_9b64dc73(var_a5a1f99c, projectile);
@@ -489,7 +489,7 @@ private function watch_for_death(projectile)
 {
 	projectile waittill(#"death");
 	waittillframeend();
-	projectile notify(#"hash_2f76a2bbdf38f407");
+	projectile notify(#"spear_death");
 }
 
 /*

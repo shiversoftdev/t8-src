@@ -22,7 +22,7 @@
 function init_shared()
 {
 	level.vision_pulse = [];
-	level.var_6f74e5a9 = [];
+	level.registerdevgui_dev_cac_fallimp = [];
 	level.var_2e3031be = getweapon(#"gadget_vision_pulse");
 	callback::on_localplayer_spawned(&on_localplayer_spawned);
 	callback::on_spawned(&on_player_spawned);
@@ -48,13 +48,13 @@ function on_localplayer_spawned(localclientnum)
 	if(self function_21c0fa55())
 	{
 		level.vision_pulse[localclientnum] = 0;
-		level.var_6f74e5a9[localclientnum] = 0;
+		level.registerdevgui_dev_cac_fallimp[localclientnum] = 0;
 		self.vision_pulse_owner = undefined;
 		self.var_f0b8faa1 = undefined;
 		self gadgetpulseresetreveal();
 		self set_reveal_self(localclientnum, 0);
 		self set_reveal_enemy(localclientnum, 0);
-		self function_1decc613(localclientnum);
+		self toggle_spectator(localclientnum);
 	}
 	if(self function_da43934d())
 	{
@@ -159,7 +159,7 @@ function function_e9f518c7(immediate)
 }
 
 /*
-	Name: function_1decc613
+	Name: toggle_spectator
 	Namespace: gadget_vision_pulse
 	Checksum: 0x67F5A62D
 	Offset: 0x730
@@ -167,7 +167,7 @@ function function_e9f518c7(immediate)
 	Parameters: 1
 	Flags: Linked
 */
-function function_1decc613(localclientnum)
+function toggle_spectator(localclientnum)
 {
 	if(is_enabled(localclientnum))
 	{
@@ -260,14 +260,14 @@ function function_ab898b2d(notifystring)
 	if(notifystring == "visor_down")
 	{
 		self thread function_5f4276b8();
-		level.var_6f74e5a9[localclientnum] = 1;
+		level.registerdevgui_dev_cac_fallimp[localclientnum] = 1;
 	}
 	else if(notifystring == "visor_up")
 	{
 		self clearanim(#"pt_recon_t8_stand_vision_pulse_goggles_down_loop", 0);
 		self clearanim(#"pt_recon_t8_prone_vision_pulse_goggles_down_loop", 0);
 		self notify(#"hash_f57a252dea202");
-		level.var_6f74e5a9[localclientnum] = 0;
+		level.registerdevgui_dev_cac_fallimp[localclientnum] = 0;
 	}
 	if(self function_21c0fa55())
 	{
@@ -522,7 +522,7 @@ function watch_vision_pulse_owner_death(localclientnum)
 		self function_78233d29(#"hash_1978eff2ac047e65", "", #"brightness", 0);
 		self function_5d482e78(#"hash_1978eff2ac047e65");
 	}
-	level callback::callback(#"hash_20f3ac6a6fcbcf39", localclientnum);
+	level callback::callback(#"vision_pulse_off", localclientnum);
 	self.vision_pulse_owner = undefined;
 }
 
@@ -695,7 +695,7 @@ function function_ea179305(localclientnum, enabled)
 	Parameters: 2
 	Flags: Linked
 */
-function function_9e2a452e(localclientnum, var_9e58fecb)
+function function_9e2a452e(localclientnum, robname)
 {
 	self notify("55d14ddd4012cb9a");
 	self endon("55d14ddd4012cb9a");
@@ -741,10 +741,10 @@ function function_9e2a452e(localclientnum, var_9e58fecb)
 					self.var_1d0bc391 = 0;
 				}
 				self.var_1d0bc391++;
-				self function_5d482e78(var_9e58fecb);
+				self function_5d482e78(robname);
 				self function_9b51bc6(localclientnum, 0);
 			}
-			self function_78233d29(var_9e58fecb, "", "Alpha", alpha);
+			self function_78233d29(robname, "", "Alpha", alpha);
 			if(!isdefined(self.var_1618a13f))
 			{
 				self.var_1618a13f = #"hash_5a76eaaf7f7e3de5";
@@ -778,23 +778,23 @@ function set_reveal_enemy(localclientnum, on_off)
 		owner thread function_85e399a9(localclientnum);
 		if(isalive(owner) && (isdefined(level.gameended) && !level.gameended) && util::function_fbce7263(owner.team, self.team))
 		{
-			var_9e58fecb = #"hash_75f4d8048e6adb94";
+			robname = #"hash_75f4d8048e6adb94";
 			if(!owner function_21c0fa55())
 			{
-				var_9e58fecb = #"hash_62b3e8ea5469c2f5";
+				robname = #"hash_62b3e8ea5469c2f5";
 			}
 			if(!(isdefined(self.var_f4f50357) && self.var_f4f50357))
 			{
 				self function_9b51bc6(localclientnum, 1);
 				self player::function_f2ba057();
-				self function_bf9d3071(var_9e58fecb);
-				self thread function_9e2a452e(localclientnum, var_9e58fecb);
+				self function_bf9d3071(robname);
+				self thread function_9e2a452e(localclientnum, robname);
 			}
-			self function_78233d29(var_9e58fecb, "", "Alpha", 1);
+			self function_78233d29(robname, "", "Alpha", 1);
 			if(!owner function_21c0fa55())
 			{
-				self function_78233d29(var_9e58fecb, "", "Tint", 0);
-				self function_78233d29(var_9e58fecb, "", "Alpha", 1);
+				self function_78233d29(robname, "", "Tint", 0);
+				self function_78233d29(robname, "", "Alpha", 1);
 			}
 		}
 	}
@@ -950,6 +950,6 @@ function is_active(local_client_num)
 */
 function is_enabled(local_client_num)
 {
-	return isdefined(level.var_6f74e5a9) && (isdefined(level.var_6f74e5a9[local_client_num]) && level.var_6f74e5a9[local_client_num]);
+	return isdefined(level.registerdevgui_dev_cac_fallimp) && (isdefined(level.registerdevgui_dev_cac_fallimp[local_client_num]) && level.registerdevgui_dev_cac_fallimp[local_client_num]);
 }
 

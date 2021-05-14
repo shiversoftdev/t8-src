@@ -236,15 +236,15 @@ private function function_8ded619(var_72284260, targetstructs = undefined, durat
 			}
 			var_a6ba4626 = var_a6ba4626 + 4;
 		}
-		if(isdefined(var_72284260.var_183987c3))
+		if(isdefined(var_72284260.script_flag_activate))
 		{
-			if(level flag::get(var_72284260.var_183987c3))
+			if(level flag::get(var_72284260.script_flag_activate))
 			{
-				print3d(var_72284260.origin + (0, 0, var_a6ba4626), "" + var_72284260.var_183987c3, (0, 1, 0), 1, 0.2, duration);
+				print3d(var_72284260.origin + (0, 0, var_a6ba4626), "" + var_72284260.script_flag_activate, (0, 1, 0), 1, 0.2, duration);
 			}
 			else
 			{
-				print3d(var_72284260.origin + (0, 0, var_a6ba4626), "" + var_72284260.var_183987c3, (1, 0.5, 0), 1, 0.2, duration);
+				print3d(var_72284260.origin + (0, 0, var_a6ba4626), "" + var_72284260.script_flag_activate, (1, 0.5, 0), 1, 0.2, duration);
 			}
 			var_a6ba4626 = var_a6ba4626 + 4;
 		}
@@ -450,11 +450,11 @@ private function function_e3eaa42b()
 				level flag::init(struct.script_flag_wait);
 			}
 		}
-		if(isdefined(struct.var_183987c3))
+		if(isdefined(struct.script_flag_activate))
 		{
-			if(!isdefined(level.flag[struct.var_183987c3]))
+			if(!isdefined(level.flag[struct.script_flag_activate]))
 			{
-				level flag::init(struct.var_183987c3);
+				level flag::init(struct.script_flag_activate);
 			}
 		}
 	}
@@ -509,14 +509,14 @@ private function function_e7b80b1e(var_72284260)
 	var_fd6be869 = [];
 	foreach(struct in var_d8bb5bb6)
 	{
-		if(!isdefined(struct.var_183987c3) || level flag::get(struct.var_183987c3))
+		if(!isdefined(struct.script_flag_activate) || level flag::get(struct.script_flag_activate))
 		{
 			array::add(var_7bc3c842, struct);
 		}
-		if(isdefined(struct.var_183987c3) && !level flag::get(struct.var_183987c3))
+		if(isdefined(struct.script_flag_activate) && !level flag::get(struct.script_flag_activate))
 		{
 			array::add(var_653c94ca, struct);
-			array::add(var_fd6be869, struct.var_183987c3);
+			array::add(var_fd6be869, struct.script_flag_activate);
 		}
 	}
 	if(var_7bc3c842.size)
@@ -532,9 +532,9 @@ private function function_e7b80b1e(var_72284260)
 		foreach(struct in var_653c94ca)
 		{
 			/#
-				assert(isdefined(struct.var_183987c3));
+				assert(isdefined(struct.script_flag_activate));
 			#/
-			if(level flag::get(struct.var_183987c3))
+			if(level flag::get(struct.script_flag_activate))
 			{
 				return struct;
 			}

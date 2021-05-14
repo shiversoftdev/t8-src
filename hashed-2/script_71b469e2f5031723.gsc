@@ -5,7 +5,7 @@
 #namespace namespace_13f469d;
 
 /*
-	Name: function_529ab7eb
+	Name: registerbotinterfaceattributes
 	Namespace: namespace_13f469d
 	Checksum: 0x66209CC
 	Offset: 0x98
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_529ab7eb()
+function registerbotinterfaceattributes()
 {
 	ai::registermatchedinterface(#"bot", #"control", "commander", array("commander", "autonomous"), &bot::function_b5dd2fd2);
 	ai::registermatchedinterface(#"bot", #"sprint", 0, array(1, 0), undefined);

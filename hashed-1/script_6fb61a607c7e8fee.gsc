@@ -179,7 +179,7 @@ function function_f8196ccf()
 	Parameters: 4
 	Flags: Linked
 */
-function function_b754923d(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_b754923d(b_pause, str_perk, str_result, n_slot)
 {
 	self.var_27aeb716 = undefined;
 }

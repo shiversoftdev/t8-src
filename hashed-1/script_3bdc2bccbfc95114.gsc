@@ -12,10 +12,10 @@
 	Parameters: 2
 	Flags: Linked
 */
-function function_9b62d333(var_e0dfde7a, var_867df4d)
+function function_9b62d333(n_hour, n_minute)
 {
 	var_f6197f53 = 0;
-	switch(var_867df4d)
+	switch(n_minute)
 	{
 		case 15:
 		{
@@ -33,19 +33,19 @@ function function_9b62d333(var_e0dfde7a, var_867df4d)
 			break;
 		}
 	}
-	if(!isdefined(self.var_e0dfde7a))
+	if(!isdefined(self.n_hour))
 	{
-		self.var_e0dfde7a = 0;
+		self.n_hour = 0;
 	}
 	if(!isdefined(self.var_f6197f53))
 	{
 		self.var_f6197f53 = 0;
 	}
-	if(self.var_e0dfde7a == var_e0dfde7a && self.var_f6197f53 == var_f6197f53)
+	if(self.n_hour == n_hour && self.var_f6197f53 == var_f6197f53)
 	{
 		return;
 	}
-	if(self.var_e0dfde7a == var_e0dfde7a && self.var_f6197f53 <= var_f6197f53)
+	if(self.n_hour == n_hour && self.var_f6197f53 <= var_f6197f53)
 	{
 		while(self.var_f6197f53 != var_f6197f53)
 		{
@@ -55,7 +55,7 @@ function function_9b62d333(var_e0dfde7a, var_867df4d)
 	}
 	if(self.var_f6197f53 <= var_f6197f53)
 	{
-		while(self.var_e0dfde7a != var_e0dfde7a)
+		while(self.n_hour != n_hour)
 		{
 			function_64c53556();
 		}
@@ -65,15 +65,15 @@ function function_9b62d333(var_e0dfde7a, var_867df4d)
 		}
 		return;
 	}
-	var_c6781a1b = self.var_e0dfde7a + 1;
+	var_c6781a1b = self.n_hour + 1;
 	if(var_c6781a1b == 12)
 	{
 		var_c6781a1b = 0;
 	}
-	while(var_c6781a1b != var_e0dfde7a)
+	while(var_c6781a1b != n_hour)
 	{
 		function_64c53556();
-		var_c6781a1b = self.var_e0dfde7a + 1;
+		var_c6781a1b = self.n_hour + 1;
 		if(var_c6781a1b == 12)
 		{
 			var_c6781a1b = 0;
@@ -141,9 +141,9 @@ function function_783891ed()
 */
 private function function_9e6251db(var_c03fe9e3)
 {
-	if(!isdefined(self.var_e0dfde7a))
+	if(!isdefined(self.n_hour))
 	{
-		self.var_e0dfde7a = 0;
+		self.n_hour = 0;
 	}
 	if(!isdefined(self.var_f6197f53))
 	{
@@ -173,10 +173,10 @@ private function function_9e6251db(var_c03fe9e3)
 	if(self.var_f6197f53 == 4)
 	{
 		self.var_f6197f53 = 0;
-		self.var_e0dfde7a++;
-		if(self.var_e0dfde7a == 12)
+		self.n_hour++;
+		if(self.n_hour == 12)
 		{
-			self.var_e0dfde7a = 0;
+			self.n_hour = 0;
 		}
 	}
 }

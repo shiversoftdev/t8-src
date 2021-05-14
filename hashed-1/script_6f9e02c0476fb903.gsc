@@ -71,7 +71,7 @@ function __main__()
 */
 function function_843da215(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isplayer(params.reviver) || !isdefined(params.attacker))
+	if(!gamestate::is_state("playing") || !isplayer(params.reviver) || !isdefined(params.attacker))
 	{
 		return;
 	}

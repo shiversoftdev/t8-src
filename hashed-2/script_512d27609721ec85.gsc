@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_74c2bf5674739948", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_74c2bf5674739948", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -55,7 +55,7 @@ private function function_d1de6a85(weapon_name, var_eaa7f0ba, var_957937ee, var_
 {
 	if(isdefined(var_eaa7f0ba))
 	{
-		self.var_eaa7f0ba = namespace_f551babc::function_5769f26a(var_eaa7f0ba);
+		self.var_eaa7f0ba = zm_trial::function_5769f26a(var_eaa7f0ba);
 	}
 	if(weapon_name == #"hash_2299197a67620a6e")
 	{
@@ -77,7 +77,7 @@ private function function_d1de6a85(weapon_name, var_eaa7f0ba, var_957937ee, var_
 			}
 		}
 	}
-	else if(weapon_name == #"hash_13697466e0b6f222")
+	else if(weapon_name == #"upgraded_weapon")
 	{
 		/#
 			assert(isdefined(level.zombie_weapons_upgraded));
@@ -254,21 +254,21 @@ private function function_9e7b3f4d(round_reset)
 			{
 				if(var_57807cdc.size == 1)
 				{
-					namespace_f551babc::fail(#"hash_753fe45bee19e131", var_57807cdc);
+					zm_trial::fail(#"hash_753fe45bee19e131", var_57807cdc);
 				}
 				else
 				{
-					namespace_f551babc::fail(#"hash_3539a53b7cf9ea2", var_57807cdc);
+					zm_trial::fail(#"hash_3539a53b7cf9ea2", var_57807cdc);
 				}
 			}
 		}
 		else if(var_57807cdc.size == 1)
 		{
-			namespace_f551babc::fail(#"hash_753fe45bee19e131", var_57807cdc);
+			zm_trial::fail(#"hash_753fe45bee19e131", var_57807cdc);
 		}
 		else if(var_57807cdc.size > 1)
 		{
-			namespace_f551babc::fail(#"hash_3539a53b7cf9ea2", var_57807cdc);
+			zm_trial::fail(#"hash_3539a53b7cf9ea2", var_57807cdc);
 		}
 	}
 	foreach(player in getplayers())

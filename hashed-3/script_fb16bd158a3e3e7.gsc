@@ -41,11 +41,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_576586e9331e76d2", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_576586e9331e76d2", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -62,12 +62,12 @@ private function function_d805557c(weapon)
 	/#
 		assert(weapon != level.weaponnone);
 	#/
-	if(namespace_2ba51478::function_2ff6913(weapon))
+	if(zm_loadout::function_2ff6913(weapon))
 	{
 		return 1;
 	}
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_576586e9331e76d2");
-	if(challenge.var_e097dc07 === #"melee" && function_b8e47408(weapon))
+	challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
+	if(challenge.var_e097dc07 === #"melee" && is_ballistic_knife(weapon))
 	{
 		return 0;
 	}
@@ -104,7 +104,7 @@ private function function_d805557c(weapon)
 }
 
 /*
-	Name: function_b8e47408
+	Name: is_ballistic_knife
 	Namespace: namespace_6b49f66b
 	Checksum: 0x1227E7D
 	Offset: 0x738
@@ -112,7 +112,7 @@ private function function_d805557c(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b8e47408(weapon)
+private function is_ballistic_knife(weapon)
 {
 	if(weapon == getweapon(#"special_ballisticknife_t8_dw") || weapon == getweapon(#"hash_3882e337d28ec4df") || weapon == getweapon("special_ballisticknife_t8_dw_dw") || weapon == getweapon("special_ballisticknife_t8_dw_upgraded_dw"))
 	{
@@ -132,7 +132,7 @@ private function function_b8e47408(weapon)
 */
 private function is_melee_allowed(weapon)
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_576586e9331e76d2");
+	challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
 	if(challenge.var_e097dc07 == #"melee")
 	{
 		return 1;
@@ -206,7 +206,7 @@ private function function_e14e7b75(weapon)
 			}
 		}
 		self function_28602a03(weapon, var_9caacad5, var_b3340a9);
-		if(namespace_2ba51478::is_lethal_grenade(weapon))
+		if(zm_loadout::is_lethal_grenade(weapon))
 		{
 			self namespace_b22c99a5::function_88805385(1);
 		}
@@ -237,7 +237,7 @@ private function function_10c80e10(eventstruct)
 				self unlockweapon(weapon);
 			}
 		}
-		level namespace_f551babc::function_cd75b690(0);
+		level zm_trial::function_cd75b690(0);
 	}
 	else
 	{
@@ -264,7 +264,7 @@ private function function_10c80e10(eventstruct)
 				}
 			}
 		}
-		level namespace_f551babc::function_cd75b690(1);
+		level zm_trial::function_cd75b690(1);
 	}
 }
 
@@ -318,7 +318,7 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 {
 	if(isdefined(var_f5300808))
 	{
-		var_f5300808 = namespace_f551babc::function_5769f26a(var_f5300808);
+		var_f5300808 = zm_trial::function_5769f26a(var_f5300808);
 	}
 	self.var_e097dc07 = var_e097dc07;
 	var_e7beaa5 = [];
@@ -327,60 +327,60 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 		case "equipment":
 		{
 			var_e7beaa5 = array(#"eq_acid_bomb", #"hash_246c869c9de45f07", #"hash_10f614b278daaebc", #"tomahawk_t8", #"tomahawk_t8_upgraded", #"claymore", #"hash_4a5efaceb780ecb0", #"eq_molotov", #"hash_308049a67e5afecf", #"hash_34b7eb9fde56bd35", #"hash_244eb1a096b12734", #"hash_c78156ba6aeda14", #"hash_6cb687e3f8c569fd", #"mini_turret", #"proximity_grenade", #"sticky_grenade", #"hash_187a9aad6da705c6");
-			level namespace_f551babc::function_8e2a923(1);
-			level namespace_f551babc::function_44200d07(1);
+			level zm_trial::function_8e2a923(1);
+			level zm_trial::function_44200d07(1);
 			break;
 		}
 		case "melee":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("melee", 0, 1);
-			level namespace_f551babc::function_cdcce681(1);
+			level zm_trial::function_cdcce681(1);
 			break;
 		}
 		case "bowie_knife":
 		{
 			var_e7beaa5 = array(#"bowie_knife", #"bowie_knife_story_1", #"bowie_knife_widows_wine");
 			var_fda63ae3[0] = struct::get("bowie_knife", "zombie_weapon_upgrade").origin;
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
-		case "hash_195c4753b1a0f71":
+		case "leveraction":
 		{
 			var_e7beaa5 = array(#"tr_leveraction_t8", #"hash_7f8028bb8adc966c");
-			var_1ea370f6 = struct::get("tr_leveraction_t8", "zombie_weapon_upgrade");
-			var_fda63ae3 = var_1ea370f6.origin;
-			level namespace_f551babc::function_25ee130(1);
+			objective_struct = struct::get("tr_leveraction_t8", "zombie_weapon_upgrade");
+			var_fda63ae3 = objective_struct.origin;
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "longburst":
 		{
 			var_e7beaa5 = array(#"tr_longburst_t8", #"hash_4bf5a2219b1a65d2");
-			var_1ea370f6 = struct::get("tr_longburst_t8", "zombie_weapon_upgrade");
-			var_fda63ae3 = var_1ea370f6.origin;
-			level namespace_f551babc::function_25ee130(1);
+			objective_struct = struct::get("tr_longburst_t8", "zombie_weapon_upgrade");
+			var_fda63ae3 = objective_struct.origin;
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_33380540d3ae5004":
 		{
 			var_e7beaa5 = array(#"shotgun_pump_t8", #"hash_459f15018585edda");
-			level namespace_f551babc::function_25ee130(1);
-			var_1ea370f6 = struct::get("shotgun_pump_t8", "zombie_weapon_upgrade");
-			var_fda63ae3 = var_1ea370f6.origin;
+			level zm_trial::function_25ee130(1);
+			objective_struct = struct::get("shotgun_pump_t8", "zombie_weapon_upgrade");
+			var_fda63ae3 = objective_struct.origin;
 			break;
 		}
 		case "hash_2d7eddbe7c839951":
 		{
 			var_e7beaa5 = array(#"pistol_burst_t8", #"hash_2df0835a53060b95");
-			var_1ea370f6 = struct::get("pistol_burst_t8", "zombie_weapon_upgrade");
-			var_fda63ae3 = var_1ea370f6.origin;
-			level namespace_f551babc::function_25ee130(1);
+			objective_struct = struct::get("pistol_burst_t8", "zombie_weapon_upgrade");
+			var_fda63ae3 = objective_struct.origin;
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "any_pistol":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("pistol", 1, 1);
 			var_fda63ae3 = function_f1dd7bf8(array("pistol_standard_t8", "pistol_burst_t8", "pistol_revolver_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_7416cabf26f52c5f":
@@ -388,28 +388,28 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 			var_e7beaa5 = zm_weapons::function_ed29dde5("pistol", 0, 1);
 			var_e7beaa5 = arraycombine(var_e7beaa5, array(#"hash_138efe2bb30be63c", #"hash_138f012bb30beb55", #"hash_46ad37ce8122812e", #"hash_138f002bb30be9a2", #"hash_3a8348f19a7e7629", #"ray_gun"), 0, 0);
 			var_fda63ae3 = function_f1dd7bf8(array("pistol_standard_t8", "pistol_burst_t8", "pistol_revolver_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_14468aadde60f9e1":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("smg", 0, 1);
 			var_fda63ae3 = function_f1dd7bf8(array("smg_fastfire_t8", "smg_handling_t8", "smg_drum_pistol_t8", "smg_standard_t8", "smg_accurate_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_2d7ec445ba288abf":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("ar", 0, 1);
 			var_fda63ae3 = function_f1dd7bf8(array("ar_accurate_t8", "ar_damage_t8", "ar_fastfire_t8", "ar_galil_t8", "ar_mg1909_t8", "ar_modular_t8", "ar_standard_t8", "ar_stealth_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_44dcc4dbf2ce47de":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("tr", 0, 1);
 			var_fda63ae3 = function_f1dd7bf8(array("tr_leveraction_t8", "tr_powersemi_t8", "tr_longburst_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_1dd9431fbe7472b7":
@@ -417,95 +417,95 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 			var_e7beaa5 = zm_weapons::function_ed29dde5("sniper", 0, 1);
 			var_e7beaa5 = arraycombine(var_e7beaa5, array(#"ww_tesla_sniper_t8"), 0, 0);
 			var_fda63ae3 = function_f1dd7bf8(array("sniper_quickscope_t8", "sniper_fastrechamber_t8", "sniper_powerbolt_t8", "sniper_powersemi_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_54d4bc51239254b8":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("lmg", 0, 1);
 			var_fda63ae3 = function_f1dd7bf8(array("lmg_double_t8", "lmg_heavy_t8", "lmg_spray_t8", "lmg_standard_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_706c2575a1c4f65e":
 		{
 			var_e7beaa5 = zm_weapons::function_ed29dde5("shotgun", 0, 1);
 			var_fda63ae3 = function_f1dd7bf8(array("shotgun_pump_t8", "shotgun_trenchgun_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_19a4271a5452dc0b":
 		{
 			var_e7beaa5 = array(#"hash_19a4271a5452dc0b", #"zhield_dw", #"knife", #"bowie_knife");
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
-		case "hash_720ffeebde5ac7cc":
+		case "galvaknuckles":
 		{
 			var_e7beaa5 = array(#"galvaknuckles_t8");
 			var_fda63ae3 = function_f1dd7bf8(array("galvaknuckles_t8"));
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "special":
 		{
 			var_e7beaa5 = array(#"hero_chakram_lv1", #"hero_chakram_lv2", #"hero_chakram_lv3", #"hash_68705e3b85992a56", #"hash_68705d3b859928a3", #"hash_68705c3b859926f0", #"hero_hammer_lv1", #"hero_hammer_lv2", #"hero_hammer_lv3", #"hash_50f35e4cfb775e02", #"hash_50f35d4cfb775c4f", #"hash_50f35c4cfb775a9c", #"hero_sword_pistol_lv1", #"hero_sword_pistol_lv2", #"hero_sword_pistol_lv3", #"hash_65e48a2e69e81a5e", #"hash_65e4892e69e818ab", #"hash_65e4882e69e816f8", #"hash_18829d56b3fbd75b", #"hash_18829e56b3fbd90e", #"hash_18829f56b3fbdac1", #"hash_1d3a5509fa2c9ee6", #"hash_1d3a5409fa2c9d33", #"hash_1d3a5309fa2c9b80", #"hash_6627879099b8a337", #"hash_6627889099b8a4ea", #"hash_6627899099b8a69d", #"hash_74dd67dd8a46d144", #"hash_74dd6add8a46d65d", #"hash_74dd69dd8a46d4aa");
 			level.var_869ea5a = 1;
-			level namespace_f551babc::function_cdcce681(1);
+			level zm_trial::function_cdcce681(1);
 			break;
 		}
 		case "shield":
 		{
 			var_e7beaa5 = array(#"zhield_zword_dw", #"hash_68bfa6918dc2eb81", #"hash_2421d32eb1a6a4a5", #"hash_6dc04683a260fcfe", #"hash_237b6756a81881cb", #"hash_2f351450f2e936dc");
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_423a501528fbd0a2":
 		{
 			var_e7beaa5 = array(#"sniper_powersemi_t8");
-			var_1ea370f6 = struct::get("sniper_powersemi_t8", "zombie_weapon_upgrade");
-			if(isdefined(var_1ea370f6))
+			objective_struct = struct::get("sniper_powersemi_t8", "zombie_weapon_upgrade");
+			if(isdefined(objective_struct))
 			{
-				var_fda63ae3 = var_1ea370f6.origin;
+				var_fda63ae3 = objective_struct.origin;
 			}
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "spoon":
 		{
 			var_e7beaa5 = array(#"hash_52b03a79f854eed3", #"hash_32a584f5a65c70d1", #"hash_42a45d43be3dba42", #"hash_42895043be26dc73", #"hash_2182349b1e42e1a4", #"hash_78e66b21aa05c753", #"hash_185abc5c82e9d849", #"hash_158041aab1e14f3a", "tomahawk_t8", "tomahawk_t8_upgraded");
-			level namespace_f551babc::function_8e2a923(1);
-			level namespace_f551babc::function_44200d07(1);
+			level zm_trial::function_8e2a923(1);
+			level zm_trial::function_44200d07(1);
 			break;
 		}
 		case "hash_6e90934692fe71cd":
 		{
-			var_e7beaa5 = array(#"zhield_zpear_dw", #"hash_1a385be4d5103a33", #"hash_136814846f94f0cd");
-			level namespace_f551babc::function_8e2a923(1);
-			level namespace_f551babc::function_44200d07(1);
-			level namespace_f551babc::function_cd75b690(1);
+			var_e7beaa5 = array(#"zhield_zpear_dw", #"zhield_zpear_turret", #"hash_136814846f94f0cd");
+			level zm_trial::function_8e2a923(1);
+			level zm_trial::function_44200d07(1);
+			level zm_trial::function_cd75b690(1);
 			break;
 		}
 		case "hash_d3707a2c417be98":
 		{
 			var_e7beaa5 = array(#"pistol_revolver_t8", #"hash_c2a620242d1636a");
-			var_1ea370f6 = struct::get("pistol_revolver_t8", "zombie_weapon_upgrade");
-			if(isdefined(var_1ea370f6))
+			objective_struct = struct::get("pistol_revolver_t8", "zombie_weapon_upgrade");
+			if(isdefined(objective_struct))
 			{
-				var_fda63ae3 = var_1ea370f6.origin;
+				var_fda63ae3 = objective_struct.origin;
 			}
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "hash_2a9cff6031a07658":
 		{
 			var_e7beaa5 = array(#"smg_thompson_t8", #"hash_3273c6574279dea9");
-			var_1ea370f6 = struct::get("smg_thompson_t8", "zombie_weapon_upgrade");
-			if(isdefined(var_1ea370f6))
+			objective_struct = struct::get("smg_thompson_t8", "zombie_weapon_upgrade");
+			if(isdefined(objective_struct))
 			{
-				var_fda63ae3 = var_1ea370f6.origin;
+				var_fda63ae3 = objective_struct.origin;
 			}
-			level namespace_f551babc::function_25ee130(1);
+			level zm_trial::function_25ee130(1);
 			break;
 		}
 		case "no_attachments":
@@ -514,11 +514,11 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 			level.var_869ea5a = 1;
 			break;
 		}
-		case "hash_54a5824978b83db0":
+		case "snowballs":
 		{
-			var_e7beaa5 = array(#"hash_4b7e4696d38d13e3", #"hash_1ecb90ddb44096f4", #"hash_7b1ab4354f6a9ef4", #"hash_4d50a2c4ff4e615d");
-			level namespace_f551babc::function_8e2a923(1);
-			level namespace_f551babc::function_44200d07(1);
+			var_e7beaa5 = array(#"snowball", #"hash_1ecb90ddb44096f4", #"hash_7b1ab4354f6a9ef4", #"hash_4d50a2c4ff4e615d");
+			level zm_trial::function_8e2a923(1);
+			level zm_trial::function_44200d07(1);
 			break;
 		}
 		default:
@@ -545,11 +545,11 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 			player allowmelee(0);
 		}
 		player thread function_f0e03d3(var_f5300808);
-		if(var_e097dc07 == #"hash_54a5824978b83db0")
+		if(var_e097dc07 == #"snowballs")
 		{
 			if(!player function_f3fdd8f7())
 			{
-				level namespace_f551babc::function_cd75b690(1);
+				level zm_trial::function_cd75b690(1);
 			}
 			player enableoffhandweapons();
 			callback::function_33f0ddd3(&function_10c80e10);
@@ -613,8 +613,8 @@ private function function_9e7b3f4d(round_reset)
 	level.var_869ea5a = undefined;
 	callback::function_824d206(&function_33f0ddd3);
 	callback::function_5a753d97(&namespace_b22c99a5::function_79518194);
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_576586e9331e76d2");
-	if(challenge.var_e097dc07 === #"hash_54a5824978b83db0")
+	challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
+	if(challenge.var_e097dc07 === #"snowballs")
 	{
 		callback::function_824d206(&function_10c80e10);
 	}
@@ -627,7 +627,7 @@ private function function_9e7b3f4d(round_reset)
 			{
 				player unlockweapon(weapon.dualwieldweapon);
 			}
-			if(namespace_2ba51478::is_lethal_grenade(weapon))
+			if(zm_loadout::is_lethal_grenade(weapon))
 			{
 				player namespace_b22c99a5::function_88805385(0);
 			}
@@ -651,7 +651,7 @@ private function function_9e7b3f4d(round_reset)
 	zm_traps::function_9d0c9706();
 	level.var_526d919 = undefined;
 	level.var_4400c4f7 = undefined;
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 }
 
 /*
@@ -734,7 +734,7 @@ function function_f0e03d3(var_f5300808)
 */
 function function_937e218c()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_576586e9331e76d2");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
 	if(isdefined(s_challenge))
 	{
 		return s_challenge.var_e097dc07;
@@ -756,7 +756,7 @@ function is_active(var_1eb3fec6 = 0)
 	{
 		return 0;
 	}
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_576586e9331e76d2");
+	challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
 	return isdefined(challenge);
 }
 
@@ -902,7 +902,7 @@ private function function_c305f695(challenge)
 */
 function function_5fbf572(weapon, var_2f0cc3aa = 0)
 {
-	if(!zm_utility::function_3bff983f())
+	if(!zm_utility::is_trials())
 	{
 		return 1;
 	}

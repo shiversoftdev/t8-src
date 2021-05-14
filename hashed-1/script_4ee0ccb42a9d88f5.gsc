@@ -17,7 +17,7 @@
 */
 autoexec function init()
 {
-	namespace_1f694fcd::function_587ece09();
+	namespace_1f694fcd::registerbrutusinterfaceattributes();
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"brutus", &function_517fd069);
 }

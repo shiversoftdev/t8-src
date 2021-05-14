@@ -133,7 +133,7 @@ function function_35a524cf(clientnum, animation, n_start_time = 0)
 		v_pos = align.origin;
 		v_ang = align.angles;
 	}
-	var_380af598 = (isdefined(self.var_55b4f21e.var_d2b98fd2) ? self.var_55b4f21e.var_d2b98fd2 : "");
+	var_380af598 = (isdefined(self.var_55b4f21e.cameraswitchername) ? self.var_55b4f21e.cameraswitchername : "");
 	var_57949b2d = n_start_time * getcamanimtime(animation);
 	var_473877de = getservertime(clientnum) - var_57949b2d;
 	if(isdefined(self.var_55b4f21e.var_ffc10b65))
@@ -1784,7 +1784,7 @@ function play(str_shot = "play", b_testing = 0, str_mode = "", b_looping = undef
 {
 	level endon(#"demo_jump");
 	self notify(str_shot + "start");
-	self endon_callback(&function_99159b0c, str_shot + "start", #"new_state");
+	self endon_callback(&play_endon, str_shot + "start", #"new_state");
 	if(issubstr(str_mode, "play_from_time"))
 	{
 		args = strtok(str_mode, ":");
@@ -1855,7 +1855,7 @@ function play(str_shot = "play", b_testing = 0, str_mode = "", b_looping = undef
 }
 
 /*
-	Name: function_99159b0c
+	Name: play_endon
 	Namespace: cscene
 	Checksum: 0x3EE4FFEF
 	Offset: 0x6558
@@ -1863,7 +1863,7 @@ function play(str_shot = "play", b_testing = 0, str_mode = "", b_looping = undef
 	Parameters: 1
 	Flags: Linked
 */
-function function_99159b0c(var_a27f7ab4)
+function play_endon(var_a27f7ab4)
 {
 	function_ea4a6812(self._str_shot);
 }
@@ -2436,7 +2436,7 @@ private autoexec function cscene()
 	classes.cscene[0].__vtable[364222446] = &cscene::function_ea4a6812;
 	classes.cscene[0].__vtable[2048035057] = &cscene::function_7a1288f1;
 	classes.cscene[0].__vtable[782090682] = &cscene::run_next;
-	classes.cscene[0].__vtable[1726637300] = &cscene::function_99159b0c;
+	classes.cscene[0].__vtable[1726637300] = &cscene::play_endon;
 	classes.cscene[0].__vtable[881215179] = &cscene::play;
 	classes.cscene[0].__vtable[269745243] = &cscene::function_1013fc5b;
 	classes.cscene[0].__vtable[1226873752] = &cscene::get_object_id;
@@ -2633,7 +2633,7 @@ function in_igc(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname
 	Parameters: 1
 	Flags: Linked
 */
-function function_2e58158b(var_bc148fe3)
+function function_2e58158b(func_igc)
 {
 	if(!isdefined(level.var_25e5c959))
 	{
@@ -2643,7 +2643,7 @@ function function_2e58158b(var_bc148fe3)
 	{
 		level.var_25e5c959 = array(level.var_25e5c959);
 	}
-	level.var_25e5c959[level.var_25e5c959.size] = var_bc148fe3;
+	level.var_25e5c959[level.var_25e5c959.size] = func_igc;
 }
 
 /*
@@ -2655,9 +2655,9 @@ function function_2e58158b(var_bc148fe3)
 	Parameters: 1
 	Flags: None
 */
-function function_e78401d1(var_bc148fe3)
+function function_e78401d1(func_igc)
 {
-	arrayremovevalue(level.var_25e5c959, var_bc148fe3);
+	arrayremovevalue(level.var_25e5c959, func_igc);
 }
 
 /*

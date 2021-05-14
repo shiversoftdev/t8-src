@@ -75,11 +75,11 @@ function function_c95aa114(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_5f66f726 = util::playfxontag(localclientnum, level._effect[#"hash_5cd079f7090da957"], self, "tag_light");
+		self.blinking_fx = util::playfxontag(localclientnum, level._effect[#"hash_5cd079f7090da957"], self, "tag_light");
 	}
-	else if(isdefined(self.var_5f66f726))
+	else if(isdefined(self.blinking_fx))
 	{
-		deletefx(localclientnum, self.var_5f66f726);
+		deletefx(localclientnum, self.blinking_fx);
 	}
 }
 

@@ -615,7 +615,7 @@ function function_1c4cd527(origin, owner, innerradius, outerradius, halfheight, 
 					point._scoredebug[#"hash_3f8a9579ce4600de"] = spawnstruct();
 				}
 				point._scoredebug[#"hash_3f8a9579ce4600de"].score = -5000;
-				point._scoredebug[#"hash_3f8a9579ce4600de"].var_4b5e0304 = "";
+				point._scoredebug[#"hash_3f8a9579ce4600de"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}

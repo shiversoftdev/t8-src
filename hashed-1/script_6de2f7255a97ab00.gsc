@@ -1203,7 +1203,7 @@ function function_418e26fe(var_2118f785 = undefined, helicopter = 0, var_58ca282
 		if(function_16bbdd8b(randompoint))
 		{
 			droppoint = trace_point(randompoint, 0, undefined, -5000);
-			if(isdefined(droppoint) && !oob::function_e3fdd830(droppoint))
+			if(isdefined(droppoint) && !oob::chr_party(droppoint))
 			{
 				droppoint = trace_point(randompoint, 0, var_f5f2246e, var_729c4495);
 				break;

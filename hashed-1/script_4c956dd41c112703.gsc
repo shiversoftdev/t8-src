@@ -126,17 +126,17 @@ function function_88d1bd71()
 		e_part hide();
 	}
 	level thread function_8527738e();
-	var_ac0a54c4 = struct::get("pernell_key");
-	var_feedf3f9 = struct::get("pernell_drawer");
-	if(isdefined(var_ac0a54c4) && isdefined(var_feedf3f9))
+	s_pernell_key = struct::get("pernell_key");
+	s_pernell_drawer = struct::get("pernell_drawer");
+	if(isdefined(s_pernell_key) && isdefined(s_pernell_drawer))
 	{
 		level flag::init("pernell_key_acquired");
-		var_ac0a54c4 zm_unitrigger::create("", 64);
-		var_ac0a54c4 thread function_eb06b83();
-		zm_unitrigger::function_89380dda(var_ac0a54c4.s_unitrigger, 1);
-		var_feedf3f9 zm_unitrigger::create("", 64);
-		var_feedf3f9 thread function_65066810();
-		zm_unitrigger::function_89380dda(var_feedf3f9.s_unitrigger, 1);
+		s_pernell_key zm_unitrigger::create("", 64);
+		s_pernell_key thread function_eb06b83();
+		zm_unitrigger::function_89380dda(s_pernell_key.s_unitrigger, 1);
+		s_pernell_drawer zm_unitrigger::create("", 64);
+		s_pernell_drawer thread function_65066810();
+		zm_unitrigger::function_89380dda(s_pernell_drawer.s_unitrigger, 1);
 	}
 	level.mannequin_ally_spawner = getent("mannequin_ally_spawner", "targetname");
 	level.var_777acf92 = level.mannequin_ally_spawner;
@@ -254,7 +254,7 @@ function function_cff5f83(var_5ea5c94d)
 				#/
 				level flag::set(#"hash_7524c96c167377ef");
 				level.countdown_clock namespace_7d8e6ec3::function_9b1511fa();
-				level thread function_dad6f9d4();
+				level thread visit_prototype_minigun();
 			}
 			else
 			{
@@ -441,7 +441,7 @@ function function_5de15b91()
 }
 
 /*
-	Name: function_dad6f9d4
+	Name: visit_prototype_minigun
 	Namespace: namespace_ba16273b
 	Checksum: 0xF8CF5EE4
 	Offset: 0x1950
@@ -449,7 +449,7 @@ function function_5de15b91()
 	Parameters: 0
 	Flags: Linked
 */
-function function_dad6f9d4()
+function visit_prototype_minigun()
 {
 	self notify(#"hash_78e2cadb25129fa2");
 	self endon(#"hash_78e2cadb25129fa2");
@@ -506,13 +506,13 @@ function function_9101a54d(var_5ea5c94d, ended_early)
 	Parameters: 1
 	Flags: Linked
 */
-function function_a51b6403(var_37e25d8e)
+function function_a51b6403(is_opening)
 {
 	if(!isdefined(self.v_start_pos))
 	{
 		self.v_start_pos = self.origin;
 	}
-	if(var_37e25d8e)
+	if(is_opening)
 	{
 		self playsound("evt_bunker_door_interior_open");
 		self moveto(self.v_start_pos + vectorscale((0, 0, -1), 128), 1);
@@ -590,12 +590,12 @@ function function_1e88595a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_eaa63f5b(var_7d4308f4 = 1)
+function function_eaa63f5b(n_minutes = 1)
 {
 	/#
-		iprintlnbold("" + var_7d4308f4 + "");
+		iprintlnbold("" + n_minutes + "");
 	#/
-	n_time_end = gettime() + var_7d4308f4 * 60 * 1000;
+	n_time_end = gettime() + n_minutes * 60 * 1000;
 	level flag::set(#"hash_1b68ccd211cab219");
 	while(true)
 	{
@@ -727,8 +727,8 @@ function function_8527738e()
 	level.var_c8b6a556 = getent("pernel_paper_stack", "targetname");
 	level.var_c8b6a556 setcandamage(1);
 	level.var_c8b6a556 val::set("private_mannequin_quest_paper_stack", "allowDeath", 0);
-	var_385703b7 = undefined;
-	var_385703b7 = level.var_c8b6a556 waittill(#"damage");
+	s_notify = undefined;
+	s_notify = level.var_c8b6a556 waittill(#"damage");
 	level.var_c8b6a556.tag = util::spawn_model("tag_origin", level.var_c8b6a556.origin);
 	level.var_c8b6a556.tag.angles = level.var_c8b6a556.angles;
 	playfxontag(level._effect[#"hash_fc6d4d4b4df98f8"], level.var_c8b6a556.tag, "tag_origin");
@@ -847,14 +847,14 @@ function timer_actual(kills, time)
 */
 function function_f20dfe6a()
 {
-	var_e29c5f3b = level.var_9acf4bf7[level.var_ebab3906];
+	n_variant = level.var_9acf4bf7[level.var_ebab3906];
 	level.var_ebab3906++;
 	if(level.var_ebab3906 >= level.var_9acf4bf7.size)
 	{
 		level.var_ebab3906 = 0;
 		level.var_9acf4bf7 = array::randomize(level.var_9acf4bf7);
 	}
-	return var_e29c5f3b;
+	return n_variant;
 }
 
 /*
@@ -892,13 +892,13 @@ function function_e453faa6(e_reviver)
 */
 function function_9368a51d()
 {
-	var_e29c5f3b = level.var_a73770b4[level.var_1dcefa7];
+	n_variant = level.var_a73770b4[level.var_1dcefa7];
 	level.var_1dcefa7++;
 	if(level.var_1dcefa7 >= level.var_a73770b4.size)
 	{
 		level.var_1dcefa7 = 0;
 		level.var_a73770b4 = array::randomize(level.var_a73770b4);
 	}
-	return var_e29c5f3b;
+	return n_variant;
 }
 

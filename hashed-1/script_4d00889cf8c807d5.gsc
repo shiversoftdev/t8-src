@@ -50,7 +50,7 @@ private function __init__()
 	{
 		namespace_c3287616::register_archetype(#"skeleton", &function_cf877849, &round_spawn, &function_1ea880bd, 25);
 	}
-	namespace_57ff8cbb::function_cdf5a512(#"skeleton", &function_ad4293a8);
+	zm_cleanup::function_cdf5a512(#"skeleton", &function_ad4293a8);
 	namespace_32192f7::function_95c1dd81(#"skeleton", &function_8609d56e);
 	level.var_5fc2833 = getentarray("zombie_skeleton_spawner", "script_noteworthy");
 	level.var_7b7fd31e = getentarray("zombie_skeleton_spear_spawner", "script_noteworthy");
@@ -129,7 +129,7 @@ private function function_8609d56e()
 	Parameters: 5
 	Flags: Linked
 */
-function function_1ea880bd(b_force_spawn = 0, var_eb3a8721, round_number, var_690f5889, var_cae388a2)
+function function_1ea880bd(b_force_spawn = 0, var_eb3a8721, round_number, b_spear, b_helmet)
 {
 	if(!b_force_spawn && !function_bdd7ec59())
 	{
@@ -153,17 +153,17 @@ function function_1ea880bd(b_force_spawn = 0, var_eb3a8721, round_number, var_69
 	{
 		return undefined;
 	}
-	if(!isdefined(var_690f5889))
+	if(!isdefined(b_spear))
 	{
-		var_690f5889 = math::cointoss();
+		b_spear = math::cointoss();
 	}
-	if(!isdefined(var_cae388a2))
+	if(!isdefined(b_helmet))
 	{
-		var_cae388a2 = math::cointoss();
+		b_helmet = math::cointoss();
 	}
-	if(var_690f5889)
+	if(b_spear)
 	{
-		if(var_cae388a2)
+		if(b_helmet)
 		{
 			var_5fc2833 = level.var_c34db86;
 		}
@@ -172,7 +172,7 @@ function function_1ea880bd(b_force_spawn = 0, var_eb3a8721, round_number, var_69
 			var_5fc2833 = level.var_7b7fd31e;
 		}
 	}
-	else if(var_cae388a2)
+	else if(b_helmet)
 	{
 		var_5fc2833 = level.var_ea48e91;
 	}
@@ -183,7 +183,7 @@ function function_1ea880bd(b_force_spawn = 0, var_eb3a8721, round_number, var_69
 	ai = zombie_utility::spawn_zombie(array::random(var_5fc2833), undefined, undefined, round_number);
 	if(isdefined(ai))
 	{
-		if(!var_690f5889)
+		if(!b_spear)
 		{
 			ai.var_4e9f7942 = 1;
 		}

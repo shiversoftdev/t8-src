@@ -157,7 +157,7 @@ function track_player_eyes()
 		{
 			waitframe(1);
 		}
-		if(n_time >= 25 && self adsbuttonpressed() && self zm_zonemgr::entity_in_zone("cage") && function_4920f2db(self getcurrentweapon()) && self zm_utility::is_player_looking_at(var_616e76c5.origin, 0.9975, 0, self))
+		if(n_time >= 25 && self adsbuttonpressed() && self zm_zonemgr::entity_in_zone("cage") && is_weapon_sniper(self getcurrentweapon()) && self zm_utility::is_player_looking_at(var_616e76c5.origin, 0.9975, 0, self))
 		{
 			self zm_utility::do_player_general_vox("general", "scare_react", undefined, 100);
 			self clientfield::increment_to_player("" + #"hash_f2d0b920043dbbd", 1);
@@ -172,7 +172,7 @@ function track_player_eyes()
 }
 
 /*
-	Name: function_4920f2db
+	Name: is_weapon_sniper
 	Namespace: namespace_d034654d
 	Checksum: 0x20509E51
 	Offset: 0x7A0
@@ -180,7 +180,7 @@ function track_player_eyes()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4920f2db(w_weapon)
+private function is_weapon_sniper(w_weapon)
 {
 	if(isdefined(w_weapon.issniperweapon) && w_weapon.issniperweapon)
 	{
@@ -244,8 +244,8 @@ function function_13c87ace(var_a276c861, var_19e802fa)
 */
 function function_e6ce9708(var_a276c861)
 {
-	var_2ad61d60 = getent("ls_blocker", "targetname");
-	var_2ad61d60 delete();
+	spawn_instant_revive = getent("ls_blocker", "targetname");
+	spawn_instant_revive delete();
 	level.var_ff3d8977 connectpaths();
 	level.var_ff3d8977 delete();
 	level.ls_door rotateyaw(90, 1.6);

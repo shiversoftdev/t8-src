@@ -56,9 +56,9 @@ function __init__()
 	level.hero_weapon[#"gravityspikes"][0] = getweapon(#"hash_1d3a5509fa2c9ee6");
 	level.hero_weapon[#"gravityspikes"][1] = getweapon(#"hash_1d3a5409fa2c9d33");
 	level.hero_weapon[#"gravityspikes"][2] = getweapon(#"hash_1d3a5309fa2c9b80");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_1d3a5509fa2c9ee6");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_1d3a5409fa2c9d33");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_1d3a5309fa2c9b80");
+	zm_loadout::register_hero_weapon_for_level(#"hash_1d3a5509fa2c9ee6");
+	zm_loadout::register_hero_weapon_for_level(#"hash_1d3a5409fa2c9d33");
+	zm_loadout::register_hero_weapon_for_level(#"hash_1d3a5309fa2c9b80");
 	callback::on_connect(&function_326aec56);
 	callback::on_player_damage(&player_invulnerable_during_gravityspike_slam);
 	level.n_zombies_lifted_for_ragdoll = 0;
@@ -238,14 +238,14 @@ private function function_e0537f19(var_4052dd74)
 	self notify("3e6e1fb0a555c2a5");
 	self endon("3e6e1fb0a555c2a5");
 	self endon(#"disconnect");
-	var_bcd1c2ff = self gadgetgetslot(var_4052dd74);
-	if(self function_36dfc05f(var_bcd1c2ff))
+	n_slot = self gadgetgetslot(var_4052dd74);
+	if(self function_36dfc05f(n_slot))
 	{
-		var_966dad48 = self gadgetpowerget(var_bcd1c2ff);
+		var_966dad48 = self gadgetpowerget(n_slot);
 		while(var_966dad48 > 0)
 		{
 			waitframe(1);
-			var_966dad48 = self gadgetpowerget(var_bcd1c2ff);
+			var_966dad48 = self gadgetpowerget(n_slot);
 		}
 		self ability_player::function_f2250880(var_4052dd74);
 		self.var_80612bea = 0;
@@ -276,15 +276,15 @@ function gravityspikes_attack_watcher(var_4052dd74, n_level)
 	{
 		if(n_level >= 3)
 		{
-			var_88706ea7 = undefined;
-			var_88706ea7 = self waittill(#"weapon_melee_power");
+			s_result = undefined;
+			s_result = self waittill(#"weapon_melee_power");
 		}
 		else
 		{
-			var_88706ea7 = undefined;
-			var_88706ea7 = self waittill(#"weapon_melee_power", #"weapon_melee");
+			s_result = undefined;
+			s_result = self waittill(#"weapon_melee_power", #"weapon_melee");
 		}
-		if(var_88706ea7.weapon == var_4052dd74)
+		if(s_result.weapon == var_4052dd74)
 		{
 			self playrumbleonentity("talon_spike");
 			self thread knockdown_zombies_slam(1);
@@ -474,9 +474,9 @@ function gravityspikes_altfire_watcher(var_4052dd74)
 	self endon(#"disconnect", #"bled_out", #"death", #"gravity_spike_expired", #"hash_236d4842e92ff523");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee_power_left");
-		if(var_88706ea7.weapon == var_4052dd74 && (!(isdefined(self.var_de01b5c2) && self.var_de01b5c2)))
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee_power_left");
+		if(s_result.weapon == var_4052dd74 && (!(isdefined(self.var_de01b5c2) && self.var_de01b5c2)))
 		{
 			self.var_de01b5c2 = 1;
 			self playrumbleonentity("damage_heavy");
@@ -714,9 +714,9 @@ function function_28be8532(var_4052dd74)
 	self endon(#"disconnect", #"bled_out", #"death", #"gravity_spike_expired", #"hash_55b145e95edc2ebe");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee");
-		if(var_88706ea7.weapon === var_4052dd74 && (isdefined(self gravity_spike_position_valid()) && self gravity_spike_position_valid()))
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee");
+		if(s_result.weapon === var_4052dd74 && (isdefined(self gravity_spike_position_valid()) && self gravity_spike_position_valid()))
 		{
 			if(isdefined(self.var_de01b5c2) && self.var_de01b5c2)
 			{
@@ -859,7 +859,7 @@ private function function_23494ff7(e_revivee)
 		{
 			e_revivee.var_ec334996 = e_revivee.var_ec334996 + 100;
 		}
-		e_revivee.get_revive_time = &function_81c17e5;
+		e_revivee.get_revive_time = &override_revive_time;
 		e_revivee.var_84280a99 = self;
 		e_revivee.var_4fc8bf2a = 1;
 		self thread function_9c510b18(e_revivee);
@@ -883,7 +883,7 @@ private function function_9c510b18(e_revivee)
 }
 
 /*
-	Name: function_81c17e5
+	Name: override_revive_time
 	Namespace: zm_weap_gravityspikes
 	Checksum: 0xC6CA4D9D
 	Offset: 0x2C60
@@ -891,7 +891,7 @@ private function function_9c510b18(e_revivee)
 	Parameters: 1
 	Flags: Linked
 */
-function function_81c17e5(e_revivee)
+function override_revive_time(e_revivee)
 {
 	n_time = 3;
 	if(self hasperk(#"specialty_quickrevive"))
@@ -1732,14 +1732,14 @@ private function corpse_off_navmesh_watcher(n_timeout)
 	{
 		return;
 	}
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill_timeout(n_timeout, #"actor_corpse", #"deleted");
-	if(var_88706ea7._notify == "actor_corpse")
+	s_result = undefined;
+	s_result = self waittill_timeout(n_timeout, #"actor_corpse", #"deleted");
+	if(s_result._notify == "actor_corpse")
 	{
-		v_pos = getclosestpointonnavmesh(var_88706ea7.corpse.origin, 256);
-		if(!isdefined(v_pos) || var_88706ea7.corpse.origin[2] > v_pos[2] + 64)
+		v_pos = getclosestpointonnavmesh(s_result.corpse.origin, 256);
+		if(!isdefined(v_pos) || s_result.corpse.origin[2] > v_pos[2] + 64)
 		{
-			var_88706ea7.corpse thread do_zombie_explode();
+			s_result.corpse thread do_zombie_explode();
 		}
 	}
 	else if(isdefined(self))
@@ -1809,9 +1809,9 @@ private function gravity_spike_melee_kill(v_position, player, var_52b14308)
 function function_478a4910(var_4052dd74)
 {
 	self endon(#"disconnect", #"bled_out", #"death", #"gravity_spike_expired", #"hash_236d4842e92ff523");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee_power_left");
-	if(var_88706ea7.weapon == var_4052dd74)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee_power_left");
+	if(s_result.weapon == var_4052dd74)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87ca13e3ecd52d", #"gravityspikes");
 	}

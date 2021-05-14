@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_29ed25a648820a10", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_29ed25a648820a10", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -92,7 +92,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_29ed25a648820a10");
+	challenge = zm_trial::function_a36e8c38(#"hash_29ed25a648820a10");
 	return isdefined(challenge);
 }
 

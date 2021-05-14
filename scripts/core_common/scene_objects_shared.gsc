@@ -1564,8 +1564,8 @@ function function_72f549e0(s_shot, var_37fa9b04)
 	var_520e99b5 = s_shot.damagethreshold;
 	if(!(isdefined(self._s.var_a1c5c678) && self._s.var_a1c5c678))
 	{
-		var_f61b965e = var_f2059ab8 <= 0;
-		var_37fa9b04.attacker util::show_hit_marker(var_f61b965e);
+		b_dead = var_f2059ab8 <= 0;
+		var_37fa9b04.attacker util::show_hit_marker(b_dead);
 	}
 	if(var_f2059ab8 <= var_520e99b5)
 	{
@@ -1933,7 +1933,7 @@ function set_objective()
 	Parameters: 3
 	Flags: Linked
 */
-function function_376c9d87(var_ec50a0d3, var_823c6db2, player)
+function function_376c9d87(var_ec50a0d3, n_movement, player)
 {
 	if(player adsbuttonpressed())
 	{
@@ -1941,7 +1941,7 @@ function function_376c9d87(var_ec50a0d3, var_823c6db2, player)
 	}
 	if(var_ec50a0d3.var_9532f6db == "move_up" || var_ec50a0d3.var_9532f6db == "move_right")
 	{
-		if(var_823c6db2 >= 0)
+		if(n_movement >= 0)
 		{
 			return self._str_current_anim;
 		}
@@ -1949,7 +1949,7 @@ function function_376c9d87(var_ec50a0d3, var_823c6db2, player)
 	}
 	if(var_ec50a0d3.var_9532f6db == "move_down" || var_ec50a0d3.var_9532f6db == "move_left")
 	{
-		if(var_823c6db2 <= 0)
+		if(n_movement <= 0)
 		{
 			return self._str_current_anim;
 		}
@@ -2471,7 +2471,7 @@ function spawn_ent()
 	{
 		spawner::global_spawn_throttle();
 	}
-	if(isspawner(self._e) && (function_19ddfa5() || is_vehicle()))
+	if(isspawner(self._e) && (is_actor() || is_vehicle()))
 	{
 		/#
 			if(self._o_scene._b_testing)
@@ -2820,7 +2820,7 @@ function function_71b7c9e3(player)
 }
 
 /*
-	Name: function_19ddfa5
+	Name: is_actor
 	Namespace: csceneobject
 	Checksum: 0x5A146ED5
 	Offset: 0x8500
@@ -2828,7 +2828,7 @@ function function_71b7c9e3(player)
 	Parameters: 0
 	Flags: Linked
 */
-function function_19ddfa5()
+function is_actor()
 {
 	return self._s.type === "actor" && (!(isdefined(self._s.var_615b1f16) && self._s.var_615b1f16));
 }
@@ -3219,7 +3219,7 @@ private autoexec function csceneobject()
 	classes.csceneobject[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.csceneobject[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.csceneobject[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.csceneobject[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.csceneobject[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.csceneobject[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.csceneobject[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.csceneobject[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -3536,7 +3536,7 @@ function function_73fcc32b(obj, var_87439bc3)
 */
 function function_ff8b808(obj, var_90acec35)
 {
-	if(!isdefined(var_90acec35.var_93145ec8))
+	if(!isdefined(var_90acec35.specialistname))
 	{
 		return;
 	}
@@ -3545,7 +3545,7 @@ function function_ff8b808(obj, var_90acec35)
 	{
 		foreach(n_shot, var_f4348b83 in var_90acec35.shots)
 		{
-			var_d57bf586 = var_90acec35.var_93145ec8;
+			var_d57bf586 = var_90acec35.specialistname;
 			if(!isdefined(obj.var_2df1a365))
 			{
 				obj.var_2df1a365 = [];
@@ -4482,7 +4482,7 @@ function play(str_shot = "play", a_ents, b_testing = 0, str_mode = "")
 			var_79584e08 = float(args[1]);
 			self.var_a0c66830 = scene::function_8582657c(self._s, str_shot);
 		}
-		self.var_fb968c80 = 1;
+		self.b_play_from_time = 1;
 		self._str_mode = "";
 		if(issubstr(args[0], "noai"))
 		{
@@ -4620,7 +4620,7 @@ function play(str_shot = "play", a_ents, b_testing = 0, str_mode = "")
 		}
 	}
 	wait_till_shot_finished(str_shot);
-	self.var_fb968c80 = undefined;
+	self.b_play_from_time = undefined;
 	if(isdefined(self._s.spectateonjoin) && self._s.spectateonjoin)
 	{
 		level.scene_should_spectate_on_hot_join = undefined;

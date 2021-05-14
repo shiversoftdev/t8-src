@@ -62,7 +62,7 @@ function freezeplayerforroundend()
 */
 function callback_playerconnect()
 {
-	namespace_48f3568::set_character();
+	zm_characters::set_character();
 	self thread zm::initialblack();
 	thread notifyconnecting();
 	self.statusicon = "$default";

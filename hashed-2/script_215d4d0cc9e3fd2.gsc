@@ -4,11 +4,11 @@
 #using scripts\core_common\bots\bot_action.gsc;
 #using scripts\core_common\system_shared.gsc;
 
-#namespace namespace_ae1e6a81;
+#namespace zm_bot_action;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xBCD51EBA
 	Offset: 0xB8
 	Size: 0x44
@@ -17,12 +17,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_6ef23cce276a3d59", &__init__, &__main__, undefined);
+	system::register(#"zm_bot_action", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x80F724D1
 	Offset: 0x108
 	Size: 0x4
@@ -35,7 +35,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x49FA6893
 	Offset: 0x118
 	Size: 0x94
@@ -54,7 +54,7 @@ function __main__()
 
 /*
 	Name: function_66dacac1
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xE0FE932E
 	Offset: 0x1B8
 	Size: 0x234
@@ -66,15 +66,15 @@ function function_66dacac1()
 	bot_action::register_action(#"hash_4a5a38bf3502d071", &bot_action::current_melee_weapon_rank, &function_aa4daa54, &bot_action::melee_enemy);
 	bot_action::register_action(#"hash_22d98a5a241c78ba", &bot_action::rank_priority, &function_b4d8b7d6, &function_3c22de9a);
 	bot_action::register_action(#"hash_5c2824c8a8f125f7", &bot_action::rank_priority, &function_ae19f70f, &function_2c6e5988);
-	bot_action::register_action(#"hash_36db6fdf93fe39c9", &bot_action::rank_priority, &function_f4707540, &function_213b8261);
-	bot_action::register_action(#"hash_245ea5d98eadd81e", &bot_action::current_weapon_rank, &bot_action::reload_weapon_weight, &function_180db145);
-	bot_action::register_action(#"hash_14193421bd1fb5a3", &bot_action::rank_priority, &function_296516b4, &bot_action::revive_player);
-	bot_action::register_action(#"hash_501bf349716d3a07", &bot_action::function_728212e8, &bot_action::scan_for_threats_weight, &function_3061f67f);
+	bot_action::register_action(#"zombie_auto_revive", &bot_action::rank_priority, &function_f4707540, &zombie_auto_revive);
+	bot_action::register_action(#"zombie_reload_weapon", &bot_action::current_weapon_rank, &bot_action::reload_weapon_weight, &zombie_reload_weapon);
+	bot_action::register_action(#"zombie_revive_player", &bot_action::rank_priority, &function_296516b4, &bot_action::revive_player);
+	bot_action::register_action(#"zombie_scan_for_threats", &bot_action::function_728212e8, &bot_action::scan_for_threats_weight, &zombie_scan_for_threats);
 }
 
 /*
 	Name: register_weapons
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x123850E
 	Offset: 0x3F8
 	Size: 0x17C
@@ -99,7 +99,7 @@ function register_weapons()
 
 /*
 	Name: function_25f1e3c1
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x80F724D1
 	Offset: 0x580
 	Size: 0x4
@@ -112,7 +112,7 @@ function function_25f1e3c1()
 
 /*
 	Name: function_c31a5c42
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x80F724D1
 	Offset: 0x590
 	Size: 0x4
@@ -125,7 +125,7 @@ function function_c31a5c42()
 
 /*
 	Name: function_95600a05
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xBE037C84
 	Offset: 0x5A0
 	Size: 0x38
@@ -141,7 +141,7 @@ function function_95600a05(var_b594a2cd)
 
 /*
 	Name: function_9393f3df
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x424B512F
 	Offset: 0x5E0
 	Size: 0x106
@@ -166,7 +166,7 @@ function function_9393f3df(var_b594a2cd)
 
 /*
 	Name: function_5f02aeee
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xDC26C53
 	Offset: 0x6F0
 	Size: 0x402
@@ -257,7 +257,7 @@ function function_5f02aeee(var_b594a2cd)
 
 /*
 	Name: function_ef04e9cc
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x24291BFB
 	Offset: 0xB00
 	Size: 0x6E
@@ -276,7 +276,7 @@ function function_ef04e9cc(var_b594a2cd)
 
 /*
 	Name: function_aa4daa54
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x82D396A0
 	Offset: 0xB78
 	Size: 0x352
@@ -345,15 +345,15 @@ function function_aa4daa54(var_b594a2cd)
 }
 
 /*
-	Name: function_213b8261
-	Namespace: namespace_ae1e6a81
+	Name: zombie_auto_revive
+	Namespace: zm_bot_action
 	Checksum: 0xE2F4E5DB
 	Offset: 0xED8
 	Size: 0x3E
 	Parameters: 1
 	Flags: Linked
 */
-function function_213b8261(var_b594a2cd)
+function zombie_auto_revive(var_b594a2cd)
 {
 	while(isdefined(self.revivetrigger))
 	{
@@ -364,7 +364,7 @@ function function_213b8261(var_b594a2cd)
 
 /*
 	Name: function_f4707540
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x1402DBA9
 	Offset: 0xF20
 	Size: 0xC2
@@ -393,7 +393,7 @@ function function_f4707540(var_b594a2cd)
 
 /*
 	Name: function_ae19f70f
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x5481A9B6
 	Offset: 0xFF0
 	Size: 0x3CA
@@ -485,7 +485,7 @@ function function_ae19f70f(var_b594a2cd)
 
 /*
 	Name: function_99428ae2
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x4F26E948
 	Offset: 0x13C8
 	Size: 0xCA
@@ -503,7 +503,7 @@ function function_99428ae2(var_b594a2cd)
 
 /*
 	Name: function_f59547eb
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x23D637F2
 	Offset: 0x14A0
 	Size: 0xC6
@@ -520,7 +520,7 @@ private function function_f59547eb(trigger)
 
 /*
 	Name: function_2c6e5988
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x87DE6FC6
 	Offset: 0x1570
 	Size: 0x84
@@ -538,7 +538,7 @@ function function_2c6e5988(var_b594a2cd)
 
 /*
 	Name: function_d41104ab
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xE2BF386C
 	Offset: 0x1600
 	Size: 0x142
@@ -574,7 +574,7 @@ function function_d41104ab(interact)
 
 /*
 	Name: function_b4d8b7d6
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xCD67ED86
 	Offset: 0x1750
 	Size: 0x3CA
@@ -666,7 +666,7 @@ function function_b4d8b7d6(var_b594a2cd)
 
 /*
 	Name: function_3c22de9a
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0xB0F5BD1F
 	Offset: 0x1B28
 	Size: 0xA4
@@ -688,15 +688,15 @@ function function_3c22de9a(var_b594a2cd)
 }
 
 /*
-	Name: function_3061f67f
-	Namespace: namespace_ae1e6a81
+	Name: zombie_scan_for_threats
+	Namespace: zm_bot_action
 	Checksum: 0x3BE96FA
 	Offset: 0x1BD8
 	Size: 0x2AA
 	Parameters: 1
 	Flags: Linked
 */
-function function_3061f67f(var_b594a2cd)
+function zombie_scan_for_threats(var_b594a2cd)
 {
 	var_fdfb592e = self bot_action::is_target_visible(var_b594a2cd);
 	var_b594a2cd.var_fdfb592e = var_fdfb592e;
@@ -740,15 +740,15 @@ function function_3061f67f(var_b594a2cd)
 }
 
 /*
-	Name: function_180db145
-	Namespace: namespace_ae1e6a81
+	Name: zombie_reload_weapon
+	Namespace: zm_bot_action
 	Checksum: 0xF22812BE
 	Offset: 0x1E90
 	Size: 0x206
 	Parameters: 1
 	Flags: Linked
 */
-function function_180db145(var_b594a2cd)
+function zombie_reload_weapon(var_b594a2cd)
 {
 	weapon = self getcurrentweapon();
 	if(!self isreloading())
@@ -790,7 +790,7 @@ function function_180db145(var_b594a2cd)
 
 /*
 	Name: function_296516b4
-	Namespace: namespace_ae1e6a81
+	Namespace: zm_bot_action
 	Checksum: 0x3F6E1AD4
 	Offset: 0x20A0
 	Size: 0x722

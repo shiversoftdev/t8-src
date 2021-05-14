@@ -79,9 +79,9 @@ function function_66dacac1()
 	bot_action::register_action(#"throw_molotov", &bot_action::weapon_rank, &function_1275c409, &bot_action::function_90c011d5);
 	bot_action::register_action(#"throw_grenade", &bot_action::weapon_rank, &function_32e8b358, &bot_action::function_90c011d5);
 	bot_action::register_action(#"hash_207275481ec8c22b", &bot_action::weapon_rank, &function_369cb1a5, &bot_action::function_94f96101);
-	bot_action::register_action(#"hash_63c5000998c406e2", &bot_action::weapon_rank, &bot_action::function_39317d6e, &bot_action::function_3eff74d6);
-	bot_action::register_action(#"hash_7f17997c50415cb7", &bot_action::weapon_rank, &bot_action::function_30636b1c, &bot_action::function_3eff74d6);
-	bot_action::register_action(#"hash_291f02a64600bb72", &bot_action::weapon_rank, &bot_action::function_38d0d1df, &bot_action::function_3eff74d6);
+	bot_action::register_action(#"hash_63c5000998c406e2", &bot_action::weapon_rank, &bot_action::function_39317d6e, &bot_action::test_gadget);
+	bot_action::register_action(#"hash_7f17997c50415cb7", &bot_action::weapon_rank, &bot_action::function_30636b1c, &bot_action::test_gadget);
+	bot_action::register_action(#"hash_291f02a64600bb72", &bot_action::weapon_rank, &bot_action::function_38d0d1df, &bot_action::test_gadget);
 	if(!function_f99d2668())
 	{
 		self function_938667bd();
@@ -103,7 +103,7 @@ function register_weapons()
 	bot_action::register_weapon(#"knife_held", &bot_action::function_d31777fa);
 	bot_action::register_weapon(#"bare_hands", &bot_action::function_d31777fa);
 	bot_action::function_f4302f2a(#"gadget_health_regen", &bot_action::function_2c39b990, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"hash_1d58c6214174d3d8", &bot_action::function_2c39b990, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"gadget_medicalinjectiongun", &bot_action::function_2c39b990, &bot_action::function_a9847723);
 	self function_b7cdffc();
 	self function_d5ef6ef3();
 	self function_c2e797aa();
@@ -123,7 +123,7 @@ function function_25f1e3c1()
 	bot_action::function_a2c83569(#"knife_held", #"melee_enemy");
 	bot_action::function_a2c83569(#"bare_hands", #"melee_enemy");
 	bot_action::function_7e847a84(#"gadget_health_regen", #"hash_43618a52a3bededc");
-	bot_action::function_7e847a84(#"hash_1d58c6214174d3d8", #"hash_43618a52a3bededc");
+	bot_action::function_7e847a84(#"gadget_medicalinjectiongun", #"hash_43618a52a3bededc");
 	self function_aaede90c();
 	self function_aa5475f();
 	self function_865733c1();
@@ -195,31 +195,31 @@ function function_d47799c8()
 */
 function function_b7cdffc()
 {
-	bot_action::function_f4302f2a(#"eq_swat_grenade", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_swat_grenade", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"sig_buckler_dw", &bot_action::function_1879a202, &bot_action::function_ec16df22);
-	bot_action::function_f4302f2a(#"eq_cluster_semtex_grenade", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_cluster_semtex_grenade", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"hero_pineapplegun", &bot_action::function_1879a202, &bot_action::function_ec16df22);
 	bot_action::function_f4302f2a(#"gadget_supplypod", &bot_action::function_1879a202, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"eq_localheal", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_localheal", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"gadget_radiation_field", &bot_action::function_1879a202, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"hero_flamethrower", &bot_action::function_2c39b990, &bot_action::function_ec16df22);
-	bot_action::function_f4302f2a(#"eq_tripwire", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_tripwire", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"ability_dog", &bot_action::function_1879a202, &bot_action::function_8171a298);
-	bot_action::function_f4302f2a(#"eq_hawk", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_hawk", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"hash_40380537847df901", &bot_action::function_1879a202, &bot_action::function_ec16df22);
-	bot_action::function_f4302f2a(#"hash_4a4ba36128b6582f", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"hash_4a4ba36128b6582f", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"shock_rifle", &bot_action::function_1879a202, &bot_action::function_ec16df22);
-	bot_action::function_f4302f2a(#"eq_sensor", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_sensor", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"gadget_vision_pulse", &bot_action::function_1879a202, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"hash_3a19c6a9c8caef33", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"hash_3a19c6a9c8caef33", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"hash_4bb2d7f789b561eb", &bot_action::function_1879a202, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"gadget_spawnbeacon", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"gadget_spawnbeacon", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"hero_annihilator", &bot_action::function_2c39b990, &bot_action::function_ec16df22);
-	bot_action::function_f4302f2a(#"eq_smoke", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_smoke", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"sig_blade", &bot_action::function_1879a202, &bot_action::function_ec16df22);
-	bot_action::function_f4302f2a(#"eq_concertina_wire", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_concertina_wire", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"ability_smart_cover", &bot_action::function_1879a202, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"hash_21b346649d376bf3", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"hash_21b346649d376bf3", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 	bot_action::function_f4302f2a(#"gadget_icepick", &bot_action::function_1879a202, &bot_action::function_ec16df22);
 }
 
@@ -234,12 +234,12 @@ function function_b7cdffc()
 */
 function function_d5ef6ef3()
 {
-	bot_action::function_f4302f2a(#"eq_molotov", &bot_action::function_6d366261, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"eq_sticky_grenade", &bot_action::function_6d366261, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"eq_slow_grenade", &bot_action::function_6d366261, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"frag_grenade", &bot_action::function_6d366261, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"hatchet", &bot_action::function_6d366261, &bot_action::function_a9847723);
-	bot_action::function_f4302f2a(#"trophy_system", &bot_action::function_6d366261, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_molotov", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_sticky_grenade", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"eq_slow_grenade", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"frag_grenade", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"hatchet", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
+	bot_action::function_f4302f2a(#"trophy_system", &bot_action::registermus_gramophone_electricreactidgunterminate, &bot_action::function_a9847723);
 }
 
 /*
@@ -287,7 +287,7 @@ function function_aaede90c()
 	bot_action::function_a2c83569(#"sig_buckler_dw", #"hash_3d7dd2878425bcce");
 	bot_action::function_7e847a84(#"eq_cluster_semtex_grenade", #"throw_grenade");
 	bot_action::function_7e847a84(#"hero_pineapplegun", #"hash_5397239dd3c8da8d");
-	bot_action::function_a2c83569(#"hero_pineapplegun", #"hash_220292032758ecf8");
+	bot_action::function_a2c83569(#"hero_pineapplegun", #"fire_grenade");
 	bot_action::function_7e847a84(#"gadget_supplypod", #"hash_6fbd1b1c42e3a0c5");
 	bot_action::function_7e847a84(#"eq_localheal", #"hash_506cd36e6a959fa");
 	bot_action::function_7e847a84(#"gadget_radiation_field", #"hash_49634476519ac7ef");
@@ -1526,7 +1526,7 @@ function function_1c7ea685(var_b594a2cd)
 	ignore_entity = undefined;
 	weapon = var_b594a2cd.weapon;
 	results = deployable::function_54d27855(player_pos, player_angles, player_eye_pos, weapon, ignore_entity);
-	gameplay_allows_deploy = namespace_bba43f7d::function_1f8cd247(results.origin, results.angles, self);
+	gameplay_allows_deploy = supplypod::function_1f8cd247(results.origin, results.angles, self);
 	if(!gameplay_allows_deploy)
 	{
 		/#
@@ -1657,7 +1657,7 @@ function function_d2f7890(var_b594a2cd)
 		self bot_action::aim_at_target(var_b594a2cd);
 	}
 	self bot_action::function_ccdcc5d9(weapon);
-	self waittill(#"hash_7f87135f183e43c7");
+	self waittill(#"tripwire_spawn");
 	var_c7b51a54 = gettime();
 	var_b594a2cd.target = var_b594a2cd.target2;
 	self bot_action::function_8a2b82ad(var_b594a2cd);

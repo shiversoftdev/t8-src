@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"no_powerups", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"no_powerups", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -92,7 +92,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"no_powerups");
+	challenge = zm_trial::function_a36e8c38(#"no_powerups");
 	return isdefined(challenge) && (isdefined(challenge.active) && challenge.active);
 }
 
@@ -107,7 +107,7 @@ function is_active()
 */
 function function_2fc5f13()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"no_powerups");
+	challenge = zm_trial::function_a36e8c38(#"no_powerups");
 	/#
 		assert(isdefined(challenge));
 	#/
@@ -132,7 +132,7 @@ private function function_138aec8e(attacker)
 	{
 		return;
 	}
-	challenge = namespace_f551babc::function_a36e8c38(#"no_powerups");
+	challenge = zm_trial::function_a36e8c38(#"no_powerups");
 	/#
 		assert(isdefined(challenge));
 	#/

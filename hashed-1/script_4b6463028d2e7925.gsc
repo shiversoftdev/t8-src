@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_4afdb00097a95776", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_4afdb00097a95776", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -69,7 +69,7 @@ private function function_9e7b3f4d(round_reset)
 	namespace_b22c99a5::function_f3dbeda7();
 	if(!round_reset && (!(isdefined(level.var_e60b8c3a) && level.var_e60b8c3a)))
 	{
-		namespace_f551babc::fail(#"hash_12f3fd15a168901");
+		zm_trial::fail(#"hash_12f3fd15a168901");
 	}
 	level.var_e60b8c3a = undefined;
 }

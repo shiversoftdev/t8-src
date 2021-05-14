@@ -185,7 +185,7 @@ function istouchinganyoobtrigger()
 }
 
 /*
-	Name: function_e3fdd830
+	Name: chr_party
 	Namespace: oob
 	Checksum: 0xC654EF7E
 	Offset: 0xAB0
@@ -193,7 +193,7 @@ function istouchinganyoobtrigger()
 	Parameters: 1
 	Flags: Linked
 */
-function function_e3fdd830(point)
+function chr_party(point)
 {
 	level.oob_triggers = array::remove_undefined(level.oob_triggers);
 	foreach(trigger in level.oob_triggers)

@@ -22,14 +22,14 @@ function init_clientfields()
 	clientfield::register("scriptmover", "" + #"hash_34321e7ca580e772", 8000, 1, "int", &function_f6c7ad1b, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_7e5a6f88110635fc", 8000, 2, "int", &function_959fcbff, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_33fddc34b8b16bca", 8000, 1, "counter", &function_a7012457, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_3d81eda4ac6c4d15", 8000, 1, "int", &function_a5f32c8f, 0, 0);
+	clientfield::register("toplayer", "" + #"player_dragged", 8000, 1, "int", &function_a5f32c8f, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_4be98315796ad666", 8000, 1, "int", &function_f568352e, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_4f277352731d8da", 8000, 1, "int", &function_d61c8c59, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_30aa04edc476253f", 8000, 1, "int", &function_3c4642b1, 0, 0);
 	level._effect[#"hash_7e5a6f88110635fc"] = #"hash_31d36dbca458b0dd";
 	level._effect[#"hash_2314cac4e546c79"] = #"hash_6d3c039680511839";
 	level._effect[#"hash_dea2f3dceff7569"] = #"zombie/fx_spawn_dirt_body_billowing_zmb";
-	level._effect[#"hash_69a7c889c962b6e3"] = #"hash_6484874c383f70f9";
+	level._effect[#"player_afterlife"] = #"hash_6484874c383f70f9";
 	level._effect[#"hash_418533e3f4de4e1a"] = #"hash_5586bb7a838e870a";
 }
 
@@ -165,7 +165,7 @@ function function_a5f32c8f(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(newval == 1)
 	{
-		self.var_fe11bb61 = playfxoncamera(localclientnum, level._effect[#"hash_69a7c889c962b6e3"]);
+		self.var_fe11bb61 = playfxoncamera(localclientnum, level._effect[#"player_afterlife"]);
 		self postfx::playpostfxbundle(#"hash_66a9fee7028a1e13");
 		if(!isdefined(self.var_9096803d))
 		{

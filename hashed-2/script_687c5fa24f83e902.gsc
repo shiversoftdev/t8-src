@@ -250,9 +250,9 @@ function function_17d973ec(localclientnum)
 	player = function_5c10bd79(localclientnum);
 	player notify(#"hash_5c39bdc22418d792");
 	player endon(#"hash_5c39bdc22418d792");
-	if(!isdefined(player.var_5391a162))
+	if(!isdefined(player.smartcover))
 	{
-		player.var_5391a162 = spawnstruct();
+		player.smartcover = spawnstruct();
 	}
 }
 
@@ -388,13 +388,13 @@ function function_d66a0190(row, column)
 */
 function function_dbaf4647(localclientnum)
 {
-	var_5391a162 = self;
+	smartcover = self;
 	for(rowindex = 0; rowindex < level.var_5101157d.bundle.var_f0b4da50; rowindex++)
 	{
 		for(colindex = 1; colindex <= level.var_5101157d.bundle.var_b118698f; colindex++)
 		{
 			var_c4027b0a = function_d66a0190(rowindex, colindex);
-			var_5391a162 showpart(localclientnum, var_c4027b0a);
+			smartcover showpart(localclientnum, var_c4027b0a);
 		}
 	}
 }
@@ -410,7 +410,7 @@ function function_dbaf4647(localclientnum)
 */
 function function_5a8becdc(localclientnum, player, var_7daa4df9, var_4b1c8937)
 {
-	var_5391a162 = self;
+	smartcover = self;
 	var_59cc3b18 = level.var_5101157d.bundle.maxheight / level.var_5101157d.bundle.var_f0b4da50;
 	var_6d7689d4 = level.var_5101157d.bundle.maxwidth / level.var_5101157d.bundle.var_b118698f;
 	var_b963136f = int(var_7daa4df9.width / var_6d7689d4);
@@ -433,7 +433,7 @@ function function_5a8becdc(localclientnum, player, var_7daa4df9, var_4b1c8937)
 		for(colindex = 1; colindex < level.var_5101157d.bundle.var_b118698f; colindex++)
 		{
 			var_c4027b0a = function_d66a0190(rownum, colindex);
-			var_5391a162 hidepart(localclientnum, var_c4027b0a);
+			smartcover hidepart(localclientnum, var_c4027b0a);
 		}
 	}
 	var_f636c423 = level.var_5101157d.bundle.var_b118698f - var_b963136f;
@@ -445,8 +445,8 @@ function function_5a8becdc(localclientnum, player, var_7daa4df9, var_4b1c8937)
 		{
 			var_e5b19696 = function_d66a0190(rowindex, cola);
 			var_1ffc0b2e = function_d66a0190(rowindex, var_b2d5a637);
-			var_5391a162 hidepart(localclientnum, var_e5b19696);
-			var_5391a162 hidepart(localclientnum, var_1ffc0b2e);
+			smartcover hidepart(localclientnum, var_e5b19696);
+			smartcover hidepart(localclientnum, var_1ffc0b2e);
 		}
 	}
 }

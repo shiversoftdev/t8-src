@@ -70,7 +70,7 @@ function widows_wine_perk_activate()
 	Parameters: 4
 	Flags: Linked
 */
-function widows_wine_perk_lost(b_pause, str_perk, str_result, var_bcd1c2ff)
+function widows_wine_perk_lost(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_4fa1f45a60444ddc");
 }

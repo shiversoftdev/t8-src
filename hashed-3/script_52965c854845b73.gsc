@@ -60,20 +60,20 @@ function main()
 function function_e62e184a()
 {
 	level.s_freeze_trap = struct::get("s_freeze_trap", "targetname");
-	var_3b2c2d10 = level.s_freeze_trap;
-	var_3b2c2d10._trap_type = "freeze";
-	var_3b2c2d10.e_volume = getent(var_3b2c2d10.target, "targetname");
-	var_3b2c2d10.e_volume._trap_type = "freeze";
-	var_3b2c2d10.var_28ea1870 = struct::get_array(var_3b2c2d10.target3, "targetname");
-	var_3b2c2d10.var_54a168f2 = struct::get_array(var_3b2c2d10.target2, "targetname");
-	var_3b2c2d10.a_e_lights = getentarray(var_3b2c2d10.target4, "targetname");
-	var_3b2c2d10.var_2c0d31a5 = struct::get_array(var_3b2c2d10.target5, "targetname");
-	var_3b2c2d10.var_6b64b967 = 0;
-	var_3b2c2d10.var_41ee2ddc = 1;
+	s_trap = level.s_freeze_trap;
+	s_trap._trap_type = "freeze";
+	s_trap.e_volume = getent(s_trap.target, "targetname");
+	s_trap.e_volume._trap_type = "freeze";
+	s_trap.var_28ea1870 = struct::get_array(s_trap.target3, "targetname");
+	s_trap.var_54a168f2 = struct::get_array(s_trap.target2, "targetname");
+	s_trap.a_e_lights = getentarray(s_trap.target4, "targetname");
+	s_trap.var_2c0d31a5 = struct::get_array(s_trap.target5, "targetname");
+	s_trap.var_6b64b967 = 0;
+	s_trap.var_41ee2ddc = 1;
 	level flag::wait_till("all_players_spawned");
-	foreach(s_button in var_3b2c2d10.var_54a168f2)
+	foreach(s_button in s_trap.var_54a168f2)
 	{
-		s_button.var_3b2c2d10 = var_3b2c2d10;
+		s_button.s_trap = s_trap;
 		s_button zm_unitrigger::create(&function_67b12ae8, 64);
 		s_button thread function_c2e32275();
 		s_button thread function_270aecf7();
@@ -117,13 +117,13 @@ function function_c2e32275()
 		{
 			if(level flag::get(#"half_price_traps"))
 			{
-				var_b5f26b1a = self.var_3b2c2d10.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, int(500));
+				b_purchased = self.s_trap.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, int(500));
 			}
 			else
 			{
-				var_b5f26b1a = self.var_3b2c2d10.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, 1000);
+				b_purchased = self.s_trap.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, 1000);
 			}
-			if(!var_b5f26b1a)
+			if(!b_purchased)
 			{
 				continue;
 			}
@@ -176,8 +176,8 @@ function function_270aecf7()
 		level.s_freeze_trap function_4bbed101(e_who);
 		level.s_freeze_trap.var_6b64b967 = 0;
 		level.s_freeze_trap.var_41ee2ddc = 0;
-		var_628a2951 = zm_traps::function_da13db45(60, e_who);
-		wait(var_628a2951);
+		n_cooldown = zm_traps::function_da13db45(60, e_who);
+		wait(n_cooldown);
 		function_91ecec97(level.s_freeze_trap.a_e_lights, "p8_zm_off_trap_switch_light_green_on");
 		level.s_freeze_trap.var_41ee2ddc = 1;
 		playsoundatposition(#"zmb_trap_ready", self.origin);
@@ -200,10 +200,10 @@ function function_4bbed101(e_player)
 	self thread freeze_trap_fx(1);
 	sndent = spawn("script_origin", self.origin);
 	sndent playloopsound(#"hash_1df9464f442b0b6d", 1);
-	if(isdefined(level.var_f18fbea5) && isdefined(level.var_f18fbea5.s_placement))
+	if(isdefined(level.s_soapstone) && isdefined(level.s_soapstone.s_placement))
 	{
-		level.var_f18fbea5.var_e15f0d15 = 1;
-		if(!level.var_f18fbea5.is_charged || level.var_f18fbea5.var_e22e68fd)
+		level.s_soapstone.var_e15f0d15 = 1;
+		if(!level.s_soapstone.is_charged || level.s_soapstone.is_hot)
 		{
 			level thread namespace_3263198e::function_fd24e47f("vox_generic_responses_positive", -1, 1, 0);
 		}
@@ -215,20 +215,20 @@ function function_4bbed101(e_player)
 		wait(0.1);
 		n_total_time = n_total_time + 0.1;
 	}
-	if(isdefined(level.var_f18fbea5) && isdefined(level.var_f18fbea5.s_placement) && level.var_f18fbea5.var_e15f0d15 === 1)
+	if(isdefined(level.s_soapstone) && isdefined(level.s_soapstone.s_placement) && level.s_soapstone.var_e15f0d15 === 1)
 	{
-		if(!level.var_f18fbea5.is_charged || level.var_f18fbea5.var_e22e68fd)
+		if(!level.s_soapstone.is_charged || level.s_soapstone.is_hot)
 		{
 			level thread namespace_3263198e::function_fd24e47f("vox_soap_stones_freeze", -1, 1, 0);
 		}
-		level.var_f18fbea5.is_charged = 1;
-		level.var_f18fbea5.var_e22e68fd = 0;
-		level.var_f18fbea5.s_placement.var_4eed727b clientfield::set("soapstone_start_fx", 1);
-		level.var_f18fbea5.s_placement.var_4eed727b setmodel("p8_zm_ora_soapstone_01_cold");
-		if(level.var_f18fbea5.var_b6e5b65f == 2)
+		level.s_soapstone.is_charged = 1;
+		level.s_soapstone.is_hot = 0;
+		level.s_soapstone.s_placement.var_4eed727b clientfield::set("soapstone_start_fx", 1);
+		level.s_soapstone.s_placement.var_4eed727b setmodel("p8_zm_ora_soapstone_01_cold");
+		if(level.s_soapstone.var_b6e5b65f == 2)
 		{
-			level.var_f18fbea5.s_placement.var_28f1732d clientfield::set("soapstone_start_fx", 1);
-			level.var_f18fbea5.s_placement.var_28f1732d setmodel("p8_zm_ora_soapstone_01_cold");
+			level.s_soapstone.s_placement.var_28f1732d clientfield::set("soapstone_start_fx", 1);
+			level.s_soapstone.s_placement.var_28f1732d setmodel("p8_zm_ora_soapstone_01_cold");
 		}
 	}
 	sndent stoploopsound(1);
@@ -351,13 +351,13 @@ function function_c38e2c52()
 	Parameters: 1
 	Flags: Linked
 */
-function function_67a7a129(var_3b2c2d10)
+function function_67a7a129(s_trap)
 {
 	self endon(#"death", #"disconnect");
 	if(!isdefined(self.var_88eddb97) || !self.var_88eddb97)
 	{
 		self.var_88eddb97 = 1;
-		e_volume = var_3b2c2d10.e_volume;
+		e_volume = s_trap.e_volume;
 		self thread function_be814134();
 		if(e_volume zm_traps::function_3f401e8d(self))
 		{
@@ -415,7 +415,7 @@ function function_e32bd356(trap)
 {
 	playsoundatposition(#"hash_4b93c2d674807e60", self.origin);
 	self waittill(#"available");
-	playsoundatposition(#"hash_16ec74a08f28a468", self.origin);
+	playsoundatposition(#"zmb_acid_trap_available", self.origin);
 }
 
 /*
@@ -435,7 +435,7 @@ function function_67b12ae8(e_player)
 		self sethintstring("");
 		return 0;
 	}
-	if(s_button.var_3b2c2d10.var_6b64b967 === 1)
+	if(s_button.s_trap.var_6b64b967 === 1)
 	{
 		self sethintstring(#"hash_39d080503c6a8d96");
 		return 1;
@@ -455,7 +455,7 @@ function function_67b12ae8(e_player)
 		self sethintstring(#"hash_71158766520dc432");
 		return 1;
 	}
-	if(s_button.var_3b2c2d10.var_41ee2ddc === 0)
+	if(s_button.s_trap.var_41ee2ddc === 0)
 	{
 		self sethintstring(#"hash_21db2780833a8bfd");
 		return 1;

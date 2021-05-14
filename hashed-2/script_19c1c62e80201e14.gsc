@@ -498,7 +498,7 @@ private function function_cc184b8b(entity)
 */
 private function function_562c0e1d(entity)
 {
-	return entity haspath() || (isdefined(entity.var_64a15979) && entity.var_64a15979);
+	return entity haspath() || (isdefined(entity.is_digging) && entity.is_digging);
 }
 
 /*
@@ -601,7 +601,7 @@ private function function_c9153928(entity)
 private function function_4402c40a(entity)
 {
 	entity.var_8a96267d = undefined;
-	entity.var_64a15979 = 1;
+	entity.is_digging = 1;
 	entity pathmode("dont move", 1);
 	return 1;
 }
@@ -620,7 +620,7 @@ private function function_6a3bcddc(entity)
 	entity ghost();
 	entity notsolid();
 	entity clientfield::set("zombie_riser_fx", 0);
-	entity notify(#"hash_5eba2531770c06e3");
+	entity notify(#"is_underground");
 	return 1;
 }
 
@@ -652,7 +652,7 @@ private function function_55b7ea22(entity)
 private function function_98b102d8(entity)
 {
 	entity clientfield::set("zombie_riser_fx", 0);
-	entity.var_64a15979 = 0;
+	entity.is_digging = 0;
 	entity pathmode("move allowed");
 	entity notify(#"hash_661885e7a60ccf04");
 }
@@ -1345,7 +1345,7 @@ private function function_101763c9()
 	if(isdefined(self.var_31a789c0) && self.var_31a789c0)
 	{
 		self.var_8a96267d = 1;
-		self waittill(#"hash_5eba2531770c06e3");
+		self waittill(#"is_underground");
 		if(!isdefined(spawn_point))
 		{
 			self kill();
@@ -1359,7 +1359,7 @@ private function function_101763c9()
 	else
 	{
 		self.var_8a96267d = 1;
-		self waittill(#"hash_63fbd742896df09a");
+		self waittill(#"is_screamed");
 		if(!isdefined(spawn_point))
 		{
 			self kill();

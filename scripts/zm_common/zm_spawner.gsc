@@ -1508,17 +1508,17 @@ private function flame_corpse_fx()
 		str_clientfield = "flame_corpse_fx";
 	}
 	self clientfield::set(str_clientfield, 1);
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill_timeout(10, #"actor_corpse", #"deleted");
+	s_result = undefined;
+	s_result = self waittill_timeout(10, #"actor_corpse", #"deleted");
 	if(isdefined(self))
 	{
 		self clientfield::set(str_clientfield, 0);
 	}
-	if(var_88706ea7._notify == "actor_corpse")
+	if(s_result._notify == "actor_corpse")
 	{
-		if(isdefined(var_88706ea7.corpse))
+		if(isdefined(s_result.corpse))
 		{
-			e_corpse = var_88706ea7.corpse;
+			e_corpse = s_result.corpse;
 			e_corpse thread function_2cc66();
 			e_corpse clientfield::set(str_clientfield, 1);
 			e_corpse waittill_timeout(randomfloatrange(1.5, 6), #"death");
@@ -1543,8 +1543,8 @@ private function flame_corpse_fx()
 private function function_2cc66()
 {
 	level.var_d39e8272++;
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"death", #"hash_244b83097f062847");
+	s_result = undefined;
+	s_result = self waittill(#"death", #"hash_244b83097f062847");
 	level.var_d39e8272--;
 }
 
@@ -1768,16 +1768,16 @@ function zombie_death_event(zombie)
 				attacker zm_stats::function_3468f864("headshots");
 				attacker zm_stats::increment_challenge_stat(#"zombie_hunter_kill_headshot");
 				attacker zm_stats::function_8f10788e("boas_headshots");
-				attacker zm_stats::function_5f5502e("headshots");
-				attacker thread namespace_bd02cf1::function_896ac347(zombie.damageweapon, #"headshots", 1);
-				attacker namespace_f063c3a8::function_432cf6d(zombie.damageweapon);
+				attacker zm_stats::registerchand_grow_("headshots");
+				attacker thread activecamo::function_896ac347(zombie.damageweapon, #"headshots", 1);
+				attacker zm_camos::function_432cf6d(zombie.damageweapon);
 			}
 			else
 			{
 				attacker notify(#"zombie_death_no_headshot");
 			}
 		}
-		if(isdefined(zombie) && isdefined(zombie.damagemod) && zombie.damagemod == "MOD_MELEE" && isdefined(zombie.damageweapon) && !namespace_2ba51478::is_hero_weapon(zombie.damageweapon))
+		if(isdefined(zombie) && isdefined(zombie.damagemod) && zombie.damagemod == "MOD_MELEE" && isdefined(zombie.damageweapon) && !zm_loadout::is_hero_weapon(zombie.damageweapon))
 		{
 			attacker zm_stats::increment_client_stat("melee_kills");
 			attacker zm_stats::increment_player_stat("melee_kills");
@@ -1796,12 +1796,12 @@ function zombie_death_event(zombie)
 		attacker zm_stats::function_f1a1191d("kills");
 		attacker zm_stats::function_2726a7c2("kills");
 		attacker zm_stats::function_8f10788e("boas_kills");
-		attacker zm_stats::function_5f5502e("kills");
+		attacker zm_stats::registerchand_grow_("kills");
 		if(isdefined(zombie) && isdefined(zombie.damageweapon))
 		{
 			attacker stats::function_e24eec31(zombie.damageweapon, #"kills", 1);
-			attacker thread namespace_bd02cf1::function_896ac347(zombie.damageweapon, #"kills", 1);
-			attacker namespace_f063c3a8::function_7b29c2d2(zombie.damageweapon);
+			attacker thread activecamo::function_896ac347(zombie.damageweapon, #"kills", 1);
+			attacker zm_camos::function_7b29c2d2(zombie.damageweapon);
 		}
 		if(force_head_gib)
 		{
@@ -1863,7 +1863,7 @@ function zombie_death_event(zombie)
 		{
 			zombie zombie_explodes_intopieces(0);
 		}
-		else if(isdefined(zombie.damageweapon.doannihilate) && zombie.damageweapon.doannihilate || (is_weapon_shotgun(zombie.damageweapon) && zm_weapons::is_weapon_upgraded(zombie.damageweapon)) || namespace_2ba51478::is_placeable_mine(zombie.damageweapon) || (zombie.damagemod === "MOD_GRENADE" || zombie.damagemod === "MOD_GRENADE_SPLASH" || zombie.damagemod === "MOD_EXPLOSIVE"))
+		else if(isdefined(zombie.damageweapon.doannihilate) && zombie.damageweapon.doannihilate || (is_weapon_shotgun(zombie.damageweapon) && zm_weapons::is_weapon_upgraded(zombie.damageweapon)) || zm_loadout::is_placeable_mine(zombie.damageweapon) || (zombie.damagemod === "MOD_GRENADE" || zombie.damagemod === "MOD_GRENADE_SPLASH" || zombie.damagemod === "MOD_EXPLOSIVE"))
 		{
 			if(isdefined(zombie.damageweapon.doannihilate) && zombie.damageweapon.doannihilate || (isdefined(zombie.damagehit_origin) && distancesquared(zombie.origin, zombie.damagehit_origin) < 180 * 180))
 			{

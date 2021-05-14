@@ -24,7 +24,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_4b7e4696d38d13e3", &__init__, undefined, undefined);
+	system::register(#"snowball", &__init__, undefined, undefined);
 }
 
 /*
@@ -38,19 +38,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	level.var_ad5d43cf = getweapon(#"hash_4b7e4696d38d13e3");
+	level.var_ad5d43cf = getweapon(#"snowball");
 	level.var_f8934665 = getweapon(#"hash_1ecb90ddb44096f4");
 	level.var_bf70d56c = getweapon(#"hash_7b1ab4354f6a9ef4");
 	level.var_d879215 = getweapon(#"hash_4d50a2c4ff4e615d");
-	zm::function_84d343d(#"hash_4b7e4696d38d13e3", &function_5ff12a45);
+	zm::function_84d343d(#"snowball", &function_5ff12a45);
 	zm::function_84d343d(#"hash_1ecb90ddb44096f4", &function_5ff12a45);
 	zm::function_84d343d(#"hash_7b1ab4354f6a9ef4", &function_ee240a8e);
 	zm::function_84d343d(#"hash_4d50a2c4ff4e615d", &function_ee240a8e);
 	callback::function_20263b9e(&function_20263b9e);
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_4b7e4696d38d13e3");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_1ecb90ddb44096f4");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_7b1ab4354f6a9ef4");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_4d50a2c4ff4e615d");
+	zm_loadout::register_lethal_grenade_for_level(#"snowball");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_1ecb90ddb44096f4");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_7b1ab4354f6a9ef4");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_4d50a2c4ff4e615d");
 	clientfield::register("toplayer", "" + #"hash_78aa1dc141a3e27", 24000, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_2fafddfa9f85b8aa", 24000, 1, "int");
 }
@@ -96,7 +96,7 @@ function function_20263b9e(s_params)
 			}
 			if(isplayer(var_c006f5e9) && var_c006f5e9 != self)
 			{
-				self thread zm_audio::create_and_play_dialog(#"hash_4b7e4696d38d13e3", #"friendly");
+				self thread zm_audio::create_and_play_dialog(#"snowball", #"friendly");
 			}
 		}
 	}

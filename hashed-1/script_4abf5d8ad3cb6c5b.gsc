@@ -154,7 +154,7 @@ function main()
 				var_59bd23de notsolid();
 			}
 			setlightingstate(0);
-			level clientfield::set("" + #"hash_3e034844d2b9d971", 0);
+			level clientfield::set("" + #"lava_control", 0);
 			level clientfield::set("" + #"hash_5e69ee96304ec40b", 0);
 			level.var_71435e8 = 0;
 			level flag::clear(#"hash_198bc172b5af7f25");
@@ -199,17 +199,17 @@ function main()
 	Parameters: 1
 	Flags: None
 */
-function function_ff59ba7a(var_674fd868)
+function function_ff59ba7a(is_game_over)
 {
 	level.var_c3a029eb = 1;
 	foreach(player in getplayers())
 	{
 		if(isdefined(player.var_3b55baa1) && isdefined(player.var_e01bb56) && player namespace_f93d2fa1::function_75a76099())
 		{
-			player namespace_2ba51478::set_player_lethal_grenade(player.var_3b55baa1);
+			player zm_loadout::set_player_lethal_grenade(player.var_3b55baa1);
 			player zm_weapons::weapon_give(player.var_3b55baa1, 1, 0);
-			var_bcd1c2ff = player gadgetgetslot(player.var_3b55baa1);
-			player gadgetpowerset(var_bcd1c2ff, player.var_e01bb56);
+			n_slot = player gadgetgetslot(player.var_3b55baa1);
+			player gadgetpowerset(n_slot, player.var_e01bb56);
 			player.var_3b55baa1 = undefined;
 			player.var_e01bb56 = undefined;
 			player notify(#"hash_2ef9a0f78a628812");
@@ -232,7 +232,7 @@ function function_b4bd25ef()
 	{
 		case 1:
 		{
-			if(self.var_3236cdc2 === 1)
+			if(self.b_in_water === 1)
 			{
 				self enableoffhandspecial();
 				self enableoffhandweapons();
@@ -298,11 +298,11 @@ function function_b4bd25ef()
 							self unlockweapon(weapon);
 						}
 					}
-					level namespace_f551babc::function_cd75b690(0);
+					level zm_trial::function_cd75b690(0);
 				}
 				else
 				{
-					level namespace_f551babc::function_cd75b690(1);
+					level zm_trial::function_cd75b690(1);
 				}
 			}
 			break;
@@ -373,7 +373,7 @@ function function_ff0b7907()
 	level thread lui::screen_flash(0.2, 0.5, 1, 0.8, "white");
 	wait(0.2);
 	setlightingstate(1);
-	level clientfield::set("" + #"hash_3e034844d2b9d971", 1);
+	level clientfield::set("" + #"lava_control", 1);
 	level clientfield::set("" + #"hash_5e69ee96304ec40b", 1);
 	if(!level flag::get(#"hash_4466889733a90df2"))
 	{

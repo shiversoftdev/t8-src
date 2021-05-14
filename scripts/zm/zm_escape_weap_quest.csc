@@ -41,9 +41,9 @@ function __init__()
 	clientfield::register("actor", "" + #"hash_588871862d19b97d", 1, 1, "int", &function_b543a4ed, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_2be4ce9b84bd3b58", 1, 1, "counter", &function_1f632068, 0, 0);
 	clientfield::register("actor", "" + #"hash_338ecd1287d0623b", 1, 1, "counter", &function_63eff42e, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_661cd5b850004033", 1, n_bits, "int", &function_dfe17a5d, 0, 0);
+	clientfield::register("scriptmover", "" + #"tomahawk_pickup_fx", 1, n_bits, "int", &function_dfe17a5d, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_51657261e835ac7c", 1, n_bits, "int", &function_724af26a, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_661cd5b850004033", 13000, 1, "int", &function_1302ffdd, 0, 0);
+	clientfield::register("toplayer", "" + #"tomahawk_pickup_fx", 13000, 1, "int", &function_1302ffdd, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_51657261e835ac7c", 13000, 1, "int", &function_c17bd665, 0, 0);
 	level._effect[#"hell_portal"] = "maps/zm_escape/fx8_wolf_portal_hell";
 	level._effect[#"hell_portal_close"] = "maps/zm_escape/fx8_wolf_portal_hell_close";
@@ -233,14 +233,14 @@ function function_724af26a(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_1302ffdd(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	var_4488630f = struct::get("s_tom_fx");
-	if(isdefined(self.var_18331887))
+	if(isdefined(self.n_tomahawk_pickup_fx))
 	{
-		killfx(localclientnum, self.var_18331887);
-		self.var_18331887 = undefined;
+		killfx(localclientnum, self.n_tomahawk_pickup_fx);
+		self.n_tomahawk_pickup_fx = undefined;
 	}
 	if(newval)
 	{
-		self.var_18331887 = playfx(localclientnum, level._effect[#"tomahawk_pickup"], var_4488630f.origin - vectorscale((0, 0, 1), 24));
+		self.n_tomahawk_pickup_fx = playfx(localclientnum, level._effect[#"tomahawk_pickup"], var_4488630f.origin - vectorscale((0, 0, 1), 24));
 	}
 }
 
@@ -256,14 +256,14 @@ function function_1302ffdd(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_c17bd665(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	var_4488630f = struct::get("s_tom_fx");
-	if(isdefined(self.var_18331887))
+	if(isdefined(self.n_tomahawk_pickup_fx))
 	{
-		killfx(localclientnum, self.var_18331887);
-		self.var_18331887 = undefined;
+		killfx(localclientnum, self.n_tomahawk_pickup_fx);
+		self.n_tomahawk_pickup_fx = undefined;
 	}
 	if(newval)
 	{
-		self.var_18331887 = playfx(localclientnum, level._effect[#"tomahawk_pickup_upgrade"], var_4488630f.origin - vectorscale((0, 0, 1), 24));
+		self.n_tomahawk_pickup_fx = playfx(localclientnum, level._effect[#"tomahawk_pickup_upgrade"], var_4488630f.origin - vectorscale((0, 0, 1), 24));
 	}
 }
 

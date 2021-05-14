@@ -146,7 +146,7 @@ function override_fasttravel_end_fx(localclientnum, oldval, newval, bnewent, bin
 {
 	if(newval)
 	{
-		self thread namespace_eaaeba61::function_4ffb2e90(localclientnum, "override_fasttravel_end_fx");
+		self thread zm_fasttravel::play_fasttravel_end_fx(localclientnum, "override_fasttravel_end_fx");
 	}
 }
 

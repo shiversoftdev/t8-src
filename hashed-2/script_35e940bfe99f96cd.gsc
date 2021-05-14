@@ -15,7 +15,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_50f4e0eea9f4e4a4", &__init__, undefined, undefined);
+	system::register(#"nosferatu", &__init__, undefined, undefined);
 }
 
 /*

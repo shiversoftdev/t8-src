@@ -120,7 +120,7 @@ private function function_2772f623(id)
 }
 
 /*
-	Name: function_676c6d51
+	Name: start_grapple
 	Namespace: zm_grappler
 	Checksum: 0xC0CF91A7
 	Offset: 0x3F0
@@ -128,7 +128,7 @@ private function function_2772f623(id)
 	Parameters: 4
 	Flags: None
 */
-function function_676c6d51(prone_2_run_roll, var_beb2295, n_type, n_speed = 1800)
+function start_grapple(prone_2_run_roll, var_beb2295, n_type, n_speed = 1800)
 {
 	/#
 		assert(n_type == 2);

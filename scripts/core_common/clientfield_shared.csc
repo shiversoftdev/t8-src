@@ -38,9 +38,9 @@ function function_346f95ba(var_a832fdfa, field_name, n_version, n_bits, str_type
 	Parameters: 7
 	Flags: Linked
 */
-function function_78175813(poolname, var_b693fec6, uniqueid, var_948bda55, func_callback, b_host, b_callback_for_zero_when_new)
+function function_78175813(poolname, var_b693fec6, uniqueid, version, func_callback, b_host, b_callback_for_zero_when_new)
 {
-	function_3ff577e6(poolname, var_b693fec6, uniqueid, var_948bda55, func_callback, b_host, b_callback_for_zero_when_new);
+	function_3ff577e6(poolname, var_b693fec6, uniqueid, version, func_callback, b_host, b_callback_for_zero_when_new);
 }
 
 /*

@@ -30,11 +30,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	callback::add_weapon_type(#"claymore", &function_63351cd9);
+	callback::add_weapon_type(#"claymore", &claymore_spawned);
 }
 
 /*
-	Name: function_63351cd9
+	Name: claymore_spawned
 	Namespace: claymore
 	Checksum: 0x8422A343
 	Offset: 0x118
@@ -42,7 +42,7 @@ function __init__()
 	Parameters: 1
 	Flags: None
 */
-function function_63351cd9(localclientnum)
+function claymore_spawned(localclientnum)
 {
 	self endon(#"death");
 	self util::waittill_dobj(localclientnum);

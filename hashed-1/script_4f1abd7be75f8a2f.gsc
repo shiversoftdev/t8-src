@@ -32,11 +32,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_49eecaed064bc08d", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_49eecaed064bc08d", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -54,22 +54,22 @@ private function function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var
 	{
 		case 1:
 		{
-			level.var_b07feb9b = namespace_f551babc::function_5769f26a(var_8a72a00b);
+			level.var_b07feb9b = zm_trial::function_5769f26a(var_8a72a00b);
 			break;
 		}
 		case 2:
 		{
-			level.var_b07feb9b = namespace_f551babc::function_5769f26a(var_49d8a02c);
+			level.var_b07feb9b = zm_trial::function_5769f26a(var_49d8a02c);
 			break;
 		}
 		case 3:
 		{
-			level.var_b07feb9b = namespace_f551babc::function_5769f26a(var_325ff213);
+			level.var_b07feb9b = zm_trial::function_5769f26a(var_325ff213);
 			break;
 		}
 		case 4:
 		{
-			level.var_b07feb9b = namespace_f551babc::function_5769f26a(var_dd2fad64);
+			level.var_b07feb9b = zm_trial::function_5769f26a(var_dd2fad64);
 			break;
 		}
 	}
@@ -94,7 +94,7 @@ private function function_9e7b3f4d(round_reset)
 	{
 		if(level.var_61541a89 < level.var_b07feb9b)
 		{
-			namespace_f551babc::fail(#"hash_73f632514ab7d15", getplayers());
+			zm_trial::fail(#"hash_73f632514ab7d15", getplayers());
 		}
 	}
 	foreach(player in getplayers())
@@ -119,9 +119,9 @@ private function function_c80f40af()
 	level endon(#"hash_7646638df88a3656");
 	while(level.var_61541a89 < level.var_b07feb9b)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill(#"hash_1ba786f1661e3817");
-		level.var_61541a89 = level.var_61541a89 + var_88706ea7.var_2ef2374;
+		s_result = undefined;
+		s_result = level waittill(#"hash_1ba786f1661e3817");
+		level.var_61541a89 = level.var_61541a89 + s_result.var_2ef2374;
 		if(level.var_61541a89 < level.var_b07feb9b)
 		{
 			level namespace_b22c99a5::function_2976fa44(level.var_b07feb9b);

@@ -52,7 +52,7 @@ function activation()
 {
 	foreach(player in getplayers())
 	{
-		if(player util::function_bf5a8f5c())
+		if(player util::is_spectating())
 		{
 			player thread zm_player::spectator_respawn_player();
 		}
@@ -67,7 +67,7 @@ function activation()
 		}
 		if(can_revive)
 		{
-			player thread bgb::function_da81178e();
+			player thread bgb::bgb_revive_watcher();
 			player zm_laststand::auto_revive(self);
 		}
 	}
@@ -86,7 +86,7 @@ function validation()
 {
 	foreach(player in getplayers())
 	{
-		if(player util::function_bf5a8f5c())
+		if(player util::is_spectating())
 		{
 			return 1;
 		}

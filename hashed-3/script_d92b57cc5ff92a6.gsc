@@ -217,7 +217,7 @@ function set_state(player, state_name)
 	{
 		player clientfield::function_9bf78ef8(self.var_47e79fc, "_state", 5);
 	}
-	else if(#"hash_2d31980bd7e27adc" == state_name)
+	else if(#"total_init" == state_name)
 	{
 		player clientfield::function_9bf78ef8(self.var_47e79fc, "_state", 6);
 	}

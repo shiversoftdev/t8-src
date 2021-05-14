@@ -31,7 +31,7 @@ function init()
 function init_clientfields()
 {
 	clientfield::register("toplayer", "sp_ar_pi", 1, 1, "int", &function_69a31ba8, 0, 0);
-	clientfield::register("scriptmover", "elevator_rumble", 1, 1, "counter", &function_e9808c9d, 0, 0);
+	clientfield::register("scriptmover", "elevator_rumble", 1, 1, "counter", &play_elevator_rumble, 0, 0);
 	clientfield::register("world", "p_w_o_num_01", 1, getminbitcountfornum(10), "int", &function_d38f33fb, 0, 0);
 	clientfield::register("world", "p_w_o_num_02", 1, getminbitcountfornum(10), "int", &function_c5199710, 0, 0);
 	clientfield::register("world", "p_w_o_num_03", 1, getminbitcountfornum(10), "int", &function_68a0de20, 0, 0);
@@ -61,8 +61,8 @@ function main()
 */
 function function_d38f33fb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	var_7a6fd40 = struct::get("n_c_w_p_01");
-	var_7a6fd40 function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump);
+	s_number = struct::get("n_c_w_p_01");
+	s_number function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump);
 }
 
 /*
@@ -76,8 +76,8 @@ function function_d38f33fb(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_c5199710(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	var_7a6fd40 = struct::get("n_c_w_p_02");
-	var_7a6fd40 function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump);
+	s_number = struct::get("n_c_w_p_02");
+	s_number function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump);
 }
 
 /*
@@ -91,8 +91,8 @@ function function_c5199710(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_68a0de20(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	var_7a6fd40 = struct::get("n_c_w_p_03");
-	var_7a6fd40 function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump);
+	s_number = struct::get("n_c_w_p_03");
+	s_number function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump);
 }
 
 /*
@@ -111,14 +111,14 @@ function function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap
 		if(isdefined(self.var_2ef4fed9))
 		{
 			self.var_2ef4fed9.script_int = newval;
-			self.var_2ef4fed9.var_e9e6d25a = 1;
+			self.var_2ef4fed9.b_hidden = 1;
 			self.var_2ef4fed9 function_386b1e70(localclientnum);
 		}
 		else
 		{
 			self.var_2ef4fed9 = util::spawn_model(localclientnum, self.model, self.origin, self.angles);
 			self.var_2ef4fed9.script_int = newval;
-			self.var_2ef4fed9.var_e9e6d25a = 1;
+			self.var_2ef4fed9.b_hidden = 1;
 			self.var_2ef4fed9.var_922c0c5c = &function_43c140b4;
 			self.var_2ef4fed9.var_ffeecdb6 = &function_386b1e70;
 			self.var_2ef4fed9 function_386b1e70(localclientnum);
@@ -135,9 +135,9 @@ function function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else if(isdefined(self.var_2ef4fed9))
 	{
-		if(isdefined(self.var_2ef4fed9.var_e9e6d25a) && self.var_2ef4fed9.var_e9e6d25a)
+		if(isdefined(self.var_2ef4fed9.b_hidden) && self.var_2ef4fed9.b_hidden)
 		{
-			self.var_2ef4fed9.var_e9e6d25a = undefined;
+			self.var_2ef4fed9.b_hidden = undefined;
 		}
 		self.var_2ef4fed9.script_int = newval;
 	}
@@ -276,7 +276,7 @@ function function_43c140b4(localclientnum)
 	{
 		self hidepart(localclientnum, "tag_paper_off");
 	}
-	if(isdefined(self.var_e9e6d25a) && self.var_e9e6d25a)
+	if(isdefined(self.b_hidden) && self.b_hidden)
 	{
 		return;
 	}
@@ -297,7 +297,7 @@ function function_43c140b4(localclientnum)
 }
 
 /*
-	Name: function_e9808c9d
+	Name: play_elevator_rumble
 	Namespace: namespace_9d58c1cd
 	Checksum: 0x912BF96A
 	Offset: 0xFF8
@@ -305,7 +305,7 @@ function function_43c140b4(localclientnum)
 	Parameters: 7
 	Flags: Linked
 */
-function function_e9808c9d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function play_elevator_rumble(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self playrumbleonentity(localclientnum, #"hash_64b33287bc9d79f5");
 }

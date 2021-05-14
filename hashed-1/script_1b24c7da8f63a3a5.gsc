@@ -56,8 +56,8 @@ function __init__()
 	clientfield::register("actor", "water_tricannon_slow_fx", 1, 1, "int");
 	clientfield::register("allplayers", "fire_tricannon_muzzle_fx", 1, 1, "counter");
 	clientfield::register("allplayers", "water_tricannon_muzzle_fx", 1, 1, "counter");
-	level._effect[#"hash_7f69670effacc56a"] = #"hash_4587acdb7cd704b6";
-	level._effect[#"hash_4ccd0d5d302866e8"] = #"hash_65320106e9ad659c";
+	level._effect[#"earth_impact"] = #"hash_4587acdb7cd704b6";
+	level._effect[#"fire_impact"] = #"hash_65320106e9ad659c";
 	level.custom_magic_box_selection_logic = &function_a543db40;
 	level.var_ee565b3f = &function_689d923b;
 	level.var_bb2323e4 = &function_73a498c8;
@@ -143,12 +143,12 @@ function function_68e4ed32(weapon)
 	a_targets = getentitiesinradius(self.origin, 192, 15);
 	foreach(ai in a_targets)
 	{
-		if(!isalive(ai) || (ai.archetype !== #"zombie" && ai.archetype !== #"hash_1bab8a0ba811401e") || ai getteam() !== level.zombie_team || ai function_dd070839())
+		if(!isalive(ai) || (ai.archetype !== #"zombie" && ai.archetype !== #"catalyst") || ai getteam() !== level.zombie_team || ai function_dd070839())
 		{
 			continue;
 		}
-		var_dda02fa2 = ai getcentroid();
-		v_normal = vectornormalize(var_dda02fa2 - v_start);
+		v_ai = ai getcentroid();
+		v_normal = vectornormalize(v_ai - v_start);
 		dot = vectordot(var_ee5864e0, v_normal);
 		if(dot <= 0)
 		{
@@ -183,7 +183,7 @@ function function_321f468b()
 	v_start = self getweaponmuzzlepoint();
 	foreach(ai in a_targets)
 	{
-		if(!isalive(ai) || (ai.archetype !== #"zombie" && ai.archetype !== #"hash_1bab8a0ba811401e") || ai getteam() !== level.zombie_team || ai function_dd070839())
+		if(!isalive(ai) || (ai.archetype !== #"zombie" && ai.archetype !== #"catalyst") || ai getteam() !== level.zombie_team || ai function_dd070839())
 		{
 			continue;
 		}
@@ -239,7 +239,7 @@ function function_4f2ea5e7(weapon)
 	Parameters: 2
 	Flags: Linked
 */
-function function_54d03fdd(weapon, var_852c754d)
+function function_54d03fdd(weapon, b_packed)
 {
 	self endon(#"disconnect");
 	/#
@@ -294,11 +294,11 @@ function function_54d03fdd(weapon, var_852c754d)
 		{
 			n_damage = 3000;
 		}
-		var_b2026e21 = 75;
-		if(var_852c754d)
+		n_launch = 75;
+		if(b_packed)
 		{
 			n_damage = n_damage * 1.75;
-			var_b2026e21 = var_b2026e21 * 1.5;
+			n_launch = n_launch * 1.5;
 			n_damage = int(n_damage);
 		}
 		if(ai getentitytype() === 6)
@@ -318,7 +318,7 @@ function function_54d03fdd(weapon, var_852c754d)
 		if(!isalive(ai))
 		{
 			ai startragdoll(1);
-			ai launchragdoll(vectornormalize(var_b7523d07 - self.origin) * var_b2026e21);
+			ai launchragdoll(vectornormalize(var_b7523d07 - self.origin) * n_launch);
 			continue;
 		}
 		if(var_a6127b01 == 1)
@@ -373,7 +373,7 @@ function function_8ef8873e(weapon)
 */
 function function_71233d37(params)
 {
-	playfx(level._effect[#"hash_7f69670effacc56a"], params.vpoint);
+	playfx(level._effect[#"earth_impact"], params.vpoint);
 	if(params.idamage >= self.health)
 	{
 		if(self.archetype == #"zombie")
@@ -588,7 +588,7 @@ function function_3e2e539(params)
 			self ai::stun();
 			if(isdefined(params.vpoint) && isdefined(params.vdir))
 			{
-				playfx(level._effect[#"hash_4ccd0d5d302866e8"], params.vpoint, params.vdir);
+				playfx(level._effect[#"fire_impact"], params.vpoint, params.vdir);
 			}
 			params.einflictor notify(#"death");
 			waitframe(1);

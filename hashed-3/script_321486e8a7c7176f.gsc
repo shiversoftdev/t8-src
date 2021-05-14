@@ -99,9 +99,9 @@ private function _debugsquad(squad)
 					var_3d879b56 = target[#"strategy"];
 					if(isdefined(var_3d879b56))
 					{
-						if(isdefined(var_3d879b56.var_b57741ff))
+						if(isdefined(var_3d879b56.sdebug))
 						{
-							foreach(str in var_3d879b56.var_b57741ff)
+							foreach(str in var_3d879b56.sdebug)
 							{
 								yoffset = yoffset + 13;
 								recordtext(str, position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);

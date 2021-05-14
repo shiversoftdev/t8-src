@@ -33,7 +33,7 @@ autoexec function function_89f2df9()
 function __init__()
 {
 	ai::add_archetype_spawn_function(#"zombie", &function_65089f84);
-	clientfield::register("actor", "zm_ai/zombie_electric_fx_clientfield", 21000, 1, "int", &function_3b728383, 0, 0);
+	clientfield::register("actor", "zm_ai/zombie_electric_fx_clientfield", 21000, 1, "int", &zombie_electric_fx, 0, 0);
 	clientfield::register("actor", "zombie_electric_burst_clientfield", 21000, 1, "counter", &function_8f477183, 0, 0);
 	clientfield::register("actor", "zombie_electric_water_aoe_clientfield", 21000, 1, "counter", &function_c9f98c07, 0, 0);
 	clientfield::register("actor", "zombie_electric_burst_stun_friendly_clientfield", 21000, 1, "int", &function_93585307, 0, 0);
@@ -54,7 +54,7 @@ private function function_65089f84(localclientnum)
 }
 
 /*
-	Name: function_3b728383
+	Name: zombie_electric_fx
 	Namespace: namespace_1d05befd
 	Checksum: 0x643BB4B
 	Offset: 0x498
@@ -62,7 +62,7 @@ private function function_65089f84(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_3b728383(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+private function zombie_electric_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self))

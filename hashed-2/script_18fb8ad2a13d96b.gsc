@@ -69,7 +69,7 @@ function function_4c8f915a(origin)
 	Parameters: 3
 	Flags: None
 */
-function spawn_zombie(v_spawn_pos, var_ce4a5fc7, var_8ac47d78)
+function spawn_zombie(v_spawn_pos, b_keyline, var_8ac47d78)
 {
 	zombie = spawnactor("spawner_boct_zombie_mp", v_spawn_pos, (0, 0, 0), "zombie");
 	if(!isdefined(zombie))
@@ -98,7 +98,7 @@ function spawn_zombie(v_spawn_pos, var_ce4a5fc7, var_8ac47d78)
 	{
 		zombie thread [[level.var_d9f6b173]]();
 	}
-	if(isdefined(var_ce4a5fc7) && var_ce4a5fc7)
+	if(isdefined(b_keyline) && b_keyline)
 	{
 		waitframe(1);
 		zombie clientfield::set("actor_keyline_render", 1);
@@ -111,7 +111,7 @@ function spawn_zombie(v_spawn_pos, var_ce4a5fc7, var_8ac47d78)
 }
 
 /*
-	Name: function_d9c832aa
+	Name: spawn_blight_father
 	Namespace: namespace_cbd87dc5
 	Checksum: 0x2235CBBC
 	Offset: 0x730
@@ -119,7 +119,7 @@ function spawn_zombie(v_spawn_pos, var_ce4a5fc7, var_8ac47d78)
 	Parameters: 4
 	Flags: None
 */
-function function_d9c832aa(v_spawn_pos, var_ce4a5fc7, var_8ac47d78, var_158efaf3)
+function spawn_blight_father(v_spawn_pos, b_keyline, var_8ac47d78, var_158efaf3)
 {
 	zombie = spawnactor("spawner_mp_blight_father", v_spawn_pos, (0, 0, 0), "blightfather");
 	if(!isdefined(zombie))
@@ -148,7 +148,7 @@ function function_d9c832aa(v_spawn_pos, var_ce4a5fc7, var_8ac47d78, var_158efaf3
 	{
 		zombie thread [[level.var_d9f6b173]]();
 	}
-	if(isdefined(var_ce4a5fc7) && var_ce4a5fc7)
+	if(isdefined(b_keyline) && b_keyline)
 	{
 		waitframe(1);
 		zombie clientfield::set("actor_keyline_render", 1);
@@ -265,7 +265,7 @@ function function_45a6adc0(einflictor, eattacker, idamage, idflags, smeansofdeat
 }
 
 /*
-	Name: function_818b850f
+	Name: spawn_warlord
 	Namespace: namespace_cbd87dc5
 	Checksum: 0xE54AE5A3
 	Offset: 0xD10
@@ -273,7 +273,7 @@ function function_45a6adc0(einflictor, eattacker, idamage, idflags, smeansofdeat
 	Parameters: 2
 	Flags: None
 */
-function function_818b850f(v_spawn_pos, var_9ac46b0e)
+function spawn_warlord(v_spawn_pos, var_9ac46b0e)
 {
 	warlord = spawnactor("spawner_boct_sidea_warlord_mp", v_spawn_pos, var_9ac46b0e, "warlord");
 	warlord.overrideactordamage = &function_45a6adc0;
@@ -315,8 +315,8 @@ function function_818b850f(v_spawn_pos, var_9ac46b0e)
 function function_9ca5c5fc(v_loc, str_team, n_radius)
 {
 	var_4ed86107 = [];
-	var_3f21ce47 = namespace_64a487a9::function_fbe3dcbb();
-	foreach(bot in var_3f21ce47)
+	a_bots = namespace_64a487a9::function_fbe3dcbb();
+	foreach(bot in a_bots)
 	{
 		if(bot.team == str_team)
 		{

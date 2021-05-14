@@ -11,11 +11,11 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\weapons_shared.gsc;
 
-#namespace namespace_93d5cf27;
+#namespace gadget_tripwire;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xE1319F41
 	Offset: 0x200
 	Size: 0x3C
@@ -24,12 +24,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_533c0b47c0225300", &__init__, undefined, undefined);
+	system::register(#"gadget_tripwire", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x792D521E
 	Offset: 0x248
 	Size: 0x204
@@ -69,7 +69,7 @@ function __init__()
 
 /*
 	Name: function_3675de8b
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x37C2ACDF
 	Offset: 0x458
 	Size: 0x90
@@ -90,7 +90,7 @@ function function_3675de8b()
 
 /*
 	Name: function_bff5c062
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x3E74A992
 	Offset: 0x4F0
 	Size: 0x1C4
@@ -129,7 +129,7 @@ function function_bff5c062(tripwire, var_dbd1a594)
 
 /*
 	Name: function_d863663f
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x80F724D1
 	Offset: 0x6C0
 	Size: 0x4
@@ -142,7 +142,7 @@ function function_d863663f()
 
 /*
 	Name: function_9f97e1a3
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x5324E6E9
 	Offset: 0x6D0
 	Size: 0x11E
@@ -168,7 +168,7 @@ function function_9f97e1a3(watcher)
 
 /*
 	Name: function_ec88b3b9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xE5F32AD
 	Offset: 0x7F8
 	Size: 0x184
@@ -186,7 +186,7 @@ function function_ec88b3b9(pos)
 
 /*
 	Name: function_9366bdf9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xE8871FB1
 	Offset: 0x988
 	Size: 0x16A
@@ -221,7 +221,7 @@ function function_9366bdf9(tripwire, owner)
 
 /*
 	Name: function_32854cb2
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xB60A245
 	Offset: 0xB00
 	Size: 0x3AC
@@ -258,7 +258,7 @@ function function_32854cb2(watcher, player)
 	self.destroyablebytrophysystem = 0;
 	self.detonating = 0;
 	wait(level.var_c72e8c51.var_e14f5fca);
-	player notify(#"hash_7f87135f183e43c7", {#tripwire:self});
+	player notify(#"tripwire_spawn", {#tripwire:self});
 	self clientfield::set("tripwire_state", 1);
 	arrayinsert(level.tripwires, self, level.tripwires.size);
 	level function_d77f9442();
@@ -268,7 +268,7 @@ function function_32854cb2(watcher, player)
 
 /*
 	Name: function_15566346
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x580BCC0A
 	Offset: 0xEB8
 	Size: 0xE2
@@ -297,7 +297,7 @@ function function_15566346(ent)
 
 /*
 	Name: function_d77f9442
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x7C9E967F
 	Offset: 0xFA8
 	Size: 0x178
@@ -339,7 +339,7 @@ function function_d77f9442()
 
 /*
 	Name: function_684adc9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xC7EADF1C
 	Offset: 0x1128
 	Size: 0x84
@@ -361,7 +361,7 @@ function function_684adc9()
 
 /*
 	Name: function_b9549a9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x9297FAFA
 	Offset: 0x11B8
 	Size: 0x174
@@ -390,7 +390,7 @@ function function_b9549a9()
 
 /*
 	Name: function_6c66b650
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xAF6BAAF
 	Offset: 0x1338
 	Size: 0x34
@@ -407,7 +407,7 @@ function function_6c66b650()
 
 /*
 	Name: function_a4b3da97
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x8AE411FA
 	Offset: 0x1378
 	Size: 0x30
@@ -425,7 +425,7 @@ function function_a4b3da97(trace)
 
 /*
 	Name: function_55c50f15
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x4D893A9F
 	Offset: 0x13B0
 	Size: 0x28E
@@ -473,7 +473,7 @@ function function_55c50f15()
 
 /*
 	Name: function_55e95173
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x4CEAA9E3
 	Offset: 0x1648
 	Size: 0x5E
@@ -499,7 +499,7 @@ function function_55e95173(hitent)
 
 /*
 	Name: function_430b5b99
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x9742387C
 	Offset: 0x16B0
 	Size: 0x250
@@ -556,7 +556,7 @@ function function_430b5b99(entity, var_7ffaab28)
 
 /*
 	Name: function_5b8dea90
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xEC36AFFF
 	Offset: 0x1908
 	Size: 0xB2
@@ -586,7 +586,7 @@ function function_5b8dea90(player)
 
 /*
 	Name: function_d334c3fa
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x17CB8462
 	Offset: 0x19C8
 	Size: 0x22A
@@ -632,7 +632,7 @@ function function_d334c3fa(endpoint)
 
 /*
 	Name: function_15de8daf
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xCFDF283B
 	Offset: 0x1C00
 	Size: 0x4E6
@@ -723,7 +723,7 @@ function function_15de8daf()
 
 /*
 	Name: function_84101bb5
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x611E6014
 	Offset: 0x20F0
 	Size: 0xBC
@@ -754,7 +754,7 @@ private function function_84101bb5(notifyhash)
 
 /*
 	Name: function_9e546fb3
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xF2537732
 	Offset: 0x21B8
 	Size: 0xA44
@@ -927,7 +927,7 @@ function function_9e546fb3(attacker, weapon, target, var_2f6adbe3, var_83b1839e)
 
 /*
 	Name: function_9a98f669
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xD42C18F5
 	Offset: 0x2C08
 	Size: 0x24
@@ -941,7 +941,7 @@ function function_9a98f669(player)
 
 /*
 	Name: function_9b3a657f
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xD2F1B79F
 	Offset: 0x2C38
 	Size: 0x22C
@@ -991,7 +991,7 @@ function function_9b3a657f(weapon)
 
 /*
 	Name: function_7a905654
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xB83961D5
 	Offset: 0x2E70
 	Size: 0x362

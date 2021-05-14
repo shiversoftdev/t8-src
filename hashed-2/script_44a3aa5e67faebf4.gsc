@@ -67,7 +67,7 @@ function __init__()
 		adddebugcommand("");
 		adddebugcommand("");
 	#/
-	namespace_57ff8cbb::function_cdf5a512(#"zombie", &function_16f40942);
+	zm_cleanup::function_cdf5a512(#"zombie", &function_16f40942);
 	level.var_e5a996e8 = &function_e5a996e8;
 }
 
@@ -103,7 +103,7 @@ function function_61418721(point, line_start, line_end)
 }
 
 /*
-	Name: function_3202f65f
+	Name: number_b_
 	Namespace: namespace_af9faf28
 	Checksum: 0x2A1DF6A2
 	Offset: 0x5B8
@@ -111,7 +111,7 @@ function function_61418721(point, line_start, line_end)
 	Parameters: 4
 	Flags: Linked
 */
-function function_3202f65f(var_5c57c958, var_f3e138f3, var_3800dad7, plane_normal)
+function number_b_(var_5c57c958, var_f3e138f3, var_3800dad7, plane_normal)
 {
 	var_a979e3a2 = vectordot(plane_normal, var_f3e138f3);
 	result = undefined;
@@ -161,7 +161,7 @@ function function_dc61ccae(vnd_start, var_6f06d19d, var_ca144d1e)
 			{
 				var_af2e4b51 = function_61418721(self.var_b20b0960.origin, var_6f06d19d, var_ca144d1e);
 				var_2b30dcba = vectornormalize(self.var_b20b0960.origin - var_af2e4b51);
-				var_41aabd6d = function_3202f65f(self.var_b20b0960.origin, (0, 0, 1), var_af2e4b51, var_2b30dcba);
+				var_41aabd6d = number_b_(self.var_b20b0960.origin, (0, 0, 1), var_af2e4b51, var_2b30dcba);
 				if(isdefined(var_41aabd6d))
 				{
 					var_b43bc141 = self.var_b20b0960.origin + (0, 0, 1) * var_41aabd6d;

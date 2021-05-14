@@ -248,7 +248,7 @@ function function_98b48c31()
 function function_9170df8e(cmd)
 {
 	/#
-		var_8cc138bc = 0;
+		b_return = 0;
 		switch(cmd)
 		{
 			case "zombie_blood":
@@ -256,13 +256,13 @@ function function_9170df8e(cmd)
 				zm_devgui::zombie_devgui_give_powerup("", 1);
 				break;
 			}
-			case "hash_749c85fecd7c2d90":
+			case "next_zombie_blood":
 			{
 				zm_devgui::zombie_devgui_give_powerup(getsubstr(cmd, 5), 0);
 				break;
 			}
 		}
-		return var_8cc138bc;
+		return b_return;
 	#/
 }
 

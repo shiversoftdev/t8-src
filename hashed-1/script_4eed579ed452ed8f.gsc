@@ -34,9 +34,9 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "hemera_shoot", 16000, 1, "counter", &function_150ba757, 0, 0);
+	clientfield::register("scriptmover", "hemera_shoot", 16000, 1, "counter", &hemera_shoot_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_47f6efd679c0437d", 16000, 1, "int", &function_70e72eac, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_551f6ae1cc666550", 16000, 1, "counter", &function_305c64d5, 0, 0);
+	clientfield::register("scriptmover", "" + #"hemera_impact", 16000, 1, "counter", &hemera_impact_fx, 0, 0);
 	clientfield::register("allplayers", "hemera_proj_flash", 16000, 1, "int", &function_c6d1bdb0, 0, 0);
 	clientfield::register("allplayers", "hemera_beam_flash", 16000, 1, "int", &function_68e9fdbb, 0, 0);
 	clientfield::register("actor", "hemera_proj_death", 16000, 1, "int", &function_ab086ad8, 0, 0);
@@ -44,7 +44,7 @@ function __init__()
 	level._effect[#"hemera_shoot"] = #"hash_520fd2427c5fcea3";
 	level._effect[#"hash_b9d4268e0a3bccc"] = #"hash_2de436091e3fa43c";
 	level._effect[#"hash_ba44e68e0a9efde"] = #"hash_2deb42091e45d74e";
-	level._effect[#"hash_2f75eb1af8206593"] = #"hash_57ff7c670774f7d";
+	level._effect[#"hemera_proj_death_head"] = #"hash_57ff7c670774f7d";
 	level._effect[#"hash_209c29b7e6706274"] = #"hash_47fe9ffe78c83012";
 	level._effect[#"hash_1c1dafe5ebd971f8"] = #"hash_6400b8e89418b50e";
 	level._effect[#"hash_55fc6dcb648e2b70"] = #"hash_5493d96403f608c6";
@@ -54,7 +54,7 @@ function __init__()
 }
 
 /*
-	Name: function_305c64d5
+	Name: hemera_impact_fx
 	Namespace: namespace_23a9b248
 	Checksum: 0x3A009C66
 	Offset: 0x5F0
@@ -62,7 +62,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked
 */
-function function_305c64d5(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function hemera_impact_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(isdefined(self gettagorigin("j_wingulna_le")))
 	{
@@ -114,7 +114,7 @@ function function_ab086ad8(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		if(isdefined(self gettagorigin("j_eyeball_le")))
 		{
-			self.var_1550c80f = util::playfxontag(localclientnum, level._effect[#"hash_2f75eb1af8206593"], self, "j_eyeball_le");
+			self.var_1550c80f = util::playfxontag(localclientnum, level._effect[#"hemera_proj_death_head"], self, "j_eyeball_le");
 		}
 		self playsound(localclientnum, #"hash_70717b71f19db790");
 	}
@@ -143,7 +143,7 @@ function function_ab086ad8(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_150ba757
+	Name: hemera_shoot_fx
 	Namespace: namespace_23a9b248
 	Checksum: 0xCF44758F
 	Offset: 0xB00
@@ -151,7 +151,7 @@ function function_ab086ad8(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_150ba757(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function hemera_shoot_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hemera_shoot"], self, "tag_origin");
 	if(!isdefined(self.sndlooper))
@@ -218,10 +218,10 @@ function function_68e9fdbb(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		return;
 	}
-	if(isdefined(self.var_b4abdb5f))
+	if(isdefined(self.fx_muzzle_flash))
 	{
-		deletefx(localclientnum, self.var_b4abdb5f);
-		self.var_b4abdb5f = undefined;
+		deletefx(localclientnum, self.fx_muzzle_flash);
+		self.fx_muzzle_flash = undefined;
 	}
 	if(function_65b9eb0f(localclientnum))
 	{
@@ -233,12 +233,12 @@ function function_68e9fdbb(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			if(viewmodelhastag(localclientnum, "tag_flash"))
 			{
-				self.var_b4abdb5f = playviewmodelfx(localclientnum, level._effect[#"hash_3115c2658b6e4e0"], "tag_flash");
+				self.fx_muzzle_flash = playviewmodelfx(localclientnum, level._effect[#"hash_3115c2658b6e4e0"], "tag_flash");
 			}
 		}
 		else if(isdefined(self gettagorigin("tag_flash")))
 		{
-			self.var_b4abdb5f = util::playfxontag(localclientnum, level._effect[#"hash_318682658bd17f2"], self, "tag_flash");
+			self.fx_muzzle_flash = util::playfxontag(localclientnum, level._effect[#"hash_318682658bd17f2"], self, "tag_flash");
 		}
 	}
 }

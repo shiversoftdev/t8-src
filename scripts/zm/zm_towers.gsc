@@ -103,7 +103,7 @@ event main(eventstruct)
 	clientfield::register("scriptmover", "sentinel_artifact_fx_mist", 1, 1, "int");
 	clientfield::register("world", "crowd_react", 1, 2, "int");
 	clientfield::register("world", "crowd_react_boss", 1, 1, "int");
-	clientfield::register("world", "" + #"hash_2f895e916afde822", 1, 1, "int");
+	clientfield::register("world", "" + #"crowd_react_wave", 1, 1, "int");
 	clientfield::register("toplayer", "snd_crowd_react", 1, 4, "int");
 	clientfield::register("world", "special_round_smoke", 1, 1, "int");
 	clientfield::register("allplayers", "special_round_camera", 1, 2, "int");
@@ -169,7 +169,7 @@ event main(eventstruct)
 	clientfield::register("scriptmover", "" + #"hash_1814d4cc1867739c", 1, 1, "int");
 	clientfield::register("scriptmover", "" + #"hash_314d3a2e542805c0", 1, 1, "int");
 	clientfield::register("scriptmover", "" + #"hash_522e903485969f46", 1, 1, "counter");
-	clientfield::register("actor", "" + #"hash_1ff85f67b6d93430", 1, 1, "counter");
+	clientfield::register("actor", "" + #"maelstrom_death", 1, 1, "counter");
 	clientfield::register("toplayer", "" + #"hash_17002d8f9d5c197b", 1, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_182c03ff2a21c07c", 1, 1, "counter");
 	clientfield::register("toplayer", "" + #"hash_137bf198b0b91ba9", 1, 1, "int");
@@ -257,7 +257,7 @@ event main(eventstruct)
 	/#
 		level thread function_2bb502f5();
 	#/
-	level thread function_e59a6a6d();
+	level thread setup_drawbridge();
 	if(!zm_utility::function_e51dc2d8())
 	{
 		hidemiscmodels("narmod");
@@ -276,9 +276,9 @@ event main(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b2b69ce5(var_ffe43368)
+private function function_b2b69ce5(b_game_ended)
 {
-	if(!var_ffe43368)
+	if(!b_game_ended)
 	{
 		namespace_2ea65b04::function_18b39e14();
 	}
@@ -315,7 +315,7 @@ function function_7722c6f0(var_404e4288, var_8dd554ee)
 	var_6095c0b6 = namespace_a28acff3::function_4e8157cd(var_404e4288, var_8dd554ee);
 	if(isalive(var_6095c0b6.ai_spawned))
 	{
-		namespace_3fffba66::function_d2374144(var_6095c0b6.ai_spawned, #"blight_father");
+		zm_transform::function_d2374144(var_6095c0b6.ai_spawned, #"blight_father");
 	}
 	return 1;
 }
@@ -358,7 +358,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 		var_6095c0b6 = namespace_a28acff3::function_4e8157cd(var_404e4288, var_8dd554ee);
 		if(isalive(var_6095c0b6.ai_spawned))
 		{
-			namespace_3fffba66::function_d2374144(var_6095c0b6.ai_spawned, array::random(array(#"hash_78ca8e8e6bdbc8ab", #"hash_266b62e342076a90", #"hash_5cfa99582cc66c59", #"hash_5d6b55906fc82ff2")));
+			zm_transform::function_d2374144(var_6095c0b6.ai_spawned, array::random(array(#"hash_78ca8e8e6bdbc8ab", #"hash_266b62e342076a90", #"hash_5cfa99582cc66c59", #"hash_5d6b55906fc82ff2")));
 		}
 	}
 	else
@@ -393,7 +393,7 @@ function function_f6e12f01()
 }
 
 /*
-	Name: function_e59a6a6d
+	Name: setup_drawbridge
 	Namespace: zm_towers
 	Checksum: 0x6C7DAB0C
 	Offset: 0x2FB0
@@ -401,7 +401,7 @@ function function_f6e12f01()
 	Parameters: 0
 	Flags: Linked
 */
-function function_e59a6a6d()
+function setup_drawbridge()
 {
 	scene::init("p8_fxanim_zm_towers_drawbridge_bundle");
 	level flag::wait_till("connect_odin_zeus_bridge");
@@ -629,7 +629,7 @@ function door_price_reduction_for_solo()
 */
 function function_9f50079d()
 {
-	namespace_2ba51478::register_tactical_grenade_for_level("zhield_zword_dw", 1);
+	zm_loadout::register_tactical_grenade_for_level("zhield_zword_dw", 1);
 }
 
 /*
@@ -644,10 +644,10 @@ function function_9f50079d()
 function offhand_weapon_give_override(str_weapon)
 {
 	self endon(#"death");
-	if(namespace_2ba51478::is_tactical_grenade(str_weapon) && isdefined(self namespace_2ba51478::get_player_tactical_grenade()) && !self namespace_2ba51478::is_player_tactical_grenade(str_weapon))
+	if(zm_loadout::is_tactical_grenade(str_weapon) && isdefined(self zm_loadout::get_player_tactical_grenade()) && !self zm_loadout::is_player_tactical_grenade(str_weapon))
 	{
-		self setweaponammoclip(self namespace_2ba51478::get_player_tactical_grenade(), 0);
-		self takeweapon(self namespace_2ba51478::get_player_tactical_grenade());
+		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
+		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
 	return 0;
 }
@@ -976,12 +976,12 @@ function function_dccf4bb9(mdl_gate)
 function function_6f26118c(mdl_gate)
 {
 	self endon_callback(&function_f493ba80, #"death");
-	var_dec013fd = getent(mdl_gate.target, "targetname");
-	while(!self istouching(var_dec013fd))
+	vol_gate = getent(mdl_gate.target, "targetname");
+	while(!self istouching(vol_gate))
 	{
 		waitframe(1);
 	}
-	while(self istouching(var_dec013fd))
+	while(self istouching(vol_gate))
 	{
 		waitframe(1);
 	}
@@ -1019,16 +1019,16 @@ function function_97678f00()
 		{
 			waitframe(1);
 		}
-		var_5a837ecb = vectorscale(self.script_vector, 1);
-		self moveto(self.origin + var_5a837ecb, 1);
+		v_amount = vectorscale(self.script_vector, 1);
+		self moveto(self.origin + v_amount, 1);
 		self playsound(#"hash_75a2099e8df5a448");
 		self waittill(#"movedone");
 		while(self.var_408d5ee6 > 0)
 		{
 			waitframe(1);
 		}
-		var_5a837ecb = vectorscale(self.script_vector, -1);
-		self moveto(self.origin + var_5a837ecb, 1);
+		v_amount = vectorscale(self.script_vector, -1);
+		self moveto(self.origin + v_amount, 1);
 		self playsound(#"hash_40e8e3be1a559184");
 		self waittill(#"movedone");
 	}
@@ -1079,10 +1079,10 @@ function function_73602c6f()
 {
 	self endon(#"death");
 	self.pandora_light = spawn("script_model", self.zbarrier.origin);
-	var_3a76a909 = struct::get(self.target, "targetname");
-	if(isdefined(var_3a76a909) && var_3a76a909.script_noteworthy === "pandora_fx_pos_override")
+	s_pandora_fx_pos_override = struct::get(self.target, "targetname");
+	if(isdefined(s_pandora_fx_pos_override) && s_pandora_fx_pos_override.script_noteworthy === "pandora_fx_pos_override")
 	{
-		self.pandora_light.origin = var_3a76a909.origin;
+		self.pandora_light.origin = s_pandora_fx_pos_override.origin;
 	}
 	self.pandora_light.angles = self.zbarrier.angles + vectorscale((-1, 0, -1), 90);
 	self.pandora_light setmodel(#"tag_origin");
@@ -1261,7 +1261,7 @@ function function_5b2f92b3()
 }
 
 /*
-	Name: function_6bba4aa1
+	Name: setup_end_igc
 	Namespace: zm_towers
 	Checksum: 0xCC47C9BC
 	Offset: 0x5758
@@ -1269,7 +1269,7 @@ function function_5b2f92b3()
 	Parameters: 1
 	Flags: Linked
 */
-function function_6bba4aa1(var_24486b2e = 1)
+function setup_end_igc(var_24486b2e = 1)
 {
 	level flag::clear("spawn_zombies");
 	level flag::set(#"pause_round_timeout");
@@ -1364,17 +1364,17 @@ function function_72e2cc56()
 {
 	/#
 		level endon(#"end_game");
-		var_99c3b610 = struct::get("");
-		var_75062807 = struct::get("");
+		s_glyphs = struct::get("");
+		s_flames = struct::get("");
 		while(level.var_68d47b4e)
 		{
 			level waittill(#"hash_1ea7a5302de9c85e");
-			var_11c39529 = fx::play("", var_99c3b610.origin, var_99c3b610.angles, "");
+			fx_glyphs = fx::play("", s_glyphs.origin, s_glyphs.angles, "");
 			waitframe(1);
-			var_b8a353a9 = fx::play("", var_75062807.origin, var_75062807.angles, "");
+			fx_fire = fx::play("", s_flames.origin, s_flames.angles, "");
 			level waittill(#"hash_18462f29f613ebbf", #"hash_71cb0d80cda209f1");
-			var_b8a353a9 delete();
-			var_11c39529 delete();
+			fx_fire delete();
+			fx_glyphs delete();
 		}
 	#/
 }
@@ -1511,7 +1511,7 @@ function function_8d6c5e6e(cmd)
 	/#
 		switch(cmd)
 		{
-			case "hash_1766735e8d84ded3":
+			case "play_end_igc":
 			{
 				level thread function_ddb8acde();
 				return 1;
@@ -1741,7 +1741,7 @@ function function_ddb8acde()
 {
 	/#
 		level thread scene::init_streamer(#"hash_18b88682c325ad3d", #"allies");
-		level function_6bba4aa1();
+		level setup_end_igc();
 		level scene::play(#"hash_18b88682c325ad3d");
 	#/
 }
@@ -1784,7 +1784,7 @@ function function_9dc8cf3()
 				e_player clientfield::set("" + #"hash_58757f4a64fedf21", e_player.var_c9d375dc.n_charge_level);
 				if(e_player.var_c9d375dc.n_charge_level >= 3)
 				{
-					e_player thread namespace_52d8d460::function_1f1bc829();
+					e_player thread namespace_52d8d460::player_flame_on();
 				}
 			}
 		}

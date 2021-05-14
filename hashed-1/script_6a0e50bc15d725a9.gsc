@@ -370,17 +370,17 @@ function function_a950c92c(localclientnum)
 	while(true)
 	{
 		level.var_443d1164 = undefined;
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill(#"hash_73ff8d0d706c332d", #"hash_527d9fdde8903b80");
+		s_result = undefined;
+		s_result = level waittill(#"hash_73ff8d0d706c332d", #"hash_527d9fdde8903b80");
 		level.var_443d1164 = 1;
 		self function_4700b6cd(localclientnum);
-		if(var_88706ea7._notify === #"hash_73ff8d0d706c332d" && var_88706ea7.e_attacker === self && isdefined(var_88706ea7.e_target))
+		if(s_result._notify === #"hash_73ff8d0d706c332d" && s_result.e_attacker === self && isdefined(s_result.e_target))
 		{
-			var_3da509de = var_88706ea7.e_target;
+			var_3da509de = s_result.e_target;
 			self thread function_5ab769d8(localclientnum);
-			self thread function_28291f40(localclientnum, var_88706ea7.e_target);
+			self thread function_28291f40(localclientnum, s_result.e_target);
 		}
-		else if(isdefined(var_3da509de) && var_3da509de !== var_88706ea7.e_target)
+		else if(isdefined(var_3da509de) && var_3da509de !== s_result.e_target)
 		{
 			continue;
 		}
@@ -526,14 +526,14 @@ function function_28291f40(localclientnum, e_target)
 */
 function function_f9a03171(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(!isdefined(self.var_b4abdb5f))
+	if(!isdefined(self.fx_muzzle_flash))
 	{
-		self.var_b4abdb5f = [];
+		self.fx_muzzle_flash = [];
 	}
-	if(isdefined(self.var_b4abdb5f[localclientnum]))
+	if(isdefined(self.fx_muzzle_flash[localclientnum]))
 	{
-		deletefx(localclientnum, self.var_b4abdb5f[localclientnum]);
-		self.var_b4abdb5f[localclientnum] = undefined;
+		deletefx(localclientnum, self.fx_muzzle_flash[localclientnum]);
+		self.fx_muzzle_flash[localclientnum] = undefined;
 	}
 	a_e_players = getlocalplayers();
 	foreach(e_player in a_e_players)
@@ -549,18 +549,18 @@ function function_f9a03171(localclientnum, oldval, newval, bnewent, binitialsnap
 		var_a1f103c8 = "spectral_key_muzzle_flash3p_idle";
 		if(self zm_utility::function_f8796df3(localclientnum))
 		{
-			self.var_b4abdb5f[localclientnum] = playviewmodelfx(localclientnum, level._effect[var_27aa6343], "tag_flash");
+			self.fx_muzzle_flash[localclientnum] = playviewmodelfx(localclientnum, level._effect[var_27aa6343], "tag_flash");
 		}
 		else
 		{
-			self.var_b4abdb5f[localclientnum] = util::playfxontag(localclientnum, level._effect[var_a1f103c8], self, "tag_flash");
+			self.fx_muzzle_flash[localclientnum] = util::playfxontag(localclientnum, level._effect[var_a1f103c8], self, "tag_flash");
 		}
 		a_e_players = getlocalplayers();
 		foreach(e_player in a_e_players)
 		{
 			if(!e_player util::function_50ed1561(localclientnum))
 			{
-				e_player thread zm_utility::function_ae3780f1(localclientnum, self.var_b4abdb5f[localclientnum], #"hash_52e05d0e2370536d");
+				e_player thread zm_utility::function_ae3780f1(localclientnum, self.fx_muzzle_flash[localclientnum], #"hash_52e05d0e2370536d");
 			}
 		}
 	}
@@ -570,18 +570,18 @@ function function_f9a03171(localclientnum, oldval, newval, bnewent, binitialsnap
 		var_a1f103c8 = "spectral_key_muzzle_flash3p";
 		if(self zm_utility::function_f8796df3(localclientnum))
 		{
-			self.var_b4abdb5f[localclientnum] = playviewmodelfx(localclientnum, level._effect[var_27aa6343], "tag_flash");
+			self.fx_muzzle_flash[localclientnum] = playviewmodelfx(localclientnum, level._effect[var_27aa6343], "tag_flash");
 		}
 		else
 		{
-			self.var_b4abdb5f[localclientnum] = util::playfxontag(localclientnum, level._effect[var_a1f103c8], self, "tag_flash");
+			self.fx_muzzle_flash[localclientnum] = util::playfxontag(localclientnum, level._effect[var_a1f103c8], self, "tag_flash");
 		}
 		a_e_players = getlocalplayers();
 		foreach(e_player in a_e_players)
 		{
 			if(!e_player util::function_50ed1561(localclientnum))
 			{
-				e_player thread zm_utility::function_ae3780f1(localclientnum, self.var_b4abdb5f[localclientnum], #"hash_52e05d0e2370536d");
+				e_player thread zm_utility::function_ae3780f1(localclientnum, self.fx_muzzle_flash[localclientnum], #"hash_52e05d0e2370536d");
 			}
 		}
 	}

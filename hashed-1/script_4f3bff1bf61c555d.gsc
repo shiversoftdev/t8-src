@@ -52,7 +52,7 @@ function raps_initialize()
 {
 	namespace_c2dce87e::function_c6f75619();
 	self useanimtree("generic");
-	self function_97ee9e6b();
+	self initsounds();
 	if(isdefined(level.vehicle_initializer_cb))
 	{
 		[[level.vehicle_initializer_cb]](self);
@@ -144,7 +144,7 @@ function slow_raps(trigger)
 }
 
 /*
-	Name: function_97ee9e6b
+	Name: initsounds
 	Namespace: raps
 	Checksum: 0x9BF47030
 	Offset: 0x608
@@ -152,7 +152,7 @@ function slow_raps(trigger)
 	Parameters: 0
 	Flags: None
 */
-function function_97ee9e6b()
+function initsounds()
 {
 	self.sndalias = [];
 	self.sndalias[#"inair"] = #"veh_raps_in_air";

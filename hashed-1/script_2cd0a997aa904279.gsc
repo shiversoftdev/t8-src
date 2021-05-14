@@ -42,7 +42,7 @@ function init()
 		namespace_c3287616::function_376e51ef(#"zombie_dog", level.var_2f14be05);
 		level.var_819e7dfd[#"zombie_dog"].var_87ed2709 = &function_6fa16bd2;
 	}
-	else if(zm_utility::function_3bff983f())
+	else if(zm_utility::is_trials())
 	{
 		level.var_2f14be05 = 10;
 		level.var_35a23da4 = 11;
@@ -59,12 +59,12 @@ function init()
 		level.var_2f14be05 = 10;
 		level.var_35a23da4 = 15;
 	}
-	level.var_819e7dfd[#"nova_crawler"].var_ef500cb7 = &function_ccdfa71b;
+	level.var_819e7dfd[#"nova_crawler"].var_ef500cb7 = &crawler_round_spawn;
 	level.var_819e7dfd[#"nova_crawler"].var_87ed2709 = &function_dd836251;
 	level flag::init(#"nova_crawlers_round");
 	level flag::init(#"hash_2a1fc2e349c48462");
 	callback::function_189f87c1(&function_5b22eecf);
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
 		namespace_c3287616::function_2876740e(#"nova_crawler", &function_6f502b52);
 	}
@@ -240,7 +240,7 @@ function function_a409c2a7(e_target)
 function function_13f107c4(ai, ent)
 {
 	ai endon(#"death");
-	ai val::set(#"hash_37e10c667b66c5a7", "allowdeath", 0);
+	ai val::set(#"crawler_spawn", "allowdeath", 0);
 	ai setfreecameralockonallowed(0);
 	wait(1);
 	ai clientfield::increment("crawler_portal_spawn_fx");
@@ -263,11 +263,11 @@ function function_13f107c4(ai, ent)
 	/#
 		assert(isalive(ai), "");
 	#/
-	ai val::reset(#"hash_37e10c667b66c5a7", "allowdeath");
+	ai val::reset(#"crawler_spawn", "allowdeath");
 	wait(0.1);
 	ai show();
 	ai setfreecameralockonallowed(1);
-	ai val::reset(#"hash_37e10c667b66c5a7", "ignoreme");
+	ai val::reset(#"crawler_spawn", "ignoreme");
 	ai notify(#"spawn_complete");
 	ai notify(#"visible");
 }
@@ -344,13 +344,13 @@ function function_dd836251()
 	}
 	else
 	{
-		ai = namespace_df88241c::function_33bf3983();
+		ai = namespace_df88241c::spawn_nova_crawler();
 	}
 	return ai;
 }
 
 /*
-	Name: function_ccdfa71b
+	Name: crawler_round_spawn
 	Namespace: namespace_c71ecd1b
 	Checksum: 0x84A871FD
 	Offset: 0x1070
@@ -358,7 +358,7 @@ function function_dd836251()
 	Parameters: 0
 	Flags: Linked
 */
-function function_ccdfa71b()
+function crawler_round_spawn()
 {
 	ai = function_dd836251();
 	if(isdefined(ai))

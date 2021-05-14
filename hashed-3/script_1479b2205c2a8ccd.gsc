@@ -283,9 +283,9 @@ private function cover_think()
 	trigger = getent(self.target, "targetname");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = trigger waittill(#"damage");
-		if(isplayer(var_88706ea7.attacker) && var_88706ea7.mod == "MOD_MELEE")
+		s_result = undefined;
+		s_result = trigger waittill(#"damage");
+		if(isplayer(s_result.attacker) && s_result.mod == "MOD_MELEE")
 		{
 			break;
 		}

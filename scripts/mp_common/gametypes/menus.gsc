@@ -169,7 +169,7 @@ function on_menu_response(params)
 	}
 	if(response == #"hash_37a46164a47ed885")
 	{
-		self killcam::function_139c2945();
+		self killcam::start_deathcam();
 		return;
 	}
 	if(response == #"hash_aa9fde2b084d482")

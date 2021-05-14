@@ -1528,7 +1528,7 @@ function spawned_weapon_type(localclientnum)
 */
 function function_cbfd8fd6(localclientnum)
 {
-	namespace_bd02cf1::function_cbfd8fd6(localclientnum);
+	activecamo::function_cbfd8fd6(localclientnum);
 }
 
 /*

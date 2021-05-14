@@ -107,7 +107,7 @@ private function devgui()
 				}
 				case "hash_5aeb6018289cc278":
 				{
-					namespace_bfc8ee03::function_50d386b6();
+					namespace_bfc8ee03::lava_control();
 					break;
 				}
 				case "hash_75c01ef1f8005214":
@@ -127,7 +127,7 @@ private function devgui()
 					namespace_86eed980::function_e4b04738();
 					break;
 				}
-				case "hash_51332bd7e613b9f1":
+				case "test_last_stand":
 				{
 					zm_devgui::zombie_devgui_open_sesame();
 					namespace_99a6629b::function_80a9077f();
@@ -170,7 +170,7 @@ private function devgui()
 					}
 					break;
 				}
-				case "hash_96c63d0f884c622":
+				case "play_portal":
 				{
 					level thread namespace_13b4b4b::function_d096f18f();
 					break;
@@ -180,22 +180,22 @@ private function devgui()
 					namespace_bfc8ee03::function_fe36418c();
 					break;
 				}
-				case "hash_40cd0e6dd8508d7b":
+				case "move_pap_boathouse":
 				{
 					namespace_44916ada::function_ccc079bc("");
 					break;
 				}
-				case "hash_7a473c2146b48446":
+				case "move_pap_beach":
 				{
 					namespace_44916ada::function_ccc079bc("");
 					break;
 				}
-				case "hash_1f200f41fc9cc2bd":
+				case "move_pap_ship":
 				{
 					namespace_44916ada::function_ccc079bc("");
 					break;
 				}
-				case "hash_644f65735ba443b7":
+				case "move_pap_lagoon":
 				{
 					namespace_44916ada::function_ccc079bc("");
 					break;
@@ -223,9 +223,9 @@ private function devgui()
 					level thread namespace_44916ada::function_96ef31b7();
 					break;
 				}
-				case "hash_3d2a3748b9357855":
+				case "test_hell":
 				{
-					namespace_bfc8ee03::function_d3d435bf();
+					namespace_bfc8ee03::test_hell();
 					break;
 				}
 			}

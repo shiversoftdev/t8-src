@@ -120,14 +120,14 @@ function function_764eb053()
 		{
 			showmodel = getdvarint(#"hash_56d8c90edb7a97b6", 0);
 			showviewmodel = getdvarint(#"hash_65c459b02d95c9c9", 0);
-			var_3640d44a = 0;
+			newspawn = 0;
 			if(showmodel != var_986c8888)
 			{
 				if(showmodel > 0)
 				{
 					if(!isdefined(ent))
 					{
-						var_3640d44a = 1;
+						newspawn = 1;
 						ent = util::spawn_model(self.localclientnum, "");
 					}
 				}
@@ -141,7 +141,7 @@ function function_764eb053()
 				}
 				var_986c8888 = showmodel;
 			}
-			if(var_3640d44a || showmodel == 1 && isdefined(ent))
+			if(newspawn || showmodel == 1 && isdefined(ent))
 			{
 				ent.origin = self.origin + vectorscale((0, 0, 1), 70) + anglestoforward(self.angles) * 250;
 			}

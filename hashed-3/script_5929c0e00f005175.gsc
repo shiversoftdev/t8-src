@@ -6,11 +6,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_93d5cf27;
+#namespace gadget_tripwire;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x8202D603
 	Offset: 0x1D8
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_533c0b47c0225300", &__init__, undefined, undefined);
+	system::register(#"gadget_tripwire", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x5B127090
 	Offset: 0x220
 	Size: 0x258
@@ -51,16 +51,16 @@ function __init__()
 	{
 		level.var_77cae643 = [];
 	}
-	level.tripwire = {#hash_ff95fcfe:[], #wires:[]};
+	level.tripwire = {#localclients:[], #wires:[]};
 	for(i = 0; i < getmaxlocalclients(); i++)
 	{
-		level.tripwire.var_ff95fcfe[i] = {#model:undefined, #previs:0, #beams:[]};
+		level.tripwire.localclients[i] = {#model:undefined, #previs:0, #beams:[]};
 	}
 }
 
 /*
 	Name: function_330a13a6
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x415FB473
 	Offset: 0x480
 	Size: 0xDA
@@ -69,19 +69,19 @@ function __init__()
 */
 function function_330a13a6(params)
 {
-	foreach(beam_id in level.tripwire.var_ff95fcfe[params.localclientnum].beams)
+	foreach(beam_id in level.tripwire.localclients[params.localclientnum].beams)
 	{
 		if(isdefined(beam_id))
 		{
 			beamkill(params.localclientnum, beam_id);
 		}
 	}
-	level.tripwire.var_ff95fcfe[params.localclientnum].beams = [];
+	level.tripwire.localclients[params.localclientnum].beams = [];
 }
 
 /*
 	Name: function_bd054816
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x6DC85A78
 	Offset: 0x568
 	Size: 0x6E
@@ -106,7 +106,7 @@ function function_bd054816(params)
 
 /*
 	Name: function_6868fab3
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x12167ED6
 	Offset: 0x5E0
 	Size: 0x252
@@ -149,14 +149,14 @@ function function_6868fab3(localclientnum, oldval, newval, bnewent, binitialsnap
 		case 2:
 		case 3:
 		{
-			foreach(beam_id in level.tripwire.var_ff95fcfe[localclientnum].beams)
+			foreach(beam_id in level.tripwire.localclients[localclientnum].beams)
 			{
 				if(isdefined(beam_id))
 				{
 					beamkill(localclientnum, beam_id);
 				}
 			}
-			level.tripwire.var_ff95fcfe[localclientnum].beams = [];
+			level.tripwire.localclients[localclientnum].beams = [];
 			self thread function_55c50f15();
 			break;
 		}
@@ -165,7 +165,7 @@ function function_6868fab3(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_6230a8a5
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xAD6C4C69
 	Offset: 0x840
 	Size: 0x34
@@ -179,7 +179,7 @@ function function_6230a8a5(localclientnum)
 
 /*
 	Name: function_a4b3da97
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xBBEF556D
 	Offset: 0x880
 	Size: 0x30
@@ -197,7 +197,7 @@ function function_a4b3da97(trace)
 
 /*
 	Name: function_55c50f15
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x2EFB3D0
 	Offset: 0x8B8
 	Size: 0x3FC
@@ -257,7 +257,7 @@ function function_55c50f15()
 									var_6e75c10a = "beam8_plyr_equip_ied_frnd";
 								}
 								beam_id = player beam::launch(tripwire, "tag_fx", self, "tag_fx", var_6e75c10a);
-								arrayinsert(level.tripwire.var_ff95fcfe[player.localclientnum].beams, beam_id, level.tripwire.var_ff95fcfe[player.localclientnum].beams.size);
+								arrayinsert(level.tripwire.localclients[player.localclientnum].beams, beam_id, level.tripwire.localclients[player.localclientnum].beams.size);
 							}
 						}
 					}
@@ -269,7 +269,7 @@ function function_55c50f15()
 
 /*
 	Name: function_9233eb94
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x58369324
 	Offset: 0xCC0
 	Size: 0xCC
@@ -292,7 +292,7 @@ function function_9233eb94(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_2a919ef0
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x85AC8766
 	Offset: 0xD98
 	Size: 0x7E
@@ -319,7 +319,7 @@ function function_2a919ef0(localclientnum)
 
 /*
 	Name: function_17d973ec
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xE20FB4DC
 	Offset: 0xE20
 	Size: 0x2DE
@@ -332,31 +332,31 @@ function function_17d973ec(localclientnum)
 	self notify(#"hash_726805ec8cfae188");
 	self endon(#"hash_726805ec8cfae188");
 	self thread function_b882ca33(localclientnum);
-	level.tripwire.var_ff95fcfe[localclientnum].previs = 0;
+	level.tripwire.localclients[localclientnum].previs = 0;
 	var_9480bc93 = 0;
 	level.var_41427f32 = undefined;
 	while(true)
 	{
-		var_9480bc93 = level.tripwire.var_ff95fcfe[localclientnum].previs;
-		level.tripwire.var_ff95fcfe[localclientnum].previs = function_2a919ef0(localclientnum);
-		if(level.tripwire.var_ff95fcfe[localclientnum].previs)
+		var_9480bc93 = level.tripwire.localclients[localclientnum].previs;
+		level.tripwire.localclients[localclientnum].previs = function_2a919ef0(localclientnum);
+		if(level.tripwire.localclients[localclientnum].previs)
 		{
-			if(!isdefined(level.tripwire.var_ff95fcfe[localclientnum].model))
+			if(!isdefined(level.tripwire.localclients[localclientnum].model))
 			{
-				function_af2eb2da(localclientnum);
+				spawn_previs(localclientnum);
 			}
 			if(!var_9480bc93)
 			{
 				var_e7640260 = 1;
-				level.tripwire.var_ff95fcfe[localclientnum].model show();
+				level.tripwire.localclients[localclientnum].model show();
 			}
 			function_82a8db78(localclientnum);
 		}
-		else if(var_9480bc93 && !level.tripwire.var_ff95fcfe[localclientnum].previs)
+		else if(var_9480bc93 && !level.tripwire.localclients[localclientnum].previs)
 		{
-			level.tripwire.var_ff95fcfe[localclientnum].model notify(#"death");
-			level.tripwire.var_ff95fcfe[localclientnum].model delete();
-			level.tripwire.var_ff95fcfe[localclientnum].model = undefined;
+			level.tripwire.localclients[localclientnum].model notify(#"death");
+			level.tripwire.localclients[localclientnum].model delete();
+			level.tripwire.localclients[localclientnum].model = undefined;
 			function_c51a3b22();
 			function_dc76d0d0(localclientnum);
 			if(objective_state(localclientnum, self.var_61df85ff) != "invisible")
@@ -370,7 +370,7 @@ function function_17d973ec(localclientnum)
 
 /*
 	Name: function_b882ca33
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x14538828
 	Offset: 0x1108
 	Size: 0xA4
@@ -380,54 +380,54 @@ function function_17d973ec(localclientnum)
 function function_b882ca33(localclientnum)
 {
 	self waittill(#"death");
-	if(isdefined(level.tripwire.var_ff95fcfe[self.localclientnum].model))
+	if(isdefined(level.tripwire.localclients[self.localclientnum].model))
 	{
-		level.tripwire.var_ff95fcfe[self.localclientnum].model hide();
+		level.tripwire.localclients[self.localclientnum].model hide();
 	}
 	function_6b69576b();
 	function_dc76d0d0(localclientnum);
 }
 
 /*
-	Name: function_af2eb2da
-	Namespace: namespace_93d5cf27
+	Name: spawn_previs
+	Namespace: gadget_tripwire
 	Checksum: 0x38C946E8
 	Offset: 0x11B8
 	Size: 0x82
 	Parameters: 1
 	Flags: Linked
 */
-function function_af2eb2da(localclientnum)
+function spawn_previs(localclientnum)
 {
 	localplayer = function_5c10bd79(localclientnum);
-	level.tripwire.var_ff95fcfe[localclientnum].model = spawn(localclientnum, (0, 0, 0), "script_model", localplayer getentitynumber());
+	level.tripwire.localclients[localclientnum].model = spawn(localclientnum, (0, 0, 0), "script_model", localplayer getentitynumber());
 }
 
 /*
 	Name: function_3e8d9b27
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xB3A73CEF
 	Offset: 0x1248
 	Size: 0xCC
 	Parameters: 3
 	Flags: Linked
 */
-function function_3e8d9b27(local_client_num, var_bd0cf7ac, var_120d5014)
+function function_3e8d9b27(local_client_num, previs_weapon, var_120d5014)
 {
 	if(var_120d5014)
 	{
-		level.tripwire.var_ff95fcfe[local_client_num].model setmodel(#"hash_2edbbbe63af8213d");
+		level.tripwire.localclients[local_client_num].model setmodel(#"hash_2edbbbe63af8213d");
 	}
 	else
 	{
-		level.tripwire.var_ff95fcfe[local_client_num].model setmodel(#"hash_6c54a3e97ce636f0");
+		level.tripwire.localclients[local_client_num].model setmodel(#"hash_6c54a3e97ce636f0");
 	}
-	level.tripwire.var_ff95fcfe[local_client_num].model notsolid();
+	level.tripwire.localclients[local_client_num].model notsolid();
 }
 
 /*
 	Name: function_95d56693
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x91DFD9F9
 	Offset: 0x1320
 	Size: 0x5C
@@ -448,7 +448,7 @@ function function_95d56693()
 
 /*
 	Name: function_82a8db78
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x1971BA56
 	Offset: 0x1388
 	Size: 0x54C
@@ -465,20 +465,20 @@ function function_82a8db78(localclientnum)
 	velocity = function_711c258(forward, up, level.var_c27600b0);
 	eye_pos = getlocalclienteyepos(localclientnum);
 	trace1 = function_e6ba3ec9(eye_pos, velocity, 0, level.var_c27600b0, level.var_41427f32);
-	level.tripwire.var_ff95fcfe[localclientnum].model.origin = trace1[#"position"];
-	level.tripwire.var_ff95fcfe[localclientnum].model.angles = (angleclamp180(vectortoangles(trace1[#"normal"])[0] + 90), vectortoangles(trace1[#"normal"])[1], 0);
-	level.tripwire.var_ff95fcfe[localclientnum].model.hitent = trace1[#"entity"];
-	if(isdefined(level.tripwire.var_ff95fcfe[localclientnum].model.hitent) && level.tripwire.var_ff95fcfe[localclientnum].model.hitent.weapon == level.var_c27600b0)
+	level.tripwire.localclients[localclientnum].model.origin = trace1[#"position"];
+	level.tripwire.localclients[localclientnum].model.angles = (angleclamp180(vectortoangles(trace1[#"normal"])[0] + 90), vectortoangles(trace1[#"normal"])[1], 0);
+	level.tripwire.localclients[localclientnum].model.hitent = trace1[#"entity"];
+	if(isdefined(level.tripwire.localclients[localclientnum].model.hitent) && level.tripwire.localclients[localclientnum].model.hitent.weapon == level.var_c27600b0)
 	{
-		level.var_41427f32 = level.tripwire.var_ff95fcfe[localclientnum].model.hitent;
+		level.var_41427f32 = level.tripwire.localclients[localclientnum].model.hitent;
 	}
 	if(level.tripwire.wires.size > 0)
 	{
-		level.tripwire.var_ff95fcfe[localclientnum].model function_adb3eb2c(localclientnum);
+		level.tripwire.localclients[localclientnum].model function_adb3eb2c(localclientnum);
 	}
-	else if(!isdefined(level.tripwire.var_ff95fcfe[localclientnum].model.var_2045ae5c))
+	else if(!isdefined(level.tripwire.localclients[localclientnum].model.var_2045ae5c))
 	{
-		level.tripwire.var_ff95fcfe[localclientnum].model.var_2045ae5c = util::playfxontag(localclientnum, #"hash_79d94632506eafee", level.tripwire.var_ff95fcfe[localclientnum].model, "tag_fx");
+		level.tripwire.localclients[localclientnum].model.var_2045ae5c = util::playfxontag(localclientnum, #"hash_79d94632506eafee", level.tripwire.localclients[localclientnum].model, "tag_fx");
 	}
 	if(!isdefined(player.var_61df85ff))
 	{
@@ -504,7 +504,7 @@ function function_82a8db78(localclientnum)
 
 /*
 	Name: function_26c580d9
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xCC1B842D
 	Offset: 0x18E0
 	Size: 0x14A
@@ -513,7 +513,7 @@ function function_82a8db78(localclientnum)
 */
 function function_26c580d9(localclientnum, tripwire, trace, var_f2edf308)
 {
-	if(isdefined(level.tripwire.var_ff95fcfe[localclientnum].model.hitent) && isplayer(level.tripwire.var_ff95fcfe[localclientnum].model.hitent))
+	if(isdefined(level.tripwire.localclients[localclientnum].model.hitent) && isplayer(level.tripwire.localclients[localclientnum].model.hitent))
 	{
 		return 0;
 	}
@@ -534,7 +534,7 @@ function function_26c580d9(localclientnum, tripwire, trace, var_f2edf308)
 
 /*
 	Name: function_adb3eb2c
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x30D2F1C
 	Offset: 0x1A38
 	Size: 0x302
@@ -604,7 +604,7 @@ function function_adb3eb2c(localclientnum)
 
 /*
 	Name: function_dc76d0d0
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xCF53B3AB
 	Offset: 0x1D48
 	Size: 0x160
@@ -631,7 +631,7 @@ function function_dc76d0d0(localclientnum)
 
 /*
 	Name: function_c51a3b22
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x781AA01F
 	Offset: 0x1EB0
 	Size: 0x98
@@ -652,7 +652,7 @@ function function_c51a3b22()
 
 /*
 	Name: function_6b69576b
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0xF5843350
 	Offset: 0x1F50
 	Size: 0x48
@@ -669,7 +669,7 @@ function function_6b69576b()
 
 /*
 	Name: function_8c308396
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x14CFA5EE
 	Offset: 0x1FA0
 	Size: 0xAA
@@ -690,7 +690,7 @@ function function_8c308396(ent1, ent2)
 
 /*
 	Name: function_810faece
-	Namespace: namespace_93d5cf27
+	Namespace: gadget_tripwire
 	Checksum: 0x22628350
 	Offset: 0x2058
 	Size: 0x6C

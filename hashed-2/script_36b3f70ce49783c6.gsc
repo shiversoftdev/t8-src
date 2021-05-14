@@ -171,7 +171,7 @@ private function function_35e11623(deathcircle, var_898879a6)
 	}
 	for(index = 0; index < var_a5a016fc.size; index++)
 	{
-		var_a5a016fc[index] namespace_93d5cf27::function_9e546fb3();
+		var_a5a016fc[index] gadget_tripwire::function_9e546fb3();
 	}
 	var_90afc439 = [];
 	foreach(monkey in level.var_7d95e1ed)

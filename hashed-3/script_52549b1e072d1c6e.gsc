@@ -49,12 +49,12 @@ function function_eefb5c87(localclientnum, oldval, newval, bnewent, binitialsnap
 	ent = getentbynum(localclientnum, newval);
 	if(newval != oldval || (isdefined(ent) && (!(isdefined(ent.var_4dffc910) && ent.var_4dffc910))))
 	{
-		var_9e58fecb = #"hash_aa2ba3bf66e25d2";
+		robname = #"hash_aa2ba3bf66e25d2";
 		oldent = getentbynum(localclientnum, oldval);
 		if(isdefined(oldent) && (isdefined(oldent.var_4dffc910) && oldent.var_4dffc910))
 		{
 			oldent function_577be059(0);
-			oldent function_5d482e78(var_9e58fecb);
+			oldent function_5d482e78(robname);
 			oldent.var_4dffc910 = undefined;
 		}
 		entnum = self getentitynumber();
@@ -63,8 +63,8 @@ function function_eefb5c87(localclientnum, oldval, newval, bnewent, binitialsnap
 			if(isdefined(ent) && (!(isdefined(ent.var_4dffc910) && ent.var_4dffc910)))
 			{
 				ent function_577be059(1);
-				ent function_bf9d3071(var_9e58fecb);
-				ent function_78233d29(var_9e58fecb, "", "Alpha", 1);
+				ent function_bf9d3071(robname);
+				ent function_78233d29(robname, "", "Alpha", 1);
 				ent.var_4dffc910 = 1;
 			}
 		}

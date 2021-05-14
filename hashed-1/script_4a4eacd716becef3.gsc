@@ -93,12 +93,12 @@ function function_618e1db4(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(viewmodelhastag(localclientnum, "tag_barrels_fx"))
 		{
-			self.var_ba9dc1e7 = playviewmodelfx(localclientnum, var_27aa6343, "tag_barrels_fx");
+			self.fx_firestorm = playviewmodelfx(localclientnum, var_27aa6343, "tag_barrels_fx");
 		}
 	}
 	else
 	{
-		self.var_ba9dc1e7 = util::playfxontag(localclientnum, var_a1f103c8, self, "tag_barrels_fx");
+		self.fx_firestorm = util::playfxontag(localclientnum, var_a1f103c8, self, "tag_barrels_fx");
 	}
 }
 
@@ -113,9 +113,9 @@ function function_618e1db4(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_311767a6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(isdefined(self.var_ba9dc1e7))
+	if(isdefined(self.fx_firestorm))
 	{
-		killfx(localclientnum, self.var_ba9dc1e7);
+		killfx(localclientnum, self.fx_firestorm);
 	}
 }
 
@@ -146,7 +146,7 @@ function function_467afa20(localclientnum, oldval, newval, bnewent, binitialsnap
 			}
 			if(viewmodelhastag(localclientnum, "tag_blade_fx"))
 			{
-				self.var_16956fb5 = playviewmodelfx(localclientnum, var_a3229167, "tag_blade_fx");
+				self.fx_docked = playviewmodelfx(localclientnum, var_a3229167, "tag_blade_fx");
 			}
 		}
 		else
@@ -156,12 +156,12 @@ function function_467afa20(localclientnum, oldval, newval, bnewent, binitialsnap
 			{
 				var_2f34467b = level._effect[#"hash_76550305a8accb7c"];
 			}
-			self.var_16956fb5 = util::playfxontag(localclientnum, var_2f34467b, self, "tag_blade_fx");
+			self.fx_docked = util::playfxontag(localclientnum, var_2f34467b, self, "tag_blade_fx");
 		}
 	}
-	else if(isdefined(self.var_16956fb5))
+	else if(isdefined(self.fx_docked))
 	{
-		killfx(localclientnum, self.var_16956fb5);
+		killfx(localclientnum, self.fx_docked);
 	}
 }
 
@@ -180,15 +180,15 @@ function function_8a2b203b(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		return;
 	}
-	if(!isdefined(self.var_bf403388))
+	if(!isdefined(self.fx_katar))
 	{
-		self.var_bf403388 = [];
+		self.fx_katar = [];
 	}
-	else if(!isarray(self.var_bf403388))
+	else if(!isarray(self.fx_katar))
 	{
-		self.var_bf403388 = array(self.var_bf403388);
+		self.fx_katar = array(self.fx_katar);
 	}
-	foreach(fx in self.var_bf403388)
+	foreach(fx in self.fx_katar)
 	{
 		killfx(localclientnum, fx);
 	}
@@ -206,7 +206,7 @@ function function_8a2b203b(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		case 0:
 		{
-			foreach(fx in self.var_bf403388)
+			foreach(fx in self.fx_katar)
 			{
 				killfx(localclientnum, fx);
 			}
@@ -275,7 +275,7 @@ function function_8a2b203b(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(isdefined(var_43a627a8) && viewmodelhastag(localclientnum, "tag_blade_fx"))
 		{
-			self.var_bf403388[#"hash_178410fd941062ac"] = playviewmodelfx(localclientnum, var_43a627a8, "tag_blade_fx");
+			self.fx_katar[#"hash_178410fd941062ac"] = playviewmodelfx(localclientnum, var_43a627a8, "tag_blade_fx");
 		}
 		if(isdefined(str_sound))
 		{
@@ -283,13 +283,13 @@ function function_8a2b203b(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		if(isdefined(var_2b01a8ab) && viewmodelhastag(localclientnum, "tag_gem_right3_fx") && viewmodelhastag(localclientnum, "tag_gem_left3_fx"))
 		{
-			self.var_bf403388[#"r"] = playviewmodelfx(localclientnum, var_2b01a8ab, "tag_gem_right3_fx");
-			self.var_bf403388[#"l"] = playviewmodelfx(localclientnum, var_2b01a8ab, "tag_gem_left3_fx");
+			self.fx_katar[#"r"] = playviewmodelfx(localclientnum, var_2b01a8ab, "tag_gem_right3_fx");
+			self.fx_katar[#"l"] = playviewmodelfx(localclientnum, var_2b01a8ab, "tag_gem_left3_fx");
 		}
 	}
 	else if(isdefined(var_c10d7c76))
 	{
-		self.var_bf403388[#"hash_178b1cfd941695be"] = util::playfxontag(localclientnum, var_c10d7c76, self, "tag_blade_fx");
+		self.fx_katar[#"hash_178b1cfd941695be"] = util::playfxontag(localclientnum, var_c10d7c76, self, "tag_blade_fx");
 		if(var_515e20e6)
 		{
 			self.var_d16b03db = util::playfxontag(localclientnum, level._effect[#"hash_5a722d93fee71051"], self, "tag_barrels_fx");
@@ -369,7 +369,7 @@ function function_200650fb(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval)
 	{
 		s_start = struct::get(#"hash_6ef4fc9a0ac3e3bc");
-		self thread function_103be84b(localclientnum, #"hash_d2864cf09010378", s_start);
+		self thread function_103be84b(localclientnum, #"katar", s_start);
 	}
 }
 
@@ -511,7 +511,7 @@ function function_103be84b(localclientnum, str_piece, s_start)
 			n_drop_time = 1;
 			break;
 		}
-		case "hash_d2864cf09010378":
+		case "katar":
 		{
 			str_model = #"hash_55f4b4dc9ecc95a5";
 			var_6b518b80 = #"hash_3c5ef4492a237f89";
@@ -532,7 +532,7 @@ function function_103be84b(localclientnum, str_piece, s_start)
 	mdl_piece = util::spawn_model(localclientnum, str_model, s_start.origin, s_start.angles);
 	mdl_piece playloopsound(#"hash_1520069daa9734fd", 1);
 	self flag::wait_till(var_6b518b80);
-	if(str_piece != #"hash_d2864cf09010378")
+	if(str_piece != #"katar")
 	{
 		s_end = struct::get(s_start.target);
 		mdl_piece moveto(s_end.origin, n_drop_time);

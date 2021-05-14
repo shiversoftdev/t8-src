@@ -31,11 +31,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_2c07cbb8e8fd2060", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_2c07cbb8e8fd2060", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -49,11 +49,11 @@ function __init__()
 */
 private function function_d1de6a85(var_6ad4e7c6)
 {
-	var_b9c46fab = struct::get_array("fasttravel_trigger", "targetname");
+	fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
 	/#
-		assert(isdefined(var_b9c46fab));
+		assert(isdefined(fasttravel_triggers));
 	#/
-	namespace_b22c99a5::function_2976fa44(var_b9c46fab.size);
+	namespace_b22c99a5::function_2976fa44(fasttravel_triggers.size);
 	namespace_b22c99a5::function_dace284(0);
 	level thread function_25f146be();
 }
@@ -72,13 +72,13 @@ private function function_9e7b3f4d(round_reset)
 	namespace_b22c99a5::function_f3dbeda7();
 	if(!round_reset)
 	{
-		var_b9c46fab = struct::get_array("fasttravel_trigger", "targetname");
+		fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
 		/#
-			assert(isdefined(var_b9c46fab));
+			assert(isdefined(fasttravel_triggers));
 		#/
-		if(function_c83a4a77() < var_b9c46fab.size)
+		if(function_c83a4a77() < fasttravel_triggers.size)
 		{
-			namespace_f551babc::fail(#"hash_6d65e724625758f1");
+			zm_trial::fail(#"hash_6d65e724625758f1");
 		}
 	}
 }
@@ -94,12 +94,12 @@ private function function_9e7b3f4d(round_reset)
 */
 private function function_c83a4a77()
 {
-	var_b9c46fab = struct::get_array("fasttravel_trigger", "targetname");
+	fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
 	/#
-		assert(isdefined(var_b9c46fab));
+		assert(isdefined(fasttravel_triggers));
 	#/
 	count = 0;
-	foreach(trigger in var_b9c46fab)
+	foreach(trigger in fasttravel_triggers)
 	{
 		if(isdefined(trigger.unitrigger_stub.used) && trigger.unitrigger_stub.used)
 		{

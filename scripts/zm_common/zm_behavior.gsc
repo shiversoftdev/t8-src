@@ -81,7 +81,7 @@ function __init__()
 	spawner::add_archetype_spawn_function(#"zombie", &function_c15c6e44);
 	spawner::add_archetype_spawn_function(#"zombie", &function_a5188320);
 	level.do_randomized_zigzag_path = 1;
-	level.var_1251431b = [];
+	level.zombie_targets = [];
 	zm::register_actor_damage_callback(&function_7994fd99);
 }
 
@@ -155,7 +155,7 @@ function function_57d3b5eb()
 	}
 	else
 	{
-		self namespace_57ff8cbb::function_aa5726f2();
+		self zm_cleanup::function_aa5726f2();
 	}
 	self zm_utility::init_zombie_run_cycle();
 	self thread zm_spawner::zombie_think();
@@ -1666,7 +1666,7 @@ function zombietraverseaction(behaviortreeentity, asmstatename)
 */
 function zombietraverseactionterminate(behaviortreeentity, asmstatename)
 {
-	aiutility::function_81e82ba9(behaviortreeentity, asmstatename);
+	aiutility::wpn_debug_bot_joinleave(behaviortreeentity, asmstatename);
 	if(behaviortreeentity asmgetstatus() == "asm_status_complete")
 	{
 		behaviortreeentity.no_powerups = behaviortreeentity.old_powerups;

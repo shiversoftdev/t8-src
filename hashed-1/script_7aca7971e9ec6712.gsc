@@ -48,7 +48,7 @@ function init()
 */
 function function_155de655(bundle)
 {
-	killstreaks::function_25ce781d(bundle, &function_79942f1f);
+	killstreaks::register_bundle(bundle, &function_79942f1f);
 	killstreaks::allow_assists(bundle.var_d3413870, 1);
 	remote_weapons::registerremoteweapon(bundle.var_1ab696c6.name, #"", &function_c9aa9ee5, &function_8cb72281, 0);
 	vehicle::add_main_callback(bundle.ksvehicle, &init_vehicle);

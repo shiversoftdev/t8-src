@@ -71,7 +71,7 @@ function init_clientfields()
 	clientfield::register("world", "in_engine_room", 1, 1, "int", &function_218857fd, 0, 0);
 	clientfield::register("world", "bs_gr_fog_fx_cf", 1, 1, "int", &function_b415e676, 0, 0);
 	clientfield::register("allplayers", "bs_player_ice_br_cf", 1, 1, "int", &function_e3c6c272, 0, 0);
-	clientfield::register("allplayers", "bs_player_snow_cf", 1, 3, "int", &function_7716b881, 0, 0);
+	clientfield::register("allplayers", "bs_player_snow_cf", 1, 3, "int", &boss_player_snow_fx, 0, 0);
 }
 
 /*
@@ -1153,7 +1153,7 @@ function function_ae2a3a29(localclientnum)
 }
 
 /*
-	Name: function_7716b881
+	Name: boss_player_snow_fx
 	Namespace: namespace_48d025ef
 	Checksum: 0x3ED768D8
 	Offset: 0x4048
@@ -1161,13 +1161,13 @@ function function_ae2a3a29(localclientnum)
 	Parameters: 7
 	Flags: Linked
 */
-function function_7716b881(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function boss_player_snow_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self notify(#"hash_23559a237b3202c3");
-	if(isdefined(self.var_7716b881) && self zm_utility::function_f8796df3(localclientnum))
+	self notify(#"boss_end_snow_fx");
+	if(isdefined(self.boss_player_snow_fx) && self zm_utility::function_f8796df3(localclientnum))
 	{
-		deletefx(localclientnum, self.var_7716b881);
-		self.var_7716b881 = undefined;
+		deletefx(localclientnum, self.boss_player_snow_fx);
+		self.boss_player_snow_fx = undefined;
 	}
 	if(newval)
 	{
@@ -1211,14 +1211,14 @@ function function_7716b881(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_7f21fc5b(localclientnum, str_type)
 {
-	self endon(#"hash_23559a237b3202c3", #"death");
+	self endon(#"boss_end_snow_fx", #"death");
 	while(true)
 	{
 		if(!isalive(self))
 		{
 			break;
 		}
-		self.var_7716b881 = playfxoncamera(localclientnum, level._effect[str_type], (0, 0, 0), anglestoforward(self.angles), anglestoup(self.angles));
+		self.boss_player_snow_fx = playfxoncamera(localclientnum, level._effect[str_type], (0, 0, 0), anglestoforward(self.angles), anglestoup(self.angles));
 		wait(randomfloatrange(0.4, 0.7));
 	}
 }

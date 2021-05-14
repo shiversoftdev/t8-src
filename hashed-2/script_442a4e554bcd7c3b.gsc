@@ -42,27 +42,27 @@ function function_80d2bf71(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval == 1)
 	{
 		self util::waittill_dobj(localclientnum);
-		self.var_65c0362d = util::playfxontag(localclientnum, level._effect[#"hash_69e92a9c52f7fc5f"], self, "tag_origin");
+		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92a9c52f7fc5f"], self, "tag_origin");
 	}
 	else if(newval == 2)
 	{
-		if(isdefined(self.var_65c0362d))
+		if(isdefined(self.stage_fx))
 		{
-			stopfx(localclientnum, self.var_65c0362d);
+			stopfx(localclientnum, self.stage_fx);
 		}
-		self.var_65c0362d = util::playfxontag(localclientnum, level._effect[#"hash_69e92b9c52f7fe12"], self, "tag_origin");
+		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92b9c52f7fe12"], self, "tag_origin");
 	}
 	else if(newval == 3)
 	{
-		if(isdefined(self.var_65c0362d))
+		if(isdefined(self.stage_fx))
 		{
-			stopfx(localclientnum, self.var_65c0362d);
+			stopfx(localclientnum, self.stage_fx);
 		}
-		self.var_65c0362d = util::playfxontag(localclientnum, level._effect[#"hash_69e92c9c52f7ffc5"], self, "tag_origin");
+		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92c9c52f7ffc5"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_65c0362d))
+	else if(isdefined(self.stage_fx))
 	{
-		stopfx(localclientnum, self.var_65c0362d);
+		stopfx(localclientnum, self.stage_fx);
 	}
 }
 
@@ -131,30 +131,30 @@ function function_3a0ab08b(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval == 1)
 	{
 		self util::waittill_dobj(localclientnum);
-		self.var_65c0362d = util::playfxontag(localclientnum, level._effect[#"hash_2aea4060746fe17a"], self, str_tag);
+		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea4060746fe17a"], self, str_tag);
 		self.var_3177d514 = self playloopsound(#"hash_218e114cfa2b9a4");
 	}
 	else if(newval == 2)
 	{
-		if(isdefined(self.var_65c0362d))
+		if(isdefined(self.stage_fx))
 		{
-			stopfx(localclientnum, self.var_65c0362d);
+			stopfx(localclientnum, self.stage_fx);
 		}
-		self.var_65c0362d = util::playfxontag(localclientnum, level._effect[#"hash_2aea3f60746fdfc7"], self, str_tag);
+		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea3f60746fdfc7"], self, str_tag);
 		self.var_3177d514 = self playloopsound(#"hash_218e414cfa2bebd");
 	}
 	else if(newval == 3)
 	{
-		if(isdefined(self.var_65c0362d))
+		if(isdefined(self.stage_fx))
 		{
-			stopfx(localclientnum, self.var_65c0362d);
+			stopfx(localclientnum, self.stage_fx);
 		}
-		self.var_65c0362d = util::playfxontag(localclientnum, level._effect[#"hash_2aea3e60746fde14"], self, str_tag);
+		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea3e60746fde14"], self, str_tag);
 		self.var_3177d514 = self playloopsound(#"hash_218e314cfa2bd0a");
 	}
-	else if(isdefined(self.var_65c0362d))
+	else if(isdefined(self.stage_fx))
 	{
-		stopfx(localclientnum, self.var_65c0362d);
+		stopfx(localclientnum, self.stage_fx);
 	}
 }
 

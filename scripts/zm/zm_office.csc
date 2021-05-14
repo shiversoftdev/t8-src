@@ -76,7 +76,7 @@ event main(eventstruct)
 }
 
 /*
-	Name: function_acbea281
+	Name: pbg_init
 	Namespace: zm_office
 	Checksum: 0xA0438288
 	Offset: 0x7B0
@@ -84,7 +84,7 @@ event main(eventstruct)
 	Parameters: 7
 	Flags: None
 */
-function function_acbea281(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function pbg_init(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 }
 

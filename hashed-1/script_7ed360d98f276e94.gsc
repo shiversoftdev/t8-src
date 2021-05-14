@@ -37,11 +37,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_18e1088f472208bf", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_18e1088f472208bf", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -59,22 +59,22 @@ private function function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var
 	{
 		case 1:
 		{
-			level.var_b4a6cec6 = namespace_f551babc::function_5769f26a(var_8a72a00b);
+			level.var_b4a6cec6 = zm_trial::function_5769f26a(var_8a72a00b);
 			break;
 		}
 		case 2:
 		{
-			level.var_b4a6cec6 = namespace_f551babc::function_5769f26a(var_49d8a02c);
+			level.var_b4a6cec6 = zm_trial::function_5769f26a(var_49d8a02c);
 			break;
 		}
 		case 3:
 		{
-			level.var_b4a6cec6 = namespace_f551babc::function_5769f26a(var_325ff213);
+			level.var_b4a6cec6 = zm_trial::function_5769f26a(var_325ff213);
 			break;
 		}
 		case 4:
 		{
-			level.var_b4a6cec6 = namespace_f551babc::function_5769f26a(var_dd2fad64);
+			level.var_b4a6cec6 = zm_trial::function_5769f26a(var_dd2fad64);
 			break;
 		}
 	}
@@ -125,7 +125,7 @@ private function function_9e7b3f4d(round_reset)
 		}
 		if(var_696c3b4.size)
 		{
-			namespace_f551babc::fail(#"hash_73f632514ab7d15", var_696c3b4);
+			zm_trial::fail(#"hash_73f632514ab7d15", var_696c3b4);
 		}
 	}
 	objective_delete(level.a_n_objective_ids[#"hash_18e1088f472208bf"]);
@@ -193,10 +193,10 @@ function function_ccbbe9c4(n_obj_id)
 	self namespace_b22c99a5::function_c2cd0cba(level.var_b4a6cec6);
 	self namespace_b22c99a5::function_2190356a(self.var_b4a6cec6);
 	waitframe(1);
-	var_385703b7 = undefined;
-	var_385703b7 = self waittill(#"hash_9e146af7233ec36", #"hash_7646638df88a3656");
+	s_notify = undefined;
+	s_notify = self waittill(#"hash_9e146af7233ec36", #"hash_7646638df88a3656");
 	objective_setinvisibletoplayer(n_obj_id, self);
-	if(var_385703b7._notify == #"hash_9e146af7233ec36")
+	if(s_notify._notify == #"hash_9e146af7233ec36")
 	{
 		self thread function_8b87e57c(undefined, 2, 60);
 	}
@@ -233,6 +233,6 @@ private function function_8b87e57c(var_9eb4b9f8, grace_period, var_690d3062)
 	}
 	self namespace_b22c99a5::start_timer(var_690d3062);
 	wait(var_690d3062);
-	namespace_f551babc::fail(#"hash_73f632514ab7d15");
+	zm_trial::fail(#"hash_73f632514ab7d15");
 }
 

@@ -7,11 +7,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\load.csc;
 
-#namespace namespace_65dba40e;
+#namespace zm_aoe;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x40973CBF
 	Offset: 0x160
 	Size: 0x44
@@ -20,7 +20,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_20e082d89ccb3c", &__init__, &__main__, undefined);
+	system::register(#"zm_aoe", &__init__, &__main__, undefined);
 }
 
 #namespace namespace_698343df;
@@ -51,11 +51,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_65dba40e;
+#namespace zm_aoe;
 
 /*
 	Name: function_698343df
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xD20C2082
 	Offset: 0x1D0
 	Size: 0x86
@@ -71,7 +71,7 @@ private autoexec function function_698343df()
 
 /*
 	Name: __init__
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x5B471977
 	Offset: 0x260
 	Size: 0xB4
@@ -86,7 +86,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x606EB934
 	Offset: 0x320
 	Size: 0x11C
@@ -106,7 +106,7 @@ private function __main__()
 
 /*
 	Name: function_e969e75
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x43A774DF
 	Offset: 0x448
 	Size: 0xEC
@@ -137,7 +137,7 @@ private function function_e969e75(var_2fb5df20)
 
 /*
 	Name: function_15dea507
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xF7181C5F
 	Offset: 0x540
 	Size: 0x246
@@ -183,7 +183,7 @@ function function_15dea507(var_2fb5df20, type, var_5ff737c1)
 
 /*
 	Name: function_dcc24343
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xFE437BA8
 	Offset: 0x790
 	Size: 0x3FC
@@ -269,7 +269,7 @@ private function function_dcc24343(localclientnum, oldval, newval, bnewent, bini
 
 /*
 	Name: function_6bcf2a61
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x51145609
 	Offset: 0xB98
 	Size: 0x4A

@@ -145,7 +145,7 @@ function give_perk()
 	Parameters: 4
 	Flags: Linked
 */
-function take_perk(b_pause, str_perk, str_result, var_bcd1c2ff)
+function take_perk(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_34c48ce219158e58");
 	self function_3d5b29a6();
@@ -451,7 +451,7 @@ function function_c1c51837(e_player)
 		}
 		if(e_player.var_d675d730.n_kill_count > 10)
 		{
-			self namespace_57ff8cbb::function_23621259();
+			self zm_cleanup::function_23621259();
 			self zm_score::function_acaab828(1);
 		}
 		if(e_player hasperk(#"hash_1b2d5c9444ac98f2") && e_player.var_d675d730.var_f658b938 >= 1)
@@ -552,11 +552,11 @@ function function_7d72c6f9(var_85dcb56c)
 		wait(0.1);
 		self.var_d675d730.var_471d9402 = self.var_d675d730.var_471d9402 - 0.1;
 		self.var_d675d730.var_471d9402 = math::clamp(self.var_d675d730.var_471d9402, 0, var_85dcb56c);
-		var_c2093736 = 1 - self.var_d675d730.var_471d9402 / var_85dcb56c;
-		var_c2093736 = math::clamp(var_c2093736, 0.02, var_85dcb56c);
+		n_percentage = 1 - self.var_d675d730.var_471d9402 / var_85dcb56c;
+		n_percentage = math::clamp(n_percentage, 0.02, var_85dcb56c);
 		if(self hasperk(#"hash_377149a415143f1b") && isdefined(self.var_d675d730.var_775a4a2a))
 		{
-			self zm_perks::function_13880aa5(self.var_d675d730.var_775a4a2a, var_c2093736, #"hash_773d5ce33dd7cde9");
+			self zm_perks::function_13880aa5(self.var_d675d730.var_775a4a2a, n_percentage, #"hash_773d5ce33dd7cde9");
 		}
 	}
 }

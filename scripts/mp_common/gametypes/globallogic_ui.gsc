@@ -211,7 +211,7 @@ function menuautoassign(comingfrommenu, var_4c542e39)
 	self.pers[#"weapon"] = undefined;
 	self.pers[#"savedmodel"] = undefined;
 	self teams::function_dc7eaabd(assignment);
-	self namespace_aa9b5883::function_4b016b57();
+	self platoons::function_4b016b57();
 	distribution = teams::function_7d93567f();
 	self updateobjectivetext();
 	if(!isalive(self))
@@ -487,7 +487,7 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 	self.curclass = playerclass;
 	self loadout::function_d7c205b9(playerclass);
 	self.pers[#"weapon"] = undefined;
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return 0;
 	}
@@ -581,7 +581,7 @@ function function_9ed118fe(characterindex)
 	iprintln(#"hash_52f20b5836b29e3", self, var_2488d780);
 	if(isdefined(self.pers[#"changed_specialist"]) && self.pers[#"changed_specialist"])
 	{
-		self notify(#"hash_6729adcb68ec7ffc");
+		self notify(#"changed_specialist_death");
 	}
 	if(game.state == "playing" && !userspawnselection::function_fed7687f() && spawns != 0 && (!(isdefined(level.var_324e2795) && level.var_324e2795)))
 	{

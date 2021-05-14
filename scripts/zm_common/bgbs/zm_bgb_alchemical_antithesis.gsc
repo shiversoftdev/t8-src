@@ -85,7 +85,7 @@ function activation()
 	Parameters: 3
 	Flags: Linked
 */
-function add_to_player_score_override(points, str_awarded_by, var_b43eb4dc)
+function add_to_player_score_override(points, str_awarded_by, zm_scr_spawner_location_distance)
 {
 	if(!(isdefined(self.var_2c195483) && self.var_2c195483))
 	{
@@ -93,7 +93,7 @@ function add_to_player_score_override(points, str_awarded_by, var_b43eb4dc)
 	}
 	var_f32fbbf5 = int(points / 7.5);
 	w_current = self getcurrentweapon();
-	if(namespace_2ba51478::is_offhand_weapon(w_current))
+	if(zm_loadout::is_offhand_weapon(w_current))
 	{
 		return points;
 	}

@@ -196,7 +196,7 @@ function function_4ac25840(var_d32e67b4)
 	{
 		foreach(team in level.teams)
 		{
-			if(teams::function_9dd75dad(team) && !teams::function_6ce0360d(team))
+			if(teams::function_9dd75dad(team) && !teams::is_all_dead(team))
 			{
 				players = getplayers(team);
 				foreach(player in players)

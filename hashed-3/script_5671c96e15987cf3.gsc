@@ -111,7 +111,7 @@ function give_perk()
 	Parameters: 4
 	Flags: Linked
 */
-function take_perk(b_pause, str_perk, str_result, var_bcd1c2ff)
+function take_perk(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_3e32f308aae32783");
 }

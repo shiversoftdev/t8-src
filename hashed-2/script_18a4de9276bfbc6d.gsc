@@ -18,7 +18,7 @@ function init()
 }
 
 /*
-	Name: function_dfa13c3a
+	Name: play_dynamite_explosion_fx
 	Namespace: namespace_67594c4a
 	Checksum: 0xE326E6C4
 	Offset: 0xA0
@@ -26,9 +26,9 @@ function init()
 	Parameters: 7
 	Flags: None
 */
-function function_dfa13c3a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function play_dynamite_explosion_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	util::playfxontag(localclientnum, level._effect[#"hash_552871668c8801c2"], self, "tag_origin");
+	util::playfxontag(localclientnum, level._effect[#"dynamite_explosion"], self, "tag_origin");
 }
 
 /*

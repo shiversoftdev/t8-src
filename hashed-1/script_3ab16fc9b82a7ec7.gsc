@@ -38,7 +38,7 @@ function boiling_trap_death_fx(localclientnum, oldval, newval, bnewent, binitial
 	{
 		self.var_5f1a7000 = util::playfxontag(localclientnum, level._effect[#"hash_74231fd5ca0777d5"], self, "j_elbow_le");
 		self.var_259cede3 = util::playfxontag(localclientnum, level._effect[#"hash_9264b27ed7a10ae"], self, "j_elbow_ri");
-		self.var_6aafc213 = util::playfxontag(localclientnum, level._effect[#"hash_6f73421e00853979"], self, "j_head");
+		self._enemy_orb_explosion = util::playfxontag(localclientnum, level._effect[#"hash_6f73421e00853979"], self, "j_head");
 		self.var_895fc896 = util::playfxontag(localclientnum, level._effect[#"hash_2d586022ea5a3e3e"], self, "j_spine4");
 	}
 	else if(isdefined(self.var_5f1a7000))
@@ -51,10 +51,10 @@ function boiling_trap_death_fx(localclientnum, oldval, newval, bnewent, binitial
 		stopfx(localclientnum, self.var_259cede3);
 		self.var_259cede3 = undefined;
 	}
-	if(isdefined(self.var_6aafc213))
+	if(isdefined(self._enemy_orb_explosion))
 	{
-		stopfx(localclientnum, self.var_6aafc213);
-		self.var_6aafc213 = undefined;
+		stopfx(localclientnum, self._enemy_orb_explosion);
+		self._enemy_orb_explosion = undefined;
 	}
 	if(isdefined(self.var_895fc896))
 	{

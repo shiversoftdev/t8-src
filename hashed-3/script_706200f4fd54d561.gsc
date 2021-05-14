@@ -21,7 +21,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_3ef1a17c32ba1759", &__init__, undefined, undefined);
+	system::register(#"zm_ai_brutus", &__init__, undefined, undefined);
 }
 
 /*
@@ -35,7 +35,7 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("actor", "brutus_shock_attack", 15000, 1, "counter", &function_87e5eed0, 0, 0);
+	clientfield::register("actor", "brutus_shock_attack", 15000, 1, "counter", &brutus_shock_attack_fx, 0, 0);
 	clientfield::register("actor", "brutus_spawn_clientfield", 15000, 1, "int", &function_80adaab1, 0, 0);
 	clientfield::register("toplayer", "brutus_shock_attack_player", 15000, 1, "counter", &brutus_shock_attack_player, 0, 0);
 	footsteps::registeraitypefootstepcb(#"brutus", &function_6e2a738c);
@@ -98,7 +98,7 @@ function function_80adaab1(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_87e5eed0
+	Name: brutus_shock_attack_fx
 	Namespace: namespace_b99ba180
 	Checksum: 0x3DD36CC1
 	Offset: 0x4C0
@@ -106,7 +106,7 @@ function function_80adaab1(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_87e5eed0(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function brutus_shock_attack_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))

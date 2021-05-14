@@ -50,7 +50,7 @@ function __init__()
 		#/
 		return;
 	}
-	namespace_c3287616::register_archetype(#"tiger", &function_235d0eb6, &round_spawn, &function_6249817, 25);
+	namespace_c3287616::register_archetype(#"tiger", &function_235d0eb6, &round_spawn, &spawn_single, 25);
 }
 
 /*
@@ -89,7 +89,7 @@ function function_fe4c8547()
 }
 
 /*
-	Name: function_6249817
+	Name: spawn_single
 	Namespace: namespace_3fe4d0d7
 	Checksum: 0x1C76925C
 	Offset: 0x3A0
@@ -97,7 +97,7 @@ function function_fe4c8547()
 	Parameters: 2
 	Flags: Linked
 */
-function function_6249817(b_force_spawn = 0, var_eb3a8721)
+function spawn_single(b_force_spawn = 0, var_eb3a8721)
 {
 	if(!b_force_spawn && !function_66cfd7d())
 	{
@@ -308,7 +308,7 @@ function function_235d0eb6(var_dbce0c44)
 */
 function round_spawn()
 {
-	ai = function_6249817();
+	ai = spawn_single();
 	if(isdefined(ai))
 	{
 		level.zombie_total--;

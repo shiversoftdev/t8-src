@@ -220,7 +220,7 @@ function status_effect_apply(var_756fda07, weapon, var_84171a6c, var_80e47495, v
 	/#
 		assert(isdefined(var_756fda07.var_18d16a6b));
 	#/
-	if(isdefined(self.var_8ba5d9a2) && self.var_8ba5d9a2)
+	if(isdefined(self.registerpreparing_time_) && self.registerpreparing_time_)
 	{
 		return;
 	}
@@ -416,11 +416,11 @@ private function function_47cad1aa(var_756fda07, var_80e47495)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_89ae38c1(var_b436a377)
+private function function_89ae38c1(sename)
 {
 	if(isplayer(self))
 	{
-		self function_522c570(var_b436a377);
+		self function_522c570(sename);
 	}
 }
 

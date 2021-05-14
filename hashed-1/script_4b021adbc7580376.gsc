@@ -131,8 +131,8 @@ function on_player_spawned()
 */
 function function_28990311()
 {
-	var_e29c5f3b = "0" + randomintrange(1, 2);
-	game.musicset = "_zm_" + var_e29c5f3b;
+	n_variant = "0" + randomintrange(1, 2);
+	game.musicset = "_zm_" + n_variant;
 }
 
 /*
@@ -436,13 +436,13 @@ function function_9cc59537()
 						if(isdefined(var_b91441dd.var_f4cdfe08) && var_b91441dd.var_f4cdfe08)
 						{
 							var_47748885 = n_depth;
-							foreach(i, var_d411b102 in var_7cb887a8)
+							foreach(i, v_test in var_7cb887a8)
 							{
 								if(i > 2)
 								{
 									var_47748885 = n_width;
 								}
-								a_trace = bullettrace(point.origin + vectorscale((0, 0, 1), 24), var_d411b102, 0, level.players[0]);
+								a_trace = bullettrace(point.origin + vectorscale((0, 0, 1), 24), v_test, 0, level.players[0]);
 								if(distancesquared(a_trace[#"position"], point.origin + vectorscale((0, 0, 1), 24)) < var_47748885 * var_47748885 - 2 && !isdefined(a_trace[#"dynent"]))
 								{
 									v_color = (1, 0, 0);
@@ -457,9 +457,9 @@ function function_9cc59537()
 						}
 						else
 						{
-							foreach(var_d411b102 in var_7cb887a8)
+							foreach(v_test in var_7cb887a8)
 							{
-								a_trace = bullettrace(point.origin + (0, 0, 16), var_d411b102, 0, level.players[0]);
+								a_trace = bullettrace(point.origin + (0, 0, 16), v_test, 0, level.players[0]);
 								if(distancesquared(a_trace[#"position"], point.origin + (0, 0, 16)) < var_47748885 * var_47748885 - 3 && !isdefined(a_trace[#"dynent"]))
 								{
 									v_color = (1, 0, 0);
@@ -643,12 +643,12 @@ function function_e8f0335f()
 					var_7cb887a8[i] = origin + (0, 0, 12) + vectorscale(anglestoforward(v_angles), 32);
 					v_angles = v_angles + (0, var_3e832e74, 0);
 				}
-				foreach(var_d411b102 in var_7cb887a8)
+				foreach(v_test in var_7cb887a8)
 				{
-					a_trace = bullettrace(origin + (0, 0, 12), var_d411b102, 0, level.players[0]);
+					a_trace = bullettrace(origin + (0, 0, 12), v_test, 0, level.players[0]);
 					if(isdefined(a_trace[#"entity"]))
 					{
-						a_trace = bullettrace(origin + (0, 0, 12), var_d411b102, 0, a_trace[#"entity"]);
+						a_trace = bullettrace(origin + (0, 0, 12), v_test, 0, a_trace[#"entity"]);
 					}
 					if(distancesquared(a_trace[#"position"], origin + (0, 0, 12)) < 32 * 32 - 2)
 					{

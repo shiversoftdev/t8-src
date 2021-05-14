@@ -82,7 +82,7 @@ function watch_weapon_changes(localclientnum)
 		{
 			for(i = 0; i < w_previous.var_21329beb.size; i++)
 			{
-				util::function_722c0c0(w_previous.var_21329beb[i]);
+				util::unlock_model(w_previous.var_21329beb[i]);
 			}
 		}
 	}

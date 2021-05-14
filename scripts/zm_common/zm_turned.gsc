@@ -439,7 +439,7 @@ function turned_enable_player_weapons()
 		{
 			self giveweapon(level.weaponbasemelee);
 		}
-		self namespace_2ba51478::give_start_weapon(0);
+		self zm_loadout::give_start_weapon(0);
 	}
 	if(self hasweapon(rottweil_weapon))
 	{
@@ -450,15 +450,15 @@ function turned_enable_player_weapons()
 	{
 		self givemaxammo(level.start_weapon);
 	}
-	if(self hasweapon(self namespace_2ba51478::get_player_lethal_grenade()))
+	if(self hasweapon(self zm_loadout::get_player_lethal_grenade()))
 	{
-		self getweaponammoclip(self namespace_2ba51478::get_player_lethal_grenade());
+		self getweaponammoclip(self zm_loadout::get_player_lethal_grenade());
 	}
 	else
 	{
-		self giveweapon(self namespace_2ba51478::get_player_lethal_grenade());
+		self giveweapon(self zm_loadout::get_player_lethal_grenade());
 	}
-	self setweaponammoclip(self namespace_2ba51478::get_player_lethal_grenade(), 2);
+	self setweaponammoclip(self zm_loadout::get_player_lethal_grenade(), 2);
 }
 
 /*

@@ -5,11 +5,11 @@
 #using scripts\core_common\math_shared.csc;
 #using scripts\core_common\system_shared.csc;
 
-#namespace namespace_45400e14;
+#namespace shrapnel;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x9E9172CA
 	Offset: 0x128
 	Size: 0x34
@@ -18,12 +18,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_5dfc4a5303e018b8", undefined, &__postload_init__, undefined);
+	system::register(#"shrapnel", undefined, &__postload_init__, undefined);
 }
 
 /*
 	Name: __postload_init__
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x4941A774
 	Offset: 0x168
 	Size: 0xD4
@@ -50,7 +50,7 @@ function __postload_init__()
 
 /*
 	Name: localplayer_spawned
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0xAE661862
 	Offset: 0x248
 	Size: 0xD4
@@ -75,7 +75,7 @@ private function localplayer_spawned(localclientnum)
 
 /*
 	Name: function_8f0cb320
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x4FF7CC51
 	Offset: 0x328
 	Size: 0x54
@@ -90,15 +90,15 @@ private function function_8f0cb320(localclientnum)
 }
 
 /*
-	Name: function_b91a70a7
-	Namespace: namespace_45400e14
+	Name: enable_shrapnel
+	Namespace: shrapnel
 	Checksum: 0x21B3C757
 	Offset: 0x388
 	Size: 0xB4
 	Parameters: 1
 	Flags: Private
 */
-private function function_b91a70a7(localclientnum)
+private function enable_shrapnel(localclientnum)
 {
 	self.var_d6b8c684 = 1;
 	if(!isdefined(self.var_f08b8b9))
@@ -112,7 +112,7 @@ private function function_b91a70a7(localclientnum)
 
 /*
 	Name: get_mat_id
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x564BF1DC
 	Offset: 0x448
 	Size: 0x72
@@ -132,7 +132,7 @@ private function get_mat_id(localclientnum, filter_name)
 
 /*
 	Name: function_816d735d
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x8C779B8
 	Offset: 0x4C8
 	Size: 0x3C
@@ -150,7 +150,7 @@ private function function_816d735d(localclientnum)
 
 /*
 	Name: function_989d336d
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x9FCB3F4C
 	Offset: 0x510
 	Size: 0x2D6
@@ -207,7 +207,7 @@ private function function_989d336d(localclientnum)
 		{
 			if(!self.var_d6b8c684)
 			{
-				self function_b91a70a7(localclientnum);
+				self enable_shrapnel(localclientnum);
 			}
 		}
 		else if(self.var_d6b8c684)
@@ -220,7 +220,7 @@ private function function_989d336d(localclientnum)
 
 /*
 	Name: function_a6fe4166
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0xB4078643
 	Offset: 0x7F0
 	Size: 0x6
@@ -234,7 +234,7 @@ private function function_a6fe4166()
 
 /*
 	Name: function_e31d7cf9
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x2A51F0B
 	Offset: 0x800
 	Size: 0xB0
@@ -254,7 +254,7 @@ function function_e31d7cf9(playerhealth, priorplayerhealth, basehealth)
 
 /*
 	Name: function_bf9b3d6
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x16C47256
 	Offset: 0x8B8
 	Size: 0x40
@@ -268,7 +268,7 @@ function function_bf9b3d6(playerhealth, basehealth)
 
 /*
 	Name: function_4e9cfc19
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0xB133DFD
 	Offset: 0x900
 	Size: 0x1EA
@@ -304,7 +304,7 @@ private function function_4e9cfc19(localclientnum, playerhealth, priorplayerheal
 
 /*
 	Name: splatter
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x68C90CA
 	Offset: 0xAF8
 	Size: 0x394
@@ -365,7 +365,7 @@ private function splatter(localclientnum)
 
 /*
 	Name: start_splatter
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0xD4B7989F
 	Offset: 0xE98
 	Size: 0xBC
@@ -382,7 +382,7 @@ private function start_splatter(localclientnum)
 
 /*
 	Name: end_splatter
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0xD0ABAFFC
 	Offset: 0xF60
 	Size: 0x2C
@@ -396,7 +396,7 @@ private function end_splatter(localclientnum)
 
 /*
 	Name: wait_game_ended
-	Namespace: namespace_45400e14
+	Namespace: shrapnel
 	Checksum: 0x30726
 	Offset: 0xF98
 	Size: 0x8A

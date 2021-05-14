@@ -100,27 +100,27 @@ private function function_89ec3604()
 	while(true)
 	{
 		w_current = self getcurrentweapon();
-		if(function_5399634d(w_current) && self function_8426ad52(w_current) && self attackbuttonpressed() && !self ismeleeing())
+		if(is_crossbow(w_current) && self function_8426ad52(w_current) && self attackbuttonpressed() && !self ismeleeing())
 		{
 			if(self.var_bcc8f4f0)
 			{
 				self.var_bcc8f4f0 = 0;
 			}
 			self clientfield::set("" + #"hash_290836b72f987780", 1);
-			var_276d45bf = 0;
-			while(self attackbuttonpressed() && function_5399634d(w_current) && !self meleebuttonpressed() && !self laststand::player_is_in_laststand())
+			b_charged = 0;
+			while(self attackbuttonpressed() && is_crossbow(w_current) && !self meleebuttonpressed() && !self laststand::player_is_in_laststand())
 			{
-				if(!var_276d45bf && function_c6da1395(w_current, self))
+				if(!b_charged && function_c6da1395(w_current, self))
 				{
 					self clientfield::set("" + #"hash_290836b72f987780", 0);
-					var_276d45bf = 1;
+					b_charged = 1;
 				}
 				w_current = self getcurrentweapon();
 				waitframe(1);
 			}
 			self clientfield::set("" + #"hash_290836b72f987780", 0);
 		}
-		else if(function_5399634d(w_current) && !self isreloading() && !self function_8426ad52(w_current) && !self.var_bcc8f4f0)
+		else if(is_crossbow(w_current) && !self isreloading() && !self function_8426ad52(w_current) && !self.var_bcc8f4f0)
 		{
 			self.var_bcc8f4f0 = 1;
 		}
@@ -139,7 +139,7 @@ private function function_89ec3604()
 */
 function function_51f76fdb(inflictor, attacker, damage, flags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	if(isplayer(attacker) && function_5399634d(weapon) && function_c6da1395(weapon, attacker) && attacker zm_powerups::is_insta_kill_active())
+	if(isplayer(attacker) && is_crossbow(weapon) && function_c6da1395(weapon, attacker) && attacker zm_powerups::is_insta_kill_active())
 	{
 		if(!isactor(self) || !isdefined(inflictor) || smeansofdeath !== "MOD_PROJECTILE")
 		{
@@ -173,7 +173,7 @@ function function_51f76fdb(inflictor, attacker, damage, flags, smeansofdeath, we
 */
 function function_8426ad52(weapon)
 {
-	if(!function_5399634d(weapon))
+	if(!is_crossbow(weapon))
 	{
 		return 0;
 	}
@@ -198,7 +198,7 @@ function function_8426ad52(weapon)
 */
 function function_16be57e6(params)
 {
-	if(function_5399634d(params.weapon) && !function_c6da1395(params.weapon))
+	if(is_crossbow(params.weapon) && !function_c6da1395(params.weapon))
 	{
 		self clientfield::set("" + #"hash_b38c687db71dae", 1);
 		self thread function_7157628d();
@@ -227,7 +227,7 @@ function function_7157628d()
 	while(true)
 	{
 		w_current = self getcurrentweapon();
-		if(function_5399634d(w_current) && self ismeleeing())
+		if(is_crossbow(w_current) && self ismeleeing())
 		{
 			self clientfield::set("" + #"hash_b38c687db71dae", 0);
 			while(self ismeleeing())
@@ -235,12 +235,12 @@ function function_7157628d()
 				waitframe(1);
 			}
 			w_current = self getcurrentweapon();
-			if(function_5399634d(w_current))
+			if(is_crossbow(w_current))
 			{
 				self clientfield::set("" + #"hash_b38c687db71dae", 1);
 			}
 		}
-		else if(function_5399634d(w_current) && function_8426ad52(w_current) && self.chargeshotlevel > 1 && !self.var_5e9be59f && self attackbuttonpressed())
+		else if(is_crossbow(w_current) && function_8426ad52(w_current) && self.chargeshotlevel > 1 && !self.var_5e9be59f && self attackbuttonpressed())
 		{
 			self clientfield::set("" + #"hash_faa2f4808c12f8d", 1);
 			self clientfield::set("" + #"hash_b38c687db71dae", 0);
@@ -287,7 +287,7 @@ private function function_39ffd9fc()
 		var_be17187b = undefined;
 		var_be17187b = self waittill(#"weapon_change");
 		w_current = var_be17187b.weapon;
-		if(function_5399634d(w_current))
+		if(is_crossbow(w_current))
 		{
 			self thread zm_equipment::show_hint_text(#"hash_781f9cab14f565c8");
 			return;
@@ -321,7 +321,7 @@ function function_74106de1()
 */
 function function_615d8c38(params)
 {
-	if(!function_5399634d(params.weapon))
+	if(!is_crossbow(params.weapon))
 	{
 		return;
 	}
@@ -687,7 +687,7 @@ function function_d8effeda(weapon)
 }
 
 /*
-	Name: function_5399634d
+	Name: is_crossbow
 	Namespace: namespace_10f9f462
 	Checksum: 0xEFDC7681
 	Offset: 0x2490
@@ -695,7 +695,7 @@ function function_d8effeda(weapon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_5399634d(weapon)
+function is_crossbow(weapon)
 {
 	if(weapon === level.var_3891e803 || weapon === level.var_d7f4cb84 || weapon === level.var_29cce7eb || weapon === level.var_bc26d00c)
 	{
@@ -880,7 +880,7 @@ function function_144a052b(archetype)
 {
 	switch(archetype)
 	{
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		case "zombie":
 		{
 			return #"hash_664a130410d3fd9a";
@@ -915,7 +915,7 @@ function function_9fa5e527(var_ad86fdba = 5)
 	var_bef9c0f = function_144a052b(self.archetype);
 	switch(self.archetype)
 	{
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		case "zombie":
 		{
 			self zombie_utility::set_zombie_run_cycle_override_value("walk");
@@ -947,7 +947,7 @@ function function_43f61cad()
 			self zombie_utility::set_zombie_run_cycle_restore_from_override();
 			break;
 		}
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		case "tiger":
 		{
 			self zombie_utility::set_zombie_run_cycle_restore_from_override();
@@ -987,7 +987,7 @@ function function_e43d1b24()
 			str_scene = "aib_t8_zm_tiger_dth_ww_xbow";
 			break;
 		}
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		{
 			str_scene = "aib_t8_zm_zombie_base_dth_ww_xbow";
 			break;
@@ -1048,7 +1048,7 @@ function function_b3ac0cab(params)
 				var_a7727af5 = 2;
 				break;
 			}
-			case "hash_1bab8a0ba811401e":
+			case "catalyst":
 			{
 				var_a3abe438 = 0.5;
 				var_a7727af5 = 1;
@@ -1097,7 +1097,7 @@ function function_b3ac0cab(params)
 				var_a7727af5 = 2;
 				break;
 			}
-			case "hash_1bab8a0ba811401e":
+			case "catalyst":
 			{
 				var_a3abe438 = 1;
 				var_a7727af5 = 2;
@@ -1179,7 +1179,7 @@ function function_62d37304(weapon)
 	{
 		foreach(var_5f7ab57f in self.weaponobjectwatcherarray)
 		{
-			if(!function_5399634d(var_5f7ab57f.weapon))
+			if(!is_crossbow(var_5f7ab57f.weapon))
 			{
 				continue;
 			}
@@ -1212,7 +1212,7 @@ function function_62d37304(weapon)
 function function_b0477b86(player, mod, shitloc)
 {
 	var_fb9dfd01 = player getcurrentweapon();
-	if(function_5399634d(var_fb9dfd01))
+	if(is_crossbow(var_fb9dfd01))
 	{
 		return 1;
 	}

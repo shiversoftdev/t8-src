@@ -46,7 +46,7 @@ function function_a1a81955()
 }
 
 /*
-	Name: function_2d4168be
+	Name: is_winner
 	Namespace: outcome
 	Checksum: 0x1391BBCE
 	Offset: 0x250
@@ -54,7 +54,7 @@ function function_a1a81955()
 	Parameters: 2
 	Flags: Linked
 */
-function function_2d4168be(outcome, var_512330f1)
+function is_winner(outcome, var_512330f1)
 {
 	if(isplayer(var_512330f1))
 	{

@@ -57,7 +57,7 @@ function __init__()
 */
 function on_ai_killed(s_params)
 {
-	if(function_533e8671(s_params.weapon))
+	if(is_ray_gun(s_params.weapon))
 	{
 		self thread ai_disintegrate();
 	}
@@ -81,7 +81,7 @@ function ai_disintegrate()
 }
 
 /*
-	Name: function_533e8671
+	Name: is_ray_gun
 	Namespace: namespace_5cf6d1a
 	Checksum: 0x7D49BCC3
 	Offset: 0x3F8
@@ -89,7 +89,7 @@ function ai_disintegrate()
 	Parameters: 1
 	Flags: Linked
 */
-function function_533e8671(w_weapon)
+function is_ray_gun(w_weapon)
 {
 	if(isdefined(w_weapon))
 	{

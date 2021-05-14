@@ -58,14 +58,14 @@ function __init__()
 	clientfield::register("vehicle", "" + #"lightning_arc_fx", 1, 1, "int");
 	clientfield::register("actor", "" + #"hash_227b5ad1ba4c6b6d", 1, 1, "int");
 	clientfield::register("vehicle", "" + #"hash_227b5ad1ba4c6b6d", 1, 1, "int");
-	clientfield::register("toplayer", "" + #"hash_5da4c56e7c2e2aad", 1, 1, "counter");
+	clientfield::register("toplayer", "" + #"hammer_rumble", 1, 1, "counter");
 	level.hero_weapon[#"hammer"][0] = getweapon(#"hero_hammer_lv1");
 	level.hero_weapon[#"hammer"][1] = getweapon(#"hero_hammer_lv2");
 	level.hero_weapon[#"hammer"][2] = getweapon(#"hero_hammer_lv3");
 	level.var_af47ddb5 = getweapon(#"hash_76986baf9b6770c6");
-	namespace_2ba51478::register_hero_weapon_for_level("hero_hammer_lv1");
-	namespace_2ba51478::register_hero_weapon_for_level("hero_hammer_lv2");
-	namespace_2ba51478::register_hero_weapon_for_level("hero_hammer_lv3");
+	zm_loadout::register_hero_weapon_for_level("hero_hammer_lv1");
+	zm_loadout::register_hero_weapon_for_level("hero_hammer_lv2");
+	zm_loadout::register_hero_weapon_for_level("hero_hammer_lv3");
 	level.var_b9efae55 = 22500;
 	level.var_87fbf13 = 57600;
 	level.var_5cc0eb9f = 10000;
@@ -80,7 +80,7 @@ function __init__()
 	callback::on_disconnect(&on_player_disconnect);
 	callback::function_4b58e5ab(&function_4b58e5ab);
 	level._effect[#"hash_6c99dc53e968631c"] = #"hash_5aa1120d061d1f6c";
-	ability_player::register_gadget_activation_callbacks(11, undefined, &function_a3eae601);
+	ability_player::register_gadget_activation_callbacks(11, undefined, &hammer_off);
 }
 
 /*
@@ -129,9 +129,9 @@ private function function_c3f6fd96()
 		wpn_prev = waitresult.last_weapon;
 		if(isinarray(level.hero_weapon[#"hammer"], wpn_cur))
 		{
-			self thread function_1e661e68(1);
+			self thread hammer_rumble(1);
 			self thread function_4493c71b(wpn_cur);
-			self thread function_ba44cb5(wpn_cur);
+			self thread activate_armor(wpn_cur);
 		}
 		if(wpn_cur == level.hero_weapon[#"hammer"][0])
 		{
@@ -174,7 +174,7 @@ function function_1286cbf(s_params)
 	if(isplayer(s_params.eattacker) && function_f820b73(s_params.weapon, 1) && s_params.smeansofdeath == "MOD_MELEE")
 	{
 		player = s_params.eattacker;
-		var_d695a618 = 50 - player namespace_ad4d960b::get(#"hash_5c9caf0397b30f1e");
+		var_d695a618 = 50 - player zm_armor::get(#"hash_5c9caf0397b30f1e");
 		if(var_d695a618 >= 10)
 		{
 			var_20694322 = 10;
@@ -233,8 +233,8 @@ private function function_70dbf9d1(player)
 	v_end = v_start + vectorscale((0, 0, -1), 200);
 	s_trace = groundtrace(v_start, v_end, 0, player);
 	n_offset = v_end[2] + 96;
-	var_b82ff340 = zm_utility::function_b0eeaada(s_trace[#"position"]);
-	if(!isdefined(var_b82ff340) || n_offset >= player.origin[2])
+	v_drop = zm_utility::function_b0eeaada(s_trace[#"position"]);
+	if(!isdefined(v_drop) || n_offset >= player.origin[2])
 	{
 		/#
 		#/
@@ -245,7 +245,7 @@ private function function_70dbf9d1(player)
 		player.var_4618dc52 = util::spawn_model("tag_origin", player.origin);
 		util::wait_network_frame();
 	}
-	player.var_4618dc52.origin = var_b82ff340[#"point"] + vectorscale((0, 0, 1), 20);
+	player.var_4618dc52.origin = v_drop[#"point"] + vectorscale((0, 0, 1), 20);
 	player thread function_6275aed3();
 }
 
@@ -313,7 +313,7 @@ function function_1b60eebf(player)
 {
 	player endon(#"weapon_change", #"disconnect");
 	waitframe(15);
-	player thread function_1e661e68(2);
+	player thread hammer_rumble(2);
 	player thread function_1b29b59e(1, self);
 }
 
@@ -336,7 +336,7 @@ function function_439c9b04(player)
 }
 
 /*
-	Name: function_ba44cb5
+	Name: activate_armor
 	Namespace: namespace_3dec9f28
 	Checksum: 0x80C825B1
 	Offset: 0x1318
@@ -344,7 +344,7 @@ function function_439c9b04(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ba44cb5(weapon)
+private function activate_armor(weapon)
 {
 	level callback::on_ai_killed(&function_1286cbf);
 	self clientfield::increment_to_player("" + #"hash_61e96e3005ea1d49");
@@ -361,9 +361,9 @@ private function function_ba44cb5(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function set_armor(var_27d70168)
+private function set_armor(n_armor)
 {
-	self thread namespace_ad4d960b::add(#"hash_5c9caf0397b30f1e", var_27d70168, 50);
+	self thread zm_armor::add(#"hash_5c9caf0397b30f1e", n_armor, 50);
 }
 
 /*
@@ -408,7 +408,7 @@ function function_9799924f(e_target, weapon = level.weaponnone, var_3e3892a7, v_
 	{
 		return;
 	}
-	self thread function_1e661e68(4);
+	self thread hammer_rumble(4);
 	if(isactor(e_target))
 	{
 		[[ level.var_61d958e8 ]]->waitinqueue(e_target);
@@ -536,14 +536,14 @@ function function_1b29b59e(var_3e3892a7, weapon = level.weaponnone)
 		n_random_x = randomfloatrange(-3, 3);
 		n_random_y = randomfloatrange(-3, 3);
 		var_61906722 = randomfloatrange(5, 20);
-		var_e6da270d = vectornormalize(e_target.origin - self.origin + (n_random_x, n_random_y, var_61906722));
+		v_ragdoll = vectornormalize(e_target.origin - self.origin + (n_random_x, n_random_y, var_61906722));
 		if(isdefined(e_target.var_5554df1))
 		{
-			self thread [[e_target.var_5554df1]](e_target, weapon, var_3e3892a7, var_e6da270d);
+			self thread [[e_target.var_5554df1]](e_target, weapon, var_3e3892a7, v_ragdoll);
 		}
 		else
 		{
-			self thread function_9799924f(e_target, weapon, var_3e3892a7, var_e6da270d, n_damage);
+			self thread function_9799924f(e_target, weapon, var_3e3892a7, v_ragdoll, n_damage);
 		}
 		waitframe(1);
 	}
@@ -562,7 +562,7 @@ function function_f352c6b2(weapon)
 {
 	self endon(#"disconnect");
 	self playsound("wpn_hammer_bolt_fire");
-	self thread function_1e661e68(3);
+	self thread hammer_rumble(3);
 	waitframe(9);
 	var_d571151f = vectortoangles(self getweaponforwarddir());
 	var_d0407533 = self getweaponmuzzlepoint();
@@ -586,7 +586,7 @@ function function_f352c6b2(weapon)
 	}
 	if(isdefined(trace[#"entity"]) && function_ffa5b184(trace[#"entity"]))
 	{
-		self thread function_43a6dfea(trace[#"entity"]);
+		self thread multiple_watcher(trace[#"entity"]);
 	}
 	if(isdefined(level.var_2e32e0bb))
 	{
@@ -787,7 +787,7 @@ function function_4b58e5ab()
 }
 
 /*
-	Name: function_43a6dfea
+	Name: multiple_watcher
 	Namespace: namespace_3dec9f28
 	Checksum: 0x8FAD65B
 	Offset: 0x2728
@@ -795,7 +795,7 @@ function function_4b58e5ab()
 	Parameters: 1
 	Flags: Linked
 */
-function function_43a6dfea(var_b9812c05)
+function multiple_watcher(var_b9812c05)
 {
 	var_b9812c05 endon(#"death");
 	var_b9812c05 dodamage(1000, self.origin, self, self);
@@ -943,7 +943,7 @@ function staff_lightning_ball_damage_over_time(e_source, e_target, e_attacker)
 				case "basic":
 				case "enhanced":
 				{
-					if(e_target.archetype != #"tiger" && e_target.archetype != #"hash_1bab8a0ba811401e")
+					if(e_target.archetype != #"tiger" && e_target.archetype != #"catalyst")
 					{
 						e_target thread zombie_shock_eyes();
 					}
@@ -1187,7 +1187,7 @@ function function_371c585a()
 }
 
 /*
-	Name: function_a3eae601
+	Name: hammer_off
 	Namespace: namespace_3dec9f28
 	Checksum: 0x8EC03026
 	Offset: 0x3428
@@ -1195,14 +1195,14 @@ function function_371c585a()
 	Parameters: 2
 	Flags: Linked
 */
-function function_a3eae601(var_bcd1c2ff, w_hero)
+function hammer_off(n_slot, w_hero)
 {
 	self notify(#"hash_51ba139f52797f7d");
 	self function_371c585a();
 }
 
 /*
-	Name: function_1e661e68
+	Name: hammer_rumble
 	Namespace: namespace_3dec9f28
 	Checksum: 0x7C845ECB
 	Offset: 0x3470
@@ -1210,7 +1210,7 @@ function function_a3eae601(var_bcd1c2ff, w_hero)
 	Parameters: 1
 	Flags: Linked
 */
-function function_1e661e68(n_index)
+function hammer_rumble(n_index)
 {
 	self endon(#"death");
 	if(n_index)
@@ -1235,7 +1235,7 @@ function function_1e661e68(n_index)
 			}
 			case 4:
 			{
-				self clientfield::increment_to_player("" + #"hash_5da4c56e7c2e2aad", 4);
+				self clientfield::increment_to_player("" + #"hammer_rumble", 4);
 				break;
 			}
 		}
@@ -1254,9 +1254,9 @@ function function_1e661e68(n_index)
 function function_478a4910(var_6ed98fb9)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee_power_left");
-	if(var_88706ea7.weapon == var_6ed98fb9)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee_power_left");
+	if(s_result.weapon == var_6ed98fb9)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87ca13e3ecd52d", #"hammer");
 	}
@@ -1274,9 +1274,9 @@ function function_478a4910(var_6ed98fb9)
 function function_68ff89f7(var_6ed98fb9)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee");
-	if(var_88706ea7.weapon === var_6ed98fb9)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee");
+	if(s_result.weapon === var_6ed98fb9)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87c913e3ecd37a", #"hammer");
 	}

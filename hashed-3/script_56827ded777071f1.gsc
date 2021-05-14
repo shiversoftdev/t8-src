@@ -133,17 +133,17 @@ function function_eac89317()
 	level endon(#"game_ended");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = level waittill(#"traps_activated", #"traps_available");
-		if(isdefined(var_385703b7.var_be3f58a))
+		s_notify = undefined;
+		s_notify = level waittill(#"traps_activated", #"traps_available");
+		if(isdefined(s_notify.var_be3f58a))
 		{
-			if(var_385703b7._notify === "traps_activated")
+			if(s_notify._notify === "traps_activated")
 			{
-				function_bb013f42(var_385703b7.var_be3f58a);
+				function_bb013f42(s_notify.var_be3f58a);
 			}
-			else if(var_385703b7._notify === "traps_available")
+			else if(s_notify._notify === "traps_available")
 			{
-				function_75046566(var_385703b7.var_be3f58a);
+				function_75046566(s_notify.var_be3f58a);
 			}
 		}
 	}
@@ -161,8 +161,8 @@ function function_eac89317()
 function function_63be76e0()
 {
 	self.v_up = self.origin;
-	var_a8f6c586 = struct::get(self.target, "targetname");
-	self.v_down = var_a8f6c586.origin;
+	s_down = struct::get(self.target, "targetname");
+	self.v_down = s_down.origin;
 }
 
 /*

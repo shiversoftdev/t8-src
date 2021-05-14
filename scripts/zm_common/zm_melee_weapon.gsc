@@ -72,7 +72,7 @@ private function __main__()
 	Parameters: 9
 	Flags: Linked
 */
-function init(weapon_name, flourish_weapon_name, cost, wallbuy_targetname, hint_string, vo_dialog_id, flourish_fn, var_39b82bcb = 0, in_box = 0)
+function init(weapon_name, flourish_weapon_name, cost, wallbuy_targetname, hint_string, vo_dialog_id, flourish_fn, is_ee = 0, in_box = 0)
 {
 	weapon = getweapon(weapon_name);
 	flourish_weapon = getweapon(flourish_weapon_name);
@@ -97,9 +97,9 @@ function init(weapon_name, flourish_weapon_name, cost, wallbuy_targetname, hint_
 	{
 		prepare_stub(melee_weapon_structs[i].trigger_stub, weapon, flourish_weapon, cost, wallbuy_targetname, hint_string, vo_dialog_id, flourish_fn);
 	}
-	namespace_2ba51478::register_melee_weapon_for_level(weapon.name);
+	zm_loadout::register_melee_weapon_for_level(weapon.name);
 	/#
-		if(!isdefined(level.zombie_weapons[weapon]) && (!var_39b82bcb || getdvarint(#"hash_11ad6a9695943217", 0)))
+		if(!isdefined(level.zombie_weapons[weapon]) && (!is_ee || getdvarint(#"hash_11ad6a9695943217", 0)))
 		{
 			if(isdefined(level.devgui_add_weapon))
 			{
@@ -231,9 +231,9 @@ function set_fallback_weapon(weapon_name, fallback_weapon_name)
 function determine_fallback_weapon()
 {
 	fallback_weapon = level.weaponzmfists;
-	if(isdefined(self namespace_2ba51478::get_player_melee_weapon()) && self hasweapon(self namespace_2ba51478::get_player_melee_weapon()))
+	if(isdefined(self zm_loadout::get_player_melee_weapon()) && self hasweapon(self zm_loadout::get_player_melee_weapon()))
 	{
-		melee_weapon = find_melee_weapon(self namespace_2ba51478::get_player_melee_weapon());
+		melee_weapon = find_melee_weapon(self zm_loadout::get_player_melee_weapon());
 		if(isdefined(melee_weapon) && isdefined(melee_weapon.fallback_weapon))
 		{
 			return melee_weapon.fallback_weapon;
@@ -298,7 +298,7 @@ function player_can_see_weapon_prompt()
 	{
 		return 1;
 	}
-	if(isdefined(self namespace_2ba51478::get_player_melee_weapon()) && self hasweapon(self namespace_2ba51478::get_player_melee_weapon()))
+	if(isdefined(self zm_loadout::get_player_melee_weapon()) && self hasweapon(self zm_loadout::get_player_melee_weapon()))
 	{
 		return 0;
 	}
@@ -480,8 +480,8 @@ function trigger_hide(wallbuy_targetname)
 */
 function change_melee_weapon(weapon, current_weapon)
 {
-	current_melee_weapon = self namespace_2ba51478::get_player_melee_weapon();
-	self namespace_2ba51478::set_player_melee_weapon(weapon);
+	current_melee_weapon = self zm_loadout::get_player_melee_weapon();
+	self zm_loadout::set_player_melee_weapon(weapon);
 	if(current_melee_weapon != level.weaponnone && current_melee_weapon != weapon && self hasweapon(current_melee_weapon))
 	{
 		self takeweapon(current_melee_weapon);
@@ -556,7 +556,7 @@ function melee_weapon_think(weapon, cost, flourish_fn, vo_dialog_id, flourish_we
 			continue;
 		}
 		player_has_weapon = player hasweapon(weapon);
-		if(player_has_weapon || player namespace_2ba51478::has_powerup_weapon())
+		if(player_has_weapon || player zm_loadout::has_powerup_weapon())
 		{
 			wait(0.1);
 			continue;
@@ -567,7 +567,7 @@ function melee_weapon_think(weapon, cost, flourish_fn, vo_dialog_id, flourish_we
 			continue;
 		}
 		current_weapon = player getcurrentweapon();
-		if(namespace_2ba51478::is_placeable_mine(current_weapon) || zm_equipment::is_equipment(current_weapon))
+		if(zm_loadout::is_placeable_mine(current_weapon) || zm_equipment::is_equipment(current_weapon))
 		{
 			wait(0.1);
 			continue;
@@ -714,7 +714,7 @@ function award_melee_weapon(weapon_name)
 */
 function give_melee_weapon(vo_dialog_id, flourish_weapon, weapon, flourish_fn, trigger)
 {
-	self namespace_bd02cf1::function_8d3b94ea(weapon, 1, 0);
+	self activecamo::function_8d3b94ea(weapon, 1, 0);
 	if(isdefined(flourish_fn))
 	{
 		self thread [[flourish_fn]]();
@@ -809,7 +809,7 @@ function do_melee_weapon_flourish_end(original_weapon, flourish_weapon, weapon)
 		self zm_utility::decrement_is_drinking();
 		return;
 	}
-	if(original_weapon != level.weaponbasemelee && !namespace_2ba51478::is_placeable_mine(original_weapon) && !zm_equipment::is_equipment(original_weapon))
+	if(original_weapon != level.weaponbasemelee && !zm_loadout::is_placeable_mine(original_weapon) && !zm_equipment::is_equipment(original_weapon))
 	{
 		self zm_weapons::switch_back_primary_weapon(original_weapon);
 	}

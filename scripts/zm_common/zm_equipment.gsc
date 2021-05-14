@@ -1204,7 +1204,7 @@ function init_player_equipment()
 	Parameters: 4
 	Flags: Linked
 */
-function function_7d948481(var_52c8cf74 = 0.1, var_9a35edeb = 0.25, var_69ddab33 = 0.5, var_54fa03d9 = 1)
+function function_7d948481(n_boss = 0.1, n_miniboss = 0.25, n_heavy = 0.5, n_basic = 1)
 {
 	if(!isdefined(self.var_6f84b820))
 	{
@@ -1214,19 +1214,19 @@ function function_7d948481(var_52c8cf74 = 0.1, var_9a35edeb = 0.25, var_69ddab33
 	{
 		case "boss":
 		{
-			return var_52c8cf74;
+			return n_boss;
 		}
 		case "miniboss":
 		{
-			return var_9a35edeb;
+			return n_miniboss;
 		}
 		case "heavy":
 		{
-			return var_69ddab33;
+			return n_heavy;
 		}
 		default:
 		{
-			return var_54fa03d9;
+			return n_basic;
 		}
 	}
 }

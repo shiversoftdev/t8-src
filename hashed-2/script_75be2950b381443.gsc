@@ -2,11 +2,11 @@
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 
-#namespace namespace_aa9b5883;
+#namespace platoons;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xB42A983
 	Offset: 0x90
 	Size: 0x3C
@@ -15,12 +15,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_5d8ecf2f8dffda0d", &__init__, undefined, undefined);
+	system::register(#"platoons", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xB2E94A96
 	Offset: 0xD8
 	Size: 0x15C
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: function_382a49e0
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xFEED0E9D
 	Offset: 0x240
 	Size: 0x1A
@@ -54,7 +54,7 @@ function function_382a49e0()
 
 /*
 	Name: function_bb1ab64b
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xD860F112
 	Offset: 0x268
 	Size: 0x22
@@ -68,7 +68,7 @@ function function_bb1ab64b()
 
 /*
 	Name: on_start_gametype
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xC2A6E14D
 	Offset: 0x298
 	Size: 0xCC
@@ -77,17 +77,17 @@ function function_bb1ab64b()
 */
 private function on_start_gametype()
 {
-	level.var_aa9b5883 = [];
+	level.platoons = [];
 	for(var_aada11e0 = 1; var_aada11e0 <= level.platoon.count; var_aada11e0++)
 	{
-		var_39e16cb3 = "platoon_" + var_aada11e0;
-		level.var_aa9b5883[hash("platoon_" + var_aada11e0)] = {#player_count:0, #hash_9dd75dad:0, #eliminated:0, #name:var_39e16cb3};
+		platoon_name = "platoon_" + var_aada11e0;
+		level.platoons[hash("platoon_" + var_aada11e0)] = {#player_count:0, #hash_9dd75dad:0, #eliminated:0, #name:platoon_name};
 	}
 }
 
 /*
 	Name: function_334c4bec
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x165144C
 	Offset: 0x370
 	Size: 0x2C
@@ -101,7 +101,7 @@ function function_334c4bec(team, platoon)
 
 /*
 	Name: function_596bfb16
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xD9D09D66
 	Offset: 0x3A8
 	Size: 0x11E
@@ -119,9 +119,9 @@ function function_596bfb16()
 		if(game.everexisted[team])
 		{
 			platoon = function_22448d6c(team);
-			if(platoon != #"none" && platoon != #"invalid" && level.var_aa9b5883[platoon].var_9dd75dad == 0)
+			if(platoon != #"none" && platoon != #"invalid" && level.platoons[platoon].var_9dd75dad == 0)
 			{
-				level.var_aa9b5883[platoon].var_9dd75dad = gettime();
+				level.platoons[platoon].var_9dd75dad = gettime();
 			}
 		}
 	}

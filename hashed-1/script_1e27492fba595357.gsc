@@ -95,7 +95,7 @@ function function_dae1df4d(var_7d81025, player)
 	player zm_placeable_mine::disable_all_prompts_for_player();
 	foreach(w_weapon in a_w_weapons)
 	{
-		if(level.headshots_only && namespace_2ba51478::is_lethal_grenade(w_weapon))
+		if(level.headshots_only && zm_loadout::is_lethal_grenade(w_weapon))
 		{
 			continue;
 		}
@@ -107,13 +107,13 @@ function function_dae1df4d(var_7d81025, player)
 		{
 			continue;
 		}
-		if(namespace_2ba51478::is_hero_weapon(w_weapon))
+		if(zm_loadout::is_hero_weapon(w_weapon))
 		{
 			continue;
 		}
 		if(player hasweapon(w_weapon))
 		{
-			if(namespace_2ba51478::is_lethal_grenade(w_weapon))
+			if(zm_loadout::is_lethal_grenade(w_weapon))
 			{
 				player thread function_3ecbd9d(w_weapon);
 				continue;
@@ -164,7 +164,7 @@ function full_ammo_powerup(drop_item, player)
 		player zm_placeable_mine::disable_all_prompts_for_player();
 		foreach(w_weapon in a_w_weapons)
 		{
-			if(level.headshots_only && namespace_2ba51478::is_lethal_grenade(w_weapon))
+			if(level.headshots_only && zm_loadout::is_lethal_grenade(w_weapon))
 			{
 				continue;
 			}
@@ -176,13 +176,13 @@ function full_ammo_powerup(drop_item, player)
 			{
 				continue;
 			}
-			if(namespace_2ba51478::is_hero_weapon(w_weapon))
+			if(zm_loadout::is_hero_weapon(w_weapon))
 			{
 				continue;
 			}
 			if(player hasweapon(w_weapon))
 			{
-				if(namespace_2ba51478::is_lethal_grenade(w_weapon))
+				if(zm_loadout::is_lethal_grenade(w_weapon))
 				{
 					player thread function_3ecbd9d(w_weapon);
 					continue;
@@ -210,19 +210,19 @@ function full_ammo_powerup(drop_item, player)
 function function_3ecbd9d(w_weapon)
 {
 	self endon(#"disconnect");
-	var_bcd1c2ff = self gadgetgetslot(w_weapon);
+	n_slot = self gadgetgetslot(w_weapon);
 	if(w_weapon == getweapon(#"tomahawk_t8") || w_weapon == getweapon(#"tomahawk_t8_upgraded"))
 	{
-		while(self function_36dfc05f(var_bcd1c2ff))
+		while(self function_36dfc05f(n_slot))
 		{
 			waitframe(1);
 		}
 		self notify(#"hash_3d73720d4588203c");
-		self gadgetpowerset(var_bcd1c2ff, 100);
+		self gadgetpowerset(n_slot, 100);
 	}
 	else
 	{
-		self gadgetpowerset(var_bcd1c2ff, 100);
+		self gadgetpowerset(n_slot, 100);
 	}
 }
 
@@ -256,6 +256,6 @@ function full_ammo_on_hud(drop_item, player_team)
 */
 function function_b695b971()
 {
-	return level.var_2aab843 <= 0;
+	return level.zm_genesis_robot_pay_towardsreactswordstart <= 0;
 }
 

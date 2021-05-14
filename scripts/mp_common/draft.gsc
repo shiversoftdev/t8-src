@@ -232,7 +232,7 @@ function function_2c7b2ff()
 }
 
 /*
-	Name: function_693430fa
+	Name: start_cooldown
 	Namespace: draft
 	Checksum: 0x39CBA811
 	Offset: 0x8B8
@@ -240,7 +240,7 @@ function function_2c7b2ff()
 	Parameters: 0
 	Flags: Linked
 */
-function function_693430fa()
+function start_cooldown()
 {
 	player = self;
 	/#
@@ -373,7 +373,7 @@ function select_character(characterindex, forceselection, var_8a239568)
 	{
 		if(level.draftstage == 0)
 		{
-			self thread function_693430fa();
+			self thread start_cooldown();
 			self close();
 		}
 		else if(isdefined(level.var_9205f2e8))

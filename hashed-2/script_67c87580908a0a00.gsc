@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#namespace namespace_bd02cf1;
+#namespace activecamo;
 
 /*
 	Name: function_385ef18d
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x7E1B849A
 	Offset: 0x68
 	Size: 0x6E
@@ -25,7 +25,7 @@ function function_385ef18d(var_e827f698)
 
 /*
 	Name: function_c14cb514
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xC3DFC3D6
 	Offset: 0xE0
 	Size: 0x106

@@ -16,11 +16,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_2c9e6caa;
+#namespace zm_hud;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0x9F6C52F4
 	Offset: 0xF8
 	Size: 0x54
@@ -29,12 +29,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_431ed482b5f316ae", &__init__, &__main__, #"hash_12378771db09fde7");
+	system::register(#"zm_hud", &__init__, &__main__, #"zm_crafting");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0x72D1DB19
 	Offset: 0x158
 	Size: 0x64
@@ -50,7 +50,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0x80F724D1
 	Offset: 0x1C8
 	Size: 0x4
@@ -63,7 +63,7 @@ function __main__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0x80F724D1
 	Offset: 0x1D8
 	Size: 0x4
@@ -76,7 +76,7 @@ function on_player_connect()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0x693CC272
 	Offset: 0x1E8
 	Size: 0x9C
@@ -100,7 +100,7 @@ function on_player_spawned()
 
 /*
 	Name: function_84c3e8e6
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0xE5D89FFC
 	Offset: 0x290
 	Size: 0x44
@@ -117,7 +117,7 @@ function function_84c3e8e6()
 
 /*
 	Name: function_29780fb5
-	Namespace: namespace_2c9e6caa
+	Namespace: zm_hud
 	Checksum: 0xC9361A59
 	Offset: 0x2E0
 	Size: 0x8C

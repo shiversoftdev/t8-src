@@ -196,7 +196,7 @@ function powerup_fx_callback(localclientnum, oldval, newval, bnewent, binitialsn
 			return;
 		}
 	}
-	self function_4e80334c(localclientnum, str_fx);
+	self play_powerup_fx(localclientnum, str_fx);
 }
 
 /*
@@ -234,7 +234,7 @@ function function_618b5680(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		return;
 	}
-	self function_4e80334c(localclientnum, str_fx, 1);
+	self play_powerup_fx(localclientnum, str_fx, 1);
 }
 
 /*
@@ -289,10 +289,10 @@ function function_9f7265fd(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 private function function_d6070ac5(localclientnum)
 {
-	if(isdefined(self.var_28c52208))
+	if(isdefined(self.n_powerup_fx))
 	{
-		stopfx(localclientnum, self.var_28c52208);
-		self.var_28c52208 = undefined;
+		stopfx(localclientnum, self.n_powerup_fx);
+		self.n_powerup_fx = undefined;
 	}
 	if(isdefined(self.var_71e06c56))
 	{
@@ -302,7 +302,7 @@ private function function_d6070ac5(localclientnum)
 }
 
 /*
-	Name: function_4e80334c
+	Name: play_powerup_fx
 	Namespace: zm_powerups
 	Checksum: 0xBF88B643
 	Offset: 0xDD0
@@ -310,7 +310,7 @@ private function function_d6070ac5(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_4e80334c(localclientnum, str_fx, var_6df65756 = 0)
+private function play_powerup_fx(localclientnum, str_fx, var_6df65756 = 0)
 {
 	if(self.model !== #"tag_origin")
 	{
@@ -327,7 +327,7 @@ private function function_4e80334c(localclientnum, str_fx, var_6df65756 = 0)
 		self playsound(localclientnum, #"hash_3a25dc0ad86a722c");
 		self.var_71e06c56 = self playloopsound(#"hash_3119fa236ffcf847");
 	}
-	self.var_28c52208 = util::playfxontag(localclientnum, str_fx, self, "tag_origin");
+	self.n_powerup_fx = util::playfxontag(localclientnum, str_fx, self, "tag_origin");
 }
 
 /*

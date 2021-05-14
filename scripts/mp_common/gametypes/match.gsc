@@ -66,7 +66,7 @@ private function function_94003d29()
 {
 	function_37f04b09();
 	round::function_37f04b09();
-	if(overtime::function_96f8fef2())
+	if(overtime::is_overtime_round())
 	{
 		function_1362c7e0();
 	}
@@ -97,7 +97,7 @@ function function_f37f02fc()
 */
 private function function_b6b94df8()
 {
-	if(overtime::function_96f8fef2())
+	if(overtime::is_overtime_round())
 	{
 		function_1362c7e0();
 	}

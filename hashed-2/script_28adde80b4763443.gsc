@@ -42,7 +42,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked
 */
-function function_6230d238(var_d66fadb5)
+function function_6230d238(concertinawire)
 {
 }
 

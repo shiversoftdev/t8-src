@@ -89,7 +89,7 @@ function perks_behind_door()
 		return;
 	}
 	level endon(#"magic_door_power_up_grabbed", #"population_count_step_complete");
-	level thread function_2524792b();
+	level thread powerup_grabbed_watcher();
 	level flag::wait_till("initial_blackscreen_passed");
 	level.door_perk_drop_list = [];
 	level.door_perk_drop_list[0] = "nuke";
@@ -116,7 +116,7 @@ function perks_behind_door()
 }
 
 /*
-	Name: function_2524792b
+	Name: powerup_grabbed_watcher
 	Namespace: namespace_456de992
 	Checksum: 0xAEA8966A
 	Offset: 0x738
@@ -124,7 +124,7 @@ function perks_behind_door()
 	Parameters: 0
 	Flags: Linked
 */
-function function_2524792b()
+function powerup_grabbed_watcher()
 {
 	level waittill(#"magic_door_power_up_grabbed");
 	level flag::set(#"magic_door_power_up_grabbed");

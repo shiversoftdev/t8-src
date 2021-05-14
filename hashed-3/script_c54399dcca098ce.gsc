@@ -84,7 +84,7 @@ function __init__()
 		level.var_8b14dbe3 = &function_1b4df249;
 		level flag::init("bile_collected");
 		level flag::init(#"hash_1d477cd627a495d9");
-		level.var_e01d217e = 0;
+		level.n_bile = 0;
 		var_a70a763b = getentarray("ww_lvl3_quest_piece_on_table", "targetname");
 		array::run_all(var_a70a763b, &hide);
 		array::run_all(var_a70a763b, &notsolid);
@@ -109,7 +109,7 @@ function __main__()
 		level thread function_7b5a8c15();
 		level thread function_bc8c390e();
 		getweapon(#"zitem_chaos_lvl3_part_3").var_62a98b13 = #"hash_3b036955869eed34";
-		namespace_a1d9b01d::function_d1f16587(#"zblueprint_chaos_lvl3", &function_8bca35b9);
+		zm_crafting::function_d1f16587(#"zblueprint_chaos_lvl3", &function_8bca35b9);
 		level thread function_25058256();
 	}
 }
@@ -241,7 +241,7 @@ function function_e217ba73(v_pos, v_velocity)
 */
 function function_9a0471ab(params)
 {
-	if(self.archetype == #"hash_50f4e0eea9f4e4a4" && !level flag::get("bile_collected") && (isdefined(self.var_bd48b030) && self.var_bd48b030))
+	if(self.archetype == #"nosferatu" && !level flag::get("bile_collected") && (isdefined(self.var_bd48b030) && self.var_bd48b030))
 	{
 		if(isdefined(self))
 		{
@@ -956,13 +956,13 @@ function function_c60245c1(e_player)
 {
 	if(!(isdefined(e_player.var_9b668949) && e_player.var_9b668949))
 	{
-		e_player thread namespace_891c9bac::function_a2bd5a0c(#"hash_12fcbcf5f7dfcc6f", 1);
+		e_player thread zm_vo::function_a2bd5a0c(#"hash_12fcbcf5f7dfcc6f", 1);
 		e_player.var_9b668949 = 1;
 	}
 	self thread function_366a1f08();
-	level.var_e01d217e++;
-	level namespace_6747c550::function_7df6bb60(#"hash_3eb09ddf042e9214", level.var_e01d217e);
-	if(level.var_e01d217e > 2)
+	level.n_bile++;
+	level namespace_6747c550::function_7df6bb60(#"hash_3eb09ddf042e9214", level.n_bile);
+	if(level.n_bile > 2)
 	{
 		level flag::set("bile_collected");
 	}
@@ -1031,11 +1031,11 @@ function function_7b5a8c15()
 {
 	level flag::wait_till("bile_collected");
 	callback::remove_on_ai_killed(&function_9a0471ab);
-	var_783eaf1a = struct::get("summon_crm_nos");
+	s_summon = struct::get("summon_crm_nos");
 	exploder::exploder("fxexp_crypt_glow");
-	var_47323b73 = var_783eaf1a zm_unitrigger::create(&function_13547ea4, 64);
-	var_783eaf1a thread function_9d36c592();
-	var_783eaf1a thread function_5ccad751();
+	var_47323b73 = s_summon zm_unitrigger::create(&function_13547ea4, 64);
+	s_summon thread function_9d36c592();
+	s_summon thread function_5ccad751();
 }
 
 /*
@@ -1074,7 +1074,7 @@ function function_5ccad751()
 	Parameters: 1
 	Flags: Linked
 */
-function function_5ce9ff7a(var_385703b7)
+function function_5ce9ff7a(s_notify)
 {
 	level thread util::delay(10, undefined, &clientfield::set, "" + #"hash_19f5ea0e9b3d47f3", 0);
 }
@@ -1305,7 +1305,7 @@ function function_d2278936(e_player)
 */
 function function_be3fbc6f(s_params)
 {
-	if(self.var_9fde8624 === #"hash_69eff09684574252" && isplayer(s_params.eattacker) && level flag::get("flag_crimson_nosferatu_set_intro") && !level flag::get("flag_player_grabbed_nosferatu_material"))
+	if(self.var_9fde8624 === #"crimson_nosferatu" && isplayer(s_params.eattacker) && level flag::get("flag_crimson_nosferatu_set_intro") && !level flag::get("flag_player_grabbed_nosferatu_material"))
 	{
 		s_loc = spawnstruct();
 		s_loc.origin = self.origin;
@@ -1367,7 +1367,7 @@ function function_6f3f4e18(s_loc)
 	e_holder = s_loc zm_unitrigger::function_fac87205(&function_fdc93dd2, 64);
 	if(!level flag::get("flag_player_grabbed_nosferatu_material"))
 	{
-		e_holder thread namespace_891c9bac::function_a2bd5a0c(#"hash_31e2f2fbfc612834", 1);
+		e_holder thread zm_vo::function_a2bd5a0c(#"hash_31e2f2fbfc612834", 1);
 		level namespace_6747c550::function_7df6bb60(#"hash_3eb09ddf042e9214", 4);
 		s_loc.var_817342a7 delete();
 		s_loc struct::delete();
@@ -1386,7 +1386,7 @@ function function_6f3f4e18(s_loc)
 	Parameters: 1
 	Flags: Linked
 */
-function function_7b8d385(var_385703b7)
+function function_7b8d385(s_notify)
 {
 	if(isdefined(self.var_817342a7))
 	{
@@ -1676,8 +1676,8 @@ function function_a2256244(var_f9105ee8, var_f1935ec8)
 	hidemiscmodels(var_f9105ee8.script_noteworthy);
 	if(isdefined(var_f9105ee8.var_3dd3b66e) && var_f9105ee8.var_3dd3b66e)
 	{
-		var_9c95ad05 = namespace_a1d9b01d::function_4c2f8683("zitem_chaos_lvl3_part_3");
-		var_5ab22b80 = namespace_93829f86::spawn_item(var_9c95ad05, var_f9105ee8.origin, var_f9105ee8.angles, 1);
+		var_9c95ad05 = zm_crafting::function_4c2f8683("zitem_chaos_lvl3_part_3");
+		var_5ab22b80 = zm_items::spawn_item(var_9c95ad05, var_f9105ee8.origin, var_f9105ee8.angles, 1);
 		level.var_27f4ef2f = undefined;
 		var_5ab22b80 clientfield::set("" + #"hash_524ec892754aeb34", 1);
 	}
@@ -1780,10 +1780,10 @@ function function_8bca35b9(e_player)
 		unitrigger_stub thread function_c834e06();
 	}
 	e_player zm_weapons::weapon_take(level.var_6fe89212);
-	e_player thread namespace_891c9bac::function_a2bd5a0c(#"hash_1bee1f8c64cef00f", 1);
+	e_player thread zm_vo::function_a2bd5a0c(#"hash_1bee1f8c64cef00f", 1);
 	e_player zm_weapons::weapon_give(unitrigger_stub.blueprint.var_54a97edd);
 	wait(0.1);
-	unitrigger_stub namespace_a1d9b01d::function_6dccf508();
+	unitrigger_stub zm_crafting::function_6dccf508();
 	unitrigger_stub.prompt_and_visibility_func = &function_7aa50bb7;
 }
 
@@ -1798,8 +1798,8 @@ function function_8bca35b9(e_player)
 */
 function function_c834e06()
 {
-	var_d68dd87d = struct::get("ww_lvl3_crafting_table_fx", "targetname");
-	self.var_1a95256 = util::spawn_model("tag_origin", var_d68dd87d.origin, var_d68dd87d.angles);
+	s_fx_pos = struct::get("ww_lvl3_crafting_table_fx", "targetname");
+	self.var_1a95256 = util::spawn_model("tag_origin", s_fx_pos.origin, s_fx_pos.angles);
 	util::wait_network_frame();
 	self.var_1a95256 clientfield::set("" + #"ww_lvl3_crafting_table_fx", 1);
 }
@@ -1815,7 +1815,7 @@ function function_c834e06()
 */
 function function_7aa50bb7(e_player)
 {
-	can_use = self.stub namespace_a1d9b01d::function_18f2be60(e_player);
+	can_use = self.stub zm_crafting::function_18f2be60(e_player);
 	if(e_player zm_weapons::has_weapon_or_upgrade(level.var_7b9ca97a))
 	{
 		self sethintstring("");

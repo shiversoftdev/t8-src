@@ -32,11 +32,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_7dd35595d2a7953a", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_7dd35595d2a7953a", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -54,9 +54,9 @@ private function function_d1de6a85()
 		assert(isdefined(level.zombie_weapons_upgraded));
 	#/
 	level.var_af806901 = [];
-	foreach(var_61685cd in getarraykeys(level.zombie_weapons_upgraded))
+	foreach(upgraded_weapon in getarraykeys(level.zombie_weapons_upgraded))
 	{
-		level.var_af806901[var_61685cd.name] = var_61685cd;
+		level.var_af806901[upgraded_weapon.name] = upgraded_weapon;
 	}
 	foreach(player in getplayers())
 	{
@@ -66,7 +66,7 @@ private function function_d1de6a85()
 		player callback::function_f77ced93(&namespace_b22c99a5::function_79518194);
 	}
 	namespace_b22c99a5::function_eea26e56();
-	level namespace_f551babc::function_8e2a923(1);
+	level zm_trial::function_8e2a923(1);
 }
 
 /*
@@ -96,7 +96,7 @@ private function function_9e7b3f4d(round_reset)
 	}
 	level.var_af806901 = undefined;
 	namespace_b22c99a5::function_ef1fce77();
-	level namespace_f551babc::function_8e2a923(0);
+	level zm_trial::function_8e2a923(0);
 }
 
 /*
@@ -110,7 +110,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_7dd35595d2a7953a");
+	challenge = zm_trial::function_a36e8c38(#"hash_7dd35595d2a7953a");
 	return isdefined(challenge);
 }
 

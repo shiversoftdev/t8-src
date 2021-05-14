@@ -40,7 +40,7 @@ function spectate_player_watcher()
 {
 	self endon(#"disconnect");
 	/#
-		if(!level.splitscreen && !level.hardcoremode && getdvarint(#"scr_showperksonspawn", 0) == 1 && !gamestate::function_674fd868() && !isdefined(self.perkhudelem))
+		if(!level.splitscreen && !level.hardcoremode && getdvarint(#"scr_showperksonspawn", 0) == 1 && !gamestate::is_game_over() && !isdefined(self.perkhudelem))
 		{
 			if(level.perksenabled == 1)
 			{

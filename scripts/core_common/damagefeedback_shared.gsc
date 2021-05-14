@@ -183,7 +183,7 @@ function hit_alert_sfx_mp(mod, inflictor, perkfeedback, weapon, victim, psoffset
 		{
 			hitalias = #"hash_671bc9a2de453f2e";
 		}
-		else if(weapon.name == #"hash_4b7e4696d38d13e3")
+		else if(weapon.name == #"snowball")
 		{
 			hitalias = #"hash_65089a4793316b63";
 		}

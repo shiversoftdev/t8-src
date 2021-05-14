@@ -85,10 +85,10 @@ function init_clientfields()
 */
 function function_eae1fc85(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	var_9c56a77 = struct::get("fix_server_spark_fx", "targetname");
+	s_fix_server_spark_fx = struct::get("fix_server_spark_fx", "targetname");
 	if(newval == 1)
 	{
-		level.var_6171ce61 = playfx(localclientnum, level._effect[#"hash_775554ed8fe225e7"], var_9c56a77.origin);
+		level.var_6171ce61 = playfx(localclientnum, level._effect[#"hash_775554ed8fe225e7"], s_fix_server_spark_fx.origin);
 	}
 	else if(isdefined(level.var_6171ce61))
 	{

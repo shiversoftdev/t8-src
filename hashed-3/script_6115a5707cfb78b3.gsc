@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"randomize_perks", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"randomize_perks", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -102,9 +102,9 @@ private function function_83fa47e8()
 	self.var_5046ea5e.var_cd5d9345 = var_45a6b64a;
 	wait(1);
 	self.var_cd5d9345 = [];
-	for(var_bcd1c2ff = 0; var_bcd1c2ff < 4; var_bcd1c2ff++)
+	for(n_slot = 0; n_slot < 4; n_slot++)
 	{
-		var_67017da5 = self.var_5046ea5e.var_8f0c164f[var_bcd1c2ff];
+		var_67017da5 = self.var_5046ea5e.var_8f0c164f[n_slot];
 		if(!isdefined(var_67017da5))
 		{
 			continue;
@@ -115,9 +115,9 @@ private function function_83fa47e8()
 			var_52bb1366 = arraycombine(var_52bb1366, self.var_5046ea5e.var_724d826b, 0, 0);
 		}
 		var_de5c852b = zm_perks::function_5ea0c6cf(var_52bb1366);
-		self.var_c27f1e90[var_bcd1c2ff] = var_de5c852b;
-		self zm_perks::function_81bc6765(var_bcd1c2ff, level._custom_perks[var_de5c852b].alias);
-		self zm_perks::function_9bdf581f(var_de5c852b, var_bcd1c2ff, 0);
+		self.var_c27f1e90[n_slot] = var_de5c852b;
+		self zm_perks::function_81bc6765(n_slot, level._custom_perks[var_de5c852b].alias);
+		self zm_perks::function_9bdf581f(var_de5c852b, n_slot, 0);
 	}
 	if(isarray(self.var_5046ea5e.var_724d826b))
 	{
@@ -145,9 +145,9 @@ private function function_83fa47e8()
 private function function_50b92441()
 {
 	self endon(#"disconnect");
-	for(var_bcd1c2ff = 0; var_bcd1c2ff <= 4; var_bcd1c2ff++)
+	for(n_slot = 0; n_slot <= 4; n_slot++)
 	{
-		var_f2e579a1 = self.var_c27f1e90[var_bcd1c2ff];
+		var_f2e579a1 = self.var_c27f1e90[n_slot];
 		if(isdefined(var_f2e579a1) && isinarray(self.var_466b927f, var_f2e579a1))
 		{
 			self notify(var_f2e579a1 + "_stop", {#hash_613b7621:1});
@@ -185,7 +185,7 @@ private function function_50b92441()
 */
 function is_active()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"randomize_perks");
+	s_challenge = zm_trial::function_a36e8c38(#"randomize_perks");
 	return isdefined(s_challenge);
 }
 

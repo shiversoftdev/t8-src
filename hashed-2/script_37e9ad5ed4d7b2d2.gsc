@@ -415,7 +415,7 @@ function function_391d5d90(params)
 			{
 				function_d55a99f2(500, 0);
 			}
-			if(!function_ffd67fa2())
+			if(!chase_enemy())
 			{
 				self.var_c5c8c31 = randomintrange(1, 3);
 				self vehicle_ai::set_state("seek");
@@ -443,7 +443,7 @@ function waittill_pathing_done(maxtime = 15)
 {
 	self endon(#"death", #"change_state");
 	result = undefined;
-	result = self waittill_timeout(maxtime, #"near_goal", #"hash_f6b2d6a37e22523", #"hash_26c800737b41c856");
+	result = self waittill_timeout(maxtime, #"near_goal", #"hash_f6b2d6a37e22523", #"switch_enemy");
 }
 
 /*
@@ -474,7 +474,7 @@ function function_33d3892a()
 }
 
 /*
-	Name: function_ffd67fa2
+	Name: chase_enemy
 	Namespace: seeker_mine
 	Checksum: 0x2AA169D3
 	Offset: 0x1448
@@ -482,7 +482,7 @@ function function_33d3892a()
 	Parameters: 0
 	Flags: None
 */
-function function_ffd67fa2()
+function chase_enemy()
 {
 	if(isdefined(self.favoriteenemy) && function_9ba314a1(self.favoriteenemy))
 	{
@@ -842,7 +842,7 @@ function function_d15dd929(radius, origin)
 }
 
 /*
-	Name: function_c559e721
+	Name: damage_armor_activati_
 	Namespace: seeker_mine
 	Checksum: 0xE7C30EA1
 	Offset: 0x1FA8
@@ -850,7 +850,7 @@ function function_d15dd929(radius, origin)
 	Parameters: 2
 	Flags: None
 */
-function function_c559e721(entity, tacpoints)
+function damage_armor_activati_(entity, tacpoints)
 {
 	validpoints = [];
 	radius = entity getpathfindingradius();
@@ -923,7 +923,7 @@ function function_3e16dec3(params)
 			forwardpos = self.origin + forward * 500;
 			var_68860686 = ai::t_cylinder(self.origin, 200, 60);
 			tacpoints = tacticalquery("mp_seeker_seek_no_enemy", self.origin, self, var_68860686, forwardpos);
-			tacpoints = function_c559e721(self, tacpoints);
+			tacpoints = damage_armor_activati_(self, tacpoints);
 			if(isdefined(tacpoints) && tacpoints.size != 0)
 			{
 				/#
@@ -954,7 +954,7 @@ function function_3e16dec3(params)
 				var_68860686 = ai::t_cylinder(self.origin, 400, 60);
 				cylinder = ai::t_cylinder(self.origin, 1500, 150);
 				tacpoints = tacticalquery("mp_seeker_seek_no_enemy_fallback", newpos, self, var_68860686, cylinder);
-				tacpoints = function_c559e721(self, tacpoints);
+				tacpoints = damage_armor_activati_(self, tacpoints);
 				if(isdefined(tacpoints) && tacpoints.size != 0)
 				{
 					/#
@@ -1171,7 +1171,7 @@ function function_45eb6b84(target)
 	if(isdefined(self.favoriteenemy) && self.favoriteenemy != target)
 	{
 		self namespace_14c38db0::function_a4d6d6d8(target);
-		self notify(#"hash_26c800737b41c856");
+		self notify(#"switch_enemy");
 	}
 	self.favoriteenemy = target;
 }

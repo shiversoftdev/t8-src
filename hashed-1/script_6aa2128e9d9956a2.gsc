@@ -164,7 +164,7 @@ function function_ad26976()
 function function_211e7277(point, var_8bd17d7d)
 {
 	nearby_players = getplayers(undefined, point.origin, 256);
-	var_30aed4da = point.origin;
+	move_pos = point.origin;
 	var_93a4284 = 0;
 	var_ff951b7a = 0;
 	if(nearby_players.size > 0)
@@ -180,7 +180,7 @@ function function_211e7277(point, var_8bd17d7d)
 				var_93a4284 = 1;
 				n_forward = var_8bd17d7d;
 				n_forward = n_forward * vectorscale((1, 1, 0), 32);
-				var_30aed4da = var_30aed4da + n_forward;
+				move_pos = move_pos + n_forward;
 				break;
 				continue;
 			}
@@ -188,7 +188,7 @@ function function_211e7277(point, var_8bd17d7d)
 		}
 		var_ff951b7a++;
 	}
-	self setorigin(var_30aed4da);
+	self setorigin(move_pos);
 }
 
 /*

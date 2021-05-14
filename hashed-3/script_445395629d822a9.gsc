@@ -43,11 +43,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_1d70527739c796e5", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_1d70527739c796e5", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -62,9 +62,9 @@ function __init__()
 private function function_d1de6a85()
 {
 	str_targetname = "trials_lighthouse_beam";
-	level function_8c78064();
+	level setup_lighthouse();
 	callback::function_33f0ddd3(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 	foreach(player in getplayers())
 	{
 		player thread function_1e902f3b();
@@ -85,7 +85,7 @@ private function function_9e7b3f4d(round_reset)
 	level notify(#"hash_2b53ed06a97eb26c");
 	level.var_ab11c23d function_f223e16f(round_reset);
 	callback::function_824d206(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	foreach(player in getplayers())
 	{
 		player thread namespace_b22c99a5::function_dc0859e();
@@ -96,7 +96,7 @@ private function function_9e7b3f4d(round_reset)
 }
 
 /*
-	Name: function_8c78064
+	Name: setup_lighthouse
 	Namespace: namespace_309b53e1
 	Checksum: 0x68CA260F
 	Offset: 0x4A0
@@ -104,7 +104,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8c78064()
+private function setup_lighthouse()
 {
 	level notify(#"hash_661044fd7c7faa55");
 	if(level.var_7d8bf93f zm_pack_a_punch::is_on())
@@ -325,11 +325,11 @@ private function function_33f0ddd3(s_event)
 	if(s_event.event === "give_weapon")
 	{
 		var_f2b6fe6e = 0;
-		if(self.var_3236cdc2 === 1)
+		if(self.b_in_water === 1)
 		{
 			var_f2b6fe6e = 1;
 		}
-		else if(!var_f2b6fe6e && !namespace_2ba51478::function_2ff6913(s_event.weapon))
+		else if(!var_f2b6fe6e && !zm_loadout::function_2ff6913(s_event.weapon))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 		}

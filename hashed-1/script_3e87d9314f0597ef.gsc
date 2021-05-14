@@ -33,12 +33,12 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "random_vapor_altar_available", 1, 1, "int", &function_df8a8908, 0, 0);
+	clientfield::register("scriptmover", "random_vapor_altar_available", 1, 1, "int", &random_vapor_altar_available_fx, 0, 0);
 	level._effect[#"random_vapor_altar_available"] = "zombie/fx_powerup_on_green_zmb";
 }
 
 /*
-	Name: function_df8a8908
+	Name: random_vapor_altar_available_fx
 	Namespace: namespace_e7c67ece
 	Checksum: 0xB478B3A
 	Offset: 0x1C8
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked
 */
-function function_df8a8908(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function random_vapor_altar_available_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{

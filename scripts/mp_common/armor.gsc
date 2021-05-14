@@ -618,9 +618,9 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 		}
 	}
 	self update_max_armor();
-	if(isdefined(level.var_dea62998))
+	if(isdefined(level.specialty_quieter_complete))
 	{
-		self [[level.var_dea62998]]();
+		self [[level.specialty_quieter_complete]]();
 	}
 	if(self.armor <= 0)
 	{

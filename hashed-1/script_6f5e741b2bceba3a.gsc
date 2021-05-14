@@ -32,11 +32,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_168c1517a89a7cd", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_168c1517a89a7cd", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -50,8 +50,8 @@ function __init__()
 */
 private function function_d1de6a85(var_b3d469ae, var_5cd0152f)
 {
-	level.var_21c2f32a = namespace_f551babc::function_5769f26a(var_b3d469ae);
-	n_cost = namespace_f551babc::function_5769f26a(var_5cd0152f);
+	level.var_21c2f32a = zm_trial::function_5769f26a(var_b3d469ae);
+	n_cost = zm_trial::function_5769f26a(var_5cd0152f);
 	level.var_943b6e2b = array();
 	foreach(s_wallbuy in level._spawned_wallbuys)
 	{
@@ -63,7 +63,7 @@ private function function_d1de6a85(var_b3d469ae, var_5cd0152f)
 		player namespace_b22c99a5::function_2190356a(0);
 		level.var_943b6e2b[player.clientid] = array();
 	}
-	level thread function_50297e53();
+	level thread wallbuy_watcher();
 }
 
 /*
@@ -97,11 +97,11 @@ private function function_9e7b3f4d(round_reset)
 		}
 		if(var_696c3b4.size == 1)
 		{
-			namespace_f551babc::fail(#"hash_75977ef6e92a8fb9", var_696c3b4);
+			zm_trial::fail(#"hash_75977ef6e92a8fb9", var_696c3b4);
 		}
 		else if(var_696c3b4.size > 1)
 		{
-			namespace_f551babc::fail(#"hash_b877496afcd42c8", var_696c3b4);
+			zm_trial::fail(#"hash_b877496afcd42c8", var_696c3b4);
 		}
 	}
 	level.var_21c2f32a = undefined;
@@ -128,12 +128,12 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_168c1517a89a7cd");
+	challenge = zm_trial::function_a36e8c38(#"hash_168c1517a89a7cd");
 	return isdefined(challenge);
 }
 
 /*
-	Name: function_50297e53
+	Name: wallbuy_watcher
 	Namespace: namespace_d9987f47
 	Checksum: 0x2042692E
 	Offset: 0x650
@@ -141,15 +141,15 @@ function is_active()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_50297e53()
+private function wallbuy_watcher()
 {
 	level endon(#"hash_31c14df051f6c165", #"game_ended");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = level waittill(#"weapon_bought");
-		e_player = var_385703b7.player;
-		if(!isinarray(level.var_943b6e2b[e_player.clientid], var_385703b7.weapon))
+		s_notify = undefined;
+		s_notify = level waittill(#"weapon_bought");
+		e_player = s_notify.player;
+		if(!isinarray(level.var_943b6e2b[e_player.clientid], s_notify.weapon))
 		{
 			if(!isdefined(level.var_943b6e2b[e_player.clientid]))
 			{
@@ -159,7 +159,7 @@ private function function_50297e53()
 			{
 				level.var_943b6e2b[e_player.clientid] = array(level.var_943b6e2b[e_player.clientid]);
 			}
-			level.var_943b6e2b[e_player.clientid][level.var_943b6e2b[e_player.clientid].size] = var_385703b7.weapon;
+			level.var_943b6e2b[e_player.clientid][level.var_943b6e2b[e_player.clientid].size] = s_notify.weapon;
 		}
 		if(level.var_943b6e2b[e_player.clientid].size < level.var_21c2f32a)
 		{

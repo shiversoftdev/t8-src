@@ -23,7 +23,7 @@ autoexec function main()
 }
 
 /*
-	Name: function_96f8fef2
+	Name: is_overtime_round
 	Namespace: overtime
 	Checksum: 0x8BF4CF92
 	Offset: 0xC0
@@ -31,7 +31,7 @@ autoexec function main()
 	Parameters: 0
 	Flags: Linked
 */
-function function_96f8fef2()
+function is_overtime_round()
 {
 	if(game.overtime_round > 0)
 	{
@@ -51,7 +51,7 @@ function function_96f8fef2()
 */
 function function_6343685()
 {
-	if(function_96f8fef2())
+	if(is_overtime_round())
 	{
 		setmatchflag("overtime", 1);
 	}

@@ -443,7 +443,7 @@ private function player_exit_altbody(name, trigger)
 	self unsetperk("specialty_playeriszombie");
 	self detachall();
 	self thread function_d709966a(0);
-	namespace_48f3568::set_character();
+	zm_characters::set_character();
 }
 
 /*

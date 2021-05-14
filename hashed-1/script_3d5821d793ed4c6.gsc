@@ -51,7 +51,7 @@ private function __init__()
 	createuimodel(getglobaluimodel(), "ZMHudGlobal.trials.globalCounterMax");
 	createuimodel(getglobaluimodel(), "ZMHudGlobal.trials.globalCounterValue");
 	createuimodel(getglobaluimodel(), "ZMHudGlobal.trials.hudDeactivated");
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
@@ -73,8 +73,8 @@ private function __init__()
 */
 private function on_localplayer_connect(localclientnum)
 {
-	var_b0871863 = function_c8b7588d(localclientnum);
-	setuimodelvalue(var_b0871863, 0);
+	timer_model = function_c8b7588d(localclientnum);
+	setuimodelvalue(timer_model, 0);
 }
 
 /*
@@ -152,7 +152,7 @@ private function function_ff287922(localclientnum, oldval, newval, bnewent, bini
 */
 private function function_741dae5b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	level.var_6d87ac05 = namespace_f551babc::function_ce2fdd3b(newval);
+	level.var_6d87ac05 = zm_trial::function_ce2fdd3b(newval);
 }
 
 /*
@@ -229,9 +229,9 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 {
 	if(!function_65b9eb0f(localclientnum))
 	{
-		var_b0871863 = function_c8b7588d(localclientnum);
+		timer_model = function_c8b7588d(localclientnum);
 		duration_msec = newval * 1000;
-		setuimodelvalue(var_b0871863, getservertime(localclientnum, 1) + duration_msec);
+		setuimodelvalue(timer_model, getservertime(localclientnum, 1) + duration_msec);
 	}
 }
 
@@ -339,8 +339,8 @@ private function function_d59810a5()
 */
 private function function_c8b7588d(localclientnum)
 {
-	var_1b5ddafb = getuimodelforcontroller(localclientnum);
-	return createuimodel(var_1b5ddafb, "ZMHud.trialsTimer");
+	controller_model = getuimodelforcontroller(localclientnum);
+	return createuimodel(controller_model, "ZMHud.trialsTimer");
 }
 
 /*

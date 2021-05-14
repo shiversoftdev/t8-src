@@ -2,11 +2,11 @@
 #using script_2dc48f46bfeac894;
 #using scripts\core_common\system_shared.gsc;
 
-#namespace namespace_6815e036;
+#namespace gadget_seeker_mine;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_6815e036
+	Namespace: gadget_seeker_mine
 	Checksum: 0x40B1FDC
 	Offset: 0x78
 	Size: 0x3C
@@ -15,12 +15,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_323633e8ef642349", &__init__, undefined, undefined);
+	system::register(#"gadget_seeker_mine", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_6815e036
+	Namespace: gadget_seeker_mine
 	Checksum: 0xF5AA78A3
 	Offset: 0xC0
 	Size: 0x44
@@ -35,7 +35,7 @@ function __init__()
 
 /*
 	Name: function_5f53485c
-	Namespace: namespace_6815e036
+	Namespace: gadget_seeker_mine
 	Checksum: 0x55428F86
 	Offset: 0x110
 	Size: 0x22
@@ -49,7 +49,7 @@ function function_5f53485c(slot)
 
 /*
 	Name: function_26290a94
-	Namespace: namespace_6815e036
+	Namespace: gadget_seeker_mine
 	Checksum: 0xB31F8C11
 	Offset: 0x140
 	Size: 0x22

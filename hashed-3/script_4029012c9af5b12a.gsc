@@ -185,7 +185,7 @@ function on_player_corpse(localclientnum, params)
 	self endon(#"death");
 	self util::waittill_dobj(localclientnum);
 	self function_a25e8ff(localclientnum, 1);
-	self renderoverridebundle::function_40d0d1e0(#"friendly", (sessionmodeiscampaigngame() ? #"hash_1cbf6d26721c59a7" : #"hash_1c90592671f4c6e9"), 0);
+	self renderoverridebundle::stop_bundle(#"friendly", (sessionmodeiscampaigngame() ? #"hash_1cbf6d26721c59a7" : #"hash_1c90592671f4c6e9"), 0);
 	if(shoutcaster::is_shoutcaster(localclientnum))
 	{
 		self function_5d482e78(#"hash_71fbf1094f57b910");

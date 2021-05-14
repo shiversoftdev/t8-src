@@ -138,21 +138,21 @@ function function_2dca9b5b(localclientnum, var_630fc8b)
 {
 	level endon(#"game_ended");
 	self endon_callback(&function_853e8354, #"death");
-	var_50a1494c = var_630fc8b;
+	b_underwater = var_630fc8b;
 	while(isalive(self))
 	{
 		if(self isplayerswimmingunderwater())
 		{
-			if(!var_50a1494c)
+			if(!b_underwater)
 			{
 				self function_33eae096(localclientnum, 1);
-				var_50a1494c = 1;
+				b_underwater = 1;
 			}
 		}
-		else if(var_50a1494c)
+		else if(b_underwater)
 		{
 			self function_33eae096(localclientnum, 0);
-			var_50a1494c = 0;
+			b_underwater = 0;
 		}
 		waitframe(1);
 	}
@@ -173,11 +173,11 @@ function function_efae9657(localclientnum, var_630fc8b)
 	self endon("505c3419935f4f3e");
 	level endon(#"game_ended");
 	self endon_callback(&function_853e8354, #"death");
-	var_50a1494c = var_630fc8b;
+	b_underwater = var_630fc8b;
 	if(isalive(self))
 	{
 		var_8eeea2b6 = postfx::function_556665f2(#"hash_5249b3ef8b2f1988");
-		if(var_50a1494c)
+		if(b_underwater)
 		{
 			setpbgactivebank(localclientnum, 2);
 			if(!var_8eeea2b6)
@@ -185,7 +185,7 @@ function function_efae9657(localclientnum, var_630fc8b)
 				self thread postfx::playpostfxbundle(#"hash_5249b3ef8b2f1988");
 			}
 		}
-		else if(self clientfield::get_to_player("" + #"hash_2c247373d6b00b33"))
+		else if(self clientfield::get_to_player("" + #"boiler_fx"))
 		{
 			setpbgactivebank(localclientnum, 4);
 		}
@@ -200,17 +200,17 @@ function function_efae9657(localclientnum, var_630fc8b)
 	}
 	while(isalive(self))
 	{
-		if(var_50a1494c)
+		if(b_underwater)
 		{
 			self waittill(#"underwater_end");
 			self function_33eae096(localclientnum, 0);
-			var_50a1494c = 0;
+			b_underwater = 0;
 		}
 		else
 		{
 			self waittill(#"underwater_begin");
 			self function_33eae096(localclientnum, 1);
-			var_50a1494c = 1;
+			b_underwater = 1;
 		}
 	}
 }
@@ -224,9 +224,9 @@ function function_efae9657(localclientnum, var_630fc8b)
 	Parameters: 2
 	Flags: Linked
 */
-function function_33eae096(localclientnum, var_50a1494c)
+function function_33eae096(localclientnum, b_underwater)
 {
-	if(var_50a1494c)
+	if(b_underwater)
 	{
 		setpbgactivebank(localclientnum, 2);
 		self thread postfx::playpostfxbundle(#"hash_5249b3ef8b2f1988");
@@ -236,7 +236,7 @@ function function_33eae096(localclientnum, var_50a1494c)
 	else
 	{
 		self notify(#"hash_32c7af154e6c4ded");
-		if(self clientfield::get_to_player("" + #"hash_2c247373d6b00b33"))
+		if(self clientfield::get_to_player("" + #"boiler_fx"))
 		{
 			setpbgactivebank(localclientnum, 4);
 		}
@@ -423,7 +423,7 @@ function function_99e9d1fa()
 {
 	setdvar(#"phys_buoyancy", 1);
 	setdvar(#"hash_7016ead6b3c7a246", 1);
-	function_d57eff0c("e_wave_water_mid", 3);
+	elmids("e_wave_water_mid", 3);
 }
 
 /*
@@ -506,7 +506,7 @@ function update_wave_water_height(localclientnum, oldval, newval, bnewent, binit
 	{
 		var_b965688c = function_67b634e6(self.origin);
 		setwavewaterheight(var_b965688c, self.origin[2]);
-		function_d57eff0c(var_b965688c, self.angles[2] * -1);
+		elmids(var_b965688c, self.angles[2] * -1);
 	}
 }
 
@@ -571,7 +571,7 @@ function function_6749eef5(localclientnum)
 	while(isdefined(self) && self flag::get("update_water"))
 	{
 		setwavewaterheight(var_b965688c, self.origin[2]);
-		function_d57eff0c(var_b965688c, self.angles[2] * -1);
+		elmids(var_b965688c, self.angles[2] * -1);
 		waitframe(1);
 	}
 	function_c1129a39(var_b965688c, (0, 0, 0), 0);
@@ -811,7 +811,7 @@ function sentinel_artifact_activated(localclientnum, oldval, newval, bnewent, bi
 			stopfx(localclientnum, self.fx);
 			self.fx = undefined;
 		}
-		util::playfxontag(localclientnum, level._effect[#"hash_493ce8ba1e437ab7"], self, "tag_fx_x_pos");
+		util::playfxontag(localclientnum, level._effect[#"sentinel_activate"], self, "tag_fx_x_pos");
 		while(isdefined(self) && self.model !== #"hash_2c0078538e398b4f")
 		{
 			waitframe(1);

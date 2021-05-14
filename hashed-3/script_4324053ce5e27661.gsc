@@ -79,9 +79,9 @@ private function registerbehaviorscriptfunctions()
 	#/
 	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_9188ed9ed594c69", &function_d3d560e9);
 	/#
-		assert(isscriptfunctionptr(&function_8c203da0));
+		assert(isscriptfunctionptr(&elephantknockdownservice));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_7cfb2cad33c8b157", &function_8c203da0);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"elephantknockdownservice", &elephantknockdownservice);
 	/#
 		assert(isscriptfunctionptr(&function_5db0f49a));
 	#/
@@ -95,13 +95,13 @@ private function registerbehaviorscriptfunctions()
 	#/
 	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_4b225936ae91a204", &function_18e1bf30);
 	/#
-		assert(isscriptfunctionptr(&function_e5afc75c));
+		assert(isscriptfunctionptr(&elephantshouldmelee));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_363e4a2f3208311", &function_e5afc75c);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"elephantshouldmelee", &elephantshouldmelee);
 	/#
-		assert(isscriptfunctionptr(&function_e5afc75c));
+		assert(isscriptfunctionptr(&elephantshouldmelee));
 	#/
-	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_363e4a2f3208311", &function_e5afc75c);
+	behaviorstatemachine::registerbsmscriptapiinternal(#"elephantshouldmelee", &elephantshouldmelee);
 	/#
 		assert(isscriptfunctionptr(&function_9c076ff9));
 	#/
@@ -250,7 +250,7 @@ function function_452a76a8(elephant)
 }
 
 /*
-	Name: function_42b6d3a3
+	Name: elephantstartdeath
 	Namespace: namespace_d2f65e05
 	Checksum: 0x173D4186
 	Offset: 0x1600
@@ -258,7 +258,7 @@ function function_452a76a8(elephant)
 	Parameters: 1
 	Flags: Linked
 */
-function function_42b6d3a3(elephant)
+function elephantstartdeath(elephant)
 {
 	model = "p8_fxanim_zm_towers_boss_death_01_mod";
 	animname = "p8_fxanim_zm_towers_boss_death_01_anim";
@@ -484,7 +484,7 @@ private function function_df15eebf(entity)
 	}
 	entity clientfield::increment("towers_boss_melee_effect");
 	var_a5a1f99c = getaiarchetypearray(#"zombie");
-	var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"hash_1bab8a0ba811401e"), 0, 0);
+	var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"catalyst"), 0, 0);
 	var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"tiger"), 0, 0);
 	var_a5a1f99c = array::filter(var_a5a1f99c, 0, &function_1d65bc12, entity);
 	[[self.ai.var_64eb729e]](var_a5a1f99c, entity);
@@ -1188,7 +1188,7 @@ private function function_4c731a08()
 	self.ai.var_a5dabb8b = 1;
 	self.allowdeath = 0;
 	self bloodimpact("none");
-	namespace_81245006::function_b8cf6ebd(self, #"hash_13e16de0f170d841");
+	namespace_81245006::initweakpoints(self, #"hash_13e16de0f170d841");
 	aiutility::addaioverridedamagecallback(self, &function_cfe82365);
 	function_2e4487f6(self, #"hash_8e173ae91589439");
 	self thread function_f51431a9(self);
@@ -1315,7 +1315,7 @@ private function function_1d65bc12(enemy, elephant, var_60e4c6b7 = 1)
 }
 
 /*
-	Name: function_8c203da0
+	Name: elephantknockdownservice
 	Namespace: namespace_d2f65e05
 	Checksum: 0x65474F71
 	Offset: 0x5438
@@ -1323,14 +1323,14 @@ private function function_1d65bc12(enemy, elephant, var_60e4c6b7 = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8c203da0(entity)
+private function elephantknockdownservice(entity)
 {
 	if(!isdefined(self.ai.var_a504b9a3))
 	{
 		return 0;
 	}
 	var_a5a1f99c = getaiarchetypearray(#"zombie");
-	var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"hash_1bab8a0ba811401e"), 0, 0);
+	var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"catalyst"), 0, 0);
 	var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"tiger"), 0, 0);
 	var_a5a1f99c = array::filter(var_a5a1f99c, 0, &function_1d65bc12, entity);
 	[[self.ai.var_64eb729e]](var_a5a1f99c, entity);
@@ -1606,12 +1606,12 @@ function function_e864f0da(elephant, damage, attacker, point, dir, var_88cb1bf9)
 */
 private function function_c62e8244(damage)
 {
-	var_fc863ca1 = 1.5;
+	n_scalar = 1.5;
 	for(i = 0; i < level.players.size; i++)
 	{
-		var_fc863ca1 = var_fc863ca1 - 0.07;
+		n_scalar = n_scalar - 0.07;
 	}
-	return int(damage * var_fc863ca1);
+	return int(damage * n_scalar);
 }
 
 /*
@@ -1903,7 +1903,7 @@ private function function_f51431a9(elephant)
 			{
 				if(function_16096ca1(elephant) || var_e8e6826f)
 				{
-					level thread function_42b6d3a3(elephant);
+					level thread elephantstartdeath(elephant);
 					return;
 				}
 				break;
@@ -2154,7 +2154,7 @@ function function_2bfd3841(entity)
 */
 function function_18e1bf30(entity)
 {
-	if(!function_e5afc75c(entity))
+	if(!elephantshouldmelee(entity))
 	{
 		return 0;
 	}
@@ -2166,7 +2166,7 @@ function function_18e1bf30(entity)
 }
 
 /*
-	Name: function_e5afc75c
+	Name: elephantshouldmelee
 	Namespace: namespace_d2f65e05
 	Checksum: 0x445EA765
 	Offset: 0x7A40
@@ -2174,7 +2174,7 @@ function function_18e1bf30(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e5afc75c(entity)
+private function elephantshouldmelee(entity)
 {
 	if(!isdefined(entity.favoriteenemy))
 	{
@@ -2255,7 +2255,7 @@ private function function_2ff17378(entity)
 	{
 		return 0;
 	}
-	if(function_e5afc75c(entity))
+	if(elephantshouldmelee(entity))
 	{
 		return 0;
 	}
@@ -2719,8 +2719,8 @@ private function function_707d0196(player, mod, shitloc)
 function function_6c8289fe()
 {
 	/#
-		var_2d71c66f = getaiarchetypearray(#"elephant");
-		foreach(elephant in var_2d71c66f)
+		elephants = getaiarchetypearray(#"elephant");
+		foreach(elephant in elephants)
 		{
 			if(isdefined(elephant.ai.riders))
 			{
@@ -2733,13 +2733,13 @@ function function_6c8289fe()
 					}
 				}
 			}
-			level thread function_42b6d3a3(elephant);
+			level thread elephantstartdeath(elephant);
 		}
 	#/
 }
 
 /*
-	Name: function_963dfa11
+	Name: spawn_elephant
 	Namespace: namespace_d2f65e05
 	Checksum: 0xE9F61C53
 	Offset: 0x9010
@@ -2747,7 +2747,7 @@ function function_6c8289fe()
 	Parameters: 1
 	Flags: None
 */
-function function_963dfa11(phase)
+function spawn_elephant(phase)
 {
 	/#
 		player = level.players[0];
@@ -2763,8 +2763,8 @@ function function_963dfa11(phase)
 			iprintln("");
 			return;
 		}
-		var_5def4a4b = array::random(var_947e61ac);
-		elephant = zombie_utility::spawn_zombie(var_5def4a4b, undefined, var_5def4a4b);
+		elephant_spawner = array::random(var_947e61ac);
+		elephant = zombie_utility::spawn_zombie(elephant_spawner, undefined, elephant_spawner);
 		elephant.ai.phase = phase;
 		if(isdefined(elephant))
 		{
@@ -2816,15 +2816,15 @@ function setup_devgui()
 			}
 			switch(cmd)
 			{
-				case "hash_3627a6cedc1f6dcb":
+				case "spawn_phase1":
 				{
-					level thread function_963dfa11(#"hash_266f53fb994e6120");
+					level thread spawn_elephant(#"hash_266f53fb994e6120");
 					break;
 				}
-				case "hash_3627a7cedc1f6f7e":
+				case "spawn_phase2":
 				{
 					level.var_a52a5487 = 1;
-					level thread function_963dfa11(#"hash_266f56fb994e6639");
+					level thread spawn_elephant(#"hash_266f56fb994e6639");
 					break;
 				}
 				case "kill":
@@ -2834,8 +2834,8 @@ function setup_devgui()
 				}
 				case "hash_6506d07f4110536c":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						stage = elephant.ai.var_112ec817;
 						if(stage == #"hash_8e173ae91589439")
@@ -2847,8 +2847,8 @@ function setup_devgui()
 				}
 				case "hash_490a8c840885559":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.ai.var_ea8d826a = 0;
 					}
@@ -2856,26 +2856,26 @@ function setup_devgui()
 				}
 				case "hash_3c1047155c4a19f2":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.ai.var_ea8d826a = 1;
 					}
 					break;
 				}
-				case "hash_483923806d45ea02":
+				case "hide_heart":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant hidepart("");
 					}
 					break;
 				}
-				case "hash_2ef1eb1ceb31c08f":
+				case "show_heart":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant showpart("");
 					}
@@ -2883,8 +2883,8 @@ function setup_devgui()
 				}
 				case "hide_head":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant hidepart("");
 					}
@@ -2892,8 +2892,8 @@ function setup_devgui()
 				}
 				case "show_head":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant showpart("");
 					}
@@ -2915,8 +2915,8 @@ function setup_devgui()
 				}
 				case "hash_1b7f90925f6498e3":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_e15d8b1f = 2;
 					}
@@ -2924,8 +2924,8 @@ function setup_devgui()
 				}
 				case "hash_503e90ea2aaf5f30":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_e15d8b1f = 1;
 					}
@@ -2933,8 +2933,8 @@ function setup_devgui()
 				}
 				case "hash_5e18a71c0cbda56a":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_e15d8b1f = 3;
 					}
@@ -2942,8 +2942,8 @@ function setup_devgui()
 				}
 				case "hash_28ef2ead2bec713f":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_fe41477d = 1;
 						elephant.var_b554dbf2 = 0;
@@ -2953,8 +2953,8 @@ function setup_devgui()
 				}
 				case "hash_618d48cfd9850a9a":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_fe41477d = 0;
 						elephant.var_b554dbf2 = 0;
@@ -2964,8 +2964,8 @@ function setup_devgui()
 				}
 				case "hash_3659cf300f60df4b":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_b554dbf2 = 1;
 						elephant.var_fe41477d = 0;
@@ -2975,8 +2975,8 @@ function setup_devgui()
 				}
 				case "hash_69cb3828846de716":
 				{
-					var_2d71c66f = getaiarchetypearray(#"elephant");
-					foreach(elephant in var_2d71c66f)
+					elephants = getaiarchetypearray(#"elephant");
+					foreach(elephant in elephants)
 					{
 						elephant.var_b554dbf2 = 0;
 						elephant.var_fe41477d = 0;

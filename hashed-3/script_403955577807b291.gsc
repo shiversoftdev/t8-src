@@ -127,7 +127,7 @@ function function_b2755499(weapon, entity)
 */
 private function registerclientfields()
 {
-	clientfield::register("toplayer", "gadget_icepick_on", 9000, 1, "int", &function_c6d0809e, 0, 0);
+	clientfield::register("toplayer", "gadget_icepick_on", 9000, 1, "int", &icepick_on, 0, 0);
 	clientfield::register("toplayer", "currentlyHacking", 9000, 1, "int", &function_d3c5b110, 0, 0);
 	clientfield::register("toplayer", "hackedvehpostfx", 9000, 1, "int", &function_4a82368f, 0, 1);
 	clientfield::register("toplayer", "currentlybeinghackedplayer", 9000, 4, "int", &function_39f69700, 0, 0);
@@ -514,7 +514,7 @@ function function_868adc20(local_client_num, oldval, newval, bnewent, binitialsn
 }
 
 /*
-	Name: function_c6d0809e
+	Name: icepick_on
 	Namespace: namespace_94f334ac
 	Checksum: 0xF4660742
 	Offset: 0x2038
@@ -522,7 +522,7 @@ function function_868adc20(local_client_num, oldval, newval, bnewent, binitialsn
 	Parameters: 7
 	Flags: None
 */
-function function_c6d0809e(local_client_num, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function icepick_on(local_client_num, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{

@@ -3094,7 +3094,7 @@ function play_gadget_ready(weapon, userflip = 0)
 			dialogkey = playerbundle.tempestweaponready;
 			break;
 		}
-		case "hash_46c845178ff13452":
+		case "sig_minigun":
 		{
 			dialogkey = playerbundle.var_4630d039;
 			break;
@@ -3365,14 +3365,14 @@ function function_e3ebbf87(var_aa988d26, var_c1132df6)
 	{
 		return;
 	}
-	var_93145ec8 = self getmpdialogname();
-	if(!isdefined(var_93145ec8) || (isdefined(self.playingdialog) && self.playingdialog))
+	specialistname = self getmpdialogname();
+	if(!isdefined(specialistname) || (isdefined(self.playingdialog) && self.playingdialog))
 	{
 		return;
 	}
 	if(isdefined(var_c1132df6) && var_c1132df6)
 	{
-		switch(var_93145ec8)
+		switch(specialistname)
 		{
 			case "battery":
 			{
@@ -3711,7 +3711,7 @@ function function_e3ebbf87(var_aa988d26, var_c1132df6)
 	}
 	else
 	{
-		switch(var_93145ec8)
+		switch(specialistname)
 		{
 			case "battery":
 			{

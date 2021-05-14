@@ -557,13 +557,13 @@ function zipline_move_trigger_think()
 	{
 		level flag::wait_till("gondola_at_" + self.script_string);
 		self setvisibletoall();
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_who = var_88706ea7.activator;
-		var_7970696c = var_88706ea7.var_7970696c;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_who = s_result.activator;
+		b_forced = s_result.b_forced;
 		level.var_105462b6 = e_who;
 		level thread gondola_moving_vo();
-		if(!(isdefined(var_7970696c) && var_7970696c) && e_who zm_utility::in_revive_trigger())
+		if(!(isdefined(b_forced) && b_forced) && e_who zm_utility::in_revive_trigger())
 		{
 			continue;
 		}
@@ -575,7 +575,7 @@ function zipline_move_trigger_think()
 		{
 			continue;
 		}
-		if(isdefined(var_7970696c) && var_7970696c || (zm_utility::is_player_valid(e_who) && e_who zm_score::can_player_purchase(self.cost)))
+		if(isdefined(b_forced) && b_forced || (zm_utility::is_player_valid(e_who) && e_who zm_score::can_player_purchase(self.cost)))
 		{
 			if(!self.in_use)
 			{
@@ -654,12 +654,12 @@ function zipline_call_trigger_think()
 		{
 			self sethintstring(#"hash_bbb24669638bc76");
 		}
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_who = var_88706ea7.activator;
-		var_7970696c = var_88706ea7.var_7970696c;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_who = s_result.activator;
+		b_forced = s_result.b_forced;
 		level.var_105462b6 = e_who;
-		if(!(isdefined(var_7970696c) && var_7970696c) && e_who zm_utility::in_revive_trigger())
+		if(!(isdefined(b_forced) && b_forced) && e_who zm_utility::in_revive_trigger())
 		{
 			continue;
 		}
@@ -671,7 +671,7 @@ function zipline_call_trigger_think()
 		{
 			continue;
 		}
-		if(isdefined(var_7970696c) && var_7970696c || zm_utility::is_player_valid(e_who))
+		if(isdefined(b_forced) && b_forced || zm_utility::is_player_valid(e_who))
 		{
 			if(!self.in_use)
 			{
@@ -1109,7 +1109,7 @@ function function_6a4544e()
 	}
 	else if(var_1b66809c.size > 1)
 	{
-		level namespace_891c9bac::function_3720b375("gondola_banter", undefined, var_1b66809c);
+		level zm_vo::play_banter("gondola_banter", undefined, var_1b66809c);
 	}
 }
 
@@ -1200,7 +1200,7 @@ function player_escaped_gondola_failsafe()
 					if(!isinarray(var_ed7230a5, s_pos) && zm_utility::check_point_in_enabled_zone(s_pos.origin) && zm_utility::check_point_in_playable_area(s_pos.origin))
 					{
 						player thread function_da48c149(s_pos);
-						player.var_e1e4facc = 1;
+						player.b_teleported = 1;
 						player.is_on_gondola = undefined;
 						if(!isdefined(var_ed7230a5))
 						{
@@ -1214,9 +1214,9 @@ function player_escaped_gondola_failsafe()
 						break;
 					}
 				}
-				if(isdefined(player.var_e1e4facc) && player.var_e1e4facc)
+				if(isdefined(player.b_teleported) && player.b_teleported)
 				{
-					player.var_e1e4facc = undefined;
+					player.b_teleported = undefined;
 					break;
 				}
 			}

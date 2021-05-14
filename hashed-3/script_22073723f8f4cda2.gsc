@@ -64,7 +64,7 @@ function function_bad6b477(localclientnum, oldval, newval, bnewent, binitialsnap
 			str_fx_tag = "tag_origin";
 		}
 		self.var_c19403bf = util::playfxontag(localclientnum, level._effect[#"hash_139ac9f86d1a96cd"], self, str_fx_tag);
-		if(self.archetype === #"hash_1bab8a0ba811401e" || self.archetype === #"tiger")
+		if(self.archetype === #"catalyst" || self.archetype === #"tiger")
 		{
 			self thread function_b8cda358(localclientnum);
 		}
@@ -89,7 +89,7 @@ function function_bad6b477(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 2
 	Flags: Linked
 */
-function function_d84b013b(localclientnum, var_ccc9bda1)
+function function_d84b013b(localclientnum, b_freeze)
 {
 	self notify(#"hash_224e66d46cc29cd6");
 	self endon(#"death", #"hash_224e66d46cc29cd6");
@@ -98,14 +98,14 @@ function function_d84b013b(localclientnum, var_ccc9bda1)
 	{
 		self.var_82fb67e7 = 0;
 	}
-	if(var_ccc9bda1)
+	if(b_freeze)
 	{
 		var_875c79c1 = self.var_82fb67e7 + 0.5;
 	}
 	while(true)
 	{
 		self function_78233d29("rob_test_character_ice", "", "Threshold", self.var_82fb67e7);
-		if(var_ccc9bda1)
+		if(b_freeze)
 		{
 			self.var_82fb67e7 = self.var_82fb67e7 + 0.2;
 		}
@@ -113,7 +113,7 @@ function function_d84b013b(localclientnum, var_ccc9bda1)
 		{
 			self.var_82fb67e7 = self.var_82fb67e7 - 0.05;
 		}
-		if(var_ccc9bda1 && (self.var_82fb67e7 >= var_875c79c1 || self.var_82fb67e7 >= 1))
+		if(b_freeze && (self.var_82fb67e7 >= var_875c79c1 || self.var_82fb67e7 >= 1))
 		{
 			break;
 		}

@@ -673,7 +673,7 @@ private function should_allow_postgame_damage(smeansofdeath)
 */
 private function do_post_game_damage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
 {
-	if(!gamestate::function_674fd868())
+	if(!gamestate::is_game_over())
 	{
 		return;
 	}
@@ -695,7 +695,7 @@ private function do_post_game_damage(einflictor, eattacker, idamage, idflags, sm
 */
 private function function_b5dadafc(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
 {
-	if(!gamestate::function_4c5eea28("pregame"))
+	if(!gamestate::is_state("pregame"))
 	{
 		return 0;
 	}
@@ -981,7 +981,7 @@ private function function_ef7fa582(eattacker, etarget, weapon)
 */
 private function should_do_player_damage(eattacker, einflictor, weapon, smeansofdeath, idflags)
 {
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return 0;
 	}

@@ -184,7 +184,7 @@ function set_state(localclientnum, state_name)
 	{
 		[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
 	}
-	else if(#"hash_4a6df362dba78af9" == state_name)
+	else if(#"download_complete" == state_name)
 	{
 		[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
 	}

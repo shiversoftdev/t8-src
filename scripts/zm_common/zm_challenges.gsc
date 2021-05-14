@@ -16,11 +16,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_ff457ca2;
+#namespace zm_challenges;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xFCAA4555
 	Offset: 0x1B0
 	Size: 0x44
@@ -29,12 +29,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_22fb2773f81126ff", &__init__, &__main__, undefined);
+	system::register(#"zm_challenges", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x759C6CE5
 	Offset: 0x200
 	Size: 0xE4
@@ -54,7 +54,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x4CC8B0FE
 	Offset: 0x2F0
 	Size: 0x34
@@ -69,7 +69,7 @@ function __main__()
 
 /*
 	Name: on_connect
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x75EDE271
 	Offset: 0x330
 	Size: 0xFE
@@ -94,7 +94,7 @@ function on_connect()
 
 /*
 	Name: on_spawned
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x80F724D1
 	Offset: 0x438
 	Size: 0x4
@@ -107,7 +107,7 @@ function on_spawned()
 
 /*
 	Name: on_damaged
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xBB6ADF9D
 	Offset: 0x448
 	Size: 0x36
@@ -122,7 +122,7 @@ function on_damaged(params)
 
 /*
 	Name: on_laststand
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x98165960
 	Offset: 0x488
 	Size: 0x1A
@@ -136,7 +136,7 @@ function on_laststand()
 
 /*
 	Name: on_bleedout
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xA7AB82A5
 	Offset: 0x4B0
 	Size: 0x1A
@@ -150,7 +150,7 @@ function on_bleedout()
 
 /*
 	Name: round_tracking
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xCBB8CDC
 	Offset: 0x4D8
 	Size: 0x2F6
@@ -163,14 +163,14 @@ function round_tracking()
 	while(true)
 	{
 		level waittill(#"end_of_round");
-		if(zm_utility::function_3bff983f() && level flag::get("round_reset"))
+		if(zm_utility::is_trials() && level flag::get("round_reset"))
 		{
 			continue;
 		}
 		/#
 			self debug_print("");
 		#/
-		self zm_stats::function_c0c6ab19(#"hash_6f06db90c603f9f", 1, 1);
+		self zm_stats::function_c0c6ab19(#"survive_rounds", 1, 1);
 		if(level.round_number == 20 && zm_utility::is_classic() && !self.var_152810ff[4])
 		{
 			/#
@@ -206,7 +206,7 @@ function round_tracking()
 
 /*
 	Name: death_check_for_challenge_updates
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x346057C7
 	Offset: 0x7D8
 	Size: 0x2466
@@ -270,8 +270,8 @@ function death_check_for_challenge_updates(e_attacker)
 				e_attacker zm_stats::increment_challenge_stat(#"hash_100c68ad4d261fb6");
 				e_attacker stats::function_e24eec31(w_damage, #"hash_e2912dd096cfdc9", 1);
 				e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_e2912dd096cfdc9", #"statvalue", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_100c68ad4d261fb6", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_100c68ad4d261fb6", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
 				e_attacker contracts::function_5b88297d(#"hash_442b84244ca6a613");
 				break;
 			}
@@ -283,8 +283,8 @@ function death_check_for_challenge_updates(e_attacker)
 				e_attacker zm_stats::increment_challenge_stat(#"hash_4fce5ab108357eb8");
 				e_attacker stats::function_e24eec31(w_damage, #"hash_5bc2650d1682f530", 1);
 				e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_5bc2650d1682f530", #"statvalue", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_4fce5ab108357eb8", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_4fce5ab108357eb8", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
 				e_attacker contracts::function_5b88297d(#"hash_126eeecb48b8db2e");
 				break;
 			}
@@ -295,28 +295,28 @@ function death_check_for_challenge_updates(e_attacker)
 				#/
 				e_attacker stats::function_e24eec31(w_damage, #"hash_7c40f14330df4e0b", 1);
 				e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_7c40f14330df4e0b", #"statvalue", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_2c39375eacf54fa8", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_2c39375eacf54fa8", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
 				e_attacker contracts::function_5b88297d(#"hash_2eccd05bcbd822f");
 				break;
 			}
 			case "enhanced":
 			{
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
-				e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_3d1b41e5f303d731", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
+				e_attacker thread activecamo::function_896ac347(w_damage, #"hash_3d1b41e5f303d731", 1);
 				break;
 			}
 		}
 	}
 	switch(self.archetype)
 	{
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		{
 			/#
 				e_attacker debug_print("");
 			#/
-			e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_3d1b41e5f303d731", 1);
-			e_attacker thread namespace_bd02cf1::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
+			e_attacker thread activecamo::function_896ac347(w_damage, #"hash_3d1b41e5f303d731", 1);
+			e_attacker thread activecamo::function_896ac347(w_damage, #"hash_39ab7cda18fd5c74", 1);
 			e_attacker contracts::function_5b88297d(#"hash_2277f12631eb5323");
 			if(isdefined(self.var_69a981e6) && self.var_69a981e6)
 			{
@@ -360,7 +360,7 @@ function death_check_for_challenge_updates(e_attacker)
 			e_attacker zm_stats::increment_challenge_stat(#"hash_552a925ded7df134");
 		}
 	}
-	if(str_damagemod == "MOD_MELEE" && !namespace_2ba51478::is_hero_weapon(w_damage))
+	if(str_damagemod == "MOD_MELEE" && !zm_loadout::is_hero_weapon(w_damage))
 	{
 		/#
 			e_attacker debug_print("");
@@ -479,7 +479,7 @@ function death_check_for_challenge_updates(e_attacker)
 				/#
 					e_attacker debug_print("");
 				#/
-				e_attacker zm_stats::increment_challenge_stat(#"hash_5f487e6a2cc330c8");
+				e_attacker zm_stats::increment_challenge_stat(#"sniper_kills");
 				e_attacker zm_stats::function_c0c6ab19(#"hash_2333d2f2b7271a56");
 				e_attacker contracts::function_5b88297d(#"hash_b47dacccdb18663");
 				break;
@@ -498,8 +498,8 @@ function death_check_for_challenge_updates(e_attacker)
 	}
 	if(e_attacker zm_powerups::is_insta_kill_active())
 	{
-		e_attacker stats::function_e24eec31(w_damage, #"hash_3d631fcd6c99a321", 1);
-		e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_3d631fcd6c99a321", #"statvalue", 1);
+		e_attacker stats::function_e24eec31(w_damage, #"instakills", 1);
+		e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"instakills", #"statvalue", 1);
 	}
 	if(w_damage.rootweapon.name == #"hash_1b055fadc5573c29" || w_damage.rootweapon.name == #"hash_1aea58adc540688c" || w_damage.rootweapon.name == #"hash_3b34bf98ebd70d14" || w_damage.rootweapon.name == #"hash_3b19c698ebc05141")
 	{
@@ -585,7 +585,7 @@ function death_check_for_challenge_updates(e_attacker)
 		e_attacker zm_stats::increment_challenge_stat(#"hash_127a105903cdac43");
 		return;
 	}
-	if(zm_utility::function_5616854c(w_damage))
+	if(zm_utility::is_claymore(w_damage))
 	{
 		/#
 			e_attacker debug_print("");
@@ -593,7 +593,7 @@ function death_check_for_challenge_updates(e_attacker)
 		e_attacker zm_stats::increment_challenge_stat(#"hash_133bbb2db120c3ef");
 		return;
 	}
-	if(zm_utility::function_b6208d7f(w_damage, 1))
+	if(zm_utility::is_mini_turret(w_damage, 1))
 	{
 		/#
 			e_attacker debug_print("");
@@ -626,7 +626,7 @@ function death_check_for_challenge_updates(e_attacker)
 		e_attacker contracts::function_5b88297d(#"hash_7af98643fc22ffd5");
 		return;
 	}
-	if(namespace_2ba51478::is_hero_weapon(w_damage) || zm_hero_weapon::function_6a32b8f(w_damage))
+	if(zm_loadout::is_hero_weapon(w_damage) || zm_hero_weapon::function_6a32b8f(w_damage))
 	{
 		e_attacker zm_stats::function_c0c6ab19(#"hash_3aa06a6c00e61474");
 		e_attacker contracts::function_5b88297d(#"hash_4f442f95b647960b");
@@ -696,7 +696,7 @@ function death_check_for_challenge_updates(e_attacker)
 
 /*
 	Name: spent_points_tracking
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x1490ECE0
 	Offset: 0x2C48
 	Size: 0xE8
@@ -722,7 +722,7 @@ function spent_points_tracking()
 
 /*
 	Name: increment_magic_box
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x3BF97691
 	Offset: 0x2D38
 	Size: 0x24
@@ -738,7 +738,7 @@ function increment_magic_box()
 
 /*
 	Name: perk_drink_tracking
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xC9635E26
 	Offset: 0x2D68
 	Size: 0x58
@@ -759,7 +759,7 @@ function perk_drink_tracking()
 
 /*
 	Name: function_73696786
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x3992A346
 	Offset: 0x2DC8
 	Size: 0xC0
@@ -772,8 +772,8 @@ function function_73696786()
 	var_c0e0819a = 1;
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"hash_13948ef3726b968f");
+		s_result = undefined;
+		s_result = self waittill(#"hash_13948ef3726b968f");
 		if(isdefined(var_c0e0819a) && var_c0e0819a)
 		{
 			/#
@@ -788,7 +788,7 @@ function function_73696786()
 
 /*
 	Name: function_12a35616
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xF4CCB701
 	Offset: 0x2E90
 	Size: 0xB2
@@ -814,7 +814,7 @@ function function_12a35616()
 
 /*
 	Name: function_a9f6b8ef
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x18A5F17A
 	Offset: 0x2F50
 	Size: 0x138
@@ -840,7 +840,7 @@ function function_a9f6b8ef()
 
 /*
 	Name: debug_print
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x6DEC8294
 	Offset: 0x3090
 	Size: 0x6C
@@ -859,7 +859,7 @@ function debug_print(str_line)
 
 /*
 	Name: on_challenge_complete
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x62D2A038
 	Offset: 0x3108
 	Size: 0x36
@@ -872,22 +872,22 @@ function on_challenge_complete(params)
 }
 
 /*
-	Name: function_cbb67d20
-	Namespace: namespace_ff457ca2
+	Name: is_challenge
+	Namespace: zm_challenges
 	Checksum: 0xF7DF1096
 	Offset: 0x3148
 	Size: 0xE
 	Parameters: 1
 	Flags: Linked
 */
-function function_cbb67d20(n_challenge_index)
+function is_challenge(n_challenge_index)
 {
 	return 0;
 }
 
 /*
 	Name: function_9a9ab6f6
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xA8091AEC
 	Offset: 0x3160
 	Size: 0x114
@@ -912,7 +912,7 @@ function function_9a9ab6f6(var_1c48b665)
 
 /*
 	Name: function_b892d1da
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x4F937F7D
 	Offset: 0x3280
 	Size: 0x1DC
@@ -937,7 +937,7 @@ private function function_b892d1da()
 
 /*
 	Name: function_bf0be8f1
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xDF63765E
 	Offset: 0x3468
 	Size: 0x12C
@@ -961,7 +961,7 @@ function function_bf0be8f1()
 
 /*
 	Name: function_e40c9d13
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x59CBA356
 	Offset: 0x35A0
 	Size: 0x2FC
@@ -986,7 +986,7 @@ function function_e40c9d13()
 
 /*
 	Name: function_a3cd4521
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x3899D4AA
 	Offset: 0x38A8
 	Size: 0x1354
@@ -1239,7 +1239,7 @@ function function_a3cd4521()
 	{
 		var_a9d7bd6++;
 	}
-	if(self stats::function_af5584ca(#"hash_5f487e6a2cc330c8") == 3)
+	if(self stats::function_af5584ca(#"sniper_kills") == 3)
 	{
 		var_a9d7bd6++;
 	}
@@ -1389,7 +1389,7 @@ function function_a3cd4521()
 
 /*
 	Name: function_d35a50c6
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xF727673D
 	Offset: 0x4C08
 	Size: 0x84
@@ -1408,7 +1408,7 @@ function function_d35a50c6()
 
 /*
 	Name: function_f9ce6f88
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xB06F2D56
 	Offset: 0x4C98
 	Size: 0x12C
@@ -1438,7 +1438,7 @@ function function_f9ce6f88()
 
 /*
 	Name: function_979f4cc0
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0xC338BB0
 	Offset: 0x4DD0
 	Size: 0x94
@@ -1457,7 +1457,7 @@ function function_979f4cc0(var_38f795c7, n_amount, b_disable = 0)
 
 /*
 	Name: function_6cc59b84
-	Namespace: namespace_ff457ca2
+	Namespace: zm_challenges
 	Checksum: 0x6ECC471F
 	Offset: 0x4E70
 	Size: 0x226

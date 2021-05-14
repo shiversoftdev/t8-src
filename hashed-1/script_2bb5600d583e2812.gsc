@@ -199,7 +199,7 @@ private event function_4776caf4(eventstruct)
 		grenade.angles = self.angles;
 		var_48ad08f5 = util::spawn_model(grenade.model, grenade.origin, grenade.angles);
 		var_48ad08f5.spawning = 1;
-		var_48ad08f5.var_817f15dd = grenade.item;
+		var_48ad08f5.identifier_weapon = grenade.item;
 		var_48ad08f5.player = grenade.thrower;
 		grenade.var_48ad08f5 = var_48ad08f5;
 		grenade.var_48ad08f5 linkto(grenade);

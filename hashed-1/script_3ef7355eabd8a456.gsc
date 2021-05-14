@@ -94,9 +94,9 @@ function init_flags()
 */
 function function_88d1bd71()
 {
-	level.var_595db1e1 = struct::get("fix_server", "targetname");
-	level.var_9c56a77 = struct::get("fix_server_spark_fx", "targetname");
-	level.var_a73534b7 = struct::get("punch_card_insert", "targetname");
+	level.s_fix_server = struct::get("fix_server", "targetname");
+	level.s_fix_server_spark_fx = struct::get("fix_server_spark_fx", "targetname");
+	level.s_punch_card_insert = struct::get("punch_card_insert", "targetname");
 	level.var_af224340 = getent("punch_card_screen", "targetname");
 	level.var_af224340 hide();
 	level.var_9c0c4b0d = struct::get_array("aat_dmg_fx", "targetname");
@@ -170,21 +170,21 @@ function function_bdadef61(var_5ea5c94d)
 	if(!var_5ea5c94d)
 	{
 		level.var_2cbf5e38 = 0;
-		var_1ba68ef8 = struct::get("server_part_pickup");
-		var_1ba68ef8 zm_unitrigger::create(#"", 64, &function_8703c1fe);
+		s_server_part_pickup = struct::get("server_part_pickup");
+		s_server_part_pickup zm_unitrigger::create(#"", 64, &function_8703c1fe);
 		level flag::wait_till(#"hash_4c30d0428f1d4060");
-		var_185199a1 = getent(var_1ba68ef8.target, "targetname");
+		var_185199a1 = getent(s_server_part_pickup.target, "targetname");
 		var_185199a1 playsound(#"hash_18f957b8000dd0c6");
 		var_185199a1 delete();
-		zm_unitrigger::unregister_unitrigger(var_1ba68ef8.s_unitrigger);
-		var_1ba68ef8 struct::delete();
-		level.var_595db1e1 zm_unitrigger::create(#"", 64, &function_e4fcfb0a);
+		zm_unitrigger::unregister_unitrigger(s_server_part_pickup.s_unitrigger);
+		s_server_part_pickup struct::delete();
+		level.s_fix_server zm_unitrigger::create(#"", 64, &function_e4fcfb0a);
 		level flag::wait_till(#"hash_5516784173c2ee27");
-		playsoundatposition(#"hash_359664e44a2bb635", level.var_595db1e1.origin);
+		playsoundatposition(#"hash_359664e44a2bb635", level.s_fix_server.origin);
 		level clientfield::set("" + #"hash_3284b0cf34bfe44e", 0);
 		level clientfield::increment("" + #"hash_b143d97bf92fc66", 1);
 		level.var_67599dfe[0] = 1;
-		zm_unitrigger::unregister_unitrigger(level.var_595db1e1.s_unitrigger);
+		zm_unitrigger::unregister_unitrigger(level.s_fix_server.s_unitrigger);
 		var_ae88db53 = getent("server_damage_trigger", "targetname");
 		var_ae88db53 function_a546fd97();
 		level flag::wait_till(#"hash_18089a682243e163");
@@ -206,12 +206,12 @@ function function_be13a68b(var_5ea5c94d, ended_early)
 	{
 		level flag::set(#"hash_18089a682243e163");
 	}
-	var_1ba68ef8 = struct::get("server_part_pickup");
-	if(isdefined(var_1ba68ef8))
+	s_server_part_pickup = struct::get("server_part_pickup");
+	if(isdefined(s_server_part_pickup))
 	{
-		var_1ba68ef8 struct::delete();
+		s_server_part_pickup struct::delete();
 	}
-	zm_unitrigger::unregister_unitrigger(level.var_595db1e1.s_unitrigger);
+	zm_unitrigger::unregister_unitrigger(level.s_fix_server.s_unitrigger);
 }
 
 /*
@@ -266,12 +266,12 @@ function function_a546fd97()
 	var_c327a579 = 0;
 	while(!var_c327a579)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"damage");
-		var_16829d93 = var_385703b7.attacker aat::getaatonweapon(var_385703b7.weapon);
+		s_notify = undefined;
+		s_notify = self waittill(#"damage");
+		var_16829d93 = s_notify.attacker aat::getaatonweapon(s_notify.weapon);
 		if(isdefined(var_16829d93) && var_16829d93.name === "zm_aat_kill_o_watt")
 		{
-			var_863c08bb = var_863c08bb + var_385703b7.amount;
+			var_863c08bb = var_863c08bb + s_notify.amount;
 			var_9ce2f88b = var_863c08bb / 15000;
 			var_5c3100f7 = int(min(floor(var_9ce2f88b * level.var_9c0c4b0d.size), level.var_9c0c4b0d.size));
 			for(i = 0; i < var_5c3100f7; i++)
@@ -292,7 +292,7 @@ function function_a546fd97()
 					iprintlnbold("");
 				#/
 				self playsound(#"hash_4f1f1f9762add0a3");
-				var_385703b7.attacker thread zm_audio::create_and_play_dialog(#"generic", #"response_positive");
+				s_notify.attacker thread zm_audio::create_and_play_dialog(#"generic", #"response_positive");
 			}
 		}
 	}
@@ -341,7 +341,7 @@ function function_e8d6a81b(var_2e1f34dd)
 {
 	var_4239616e = level.var_5a599dbf[level.var_3d015a65];
 	var_4239616e.var_85f707f6 = 1;
-	self thread namespace_891c9bac::function_a2bd5a0c(#"hash_7e030fccc2c5a121");
+	self thread zm_vo::function_a2bd5a0c(#"hash_7e030fccc2c5a121");
 	if(isdefined(var_2e1f34dd))
 	{
 		var_2e1f34dd playsound(#"hash_18f957b8000dd0c6");
@@ -417,7 +417,7 @@ function function_445e3d3d()
 	while(true)
 	{
 		self waittill(#"trigger");
-		self.stub notify(#"hash_73aeb9311d5e314e");
+		self.stub notify(#"play_audio");
 	}
 }
 
@@ -436,17 +436,17 @@ function function_54db89ef()
 	var_ab007509 = 0;
 	while(true)
 	{
-		self waittill(#"hash_73aeb9311d5e314e");
+		self waittill(#"play_audio");
 		if(isdefined(level.var_fcbb6a6b))
 		{
-			var_fda22235 = level.var_fcbb6a6b;
+			s_card = level.var_fcbb6a6b;
 			self.in_use = 1;
-			var_fda22235.var_85f707f6 = 0;
+			s_card.var_85f707f6 = 0;
 			function_2f5993d6();
 			level thread function_9f206255();
 			level flag::wait_till("card_inserted");
-			namespace_509a75d1::function_52c3fe8d(var_fda22235.vo_line, level.var_a73534b7.origin);
-			if(var_fda22235.vo_line[0] == #"hash_217e6ae56b61ad3b")
+			namespace_509a75d1::function_52c3fe8d(s_card.vo_line, level.s_punch_card_insert.origin);
+			if(s_card.vo_line[0] == #"hash_217e6ae56b61ad3b")
 			{
 				level flag::set(#"hash_5df188993c013698");
 			}
@@ -477,7 +477,7 @@ function function_24510350()
 {
 	level.var_af224340 show();
 	level clientfield::set("" + #"hash_31a98ee76e835504", 0);
-	s_unitrigger = level.var_a73534b7 zm_unitrigger::create(&function_814ee815, 64, &function_445e3d3d);
+	s_unitrigger = level.s_punch_card_insert zm_unitrigger::create(&function_814ee815, 64, &function_445e3d3d);
 	s_unitrigger thread function_54db89ef();
 }
 

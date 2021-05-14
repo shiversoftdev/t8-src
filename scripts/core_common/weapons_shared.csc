@@ -33,7 +33,7 @@ function __init__()
 {
 	callback::on_spawned(&on_player_spawned);
 	level.weaponnone = getweapon(#"none");
-	level.var_697e9965 = getweapon(#"hash_46c845178ff13452");
+	level.var_697e9965 = getweapon(#"sig_minigun");
 	vehicle::add_vehicletype_callback("swivel_mount", &function_5e4b481b);
 }
 

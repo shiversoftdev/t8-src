@@ -171,15 +171,15 @@ private function function_6c4ae982(localclientnum)
 		}
 		if(isdefined(local_player))
 		{
-			var_44c8d044 = local_player clientfield::get_to_player("warpportal_fx_wormhole");
-			if(var_44c8d044 === 1 && !var_d5823792)
+			wormhole_fx = local_player clientfield::get_to_player("warpportal_fx_wormhole");
+			if(wormhole_fx === 1 && !var_d5823792)
 			{
 				var_d5823792 = 1;
 				playsound(localclientnum, #"hash_37244e4f8de40dd5");
 				local_player codeplaypostfxbundle("pstfx_wz_esc_tele_reveal");
 				local_player codeplaypostfxbundle("pstfx_wz_esc_tele_sprites");
 			}
-			else if(var_44c8d044 === 0 && var_d5823792)
+			else if(wormhole_fx === 0 && var_d5823792)
 			{
 				var_d5823792 = 0;
 				local_player function_3f145588("pstfx_wz_esc_tele_reveal");

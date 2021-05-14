@@ -121,11 +121,11 @@ function function_bff5c062(var_711e35e5, var_dbd1a594)
 	var_dbd1a594.var_f208fb92[var_dbd1a594.var_f208fb92.size] = var_711e35e5;
 	if(isdefined(level.var_f1edf93f))
 	{
-		var_21a8dd4c = [[level.var_f1edf93f]]() * 1000;
-		if((isdefined(var_21a8dd4c) ? var_21a8dd4c : 0))
+		_station_up_to_detention_center_triggers = [[level.var_f1edf93f]]() * 1000;
+		if((isdefined(_station_up_to_detention_center_triggers) ? _station_up_to_detention_center_triggers : 0))
 		{
 			var_711e35e5 notify(#"hash_602ae7ca650d6287");
-			var_711e35e5 thread weaponobjects::function_d9c08e94(var_21a8dd4c, &function_4db10465);
+			var_711e35e5 thread weaponobjects::function_d9c08e94(_station_up_to_detention_center_triggers, &function_4db10465);
 		}
 	}
 	if(isdefined(level.var_fc1bbaef))

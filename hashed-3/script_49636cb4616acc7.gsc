@@ -571,7 +571,7 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		{
 			continue;
 		}
-		if(function_c06e3bfd())
+		if(is_round_reset())
 		{
 			break;
 		}
@@ -693,10 +693,10 @@ function incendiary_debug_line(from, to, color, depthtest, time)
 	Parameters: 11
 	Flags: Linked
 */
-function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46f8a, var_7dc72343, var_e76400c0, wallnormal, var_cbaaea69, mdl_anchor)
+function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46f8a, radius_multiplier, var_e76400c0, wallnormal, var_cbaaea69, mdl_anchor)
 {
 	level endon(#"game_ended");
-	radius = var_4dd46f8a.var_6193a41b * var_7dc72343;
+	radius = var_4dd46f8a.var_6193a41b * radius_multiplier;
 	height = var_4dd46f8a.var_cbd86f3e;
 	trigger_radius_position = position - (0, 0, height);
 	trigger_radius_height = height * 2;
@@ -763,7 +763,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 				var_d0603aba = 0;
 			}
 		}
-		if(function_c06e3bfd())
+		if(is_round_reset())
 		{
 			break;
 		}
@@ -805,7 +805,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 }
 
 /*
-	Name: function_c06e3bfd
+	Name: is_round_reset
 	Namespace: namespace_f8e3338e
 	Checksum: 0xB6249EEB
 	Offset: 0x2E08
@@ -813,7 +813,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c06e3bfd()
+private function is_round_reset()
 {
 	if(level flag::exists("round_reset") && level flag::get("round_reset"))
 	{
@@ -919,10 +919,10 @@ function stopfiresound()
 	Parameters: 11
 	Flags: Linked
 */
-function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd46f8a, var_7dc72343, var_e76400c0, wallnormal, var_cbaaea69, mdl_anchor)
+function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd46f8a, radius_multiplier, var_e76400c0, wallnormal, var_cbaaea69, mdl_anchor)
 {
 	level endon(#"game_ended");
-	radius = var_4dd46f8a.var_6193a41b * var_7dc72343;
+	radius = var_4dd46f8a.var_6193a41b * radius_multiplier;
 	height = var_4dd46f8a.var_cbd86f3e;
 	trigger_radius_position = position - (0, 0, height);
 	trigger_radius_height = height * 2;
@@ -945,7 +945,7 @@ function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd4
 		damageapplied = 0;
 		potential_targets = self weapons::function_356292be(owner, position, radius);
 		self thread function_124fe29c(potential_targets, owner, position, fireeffectarea, var_289a74bc, killcament, weapon, var_4dd46f8a);
-		if(function_c06e3bfd())
+		if(is_round_reset())
 		{
 			break;
 		}
@@ -1121,7 +1121,7 @@ function function_5a49ebd3(team)
 function trytoapplyfiredamage(target, owner, position, fireeffectarea, var_289a74bc, killcament, weapon, var_4dd46f8a)
 {
 	var_1956fc57 = 0;
-	if(!(isdefined(fireeffectarea) || isdefined(var_289a74bc)) || function_c06e3bfd())
+	if(!(isdefined(fireeffectarea) || isdefined(var_289a74bc)) || is_round_reset())
 	{
 		return var_1956fc57;
 	}
@@ -1352,7 +1352,7 @@ function candofiredamage(killcament, victim, resetfiretime)
 	{
 		return 0;
 	}
-	if(function_c06e3bfd())
+	if(is_round_reset())
 	{
 		return 0;
 	}

@@ -5,7 +5,7 @@
 #namespace namespace_4b75060d;
 
 /*
-	Name: function_80aecbc4
+	Name: registerstokerinterfaceattributes
 	Namespace: namespace_4b75060d
 	Checksum: 0x99C5EDD9
 	Offset: 0x88
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_80aecbc4()
+function registerstokerinterfaceattributes()
 {
 	ai::registermatchedinterface(#"stoker", #"gravity", "normal", array("low", "normal"), &namespace_a5d36e4::function_e4ef4e27);
 }

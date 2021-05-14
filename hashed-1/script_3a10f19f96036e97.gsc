@@ -58,21 +58,21 @@ function flamethrower_tornado_fx(localclientnum, oldval, newval, bnewent, biniti
 {
 	if(newval == 1)
 	{
-		if(isdefined(self.var_a8462eec))
+		if(isdefined(self.n_tornado_fx))
 		{
-			stopfx(localclientnum, self.var_a8462eec);
+			stopfx(localclientnum, self.n_tornado_fx);
 		}
-		self.var_a8462eec = util::playfxontag(localclientnum, level._effect[#"hash_c75ff5d37b8fd"], self, "tag_origin");
+		self.n_tornado_fx = util::playfxontag(localclientnum, level._effect[#"hash_c75ff5d37b8fd"], self, "tag_origin");
 		if(!isdefined(self.var_180064c2))
 		{
 			self thread function_ea05550b(localclientnum);
 		}
 		self thread function_4e325cd6(localclientnum);
 	}
-	else if(isdefined(self.var_a8462eec))
+	else if(isdefined(self.n_tornado_fx))
 	{
-		stopfx(localclientnum, self.var_a8462eec);
-		self.var_a8462eec = undefined;
+		stopfx(localclientnum, self.n_tornado_fx);
+		self.n_tornado_fx = undefined;
 	}
 	if(isdefined(self.var_180064c2))
 	{

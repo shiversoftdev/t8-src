@@ -79,11 +79,11 @@ function function_bff5c062(trophysystem, var_dbd1a594)
 	trophysystem weaponobjects::function_386fa470(var_dbd1a594);
 	if(isdefined(trophysystem) && isdefined(level.var_f1edf93f))
 	{
-		var_21a8dd4c = [[level.var_f1edf93f]]();
-		if((isdefined(var_21a8dd4c) ? var_21a8dd4c : 0))
+		_station_up_to_detention_center_triggers = [[level.var_f1edf93f]]();
+		if((isdefined(_station_up_to_detention_center_triggers) ? _station_up_to_detention_center_triggers : 0))
 		{
 			trophysystem notify(#"hash_602ae7ca650d6287");
-			trophysystem thread weaponobjects::weapon_object_timeout(trophysystem.var_2d045452, var_21a8dd4c);
+			trophysystem thread weaponobjects::weapon_object_timeout(trophysystem.var_2d045452, _station_up_to_detention_center_triggers);
 		}
 	}
 	trophysystem thread weaponobjects::function_6d8aa6a0(var_dbd1a594, trophysystem.var_2d045452);
@@ -471,7 +471,7 @@ function projectileexplode(projectile, trophy)
 }
 
 /*
-	Name: function_95e83b50
+	Name: _the_root_zurich_spawners
 	Namespace: trophy_system
 	Checksum: 0x9F3AF1DE
 	Offset: 0x1400
@@ -479,7 +479,7 @@ function projectileexplode(projectile, trophy)
 	Parameters: 2
 	Flags: Linked
 */
-function function_95e83b50(gameobject, trophy)
+function _the_root_zurich_spawners(gameobject, trophy)
 {
 	return distancesquared(gameobject.origin, trophy.origin) <= math::pow(512, 2);
 }
@@ -524,7 +524,7 @@ function function_3170d645(projectile, trophy)
 		foreach(flag in level.flags)
 		{
 			useobj = flag.useobj;
-			if(!isdefined(useobj) || !function_95e83b50(useobj, trophy))
+			if(!isdefined(useobj) || !_the_root_zurich_spawners(useobj, trophy))
 			{
 				continue;
 			}
@@ -545,7 +545,7 @@ function function_3170d645(projectile, trophy)
 		foreach(zone in level.zones)
 		{
 			useobj = zone.gameobject;
-			if(!isdefined(useobj) || !function_95e83b50(useobj, trophy))
+			if(!isdefined(useobj) || !_the_root_zurich_spawners(useobj, trophy))
 			{
 				continue;
 			}
@@ -565,7 +565,7 @@ function function_3170d645(projectile, trophy)
 		var_2e36557f = 0;
 		foreach(useobj in level.bombzones)
 		{
-			if(!isdefined(useobj) || !function_95e83b50(useobj, trophy))
+			if(!isdefined(useobj) || !_the_root_zurich_spawners(useobj, trophy))
 			{
 				continue;
 			}

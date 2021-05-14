@@ -6,11 +6,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_57ff8cbb;
+#namespace zm_cleanup;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x4C0947BA
 	Offset: 0xB8
 	Size: 0x44
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_19815b63228802cb", &__init__, &__main__, undefined);
+	system::register(#"zm_cleanup", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xBAF6EE60
 	Offset: 0x108
 	Size: 0x42
@@ -35,13 +35,13 @@ function __init__()
 {
 	level.n_cleanups_processed_this_frame = 0;
 	level.var_2125984b = 0;
-	level.var_53e4414 = &delete_zombie_noone_looking;
+	level.cleanup_zombie_func = &delete_zombie_noone_looking;
 	level.var_fc73bad4 = [];
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x1B5B3A42
 	Offset: 0x158
 	Size: 0x1C
@@ -55,7 +55,7 @@ function __main__()
 
 /*
 	Name: force_check_now
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x77D9D2AA
 	Offset: 0x180
 	Size: 0x18
@@ -69,7 +69,7 @@ function force_check_now()
 
 /*
 	Name: cleanup_main
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x86041D39
 	Offset: 0x1A0
 	Size: 0x25C
@@ -128,7 +128,7 @@ private function cleanup_main()
 
 /*
 	Name: do_cleanup_check
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xCE2B4740
 	Offset: 0x408
 	Size: 0x35C
@@ -194,7 +194,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 		{
 			if(self.zombie_move_speed === "walk")
 			{
-				n_cleanup_dist_sq = (isdefined(level.var_ef05cff5) ? level.var_ef05cff5 : 250000);
+				n_cleanup_dist_sq = (isdefined(level.registertheater_fxanim_kill_trigger_centerterminatetraverse) ? level.registertheater_fxanim_kill_trigger_centerterminatetraverse : 250000);
 			}
 			else
 			{
@@ -203,7 +203,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 		}
 		else
 		{
-			n_cleanup_dist_sq = (isdefined(level.var_ef05cff5) ? level.var_ef05cff5 : 250000);
+			n_cleanup_dist_sq = (isdefined(level.registertheater_fxanim_kill_trigger_centerterminatetraverse) ? level.registertheater_fxanim_kill_trigger_centerterminatetraverse : 250000);
 		}
 		if(n_dist_sq_min >= n_cleanup_dist_sq)
 		{
@@ -214,7 +214,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 
 /*
 	Name: function_96f7787d
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x6A7DD8FA
 	Offset: 0x770
 	Size: 0x36
@@ -233,7 +233,7 @@ private function function_96f7787d()
 
 /*
 	Name: delete_zombie_noone_looking
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x569231E4
 	Offset: 0x7B0
 	Size: 0xDC
@@ -266,7 +266,7 @@ private function delete_zombie_noone_looking()
 
 /*
 	Name: function_cdf5a512
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x125F721A
 	Offset: 0x898
 	Size: 0x96
@@ -287,15 +287,15 @@ function function_cdf5a512(str_archetype, var_7e1eca2)
 }
 
 /*
-	Name: function_9a62cdec
-	Namespace: namespace_57ff8cbb
+	Name: override_cleanup
+	Namespace: zm_cleanup
 	Checksum: 0xF77EB3D9
 	Offset: 0x938
 	Size: 0x72
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9a62cdec()
+private function override_cleanup()
 {
 	if(!isdefined(level.var_55a99841))
 	{
@@ -311,7 +311,7 @@ private function function_9a62cdec()
 
 /*
 	Name: function_39553a7c
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xCAE81277
 	Offset: 0x9B8
 	Size: 0xD8
@@ -337,7 +337,7 @@ function function_39553a7c(str_archetype, func)
 
 /*
 	Name: function_8327a85d
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xEE180764
 	Offset: 0xA98
 	Size: 0xAE
@@ -357,7 +357,7 @@ private function function_8327a85d(var_3a145c54)
 
 /*
 	Name: cleanup_zombie
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xA14CB801
 	Offset: 0xB50
 	Size: 0xC4
@@ -366,7 +366,7 @@ private function function_8327a85d(var_3a145c54)
 */
 function cleanup_zombie()
 {
-	if(function_9a62cdec())
+	if(override_cleanup())
 	{
 		return;
 	}
@@ -388,7 +388,7 @@ function cleanup_zombie()
 
 /*
 	Name: player_can_see_me
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x93AEBED1
 	Offset: 0xC20
 	Size: 0x34
@@ -402,7 +402,7 @@ private function player_can_see_me(player)
 
 /*
 	Name: player_ahead_of_me
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x9F37839D
 	Offset: 0xC60
 	Size: 0xB0
@@ -424,7 +424,7 @@ private function player_ahead_of_me(player)
 
 /*
 	Name: get_escape_position
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x63149311
 	Offset: 0xD18
 	Size: 0xBA
@@ -453,7 +453,7 @@ function get_escape_position()
 
 /*
 	Name: get_adjacencies_to_zone
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x23B0C1D7
 	Offset: 0xDE0
 	Size: 0x124
@@ -488,7 +488,7 @@ function get_adjacencies_to_zone(str_zone)
 
 /*
 	Name: get_wait_locations_in_zones
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x8D8480DC
 	Offset: 0xF10
 	Size: 0x174
@@ -516,7 +516,7 @@ private function get_wait_locations_in_zones(a_zones)
 
 /*
 	Name: get_farthest_wait_location
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x89006C05
 	Offset: 0x1090
 	Size: 0x60
@@ -535,7 +535,7 @@ private function get_farthest_wait_location(a_wait_locations)
 
 /*
 	Name: get_wait_locations_in_zone
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x84830EFD
 	Offset: 0x10F8
 	Size: 0x8E
@@ -555,7 +555,7 @@ private function get_wait_locations_in_zone(zone)
 
 /*
 	Name: get_escape_position_in_current_zone
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x10907D52
 	Offset: 0x1190
 	Size: 0x92
@@ -583,7 +583,7 @@ function get_escape_position_in_current_zone()
 
 /*
 	Name: no_target_override
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x38AB72C7
 	Offset: 0x1230
 	Size: 0xD4
@@ -609,7 +609,7 @@ function no_target_override(ai_zombie)
 
 /*
 	Name: function_d22435d9
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xEBF105AE
 	Offset: 0x1310
 	Size: 0x3C
@@ -624,7 +624,7 @@ function function_d22435d9(ai_zombie)
 
 /*
 	Name: function_c6ad3003
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x4B6FEC2B
 	Offset: 0x1358
 	Size: 0x196
@@ -662,7 +662,7 @@ function function_c6ad3003(b_timeout = 0)
 
 /*
 	Name: function_23621259
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0xA3462267
 	Offset: 0x14F8
 	Size: 0x1EC
@@ -706,7 +706,7 @@ function function_23621259(var_3a145c54 = 0)
 
 /*
 	Name: function_aa5726f2
-	Namespace: namespace_57ff8cbb
+	Namespace: zm_cleanup
 	Checksum: 0x4D81A184
 	Offset: 0x16F0
 	Size: 0x11C

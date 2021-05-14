@@ -41,10 +41,10 @@ function __init__()
 	clientfield::register("allplayers", "" + #"skull_turret_beam_fire", 1, 2, "int", &skull_turret_beam_fire, 0, 1);
 	clientfield::register("allplayers", "" + #"hash_6635e6da6fcfe594", 1, 2, "int", &flash_fx, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_2964d1cb7c4bd175", 1, 1, "counter", &function_d05553c6, 0, 0);
-	clientfield::register("allplayers", "" + #"hash_412d8d5f8625ca52", 1, 1, "int", &function_88c19215, 0, 0);
+	clientfield::register("allplayers", "" + #"hash_412d8d5f8625ca52", 1, 1, "int", &revive_fx, 0, 0);
 	clientfield::register("actor", "" + #"hash_18aecd09c861f097", 1, 1, "int", &function_f11b8d1d, 0, 0);
 	clientfield::register("vehicle", "" + #"hash_18aecd09c861f097", 1, 1, "int", &function_f11b8d1d, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_5879b5a3820ba517", 1, 3, "counter", &function_3024daa2, 0, 0);
+	clientfield::register("toplayer", "" + #"scepter_rumble", 1, 3, "counter", &scepter_rumble, 0, 0);
 	level._effect[#"hash_1c2f974106158a5f"] = #"hash_7c1a6aad09dc0d7a";
 	level._effect[#"hash_1c28ab41060f8dad"] = #"hash_7c145ead09d78d68";
 	level._effect[#"hash_54ead9bf14ce3f2c"] = #"hash_17756eb35aac3766";
@@ -224,10 +224,10 @@ function flash_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldna
 	{
 		return;
 	}
-	if(isdefined(self.var_b4abdb5f))
+	if(isdefined(self.fx_muzzle_flash))
 	{
-		deletefx(localclientnum, self.var_b4abdb5f);
-		self.var_b4abdb5f = undefined;
+		deletefx(localclientnum, self.fx_muzzle_flash);
+		self.fx_muzzle_flash = undefined;
 	}
 	if(function_65b9eb0f(localclientnum))
 	{
@@ -245,12 +245,12 @@ function flash_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldna
 			{
 				if(viewmodelhastag(localclientnum, "tag_flash"))
 				{
-					self.var_b4abdb5f = playviewmodelfx(localclientnum, level._effect[var_27aa6343], "tag_flash");
+					self.fx_muzzle_flash = playviewmodelfx(localclientnum, level._effect[var_27aa6343], "tag_flash");
 				}
 			}
 			else if(isdefined(self gettagorigin("tag_flash")))
 			{
-				self.var_b4abdb5f = util::playfxontag(localclientnum, level._effect[var_a1f103c8], self, "tag_flash");
+				self.fx_muzzle_flash = util::playfxontag(localclientnum, level._effect[var_a1f103c8], self, "tag_flash");
 			}
 			break;
 		}
@@ -336,7 +336,7 @@ function beacon_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 {
 	if(newval == 1)
 	{
-		self.var_8bc45184 = 1;
+		self.b_beacon_fx = 1;
 		if(!isdefined(level.var_9b66c01))
 		{
 			level.var_9b66c01 = [];
@@ -353,19 +353,19 @@ function beacon_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 			}
 			level.var_9b66c01[level.var_9b66c01.size] = self;
 		}
-		if(isdefined(self.var_8bc45184) && self.var_8bc45184)
+		if(isdefined(self.b_beacon_fx) && self.b_beacon_fx)
 		{
-			self.var_102d768 = util::playfxontag(localclientnum, level._effect[#"hash_54ead9bf14ce3f2c"], self, "tag_origin");
+			self.n_beacon_fx = util::playfxontag(localclientnum, level._effect[#"hash_54ead9bf14ce3f2c"], self, "tag_origin");
 		}
 	}
 	else
 	{
-		self.var_8bc45184 = undefined;
-		if(isdefined(self.var_102d768))
+		self.b_beacon_fx = undefined;
+		if(isdefined(self.n_beacon_fx))
 		{
-			deletefx(localclientnum, self.var_102d768, 1);
+			deletefx(localclientnum, self.n_beacon_fx, 1);
 			util::playfxontag(localclientnum, level._effect[#"hash_4c17911c3aed59ae"], self, "tag_origin");
-			self.var_102d768 = undefined;
+			self.n_beacon_fx = undefined;
 		}
 		arrayremovevalue(level.var_9b66c01, self);
 	}
@@ -434,7 +434,7 @@ function function_3f83a22f(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_88c19215
+	Name: revive_fx
 	Namespace: namespace_67272ed
 	Checksum: 0xDA53D036
 	Offset: 0x17F8
@@ -442,7 +442,7 @@ function function_3f83a22f(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_88c19215(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function revive_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -461,7 +461,7 @@ function function_88c19215(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_3024daa2
+	Name: scepter_rumble
 	Namespace: namespace_67272ed
 	Checksum: 0xD5FCBC26
 	Offset: 0x1920
@@ -469,7 +469,7 @@ function function_88c19215(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_3024daa2(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function scepter_rumble(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{

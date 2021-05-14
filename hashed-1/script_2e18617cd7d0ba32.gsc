@@ -252,7 +252,7 @@ function set_state(localclientnum, state_name)
 	{
 		[[ self ]]->function_d7d2fcce(localclientnum, "_state", 5);
 	}
-	else if(#"hash_2d31980bd7e27adc" == state_name)
+	else if(#"total_init" == state_name)
 	{
 		[[ self ]]->function_d7d2fcce(localclientnum, "_state", 6);
 	}

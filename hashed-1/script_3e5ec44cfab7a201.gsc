@@ -14,7 +14,7 @@
 	Parameters: 6
 	Flags: None
 */
-function function_d8383812(id, var_948bda55, var_a1261809, var_3f541f5f, var_9a323ebf, var_b8d19839 = 0)
+function function_d8383812(id, version, var_a1261809, var_3f541f5f, var_9a323ebf, var_b8d19839 = 0)
 {
 	if(!isdefined(level.var_d2540500))
 	{
@@ -35,10 +35,10 @@ function function_d8383812(id, var_948bda55, var_a1261809, var_3f541f5f, var_9a3
 	}
 	var_1d81ef2d = {#hash_b8d19839:var_b8d19839, #hash_32edfed:var_9a323ebf, #hash_62f0c1c:var_3f541f5f, #active:0, #origin:capture_point.origin, #capture_point:capture_point, #id:id};
 	level.var_d2540500[id] = var_1d81ef2d;
-	clientfield::register("actor", "sc_" + id, var_948bda55, 1, "int");
+	clientfield::register("actor", "sc_" + id, version, 1, "int");
 	if(var_b8d19839)
 	{
-		clientfield::register("vehicle", "sc_" + id, var_948bda55, 1, "int");
+		clientfield::register("vehicle", "sc_" + id, version, 1, "int");
 	}
 }
 

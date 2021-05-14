@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_285312733a97eea3", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_285312733a97eea3", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -73,7 +73,7 @@ private function function_9e7b3f4d(round_reset)
 	{
 		if(!(isdefined(level.var_84199d1) && level.var_84199d1))
 		{
-			namespace_f551babc::fail(undefined, getplayers());
+			zm_trial::fail(undefined, getplayers());
 		}
 	}
 	level.var_84199d1 = undefined;
@@ -92,8 +92,8 @@ function function_57755268()
 {
 	level endon(#"end_game");
 	level.var_4e4909a6 = 1;
-	namespace_31170709::function_2a9aac63();
-	namespace_31170709::function_32363763(0, 0);
+	namespace_31170709::play_think();
+	namespace_31170709::play_cleanup(0, 0);
 	level.var_84199d1 = 1;
 	level.var_4e4909a6 = undefined;
 	level endon(#"hash_7646638df88a3656");

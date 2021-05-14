@@ -547,7 +547,7 @@ function callback_playerdamage(einflictor, eattacker, idamage, idflags, smeansof
 		{
 			namespace_59ff1d6c::function_db030433();
 			self zm_score::player_reduce_points("points_lost_on_hit_value", level.var_39e18a71);
-			if(namespace_f551babc::function_b47f6aba())
+			if(zm_trial::function_b47f6aba())
 			{
 				self playsoundtoplayer(#"hash_3109126d3731f3d2", self);
 			}
@@ -620,7 +620,7 @@ function function_182d09fd(eattacker, idamage)
 	{
 		idamage = idamage * level.var_5db2341c;
 	}
-	if(isdefined(eattacker.archetype) && isinarray(array(#"hash_50f4e0eea9f4e4a4", #"skeleton", #"nova_crawler", #"tiger", #"hash_1bab8a0ba811401e", #"hash_78ca8e8e6bdbc8ab", #"hash_266b62e342076a90", #"hash_5cfa99582cc66c59", #"hash_5d6b55906fc82ff2"), eattacker.archetype) && isdefined(level.var_53c7ca1d))
+	if(isdefined(eattacker.archetype) && isinarray(array(#"nosferatu", #"skeleton", #"nova_crawler", #"tiger", #"catalyst", #"hash_78ca8e8e6bdbc8ab", #"hash_266b62e342076a90", #"hash_5cfa99582cc66c59", #"hash_5d6b55906fc82ff2"), eattacker.archetype) && isdefined(level.var_53c7ca1d))
 	{
 		idamage = idamage * level.var_53c7ca1d;
 	}
@@ -726,7 +726,7 @@ function function_8ef51109(var_fb6fa3e1, var_bbbf9a69)
 {
 	if(!function_3799b373(var_fb6fa3e1, var_bbbf9a69) && !zm_utility::function_91403f47())
 	{
-		if(namespace_f551babc::function_b47f6aba())
+		if(zm_trial::function_b47f6aba())
 		{
 			var_57807cdc = [];
 			a_e_players = getplayers();
@@ -740,11 +740,11 @@ function function_8ef51109(var_fb6fa3e1, var_bbbf9a69)
 			}
 			if(var_57807cdc.size > 1)
 			{
-				namespace_f551babc::fail(#"hash_61d8fe81f9fe9e9c", var_57807cdc);
+				zm_trial::fail(#"hash_61d8fe81f9fe9e9c", var_57807cdc);
 			}
 			else
 			{
-				namespace_f551babc::fail(#"hash_272fae998263208b", var_57807cdc);
+				zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
 			}
 		}
 		else
@@ -871,7 +871,7 @@ function onplayerspawned()
 				self thread player_monitor_time_played();
 				if(getdvarint(#"hash_139191929bda93cd", 0) == 1)
 				{
-					self thread function_5710d9e4();
+					self thread zm_breadcrumbs();
 				}
 				if(isdefined(level.custom_player_track_ammo_count))
 				{
@@ -1142,7 +1142,7 @@ function function_de3936f8(var_ffb1863c)
 	self notify(#"hash_639868d8cfc48f96");
 	self endon(#"disconnect", #"hash_639868d8cfc48f96");
 	self waittill_timeout(1, #"weapon_change_complete");
-	if(self namespace_2ba51478::has_powerup_weapon() || self laststand::player_is_in_laststand() || self.sessionstate == "spectator" || isdefined(self.laststandpistol))
+	if(self zm_loadout::has_powerup_weapon() || self laststand::player_is_in_laststand() || self.sessionstate == "spectator" || isdefined(self.laststandpistol))
 	{
 		return;
 	}
@@ -1173,7 +1173,7 @@ function function_de3936f8(var_ffb1863c)
 			wait(1);
 			if(!self getweaponslistprimaries().size)
 			{
-				self namespace_2ba51478::give_start_weapon(1);
+				self zm_loadout::give_start_weapon(1);
 			}
 		}
 	}
@@ -1233,7 +1233,7 @@ function player_monitor_time_played()
 }
 
 /*
-	Name: function_5710d9e4
+	Name: zm_breadcrumbs
 	Namespace: zm_player
 	Checksum: 0x34F1E60D
 	Offset: 0x38D0
@@ -1241,7 +1241,7 @@ function player_monitor_time_played()
 	Parameters: 0
 	Flags: Linked
 */
-function function_5710d9e4()
+function zm_breadcrumbs()
 {
 	self endon(#"disconnect");
 	level endon(#"end_game");
@@ -1746,10 +1746,10 @@ function spectator_respawn()
 	{
 		self spawn(origin, angles);
 	}
-	if(isdefined(self namespace_2ba51478::get_player_placeable_mine()))
+	if(isdefined(self zm_loadout::get_player_placeable_mine()))
 	{
-		self takeweapon(self namespace_2ba51478::get_player_placeable_mine());
-		self namespace_2ba51478::set_player_placeable_mine(level.weaponnone);
+		self takeweapon(self zm_loadout::get_player_placeable_mine());
+		self zm_loadout::set_player_placeable_mine(level.weaponnone);
 	}
 	self zm_equipment::take();
 	self.is_burning = undefined;
@@ -2275,7 +2275,7 @@ function player_damage_override(einflictor, eattacker, idamage, idflags, smeanso
 			}
 		}
 	}
-	if(namespace_2ba51478::is_placeable_mine(weapon))
+	if(zm_loadout::is_placeable_mine(weapon))
 	{
 		return 0;
 	}
@@ -2321,7 +2321,7 @@ function player_damage_override(einflictor, eattacker, idamage, idflags, smeanso
 			}
 		}
 	}
-	idamage = self namespace_ad4d960b::damage(idamage, smeansofdeath, eattacker);
+	idamage = self zm_armor::damage(idamage, smeansofdeath, eattacker);
 	if(isdefined(level.var_ccdc4ca6))
 	{
 		for(i = 0; i < level.var_ccdc4ca6.size; i++)

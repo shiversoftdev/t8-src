@@ -261,7 +261,7 @@ function update_played_time()
 	timealive = int(min(self.timeplayed[#"alive"], level.timeplayedcap));
 	self.pers[#"time_played_alive"] = self.pers[#"time_played_alive"] + timealive;
 	pixendevent();
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return;
 	}
@@ -696,7 +696,7 @@ function function_9dd75dad(team)
 }
 
 /*
-	Name: function_6ce0360d
+	Name: is_all_dead
 	Namespace: teams
 	Checksum: 0xD1E1BC40
 	Offset: 0x1740
@@ -704,7 +704,7 @@ function function_9dd75dad(team)
 	Parameters: 1
 	Flags: Linked
 */
-function function_6ce0360d(team)
+function is_all_dead(team)
 {
 	if(level.playerlives[team])
 	{

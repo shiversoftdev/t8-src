@@ -904,7 +904,7 @@ function function_40a46b5b(transition, outcome)
 	{
 		return 1;
 	}
-	if(overtime::function_96f8fef2())
+	if(overtime::is_overtime_round())
 	{
 		if(isdefined(transition.var_e0d86f3) && transition.var_e0d86f3)
 		{

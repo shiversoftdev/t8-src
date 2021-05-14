@@ -313,7 +313,7 @@ private function function_a0004b40(var_b0b91d4, var_b3411502, finalindex, oobtri
 private function function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtriggers)
 {
 	var_f811e54e = var_b0b91d4.radius - circle.radius;
-	var_b75728a3 = var_f811e54e * var_f811e54e;
+	sqinterfaceattributes = var_f811e54e * var_f811e54e;
 	var_897ef629 = circle.radius - var_7aec140c.radius;
 	var_eccfdb0 = var_897ef629 * var_897ef629;
 	var_3904bb72 = circle.radius * 0.01;
@@ -334,7 +334,7 @@ private function function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtrigger
 		y = var_7aec140c.origin[1] + randomfloatrange(var_897ef629 * -1, var_897ef629);
 		origin = (x, y, 0);
 		var_175e94e8 = distance2dsquared(var_b0b91d4.origin, origin);
-		if(var_175e94e8 > var_b75728a3)
+		if(var_175e94e8 > sqinterfaceattributes)
 		{
 			continue;
 		}

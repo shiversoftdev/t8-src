@@ -11,11 +11,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_ee2dbdc3;
+#namespace zm_talisman_extra_miniturret;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_ee2dbdc3
+	Namespace: zm_talisman_extra_miniturret
 	Checksum: 0x426260BB
 	Offset: 0xE0
 	Size: 0x3C
@@ -24,12 +24,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_2ccfcd0e93300991", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_extra_miniturret", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_ee2dbdc3
+	Namespace: zm_talisman_extra_miniturret
 	Checksum: 0x6BA77BE2
 	Offset: 0x128
 	Size: 0x2C
@@ -38,20 +38,20 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_extra_miniturret", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_extra_miniturret", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_ee2dbdc3
+	Name: activate_talisman
+	Namespace: zm_talisman_extra_miniturret
 	Checksum: 0xAB73ABA4
 	Offset: 0x160
 	Size: 0x12
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
-	self.var_bd8a5474 = 1;
+	self.b_talisman_extra_miniturret = 1;
 }
 

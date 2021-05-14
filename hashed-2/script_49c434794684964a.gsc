@@ -257,7 +257,7 @@ function function_9535c165(var_2af183d0, clientfield)
 	if(self clientfield::get(clientfield) > 0)
 	{
 		self function_994b4121();
-		self function_c29d9c65(var_2af183d0);
+		self enable_rob(var_2af183d0);
 	}
 	else
 	{
@@ -303,7 +303,7 @@ private function function_f71119e0(var_c8db7193)
 }
 
 /*
-	Name: function_c29d9c65
+	Name: enable_rob
 	Namespace: player
 	Checksum: 0x6F506BA1
 	Offset: 0x948
@@ -311,7 +311,7 @@ private function function_f71119e0(var_c8db7193)
 	Parameters: 1
 	Flags: Linked
 */
-function function_c29d9c65(var_6560376a)
+function enable_rob(var_6560376a)
 {
 	if(!self function_d2503806(var_6560376a))
 	{

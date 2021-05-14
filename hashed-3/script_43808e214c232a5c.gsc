@@ -45,7 +45,7 @@ function __init__()
 	clientfield::register("actor", "" + #"hash_3c3af9a781191429", 1, 1, "counter", &function_ab57c715, 1, 0);
 	clientfield::register("vehicle", "" + #"hash_3c3af9a781191429", 1, 1, "counter", &function_ab57c715, 1, 0);
 	clientfield::register("toplayer", "" + #"hash_7287b37a40c4ae6f", 1, 1, "counter", &function_24ce643c, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_6dad1ddeb3f8321e", 1, 3, "counter", &function_b9142dab, 0, 0);
+	clientfield::register("toplayer", "" + #"chakram_rumble", 1, 3, "counter", &chakram_rumble, 0, 0);
 	level._effect[#"sword_bloodswipe_r_1p"] = #"zombie/fx_sword_slash_right_1p_zod_zmb";
 	level._effect[#"sword_bloodswipe_l_1p"] = #"zombie/fx_sword_slash_left_1p_zod_zmb";
 	level._effect[#"hash_720f204e4406ddbf"] = #"hash_59cdb0226e644934";
@@ -150,15 +150,15 @@ function function_29f91f81(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_b15ad447 = util::playfxontag(localclientnum, level._effect[#"hash_6dca5478f1baf5ce"], self, "tag_fx");
+		self.fx_trail = util::playfxontag(localclientnum, level._effect[#"hash_6dca5478f1baf5ce"], self, "tag_fx");
 		if(!isdefined(self.var_cebd6e9e))
 		{
 			self.var_cebd6e9e = self playloopsound(#"hash_3cd6bae1469848f1", 1);
 		}
 	}
-	else if(isdefined(self.var_b15ad447))
+	else if(isdefined(self.fx_trail))
 	{
-		killfx(localclientnum, self.var_b15ad447);
+		killfx(localclientnum, self.fx_trail);
 	}
 	if(isdefined(self.var_cebd6e9e))
 	{
@@ -341,8 +341,8 @@ function function_522aa0e9(localclientnum, oldval, newval, bnewent, binitialsnap
 private function function_cfefd76a(localclientnum, var_b3673abf, var_3ab46b9)
 {
 	self endon(var_3ab46b9);
-	var_88706ea7 = undefined;
-	var_88706ea7 = level waittill(#"respawn");
+	s_result = undefined;
+	s_result = level waittill(#"respawn");
 	a_e_players = getlocalplayers();
 	foreach(e_player in a_e_players)
 	{
@@ -369,7 +369,7 @@ function function_ab57c715(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_b9142dab
+	Name: chakram_rumble
 	Namespace: namespace_f36d5bcf
 	Checksum: 0xAFE3FD62
 	Offset: 0x1750
@@ -377,7 +377,7 @@ function function_ab57c715(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_b9142dab(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function chakram_rumble(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{

@@ -54,9 +54,9 @@ function __init__()
 	level.hero_weapon[#"flamethrower"][0] = getweapon(#"hash_18829d56b3fbd75b");
 	level.hero_weapon[#"flamethrower"][1] = getweapon(#"hash_18829e56b3fbd90e");
 	level.hero_weapon[#"flamethrower"][2] = getweapon(#"hash_18829f56b3fbdac1");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_18829d56b3fbd75b");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_18829e56b3fbd90e");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_18829f56b3fbdac1");
+	zm_loadout::register_hero_weapon_for_level(#"hash_18829d56b3fbd75b");
+	zm_loadout::register_hero_weapon_for_level(#"hash_18829e56b3fbd90e");
+	zm_loadout::register_hero_weapon_for_level(#"hash_18829f56b3fbdac1");
 	clientfield::register("scriptmover", "flamethrower_tornado_fx", 1, 1, "int");
 	clientfield::register("toplayer", "hero_flamethrower_vigor_postfx", 1, 1, "counter");
 	clientfield::register("toplayer", "flamethrower_wind_blast_flash", -1, 1, "counter");
@@ -208,7 +208,7 @@ function function_1d6d54c0(s_params)
 	if(isplayer(s_params.eattacker) && function_b1dc801b(s_params.weapon, 1) && (!(isdefined(self.var_d9e7a08a) && self.var_d9e7a08a)) && s_params.smeansofdeath == "MOD_BURNED")
 	{
 		e_player = s_params.eattacker;
-		var_d695a618 = 50 - e_player namespace_ad4d960b::get(#"hash_5c9caf0397b30f1e");
+		var_d695a618 = 50 - e_player zm_armor::get(#"hash_5c9caf0397b30f1e");
 		if(var_d695a618 >= 5)
 		{
 			var_20694322 = 5;
@@ -217,7 +217,7 @@ function function_1d6d54c0(s_params)
 		{
 			var_20694322 = var_d695a618;
 		}
-		e_player thread namespace_ad4d960b::add(#"hash_5c9caf0397b30f1e", var_20694322, 50);
+		e_player thread zm_armor::add(#"hash_5c9caf0397b30f1e", var_20694322, 50);
 	}
 }
 
@@ -350,9 +350,9 @@ function function_58bc825e(var_1c041bd9)
 	self endon(#"bled_out", #"death", #"hash_5d832df3b9639676");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_fired");
-		if(var_88706ea7.weapon == var_1c041bd9)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_fired");
+		if(s_result.weapon == var_1c041bd9)
 		{
 			self thread function_aa93af91(var_1c041bd9);
 		}
@@ -468,9 +468,9 @@ function function_16f31337(var_1c041bd9)
 	self endon(#"bled_out", #"death", #"hash_5d832df3b9639676");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee_power_left");
-		if(var_88706ea7.weapon == var_1c041bd9)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee_power_left");
+		if(s_result.weapon == var_1c041bd9)
 		{
 			self clientfield::increment("flamethrower_wind_blast_tu16");
 			self thread function_99207e4d(var_1c041bd9);
@@ -654,9 +654,9 @@ function function_29bbc43a(var_1c041bd9)
 	self endon(#"bled_out", #"death", #"hash_5d832df3b9639676");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee");
-		if(var_88706ea7.weapon == var_1c041bd9)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee");
+		if(s_result.weapon == var_1c041bd9)
 		{
 			self clientfield::increment_to_player("flamethrower_tornado_blast_flash");
 			self function_3be93b07(var_1c041bd9);
@@ -924,15 +924,15 @@ function function_10c91a46()
 	self.var_be72e7c2.t_damage endon(#"death");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self.var_be72e7c2.t_damage waittill(#"trigger");
-		if(isdefined(var_88706ea7.activator.var_d9e7a08a) && var_88706ea7.activator.var_d9e7a08a)
+		s_result = undefined;
+		s_result = self.var_be72e7c2.t_damage waittill(#"trigger");
+		if(isdefined(s_result.activator.var_d9e7a08a) && s_result.activator.var_d9e7a08a)
 		{
 			continue;
 		}
-		if(isinarray(getaiteamarray(level.zombie_team), var_88706ea7.activator))
+		if(isinarray(getaiteamarray(level.zombie_team), s_result.activator))
 		{
-			var_88706ea7.activator thread function_72601dd2(self, self.var_be72e7c2, 128, randomintrange(128, 200), randomintrange(150, 200));
+			s_result.activator thread function_72601dd2(self, self.var_be72e7c2, 128, randomintrange(128, 200), randomintrange(150, 200));
 		}
 		waitframe(1);
 	}
@@ -1204,9 +1204,9 @@ function function_8cbc7c8f(var_2fb75486)
 function function_478a4910(var_1c041bd9)
 {
 	self endon(#"bled_out", #"death", #"hash_5d832df3b9639676");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee_power_left");
-	if(var_88706ea7.weapon == var_1c041bd9)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee_power_left");
+	if(s_result.weapon == var_1c041bd9)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87ca13e3ecd52d", #"flamethrower");
 	}
@@ -1224,9 +1224,9 @@ function function_478a4910(var_1c041bd9)
 function function_68ff89f7(var_1c041bd9)
 {
 	self endon(#"bled_out", #"death", #"hash_5d832df3b9639676");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee");
-	if(var_88706ea7.weapon == var_1c041bd9)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee");
+	if(s_result.weapon == var_1c041bd9)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87c913e3ecd37a", #"flamethrower");
 	}

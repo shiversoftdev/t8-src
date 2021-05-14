@@ -99,18 +99,18 @@ function function_c0c566d4(localclientnum)
 	self notify("1904df9d4730174b");
 	self endon("1904df9d4730174b");
 	self endon(#"death");
-	self.var_50e5da45 = 0;
+	self.lunge_rumble = 0;
 	while(true)
 	{
-		if(function_c5afdb1b(localclientnum) && !self.var_50e5da45)
+		if(function_c5afdb1b(localclientnum) && !self.lunge_rumble)
 		{
 			self playrumblelooponentity(localclientnum, "blade_lunge_loop");
-			self.var_50e5da45 = 1;
+			self.lunge_rumble = 1;
 		}
-		else if(!function_c5afdb1b(localclientnum) && self.var_50e5da45)
+		else if(!function_c5afdb1b(localclientnum) && self.lunge_rumble)
 		{
 			self stoprumble(localclientnum, "blade_lunge_loop");
-			self.var_50e5da45 = 0;
+			self.lunge_rumble = 0;
 		}
 		waitframe(1);
 	}
@@ -147,7 +147,7 @@ function function_fcfa93d0(eventstruct)
 	{
 		return;
 	}
-	self function_fd873fdf(eventstruct.localclientnum);
+	self play_blood(eventstruct.localclientnum);
 }
 
 /*
@@ -182,7 +182,7 @@ function function_e9f518c7(localclientnum)
 }
 
 /*
-	Name: function_fd873fdf
+	Name: play_blood
 	Namespace: blade
 	Checksum: 0x8E552AD9
 	Offset: 0x5E8
@@ -190,7 +190,7 @@ function function_e9f518c7(localclientnum)
 	Parameters: 1
 	Flags: Linked
 */
-function function_fd873fdf(localclientnum)
+function play_blood(localclientnum)
 {
 	if(!isdefined(self.var_2ba49f48))
 	{

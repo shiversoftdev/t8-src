@@ -280,7 +280,7 @@ private function _burntagson(localclientnum, tags, var_71742e03)
 			activefx[activefx.size] = self _burntag(localclientnum, tags[i], "_loop");
 		}
 	}
-	playsound(0, #"hash_1e9d10e9399d679b", self.origin);
+	playsound(0, #"chr_ignite", self.origin);
 	burnsound = self playloopsound(#"chr_burn_loop_overlay", 0.5);
 	self thread _burntagswatchend(localclientnum, activefx, burnsound);
 	self thread _burntagswatchclear(localclientnum, activefx, burnsound);

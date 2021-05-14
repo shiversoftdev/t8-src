@@ -136,11 +136,11 @@ function function_ae7afb91(player)
 {
 	a_w_weapons = player getweaponslist(0);
 	player.var_655c0753 = undefined;
-	player notify(#"hash_5ad2f662363a4785");
+	player notify(#"zmb_small_ammo");
 	player zm_placeable_mine::disable_all_prompts_for_player();
 	foreach(w_weapon in a_w_weapons)
 	{
-		if(namespace_2ba51478::is_lethal_grenade(w_weapon) || namespace_2ba51478::is_offhand_weapon(w_weapon))
+		if(zm_loadout::is_lethal_grenade(w_weapon) || zm_loadout::is_offhand_weapon(w_weapon))
 		{
 			continue;
 		}
@@ -152,7 +152,7 @@ function function_ae7afb91(player)
 		{
 			continue;
 		}
-		if(namespace_2ba51478::is_hero_weapon(w_weapon))
+		if(zm_loadout::is_hero_weapon(w_weapon))
 		{
 			continue;
 		}
@@ -190,7 +190,7 @@ function function_71bf1101(drop_item, player_team)
 function function_7374e868(weapon)
 {
 	var_cd9d17e0 = 0;
-	if(!namespace_2ba51478::is_offhand_weapon(weapon) || weapon.isriotshield)
+	if(!zm_loadout::is_offhand_weapon(weapon) || weapon.isriotshield)
 	{
 		weapon = self zm_weapons::get_weapon_with_attachments(weapon);
 		if(isdefined(weapon))
@@ -255,7 +255,7 @@ function function_7374e868(weapon)
 */
 function give_clip_of_ammo(w_weapon)
 {
-	if(namespace_2ba51478::function_2ff6913(w_weapon))
+	if(zm_loadout::function_2ff6913(w_weapon))
 	{
 		return;
 	}
@@ -271,15 +271,15 @@ function give_clip_of_ammo(w_weapon)
 	}
 	n_clip = 0;
 	var_98f6dae8 = self getweaponammoclip(w_weapon);
-	var_94e446f3 = 0;
+	n_pool = 0;
 	var_df670713 = self getammocount(w_weapon);
 	if(self hasperk(#"specialty_extraammo"))
 	{
-		var_94e446f3 = w_weapon.maxammo;
+		n_pool = w_weapon.maxammo;
 	}
 	else
 	{
-		var_94e446f3 = w_weapon.startammo;
+		n_pool = w_weapon.startammo;
 	}
 	if(weaponhasattachment(w_weapon, "uber") && w_weapon.statname == #"smg_capacity_t8" || (isdefined(w_weapon.isriotshield) && w_weapon.isriotshield))
 	{
@@ -289,7 +289,7 @@ function give_clip_of_ammo(w_weapon)
 	{
 		n_clip = w_weapon.clipsize;
 	}
-	n_stock = int(min(var_94e446f3, var_df670713 - var_98f6dae8 + n_clip));
+	n_stock = int(min(n_pool, var_df670713 - var_98f6dae8 + n_clip));
 	self setweaponammostock(w_weapon, n_stock);
 }
 

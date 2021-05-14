@@ -76,7 +76,7 @@ function event()
 */
 function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	if(meansofdeath === "MOD_MELEE" && !namespace_25f0796c::is_active() && !namespace_2ba51478::is_hero_weapon(weapon) && weapon != level.weaponnone)
+	if(meansofdeath === "MOD_MELEE" && !namespace_25f0796c::is_active() && !zm_loadout::is_hero_weapon(weapon) && weapon != level.weaponnone)
 	{
 		attacker function_40383770(self);
 	}
@@ -94,7 +94,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath,
 */
 function vehicle_damage_override(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
-	if(smeansofdeath === "MOD_MELEE" && !namespace_2ba51478::is_hero_weapon(weapon))
+	if(smeansofdeath === "MOD_MELEE" && !zm_loadout::is_hero_weapon(weapon))
 	{
 		eattacker function_40383770(self);
 	}

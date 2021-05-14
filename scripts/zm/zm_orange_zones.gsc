@@ -140,10 +140,10 @@ function zone_init()
 	level thread function_4d5bea6e();
 	level thread function_734d8b08();
 	level thread function_49054104();
-	level thread function_c0df4b74();
-	level thread function_10d313e4();
-	level thread function_f61c30ba();
-	level thread function_739794fc();
+	level thread grotto_tunnel_watcher();
+	level thread cargo_hold_to_artifact_storage_watcher();
+	level thread sun_deck_to_bridge_watcher();
+	level thread main_deck_to_forecastle_watcher();
 	if(!zm_utility::is_standard())
 	{
 		level thread function_9d1d7efd();
@@ -153,7 +153,7 @@ function zone_init()
 }
 
 /*
-	Name: function_739794fc
+	Name: main_deck_to_forecastle_watcher
 	Namespace: namespace_17555f14
 	Checksum: 0x5985136F
 	Offset: 0x15C0
@@ -161,7 +161,7 @@ function zone_init()
 	Parameters: 0
 	Flags: None
 */
-function function_739794fc()
+function main_deck_to_forecastle_watcher()
 {
 	level waittill(#"main_deck_to_forecastle");
 	var_21a9b20e = array("main_deck_to_forecastle", "main_deck_to_forecastle_blocker");
@@ -233,7 +233,7 @@ function function_49054104()
 }
 
 /*
-	Name: function_c0df4b74
+	Name: grotto_tunnel_watcher
 	Namespace: namespace_17555f14
 	Checksum: 0x1AF6B002
 	Offset: 0x17E0
@@ -241,7 +241,7 @@ function function_49054104()
 	Parameters: 0
 	Flags: None
 */
-function function_c0df4b74()
+function grotto_tunnel_watcher()
 {
 	level endon(#"end_game");
 	var_752cf781 = getent("grotto_tunnel_big_blocker", "targetname");
@@ -263,7 +263,7 @@ function function_c0df4b74()
 }
 
 /*
-	Name: function_10d313e4
+	Name: cargo_hold_to_artifact_storage_watcher
 	Namespace: namespace_17555f14
 	Checksum: 0x395082F5
 	Offset: 0x19D8
@@ -271,7 +271,7 @@ function function_c0df4b74()
 	Parameters: 0
 	Flags: None
 */
-function function_10d313e4()
+function cargo_hold_to_artifact_storage_watcher()
 {
 	level endon(#"end_game");
 	level flag::wait_till("cargo_hold_to_artifact_storage");
@@ -279,7 +279,7 @@ function function_10d313e4()
 }
 
 /*
-	Name: function_f61c30ba
+	Name: sun_deck_to_bridge_watcher
 	Namespace: namespace_17555f14
 	Checksum: 0xB7A77C9F
 	Offset: 0x1A30
@@ -287,7 +287,7 @@ function function_10d313e4()
 	Parameters: 0
 	Flags: None
 */
-function function_f61c30ba()
+function sun_deck_to_bridge_watcher()
 {
 	level endon(#"end_game");
 	e_door_clip = getent("sun_deck_to_bridge_clip", "targetname");
@@ -523,11 +523,11 @@ function function_8e0b371()
 		if(isalive(self))
 		{
 			str_location = function_ab7f70b9(self);
-			self namespace_2c9e6caa::function_29780fb5((isdefined(str_location) ? str_location : #""));
+			self zm_hud::function_29780fb5((isdefined(str_location) ? str_location : #""));
 		}
 		else
 		{
-			self namespace_2c9e6caa::function_29780fb5(#"");
+			self zm_hud::function_29780fb5(#"");
 		}
 		wait(0.5);
 	}
@@ -868,14 +868,14 @@ function function_58db1b78()
 	var_4d44c98e = getentarray("lighthouse_level_4_ext", "targetname");
 	while(true)
 	{
-		foreach(var_a99d350e in var_4d44c98e)
+		foreach(vol_ext in var_4d44c98e)
 		{
 			foreach(player in getplayers())
 			{
-				if(player istouching(var_a99d350e))
+				if(player istouching(vol_ext))
 				{
-					var_845efa03 = player zm_audio::create_and_play_dialog(#"hash_20b463357f4ae8f", #"hash_3380edae9bb10779");
-					if(var_845efa03)
+					b_played = player zm_audio::create_and_play_dialog(#"hash_20b463357f4ae8f", #"hash_3380edae9bb10779");
+					if(b_played)
 					{
 						return;
 					}

@@ -52,7 +52,7 @@ function __init__()
 		level.var_8dfa7ed7[var_be788bba.var_47e79fc] = ti;
 	}
 	clientfield::register("vehicle", "hawk_range", 13000, 1, "int", &function_6701affc, 0, 1);
-	vehicle::add_vehicletype_callback("veh_hawk_player_wz", &function_41d7e28b);
+	vehicle::add_vehicletype_callback("veh_hawk_player_wz", &hawk_spawned);
 	vehicle::function_2f97bc52("veh_hawk_player_wz", &function_fbdbb841);
 	vehicle::function_2f97bc52("veh_hawk_player_far_range_wz", &function_1ed9ef6a);
 	vehicle::function_cd2ede5("veh_hawk_player_wz", &function_500d3fa7);
@@ -61,7 +61,7 @@ function __init__()
 }
 
 /*
-	Name: function_41d7e28b
+	Name: hawk_spawned
 	Namespace: namespace_a91ab695
 	Checksum: 0xD50A73DB
 	Offset: 0x528
@@ -69,7 +69,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_41d7e28b(localclientnum)
+private function hawk_spawned(localclientnum)
 {
 	self thread function_23a9e4af(localclientnum);
 }

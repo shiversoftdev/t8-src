@@ -285,7 +285,7 @@ function trigger_visible_to_player(player)
 	visible = 1;
 	if(isdefined(self.stub.trigger_target.machine_user))
 	{
-		if(player != self.stub.trigger_target.machine_user || namespace_2ba51478::is_placeable_mine(self.stub.trigger_target.machine_user getcurrentweapon()))
+		if(player != self.stub.trigger_target.machine_user || zm_loadout::is_placeable_mine(self.stub.trigger_target.machine_user getcurrentweapon()))
 		{
 			visible = 0;
 		}
@@ -346,7 +346,7 @@ function can_buy_perk()
 		return 0;
 	}
 	current_weapon = self getcurrentweapon();
-	if(namespace_2ba51478::is_placeable_mine(current_weapon) || zm_equipment::is_equipment_that_blocks_purchase(current_weapon))
+	if(zm_loadout::is_placeable_mine(current_weapon) || zm_equipment::is_equipment_that_blocks_purchase(current_weapon))
 	{
 		return 0;
 	}

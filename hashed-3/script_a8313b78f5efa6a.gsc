@@ -46,11 +46,11 @@ function function_27473e44()
 {
 	zm_perks::register_perk_clientfields(#"specialty_mod_extraammo", &function_12161a30, &function_b10a7225);
 	zm_perks::register_perk_effects(#"specialty_mod_extraammo", "sleight_light");
-	zm_perks::register_perk_init_thread(#"specialty_mod_extraammo", &function_5243c950);
+	zm_perks::register_perk_init_thread(#"specialty_mod_extraammo", &init_perk);
 }
 
 /*
-	Name: function_5243c950
+	Name: init_perk
 	Namespace: namespace_10df686
 	Checksum: 0x1D4428C2
 	Offset: 0x1A0
@@ -58,7 +58,7 @@ function function_27473e44()
 	Parameters: 0
 	Flags: Linked
 */
-function function_5243c950()
+function init_perk()
 {
 }
 

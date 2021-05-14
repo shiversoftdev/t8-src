@@ -49,10 +49,10 @@ function __init__()
 */
 function function_548630a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	var_2bfb4416 = struct::get(#"hash_53bbab305c87572a", "targetname");
-	if(isdefined(var_2bfb4416))
+	bathtub = struct::get(#"hash_53bbab305c87572a", "targetname");
+	if(isdefined(bathtub))
 	{
-		playfx(localclientnum, #"hash_6e2b2bcea07134d1", var_2bfb4416.origin, (0, 0, 1));
+		playfx(localclientnum, #"hash_6e2b2bcea07134d1", bathtub.origin, (0, 0, 1));
 	}
 }
 
@@ -68,10 +68,10 @@ function function_548630a(localclientnum, oldval, newval, bnewent, binitialsnap,
 function function_11111d4c(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	wait(0.2);
-	var_2bfb4416 = struct::get(#"hash_53bbab305c87572a", "targetname");
-	if(isdefined(var_2bfb4416))
+	bathtub = struct::get(#"hash_53bbab305c87572a", "targetname");
+	if(isdefined(bathtub))
 	{
-		playsound(localclientnum, #"zmb_sq_souls_impact", var_2bfb4416.origin);
+		playsound(localclientnum, #"zmb_sq_souls_impact", bathtub.origin);
 	}
 }
 

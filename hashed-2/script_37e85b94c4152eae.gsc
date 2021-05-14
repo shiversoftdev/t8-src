@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_5d38da46b35569b3", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_5d38da46b35569b3", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -53,9 +53,9 @@ function __init__()
 */
 private function function_d1de6a85(var_6325d314, var_52b8b3a2, n_time)
 {
-	n_time_limit = namespace_f551babc::function_5769f26a(n_time);
-	var_399c992a = namespace_f551babc::function_5769f26a(var_52b8b3a2);
-	level thread function_8b87e57c(var_6325d314, var_399c992a, n_time_limit);
+	n_time_limit = zm_trial::function_5769f26a(n_time);
+	n_grace = zm_trial::function_5769f26a(var_52b8b3a2);
+	level thread function_8b87e57c(var_6325d314, n_grace, n_time_limit);
 	level flag::set(#"infinite_round_spawning");
 	level flag::set(#"pause_round_timeout");
 	level.var_382a24b0 = 1;
@@ -98,10 +98,10 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_8b87e57c(var_6325d314, var_399c992a, n_time_limit)
+private function function_8b87e57c(var_6325d314, n_grace, n_time_limit)
 {
 	level endon(#"end_of_round", #"host_migration_begin");
-	wait(var_399c992a);
+	wait(n_grace);
 	level thread function_14a98a41(var_6325d314, n_time_limit);
 	foreach(player in getplayers())
 	{

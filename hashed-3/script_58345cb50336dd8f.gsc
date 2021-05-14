@@ -32,7 +32,7 @@ autoexec function function_89f2df9()
 function __init__()
 {
 	status_effect::register_status_effect_callback_apply(4, &function_524564d9);
-	status_effect::function_5bae5120(4, &function_c3fee870);
+	status_effect::function_5bae5120(4, &registersamanthas_bundle);
 	status_effect::function_6f4eaf88(function_4d1e7b48("suppress"));
 	serverfield::register("status_effect_suppress_field", 1, 5, "int", &function_aa232314);
 	callback::on_spawned(&onplayerspawned);
@@ -52,7 +52,7 @@ function function_524564d9(var_756fda07, weapon, var_84171a6c)
 }
 
 /*
-	Name: function_c3fee870
+	Name: registersamanthas_bundle
 	Namespace: namespace_2cce9002
 	Checksum: 0x80F724D1
 	Offset: 0x1F8
@@ -60,7 +60,7 @@ function function_524564d9(var_756fda07, weapon, var_84171a6c)
 	Parameters: 0
 	Flags: Linked
 */
-function function_c3fee870()
+function registersamanthas_bundle()
 {
 }
 

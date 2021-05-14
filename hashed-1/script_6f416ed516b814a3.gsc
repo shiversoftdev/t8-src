@@ -20,7 +20,7 @@
 function callback_playerdisconnect()
 {
 	profilelog_begintiming(5, "ship");
-	if(!gamestate::function_674fd868() && !level.gameended)
+	if(!gamestate::is_game_over() && !level.gameended)
 	{
 		gamelength = game.timepassed;
 		self globallogic::bbplayermatchend(gamelength, "MP_PLAYER_DISCONNECT", 0);

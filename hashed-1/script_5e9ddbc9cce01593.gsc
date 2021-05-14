@@ -119,7 +119,7 @@ function function_c7393b8d(var_9bda8088)
 */
 function trap_damage(var_9bda8088)
 {
-	if(!isalive(self) || (isdefined(self.var_99557baf) && self.var_99557baf) || (isdefined(self.var_a1050f1) && self.var_a1050f1))
+	if(!isalive(self) || (isdefined(self.var_99557baf) && self.var_99557baf) || (isdefined(self.b_trap_kill) && self.b_trap_kill))
 	{
 		return;
 	}
@@ -132,7 +132,7 @@ function trap_damage(var_9bda8088)
 			n_percent = 35;
 			break;
 		}
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		{
 			n_percent = 35;
 			break;
@@ -186,7 +186,7 @@ function trap_damage(var_9bda8088)
 		{
 			if(isdefined(var_9bda8088) && isplayer(var_9bda8088.activated_by_player))
 			{
-				var_9bda8088.activated_by_player thread namespace_891c9bac::function_a2bd5a0c(#"hash_150ed78f0557df5f", 0.5, 1, 0, 1);
+				var_9bda8088.activated_by_player thread zm_vo::function_a2bd5a0c(#"hash_150ed78f0557df5f", 0.5, 1, 0, 1);
 				level.var_bae901ce = undefined;
 			}
 		}
@@ -195,7 +195,7 @@ function trap_damage(var_9bda8088)
 			var_9bda8088.activated_by_player zm_stats::increment_challenge_stat(#"zombie_hunter_kill_trap");
 			var_9bda8088.activated_by_player contracts::function_5b88297d(#"hash_1f11b620a6de486b");
 		}
-		self.var_a1050f1 = 1;
+		self.b_trap_kill = 1;
 	}
 	else
 	{

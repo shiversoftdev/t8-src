@@ -625,7 +625,7 @@ private function manage_companion_movement(entity)
 	{
 		return;
 	}
-	if(isdefined(entity.leader) && entity.leader.var_7042f331 === 1)
+	if(isdefined(entity.leader) && entity.leader.is_flung === 1)
 	{
 		entity thread function_d5390a05(entity.leader.var_a76eba5b);
 	}

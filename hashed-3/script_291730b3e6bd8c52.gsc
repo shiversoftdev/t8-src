@@ -35,7 +35,7 @@ autoexec function function_89f2df9()
 */
 private function __init__()
 {
-	if(!isarchetypeloaded(#"hash_1bab8a0ba811401e"))
+	if(!isarchetypeloaded(#"catalyst"))
 	{
 		return;
 	}
@@ -49,7 +49,7 @@ private function __init__()
 	level._effect[#"hash_1be360ed968399f0"] = "zm_ai/fx8_cata_plasma_blast_tell_head";
 	level._effect[#"hash_74a34e22285cf305"] = "zm_ai/fx8_cata_plasma_blast_tell_torso";
 	function_b6fd8c68();
-	ai::add_archetype_spawn_function(#"hash_1bab8a0ba811401e", &function_5608540a);
+	ai::add_archetype_spawn_function(#"catalyst", &function_5608540a);
 }
 
 /*
@@ -88,22 +88,22 @@ private function function_213aaacc(localclientnum, oldvalue, newvalue, bnewent, 
 	{
 		case 1:
 		{
-			var_5216dabe = "zmb_ai_catalyst_corrosive_spawn";
+			spawn_sfx = "zmb_ai_catalyst_corrosive_spawn";
 			break;
 		}
 		case 4:
 		{
-			var_5216dabe = "zmb_ai_catalyst_water_spawn";
+			spawn_sfx = "zmb_ai_catalyst_water_spawn";
 			break;
 		}
 		case 3:
 		{
-			var_5216dabe = "zmb_ai_catalyst_electric_spawn";
+			spawn_sfx = "zmb_ai_catalyst_electric_spawn";
 			break;
 		}
 		case 2:
 		{
-			var_5216dabe = "zmb_ai_catalyst_plasma_spawn";
+			spawn_sfx = "zmb_ai_catalyst_plasma_spawn";
 			break;
 		}
 		default:

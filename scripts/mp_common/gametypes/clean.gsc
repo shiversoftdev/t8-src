@@ -377,7 +377,7 @@ function function_b25ab1e7()
 		/#
 			level.var_9d4a9561++;
 		#/
-		var_ba985a3c function_82eb0bb();
+		var_ba985a3c registermp_multi_kill_medals_interface();
 		return var_ba985a3c;
 	}
 	/#
@@ -484,7 +484,7 @@ function function_8cb72ba4()
 		}
 		if(self.var_2581d0d oob::istouchinganyoobtrigger() || self.var_2581d0d gameobjects::is_touching_any_trigger_key_value("trigger_hurt_new", "classname", self.trigger.origin[2], self.trigger.origin[2] + 32))
 		{
-			self thread function_82eb0bb();
+			self thread registermp_multi_kill_medals_interface();
 			return;
 		}
 		self.trigger.origin = self.var_2581d0d.origin;
@@ -535,11 +535,11 @@ function function_8f7a9a20()
 	/#
 		level.var_bb42ed2++;
 	#/
-	self thread function_82eb0bb();
+	self thread registermp_multi_kill_medals_interface();
 }
 
 /*
-	Name: function_82eb0bb
+	Name: registermp_multi_kill_medals_interface
 	Namespace: clean
 	Checksum: 0x6EF7BA1D
 	Offset: 0x1D78
@@ -547,7 +547,7 @@ function function_8f7a9a20()
 	Parameters: 0
 	Flags: None
 */
-function function_82eb0bb()
+function registermp_multi_kill_medals_interface()
 {
 	/#
 		level.var_8df7db3b--;
@@ -796,10 +796,10 @@ function function_e3e1cf54(var_696c0ca5 = -1)
 		}
 		case 1:
 		{
-			return function_579aa766(var_696c0ca5, &function_131cd67f);
+			return function_579aa766(var_696c0ca5, &registerexert_immolation_control);
 		}
 	}
-	return function_131cd67f(var_696c0ca5);
+	return registerexert_immolation_control(var_696c0ca5);
 }
 
 /*
@@ -821,7 +821,7 @@ function function_579aa766(var_696c0ca5, var_c1e8a2b7)
 }
 
 /*
-	Name: function_131cd67f
+	Name: registerexert_immolation_control
 	Namespace: clean
 	Checksum: 0xA29D3FE
 	Offset: 0x2A98
@@ -829,7 +829,7 @@ function function_579aa766(var_696c0ca5, var_c1e8a2b7)
 	Parameters: 1
 	Flags: None
 */
-function function_131cd67f(var_696c0ca5)
+function registerexert_immolation_control(var_696c0ca5)
 {
 	if(!isdefined(level.var_49aeba07))
 	{
@@ -1121,7 +1121,7 @@ function function_95cbd646(player)
 			scoreevents::processscoreevent("clean_assist_collect", self.attacker);
 		}
 	}
-	self function_82eb0bb();
+	self registermp_multi_kill_medals_interface();
 }
 
 /*

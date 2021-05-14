@@ -41,12 +41,12 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
 	level flag::init(#"hash_745ef45972843bd3");
-	namespace_f551babc::register_challenge("nukerun", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge("nukerun", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -64,7 +64,7 @@ private function function_d1de6a85()
 	level.var_4f7df1ac = 1;
 	level flag::clear(#"hash_745ef45972843bd3");
 	callback::function_33f0ddd3(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 	level thread nuke_loop();
 	foreach(player in getplayers())
 	{
@@ -237,7 +237,7 @@ private function function_9e7b3f4d(round_reset)
 	level.var_4f7df1ac = undefined;
 	level flag::set(#"hash_745ef45972843bd3");
 	callback::function_824d206(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	foreach(player in getplayers())
 	{
 		player thread namespace_b22c99a5::function_dc0859e();
@@ -257,7 +257,7 @@ private function function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{
-		if(!namespace_2ba51478::function_2ff6913(s_event.weapon))
+		if(!zm_loadout::function_2ff6913(s_event.weapon))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 			if(s_event.weapon.dualwieldweapon != level.weaponnone)

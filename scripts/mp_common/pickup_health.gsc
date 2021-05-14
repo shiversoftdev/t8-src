@@ -164,7 +164,7 @@ private function function_368c92b1(slot, weapon)
 */
 private function function_6dd64ede(slot, weapon)
 {
-	self gadgetdeactivate(self.gadget_health_regen_slot, self.var_1340f214);
+	self gadgetdeactivate(self.gadget_health_regen_slot, self.gadget_health_regen_weapon);
 	thread function_a01a8a21();
 }
 

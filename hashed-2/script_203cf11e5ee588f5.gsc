@@ -85,7 +85,7 @@ function __main__()
 function init()
 {
 	level flag::wait_till("all_players_spawned");
-	namespace_a1d9b01d::function_d1f16587(#"zblueprint_trap_hellpools", &function_55d14d78);
+	zm_crafting::function_d1f16587(#"zblueprint_trap_hellpools", &function_55d14d78);
 }
 
 /*
@@ -105,7 +105,7 @@ function function_7cc8a854()
 		var_bcdc2fe7 flag::init("activated");
 		var_bcdc2fe7 notsolid();
 	}
-	level.var_83be9dd2 = struct::get_array("s_hellpool_cauldron", "targetname");
+	level.a_s_hellpool_cauldron = struct::get_array("s_hellpool_cauldron", "targetname");
 	level.var_c07e6d20 = getentarray("zm_towers_hellpool_ghost", "script_label");
 	foreach(part in level.var_c07e6d20)
 	{
@@ -119,7 +119,7 @@ function function_7cc8a854()
 	mdl_clip = getent("mdl_acid_trap_cauldron_piece_clip", "targetname");
 	mdl_clip notsolid();
 	var_d58ee8b5 = getweapon(#"hash_72cba96681a7af18");
-	namespace_93829f86::function_4d230236(var_d58ee8b5, &function_b54b9d5e);
+	zm_items::function_4d230236(var_d58ee8b5, &function_b54b9d5e);
 	var_9a2f8aa = getentarray("zombie_trap", "targetname");
 	level.var_482bcfef = array::filter(var_9a2f8aa, 0, &function_9cc4d7b9);
 	foreach(var_299f1fa2 in level.var_482bcfef)
@@ -168,13 +168,13 @@ function function_b589dae1()
 private function function_a3661fef()
 {
 	level waittill(#"start_zombie_round_logic");
-	var_6645c992 = namespace_a1d9b01d::function_b18074d0(#"zblueprint_trap_hellpools");
+	var_6645c992 = zm_crafting::function_b18074d0(#"zblueprint_trap_hellpools");
 	while(true)
 	{
 		level waittill(#"hash_78451720bf647f70");
 		foreach(e_player in getplayers())
 		{
-			if(namespace_a1d9b01d::function_6d1e4410(e_player, var_6645c992))
+			if(zm_crafting::function_6d1e4410(e_player, var_6645c992))
 			{
 				level scene::function_27f5972e(#"p8_fxanim_zm_towers_trap_acid_bundle");
 				level notify(#"hash_476cae376318f3d5");
@@ -299,7 +299,7 @@ function function_55d14d78()
 			break;
 		}
 	}
-	level thread namespace_a1d9b01d::function_ca244624("zblueprint_trap_hellpools");
+	level thread zm_crafting::function_ca244624("zblueprint_trap_hellpools");
 	level scene::function_f81475ae(#"p8_fxanim_zm_towers_trap_acid_bundle");
 }
 
@@ -420,19 +420,19 @@ function function_45a2294f(str_id)
 	{
 		if(var_bcdc2fe7.script_string === str_id)
 		{
-			var_bcdc2fe7 thread function_4fa97c72(self);
+			var_bcdc2fe7 thread activate_trap(self);
 		}
 	}
 	level notify(#"traps_activated", {#hash_be3f58a:str_id});
 	wait(15);
 	level notify(#"hash_3c662e7b29cfc3dd", {#hash_be3f58a:str_id});
-	var_628a2951 = zm_traps::function_da13db45(60, self);
-	wait(var_628a2951);
+	n_cooldown = zm_traps::function_da13db45(60, self);
+	wait(n_cooldown);
 	level notify(#"traps_available", {#hash_be3f58a:str_id});
 }
 
 /*
-	Name: function_4fa97c72
+	Name: activate_trap
 	Namespace: namespace_9861c5bc
 	Checksum: 0x3F2144E1
 	Offset: 0x1798
@@ -440,7 +440,7 @@ function function_45a2294f(str_id)
 	Parameters: 1
 	Flags: Linked
 */
-function function_4fa97c72(e_player)
+function activate_trap(e_player)
 {
 	if(!self flag::get("activated"))
 	{
@@ -485,11 +485,11 @@ function function_b97c8553()
 */
 function function_692db12()
 {
-	foreach(var_c5c213e9 in level.var_83be9dd2)
+	foreach(s_cauldron in level.a_s_hellpool_cauldron)
 	{
-		if(var_c5c213e9.script_string === self.script_string)
+		if(s_cauldron.script_string === self.script_string)
 		{
-			self thread function_b327ce68(var_c5c213e9);
+			self thread function_b327ce68(s_cauldron);
 		}
 	}
 }
@@ -505,11 +505,11 @@ function function_692db12()
 */
 function function_efd16da2()
 {
-	foreach(var_c5c213e9 in level.var_83be9dd2)
+	foreach(s_cauldron in level.a_s_hellpool_cauldron)
 	{
-		if(var_c5c213e9.script_string === self.script_string)
+		if(s_cauldron.script_string === self.script_string)
 		{
-			self thread function_2e78a71b(var_c5c213e9);
+			self thread function_2e78a71b(s_cauldron);
 		}
 	}
 }
@@ -523,11 +523,11 @@ function function_efd16da2()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b327ce68(var_c5c213e9)
+function function_b327ce68(s_cauldron)
 {
-	var_c5c213e9 thread scene::play("shot 1");
+	s_cauldron thread scene::play("shot 1");
 	level waittill(#"hash_189e686c493a2a23");
-	var_c5c213e9 thread function_4c1fe94b();
+	s_cauldron thread function_4c1fe94b();
 }
 
 /*
@@ -539,9 +539,9 @@ function function_b327ce68(var_c5c213e9)
 	Parameters: 1
 	Flags: Linked
 */
-function function_2e78a71b(var_c5c213e9)
+function function_2e78a71b(s_cauldron)
 {
-	var_c5c213e9 thread scene::play("shot 3");
+	s_cauldron thread scene::play("shot 3");
 }
 
 /*

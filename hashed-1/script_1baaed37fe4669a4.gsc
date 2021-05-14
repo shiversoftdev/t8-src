@@ -10,11 +10,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_d5a61ef7;
+#namespace zm_talisman_start_weapon_smg;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_d5a61ef7
+	Namespace: zm_talisman_start_weapon_smg
 	Checksum: 0x877F5F58
 	Offset: 0xD8
 	Size: 0x3C
@@ -23,12 +23,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_14ec09249c6db7bc", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_start_weapon_smg", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_d5a61ef7
+	Namespace: zm_talisman_start_weapon_smg
 	Checksum: 0x78BF79CB
 	Offset: 0x120
 	Size: 0x7C
@@ -41,19 +41,19 @@ function __init__()
 	{
 		return;
 	}
-	zm_talisman::function_88a60d36("talisman_start_weapon_smg", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_start_weapon_smg", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_d5a61ef7
+	Name: activate_talisman
+	Namespace: zm_talisman_start_weapon_smg
 	Checksum: 0x5A98D09E
 	Offset: 0x1A8
 	Size: 0x1A
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self.var_8313fee5 = #"smg_accurate_t8";
 }

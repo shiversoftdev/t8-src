@@ -371,8 +371,8 @@ function function_c676c423()
 	{
 		if(player util::isprop())
 		{
-			var_8f5c350f = array(player.prop, player.propanchor, player.propent);
-			player function_4ef97d9b(var_8f5c350f);
+			propents = array(player.prop, player.propanchor, player.propent);
+			player function_4ef97d9b(propents);
 		}
 	}
 }
@@ -1215,7 +1215,7 @@ function onspawnplayer(predictedspawn)
 	self.breathingstoptime = 0;
 	if(self util::isprop())
 	{
-		self.var_26095fac = undefined;
+		self.registermod_gas_spawn_ = undefined;
 		if(!isdefined(self.abilityleft))
 		{
 			self.abilityleft = 0;
@@ -1245,9 +1245,9 @@ function onspawnplayer(predictedspawn)
 		self.abilityleft = undefined;
 		self.clonesleft = undefined;
 		self.var_4c45f505 = 0;
-		if(!isdefined(self.var_26095fac))
+		if(!isdefined(self.registermod_gas_spawn_))
 		{
-			self.var_26095fac = 0;
+			self.registermod_gas_spawn_ = 0;
 		}
 		if(!isdefined(self.thrownspecialcount))
 		{
@@ -1779,9 +1779,9 @@ function propcleanup()
 	Parameters: 1
 	Flags: None
 */
-function function_4ef97d9b(var_8f5c350f)
+function function_4ef97d9b(propents)
 {
-	foreach(prop in var_8f5c350f)
+	foreach(prop in propents)
 	{
 		if(isdefined(prop))
 		{
@@ -1799,11 +1799,11 @@ function function_4ef97d9b(var_8f5c350f)
 	Parameters: 1
 	Flags: None
 */
-function propcleanupdelayed(var_8f5c350f)
+function propcleanupdelayed(propents)
 {
-	function_4ef97d9b(var_8f5c350f);
+	function_4ef97d9b(propents);
 	waitframe(1);
-	foreach(prop in var_8f5c350f)
+	foreach(prop in propents)
 	{
 		if(isdefined(prop))
 		{
@@ -2047,10 +2047,10 @@ function getnextprop(var_d8316f60)
 		{
 			continue;
 		}
-		var_4295dff1 = array::randomize(level.proplist[size]);
-		for(j = 0; j < var_4295dff1.size; j++)
+		_tomb_zmb_ee_monitor_button = array::randomize(level.proplist[size]);
+		for(j = 0; j < _tomb_zmb_ee_monitor_button.size; j++)
 		{
-			prop = var_4295dff1[j];
+			prop = _tomb_zmb_ee_monitor_button[j];
 			var_72595382 = 0;
 			if(isdefined(var_d8316f60.usedprops) && var_d8316f60.usedprops.size)
 			{
@@ -4286,7 +4286,7 @@ function function_e60dbbee(time)
 		waittillframeend();
 		if(level.var_23661cff.size < 0)
 		{
-			self function_43eb4054();
+			self s_teleport_start_decaystartsupersprint();
 		}
 	}
 }
@@ -5089,7 +5089,7 @@ function function_49a6ce84()
 }
 
 /*
-	Name: function_43eb4054
+	Name: s_teleport_start_decaystartsupersprint
 	Namespace: prop
 	Checksum: 0x3C6EB8
 	Offset: 0xDC30
@@ -5097,7 +5097,7 @@ function function_49a6ce84()
 	Parameters: 0
 	Flags: None
 */
-function function_43eb4054()
+function s_teleport_start_decaystartsupersprint()
 {
 	forward = anglestoforward(self getangles());
 	origin = self.origin + vectorscale(forward, 100);

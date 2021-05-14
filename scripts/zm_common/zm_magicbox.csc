@@ -38,7 +38,7 @@ function __init__()
 	level._effect[#"hash_73c11d9bf55cbb6"] = #"hash_31c4723879504cb7";
 	level._effect[#"hash_5239f7431d4c72ca"] = #"hash_3f4154d786124350";
 	level._effect[#"hash_b6e7f724af1ad5b"] = #"hash_7ed77a22f165e308";
-	level._effect[#"hash_3e0d33220d73fbdc"] = #"hash_409439bf8b3dd862";
+	level._effect[#"fire_runner"] = #"hash_409439bf8b3dd862";
 	clientfield::register("zbarrier", "magicbox_open_fx", 1, 1, "int", &function_8f69e904, 0, 0);
 	clientfield::register("zbarrier", "magicbox_closed_fx", 1, 1, "int", &function_9253a233, 0, 0);
 	clientfield::register("zbarrier", "magicbox_leave_fx", 1, 1, "counter", &function_68f67f85, 0, 0);
@@ -130,7 +130,7 @@ function stream_model_for_time(localclientnum, model, time)
 {
 	util::lock_model(model);
 	wait(time);
-	util::function_722c0c0(model);
+	util::unlock_model(model);
 }
 
 /*
@@ -424,7 +424,7 @@ function function_b5807489(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			mdl_piece = self zbarriergetpiece(1);
 			mdl_piece.tag_origin = mdl_piece gettagorigin("tag_origin");
-			self.var_788272f2 = util::playfxontag(localclientnum, level._effect[#"hash_3e0d33220d73fbdc"], mdl_piece, "tag_origin");
+			self.var_788272f2 = util::playfxontag(localclientnum, level._effect[#"fire_runner"], mdl_piece, "tag_origin");
 		}
 		else if(isdefined(self.var_788272f2))
 		{

@@ -7,11 +7,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_a1d9b01d;
+#namespace zm_crafting;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xBA45476A
 	Offset: 0xD0
 	Size: 0x44
@@ -20,12 +20,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_12378771db09fde7", &__init__, &__main__, undefined);
+	system::register(#"zm_crafting", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x7AA1E174
 	Offset: 0x120
 	Size: 0x1E
@@ -40,7 +40,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xEDA5E7A6
 	Offset: 0x148
 	Size: 0x14
@@ -54,7 +54,7 @@ function __main__()
 
 /*
 	Name: function_60a6c623
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x3C4DB8B9
 	Offset: 0x168
 	Size: 0x98
@@ -66,20 +66,20 @@ function function_60a6c623()
 	var_d3701e86 = getscriptbundles("craftfoundry");
 	foreach(foundry in var_d3701e86)
 	{
-		function_70de3b2c(foundry);
+		setup_craftfoundry(foundry);
 	}
 }
 
 /*
-	Name: function_70de3b2c
-	Namespace: namespace_a1d9b01d
+	Name: setup_craftfoundry
+	Namespace: zm_crafting
 	Checksum: 0xCFCEF004
 	Offset: 0x208
 	Size: 0x262
 	Parameters: 1
 	Flags: Linked
 */
-function function_70de3b2c(craftfoundry)
+function setup_craftfoundry(craftfoundry)
 {
 	if(isdefined(craftfoundry))
 	{
@@ -128,7 +128,7 @@ function function_70de3b2c(craftfoundry)
 
 /*
 	Name: function_b18074d0
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x27C0D754
 	Offset: 0x478
 	Size: 0x328
@@ -157,7 +157,7 @@ function function_b18074d0(name)
 				}
 				case 6:
 				{
-					blueprint.components[5] = function_4c2f8683(blueprint.var_20120b4a);
+					blueprint.components[5] = function_4c2f8683(blueprint.registerperk_packa_seepainterminate);
 				}
 				case 5:
 				{
@@ -194,7 +194,7 @@ function function_b18074d0(name)
 
 /*
 	Name: function_4c2f8683
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xD23D3877
 	Offset: 0x7A8
 	Size: 0x5C

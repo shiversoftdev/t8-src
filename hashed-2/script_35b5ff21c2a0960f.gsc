@@ -178,7 +178,7 @@ function callback_vehicledamage(einflictor, eattacker, idamage, idflags, smeanso
 	{
 		self.maxhealth = self.healthdefault;
 	}
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		avoid_damage_in_postgame = !sessionmodeismultiplayergame() && !function_f99d2668();
 		if(avoid_damage_in_postgame)
@@ -295,7 +295,7 @@ function callback_vehicledamage(einflictor, eattacker, idamage, idflags, smeanso
 		{
 			eattacker.pers[#"participation"] = 0;
 		}
-		if(gamestate::function_4c5eea28("playing"))
+		if(gamestate::is_state("playing"))
 		{
 			eattacker.pers[#"participation"]++;
 		}
@@ -361,7 +361,7 @@ function callback_vehicleradiusdamage(einflictor, eattacker, idamage, finnerdama
 	self.idflagstime = gettime();
 	isselfdestruct = eattacker === self || (eattacker === self.owner && self.selfdestruct === 1);
 	friendlyfire = !isselfdestruct && isfriendlyfire(self, eattacker);
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return;
 	}
@@ -412,7 +412,7 @@ function callback_vehicleradiusdamage(einflictor, eattacker, idamage, finnerdama
 */
 function callback_vehiclekilled(einflictor, eattacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime)
 {
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return;
 	}

@@ -42,7 +42,7 @@
 */
 function init()
 {
-	namespace_c3287616::function_2669b95a(#"bat", #"hash_50f4e0eea9f4e4a4");
+	namespace_c3287616::function_2669b95a(#"bat", #"nosferatu");
 	level.var_4c350e72 = 0;
 	level.var_ce53172d = 30;
 	level.dog_spawn_func = &function_e1c262fb;
@@ -58,19 +58,19 @@ function init()
 	level flag::init("flag_werewolf_set_intro");
 	level flag::init("flag_bat_nosferatu_set_intro");
 	level flag::init("flag_crimson_nosferatu_set_intro");
-	namespace_c3287616::function_2876740e(#"hash_1bab8a0ba811401e", &function_2ffc8cca);
+	namespace_c3287616::function_2876740e(#"catalyst", &function_2ffc8cca);
 	level waittill(#"all_players_spawned");
 	if(zm_utility::is_standard())
 	{
-		level thread function_6957c745(#"hash_1bab8a0ba811401e", 3);
+		level thread function_6957c745(#"catalyst", 3);
 	}
 	else
 	{
-		level thread function_6957c745(#"hash_1bab8a0ba811401e", 7);
+		level thread function_6957c745(#"catalyst", 7);
 		level thread function_6957c745(#"werewolf", 30, "flag_werewolf_set_intro");
 		level thread function_6957c745(#"bat", 12, "flag_bat_nosferatu_set_intro");
-		level thread function_6957c745(#"hash_50f4e0eea9f4e4a4", 12, "flag_bat_nosferatu_set_intro");
-		level thread function_6957c745(#"hash_69eff09684574252", 35, "flag_crimson_nosferatu_set_intro");
+		level thread function_6957c745(#"nosferatu", 12, "flag_bat_nosferatu_set_intro");
+		level thread function_6957c745(#"crimson_nosferatu", 35, "flag_crimson_nosferatu_set_intro");
 	}
 	/#
 		callback::on_vehicle_spawned(&function_cfcf2d32);
@@ -380,7 +380,7 @@ function function_d075d6e9()
 */
 function function_2438d55e(s_spawn_loc)
 {
-	self endon_callback(&function_4d180baa, #"death");
+	self endon_callback(&bat_death, #"death");
 	if(isdefined(s_spawn_loc))
 	{
 		if(isdefined(s_spawn_loc.target))
@@ -399,7 +399,7 @@ function function_2438d55e(s_spawn_loc)
 }
 
 /*
-	Name: function_4d180baa
+	Name: bat_death
 	Namespace: namespace_9d27962b
 	Checksum: 0x66E3D77F
 	Offset: 0xF08
@@ -407,7 +407,7 @@ function function_2438d55e(s_spawn_loc)
 	Parameters: 1
 	Flags: Linked
 */
-function function_4d180baa(str_notify)
+function bat_death(str_notify)
 {
 }
 
@@ -489,11 +489,11 @@ function get_favorite_enemy()
 	Parameters: 3
 	Flags: None
 */
-function function_27e8f915(s_loc, e_target, var_d57228ca = 0)
+function function_27e8f915(s_loc, e_target, b_invert = 0)
 {
 	str_player_zone = e_target zm_zonemgr::get_player_zone();
 	var_23525cb = s_loc.zone_name === str_player_zone;
-	if(!var_d57228ca)
+	if(!b_invert)
 	{
 		return var_23525cb;
 	}
@@ -548,22 +548,22 @@ function function_38c0c907()
 	var_d3b167fd = self.origin;
 	if(isdefined(var_d3b167fd))
 	{
-		var_b82ff340 = namespace_c05f06c7::function_a8176b98(var_d3b167fd);
+		v_drop = namespace_c05f06c7::function_a8176b98(var_d3b167fd);
 	}
-	if(!isdefined(var_b82ff340))
+	if(!isdefined(v_drop))
 	{
 		foreach(player in util::get_active_players())
 		{
 			if(zm_utility::is_player_valid(player))
 			{
-				var_b82ff340 = player.origin;
+				v_drop = player.origin;
 				break;
 			}
 		}
 	}
-	if(isdefined(var_b82ff340))
+	if(isdefined(v_drop))
 	{
-		level thread zm_powerups::specific_powerup_drop("full_ammo", var_b82ff340);
+		level thread zm_powerups::specific_powerup_drop("full_ammo", v_drop);
 	}
 }
 
@@ -773,7 +773,7 @@ function function_84c5200d(entity)
 		#/
 		for(i = 0; i < var_a9e4d1ee; i++)
 		{
-			a_ai_zombies[i] thread namespace_57ff8cbb::cleanup_zombie();
+			a_ai_zombies[i] thread zm_cleanup::cleanup_zombie();
 		}
 	}
 	if(var_a9e4d1ee)

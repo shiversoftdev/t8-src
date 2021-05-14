@@ -240,7 +240,7 @@ function zombie_death_time_limit(e_attacker, weapon)
 	waitframe(1);
 	self.takedamage = 1;
 	self.allowdeath = 1;
-	self function_1f84fa6b(var_8651a024, e_attacker, weapon);
+	self zombie_death_explosion(var_8651a024, e_attacker, weapon);
 	self zombie_death_gib(e_attacker, weapon);
 }
 
@@ -261,8 +261,8 @@ function function_a22e41ec(var_5a5260d8)
 	}
 	self notify("dad16f153c7d14b");
 	self endon("dad16f153c7d14b");
-	var_107cc2db = getaiteamarray(#"axis", #"allies");
-	foreach(ai in var_107cc2db)
+	ai_zombies = getaiteamarray(#"axis", #"allies");
+	foreach(ai in ai_zombies)
 	{
 		if(isalive(ai) && (isdefined(ai.aat_turned) && ai.aat_turned))
 		{
@@ -278,7 +278,7 @@ function function_a22e41ec(var_5a5260d8)
 }
 
 /*
-	Name: function_1f84fa6b
+	Name: zombie_death_explosion
 	Namespace: zm_aat_brain_decay
 	Checksum: 0xFC2F5FF2
 	Offset: 0xC58
@@ -286,7 +286,7 @@ function function_a22e41ec(var_5a5260d8)
 	Parameters: 3
 	Flags: Linked
 */
-function function_1f84fa6b(var_58928a4b, e_attacker, weapon)
+function zombie_death_explosion(var_58928a4b, e_attacker, weapon)
 {
 	a_ai_zombies = array::get_all_closest(var_58928a4b, getaiteamarray(#"axis"), undefined, undefined, 160);
 	if(!isdefined(a_ai_zombies))

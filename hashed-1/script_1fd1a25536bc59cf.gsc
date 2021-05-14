@@ -48,27 +48,27 @@ function main()
 {
 	level flag::init(#"hash_17356796e22e1247");
 	level flag::init(#"hash_28fbeeac800ae782");
-	level.var_146a5216 = struct::get("mq_blood_vessel_loc", "targetname");
-	level.var_146a5216.vessel = getent(level.var_146a5216.target, "targetname");
-	level.var_146a5216.vessel hide();
-	level.var_146a5216 zm_unitrigger::create("", 128);
+	level.s_mq_blood_vessel_loc = struct::get("mq_blood_vessel_loc", "targetname");
+	level.s_mq_blood_vessel_loc.vessel = getent(level.s_mq_blood_vessel_loc.target, "targetname");
+	level.s_mq_blood_vessel_loc.vessel hide();
+	level.s_mq_blood_vessel_loc zm_unitrigger::create("", 128);
 	level.var_4adebdfc = getent("mq_blood", "targetname");
 	level.var_4adebdfc val::set(#"mq_blood", "allowdeath", 0);
 	level.var_4adebdfc val::set(#"mq_blood", "takedamage", 0);
-	level.var_4adebdfc.var_d6e4211c = [];
+	level.var_4adebdfc.a_wisps = [];
 	level.var_9e3c632e = 1;
 	level.var_ed1e7d4d = 0;
 	level.var_63a35083 = namespace_509a75d1::function_2719d4c0("mq_blood_loc", "targetname", "script_int");
 	level.var_e70fa660 = namespace_509a75d1::function_2719d4c0("mq_blood_whisp_loc", "targetname", "script_int");
 	level waittill(#"start_zombie_round_logic");
-	level.var_146a5216 thread function_ad37e626();
+	level.s_mq_blood_vessel_loc thread function_ad37e626();
 	level.var_4adebdfc moveto(level.var_63a35083[0].origin, 1, 0.1, 0.3);
 	level.var_4adebdfc clientfield::set("" + #"hash_10906b9ce905bda8", level.var_9e3c632e);
 	level.var_9928b94b = [];
 	level.var_9928b94b[0] = array("docks_1", "docks_2", "boathouse", "frozen_crevasse", "ice_grotto", "lagoon");
 	level.var_9928b94b[1] = array("beach", "lighthouse_approach", "lighthouse_station", "lighthouse_cove", "hidden_path");
 	level.var_9928b94b[2] = array("main_entrance", "outer_walkway", "loading_platform", "specimen_storage", "decontamination", "security_lobby", "geological_processing", "upper_catwalk", "human_infusion");
-	level.var_16972e5c = array(#"hash_4b7e4696d38d13e3", #"hash_1ecb90ddb44096f4", #"hash_7b1ab4354f6a9ef4", #"hash_4d50a2c4ff4e615d", #"tundragun", #"tundragun_upgraded");
+	level.var_16972e5c = array(#"snowball", #"hash_1ecb90ddb44096f4", #"hash_7b1ab4354f6a9ef4", #"hash_4d50a2c4ff4e615d", #"tundragun", #"tundragun_upgraded");
 }
 
 /*
@@ -85,7 +85,7 @@ function function_8d43b840(var_5ea5c94d)
 	if(!var_5ea5c94d)
 	{
 		level flag::set(#"hash_17356796e22e1247");
-		level.var_146a5216 notify(#"hash_17356796e22e1247");
+		level.s_mq_blood_vessel_loc notify(#"hash_17356796e22e1247");
 		switch(level.var_9e3c632e)
 		{
 			case 1:
@@ -147,8 +147,8 @@ function function_2d9e1e29(var_5ea5c94d, ended_early)
 	if(var_5ea5c94d || ended_early)
 	{
 		level notify(#"hash_6cbede8616798eb");
-		level.var_146a5216.vessel hide();
-		level.var_146a5216 thread function_ad37e626();
+		level.s_mq_blood_vessel_loc.vessel hide();
+		level.s_mq_blood_vessel_loc thread function_ad37e626();
 		if(level flag::get(#"hash_28fbeeac800ae782"))
 		{
 			level flag::clear(#"hash_28fbeeac800ae782");
@@ -156,7 +156,7 @@ function function_2d9e1e29(var_5ea5c94d, ended_early)
 		level.var_9e3c632e++;
 		level.var_4adebdfc clientfield::set("" + #"hash_10906b9ce905bda8", level.var_9e3c632e);
 		level.var_ed1e7d4d = level.var_9e3c632e - 1;
-		foreach(wisp in level.var_4adebdfc.var_d6e4211c)
+		foreach(wisp in level.var_4adebdfc.a_wisps)
 		{
 			if(isdefined(wisp))
 			{
@@ -184,10 +184,10 @@ function function_ad37e626()
 	level endon(#"end_game");
 	while(!level flag::get(#"hash_17356796e22e1247"))
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"trigger_activated", #"hash_17356796e22e1247");
-		player = var_385703b7.e_who;
-		if(var_385703b7._notify === "trigger_activated")
+		s_notify = undefined;
+		s_notify = self waittill(#"trigger_activated", #"hash_17356796e22e1247");
+		player = s_notify.e_who;
+		if(s_notify._notify === "trigger_activated")
 		{
 			damage = 0;
 			switch(level.var_9e3c632e)
@@ -221,7 +221,7 @@ function function_ad37e626()
 			wait(2);
 		}
 	}
-	level.var_146a5216 thread function_ee4a200b();
+	level.s_mq_blood_vessel_loc thread function_ee4a200b();
 }
 
 /*
@@ -264,7 +264,7 @@ function function_ee4a200b()
 	level notify(#"hash_5c300c026d5f688f");
 	level flag::clear(#"hash_17356796e22e1247");
 	wait(2);
-	level.var_146a5216 thread function_ad37e626();
+	level.s_mq_blood_vessel_loc thread function_ad37e626();
 }
 
 /*
@@ -411,16 +411,16 @@ function function_a9d35d2()
 	level endon(#"end_game");
 	while(level flag::get(#"hash_28fbeeac800ae782"))
 	{
-		var_5a08896 = array::remove_index(level.var_63a35083, 0);
+		stance_any_step = array::remove_index(level.var_63a35083, 0);
 		if(isdefined(self.var_d0fed9fb))
 		{
-			var_5a08896 = array::remove_index(var_5a08896, self.var_d0fed9fb);
+			stance_any_step = array::remove_index(stance_any_step, self.var_d0fed9fb);
 		}
-		s_point = array::random(var_5a08896);
+		s_point = array::random(stance_any_step);
 		self moveto(s_point.origin, 0.5, 0.1, 0.2);
 		self.var_d0fed9fb = s_point.script_int;
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill_timeout(function_21a3a673(4 - level.var_9e3c632e, 6 - level.var_9e3c632e), #"hash_1b991f6cf2f6430a");
+		s_result = undefined;
+		s_result = self waittill_timeout(function_21a3a673(4 - level.var_9e3c632e, 6 - level.var_9e3c632e), #"hash_1b991f6cf2f6430a");
 	}
 }
 
@@ -439,13 +439,13 @@ function function_9a991dc2(n_index)
 	var_c80c2ab6 setmodel("apothican_blood_sphere_16");
 	var_c80c2ab6 clientfield::set("" + #"hash_5dd642a0bd6e6cb9", 1);
 	var_c80c2ab6.b_frozen = 0;
-	var_c80c2ab6.var_3eaba6a0 = 0;
+	var_c80c2ab6.b_primed = 0;
 	var_c80c2ab6.health = 999;
 	var_c80c2ab6 val::set(#"mq_blood", "allowdeath", 0);
 	var_c80c2ab6 val::set(#"mq_blood", "takedamage", 1);
 	var_c80c2ab6 thread function_c2d403f(n_index);
 	var_c80c2ab6 thread function_a4fa2df0(n_index);
-	level.var_4adebdfc.var_d6e4211c[n_index] = var_c80c2ab6;
+	level.var_4adebdfc.a_wisps[n_index] = var_c80c2ab6;
 }
 
 /*
@@ -462,15 +462,15 @@ function function_c2d403f(n_index)
 	self endon(#"death");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"damage");
-		if(isplayer(var_385703b7.attacker))
+		s_notify = undefined;
+		s_notify = self waittill(#"damage");
+		if(isplayer(s_notify.attacker))
 		{
 			if(self.b_frozen)
 			{
-				if(self.var_3eaba6a0)
+				if(self.b_primed)
 				{
-					self moveto(level.var_146a5216.vessel.origin, 0.7, 0.1, 0.1);
+					self moveto(level.s_mq_blood_vessel_loc.vessel.origin, 0.7, 0.1, 0.1);
 					wait(0.7);
 					level.var_64f7b41e++;
 					self thread util::delayed_delete(0.1);
@@ -480,20 +480,20 @@ function function_c2d403f(n_index)
 					var_3a253a6f = max(distance(self.origin, level.var_e70fa660[n_index].origin) / 1000, 1);
 					self moveto(level.var_e70fa660[n_index].origin, var_3a253a6f, 0.2, 0.2);
 					wait(var_3a253a6f);
-					self.var_3eaba6a0 = 1;
+					self.b_primed = 1;
 					self notify(#"primed");
 					self clientfield::set("" + #"hash_5dd642a0bd6e6cb9", 1);
 					self.b_frozen = 0;
 				}
 			}
-			else if(isinarray(level.var_16972e5c, var_385703b7.weapon.name))
+			else if(isinarray(level.var_16972e5c, s_notify.weapon.name))
 			{
 				self clientfield::set("" + #"hash_5dd642a0bd6e6cb9", 2);
 				self.b_frozen = 1;
 			}
 			else
 			{
-				self.var_9f048f2f = 1;
+				self.b_near = 1;
 			}
 		}
 	}
@@ -515,7 +515,7 @@ function function_a4fa2df0(n_index)
 	if(level.var_9e3c632e > 2)
 	{
 		self moveto(level.var_e70fa660[n_index].origin, 0.3, 0.1, 0.1);
-		self.var_3eaba6a0 = 1;
+		self.b_primed = 1;
 	}
 	else
 	{
@@ -564,16 +564,16 @@ function function_a4fa2df0(n_index)
 			var_3a253a6f = max(distance(self.origin, loc.origin) / 1000, 1);
 			self moveto(loc.origin + vectorscale((0, 0, 1), 50), var_3a253a6f, 0.2, 0.2);
 			wait(var_3a253a6f);
-			self.var_9f048f2f = 0;
-			while(!self.var_9f048f2f)
+			self.b_near = 0;
+			while(!self.b_near)
 			{
-				a_players = namespace_891c9bac::function_347f7d34();
+				a_players = zm_vo::function_347f7d34();
 				foreach(player in a_players)
 				{
 					distance = distance(player.origin, self.origin);
 					if(distance < 300 && player cansee(self))
 					{
-						self.var_9f048f2f = 1;
+						self.b_near = 1;
 					}
 				}
 				waitframe(1);

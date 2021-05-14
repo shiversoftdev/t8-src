@@ -178,8 +178,8 @@ function function_439b486f()
 		exploder::exploder("fxexp_disco_lgt");
 		var_51bef3af = spawn("script_model", (1, 1145, -350));
 		var_51bef3af playsound(#"hash_c8d3a1557c42ab7");
-		var_385703b7 = undefined;
-		var_385703b7 = level waittill_timeout(253, #"hash_7646638df88a3656");
+		s_notify = undefined;
+		s_notify = level waittill_timeout(253, #"hash_7646638df88a3656");
 		var_51bef3af stopsound(#"hash_c8d3a1557c42ab7");
 		waitframe(1);
 		var_51bef3af delete();
@@ -255,13 +255,13 @@ function spawn_boss()
 	var_1c91a56e = struct::get("apd_door_scene", "targetname");
 	level waittill(#"zombie_total_set");
 	n_threshold = level.total_zombies_killed - level.zombie_total_subtract + level.zombie_total;
-	var_385703b7 = undefined;
-	var_385703b7 = level waittill(#"hash_715188521b564b16");
+	s_notify = undefined;
+	s_notify = level waittill(#"hash_715188521b564b16");
 	var_1c91a56e scene::play("open");
 	namespace_92cb027a::spawn_boss();
 	if(isdefined(level.var_43c333a8))
 	{
-		level.var_43c333a8 thread function_497362b5(n_threshold);
+		level.var_43c333a8 thread spawn_done(n_threshold);
 	}
 }
 
@@ -283,7 +283,7 @@ function function_e478fb2a()
 }
 
 /*
-	Name: function_497362b5
+	Name: spawn_done
 	Namespace: namespace_309bc702
 	Checksum: 0x95EDBBFF
 	Offset: 0xCF0
@@ -291,7 +291,7 @@ function function_e478fb2a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_497362b5(n_threshold)
+function spawn_done(n_threshold)
 {
 	level endon(#"hash_7646638df88a3656");
 	waitframe(1);

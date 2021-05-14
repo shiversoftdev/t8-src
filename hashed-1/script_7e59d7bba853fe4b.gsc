@@ -311,12 +311,12 @@ private function update_patrol(entity, patrol_path, var_b90f0f49, var_73fcb9ff, 
 		for(i = 0; i < patrol_path.size; i++)
 		{
 			var_cf88d3eb = patrol_path[i];
-			var_d9555c14 = getclosestpointonnavmesh(var_cf88d3eb.origin, 100, entity getpathfindingradius());
-			if(!isdefined(var_d9555c14))
+			next_goal = getclosestpointonnavmesh(var_cf88d3eb.origin, 100, entity getpathfindingradius());
+			if(!isdefined(next_goal))
 			{
 				break;
 			}
-			entity setgoal(var_d9555c14);
+			entity setgoal(next_goal);
 			entity waittill(#"goal_changed");
 			entity waittill(#"goal");
 			if(isdefined(var_73fcb9ff))
@@ -442,8 +442,8 @@ function function_422fdfd4(entity, attacker, weapon, var_5457dc44, hitloc, point
 	var_8d3f5b7d = isalive(attacker) && isplayer(attacker);
 	var_201ce857 = var_8d3f5b7d && attacker zm_powerups::is_insta_kill_active();
 	var_84ed9a13 = function_de3dda83(var_5457dc44, hitloc, point, var_ebcb86d6);
-	var_7d87f2d4 = isdefined(var_84ed9a13) && namespace_81245006::function_f29756fe(var_84ed9a13) == 1;
-	var_30362eca = var_7d87f2d4 && var_84ed9a13.type !== #"armor";
+	registerzombie_bgb_used_reinforce = isdefined(var_84ed9a13) && namespace_81245006::function_f29756fe(var_84ed9a13) == 1;
+	var_30362eca = registerzombie_bgb_used_reinforce && var_84ed9a13.type !== #"armor";
 	if(entity function_94d76123(weapon))
 	{
 		var_532264f5 = entity function_86cb3728(weapon);
@@ -489,7 +489,7 @@ function function_422fdfd4(entity, attacker, weapon, var_5457dc44, hitloc, point
 				var_b1c1c5cf = var_b1c1c5cf * 1.2;
 			}
 		}
-		else if(var_7d87f2d4 && var_84ed9a13.type == #"armor" && weaponhasattachment(weapon, "fmj2"))
+		else if(registerzombie_bgb_used_reinforce && var_84ed9a13.type == #"armor" && weaponhasattachment(weapon, "fmj2"))
 		{
 			if(self.var_6f84b820 == #"boss")
 			{
@@ -500,7 +500,7 @@ function function_422fdfd4(entity, attacker, weapon, var_5457dc44, hitloc, point
 				var_b1c1c5cf = min(1, var_b1c1c5cf + 0.1);
 			}
 		}
-		else if(var_38d1de41 && !var_7d87f2d4 && weaponhasattachment(weapon, "fmj") && var_b1c1c5cf < 1)
+		else if(var_38d1de41 && !registerzombie_bgb_used_reinforce && weaponhasattachment(weapon, "fmj") && var_b1c1c5cf < 1)
 		{
 			if(self.var_6f84b820 == #"boss")
 			{
@@ -512,7 +512,7 @@ function function_422fdfd4(entity, attacker, weapon, var_5457dc44, hitloc, point
 			}
 		}
 	}
-	return {#hash_201ce857:var_201ce857, #hash_7d87f2d4:var_7d87f2d4, #hash_84ed9a13:var_84ed9a13, #damage_scale:var_b1c1c5cf};
+	return {#hash_201ce857:var_201ce857, #registerzombie_bgb_used_reinforce:registerzombie_bgb_used_reinforce, #hash_84ed9a13:var_84ed9a13, #damage_scale:var_b1c1c5cf};
 }
 
 /*
@@ -594,16 +594,16 @@ function function_a2e8fd7b(entity, player, var_3f120c4d = 4)
 */
 function function_8de1b5b9(entity)
 {
-	if(isinarray(level.var_1251431b, entity))
+	if(isinarray(level.zombie_targets, entity))
 	{
 		/#
 			iprintlnbold("" + entity getentitynumber() + "");
 		#/
 		return 0;
 	}
-	function_1eaaceab(level.var_1251431b);
-	arrayremovevalue(level.var_1251431b, undefined);
-	if(level.var_1251431b.size + 4 >= 16)
+	function_1eaaceab(level.zombie_targets);
+	arrayremovevalue(level.zombie_targets, undefined);
+	if(level.zombie_targets.size + 4 >= 16)
 	{
 		/#
 			iprintlnbold("" + entity getentitynumber() + "");
@@ -614,15 +614,15 @@ function function_8de1b5b9(entity)
 	{
 		entity.am_i_valid = 1;
 	}
-	if(!isdefined(level.var_1251431b))
+	if(!isdefined(level.zombie_targets))
 	{
-		level.var_1251431b = [];
+		level.zombie_targets = [];
 	}
-	else if(!isarray(level.var_1251431b))
+	else if(!isarray(level.zombie_targets))
 	{
-		level.var_1251431b = array(level.var_1251431b);
+		level.zombie_targets = array(level.zombie_targets);
 	}
-	level.var_1251431b[level.var_1251431b.size] = entity;
+	level.zombie_targets[level.zombie_targets.size] = entity;
 	return 1;
 }
 
@@ -637,7 +637,7 @@ function function_8de1b5b9(entity)
 */
 function function_2d29434e(entity)
 {
-	return isinarray(level.var_1251431b, entity);
+	return isinarray(level.zombie_targets, entity);
 }
 
 /*
@@ -651,14 +651,14 @@ function function_2d29434e(entity)
 */
 function function_901eccf2(entity)
 {
-	if(!isinarray(level.var_1251431b, entity))
+	if(!isinarray(level.zombie_targets, entity))
 	{
 		/#
 			iprintlnbold("" + entity getentitynumber() + "");
 		#/
 		return 0;
 	}
-	arrayremovevalue(level.var_1251431b, entity);
+	arrayremovevalue(level.zombie_targets, entity);
 	return 1;
 }
 

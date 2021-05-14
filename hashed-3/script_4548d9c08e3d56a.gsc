@@ -200,9 +200,9 @@ private function function_4c6d1750()
 	self endon(#"disconnect", #"hash_1410cda9f15ef1c3");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"hash_3669499a148a6d6e");
-		if(var_88706ea7.weapon == getweapon(#"tomahawk_t8_upgraded"))
+		s_result = undefined;
+		s_result = self waittill(#"hash_3669499a148a6d6e");
+		if(s_result.weapon == getweapon(#"tomahawk_t8_upgraded"))
 		{
 			self zm_utility::giveachievement_wrapper("zm_escape_senseless");
 			self notify(#"hash_1410cda9f15ef1c3");
@@ -224,22 +224,22 @@ private function function_8b752e69()
 	self endon(#"disconnect");
 	self.var_cd7cfb60 = 0;
 	self.var_8179ae74 = 0;
-	self.var_3ad4276f = 0;
-	while(!self.var_cd7cfb60 || !self.var_8179ae74 || !self.var_3ad4276f)
+	self.footprint_warning_vobreadcrumbs = 0;
+	while(!self.var_cd7cfb60 || !self.var_8179ae74 || !self.footprint_warning_vobreadcrumbs)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"hash_2e36f5f4d9622bb3");
-		if(var_88706ea7.weapon == getweapon(#"hash_19c157f2230454ad") || var_88706ea7.weapon == getweapon(#"hash_cb1cdb5b47f0226"))
+		s_result = undefined;
+		s_result = self waittill(#"hash_2e36f5f4d9622bb3");
+		if(s_result.weapon == getweapon(#"hash_19c157f2230454ad") || s_result.weapon == getweapon(#"hash_cb1cdb5b47f0226"))
 		{
 			self.var_cd7cfb60 = 1;
 		}
-		if(var_88706ea7.weapon == getweapon(#"hash_23882a5729dceca") || var_88706ea7.weapon == getweapon(#"hash_1b5092cccdb3d65b"))
+		if(s_result.weapon == getweapon(#"hash_23882a5729dceca") || s_result.weapon == getweapon(#"hash_1b5092cccdb3d65b"))
 		{
 			self.var_8179ae74 = 1;
 		}
-		if(var_88706ea7.weapon == getweapon(#"hash_25a13b6f6232a985") || var_88706ea7.weapon == getweapon(#"hash_4c157b1aeefae09e") || var_88706ea7.weapon == getweapon(#"hash_494f5501b3f8e1e9"))
+		if(s_result.weapon == getweapon(#"hash_25a13b6f6232a985") || s_result.weapon == getweapon(#"hash_4c157b1aeefae09e") || s_result.weapon == getweapon(#"hash_494f5501b3f8e1e9"))
 		{
-			self.var_3ad4276f = 1;
+			self.footprint_warning_vobreadcrumbs = 1;
 		}
 	}
 	self zm_utility::giveachievement_wrapper("zm_escape_gat");
@@ -267,8 +267,8 @@ private function function_ce31237b()
 	self.var_5b73502a = 0;
 	while(!self.var_23d1ca17 || !self.var_ba2bd447 || !self.var_5b73502a)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"hash_2706d6137c04adf4");
+		s_result = undefined;
+		s_result = self waittill(#"hash_2706d6137c04adf4");
 		str_zone = self zm_zonemgr::get_player_zone();
 		if(!isdefined(str_zone))
 		{

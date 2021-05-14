@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_6e4fd4c82cd73524", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_6e4fd4c82cd73524", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -52,7 +52,7 @@ function __init__()
 */
 private function function_d1de6a85(n_kill_count)
 {
-	level.var_f7e95a13 = namespace_f551babc::function_5769f26a(n_kill_count);
+	level.var_f7e95a13 = zm_trial::function_5769f26a(n_kill_count);
 	foreach(player in getplayers())
 	{
 		player.var_76bb4a3e = 0;
@@ -105,12 +105,12 @@ private function function_9e7b3f4d(round_reset)
 		}
 		if(var_acba5af0.size == 1)
 		{
-			namespace_f551babc::fail(#"hash_18fa90427a117729", var_acba5af0);
+			zm_trial::fail(#"hash_18fa90427a117729", var_acba5af0);
 			function_d99b4aa5();
 		}
 		else if(var_acba5af0.size > 1)
 		{
-			namespace_f551babc::fail(#"hash_68076ef1f7244678", var_acba5af0);
+			zm_trial::fail(#"hash_68076ef1f7244678", var_acba5af0);
 			function_d99b4aa5();
 		}
 	}
@@ -140,7 +140,7 @@ private function on_ai_killed(params)
 	{
 		e_attacker = params.einflictor;
 	}
-	if(isdefined(params.weapon) && isplayer(e_attacker) && (namespace_2ba51478::is_hero_weapon(params.weapon) || zm_hero_weapon::function_6a32b8f(params.weapon)) && (isdefined(e_attacker.var_76bb4a3e) && e_attacker.var_76bb4a3e < level.var_f7e95a13))
+	if(isdefined(params.weapon) && isplayer(e_attacker) && (zm_loadout::is_hero_weapon(params.weapon) || zm_hero_weapon::function_6a32b8f(params.weapon)) && (isdefined(e_attacker.var_76bb4a3e) && e_attacker.var_76bb4a3e < level.var_f7e95a13))
 	{
 		e_attacker.var_76bb4a3e++;
 		e_attacker namespace_b22c99a5::function_2190356a(e_attacker.var_76bb4a3e);
@@ -181,7 +181,7 @@ private function on_death(params)
 {
 	if(isdefined(self.var_76bb4a3e) && self.var_76bb4a3e < level.var_f7e95a13)
 	{
-		namespace_f551babc::fail(#"hash_18fa90427a117729", array(self));
+		zm_trial::fail(#"hash_18fa90427a117729", array(self));
 	}
 }
 

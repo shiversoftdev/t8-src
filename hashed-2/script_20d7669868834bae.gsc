@@ -24,7 +24,7 @@ autoexec function init_shared()
 	level.var_2868525a = 1;
 	function_3f70d4b7();
 	spawner::add_archetype_spawn_function(#"stoker", &function_d30d1f3);
-	namespace_4b75060d::function_80aecbc4();
+	namespace_4b75060d::registerstokerinterfaceattributes();
 	/#
 	#/
 }

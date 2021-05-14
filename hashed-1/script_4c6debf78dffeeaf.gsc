@@ -171,7 +171,7 @@ function callback_playerconnect()
 	{
 		setdvar(#"splitscreen_playernum", level.players.size);
 	}
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		self.pers[#"needteam"] = 1;
 		self.pers[#"team"] = #"spectator";

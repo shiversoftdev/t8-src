@@ -46,7 +46,7 @@ function __init__()
 */
 private function function_b7de760d()
 {
-	foreach(insertion in level.var_90161fff)
+	foreach(insertion in level.insertions)
 	{
 		namespace_67838d10::function_a5fd9aa8(insertion);
 		foreach(player in insertion.players)

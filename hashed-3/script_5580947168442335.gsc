@@ -96,7 +96,7 @@ private function function_1c10540b()
 	var_dbb94a = parachute.("parachuteLit");
 	if(isdefined(var_dbb94a))
 	{
-		self util::function_722c0c0(var_dbb94a);
+		self util::unlock_model(var_dbb94a);
 	}
 }
 
@@ -114,7 +114,7 @@ private function function_40635b9a(var_dbb94a)
 	if(isdefined(var_dbb94a) && self isattached(var_dbb94a, "tag_weapon_right"))
 	{
 		self detach(var_dbb94a, "tag_weapon_right");
-		self util::function_722c0c0(var_dbb94a);
+		self util::unlock_model(var_dbb94a);
 	}
 }
 

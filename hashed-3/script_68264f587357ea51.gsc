@@ -1359,7 +1359,7 @@ private function function_cfebeacb(localclientnum, item)
 			{
 				weapon = item.weapon;
 			}
-			var_e827f698 = namespace_bd02cf1::function_385ef18d(weapon);
+			var_e827f698 = activecamo::function_385ef18d(weapon);
 			weaponoptions = self getbuildkitweaponoptions(localclientnum, var_e827f698);
 		}
 		if(isdefined(weaponoptions))
@@ -1374,7 +1374,7 @@ private function function_cfebeacb(localclientnum, item)
 		self useweaponhidetags(weapon);
 		if(isdefined(weaponoptions))
 		{
-			self namespace_bd02cf1::function_6efb762c(localclientnum, var_e827f698, weaponoptions);
+			self activecamo::function_6efb762c(localclientnum, var_e827f698, weaponoptions);
 		}
 		return 1;
 	}
@@ -1968,7 +1968,7 @@ private function function_eb396946(localclientnum)
 				{
 					if(isdefined(item.weapon) && item.weapon != level.weaponnone && item.weapon !== item.var_a6762160.weapon)
 					{
-						var_e827f698 = namespace_bd02cf1::function_385ef18d(item.weapon);
+						var_e827f698 = activecamo::function_385ef18d(item.weapon);
 						weaponoptions = self getbuildkitweaponoptions(localclientnum, var_e827f698);
 						var_493cfe65 = item.weapon;
 						forcestreamweaponrenderoptions(localclientnum, var_493cfe65, weaponoptions);
@@ -1976,7 +1976,7 @@ private function function_eb396946(localclientnum)
 					}
 					else if(isdefined(item.var_a6762160.weapon) && item.var_a6762160.weapon != level.weaponnone)
 					{
-						var_e827f698 = namespace_bd02cf1::function_385ef18d(item.var_a6762160.weapon);
+						var_e827f698 = activecamo::function_385ef18d(item.var_a6762160.weapon);
 						weaponoptions = self getbuildkitweaponoptions(localclientnum, var_e827f698);
 						var_493cfe65 = namespace_a0d533d1::function_2b83d3ff(item);
 						forcestreamweaponrenderoptions(localclientnum, var_493cfe65, weaponoptions);

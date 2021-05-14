@@ -459,10 +459,10 @@ private function _isinjured(bot)
 {
 	if(strategiccommandutility::isvalidbot(bot) && isdefined(bot.health) && isdefined(bot.maxhealth))
 	{
-		var_3d84354d = bot bot::function_d473f7de();
-		if(isdefined(var_3d84354d))
+		tacstate = bot bot::function_d473f7de();
+		if(isdefined(tacstate))
 		{
-			return bot.health / bot.maxhealth <= (isdefined(var_3d84354d.var_ac1c818f) ? var_3d84354d.var_ac1c818f : 0);
+			return bot.health / bot.maxhealth <= (isdefined(tacstate.var_ac1c818f) ? tacstate.var_ac1c818f : 0);
 		}
 	}
 	return 0;
@@ -1725,17 +1725,17 @@ private function function_942e45dc(planner, params)
 		if(isdefined(crumb.target))
 		{
 			var_8d50333d = struct::get_array(crumb.target, "targetname");
-			var_c70cdab9 = [];
+			botchains = [];
 			foreach(var_ced34a87 in var_8d50333d)
 			{
 				if(var_ced34a87.variantname === "bot_chain")
 				{
-					var_c70cdab9[var_c70cdab9.size] = var_ced34a87;
+					botchains[botchains.size] = var_ced34a87;
 				}
 			}
-			if(var_c70cdab9.size > 0)
+			if(botchains.size > 0)
 			{
-				bot thread bot_chain::function_cf70f2fe(var_c70cdab9[randomint(var_c70cdab9.size)]);
+				bot thread bot_chain::function_cf70f2fe(botchains[randomint(botchains.size)]);
 				if(!isdefined(crumb.var_2777474d))
 				{
 					crumb.var_2777474d = [];

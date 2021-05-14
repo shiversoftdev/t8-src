@@ -377,7 +377,7 @@ private function function_e48aca4d(type, bundle, weapon, vehicle, var_c0a31091, 
 	}
 	function_1110a5de(type, bundle.var_5fbfc70d, bundle.var_e7b30a9a, bundle.var_b7bd2ff9, bundle.var_f6042a3, bundle.var_2451b1f2, bundle.var_7742570a, bundle.var_335def6c, bundle.var_7a502c34, bundle.var_e773a429, bundle.var_799a81a7, bundle.var_f5871fe4, bundle.var_bd7786a4);
 	level.killstreaks[type].script_bundle = bundle;
-	killstreak_bundles::function_25ce781d(type, bundle);
+	killstreak_bundles::register_bundle(type, bundle);
 	if(isdefined(bundle.var_1bc9830d) && bundle.var_1bc9830d && (!(isdefined(isinventoryweapon) && isinventoryweapon)))
 	{
 		register_dev_dvars(type);
@@ -385,7 +385,7 @@ private function function_e48aca4d(type, bundle, weapon, vehicle, var_c0a31091, 
 }
 
 /*
-	Name: function_25ce781d
+	Name: register_bundle
 	Namespace: killstreaks
 	Checksum: 0x8CD61EBB
 	Offset: 0x1838
@@ -393,7 +393,7 @@ private function function_e48aca4d(type, bundle, weapon, vehicle, var_c0a31091, 
 	Parameters: 2
 	Flags: None
 */
-function function_25ce781d(bundle, var_c0a31091)
+function register_bundle(bundle, var_c0a31091)
 {
 	function_e48aca4d(bundle.var_d3413870, bundle, bundle.var_1ab696c6, bundle.ksvehicle, var_c0a31091, 0);
 	if(isdefined(bundle.var_fc0c8eae) && bundle.var_fc0c8eae.name != #"none")
@@ -414,7 +414,7 @@ function function_25ce781d(bundle, var_c0a31091)
 function function_e4ef8390(bundlename, var_832677ec)
 {
 	bundle = struct::get_script_bundle("killstreak", bundlename);
-	function_25ce781d(bundle, var_832677ec);
+	register_bundle(bundle, var_832677ec);
 }
 
 /*

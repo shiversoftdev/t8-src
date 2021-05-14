@@ -356,7 +356,7 @@ private function function_e1273acb(localclientnum, intensity = 0)
 	fwd = anglestoforward(angles);
 	players = getplayers(localclientnum);
 	players = arraysortclosest(players, origin);
-	var_14a2badb = level.var_c465fd31[intensity];
+	rob = level.var_c465fd31[intensity];
 	var_ba26d3a3 = level.var_7d949aad[intensity];
 	var_65837411 = level.var_213a0963[intensity];
 	foreach(player in players)
@@ -375,7 +375,7 @@ private function function_e1273acb(localclientnum, intensity = 0)
 			player function_9e8e1f4f(localclientnum);
 			continue;
 		}
-		player function_de4523(localclientnum, var_14a2badb, var_ba26d3a3);
+		player function_de4523(localclientnum, rob, var_ba26d3a3);
 		player function_9e8e1f4f(localclientnum, var_65837411);
 		var_4a4e047++;
 	}
@@ -390,29 +390,29 @@ private function function_e1273acb(localclientnum, intensity = 0)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_de4523(localclientnum, var_14a2badb = undefined, var_ba26d3a3 = undefined)
+private function function_de4523(localclientnum, rob = undefined, var_ba26d3a3 = undefined)
 {
-	if(self.var_eeee3972 === var_14a2badb && self.var_99d5860e === var_ba26d3a3)
+	if(self.var_eeee3972 === rob && self.var_99d5860e === var_ba26d3a3)
 	{
 		return;
 	}
-	if(isdefined(self.var_eeee3972) && self.var_eeee3972 !== var_14a2badb)
+	if(isdefined(self.var_eeee3972) && self.var_eeee3972 !== rob)
 	{
 		self function_5d482e78(self.var_eeee3972);
 		self.var_eeee3972 = undefined;
 		self.var_99d5860e = undefined;
 	}
-	if(isdefined(var_14a2badb))
+	if(isdefined(rob))
 	{
-		if(!self function_d2503806(var_14a2badb))
+		if(!self function_d2503806(rob))
 		{
-			self function_bf9d3071(var_14a2badb);
+			self function_bf9d3071(rob);
 		}
 		if(isdefined(var_ba26d3a3))
 		{
-			self function_78233d29(var_14a2badb, "", "Fade", var_ba26d3a3);
+			self function_78233d29(rob, "", "Fade", var_ba26d3a3);
 		}
-		self.var_eeee3972 = var_14a2badb;
+		self.var_eeee3972 = rob;
 		self.var_99d5860e = var_ba26d3a3;
 	}
 }

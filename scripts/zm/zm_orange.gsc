@@ -74,11 +74,11 @@
 #using scripts\zm_common\zm_weapons.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_b57826b5;
+#namespace zm_orange;
 
 /*
 	Name: opt_in
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xA12DFB57
 	Offset: 0xBB0
 	Size: 0x62
@@ -97,7 +97,7 @@ autoexec function opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x8AF793B5
 	Offset: 0xC20
 	Size: 0xB2C
@@ -207,7 +207,7 @@ event main(eventstruct)
 	level thread function_681c28c9();
 	level thread function_486119ea();
 	level thread function_30829a12();
-	callback::function_74872db6(&function_4caf80db);
+	callback::function_74872db6(&play_avalanche);
 	if(!zm_utility::function_e51dc2d8())
 	{
 		var_47cef04a = getent("ee_ind", "targetname");
@@ -216,7 +216,7 @@ event main(eventstruct)
 			var_47cef04a delete();
 		}
 	}
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
 		level thread namespace_78baa66c::main();
 	}
@@ -233,7 +233,7 @@ event main(eventstruct)
 
 /*
 	Name: function_9f50079d
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xE059AEBB
 	Offset: 0x1758
 	Size: 0x2C
@@ -242,12 +242,12 @@ event main(eventstruct)
 */
 function function_9f50079d()
 {
-	namespace_2ba51478::register_tactical_grenade_for_level(#"hash_603fdd2e4ae5b2b0", 1);
+	zm_loadout::register_tactical_grenade_for_level(#"hash_603fdd2e4ae5b2b0", 1);
 }
 
 /*
 	Name: offhand_weapon_give_override
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x634726AA
 	Offset: 0x1790
 	Size: 0xC6
@@ -257,17 +257,17 @@ function function_9f50079d()
 function offhand_weapon_give_override(str_weapon)
 {
 	self endon(#"death");
-	if(namespace_2ba51478::is_tactical_grenade(str_weapon) && isdefined(self namespace_2ba51478::get_player_tactical_grenade()) && !self namespace_2ba51478::is_player_tactical_grenade(str_weapon))
+	if(zm_loadout::is_tactical_grenade(str_weapon) && isdefined(self zm_loadout::get_player_tactical_grenade()) && !self zm_loadout::is_player_tactical_grenade(str_weapon))
 	{
-		self setweaponammoclip(self namespace_2ba51478::get_player_tactical_grenade(), 0);
-		self takeweapon(self namespace_2ba51478::get_player_tactical_grenade());
+		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
+		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
 	return 0;
 }
 
 /*
 	Name: include_weapons
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x80F724D1
 	Offset: 0x1860
 	Size: 0x4
@@ -280,7 +280,7 @@ function include_weapons()
 
 /*
 	Name: precachecustomcharacters
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x80F724D1
 	Offset: 0x1870
 	Size: 0x4
@@ -293,7 +293,7 @@ function precachecustomcharacters()
 
 /*
 	Name: assign_lowest_unused_character_index
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xB3FAA01E
 	Offset: 0x1880
 	Size: 0x270
@@ -357,7 +357,7 @@ function assign_lowest_unused_character_index()
 
 /*
 	Name: givecustomcharacters
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xCAF9C4C9
 	Offset: 0x1AF8
 	Size: 0x214
@@ -409,7 +409,7 @@ function givecustomcharacters()
 
 /*
 	Name: set_exert_id
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x291EFFA3
 	Offset: 0x1D18
 	Size: 0x5C
@@ -426,7 +426,7 @@ function set_exert_id()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xB8323646
 	Offset: 0x1D80
 	Size: 0x508
@@ -467,7 +467,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: function_8c000d3b
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x6AC85023
 	Offset: 0x2290
 	Size: 0x178
@@ -504,7 +504,7 @@ function function_8c000d3b()
 
 /*
 	Name: sndfunctions
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xC596E1DC
 	Offset: 0x2410
 	Size: 0xCC
@@ -530,7 +530,7 @@ function sndfunctions()
 
 /*
 	Name: custom_add_vox
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x7B4C882A
 	Offset: 0x24E8
 	Size: 0xE4
@@ -550,7 +550,7 @@ function custom_add_vox()
 
 /*
 	Name: setupmusic
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x78E6FC23
 	Offset: 0x25D8
 	Size: 0x164
@@ -571,7 +571,7 @@ function setupmusic()
 
 /*
 	Name: function_c3d2b3ee
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xF079556E
 	Offset: 0x2748
 	Size: 0x1E4
@@ -601,7 +601,7 @@ function function_c3d2b3ee()
 
 /*
 	Name: function_486119ea
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x43B54B84
 	Offset: 0x2938
 	Size: 0x158
@@ -643,7 +643,7 @@ function function_486119ea()
 
 /*
 	Name: function_789961d3
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xFA273967
 	Offset: 0x2A98
 	Size: 0x62
@@ -661,7 +661,7 @@ function function_789961d3()
 
 /*
 	Name: function_1f712bb1
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x4DE01F1A
 	Offset: 0x2B08
 	Size: 0x12A
@@ -700,7 +700,7 @@ function function_1f712bb1()
 
 /*
 	Name: function_19a4e7cf
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x395B027D
 	Offset: 0x2C40
 	Size: 0xC8
@@ -717,7 +717,7 @@ function function_19a4e7cf(n_offset, var_e503dc79)
 
 /*
 	Name: function_2336a7c8
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xF6BEBB34
 	Offset: 0x2D10
 	Size: 0x2C
@@ -734,7 +734,7 @@ function function_2336a7c8()
 
 /*
 	Name: function_da0655c7
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x5D4146C5
 	Offset: 0x2D48
 	Size: 0x11C
@@ -761,7 +761,7 @@ function function_da0655c7()
 
 /*
 	Name: function_cf95fbb7
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x4B09D82F
 	Offset: 0x2E70
 	Size: 0x354
@@ -842,7 +842,7 @@ function function_cf95fbb7()
 
 /*
 	Name: function_681c28c9
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xB4BF60E9
 	Offset: 0x31D0
 	Size: 0x19A
@@ -864,7 +864,7 @@ function function_681c28c9()
 
 /*
 	Name: function_30829a12
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xDD0DD28B
 	Offset: 0x3378
 	Size: 0x14C
@@ -875,10 +875,10 @@ function function_30829a12()
 {
 	level waittill(#"start_zombie_round_logic");
 	exploder::exploder("fxexp_shipArtifact_powerOffFire");
-	var_385703b7 = undefined;
-	var_385703b7 = level waittill(#"power_on2", #"hash_6f7fd3d4d070db87");
+	s_notify = undefined;
+	s_notify = level waittill(#"power_on2", #"hash_6f7fd3d4d070db87");
 	exploder::stop_exploder("fxexp_shipArtifact_powerOffFire");
-	if(var_385703b7._notify === "power_on2")
+	if(s_notify._notify === "power_on2")
 	{
 		exploder::exploder("fxexp_shipArtifact_powerOnFire");
 	}
@@ -886,8 +886,8 @@ function function_30829a12()
 	{
 		exploder::exploder("fxexp_shipArtifact_powerOffDaylight");
 	}
-	var_385703b7 = undefined;
-	var_385703b7 = level waittill(#"power_on2", #"hash_6f7fd3d4d070db87");
+	s_notify = undefined;
+	s_notify = level waittill(#"power_on2", #"hash_6f7fd3d4d070db87");
 	exploder::stop_exploder("fxexp_shipArtifact_powerOnFire");
 	exploder::stop_exploder("fxexp_shipArtifact_powerOffDaylight");
 	exploder::exploder("fxexp_shipArtifact_powerOnLights");
@@ -895,7 +895,7 @@ function function_30829a12()
 
 /*
 	Name: function_227dcc04
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xB7DA0127
 	Offset: 0x34D0
 	Size: 0x80
@@ -917,7 +917,7 @@ function function_227dcc04()
 
 /*
 	Name: function_b5695720
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xE421F8E5
 	Offset: 0x3558
 	Size: 0x10A
@@ -943,7 +943,7 @@ function function_b5695720()
 
 /*
 	Name: function_bdf62232
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x6720D861
 	Offset: 0x3670
 	Size: 0x34
@@ -957,7 +957,7 @@ function function_bdf62232()
 
 /*
 	Name: function_6be9c49c
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xC5DB3CCC
 	Offset: 0x36B0
 	Size: 0x34
@@ -970,26 +970,26 @@ function function_6be9c49c()
 }
 
 /*
-	Name: function_4caf80db
-	Namespace: namespace_b57826b5
+	Name: play_avalanche
+	Namespace: zm_orange
 	Checksum: 0x85C6F129
 	Offset: 0x36F0
 	Size: 0x74
 	Parameters: 0
 	Flags: Linked
 */
-function function_4caf80db()
+function play_avalanche()
 {
 	level endon(#"end_game");
 	wait(2);
 	level thread scene::play("p8_fxanim_zm_ora_spawn_avalanche_bundle");
 	exploder::exploder("fxexp_avalanche_event_fx");
-	callback::function_50fdac80(&function_4caf80db);
+	callback::function_50fdac80(&play_avalanche);
 }
 
 /*
 	Name: function_4dacc177
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xBFE9CC2F
 	Offset: 0x3770
 	Size: 0x122
@@ -1024,7 +1024,7 @@ function function_4dacc177()
 
 /*
 	Name: function_c8ce0a17
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0x1B0AD79B
 	Offset: 0x38A0
 	Size: 0x68
@@ -1044,7 +1044,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 
 /*
 	Name: function_e5086229
-	Namespace: namespace_b57826b5
+	Namespace: zm_orange
 	Checksum: 0xAA275E3A
 	Offset: 0x3910
 	Size: 0x70

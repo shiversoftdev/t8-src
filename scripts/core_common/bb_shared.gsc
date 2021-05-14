@@ -15,7 +15,7 @@
 function init_shared()
 {
 	callback::on_start_gametype(&init);
-	callback::on_joined_team(&function_a061f5b);
+	callback::on_joined_team(&player_joined_team);
 	callback::on_spawned(&on_player_spawned);
 }
 
@@ -165,7 +165,7 @@ function function_e0dfa262(name, clientnum, xuid)
 }
 
 /*
-	Name: function_a061f5b
+	Name: player_joined_team
 	Namespace: bb
 	Checksum: 0xD37B290
 	Offset: 0x5D0
@@ -173,7 +173,7 @@ function function_e0dfa262(name, clientnum, xuid)
 	Parameters: 1
 	Flags: Linked
 */
-function function_a061f5b(params)
+function player_joined_team(params)
 {
 	if(!isdefined(self.team) || isdefined(self.startingteam))
 	{

@@ -36,7 +36,7 @@ function __init__()
 	clientfield::register("toplayer", "" + #"hash_f2d0b920043dbbd", 1, 1, "counter", &function_87d68f99, 0, 0);
 	clientfield::register("world", "" + #"attic_room", 1, 1, "int", &attic_room, 0, 0);
 	clientfield::register("world", "" + #"hash_5474fbb93aebbb65", 1, 1, "int", &function_e6ce9708, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_46dbc12bdc275121", 1, 1, "int", &function_a1c1c77c, 0, 0);
+	clientfield::register("scriptmover", "" + #"hash_46dbc12bdc275121", 1, 1, "int", &glyph_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_59623b8b4fc694c8", 1, 2, "int", &function_db9b47b5, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_ce418c45d804842", 1, 1, "counter", &function_2f00e842, 0, 0);
 	level._effect[#"hash_7184fc7d78dcf1c0"] = #"hash_73000f9a6abd5658";
@@ -118,7 +118,7 @@ function attic_room(localclientnum, oldval, newval, bnewent, binitialsnap, field
 }
 
 /*
-	Name: function_a1c1c77c
+	Name: glyph_fx
 	Namespace: namespace_e18ec19b
 	Checksum: 0xDC56D60
 	Offset: 0x700
@@ -126,7 +126,7 @@ function attic_room(localclientnum, oldval, newval, bnewent, binitialsnap, field
 	Parameters: 7
 	Flags: Linked
 */
-function function_a1c1c77c(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function glyph_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_7184fc7d78dcf1c0"], self, "tag_origin");
 }

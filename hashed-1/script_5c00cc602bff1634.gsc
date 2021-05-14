@@ -67,13 +67,13 @@ private function function_d00809d8(localclientnum, pos, surface, notetrack, bone
 {
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(pos, e_player.origin);
-	var_619eef59 = 0;
+	is_large = 0;
 	if(notetrack == "footstep_left_large" || notetrack == "footstep_right_large")
 	{
-		var_619eef59 = 1;
+		is_large = 1;
 	}
 	var_a34b4731 = 1000000;
-	if(var_619eef59)
+	if(is_large)
 	{
 		var_a34b4731 = 4000000;
 	}
@@ -97,7 +97,7 @@ private function function_d00809d8(localclientnum, pos, surface, notetrack, bone
 	earthquake(localclientnum, n_scale, 0.1, pos, n_dist);
 	if(n_scale <= 0.25 && n_scale > 0.2)
 	{
-		if(var_619eef59)
+		if(is_large)
 		{
 			function_36e4ebd4(localclientnum, "damage_heavy");
 		}
@@ -108,7 +108,7 @@ private function function_d00809d8(localclientnum, pos, surface, notetrack, bone
 	}
 	else if(n_scale <= 0.2 && n_scale > 0.1)
 	{
-		if(var_619eef59)
+		if(is_large)
 		{
 			function_36e4ebd4(localclientnum, "anim_med");
 		}
@@ -281,7 +281,7 @@ private function function_d54aae3e(localclientnum, oldval, newval, bnewent, bini
 {
 	if(newval)
 	{
-		self.var_60560c99 = util::playfxontag(localclientnum, level._effect[#"hash_4713a53b947f1e25"], self, "j_head");
+		self.fx_helmet = util::playfxontag(localclientnum, level._effect[#"hash_4713a53b947f1e25"], self, "j_head");
 	}
 }
 

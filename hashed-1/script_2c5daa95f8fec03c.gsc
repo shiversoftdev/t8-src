@@ -4,7 +4,7 @@
 #namespace namespace_81245006;
 
 /*
-	Name: function_b8cf6ebd
+	Name: initweakpoints
 	Namespace: namespace_81245006
 	Checksum: 0x2E8347FD
 	Offset: 0x70
@@ -12,7 +12,7 @@
 	Parameters: 2
 	Flags: Linked
 */
-function function_b8cf6ebd(entity, var_97e1b97d)
+function initweakpoints(entity, var_97e1b97d)
 {
 	var_5ace757d = getscriptbundle(var_97e1b97d);
 	if(!isdefined(var_5ace757d) || !isdefined(var_5ace757d.weakpoints))

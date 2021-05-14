@@ -338,7 +338,7 @@ function function_b8c66122()
 */
 private function function_4fcf8d3f(player)
 {
-	if(!isplayer(player) || !player function_bf46a7aa())
+	if(!isplayer(player) || !player is_infected())
 	{
 		return;
 	}
@@ -392,7 +392,7 @@ private function function_2cdab964(params)
 */
 private function function_70f6e873(params)
 {
-	if(!isdefined(self) || !self function_bf46a7aa())
+	if(!isdefined(self) || !self is_infected())
 	{
 		return;
 	}
@@ -512,7 +512,7 @@ function function_16e24b6c()
 */
 private function function_cabd9ff3(eventstruct)
 {
-	if(!isdefined(eventstruct) || !isdefined(eventstruct.attacker) || !eventstruct.attacker function_bf46a7aa())
+	if(!isdefined(eventstruct) || !isdefined(eventstruct.attacker) || !eventstruct.attacker is_infected())
 	{
 		return;
 	}

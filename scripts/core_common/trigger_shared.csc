@@ -132,12 +132,12 @@ function death_monitor(ent, ender)
 	Parameters: 1
 	Flags: None
 */
-function trigger_wait(var_76c34551)
+function trigger_wait(n_clientnum)
 {
 	self endon(#"trigger");
 	if(isdefined(self.targetname))
 	{
-		trig = getent(var_76c34551, self.targetname, "target");
+		trig = getent(n_clientnum, self.targetname, "target");
 		if(isdefined(trig))
 		{
 			trig waittill(#"trigger");

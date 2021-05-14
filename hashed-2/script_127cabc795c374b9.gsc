@@ -75,10 +75,10 @@ function on_ai_killed(params)
 	if(isplayer(params.eattacker))
 	{
 		attacker = params.eattacker;
-		var_2bfb4416 = struct::get(#"hash_53bbab305c87572a", "targetname");
-		if(isdefined(var_2bfb4416))
+		bathtub = struct::get(#"hash_53bbab305c87572a", "targetname");
+		if(isdefined(bathtub))
 		{
-			distance = distance(var_2bfb4416.origin, attacker.origin);
+			distance = distance(bathtub.origin, attacker.origin);
 			if(distance < 256)
 			{
 				level.var_afdd2ed7++;
@@ -86,7 +86,7 @@ function on_ai_killed(params)
 			}
 			if(level.var_afdd2ed7 >= 3)
 			{
-				level thread function_613448ed(attacker, var_2bfb4416);
+				level thread function_613448ed(attacker, bathtub);
 				callback::remove_callback(#"on_ai_killed", &on_ai_killed);
 				level.var_afdd2ed7 = undefined;
 			}
@@ -136,7 +136,7 @@ function function_dd00c744(params)
 	Parameters: 2
 	Flags: Linked
 */
-function function_613448ed(player, var_2bfb4416)
+function function_613448ed(player, bathtub)
 {
 	self notify("1db1954ce3ca6f10");
 	self endon("1db1954ce3ca6f10");
@@ -144,7 +144,7 @@ function function_613448ed(player, var_2bfb4416)
 	{
 		return;
 	}
-	var_47943768 = function_1deb2b38(var_2bfb4416);
+	var_47943768 = function_1deb2b38(bathtub);
 	var_430db2b8 = getent("zombie_arm", "targetname");
 	if(isdefined(var_430db2b8) && isdefined(var_47943768))
 	{
@@ -271,8 +271,8 @@ function function_7eabf705()
 			if(getdvarint(#"hash_7e7b9e2edcf6d1ee", 0))
 			{
 				players = getplayers();
-				var_2bfb4416 = struct::get(#"hash_53bbab305c87572a", "");
-				function_613448ed(players[0], var_2bfb4416);
+				bathtub = struct::get(#"hash_53bbab305c87572a", "");
+				function_613448ed(players[0], bathtub);
 				level notify(#"hash_671b150516dd9870");
 				break;
 			}

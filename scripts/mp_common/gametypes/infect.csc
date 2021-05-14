@@ -44,14 +44,14 @@ function function_fd78da38(localclientnum, oldval, newval, bnewent, binitialsnap
 				{
 					if(player flag::exists(#"friendly"))
 					{
-						player renderoverridebundle::function_40d0d1e0(#"friendly", (sessionmodeiscampaigngame() ? #"hash_1cbf6d26721c59a7" : #"hash_1c90592671f4c6e9"), 0);
+						player renderoverridebundle::stop_bundle(#"friendly", (sessionmodeiscampaigngame() ? #"hash_1cbf6d26721c59a7" : #"hash_1c90592671f4c6e9"), 0);
 					}
 				}
 			}
 		}
 		else if(self flag::exists(#"friendly"))
 		{
-			self renderoverridebundle::function_40d0d1e0(#"friendly", (sessionmodeiscampaigngame() ? #"hash_1cbf6d26721c59a7" : #"hash_1c90592671f4c6e9"), 0);
+			self renderoverridebundle::stop_bundle(#"friendly", (sessionmodeiscampaigngame() ? #"hash_1cbf6d26721c59a7" : #"hash_1c90592671f4c6e9"), 0);
 		}
 	}
 }

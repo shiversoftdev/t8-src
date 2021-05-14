@@ -86,7 +86,7 @@ function function_1076eef9()
 	Parameters: 4
 	Flags: Linked
 */
-function function_20b5dc19(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_20b5dc19(b_pause, str_perk, str_result, n_slot)
 {
 	level callback::remove_on_ai_killed(&function_1c4f9c3f);
 }

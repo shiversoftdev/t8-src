@@ -173,11 +173,11 @@ function function_ef14badb(use_trigger, perk_machine, bump_trigger, collision)
 */
 function function_1d4d3034()
 {
-	var_bcd1c2ff = zm_perks::function_c1efcc57(#"specialty_phdflopper");
-	self zm_perks::function_f0ac059f(var_bcd1c2ff, 1, #"hash_63e46074d37d524b");
-	self zm_perks::function_13880aa5(var_bcd1c2ff, 1, #"hash_63e46074d37d524b");
-	self zm_perks::function_c8c7bc5(var_bcd1c2ff, 0, #"hash_63e46074d37d524b");
-	self thread function_dc9a257a(var_bcd1c2ff);
+	n_slot = zm_perks::function_c1efcc57(#"specialty_phdflopper");
+	self zm_perks::function_f0ac059f(n_slot, 1, #"hash_63e46074d37d524b");
+	self zm_perks::function_13880aa5(n_slot, 1, #"hash_63e46074d37d524b");
+	self zm_perks::function_c8c7bc5(n_slot, 0, #"hash_63e46074d37d524b");
+	self thread function_dc9a257a(n_slot);
 }
 
 /*
@@ -189,12 +189,12 @@ function function_1d4d3034()
 	Parameters: 4
 	Flags: Linked
 */
-function function_ae56fb1a(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_ae56fb1a(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_6939dd7af68cec");
-	self zm_perks::function_f0ac059f(var_bcd1c2ff, 0, #"hash_63e46074d37d524b");
-	self zm_perks::function_13880aa5(var_bcd1c2ff, 0, #"hash_63e46074d37d524b");
-	self zm_perks::function_c8c7bc5(var_bcd1c2ff, 0, #"hash_63e46074d37d524b");
+	self zm_perks::function_f0ac059f(n_slot, 0, #"hash_63e46074d37d524b");
+	self zm_perks::function_13880aa5(n_slot, 0, #"hash_63e46074d37d524b");
+	self zm_perks::function_c8c7bc5(n_slot, 0, #"hash_63e46074d37d524b");
 }
 
 /*
@@ -206,11 +206,11 @@ function function_ae56fb1a(b_pause, str_perk, str_result, var_bcd1c2ff)
 	Parameters: 1
 	Flags: Linked
 */
-function function_dc9a257a(var_bcd1c2ff)
+function function_dc9a257a(n_slot)
 {
 	self notify(#"hash_6939dd7af68cec");
 	self endon(#"disconnect", #"hash_6939dd7af68cec");
-	self function_140ebf0d(var_bcd1c2ff);
+	self slide_explosion(n_slot);
 	self.var_f354086e = 0;
 	while(true)
 	{
@@ -219,14 +219,14 @@ function function_dc9a257a(var_bcd1c2ff)
 		self waittill(#"slide_end");
 		n_distance = distance(v_start_position, self.origin);
 		self.var_f354086e = self.var_f354086e + n_distance;
-		self zm_perks::function_13880aa5(var_bcd1c2ff, min(1, self.var_f354086e / 550), #"hash_63e46074d37d524b");
+		self zm_perks::function_13880aa5(n_slot, min(1, self.var_f354086e / 550), #"hash_63e46074d37d524b");
 		if(!function_2772480a())
 		{
 			continue;
 		}
 		if(self.var_f354086e >= 550)
 		{
-			self function_140ebf0d(var_bcd1c2ff);
+			self slide_explosion(n_slot);
 			self.var_f354086e = 0;
 		}
 	}
@@ -245,14 +245,14 @@ function function_1def7e()
 {
 	if(self hasperk(#"specialty_phdflopper"))
 	{
-		var_bcd1c2ff = zm_perks::function_c1efcc57(#"specialty_phdflopper");
-		self zm_perks::function_13880aa5(var_bcd1c2ff, 1, #"hash_63e46074d37d524b");
-		self thread function_dc9a257a(var_bcd1c2ff);
+		n_slot = zm_perks::function_c1efcc57(#"specialty_phdflopper");
+		self zm_perks::function_13880aa5(n_slot, 1, #"hash_63e46074d37d524b");
+		self thread function_dc9a257a(n_slot);
 	}
 }
 
 /*
-	Name: function_140ebf0d
+	Name: slide_explosion
 	Namespace: namespace_a7cf6436
 	Checksum: 0xABD3C17F
 	Offset: 0xA58
@@ -260,9 +260,9 @@ function function_1def7e()
 	Parameters: 1
 	Flags: Linked
 */
-function function_140ebf0d(var_bcd1c2ff)
+function slide_explosion(n_slot)
 {
-	self zm_perks::function_c8c7bc5(var_bcd1c2ff, 1, #"hash_63e46074d37d524b");
+	self zm_perks::function_c8c7bc5(n_slot, 1, #"hash_63e46074d37d524b");
 	while(true)
 	{
 		self waittill(#"slide_begin");
@@ -309,8 +309,8 @@ function function_140ebf0d(var_bcd1c2ff)
 			a_ai = self function_bdda420f(self.origin, 256);
 			a_ai = arraysortclosest(a_ai, self.origin);
 			self clientfield::increment("" + #"hash_7b8ad0ed3ef67813");
-			self zm_perks::function_13880aa5(var_bcd1c2ff, 0.05, #"hash_63e46074d37d524b");
-			self zm_perks::function_c8c7bc5(var_bcd1c2ff, 0, #"hash_63e46074d37d524b");
+			self zm_perks::function_13880aa5(n_slot, 0.05, #"hash_63e46074d37d524b");
+			self zm_perks::function_c8c7bc5(n_slot, 0, #"hash_63e46074d37d524b");
 			var_708c0444 = 0;
 			n_kill_count = 0;
 			foreach(ai in a_ai)
@@ -348,7 +348,7 @@ function function_140ebf0d(var_bcd1c2ff)
 						}
 					}
 					/#
-						self namespace_ff457ca2::debug_print("");
+						self zm_challenges::debug_print("");
 					#/
 					self zm_stats::increment_challenge_stat(#"hash_76650a0cbe2993ad");
 				}

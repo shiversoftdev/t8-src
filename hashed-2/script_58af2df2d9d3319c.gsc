@@ -172,7 +172,7 @@ function give_additional_primary_weapon_perk()
 	Parameters: 4
 	Flags: Linked
 */
-function take_additional_primary_weapon_perk(b_pause, str_perk, str_result, var_bcd1c2ff)
+function take_additional_primary_weapon_perk(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_4dba2ff9e70127f5");
 	if(isdefined(self.laststandpistol))
@@ -229,7 +229,7 @@ function function_1a9f3a91()
 {
 	self notify(#"hash_499749b8848c21fd");
 	self endon(#"disconnect", #"hash_4dba2ff9e70127f5", #"hash_499749b8848c21fd");
-	while(isdefined(self.var_c9780fe7))
+	while(isdefined(self.s_loadout))
 	{
 		wait(0.05);
 	}
@@ -241,25 +241,25 @@ function function_1a9f3a91()
 	}
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_change", #"hash_29c66728ccd27f03");
+		s_result = undefined;
+		s_result = self waittill(#"weapon_change", #"hash_29c66728ccd27f03");
 		if(isdefined(self.laststandpistol))
 		{
 			self clientfield::set_player_uimodel("hudItems.perks.additional_primary_weapon", 0);
 			continue;
 		}
-		if(var_88706ea7.weapon !== level.weaponnone && !isinarray(var_3ba4bf7d, var_88706ea7.weapon))
+		if(s_result.weapon !== level.weaponnone && !isinarray(var_3ba4bf7d, s_result.weapon))
 		{
 			var_b13885a = self getweaponslistprimaries();
 			if(var_b13885a.size >= level.additionalprimaryweapon_limit)
 			{
 				if(!isdefined(self.var_2a62e678) && var_b13885a.size > var_3ba4bf7d.size)
 				{
-					self.var_2a62e678 = var_88706ea7.weapon;
+					self.var_2a62e678 = s_result.weapon;
 				}
 				else if(isdefined(self.var_2a62e678) && !isinarray(var_b13885a, self.var_2a62e678))
 				{
-					self.var_2a62e678 = var_88706ea7.weapon;
+					self.var_2a62e678 = s_result.weapon;
 				}
 				if(self.var_67ba1237.size && isinarray(self.var_67ba1237, #"specialty_additionalprimaryweapon"))
 				{

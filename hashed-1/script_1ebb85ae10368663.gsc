@@ -109,7 +109,7 @@ function function_46354b9d(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			self.var_c3a33b28 = util::playfxontag(localclientnum, level._effect[#"hash_5a88903973664de5"], self, "j_spine4");
 			self playsound(localclientnum, #"hash_4826261b01f96036");
-			var_eca5c011 = self playloopsound(#"hash_298631572be3dd79");
+			zmb_soul = self playloopsound(#"hash_298631572be3dd79");
 		}
 	}
 	else if(isdefined(self.var_c3a33b28))

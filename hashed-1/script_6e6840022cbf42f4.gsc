@@ -29,11 +29,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_347b44dd26e1875", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_347b44dd26e1875", &function_d1de6a85, &function_9e7b3f4d);
 	forcestreamxmodel(#"hash_4943e3162de8ef6e");
 	forcestreamxmodel(#"hash_1472b36f2021eaca");
 	forcestreamxmodel(#"hash_75ff026dd5e8cd1a");

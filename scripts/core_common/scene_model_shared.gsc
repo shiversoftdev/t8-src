@@ -59,7 +59,7 @@ private autoexec function cscenemodel()
 	classes.cscenemodel[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.cscenemodel[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.cscenemodel[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.cscenemodel[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.cscenemodel[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.cscenemodel[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.cscenemodel[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.cscenemodel[0].__vtable[1695329961] = &csceneobject::is_shared_player;

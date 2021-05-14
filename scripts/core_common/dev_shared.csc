@@ -34,12 +34,12 @@ function function_b49b1b6b(localclientnum)
 	/#
 		var_39073e7a = undefined;
 		var_b49b1b6b = undefined;
-		var_1585e0a4 = array("", "", "");
+		a_effects = array("", "", "");
 		var_767a6d22 = 0;
 		while(true)
 		{
 			n_dist = getdvarint(#"hash_4348ec71a8b13ef1", 0);
-			var_114d05f = int(min(getdvarint(#"hash_4ead99200e3cc72c", 0), var_1585e0a4.size - 1));
+			var_114d05f = int(min(getdvarint(#"hash_4ead99200e3cc72c", 0), a_effects.size - 1));
 			if(n_dist > 0)
 			{
 				if(var_114d05f != var_767a6d22 && isdefined(var_b49b1b6b))
@@ -53,7 +53,7 @@ function function_b49b1b6b(localclientnum)
 				}
 				if(!isdefined(var_b49b1b6b))
 				{
-					var_b49b1b6b = util::playfxontag(localclientnum, var_1585e0a4[var_114d05f], var_39073e7a, "");
+					var_b49b1b6b = util::playfxontag(localclientnum, a_effects[var_114d05f], var_39073e7a, "");
 				}
 				v_pos = getcamposbylocalclientnum(localclientnum);
 				v_ang = getcamanglesbylocalclientnum(localclientnum);

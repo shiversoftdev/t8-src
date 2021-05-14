@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_5124770c13a75bab", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_5124770c13a75bab", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -52,7 +52,7 @@ function __init__()
 */
 private function function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 {
-	var_a7c52900 = namespace_f551babc::function_5769f26a(var_a7c52900);
+	var_a7c52900 = zm_trial::function_5769f26a(var_a7c52900);
 	level.var_1c8f9eba = var_c8a36f90;
 	wait(6);
 	foreach(player in getplayers())
@@ -74,7 +74,7 @@ private function function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 			}
 			continue;
 		}
-		player thread function_a1898da4(var_93fc795f, var_a7c52900);
+		player thread movement_watcher(var_93fc795f, var_a7c52900);
 	}
 }
 
@@ -103,12 +103,12 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_5124770c13a75bab");
+	challenge = zm_trial::function_a36e8c38(#"hash_5124770c13a75bab");
 	return isdefined(challenge);
 }
 
 /*
-	Name: function_a1898da4
+	Name: movement_watcher
 	Namespace: namespace_6c76c1da
 	Checksum: 0xBFF286ED
 	Offset: 0x340
@@ -116,7 +116,7 @@ function is_active()
 	Parameters: 2
 	Flags: Private
 */
-private function function_a1898da4(var_93fc795f, var_98de1f93)
+private function movement_watcher(var_93fc795f, var_98de1f93)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");

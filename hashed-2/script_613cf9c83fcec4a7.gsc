@@ -76,13 +76,13 @@ function freeze_trap_death_fx(localclientnum, oldval, newval, bnewent, binitials
 {
 	if(newval == 1)
 	{
-		self.var_d847a1f6 = util::playfxontag(localclientnum, level._effect[#"hash_4dbed2be32ca74bc"], self, "tag_stowed_back");
+		self.n_freeze_trap_death_fx = util::playfxontag(localclientnum, level._effect[#"hash_4dbed2be32ca74bc"], self, "tag_stowed_back");
 		playsound(localclientnum, #"hash_4d4c9f8ad239b61f", self.origin);
 	}
-	else if(isdefined(self.var_d847a1f6))
+	else if(isdefined(self.n_freeze_trap_death_fx))
 	{
-		stopfx(localclientnum, self.var_d847a1f6);
-		self.var_d847a1f6 = undefined;
+		stopfx(localclientnum, self.n_freeze_trap_death_fx);
+		self.n_freeze_trap_death_fx = undefined;
 	}
 }
 
@@ -109,7 +109,7 @@ function player_freeze_trap_post_fx(localclientnum, oldval, newval, bnewent, bin
 		{
 			return;
 		}
-		self notify(#"hash_78b369cfeb3d2708");
+		self notify(#"player_freeze_trap_post_fx_complete");
 		self.var_f08ae416 = self playloopsound(#"hash_341a3fa00975f232");
 		self.var_b2ea9ecc = 0.825;
 		self thread function_4443ecea(localclientnum);
@@ -133,7 +133,7 @@ function player_freeze_trap_post_fx(localclientnum, oldval, newval, bnewent, bin
 			self stoploopsound(self.var_f08ae416);
 			self.var_f08ae416 = undefined;
 		}
-		self notify(#"hash_78b369cfeb3d2708");
+		self notify(#"player_freeze_trap_post_fx_complete");
 	}
 }
 
@@ -149,7 +149,7 @@ function player_freeze_trap_post_fx(localclientnum, oldval, newval, bnewent, bin
 function function_4443ecea(localclientnum)
 {
 	self endon_callback(&function_b487d98d, #"death");
-	self waittill(#"hash_78b369cfeb3d2708");
+	self waittill(#"player_freeze_trap_post_fx_complete");
 	if(isdefined(self))
 	{
 		self postfx::exitpostfxbundle(#"hash_2452bc36eee3f912");

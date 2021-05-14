@@ -118,10 +118,10 @@ function function_b9568365(entity)
 	Parameters: 3
 	Flags: None
 */
-function function_f865501b(entity, destruct_state, var_9cea16fe)
+function function_f865501b(entity, destruct_state, spawn_gibs)
 {
 	entity._destruct_state = destruct_state;
-	togglespawngibs(entity, var_9cea16fe);
+	togglespawngibs(entity, spawn_gibs);
 	reapplydestructedpieces(entity);
 }
 

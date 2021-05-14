@@ -26,7 +26,7 @@ function init_shared()
 	ability_player::register_gadget_flicker_callbacks(4, &gadget_vision_pulse_on_flicker);
 	ability_player::register_gadget_is_inuse_callbacks(4, &gadget_vision_pulse_is_inuse);
 	ability_player::register_gadget_is_flickering_callbacks(4, &gadget_vision_pulse_is_flickering);
-	ability_player::function_92292af6(4, undefined, &function_5ade95a3);
+	ability_player::function_92292af6(4, undefined, &deployed_off);
 	callback::on_spawned(&gadget_vision_pulse_on_spawn);
 	clientfield::register("toplayer", "vision_pulse_active", 1, 1, "int");
 	clientfield::register("toplayer", "toggle_postfx", 1, 1, "int");
@@ -35,13 +35,13 @@ function init_shared()
 		level.vsmgr_prio_visionset_visionpulse = 61;
 	}
 	visionset_mgr::register_info("visionset", "vision_pulse", 1, level.vsmgr_prio_visionset_visionpulse, 12, 1, &visionset_mgr::ramp_in_out_thread_per_player_death_shutdown, 0);
-	globallogic_score::function_5a241bd8(level.var_2e3031be, &function_e224ec4);
-	globallogic_score::function_86f90713(level.var_2e3031be, &function_e224ec4);
+	globallogic_score::function_5a241bd8(level.var_2e3031be, &is_pulsed);
+	globallogic_score::function_86f90713(level.var_2e3031be, &is_pulsed);
 	level.var_432cfdb9 = &function_432cfdb9;
 }
 
 /*
-	Name: function_5ade95a3
+	Name: deployed_off
 	Namespace: gadget_vision_pulse
 	Checksum: 0xE35BF797
 	Offset: 0x3F0
@@ -49,13 +49,13 @@ function init_shared()
 	Parameters: 2
 	Flags: None
 */
-function function_5ade95a3(slot, weapon)
+function deployed_off(slot, weapon)
 {
 	self gadgetpowerset(slot, 0);
 }
 
 /*
-	Name: function_e224ec4
+	Name: is_pulsed
 	Namespace: gadget_vision_pulse
 	Checksum: 0xDA6F2CBB
 	Offset: 0x430
@@ -63,7 +63,7 @@ function function_5ade95a3(slot, weapon)
 	Parameters: 5
 	Flags: None
 */
-function function_e224ec4(attacker, victim, weapon, attackerweapon, meansofdeath)
+function is_pulsed(attacker, victim, weapon, attackerweapon, meansofdeath)
 {
 	return isdefined(attacker._pulse_ent) && (isdefined(victim.var_15b42025) && victim.var_15b42025);
 }
@@ -225,8 +225,8 @@ function gadget_vision_pulse_watch_emp(slot, weapon)
 */
 function function_46f384d5()
 {
-	self notify(#"hash_3e23eda36b75f2f9");
-	self endon(#"hash_3e23eda36b75f2f9", #"disconnect", #"death", #"hash_67b8b8174869f4a2");
+	self notify(#"remote_control");
+	self endon(#"remote_control", #"disconnect", #"death", #"hash_67b8b8174869f4a2");
 	while(true)
 	{
 		if(self isremotecontrolling() || self clientfield::get_to_player("remote_missile_screenfx") != 0)
@@ -257,7 +257,7 @@ function gadget_vision_pulse_on(slot, weapon)
 	{
 		return;
 	}
-	self notify(#"hash_118ccf156e4eca9d");
+	self notify(#"vision_pulse_on");
 	self flagsys::set(#"gadget_vision_pulse_on");
 	self thread gadget_vision_pulse_start(slot, weapon);
 	if(!(isdefined(level.var_e3049e92) && level.var_e3049e92))
@@ -352,7 +352,7 @@ function gadget_vision_pulse_start(slot, weapon)
 */
 function function_432cfdb9(spottedenemy, immediate, weapon)
 {
-	self notify(#"hash_20f3ac6a6fcbcf39");
+	self notify(#"vision_pulse_off");
 	self.var_87b1ba00 = 0;
 	if(!spottedenemy)
 	{
@@ -362,7 +362,7 @@ function function_432cfdb9(spottedenemy, immediate, weapon)
 	self set_gadget_vision_pulse_status("Done");
 	self flagsys::clear(#"gadget_vision_pulse_on");
 	self clientfield::set_to_player("vision_pulse_active", 0);
-	self notify(#"hash_3e23eda36b75f2f9");
+	self notify(#"remote_control");
 	if(isdefined(self._pulse_ent))
 	{
 		self._pulse_ent delete();

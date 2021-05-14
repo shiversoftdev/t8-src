@@ -42,7 +42,7 @@ function __init__()
 	clientfield::register("actor", "" + #"hash_2b842a4f17120dfb", 1, 1, "counter", &function_4fdf03e7, 1, 0);
 	clientfield::register("vehicle", "" + #"hash_2b842a4f17120dfb", 1, 1, "counter", &function_4fdf03e7, 1, 0);
 	clientfield::register("actor", "" + #"hash_2bb63677db4333d4", 1, 1, "int", &function_61659b2f, 1, 0);
-	clientfield::register("toplayer", "" + #"hash_72b33be09a49b7eb", 1, 3, "counter", &function_974102c0, 0, 0);
+	clientfield::register("toplayer", "" + #"swordpistol_rumble", 1, 3, "counter", &swordpistol_rumble, 0, 0);
 	level._effect[#"hash_25626300bbf56aa7"] = #"hash_6a8080a7153541f6";
 	level._effect[#"hash_67085795f324f6b5"] = #"hash_6a8080a7153541f6";
 	level._effect[#"hash_72dcd3be23419b87"] = #"hash_597abd90e7ff80e0";
@@ -129,11 +129,11 @@ function function_ee968813(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_b15ad447 = util::playfxontag(localclientnum, level._effect[#"hash_4d733389a8e35a7c"], self, "tag_origin");
+		self.fx_trail = util::playfxontag(localclientnum, level._effect[#"hash_4d733389a8e35a7c"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_b15ad447))
+	else if(isdefined(self.fx_trail))
 	{
-		stopfx(localclientnum, self.var_b15ad447);
+		stopfx(localclientnum, self.fx_trail);
 	}
 }
 
@@ -186,7 +186,7 @@ function function_61659b2f(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_974102c0
+	Name: swordpistol_rumble
 	Namespace: namespace_468ac99
 	Checksum: 0xE891E147
 	Offset: 0xDB8
@@ -194,7 +194,7 @@ function function_61659b2f(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_974102c0(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function swordpistol_rumble(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{

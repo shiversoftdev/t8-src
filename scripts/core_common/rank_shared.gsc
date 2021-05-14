@@ -117,7 +117,7 @@ function initscoreinfo()
 			res = float(tablelookupcolumnforrow(scoreinfotablename, row, 5));
 			var_e775f7ed = tablelookupcolumnforrow(scoreinfotablename, row, 6);
 			dp = int(tablelookupcolumnforrow(scoreinfotablename, row, 7));
-			var_4a624cbe = tablelookupcolumnforrow(scoreinfotablename, row, 8);
+			is_objective = tablelookupcolumnforrow(scoreinfotablename, row, 8);
 			medalname = tablelookupcolumnforrow(scoreinfotablename, row, 11);
 			var_812e5448 = tablelookupcolumnforrow(scoreinfotablename, row, 16);
 			var_b6593614 = tablelookupcolumnforrow(scoreinfotablename, row, 17);
@@ -127,7 +127,7 @@ function initscoreinfo()
 			var_f49811d1 = tablelookupcolumnforrow(scoreinfotablename, row, 21);
 			var_604c21c7 = tablelookupcolumnforrow(scoreinfotablename, row, 22);
 			var_65181181 = int((isdefined(tablelookupcolumnforrow(scoreinfotablename, row, 24)) ? tablelookupcolumnforrow(scoreinfotablename, row, 24) : 0));
-			registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, var_4a624cbe, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181);
+			registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_objective, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181);
 			if(!isdefined(game.scoreinfoinitialized))
 			{
 				setddlstat = tablelookupcolumnforrow(scoreinfotablename, row, 12);
@@ -177,7 +177,7 @@ function getrankxpcapped(inrankxp)
 	Parameters: 20
 	Flags: Linked
 */
-function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, var_80e3db90, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181)
+function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_obj, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181)
 {
 	overridedvar = "scr_" + level.gametype + "_score_" + type;
 	if(getdvarstring(overridedvar) != "")
@@ -218,9 +218,9 @@ function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, var
 		{
 			level.scoreinfo[type][#"dp"] = dp;
 		}
-		if(isdefined(var_80e3db90) && var_80e3db90)
+		if(isdefined(is_obj) && is_obj)
 		{
-			level.scoreinfo[type][#"hash_49b115fae591f06a"] = var_80e3db90;
+			level.scoreinfo[type][#"hash_49b115fae591f06a"] = is_obj;
 		}
 		if(isdefined(medalname))
 		{

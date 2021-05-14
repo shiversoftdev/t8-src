@@ -15,9 +15,9 @@
 */
 function init_shared()
 {
-	if(!isdefined(level.var_90058911))
+	if(!isdefined(level.cin_gen_traversal_zipline_player_dismountrotor))
 	{
-		level.var_90058911 = {};
+		level.cin_gen_traversal_zipline_player_dismountrotor = {};
 		clientfield::register("toplayer", "marker_state", 1, 2, "int", &marker_state_changed, 0, 0);
 		level.var_9c4cdb79 = [];
 	}
@@ -72,7 +72,7 @@ function marker_state_changed(localclientnum, oldval, newval, bnewent, binitials
 	{
 		if(!isdefined(level.var_9c4cdb79[localclientnum]))
 		{
-			function_af2eb2da(localclientnum);
+			spawn_previs(localclientnum);
 		}
 	}
 	if(newval > 0)
@@ -137,7 +137,7 @@ function previs(localclientnum, invalid)
 }
 
 /*
-	Name: function_af2eb2da
+	Name: spawn_previs
 	Namespace: ir_strobe
 	Checksum: 0xB7039DC4
 	Offset: 0x618
@@ -145,7 +145,7 @@ function previs(localclientnum, invalid)
 	Parameters: 1
 	Flags: Linked
 */
-function function_af2eb2da(localclientnum)
+function spawn_previs(localclientnum)
 {
 	localplayer = function_5c10bd79(localclientnum);
 	level.var_9c4cdb79[localclientnum] = spawn(localclientnum, (0, 0, 0), "script_model", localplayer getentitynumber());
@@ -209,20 +209,20 @@ function function_3e8d9b27(var_120d5014, localclientnum)
 	if(var_120d5014)
 	{
 		level.var_9c4cdb79[localclientnum] setmodel(#"hash_5f05548d8aa53dc1");
-		if(isdefined(level.var_5af693e8))
+		if(isdefined(level.previs_fx))
 		{
-			stopfx(localclientnum, level.var_5af693e8);
+			stopfx(localclientnum, level.previs_fx);
 		}
-		level.var_5af693e8 = function_239993de(localclientnum, "killstreaks/fx8_tankrobot_previs_valid", level.var_9c4cdb79[localclientnum], "tag_fx");
+		level.previs_fx = function_239993de(localclientnum, "killstreaks/fx8_tankrobot_previs_valid", level.var_9c4cdb79[localclientnum], "tag_fx");
 	}
 	else
 	{
 		level.var_9c4cdb79[localclientnum] setmodel(#"hash_5770a33506bee5a4");
-		if(isdefined(level.var_5af693e8))
+		if(isdefined(level.previs_fx))
 		{
-			stopfx(localclientnum, level.var_5af693e8);
+			stopfx(localclientnum, level.previs_fx);
 		}
-		level.var_5af693e8 = function_239993de(localclientnum, "killstreaks/fx8_tankrobot_previs_invalid", level.var_9c4cdb79[localclientnum], "tag_fx");
+		level.previs_fx = function_239993de(localclientnum, "killstreaks/fx8_tankrobot_previs_invalid", level.var_9c4cdb79[localclientnum], "tag_fx");
 	}
 	level.var_9c4cdb79[localclientnum] notsolid();
 }

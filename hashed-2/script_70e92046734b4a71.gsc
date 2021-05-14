@@ -20,7 +20,7 @@ function init()
 {
 	clientfield::register("scriptmover", "clone_control", 24000, 1, "int", &function_f747c7cd, 0, 0);
 	clientfield::register("toplayer", "hide_player_legs", 24000, 1, "int", &function_a0c1af51, 0, 0);
-	clientfield::register("toplayer", "blur_post_fx", 24000, 1, "int", &function_f995c825, 0, 1);
+	clientfield::register("toplayer", "blur_post_fx", 24000, 1, "int", &play_blur_post_fx, 0, 1);
 }
 
 /*
@@ -108,7 +108,7 @@ private function function_a0c1af51(localclientnum, oldval, newval, bnewent, bini
 }
 
 /*
-	Name: function_f995c825
+	Name: play_blur_post_fx
 	Namespace: namespace_99a6629b
 	Checksum: 0x281EF3A3
 	Offset: 0x480
@@ -116,7 +116,7 @@ private function function_a0c1af51(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked
 */
-function function_f995c825(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function play_blur_post_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval === 1)
 	{

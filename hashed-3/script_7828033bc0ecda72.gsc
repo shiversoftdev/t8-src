@@ -31,11 +31,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_b143bd998abdd27", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_b143bd998abdd27", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -85,6 +85,6 @@ private function on_player_laststand()
 {
 	var_57807cdc = [];
 	array::add(var_57807cdc, self, 0);
-	namespace_f551babc::fail(#"hash_272fae998263208b", var_57807cdc);
+	zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
 }
 

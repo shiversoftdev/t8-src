@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"distance_traveled", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"distance_traveled", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -53,7 +53,7 @@ function __init__()
 */
 private function function_d1de6a85(var_38282db8)
 {
-	var_38282db8 = namespace_f551babc::function_5769f26a(var_38282db8);
+	var_38282db8 = zm_trial::function_5769f26a(var_38282db8);
 	foreach(player in getplayers())
 	{
 		player thread function_ed4d5d4(var_38282db8);
@@ -86,7 +86,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"distance_traveled");
+	challenge = zm_trial::function_a36e8c38(#"distance_traveled");
 	return isdefined(challenge);
 }
 
@@ -103,8 +103,8 @@ function function_ed4d5d4(var_38282db8)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656", #"end_game", #"hash_43a461e5c99d52a0");
-	var_d114080c = 0;
-	self namespace_b22c99a5::function_2190356a(int(var_d114080c), 1);
+	n_distance_traveled = 0;
+	self namespace_b22c99a5::function_2190356a(int(n_distance_traveled), 1);
 	self namespace_b22c99a5::function_c2cd0cba(var_38282db8);
 	wait(12);
 	var_31409e15 = self.origin;
@@ -123,19 +123,19 @@ function function_ed4d5d4(var_38282db8)
 			}
 			else
 			{
-				var_d114080c = var_d114080c + var_abf38d09;
+				n_distance_traveled = n_distance_traveled + var_abf38d09;
 			}
 		}
-		if(var_d114080c < var_38282db8)
+		if(n_distance_traveled < var_38282db8)
 		{
-			self namespace_b22c99a5::function_2190356a(int(var_d114080c), 1);
+			self namespace_b22c99a5::function_2190356a(int(n_distance_traveled), 1);
 			self namespace_b22c99a5::function_c2cd0cba(var_38282db8);
 		}
 		else
 		{
 			self namespace_b22c99a5::function_2190356a(var_38282db8);
 			self namespace_b22c99a5::function_c2cd0cba(var_38282db8);
-			namespace_f551babc::fail(#"hash_1ab078fa9460e7c9", array(self));
+			zm_trial::fail(#"hash_1ab078fa9460e7c9", array(self));
 			level notify(#"hash_43a461e5c99d52a0");
 			return;
 		}

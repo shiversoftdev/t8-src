@@ -8,11 +8,11 @@
 #using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
 
-#namespace namespace_e613822d;
+#namespace zm_wallbuy;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x8CAEA17B
 	Offset: 0x210
 	Size: 0x54
@@ -21,12 +21,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_51cb94940fb89843", &__init__, &__main__, #"zm");
+	system::register(#"zm_wallbuy", &__init__, &__main__, #"zm");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x7284D37C
 	Offset: 0x270
 	Size: 0x154
@@ -50,7 +50,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xF8D9598F
 	Offset: 0x3D0
 	Size: 0x28
@@ -67,7 +67,7 @@ function __main__()
 
 /*
 	Name: init
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x539EDF87
 	Offset: 0x400
 	Size: 0x85C
@@ -156,7 +156,7 @@ function init()
 
 /*
 	Name: is_wallbuy
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xD9ACD2C2
 	Offset: 0xC68
 	Size: 0xFE
@@ -189,7 +189,7 @@ function is_wallbuy(w_to_check)
 
 /*
 	Name: wallbuy_player_connect
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xADFA9CFE
 	Offset: 0xD70
 	Size: 0x1B4
@@ -220,7 +220,7 @@ function wallbuy_player_connect(localclientnum)
 
 /*
 	Name: wallbuy_callback
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xE4A0E8F0
 	Offset: 0xF30
 	Size: 0x46A
@@ -307,7 +307,7 @@ function wallbuy_callback(localclientnum, oldval, newval, bnewent, binitialsnap,
 
 /*
 	Name: wallbuy_callback_idx
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xEB69DD7F
 	Offset: 0x13A8
 	Size: 0x470
@@ -385,7 +385,7 @@ function wallbuy_callback_idx(localclientnum, oldval, newval, bnewent, binitials
 
 /*
 	Name: function_51f5fb94
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x25496B14
 	Offset: 0x1820
 	Size: 0x14A
@@ -419,7 +419,7 @@ function function_51f5fb94(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_5ed44212
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xDEB08AF3
 	Offset: 0x1978
 	Size: 0x7C

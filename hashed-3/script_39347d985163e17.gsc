@@ -40,11 +40,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_27f8093e2c3d8f82", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_27f8093e2c3d8f82", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -58,7 +58,7 @@ function __init__()
 */
 private function function_d1de6a85(var_264ee2f5)
 {
-	var_264ee2f5 = namespace_f551babc::function_5769f26a(var_264ee2f5);
+	var_264ee2f5 = zm_trial::function_5769f26a(var_264ee2f5);
 	level thread function_cec06121(var_264ee2f5);
 	callback::function_f77ced93(&namespace_b22c99a5::function_79518194);
 	callback::function_33f0ddd3(&function_68af83a9);
@@ -76,7 +76,7 @@ private function function_d1de6a85(var_264ee2f5)
 private function function_9e7b3f4d(round_reset)
 {
 	level.var_388587c6 = undefined;
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	callback::function_5a753d97(&namespace_b22c99a5::function_79518194);
 	callback::function_824d206(&function_68af83a9);
 	foreach(player in getplayers())
@@ -107,7 +107,7 @@ private function function_9e7b3f4d(round_reset)
 private function function_68af83a9(s_event)
 {
 	w_root = zm_weapons::function_93cd8e76(s_event.weapon);
-	if(!namespace_2ba51478::function_2ff6913(w_root) && isarray(level.var_388587c6) && !isinarray(level.var_388587c6, w_root.name))
+	if(!zm_loadout::function_2ff6913(w_root) && isarray(level.var_388587c6) && !isinarray(level.var_388587c6, w_root.name))
 	{
 		self function_28602a03(s_event.weapon);
 	}
@@ -134,7 +134,7 @@ function function_cec06121(var_264ee2f5)
 	{
 		player namespace_b22c99a5::function_bf710271();
 	}
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 	level.var_388587c6 = array(#"hash_40788017f1c860f0", #"hash_7dc8f3611c942007", #"hash_6184fe412da2bb57", #"hash_552dc81e8f3ba5bc", #"hash_3041cc761d495272", #"hash_2f4a72ac7be5902e", #"hash_55ab674fdfba3485", #"hash_62c799cc48d4d897", #"hash_e052dd0c54e4a6f", #"hash_24c644460c2b5642", #"hash_65f0a900303f4c55");
 	foreach(player in getplayers())
 	{
@@ -302,7 +302,7 @@ function function_ebd0491e()
 */
 function is_active()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_27f8093e2c3d8f82");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_27f8093e2c3d8f82");
 	return isdefined(s_challenge);
 }
 

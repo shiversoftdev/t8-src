@@ -99,6 +99,6 @@ function function_7a324b77()
 	t_pareidolia = getent(0, "t_pareidolia", "targetname");
 	waitresult = undefined;
 	waitresult = t_pareidolia waittill(#"trigger");
-	playsound(0, #"hash_7704a8e4805a3f7", (-7053, -24906, 222));
+	playsound(0, #"mus_pareidolia", (-7053, -24906, 222));
 }
 

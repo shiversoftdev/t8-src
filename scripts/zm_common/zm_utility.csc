@@ -199,7 +199,7 @@ function spawn_buildkit_weapon_model(localclientnum, weapon, camo, origin, angle
 		weapon_model.angles = angles;
 	}
 	weapon_model usebuildkitweaponmodel(localclientnum, weapon, camo);
-	weapon_model namespace_bd02cf1::function_e40c785a(localclientnum);
+	weapon_model activecamo::function_e40c785a(localclientnum);
 	return weapon_model;
 }
 
@@ -242,7 +242,7 @@ function is_standard()
 }
 
 /*
-	Name: function_3bff983f
+	Name: is_trials
 	Namespace: zm_utility
 	Checksum: 0xAC020891
 	Offset: 0x750
@@ -250,10 +250,10 @@ function is_standard()
 	Parameters: 0
 	Flags: Linked
 */
-function function_3bff983f()
+function is_trials()
 {
 	str_gametype = util::function_5df4294();
-	if(str_gametype == #"ztrials" || level flag::exists(#"hash_76661dbc6e5fe2b"))
+	if(str_gametype == #"ztrials" || level flag::exists(#"ztrial"))
 	{
 		return 1;
 	}
@@ -261,7 +261,7 @@ function function_3bff983f()
 }
 
 /*
-	Name: function_2438c536
+	Name: is_tutorial
 	Namespace: zm_utility
 	Checksum: 0xEF4D0E7B
 	Offset: 0x7C0
@@ -269,7 +269,7 @@ function function_3bff983f()
 	Parameters: 0
 	Flags: None
 */
-function function_2438c536()
+function is_tutorial()
 {
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"ztutorial")
@@ -280,7 +280,7 @@ function function_2438c536()
 }
 
 /*
-	Name: function_3b2b3a2f
+	Name: is_grief
 	Namespace: zm_utility
 	Checksum: 0x51DCEE30
 	Offset: 0x808
@@ -288,7 +288,7 @@ function function_2438c536()
 	Parameters: 0
 	Flags: None
 */
-function function_3b2b3a2f()
+function is_grief()
 {
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"zgrief")
@@ -549,7 +549,7 @@ function function_467efa7b(var_9f3fb329 = 0)
 	switch(self.archetype)
 	{
 		case "stoker":
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		case "gladiator":
 		case "nova_crawler":
 		case "zombie":
@@ -594,8 +594,8 @@ function function_467efa7b(var_9f3fb329 = 0)
 function function_bb54a31f(localclientnum, var_20804e3b, var_3ab46b9)
 {
 	self endon(var_3ab46b9);
-	var_88706ea7 = undefined;
-	var_88706ea7 = level waittill(#"respawn");
+	s_result = undefined;
+	s_result = level waittill(#"respawn");
 	a_e_players = getlocalplayers();
 	foreach(e_player in a_e_players)
 	{
@@ -618,8 +618,8 @@ function function_bb54a31f(localclientnum, var_20804e3b, var_3ab46b9)
 function function_ae3780f1(localclientnum, n_fx_id, var_3ab46b9)
 {
 	self endon(var_3ab46b9);
-	var_88706ea7 = undefined;
-	var_88706ea7 = level waittill(#"respawn");
+	s_result = undefined;
+	s_result = level waittill(#"respawn");
 	a_e_players = getlocalplayers();
 	foreach(e_player in a_e_players)
 	{
@@ -674,11 +674,11 @@ function zm_zone_edge_marker_count(localclientnum, oldval, newval, bnewent, bini
 	{
 		v_forward = anglestoforward(self.angles);
 		v_right = anglestoright(self.angles);
-		var_70d23387 = (0, 0, 0);
+		v_spacing = (0, 0, 0);
 		self.origin = self.origin + v_right * 6;
 		for(i = 1; i <= newval; i++)
 		{
-			var_a05a609b = playfx(localclientnum, level._effect[#"hash_7dc0459342cedaa4"], self.origin + var_70d23387, v_forward);
+			var_a05a609b = playfx(localclientnum, level._effect[#"hash_7dc0459342cedaa4"], self.origin + v_spacing, v_forward);
 			if(!isdefined(self.var_dd1709dd))
 			{
 				self.var_dd1709dd = [];
@@ -688,7 +688,7 @@ function zm_zone_edge_marker_count(localclientnum, oldval, newval, bnewent, bini
 				self.var_dd1709dd = array(self.var_dd1709dd);
 			}
 			self.var_dd1709dd[self.var_dd1709dd.size] = var_a05a609b;
-			var_70d23387 = v_right * 32 * i;
+			v_spacing = v_right * 32 * i;
 		}
 	}
 	else if(isarray(self.var_dd1709dd))

@@ -63,13 +63,13 @@ function __init__()
 	clientfield::register("allplayers", "" + #"hash_6635e6da6fcfe594", 1, 2, "int");
 	clientfield::register("toplayer", "" + #"hash_2964d1cb7c4bd175", 1, 1, "counter");
 	clientfield::register("allplayers", "" + #"hash_412d8d5f8625ca52", 1, 1, "int");
-	clientfield::register("toplayer", "" + #"hash_5879b5a3820ba517", 1, 3, "counter");
+	clientfield::register("toplayer", "" + #"scepter_rumble", 1, 3, "counter");
 	level.hero_weapon[#"scepter"][0] = getweapon(#"hash_50f35e4cfb775e02");
 	level.hero_weapon[#"scepter"][1] = getweapon(#"hash_50f35d4cfb775c4f");
 	level.hero_weapon[#"scepter"][2] = getweapon(#"hash_50f35c4cfb775a9c");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_50f35e4cfb775e02");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_50f35d4cfb775c4f");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_50f35c4cfb775a9c");
+	zm_loadout::register_hero_weapon_for_level(#"hash_50f35e4cfb775e02");
+	zm_loadout::register_hero_weapon_for_level(#"hash_50f35d4cfb775c4f");
+	zm_loadout::register_hero_weapon_for_level(#"hash_50f35c4cfb775a9c");
 	zm_hero_weapon::function_7a394ec4("scepter", 0, 4000, 7000);
 	zm_spawner::register_zombie_death_event_callback(&function_cc91b3fe);
 	zm_perks::register_lost_perk_override(&function_3a00c0a6);
@@ -128,7 +128,7 @@ private function function_63e57124()
 		wpn_prev = waitresult.last_weapon;
 		if(wpn_prev == level.hero_weapon[#"scepter"][0] || wpn_prev == level.hero_weapon[#"scepter"][1] || wpn_prev == level.hero_weapon[#"scepter"][2])
 		{
-			self thread function_3024daa2(1);
+			self thread scepter_rumble(1);
 			self clientfield::set("" + #"skull_turret_beam_fire", 0);
 			self clientfield::set("" + #"hash_6635e6da6fcfe594", 0);
 			self notify(#"stop_damage");
@@ -207,14 +207,14 @@ private function function_304a3c9b(var_c34665fc)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4521ac7e(var_f2a06582, var_2f34ba4)
+private function function_4521ac7e(var_f2a06582, n_lvl)
 {
 	self endon_callback(&function_304a3c9b, #"hash_219c7081783c2153", #"player_downed", #"disconnect", #"hero_weapon_power_off");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee_power");
-		if(var_88706ea7.weapon !== var_f2a06582)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee_power");
+		if(s_result.weapon !== var_f2a06582)
 		{
 			continue;
 		}
@@ -227,8 +227,8 @@ private function function_4521ac7e(var_f2a06582, var_2f34ba4)
 		{
 			continue;
 		}
-		self clientfield::set("" + #"skull_turret_beam_fire", var_2f34ba4);
-		self clientfield::set("" + #"hash_6635e6da6fcfe594", var_2f34ba4);
+		self clientfield::set("" + #"skull_turret_beam_fire", n_lvl);
+		self clientfield::set("" + #"hash_6635e6da6fcfe594", n_lvl);
 		self.var_1de56cc8 = 1;
 		self thread function_be8ae52f(var_f2a06582);
 		self notify(#"hash_7d855302d88c6701", {#weapon:var_f2a06582});
@@ -261,12 +261,12 @@ private function function_4521ac7e(var_f2a06582, var_2f34ba4)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4493c71b(weapon, var_2f34ba4 = 1)
+private function function_4493c71b(weapon, n_lvl = 1)
 {
 	self endon(#"hash_219c7081783c2153", #"bled_out", #"disconnect");
 	while(true)
 	{
-		if(var_2f34ba4 < 3)
+		if(n_lvl < 3)
 		{
 			self waittill(#"weapon_melee_power_left", #"weapon_melee");
 		}
@@ -291,9 +291,9 @@ private function function_4493c71b(weapon, var_2f34ba4 = 1)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_eae0296b(var_65b6e624, var_7bf39486 = 0)
+private function function_eae0296b(var_65b6e624, b_postfx = 0)
 {
-	if(var_7bf39486)
+	if(b_postfx)
 	{
 		self clientfield::increment_to_player("" + #"hash_2964d1cb7c4bd175");
 	}
@@ -343,13 +343,13 @@ private function function_e874c3e1(weapon)
 	self endon(#"hash_219c7081783c2153", #"death");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee");
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee");
 		if(!namespace_6b49f66b::function_5fbf572(weapon))
 		{
 			continue;
 		}
-		if(var_88706ea7.weapon == weapon)
+		if(s_result.weapon == weapon)
 		{
 			self thread function_b603ab34(weapon);
 		}
@@ -516,7 +516,7 @@ function function_286a8d10(weapon = level.weaponnone)
 		}
 		else
 		{
-			self thread function_3024daa2(3);
+			self thread scepter_rumble(3);
 			self thread function_fe3f086c(e_target, weapon);
 		}
 		waitframe(1);
@@ -534,7 +534,7 @@ function function_286a8d10(weapon = level.weaponnone)
 */
 function function_6dfe361b(player)
 {
-	player thread function_3024daa2(2);
+	player thread scepter_rumble(2);
 	player thread function_286a8d10(self);
 }
 
@@ -658,7 +658,7 @@ function function_be8ae52f(var_f2a06582)
 						}
 					}
 				}
-				self function_3024daa2(6);
+				self scepter_rumble(6);
 				self thread function_b67b2aff(e_last_target, n_damage, var_1c218ece, var_f2a06582);
 			}
 			else if(isplayer(e_last_target))
@@ -805,7 +805,7 @@ function function_254a7556()
 	self endon(#"disconnect", #"laststand", #"stop_damage");
 	while(true)
 	{
-		self thread function_3024daa2(5);
+		self thread scepter_rumble(5);
 		wait(0.5);
 	}
 }
@@ -989,8 +989,8 @@ function function_1f6199f0(e_reviver)
 		val::set(#"hash_2aa13876578b1f89", "disable_health_regen_delay", 1);
 		if(self.health < self.var_66cb03ad)
 		{
-			var_88df2b99 = int(self.health + 5);
-			self.health = math::clamp(var_88df2b99, 1, self.var_66cb03ad);
+			n_health_regen = int(self.health + 5);
+			self.health = math::clamp(n_health_regen, 1, self.var_66cb03ad);
 			self clientfield::increment("" + #"hash_50aa88683b97ef09", 1);
 			e_reviver.var_ec334996 = e_reviver.var_ec334996 + 1;
 		}
@@ -1017,7 +1017,7 @@ function function_fa095da6(e_reviver)
 			e_reviver.var_ec334996 = e_reviver.var_ec334996 + 100;
 			e_reviver zm_stats::increment_challenge_stat(#"hash_5f629a09731f538c", undefined, 1);
 		}
-		self.get_revive_time = &function_81c17e5;
+		self.get_revive_time = &override_revive_time;
 		self.var_84280a99 = e_reviver;
 		self.var_4fc8bf2a = 1;
 		self.var_fbc66a96 = 1;
@@ -1026,7 +1026,7 @@ function function_fa095da6(e_reviver)
 }
 
 /*
-	Name: function_81c17e5
+	Name: override_revive_time
 	Namespace: namespace_67272ed
 	Checksum: 0x2D73E606
 	Offset: 0x3068
@@ -1034,7 +1034,7 @@ function function_fa095da6(e_reviver)
 	Parameters: 1
 	Flags: Linked
 */
-function function_81c17e5(e_revivee)
+function override_revive_time(e_revivee)
 {
 	n_time = 3;
 	if(self hasperk(#"specialty_quickrevive"))
@@ -1148,7 +1148,7 @@ function function_75e6e51c(n_time = 5, e_attacker)
 */
 private function function_717a1af2()
 {
-	self endon(#"bled_out", #"death", #"hash_703f136bacfadd3");
+	self endon(#"bled_out", #"death", #"beacon_expired");
 	var_a23636f4 = getweapon(#"hash_50f35c4cfb775a9c");
 	self function_1728db6f(0);
 	self.var_d6fe2916 = 0;
@@ -1191,7 +1191,7 @@ function weapon_drop_watcher()
 	{
 		var_be17187b = undefined;
 		var_be17187b = self waittill(#"weapon_switch_started");
-		if(namespace_2ba51478::is_hero_weapon(var_be17187b.w_current))
+		if(zm_loadout::is_hero_weapon(var_be17187b.w_current))
 		{
 			self setweaponammoclip(var_be17187b.w_current, 0);
 		}
@@ -1214,7 +1214,7 @@ function weapon_change_watcher()
 	{
 		var_be17187b = undefined;
 		var_be17187b = self waittill(#"hash_219c7081783c2153");
-		if(isdefined(var_be17187b.w_previous) && namespace_2ba51478::is_hero_weapon(var_be17187b.w_current))
+		if(isdefined(var_be17187b.w_previous) && zm_loadout::is_hero_weapon(var_be17187b.w_current))
 		{
 			self.var_7e973e30 = var_be17187b.w_previous;
 		}
@@ -1296,7 +1296,7 @@ function function_b603ab34(var_a23636f4)
 	self endon_callback(&function_d14a3750, #"disconnect");
 	level scene::function_27f5972e(#"p8_fxanim_zm_zod_staff_ra_bundle");
 	waitframe(14);
-	self thread function_3024daa2(4);
+	self thread scepter_rumble(4);
 	waitframe(1);
 	if(!isdefined(self))
 	{
@@ -1317,9 +1317,9 @@ function function_b603ab34(var_a23636f4)
 	}
 	playrumbleonposition("grenade_rumble", self.origin);
 	self function_f67f53a7(var_4eaa1f4c);
-	self thread function_2b7a0d12();
+	self thread beacon_fx_on();
 	self thread zm_hero_weapon::function_4e984e83(var_a23636f4, 0.13);
-	self thread function_4b4861a(var_a23636f4, var_4eaa1f4c);
+	self thread beacon_loop(var_a23636f4, var_4eaa1f4c);
 	self.var_6d772cb = self.var_6afa034c;
 	self.var_d6fe2916 = 1;
 	var_1c136516 = self gadgetpowerget(level.var_a53a05b5);
@@ -1327,13 +1327,13 @@ function function_b603ab34(var_a23636f4)
 	{
 		self thread function_d3dc001e(var_a23636f4);
 		zm_utility::function_3e549e65();
-		self waittill(#"hash_30d5ffa4b141582f", #"hash_43074b8aec1899da", #"death", #"hash_2b69105d9436130a");
+		self waittill(#"beacon_off", #"beacon_retrieved", #"death", #"hash_2b69105d9436130a");
 		zm_utility::function_b7e5029f();
 	}
 	if(isdefined(self))
 	{
 		self thread function_f168b337();
-		self notify(#"hash_43074b8aec1899da");
+		self notify(#"beacon_retrieved");
 		self ability_player::function_f2250880(var_a23636f4);
 		self.var_6d772cb = undefined;
 		self.var_d6fe2916 = 0;
@@ -1370,7 +1370,7 @@ function function_d14a3750(var_c34665fc)
 */
 function function_d3dc001e(var_a23636f4)
 {
-	self endon_callback(&function_e7e5d6f5, #"hash_43074b8aec1899da", #"death");
+	self endon_callback(&function_e7e5d6f5, #"beacon_retrieved", #"death");
 	self.var_80612bea = 1;
 	while(true)
 	{
@@ -1382,7 +1382,7 @@ function function_d3dc001e(var_a23636f4)
 		}
 		waitframe(1);
 	}
-	self notify(#"hash_30d5ffa4b141582f");
+	self notify(#"beacon_off");
 	self.var_80612bea = 0;
 }
 
@@ -1399,7 +1399,7 @@ function function_e7e5d6f5(var_5a5260d8)
 {
 	if(isdefined(self))
 	{
-		self notify(#"hash_30d5ffa4b141582f");
+		self notify(#"beacon_off");
 		self.var_80612bea = 0;
 	}
 }
@@ -1425,17 +1425,17 @@ function function_f67f53a7(var_4eaa1f4c)
 	waitframe(1);
 	if(!namespace_6b49f66b::is_active(1))
 	{
-		self.var_6afa034c thread function_8990a1ab(self);
+		self.var_6afa034c thread beacon_smash(self);
 	}
 	self.var_6afa034c thread scene::play(#"p8_fxanim_zm_zod_staff_ra_bundle", self.var_6afa034c);
-	if(isdefined(level.var_64ee6f9))
+	if(isdefined(level.beacon_watcher))
 	{
-		[[level.var_64ee6f9]](self.var_6afa034c);
+		[[level.beacon_watcher]](self.var_6afa034c);
 	}
 }
 
 /*
-	Name: function_8990a1ab
+	Name: beacon_smash
 	Namespace: namespace_67272ed
 	Checksum: 0x23EE0D9E
 	Offset: 0x4008
@@ -1443,7 +1443,7 @@ function function_f67f53a7(var_4eaa1f4c)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8990a1ab(player)
+function beacon_smash(player)
 {
 	a_ai_zombies = array::get_all_closest(self.origin, getaiteamarray(level.zombie_team), undefined, undefined, 240);
 	a_ai_zombies = array::filter(a_ai_zombies, 0, &function_39c07);
@@ -1479,7 +1479,7 @@ function function_8990a1ab(player)
 }
 
 /*
-	Name: function_2b7a0d12
+	Name: beacon_fx_on
 	Namespace: namespace_67272ed
 	Checksum: 0xC2285EFE
 	Offset: 0x4258
@@ -1487,14 +1487,14 @@ function function_8990a1ab(player)
 	Parameters: 0
 	Flags: Linked
 */
-function function_2b7a0d12()
+function beacon_fx_on()
 {
 	self.var_6afa034c clientfield::set("" + #"beacon_fx", 1);
-	self thread function_d3de5be2();
+	self thread beacon_rumble();
 }
 
 /*
-	Name: function_2ee8dec2
+	Name: beacon_fx_off
 	Namespace: namespace_67272ed
 	Checksum: 0x2CCE6B4F
 	Offset: 0x42B8
@@ -1502,7 +1502,7 @@ function function_2b7a0d12()
 	Parameters: 0
 	Flags: Linked
 */
-function function_2ee8dec2()
+function beacon_fx_off()
 {
 	if(isdefined(self))
 	{
@@ -1511,7 +1511,7 @@ function function_2ee8dec2()
 }
 
 /*
-	Name: function_d3de5be2
+	Name: beacon_rumble
 	Namespace: namespace_67272ed
 	Checksum: 0x28DA2205
 	Offset: 0x42F8
@@ -1519,9 +1519,9 @@ function function_2ee8dec2()
 	Parameters: 0
 	Flags: Linked
 */
-function function_d3de5be2()
+function beacon_rumble()
 {
-	self endon(#"disconnect", #"hash_3989682fb4eae96e");
+	self endon(#"disconnect", #"beacon_fx_off");
 	while(isdefined(self.var_6afa034c))
 	{
 		self.var_6afa034c playrumbleonentity(#"hash_2bdce8ff08474d57");
@@ -1556,7 +1556,7 @@ function function_f168b337()
 		}
 	}
 	var_6afa034c endon(#"death");
-	var_6afa034c function_2ee8dec2();
+	var_6afa034c beacon_fx_off();
 	var_6afa034c thread scene::stop(#"p8_fxanim_zm_zod_staff_ra_bundle");
 	waitframe(1);
 	var_6afa034c delete();
@@ -1564,13 +1564,13 @@ function function_f168b337()
 	{
 		return;
 	}
-	self notify(#"hash_3989682fb4eae96e");
+	self notify(#"beacon_fx_off");
 	self function_1728db6f(4);
 	self function_eae0296b(#"hash_50f35c4cfb775a9c");
 }
 
 /*
-	Name: function_4b4861a
+	Name: beacon_loop
 	Namespace: namespace_67272ed
 	Checksum: 0xE92EF4F8
 	Offset: 0x44D8
@@ -1578,9 +1578,9 @@ function function_f168b337()
 	Parameters: 2
 	Flags: Linked
 */
-function function_4b4861a(var_a23636f4, var_4eaa1f4c)
+function beacon_loop(var_a23636f4, var_4eaa1f4c)
 {
-	self endon(#"hash_43074b8aec1899da", #"death", #"bled_out", #"disconnect");
+	self endon(#"beacon_retrieved", #"death", #"bled_out", #"disconnect");
 	while(true)
 	{
 		slot = self gadgetgetslot(var_a23636f4);
@@ -1643,7 +1643,7 @@ function function_15c2525e(var_a7e57ef9, n_loop_time)
 	n_frames = 0;
 	foreach(zombie in a_ai_zombies)
 	{
-		zombie function_9a25ee43(self, var_a7e57ef9, n_loop_time);
+		zombie beacon_check(self, var_a7e57ef9, n_loop_time);
 		n_count++;
 		if(n_count == 4)
 		{
@@ -1656,7 +1656,7 @@ function function_15c2525e(var_a7e57ef9, n_loop_time)
 }
 
 /*
-	Name: function_9a25ee43
+	Name: beacon_check
 	Namespace: namespace_67272ed
 	Checksum: 0xC933C4B4
 	Offset: 0x4818
@@ -1664,9 +1664,9 @@ function function_15c2525e(var_a7e57ef9, n_loop_time)
 	Parameters: 3
 	Flags: Linked
 */
-function function_9a25ee43(e_player, var_a7e57ef9, n_loop_time)
+function beacon_check(e_player, var_a7e57ef9, n_loop_time)
 {
-	e_player endon(#"hash_43074b8aec1899da", #"bled_out", #"death", #"disconnect");
+	e_player endon(#"beacon_retrieved", #"bled_out", #"death", #"disconnect");
 	if(isalive(self) && isdefined(self.var_6f84b820))
 	{
 		switch(self.var_6f84b820)
@@ -1745,7 +1745,7 @@ function check_for_range_and_los(v_attack_source, n_allowed_z_diff, n_radius_sq)
 */
 function function_888d5bd9(e_player)
 {
-	e_player endon(#"hash_43074b8aec1899da", #"bled_out", #"death");
+	e_player endon(#"beacon_retrieved", #"bled_out", #"death");
 	/#
 		assert(isdefined(e_player));
 	#/
@@ -1941,7 +1941,7 @@ function function_7067b673(origin1, origin2, color)
 }
 
 /*
-	Name: function_3024daa2
+	Name: scepter_rumble
 	Namespace: namespace_67272ed
 	Checksum: 0x26799781
 	Offset: 0x5120
@@ -1949,7 +1949,7 @@ function function_7067b673(origin1, origin2, color)
 	Parameters: 1
 	Flags: Linked
 */
-function function_3024daa2(var_b2e05bae)
+function scepter_rumble(var_b2e05bae)
 {
 	if(var_b2e05bae)
 	{
@@ -1962,7 +1962,7 @@ function function_3024daa2(var_b2e05bae)
 			}
 			case 2:
 			{
-				self clientfield::increment_to_player("" + #"hash_5879b5a3820ba517", 2);
+				self clientfield::increment_to_player("" + #"scepter_rumble", 2);
 				break;
 			}
 			case 3:
@@ -1977,12 +1977,12 @@ function function_3024daa2(var_b2e05bae)
 			}
 			case 5:
 			{
-				self clientfield::increment_to_player("" + #"hash_5879b5a3820ba517", 5);
+				self clientfield::increment_to_player("" + #"scepter_rumble", 5);
 				break;
 			}
 			case 6:
 			{
-				self clientfield::increment_to_player("" + #"hash_5879b5a3820ba517", 6);
+				self clientfield::increment_to_player("" + #"scepter_rumble", 6);
 				break;
 			}
 		}
@@ -2001,9 +2001,9 @@ function function_3024daa2(var_b2e05bae)
 function function_68ff89f7(var_fe4f91c7)
 {
 	self endon(#"hash_219c7081783c2153", #"disconnect", #"bled_out");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee");
-	if(var_88706ea7.weapon == var_fe4f91c7)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee");
+	if(s_result.weapon == var_fe4f91c7)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87c913e3ecd37a", #"scepter");
 	}

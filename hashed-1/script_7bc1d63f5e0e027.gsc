@@ -184,8 +184,8 @@ function function_e9f6e0f7()
 	s_lgt_spawner = struct::get("s_lgt_spawner", "targetname");
 	var_a6323eb5.tag = util::spawn_model("tag_origin", s_lgt_spawner.origin);
 	var_a6323eb5.tag.angles = s_lgt_spawner.angles;
-	level.var_e0cad096 = level._effect[#"hash_723a7c4a495d1008"];
-	var_a6323eb5.var_82acd734 = playfxontag(level.var_e0cad096, var_a6323eb5.tag, "tag_origin");
+	level.registerglass_railing_kickedleader = level._effect[#"hash_723a7c4a495d1008"];
+	var_a6323eb5.var_82acd734 = playfxontag(level.registerglass_railing_kickedleader, var_a6323eb5.tag, "tag_origin");
 	var_a6323eb5.var_82acd734 linkto(var_a6323eb5);
 }
 

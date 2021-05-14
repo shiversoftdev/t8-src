@@ -16,9 +16,9 @@
 function set_timer(player, var_c895e25d, var_b1100790)
 {
 	self function_bbba5164(player);
-	var_7d4308f4 = int(floor(var_c895e25d / 60));
-	n_seconds = int(var_c895e25d - var_7d4308f4 * 60);
-	self function_21eb67aa(player, var_7d4308f4);
+	n_minutes = int(floor(var_c895e25d / 60));
+	n_seconds = int(var_c895e25d - n_minutes * 60);
+	self function_21eb67aa(player, n_minutes);
 	self function_c48569e7(player, n_seconds);
 	if(n_seconds < 10)
 	{

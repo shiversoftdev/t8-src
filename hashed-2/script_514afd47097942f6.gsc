@@ -33,11 +33,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_3d10e2fd98b0c3ab", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_3d10e2fd98b0c3ab", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -64,7 +64,7 @@ private function function_d1de6a85()
 		player namespace_b22c99a5::function_9bf8e274();
 		foreach(var_64225f6c in level.zombie_weapons)
 		{
-			if(namespace_2ba51478::is_lethal_grenade(var_64225f6c.weapon) || namespace_2ba51478::is_melee_weapon(var_64225f6c.weapon))
+			if(zm_loadout::is_lethal_grenade(var_64225f6c.weapon) || zm_loadout::is_melee_weapon(var_64225f6c.weapon))
 			{
 				player function_28602a03(var_64225f6c.weapon, 1, 1);
 			}
@@ -72,8 +72,8 @@ private function function_d1de6a85()
 		player namespace_b22c99a5::function_dc9ab223(1, 1);
 	}
 	callback::function_33f0ddd3(&function_33f0ddd3);
-	level namespace_f551babc::function_44200d07(1);
-	level namespace_f551babc::function_cd75b690(1);
+	level zm_trial::function_44200d07(1);
+	level zm_trial::function_cd75b690(1);
 }
 
 /*
@@ -99,7 +99,7 @@ private function function_9e7b3f4d(round_reset)
 		player namespace_b22c99a5::function_73ff0096();
 		foreach(var_64225f6c in level.zombie_weapons)
 		{
-			if(namespace_2ba51478::is_lethal_grenade(var_64225f6c.weapon) || namespace_2ba51478::is_melee_weapon(var_64225f6c.weapon))
+			if(zm_loadout::is_lethal_grenade(var_64225f6c.weapon) || zm_loadout::is_melee_weapon(var_64225f6c.weapon))
 			{
 				player unlockweapon(var_64225f6c.weapon);
 			}
@@ -107,8 +107,8 @@ private function function_9e7b3f4d(round_reset)
 		player namespace_b22c99a5::function_dc9ab223(0, 1);
 		player namespace_b22c99a5::function_8677ce00(0);
 	}
-	level namespace_f551babc::function_44200d07(0);
-	level namespace_f551babc::function_cd75b690(0);
+	level zm_trial::function_44200d07(0);
+	level zm_trial::function_cd75b690(0);
 }
 
 /*
@@ -191,7 +191,7 @@ private function function_33f0ddd3(s_event)
 	if(s_event.event === "give_weapon")
 	{
 		self function_28602a03(s_event.weapon, 0, 1);
-		if(namespace_2ba51478::is_melee_weapon(s_event.weapon) || namespace_2ba51478::is_lethal_grenade(s_event.weapon))
+		if(zm_loadout::is_melee_weapon(s_event.weapon) || zm_loadout::is_lethal_grenade(s_event.weapon))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 		}

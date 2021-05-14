@@ -336,14 +336,14 @@ function function_926fcb2f(b_success)
 */
 function function_ecd8cc50()
 {
-	var_3fdd816d = #"hash_3489718f227fba3";
+	waypointname = #"hash_3489718f227fba3";
 	var_69bc8821 = spawn("script_model", self.origin);
 	var_69bc8821.objectiveid = gameobjects::get_next_obj_id();
 	var_69bc8821.curorigin = self.origin;
 	var_69bc8821.ownerteam = game.defenders;
 	var_69bc8821.team = game.defenders;
 	var_69bc8821.type = "Waypoint";
-	objective_add(var_69bc8821.objectiveid, "invisible", var_69bc8821, var_3fdd816d);
+	objective_add(var_69bc8821.objectiveid, "invisible", var_69bc8821, waypointname);
 	var_69bc8821 gameobjects::set_visible_team("none");
 	self.waypoint = var_69bc8821;
 }
@@ -360,7 +360,7 @@ function function_ecd8cc50()
 function function_72e84e64()
 {
 	level endon(#"hash_19a2268f375ca51f");
-	self namespace_73e1c3e3::function_68e9fa9e(undefined, 0, level.var_b5529824, 1);
+	self namespace_73e1c3e3::objcounter_init(undefined, 0, level.var_b5529824, 1);
 	var_932b0566 = getentarray("destroysite", "targetname");
 	level.var_b5529824 = var_932b0566.size;
 	var_5c9c3a6e = 1;
@@ -415,14 +415,14 @@ function function_4b5c96a0()
 	self endon(#"death", #"target_destroyed");
 	level endon(#"hash_1e387ee13c1e81a7", #"hash_42057c28bd084d77");
 	self.waypoint gameobjects::set_visible_team(#"any");
-	var_ce4a5fc7 = 0;
+	b_keyline = 0;
 	if(level.var_9b517372 == 0)
 	{
 		level notify(#"combat_training_started");
-		var_806acf86 = int(gettime() + 1000 + int(40 * 1000));
-		setbombtimer("A", var_806acf86);
+		n_bomb_timer = int(gettime() + 1000 + int(40 * 1000));
+		setbombtimer("A", n_bomb_timer);
 		setmatchflag("bomb_timer_a", 1);
-		level thread namespace_64a487a9::function_4d9cfd95(15, #"axis");
+		level thread namespace_64a487a9::activate_bots(15, #"axis");
 		level.var_9b517372 = 1;
 		level.var_ebad4ea8 = gettime();
 		level thread function_a3e6f3d();
@@ -431,15 +431,15 @@ function function_4b5c96a0()
 	{
 		e_model = getent(self.target, "targetname");
 		var_d3b9972d = getent(e_model.target, "targetname");
-		if(!(isdefined(var_ce4a5fc7) && var_ce4a5fc7))
+		if(!(isdefined(b_keyline) && b_keyline))
 		{
 			e_model clientfield::set("enemyobj_keyline_render", 1);
-			var_ce4a5fc7 = 1;
+			b_keyline = 1;
 		}
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"damage");
-		e_attacker = var_385703b7.attacker;
-		e_weapon = var_385703b7.weapon;
+		s_notify = undefined;
+		s_notify = self waittill(#"damage");
+		e_attacker = s_notify.attacker;
+		e_weapon = s_notify.weapon;
 		if(isdefined(e_attacker) && isdefined(e_weapon) && e_weapon.name == #"hash_4bb2d7f789b561eb")
 		{
 			level.var_b5529824--;

@@ -193,7 +193,7 @@ function guns()
 				if(isdefined(level.aat_in_use) && level.aat_in_use && zm_weapons::weapon_supports_aat(var_e221c195))
 				{
 					e_player thread aat::acquire(var_e221c195);
-					e_player zm_pap_util::function_18994aca(var_e221c195, var_fe8af21d);
+					e_player zm_pap_util::repack_weapon(var_e221c195, var_fe8af21d);
 				}
 			}
 			var_e221c195 = e_player zm_weapons::give_build_kit_weapon(var_e221c195);
@@ -210,7 +210,7 @@ function guns()
 		e_player enableweaponcycling();
 		e_player perks::function_45d12554("specialty_ammodrainsfromstockfirst");
 	}
-	if(namespace_44cfe494::function_b6f53cd2())
+	if(zm_white::function_b6f53cd2())
 	{
 		level flag::set("pap_power_ready");
 		level exploder::exploder("fxexp_script_pap_lgt");
@@ -636,7 +636,7 @@ function warp_player()
 	playfx(level._effect[#"hash_42067f50e6d7e946"], self.origin, (1, 0, 0), (0, 0, 1));
 	playsoundatposition(#"evt_teleporter_out", self.origin);
 	s_destination = self zm_bgb_anywhere_but_here::function_91a62549();
-	self namespace_eaaeba61::function_66d020b0(undefined, undefined, undefined, undefined, s_destination, undefined, "warp");
+	self zm_fasttravel::function_66d020b0(undefined, undefined, undefined, undefined, s_destination, undefined, "warp");
 	self clientfield::increment_to_player("teleporter_transition", 1);
 	self thread namespace_1846c963::function_c234a5ce();
 	self clientfield::increment_to_player("teleporter_arrive", 1);
@@ -684,7 +684,7 @@ function shed()
 				if(!(isdefined(var_6620353d.has_been_opened) && var_6620353d.has_been_opened))
 				{
 					a_e_players = getplayers();
-					var_6620353d notify(#"trigger", {#hash_3fc8547c:1, #activator:a_e_players[0]});
+					var_6620353d notify(#"trigger", {#is_forced:1, #activator:a_e_players[0]});
 					/#
 						iprintlnbold("");
 					#/

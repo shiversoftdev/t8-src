@@ -967,7 +967,7 @@ function onplayerspawned()
 		}
 		if(!(isdefined(weapons_restored) && weapons_restored))
 		{
-			self namespace_2ba51478::give_start_weapon(1);
+			self zm_loadout::give_start_weapon(1);
 		}
 		weapons_restored = 0;
 		if(isdefined(level._team_loadout))

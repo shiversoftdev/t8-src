@@ -278,8 +278,8 @@ function init()
 	level.func_get_zombie_spawn_delay = &namespace_a28acff3::get_zombie_spawn_delay;
 	level.func_get_delay_between_rounds = &namespace_a28acff3::get_delay_between_rounds;
 	level.var_3426461d = &function_a2b54d42;
-	level.no_target_override = &namespace_57ff8cbb::no_target_override;
-	level.var_d22435d9 = &namespace_57ff8cbb::function_d22435d9;
+	level.no_target_override = &zm_cleanup::no_target_override;
+	level.var_d22435d9 = &zm_cleanup::function_d22435d9;
 	level.zombie_visionset = "zombie_neutral";
 	level.wait_and_revive = 0;
 	if(getdvarint(#"anim_intro", 0) == 1)
@@ -316,7 +316,7 @@ function init()
 	init_sounds();
 	init_shellshocks();
 	init_client_field_callback_funcs();
-	namespace_2ba51478::register_offhand_weapons_for_level_defaults();
+	zm_loadout::register_offhand_weapons_for_level_defaults();
 	zm_perks::init();
 	zm_talisman::init();
 	zm_powerups::init();
@@ -565,14 +565,14 @@ function function_9a8ab40f()
 function function_d797f41f(n_waittime = 1)
 {
 	wait(n_waittime);
-	if(!zm_utility::function_2438c536())
+	if(!zm_utility::is_tutorial())
 	{
 		music::setmusicstate("none");
 	}
 }
 
 /*
-	Name: function_82c60e19
+	Name: _outro_slow
 	Namespace: zm
 	Checksum: 0xE21BE333
 	Offset: 0x2858
@@ -580,7 +580,7 @@ function function_d797f41f(n_waittime = 1)
 	Parameters: 1
 	Flags: None
 */
-function function_82c60e19(func)
+function _outro_slow(func)
 {
 	level endon(#"all_players_connected", #"game_ended");
 	array::thread_all(getplayers(), func);
@@ -990,8 +990,8 @@ function init_levelvars()
 */
 private function function_b10f6843()
 {
-	var_d54c234d = level.round_number - namespace_59ff1d6c::function_901b751c(#"startround") + 1 * 500;
-	return (isdefined(level.player_starting_points) ? level.player_starting_points : var_d54c234d);
+	n_starting = level.round_number - namespace_59ff1d6c::function_901b751c(#"startround") + 1 * 500;
+	return (isdefined(level.player_starting_points) ? level.player_starting_points : n_starting);
 }
 
 /*
@@ -1478,7 +1478,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath,
 	{
 		damage = self [[level.var_aed5d327[weapon.name]]](inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
 	}
-	damage = namespace_74813e5f::actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
+	damage = zm_attachments::actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
 	damage = zm_perks::actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
 	damage = namespace_e38c57c1::actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
 	damage = self check_actor_damage_callbacks(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
@@ -1867,7 +1867,7 @@ function actor_killed_override(einflictor, attacker, idamage, smeansofdeath, wea
 		killstreaks = [];
 		rounds = level.round_number;
 		var_65e76577 = #"";
-		if(isdefined(self.archetype) && (self.archetype == #"tiger" || self.archetype == #"brutus" || self.archetype == #"zombie_dog" || self.archetype == #"hash_1bab8a0ba811401e" || self.archetype == #"stoker" || self.archetype == #"blight_father"))
+		if(isdefined(self.archetype) && (self.archetype == #"tiger" || self.archetype == #"brutus" || self.archetype == #"zombie_dog" || self.archetype == #"catalyst" || self.archetype == #"stoker" || self.archetype == #"blight_father"))
 		{
 			var_65e76577 = #"hash_1553fcea4f6a00e";
 		}
@@ -2078,7 +2078,7 @@ function function_6c369691()
 		if(isalive(ai))
 		{
 			ai val::set(#"end_game", "ignoreall", 1);
-			ai thread namespace_57ff8cbb::no_target_override(ai);
+			ai thread zm_cleanup::no_target_override(ai);
 			if(n_index % 2)
 			{
 				wait(0.05);
@@ -2122,7 +2122,7 @@ function end_game()
 	{
 		level [[level.var_ea32773]]();
 	}
-	if(zm_utility::function_2438c536())
+	if(zm_utility::is_tutorial())
 	{
 		music::setmusicstate("zodt8_death");
 	}
@@ -2198,7 +2198,7 @@ function end_game()
 		for(i = 0; i < players.size; i++)
 		{
 			level.var_7c7c6c35 zm_game_over::open(players[i]);
-			level.var_7c7c6c35 zm_game_over::function_b1ff84a2(players[i], level.round_number - namespace_59ff1d6c::function_901b751c(#"startround") + var_5c965b78);
+			level.var_7c7c6c35 zm_game_over::set_rounds(players[i], level.round_number - namespace_59ff1d6c::function_901b751c(#"startround") + var_5c965b78);
 		}
 	}
 	else if("ztrials" == util::function_5df4294())
@@ -2269,7 +2269,7 @@ function end_game()
 	{
 		function_758406d8();
 	}
-	if(namespace_f551babc::function_b47f6aba())
+	if(zm_trial::function_b47f6aba())
 	{
 		level thread namespace_b22c99a5::function_f79b96ac();
 	}

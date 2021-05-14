@@ -35,11 +35,11 @@ function init_shared(localclientnum)
 	clientfield::register("missile", "sensor_dart_state", 1, 1, "int", &function_73021afc, 0, 1);
 	clientfield::register("clientuimodel", "hudItems.sensorDartCount", 1, 3, "int", undefined, 0, 0);
 	callback::on_localclient_connect(&player_init);
-	callback::add_weapon_type("eq_sensor", &function_cd1f0175);
+	callback::add_weapon_type("eq_sensor", &arrow_spawned);
 }
 
 /*
-	Name: function_cd1f0175
+	Name: arrow_spawned
 	Namespace: namespace_d81cee52
 	Checksum: 0x717EAFAE
 	Offset: 0x2F8
@@ -47,7 +47,7 @@ function init_shared(localclientnum)
 	Parameters: 1
 	Flags: Linked
 */
-function function_cd1f0175(localclientnum)
+function arrow_spawned(localclientnum)
 {
 	self.var_44dad7e8 = 1;
 }

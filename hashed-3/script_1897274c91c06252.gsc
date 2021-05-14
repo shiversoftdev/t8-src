@@ -164,12 +164,12 @@ function function_9ed375e1(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(newval)
 	{
-		self.var_48c65dc6 = function_239993de(localclientnum, "zm_ai/fx8_nova_crawler_gas_projectile", self, "tag_origin");
+		self.spore_fx = function_239993de(localclientnum, "zm_ai/fx8_nova_crawler_gas_projectile", self, "tag_origin");
 	}
-	else if(isdefined(self.var_48c65dc6))
+	else if(isdefined(self.spore_fx))
 	{
-		stopfx(localclientnum, self.var_48c65dc6);
-		self.var_48c65dc6 = undefined;
+		stopfx(localclientnum, self.spore_fx);
+		self.spore_fx = undefined;
 	}
 }
 

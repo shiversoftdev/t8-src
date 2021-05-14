@@ -91,7 +91,7 @@ function start_gametype()
 		registerchallengescallback("playerKilled", &challengekills);
 		registerchallengescallback("gameEnd", &challengegameendmp);
 		player::function_3c5cc656(&function_a79ea08b);
-		self callback::add_callback(#"hash_25663702210244cc", &function_fbf4ce12);
+		self callback::add_callback(#"hash_25663702210244cc", &player_fully_healed);
 	}
 	callback::on_connect(&on_player_connect);
 }
@@ -270,7 +270,7 @@ event function_4776caf4(eventstruct)
 }
 
 /*
-	Name: function_fbf4ce12
+	Name: player_fully_healed
 	Namespace: challenges
 	Checksum: 0x25FCDE64
 	Offset: 0xCB0
@@ -278,7 +278,7 @@ event function_4776caf4(eventstruct)
 	Parameters: 0
 	Flags: Linked
 */
-function function_fbf4ce12()
+function player_fully_healed()
 {
 	var_c3ade07c = self.var_ea1458aa;
 	info = self.var_9cd2c51d;
@@ -498,8 +498,8 @@ function function_a79ea08b(einflictor, victim, idamage, weapon)
 	if(!isdefined(killstreak))
 	{
 		var_6af452fc = function_2e532eed(victim.var_ea1458aa.attackerdamage[self.clientid]);
-		var_5018995b = victim.var_c9b769a6;
-		var_bcbcb4ec = victim namespace_bba43f7d::function_49ef5263();
+		var_5018995b = victim.gadget_weapon;
+		var_bcbcb4ec = victim supplypod::function_49ef5263();
 		var_fff76b4 = victim.var_b6672e47;
 		totalenemies = countplayers(victim.team);
 		victimentnum = victim getentitynumber();
@@ -659,32 +659,32 @@ function function_a79ea08b(einflictor, victim, idamage, weapon)
 					self stats::function_dad108fa(#"hash_9cb265b8b1483b0", 1);
 				}
 			}
-			var_7e21e375 = self function_4a9f1384(var_3cd641b);
-			if(isdefined(var_7e21e375) && isarray(var_7e21e375))
+			talents = self function_4a9f1384(var_3cd641b);
+			if(isdefined(talents) && isarray(talents))
 			{
 				if(self function_db654c9(var_3cd641b, #"bonuscard_perk_1_greed"))
 				{
-					if(isdefined(var_7e21e375[0]) && var_7e21e375[0] != #"weapon_null" && isdefined(var_7e21e375[3]) && var_7e21e375[3] != #"weapon_null")
+					if(isdefined(talents[0]) && talents[0] != #"weapon_null" && isdefined(talents[3]) && talents[3] != #"weapon_null")
 					{
 						self stats::function_dad108fa(#"hash_2bd2c0cabe4c6885", 1);
 					}
 				}
 				if(self function_db654c9(var_3cd641b, #"bonuscard_perk_2_greed"))
 				{
-					if(isdefined(var_7e21e375[1]) && var_7e21e375[1] != #"weapon_null" && isdefined(var_7e21e375[4]) && var_7e21e375[4] != #"weapon_null")
+					if(isdefined(talents[1]) && talents[1] != #"weapon_null" && isdefined(talents[4]) && talents[4] != #"weapon_null")
 					{
 						self stats::function_dad108fa(#"hash_5e6ce18d4b5b5254", 1);
 					}
 				}
 				if(self function_db654c9(var_3cd641b, #"bonuscard_perk_3_greed"))
 				{
-					if(isdefined(var_7e21e375[2]) && var_7e21e375[2] != #"weapon_null" && isdefined(var_7e21e375[5]) && var_7e21e375[5] != #"weapon_null")
+					if(isdefined(talents[2]) && talents[2] != #"weapon_null" && isdefined(talents[5]) && talents[5] != #"weapon_null")
 					{
 						self stats::function_dad108fa(#"hash_6c271157f27f925f", 1);
 					}
 				}
-				arrayremovevalue(var_7e21e375, #"weapon_null");
-				if(var_7e21e375.size > 2)
+				arrayremovevalue(talents, #"weapon_null");
+				if(talents.size > 2)
 				{
 					var_ee03db9e = 0;
 					if(self function_db654c9(var_3cd641b, #"bonuscard_perk_1_gluttony"))
@@ -707,7 +707,7 @@ function function_a79ea08b(einflictor, victim, idamage, weapon)
 						self contracts::function_a54e2068(#"hash_29c44b5c02f1674d");
 					}
 				}
-				if(var_7e21e375.size >= 5)
+				if(talents.size >= 5)
 				{
 					self contracts::function_a54e2068(#"hash_1d68713877c674d8");
 				}
@@ -3087,10 +3087,10 @@ function function_82bb78f7(weapon)
 	{
 		return;
 	}
-	self namespace_bd02cf1::function_896ac347(weapon, #"vanguard", 1);
+	self activecamo::function_896ac347(weapon, #"vanguard", 1);
 	if(isdefined(self.var_aef7ad9) && self.var_aef7ad9 + int(5 * 1000) >= gettime())
 	{
-		self namespace_bd02cf1::function_896ac347(weapon, #"hash_371b0f2ddd126688", 1);
+		self activecamo::function_896ac347(weapon, #"hash_371b0f2ddd126688", 1);
 	}
 	self.var_aef7ad9 = gettime();
 }
@@ -3622,7 +3622,7 @@ private function function_861fe993(slot_index)
 */
 function function_3ee91387(weapon, playercontrolled, groundbased, countaskillstreakvehicle)
 {
-	self namespace_bba43f7d::function_1e64d41(weapon);
+	self supplypod::function_1e64d41(weapon);
 }
 
 /*

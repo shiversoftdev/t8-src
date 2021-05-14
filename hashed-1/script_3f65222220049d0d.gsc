@@ -147,7 +147,7 @@ function give_perk()
 	Parameters: 4
 	Flags: Linked
 */
-function take_perk(b_pause, str_perk, str_result, var_bcd1c2ff)
+function take_perk(b_pause, str_perk, str_result, n_slot)
 {
 	self set_ammo(0);
 }
@@ -161,7 +161,7 @@ function take_perk(b_pause, str_perk, str_result, var_bcd1c2ff)
 	Parameters: 1
 	Flags: Linked
 */
-function set_ammo(var_ead944c6 = 1)
+function set_ammo(b_max_ammo = 1)
 {
 	a_weapons = self getweaponslistprimaries();
 	foreach(weapon in a_weapons)
@@ -172,7 +172,7 @@ function set_ammo(var_ead944c6 = 1)
 		}
 		if(weapon !== self.laststandpistol)
 		{
-			if(var_ead944c6)
+			if(b_max_ammo)
 			{
 				var_67f27715 = weapon.maxammo - weapon.startammo;
 				var_45193587 = self getweaponammostock(weapon);

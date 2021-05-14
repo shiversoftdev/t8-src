@@ -84,11 +84,11 @@ function function_ab086ad8(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(isdefined(self gettagorigin("j_eyeball_le")))
 		{
-			self.var_1550c80f = util::playfxontag(localclientnum, level._effect[#"hash_2f75eb1af8206593"], self, "j_eyeball_le");
+			self.var_1550c80f = util::playfxontag(localclientnum, level._effect[#"hemera_proj_death_head"], self, "j_eyeball_le");
 		}
 		else if(isdefined(self gettagorigin("j_head")))
 		{
-			self.var_1550c80f = util::playfxontag(localclientnum, level._effect[#"hash_2f75eb1af8206593"], self, "j_head");
+			self.var_1550c80f = util::playfxontag(localclientnum, level._effect[#"hemera_proj_death_head"], self, "j_head");
 		}
 	}
 	else if(isdefined(self) && isdefined(self.var_1550c80f))

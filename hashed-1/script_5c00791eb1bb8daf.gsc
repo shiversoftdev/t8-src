@@ -14,11 +14,11 @@
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 
-#namespace namespace_f09376;
+#namespace archetype_avogadro;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x26F7FD59
 	Offset: 0x1F0
 	Size: 0x44
@@ -27,12 +27,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_549171449df37316", &__init__, &__main__, undefined);
+	system::register(#"archetype_avogadro", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x3941B480
 	Offset: 0x240
 	Size: 0x164
@@ -53,7 +53,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x7830522E
 	Offset: 0x3B0
 	Size: 0x2E
@@ -67,7 +67,7 @@ function __main__()
 
 /*
 	Name: function_6bb82ac9
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xCA9346E7
 	Offset: 0x3E8
 	Size: 0x104
@@ -95,7 +95,7 @@ function function_6bb82ac9()
 
 /*
 	Name: registerbehaviorscriptfunctions
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x55088365
 	Offset: 0x4F8
 	Size: 0x44C
@@ -149,7 +149,7 @@ function registerbehaviorscriptfunctions()
 
 /*
 	Name: function_ee579eb5
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xD3F54384
 	Offset: 0x950
 	Size: 0xDC
@@ -173,7 +173,7 @@ function function_ee579eb5()
 
 /*
 	Name: function_8a404313
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xDC9C496D
 	Offset: 0xA38
 	Size: 0x4A
@@ -189,7 +189,7 @@ private function function_8a404313()
 
 /*
 	Name: function_c7791d22
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xD9C2E93A
 	Offset: 0xA90
 	Size: 0x2C
@@ -204,7 +204,7 @@ private function function_c7791d22(entity)
 
 /*
 	Name: function_d1359818
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xDEA697A5
 	Offset: 0xAC8
 	Size: 0x1C
@@ -218,7 +218,7 @@ function function_d1359818()
 
 /*
 	Name: function_8886bcc4
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x5238D9F3
 	Offset: 0xAF0
 	Size: 0x4C
@@ -236,7 +236,7 @@ function function_8886bcc4(params)
 
 /*
 	Name: function_99ce086a
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x502B55E9
 	Offset: 0xB48
 	Size: 0xC8
@@ -254,7 +254,7 @@ function function_99ce086a(inflictor, attacker, damage, flags, meansofdeath, wea
 
 /*
 	Name: function_dbc638a8
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x5E49BB67
 	Offset: 0xC18
 	Size: 0xFC
@@ -279,7 +279,7 @@ function function_dbc638a8(entity)
 
 /*
 	Name: function_50a86206
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x7F195033
 	Offset: 0xD20
 	Size: 0x24
@@ -293,7 +293,7 @@ function function_50a86206(params)
 
 /*
 	Name: function_80fc1a78
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xD3B082AE
 	Offset: 0xD50
 	Size: 0x62
@@ -310,7 +310,7 @@ function function_80fc1a78(time)
 
 /*
 	Name: function_66dd488a
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xB8E074EB
 	Offset: 0xDC0
 	Size: 0xC6
@@ -332,7 +332,7 @@ private function function_66dd488a()
 
 /*
 	Name: function_7e03184e
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x55DFE276
 	Offset: 0xE90
 	Size: 0x5A
@@ -351,7 +351,7 @@ private function function_7e03184e(bolt, entity)
 
 /*
 	Name: function_cbdce009
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xAC0151A4
 	Offset: 0xEF8
 	Size: 0x16
@@ -365,7 +365,7 @@ private function function_cbdce009(bolt)
 
 /*
 	Name: function_f8e8c129
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xD1DD5840
 	Offset: 0xF18
 	Size: 0x382
@@ -434,7 +434,7 @@ private function function_f8e8c129(entity)
 
 /*
 	Name: function_7e5905cd
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xAE7FDD10
 	Offset: 0x12A8
 	Size: 0xCC
@@ -460,7 +460,7 @@ private function function_7e5905cd(entity)
 
 /*
 	Name: function_6cf71c35
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xCBE2AB39
 	Offset: 0x1380
 	Size: 0x3E
@@ -478,7 +478,7 @@ private function function_6cf71c35(entity)
 
 /*
 	Name: shoot_bolt_wait
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x6FF2DFA8
 	Offset: 0x13C8
 	Size: 0x21C
@@ -516,7 +516,7 @@ private function shoot_bolt_wait(entity)
 
 /*
 	Name: check_bolt_impact
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xB8667912
 	Offset: 0x15F0
 	Size: 0x12C
@@ -543,7 +543,7 @@ function check_bolt_impact(entity, enemy)
 
 /*
 	Name: function_95141921
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xFC36C5A2
 	Offset: 0x1728
 	Size: 0x36
@@ -558,7 +558,7 @@ function function_95141921(entity)
 
 /*
 	Name: function_a495d71f
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x6446A726
 	Offset: 0x1768
 	Size: 0x38E
@@ -611,7 +611,7 @@ function function_a495d71f(entity)
 
 /*
 	Name: function_9ab1c000
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x8EF6B5EB
 	Offset: 0x1B00
 	Size: 0x3E
@@ -629,7 +629,7 @@ function function_9ab1c000(entity)
 
 /*
 	Name: function_3b8d314c
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xCAB2FC54
 	Offset: 0x1B48
 	Size: 0xDC
@@ -641,7 +641,7 @@ function function_3b8d314c(entity)
 	entity thread function_80fc1a78(0.1);
 	entity.blockingpain = 1;
 	entity.var_1ce249af = 0;
-	entity.var_8921eebf = 1;
+	entity.is_phasing = 1;
 	if(isdefined(self.var_f3bbe853) && self.var_f3bbe853)
 	{
 		entity clientfield::set("" + #"hash_4466de6137f54b59", 1);
@@ -658,7 +658,7 @@ function function_3b8d314c(entity)
 
 /*
 	Name: function_36f6a838
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x78EF5853
 	Offset: 0x1C30
 	Size: 0x2E
@@ -673,7 +673,7 @@ function function_36f6a838(entity)
 
 /*
 	Name: function_dbba31c1
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x27936E21
 	Offset: 0x1C68
 	Size: 0xB4
@@ -685,7 +685,7 @@ function function_dbba31c1(entity)
 	entity thread function_80fc1a78(0.1);
 	entity.blockingpain = 0;
 	entity.phase_time = gettime() + self.var_15aa1ae0;
-	entity.var_8921eebf = undefined;
+	entity.is_phasing = undefined;
 	entity.var_7fde19e8 = gettime();
 	if(isdefined(self.var_f3bbe853) && self.var_f3bbe853)
 	{
@@ -695,7 +695,7 @@ function function_dbba31c1(entity)
 
 /*
 	Name: function_1169b184
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0xBE8E297E
 	Offset: 0x1D28
 	Size: 0x24

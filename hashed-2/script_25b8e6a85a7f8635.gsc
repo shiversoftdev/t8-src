@@ -80,7 +80,7 @@ function function_48acb6ed(position)
 	Parameters: 1
 	Flags: Linked
 */
-function function_9b917fd5(var_634ce82e)
+function function_9b917fd5(is_powered)
 {
 	level flag::wait_till("power_on5");
 	self zm_pack_a_punch::function_bb629351(1);

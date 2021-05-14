@@ -34,12 +34,12 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
 	level.var_5335b66f = associativearray(#"hash_53bd8d8afd745e0", 1, #"hash_7b56bdcba095cb41", 2, #"hash_68ca3d7404460abf", 3, #"hash_1d84c5587b7c3dd4", 4, #"hash_177ee254a5de65d8", 5, #"hash_3cf0f6c1e53f5282", 6, #"hash_5639494d7b07b79c", 7, #"hash_2284de38787c8564", 8, #"hash_2788db235878f3f9", 9);
-	namespace_f551babc::register_challenge(#"give_reward", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"give_reward", &function_d1de6a85, &function_9e7b3f4d);
 	level.var_ee7ca64 = [];
 }
 
@@ -147,7 +147,7 @@ private function function_e7254828()
 		{
 			player contracts::function_5b88297d(#"hash_4e5a4f28d918179c");
 		}
-		if(namespace_f551babc::function_ba9853db() == 0)
+		if(zm_trial::function_ba9853db() == 0)
 		{
 			if(isdefined(self.var_191009a6))
 			{

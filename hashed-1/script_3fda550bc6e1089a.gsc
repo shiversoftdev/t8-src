@@ -72,7 +72,7 @@ function init_shared(var_fc96f513)
 		level._effect[#"heli_comlink_light"][#"friendly"] = #"hash_33eb8912b6c63ecd";
 		level._effect[#"heli_comlink_light"][#"enemy"] = #"hash_33eb8912b6c63ecd";
 		bundle = struct::get_script_bundle("killstreak", var_fc96f513);
-		killstreaks::function_25ce781d(bundle, &usekillstreakhelicopter);
+		killstreaks::register_bundle(bundle, &usekillstreakhelicopter);
 		killstreaks::set_team_kill_penalty_scale("helicopter_comlink", 0);
 		level.killstreakbundle[#"helicopter_comlink"] = bundle;
 		level.killstreaks[#"helicopter_comlink"].threatonkill = 1;

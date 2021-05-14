@@ -185,11 +185,11 @@ function function_8e0b371()
 		if(isalive(self))
 		{
 			str_location = function_ab7f70b9(self);
-			self namespace_2c9e6caa::function_29780fb5((isdefined(str_location) ? str_location : #""));
+			self zm_hud::function_29780fb5((isdefined(str_location) ? str_location : #""));
 		}
 		else
 		{
-			self namespace_2c9e6caa::function_29780fb5(#"");
+			self zm_hud::function_29780fb5(#"");
 		}
 		wait(0.5);
 	}

@@ -6,11 +6,11 @@
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_74813e5f;
+#namespace zm_attachments;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0xF9C9D52
 	Offset: 0xC0
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_5afea9fc53931509", &__init__, undefined, undefined);
+	system::register(#"zm_attachments", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0x2A0DF459
 	Offset: 0x108
 	Size: 0xBC
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: actor_damage_override
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0x6E973E11
 	Offset: 0x1D0
 	Size: 0x1A6
@@ -85,7 +85,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath,
 
 /*
 	Name: function_9f8d8c38
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0x286B9764
 	Offset: 0x380
 	Size: 0xE4
@@ -125,7 +125,7 @@ function function_9f8d8c38()
 
 /*
 	Name: dragons_breath
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0x3142BD5
 	Offset: 0x470
 	Size: 0x1CC
@@ -181,7 +181,7 @@ function dragons_breath(e_attacker, n_damage, weapon)
 
 /*
 	Name: function_ddda26e
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0x25D04C42
 	Offset: 0x648
 	Size: 0x44
@@ -197,7 +197,7 @@ private function function_ddda26e(e_attacker)
 
 /*
 	Name: function_82bca1c7
-	Namespace: namespace_74813e5f
+	Namespace: zm_attachments
 	Checksum: 0x4C2BC472
 	Offset: 0x698
 	Size: 0xC4

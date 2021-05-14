@@ -2,22 +2,22 @@
 #using script_399c912938783695;
 #using scripts\core_common\util_shared.gsc;
 
-#namespace namespace_a6669267;
+#namespace zm_inventory;
 
 /*
 	Name: function_cb96f01d
-	Namespace: namespace_a6669267
+	Namespace: zm_inventory
 	Checksum: 0x69529CB5
 	Offset: 0x1E8
 	Size: 0xEA
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_cb96f01d(var_325ceb7a, var_3e666f2f, numbits, var_7f12f171)
+private function function_cb96f01d(mappingname, var_3e666f2f, numbits, var_7f12f171)
 {
-	if(!isdefined(level.var_a16c38d9[var_325ceb7a]))
+	if(!isdefined(level.var_a16c38d9[mappingname]))
 	{
-		level.var_a16c38d9[var_325ceb7a] = spawnstruct();
+		level.var_a16c38d9[mappingname] = spawnstruct();
 	}
 	if(isdefined(var_7f12f171) && var_7f12f171)
 	{
@@ -27,14 +27,14 @@ private function function_cb96f01d(var_325ceb7a, var_3e666f2f, numbits, var_7f12
 	{
 		var_3e666f2f = "ZMInventory." + var_3e666f2f;
 	}
-	level.var_a16c38d9[var_325ceb7a].var_cd35dfb2 = var_3e666f2f;
-	level.var_a16c38d9[var_325ceb7a].numbits = numbits;
-	level.var_a16c38d9[var_325ceb7a].var_7f12f171 = var_7f12f171;
+	level.var_a16c38d9[mappingname].var_cd35dfb2 = var_3e666f2f;
+	level.var_a16c38d9[mappingname].numbits = numbits;
+	level.var_a16c38d9[mappingname].var_7f12f171 = var_7f12f171;
 }
 
 /*
 	Name: function_c7c05a13
-	Namespace: namespace_a6669267
+	Namespace: zm_inventory
 	Checksum: 0xB29280DB
 	Offset: 0x2E0
 	Size: 0x810
@@ -45,11 +45,11 @@ function function_c7c05a13()
 {
 	level.var_a16c38d9 = [];
 	fields = namespace_cb7cafc3::function_10672567();
-	if(!isdefined(fields) || !isdefined(fields.var_a6669267))
+	if(!isdefined(fields) || !isdefined(fields.zm_inventory))
 	{
 		return;
 	}
-	var_21249230 = getscriptbundle(fields.var_a6669267);
+	var_21249230 = getscriptbundle(fields.zm_inventory);
 	level.var_a16c38d9 = [];
 	if(isdefined(var_21249230.challenges) && isdefined(var_21249230.var_5a90928f))
 	{

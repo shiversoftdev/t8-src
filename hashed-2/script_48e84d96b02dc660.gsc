@@ -79,7 +79,7 @@ function function_7a81018e()
 	self.ai.bulletsinclip = 40;
 	defaultrole();
 	self.overridevehicledamage = &function_9bbb40ab;
-	self thread function_df5b4652();
+	self thread monitorleader();
 }
 
 /*
@@ -154,7 +154,7 @@ function function_36201a5c(params)
 }
 
 /*
-	Name: function_df5b4652
+	Name: monitorleader
 	Namespace: wing_drone
 	Checksum: 0x64E816A0
 	Offset: 0x7A0
@@ -162,7 +162,7 @@ function function_36201a5c(params)
 	Parameters: 0
 	Flags: None
 */
-function function_df5b4652()
+function monitorleader()
 {
 	self endon(#"death");
 	self endon(#"change_state");
@@ -331,7 +331,7 @@ function function_789652f2(origin, owner, innerradius, outerradius, halfheight, 
 					point._scoredebug[#"hash_3f8a9579ce4600de"] = spawnstruct();
 				}
 				point._scoredebug[#"hash_3f8a9579ce4600de"].score = -5000;
-				point._scoredebug[#"hash_3f8a9579ce4600de"].var_4b5e0304 = "";
+				point._scoredebug[#"hash_3f8a9579ce4600de"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}
@@ -451,7 +451,7 @@ function function_b0c75ada(leader)
 						point._scoredebug[#"hash_3f8a9579ce4600de"] = spawnstruct();
 					}
 					point._scoredebug[#"hash_3f8a9579ce4600de"].score = -5000;
-					point._scoredebug[#"hash_3f8a9579ce4600de"].var_4b5e0304 = "";
+					point._scoredebug[#"hash_3f8a9579ce4600de"].scorename = "";
 				#/
 				point.score = point.score + -5000;
 			}

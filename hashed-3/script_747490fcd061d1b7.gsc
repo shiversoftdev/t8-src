@@ -41,7 +41,7 @@ function __init__()
 		zm_perks::function_f3c80d73("zombie_perk_bottle_zombshell", "zombie_perk_totem_zombshell");
 		clientfield::register("scriptmover", "" + #"hash_7199d465a80b4f59", 15000, 1, "int", &function_f420a36b, 0, 0);
 		clientfield::register("toplayer", "" + #"hash_5f545b88ba3e2938", 15000, 1, "int", &function_1e112e5f, 0, 1);
-		clientfield::register("actor", "" + #"hash_645137a0f642fa11", 15000, 1, "counter", &function_7b3bf2a2, 0, 0);
+		clientfield::register("actor", "" + #"zombshell_explosion", 15000, 1, "counter", &zombshell_explosion, 0, 0);
 	}
 }
 
@@ -57,7 +57,7 @@ function __init__()
 function function_efe56acb()
 {
 	level._effect[#"hash_7199d465a80b4f59"] = #"hash_3d2e7548c7dfc406";
-	level._effect[#"hash_645137a0f642fa11"] = #"hash_1900ec48b2f264fe";
+	level._effect[#"zombshell_explosion"] = #"hash_1900ec48b2f264fe";
 	level._effect[#"zombie_blood_1st"] = #"player/fx8_plyr_pstfx_katana_rush_loop";
 }
 
@@ -171,7 +171,7 @@ function function_1e112e5f(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_7b3bf2a2
+	Name: zombshell_explosion
 	Namespace: namespace_d7d6f390
 	Checksum: 0xCFE5CC47
 	Offset: 0x868
@@ -179,8 +179,8 @@ function function_1e112e5f(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_7b3bf2a2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function zombshell_explosion(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	util::playfxontag(localclientnum, level._effect[#"hash_645137a0f642fa11"], self, "j_spineupper");
+	util::playfxontag(localclientnum, level._effect[#"zombshell_explosion"], self, "j_spineupper");
 }
 

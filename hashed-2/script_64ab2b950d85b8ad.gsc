@@ -51,7 +51,7 @@ private function __init__()
 		return;
 	}
 	level.var_67f4fd41 = &function_38d1ea04;
-	level.var_dea62998 = &function_bdc03d88;
+	level.specialty_quieter_complete = &function_bdc03d88;
 	level.var_cf16ff75 = &function_a2162b3b;
 	level.var_6ec46eeb = &function_d85c5382;
 	level.var_f208fb92 = [];
@@ -162,23 +162,23 @@ function function_fc04b237(weapon, weaponoptions)
 	{
 		return;
 	}
-	if(!isdefined(self.pers) || !isdefined(self.pers[#"hash_50096a2a31e9111b"]))
+	if(!isdefined(self.pers) || !isdefined(self.pers[#"activecamo"]))
 	{
 		return weaponoptions;
 	}
 	camoindex = getcamoindex(weaponoptions);
-	var_8968c2ce = function_11c873a(camoindex);
-	if(!isdefined(var_8968c2ce) || !isdefined(self.pers[#"hash_50096a2a31e9111b"][var_8968c2ce]))
+	activecamoname = function_11c873a(camoindex);
+	if(!isdefined(activecamoname) || !isdefined(self.pers[#"activecamo"][activecamoname]))
 	{
 		return weaponoptions;
 	}
-	var_bd02cf1 = self.pers[#"hash_50096a2a31e9111b"][var_8968c2ce];
-	if(!isdefined(var_bd02cf1) || !isdefined(var_bd02cf1.var_dd54a13b))
+	activecamo = self.pers[#"activecamo"][activecamoname];
+	if(!isdefined(activecamo) || !isdefined(activecamo.var_dd54a13b))
 	{
 		return weaponoptions;
 	}
-	var_28c04c49 = namespace_bd02cf1::function_c14cb514(weapon);
-	weaponstate = var_bd02cf1.var_dd54a13b[var_28c04c49];
+	var_28c04c49 = activecamo::function_c14cb514(weapon);
+	weaponstate = activecamo.var_dd54a13b[var_28c04c49];
 	if(!isdefined(weaponstate))
 	{
 		return weaponoptions;
@@ -188,13 +188,13 @@ function function_fc04b237(weapon, weaponoptions)
 	{
 		return weaponoptions;
 	}
-	stage = var_bd02cf1.stages[var_d1a848d9];
+	stage = activecamo.stages[var_d1a848d9];
 	var_7df02232 = stage.var_19b6044e;
 	if(!isdefined(var_7df02232))
 	{
 		return weaponoptions;
 	}
-	var_b7659ba0 = namespace_bd02cf1::function_385ef18d(weapon);
+	var_b7659ba0 = activecamo::function_385ef18d(weapon);
 	weaponoptions = self getbuildkitweaponoptions(var_b7659ba0, var_7df02232, var_d1a848d9);
 	return weaponoptions;
 }
@@ -1178,9 +1178,9 @@ private function function_6c36ab6b()
 	foreach(item in self.inventory.items)
 	{
 		var_a6762160 = item.var_a6762160;
-		if(isdefined(var_a6762160) && (!(isdefined(var_a6762160.consumable) && var_a6762160.consumable)) && isarray(var_a6762160.var_7e21e375))
+		if(isdefined(var_a6762160) && (!(isdefined(var_a6762160.consumable) && var_a6762160.consumable)) && isarray(var_a6762160.talents))
 		{
-			foreach(var_9de7969b in var_a6762160.var_7e21e375)
+			foreach(var_9de7969b in var_a6762160.talents)
 			{
 				self function_b5feff95(var_9de7969b.talent);
 			}
@@ -1189,9 +1189,9 @@ private function function_6c36ab6b()
 	foreach(item in self.inventory.consumed)
 	{
 		var_a6762160 = item.var_a6762160;
-		if(isdefined(var_a6762160) && isarray(var_a6762160.var_7e21e375))
+		if(isdefined(var_a6762160) && isarray(var_a6762160.talents))
 		{
-			foreach(var_9de7969b in var_a6762160.var_7e21e375)
+			foreach(var_9de7969b in var_a6762160.talents)
 			{
 				self function_b5feff95(var_9de7969b.talent);
 			}
@@ -1690,9 +1690,9 @@ function function_7730442c(item)
 	self function_b00db06(11, item.var_bd027dd9);
 	self function_db2abc4(item);
 	self function_6c36ab6b();
-	if(isdefined(consumeditem.var_a6762160) && isdefined(consumeditem.var_a6762160.var_7e21e375) && isarray(consumeditem.var_a6762160.var_7e21e375))
+	if(isdefined(consumeditem.var_a6762160) && isdefined(consumeditem.var_a6762160.talents) && isarray(consumeditem.var_a6762160.talents))
 	{
-		foreach(talent in consumeditem.var_a6762160.var_7e21e375)
+		foreach(talent in consumeditem.var_a6762160.talents)
 		{
 			if(talent.talent == #"hash_6b4f1f8c0c22026f")
 			{
@@ -3077,7 +3077,7 @@ function function_2b4d7b66(item, switchweapon = 1, var_9fa01da8 = 0, var_a3a17c5
 			}
 			else
 			{
-				var_b7659ba0 = namespace_bd02cf1::function_385ef18d(weapon);
+				var_b7659ba0 = activecamo::function_385ef18d(weapon);
 				weaponoptions = self getbuildkitweaponoptions(var_b7659ba0);
 				var_3a7d925b = self function_9826b353(var_b7659ba0);
 				var_2febbde5 = self function_74829bcf(var_b7659ba0);

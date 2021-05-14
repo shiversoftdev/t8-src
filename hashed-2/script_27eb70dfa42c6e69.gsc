@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge("mannequin_american", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge("mannequin_american", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -68,7 +68,7 @@ private function function_d1de6a85()
 	}
 	var_a2c75164 namespace_ba16273b::function_a51b6403(0);
 	callback::function_33f0ddd3(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 	if(isdefined(level.var_8943f7db))
 	{
 		foreach(player in getplayers())
@@ -90,7 +90,7 @@ private function function_d1de6a85()
 private function function_9e7b3f4d(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	foreach(player in getplayers())
 	{
 		player thread namespace_b22c99a5::function_dc0859e();
@@ -172,7 +172,7 @@ private function function_33f0ddd3(s_event)
 		{
 			var_972e1f84 = 1;
 		}
-		if(!var_972e1f84 && !namespace_2ba51478::function_2ff6913(s_event.weapon))
+		if(!var_972e1f84 && !zm_loadout::function_2ff6913(s_event.weapon))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 			if(s_event.weapon.dualwieldweapon != level.weaponnone)

@@ -40,36 +40,36 @@ function init()
 */
 function on_player_connect()
 {
-	var_e18c5d7 = self namespace_2ba51478::function_2dfb9150("talisman1");
-	var_eb3fb8f4 = getunlockableiteminfofromindex(var_e18c5d7, 4);
+	var_e18c5d7 = self zm_loadout::function_2dfb9150("talisman1");
+	s_talisman = getunlockableiteminfofromindex(var_e18c5d7, 4);
 	var_ea4558f5 = function_b143666d(var_e18c5d7, 4);
 	n_remaining = 0;
-	if(isdefined(var_eb3fb8f4))
+	if(isdefined(s_talisman))
 	{
 		if(!isdefined(var_ea4558f5.var_14c94e49))
 		{
 			var_ea4558f5.var_14c94e49 = 0;
 		}
-		var_eb3fb8f4.rarity = var_ea4558f5.var_14c94e49;
-		n_remaining = self function_bd6a3188(var_eb3fb8f4.var_3cf2d21);
+		s_talisman.rarity = var_ea4558f5.var_14c94e49;
+		n_remaining = self function_bd6a3188(s_talisman.var_3cf2d21);
 	}
 	var_88049519 = 0;
-	if(isdefined(var_eb3fb8f4) && namespace_59ff1d6c::function_ff4557dc(var_eb3fb8f4) && n_remaining > 0)
+	if(isdefined(s_talisman) && namespace_59ff1d6c::function_ff4557dc(s_talisman) && n_remaining > 0)
 	{
-		var_240061ef = var_eb3fb8f4.var_3cf2d21;
+		var_240061ef = s_talisman.var_3cf2d21;
 		if(isdefined(level.var_e1074d3e[var_240061ef]))
 		{
-			if(isdefined(level.var_e1074d3e[var_240061ef].var_fd7e329b) && (!(isdefined(level.var_e1074d3e[var_240061ef].is_activated[self.clientid]) && level.var_e1074d3e[var_240061ef].is_activated[self.clientid])))
+			if(isdefined(level.var_e1074d3e[var_240061ef].activate_talisman) && (!(isdefined(level.var_e1074d3e[var_240061ef].is_activated[self.clientid]) && level.var_e1074d3e[var_240061ef].is_activated[self.clientid])))
 			{
 				self thread function_954b9083(var_240061ef);
-				self thread [[level.var_e1074d3e[var_240061ef].var_fd7e329b]]();
+				self thread [[level.var_e1074d3e[var_240061ef].activate_talisman]]();
 				level.var_e1074d3e[var_240061ef].is_activated[self.clientid] = 1;
-				self recordmapevent(30, gettime(), self.origin, level.round_number, var_eb3fb8f4.var_2f8e25b8, (isdefined(self.health) ? self.health : 0));
+				self recordmapevent(30, gettime(), self.origin, level.round_number, s_talisman.var_2f8e25b8, (isdefined(self.health) ? self.health : 0));
 				var_88049519 = 1;
 			}
 		}
 	}
-	else if(isdefined(var_eb3fb8f4))
+	else if(isdefined(s_talisman))
 	{
 		if(n_remaining > 0)
 		{
@@ -98,15 +98,15 @@ function on_player_disconnect()
 	{
 		return;
 	}
-	var_e18c5d7 = self namespace_2ba51478::function_2dfb9150("talisman1");
-	var_eb3fb8f4 = getunlockableiteminfofromindex(var_e18c5d7, 4);
+	var_e18c5d7 = self zm_loadout::function_2dfb9150("talisman1");
+	s_talisman = getunlockableiteminfofromindex(var_e18c5d7, 4);
 	var_ea4558f5 = function_b143666d(var_e18c5d7, 4);
-	if(isdefined(var_eb3fb8f4))
+	if(isdefined(s_talisman))
 	{
-		var_240061ef = var_eb3fb8f4.var_3cf2d21;
+		var_240061ef = s_talisman.var_3cf2d21;
 		if(isdefined(level.var_e1074d3e[var_240061ef]))
 		{
-			if(isdefined(level.var_e1074d3e[var_240061ef].var_fd7e329b) && (isdefined(level.var_e1074d3e[var_240061ef].is_activated[self.clientid]) && level.var_e1074d3e[var_240061ef].is_activated[self.clientid]))
+			if(isdefined(level.var_e1074d3e[var_240061ef].activate_talisman) && (isdefined(level.var_e1074d3e[var_240061ef].is_activated[self.clientid]) && level.var_e1074d3e[var_240061ef].is_activated[self.clientid]))
 			{
 				level.var_e1074d3e[var_240061ef].is_activated[self.clientid] = 0;
 			}
@@ -123,13 +123,13 @@ function on_player_disconnect()
 	Parameters: 2
 	Flags: Linked
 */
-function function_88a60d36(var_240061ef, var_fd7e329b)
+function function_88a60d36(var_240061ef, activate_talisman)
 {
 	/#
 		assert(isdefined(var_240061ef), "");
 	#/
 	/#
-		assert(isdefined(var_fd7e329b), "");
+		assert(isdefined(activate_talisman), "");
 	#/
 	if(!isdefined(level.var_e1074d3e))
 	{
@@ -138,7 +138,7 @@ function function_88a60d36(var_240061ef, var_fd7e329b)
 	if(!isdefined(level.var_e1074d3e[var_240061ef]))
 	{
 		level.var_e1074d3e[var_240061ef] = spawnstruct();
-		level.var_e1074d3e[var_240061ef].var_fd7e329b = var_fd7e329b;
+		level.var_e1074d3e[var_240061ef].activate_talisman = activate_talisman;
 		level.var_e1074d3e[var_240061ef].is_activated = array();
 	}
 }

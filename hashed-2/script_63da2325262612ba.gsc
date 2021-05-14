@@ -47,7 +47,7 @@ function function_d77201c4(ai_zombie)
 	}
 	else
 	{
-		ai_zombie namespace_57ff8cbb::no_target_override(ai_zombie);
+		ai_zombie zm_cleanup::no_target_override(ai_zombie);
 	}
 }
 
@@ -208,7 +208,7 @@ function function_29aabbb3()
 		wait_time++;
 		if(wait_time > 5)
 		{
-			self namespace_57ff8cbb::do_cleanup_check(0);
+			self zm_cleanup::do_cleanup_check(0);
 		}
 	}
 	self.var_46c276a4 = 0;

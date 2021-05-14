@@ -25,7 +25,7 @@ function init()
 	}
 	clientfield::register("scriptmover", "" + #"hash_74fc30de57a0657a", 16000, 3, "int", &function_de1bffd6, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_21f5fab6a3d22093", 16000, 3, "int", &function_9ed71eeb, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_37e6c0cf47669060", 16000, 1, "int", &function_5dccd629, 0, 0);
+	clientfield::register("scriptmover", "" + #"keyline_model", 16000, 1, "int", &keyline_model, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_565760e2c7c1e5cb", 16000, 1, "int", &function_a7ee082f, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_8b48433c3fe40e4", 16000, 3, "int", &function_75ac8f21, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_4bde11d71410ea67", 16000, 3, "int", &function_250bbf4e, 0, 0);
@@ -192,7 +192,7 @@ function function_9ed71eeb(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_5dccd629
+	Name: keyline_model
 	Namespace: namespace_14104b98
 	Checksum: 0xD9E6861D
 	Offset: 0xFA0
@@ -200,7 +200,7 @@ function function_9ed71eeb(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_5dccd629(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function keyline_model(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == oldval)
 	{

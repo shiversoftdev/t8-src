@@ -5,11 +5,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_f09376;
+#namespace archetype_avogadro;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x340907DE
 	Offset: 0x160
 	Size: 0x44
@@ -18,12 +18,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_549171449df37316", &__init__, &__main__, undefined);
+	system::register(#"archetype_avogadro", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x9BADC01
 	Offset: 0x1B0
 	Size: 0x13C
@@ -35,12 +35,12 @@ function __init__()
 	clientfield::register("scriptmover", "" + #"hash_699d5bb1a9339a93", 16000, 1, "int", &function_9452b8f1, 0, 0);
 	clientfield::register("actor", "" + #"hash_4466de6137f54b59", 16000, 1, "int", &function_1d2d070c, 0, 0);
 	clientfield::register("actor", "" + #"hash_2eec8fc21495a18c", 16000, 2, "int", &function_ae4cd3d4, 0, 0);
-	ai::add_archetype_spawn_function(#"avogadro", &function_ee59fbab);
+	ai::add_archetype_spawn_function(#"avogadro", &initavogadro);
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x80F724D1
 	Offset: 0x2F8
 	Size: 0x4
@@ -52,15 +52,15 @@ function __main__()
 }
 
 /*
-	Name: function_ee59fbab
-	Namespace: namespace_f09376
+	Name: initavogadro
+	Namespace: archetype_avogadro
 	Checksum: 0x52E111C6
 	Offset: 0x308
 	Size: 0x44
 	Parameters: 1
 	Flags: Linked
 */
-function function_ee59fbab(localclientnum)
+function initavogadro(localclientnum)
 {
 	util::waittill_dobj(localclientnum);
 	self callback::on_shutdown(&on_entity_shutdown);
@@ -68,7 +68,7 @@ function function_ee59fbab(localclientnum)
 
 /*
 	Name: on_entity_shutdown
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x8B4AFAEB
 	Offset: 0x358
 	Size: 0x3C
@@ -77,15 +77,15 @@ function function_ee59fbab(localclientnum)
 */
 function on_entity_shutdown(localclientnum)
 {
-	if(isdefined(self) && isdefined(self.var_b40f4f18))
+	if(isdefined(self) && isdefined(self.jammer_interface))
 	{
-		self.var_b40f4f18 delete();
+		self.jammer_interface delete();
 	}
 }
 
 /*
 	Name: function_9452b8f1
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x9472E539
 	Offset: 0x3A0
 	Size: 0xCE
@@ -112,7 +112,7 @@ function function_9452b8f1(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_1d2d070c
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x4F108A1D
 	Offset: 0x478
 	Size: 0xCE
@@ -139,7 +139,7 @@ function function_1d2d070c(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_ae4cd3d4
-	Namespace: namespace_f09376
+	Namespace: archetype_avogadro
 	Checksum: 0x38D9FA96
 	Offset: 0x550
 	Size: 0x1DA
@@ -153,10 +153,10 @@ private function function_ae4cd3d4(localclientnum, oldval, newval, bnewent, bini
 	{
 		return;
 	}
-	if(!isdefined(self.var_b40f4f18))
+	if(!isdefined(self.jammer_interface))
 	{
-		self.var_b40f4f18 = util::spawn_model(localclientnum, "tag_origin");
-		self.var_b40f4f18 linkto(self, "j_spine4");
+		self.jammer_interface = util::spawn_model(localclientnum, "tag_origin");
+		self.jammer_interface linkto(self, "j_spine4");
 	}
 	if(isdefined(self.health_fx))
 	{
@@ -166,17 +166,17 @@ private function function_ae4cd3d4(localclientnum, oldval, newval, bnewent, bini
 	{
 		case 3:
 		{
-			self.health_fx = function_239993de(localclientnum, "zm_ai/fx8_avo_elec_aura_main", self.var_b40f4f18, "j_spine4");
+			self.health_fx = function_239993de(localclientnum, "zm_ai/fx8_avo_elec_aura_main", self.jammer_interface, "j_spine4");
 			break;
 		}
 		case 2:
 		{
-			self.health_fx = function_239993de(localclientnum, "zm_ai/fx8_cata_water_aura", self.var_b40f4f18, "j_spine4");
+			self.health_fx = function_239993de(localclientnum, "zm_ai/fx8_cata_water_aura", self.jammer_interface, "j_spine4");
 			break;
 		}
 		case 1:
 		{
-			self.health_fx = function_239993de(localclientnum, "zm_ai/fx8_avo_elec_aura_weakened", self.var_b40f4f18, "j_spine4");
+			self.health_fx = function_239993de(localclientnum, "zm_ai/fx8_avo_elec_aura_weakened", self.jammer_interface, "j_spine4");
 			break;
 		}
 		default:

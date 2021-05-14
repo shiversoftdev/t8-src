@@ -315,9 +315,9 @@ function function_3a81c97b()
 */
 function function_4e4594ab()
 {
-	var_385703b7 = undefined;
-	var_385703b7 = self waittill(#"death");
-	e_attacker = var_385703b7.attacker;
+	s_notify = undefined;
+	s_notify = self waittill(#"death");
+	e_attacker = s_notify.attacker;
 	if(isplayer(e_attacker))
 	{
 		return;
@@ -367,11 +367,11 @@ function function_8e0b371()
 		if(isalive(self))
 		{
 			str_location = function_ab7f70b9(self);
-			self namespace_2c9e6caa::function_29780fb5((isdefined(str_location) ? str_location : #""));
+			self zm_hud::function_29780fb5((isdefined(str_location) ? str_location : #""));
 		}
 		else
 		{
-			self namespace_2c9e6caa::function_29780fb5(#"");
+			self zm_hud::function_29780fb5(#"");
 		}
 		wait(0.5);
 	}

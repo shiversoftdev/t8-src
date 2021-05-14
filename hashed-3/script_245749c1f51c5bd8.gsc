@@ -40,12 +40,12 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
 	clientfield::register("scriptmover", "" + #"hash_530f1e3dbb50b5f6", 16000, 1, "int");
-	namespace_f551babc::register_challenge(#"hash_6f720e698e84015d", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_6f720e698e84015d", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -97,7 +97,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_6f720e698e84015d");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_6f720e698e84015d");
 	return isdefined(s_challenge);
 }
 
@@ -115,15 +115,15 @@ function function_58fc4e38(n_delay = 0)
 	level endon(#"hash_7646638df88a3656");
 	wait(n_delay);
 	var_d2af5572 = struct::get_array("trials_door_lockdown_clip");
-	foreach(var_1e6f32c8 in var_d2af5572)
+	foreach(s_blocker in var_d2af5572)
 	{
-		if(!isdefined(var_1e6f32c8.mdl_blocker))
+		if(!isdefined(s_blocker.mdl_blocker))
 		{
-			var_1e6f32c8.mdl_blocker = util::spawn_model((isdefined(var_1e6f32c8.model) ? var_1e6f32c8.model : #"collision_player_wall_128x128x10"), var_1e6f32c8.origin, var_1e6f32c8.angles);
+			s_blocker.mdl_blocker = util::spawn_model((isdefined(s_blocker.model) ? s_blocker.model : #"collision_player_wall_128x128x10"), s_blocker.origin, s_blocker.angles);
 		}
-		var_1e6f32c8.mdl_blocker ghost();
+		s_blocker.mdl_blocker ghost();
 		util::wait_network_frame();
-		var_1e6f32c8.mdl_blocker clientfield::set("" + #"hash_530f1e3dbb50b5f6", 1);
+		s_blocker.mdl_blocker clientfield::set("" + #"hash_530f1e3dbb50b5f6", 1);
 	}
 }
 
@@ -141,13 +141,13 @@ function function_92f23ef0(n_delay = 0)
 	level endon(#"hash_7646638df88a3656");
 	wait(n_delay);
 	var_d2af5572 = struct::get_array("trials_door_lockdown_clip");
-	foreach(var_1e6f32c8 in var_d2af5572)
+	foreach(s_blocker in var_d2af5572)
 	{
-		if(isdefined(var_1e6f32c8.mdl_blocker))
+		if(isdefined(s_blocker.mdl_blocker))
 		{
-			var_1e6f32c8.mdl_blocker clientfield::set("" + #"hash_530f1e3dbb50b5f6", 0);
+			s_blocker.mdl_blocker clientfield::set("" + #"hash_530f1e3dbb50b5f6", 0);
 			util::wait_network_frame();
-			var_1e6f32c8.mdl_blocker delete();
+			s_blocker.mdl_blocker delete();
 		}
 	}
 }

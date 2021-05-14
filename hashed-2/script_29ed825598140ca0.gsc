@@ -295,9 +295,9 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 	profilelog_begintiming(7, "ship");
 	self endon(#"spawned");
 	self.var_4ef33446 = smeansofdeath == "MOD_META";
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
-		function_6f5608ff(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration);
+		post_game_death(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration);
 		return;
 	}
 	if(self.sessionteam == #"spectator")
@@ -313,8 +313,8 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 	}
 	self.suicide = 0;
 	self.teamkilled = 0;
-	var_303f6e01 = !(isdefined(self.var_cee93f5) && self.var_cee93f5) && !self.var_4ef33446;
-	if(var_303f6e01)
+	countdeath = !(isdefined(self.var_cee93f5) && self.var_cee93f5) && !self.var_4ef33446;
+	if(countdeath)
 	{
 		if(!isdefined(self.var_a7d7e50a))
 		{
@@ -322,7 +322,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 		}
 		level.deaths[self.team]++;
 		self.var_a7d7e50a++;
-		function_a5517625();
+		start_generator_captureshouldshowpain();
 	}
 	self callback::callback(#"on_player_killed");
 	attacker callback::callback(#"hash_1c99870b7a855dd0");
@@ -511,7 +511,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 	}
 	self.pers[#"weapon"] = undefined;
 	self.killedplayerscurrent = [];
-	if(var_303f6e01)
+	if(countdeath)
 	{
 		if(!isdefined(self.deathcount))
 		{
@@ -540,7 +540,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 	wasteamkill = 0;
 	wassuicide = 0;
 	pixendevent();
-	if(var_303f6e01)
+	if(countdeath)
 	{
 		scoreevents::processscoreevent(#"death", self, self, weapon);
 	}
@@ -553,7 +553,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 		var_c8fa9c41 = attacker getxuid();
 		if(attacker == self || assistedsuicide == 1)
 		{
-			if(var_303f6e01)
+			if(countdeath)
 			{
 				dokillcam = 0;
 				wassuicide = 1;
@@ -959,12 +959,12 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 	if(function_f99d2668())
 	{
 		self.var_686890d5 = undefined;
-		if(!gamestate::function_674fd868())
+		if(!gamestate::is_game_over())
 		{
-			if(teams::function_6ce0360d(self.team))
+			if(teams::is_all_dead(self.team))
 			{
 				self function_66cec679();
-				if(!namespace_aa9b5883::function_382a49e0())
+				if(!platoons::function_382a49e0())
 				{
 					self thread namespace_81c567a8::function_1caf5c87(self.team);
 				}
@@ -1970,7 +1970,7 @@ private function should_allow_postgame_death(smeansofdeath)
 }
 
 /*
-	Name: function_6f5608ff
+	Name: post_game_death
 	Namespace: player
 	Checksum: 0x13DCC419
 	Offset: 0x6C98
@@ -1978,7 +1978,7 @@ private function should_allow_postgame_death(smeansofdeath)
 	Parameters: 9
 	Flags: Linked, Private
 */
-private function function_6f5608ff(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration)
+private function post_game_death(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration)
 {
 	if(!should_allow_postgame_death(smeansofdeath))
 	{
@@ -2114,7 +2114,7 @@ private function function_5c5a8dad(lives)
 }
 
 /*
-	Name: function_a5517625
+	Name: start_generator_captureshouldshowpain
 	Namespace: player
 	Checksum: 0x72774792
 	Offset: 0x7518
@@ -2122,7 +2122,7 @@ private function function_5c5a8dad(lives)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a5517625()
+private function start_generator_captureshouldshowpain()
 {
 	if(!(isdefined(level.takelivesondeath) && level.takelivesondeath))
 	{
@@ -2797,7 +2797,7 @@ function function_ed2725ad(einflictor, attacker, weapon)
 				{
 					if(attacker.pers[#"cur_kill_streak"] % 5 == 0)
 					{
-						attacker namespace_bd02cf1::function_896ac347(weapon, #"killstreak_5", 1);
+						attacker activecamo::function_896ac347(weapon, #"killstreak_5", 1);
 						attacker contracts::function_a54e2068(#"hash_4c15367eed618401");
 						attacker contracts::function_a54e2068(#"hash_3f1070327daed588");
 					}

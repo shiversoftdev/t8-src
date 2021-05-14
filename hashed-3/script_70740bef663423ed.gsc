@@ -175,7 +175,7 @@ function function_79d54e51()
 	Parameters: 4
 	Flags: Linked
 */
-function function_86a6368e(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_86a6368e(b_pause, str_perk, str_result, n_slot)
 {
 	self clientfield::set_to_player("perk_death_perception_visuals", 0);
 }

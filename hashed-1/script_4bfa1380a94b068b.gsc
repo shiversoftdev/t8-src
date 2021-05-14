@@ -21,11 +21,11 @@
 #using scripts\mp_common\gametypes\battlechatter.gsc;
 #using scripts\mp_common\gametypes\globallogic_audio.gsc;
 
-#namespace namespace_bba43f7d;
+#namespace supplypod;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x1464F568
 	Offset: 0x330
 	Size: 0x44
@@ -34,12 +34,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_291bf0f079b2eb91", &__init__, undefined, #"killstreaks");
+	system::register(#"supplypod", &__init__, undefined, #"killstreaks");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x17320A71
 	Offset: 0x380
 	Size: 0x1FC
@@ -73,7 +73,7 @@ function __init__()
 
 /*
 	Name: function_1c601b99
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB0C51FAB
 	Offset: 0x588
 	Size: 0x40
@@ -90,79 +90,79 @@ function function_1c601b99()
 
 /*
 	Name: function_127fb8f3
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xC3964F87
 	Offset: 0x5D0
 	Size: 0xB4
 	Parameters: 2
 	Flags: None
 */
-function function_127fb8f3(var_bba43f7d, var_dbd1a594)
+function function_127fb8f3(supplypod, var_dbd1a594)
 {
-	var_bba43f7d.gameobject gameobjects::allow_use(#"none");
+	supplypod.gameobject gameobjects::allow_use(#"none");
 	if(isdefined(level.var_86e3d17a))
 	{
-		var_21a8dd4c = [[level.var_86e3d17a]]();
-		if((isdefined(var_21a8dd4c) ? var_21a8dd4c : 0) > 0)
+		_station_up_to_detention_center_triggers = [[level.var_86e3d17a]]();
+		if((isdefined(_station_up_to_detention_center_triggers) ? _station_up_to_detention_center_triggers : 0) > 0)
 		{
-			var_bba43f7d notify(#"hash_602ae7ca650d6287");
-			var_bba43f7d thread weaponobjects::weapon_object_timeout(var_bba43f7d.var_2d045452, var_21a8dd4c);
+			supplypod notify(#"hash_602ae7ca650d6287");
+			supplypod thread weaponobjects::weapon_object_timeout(supplypod.var_2d045452, _station_up_to_detention_center_triggers);
 		}
 	}
 }
 
 /*
 	Name: function_bff5c062
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x3EDDD0FE
 	Offset: 0x690
 	Size: 0x44C
 	Parameters: 2
 	Flags: Linked
 */
-function function_bff5c062(var_bba43f7d, var_dbd1a594)
+function function_bff5c062(supplypod, var_dbd1a594)
 {
-	if(!isdefined(var_bba43f7d.gameobject))
+	if(!isdefined(supplypod.gameobject))
 	{
 		return;
 	}
-	original_owner = var_bba43f7d.owner;
-	var_bba43f7d.owner weaponobjects::hackerremoveweapon(var_bba43f7d);
-	var_bba43f7d.owner function_890b2784();
-	var_bba43f7d.owner = var_dbd1a594;
-	var_bba43f7d setowner(var_dbd1a594);
-	var_bba43f7d setteam(var_dbd1a594 getteam());
-	var_bba43f7d.team = var_dbd1a594 getteam();
-	var_bba43f7d.gameobject gameobjects::set_owner_team(var_dbd1a594.team);
-	var_bba43f7d.gameobject gameobjects::set_visible_team(#"friendly");
-	var_bba43f7d.gameobject gameobjects::allow_use(#"friendly");
-	var_bba43f7d notify(#"hash_523ddcbd662010e5");
-	var_bba43f7d notify(#"hacked");
-	if(isdefined(var_bba43f7d.var_2d045452))
+	original_owner = supplypod.owner;
+	supplypod.owner weaponobjects::hackerremoveweapon(supplypod);
+	supplypod.owner function_890b2784();
+	supplypod.owner = var_dbd1a594;
+	supplypod setowner(var_dbd1a594);
+	supplypod setteam(var_dbd1a594 getteam());
+	supplypod.team = var_dbd1a594 getteam();
+	supplypod.gameobject gameobjects::set_owner_team(var_dbd1a594.team);
+	supplypod.gameobject gameobjects::set_visible_team(#"friendly");
+	supplypod.gameobject gameobjects::allow_use(#"friendly");
+	supplypod notify(#"hash_523ddcbd662010e5");
+	supplypod notify(#"hacked");
+	if(isdefined(supplypod.var_2d045452))
 	{
-		var_bba43f7d.var_2d045452 notify(#"hacked");
+		supplypod.var_2d045452 notify(#"hacked");
 	}
-	var_bba43f7d thread function_b44dec0b(var_dbd1a594);
-	var_bba43f7d thread function_a2c40499(var_dbd1a594);
-	var_bba43f7d thread watchfordamage();
-	var_bba43f7d thread watchfordeath();
+	supplypod thread function_b44dec0b(var_dbd1a594);
+	supplypod thread function_a2c40499(var_dbd1a594);
+	supplypod thread watchfordamage();
+	supplypod thread watchfordeath();
 	var_a87deb22 = 1;
 	if(!level.teambased)
 	{
-		var_bba43f7d.gameobject.trigger setteamfortrigger(var_bba43f7d.team);
+		supplypod.gameobject.trigger setteamfortrigger(supplypod.team);
 	}
-	if(isdefined(level.var_f1edf93f) && isdefined(var_bba43f7d.var_2d045452))
+	if(isdefined(level.var_f1edf93f) && isdefined(supplypod.var_2d045452))
 	{
-		var_21a8dd4c = [[level.var_f1edf93f]]();
-		if((isdefined(var_21a8dd4c) ? var_21a8dd4c : 0))
+		_station_up_to_detention_center_triggers = [[level.var_f1edf93f]]();
+		if((isdefined(_station_up_to_detention_center_triggers) ? _station_up_to_detention_center_triggers : 0))
 		{
-			var_bba43f7d.var_2d045452 notify(#"hash_602ae7ca650d6287");
+			supplypod.var_2d045452 notify(#"hash_602ae7ca650d6287");
 			if(isdefined(original_owner))
 			{
-				watcher = original_owner weaponobjects::getweaponobjectwatcherbyweapon(var_bba43f7d.var_2d045452.weapon);
+				watcher = original_owner weaponobjects::getweaponobjectwatcherbyweapon(supplypod.var_2d045452.weapon);
 				if(isdefined(watcher))
 				{
-					var_bba43f7d.var_2d045452 thread weaponobjects::weapon_object_timeout(watcher, var_21a8dd4c);
+					supplypod.var_2d045452 thread weaponobjects::weapon_object_timeout(watcher, _station_up_to_detention_center_triggers);
 					var_a87deb22 = 0;
 				}
 			}
@@ -170,24 +170,24 @@ function function_bff5c062(var_bba43f7d, var_dbd1a594)
 	}
 	if(isdefined(level.var_fc1bbaef))
 	{
-		[[level.var_fc1bbaef]](var_bba43f7d);
+		[[level.var_fc1bbaef]](supplypod);
 	}
-	level.var_934fb97.var_5f6d033b[var_bba43f7d.objectiveid] = var_bba43f7d;
+	level.var_934fb97.var_5f6d033b[supplypod.objectiveid] = supplypod;
 	if(!isdefined(level.var_934fb97.var_27fce4c0[var_dbd1a594.clientid]))
 	{
 		level.var_934fb97.var_27fce4c0[var_dbd1a594.clientid] = [];
 	}
 	var_a7edcaed = level.var_934fb97.var_27fce4c0.size + 1;
-	array::push(level.var_934fb97.var_27fce4c0[var_dbd1a594.clientid], var_bba43f7d, var_a7edcaed);
+	array::push(level.var_934fb97.var_27fce4c0[var_dbd1a594.clientid], supplypod, var_a7edcaed);
 	if(var_a87deb22)
 	{
-		var_bba43f7d thread function_827486aa(0);
+		supplypod thread function_827486aa(0);
 	}
 }
 
 /*
 	Name: function_29de6f1f
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB44B423B
 	Offset: 0xAE8
 	Size: 0x154
@@ -210,7 +210,7 @@ function function_29de6f1f(weapon, meansofdeath = undefined)
 
 /*
 	Name: function_49ef5263
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x1377E18B
 	Offset: 0xC48
 	Size: 0x42
@@ -228,7 +228,7 @@ function function_49ef5263()
 
 /*
 	Name: function_1e64d41
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xF92B096F
 	Offset: 0xC98
 	Size: 0x144
@@ -251,7 +251,7 @@ function function_1e64d41(weapon)
 
 /*
 	Name: function_92856c6
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xEA92015E
 	Offset: 0xDE8
 	Size: 0x134
@@ -282,7 +282,7 @@ function function_92856c6(attacker, victim, weapon, attackerweapon, meansofdeath
 
 /*
 	Name: function_f579e72b
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x96525DF0
 	Offset: 0xF28
 	Size: 0xB2
@@ -301,7 +301,7 @@ function function_f579e72b(watcher)
 
 /*
 	Name: function_f7d9ebce
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x7FF9A8A7
 	Offset: 0xFE8
 	Size: 0x34
@@ -310,16 +310,16 @@ function function_f579e72b(watcher)
 */
 function function_f7d9ebce(player)
 {
-	if(!isdefined(self.var_bba43f7d))
+	if(!isdefined(self.supplypod))
 	{
 		return;
 	}
-	self.var_bba43f7d thread function_827486aa(0);
+	self.supplypod thread function_827486aa(0);
 }
 
 /*
 	Name: function_7c0d095c
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xAB9E05C9
 	Offset: 0x1028
 	Size: 0x2C
@@ -328,16 +328,16 @@ function function_f7d9ebce(player)
 */
 function function_7c0d095c()
 {
-	if(!isdefined(self.var_bba43f7d))
+	if(!isdefined(self.supplypod))
 	{
 		return;
 	}
-	self.var_bba43f7d thread function_827486aa(0);
+	self.supplypod thread function_827486aa(0);
 }
 
 /*
 	Name: function_37a2d89d
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB292F2DA
 	Offset: 0x1060
 	Size: 0x1AC
@@ -356,7 +356,7 @@ function function_37a2d89d(watcher, owner)
 		if(isdefined(owner))
 		{
 			owner stats::function_e24eec31(self.weapon, #"used", 1);
-			owner notify(#"hash_291bf0f079b2eb91");
+			owner notify(#"supplypod");
 		}
 		self waittill_timeout(0.05, #"stationary");
 		if(!owner deployable::function_f8fe102f())
@@ -369,14 +369,14 @@ function function_37a2d89d(watcher, owner)
 		self.var_3823265d = owner.var_3823265d;
 		owner.var_3823265d = undefined;
 		owner function_63c23d02(self);
-		var_bba43f7d = self.var_bba43f7d;
-		var_bba43f7d util::function_c596f193();
+		supplypod = self.supplypod;
+		supplypod util::function_c596f193();
 	}
 }
 
 /*
 	Name: function_d7cd849c
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB4B92AE8
 	Offset: 0x1218
 	Size: 0xCE
@@ -403,7 +403,7 @@ function function_d7cd849c(var_cb0f3959, team)
 
 /*
 	Name: setupclientfields
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x3D25CB73
 	Offset: 0x12F0
 	Size: 0x64
@@ -418,7 +418,7 @@ function setupclientfields()
 
 /*
 	Name: setupcallbacks
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x837325F8
 	Offset: 0x1360
 	Size: 0xAC
@@ -435,7 +435,7 @@ private function setupcallbacks()
 
 /*
 	Name: function_577ff80b
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x93643DF3
 	Offset: 0x1418
 	Size: 0x54
@@ -452,7 +452,7 @@ function function_577ff80b()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x9508BC3B
 	Offset: 0x1478
 	Size: 0x23C
@@ -491,7 +491,7 @@ function on_player_spawned()
 
 /*
 	Name: function_46d74bb7
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x457FE3AA
 	Offset: 0x16C0
 	Size: 0x264
@@ -549,7 +549,7 @@ function function_46d74bb7(var_70150641)
 
 /*
 	Name: function_8524b3c5
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x787D25D9
 	Offset: 0x1930
 	Size: 0x66
@@ -561,12 +561,12 @@ function function_8524b3c5(slot, playerweapon)
 	/#
 		assert(isplayer(self));
 	#/
-	self notify(#"hash_4537c6dac90cc3f2", {#weapon:playerweapon});
+	self notify(#"start_killstreak", {#weapon:playerweapon});
 }
 
 /*
 	Name: function_f4255c84
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xF9D39EB1
 	Offset: 0x19A0
 	Size: 0x14
@@ -579,7 +579,7 @@ function function_f4255c84(slot, weapon)
 
 /*
 	Name: on_player_killed
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x7B4B0CFE
 	Offset: 0x19C0
 	Size: 0xC
@@ -592,7 +592,7 @@ function on_player_killed(s_params)
 
 /*
 	Name: getobjectiveid
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x24B2CE04
 	Offset: 0x19D8
 	Size: 0x12
@@ -606,7 +606,7 @@ function getobjectiveid()
 
 /*
 	Name: deleteobjective
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x8C0E334B
 	Offset: 0x19F8
 	Size: 0x44
@@ -624,7 +624,7 @@ function deleteobjective(objectiveid)
 
 /*
 	Name: function_890b2784
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x3FD2323C
 	Offset: 0x1A48
 	Size: 0xCE
@@ -649,7 +649,7 @@ function function_890b2784()
 
 /*
 	Name: function_827486aa
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x6EB07
 	Offset: 0x1B20
 	Size: 0x1FE
@@ -693,7 +693,7 @@ function function_827486aa(var_d3213f00, var_7497ba51 = 1)
 
 /*
 	Name: function_9d4aabb9
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x924C7CCC
 	Offset: 0x1D28
 	Size: 0x42C
@@ -763,53 +763,53 @@ function function_9d4aabb9(var_d3213f00)
 
 /*
 	Name: function_5761966a
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x69A619FE
 	Offset: 0x2160
 	Size: 0x174
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5761966a(var_bba43f7d)
+private function function_5761966a(supplypod)
 {
 	player = self;
 	player endon(#"disconnect");
 	level endon(#"game_ended");
-	var_bba43f7d endon(#"hash_6d5130f90f39295e");
-	if(!isdefined(var_bba43f7d.var_7b7607df[player.clientid]))
+	supplypod endon(#"hash_6d5130f90f39295e");
+	if(!isdefined(supplypod.var_7b7607df[player.clientid]))
 	{
 		return;
 	}
-	objective_setvisibletoplayer(var_bba43f7d.var_134eefb9, player);
-	while(isdefined(var_bba43f7d.var_7b7607df[player.clientid]) && var_bba43f7d.var_7b7607df[player.clientid] > gettime())
+	objective_setvisibletoplayer(supplypod.var_134eefb9, player);
+	while(isdefined(supplypod.var_7b7607df[player.clientid]) && supplypod.var_7b7607df[player.clientid] > gettime())
 	{
-		timeremaining = float(var_bba43f7d.var_7b7607df[player.clientid] - gettime()) / 1000;
+		timeremaining = float(supplypod.var_7b7607df[player.clientid] - gettime()) / 1000;
 		if(timeremaining > 0)
 		{
 			wait(timeremaining);
 		}
 	}
-	objective_setinvisibletoplayer(var_bba43f7d.var_134eefb9, player);
-	var_bba43f7d.var_7b7607df[player.clientid] = undefined;
+	objective_setinvisibletoplayer(supplypod.var_134eefb9, player);
+	supplypod.var_7b7607df[player.clientid] = undefined;
 }
 
 /*
 	Name: function_3c4843e3
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x84DBC22E
 	Offset: 0x22E0
 	Size: 0x4A
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3c4843e3(var_bba43f7d, timetoadd)
+private function function_3c4843e3(supplypod, timetoadd)
 {
-	var_bba43f7d.var_7b7607df[self.clientid] = gettime() + int(timetoadd * 1000);
+	supplypod.var_7b7607df[self.clientid] = gettime() + int(timetoadd * 1000);
 }
 
 /*
 	Name: function_a2c40499
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xAF80BCD6
 	Offset: 0x2338
 	Size: 0xAC
@@ -832,7 +832,7 @@ function function_a2c40499(player)
 
 /*
 	Name: watchfordeath
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x9BE517C5
 	Offset: 0x23F0
 	Size: 0x144
@@ -862,7 +862,7 @@ function watchfordeath()
 
 /*
 	Name: watchfordamage
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xEA56D978
 	Offset: 0x2540
 	Size: 0x2A0
@@ -874,23 +874,23 @@ function watchfordamage()
 	self endon(#"death");
 	level endon(#"game_ended");
 	self endon(#"hash_523ddcbd662010e5");
-	var_bba43f7d = self;
-	var_bba43f7d endon(#"death");
-	var_bba43f7d.health = level.var_934fb97.bundle.kshealth;
-	startinghealth = var_bba43f7d.health;
+	supplypod = self;
+	supplypod endon(#"death");
+	supplypod.health = level.var_934fb97.bundle.kshealth;
+	startinghealth = supplypod.health;
 	while(true)
 	{
 		waitresult = undefined;
 		waitresult = self waittill(#"damage");
 		if((isdefined(level.var_934fb97.bundle.var_4f845dc4) ? level.var_934fb97.bundle.var_4f845dc4 : 0) && isdefined(waitresult.attacker) && isplayer(waitresult.attacker))
 		{
-			var_fd03ecd9 = var_bba43f7d.health / startinghealth;
-			objective_setprogress(var_bba43f7d.var_134eefb9, var_fd03ecd9);
-			var_adb78fe4 = isdefined(var_bba43f7d.var_7b7607df[waitresult.attacker.clientid]);
-			waitresult.attacker function_3c4843e3(var_bba43f7d, level.var_934fb97.bundle.var_c14832cd);
+			var_fd03ecd9 = supplypod.health / startinghealth;
+			objective_setprogress(supplypod.var_134eefb9, var_fd03ecd9);
+			var_adb78fe4 = isdefined(supplypod.var_7b7607df[waitresult.attacker.clientid]);
+			waitresult.attacker function_3c4843e3(supplypod, level.var_934fb97.bundle.var_c14832cd);
 			if(!var_adb78fe4)
 			{
-				waitresult.attacker thread function_5761966a(var_bba43f7d);
+				waitresult.attacker thread function_5761966a(supplypod);
 			}
 		}
 		if(isdefined(waitresult.attacker) && waitresult.amount > 0 && damagefeedback::dodamagefeedback(waitresult.weapon, waitresult.attacker))
@@ -902,7 +902,7 @@ function watchfordamage()
 
 /*
 	Name: function_8d362deb
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x6D713FE5
 	Offset: 0x27E8
 	Size: 0x11A
@@ -923,7 +923,7 @@ function function_8d362deb(einflictor, attacker, idamage, idflags, smeansofdeath
 
 /*
 	Name: function_438ca4e0
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x8EF7B3B2
 	Offset: 0x2910
 	Size: 0x82
@@ -932,20 +932,20 @@ function function_8d362deb(einflictor, attacker, idamage, idflags, smeansofdeath
 */
 function function_438ca4e0()
 {
-	var_bba43f7d = self;
-	var_bba43f7d endon(#"hash_6d5130f90f39295e", #"death");
+	supplypod = self;
+	supplypod endon(#"hash_6d5130f90f39295e", #"death");
 	level waittill(#"game_ended");
 	if(!isdefined(self))
 	{
 		return;
 	}
 	self thread function_827486aa(0, 0);
-	var_bba43f7d.var_648955e6 = 1;
+	supplypod.var_648955e6 = 1;
 }
 
 /*
 	Name: function_fec0924
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x534F1F4A
 	Offset: 0x29A0
 	Size: 0x36
@@ -961,7 +961,7 @@ function function_fec0924()
 
 /*
 	Name: function_9abdee8c
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xCC259EDB
 	Offset: 0x29E0
 	Size: 0xA8C
@@ -986,84 +986,84 @@ function function_9abdee8c(object)
 	slot = player gadgetgetslot(level.var_934fb97.weapon);
 	player gadgetpowerreset(slot);
 	player gadgetpowerset(slot, 0);
-	var_bba43f7d = spawn("script_model", object.origin);
-	var_bba43f7d setmodel(level.var_934fb97.weapon.var_22082a57);
-	object.var_bba43f7d = var_bba43f7d;
-	var_bba43f7d.var_2d045452 = object;
-	var_bba43f7d function_41b29ff0("wpn_t8_eqp_supply_pod_destructible");
-	var_bba43f7d useanimtree("generic");
-	var_bba43f7d.owner = player;
-	var_bba43f7d.clientid = var_bba43f7d.owner.clientid;
-	var_bba43f7d.angles = player.angles;
-	var_bba43f7d clientfield::set("supplypod_placed", 1);
-	var_bba43f7d setteam(player getteam());
-	var_bba43f7d.var_86a21346 = &function_8d362deb;
-	var_bba43f7d solid();
-	var_bba43f7d show();
-	var_bba43f7d.victimsoundmod = "vehicle";
-	var_bba43f7d.weapon = level.var_934fb97.weapon;
-	var_bba43f7d setweapon(var_bba43f7d.weapon);
-	var_bba43f7d.var_57022ab8 = (isdefined(level.var_934fb97.bundle.var_5a0d87e0) ? level.var_934fb97.bundle.var_5a0d87e0 : 20);
-	var_bba43f7d.usecount = 0;
-	var_bba43f7d.objectiveid = getobjectiveid();
-	level.var_934fb97.var_5f6d033b[var_bba43f7d.objectiveid] = var_bba43f7d;
+	supplypod = spawn("script_model", object.origin);
+	supplypod setmodel(level.var_934fb97.weapon.var_22082a57);
+	object.supplypod = supplypod;
+	supplypod.var_2d045452 = object;
+	supplypod function_41b29ff0("wpn_t8_eqp_supply_pod_destructible");
+	supplypod useanimtree("generic");
+	supplypod.owner = player;
+	supplypod.clientid = supplypod.owner.clientid;
+	supplypod.angles = player.angles;
+	supplypod clientfield::set("supplypod_placed", 1);
+	supplypod setteam(player getteam());
+	supplypod.var_86a21346 = &function_8d362deb;
+	supplypod solid();
+	supplypod show();
+	supplypod.victimsoundmod = "vehicle";
+	supplypod.weapon = level.var_934fb97.weapon;
+	supplypod setweapon(supplypod.weapon);
+	supplypod.var_57022ab8 = (isdefined(level.var_934fb97.bundle.var_5a0d87e0) ? level.var_934fb97.bundle.var_5a0d87e0 : 20);
+	supplypod.usecount = 0;
+	supplypod.objectiveid = getobjectiveid();
+	level.var_934fb97.var_5f6d033b[supplypod.objectiveid] = supplypod;
 	if(!isdefined(level.var_934fb97.var_27fce4c0[player.clientid]))
 	{
 		level.var_934fb97.var_27fce4c0[player.clientid] = [];
 	}
 	var_a7edcaed = level.var_934fb97.var_27fce4c0.size + 1;
-	array::push(level.var_934fb97.var_27fce4c0[player.clientid], var_bba43f7d, var_a7edcaed);
-	var_bba43f7d setcandamage(1);
-	var_bba43f7d clientfield::set("enemyequip", 1);
-	var_bba43f7d.var_99d2556b = gettime();
-	var_bba43f7d.uniqueid = function_fec0924();
+	array::push(level.var_934fb97.var_27fce4c0[player.clientid], supplypod, var_a7edcaed);
+	supplypod setcandamage(1);
+	supplypod clientfield::set("enemyequip", 1);
+	supplypod.var_99d2556b = gettime();
+	supplypod.uniqueid = function_fec0924();
 	function_d7cd849c(level.var_934fb97.bundle.var_69b1ff7, player getteam());
 	function_d7cd849c(level.var_934fb97.bundle.var_4f37dfe9, util::getotherteam(player getteam()));
 	if(isdefined(level.var_934fb97.bundle.var_a0db3d4d))
 	{
-		var_bba43f7d playloopsound(level.var_934fb97.bundle.var_a0db3d4d);
+		supplypod playloopsound(level.var_934fb97.bundle.var_a0db3d4d);
 	}
 	if((isdefined(level.var_934fb97.bundle.var_4f845dc4) ? level.var_934fb97.bundle.var_4f845dc4 : 0))
 	{
-		var_bba43f7d.var_134eefb9 = getobjectiveid();
-		var_bba43f7d.var_7b7607df = [];
-		objective_add(var_bba43f7d.var_134eefb9, "active", var_bba43f7d.origin, level.var_934fb97.bundle.var_ce75f65c);
-		objective_setprogress(var_bba43f7d.var_134eefb9, 1);
-		function_da7940a3(var_bba43f7d.var_134eefb9, 1);
-		objective_setinvisibletoall(var_bba43f7d.var_134eefb9);
+		supplypod.var_134eefb9 = getobjectiveid();
+		supplypod.var_7b7607df = [];
+		objective_add(supplypod.var_134eefb9, "active", supplypod.origin, level.var_934fb97.bundle.var_ce75f65c);
+		objective_setprogress(supplypod.var_134eefb9, 1);
+		function_da7940a3(supplypod.var_134eefb9, 1);
+		objective_setinvisibletoall(supplypod.var_134eefb9);
 	}
 	triggerradius = level.var_934fb97.bundle.var_366f43e9;
 	triggerheight = level.var_934fb97.bundle.var_2f1567fb;
 	var_b1a6d849 = level.var_934fb97.bundle.var_2d890f85;
-	upangle = vectorscale(vectornormalize(anglestoup(var_bba43f7d.angles)), 5);
-	var_40989bda = var_bba43f7d.origin + upangle;
+	upangle = vectorscale(vectornormalize(anglestoup(supplypod.angles)), 5);
+	var_40989bda = supplypod.origin + upangle;
 	usetrigger = spawn("trigger_radius_use", var_40989bda, 0, triggerradius, triggerheight);
 	usetrigger setcursorhint("HINT_INTERACTIVE_PROMPT");
 	usetrigger function_49462027(1, 1 | 4096 | 2 | 8388608 | 2048);
-	var_bba43f7d.gameobject = gameobjects::create_use_object(player getteam(), usetrigger, [], undefined, level.var_934fb97.bundle.var_9333131b, 1, 1);
-	var_bba43f7d.gameobject gameobjects::set_visible_team(#"friendly");
-	var_bba43f7d.gameobject gameobjects::allow_use(#"friendly");
-	var_bba43f7d.gameobject gameobjects::set_use_time(var_b1a6d849);
-	var_bba43f7d.gameobject.onbeginuse = &function_8c8fb7b5;
-	var_bba43f7d.gameobject.onenduse = &function_a1434496;
-	var_bba43f7d.gameobject.var_5ecd70 = var_bba43f7d;
-	var_bba43f7d.gameobject.var_33d50507 = 1;
-	var_bba43f7d.gameobject.dontlinkplayertotrigger = 1;
-	var_bba43f7d.gameobject.keepweapon = 1;
-	var_bba43f7d.gameobject.requireslos = 1;
-	var_bba43f7d.gameobject.var_d647eb08 = 1;
-	player deployable::function_6ec9ee30(var_bba43f7d, level.var_934fb97.weapon);
-	var_bba43f7d.gameobject function_1446053f(player);
-	var_bba43f7d thread function_b44dec0b(player);
-	var_bba43f7d thread function_438ca4e0();
-	var_bba43f7d thread watchfordamage();
-	var_bba43f7d thread watchfordeath();
-	var_bba43f7d thread function_a2c40499(player);
+	supplypod.gameobject = gameobjects::create_use_object(player getteam(), usetrigger, [], undefined, level.var_934fb97.bundle.var_9333131b, 1, 1);
+	supplypod.gameobject gameobjects::set_visible_team(#"friendly");
+	supplypod.gameobject gameobjects::allow_use(#"friendly");
+	supplypod.gameobject gameobjects::set_use_time(var_b1a6d849);
+	supplypod.gameobject.onbeginuse = &function_8c8fb7b5;
+	supplypod.gameobject.onenduse = &function_a1434496;
+	supplypod.gameobject.var_5ecd70 = supplypod;
+	supplypod.gameobject.var_33d50507 = 1;
+	supplypod.gameobject.dontlinkplayertotrigger = 1;
+	supplypod.gameobject.keepweapon = 1;
+	supplypod.gameobject.requireslos = 1;
+	supplypod.gameobject.var_d647eb08 = 1;
+	player deployable::function_6ec9ee30(supplypod, level.var_934fb97.weapon);
+	supplypod.gameobject function_1446053f(player);
+	supplypod thread function_b44dec0b(player);
+	supplypod thread function_438ca4e0();
+	supplypod thread watchfordamage();
+	supplypod thread watchfordeath();
+	supplypod thread function_a2c40499(player);
 }
 
 /*
 	Name: function_1446053f
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x4399EFD
 	Offset: 0x3478
 	Size: 0x6C
@@ -1083,7 +1083,7 @@ function function_1446053f(player)
 
 /*
 	Name: function_8c8fb7b5
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB2CC47D2
 	Offset: 0x34F0
 	Size: 0xC
@@ -1096,7 +1096,7 @@ private function function_8c8fb7b5(player)
 
 /*
 	Name: function_a143899c
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xAB89A67
 	Offset: 0x3508
 	Size: 0x14
@@ -1109,7 +1109,7 @@ private function function_a143899c(player, waittime)
 
 /*
 	Name: function_a1434496
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x6E6C736F
 	Offset: 0x3528
 	Size: 0x4B4
@@ -1118,39 +1118,39 @@ private function function_a143899c(player, waittime)
 */
 private function function_a1434496(team, player, result)
 {
-	var_bba43f7d = self.var_5ecd70;
-	if(!isdefined(var_bba43f7d))
+	supplypod = self.var_5ecd70;
+	if(!isdefined(supplypod))
 	{
 		return;
 	}
-	var_bba43f7d.isdisabled = 0;
+	supplypod.isdisabled = 0;
 	if(isdefined(result) && result)
 	{
-		var_bba43f7d.usecount++;
+		supplypod.usecount++;
 		if(isdefined(player) && isplayer(player))
 		{
-			if(var_bba43f7d.owner != player)
+			if(supplypod.owner != player)
 			{
-				scoreevents::processscoreevent(#"hash_69dbfbd660f8c53e", var_bba43f7d.owner, undefined, level.var_934fb97.weapon);
-				relativepos = vectornormalize(player.origin - var_bba43f7d.owner.origin);
-				dir = anglestoforward(var_bba43f7d.owner getplayerangles());
+				scoreevents::processscoreevent(#"hash_69dbfbd660f8c53e", supplypod.owner, undefined, level.var_934fb97.weapon);
+				relativepos = vectornormalize(player.origin - supplypod.owner.origin);
+				dir = anglestoforward(supplypod.owner getplayerangles());
 				dotproduct = vectordot(dir, relativepos);
-				if(isdefined(level.playgadgetsuccess) && var_bba43f7d.usecount >= 1 && !isdefined(self.var_25db02aa) && dotproduct > 0 && sighttracepassed(var_bba43f7d.owner geteye(), self.origin, 1, var_bba43f7d.owner, self))
+				if(isdefined(level.playgadgetsuccess) && supplypod.usecount >= 1 && !isdefined(self.var_25db02aa) && dotproduct > 0 && sighttracepassed(supplypod.owner geteye(), self.origin, 1, supplypod.owner, self))
 				{
 					self.var_25db02aa = 1;
-					var_bba43f7d.owner [[level.playgadgetsuccess]](level.var_934fb97.weapon, undefined, undefined, player);
+					supplypod.owner [[level.playgadgetsuccess]](level.var_934fb97.weapon, undefined, undefined, player);
 				}
 			}
-			var_bba43f7d.owner battlechatter::function_bd715920(level.var_934fb97.weapon, undefined, self.origin, self);
+			supplypod.owner battlechatter::function_bd715920(level.var_934fb97.weapon, undefined, self.origin, self);
 		}
 		thread function_a143899c(player, 1.5);
-		player thread gestures::function_f3e2696f(var_bba43f7d, level.var_934fb97.var_ff101fac, undefined, 0.5, &function_e8df0c85, undefined, undefined);
+		player thread gestures::function_f3e2696f(supplypod, level.var_934fb97.var_ff101fac, undefined, 0.5, &function_e8df0c85, undefined, undefined);
 		player function_bcf0dd99();
 		self gameobjects::hide_waypoint(player);
 		self.trigger setinvisibletoplayer(player);
 		player.var_57de9100 = self;
 		player.var_29fdd9dd = self.team;
-		player.var_bfeea3dd = var_bba43f7d.owner;
+		player.var_bfeea3dd = supplypod.owner;
 		player notify(#"hash_69dbfbd660f8c53e");
 		if(!(isdefined(level.var_934fb97.bundle.var_18ede0bb) ? level.var_934fb97.bundle.var_18ede0bb : 0))
 		{
@@ -1162,9 +1162,9 @@ private function function_a1434496(team, player, result)
 		{
 			player.var_48107b1c = 1;
 		}
-		if(var_bba43f7d.usecount == var_bba43f7d.var_57022ab8)
+		if(supplypod.usecount == supplypod.var_57022ab8)
 		{
-			var_bba43f7d thread function_827486aa(0);
+			supplypod thread function_827486aa(0);
 		}
 	}
 	else
@@ -1175,18 +1175,18 @@ private function function_a1434496(team, player, result)
 
 /*
 	Name: function_e8df0c85
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xF7142102
 	Offset: 0x39E8
 	Size: 0x10C
 	Parameters: 1
 	Flags: Linked
 */
-function function_e8df0c85(var_bba43f7d)
+function function_e8df0c85(supplypod)
 {
-	if(isdefined(var_bba43f7d))
+	if(isdefined(supplypod))
 	{
-		playfxontag("weapon/fx8_equip_supplypod_canister_launch", var_bba43f7d, "tag_canister_smoke");
+		playfxontag("weapon/fx8_equip_supplypod_canister_launch", supplypod, "tag_canister_smoke");
 		var_715428d3 = "j_wrist_le";
 		weapon = self getcurrentweapon();
 		var_53050505 = weapon.var_6566504b;
@@ -1194,14 +1194,14 @@ function function_e8df0c85(var_bba43f7d)
 		{
 			var_715428d3 = "j_wrist_ri";
 		}
-		beamlaunch(var_bba43f7d, self, "tag_origin_animate", var_715428d3, level.var_934fb97.weapon);
-		playsoundatposition(#"hash_f70797817dfefdb", var_bba43f7d.origin);
+		beamlaunch(supplypod, self, "tag_origin_animate", var_715428d3, level.var_934fb97.weapon);
+		playsoundatposition(#"hash_f70797817dfefdb", supplypod.origin);
 	}
 }
 
 /*
 	Name: function_18f999b5
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x7D3F5B58
 	Offset: 0x3B00
 	Size: 0x134
@@ -1235,7 +1235,7 @@ function function_18f999b5(waittime)
 
 /*
 	Name: function_1f8cd247
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x8267348A
 	Offset: 0x3C40
 	Size: 0x21C
@@ -1276,41 +1276,41 @@ function function_1f8cd247(origin, angles, player)
 
 /*
 	Name: function_63c23d02
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB989B3BB
 	Offset: 0x3E68
 	Size: 0xD6
 	Parameters: 1
 	Flags: Linked
 */
-function function_63c23d02(var_bba43f7d)
+function function_63c23d02(supplypod)
 {
-	var_bba43f7d setvisibletoall();
-	if(isdefined(var_bba43f7d.othermodel))
+	supplypod setvisibletoall();
+	if(isdefined(supplypod.othermodel))
 	{
-		var_bba43f7d.othermodel setinvisibletoall();
+		supplypod.othermodel setinvisibletoall();
 	}
-	if(isdefined(var_bba43f7d.var_3823265d))
+	if(isdefined(supplypod.var_3823265d))
 	{
-		self function_9abdee8c(var_bba43f7d);
-		playsoundatposition(#"hash_66e85d590b4f4b8", var_bba43f7d.origin);
+		self function_9abdee8c(supplypod);
+		playsoundatposition(#"hash_66e85d590b4f4b8", supplypod.origin);
 	}
 	if(isdefined(level.var_84bf013e))
 	{
-		self notify(#"supplypod_placed", {#pod:var_bba43f7d});
+		self notify(#"supplypod_placed", {#pod:supplypod});
 	}
 }
 
 /*
 	Name: oncancelplacement
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xA8B615F0
 	Offset: 0x3F48
 	Size: 0x8C
 	Parameters: 1
 	Flags: None
 */
-function oncancelplacement(var_bba43f7d)
+function oncancelplacement(supplypod)
 {
 	slot = self gadgetgetslot(level.var_934fb97.weapon);
 	self gadgetdeactivate(slot, level.var_934fb97.weapon, 0);
@@ -1319,25 +1319,25 @@ function oncancelplacement(var_bba43f7d)
 
 /*
 	Name: onshutdown
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x58E87358
 	Offset: 0x3FE0
 	Size: 0x4C
 	Parameters: 1
 	Flags: None
 */
-function onshutdown(var_bba43f7d)
+function onshutdown(supplypod)
 {
-	if((isdefined(var_bba43f7d.var_ab0875aa) ? var_bba43f7d.var_ab0875aa : 0))
+	if((isdefined(supplypod.var_ab0875aa) ? supplypod.var_ab0875aa : 0))
 	{
 		return;
 	}
-	var_bba43f7d thread function_827486aa(0);
+	supplypod thread function_827486aa(0);
 }
 
 /*
 	Name: function_b44dec0b
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xE7B01312
 	Offset: 0x4038
 	Size: 0x9C
@@ -1346,16 +1346,16 @@ function onshutdown(var_bba43f7d)
 */
 function function_b44dec0b(player)
 {
-	var_bba43f7d = self;
+	supplypod = self;
 	player endon(#"disconnect");
-	var_bba43f7d endon(#"death", #"hacked");
+	supplypod endon(#"death", #"hacked");
 	player waittill(#"joined_team", #"changed_specialist");
-	var_bba43f7d thread function_827486aa(0);
+	supplypod thread function_827486aa(0);
 }
 
 /*
 	Name: function_452147b1
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xB16246AF
 	Offset: 0x40E0
 	Size: 0xB6
@@ -1374,7 +1374,7 @@ function function_452147b1(weapon, weaponindex)
 
 /*
 	Name: function_5bc9564e
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x72EDFBE0
 	Offset: 0x41A0
 	Size: 0x1B6
@@ -1408,7 +1408,7 @@ function function_5bc9564e(weapon)
 
 /*
 	Name: function_740ec27e
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xFF8C36D3
 	Offset: 0x4360
 	Size: 0x13C
@@ -1430,7 +1430,7 @@ function function_740ec27e()
 
 /*
 	Name: function_bcf0dd99
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x505631C4
 	Offset: 0x44A8
 	Size: 0x164
@@ -1452,7 +1452,7 @@ function function_bcf0dd99()
 
 /*
 	Name: function_b8a25634
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x1EC5325E
 	Offset: 0x4618
 	Size: 0x1A6
@@ -1486,7 +1486,7 @@ function function_b8a25634(owner)
 
 /*
 	Name: function_de737a35
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x2C5FC8B6
 	Offset: 0x47C8
 	Size: 0x20C

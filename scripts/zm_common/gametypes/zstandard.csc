@@ -89,8 +89,8 @@ function onstartgametype()
 */
 private function on_localplayer_connect(localclientnum)
 {
-	var_b0871863 = function_c8b7588d(localclientnum);
-	setuimodelvalue(var_b0871863, 0);
+	timer_model = function_c8b7588d(localclientnum);
+	setuimodelvalue(timer_model, 0);
 }
 
 /*
@@ -104,8 +104,8 @@ private function on_localplayer_connect(localclientnum)
 */
 private function function_c8b7588d(localclientnum)
 {
-	var_1b5ddafb = getuimodelforcontroller(localclientnum);
-	return createuimodel(var_1b5ddafb, "ZMHud.trialsTimer");
+	controller_model = getuimodelforcontroller(localclientnum);
+	return createuimodel(controller_model, "ZMHud.trialsTimer");
 }
 
 /*
@@ -121,9 +121,9 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 {
 	if(!function_65b9eb0f(localclientnum))
 	{
-		var_b0871863 = function_c8b7588d(localclientnum);
+		timer_model = function_c8b7588d(localclientnum);
 		duration_msec = newval * 1000;
-		setuimodelvalue(var_b0871863, getservertime(localclientnum, 1) + duration_msec);
+		setuimodelvalue(timer_model, getservertime(localclientnum, 1) + duration_msec);
 	}
 }
 

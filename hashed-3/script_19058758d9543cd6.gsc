@@ -35,11 +35,11 @@ function __init__()
 {
 	level.var_35abdd52 = getweapon(#"hash_13a204ba6887b18f");
 	level.var_669e5aa1 = getweapon(#"hash_491ff8e9d1af03a8");
-	level.var_275acc95 = spawnstruct();
-	level.var_275acc95.base = spawnstruct();
-	level.var_275acc95.upgraded = spawnstruct();
-	level.var_275acc95.base.var_38cd3d0e = lightning_chain::create_lightning_chain_params();
-	level.var_275acc95.upgraded.var_38cd3d0e = lightning_chain::create_lightning_chain_params();
+	level.s_tesla_gun = spawnstruct();
+	level.s_tesla_gun.base = spawnstruct();
+	level.s_tesla_gun.upgraded = spawnstruct();
+	level.s_tesla_gun.base.var_38cd3d0e = lightning_chain::create_lightning_chain_params();
+	level.s_tesla_gun.upgraded.var_38cd3d0e = lightning_chain::create_lightning_chain_params();
 	zm::function_84d343d(#"hash_13a204ba6887b18f", &function_5ff12a45);
 	zm::function_84d343d(#"hash_491ff8e9d1af03a8", &function_52d66433);
 	callback::function_f77ced93(&function_f77ced93);
@@ -57,7 +57,7 @@ function __init__()
 */
 function function_5ff12a45(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	self function_de59b16a(attacker, meansofdeath, level.var_275acc95.base.var_38cd3d0e);
+	self function_de59b16a(attacker, meansofdeath, level.s_tesla_gun.base.var_38cd3d0e);
 	return damage;
 }
 
@@ -72,7 +72,7 @@ function function_5ff12a45(inflictor, attacker, damage, flags, meansofdeath, wea
 */
 function function_52d66433(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	self function_de59b16a(attacker, meansofdeath, level.var_275acc95.upgraded.var_38cd3d0e);
+	self function_de59b16a(attacker, meansofdeath, level.s_tesla_gun.upgraded.var_38cd3d0e);
 	return damage;
 }
 
@@ -87,11 +87,11 @@ function function_52d66433(inflictor, attacker, damage, flags, meansofdeath, wea
 */
 function function_f77ced93(s_params)
 {
-	if(function_90c3317(s_params.weapon))
+	if(is_tesla_gun(s_params.weapon))
 	{
 		clientfield::set_to_player("" + #"hash_611f27e5d51d036f", 1);
 	}
-	else if(function_90c3317(s_params.last_weapon))
+	else if(is_tesla_gun(s_params.last_weapon))
 	{
 		clientfield::set_to_player("" + #"hash_611f27e5d51d036f", 0);
 	}
@@ -116,7 +116,7 @@ function function_de59b16a(e_source, str_mod, var_8e05c280)
 }
 
 /*
-	Name: function_90c3317
+	Name: is_tesla_gun
 	Namespace: namespace_56e9194e
 	Checksum: 0x39A4D06A
 	Offset: 0x5B0
@@ -124,7 +124,7 @@ function function_de59b16a(e_source, str_mod, var_8e05c280)
 	Parameters: 1
 	Flags: Linked
 */
-function function_90c3317(w_weapon)
+function is_tesla_gun(w_weapon)
 {
 	return isdefined(w_weapon) && (w_weapon == level.var_35abdd52 || w_weapon == level.var_669e5aa1);
 }

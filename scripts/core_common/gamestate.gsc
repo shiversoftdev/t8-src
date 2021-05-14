@@ -17,7 +17,7 @@ function set_state(state)
 }
 
 /*
-	Name: function_4c5eea28
+	Name: is_state
 	Namespace: gamestate
 	Checksum: 0xED58268A
 	Offset: 0xB8
@@ -25,13 +25,13 @@ function set_state(state)
 	Parameters: 1
 	Flags: Linked
 */
-function function_4c5eea28(state)
+function is_state(state)
 {
 	return game.state == state;
 }
 
 /*
-	Name: function_674fd868
+	Name: is_game_over
 	Namespace: gamestate
 	Checksum: 0x104CF608
 	Offset: 0xE0
@@ -39,7 +39,7 @@ function function_4c5eea28(state)
 	Parameters: 0
 	Flags: Linked
 */
-function function_674fd868()
+function is_game_over()
 {
 	return game.state == "postgame" || game.state == "shutdown";
 }

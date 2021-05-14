@@ -24,7 +24,7 @@ function init()
 	callback::on_ai_killed(&function_48f916b);
 	callback::on_ai_killed(&function_bde94bdf);
 	level thread function_df71a9b9();
-	level thread function_7141c32b();
+	level thread shard_watcher();
 	level thread function_9785ebce();
 	level thread pap_watcher();
 	level.var_49f54c9e = 0;
@@ -56,7 +56,7 @@ function on_player_connect()
 }
 
 /*
-	Name: function_7141c32b
+	Name: shard_watcher
 	Namespace: namespace_9269886b
 	Checksum: 0xE0D1B5B
 	Offset: 0x358
@@ -64,7 +64,7 @@ function on_player_connect()
 	Parameters: 0
 	Flags: Linked
 */
-function function_7141c32b()
+function shard_watcher()
 {
 	level endon(#"game_ended");
 	self waittill(#"hash_5aa1c9627e8626e0");
@@ -309,9 +309,9 @@ function function_5e1138a2()
 	{
 		waitresult = undefined;
 		waitresult = self waittill(#"perk_bought");
-		if(isdefined(waitresult.var_bcd1c2ff))
+		if(isdefined(waitresult.n_slot))
 		{
-			self.var_c9f12812[waitresult.var_bcd1c2ff] = 1;
+			self.var_c9f12812[waitresult.n_slot] = 1;
 			self thread perk_watcher();
 			for(i = 0; i < 35; i++)
 			{
@@ -351,9 +351,9 @@ function perk_watcher()
 	{
 		waitresult = undefined;
 		waitresult = self waittill(#"perk_bought");
-		if(isdefined(waitresult.var_bcd1c2ff))
+		if(isdefined(waitresult.n_slot))
 		{
-			self.var_c9f12812[waitresult.var_bcd1c2ff] = 1;
+			self.var_c9f12812[waitresult.n_slot] = 1;
 		}
 	}
 }

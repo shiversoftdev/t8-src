@@ -115,7 +115,7 @@ function on_disconnect()
 {
 	if(isdefined(self) && isdefined(self.team) && isdefined(level.playercount) && isdefined(level.playercount[self.team]))
 	{
-		if(!gamestate::function_674fd868() && level.playercount[self.team] <= function_7a0dc792())
+		if(!gamestate::is_game_over() && level.playercount[self.team] <= function_7a0dc792())
 		{
 			function_b856a952(self.team);
 		}

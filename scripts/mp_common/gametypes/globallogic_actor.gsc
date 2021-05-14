@@ -58,7 +58,7 @@ function callback_actorspawned(spawner)
 */
 function callback_actordamage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, modelindex, surfacetype, vsurfacenormal)
 {
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return;
 	}
@@ -294,7 +294,7 @@ function callback_actordamage(einflictor, eattacker, idamage, idflags, smeansofd
 */
 function callback_actorkilled(einflictor, eattacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime)
 {
-	if(gamestate::function_674fd868())
+	if(gamestate::is_game_over())
 	{
 		return;
 	}

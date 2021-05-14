@@ -99,17 +99,17 @@ function __main__()
 function init_clientfields()
 {
 	clientfield::register("scriptmover", "portal_dest_fx", 1, 3, "int", &function_e4ea441, 0, 0);
-	clientfield::register("toplayer", "portal_conference_level1", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_offices_level1", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_war_room", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_war_room_server_room", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_war_room_map", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_panic_room", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_labs_power_room", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_labs_hall1_east", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_labs_hall1_west", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_labs_hall2_east", 1, 1, "int", &function_ed565c80, 0, 0);
-	clientfield::register("toplayer", "portal_labs_hall2_west", 1, 1, "int", &function_ed565c80, 0, 0);
+	clientfield::register("toplayer", "portal_conference_level1", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_offices_level1", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_war_room", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_war_room_server_room", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_war_room_map", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_panic_room", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_labs_power_room", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_labs_hall1_east", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_labs_hall1_west", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_labs_hall2_east", 1, 1, "int", &portal_ready_fx, 0, 0);
+	clientfield::register("toplayer", "portal_labs_hall2_west", 1, 1, "int", &portal_ready_fx, 0, 0);
 	clientfield::register("world", "delete_war_room_portal_fx", 1, 1, "counter", &delete_war_room_portal_fx, 0, 0);
 	clientfield::register("scriptmover", "cage_portal_fx", 1, 1, "int", &cage_portal_fx, 0, 0);
 	clientfield::register("actor", "crawler_portal_spawn_fx", 1, 1, "counter", &crawler_portal_spawn_fx, 0, 0);
@@ -206,7 +206,7 @@ function function_e4ea441(localclientnum, oldval, newval, bnewent, binitialsnap,
 }
 
 /*
-	Name: function_ed565c80
+	Name: portal_ready_fx
 	Namespace: namespace_a701220b
 	Checksum: 0x229541C1
 	Offset: 0x1050
@@ -214,14 +214,14 @@ function function_e4ea441(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked
 */
-function function_ed565c80(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function portal_ready_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	while(!isdefined(level.var_22677da8))
 	{
 		waitframe(1);
 	}
 	var_dabe3ecb = level.var_22677da8[fieldname].var_9d387dd5[localclientnum];
-	if(!isdefined(var_dabe3ecb) || var_dabe3ecb.var_ab116b23 === 1)
+	if(!isdefined(var_dabe3ecb) || var_dabe3ecb.b_off === 1)
 	{
 		return;
 	}
@@ -271,7 +271,7 @@ function delete_war_room_portal_fx(localclientnum, oldval, newval, bnewent, bini
 		waitframe(1);
 	}
 	var_dabe3ecb = level.var_22677da8[#"portal_war_room"].var_9d387dd5[localclientnum];
-	var_dabe3ecb.var_ab116b23 = 1;
+	var_dabe3ecb.b_off = 1;
 	if(isdefined(var_dabe3ecb.effect_id))
 	{
 		deletefx(localclientnum, var_dabe3ecb.effect_id);
@@ -359,7 +359,7 @@ function function_d522cf76(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_cb397763
+	Name: groom_lake_fx
 	Namespace: namespace_a701220b
 	Checksum: 0x89F1B27A
 	Offset: 0x1680
@@ -367,7 +367,7 @@ function function_d522cf76(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: None
 */
-function function_cb397763(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function groom_lake_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	while(!isdefined(level.var_5b15862b))
 	{
@@ -406,11 +406,11 @@ function function_cb397763(localclientnum, oldval, newval, bnewent, binitialsnap
 function crawler_portal_spawn_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	self endon(#"death");
-	var_aa13d75a = util::playfxontag(localclientnum, "maps/zm_office/fx8_teleporter_ready", self, "j_spine2");
+	warmup_fx = util::playfxontag(localclientnum, "maps/zm_office/fx8_teleporter_ready", self, "j_spine2");
 	wait(1.5);
-	if(isdefined(var_aa13d75a))
+	if(isdefined(warmup_fx))
 	{
-		deletefx(localclientnum, var_aa13d75a);
+		deletefx(localclientnum, warmup_fx);
 	}
 	util::playfxontag(localclientnum, "maps/zm_office/fx8_teleporter_destination", self, "j_spine2");
 }

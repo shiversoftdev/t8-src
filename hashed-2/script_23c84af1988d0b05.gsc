@@ -2,11 +2,11 @@
 #using script_717dae5fdb2f4ef;
 #using scripts\core_common\system_shared.csc;
 
-#namespace namespace_c03dca7e;
+#namespace shockrifle;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x5188B1AB
 	Offset: 0x78
 	Size: 0x3C
@@ -15,12 +15,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1b81a39b3331d85d", &__init__, undefined, undefined);
+	system::register(#"shockrifle", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x7BEF3C44
 	Offset: 0xC0
 	Size: 0x14

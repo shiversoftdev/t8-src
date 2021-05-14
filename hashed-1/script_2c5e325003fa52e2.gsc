@@ -24,18 +24,18 @@
 function init()
 {
 	var_a017eb40 = struct::get_array("snowball_pile");
-	foreach(var_b85ff151 in var_a017eb40)
+	foreach(s_snowball_pile in var_a017eb40)
 	{
-		if(isdefined(var_b85ff151.model))
+		if(isdefined(s_snowball_pile.model))
 		{
-			var_b85ff151.e_model = util::spawn_model(var_b85ff151.model, var_b85ff151.origin, var_b85ff151.angles);
+			s_snowball_pile.e_model = util::spawn_model(s_snowball_pile.model, s_snowball_pile.origin, s_snowball_pile.angles);
 		}
-		var_b85ff151 zm_unitrigger::create(&function_dd028fcb, 64);
-		var_b85ff151.s_unitrigger.origin = var_b85ff151.s_unitrigger.origin + vectorscale((0, 0, 1), 32);
-		var_b85ff151 thread function_608b90b4();
-		var_b85ff151.var_1c1b4398 = 0;
+		s_snowball_pile zm_unitrigger::create(&function_dd028fcb, 64);
+		s_snowball_pile.s_unitrigger.origin = s_snowball_pile.s_unitrigger.origin + vectorscale((0, 0, 1), 32);
+		s_snowball_pile thread function_608b90b4();
+		s_snowball_pile.var_1c1b4398 = 0;
 	}
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
 		callback::on_spawned(&function_e1b7c710);
 	}
@@ -52,7 +52,7 @@ function init()
 */
 private function function_dd028fcb(e_player)
 {
-	var_d49d10b0 = e_player namespace_2ba51478::get_player_lethal_grenade();
+	var_d49d10b0 = e_player zm_loadout::get_player_lethal_grenade();
 	if(var_d49d10b0 === level.weaponnone)
 	{
 		return 0;
@@ -80,9 +80,9 @@ private function function_608b90b4()
 	self endon(#"end_game");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"trigger_activated");
-		e_player = var_385703b7.e_who;
+		s_notify = undefined;
+		s_notify = self waittill(#"trigger_activated");
+		e_player = s_notify.e_who;
 		e_player function_79ef6b93();
 		if(!isdefined(e_player.var_61fca2c3) || e_player.var_61fca2c3 == 0)
 		{
@@ -103,7 +103,7 @@ private function function_608b90b4()
 */
 function function_79ef6b93()
 {
-	var_d49d10b0 = self namespace_2ba51478::get_player_lethal_grenade();
+	var_d49d10b0 = self zm_loadout::get_player_lethal_grenade();
 	self playsound("fly_pickup_snowball");
 	if(isdefined(self.var_3b55baa1) && (var_d49d10b0 == level.var_ad5d43cf || var_d49d10b0 == level.var_f8934665 || var_d49d10b0 == level.var_bf70d56c || var_d49d10b0 == level.var_d879215))
 	{
@@ -129,15 +129,15 @@ function function_79ef6b93()
 		{
 			self zm_weapons::weapon_give(level.var_f8934665, 1, 0);
 		}
-		var_bcd1c2ff = self gadgetgetslot(var_d49d10b0);
-		self gadgetpowerreset(var_bcd1c2ff, 0);
+		n_slot = self gadgetgetslot(var_d49d10b0);
+		self gadgetpowerreset(n_slot, 0);
 		self thread function_76e94d52();
 	}
 	else
 	{
 		self.var_3b55baa1 = var_d49d10b0;
-		var_bcd1c2ff = self gadgetgetslot(var_d49d10b0);
-		self.var_e01bb56 = self gadgetpowerget(var_bcd1c2ff);
+		n_slot = self gadgetgetslot(var_d49d10b0);
+		self.var_e01bb56 = self gadgetpowerget(n_slot);
 		if(level flag::get(#"hash_5e095d53ae9513f5"))
 		{
 			if(level flag::get(#"extra_snowballs"))
@@ -175,10 +175,10 @@ function function_3bb2f43b()
 {
 	if(isdefined(self.var_3b55baa1) && isdefined(self.var_e01bb56) && self function_75a76099())
 	{
-		self namespace_2ba51478::set_player_lethal_grenade(self.var_3b55baa1);
+		self zm_loadout::set_player_lethal_grenade(self.var_3b55baa1);
 		self zm_weapons::weapon_give(self.var_3b55baa1, 1, 0);
-		var_bcd1c2ff = self gadgetgetslot(self.var_3b55baa1);
-		self gadgetpowerset(var_bcd1c2ff, self.var_e01bb56);
+		n_slot = self gadgetgetslot(self.var_3b55baa1);
+		self gadgetpowerset(n_slot, self.var_e01bb56);
 		self.var_3b55baa1 = undefined;
 		self.var_e01bb56 = undefined;
 		self notify(#"hash_2ef9a0f78a628812");
@@ -203,7 +203,7 @@ function function_76e94d52()
 	level endon(#"end_game");
 	while(true)
 	{
-		var_d49d10b0 = self namespace_2ba51478::get_player_lethal_grenade();
+		var_d49d10b0 = self zm_loadout::get_player_lethal_grenade();
 		if(self function_75a76099())
 		{
 			var_d8b1f3e3 = self getweaponammoclip(var_d49d10b0);
@@ -212,15 +212,15 @@ function function_76e94d52()
 				wait(1);
 				if(isdefined(self.var_3b55baa1) && isdefined(self.var_e01bb56) && self function_75a76099())
 				{
-					self namespace_2ba51478::set_player_lethal_grenade(self.var_3b55baa1);
+					self zm_loadout::set_player_lethal_grenade(self.var_3b55baa1);
 					self zm_weapons::weapon_give(self.var_3b55baa1, 1, 0);
-					var_bcd1c2ff = self gadgetgetslot(self.var_3b55baa1);
-					self gadgetpowerset(var_bcd1c2ff, self.var_e01bb56);
+					n_slot = self gadgetgetslot(self.var_3b55baa1);
+					self gadgetpowerset(n_slot, self.var_e01bb56);
 					self.var_3b55baa1 = undefined;
 					self.var_e01bb56 = undefined;
-					self function_820a63e9(var_bcd1c2ff, 1);
+					self function_820a63e9(n_slot, 1);
 					wait(1);
-					self function_820a63e9(var_bcd1c2ff, 0);
+					self function_820a63e9(n_slot, 0);
 					self callback::function_53888e7f(&function_3bb2f43b);
 					self notify(#"hash_2ef9a0f78a628812");
 				}
@@ -248,7 +248,7 @@ function function_76e94d52()
 */
 function function_75a76099()
 {
-	var_d49d10b0 = self namespace_2ba51478::get_player_lethal_grenade();
+	var_d49d10b0 = self zm_loadout::get_player_lethal_grenade();
 	if(isdefined(var_d49d10b0) && (var_d49d10b0 == level.var_ad5d43cf || var_d49d10b0 == level.var_f8934665 || var_d49d10b0 == level.var_bf70d56c || var_d49d10b0 == level.var_d879215))
 	{
 		return 1;
@@ -271,10 +271,10 @@ function function_e1b7c710()
 	level flag::wait_till_any(array("round_reset", #"hash_6acab8bde7078239"));
 	if(isdefined(self.var_3b55baa1) && isdefined(self.var_e01bb56) && self function_75a76099())
 	{
-		self namespace_2ba51478::set_player_lethal_grenade(self.var_3b55baa1);
+		self zm_loadout::set_player_lethal_grenade(self.var_3b55baa1);
 		self zm_weapons::weapon_give(self.var_3b55baa1, 1, 0);
-		var_bcd1c2ff = self gadgetgetslot(self.var_3b55baa1);
-		self gadgetpowerset(var_bcd1c2ff, self.var_e01bb56);
+		n_slot = self gadgetgetslot(self.var_3b55baa1);
+		self gadgetpowerset(n_slot, self.var_e01bb56);
 		self.var_3b55baa1 = undefined;
 		self.var_e01bb56 = undefined;
 		self notify(#"hash_2ef9a0f78a628812");

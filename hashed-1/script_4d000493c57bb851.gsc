@@ -28,11 +28,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_a1d9b01d;
+#namespace zm_crafting;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x1C1A68D7
 	Offset: 0x288
 	Size: 0x44
@@ -41,12 +41,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_12378771db09fde7", &__init__, &__main__, undefined);
+	system::register(#"zm_crafting", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x8E21F656
 	Offset: 0x2D8
 	Size: 0x34
@@ -62,7 +62,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x5DFC93AD
 	Offset: 0x318
 	Size: 0xA4
@@ -73,7 +73,7 @@ function __main__()
 {
 	function_7a8f3cbd();
 	function_60a6c623();
-	function_20b6b3ec();
+	setup_tables();
 	if(zombie_utility::function_d2dfacfd(#"hash_44737d225ec3b9d7") || namespace_59ff1d6c::function_901b751c(#"hash_2a5dc43e6de87347"))
 	{
 		level thread function_40f32480();
@@ -85,7 +85,7 @@ function __main__()
 
 /*
 	Name: function_60a6c623
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x462B6829
 	Offset: 0x3C8
 	Size: 0x98
@@ -97,20 +97,20 @@ function function_60a6c623()
 	var_d3701e86 = getscriptbundles("craftfoundry");
 	foreach(foundry in var_d3701e86)
 	{
-		function_70de3b2c(foundry);
+		setup_craftfoundry(foundry);
 	}
 }
 
 /*
-	Name: function_70de3b2c
-	Namespace: namespace_a1d9b01d
+	Name: setup_craftfoundry
+	Namespace: zm_crafting
 	Checksum: 0x5B10C0C5
 	Offset: 0x468
 	Size: 0x27C
 	Parameters: 1
 	Flags: Linked
 */
-function function_70de3b2c(craftfoundry)
+function setup_craftfoundry(craftfoundry)
 {
 	if(isdefined(craftfoundry))
 	{
@@ -161,15 +161,15 @@ function function_70de3b2c(craftfoundry)
 }
 
 /*
-	Name: function_20b6b3ec
-	Namespace: namespace_a1d9b01d
+	Name: setup_tables
+	Namespace: zm_crafting
 	Checksum: 0x1DBB003
 	Offset: 0x6F0
 	Size: 0x248
 	Parameters: 0
 	Flags: Linked
 */
-function function_20b6b3ec()
+function setup_tables()
 {
 	level.var_4fe2f84d = [];
 	var_c443493d = getentarray("crafting_trigger", "targetname");
@@ -207,7 +207,7 @@ function function_20b6b3ec()
 
 /*
 	Name: function_6dccf508
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x8A225B6A
 	Offset: 0x940
 	Size: 0x96
@@ -227,7 +227,7 @@ function function_6dccf508()
 
 /*
 	Name: function_c1552513
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x4532F60
 	Offset: 0x9E0
 	Size: 0x88
@@ -240,7 +240,7 @@ function function_c1552513(name)
 	if(isdefined(craftfoundry))
 	{
 		craftfoundry.name = name;
-		function_70de3b2c(craftfoundry);
+		setup_craftfoundry(craftfoundry);
 	}
 	assertmsg("" + name);
 	return craftfoundry;
@@ -248,7 +248,7 @@ function function_c1552513(name)
 
 /*
 	Name: function_b18074d0
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xC458EB91
 	Offset: 0xA70
 	Size: 0x4E8
@@ -277,7 +277,7 @@ function function_b18074d0(name)
 				}
 				case 6:
 				{
-					blueprint.components[5] = function_4c2f8683(blueprint.var_20120b4a, blueprint);
+					blueprint.components[5] = function_4c2f8683(blueprint.registerperk_packa_seepainterminate, blueprint);
 				}
 				case 5:
 				{
@@ -305,7 +305,7 @@ function function_b18074d0(name)
 			y = (isdefined(blueprint.var_e414062) ? float(blueprint.var_e414062) : 0);
 			z = (isdefined(blueprint.var_3c809ce0) ? float(blueprint.var_3c809ce0) : 0);
 			blueprint.v_offset = (x, y, z);
-			x = (isdefined(blueprint.var_4f7a8876) ? float(blueprint.var_4f7a8876) : 0);
+			x = (isdefined(blueprint.prj_scr_round_pause) ? float(blueprint.prj_scr_round_pause) : 0);
 			y = (isdefined(blueprint.var_11928e3b) ? float(blueprint.var_11928e3b) : 0);
 			z = (isdefined(blueprint.var_71c8b937) ? float(blueprint.var_71c8b937) : 0);
 			blueprint.v_angles = (x, y, z);
@@ -325,7 +325,7 @@ function function_b18074d0(name)
 
 /*
 	Name: function_4c2f8683
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x281804F0
 	Offset: 0xF60
 	Size: 0x260
@@ -368,12 +368,12 @@ function function_4c2f8683(component, blueprint)
 			}
 			else
 			{
-				namespace_93829f86::function_4d230236(component, &function_86531922);
+				zm_items::function_4d230236(component, &function_86531922);
 			}
 		}
 		else
 		{
-			namespace_93829f86::function_4d230236(component, &function_d56724a6);
+			zm_items::function_4d230236(component, &function_d56724a6);
 		}
 	}
 	return level.var_d95bcda9[component.name];
@@ -381,7 +381,7 @@ function function_4c2f8683(component, blueprint)
 
 /*
 	Name: function_40f32480
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xC96A13FE
 	Offset: 0x11C8
 	Size: 0xF0
@@ -403,7 +403,7 @@ private function function_40f32480()
 
 /*
 	Name: function_728a82e0
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xC49F82A7
 	Offset: 0x12C0
 	Size: 0x5E
@@ -422,7 +422,7 @@ function function_728a82e0(blueprint)
 
 /*
 	Name: function_31d883d7
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x4321D4A7
 	Offset: 0x1328
 	Size: 0xD8
@@ -452,7 +452,7 @@ function function_31d883d7()
 
 /*
 	Name: function_4165306b
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x778183E7
 	Offset: 0x1408
 	Size: 0x1A4
@@ -501,7 +501,7 @@ function function_4165306b(player)
 
 /*
 	Name: function_6d1e4410
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x5C478BD9
 	Offset: 0x15B8
 	Size: 0x9A
@@ -512,7 +512,7 @@ function function_6d1e4410(player, blueprint)
 {
 	foreach(component in blueprint.components)
 	{
-		if(!namespace_93829f86::function_e60b2d22(player, component))
+		if(!zm_items::player_has(player, component))
 		{
 			return 0;
 		}
@@ -522,7 +522,7 @@ function function_6d1e4410(player, blueprint)
 
 /*
 	Name: function_6f635422
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x3FF68145
 	Offset: 0x1660
 	Size: 0xA8
@@ -533,16 +533,16 @@ function function_6f635422(player, blueprint)
 {
 	foreach(component in blueprint.components)
 	{
-		if(namespace_93829f86::function_e60b2d22(player, component))
+		if(zm_items::player_has(player, component))
 		{
-			namespace_93829f86::player_take(player, component);
+			zm_items::player_take(player, component);
 		}
 	}
 }
 
 /*
 	Name: function_7a8f3cbd
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xE12F4CAA
 	Offset: 0x1710
 	Size: 0x11C
@@ -551,14 +551,14 @@ function function_6f635422(player, blueprint)
 */
 function function_7a8f3cbd()
 {
-	level.var_90237ebd = namespace_3b85ee2b::function_53a680b8(&function_7362ecc8, &function_8962a3bb, &function_735c3a67, &function_f7dbfdf9, &function_d95a600f, &function_73f3bb03);
-	level.var_98dad84e = namespace_3b85ee2b::function_53a680b8(&function_7362ecc8, &function_8962a3bb, &function_735c3a67, &function_f7dbfdf9, &function_d95a600f, &function_73f3bb03);
-	namespace_3b85ee2b::function_163442cb(level.var_98dad84e, level.weaponnone);
+	level.var_90237ebd = zm_progress::function_53a680b8(&function_7362ecc8, &function_8962a3bb, &function_735c3a67, &function_f7dbfdf9, &function_d95a600f, &function_73f3bb03);
+	level.var_98dad84e = zm_progress::function_53a680b8(&function_7362ecc8, &function_8962a3bb, &function_735c3a67, &function_f7dbfdf9, &function_d95a600f, &function_73f3bb03);
+	zm_progress::function_163442cb(level.var_98dad84e, level.weaponnone);
 }
 
 /*
 	Name: function_7362ecc8
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xB605EE7E
 	Offset: 0x1838
 	Size: 0xA8
@@ -585,7 +585,7 @@ function function_7362ecc8(player, unitrigger)
 
 /*
 	Name: function_8962a3bb
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xAE9AF54C
 	Offset: 0x18E8
 	Size: 0x18
@@ -599,7 +599,7 @@ function function_8962a3bb(player, unitrigger)
 
 /*
 	Name: function_735c3a67
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x97BC6341
 	Offset: 0x1908
 	Size: 0x64
@@ -618,7 +618,7 @@ function function_735c3a67(player, unitrigger)
 
 /*
 	Name: function_f7dbfdf9
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xAC7522F8
 	Offset: 0x1978
 	Size: 0x54
@@ -636,7 +636,7 @@ function function_f7dbfdf9(player, unitrigger)
 
 /*
 	Name: function_d95a600f
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xB7C71F51
 	Offset: 0x19D8
 	Size: 0x54
@@ -654,7 +654,7 @@ function function_d95a600f(player, unitrigger)
 
 /*
 	Name: function_73f3bb03
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xA2D50ED7
 	Offset: 0x1A38
 	Size: 0x36
@@ -669,7 +669,7 @@ function function_73f3bb03(player, unitrigger)
 
 /*
 	Name: function_7bffa1ac
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xCDF1D140
 	Offset: 0x1A78
 	Size: 0x7C
@@ -691,7 +691,7 @@ function function_7bffa1ac(weapon)
 
 /*
 	Name: function_2d53738e
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xEF2D3B6A
 	Offset: 0x1B00
 	Size: 0x52
@@ -709,7 +709,7 @@ function function_2d53738e(weapon)
 
 /*
 	Name: function_48ce9379
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x2FFD9D3
 	Offset: 0x1B60
 	Size: 0x36
@@ -727,7 +727,7 @@ function function_48ce9379(weapon)
 
 /*
 	Name: function_126fc77c
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xEA09AB22
 	Offset: 0x1BA0
 	Size: 0x1B8
@@ -768,7 +768,7 @@ function function_126fc77c(player)
 
 /*
 	Name: function_f665fde0
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x976DCC53
 	Offset: 0x1D60
 	Size: 0x8A8
@@ -926,7 +926,7 @@ function function_f665fde0(trig)
 
 /*
 	Name: function_987a472
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x95225D8C
 	Offset: 0x2610
 	Size: 0x22C
@@ -937,46 +937,46 @@ function function_987a472(modelname, blueprint)
 {
 	if(isdefined(self.stub))
 	{
-		var_707469b3 = self.stub;
+		s_crafting = self.stub;
 	}
 	else
 	{
-		var_707469b3 = self;
+		s_crafting = self;
 	}
-	if(!isdefined(var_707469b3.model))
+	if(!isdefined(s_crafting.model))
 	{
-		s_model = struct::get(var_707469b3.target, "targetname");
+		s_model = struct::get(s_crafting.target, "targetname");
 		if(isdefined(s_model))
 		{
 			m_spawn = spawn("script_model", s_model.origin);
 			m_spawn.origin = m_spawn.origin + blueprint.v_offset;
-			if(isdefined(var_707469b3.v_origin_offset))
+			if(isdefined(s_crafting.v_origin_offset))
 			{
-				m_spawn.origin = m_spawn.origin + var_707469b3.v_origin_offset;
+				m_spawn.origin = m_spawn.origin + s_crafting.v_origin_offset;
 			}
 			m_spawn.angles = s_model.angles;
 			m_spawn.angles = m_spawn.angles + blueprint.v_angles;
-			if(isdefined(var_707469b3.v_angle_offset))
+			if(isdefined(s_crafting.v_angle_offset))
 			{
-				m_spawn.angles = m_spawn.angles + var_707469b3.v_angle_offset;
+				m_spawn.angles = m_spawn.angles + s_crafting.v_angle_offset;
 			}
 			m_spawn setmodel(modelname);
-			var_707469b3.model = m_spawn;
-			var_707469b3.model notsolid();
-			var_707469b3.model show();
+			s_crafting.model = m_spawn;
+			s_crafting.model notsolid();
+			s_crafting.model show();
 		}
 		assertmsg("");
 	}
 	else
 	{
-		var_707469b3.model notsolid();
-		var_707469b3.model show();
+		s_crafting.model notsolid();
+		s_crafting.model show();
 	}
 }
 
 /*
 	Name: function_356e77bd
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x477BD8B2
 	Offset: 0x2848
 	Size: 0x78
@@ -997,7 +997,7 @@ private function function_356e77bd()
 
 /*
 	Name: function_514b8f17
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xE4191AE
 	Offset: 0x28C8
 	Size: 0x108
@@ -1027,7 +1027,7 @@ private function function_514b8f17(player)
 
 /*
 	Name: function_ca244624
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x69041AB7
 	Offset: 0x29D8
 	Size: 0xB8
@@ -1049,7 +1049,7 @@ function function_ca244624(var_55426150)
 
 /*
 	Name: function_d1f16587
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x46E35E1A
 	Offset: 0x2A98
 	Size: 0x1B2
@@ -1085,7 +1085,7 @@ function function_d1f16587(var_55426150, func)
 
 /*
 	Name: function_86531922
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x7E3686EA
 	Offset: 0x2C58
 	Size: 0xEC
@@ -1111,7 +1111,7 @@ function function_86531922(e_holder, var_9c95ad05)
 
 /*
 	Name: function_d56724a6
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x5796DEB1
 	Offset: 0x2D50
 	Size: 0x164
@@ -1148,7 +1148,7 @@ function function_d56724a6(e_holder, var_9c95ad05)
 
 /*
 	Name: function_475a63eb
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x8700E8B
 	Offset: 0x2EC0
 	Size: 0x214
@@ -1171,7 +1171,7 @@ private function function_475a63eb()
 
 /*
 	Name: function_e1eeba22
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x39003422
 	Offset: 0x30E0
 	Size: 0xAE
@@ -1191,7 +1191,7 @@ private function function_e1eeba22(state, var_a3d8c117, var_ea7ebe1f, var_aee03b
 
 /*
 	Name: function_35f5c90b
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x2931311D
 	Offset: 0x3198
 	Size: 0xDC
@@ -1226,7 +1226,7 @@ private function function_35f5c90b(state)
 
 /*
 	Name: function_18f2be60
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xB3DEB050
 	Offset: 0x3280
 	Size: 0x174
@@ -1267,7 +1267,7 @@ function function_18f2be60(player)
 
 /*
 	Name: function_369159af
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x8FA00A3E
 	Offset: 0x3400
 	Size: 0x10C
@@ -1293,7 +1293,7 @@ function function_369159af()
 
 /*
 	Name: function_b03ccfce
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x80F724D1
 	Offset: 0x3518
 	Size: 0x4
@@ -1306,7 +1306,7 @@ private function function_b03ccfce()
 
 /*
 	Name: function_f189f7f
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xABAE9005
 	Offset: 0x3528
 	Size: 0x1C
@@ -1321,7 +1321,7 @@ private function function_f189f7f(player)
 
 /*
 	Name: function_5a4c40a2
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xE88DA27C
 	Offset: 0x3550
 	Size: 0xC
@@ -1334,7 +1334,7 @@ private function function_5a4c40a2(player)
 
 /*
 	Name: function_8109ae21
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xF27584F5
 	Offset: 0x3568
 	Size: 0x3BE
@@ -1412,7 +1412,7 @@ private function function_8109ae21(player)
 
 /*
 	Name: function_d564a5c0
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xE4614690
 	Offset: 0x3930
 	Size: 0x102
@@ -1457,7 +1457,7 @@ private function function_d564a5c0(player)
 
 /*
 	Name: function_f37c4bb5
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xCBEED9CD
 	Offset: 0x3A40
 	Size: 0x614
@@ -1484,11 +1484,11 @@ private function function_f37c4bb5(player)
 	}
 	if(silent)
 	{
-		var_6ea6e65 = namespace_3b85ee2b::progress_think(player, level.var_98dad84e, var_c060d2c8);
+		var_6ea6e65 = zm_progress::progress_think(player, level.var_98dad84e, var_c060d2c8);
 	}
 	else
 	{
-		var_6ea6e65 = namespace_3b85ee2b::progress_think(player, level.var_90237ebd, var_c060d2c8);
+		var_6ea6e65 = zm_progress::progress_think(player, level.var_90237ebd, var_c060d2c8);
 	}
 	self notify(#"hash_6db03c91467a21f5", {#b_completed:var_6ea6e65});
 	if(var_6ea6e65)
@@ -1511,7 +1511,7 @@ private function function_f37c4bb5(player)
 			player_crafted playsound(#"zmb_craftable_complete");
 			if(isdefined(self.stub.blueprint.name))
 			{
-				player_crafted thread zm_audio::create_and_play_dialog(#"hash_1f77344945c7d0db", self.stub.blueprint.name);
+				player_crafted thread zm_audio::create_and_play_dialog(#"build_complete", self.stub.blueprint.name);
 			}
 		}
 		if(isdefined(self.stub.craftfoundry.var_ffe774be))
@@ -1526,7 +1526,7 @@ private function function_f37c4bb5(player)
 			foreach(e_player in getplayers())
 			{
 				/#
-					e_player namespace_ff457ca2::debug_print("");
+					e_player zm_challenges::debug_print("");
 				#/
 				e_player zm_stats::increment_challenge_stat(#"hash_7199c0c1e12de89a", undefined, 1);
 			}
@@ -1540,7 +1540,7 @@ private function function_f37c4bb5(player)
 
 /*
 	Name: function_a187b293
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xF8544405
 	Offset: 0x4060
 	Size: 0x1FC
@@ -1584,7 +1584,7 @@ function function_a187b293(player)
 
 /*
 	Name: function_578c67bf
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xCEAE0CC2
 	Offset: 0x4268
 	Size: 0x1C
@@ -1598,7 +1598,7 @@ private function function_578c67bf()
 
 /*
 	Name: function_3c45b116
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x38F2444A
 	Offset: 0x4290
 	Size: 0x134
@@ -1631,13 +1631,13 @@ private function function_3c45b116()
 		v_origin = self.model.origin;
 		v_angles = self.model.angles;
 	}
-	namespace_93829f86::spawn_item(self.blueprint.var_54a97edd, v_origin, v_angles);
+	zm_items::spawn_item(self.blueprint.var_54a97edd, v_origin, v_angles);
 	thread zm_unitrigger::unregister_unitrigger(self);
 }
 
 /*
 	Name: function_230f6303
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xA920C4CF
 	Offset: 0x43D0
 	Size: 0x114
@@ -1675,7 +1675,7 @@ private function function_230f6303()
 
 /*
 	Name: function_9693e041
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x882E1E19
 	Offset: 0x44F0
 	Size: 0x464
@@ -1704,7 +1704,7 @@ private function function_9693e041(player)
 			var_868b4fdd = zm_utility::function_d6046228(str, var_e7ed2264);
 			var_495e9cd = zm_utility::function_d6046228(#"hash_38222048e6736323", #"hash_197687e8f04962c9");
 			self.hint_string = (isdefined(var_868b4fdd) ? var_868b4fdd : var_495e9cd);
-			var_5435aca = 1;
+			_shad_turret_debug_server = 1;
 		}
 		else
 		{
@@ -1725,7 +1725,7 @@ private function function_9693e041(player)
 	{
 		self.hint_string = #"hash_55d25caf8f7bbb2f";
 	}
-	else if(!(isdefined(var_5435aca) && var_5435aca))
+	else if(!(isdefined(_shad_turret_debug_server) && _shad_turret_debug_server))
 	{
 		str = self.blueprint.var_391591d0;
 		var_e7ed2264 = function_c9163c5d(str);
@@ -1749,7 +1749,7 @@ private function function_9693e041(player)
 
 /*
 	Name: function_c9163c5d
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xBC258AC3
 	Offset: 0x4960
 	Size: 0x3C
@@ -1767,14 +1767,14 @@ function function_c9163c5d(str)
 
 /*
 	Name: function_ceac3bf9
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xD10D50CC
 	Offset: 0x49A8
 	Size: 0x24A
 	Parameters: 2
 	Flags: Linked
 */
-function function_ceac3bf9(player, var_2855b5c6 = 0)
+function function_ceac3bf9(player, b_repaired = 0)
 {
 	if(!isdefined(player.var_36ea3103))
 	{
@@ -1841,7 +1841,7 @@ function function_ceac3bf9(player, var_2855b5c6 = 0)
 	{
 		n_cost = 100;
 	}
-	if(var_2855b5c6)
+	if(b_repaired)
 	{
 		if(isdefined(player.talisman_shield_price))
 		{
@@ -1857,7 +1857,7 @@ function function_ceac3bf9(player, var_2855b5c6 = 0)
 
 /*
 	Name: function_86cab486
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x8B445692
 	Offset: 0x4C00
 	Size: 0xCE
@@ -1905,7 +1905,7 @@ private function function_86cab486()
 
 /*
 	Name: function_fccf9f0d
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x83E33362
 	Offset: 0x4CD8
 	Size: 0x68
@@ -1931,7 +1931,7 @@ function function_fccf9f0d()
 
 /*
 	Name: function_df8ce6e2
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x11EDE08D
 	Offset: 0x4D48
 	Size: 0x830
@@ -2070,7 +2070,7 @@ private function function_df8ce6e2(player)
 
 /*
 	Name: function_d94efa98
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x6A63CFA8
 	Offset: 0x5580
 	Size: 0x46
@@ -2088,7 +2088,7 @@ private function function_d94efa98()
 
 /*
 	Name: function_6e16f902
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xD4F952E7
 	Offset: 0x55D0
 	Size: 0x44
@@ -2106,7 +2106,7 @@ private function function_6e16f902()
 
 /*
 	Name: function_15d10d06
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x52B851A7
 	Offset: 0x5620
 	Size: 0xDE
@@ -2133,7 +2133,7 @@ private function function_15d10d06(player)
 
 /*
 	Name: function_42673a26
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x6C5FB3B9
 	Offset: 0x5708
 	Size: 0x274
@@ -2147,7 +2147,7 @@ private function function_42673a26(player)
 		return;
 	}
 	current_weapon = player getcurrentweapon();
-	if(namespace_2ba51478::is_placeable_mine(current_weapon) || zm_equipment::is_equipment_that_blocks_purchase(current_weapon))
+	if(zm_loadout::is_placeable_mine(current_weapon) || zm_equipment::is_equipment_that_blocks_purchase(current_weapon))
 	{
 		return;
 	}
@@ -2185,7 +2185,7 @@ private function function_42673a26(player)
 
 /*
 	Name: function_3012605d
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xB1570792
 	Offset: 0x5988
 	Size: 0x144
@@ -2219,7 +2219,7 @@ function function_3012605d(unitrigger)
 
 /*
 	Name: function_e197bb07
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x2DFEDEA8
 	Offset: 0x5AD8
 	Size: 0x10
@@ -2234,7 +2234,7 @@ function function_e197bb07(foundry)
 
 /*
 	Name: function_e5af6b6e
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x224D368D
 	Offset: 0x5AF0
 	Size: 0xD0
@@ -2258,7 +2258,7 @@ function function_e5af6b6e(blueprint)
 
 /*
 	Name: function_e9e4a1d0
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xF4CD06F3
 	Offset: 0x5BC8
 	Size: 0xA4
@@ -2277,7 +2277,7 @@ function function_e9e4a1d0(var_a13e8cac, component)
 
 /*
 	Name: function_4765f5b3
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x46EE9660
 	Offset: 0x5C78
 	Size: 0x10
@@ -2292,7 +2292,7 @@ function function_4765f5b3(component)
 
 /*
 	Name: function_bebf36b
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0x81B388CF
 	Offset: 0x5C90
 	Size: 0xF2
@@ -2319,7 +2319,7 @@ function function_bebf36b()
 
 /*
 	Name: devgui_think
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xBAE89CA5
 	Offset: 0x5D90
 	Size: 0x276
@@ -2362,7 +2362,7 @@ function devgui_think()
 
 /*
 	Name: function_3e29352d
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xD2D71EFB
 	Offset: 0x6010
 	Size: 0x24
@@ -2378,7 +2378,7 @@ function function_3e29352d(var_ef492be)
 
 /*
 	Name: function_fe738a08
-	Namespace: namespace_a1d9b01d
+	Namespace: zm_crafting
 	Checksum: 0xA1BAD28E
 	Offset: 0x6040
 	Size: 0x1E4

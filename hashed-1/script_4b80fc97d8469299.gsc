@@ -89,7 +89,7 @@ function function_1faf4b9(var_5ea5c94d)
 {
 	if(!var_5ea5c94d)
 	{
-		namespace_85e029d3::function_f6ecebca(15, #"hash_59c4b1052b566fa1", #"hash_28356be4df0c611f", &function_9af4e8bd);
+		namespace_85e029d3::register_drop_off(15, #"hash_59c4b1052b566fa1", #"hash_28356be4df0c611f", &function_9af4e8bd);
 		level.pablo_npc.var_cb3ed98f[15].var_80080852 = 1;
 		namespace_85e029d3::function_d83490c5(15);
 		level flag::wait_till(#"hash_7b6c32b9937aee62");
@@ -235,7 +235,7 @@ function function_3c9be590(var_5ea5c94d, ended_early)
 	level flag::clear(#"hash_3028604821838259");
 	namespace_509a75d1::function_314447b(1, 0);
 	level flag::set(#"disable_special_rounds");
-	namespace_bfc8ee03::function_90ede8a9();
+	namespace_bfc8ee03::spawn_guide();
 	namespace_d09ff23c::function_da304f6e(0);
 }
 

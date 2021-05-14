@@ -44,9 +44,9 @@ function __init__()
 	clientfield::register("toplayer", "player_acid_trap_post_fx", 1, 1, "int", &player_acid_trap_post_fx, 0, 0);
 	level._effect[#"animscript_gib_fx"] = #"zombie/fx_blood_torso_explo_zmb";
 	level._effect[#"fan_blood"] = #"hash_45d61db7f0d94744";
-	level._effect[#"hash_658b1a7ce83c566c"] = #"hash_21e59a64eb02516a";
+	level._effect[#"fan_blood_head"] = #"hash_21e59a64eb02516a";
 	level._effect[#"acid_spray"] = #"hash_3a65c86ea64668f5";
-	level._effect[#"hash_31adca9427875cc3"] = #"hash_78c487ac760f594c";
+	level._effect[#"acid_spray_death"] = #"hash_78c487ac760f594c";
 	level._effect[#"hash_294b19c300d1b482"] = #"hash_45008cc138e3bba3";
 	level._effect[#"hash_4391e5c4b43c63c9"] = #"hash_215c779c48fd6856";
 	level._effect[#"hash_5647f8e593893bce"] = #"hash_4d61168f93739083";
@@ -69,18 +69,18 @@ function fan_trap_blood_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(randomint(100) > 50)
 		{
-			self.var_2fe3aa21 = util::playfxontag(localclientnum, level._effect[#"hash_658b1a7ce83c566c"], self, "J_Neck");
+			self.n_fan_trap_blood_fx = util::playfxontag(localclientnum, level._effect[#"fan_blood_head"], self, "J_Neck");
 		}
 		else
 		{
-			self.var_2fe3aa21 = util::playfxontag(localclientnum, level._effect[#"fan_blood"], self, "j_spinelower");
+			self.n_fan_trap_blood_fx = util::playfxontag(localclientnum, level._effect[#"fan_blood"], self, "j_spinelower");
 		}
 		playsound(localclientnum, #"hash_5840ac12dd5f08cd", self.origin);
 	}
-	else if(isdefined(self.var_2fe3aa21))
+	else if(isdefined(self.n_fan_trap_blood_fx))
 	{
-		stopfx(localclientnum, self.var_2fe3aa21);
-		self.var_2fe3aa21 = undefined;
+		stopfx(localclientnum, self.n_fan_trap_blood_fx);
+		self.n_fan_trap_blood_fx = undefined;
 	}
 }
 
@@ -144,7 +144,7 @@ function acid_trap_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 			stopfx(localclientnum, self.var_91180673);
 			self.var_91180673 = undefined;
 		}
-		playfx(localclientnum, level._effect[#"hash_31adca9427875cc3"], self.origin);
+		playfx(localclientnum, level._effect[#"acid_spray_death"], self.origin);
 	}
 }
 
@@ -161,13 +161,13 @@ function acid_trap_death_fx(localclientnum, oldval, newval, bnewent, binitialsna
 {
 	if(newval == 1)
 	{
-		self.var_963e2d39 = util::playfxontag(localclientnum, level._effect[#"hash_294b19c300d1b482"], self, "tag_stowed_back");
+		self.n_acid_trap_death_fx = util::playfxontag(localclientnum, level._effect[#"hash_294b19c300d1b482"], self, "tag_stowed_back");
 		playsound(localclientnum, #"hash_4d4c9f8ad239b61f", self.origin);
 	}
-	else if(isdefined(self.var_963e2d39))
+	else if(isdefined(self.n_acid_trap_death_fx))
 	{
-		stopfx(localclientnum, self.var_963e2d39);
-		self.var_963e2d39 = undefined;
+		stopfx(localclientnum, self.n_acid_trap_death_fx);
+		self.n_acid_trap_death_fx = undefined;
 	}
 }
 
@@ -192,7 +192,7 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 		{
 			return;
 		}
-		self notify(#"hash_5703f63dbeb5305e");
+		self notify(#"player_acid_trap_post_fx_complete");
 		self.var_431ddde9 = self playloopsound(#"hash_341a3fa00975f232");
 		self thread function_17956e93(localclientnum);
 		self thread postfx::playpostfxbundle(#"hash_f9e59806209b8dd");
@@ -205,7 +205,7 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 	}
 	else
 	{
-		self notify(#"hash_5703f63dbeb5305e");
+		self notify(#"player_acid_trap_post_fx_complete");
 		if(isdefined(self.var_431ddde9))
 		{
 			self stoploopsound(self.var_431ddde9);
@@ -226,7 +226,7 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 function function_17956e93(localclientnum)
 {
 	self endon_callback(&function_502136a5, #"death");
-	self waittill(#"hash_5703f63dbeb5305e");
+	self waittill(#"player_acid_trap_post_fx_complete");
 	if(isdefined(self))
 	{
 		self postfx::exitpostfxbundle(#"hash_f9e59806209b8dd");
@@ -297,10 +297,10 @@ function function_502136a5(str_notify)
 */
 function spinning_trap_blood_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	if(isdefined(self.var_34cc2b51))
+	if(isdefined(self.n_spinning_trap_blood_fx))
 	{
-		stopfx(localclientnum, self.var_34cc2b51);
-		self.var_34cc2b51 = undefined;
+		stopfx(localclientnum, self.n_spinning_trap_blood_fx);
+		self.n_spinning_trap_blood_fx = undefined;
 	}
 	if(newval == 1)
 	{
@@ -309,7 +309,7 @@ function spinning_trap_blood_fx(localclientnum, oldval, newval, bnewent, binitia
 		{
 			var_1f694afe = "j_spine1";
 		}
-		self.var_34cc2b51 = util::playfxontag(localclientnum, level._effect[#"hash_1a3aa0422b5a92a4"], self, var_1f694afe);
+		self.n_spinning_trap_blood_fx = util::playfxontag(localclientnum, level._effect[#"hash_1a3aa0422b5a92a4"], self, var_1f694afe);
 		playsound(localclientnum, #"hash_5840ac12dd5f08cd", self.origin);
 	}
 }
@@ -325,14 +325,14 @@ function spinning_trap_blood_fx(localclientnum, oldval, newval, bnewent, binitia
 */
 function spinning_trap_eye_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	if(isdefined(self.var_9ae91529))
+	if(isdefined(self.n_spinning_trap_eye_fx))
 	{
-		stopfx(localclientnum, self.var_9ae91529);
-		self.var_9ae91529 = undefined;
+		stopfx(localclientnum, self.n_spinning_trap_eye_fx);
+		self.n_spinning_trap_eye_fx = undefined;
 	}
 	if(newval == 1)
 	{
-		self.var_9ae91529 = util::playfxontag(localclientnum, level._effect[#"hash_13b6f9efa3cf588a"], self, "tag_eye");
+		self.n_spinning_trap_eye_fx = util::playfxontag(localclientnum, level._effect[#"hash_13b6f9efa3cf588a"], self, "tag_eye");
 	}
 }
 

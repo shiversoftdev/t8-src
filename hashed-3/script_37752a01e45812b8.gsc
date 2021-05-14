@@ -223,7 +223,7 @@ function function_f85d3d98()
 function function_e42e358e()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
+	self endon(#"death", #"player_frozen");
 	while(true)
 	{
 		wait(0.1);
@@ -247,7 +247,7 @@ function function_e42e358e()
 function function_f0bdc5df()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
+	self endon(#"death", #"player_frozen");
 	self thread function_6577cacc();
 	self notify(#"hash_42fcb8fa7aec0734");
 	self clientfield::set_to_player("" + #"hash_13f1aaee7ebf9986", 1);
@@ -267,20 +267,20 @@ function function_f0bdc5df()
 function function_1b305413()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
+	self endon(#"death", #"player_frozen");
 	while(true)
 	{
 		wait(0.1);
 		if(self issprinting() || self laststand::player_is_in_laststand())
 		{
-			self function_14274d6();
+			self player_sprinting();
 			return;
 		}
 	}
 }
 
 /*
-	Name: function_14274d6
+	Name: player_sprinting
 	Namespace: namespace_565e073b
 	Checksum: 0x99B7B905
 	Offset: 0xDD8
@@ -288,10 +288,10 @@ function function_1b305413()
 	Parameters: 0
 	Flags: Linked
 */
-function function_14274d6()
+function player_sprinting()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
+	self endon(#"death", #"player_frozen");
 	self notify(#"hash_668824b34b3076bc");
 	self allowslide(1);
 	self thread namespace_18db89ed::function_d2dd1f2b();
@@ -344,7 +344,7 @@ function function_9364acc1()
 {
 	self endon_callback(&namespace_18db89ed::function_c64292f, #"death");
 	self.var_7dc2d507 = 1;
-	self notify(#"hash_6bf10f34c45e879b");
+	self notify(#"player_frozen");
 	self namespace_18db89ed::function_bad6907c();
 	self clientfield::set("" + #"hash_55543319943057f1", 1);
 	self clientfield::set_to_player("" + #"hash_5160727729fd57a2", 1);

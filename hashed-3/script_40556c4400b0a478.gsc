@@ -94,7 +94,7 @@ private function function_5162a3de(cmd)
 				{
 					if(spawner.var_9fde8624 === #"hash_273dea5b2e3044c0" && isdefined(spawner.script_noteworthy))
 					{
-						zm_devgui::function_fc475b3b(spawner.script_noteworthy);
+						zm_devgui::spawn_archetype(spawner.script_noteworthy);
 						break;
 					}
 				}
@@ -102,8 +102,8 @@ private function function_5162a3de(cmd)
 			}
 			case "hash_2e229b658a79d09f":
 			{
-				var_6da260a8 = getaiarchetypearray(#"brutus");
-				foreach(brutus in var_6da260a8)
+				brutuses = getaiarchetypearray(#"brutus");
+				foreach(brutus in brutuses)
 				{
 					if(brutus.var_9fde8624 === #"hash_273dea5b2e3044c0")
 					{

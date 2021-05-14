@@ -5,7 +5,7 @@
 #namespace namespace_93b6af30;
 
 /*
-	Name: function_ff6c71f6
+	Name: registertigerinterfaceattributes
 	Namespace: namespace_93b6af30
 	Checksum: 0xFEF8FD4B
 	Offset: 0x88
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_ff6c71f6()
+function registertigerinterfaceattributes()
 {
 	ai::registermatchedinterface(#"tiger", #"gravity", "normal", array("low", "normal"), &namespace_dea34b6a::function_c0b7f4ce);
 	ai::registermatchedinterface(#"tiger", #"min_run_dist", 500);

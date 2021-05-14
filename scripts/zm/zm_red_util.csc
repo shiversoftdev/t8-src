@@ -32,7 +32,7 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 {
 	if(!function_65b9eb0f(localclientnum))
 	{
-		var_b0871863 = function_c8b7588d(localclientnum);
+		timer_model = function_c8b7588d(localclientnum);
 		end_time = undefined;
 		if(!binitialsnap && newval == 0 && isdefined(level.var_79795e1))
 		{
@@ -46,7 +46,7 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 		}
 		if(isdefined(end_time))
 		{
-			setuimodelvalue(var_b0871863, end_time);
+			setuimodelvalue(timer_model, end_time);
 		}
 	}
 }
@@ -62,7 +62,7 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 */
 private function function_c8b7588d(localclientnum)
 {
-	var_1b5ddafb = getuimodelforcontroller(localclientnum);
-	return createuimodel(var_1b5ddafb, "ZMHud.zmRedChallengeTimer");
+	controller_model = getuimodelforcontroller(localclientnum);
+	return createuimodel(controller_model, "ZMHud.zmRedChallengeTimer");
 }
 

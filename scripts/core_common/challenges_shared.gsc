@@ -1090,8 +1090,8 @@ function function_90185171(totaltimeplayed, credits, var_e1020153)
 		}
 		if(getdvarint(#"hash_522a538e0f11b88e", 1))
 		{
-			var_52dbb41e = max(player function_c52bcf79(), getdvarfloat(#"hash_3ff4f2f1f645d6f0", 1));
-			credits = credits * var_52dbb41e;
+			credit_multiplier = max(player function_c52bcf79(), getdvarfloat(#"hash_3ff4f2f1f645d6f0", 1));
+			credits = credits * credit_multiplier;
 			var_3595e9d5 = player stats::function_ff8f4f17(#"hash_680995704209a5b1");
 			if(isdefined(var_3595e9d5) && var_3595e9d5 > 0)
 			{

@@ -5,7 +5,7 @@
 #namespace namespace_1f694fcd;
 
 /*
-	Name: function_587ece09
+	Name: registerbrutusinterfaceattributes
 	Namespace: namespace_1f694fcd
 	Checksum: 0xB4CE821A
 	Offset: 0x78
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_587ece09()
+function registerbrutusinterfaceattributes()
 {
 	ai::registermatchedinterface(#"brutus", #"can_ground_slam", 0, array(1, 0));
 	ai::registermatchedinterface(#"brutus", #"scripted_mode", 0, array(1, 0), &namespace_363fe686::function_f8aa76ea);

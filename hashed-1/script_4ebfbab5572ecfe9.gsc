@@ -34,11 +34,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("actor", "" + #"hash_faeb22982ab79dd", 16000, 1, "counter", &function_b5b0d652, 0, 0);
+	clientfield::register("actor", "" + #"gaia_impact_zombie", 16000, 1, "counter", &gaia_impact_zombie_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_90f855c336338af", 16000, 1, "counter", &function_e8dc2680, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_28495d5e2fe897d2", 16000, 1, "counter", &function_da7cbe2, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_1fedb98c44ca1523", 16000, 1, "counter", &function_10485953, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_1e40b07387ffe8dd", 16000, 1, "counter", &function_3672d8a5, 0, 0);
+	clientfield::register("scriptmover", "" + #"gaia_impact", 16000, 1, "counter", &gaia_impact_fx, 0, 0);
+	clientfield::register("scriptmover", "" + #"spike_explode", 16000, 1, "counter", &function_10485953, 0, 0);
+	clientfield::register("scriptmover", "" + #"spike_spawn", 16000, 1, "counter", &function_3672d8a5, 0, 0);
 	level._effect[#"hash_10c872875a19ee24"] = #"hash_5873b3e8eed6eece";
 	level._effect[#"hash_4f90732b3df649ba"] = #"hash_d2b136a3d2607a0";
 	level._effect[#"hash_4ca4891919d9a485"] = #"hash_13b6231a05889663";
@@ -46,7 +46,7 @@ function __init__()
 }
 
 /*
-	Name: function_b5b0d652
+	Name: gaia_impact_zombie_fx
 	Namespace: namespace_4834f482
 	Checksum: 0x9E1E2731
 	Offset: 0x3D0
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked
 */
-function function_b5b0d652(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function gaia_impact_zombie_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	self endon(#"death");
 	if(isdefined(self) && isdefined(self gettagorigin("j_spine4")))
@@ -93,14 +93,14 @@ function function_b5b0d652(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_e8dc2680(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_10c872875a19ee24"], self, "tag_origin");
-	if(!isdefined(self.var_5c130831))
+	if(!isdefined(self.n_sfx))
 	{
-		self.var_5c130831 = self playloopsound(#"hash_bc432b7cd09e11d");
+		self.n_sfx = self playloopsound(#"hash_bc432b7cd09e11d");
 	}
 }
 
 /*
-	Name: function_da7cbe2
+	Name: gaia_impact_fx
 	Namespace: namespace_4834f482
 	Checksum: 0x8A2F45F4
 	Offset: 0x608
@@ -108,7 +108,7 @@ function function_e8dc2680(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_da7cbe2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function gaia_impact_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(isdefined(self gettagorigin("j_wingulna_le")))
 	{

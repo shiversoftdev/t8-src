@@ -31,17 +31,17 @@ autoexec function registerbehaviorscriptfunctions()
 {
 	spawner::add_archetype_spawn_function(#"tiger", &function_1637910a);
 	/#
-		assert(isscriptfunctionptr(&function_38a16417));
+		assert(isscriptfunctionptr(&tigertargetservice));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_29bb7890183a3790", &function_38a16417);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"tigertargetservice", &tigertargetservice);
 	/#
-		assert(isscriptfunctionptr(&function_859d49ad));
+		assert(isscriptfunctionptr(&tigershouldmelee));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_62e070e131024ea5", &function_859d49ad);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"tigershouldmelee", &tigershouldmelee);
 	/#
-		assert(isscriptfunctionptr(&function_859d49ad));
+		assert(isscriptfunctionptr(&tigershouldmelee));
 	#/
-	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_62e070e131024ea5", &function_859d49ad);
+	behaviorstatemachine::registerbsmscriptapiinternal(#"tigershouldmelee", &tigershouldmelee);
 	/#
 		assert(isscriptfunctionptr(&function_6dc4602d));
 	#/
@@ -118,7 +118,7 @@ autoexec function registerbehaviorscriptfunctions()
 	animationstatenetwork::registernotetrackhandlerfunction("tiger_melee_left", &function_8ad0c889);
 	animationstatenetwork::registernotetrackhandlerfunction("tiger_melee_right", &function_33958f06);
 	animationstatenetwork::registernotetrackhandlerfunction("tiger_pounce", &function_5ee65256);
-	namespace_93b6af30::function_ff6c71f6();
+	namespace_93b6af30::registertigerinterfaceattributes();
 	/#
 		if(isarchetypeloaded(#"tiger"))
 		{
@@ -490,7 +490,7 @@ function get_locomotion_target(behaviortreeentity)
 }
 
 /*
-	Name: function_38a16417
+	Name: tigertargetservice
 	Namespace: namespace_dea34b6a
 	Checksum: 0xA31ADDFD
 	Offset: 0x1A88
@@ -498,7 +498,7 @@ function get_locomotion_target(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked
 */
-function function_38a16417(behaviortreeentity)
+function tigertargetservice(behaviortreeentity)
 {
 	if(isdefined(level.intermission) && level.intermission)
 	{
@@ -599,7 +599,7 @@ function function_8de56915(melee_range)
 }
 
 /*
-	Name: function_859d49ad
+	Name: tigershouldmelee
 	Namespace: namespace_dea34b6a
 	Checksum: 0xF570F91E
 	Offset: 0x1FC8
@@ -607,7 +607,7 @@ function function_8de56915(melee_range)
 	Parameters: 1
 	Flags: Linked
 */
-function function_859d49ad(behaviortreeentity)
+function tigershouldmelee(behaviortreeentity)
 {
 	if(!behaviortreeentity function_8de56915(102 * 102))
 	{
@@ -1068,7 +1068,7 @@ function function_a4f5b046(entity, mocompanim, mocompanimblendouttime, mocompani
 	entity.var_47c91780 = 0;
 	entity.var_b736fc8b = 1;
 	entity.var_ce44ec9f = getnotetracktimes(mocompanim, "start_trace")[0];
-	entity.var_89b053bf = getnotetracktimes(mocompanim, "stop_trace")[0];
+	entity.minigun_killstreak_minigun_inbound = getnotetracktimes(mocompanim, "stop_trace")[0];
 	if(isdefined(entity.enemy))
 	{
 		dirtoenemy = vectornormalize(entity.enemy.origin - entity.origin);
@@ -1110,7 +1110,7 @@ function function_2e8439bf(entity, mocompanim, mocompanimblendouttime, mocompani
 		assert(isdefined(self.var_cd8354e0));
 	#/
 	var_e72a224a = entity getanimtime(mocompanim);
-	if(var_e72a224a >= self.var_ce44ec9f && var_e72a224a <= self.var_89b053bf)
+	if(var_e72a224a >= self.var_ce44ec9f && var_e72a224a <= self.minigun_killstreak_minigun_inbound)
 	{
 		self.var_47c91780 = 1;
 	}
@@ -1633,7 +1633,7 @@ private function function_1e4eb5f0()
 				{
 					case "spawn":
 					{
-						zm_devgui::function_fc475b3b("");
+						zm_devgui::spawn_archetype("");
 						break;
 					}
 					case "kill":

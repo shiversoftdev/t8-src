@@ -6,11 +6,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_eaaeba61;
+#namespace zm_fasttravel;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xF54ADA92
 	Offset: 0x320
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_3c735080179d033b", &__init__, undefined, undefined);
+	system::register(#"zm_fasttravel", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0x4A57BF6B
 	Offset: 0x368
 	Size: 0x24
@@ -39,7 +39,7 @@ function __init__()
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0x930A5852
 	Offset: 0x398
 	Size: 0x254
@@ -49,7 +49,7 @@ function __init__()
 function init_clientfields()
 {
 	clientfield::register("world", "fasttravel_exploder", 1, 1, "int", &fasttravel_exploder, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_a057deb0c26ae53", 1, 2, "int", &function_44c8d044, 0, 0);
+	clientfield::register("scriptmover", "" + #"wormhole_fx", 1, 2, "int", &wormhole_fx, 0, 0);
 	clientfield::register("toplayer", "player_stargate_fx", 1, 1, "int", &player_stargate_fx, 0, 1);
 	clientfield::register("toplayer", "player_chaos_light_rail_fx", 1, 1, "int", &player_chaos_light_rail_fx, 0, 1);
 	clientfield::register("toplayer", "fasttravel_teleport_sfx", 1, 1, "int", &fasttravel_teleport_sfx, 0, 0);
@@ -60,7 +60,7 @@ function init_clientfields()
 
 /*
 	Name: init_fx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xAE49D863
 	Offset: 0x5F8
 	Size: 0x152
@@ -80,7 +80,7 @@ function init_fx()
 
 /*
 	Name: fasttravel_exploder
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0x6895289B
 	Offset: 0x758
 	Size: 0x84
@@ -101,7 +101,7 @@ function fasttravel_exploder(localclientnum, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: player_chaos_light_rail_fx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xA325FFB
 	Offset: 0x7E8
 	Size: 0x224
@@ -156,15 +156,15 @@ function player_chaos_light_rail_fx(localclientnum, oldval, newval, bnewent, bin
 }
 
 /*
-	Name: function_44c8d044
-	Namespace: namespace_eaaeba61
+	Name: wormhole_fx
+	Namespace: zm_fasttravel
 	Checksum: 0x9F1743DF
 	Offset: 0xA18
 	Size: 0xC4
 	Parameters: 7
 	Flags: None
 */
-function function_44c8d044(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function wormhole_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -183,7 +183,7 @@ function function_44c8d044(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: player_stargate_fx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0x11DB31E2
 	Offset: 0xAE8
 	Size: 0xB4
@@ -208,7 +208,7 @@ function player_stargate_fx(localclientnum, oldval, newval, bnewent, binitialsna
 
 /*
 	Name: fasttravel_teleport_sfx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xFA0E1384
 	Offset: 0xBA8
 	Size: 0x126
@@ -240,7 +240,7 @@ function fasttravel_teleport_sfx(localclientnum, oldval, newval, bnewent, biniti
 
 /*
 	Name: fasttravel_start_fx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xCFAFE89D
 	Offset: 0xCD8
 	Size: 0x1BC
@@ -273,7 +273,7 @@ function fasttravel_start_fx(localclientnum, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: fasttravel_end_fx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xE8C6FF9F
 	Offset: 0xEA0
 	Size: 0x5C
@@ -284,20 +284,20 @@ function fasttravel_end_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self thread function_4ffb2e90(localclientnum);
+		self thread play_fasttravel_end_fx(localclientnum);
 	}
 }
 
 /*
-	Name: function_4ffb2e90
-	Namespace: namespace_eaaeba61
+	Name: play_fasttravel_end_fx
+	Namespace: zm_fasttravel
 	Checksum: 0xEA1B324
 	Offset: 0xF08
 	Size: 0x12C
 	Parameters: 2
 	Flags: None
 */
-function function_4ffb2e90(localclientnum, var_b8763ebc = "fasttravel_end")
+function play_fasttravel_end_fx(localclientnum, var_b8763ebc = "fasttravel_end")
 {
 	level endon(#"end_game");
 	self endon(#"bled_out", #"disconnect");
@@ -314,7 +314,7 @@ function function_4ffb2e90(localclientnum, var_b8763ebc = "fasttravel_end")
 
 /*
 	Name: fasttravel_rail_fx
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xF98309AA
 	Offset: 0x1040
 	Size: 0x43E
@@ -390,7 +390,7 @@ function fasttravel_rail_fx(localclientnum, oldval, newval, bnewent, binitialsna
 
 /*
 	Name: function_dddf661d
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0x32043E85
 	Offset: 0x1488
 	Size: 0xB2
@@ -407,7 +407,7 @@ private function function_dddf661d(localclientnum, str_fx, str_tag, v_origin, v_
 
 /*
 	Name: function_eaba4969
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xA4A8EEC7
 	Offset: 0x1548
 	Size: 0x6C
@@ -424,7 +424,7 @@ private function function_eaba4969(localclientnum, var_92d4e054, mdl_fx)
 
 /*
 	Name: function_4468d7ac
-	Namespace: namespace_eaaeba61
+	Namespace: zm_fasttravel
 	Checksum: 0xDAA9BB01
 	Offset: 0x15C0
 	Size: 0x64

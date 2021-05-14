@@ -50,7 +50,7 @@ function function_f0f91440()
 	clientfield::register("actor", "" + #"hash_5ad28d5f104a6e3b", 1, 1, "int");
 	namespace_9ff9f642::register_slowdown(#"hash_7706017a8f91f35c", 0.85, 10);
 	namespace_9ff9f642::register_slowdown(#"hash_5a1a7bceb3b8fded", 0.65, 15);
-	level.var_58e6238 = &function_1db2df45;
+	level.var_58e6238 = &mp_dom_flag_d_captured_byinterfaceattributes;
 	level.var_f975b6ae = &function_9a01c5b0;
 }
 
@@ -120,7 +120,7 @@ function function_b65fd5ae(params)
 	if(self.archetype != #"zombie_dog")
 	{
 		self thread namespace_9ff9f642::slowdown(var_bdbde2d2);
-		self thread function_aab37e9f(var_bdbde2d2);
+		self thread slow_watcher(var_bdbde2d2);
 	}
 	if(!getdvarint(#"splitscreen_playercount", 1) > 2)
 	{
@@ -129,7 +129,7 @@ function function_b65fd5ae(params)
 }
 
 /*
-	Name: function_aab37e9f
+	Name: slow_watcher
 	Namespace: namespace_93a948d8
 	Checksum: 0x6C0F0C6B
 	Offset: 0x720
@@ -137,7 +137,7 @@ function function_b65fd5ae(params)
 	Parameters: 1
 	Flags: Linked
 */
-function function_aab37e9f(var_bdbde2d2)
+function slow_watcher(var_bdbde2d2)
 {
 	self notify(#"hash_7898db449656ed5a");
 	self endon(#"death", #"hash_7898db449656ed5a");
@@ -359,9 +359,9 @@ function freezegun_wait_for_shatter(params, shatter_trigger, crumple_trigger)
 	self endon(#"death");
 	wait(0.1);
 	orig_attacker = params.eattacker;
-	var_385703b7 = undefined;
-	var_385703b7 = shatter_trigger waittill(#"damage");
-	if(isdefined(var_385703b7.eattacker) && orig_attacker == var_385703b7.eattacker && var_385703b7.smeansofdeath == "MOD_PROJECTILE" && (var_385703b7.weapon == level.var_1d893842 || var_385703b7.weapon == level.var_2f3fae68))
+	s_notify = undefined;
+	s_notify = shatter_trigger waittill(#"damage");
+	if(isdefined(s_notify.eattacker) && orig_attacker == s_notify.eattacker && s_notify.smeansofdeath == "MOD_PROJECTILE" && (s_notify.weapon == level.var_1d893842 || s_notify.weapon == level.var_2f3fae68))
 	{
 		self thread freezegun_do_crumple(params, shatter_trigger, crumple_trigger);
 	}
@@ -467,7 +467,7 @@ function freezegun_death(params)
 }
 
 /*
-	Name: function_1db2df45
+	Name: mp_dom_flag_d_captured_byinterfaceattributes
 	Namespace: namespace_93a948d8
 	Checksum: 0x3090A737
 	Offset: 0x1770
@@ -475,7 +475,7 @@ function freezegun_death(params)
 	Parameters: 0
 	Flags: Linked
 */
-function function_1db2df45()
+function mp_dom_flag_d_captured_byinterfaceattributes()
 {
 	if(!getdvarint(#"splitscreen_playercount", 1) > 2)
 	{

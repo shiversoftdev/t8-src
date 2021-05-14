@@ -67,7 +67,7 @@ function __init__()
 	level thread aat::register_immunity("zm_aat_plasmatic_burst", #"zombie_dog", 0, 1, 1);
 	dog_spawner_init();
 	level thread dog_clip_monitor();
-	namespace_c3287616::register_archetype(#"zombie_dog", &function_b168b424, &function_abc64f33, &function_62db7b1c, 25);
+	namespace_c3287616::register_archetype(#"zombie_dog", &function_b168b424, &dog_round_spawn, &function_62db7b1c, 25);
 	zm_score::function_e5d6e6dd(#"zombie_dog", 60);
 	callback::function_74872db6(&function_81f9083e);
 }
@@ -1033,7 +1033,7 @@ function function_b168b424(var_dbce0c44)
 }
 
 /*
-	Name: function_abc64f33
+	Name: dog_round_spawn
 	Namespace: namespace_c402654
 	Checksum: 0x7F9747C3
 	Offset: 0x2CF8
@@ -1041,7 +1041,7 @@ function function_b168b424(var_dbce0c44)
 	Parameters: 0
 	Flags: Linked
 */
-function function_abc64f33()
+function dog_round_spawn()
 {
 	ai = function_62db7b1c();
 	if(isdefined(ai))
@@ -1266,7 +1266,7 @@ function function_71e3c90d()
 	{
 		case 1:
 		{
-			if(zm_utility::function_3bff983f())
+			if(zm_utility::is_trials())
 			{
 				return 6;
 			}
@@ -1274,7 +1274,7 @@ function function_71e3c90d()
 		}
 		case 2:
 		{
-			if(zm_utility::function_3bff983f())
+			if(zm_utility::is_trials())
 			{
 				return 10;
 			}
@@ -1282,7 +1282,7 @@ function function_71e3c90d()
 		}
 		case 3:
 		{
-			if(zm_utility::function_3bff983f())
+			if(zm_utility::is_trials())
 			{
 				return 14;
 			}
@@ -1290,7 +1290,7 @@ function function_71e3c90d()
 		}
 		case 4:
 		{
-			if(zm_utility::function_3bff983f())
+			if(zm_utility::is_trials())
 			{
 				return 20;
 			}

@@ -34,11 +34,11 @@
 #using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
 
-#namespace namespace_44cfe494;
+#namespace zm_white;
 
 /*
 	Name: opt_in
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xAF1070FF
 	Offset: 0x668
 	Size: 0x22
@@ -53,7 +53,7 @@ autoexec function opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xADDDE21A
 	Offset: 0x698
 	Size: 0x78C
@@ -120,7 +120,7 @@ event main(eventstruct)
 
 /*
 	Name: function_b8da6f44
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x18251EE8
 	Offset: 0xE30
 	Size: 0x16A
@@ -141,7 +141,7 @@ function function_b8da6f44()
 
 /*
 	Name: function_bc7eec87
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x9C96E30E
 	Offset: 0xFA8
 	Size: 0x2AA
@@ -150,10 +150,10 @@ function function_b8da6f44()
 */
 function function_bc7eec87(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(!isdefined(self.var_4dd195ea))
+	if(!isdefined(self.a_s_fx))
 	{
 		s_org = arraygetclosest(self.origin, struct::get_array("plasma_trap_org"));
-		self.var_4dd195ea = struct::get_array(s_org.target);
+		self.a_s_fx = struct::get_array(s_org.target);
 	}
 	switch(newval)
 	{
@@ -173,26 +173,26 @@ function function_bc7eec87(localclientnum, oldval, newval, bnewent, binitialsnap
 			break;
 		}
 	}
-	foreach(s_fx in self.var_4dd195ea)
+	foreach(s_fx in self.a_s_fx)
 	{
-		if(isdefined(s_fx.var_cbc63cb0))
+		if(isdefined(s_fx.fx_plasma))
 		{
-			stopfx(localclientnum, s_fx.var_cbc63cb0);
-			s_fx.var_cbc63cb0 = undefined;
+			stopfx(localclientnum, s_fx.fx_plasma);
+			s_fx.fx_plasma = undefined;
 		}
 	}
 	if(isdefined(fx_id))
 	{
-		foreach(s_fx in self.var_4dd195ea)
+		foreach(s_fx in self.a_s_fx)
 		{
-			s_fx.var_cbc63cb0 = playfx(localclientnum, fx_id, s_fx.origin, anglestoforward(s_fx.angles), anglestoup(s_fx.angles));
+			s_fx.fx_plasma = playfx(localclientnum, fx_id, s_fx.origin, anglestoforward(s_fx.angles), anglestoup(s_fx.angles));
 		}
 	}
 }
 
 /*
 	Name: function_61c6d401
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xC7EC3906
 	Offset: 0x1260
 	Size: 0x84
@@ -213,7 +213,7 @@ function function_61c6d401(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: portal_map_magicbox_lights_init
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x90FB97B3
 	Offset: 0x12F0
 	Size: 0x178
@@ -237,7 +237,7 @@ function portal_map_magicbox_lights_init(localclientnum, oldval, newval, bnewent
 
 /*
 	Name: portal_map_start_chest1
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xA7F37A0D
 	Offset: 0x1470
 	Size: 0x94
@@ -258,7 +258,7 @@ function portal_map_start_chest1(localclientnum, oldval, newval, bnewent, biniti
 
 /*
 	Name: portal_map_start_chest2
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x717E491D
 	Offset: 0x1510
 	Size: 0x94
@@ -279,7 +279,7 @@ function portal_map_start_chest2(localclientnum, oldval, newval, bnewent, biniti
 
 /*
 	Name: portal_map_green_backyard_chest
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x79B97F62
 	Offset: 0x15B0
 	Size: 0x94
@@ -300,7 +300,7 @@ function portal_map_green_backyard_chest(localclientnum, oldval, newval, bnewent
 
 /*
 	Name: portal_map_yellow_backyard_chest
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xAC745E33
 	Offset: 0x1650
 	Size: 0x94
@@ -321,7 +321,7 @@ function portal_map_yellow_backyard_chest(localclientnum, oldval, newval, bnewen
 
 /*
 	Name: portal_map_bunker1_chest
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xC451CE38
 	Offset: 0x16F0
 	Size: 0x94
@@ -342,7 +342,7 @@ function portal_map_bunker1_chest(localclientnum, oldval, newval, bnewent, binit
 
 /*
 	Name: portal_map_bunker2_chest
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x5316B182
 	Offset: 0x1790
 	Size: 0x94
@@ -363,7 +363,7 @@ function portal_map_bunker2_chest(localclientnum, oldval, newval, bnewent, binit
 
 /*
 	Name: portal_map_cul_de_sac_chest
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x60D2818B
 	Offset: 0x1830
 	Size: 0x94
@@ -384,7 +384,7 @@ function portal_map_cul_de_sac_chest(localclientnum, oldval, newval, bnewent, bi
 
 /*
 	Name: portal_map_fire_sale
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xCFEE8430
 	Offset: 0x18D0
 	Size: 0x28C
@@ -423,7 +423,7 @@ function portal_map_fire_sale(localclientnum, oldval, newval, bnewent, binitials
 
 /*
 	Name: function_d901bcc9
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xCA0C8A40
 	Offset: 0x1B68
 	Size: 0xF0
@@ -445,7 +445,7 @@ function function_d901bcc9(localclientnum, tag)
 
 /*
 	Name: function_86b85486
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x8D51BD4D
 	Offset: 0x1C60
 	Size: 0xF0
@@ -467,7 +467,7 @@ function function_86b85486(localclientnum, tag)
 
 /*
 	Name: power_pbg_control
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x14CD79D7
 	Offset: 0x1D58
 	Size: 0x84
@@ -488,7 +488,7 @@ function power_pbg_control(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xF923D0ED
 	Offset: 0x1DE8
 	Size: 0x508

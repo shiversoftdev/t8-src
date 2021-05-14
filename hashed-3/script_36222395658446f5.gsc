@@ -224,7 +224,7 @@ function on_player_connect()
 		var_29b8f3d0 = undefined;
 		var_29b8f3d0 = self waittill("new_" + "lethal_grenade");
 		var_3759bc11 = var_29b8f3d0.weapon;
-		var_22e180dd = self namespace_2ba51478::get_player_lethal_grenade();
+		var_22e180dd = self zm_loadout::get_player_lethal_grenade();
 		var_b7c4015f = getweapon(#"tomahawk_t8_upgraded");
 		if(var_3759bc11 == var_b7c4015f || var_22e180dd === var_b7c4015f)
 		{
@@ -360,9 +360,9 @@ function function_3c616882()
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		e_player endon(#"disconnect");
 		if(!e_player flag::get(#"hash_334221cd7977f5d5") && e_player flag::get(#"hash_d41f651bb868608"))
 		{
@@ -831,9 +831,9 @@ function function_352a977a()
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		if(e_player flag::get(#"hash_7317dfbae4fa0df5") && !e_player flag::get(#"hash_2218e030b30c77e2"))
 		{
 			e_player clientfield::set_to_player("" + #"hash_5d9808a62579e894", 1);
@@ -912,9 +912,9 @@ function function_139dd88c()
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		if(e_player flag::get(#"hash_7317dfbae4fa0df5") && !e_player flag::get(#"hash_12000c871284e0b5"))
 		{
 			e_player clientfield::set_to_player("" + #"hash_4ec2b359458774e4", 1);
@@ -993,9 +993,9 @@ function function_34759490(e_player)
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		if(e_player flag::get(#"hash_7317dfbae4fa0df5") && !e_player flag::get(#"hash_7e372a60b99a89e0"))
 		{
 			e_player clientfield::set_to_player("" + #"hash_4724376be4e925a3", 1);
@@ -1095,13 +1095,13 @@ function function_68eca9eb()
 {
 	self endon(#"disconnect");
 	level.t_g_o_s4 = getent("t_g_o_s4", "targetname");
-	self thread function_da7db256();
+	self thread ee_exp_monkey_fire_();
 	self flag::wait_till(#"hash_21827937692e2aba");
 	self construction();
 }
 
 /*
-	Name: function_da7db256
+	Name: ee_exp_monkey_fire_
 	Namespace: namespace_7c0074b5
 	Checksum: 0x2C0BA604
 	Offset: 0x3D78
@@ -1109,14 +1109,14 @@ function function_68eca9eb()
 	Parameters: 0
 	Flags: Linked
 */
-function function_da7db256()
+function ee_exp_monkey_fire_()
 {
 	self endon(#"disconnect", #"hash_21827937692e2aba");
 	while(!self flag::get(#"hash_21827937692e2aba"))
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"throwing_tomahawk");
-		var_288eb627 = var_88706ea7.e_grenade;
+		s_result = undefined;
+		s_result = self waittill(#"throwing_tomahawk");
+		var_288eb627 = s_result.e_grenade;
 		if(!isdefined(var_288eb627))
 		{
 			return;
@@ -1250,9 +1250,9 @@ function function_858b2d2f()
 {
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		e_player endon(#"disconnect");
 		if(!e_player flag::get(#"hash_3043d41614094af2") && e_player flag::get(#"hash_21827937692e2aba"))
 		{
@@ -1351,19 +1351,19 @@ function function_195d2fb()
 		level flag::set(#"hash_43114a11c9ca5302");
 		level.var_ba89bc85 = 1;
 	}
-	self.var_c5641545 = 0;
+	self.n_brutus_killed = 0;
 	self thread function_588dcdff();
 	self flag::wait_till(#"hash_7bcf95ea12236f0d");
 	self thread zm_audio::create_and_play_dialog(#"hash_74a0ff3487006243", #"generic");
 	var_326289fb = getent("mdl_d_w_i_k_t", "script_noteworthy");
 	var_326289fb setinvisibletoplayer(self);
 	self clientfield::set_to_player("" + #"hash_6335a683b93e26a2", 1);
-	self.var_c5641545 = undefined;
+	self.n_brutus_killed = undefined;
 	if(level flag::get(#"hash_43114a11c9ca5302"))
 	{
 		foreach(player in getplayers())
 		{
-			if(isdefined(player.var_c5641545))
+			if(isdefined(player.n_brutus_killed))
 			{
 				level.var_ba89bc85 = 1;
 			}
@@ -1420,19 +1420,19 @@ function function_134e0d03(e_player)
 	{
 		return;
 	}
-	if(!isdefined(e_player.var_c5641545))
+	if(!isdefined(e_player.n_brutus_killed))
 	{
 		return;
 	}
 	var_be633b3a = getweapon("knife");
 	if(self.damageweapon == var_be633b3a && self.archetype == #"brutus" && e_player.var_946c0773 === 1)
 	{
-		e_player.var_c5641545++;
+		e_player.n_brutus_killed++;
 		e_player flag::set(#"hash_7bcf95ea12236f0d");
 		level.var_ba89bc85 = 0;
 		foreach(player in getplayers())
 		{
-			if(isdefined(player.var_c5641545))
+			if(isdefined(player.n_brutus_killed))
 			{
 				level.var_ba89bc85 = 1;
 			}

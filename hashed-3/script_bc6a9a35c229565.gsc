@@ -15,9 +15,9 @@
 */
 function init_shared()
 {
-	if(!isdefined(level.var_c3f91417))
+	if(!isdefined(level.cathedral_sitting))
 	{
-		level.var_c3f91417 = {};
+		level.cathedral_sitting = {};
 		clientfield::register("vehicle", "enemyvehicle", 1, 2, "int");
 		clientfield::register("scriptmover", "enemyvehicle", 1, 2, "int");
 		clientfield::register("missile", "enemyvehicle", 1, 2, "int");

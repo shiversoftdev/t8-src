@@ -57,10 +57,10 @@ function function_2613aeec(enabled)
 		callback::function_955a779c(&function_955a779c);
 		callback::add_callback(#"hash_48bcdfea6f43fecb", &function_1c4b5097);
 		callback::add_callback(#"hash_4b1a02a87458f191", &function_4ac25840);
-		var_3c8a6d1a = getdynentarray(#"hash_7b220e1de3a2000d");
-		if(isdefined(var_3c8a6d1a) && isarray(var_3c8a6d1a))
+		a_dynents = getdynentarray(#"hash_7b220e1de3a2000d");
+		if(isdefined(a_dynents) && isarray(a_dynents))
 		{
-			foreach(ent in var_3c8a6d1a)
+			foreach(ent in a_dynents)
 			{
 				ent.onuse = &function_d5cd583a;
 			}
@@ -113,10 +113,10 @@ function function_279880b1()
 */
 function function_552910e9()
 {
-	var_3c8a6d1a = getdynentarray(#"hash_7b220e1de3a2000d");
-	if(isdefined(var_3c8a6d1a) && isarray(var_3c8a6d1a))
+	a_dynents = getdynentarray(#"hash_7b220e1de3a2000d");
+	if(isdefined(a_dynents) && isarray(a_dynents))
 	{
-		foreach(dynent in var_3c8a6d1a)
+		foreach(dynent in a_dynents)
 		{
 			setdynentenabled(dynent, 0);
 		}
@@ -232,7 +232,7 @@ function function_4ac25840(var_d32e67b4)
 	{
 		foreach(team in level.teams)
 		{
-			if(teams::function_9dd75dad(team) && !teams::function_6ce0360d(team))
+			if(teams::function_9dd75dad(team) && !teams::is_all_dead(team))
 			{
 				players = getplayers(team);
 				foreach(player in players)

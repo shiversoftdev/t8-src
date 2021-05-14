@@ -89,7 +89,7 @@ function function_dd840c5f()
 */
 function function_9f888e75(var_b918343e)
 {
-	level.var_697e9965 = getweapon(#"hash_46c845178ff13452");
+	level.var_697e9965 = getweapon(#"sig_minigun");
 	level.var_bb448b5f = getweapon(#"hero_annihilator");
 	level.weaponbasemeleeheld = getweapon(#"bare_hands");
 	level.weaponknifeloadout = getweapon(#"knife_loadout");
@@ -1643,7 +1643,7 @@ function function_c3448ab0(slot, previous_weapon, force_give_gadget_health_regen
 		tactical_gear = self function_d78e0e04(self.class_num);
 		if(#"gear_medicalinjectiongun" == tactical_gear)
 		{
-			secondaryoffhand = getweapon(#"hash_1d58c6214174d3d8");
+			secondaryoffhand = getweapon(#"gadget_medicalinjectiongun");
 		}
 		else if(level.var_660101f)
 		{
@@ -2311,7 +2311,7 @@ private function grenade_stuck(inflictor)
 */
 private function function_6dd64ede(slot, weapon)
 {
-	self gadgetdeactivate(self.gadget_health_regen_slot, self.var_1340f214);
+	self gadgetdeactivate(self.gadget_health_regen_slot, self.gadget_health_regen_weapon);
 	thread function_c57586b8();
 }
 

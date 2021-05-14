@@ -99,7 +99,7 @@ function function_1dd43d36(spawn_weapon)
 	}
 	player setplayerrenderoptions(0);
 	var_e6b5e0d7 = getdvar(#"hash_3fb2952874e511c2");
-	var_f3e5b165 = namespace_73e1c3e3::function_84adcd1f();
+	hands_weapon = namespace_73e1c3e3::function_84adcd1f();
 	var_d0d43f5a = getdvar(#"hash_4b0035c0038e0762");
 	if(isdefined(var_d0d43f5a))
 	{
@@ -138,7 +138,7 @@ function function_1dd43d36(spawn_weapon)
 			}
 			if(!isdefined(spawn_weapon))
 			{
-				spawn_weapon = var_f3e5b165;
+				spawn_weapon = hands_weapon;
 			}
 		}
 		else
@@ -161,7 +161,7 @@ function function_1dd43d36(spawn_weapon)
 		{
 			player.var_de9764de[player.var_de9764de.size] = primary_weapon;
 		}
-		spawn_weapon = var_f3e5b165;
+		spawn_weapon = hands_weapon;
 	}
 	player giveweapon(spawn_weapon);
 	player loadout::function_442539("primary", spawn_weapon);
@@ -435,9 +435,9 @@ function function_1e84c767()
 			player function_3b91934f(player function_76785843(), #"hash_233ea6adba72609d");
 			player function_ea859fe2();
 		}
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill(#"combattraining_logic_finished");
-		b_completed = var_88706ea7.success;
+		s_result = undefined;
+		s_result = level waittill(#"combattraining_logic_finished");
+		b_completed = s_result.success;
 		level waittill(#"hash_699329b4df616aed");
 	}
 	else

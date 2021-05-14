@@ -74,7 +74,7 @@ function __init__()
 	level.var_e5010085 = vehicleturretoverheat::register("vehicleTurretOverheat");
 	level.var_b5add14a = vehicleturretdurability::register("vehicleTurretDurability");
 	level.var_2513e40c = &function_2513e40c;
-	level.var_54ebfda9 = &function_54ebfda9;
+	level.is_staircase_up = &is_staircase_up;
 	level.var_7c6454 = 1;
 	level.var_80d8731e = 0;
 	level.var_6ed50229 = 10;
@@ -393,7 +393,7 @@ function function_b8c069cc(notifyhash)
 }
 
 /*
-	Name: function_54ebfda9
+	Name: is_staircase_up
 	Namespace: namespace_964fbfb5
 	Checksum: 0x3DED215
 	Offset: 0x1638
@@ -401,7 +401,7 @@ function function_b8c069cc(notifyhash)
 	Parameters: 2
 	Flags: Linked
 */
-function function_54ebfda9(var_dbd1a594 = undefined, jammer = undefined)
+function is_staircase_up(var_dbd1a594 = undefined, jammer = undefined)
 {
 	if(!isvehicle(self))
 	{
@@ -422,9 +422,9 @@ function function_54ebfda9(var_dbd1a594 = undefined, jammer = undefined)
 	{
 		level callback::callback(#"hash_69ec922777c59153", {#vehicle:self, #attacker:var_dbd1a594});
 	}
-	if(isdefined(self.var_54ebfda9))
+	if(isdefined(self.is_staircase_up))
 	{
-		self [[self.var_54ebfda9]](params);
+		self [[self.is_staircase_up]](params);
 	}
 	else
 	{
@@ -2915,7 +2915,7 @@ private function function_b1d54776()
 	self thread function_b0dd571a();
 	self thread function_638d1ade();
 	self callback::function_36aab2f3(&function_4885ce1);
-	self.var_54ebfda9 = &function_4e74bed7;
+	self.is_staircase_up = &function_4e74bed7;
 }
 
 /*
@@ -2960,7 +2960,7 @@ private function function_8fb65b2a()
 	self thread function_b0dd571a();
 	self thread function_638d1ade();
 	self callback::function_36aab2f3(&function_4885ce1);
-	self.var_54ebfda9 = &function_4e74bed7;
+	self.is_staircase_up = &function_4e74bed7;
 }
 
 /*
@@ -3781,7 +3781,7 @@ private function function_365e033d(params)
 			[[level.enable_thermal]]();
 		}
 	}
-	if(!(isdefined(self.var_cf24c481) && self.var_cf24c481))
+	if(!(isdefined(self.nolights) && self.nolights))
 	{
 		self vehicle::lights_on();
 	}
@@ -4457,7 +4457,7 @@ function function_9dd58750()
 */
 function function_2513e40c(vehicle, player, seatindex)
 {
-	if(player infection::function_bf46a7aa())
+	if(player infection::is_infected())
 	{
 		return 0;
 	}

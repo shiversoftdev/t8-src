@@ -40,14 +40,14 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
 	clientfield::register("toplayer", "" + #"hash_b905d796914b710", 14000, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_1b9477ddcf30191f", 16000, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_52347bec3f1339fd", 16000, 4, "int");
-	namespace_f551babc::register_challenge(#"hash_6c768f3c15d55377", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_6c768f3c15d55377", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -243,8 +243,8 @@ function function_6d8cf829()
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	while(true)
 	{
-		var_34b6d9f = self.var_67ba1237.size + self.var_466b927f.size;
-		self clientfield::set_to_player("" + #"hash_52347bec3f1339fd", var_34b6d9f);
+		n_perks = self.var_67ba1237.size + self.var_466b927f.size;
+		self clientfield::set_to_player("" + #"hash_52347bec3f1339fd", n_perks);
 		wait(1);
 	}
 }

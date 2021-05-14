@@ -20,11 +20,11 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\weapons_shared.gsc;
 
-#namespace namespace_c03dca7e;
+#namespace shockrifle;
 
 /*
 	Name: init_shared
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xC8820309
 	Offset: 0x290
 	Size: 0x1CC
@@ -53,7 +53,7 @@ function init_shared()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x2C25FADD
 	Offset: 0x468
 	Size: 0x44
@@ -68,7 +68,7 @@ function on_player_spawned()
 
 /*
 	Name: onplayerconnect
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xF28E5533
 	Offset: 0x4B8
 	Size: 0x26
@@ -82,7 +82,7 @@ function onplayerconnect()
 
 /*
 	Name: onplayerkilled
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xD78E2DC4
 	Offset: 0x4E8
 	Size: 0x1C
@@ -96,7 +96,7 @@ function onplayerkilled()
 
 /*
 	Name: function_95a892a
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xC34EDA1E
 	Offset: 0x510
 	Size: 0x5A
@@ -114,7 +114,7 @@ function function_95a892a(attacker, victim, var_3d1ed4bd, attackerweapon, meanso
 
 /*
 	Name: function_c1aa8f6b
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xF20B2DAE
 	Offset: 0x578
 	Size: 0x1BE
@@ -148,7 +148,7 @@ function function_c1aa8f6b(watcher)
 
 /*
 	Name: function_a0081b68
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xE4A0C5D0
 	Offset: 0x740
 	Size: 0x64
@@ -165,7 +165,7 @@ function function_a0081b68(ent)
 
 /*
 	Name: function_aa6e2f52
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xC1B97891
 	Offset: 0x7B0
 	Size: 0x25A
@@ -211,7 +211,7 @@ function function_aa6e2f52(watcher, owner)
 
 /*
 	Name: function_7cc07921
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x9F57478D
 	Offset: 0xA18
 	Size: 0x5A
@@ -229,7 +229,7 @@ function function_7cc07921(ent)
 
 /*
 	Name: function_a6beb598
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x97241EB9
 	Offset: 0xA80
 	Size: 0x4C
@@ -247,7 +247,7 @@ function function_a6beb598(notifystr)
 
 /*
 	Name: function_5fff8c45
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x3C2A1656
 	Offset: 0xAD8
 	Size: 0x22C
@@ -304,7 +304,7 @@ function function_5fff8c45(watcher, hitent)
 
 /*
 	Name: function_33020ed7
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x9D8E2D53
 	Offset: 0xD10
 	Size: 0x54
@@ -325,7 +325,7 @@ function function_33020ed7(ent)
 
 /*
 	Name: function_c23ed15d
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x4AB97795
 	Offset: 0xD70
 	Size: 0x8E
@@ -343,7 +343,7 @@ function function_c23ed15d(ent, var_3ee2edfa)
 
 /*
 	Name: function_a64504d2
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xB7630109
 	Offset: 0xE08
 	Size: 0x70
@@ -366,7 +366,7 @@ function function_a64504d2()
 
 /*
 	Name: deleteobjective
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xDB26A2F5
 	Offset: 0xE80
 	Size: 0x3C
@@ -381,7 +381,7 @@ function deleteobjective(objectiveid)
 
 /*
 	Name: function_13c7b967
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xFF55D770
 	Offset: 0xEC8
 	Size: 0x142
@@ -408,7 +408,7 @@ function function_13c7b967(owner)
 
 /*
 	Name: function_3474c820
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x21AEE504
 	Offset: 0x1018
 	Size: 0x36
@@ -427,7 +427,7 @@ function function_3474c820()
 
 /*
 	Name: function_5439aa67
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x2200A81F
 	Offset: 0x1058
 	Size: 0xE0
@@ -457,7 +457,7 @@ function function_5439aa67(var_197afafd)
 
 /*
 	Name: watchfordeath
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x4C66D592
 	Offset: 0x1140
 	Size: 0x3C
@@ -472,7 +472,7 @@ function watchfordeath()
 
 /*
 	Name: function_c80bac1f
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x3FDBEF8B
 	Offset: 0x1188
 	Size: 0x56E
@@ -555,7 +555,7 @@ function function_c80bac1f(var_197afafd, var_51415470, var_3ee2edfa)
 
 /*
 	Name: function_e0141557
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x6E9CFB93
 	Offset: 0x1700
 	Size: 0x1C4
@@ -588,7 +588,7 @@ function function_e0141557(ent, var_51415470)
 
 /*
 	Name: function_92eabc2f
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xCE148C89
 	Offset: 0x18D0
 	Size: 0x404
@@ -649,7 +649,7 @@ function function_92eabc2f(ent, var_51415470)
 
 /*
 	Name: function_7ce0a335
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0xBE14F82A
 	Offset: 0x1CE0
 	Size: 0xFC
@@ -674,7 +674,7 @@ function function_7ce0a335(attacker, weapon, target)
 
 /*
 	Name: function_1c34cd1b
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x36770AE3
 	Offset: 0x1DE8
 	Size: 0x24
@@ -689,7 +689,7 @@ function function_1c34cd1b(object)
 
 /*
 	Name: function_bcc47944
-	Namespace: namespace_c03dca7e
+	Namespace: shockrifle
 	Checksum: 0x16371324
 	Offset: 0x1E18
 	Size: 0x312

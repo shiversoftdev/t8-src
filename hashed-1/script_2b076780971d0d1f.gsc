@@ -3,11 +3,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_bba43f7d;
+#namespace supplypod;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xCCC41BE5
 	Offset: 0xF8
 	Size: 0x44
@@ -16,12 +16,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_291bf0f079b2eb91", &__init__, undefined, #"killstreaks");
+	system::register(#"supplypod", &__init__, undefined, #"killstreaks");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0x7F8A364B
 	Offset: 0x148
 	Size: 0x84
@@ -36,7 +36,7 @@ function __init__()
 
 /*
 	Name: supplypod_placed
-	Namespace: namespace_bba43f7d
+	Namespace: supplypod
 	Checksum: 0xA5C063D4
 	Offset: 0x1D8
 	Size: 0xAC

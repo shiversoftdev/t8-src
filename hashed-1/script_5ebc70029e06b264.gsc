@@ -21,6 +21,6 @@ autoexec function ignore_systems()
 	system::ignore(#"armor_station");
 	system::ignore(#"counteruav");
 	system::ignore(#"uav");
-	system::ignore(#"hash_291bf0f079b2eb91");
+	system::ignore(#"supplypod");
 }
 

@@ -63,7 +63,7 @@ function on_player_damage(params)
 	{
 		str_current_anim = params.einflictor.str_current_anim;
 	}
-	if(var_e72cb811 === #"hash_69eff09684574252" && str_current_anim === #"hash_30a3ae992c453f0c")
+	if(var_e72cb811 === #"crimson_nosferatu" && str_current_anim === #"hash_30a3ae992c453f0c")
 	{
 		self notify(#"hash_6938bc311a1a893e");
 	}
@@ -83,7 +83,7 @@ function on_ai_killed(params)
 	e_attacker = params.eattacker;
 	if(isplayer(e_attacker))
 	{
-		if(self.archetype == #"hash_50f4e0eea9f4e4a4")
+		if(self.archetype == #"nosferatu")
 		{
 			str_zone = self zm_utility::get_current_zone();
 			if(isdefined(params.weapon) && isdefined(params.weapon.name))

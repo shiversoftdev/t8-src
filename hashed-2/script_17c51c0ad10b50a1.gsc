@@ -70,7 +70,7 @@ function function_5b26f1e3()
 	Parameters: 4
 	Flags: Linked
 */
-function function_98c3f271(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_98c3f271(b_pause, str_perk, str_result, n_slot)
 {
 }
 

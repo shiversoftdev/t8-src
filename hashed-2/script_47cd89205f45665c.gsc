@@ -82,7 +82,7 @@ function function_422ccf78()
 	Parameters: 4
 	Flags: Linked
 */
-function function_f8f0703b(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_f8f0703b(b_pause, str_perk, str_result, n_slot)
 {
 }
 

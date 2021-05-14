@@ -43,7 +43,7 @@ function function_fac06066()
 	var_2b198109 = getaiarray();
 	foreach(e_zombie in var_2b198109)
 	{
-		e_zombie thread namespace_57ff8cbb::cleanup_zombie();
+		e_zombie thread zm_cleanup::cleanup_zombie();
 	}
 	level.var_894a83d8 = 1;
 	level flag::clear("spawn_zombies");
@@ -74,7 +74,7 @@ function function_4074a9e2()
 	foreach(e_zombie in var_2b198109)
 	{
 		e_zombie.exclude_cleanup_adding_to_total = 1;
-		e_zombie thread namespace_57ff8cbb::cleanup_zombie();
+		e_zombie thread zm_cleanup::cleanup_zombie();
 	}
 	level.var_894a83d8 = 0;
 	level flag::clear(#"hash_26e9fe6561459de3");
@@ -195,7 +195,7 @@ function round_spawning()
 		}
 		level flag::wait_till_clear(#"hash_21921ed511559aa3");
 		str_archetype = function_80804ee4();
-		ai = function_fc475b3b(str_archetype);
+		ai = spawn_archetype(str_archetype);
 		if(isdefined(ai))
 		{
 			ai._starting_round_number = level.var_37769559;
@@ -237,7 +237,7 @@ function function_80804ee4()
 }
 
 /*
-	Name: function_fc475b3b
+	Name: spawn_archetype
 	Namespace: namespace_76ccb07a
 	Checksum: 0x53ADFDBF
 	Offset: 0xAF0
@@ -245,7 +245,7 @@ function function_80804ee4()
 	Parameters: 1
 	Flags: None
 */
-function function_fc475b3b(str_archetype)
+function spawn_archetype(str_archetype)
 {
 	switch(str_archetype)
 	{
@@ -262,7 +262,7 @@ function function_fc475b3b(str_archetype)
 		}
 		case "nova_crawler":
 		{
-			ai = namespace_df88241c::function_33bf3983();
+			ai = namespace_df88241c::spawn_nova_crawler();
 			break;
 		}
 		default:

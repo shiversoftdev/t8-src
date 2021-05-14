@@ -155,7 +155,7 @@ function function_57ea545d(str_flag)
 }
 
 /*
-	Name: function_8920570d
+	Name: is_bunker_zone
 	Namespace: namespace_9146fc8b
 	Checksum: 0x61436315
 	Offset: 0x1020
@@ -163,7 +163,7 @@ function function_57ea545d(str_flag)
 	Parameters: 1
 	Flags: Linked
 */
-function function_8920570d(str_zone)
+function is_bunker_zone(str_zone)
 {
 	if(isdefined(str_zone))
 	{
@@ -224,11 +224,11 @@ function function_8e0b371()
 		if(isalive(self))
 		{
 			str_location = function_ab7f70b9(self);
-			self namespace_2c9e6caa::function_29780fb5((isdefined(str_location) ? str_location : #""));
+			self zm_hud::function_29780fb5((isdefined(str_location) ? str_location : #""));
 		}
 		else
 		{
-			self namespace_2c9e6caa::function_29780fb5(#"");
+			self zm_hud::function_29780fb5(#"");
 		}
 		wait(0.5);
 	}

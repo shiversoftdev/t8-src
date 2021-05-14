@@ -87,8 +87,8 @@ function start_gametype()
 	{
 		level.retrievableweapons = [];
 	}
-	var_577d1267 = getretrievableweapons();
-	foreach(weapon in var_577d1267)
+	retrievables = getretrievableweapons();
+	foreach(weapon in retrievables)
 	{
 		weaponstruct = spawnstruct();
 		level.retrievableweapons[weapon.name] = weaponstruct;
@@ -229,14 +229,14 @@ event loadout_changed(eventstruct)
 		case "give_weapon_dual":
 		{
 			weapon = eventstruct.weapon;
-			self function_abf7910b(weapon);
+			self snipinterfaceattributes(weapon);
 			break;
 		}
 	}
 }
 
 /*
-	Name: function_abf7910b
+	Name: snipinterfaceattributes
 	Namespace: weaponobjects
 	Checksum: 0xB3FB4024
 	Offset: 0xB80
@@ -244,7 +244,7 @@ event loadout_changed(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_abf7910b(weapon)
+private function snipinterfaceattributes(weapon)
 {
 	if(isdefined(level.var_e1b654ee))
 	{
@@ -259,14 +259,14 @@ private function function_abf7910b(weapon)
 					other_weapon = getweapon(struct.var_7bd83b52);
 					if(isdefined(other_weapon) && other_weapon != level.weaponnone)
 					{
-						self function_abf7910b(other_weapon);
+						self snipinterfaceattributes(other_weapon);
 					}
 				}
 			}
 		}
 		if(weapon.ischargeshot && weapon.var_3d85028 != level.weaponnone)
 		{
-			self function_abf7910b(weapon.var_3d85028);
+			self snipinterfaceattributes(weapon.var_3d85028);
 		}
 	}
 }
@@ -853,7 +853,7 @@ function addweaponobject(watcher, weapon_instance, weapon, endonnotify)
 function function_6d8aa6a0(player, watcher)
 {
 	self endon(#"death", #"hacked");
-	player waittill(#"joined_team", #"joined_spectators", #"disconnect", #"changed_specialist", #"hash_6729adcb68ec7ffc");
+	player waittill(#"joined_team", #"joined_spectators", #"disconnect", #"changed_specialist", #"changed_specialist_death");
 	self [[watcher.var_994b472b]](player);
 }
 

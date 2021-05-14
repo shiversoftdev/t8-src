@@ -74,7 +74,7 @@ function __main__()
 */
 private function function_65089f84()
 {
-	if(isdefined(self.var_9fde8624) && self.var_9fde8624 == #"hash_1c5b32be3f2c9b67")
+	if(isdefined(self.var_9fde8624) && self.var_9fde8624 == #"zombie_electric")
 	{
 		zm_behavior::function_57d3b5eb();
 		self thread clientfield::set("zm_ai/zombie_electric_fx_clientfield", 1);
@@ -93,7 +93,7 @@ private function function_65089f84()
 */
 private function function_4639701a(params)
 {
-	if(isdefined(params.eattacker) && isdefined(params.eattacker.var_9fde8624) && isdefined(params.smeansofdeath) && params.eattacker.var_9fde8624 == #"hash_1c5b32be3f2c9b67" && params.smeansofdeath == "MOD_MELEE")
+	if(isdefined(params.eattacker) && isdefined(params.eattacker.var_9fde8624) && isdefined(params.smeansofdeath) && params.eattacker.var_9fde8624 == #"zombie_electric" && params.smeansofdeath == "MOD_MELEE")
 	{
 		self status_effect::status_effect_apply(level.var_f8eb6737, undefined, self, 0);
 	}
@@ -117,7 +117,7 @@ private function function_1a47fb39(einflictor, attacker, idamage, smeansofdeath,
 		var_e98404d8 = self getcentroid();
 		gibserverutils::annihilate(self);
 		function_25c6cba0(self, var_e98404d8);
-		if(isdefined(self.var_3236cdc2) && self.var_3236cdc2)
+		if(isdefined(self.b_in_water) && self.b_in_water)
 		{
 			self clientfield::increment("zombie_electric_water_aoe_clientfield");
 			level thread function_79e38cc4(var_e98404d8);
@@ -141,7 +141,7 @@ private function function_25c6cba0(entity, origin)
 	for(i = 0; i < players.size; i++)
 	{
 		distance_sq = distancesquared(origin, players[i] getcentroid());
-		if(isdefined(entity.var_3236cdc2) && entity.var_3236cdc2 && (isdefined(players[i].var_3236cdc2) && players[i].var_3236cdc2) && distance_sq <= 250000)
+		if(isdefined(entity.b_in_water) && entity.b_in_water && (isdefined(players[i].b_in_water) && players[i].b_in_water) && distance_sq <= 250000)
 		{
 			players[i] status_effect::status_effect_apply(level.var_f8eb6737, undefined, players[i], 0);
 			continue;
@@ -154,7 +154,7 @@ private function function_25c6cba0(entity, origin)
 	zombies = getaiteamarray(level.zombie_team);
 	foreach(zombie in zombies)
 	{
-		if(zombie.archetype == #"zombie" && (!isdefined(zombie.var_9fde8624) || zombie.var_9fde8624 != #"hash_1c5b32be3f2c9b67") && (isdefined(entity.var_3236cdc2) && entity.var_3236cdc2) && (isdefined(zombie.var_3236cdc2) && zombie.var_3236cdc2) && distancesquared(origin, zombie.origin) <= 250000)
+		if(zombie.archetype == #"zombie" && (!isdefined(zombie.var_9fde8624) || zombie.var_9fde8624 != #"zombie_electric") && (isdefined(entity.b_in_water) && entity.b_in_water) && (isdefined(zombie.b_in_water) && zombie.b_in_water) && distancesquared(origin, zombie.origin) <= 250000)
 		{
 			zombie clientfield::set("zombie_electric_burst_stun_friendly_clientfield", 1);
 			zombie ai::stun(5);
@@ -198,7 +198,7 @@ private function function_79e38cc4(origin)
 		for(i = 0; i < players.size; i++)
 		{
 			distance_sq = distancesquared(origin, players[i] getcentroid());
-			if(isdefined(players[i].var_3236cdc2) && players[i].var_3236cdc2 && distance_sq <= 40000)
+			if(isdefined(players[i].b_in_water) && players[i].b_in_water && distance_sq <= 40000)
 			{
 				players[i] status_effect::status_effect_apply(level.var_f8eb6737, undefined, players[i], 0);
 			}

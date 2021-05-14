@@ -73,7 +73,7 @@ private function function_3aa023f1(name)
 		gibstruct.gibfx = definition.(gibpiece + "_gibfx");
 		gibstruct.gibfxtag = definition.(gibpiece + "_gibeffecttag");
 		gibstruct.gibdynentfx = definition.(gibpiece + "_gibdynentfx");
-		gibstruct.var_42c89fa1 = definition.(gibpiece + "_gibcinematicfx");
+		gibstruct.gibcinematicfx = definition.(gibpiece + "_gibcinematicfx");
 		gibstruct.gibsound = definition.(gibpiece + "_gibsound");
 		gibstruct.gibhidetag = definition.(gibpiece + "_gibhidetag");
 		var_90aba050[gibflag] = gibstruct;
@@ -146,7 +146,7 @@ private function function_9fe14ca3(entity, gibflag)
 		gibstruct.gibfx = definition.(gibpiece + "_gibfx");
 		gibstruct.gibfxtag = definition.(gibpiece + "_gibeffecttag");
 		gibstruct.gibdynentfx = definition.(gibpiece + "_gibdynentfx");
-		gibstruct.var_42c89fa1 = definition.(gibpiece + "_gibcinematicfx");
+		gibstruct.gibcinematicfx = definition.(gibpiece + "_gibcinematicfx");
 		gibstruct.gibsound = definition.(gibpiece + "_gibsound");
 		gibstruct.gibhidetag = definition.(gibpiece + "_gibhidetag");
 		var_90aba050[side] = gibstruct;
@@ -479,11 +479,11 @@ private function _gibentity(localclientnum, gibflags, shouldspawngibs)
 					if(isdefined(gibpiece))
 					{
 						_playgibfx(localclientnum, entity, gibpiece.gibfx, gibpiece.gibfxtag);
-						if(isdefined(gibpiece.var_42c89fa1))
+						if(isdefined(gibpiece.gibcinematicfx))
 						{
 							if(function_92beaa28(localclientnum))
 							{
-								_playgibfx(localclientnum, entity, gibpiece.var_42c89fa1, gibpiece.gibfxtag);
+								_playgibfx(localclientnum, entity, gibpiece.gibcinematicfx, gibpiece.gibfxtag);
 							}
 						}
 						_playgibsound(localclientnum, entity, gibpiece.gibsound);
@@ -503,11 +503,11 @@ private function _gibentity(localclientnum, gibflags, shouldspawngibs)
 						entity thread _gibpiece(localclientnum, entity, gibpiece.gibmodel, gibpiece.gibtag, gibpiece.gibdynentfx, gibdir, var_8e57b530, var_cd61eb7d);
 					}
 					_playgibfx(localclientnum, entity, gibpiece.gibfx, gibpiece.gibfxtag);
-					if(isdefined(gibpiece.var_42c89fa1))
+					if(isdefined(gibpiece.gibcinematicfx))
 					{
 						if(function_92beaa28(localclientnum))
 						{
-							_playgibfx(localclientnum, entity, gibpiece.var_42c89fa1, gibpiece.gibfxtag);
+							_playgibfx(localclientnum, entity, gibpiece.gibcinematicfx, gibpiece.gibfxtag);
 						}
 					}
 					_playgibsound(localclientnum, entity, gibpiece.gibsound);

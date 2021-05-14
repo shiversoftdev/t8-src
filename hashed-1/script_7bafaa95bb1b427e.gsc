@@ -338,60 +338,60 @@ function function_d571ac59(last_weapon = undefined, immediate = 0, awayfromball 
 	}
 	else
 	{
-		var_fbec09e2 = undefined;
+		to_weapon = undefined;
 		if(function_2be39078(last_weapon))
 		{
-			var_fbec09e2 = last_weapon;
+			to_weapon = last_weapon;
 		}
-		if(!isdefined(var_fbec09e2))
+		if(!isdefined(to_weapon))
 		{
-			var_fbec09e2 = function_fe1f5cc();
+			to_weapon = function_fe1f5cc();
 		}
-		if(isdefined(var_fbec09e2))
+		if(isdefined(to_weapon))
 		{
-			if(var_fbec09e2.isheavyweapon)
+			if(to_weapon.isheavyweapon)
 			{
-				if(var_fbec09e2.gadget_heroversion_2_0)
+				if(to_weapon.gadget_heroversion_2_0)
 				{
-					if(var_fbec09e2.isgadget && self getammocount(var_fbec09e2) > 0)
+					if(to_weapon.isgadget && self getammocount(to_weapon) > 0)
 					{
-						slot = self gadgetgetslot(var_fbec09e2);
+						slot = self gadgetgetslot(to_weapon);
 						if(self util::gadget_is_in_use(slot))
 						{
 							if(isdefined(immediate) && immediate)
 							{
-								self switchtoweaponimmediate(var_fbec09e2);
+								self switchtoweaponimmediate(to_weapon);
 							}
 							else
 							{
-								self switchtoweapon(var_fbec09e2);
+								self switchtoweapon(to_weapon);
 							}
 							return;
 						}
 					}
 				}
-				else if(self getammocount(var_fbec09e2) > 0)
+				else if(self getammocount(to_weapon) > 0)
 				{
 					if(isdefined(immediate) && immediate)
 					{
-						self switchtoweaponimmediate(var_fbec09e2);
+						self switchtoweaponimmediate(to_weapon);
 					}
 					else
 					{
-						self switchtoweapon(var_fbec09e2);
+						self switchtoweapon(to_weapon);
 					}
 					return;
 				}
 			}
-			else if(self getammocount(var_fbec09e2) > 0 || var_fbec09e2.ismeleeweapon)
+			else if(self getammocount(to_weapon) > 0 || to_weapon.ismeleeweapon)
 			{
 				if(isdefined(immediate) && immediate)
 				{
-					self switchtoweaponimmediate(var_fbec09e2);
+					self switchtoweaponimmediate(to_weapon);
 				}
 				else
 				{
-					self switchtoweapon(var_fbec09e2);
+					self switchtoweapon(to_weapon);
 				}
 				return;
 			}

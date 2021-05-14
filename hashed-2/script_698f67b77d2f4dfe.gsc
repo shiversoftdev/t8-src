@@ -71,7 +71,7 @@ function function_dde8cedc()
 	Parameters: 4
 	Flags: Linked
 */
-function function_3781ff37(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_3781ff37(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_73b1e35c66a4e898");
 }

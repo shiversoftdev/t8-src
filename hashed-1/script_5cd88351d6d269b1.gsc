@@ -158,7 +158,7 @@ function function_f615b0f(var_5ea5c94d, ended_early)
 }
 
 /*
-	Name: function_a37284cc
+	Name: play_outro
 	Namespace: namespace_ec1f72a0
 	Checksum: 0xD2933143
 	Offset: 0xC10
@@ -166,7 +166,7 @@ function function_f615b0f(var_5ea5c94d, ended_early)
 	Parameters: 0
 	Flags: Linked
 */
-function function_a37284cc()
+function play_outro()
 {
 	a_e_players = getplayers();
 	if(a_e_players.size > 1)
@@ -199,7 +199,7 @@ function function_d4147875(var_5ea5c94d)
 	namespace_509a75d1::function_314447b(1, 0);
 	namespace_db48768d::function_b1c6d4f2();
 	level flag::set(#"hold_round_end");
-	level thread function_a37284cc();
+	level thread play_outro();
 	wait(320);
 	/#
 		println("");
@@ -211,17 +211,17 @@ function function_d4147875(var_5ea5c94d)
 		println("");
 	#/
 	function_b0fc5631();
-	var_59ca2d71 = getvehiclenode("mq_gehen_01", "targetname");
-	var_c50a7e75 = getvehiclenode("mq_gehen_02", "targetname");
+	veh_start = getvehiclenode("mq_gehen_01", "targetname");
+	veh_end = getvehiclenode("mq_gehen_02", "targetname");
 	/#
 		println("");
 	#/
-	var_91a366af = getent("mq_gehen_s", "targetname");
-	level.sam = var_91a366af spawnfromspawner("sam", 1);
+	sam_spawner = getent("mq_gehen_s", "targetname");
+	level.sam = sam_spawner spawnfromspawner("sam", 1);
 	level.sam.team = #"allies";
 	util::magic_bullet_shield(level.sam);
-	var_7d5f4ec2 = getent("mq_gehen_e", "targetname");
-	eddie = var_7d5f4ec2 spawnfromspawner("eddie", 1);
+	eddie_spawner = getent("mq_gehen_e", "targetname");
+	eddie = eddie_spawner spawnfromspawner("eddie", 1);
 	eddie.team = #"allies";
 	util::magic_bullet_shield(eddie);
 	waitframe(1);
@@ -267,15 +267,15 @@ function function_d4147875(var_5ea5c94d)
 	#/
 	level.musicsystemoverride = 1;
 	music::setmusicstate("sam_eddie_walk");
-	thread function_78a6a833();
+	thread music_watcher();
 	/#
 		println("");
 	#/
 	while(true)
 	{
 		waitframe(1);
-		var_9461d9d2 = vectornormalize(var_c50a7e75.origin - level.sam.origin);
-		var_7d910a84 = vectordot(var_9461d9d2, anglestoforward(level.sam.angles));
+		_attack_barrier_sprint = vectornormalize(veh_end.origin - level.sam.origin);
+		var_7d910a84 = vectordot(_attack_barrier_sprint, anglestoforward(level.sam.angles));
 		if(var_7d910a84 < 0)
 		{
 			break;
@@ -293,7 +293,7 @@ function function_d4147875(var_5ea5c94d)
 }
 
 /*
-	Name: function_78a6a833
+	Name: music_watcher
 	Namespace: namespace_ec1f72a0
 	Checksum: 0x1E20AC38
 	Offset: 0x13F8
@@ -301,7 +301,7 @@ function function_d4147875(var_5ea5c94d)
 	Parameters: 0
 	Flags: Linked
 */
-function function_78a6a833()
+function music_watcher()
 {
 	wait(120);
 	level flag::set(#"sam_music_done");
@@ -340,8 +340,8 @@ function function_74963add()
 	while(true)
 	{
 		waitframe(1);
-		var_9461d9d2 = vectornormalize(self.origin - level.sam.origin);
-		var_7d910a84 = vectordot(var_9461d9d2, anglestoforward(level.sam.angles));
+		_attack_barrier_sprint = vectornormalize(self.origin - level.sam.origin);
+		var_7d910a84 = vectordot(_attack_barrier_sprint, anglestoforward(level.sam.angles));
 		if(var_7d910a84 < 0)
 		{
 			break;

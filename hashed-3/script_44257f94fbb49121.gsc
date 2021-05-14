@@ -685,9 +685,9 @@ private function function_9b83c65d(localclientnum)
 		{
 			foreach(consumeditem in var_8040e225.inventory.consumed.items)
 			{
-				if(isdefined(consumeditem.var_a6762160.var_7e21e375) && isarray(consumeditem.var_a6762160.var_7e21e375))
+				if(isdefined(consumeditem.var_a6762160.talents) && isarray(consumeditem.var_a6762160.talents))
 				{
-					foreach(talent in consumeditem.var_a6762160.var_7e21e375)
+					foreach(talent in consumeditem.var_a6762160.talents)
 					{
 						if(talent.talent == #"hash_20c8c24a2156176c")
 						{

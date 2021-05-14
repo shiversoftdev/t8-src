@@ -770,9 +770,9 @@ function function_f9d5c4b0(x, str_field, var_b8003601)
 	Parameters: 1
 	Flags: None
 */
-function function_8892c7a6(var_e2903829)
+function function_8892c7a6(i_value)
 {
-	return var_e2903829;
+	return i_value;
 }
 
 /*
@@ -854,9 +854,9 @@ function function_68a5d644(var_30e9e231)
 	Parameters: 1
 	Flags: None
 */
-function function_4e718879(var_e334a389)
+function function_4e718879(v_value)
 {
-	return var_e334a389;
+	return v_value;
 }
 
 /*
@@ -888,7 +888,7 @@ function function_9ef80b8b(var_f74b77ea)
 }
 
 /*
-	Name: function_7dba7ed8
+	Name: introduction_minigun
 	Namespace: namespace_22752a75
 	Checksum: 0xF7450190
 	Offset: 0x1BC0
@@ -896,7 +896,7 @@ function function_9ef80b8b(var_f74b77ea)
 	Parameters: 1
 	Flags: None
 */
-function function_7dba7ed8(var_e08c6927)
+function introduction_minigun(var_e08c6927)
 {
 	return var_e08c6927;
 }
@@ -994,9 +994,9 @@ function function_28848a6a(var_6b11d5a)
 	Parameters: 1
 	Flags: None
 */
-function function_8f5a9b3e(var_cc6bf6f6)
+function function_8f5a9b3e(fx_value)
 {
-	return var_cc6bf6f6;
+	return fx_value;
 }
 
 /*

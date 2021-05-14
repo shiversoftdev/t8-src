@@ -185,7 +185,7 @@ private function function_95a6fbef()
 {
 	self.maxhealth = 900;
 	self.health = self.maxhealth;
-	namespace_81245006::function_b8cf6ebd(self, #"hash_4b85d1f08e4e34cb");
+	namespace_81245006::initweakpoints(self, #"hash_4b85d1f08e4e34cb");
 	self show();
 	self showallparts();
 }
@@ -206,7 +206,7 @@ private function function_36b05ed0(entity)
 }
 
 /*
-	Name: function_4c2c69ab
+	Name: killed_callback
 	Namespace: namespace_ebc3fc57
 	Checksum: 0x35BB63F9
 	Offset: 0x10E0
@@ -214,7 +214,7 @@ private function function_36b05ed0(entity)
 	Parameters: 1
 	Flags: Private
 */
-private function function_4c2c69ab(e_attacker)
+private function killed_callback(e_attacker)
 {
 	if(self.archetype != #"blight_father")
 	{
@@ -253,9 +253,9 @@ private function registerbehaviorscriptfunctions()
 	#/
 	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_73649a2d01c11f41", &function_8383fdf9);
 	/#
-		assert(isscriptfunctionptr(&function_917cd51d));
+		assert(isscriptfunctionptr(&blightfathershouldshowpain));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_7bfadbb2d286663b", &function_917cd51d);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"blightfathershouldshowpain", &blightfathershouldshowpain);
 	/#
 		assert(isscriptfunctionptr(&function_3515ad4b));
 	#/
@@ -269,17 +269,17 @@ private function registerbehaviorscriptfunctions()
 	#/
 	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_7767c66e27990a60", &function_30f3bb2c);
 	/#
-		assert(isscriptfunctionptr(&function_ee089e87));
+		assert(isscriptfunctionptr(&blightfathershouldspawn));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_24dc8376ce1344a1", &function_ee089e87);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"blightfathershouldspawn", &blightfathershouldspawn);
 	/#
 		assert(isscriptfunctionptr(&function_a2155a63));
 	#/
 	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_3d6c2aa71a2d55cf", &function_a2155a63);
 	/#
-		assert(isscriptfunctionptr(&function_f1a2b25c));
+		assert(isscriptfunctionptr(&blightfatherdeathstart));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_5d005aae8ec2c27", &function_f1a2b25c);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"blightfatherdeathstart", &blightfatherdeathstart);
 	/#
 		assert(isscriptfunctionptr(&function_d5a0a1eb));
 	#/
@@ -305,9 +305,9 @@ private function registerbehaviorscriptfunctions()
 	#/
 	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_6e5059e0839da879", &function_d83ac1e7);
 	/#
-		assert(isscriptfunctionptr(&function_96d2f889));
+		assert(isscriptfunctionptr(&blightfatherspawnstart));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_3ea61d86632a2574", &function_96d2f889);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"blightfatherspawnstart", &blightfatherspawnstart);
 	/#
 		assert(isscriptfunctionptr(&function_819f6f9d));
 	#/
@@ -403,12 +403,12 @@ function function_af7555b9(entity)
 	entity ghost();
 	entity notsolid();
 	entity clientfield::set("zombie_riser_fx", 0);
-	entity notify(#"hash_63fbd742896df09a");
+	entity notify(#"is_screamed");
 	return 1;
 }
 
 /*
-	Name: function_ee089e87
+	Name: blightfathershouldspawn
 	Namespace: namespace_ebc3fc57
 	Checksum: 0x924FE0C3
 	Offset: 0x1DB0
@@ -416,13 +416,13 @@ function function_af7555b9(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_ee089e87(entity)
+function blightfathershouldspawn(entity)
 {
 	return isdefined(entity.var_8ba6ede3) && entity.var_8ba6ede3;
 }
 
 /*
-	Name: function_96d2f889
+	Name: blightfatherspawnstart
 	Namespace: namespace_ebc3fc57
 	Checksum: 0xBF44FF6A
 	Offset: 0x1DE0
@@ -430,7 +430,7 @@ function function_ee089e87(entity)
 	Parameters: 1
 	Flags: None
 */
-function function_96d2f889(entity)
+function blightfatherspawnstart(entity)
 {
 	entity solid();
 	entity clientfield::set("zombie_riser_fx", 1);
@@ -526,11 +526,11 @@ function function_b78adc65(entity)
 		}
 		return;
 	}
-	if(isdefined(entity.var_a1a553e5))
+	if(isdefined(entity.gib_model))
 	{
-		entity.var_a1a553e5 clientfield::set("blight_father_gib_explosion", 1);
-		entity.var_a1a553e5 stopanimscripted(0, 1);
-		entity.var_a1a553e5 startragdoll();
+		entity.gib_model clientfield::set("blight_father_gib_explosion", 1);
+		entity.gib_model stopanimscripted(0, 1);
+		entity.gib_model startragdoll();
 	}
 	entity delete();
 }
@@ -603,7 +603,7 @@ function function_753b4884()
 private function function_f2914d65(entity)
 {
 	enemies = getaiarchetypearray(#"zombie");
-	enemies = arraycombine(enemies, getaiarchetypearray(#"hash_1bab8a0ba811401e"), 0, 0);
+	enemies = arraycombine(enemies, getaiarchetypearray(#"catalyst"), 0, 0);
 	enemies = array::filter(enemies, 0, &function_3d752709, entity);
 	foreach(enemy in enemies)
 	{
@@ -649,7 +649,7 @@ private function function_3d752709(enemy, target)
 }
 
 /*
-	Name: function_917cd51d
+	Name: blightfathershouldshowpain
 	Namespace: namespace_ebc3fc57
 	Checksum: 0x3E6F99B6
 	Offset: 0x2470
@@ -657,7 +657,7 @@ private function function_3d752709(enemy, target)
 	Parameters: 1
 	Flags: Private
 */
-private function function_917cd51d(entity)
+private function blightfathershouldshowpain(entity)
 {
 	if(isdefined(entity.var_fbec06fa))
 	{
@@ -691,7 +691,7 @@ private function function_8d9b9683(entity)
 */
 private function function_3515ad4b(entity)
 {
-	return function_917cd51d(entity);
+	return blightfathershouldshowpain(entity);
 }
 
 /*
@@ -709,7 +709,7 @@ private function function_173d7fb2(entity)
 }
 
 /*
-	Name: function_f1a2b25c
+	Name: blightfatherdeathstart
 	Namespace: namespace_ebc3fc57
 	Checksum: 0x6644D3C8
 	Offset: 0x2520
@@ -717,23 +717,23 @@ private function function_173d7fb2(entity)
 	Parameters: 1
 	Flags: Private
 */
-private function function_f1a2b25c(entity)
+private function blightfatherdeathstart(entity)
 {
-	entity val::set(#"hash_1721debb47caa1c7", "takedamage", 0);
+	entity val::set(#"blight_father_death", "takedamage", 0);
 	if(level.var_79b2615b === entity)
 	{
 		level.var_79b2615b = undefined;
 	}
 	if(!entity isragdoll())
 	{
-		var_a1a553e5 = util::spawn_anim_model("c_t8_zmb_blightfather_body1_gib", entity.origin, entity.angles);
-		if(!isdefined(var_a1a553e5))
+		gib_model = util::spawn_anim_model("c_t8_zmb_blightfather_body1_gib", entity.origin, entity.angles);
+		if(!isdefined(gib_model))
 		{
 			return;
 		}
-		var_a1a553e5 animscripted(#"hash_56a346d1e0dd61cd", var_a1a553e5.origin, var_a1a553e5.angles, #"hash_3e937fff0e0a4362", "normal");
-		var_a1a553e5 thread function_529b7fb9();
-		entity.var_a1a553e5 = var_a1a553e5;
+		gib_model animscripted(#"hash_56a346d1e0dd61cd", gib_model.origin, gib_model.angles, #"hash_3e937fff0e0a4362", "normal");
+		gib_model thread function_529b7fb9();
+		entity.gib_model = gib_model;
 	}
 }
 
@@ -771,13 +771,13 @@ private function function_ac921de9(entity)
 		}
 	}
 	function_6eac4ca1(entity, "attack_melee");
-	var_cb50d98f = anglestoforward(entity.angles);
+	registernotice_walla = anglestoforward(entity.angles);
 	var_2f706708 = entity gettagorigin("j_spine4");
 	var_9b246038 = entity ai::function_9139c839().var_4e8d4c24;
 	foreach(player in var_5c2f5f9a)
 	{
 		vec_to_player = vectornormalize(player.origin - entity.origin);
-		if(vectordot(vec_to_player, var_cb50d98f) < var_9b246038)
+		if(vectordot(vec_to_player, registernotice_walla) < var_9b246038)
 		{
 			continue;
 		}
@@ -1102,8 +1102,8 @@ function function_422fdfd4(entity, attacker, weapon, var_5457dc44, hitloc, point
 			var_84ed9a13 = namespace_81245006::function_73ab4754(self, point, 1);
 		}
 	}
-	var_7d87f2d4 = isdefined(var_84ed9a13) && namespace_81245006::function_f29756fe(var_84ed9a13) == 1;
-	var_30362eca = var_7d87f2d4 && var_84ed9a13.type !== #"armor";
+	registerzombie_bgb_used_reinforce = isdefined(var_84ed9a13) && namespace_81245006::function_f29756fe(var_84ed9a13) == 1;
+	var_30362eca = registerzombie_bgb_used_reinforce && var_84ed9a13.type !== #"armor";
 	var_c6cc6205 = var_b85996d4;
 	var_fff93f95 = var_159ce525;
 	var_cee56a92 = var_ddd319d6;
@@ -1116,7 +1116,7 @@ function function_422fdfd4(entity, attacker, weapon, var_5457dc44, hitloc, point
 	{
 		var_b1c1c5cf = (isdefined(var_fff93f95) ? var_fff93f95 : entity ai::function_9139c839().var_628192b0);
 	}
-	return {#hash_7d87f2d4:var_7d87f2d4, #hash_84ed9a13:var_84ed9a13, #damage_scale:var_b1c1c5cf};
+	return {#registerzombie_bgb_used_reinforce:registerzombie_bgb_used_reinforce, #hash_84ed9a13:var_84ed9a13, #damage_scale:var_b1c1c5cf};
 }
 
 /*
@@ -1142,9 +1142,9 @@ private function function_afce1cf(inflictor, attacker, damage, flags, meansofdam
 	var_786d7e06 = function_422fdfd4(entity, attacker, weapon, boneindex);
 	damage_scale = var_786d7e06.damage_scale;
 	var_84ed9a13 = var_786d7e06.var_84ed9a13;
-	var_7d87f2d4 = var_786d7e06.var_7d87f2d4;
+	registerzombie_bgb_used_reinforce = var_786d7e06.registerzombie_bgb_used_reinforce;
 	final_damage = int(damage * damage_scale);
-	if(isdefined(var_84ed9a13) && var_7d87f2d4)
+	if(isdefined(var_84ed9a13) && registerzombie_bgb_used_reinforce)
 	{
 		function_cacd1506(var_84ed9a13, entity, inflictor, attacker, final_damage, flags, meansofdamage, weapon, point, dir, hitloc, offsettime, boneindex, modelindex);
 	}
@@ -1595,11 +1595,11 @@ function function_b2be1340(starting_health)
 	self.n_health = starting_health;
 	while(self.n_health > 0)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self.trigger waittill(#"damage");
-		if(isdefined(var_385703b7.attacker) && isplayer(var_385703b7.attacker) && var_385703b7.amount > 0)
+		s_notify = undefined;
+		s_notify = self.trigger waittill(#"damage");
+		if(isdefined(s_notify.attacker) && isplayer(s_notify.attacker) && s_notify.amount > 0)
 		{
-			self.n_health = self.n_health - var_385703b7.amount;
+			self.n_health = self.n_health - s_notify.amount;
 		}
 	}
 	self thread function_124486ee(0);
@@ -1644,21 +1644,21 @@ private function function_5f3390fd(var_61622673, var_4fee43d4)
 	var_892397fd = self;
 	while(isdefined(var_892397fd))
 	{
-		var_b5b576a7 = [];
+		player_origins = [];
 		players = getplayers();
 		foreach(player in players)
 		{
-			if(!isdefined(var_b5b576a7))
+			if(!isdefined(player_origins))
 			{
-				var_b5b576a7 = [];
+				player_origins = [];
 			}
-			else if(!isarray(var_b5b576a7))
+			else if(!isarray(player_origins))
 			{
-				var_b5b576a7 = array(var_b5b576a7);
+				player_origins = array(player_origins);
 			}
-			var_b5b576a7[var_b5b576a7.size] = player.origin + var_61622673;
+			player_origins[player_origins.size] = player.origin + var_61622673;
 		}
-		players = arraysortclosest(var_b5b576a7, var_892397fd.origin, undefined, 0, var_4fee43d4);
+		players = arraysortclosest(player_origins, var_892397fd.origin, undefined, 0, var_4fee43d4);
 		if(players.size > 0)
 		{
 			var_892397fd thread function_124486ee(0);

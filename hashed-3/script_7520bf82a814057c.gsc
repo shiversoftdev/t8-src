@@ -96,7 +96,7 @@ function set_state(localclientnum, state_name)
 }
 
 /*
-	Name: function_b1ff84a2
+	Name: set_rounds
 	Namespace: zm_game_over
 	Checksum: 0x43F67659
 	Offset: 0x200
@@ -104,9 +104,9 @@ function set_state(localclientnum, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_b1ff84a2(localclientnum, value)
+function set_rounds(localclientnum, value)
 {
-	[[ self ]]->function_b1ff84a2(localclientnum, value);
+	[[ self ]]->set_rounds(localclientnum, value);
 }
 
 #namespace namespace_d1b6325c;
@@ -208,7 +208,7 @@ function set_state(localclientnum, state_name)
 }
 
 /*
-	Name: function_b1ff84a2
+	Name: set_rounds
 	Namespace: namespace_d1b6325c
 	Checksum: 0x6C3857F
 	Offset: 0x460
@@ -216,7 +216,7 @@ function set_state(localclientnum, state_name)
 	Parameters: 2
 	Flags: Linked
 */
-function function_b1ff84a2(localclientnum, value)
+function set_rounds(localclientnum, value)
 {
 	[[ self ]]->function_d7d2fcce(localclientnum, "rounds", value);
 }
@@ -261,7 +261,7 @@ private autoexec function function_d1b6325c()
 	classes.var_d1b6325c[0].__vtable[1855416484] = &namespace_6aaccc24::setup_clientfields;
 	classes.var_d1b6325c[0].__vtable[674154906] = &namespace_6aaccc24::__constructor;
 	classes.var_d1b6325c[0].__vtable[913321084] = &namespace_d1b6325c::__destructor;
-	classes.var_d1b6325c[0].__vtable[1308654430] = &namespace_d1b6325c::function_b1ff84a2;
+	classes.var_d1b6325c[0].__vtable[1308654430] = &namespace_d1b6325c::set_rounds;
 	classes.var_d1b6325c[0].__vtable[655560998] = &namespace_d1b6325c::set_state;
 	classes.var_d1b6325c[0].__vtable[250899321] = &namespace_d1b6325c::open;
 	classes.var_d1b6325c[0].__vtable[94887662] = &namespace_d1b6325c::function_fa582112;

@@ -111,7 +111,7 @@ function init_powerups()
 	level.zombie_powerup_index = 0;
 	randomize_powerups();
 	level.rare_powerups_active = 0;
-	level.var_2aab843 = randomintrange(zombie_utility::function_d2dfacfd(#"hash_4d2cc817490bcca"), zombie_utility::function_d2dfacfd(#"hash_4edd68174a79580"));
+	level.zm_genesis_robot_pay_towardsreactswordstart = randomintrange(zombie_utility::function_d2dfacfd(#"hash_4d2cc817490bcca"), zombie_utility::function_d2dfacfd(#"hash_4edd68174a79580"));
 	level.firesale_vox_firstime = 0;
 	level thread powerup_hud_monitor();
 	clientfield::register("scriptmover", "powerup_fx", 1, 3, "int");
@@ -331,7 +331,7 @@ function get_next_powerup()
 		powerup = level.var_ab5b85bf;
 		level.var_ab5b85bf = undefined;
 	}
-	else if(level.var_2aab843 == 0 && namespace_59ff1d6c::function_901b751c(#"zmpowerupmaxammo") && isdefined(level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups) && [[level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups]]())
+	else if(level.zm_genesis_robot_pay_towardsreactswordstart == 0 && namespace_59ff1d6c::function_901b751c(#"zmpowerupmaxammo") && isdefined(level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups) && [[level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups]]())
 	{
 		powerup = "full_ammo";
 	}
@@ -555,7 +555,7 @@ function zombie_can_drop_powerups(weapon)
 	{
 		return 1;
 	}
-	if(namespace_2ba51478::is_tactical_grenade(weapon) || !level flag::get("zombie_drop_powerups"))
+	if(zm_loadout::is_tactical_grenade(weapon) || !level flag::get("zombie_drop_powerups"))
 	{
 		return 0;
 	}
@@ -1256,11 +1256,11 @@ function specific_powerup_drop(var_5a63971, powerup_location, powerup_team, pick
 	powerup setmodel(#"tag_origin");
 	powerup_location = powerup.origin;
 	level notify(#"powerup_dropped", {#powerup:powerup});
-	return function_cb96a150(powerup, var_5a63971, powerup_team, powerup_location, pickup_delay, powerup_player, b_stay_forever, var_a6d11a96, var_45eaa114);
+	return powerup_init(powerup, var_5a63971, powerup_team, powerup_location, pickup_delay, powerup_player, b_stay_forever, var_a6d11a96, var_45eaa114);
 }
 
 /*
-	Name: function_cb96a150
+	Name: powerup_init
 	Namespace: zm_powerups
 	Checksum: 0x8EEB9D1E
 	Offset: 0x3870
@@ -1268,7 +1268,7 @@ function specific_powerup_drop(var_5a63971, powerup_location, powerup_team, pick
 	Parameters: 9
 	Flags: Linked
 */
-function function_cb96a150(powerup, str_powerup, powerup_team, powerup_location, pickup_delay = 0.1, powerup_player, b_stay_forever, var_a6d11a96, var_45eaa114)
+function powerup_init(powerup, str_powerup, powerup_team, powerup_location, pickup_delay = 0.1, powerup_player, b_stay_forever, var_a6d11a96, var_45eaa114)
 {
 	if(isdefined(powerup))
 	{
@@ -1378,11 +1378,11 @@ function powerup_setup(powerup_override, powerup_team, powerup_location, powerup
 	}
 	if(powerup == "full_ammo")
 	{
-		level.var_2aab843 = randomintrange(zombie_utility::function_d2dfacfd(#"hash_4d2cc817490bcca"), zombie_utility::function_d2dfacfd(#"hash_4edd68174a79580"));
+		level.zm_genesis_robot_pay_towardsreactswordstart = randomintrange(zombie_utility::function_d2dfacfd(#"hash_4d2cc817490bcca"), zombie_utility::function_d2dfacfd(#"hash_4edd68174a79580"));
 	}
 	else if(!isdefined(powerup_override))
 	{
-		level.var_2aab843--;
+		level.zm_genesis_robot_pay_towardsreactswordstart--;
 	}
 	demo::bookmark(#"zm_powerup_dropped", gettime(), undefined, undefined, 1);
 	potm::bookmark(#"zm_powerup_dropped", gettime(), undefined, undefined, 1);
@@ -1586,7 +1586,7 @@ function powerup_grab(powerup_team)
 				{
 					var_57807cdc = [];
 					array::add(var_57807cdc, player, 0);
-					namespace_f551babc::fail(#"hash_2619fd380423798b", var_57807cdc);
+					zm_trial::fail(#"hash_2619fd380423798b", var_57807cdc);
 					self thread powerup_delete_delayed();
 					self notify(#"powerup_grabbed", {#e_grabber:player});
 					return;
@@ -1766,9 +1766,9 @@ function function_c1963295(var_4c20edd5, var_a6d11a96)
 function function_76678c8d(var_41c62074, str_model, var_a6d11a96)
 {
 	self endon(#"powerup_grabbed");
-	if(isdefined(level.var_59845c5c))
+	if(isdefined(level.powerup_intro_fx_func))
 	{
-		self thread [[level.var_59845c5c]]();
+		self thread [[level.powerup_intro_fx_func]]();
 	}
 	else
 	{
@@ -2078,17 +2078,17 @@ function powerup_timeout()
 	Parameters: 2
 	Flags: Linked
 */
-function hide_and_show(var_a3eec611, var_e123d761)
+function hide_and_show(hide_func, show_func)
 {
 	for(i = 0; i < 40; i++)
 	{
 		if(i % 2)
 		{
-			self [[var_a3eec611]]();
+			self [[hide_func]]();
 		}
 		else
 		{
-			self [[var_e123d761]]();
+			self [[show_func]]();
 		}
 		if(i < 15)
 		{

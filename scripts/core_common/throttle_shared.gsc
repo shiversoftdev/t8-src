@@ -137,7 +137,7 @@ function waitinqueue(entity = randomint(2147483647))
 }
 
 /*
-	Name: function_18b95af8
+	Name: wm_ht_posidlestart
 	Namespace: throttle
 	Checksum: 0xBA410401
 	Offset: 0x468
@@ -145,7 +145,7 @@ function waitinqueue(entity = randomint(2147483647))
 	Parameters: 1
 	Flags: Linked
 */
-function function_18b95af8(entity)
+function wm_ht_posidlestart(entity)
 {
 	return isinarray(self.queue_, entity);
 }
@@ -177,7 +177,7 @@ private autoexec function throttle()
 {
 	classes.throttle[0] = spawnstruct();
 	classes.throttle[0].__vtable[1593080756] = &function_5ef47bb4;
-	classes.throttle[0].__vtable[414800632] = &function_18b95af8;
+	classes.throttle[0].__vtable[414800632] = &wm_ht_posidlestart;
 	classes.throttle[0].__vtable[1800262167] = &waitinqueue;
 	classes.throttle[0].__vtable[1128083910] = &initialize;
 	classes.throttle[0].__vtable[2058390100] = &_updatethrottle;

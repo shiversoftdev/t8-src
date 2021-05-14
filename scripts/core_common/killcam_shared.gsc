@@ -275,7 +275,7 @@ function function_2c8aa45e()
 }
 
 /*
-	Name: function_139c2945
+	Name: start_deathcam
 	Namespace: killcam
 	Checksum: 0xA19C9E6C
 	Offset: 0xBB0
@@ -283,7 +283,7 @@ function function_2c8aa45e()
 	Parameters: 0
 	Flags: None
 */
-function function_139c2945()
+function start_deathcam()
 {
 	if(!self function_2c8aa45e())
 	{

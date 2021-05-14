@@ -454,29 +454,29 @@ private function function_3ab6779c(localclientnum, var_44146a38)
 */
 private function function_3386e437(gibflag)
 {
-	var_a1a553e5 = undefined;
+	gib_model = undefined;
 	if(isdefined(self.archetype) && self.archetype == #"nova_crawler")
 	{
 		switch(gibflag)
 		{
 			case 16:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_quadcrawler_s_rarmspawn";
+				gib_model = "c_t8_zmb_ofc_quadcrawler_s_rarmspawn";
 				break;
 			}
 			case 32:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_quadcrawler_s_larmspawn";
+				gib_model = "c_t8_zmb_ofc_quadcrawler_s_larmspawn";
 				break;
 			}
 			case 128:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_quadcrawler_s_rlegspawn";
+				gib_model = "c_t8_zmb_ofc_quadcrawler_s_rlegspawn";
 				break;
 			}
 			case 256:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_quadcrawler_s_llegspawn";
+				gib_model = "c_t8_zmb_ofc_quadcrawler_s_llegspawn";
 				break;
 			}
 			default:
@@ -491,22 +491,22 @@ private function function_3386e437(gibflag)
 		{
 			case 16:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_zombie_male_s_rarmoff";
+				gib_model = "c_t8_zmb_ofc_zombie_male_s_rarmoff";
 				break;
 			}
 			case 32:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_zombie_male_s_larmoff";
+				gib_model = "c_t8_zmb_ofc_zombie_male_s_larmoff";
 				break;
 			}
 			case 128:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_zombie_male_s_rlegoff";
+				gib_model = "c_t8_zmb_ofc_zombie_male_s_rlegoff";
 				break;
 			}
 			case 256:
 			{
-				var_a1a553e5 = "c_t8_zmb_ofc_zombie_male_s_llegoff";
+				gib_model = "c_t8_zmb_ofc_zombie_male_s_llegoff";
 				break;
 			}
 			default:
@@ -515,7 +515,7 @@ private function function_3386e437(gibflag)
 			}
 		}
 	}
-	return var_a1a553e5;
+	return gib_model;
 }
 
 /*
@@ -534,10 +534,10 @@ private function function_c4fded40(localclientnum, tag_name, gibflag, var_44146a
 	{
 		var_91b70bd5 = self gettagangles(tag_name);
 		var_481f0c84 = (var_44146a38 ? function_91bb8595(var_32a420b0) : (0, 0, 0));
-		var_a1a553e5 = function_3386e437(gibflag);
-		if(isdefined(var_a1a553e5))
+		gib_model = function_3386e437(gibflag);
+		if(isdefined(gib_model))
 		{
-			createdynentandlaunch(localclientnum, var_a1a553e5, var_32a420b0, var_91b70bd5, var_32a420b0, var_481f0c84, level._effect[#"hash_3864bbc0912cb852"], 1);
+			createdynentandlaunch(localclientnum, gib_model, var_32a420b0, var_91b70bd5, var_32a420b0, var_481f0c84, level._effect[#"hash_3864bbc0912cb852"], 1);
 		}
 	}
 }

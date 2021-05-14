@@ -887,7 +887,7 @@ function function_da21a17c()
 */
 function function_3de8b6e0(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.reviver))
+	if(!gamestate::is_state("playing") || !isdefined(params.reviver))
 	{
 		return;
 	}
@@ -1280,7 +1280,7 @@ function function_c7aa9338(array)
 */
 function function_8920ad6e(params)
 {
-	if(!gamestate::function_4c5eea28("playing"))
+	if(!gamestate::is_state("playing"))
 	{
 		return;
 	}
@@ -1323,7 +1323,7 @@ function function_8920ad6e(params)
 */
 function function_106be0dc(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.item))
+	if(!gamestate::is_state("playing") || !isdefined(params.item))
 	{
 		return;
 	}
@@ -1363,7 +1363,7 @@ function function_106be0dc(params)
 */
 function function_393ec79e(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.item))
+	if(!gamestate::is_state("playing") || !isdefined(params.item))
 	{
 		return;
 	}
@@ -1390,7 +1390,7 @@ function function_393ec79e(params)
 */
 function function_6c478b00(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.activator))
+	if(!gamestate::is_state("playing") || !isdefined(params.activator))
 	{
 		return;
 	}
@@ -1656,7 +1656,7 @@ function function_ed93a653(params)
 */
 function function_10a4dd0a(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.item))
+	if(!gamestate::is_state("playing") || !isdefined(params.item))
 	{
 		return;
 	}

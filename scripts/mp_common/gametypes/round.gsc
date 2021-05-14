@@ -191,7 +191,7 @@ function function_9b24638f()
 }
 
 /*
-	Name: function_2d4168be
+	Name: is_winner
 	Namespace: round
 	Checksum: 0xF97E709E
 	Offset: 0x4E0
@@ -199,9 +199,9 @@ function function_9b24638f()
 	Parameters: 1
 	Flags: None
 */
-function function_2d4168be(var_512330f1)
+function is_winner(var_512330f1)
 {
-	return outcome::function_2d4168be(game.outcome.var_aefc8b8d, var_512330f1);
+	return outcome::is_winner(game.outcome.var_aefc8b8d, var_512330f1);
 }
 
 /*
@@ -230,7 +230,7 @@ function function_d1e740f6(var_512330f1)
 function function_35702443(platoon)
 {
 	/#
-		assert(isdefined(level.var_aa9b5883[platoon]));
+		assert(isdefined(level.platoons[platoon]));
 	#/
 	outcome::function_35702443(game.outcome.var_aefc8b8d, platoon);
 }
@@ -278,7 +278,7 @@ function function_870759fb()
 }
 
 /*
-	Name: function_96f8fef2
+	Name: is_overtime_round
 	Namespace: round
 	Checksum: 0x2DDDB871
 	Offset: 0x668
@@ -286,7 +286,7 @@ function function_870759fb()
 	Parameters: 0
 	Flags: None
 */
-function function_96f8fef2()
+function is_overtime_round()
 {
 	if(game.overtime_round > 0)
 	{

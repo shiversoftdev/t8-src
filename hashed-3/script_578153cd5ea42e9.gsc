@@ -83,7 +83,7 @@ function function_6a308c34()
 	Parameters: 4
 	Flags: Linked
 */
-function function_ea0dd5e6(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_ea0dd5e6(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_19d583212e9b3200");
 	self.var_af850774 = undefined;

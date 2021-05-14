@@ -43,7 +43,7 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_27e4878539bc7f72");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_27e4878539bc7f72");
 	clientfield::register("scriptmover", "" + #"hash_24f81e48466b572", 16000, 1, "counter");
 	clientfield::register("scriptmover", "" + #"hash_5e74ad0afcfe7364", 16000, 1, "int");
 	clientfield::register("scriptmover", "" + #"hash_7006a7d528a6f05c", 16000, 3, "int");
@@ -123,9 +123,9 @@ function function_6c5cb6e()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_change");
-		wpn_cur = var_88706ea7.weapon;
+		s_result = undefined;
+		s_result = self waittill(#"weapon_change");
+		wpn_cur = s_result.weapon;
 		if(wpn_cur == getweapon(#"hash_27e4878539bc7f72"))
 		{
 			self thread function_feb1573e();
@@ -153,9 +153,9 @@ function function_feb1573e()
 	self endon(#"disconnect", #"hash_2938992396267cf3");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"grenade_fire", #"grenade_throw_cancelled");
-		if(var_88706ea7.weapon == getweapon(#"hash_27e4878539bc7f72"))
+		s_result = undefined;
+		s_result = self waittill(#"grenade_fire", #"grenade_throw_cancelled");
+		if(s_result.weapon == getweapon(#"hash_27e4878539bc7f72"))
 		{
 			self val::reset(#"hash_6c2d131e7ade07fa", "freezecontrols");
 		}
@@ -621,7 +621,7 @@ function function_90c53706(var_10d4f67d, n_player_index)
 		e_player endon(#"death");
 	}
 	self function_97429d68(n_player_index);
-	if(self.archetype == #"zombie" || self.archetype == #"skeleton" || self.archetype == #"hash_1bab8a0ba811401e")
+	if(self.archetype == #"zombie" || self.archetype == #"skeleton" || self.archetype == #"catalyst")
 	{
 		self playsound(#"hash_3fbc22745dc90009");
 		gibserverutils::annihilate(self);
@@ -797,9 +797,9 @@ function function_d0671de3()
 function grenade_stolen_by_sam(weapon)
 {
 	self thread zm_equipment::show_hint_text(#"hash_58c731d86f4eabed", 4, 1.75, 120);
-	var_bcd1c2ff = self gadgetgetslot(weapon);
-	self gadgetpowerset(var_bcd1c2ff, 100);
-	self gadgetcharging(var_bcd1c2ff, 0);
+	n_slot = self gadgetgetslot(weapon);
+	self gadgetpowerset(n_slot, 100);
+	self gadgetcharging(n_slot, 0);
 }
 
 /*

@@ -38,7 +38,7 @@ function callback_botentereduseredge(startnode, endnode, mantlenode, startpos, e
 		/#
 			self botprinterror("");
 		#/
-		self thread function_a8270705(endpos);
+		self thread fallback_traversal(endpos);
 		return;
 	}
 	params = spawnstruct();
@@ -53,7 +53,7 @@ function callback_botentereduseredge(startnode, endnode, mantlenode, startpos, e
 		params.var_bccf04e7 = 1;
 	}
 	self function_cf312d24(params);
-	self thread function_268dc89a(params);
+	self thread volume_traversal(params);
 }
 
 /*
@@ -71,7 +71,7 @@ function cancel()
 }
 
 /*
-	Name: function_a8270705
+	Name: fallback_traversal
 	Namespace: bot
 	Checksum: 0x9C1D251D
 	Offset: 0x370
@@ -79,7 +79,7 @@ function cancel()
 	Parameters: 1
 	Flags: Linked
 */
-function function_a8270705(endpos)
+function fallback_traversal(endpos)
 {
 	self endon(#"death", #"hash_a729d7d4c6847f6", #"hash_37fc5d1ffce4acaf");
 	self endon_callback(&release_control, #"entering_last_stand", #"new_shot");
@@ -114,7 +114,7 @@ function function_c3452ef9(params)
 }
 
 /*
-	Name: function_268dc89a
+	Name: volume_traversal
 	Namespace: bot
 	Checksum: 0x4A8A7855
 	Offset: 0x508
@@ -122,7 +122,7 @@ function function_c3452ef9(params)
 	Parameters: 1
 	Flags: Linked
 */
-function function_268dc89a(params)
+function volume_traversal(params)
 {
 	self endon(#"death", #"hash_a729d7d4c6847f6", #"hash_37fc5d1ffce4acaf");
 	self endon_callback(&release_control, #"entering_last_stand", #"new_shot");
@@ -144,7 +144,7 @@ function function_268dc89a(params)
 	}
 	if(abs(params.targetheight) <= 18)
 	{
-		self function_18cd6cbc(params);
+		self walk_traversal(params);
 	}
 	else if(params.targetheight > 0)
 	{
@@ -168,7 +168,7 @@ function function_268dc89a(params)
 	}
 	if(params.targetheight < 0)
 	{
-		self function_ec5f6276(params.endpos);
+		self fall_traversal(params.endpos);
 	}
 	else
 	{
@@ -327,7 +327,7 @@ function mantle_traversal(params)
 }
 
 /*
-	Name: function_6e54af92
+	Name: ledge_traversal
 	Namespace: bot
 	Checksum: 0xAAF243E0
 	Offset: 0xF98
@@ -335,7 +335,7 @@ function mantle_traversal(params)
 	Parameters: 3
 	Flags: None
 */
-function function_6e54af92(endpos, ledgetop, normal)
+function ledge_traversal(endpos, ledgetop, normal)
 {
 	/#
 		if(self should_record(""))
@@ -384,7 +384,7 @@ function jump_traversal(params)
 }
 
 /*
-	Name: function_ec5f6276
+	Name: fall_traversal
 	Namespace: bot
 	Checksum: 0x411F12B2
 	Offset: 0x1230
@@ -392,7 +392,7 @@ function jump_traversal(params)
 	Parameters: 1
 	Flags: Linked
 */
-function function_ec5f6276(endpos)
+function fall_traversal(endpos)
 {
 	/#
 		if(self should_record(""))
@@ -406,7 +406,7 @@ function function_ec5f6276(endpos)
 }
 
 /*
-	Name: function_18cd6cbc
+	Name: walk_traversal
 	Namespace: bot
 	Checksum: 0xA46815C6
 	Offset: 0x12F0
@@ -414,7 +414,7 @@ function function_ec5f6276(endpos)
 	Parameters: 1
 	Flags: Linked
 */
-function function_18cd6cbc(params)
+function walk_traversal(params)
 {
 	/#
 		if(self should_record(""))

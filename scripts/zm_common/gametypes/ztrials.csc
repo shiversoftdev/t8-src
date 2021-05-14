@@ -25,7 +25,7 @@ event main(eventstruct)
 {
 	level._zombie_gamemodeprecache = &onprecachegametype;
 	level._zombie_gamemodemain = &onstartgametype;
-	level flag::init(#"hash_76661dbc6e5fe2b", 1);
+	level flag::init(#"ztrial", 1);
 	/#
 		println("");
 	#/

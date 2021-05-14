@@ -265,7 +265,7 @@ function death(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname,
 */
 function function_407a7b51(localclientnum)
 {
-	self.var_33609157 = util::playfxontag(localclientnum, level.var_400ded61._ai_tank_fx[#"immobile"], self, "tag_body");
+	self.immobile_fx = util::playfxontag(localclientnum, level.var_400ded61._ai_tank_fx[#"immobile"], self, "tag_body");
 	playsound(localclientnum, #"veh_talon_shutdown", self.origin);
 }
 
@@ -280,10 +280,10 @@ function function_407a7b51(localclientnum)
 */
 function function_7713b297(localclientnum)
 {
-	if(isdefined(self.var_33609157))
+	if(isdefined(self.immobile_fx))
 	{
-		stopfx(localclientnum, self.var_33609157);
-		self.var_33609157 = undefined;
+		stopfx(localclientnum, self.immobile_fx);
+		self.immobile_fx = undefined;
 	}
 }
 

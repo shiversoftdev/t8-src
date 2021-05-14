@@ -81,7 +81,7 @@ function function_f93c5f09()
 	Parameters: 4
 	Flags: Linked
 */
-function function_ce99709d(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_ce99709d(b_pause, str_perk, str_result, n_slot)
 {
 	self zm_perks::function_c8c7bc5(3, 0, #"perk_dead_shot");
 	self zm_perks::function_f2ff97a6(3, 0, #"perk_dead_shot");
@@ -154,7 +154,7 @@ function function_36228265(inflictor, attacker, damage, flags, meansofdeath, wea
 		if(var_e99e314 >= self.health)
 		{
 			/#
-				attacker namespace_ff457ca2::debug_print("");
+				attacker zm_challenges::debug_print("");
 			#/
 			attacker zm_stats::increment_challenge_stat(#"hash_13d0e9e764b1b52");
 		}

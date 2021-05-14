@@ -129,7 +129,7 @@ private function function_900bb4f5(params)
 */
 function function_7dfe3289(var_d8138db2)
 {
-	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"hash_6729adcb68ec7ffc");
+	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"changed_specialist_death");
 	if(isdefined(self.hawk) && isdefined(self.hawk.vehicle))
 	{
 		self.hawk.vehicle hawk::function_4c1ea6ce(1);
@@ -177,7 +177,7 @@ function function_7dfe3289(var_d8138db2)
 	vehicle.var_c5d65381 = 1;
 	vehicle.var_8516173f = 1;
 	vehicle.glasscollision_alt = 1;
-	vehicle.var_54ebfda9 = &function_900bb4f5;
+	vehicle.is_staircase_up = &function_900bb4f5;
 	vehicle.id = var_d8138db2;
 	level.var_d79f1ee4[level.var_d79f1ee4.size] = vehicle;
 	vehicle thread namespace_b376ff3f::function_956a8ecd();
@@ -256,7 +256,7 @@ function function_b162cdbd(einflictor, eattacker, idamage, idflags, smeansofdeat
 */
 function function_df5590b(vehicle)
 {
-	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"hash_6729adcb68ec7ffc");
+	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"changed_specialist_death");
 	vehicle endon(#"death");
 	playerorigin = self.origin;
 	while(true)
@@ -435,7 +435,7 @@ private function function_1eddba48()
 */
 function function_1e7eecd7(vehicle, var_44e9a475)
 {
-	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"hash_6729adcb68ec7ffc");
+	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"changed_specialist_death");
 	vehicle endon(#"death");
 	if(var_44e9a475)
 	{
@@ -513,7 +513,7 @@ function function_1e7eecd7(vehicle, var_44e9a475)
 */
 function function_1b057db2()
 {
-	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"hash_6729adcb68ec7ffc");
+	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"changed_specialist_death");
 	self notify("6954b7d60005c9f0");
 	self endon("6954b7d60005c9f0");
 	var_10a85d23 = self gestures::function_c77349d4("gestable_drone_hawk_pda");
@@ -568,7 +568,7 @@ function function_c4770b46(vehicle)
 	self notify("7ebee304d299c8bb");
 	self endon("7ebee304d299c8bb");
 	vehicle endon(#"death");
-	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"hash_6729adcb68ec7ffc", #"exit_vehicle");
+	self endon(#"disconnect", #"joined_team", #"joined_spectators", #"changed_specialist", #"changed_specialist_death", #"exit_vehicle");
 	while(self function_9096c10())
 	{
 		waitframe(1);
@@ -598,7 +598,7 @@ function function_6777d6d9(hawk)
 {
 	hawk endon(#"death");
 	waitresult = undefined;
-	waitresult = self waittill(#"disconnect", #"joined_team", #"joined_spectator", #"changed_specialist", #"hash_6729adcb68ec7ffc");
+	waitresult = self waittill(#"disconnect", #"joined_team", #"joined_spectator", #"changed_specialist", #"changed_specialist_death");
 	if(!isdefined(hawk))
 	{
 		return;

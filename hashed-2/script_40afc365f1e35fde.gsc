@@ -38,10 +38,10 @@ function init()
 {
 	spawner::add_archetype_spawn_function(#"mp_dog", &function_ef4b81af);
 	registerbehaviorscriptfunctions();
-	if(!isdefined(level.var_266610b8))
+	if(!isdefined(level.extra_screen_electricity_))
 	{
-		level.var_266610b8 = spawnstruct();
-		level.var_266610b8.functions = [];
+		level.extra_screen_electricity_ = spawnstruct();
+		level.extra_screen_electricity_.functions = [];
 		clientfield::register("actor", "ks_dog_bark", 1, 1, "int");
 		clientfield::register("actor", "ks_shocked", 1, 1, "int");
 	}
@@ -342,13 +342,13 @@ function registerbehaviorscriptfunctions()
 	#/
 	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_7aaa666497426ef4", &function_6c2426d3);
 	/#
-		assert(isscriptfunctionptr(&function_e595e258));
+		assert(isscriptfunctionptr(&dogjukeinitialize));
 	#/
-	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_5b809967bd59e019", &function_e595e258);
+	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_5b809967bd59e019", &dogjukeinitialize);
 	/#
-		assert(isscriptfunctionptr(&function_887e1932));
+		assert(isscriptfunctionptr(&dogpreemptivejuketerminate));
 	#/
-	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_5339b835490562e3", &function_887e1932);
+	behaviorstatemachine::registerbsmscriptapiinternal(#"hash_5339b835490562e3", &dogpreemptivejuketerminate);
 	/#
 		assert(isscriptfunctionptr(&function_3089bb44));
 	#/
@@ -810,7 +810,7 @@ function function_b2e0da2(entity)
 }
 
 /*
-	Name: function_e8177e06
+	Name: lid_closedpositionservicee
 	Namespace: namespace_c3527dc1
 	Checksum: 0x2E925DF1
 	Offset: 0x2218
@@ -818,7 +818,7 @@ function function_b2e0da2(entity)
 	Parameters: 1
 	Flags: Private
 */
-private function function_e8177e06(entity)
+private function lid_closedpositionservicee(entity)
 {
 	entity.ai.reacquire_state = 0;
 }
@@ -960,7 +960,7 @@ function target_enemy(entity)
 		entity.ai.hasseenfavoriteenemy = 0;
 		entity.ai.var_4520deec = undefined;
 		entity ai_state::function_e0e1a7fc();
-		function_e8177e06(entity);
+		lid_closedpositionservicee(entity);
 		return;
 	}
 	if(!entity ai_target::is_target_valid(entity.favoriteenemy))
@@ -975,7 +975,7 @@ function target_enemy(entity)
 			entity.ai.hasseenfavoriteenemy = 1;
 			entity.ai.var_4520deec = gettime();
 			entity ai_state::function_e0e1a7fc();
-			function_e8177e06(entity);
+			lid_closedpositionservicee(entity);
 			level thread function_df8cb62a(entity);
 		}
 	}
@@ -1117,7 +1117,7 @@ private function function_ac9765d1(entity)
 }
 
 /*
-	Name: function_e595e258
+	Name: dogjukeinitialize
 	Namespace: namespace_c3527dc1
 	Checksum: 0x71497191
 	Offset: 0x2D78
@@ -1125,13 +1125,13 @@ private function function_ac9765d1(entity)
 	Parameters: 1
 	Flags: Private
 */
-private function function_e595e258(entity)
+private function dogjukeinitialize(entity)
 {
 	return 1;
 }
 
 /*
-	Name: function_887e1932
+	Name: dogpreemptivejuketerminate
 	Namespace: namespace_c3527dc1
 	Checksum: 0x672AE9D4
 	Offset: 0x2D90
@@ -1139,7 +1139,7 @@ private function function_e595e258(entity)
 	Parameters: 1
 	Flags: Private
 */
-private function function_887e1932(entity)
+private function dogpreemptivejuketerminate(entity)
 {
 	entity.nextpreemptivejuke = gettime() + randomintrange(4500, 6000);
 }

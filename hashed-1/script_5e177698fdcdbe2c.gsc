@@ -50,12 +50,12 @@ function preload()
 {
 	clientfield::register("scriptmover", "" + #"hash_6aaf03a4358f45f5", 24000, 1, "counter");
 	clientfield::register("scriptmover", "" + #"hash_6a4317183d0ca452", 24000, 1, "counter");
-	clientfield::register("world", "" + #"hash_96866bbb1f4c6fe", 24000, 1, "int");
-	clientfield::register("world", "" + #"hash_3e034844d2b9d971", 24000, 2, "int");
+	clientfield::register("world", "" + #"lava_init", 24000, 1, "int");
+	clientfield::register("world", "" + #"lava_control", 24000, 2, "int");
 	clientfield::register("world", "" + #"hash_72b5b0359ca48427", 24000, 1, "int");
 	clientfield::register("world", "" + #"hash_5e69ee96304ec40b", 24000, 1, "int");
 	clientfield::register("vehicle", "" + #"lantern_fx", 24000, 2, "int");
-	clientfield::register("vehicle", "" + #"hash_7d7ccc494e9c4580", 24000, 1, "counter");
+	clientfield::register("vehicle", "" + #"lantern_explode_fx", 24000, 1, "counter");
 	clientfield::register("toplayer", "" + #"hash_78b8d89d34b32241", 24000, 2, "int");
 	clientfield::register("scriptmover", "" + #"hash_54e24ec6e84ad6e6", 24000, 1, "int");
 	namespace_617a54f4::function_d8383812(#"sc_lantern_1", 24000, "sc_lantern_1", &function_36eb3c96, &function_defd8c26, 1);
@@ -78,7 +78,7 @@ function preload()
 */
 function main()
 {
-	level thread function_56336c80();
+	level thread lava_init();
 	level function_7922664f();
 }
 
@@ -150,7 +150,7 @@ function function_d9d65ea6()
 	waitframe(1);
 	namespace_509a75d1::function_df67a12d(#"hash_20b463357f4ae8f");
 	waitframe(1);
-	namespace_509a75d1::function_df67a12d(#"hash_262f7795c6c1e961");
+	namespace_509a75d1::function_df67a12d(#"electric_zombie");
 	waitframe(1);
 	namespace_509a75d1::function_df67a12d(#"hash_755b2f3c6e5db17");
 	waitframe(1);
@@ -169,7 +169,7 @@ function function_d9d65ea6()
 function init_2()
 {
 	level.var_5d5b7e8e = spawnstruct();
-	level.var_5d5b7e8e.var_21a3945b = struct::get("ring_center");
+	level.var_5d5b7e8e.s_ring_center = struct::get("ring_center");
 }
 
 /*
@@ -191,7 +191,7 @@ function function_f1749965()
 		e_player setorigin(s_player_start.origin);
 		e_player setplayerangles(s_player_start.angles);
 	}
-	level.var_5d5b7e8e.e_ring = util::spawn_model("p8_big_cylinder", level.var_5d5b7e8e.var_21a3945b.origin);
+	level.var_5d5b7e8e.e_ring = util::spawn_model("p8_big_cylinder", level.var_5d5b7e8e.s_ring_center.origin);
 	level.var_5d5b7e8e.e_ring clientfield::increment("" + #"hash_6aaf03a4358f45f5", 1);
 	level.var_5d5b7e8e.e_ring.n_radius = 500;
 	level.var_5d5b7e8e.e_ring thread function_af9fb8d1();
@@ -270,7 +270,7 @@ function no_delay()
 }
 
 /*
-	Name: function_56336c80
+	Name: lava_init
 	Namespace: namespace_bfc8ee03
 	Checksum: 0x5D2FA27E
 	Offset: 0xFE0
@@ -278,7 +278,7 @@ function no_delay()
 	Parameters: 0
 	Flags: None
 */
-function function_56336c80()
+function lava_init()
 {
 	level.var_eb7fcc70 = getentarray("lava_entity", "targetname");
 	foreach(var_59bd23de in level.var_eb7fcc70)
@@ -290,7 +290,7 @@ function function_56336c80()
 }
 
 /*
-	Name: function_50d386b6
+	Name: lava_control
 	Namespace: namespace_bfc8ee03
 	Checksum: 0x4C0FDBC4
 	Offset: 0x10B8
@@ -298,12 +298,12 @@ function function_56336c80()
 	Parameters: 0
 	Flags: None
 */
-function function_50d386b6()
+function lava_control()
 {
 	if(level.var_71435e8 == 0)
 	{
 		setlightingstate(1);
-		level clientfield::set("" + #"hash_3e034844d2b9d971", 1);
+		level clientfield::set("" + #"lava_control", 1);
 		foreach(var_59bd23de in level.var_eb7fcc70)
 		{
 			var_59bd23de show();
@@ -314,7 +314,7 @@ function function_50d386b6()
 	else
 	{
 		setlightingstate(0);
-		level clientfield::set("" + #"hash_3e034844d2b9d971", 0);
+		level clientfield::set("" + #"lava_control", 0);
 		foreach(var_59bd23de in level.var_eb7fcc70)
 		{
 			var_59bd23de hide();
@@ -338,15 +338,15 @@ function function_7922664f()
 	level.var_5d5b7e8e = spawnstruct();
 	level.var_5d5b7e8e.var_5ca15e11 = getent("hell_floor", "targetname");
 	level.var_5d5b7e8e.var_5ca15e11 notsolid();
-	level.var_5d5b7e8e.var_72943634 = struct::get("sc_lantern");
+	level.var_5d5b7e8e.s_sc_lantern = struct::get("sc_lantern");
 	level.var_5d5b7e8e.nd_start = getvehiclenode("hell_path_start", "targetname");
 	level.var_35e33dbe = getentarray("lava_rock", "targetname");
-	array::run_all(level.var_35e33dbe, &function_4c3fb1ea);
+	array::run_all(level.var_35e33dbe, &lava_rock_init);
 	level flag::init(#"hash_621acea2fedc0408");
 }
 
 /*
-	Name: function_90ede8a9
+	Name: spawn_guide
 	Namespace: namespace_bfc8ee03
 	Checksum: 0x40BA8CB4
 	Offset: 0x13E8
@@ -354,7 +354,7 @@ function function_7922664f()
 	Parameters: 0
 	Flags: None
 */
-function function_90ede8a9()
+function spawn_guide()
 {
 	level endon(#"end_game");
 	var_a41818b5 = spawner::simple_spawn_single(getent("virgil", "targetname"));
@@ -449,11 +449,11 @@ function function_a340f5a2()
 	/#
 		iprintlnbold("");
 	#/
-	level.var_5d5b7e8e.var_a41818b5 clientfield::increment("" + #"hash_7d7ccc494e9c4580", 1);
+	level.var_5d5b7e8e.var_a41818b5 clientfield::increment("" + #"lantern_explode_fx", 1);
 	level thread lui::screen_flash(0.2, 0.5, 1, 0.8, "white");
 	wait(0.2);
 	namespace_be178848::function_70f4c8c3("sunken_path_blocker");
-	function_50d386b6();
+	lava_control();
 	level.var_5d5b7e8e.var_5ca15e11 show();
 	level.var_5d5b7e8e.var_5ca15e11 solid();
 	level clientfield::set("" + #"hash_5e69ee96304ec40b", 1);
@@ -537,13 +537,13 @@ function function_25c6ed8d()
 	self endon(#"death");
 	self waittill(#"fling");
 	self setspeed(5);
-	var_67fac79c = getent("hell_start", "str_location");
+	vol_fling = getent("hell_start", "str_location");
 	var_d49079c = 0;
 	foreach(e_player in getplayers())
 	{
 		if(zombie_utility::is_player_valid(e_player, 0, 0))
 		{
-			e_player thread namespace_6036de69::fling_player(var_67fac79c);
+			e_player thread namespace_6036de69::fling_player(vol_fling);
 			e_player playsound(#"hash_7f08b47352413d9a");
 			if(!var_d49079c)
 			{
@@ -650,7 +650,7 @@ function function_2649e7fc()
 	Parameters: 1
 	Flags: None
 */
-function function_c1189522(var_385703b7)
+function function_c1189522(s_notify)
 {
 	foreach(e_player in getplayers())
 	{
@@ -746,15 +746,15 @@ function function_5e3a92e()
 	}
 	if(self.var_32245390 === 1)
 	{
-		var_b82ff340 = self.origin;
+		v_drop = self.origin;
 		if(isdefined(self.target))
 		{
 			s_drop = struct::get(self.target);
-			var_b82ff340 = s_drop.origin;
+			v_drop = s_drop.origin;
 		}
-		v_ground = groundtrace(var_b82ff340 + vectorscale((1, 0, 0), 32) + vectorscale((0, 0, 1), 8), var_b82ff340 + vectorscale((1, 0, 0), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_ground = groundtrace(v_drop + vectorscale((1, 0, 0), 32) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((1, 0, 0), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
 		level thread zm_powerups::specific_powerup_drop("full_ammo", v_ground, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 1);
-		v_ground = groundtrace(var_b82ff340 - vectorscale((1, 0, 0), 32) + vectorscale((0, 0, 1), 8), var_b82ff340 - vectorscale((1, 0, 0), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_ground = groundtrace(v_drop - vectorscale((1, 0, 0), 32) + vectorscale((0, 0, 1), 8), v_drop - vectorscale((1, 0, 0), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
 		level thread zm_powerups::specific_powerup_drop("carpenter", v_ground, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 1);
 	}
 	function_cb00d0e9();
@@ -829,10 +829,10 @@ function function_9be0a8a6(str_id)
 	level.var_5d5b7e8e.var_a41818b5 clientfield::set("" + #"lantern_fx", 2);
 	level thread namespace_3263198e::function_fd24e47f(#"hash_6f4de6a856d64c98");
 	function_95557832();
-	var_3b901e6a = struct::get(str_id, "script_noteworthy");
-	var_3b901e6a.var_7944be4a = 0;
-	var_3b901e6a.var_5f9f040 = hash(str_id);
-	namespace_617a54f4::function_3f808d3d(var_3b901e6a.var_5f9f040);
+	s_sc = struct::get(str_id, "script_noteworthy");
+	s_sc.var_7944be4a = 0;
+	s_sc.var_5f9f040 = hash(str_id);
+	namespace_617a54f4::function_3f808d3d(s_sc.var_5f9f040);
 	/#
 		iprintlnbold("");
 	#/
@@ -915,7 +915,7 @@ function function_3c3bee91()
 */
 function function_27c3d40f()
 {
-	playsoundatposition(#"hash_11709104c3c729e8", (0, 0, 0));
+	playsoundatposition(#"evt_last_stand", (0, 0, 0));
 	wait(1);
 	music::setmusicstate("hell_on_earth_2");
 }
@@ -1003,7 +1003,7 @@ function function_95557832()
 }
 
 /*
-	Name: function_4c3fb1ea
+	Name: lava_rock_init
 	Namespace: namespace_bfc8ee03
 	Checksum: 0x65C57721
 	Offset: 0x3270
@@ -1011,7 +1011,7 @@ function function_95557832()
 	Parameters: 0
 	Flags: None
 */
-function function_4c3fb1ea()
+function lava_rock_init()
 {
 	self.var_3a161b40 = self.origin;
 	self.var_dfcc5d82 = spawn("trigger_radius_new", self.origin, 0, 384);
@@ -1086,7 +1086,7 @@ function function_6f0a7fea()
 	Parameters: 1
 	Flags: None
 */
-function function_7a57c14(var_385703b7)
+function function_7a57c14(s_notify)
 {
 	level.var_1c53964e thread namespace_509a75d1::function_6a0d675d(#"hash_7f649ba02c11110c");
 }
@@ -1188,7 +1188,7 @@ function function_fe36418c()
 	/#
 		if(!isdefined(level.var_5d5b7e8e.var_a41818b5))
 		{
-			function_90ede8a9();
+			spawn_guide();
 		}
 		namespace_509a75d1::function_314447b(1, 0);
 		level.var_5d5b7e8e.var_a41818b5 setspeed(5);
@@ -1197,7 +1197,7 @@ function function_fe36418c()
 }
 
 /*
-	Name: function_d3d435bf
+	Name: test_hell
 	Namespace: namespace_bfc8ee03
 	Checksum: 0x77553BB6
 	Offset: 0x3A28
@@ -1205,10 +1205,10 @@ function function_fe36418c()
 	Parameters: 0
 	Flags: None
 */
-function function_d3d435bf()
+function test_hell()
 {
 	/#
-		function_50d386b6();
+		lava_control();
 		level.var_5d5b7e8e.var_5ca15e11 show();
 		level.var_5d5b7e8e.var_5ca15e11 solid();
 		array::thread_all(level.var_35e33dbe, &function_a8fd16d0);

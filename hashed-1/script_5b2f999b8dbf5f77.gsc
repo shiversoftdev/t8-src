@@ -28,9 +28,9 @@
 */
 function main()
 {
-	namespace_c3287616::register_archetype(#"hash_1c5b32be3f2c9b67", &function_5df3e3dd, &function_c7e59327, &function_27695a82, 5);
-	zm_score::function_e5d6e6dd(#"hash_1c5b32be3f2c9b67", zombie_utility::function_d2dfacfd(#"hash_6f24d1fbe8a09727"));
-	namespace_57ff8cbb::function_cdf5a512(#"zombie", &function_a2f2a9a3);
+	namespace_c3287616::register_archetype(#"zombie_electric", &function_5df3e3dd, &function_c7e59327, &function_27695a82, 5);
+	zm_score::function_e5d6e6dd(#"zombie_electric", zombie_utility::function_d2dfacfd(#"hash_6f24d1fbe8a09727"));
+	zm_cleanup::function_cdf5a512(#"zombie", &function_a2f2a9a3);
 	level.var_621701e5 = array(getent("zombie_electric_spawner", "script_noteworthy"));
 	array::thread_all(level.var_621701e5, &spawner::add_spawn_function, &zm_behavior::function_57d3b5eb);
 	level.var_1c921b2b = 0;
@@ -44,9 +44,9 @@ function main()
 		}
 		level thread function_2eb8970d();
 	}
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
-		namespace_32192f7::function_95c1dd81(#"hash_1c5b32be3f2c9b67", &function_c7e59327);
+		namespace_32192f7::function_95c1dd81(#"zombie_electric", &function_c7e59327);
 		namespace_32192f7::function_95c1dd81(#"zombie_dog", &function_82e6d4e0);
 		namespace_c3287616::function_376e51ef(#"zombie_dog", 15);
 		level thread function_2eb8970d();
@@ -67,7 +67,7 @@ function function_2eb8970d()
 	level waittill(#"power_on2");
 	if(namespace_59ff1d6c::function_901b751c(#"zmenhancedstate") != 0)
 	{
-		namespace_c3287616::function_376e51ef(#"hash_1c5b32be3f2c9b67", level.round_number);
+		namespace_c3287616::function_376e51ef(#"zombie_electric", level.round_number);
 	}
 }
 
@@ -129,7 +129,7 @@ function function_27695a82()
 	ai = zombie_utility::spawn_zombie(spawner, spawner.targetname, spawn_point, level.round_number + level.var_1c921b2b);
 	if(isdefined(ai))
 	{
-		ai thread namespace_3263198e::function_865209df(#"hash_262f7795c6c1e961", #"hash_73e5e9787832fc70");
+		ai thread namespace_3263198e::function_865209df(#"electric_zombie", #"hash_73e5e9787832fc70");
 	}
 	return ai;
 }
@@ -148,7 +148,7 @@ function function_c7e59327()
 	ai = function_27695a82();
 	if(isdefined(ai))
 	{
-		if(!zm_utility::function_3bff983f())
+		if(!zm_utility::is_trials())
 		{
 			level.zombie_total--;
 		}
@@ -187,7 +187,7 @@ function function_82e6d4e0()
 */
 function function_a2f2a9a3()
 {
-	if(self.var_9fde8624 !== #"hash_1c5b32be3f2c9b67")
+	if(self.var_9fde8624 !== #"zombie_electric")
 	{
 		return 0;
 	}

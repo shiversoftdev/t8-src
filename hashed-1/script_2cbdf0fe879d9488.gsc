@@ -36,11 +36,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_d126cef79ee236d", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_d126cef79ee236d", &function_d1de6a85, &function_9e7b3f4d);
 	namespace_9ff9f642::register_slowdown(#"hash_40e5fe122d652dc4", 1.5);
 }
 
@@ -166,7 +166,7 @@ function function_fe65f5a6(var_b7358df3, e_player, n_timeout = 1)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_d126cef79ee236d");
+	challenge = zm_trial::function_a36e8c38(#"hash_d126cef79ee236d");
 	return isdefined(challenge);
 }
 

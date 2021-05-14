@@ -100,11 +100,11 @@ function function_127fb8f3(turret, var_dbd1a594)
 	turret.isjammed = 1;
 	if(isdefined(level.var_86e3d17a) && turret.classname == "script_vehicle")
 	{
-		var_21a8dd4c = [[level.var_86e3d17a]]() * 1000;
-		if(var_21a8dd4c > 0)
+		_station_up_to_detention_center_triggers = [[level.var_86e3d17a]]() * 1000;
+		if(_station_up_to_detention_center_triggers > 0)
 		{
 			turret notify(#"hash_602ae7ca650d6287");
-			turret thread killstreaks::waitfortimeout("ultimate_turret", var_21a8dd4c, &function_be04d904, "delete", "death");
+			turret thread killstreaks::waitfortimeout("ultimate_turret", _station_up_to_detention_center_triggers, &function_be04d904, "delete", "death");
 		}
 		if(isdefined(level.var_1794f85f))
 		{
@@ -139,11 +139,11 @@ function function_bff5c062(turret, var_dbd1a594)
 	{
 		if(isdefined(level.var_f1edf93f))
 		{
-			var_21a8dd4c = int([[level.var_f1edf93f]]() * 1000);
-			if((isdefined(var_21a8dd4c) ? var_21a8dd4c : 0))
+			_station_up_to_detention_center_triggers = int([[level.var_f1edf93f]]() * 1000);
+			if((isdefined(_station_up_to_detention_center_triggers) ? _station_up_to_detention_center_triggers : 0))
 			{
 				turret notify(#"hash_602ae7ca650d6287");
-				turret thread killstreaks::waitfortimeout("ultimate_turret", var_21a8dd4c, &function_be04d904, "delete", "death");
+				turret thread killstreaks::waitfortimeout("ultimate_turret", _station_up_to_detention_center_triggers, &function_be04d904, "delete", "death");
 			}
 		}
 		if(isdefined(level.var_fc1bbaef))

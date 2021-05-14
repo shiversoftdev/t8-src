@@ -35,11 +35,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_3e1f71884b537274", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_3e1f71884b537274", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -61,7 +61,7 @@ private function function_d1de6a85()
 		player thread namespace_b22c99a5::function_bf710271(1, 1, 1, 0, 1);
 		player thread namespace_b22c99a5::function_dc9ab223(1, 1);
 	}
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 }
 
 /*
@@ -83,7 +83,7 @@ private function function_9e7b3f4d(round_reset)
 		player notify(#"hash_1fbfdb0105f48f89");
 		player thread namespace_b22c99a5::function_dc0859e();
 	}
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 }
 
 /*
@@ -99,7 +99,7 @@ private function function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{
-		if(namespace_2ba51478::is_melee_weapon(s_event.weapon) || namespace_2ba51478::is_lethal_grenade(s_event.weapon) || namespace_2ba51478::is_tactical_grenade(s_event.weapon, 1))
+		if(zm_loadout::is_melee_weapon(s_event.weapon) || zm_loadout::is_lethal_grenade(s_event.weapon) || zm_loadout::is_tactical_grenade(s_event.weapon, 1))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 			if(s_event.weapon.dualwieldweapon != level.weaponnone)
@@ -157,9 +157,9 @@ private function function_29ee24dd(weapon)
 	self endon(#"disconnect");
 	self function_28602a03(weapon, 1, 1);
 	self namespace_b22c99a5::function_7dbb1712();
-	var_6d9956e6 = self getweaponammoclip(weapon);
-	var_69648877 = self getweaponammostock(weapon);
-	if(var_69648877 > 0)
+	n_clip_ammo = self getweaponammoclip(weapon);
+	n_stock_ammo = self getweaponammostock(weapon);
+	if(n_stock_ammo > 0)
 	{
 		while(true)
 		{

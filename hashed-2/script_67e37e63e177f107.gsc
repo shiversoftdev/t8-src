@@ -340,7 +340,7 @@ function function_ef0bfb9d()
 		enemies = util::function_81ccf6d3(self.team);
 		var_61c9e8b6 = arraysort(enemies, self function_d3a9800e(), 1);
 		var_a5a1f99c = getaiarchetypearray(#"zombie");
-		var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"hash_1bab8a0ba811401e"), 0, 0);
+		var_a5a1f99c = arraycombine(var_a5a1f99c, getaiarchetypearray(#"catalyst"), 0, 0);
 		var_61c9e8b6 = arraycombine(var_a5a1f99c, var_61c9e8b6, 0, 0);
 		foreach(target in var_61c9e8b6)
 		{
@@ -469,7 +469,7 @@ function function_419f8ccb()
 				self.fxent clientfield::set("towers_boss_dust_ball_fx", 2);
 				self.var_8d5279eb = 1;
 			}
-			if(distfromplayer < self.settings.var_7e3165c1 * self.settings.var_7e3165c1)
+			if(distfromplayer < self.settings.zmb_zod_sprayer_pickupids * self.settings.zmb_zod_sprayer_pickupids)
 			{
 				self vehicle_ai::set_state("death");
 			}

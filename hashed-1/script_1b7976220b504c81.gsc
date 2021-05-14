@@ -47,12 +47,12 @@ function function_27473e44()
 {
 	zm_perks::register_perk_clientfields(#"specialty_extraammo", &function_12161a30, &function_b10a7225);
 	zm_perks::register_perk_effects(#"specialty_extraammo", "sleight_light");
-	zm_perks::register_perk_init_thread(#"specialty_extraammo", &function_5243c950);
+	zm_perks::register_perk_init_thread(#"specialty_extraammo", &init_perk);
 	zm_perks::function_b60f4a9f(#"specialty_extraammo", #"hash_f19d451775e86", "zombie/fx8_perk_altar_symbol_ambient_bandolier", #"hash_1bdfb5736ad174a3");
 }
 
 /*
-	Name: function_5243c950
+	Name: init_perk
 	Namespace: namespace_baca3c7c
 	Checksum: 0xBADB5247
 	Offset: 0x278
@@ -60,7 +60,7 @@ function function_27473e44()
 	Parameters: 0
 	Flags: Linked
 */
-function function_5243c950()
+function init_perk()
 {
 }
 

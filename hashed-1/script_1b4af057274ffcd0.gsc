@@ -37,7 +37,7 @@ autoexec function function_89f2df9()
 */
 private function __init__()
 {
-	plannercommanderutility::registerutilityapi(#"commanderscoreage", &function_cb29a211);
+	plannercommanderutility::registerutilityapi(#"commanderscoreage", &_monkey_water_corvus_vo_cleared);
 	plannercommanderutility::registerdaemonapi(#"hash_62f9340b8f782bd5", &function_ea95685);
 	plannercommanderutility::registerdaemonapi(#"daemonzmblockers", &function_80c4721f);
 	plannercommanderutility::registerdaemonapi(#"hash_5fb7ec66ffe3b9d2", &function_73588006);
@@ -57,7 +57,7 @@ private function __init__()
 */
 private function function_ea95685(commander)
 {
-	var_a8c95395 = [];
+	altars = [];
 	if(isarray(level.var_76a7ad28))
 	{
 		foreach(altar in level.var_76a7ad28)
@@ -74,10 +74,10 @@ private function function_ea95685(commander)
 				var_bc510a14[#"__unsafe__"] = array();
 			}
 			var_bc510a14[#"__unsafe__"][#"altar"] = altar;
-			var_a8c95395[var_a8c95395.size] = var_bc510a14;
+			altars[altars.size] = var_bc510a14;
 		}
 	}
-	blackboard::setstructblackboardattribute(commander, #"hash_789c87157aa8ed0c", var_a8c95395);
+	blackboard::setstructblackboardattribute(commander, #"hash_789c87157aa8ed0c", altars);
 }
 
 /*
@@ -248,7 +248,7 @@ private function function_48fcded4(commander)
 			switches[switches.size] = var_b353dc21;
 		}
 	}
-	blackboard::setstructblackboardattribute(commander, #"hash_655d50e4f7338685", switches);
+	blackboard::setstructblackboardattribute(commander, #"zm_switches", switches);
 }
 
 /*
@@ -294,11 +294,11 @@ private function function_873b1369(commander)
 			wallbuys[wallbuys.size] = var_75f73822;
 		}
 	}
-	blackboard::setstructblackboardattribute(commander, #"hash_3585a796b6aa9990", wallbuys);
+	blackboard::setstructblackboardattribute(commander, #"zm_wallbuys", wallbuys);
 }
 
 /*
-	Name: function_cb29a211
+	Name: _monkey_water_corvus_vo_cleared
 	Namespace: namespace_526571f4
 	Checksum: 0xB1098E6C
 	Offset: 0x1038
@@ -306,7 +306,7 @@ private function function_873b1369(commander)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_cb29a211(commander, squad, constants)
+private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
 		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), "" + "" + "");

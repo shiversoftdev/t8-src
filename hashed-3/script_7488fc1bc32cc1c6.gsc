@@ -1462,7 +1462,7 @@ function getnextmoveposition_wander()
 				point._scoredebug[#"disttoorigin"] = spawnstruct();
 			}
 			point._scoredebug[#"disttoorigin"].score = disttooriginscore;
-			point._scoredebug[#"disttoorigin"].var_4b5e0304 = "";
+			point._scoredebug[#"disttoorigin"].scorename = "";
 		#/
 		point.score = point.score + disttooriginscore;
 		if(point.score > best_score)
@@ -1532,7 +1532,7 @@ function getnextmoveposition_tactical()
 								point._scoredebug[#"visowner"] = spawnstruct();
 							}
 							point._scoredebug[#"visowner"].score = 300;
-							point._scoredebug[#"visowner"].var_4b5e0304 = "";
+							point._scoredebug[#"visowner"].scorename = "";
 						#/
 						point.score = point.score + 300;
 					}
@@ -1548,7 +1548,7 @@ function getnextmoveposition_tactical()
 								point._scoredebug[#"visenemy"] = spawnstruct();
 							}
 							point._scoredebug[#"visenemy"].score = 300;
-							point._scoredebug[#"visenemy"].var_4b5e0304 = "";
+							point._scoredebug[#"visenemy"].scorename = "";
 						#/
 						point.score = point.score + 300;
 					}
@@ -1598,7 +1598,7 @@ function getnextmoveposition_tactical()
 				point._scoredebug[#"random"] = spawnstruct();
 			}
 			point._scoredebug[#"random"].score = randomfloatrange(0, randomness);
-			point._scoredebug[#"random"].var_4b5e0304 = "";
+			point._scoredebug[#"random"].scorename = "";
 		#/
 		point.score = point.score + randomfloatrange(0, randomness);
 		/#
@@ -1611,7 +1611,7 @@ function getnextmoveposition_tactical()
 				point._scoredebug[#"engagementdist"] = spawnstruct();
 			}
 			point._scoredebug[#"engagementdist"].score = point.distawayfromengagementarea * -1;
-			point._scoredebug[#"engagementdist"].var_4b5e0304 = "";
+			point._scoredebug[#"engagementdist"].scorename = "";
 		#/
 		point.score = point.score + point.distawayfromengagementarea * -1;
 		/#
@@ -1624,7 +1624,7 @@ function getnextmoveposition_tactical()
 				point._scoredebug[#"height"] = spawnstruct();
 			}
 			point._scoredebug[#"height"].score = point.distengagementheight * -1 * 1.4;
-			point._scoredebug[#"height"].var_4b5e0304 = "";
+			point._scoredebug[#"height"].scorename = "";
 		#/
 		point.score = point.score + point.distengagementheight * -1 * 1.4;
 		if(point.disttoorigin2d < 120)
@@ -1639,7 +1639,7 @@ function getnextmoveposition_tactical()
 					point._scoredebug[#"tooclosetoself"] = spawnstruct();
 				}
 				point._scoredebug[#"tooclosetoself"].score = 120 - point.disttoorigin2d * -1.5;
-				point._scoredebug[#"tooclosetoself"].var_4b5e0304 = "";
+				point._scoredebug[#"tooclosetoself"].scorename = "";
 			#/
 			point.score = point.score + 120 - point.disttoorigin2d * -1.5;
 		}
@@ -1657,7 +1657,7 @@ function getnextmoveposition_tactical()
 						point._scoredebug[#"tooclosetoothers"] = spawnstruct();
 					}
 					point._scoredebug[#"tooclosetoothers"].score = avoid_radius * -1;
-					point._scoredebug[#"tooclosetoothers"].var_4b5e0304 = "";
+					point._scoredebug[#"tooclosetoothers"].scorename = "";
 				#/
 				point.score = point.score + avoid_radius * -1;
 			}
@@ -1674,7 +1674,7 @@ function getnextmoveposition_tactical()
 					point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 				}
 				point._scoredebug[#"inclaimedlocation"].score = -500;
-				point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+				point._scoredebug[#"inclaimedlocation"].scorename = "";
 			#/
 			point.score = point.score + -500;
 		}

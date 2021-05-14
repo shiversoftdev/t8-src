@@ -685,9 +685,9 @@ function function_373068ca(name, postfix)
 			return;
 		}
 		util::waittill_can_add_debug_command();
-		var_52b27367 = "" + name + postfix;
-		cmd = "" + "" + "" + var_52b27367;
-		util::function_e2e9d901("" + var_52b27367, cmd);
+		talentname = "" + name + postfix;
+		cmd = "" + "" + "" + talentname;
+		util::function_e2e9d901("" + talentname, cmd);
 	#/
 }
 
@@ -716,9 +716,9 @@ function function_8263c0d5(name, postfix)
 			return;
 		}
 		util::waittill_can_add_debug_command();
-		var_52b27367 = "" + getsubstr(name, 7) + postfix;
-		cmd = "" + "" + "" + var_52b27367;
-		util::function_e2e9d901("" + var_52b27367, cmd);
+		talentname = "" + getsubstr(name, 7) + postfix;
+		cmd = "" + "" + "" + talentname;
+		util::function_e2e9d901("" + talentname, cmd);
 	#/
 }
 

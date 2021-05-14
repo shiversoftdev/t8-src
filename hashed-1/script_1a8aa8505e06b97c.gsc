@@ -37,14 +37,14 @@ autoexec function function_89f2df9()
 function __init__()
 {
 	clientfield::register("scriptmover", "ouranos_shoot", 16000, 1, "counter", &function_b3ffbfd, 0, 0);
-	clientfield::register("scriptmover", "ouranos_impact", 16000, 1, "counter", &function_a41679b9, 0, 0);
+	clientfield::register("scriptmover", "ouranos_impact", 16000, 1, "counter", &ouranos_impact_fx, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_494799612e85ee2f", 16000, 1, "int", &skull_turret_beam_fire, 0, 1);
 	clientfield::register("allplayers", "" + #"hash_4fb73e88d45af0ef", 16000, 1, "int", &function_98b06f97, 0, 1);
 	clientfield::register("actor", "" + #"hash_c5b1d12b0fd3651", 16000, getminbitcountfornum(3), "int", &function_a1d614f9, 0, 1);
 	clientfield::register("actor", "" + #"hash_28af05433c1d1a2e", 16000, 1, "counter", &function_1322534b, 0, 0);
 	serverfield::register("ouranos_feather_hit", 16000, getminbitcountfornum(3), "int");
 	level._effect[#"hash_7a9b30609a5988e3"] = #"hash_3ee5b689d09f0824";
-	level._effect[#"hash_23b23073c48639df"] = #"hash_62f4ee1a2e3c46fc";
+	level._effect[#"ouranos_trail"] = #"hash_62f4ee1a2e3c46fc";
 	level._effect[#"ouranos_impact"] = #"hash_5869597389a55f7b";
 	level._effect[#"hash_c5b1d12b0fd3651"] = #"hash_215ead487c4bef59";
 	level._effect[#"hash_74ba9d1683d64d68"] = #"hash_4cc40e13ee8dff61";
@@ -141,12 +141,12 @@ function function_f89a4434(localclientnum)
 	}
 	self endon(#"death");
 	self.enemy endon(#"death");
-	var_82dde107 = getent(localclientnum, "vol_ww_ouranos_center_fletching", "targetname");
-	var_8ba8f5fa = getent(localclientnum, "vol_ww_ouranos_cliff_fletching", "targetname");
-	var_97d203c3 = getent(localclientnum, "vol_ww_ouranos_serpent_fletching", "targetname");
+	vol_center = getent(localclientnum, "vol_ww_ouranos_center_fletching", "targetname");
+	vol_cliff = getent(localclientnum, "vol_ww_ouranos_cliff_fletching", "targetname");
+	vol_serpent = getent(localclientnum, "vol_ww_ouranos_serpent_fletching", "targetname");
 	while(isdefined(self))
 	{
-		if(isdefined(var_82dde107) && istouching(self.origin, var_82dde107))
+		if(isdefined(vol_center) && istouching(self.origin, vol_center))
 		{
 			if(isdefined(self.enemy))
 			{
@@ -154,7 +154,7 @@ function function_f89a4434(localclientnum)
 				break;
 			}
 		}
-		else if(isdefined(var_8ba8f5fa) && istouching(self.origin, var_8ba8f5fa))
+		else if(isdefined(vol_cliff) && istouching(self.origin, vol_cliff))
 		{
 			if(isdefined(self.enemy))
 			{
@@ -162,7 +162,7 @@ function function_f89a4434(localclientnum)
 				break;
 			}
 		}
-		else if(isdefined(var_97d203c3) && istouching(self.origin, var_97d203c3))
+		else if(isdefined(vol_serpent) && istouching(self.origin, vol_serpent))
 		{
 			if(isdefined(self.enemy))
 			{
@@ -183,10 +183,10 @@ function function_f89a4434(localclientnum)
 	Parameters: 1
 	Flags: Linked
 */
-function function_1ebdc841(var_22d574af)
+function function_1ebdc841(n_feather)
 {
 	self endon(#"death");
-	self serverfield::set("ouranos_feather_hit", var_22d574af);
+	self serverfield::set("ouranos_feather_hit", n_feather);
 	waitframe(1);
 	self serverfield::set("ouranos_feather_hit", 0);
 }
@@ -202,15 +202,15 @@ function function_1ebdc841(var_22d574af)
 */
 function function_b3ffbfd(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	util::playfxontag(localclientnum, level._effect[#"hash_23b23073c48639df"], self, "tag_origin");
-	if(!isdefined(self.var_5c130831))
+	util::playfxontag(localclientnum, level._effect[#"ouranos_trail"], self, "tag_origin");
+	if(!isdefined(self.n_sfx))
 	{
-		self.var_5c130831 = self playloopsound(#"hash_166762facd657625");
+		self.n_sfx = self playloopsound(#"hash_166762facd657625");
 	}
 }
 
 /*
-	Name: function_a41679b9
+	Name: ouranos_impact_fx
 	Namespace: namespace_7a119950
 	Checksum: 0x752E63E2
 	Offset: 0xC38
@@ -218,7 +218,7 @@ function function_b3ffbfd(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked
 */
-function function_a41679b9(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function ouranos_impact_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(isdefined(self gettagorigin("j_wingulna_le")))
 	{

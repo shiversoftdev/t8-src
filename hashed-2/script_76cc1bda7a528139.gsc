@@ -86,9 +86,9 @@ function function_af90fb8c(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			while(isalive(self))
 			{
-				var_88706ea7 = undefined;
-				var_88706ea7 = self waittill(#"notetrack", #"death");
-				if(var_88706ea7.notetrack === "fire" || var_88706ea7.notetrack === "rechamber")
+				s_result = undefined;
+				s_result = self waittill(#"notetrack", #"death");
+				if(s_result.notetrack === "fire" || s_result.notetrack === "rechamber")
 				{
 					playviewmodelfx(localclientnum, level._effect[#"hash_48c846b3b589b3f9"], "tag_flash2");
 					break;
@@ -113,11 +113,11 @@ function function_39fb4ba9(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(self.weapon === getweapon(#"hash_3b5823adc79b4e56"))
 		{
-			var_852c754d = 1;
+			b_packed = 1;
 		}
 		if(self zm_utility::function_f8796df3(localclientnum))
 		{
-			if(var_852c754d === 1)
+			if(b_packed === 1)
 			{
 				playviewmodelfx(localclientnum, level._effect[#"hash_506a28609ce7aaaa"], "tag_flash");
 			}
@@ -126,7 +126,7 @@ function function_39fb4ba9(localclientnum, oldval, newval, bnewent, binitialsnap
 				playviewmodelfx(localclientnum, level._effect[#"hash_4b54be230d4f57e9"], "tag_flash");
 			}
 		}
-		else if(var_852c754d === 1)
+		else if(b_packed === 1)
 		{
 			util::playfxontag(localclientnum, level._effect[#"hash_720e50199e045f64"], self, "tag_flash");
 		}

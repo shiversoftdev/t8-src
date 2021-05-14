@@ -55,9 +55,9 @@ function __init__()
 	level.hero_weapon[#"minigun"][0] = getweapon(#"hash_74dd67dd8a46d144");
 	level.hero_weapon[#"minigun"][1] = getweapon(#"hash_74dd6add8a46d65d");
 	level.hero_weapon[#"minigun"][2] = getweapon(#"hash_74dd69dd8a46d4aa");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_74dd67dd8a46d144");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_74dd6add8a46d65d");
-	namespace_2ba51478::register_hero_weapon_for_level(#"hash_74dd69dd8a46d4aa");
+	zm_loadout::register_hero_weapon_for_level(#"hash_74dd67dd8a46d144");
+	zm_loadout::register_hero_weapon_for_level(#"hash_74dd6add8a46d65d");
+	zm_loadout::register_hero_weapon_for_level(#"hash_74dd69dd8a46d4aa");
 	zm_hero_weapon::function_7eabd65d(getweapon(#"hash_492e530f9862f6cc"));
 	zm_hero_weapon::function_7eabd65d(getweapon(#"hash_628d99860c78650f"));
 	level._effect[#"hash_41de5d1fefd715d0"] = #"hash_65b54823a8e8631e";
@@ -195,8 +195,8 @@ private function function_1b26ce66()
 private function function_5ef1fdde(w_minigun)
 {
 	self endon(#"disconnect");
-	var_bcd1c2ff = self gadgetgetslot(w_minigun);
-	while(self function_36dfc05f(var_bcd1c2ff))
+	n_slot = self gadgetgetslot(w_minigun);
+	while(self function_36dfc05f(n_slot))
 	{
 		waitframe(1);
 	}
@@ -373,8 +373,8 @@ function function_6fa9af0e(w_minigun)
 	self endon(#"bled_out", #"death", #"hash_2ce42bd06b629807");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_fired");
+		s_result = undefined;
+		s_result = self waittill(#"weapon_fired");
 	}
 }
 
@@ -429,9 +429,9 @@ function function_ebaedcdd(w_minigun)
 	self endon(#"bled_out", #"death", #"hash_2ce42bd06b629807");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee_power_left");
-		if(var_88706ea7.weapon == w_minigun)
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee_power_left");
+		if(s_result.weapon == w_minigun)
 		{
 			var_79db2feb = self gettagorigin("tag_flash2");
 			var_a993e05e = anglestoforward(self getplayerangles());
@@ -463,9 +463,9 @@ function function_9d166ae8(w_minigun)
 	self endon(#"bled_out", #"death", #"hash_2ce42bd06b629807");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"weapon_melee");
-		if(var_88706ea7.weapon === w_minigun && var_88706ea7._notify == "weapon_melee")
+		s_result = undefined;
+		s_result = self waittill(#"weapon_melee");
+		if(s_result.weapon === w_minigun && s_result._notify == "weapon_melee")
 		{
 			self playsoundontag("wpn_minigun_lvl3_throw", "j_head");
 			wait(1.35);
@@ -481,11 +481,11 @@ function function_9d166ae8(w_minigun)
 			e_grenade = self magicgrenadetype(getweapon(#"hash_628d99860c78650f"), var_79db2feb, var_a460aa94, 2);
 			while(isdefined(e_grenade))
 			{
-				var_88706ea7 = undefined;
-				var_88706ea7 = e_grenade waittill_timeout(4, #"stationary", #"death");
+				s_result = undefined;
+				s_result = e_grenade waittill_timeout(4, #"stationary", #"death");
 				if(isdefined(e_grenade))
 				{
-					if(var_88706ea7._notify == "stationary")
+					if(s_result._notify == "stationary")
 					{
 						v_ground_pos = groundtrace(e_grenade.origin + vectorscale((0, 0, 1), 50), e_grenade.origin + vectorscale((0, 0, -1), 500), 0, e_grenade, 0, 0)[#"position"];
 						if(isdefined(v_ground_pos))
@@ -507,7 +507,7 @@ function function_9d166ae8(w_minigun)
 						e_grenade clientfield::set("minigun_nuke_rob", 1);
 						e_grenade playloopsound("wpn_minigun_nuke_riser");
 					}
-					else if(var_88706ea7._notify == "timeout")
+					else if(s_result._notify == "timeout")
 					{
 						v_end_pos = e_grenade.origin;
 						e_grenade delete();
@@ -687,9 +687,9 @@ function function_768a7fab(var_9b5f3241)
 function function_478a4910(w_minigun)
 {
 	self endon(#"bled_out", #"death", #"hash_2ce42bd06b629807");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee_power_left");
-	if(var_88706ea7.weapon == w_minigun)
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee_power_left");
+	if(s_result.weapon == w_minigun)
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87ca13e3ecd52d", #"minigun");
 	}
@@ -707,9 +707,9 @@ function function_478a4910(w_minigun)
 function function_68ff89f7(w_minigun)
 {
 	self endon(#"bled_out", #"death", #"hash_2ce42bd06b629807");
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill(#"weapon_melee");
-	if(var_88706ea7.weapon === w_minigun && var_88706ea7._notify == "weapon_melee")
+	s_result = undefined;
+	s_result = self waittill(#"weapon_melee");
+	if(s_result.weapon === w_minigun && s_result._notify == "weapon_melee")
 	{
 		self thread zm_audio::create_and_play_dialog(#"hash_6a87c913e3ecd37a", #"minigun");
 	}

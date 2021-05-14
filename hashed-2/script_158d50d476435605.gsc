@@ -7,11 +7,11 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_bd02cf1;
+#namespace activecamo;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x13356F99
 	Offset: 0x1A8
 	Size: 0x3C
@@ -20,12 +20,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_50096a2a31e9111b", &__init__, undefined, undefined);
+	system::register(#"activecamo", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x7FC2F693
 	Offset: 0x1F0
 	Size: 0x10A
@@ -48,7 +48,7 @@ function __init__()
 
 /*
 	Name: on_local_player_spawned
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xA014740B
 	Offset: 0x308
 	Size: 0x1A8
@@ -85,7 +85,7 @@ function on_local_player_spawned(localclientnum)
 
 /*
 	Name: function_f77ced93
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xF21AD9E3
 	Offset: 0x4B8
 	Size: 0xEC
@@ -108,7 +108,7 @@ function function_f77ced93(params)
 
 /*
 	Name: function_c887f58e
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x24F86DB1
 	Offset: 0x5B0
 	Size: 0x1FE
@@ -162,7 +162,7 @@ function function_c887f58e()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x935722C2
 	Offset: 0x7B8
 	Size: 0x9C
@@ -179,7 +179,7 @@ function on_player_spawned(localclientnum)
 
 /*
 	Name: function_ae141bf2
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xF7F5C62D
 	Offset: 0x860
 	Size: 0x72
@@ -189,17 +189,17 @@ function on_player_spawned(localclientnum)
 function function_ae141bf2(camoindex)
 {
 	activecamoinfo = undefined;
-	var_8968c2ce = function_11c873a(camoindex);
-	if(isdefined(var_8968c2ce) && var_8968c2ce != #"")
+	activecamoname = function_11c873a(camoindex);
+	if(isdefined(activecamoname) && activecamoname != #"")
 	{
-		activecamoinfo = getscriptbundle(var_8968c2ce);
+		activecamoinfo = getscriptbundle(activecamoname);
 	}
 	return activecamoinfo;
 }
 
 /*
 	Name: function_3d96ad48
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xA45B1C79
 	Offset: 0x8E0
 	Size: 0x42
@@ -214,7 +214,7 @@ function function_3d96ad48(var_6f2ae9c0)
 
 /*
 	Name: function_451a49f4
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x93EC818C
 	Offset: 0x930
 	Size: 0x16E
@@ -223,34 +223,34 @@ function function_3d96ad48(var_6f2ae9c0)
 */
 function function_451a49f4(localclientnum, activecamoinfo, weapon, var_d1a848d9)
 {
-	var_bd02cf1 = self function_6f08b691(activecamoinfo);
-	if(isdefined(var_bd02cf1))
+	activecamo = self function_6f08b691(activecamoinfo);
+	if(isdefined(activecamo))
 	{
-		if(!isdefined(var_bd02cf1.var_fe56592))
+		if(!isdefined(activecamo.var_fe56592))
 		{
-			var_bd02cf1.var_fe56592 = [];
+			activecamo.var_fe56592 = [];
 		}
-		if(!isdefined(var_bd02cf1.var_fe56592[localclientnum]))
+		if(!isdefined(activecamo.var_fe56592[localclientnum]))
 		{
-			var_bd02cf1.var_fe56592[localclientnum] = {};
+			activecamo.var_fe56592[localclientnum] = {};
 		}
-		if(!isdefined(var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b))
+		if(!isdefined(activecamo.var_fe56592[localclientnum].var_dd54a13b))
 		{
-			var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b = [];
+			activecamo.var_fe56592[localclientnum].var_dd54a13b = [];
 		}
 		baseweapon = function_c14cb514(weapon);
-		if(!isdefined(var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
+		if(!isdefined(activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
 		{
-			var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon] = {};
+			activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon] = {};
 		}
-		var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9 = var_d1a848d9;
+		activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9 = var_d1a848d9;
 	}
-	return var_bd02cf1;
+	return activecamo;
 }
 
 /*
 	Name: function_130e0542
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x3BB1327
 	Offset: 0xAA8
 	Size: 0x1B4
@@ -261,13 +261,13 @@ function function_130e0542(localclientnum, weapon, camoindex)
 {
 	init_stage = 0;
 	activecamoinfo = function_ae141bf2(camoindex);
-	var_bd02cf1 = self function_6f08b691(activecamoinfo);
-	if(isdefined(var_bd02cf1))
+	activecamo = self function_6f08b691(activecamoinfo);
+	if(isdefined(activecamo))
 	{
-		if(isdefined(var_bd02cf1.info.stages))
+		if(isdefined(activecamo.info.stages))
 		{
 			var_f8bf269c = 0;
-			foreach(key, stage in var_bd02cf1.info.stages)
+			foreach(key, stage in activecamo.info.stages)
 			{
 				if(isdefined(stage.var_d2eac588))
 				{
@@ -291,7 +291,7 @@ function function_130e0542(localclientnum, weapon, camoindex)
 
 /*
 	Name: function_95f12bac
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x34509F33
 	Offset: 0xC68
 	Size: 0x9A
@@ -308,7 +308,7 @@ function function_95f12bac(localclientnum, weapon, weaponoptions)
 
 /*
 	Name: function_7bbf0553
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xFDAF1EB3
 	Offset: 0xD10
 	Size: 0xA4
@@ -324,7 +324,7 @@ function function_7bbf0553(localclientnum, eventstruct)
 
 /*
 	Name: function_19a5d7e7
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x4947D2D4
 	Offset: 0xDC0
 	Size: 0x7C4
@@ -341,51 +341,51 @@ function function_19a5d7e7(localclientnum, weapon, tagname, var_d1a848d9, impuls
 		function_3e27a7cb(localclientnum, tagname);
 		return;
 	}
-	var_bd02cf1 = self function_6f08b691(activecamoinfo);
-	if(!isdefined(var_bd02cf1) || !isdefined(var_bd02cf1.info) || !isdefined(var_bd02cf1.info.stages))
+	activecamo = self function_6f08b691(activecamoinfo);
+	if(!isdefined(activecamo) || !isdefined(activecamo.info) || !isdefined(activecamo.info.stages))
 	{
 		function_3e27a7cb(localclientnum, tagname);
 		return;
 	}
-	stage = var_bd02cf1.info.stages[var_d1a848d9];
+	stage = activecamo.info.stages[var_d1a848d9];
 	if(!isdefined(stage))
 	{
 		function_3e27a7cb(localclientnum, tagname);
 		return;
 	}
-	if(!isdefined(var_bd02cf1.var_fe56592))
+	if(!isdefined(activecamo.var_fe56592))
 	{
-		var_bd02cf1.var_fe56592 = [];
+		activecamo.var_fe56592 = [];
 	}
-	if(!isdefined(var_bd02cf1.var_fe56592[localclientnum]))
+	if(!isdefined(activecamo.var_fe56592[localclientnum]))
 	{
-		var_bd02cf1.var_fe56592[localclientnum] = {};
+		activecamo.var_fe56592[localclientnum] = {};
 	}
-	if(!isdefined(var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b))
+	if(!isdefined(activecamo.var_fe56592[localclientnum].var_dd54a13b))
 	{
-		var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b = [];
+		activecamo.var_fe56592[localclientnum].var_dd54a13b = [];
 	}
 	baseweapon = function_c14cb514(weapon);
-	if(!isdefined(var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
+	if(!isdefined(activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
 	{
-		var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon] = {};
+		activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon] = {};
 	}
 	var_58bac2d = function_16d7447b(localclientnum, tagname);
-	if(isdefined(var_58bac2d.var_796fdf6e) && var_58bac2d.var_796fdf6e !== stage.var_14a2badb)
+	if(isdefined(var_58bac2d.var_796fdf6e) && var_58bac2d.var_796fdf6e !== stage.rob)
 	{
 		function_3e27a7cb(localclientnum, tagname);
 	}
-	self function_a946fb86(var_bd02cf1, var_d1a848d9, var_d1460f46);
+	self function_a946fb86(activecamo, var_d1a848d9, var_d1460f46);
 	var_5bdd03ea = 0;
 	if(self function_21c0fa55())
 	{
 		var_5bdd03ea = isswitchingweapons(localclientnum);
 		if(!var_5bdd03ea)
 		{
-			var_9a7e487a = var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
+			var_9a7e487a = activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
 			if(isdefined(var_9a7e487a) && var_9a7e487a < var_d1a848d9)
 			{
-				var_23abafd7 = var_bd02cf1.info.stages[var_9a7e487a];
+				var_23abafd7 = activecamo.info.stages[var_9a7e487a];
 				if(isdefined(var_23abafd7.var_1c54e7b8))
 				{
 					playsound(localclientnum, var_23abafd7.var_1c54e7b8);
@@ -432,14 +432,14 @@ function function_19a5d7e7(localclientnum, weapon, tagname, var_d1a848d9, impuls
 			}
 		}
 	}
-	var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9 = var_d1a848d9;
-	var_58bac2d.var_796fdf6e = stage.var_14a2badb;
+	activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9 = var_d1a848d9;
+	var_58bac2d.var_796fdf6e = stage.rob;
 	var_d71e8c6e = var_d71e8c6e || var_5bdd03ea;
-	if(isdefined(stage.var_14a2badb) && tagname == "tag_weapon_right")
+	if(isdefined(stage.rob) && tagname == "tag_weapon_right")
 	{
-		if(!self function_d2503806(stage.var_14a2badb, tagname))
+		if(!self function_d2503806(stage.rob, tagname))
 		{
-			self function_bf9d3071(stage.var_14a2badb, tagname);
+			self function_bf9d3071(stage.rob, tagname);
 		}
 		self callback::add_entity_callback(#"death", &function_ead17f98);
 		for(layer = 1; layer <= 3; layer++)
@@ -449,10 +449,10 @@ function function_19a5d7e7(localclientnum, weapon, tagname, var_d1a848d9, impuls
 		self thread function_c55b3123(stage, tagname, "Diffuse2 Alpha", stage.var_2eeeee1b, stage.diffuse2alpha, var_d71e8c6e);
 		self thread function_c55b3123(stage, tagname, "Diffuse3 Alpha", stage.var_7a3e0e45, stage.diffuse3alpha, var_d71e8c6e);
 	}
-	var_1c8d0a58 = var_d1a848d9 + 1;
-	if(isdefined(var_bd02cf1.info.stages[var_1c8d0a58]))
+	aries_is_ = var_d1a848d9 + 1;
+	if(isdefined(activecamo.info.stages[aries_is_]))
 	{
-		var_632b0128 = var_bd02cf1.info.stages[var_1c8d0a58];
+		var_632b0128 = activecamo.info.stages[aries_is_];
 		if(isdefined(var_632b0128.var_19b6044e))
 		{
 			weaponoptions = self getweaponoptions();
@@ -463,7 +463,7 @@ function function_19a5d7e7(localclientnum, weapon, tagname, var_d1a848d9, impuls
 
 /*
 	Name: function_ead17f98
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x94F04AE
 	Offset: 0x1590
 	Size: 0x64
@@ -478,7 +478,7 @@ function function_ead17f98(params)
 
 /*
 	Name: function_3e27a7cb
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x4FDBA286
 	Offset: 0x1600
 	Size: 0x76
@@ -497,16 +497,16 @@ function function_3e27a7cb(localclientnum, tagname)
 
 /*
 	Name: function_a946fb86
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xC0AFA3A7
 	Offset: 0x1680
 	Size: 0x150
 	Parameters: 3
 	Flags: Linked
 */
-function function_a946fb86(var_bd02cf1, var_d1a848d9, var_d1460f46)
+function function_a946fb86(activecamo, var_d1a848d9, var_d1460f46)
 {
-	foreach(key, stage in var_bd02cf1.info.stages)
+	foreach(key, stage in activecamo.info.stages)
 	{
 		if(key > var_d1a848d9)
 		{
@@ -524,7 +524,7 @@ function function_a946fb86(var_bd02cf1, var_d1a848d9, var_d1460f46)
 
 /*
 	Name: function_16d7447b
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xF828C545
 	Offset: 0x17D8
 	Size: 0x96
@@ -550,7 +550,7 @@ function function_16d7447b(localclientnum, tagname)
 
 /*
 	Name: function_c55b3123
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x37B128DD
 	Offset: 0x1878
 	Size: 0x154
@@ -576,16 +576,16 @@ function function_c55b3123(stage, tagname, var_eb6a239c, lerptime, var_f023ca7d,
 			{
 				return;
 			}
-			self function_78233d29(stage.var_14a2badb, tagname, var_eb6a239c, var_31cfb10);
+			self function_78233d29(stage.rob, tagname, var_eb6a239c, var_31cfb10);
 		}
 		while(currenttime <= endtime);
 	}
-	self function_78233d29(stage.var_14a2badb, tagname, var_eb6a239c, var_f023ca7d);
+	self function_78233d29(stage.rob, tagname, var_eb6a239c, var_f023ca7d);
 }
 
 /*
 	Name: function_42887bfe
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xE45E1413
 	Offset: 0x19D8
 	Size: 0x64C
@@ -628,15 +628,15 @@ function function_42887bfe(stage, tagname, layer, impulse, var_d71e8c6e)
 				var_b9c539b7 = brightness;
 				var_a5e1ab6c = fade;
 				var_df9b6bd0 = tint;
-				self function_78233d29(stage.var_14a2badb, tagname, var_604ae5c3, var_b9c539b7);
-				self function_78233d29(stage.var_14a2badb, tagname, var_d6637dc6, var_a5e1ab6c);
-				self function_78233d29(stage.var_14a2badb, tagname, var_ea35682d, var_df9b6bd0);
+				self function_78233d29(stage.rob, tagname, var_604ae5c3, var_b9c539b7);
+				self function_78233d29(stage.rob, tagname, var_d6637dc6, var_a5e1ab6c);
+				self function_78233d29(stage.rob, tagname, var_ea35682d, var_df9b6bd0);
 			}
 			while(currenttime <= endtime);
 		}
-		self function_78233d29(stage.var_14a2badb, tagname, var_604ae5c3, brightness);
-		self function_78233d29(stage.var_14a2badb, tagname, var_d6637dc6, fade);
-		self function_78233d29(stage.var_14a2badb, tagname, var_ea35682d, tint);
+		self function_78233d29(stage.rob, tagname, var_604ae5c3, brightness);
+		self function_78233d29(stage.rob, tagname, var_d6637dc6, fade);
+		self function_78233d29(stage.rob, tagname, var_ea35682d, tint);
 		wait(max(lerptime, 0.5));
 		if(!isdefined(self) || !isplayer(self))
 		{
@@ -661,20 +661,20 @@ function function_42887bfe(stage, tagname, layer, impulse, var_d71e8c6e)
 			var_b9c539b7 = brightness;
 			var_a5e1ab6c = fade;
 			var_df9b6bd0 = tint;
-			self function_78233d29(stage.var_14a2badb, tagname, var_604ae5c3, var_b9c539b7);
-			self function_78233d29(stage.var_14a2badb, tagname, var_d6637dc6, var_a5e1ab6c);
-			self function_78233d29(stage.var_14a2badb, tagname, var_ea35682d, var_df9b6bd0);
+			self function_78233d29(stage.rob, tagname, var_604ae5c3, var_b9c539b7);
+			self function_78233d29(stage.rob, tagname, var_d6637dc6, var_a5e1ab6c);
+			self function_78233d29(stage.rob, tagname, var_ea35682d, var_df9b6bd0);
 		}
 		while(currenttime <= endtime);
 	}
-	self function_78233d29(stage.var_14a2badb, tagname, var_604ae5c3, brightness);
-	self function_78233d29(stage.var_14a2badb, tagname, var_d6637dc6, fade);
-	self function_78233d29(stage.var_14a2badb, tagname, var_ea35682d, tint);
+	self function_78233d29(stage.rob, tagname, var_604ae5c3, brightness);
+	self function_78233d29(stage.rob, tagname, var_d6637dc6, fade);
+	self function_78233d29(stage.rob, tagname, var_ea35682d, tint);
 }
 
 /*
 	Name: function_3aa81e0e
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xF8431EC3
 	Offset: 0x2030
 	Size: 0x62E
@@ -718,7 +718,7 @@ function function_3aa81e0e(activecamoinfo)
 					info.stages[key - var_d3daabe] = {};
 				}
 				stage = info.stages[key - var_d3daabe];
-				stage.var_14a2badb = var_3594168e.var_14a2badb;
+				stage.rob = var_3594168e.rob;
 				if(isdefined(var_3594168e.var_879c8798))
 				{
 					stage.var_19b6044e = function_8b51d9d1(var_3594168e.var_879c8798);
@@ -773,7 +773,7 @@ function function_3aa81e0e(activecamoinfo)
 
 /*
 	Name: function_6f08b691
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0xC67FCE19
 	Offset: 0x2668
 	Size: 0xDE
@@ -796,16 +796,16 @@ function function_6f08b691(activecamoinfo)
 		{
 			self.var_9413f8b4[activecamoinfo.name] = {};
 		}
-		var_bd02cf1 = self.var_9413f8b4[activecamoinfo.name];
-		var_bd02cf1.info = function_3aa81e0e(activecamoinfo);
-		return var_bd02cf1;
+		activecamo = self.var_9413f8b4[activecamoinfo.name];
+		activecamo.info = function_3aa81e0e(activecamoinfo);
+		return activecamo;
 	}
 	return undefined;
 }
 
 /*
 	Name: function_374e37a0
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x2B1A8C38
 	Offset: 0x2750
 	Size: 0x460
@@ -816,8 +816,8 @@ function function_374e37a0(localclientnum, weaponmodel, var_3594168e, var_49daa2
 {
 	tagname = "tag_origin";
 	stage = {};
-	stage.var_14a2badb = var_3594168e.var_14a2badb;
-	if(!isdefined(stage.var_14a2badb))
+	stage.rob = var_3594168e.rob;
+	if(!isdefined(stage.rob))
 	{
 		return 0;
 	}
@@ -825,10 +825,10 @@ function function_374e37a0(localclientnum, weaponmodel, var_3594168e, var_49daa2
 	stage.var_2eeeee1b = (isdefined(var_3594168e.var_2eeeee1b) ? var_3594168e.var_2eeeee1b : 0);
 	stage.diffuse3alpha = (isdefined(var_3594168e.diffuse3alpha) ? var_3594168e.diffuse3alpha : 0);
 	stage.var_7a3e0e45 = (isdefined(var_3594168e.var_7a3e0e45) ? var_3594168e.var_7a3e0e45 : 0);
-	if(!weaponmodel function_d2503806(stage.var_14a2badb, tagname))
+	if(!weaponmodel function_d2503806(stage.rob, tagname))
 	{
-		weaponmodel function_bf9d3071(stage.var_14a2badb, tagname);
-		var_49daa2f6[localclientnum] = stage.var_14a2badb;
+		weaponmodel function_bf9d3071(stage.rob, tagname);
+		var_49daa2f6[localclientnum] = stage.rob;
 	}
 	for(layer = 1; layer <= 3; layer++)
 	{
@@ -843,20 +843,20 @@ function function_374e37a0(localclientnum, weaponmodel, var_3594168e, var_49daa2
 		var_604ae5c3 = var_238c3eeb + " Brightness";
 		var_d6637dc6 = var_238c3eeb + " Fade";
 		var_ea35682d = var_238c3eeb + " Tint";
-		weaponmodel function_78233d29(stage.var_14a2badb, tagname, var_604ae5c3, stage.(var_27c1d8a2));
-		weaponmodel function_78233d29(stage.var_14a2badb, tagname, var_d6637dc6, stage.(var_f5747b8));
-		weaponmodel function_78233d29(stage.var_14a2badb, tagname, var_ea35682d, stage.(var_7fd61736));
+		weaponmodel function_78233d29(stage.rob, tagname, var_604ae5c3, stage.(var_27c1d8a2));
+		weaponmodel function_78233d29(stage.rob, tagname, var_d6637dc6, stage.(var_f5747b8));
+		weaponmodel function_78233d29(stage.rob, tagname, var_ea35682d, stage.(var_7fd61736));
 	}
 	diffuse2alpha = (isdefined(var_3594168e.diffuse2alpha) ? var_3594168e.diffuse2alpha : 0);
 	diffuse3alpha = (isdefined(var_3594168e.diffuse3alpha) ? var_3594168e.diffuse3alpha : 0);
-	weaponmodel function_78233d29(stage.var_14a2badb, tagname, "Diffuse2 Alpha", diffuse2alpha);
-	weaponmodel function_78233d29(stage.var_14a2badb, tagname, "Diffuse3 Alpha", diffuse3alpha);
+	weaponmodel function_78233d29(stage.rob, tagname, "Diffuse2 Alpha", diffuse2alpha);
+	weaponmodel function_78233d29(stage.rob, tagname, "Diffuse3 Alpha", diffuse3alpha);
 	return 1;
 }
 
 /*
 	Name: function_cbfd8fd6
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x8F69BC3F
 	Offset: 0x2BB8
 	Size: 0xBC
@@ -880,7 +880,7 @@ function function_cbfd8fd6(localclientnum)
 
 /*
 	Name: function_e40c785a
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x4B506E94
 	Offset: 0x2C80
 	Size: 0x13C
@@ -913,7 +913,7 @@ function function_e40c785a(localclientnum)
 
 /*
 	Name: function_6efb762c
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x6DED9A9D
 	Offset: 0x2DC8
 	Size: 0x2AC
@@ -927,21 +927,21 @@ function function_6efb762c(localclientnum, var_e827f698, weaponoptions)
 	if(isdefined(activecamoinfo))
 	{
 		player = function_27673a7(localclientnum);
-		var_bd02cf1 = player function_6f08b691(activecamoinfo);
+		activecamo = player function_6f08b691(activecamoinfo);
 		baseweapon = function_c14cb514(var_e827f698);
-		if(isdefined(var_bd02cf1))
+		if(isdefined(activecamo))
 		{
 			init_stage = function_5442be13(weaponoptions);
-			if(isdefined(var_bd02cf1.var_fe56592) && isdefined(var_bd02cf1.var_fe56592[localclientnum]) && isdefined(var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
+			if(isdefined(activecamo.var_fe56592) && isdefined(activecamo.var_fe56592[localclientnum]) && isdefined(activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
 			{
-				init_stage = var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
+				init_stage = activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
 			}
 			else
 			{
-				var_bd02cf1 = player function_130e0542(localclientnum, var_e827f698, camoindex);
-				if(isdefined(var_bd02cf1) && isdefined(var_bd02cf1.var_fe56592) && isdefined(var_bd02cf1.var_fe56592[localclientnum]) && isdefined(var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
+				activecamo = player function_130e0542(localclientnum, var_e827f698, camoindex);
+				if(isdefined(activecamo) && isdefined(activecamo.var_fe56592) && isdefined(activecamo.var_fe56592[localclientnum]) && isdefined(activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon]))
 				{
-					init_stage = var_bd02cf1.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
+					init_stage = activecamo.var_fe56592[localclientnum].var_dd54a13b[baseweapon].var_d1a848d9;
 				}
 			}
 			if(isdefined(activecamoinfo.stages))
@@ -961,7 +961,7 @@ function function_6efb762c(localclientnum, var_e827f698, weaponoptions)
 
 /*
 	Name: function_b3a0e4f0
-	Namespace: namespace_bd02cf1
+	Namespace: activecamo
 	Checksum: 0x31B0917A
 	Offset: 0x3080
 	Size: 0x94

@@ -39,7 +39,7 @@ function __init__()
 		return;
 	}
 	bgb::register(#"hash_53f12a7ebb3e91ac", "activated", 1, undefined, undefined, &validation, &activation);
-	namespace_ad4d960b::register(#"hash_7bfec2f0ecb46104", 1);
+	zm_armor::register(#"hash_7bfec2f0ecb46104", 1);
 }
 
 /*
@@ -53,7 +53,7 @@ function __init__()
 */
 function validation()
 {
-	if(self namespace_ad4d960b::get(#"hash_7bfec2f0ecb46104") == 100)
+	if(self zm_armor::get(#"hash_7bfec2f0ecb46104") == 100)
 	{
 		return 0;
 	}
@@ -75,8 +75,8 @@ function activation()
 	{
 		if(self === player || (!player laststand::player_is_in_laststand() && isalive(player) && distance2dsquared(player.origin, self.origin) < 250000))
 		{
-			player namespace_ad4d960b::remove(#"hash_7bfec2f0ecb46104", 1);
-			player namespace_ad4d960b::add(#"hash_7bfec2f0ecb46104", 100, 100);
+			player zm_armor::remove(#"hash_7bfec2f0ecb46104", 1);
+			player zm_armor::add(#"hash_7bfec2f0ecb46104", 100, 100);
 		}
 	}
 }

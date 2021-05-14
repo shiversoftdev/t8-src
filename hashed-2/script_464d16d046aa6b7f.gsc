@@ -40,7 +40,7 @@ autoexec function function_89f2df9()
 function __init__()
 {
 	function_c6d3e860();
-	namespace_ad4d960b::register(#"hash_56a6e63a38d904e3", 0);
+	zm_armor::register(#"hash_56a6e63a38d904e3", 0);
 }
 
 /*
@@ -191,7 +191,7 @@ function function_1dd08a86()
 	Parameters: 4
 	Flags: Linked
 */
-function function_9a3871b7(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_9a3871b7(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_34c7d1e8a059f87e" + "_take");
 	self function_7b5fc171();
@@ -211,7 +211,7 @@ function function_7424eebb()
 	self endon(#"hash_34c7d1e8a059f87e" + "_take", #"disconnect");
 	while(true)
 	{
-		if(!self laststand::player_is_in_laststand() && !self util::function_bf5a8f5c() && !level flag::get("round_reset"))
+		if(!self laststand::player_is_in_laststand() && !self util::is_spectating() && !level flag::get("round_reset"))
 		{
 			v_current = self.origin;
 			if(!isdefined(self.var_3748ec02))
@@ -253,7 +253,7 @@ function function_7424eebb()
 function function_7b5fc171()
 {
 	self clientfield::set_to_player("" + #"hash_24e322568c9492c5", 0);
-	self namespace_ad4d960b::remove(#"hash_56a6e63a38d904e3", 1);
+	self zm_armor::remove(#"hash_56a6e63a38d904e3", 1);
 	self.var_3748ec02 = undefined;
 	self.var_807f94d7 = undefined;
 	self.var_7ffce6e0 = undefined;
@@ -296,7 +296,7 @@ function function_a84fcb78(var_3a553e99)
 */
 function function_7e0559c1()
 {
-	self namespace_ad4d960b::add(#"hash_56a6e63a38d904e3", 5, 50, #"");
+	self zm_armor::add(#"hash_56a6e63a38d904e3", 5, 50, #"");
 }
 
 /*

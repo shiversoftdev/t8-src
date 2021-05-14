@@ -719,23 +719,23 @@ function set_entity_draft_unselected(localclientnum, on_off)
 {
 	if(util::function_3f165ee8())
 	{
-		var_14a2badb = #"hash_79892e1d5a8f9f33";
+		rob = #"hash_79892e1d5a8f9f33";
 	}
 	else if(util::function_26489405())
 	{
-		var_14a2badb = #"hash_5418181592b8b61a";
+		rob = #"hash_5418181592b8b61a";
 	}
 	else
 	{
-		var_14a2badb = #"hash_68bd6efcb1324e3";
+		rob = #"hash_68bd6efcb1324e3";
 	}
 	if(isdefined(on_off) && on_off)
 	{
-		self function_bf9d3071(var_14a2badb);
+		self function_bf9d3071(rob);
 	}
 	else
 	{
-		self function_5d482e78(var_14a2badb);
+		self function_5d482e78(rob);
 	}
 }
 

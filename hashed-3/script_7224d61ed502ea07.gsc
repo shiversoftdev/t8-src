@@ -21,11 +21,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_e613822d;
+#namespace zm_wallbuy;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xD6629811
 	Offset: 0x348
 	Size: 0x94
@@ -34,12 +34,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_51cb94940fb89843", &__init__, &__main__, array(#"zm", #"zm_zonemgr", #"zm_unitrigger", #"zm_weapons"));
+	system::register(#"zm_wallbuy", &__init__, &__main__, array(#"zm", #"zm_zonemgr", #"zm_unitrigger", #"zm_weapons"));
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x88514463
 	Offset: 0x3E8
 	Size: 0x124
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x73B0A39F
 	Offset: 0x518
 	Size: 0x4C
@@ -82,7 +82,7 @@ function __main__()
 
 /*
 	Name: init_weapon_upgrade
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x57EFAEDA
 	Offset: 0x570
 	Size: 0x1CE
@@ -113,7 +113,7 @@ function init_weapon_upgrade()
 
 /*
 	Name: init_spawnable_weapon_upgrade
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x9D2C42E5
 	Offset: 0x748
 	Size: 0xD74
@@ -265,7 +265,7 @@ function init_spawnable_weapon_upgrade()
 
 /*
 	Name: function_44840c02
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x2CE60EF9
 	Offset: 0x14C8
 	Size: 0x74
@@ -281,7 +281,7 @@ function function_44840c02(str_targetname)
 
 /*
 	Name: function_c970de50
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x8986E69F
 	Offset: 0x1548
 	Size: 0x24C
@@ -316,7 +316,7 @@ function function_c970de50(trigger, parent)
 
 /*
 	Name: function_753c491c
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x8BD01906
 	Offset: 0x17A0
 	Size: 0x74
@@ -333,7 +333,7 @@ function function_753c491c(trigger)
 
 /*
 	Name: add_dynamic_wallbuy
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x5D064C69
 	Offset: 0x1820
 	Size: 0x694
@@ -395,7 +395,7 @@ function add_dynamic_wallbuy(weapon, wallbuy, pristine)
 	unitrigger_stub.first_time_triggered = !pristine;
 	if(!weapon.ismeleeweapon)
 	{
-		if(pristine || namespace_2ba51478::is_placeable_mine(weapon))
+		if(pristine || zm_loadout::is_placeable_mine(weapon))
 		{
 			unitrigger_stub.hint_string = zm_weapons::get_weapon_hint(weapon);
 		}
@@ -456,7 +456,7 @@ function add_dynamic_wallbuy(weapon, wallbuy, pristine)
 
 /*
 	Name: wall_weapon_update_prompt
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x57DD28
 	Offset: 0x1EC0
 	Size: 0x9E0
@@ -568,10 +568,10 @@ function wall_weapon_update_prompt(player)
 	{
 		if(isdefined(player.var_4a06bcd2))
 		{
-			var_8a7036c0 = player [[player.var_4a06bcd2]](weapon, self.stub, 1);
-			if(isdefined(var_8a7036c0))
+			special_ammo_cost = player [[player.var_4a06bcd2]](weapon, self.stub, 1);
+			if(isdefined(special_ammo_cost))
 			{
-				ammo_cost = var_8a7036c0;
+				ammo_cost = special_ammo_cost;
 			}
 		}
 		if(player zm_weapons::has_weapon_or_upgrade(weapon))
@@ -679,7 +679,7 @@ function wall_weapon_update_prompt(player)
 
 /*
 	Name: reset_wallbuy_internal
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x6C7221E9
 	Offset: 0x28A8
 	Size: 0xBC
@@ -706,7 +706,7 @@ function reset_wallbuy_internal(set_hint_string)
 
 /*
 	Name: reset_wallbuys
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xD75F18DD
 	Offset: 0x2970
 	Size: 0x390
@@ -761,7 +761,7 @@ function reset_wallbuys()
 
 /*
 	Name: get_weapon_hint_ammo
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xC0B2C3FD
 	Offset: 0x2D08
 	Size: 0x32
@@ -779,7 +779,7 @@ function get_weapon_hint_ammo()
 
 /*
 	Name: weapon_set_first_time_hint
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x4356E0A2
 	Offset: 0x2D48
 	Size: 0x3C
@@ -793,7 +793,7 @@ function weapon_set_first_time_hint(cost, ammo_cost)
 
 /*
 	Name: placeable_mine_can_buy_weapon_extra_check_func
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x817A4416
 	Offset: 0x2D90
 	Size: 0x3A
@@ -802,7 +802,7 @@ function weapon_set_first_time_hint(cost, ammo_cost)
 */
 function placeable_mine_can_buy_weapon_extra_check_func(w_weapon)
 {
-	if(isdefined(w_weapon) && w_weapon == self namespace_2ba51478::get_player_placeable_mine())
+	if(isdefined(w_weapon) && w_weapon == self zm_loadout::get_player_placeable_mine())
 	{
 		return 0;
 	}
@@ -811,7 +811,7 @@ function placeable_mine_can_buy_weapon_extra_check_func(w_weapon)
 
 /*
 	Name: weapon_spawn_think
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x400DC5E8
 	Offset: 0x2DD8
 	Size: 0x1028
@@ -839,13 +839,13 @@ function weapon_spawn_think()
 	if(isdefined(self.stub) && (isdefined(self.stub.trigger_per_player) && self.stub.trigger_per_player))
 	{
 		onlyplayer = self.parent_player;
-		if(namespace_2ba51478::is_placeable_mine(self.weapon))
+		if(zm_loadout::is_placeable_mine(self.weapon))
 		{
 			can_buy_weapon_extra_check_func = &placeable_mine_can_buy_weapon_extra_check_func;
 		}
 	}
 	self thread zm_magicbox::decide_hide_show_hint("stop_hint_logic", second_endon, onlyplayer, can_buy_weapon_extra_check_func, 0);
-	if(is_grenade || namespace_2ba51478::is_melee_weapon(self.weapon))
+	if(is_grenade || zm_loadout::is_melee_weapon(self.weapon))
 	{
 		self.first_time_triggered = 0;
 		hint = zm_weapons::get_weapon_hint(self.weapon);
@@ -887,7 +887,7 @@ function weapon_spawn_think()
 				continue;
 			}
 		}
-		if(player namespace_2ba51478::has_powerup_weapon())
+		if(player zm_loadout::has_powerup_weapon())
 		{
 			wait(0.1);
 			continue;
@@ -957,10 +957,10 @@ function weapon_spawn_think()
 						player [[player.player_shield_reset_health]](self.weapon);
 					}
 				}
-				else if(namespace_2ba51478::is_lethal_grenade(self.weapon))
+				else if(zm_loadout::is_lethal_grenade(self.weapon))
 				{
-					player zm_weapons::weapon_take(player namespace_2ba51478::get_player_lethal_grenade());
-					player namespace_2ba51478::set_player_lethal_grenade(self.weapon);
+					player zm_weapons::weapon_take(player zm_loadout::get_player_lethal_grenade());
+					player zm_loadout::set_player_lethal_grenade(self.weapon);
 				}
 				weapon = self.weapon;
 				if(should_upgrade_weapon(player))
@@ -1127,7 +1127,7 @@ function weapon_spawn_think()
 
 /*
 	Name: should_upgrade_weapon
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x393A951F
 	Offset: 0x3E08
 	Size: 0x56
@@ -1149,7 +1149,7 @@ function should_upgrade_weapon(player)
 
 /*
 	Name: show_all_weapon_buys
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x1196FA7A
 	Offset: 0x3E68
 	Size: 0x4E6
@@ -1159,7 +1159,7 @@ function should_upgrade_weapon(player)
 function show_all_weapon_buys(player, cost, ammo_cost, is_grenade)
 {
 	model = getent(self.target, "targetname");
-	is_melee = namespace_2ba51478::is_melee_weapon(self.weapon);
+	is_melee = zm_loadout::is_melee_weapon(self.weapon);
 	if(isdefined(model))
 	{
 		model thread weapon_show(player);
@@ -1240,7 +1240,7 @@ function show_all_weapon_buys(player, cost, ammo_cost, is_grenade)
 
 /*
 	Name: weapon_show
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x2F6EF832
 	Offset: 0x4358
 	Size: 0x194
@@ -1279,7 +1279,7 @@ function weapon_show(player)
 
 /*
 	Name: is_wallbuy
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x1FED411D
 	Offset: 0x44F8
 	Size: 0xAC
@@ -1301,7 +1301,7 @@ function is_wallbuy(w_to_check)
 
 /*
 	Name: function_c047c228
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x339B451
 	Offset: 0x45B0
 	Size: 0xAA
@@ -1330,7 +1330,7 @@ function function_c047c228(func_override)
 
 /*
 	Name: function_a6889c
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x6345A3AF
 	Offset: 0x4668
 	Size: 0x24
@@ -1344,7 +1344,7 @@ function function_a6889c(func_override)
 
 /*
 	Name: function_48f914bd
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0xAF871D96
 	Offset: 0x4698
 	Size: 0xAA
@@ -1373,7 +1373,7 @@ function function_48f914bd(func_override)
 
 /*
 	Name: function_99911dae
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x43B4E5A8
 	Offset: 0x4750
 	Size: 0x24
@@ -1387,7 +1387,7 @@ function function_99911dae(func_override)
 
 /*
 	Name: function_33023da5
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x8688CF9
 	Offset: 0x4780
 	Size: 0xAA
@@ -1416,7 +1416,7 @@ function function_33023da5(func_override)
 
 /*
 	Name: function_782e8955
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x965F808A
 	Offset: 0x4838
 	Size: 0x24
@@ -1430,7 +1430,7 @@ function function_782e8955(func_override)
 
 /*
 	Name: function_284616f8
-	Namespace: namespace_e613822d
+	Namespace: zm_wallbuy
 	Checksum: 0x2EA815DB
 	Offset: 0x4868
 	Size: 0xF4

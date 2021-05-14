@@ -78,18 +78,18 @@ function function_54922a21()
 	w_current = self getcurrentweapon();
 	while(true)
 	{
-		var_276d45bf = 0;
+		b_charged = 0;
 		while(self attackbuttonpressed() && !self meleebuttonpressed() && !self laststand::player_is_in_laststand())
 		{
-			if(!var_276d45bf && isdefined(self.chargeshotlevel) && self.chargeshotlevel > 1)
+			if(!b_charged && isdefined(self.chargeshotlevel) && self.chargeshotlevel > 1)
 			{
 				self function_bfbef8cc(self getcurrentweapon());
 				self clientfield::set("" + #"ray_gun_mk2y_charged", 1);
-				var_276d45bf = 1;
+				b_charged = 1;
 			}
 			waitframe(1);
 		}
-		if(var_276d45bf)
+		if(b_charged)
 		{
 			self function_a059fe7f();
 			wait(1);
@@ -173,12 +173,12 @@ function function_8a977b42(weapon)
 function function_bfbef8cc(weapon)
 {
 	var_e4bacb96 = function_60365a28(weapon);
-	var_6d9956e6 = self getweaponammoclip(var_e4bacb96);
-	if(var_6d9956e6 < var_e4bacb96.clipsize)
+	n_clip_ammo = self getweaponammoclip(var_e4bacb96);
+	if(n_clip_ammo < var_e4bacb96.clipsize)
 	{
-		n_ammo_diff = var_e4bacb96.clipsize - var_6d9956e6;
-		var_69648877 = self getweaponammostock(var_e4bacb96);
-		self setweaponammostock(var_e4bacb96, var_69648877 - n_ammo_diff);
+		n_ammo_diff = var_e4bacb96.clipsize - n_clip_ammo;
+		n_stock_ammo = self getweaponammostock(var_e4bacb96);
+		self setweaponammostock(var_e4bacb96, n_stock_ammo - n_ammo_diff);
 		self setweaponammoclip(var_e4bacb96, var_e4bacb96.clipsize);
 	}
 }

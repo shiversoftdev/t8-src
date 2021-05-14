@@ -71,13 +71,13 @@ function init()
 */
 function get(kvp_value, kvp_key = "targetname")
 {
-	var_29338de6 = get_array(kvp_value, kvp_key);
+	a_result = get_array(kvp_value, kvp_key);
 	/#
 		/#
-			assert(var_29338de6.size < 2, "" + kvp_key + "" + kvp_value + "");
+			assert(a_result.size < 2, "" + kvp_key + "" + kvp_value + "");
 		#/
 	#/
-	return (var_29338de6.size > 0 ? var_29338de6[0] : undefined);
+	return (a_result.size > 0 ? a_result[0] : undefined);
 }
 
 /*

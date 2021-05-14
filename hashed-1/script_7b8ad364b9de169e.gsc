@@ -51,10 +51,10 @@ function __init__()
 	Parameters: 1
 	Flags: Linked
 */
-function function_c8d7d200(var_5391a162)
+function function_c8d7d200(smartcover)
 {
-	self battlechatter::function_bd715920(var_5391a162.weapon, undefined, var_5391a162.origin, var_5391a162);
-	self callback::callback(#"hash_70eeb7d813f149b2", {#cover:var_5391a162.var_5391a162, #owner:self});
+	self battlechatter::function_bd715920(smartcover.weapon, undefined, smartcover.origin, smartcover);
+	self callback::callback(#"hash_70eeb7d813f149b2", {#cover:smartcover.smartcover, #owner:self});
 }
 
 /*
@@ -68,12 +68,12 @@ function function_c8d7d200(var_5391a162)
 */
 function function_a430cceb(attacker, weapon)
 {
-	var_d66fadb5 = self;
+	concertinawire = self;
 	if(isdefined(level.figure_out_attacker))
 	{
 		attacker = self [[level.figure_out_attacker]](attacker);
 	}
-	if(isdefined(attacker) && isplayer(attacker) && var_d66fadb5.owner !== attacker && isdefined(weapon))
+	if(isdefined(attacker) && isplayer(attacker) && concertinawire.owner !== attacker && isdefined(weapon))
 	{
 		attacker stats::function_e24eec31(weapon, #"hash_1c9da51ed1906285", 1);
 	}

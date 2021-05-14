@@ -33,11 +33,11 @@ function init()
 function function_842831cf()
 {
 	clientfield::register("world", "" + #"hash_3fcd3bbe36f86e4b", 1, 1, "counter", &function_5cb90582, 0, 0);
-	clientfield::register("scriptmover", "" + #"lightning_near", 1, 1, "counter", &function_ab9e98fd, 0, 0);
+	clientfield::register("scriptmover", "" + #"lightning_near", 1, 1, "counter", &lightning_near_fx, 0, 0);
 }
 
 /*
-	Name: function_ab9e98fd
+	Name: lightning_near_fx
 	Namespace: pap_quest
 	Checksum: 0xD77CCBDC
 	Offset: 0x250
@@ -45,12 +45,12 @@ function function_842831cf()
 	Parameters: 7
 	Flags: Linked
 */
-function function_ab9e98fd(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function lightning_near_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(self == level)
 	{
-		var_50083f49 = struct::get("lightning_near");
-		v_origin = var_50083f49.origin;
+		s_lightning_near = struct::get("lightning_near");
+		v_origin = s_lightning_near.origin;
 	}
 	else
 	{
@@ -70,7 +70,7 @@ function function_ab9e98fd(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_5cb90582(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	var_c684828e = struct::get("lightning_bridge");
-	playfx(localclientnum, level._effect[#"lightning_bridge"], var_c684828e.origin, vectornormalize(anglestoforward(var_c684828e.angles)), vectornormalize(anglestoup(var_c684828e.angles)));
+	s_lightning_bridge = struct::get("lightning_bridge");
+	playfx(localclientnum, level._effect[#"lightning_bridge"], s_lightning_bridge.origin, vectornormalize(anglestoforward(s_lightning_bridge.angles)), vectornormalize(anglestoup(s_lightning_bridge.angles)));
 }
 

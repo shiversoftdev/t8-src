@@ -2331,7 +2331,7 @@ function cleanup()
 }
 
 /*
-	Name: function_8499b91b
+	Name: corpse_explode_fx
 	Namespace: vehicle_death
 	Checksum: 0xDBCDDF2
 	Offset: 0x6260
@@ -2339,7 +2339,7 @@ function cleanup()
 	Parameters: 0
 	Flags: Linked
 */
-function function_8499b91b()
+function corpse_explode_fx()
 {
 	if(!isdefined(self.settings))
 	{
@@ -2389,7 +2389,7 @@ function function_933d48a2()
 				continue;
 			}
 			var_e2031bd1.var_3acf1c07 = 1;
-			var_e2031bd1 function_8499b91b();
+			var_e2031bd1 corpse_explode_fx();
 			var_e2031bd1 vehicle::do_death_dynents();
 			var_e2031bd1 deletewhensafe();
 		}

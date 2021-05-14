@@ -38,11 +38,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_4dad05c408e466f5", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_4dad05c408e466f5", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -207,7 +207,7 @@ function function_202ee8fa()
 {
 	self endon_callback(&namespace_18db89ed::function_c64292f, #"death");
 	self.var_7dc2d507 = 1;
-	self notify(#"hash_6bf10f34c45e879b");
+	self notify(#"player_frozen");
 	self namespace_18db89ed::function_bad6907c();
 	self clientfield::set("" + #"hash_55543319943057f1", 1);
 	self clientfield::set_to_player("" + #"hash_5160727729fd57a2", 1);

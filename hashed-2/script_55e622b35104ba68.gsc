@@ -57,7 +57,7 @@ function __init__()
 			var_1194a9a5 = struct::get_array("", "");
 		}
 	#/
-	level.var_90161fff = [];
+	level.insertions = [];
 	var_3bc28449 = max((isdefined(getgametypesetting(#"hash_731988b03dc6ee17")) ? getgametypesetting(#"hash_731988b03dc6ee17") : 1), 1);
 	/#
 		assert(var_3bc28449 > 0 && var_3bc28449 <= 2);
@@ -65,10 +65,10 @@ function __init__()
 	for(index = 0; index < var_3bc28449; index++)
 	{
 		insertion = {#players:[], #spawnpoints:var_1194a9a5, #allowed:1, #index:index};
-		level.var_90161fff[level.var_90161fff.size] = insertion;
+		level.insertions[level.insertions.size] = insertion;
 		callback::on_finalize_initialization(&on_finalize_initialization, insertion);
 	}
-	level.insertion = level.var_90161fff[0];
+	level.insertion = level.insertions[0];
 	clientfield::register("vehicle", "infiltration_transport", 1, 1, "int");
 	clientfield::register("vehicle", "infiltration_landing_gear", 1, 1, "int");
 	clientfield::register("toplayer", "infiltration_jump_warning", 1, 1, "int");
@@ -165,7 +165,7 @@ private function on_finalize_initialization()
 	offsetdistance = (isdefined(getgametypesetting(#"hash_75a36f7e4a81c93")) ? getgametypesetting(#"hash_75a36f7e4a81c93") : 0);
 	if(var_3bc28449 > 0 && insertion.index > 0)
 	{
-		var_df4f7099 = level.var_90161fff[0];
+		var_df4f7099 = level.insertions[0];
 		var_df4f7099 flagsys::wait_till(#"hash_4e5fc66b9144a5c8");
 		function_d53a8c5b(insertion, var_df4f7099.fly_over_point, var_df4f7099.var_59526dd5 - 180, offsetdistance);
 	}
@@ -374,7 +374,7 @@ function function_1db63266()
 		assert(isplayer(self));
 	#/
 	var_5ed0195b = function_20cba65e(self);
-	insertion = level.var_90161fff[var_5ed0195b];
+	insertion = level.insertions[var_5ed0195b];
 	if(isdefined(insertion) && isdefined(insertion.var_ef59e360))
 	{
 		function_9368af66(insertion, self);
@@ -420,16 +420,16 @@ function function_20cba65e(player)
 	{
 		return 0;
 	}
-	var_aa9b5883 = array(#"hash_78eec1ce4940c8e8", #"hash_78eec4ce4940ce01", #"hash_78eec3ce4940cc4e", #"hash_78eec6ce4940d167", #"hash_78eec5ce4940cfb4");
+	platoons = array(#"hash_78eec1ce4940c8e8", #"hash_78eec4ce4940ce01", #"hash_78eec3ce4940cc4e", #"hash_78eec6ce4940d167", #"hash_78eec5ce4940cfb4");
 	var_9257bec = [];
-	for(index = 0; index < var_aa9b5883.size; index++)
+	for(index = 0; index < platoons.size; index++)
 	{
-		var_9257bec[var_aa9b5883[index]] = index;
+		var_9257bec[platoons[index]] = index;
 	}
 	platoon = function_22448d6c(player.team);
-	for(index = 0; index < level.var_90161fff.size; index++)
+	for(index = 0; index < level.insertions.size; index++)
 	{
-		if(isdefined(var_9257bec[platoon]) && var_9257bec[platoon] == index % var_aa9b5883.size - 1)
+		if(isdefined(var_9257bec[platoon]) && var_9257bec[platoon] == index % platoons.size - 1)
 		{
 			return index;
 		}
@@ -453,7 +453,7 @@ function function_ea1ad421(insertion, start, end)
 	#/
 	direction = end - start;
 	direction = vectornormalize(direction);
-	if(oob::function_e3fdd830(end))
+	if(oob::chr_party(end))
 	{
 		point = function_bb2c2f4d(end, direction, 5000, 0);
 	}
@@ -483,7 +483,7 @@ function function_f31cf3bb(point, direction, step, depth, var_94a1d56d = 10)
 			return var_23685c5;
 		}
 		new_point = var_23685c5 + direction * step;
-		touching = oob::function_e3fdd830(new_point);
+		touching = oob::chr_party(new_point);
 		/#
 		#/
 		depth++;
@@ -514,7 +514,7 @@ function function_bb2c2f4d(point, direction, step, depth)
 			return undefined;
 		}
 		new_point = var_6b1f4b9c - direction * step;
-		touching = oob::function_e3fdd830(new_point);
+		touching = oob::chr_party(new_point);
 		/#
 			debug_sphere(new_point - vectorscale((0, 0, 1), 300), 45, (touching ? (1, 0, 0) : (0, 1, 0)));
 		#/
@@ -712,7 +712,7 @@ function function_ff107056(insertion)
 function function_8dcd8623()
 {
 	/#
-		assert(isarray(level.var_90161fff));
+		assert(isarray(level.insertions));
 	#/
 	/#
 		if(getdvarint(#"hash_6fd0fd3292f07618", 0))
@@ -723,9 +723,9 @@ function function_8dcd8623()
 	level flagsys::clear(#"hash_60fcdd11812a0134");
 	level flagsys::clear(#"hash_5a3e17fbc33cdc86");
 	level flagsys::clear(#"hash_605a9ce4fc2912ae");
-	for(index = 0; index < level.var_90161fff.size; index++)
+	for(index = 0; index < level.insertions.size; index++)
 	{
-		insertion = level.var_90161fff[index];
+		insertion = level.insertions[index];
 		if(!(isdefined(insertion.allowed) && insertion.allowed))
 		{
 			return;
@@ -834,9 +834,9 @@ function function_dd34168c(insertion, flag)
 */
 function function_df47b31b(flag)
 {
-	for(index = 0; index < level.var_90161fff.size; index++)
+	for(index = 0; index < level.insertions.size; index++)
 	{
-		insertion = level.var_90161fff[index];
+		insertion = level.insertions[index];
 		if(!insertion flagsys::get(flag))
 		{
 			return 0;
@@ -1843,7 +1843,7 @@ function function_aa3a20fb()
 */
 function function_80c60f66(player)
 {
-	if(player infection::function_bf46a7aa())
+	if(player infection::is_infected())
 	{
 		return;
 	}
@@ -1851,9 +1851,9 @@ function function_80c60f66(player)
 	/#
 		assert(isstruct(insertion));
 	#/
-	for(index = 0; index < level.var_90161fff.size; index++)
+	for(index = 0; index < level.insertions.size; index++)
 	{
-		var_18310f7e = level.var_90161fff[index];
+		var_18310f7e = level.insertions[index];
 		if(insertion == var_18310f7e)
 		{
 			var_18310f7e.players[var_18310f7e.players.size] = player;
@@ -3189,9 +3189,9 @@ private function function_d7f18e8f(players)
 */
 function function_6660c1f()
 {
-	for(index = 0; index < level.var_90161fff.size; index++)
+	for(index = 0; index < level.insertions.size; index++)
 	{
-		insertion = level.var_90161fff[index];
+		insertion = level.insertions[index];
 		if(insertion flagsys::get(#"hash_60fcdd11812a0134"))
 		{
 			return 0;
@@ -3211,9 +3211,9 @@ function function_6660c1f()
 */
 function function_e5d4df1c()
 {
-	for(index = 0; index < level.var_90161fff.size; index++)
+	for(index = 0; index < level.insertions.size; index++)
 	{
-		insertion = level.var_90161fff[index];
+		insertion = level.insertions[index];
 		if(insertion flagsys::get(#"hash_122f326d72f4c884"))
 		{
 			return 1;

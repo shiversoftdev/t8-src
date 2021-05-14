@@ -52,11 +52,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_1c44e237ebd3728d", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_1c44e237ebd3728d", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -106,7 +106,7 @@ private function function_353ea592()
 	self endon("6fdbe26c6aeb036");
 	level endon(#"end_of_round");
 	level thread function_8318a404();
-	level waittill(#"hash_216d8430fb4492b9");
+	level waittill(#"elephant_death");
 	level flag::clear(#"infinite_round_spawning");
 	level flag::clear(#"pause_round_timeout");
 	level.zombie_total = 0;
@@ -222,7 +222,7 @@ private function boss_fight()
 	level flag::set(#"infinite_round_spawning");
 	level flag::set(#"pause_round_timeout");
 	var_e1892f1c waittill(#"death");
-	level notify(#"hash_216d8430fb4492b9");
+	level notify(#"elephant_death");
 }
 
 /*
@@ -279,8 +279,8 @@ private function function_33935d5f()
 			{
 				e_clip delete();
 			}
-			var_5ec588a = struct::get(self.target, "targetname");
-			var_5ec588a scene::play();
+			fx_tower = struct::get(self.target, "targetname");
+			fx_tower scene::play();
 			self.b_exploded = 1;
 			if(isdefined(self.badplace_name))
 			{
@@ -426,7 +426,7 @@ private function function_dd2db3df()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_95785950(var_c625106d, var_86163b89, var_5839811b, var_39acfdda)
+private function function_95785950(var_c625106d, var_86163b89, n_stage, var_39acfdda)
 {
 	self notify("683195b7da79b6b9");
 	self endon("683195b7da79b6b9");
@@ -460,8 +460,8 @@ private function function_ae1cbf2e()
 	self endon("6a1dc39ab115329");
 	level zm_audio::sndannouncerplayvox(#"hash_c8182d04e7f43c9");
 	level zm_audio::function_bca32e49("m_quest", "fury_arrive");
-	namespace_891c9bac::function_3c173d37();
-	namespace_891c9bac::function_7e4562d7(#"hash_1a458ffc30e9306d");
+	zm_vo::function_3c173d37();
+	zm_vo::function_7e4562d7(#"hash_1a458ffc30e9306d");
 }
 
 /*
@@ -500,7 +500,7 @@ private function function_c64fc074()
 	self notify("7d5d5c98ec5ee437");
 	self endon("7d5d5c98ec5ee437");
 	level waittill(#"hash_634700dd42db02d8");
-	namespace_891c9bac::function_3c173d37();
-	namespace_891c9bac::function_7e4562d7(#"hash_6e1019732c1a9fc4");
+	zm_vo::function_3c173d37();
+	zm_vo::function_7e4562d7(#"hash_6e1019732c1a9fc4");
 }
 

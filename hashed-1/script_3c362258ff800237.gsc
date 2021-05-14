@@ -7,11 +7,11 @@
 #using scripts\zm_common\callbacks.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_f551babc;
+#namespace zm_trial;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0x2320ACD9
 	Offset: 0xE0
 	Size: 0x3C
@@ -20,12 +20,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_3ab85697cc5a712b", &__init__, undefined, undefined);
+	system::register(#"zm_trial", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0x596E2587
 	Offset: 0x128
 	Size: 0x3C
@@ -44,7 +44,7 @@ function __init__()
 
 /*
 	Name: function_d02ffd
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0x5CE6D695
 	Offset: 0x170
 	Size: 0x8C
@@ -65,7 +65,7 @@ function function_d02ffd(name)
 
 /*
 	Name: function_ce2fdd3b
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0x7B244B22
 	Offset: 0x208
 	Size: 0x48
@@ -83,7 +83,7 @@ function function_ce2fdd3b(index)
 
 /*
 	Name: function_b47f6aba
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0xB724B7CE
 	Offset: 0x258
 	Size: 0x12
@@ -92,12 +92,12 @@ function function_ce2fdd3b(index)
 */
 function function_b47f6aba()
 {
-	return zm_utility::function_3bff983f();
+	return zm_utility::is_trials();
 }
 
 /*
 	Name: register_challenge
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0xE483C3BF
 	Offset: 0x278
 	Size: 0xBE
@@ -119,7 +119,7 @@ function register_challenge(name, var_c5dd8620, var_bbcdbff5)
 
 /*
 	Name: function_a36e8c38
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0x9626DF02
 	Offset: 0x340
 	Size: 0xB4
@@ -143,7 +143,7 @@ function function_a36e8c38(name)
 
 /*
 	Name: function_4dbf2663
-	Namespace: namespace_f551babc
+	Namespace: zm_trial
 	Checksum: 0xC4F186E3
 	Offset: 0x400
 	Size: 0x49E

@@ -112,9 +112,9 @@ function function_1ff1beff()
 	}
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"weapon_change");
-		var_1c114591 = var_385703b7.weapon;
+		s_notify = undefined;
+		s_notify = self waittill(#"weapon_change");
+		var_1c114591 = s_notify.weapon;
 		if(isdefined(var_1c114591.isheroweapon) && var_1c114591.isheroweapon || zm_weapons::is_wonder_weapon(var_1c114591))
 		{
 			if(self hasperk("specialty_freefire"))

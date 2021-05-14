@@ -113,23 +113,23 @@ function function_f23011ac(array, b_keep_keys, str_classname)
 */
 function get_touching(a_ents, e_volume)
 {
-	var_1b4701fd = undefined;
+	a_touching = undefined;
 	foreach(e_ent in a_ents)
 	{
 		if(e_ent istouching(e_volume))
 		{
-			if(!isdefined(var_1b4701fd))
+			if(!isdefined(a_touching))
 			{
-				var_1b4701fd = [];
+				a_touching = [];
 			}
-			else if(!isarray(var_1b4701fd))
+			else if(!isarray(a_touching))
 			{
-				var_1b4701fd = array(var_1b4701fd);
+				a_touching = array(a_touching);
 			}
-			var_1b4701fd[var_1b4701fd.size] = e_ent;
+			a_touching[a_touching.size] = e_ent;
 		}
 	}
-	return var_1b4701fd;
+	return a_touching;
 }
 
 /*
@@ -1567,8 +1567,8 @@ function function_d1f43a84(max_entries, minval, maxval, compare_func, var_c8e96e
 			}
 			source_array[source_array.size] = function_21a3a673(minval, maxval);
 		}
-		var_be38e386 = arraycopy(source_array);
-		sorted_array = quick_sort(var_be38e386, compare_func);
+		test_array = arraycopy(source_array);
+		sorted_array = quick_sort(test_array, compare_func);
 		if(var_c8e96eee)
 		{
 			for(i = 0; i < var_365f3054 - 1; i++)

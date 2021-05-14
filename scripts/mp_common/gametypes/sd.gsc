@@ -460,7 +460,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 	clientfield::set_player_uimodel("hudItems.playerLivesCount", level.numlives - self.var_a7d7e50a);
 	if(isdefined(self) && isdefined(attacker) && attacker != self && isplayer(attacker) && attacker.team != self.team)
 	{
-		scoreevents::processscoreevent(#"hash_301cbc24ac8b5bba", attacker, self, weapon);
+		scoreevents::processscoreevent(#"eliminated_enemy", attacker, self, weapon);
 		attacker contracts::function_fd9fb79b(#"hash_7ea5ab346a8be398");
 		if(isdefined(self.lastmansd) && self.lastmansd == 1)
 		{
@@ -720,7 +720,7 @@ function bombs()
 		smart_cover::function_18f38647(trigger);
 		concertina_wire::function_18f38647(trigger);
 		name = #"sd" + trigger.script_label;
-		var_3fdd816d = #"hash_2797ef96a09741f0" + trigger.script_label;
+		waypointname = #"hash_2797ef96a09741f0" + trigger.script_label;
 		trigger.angles = visuals[0].angles;
 		bombzone = gameobjects::create_use_object(game.defenders, trigger, visuals, (0, 0, 0), name, 1, 1);
 		bombzone.angles = visuals[0].angles;
@@ -748,7 +748,7 @@ function bombs()
 		var_69bc8821.ownerteam = game.defenders;
 		var_69bc8821.team = game.defenders;
 		var_69bc8821.type = "Waypoint";
-		objective_add(var_69bc8821.objectiveid, "invisible", var_69bc8821, var_3fdd816d);
+		objective_add(var_69bc8821.objectiveid, "invisible", var_69bc8821, waypointname);
 		var_69bc8821 gameobjects::set_visible_team(#"any");
 		bombzone.waypoint = var_69bc8821;
 		if(isdefined(level.bomb_zone_fixup))

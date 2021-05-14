@@ -39,7 +39,7 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
@@ -51,7 +51,7 @@ function __init__()
 	{
 		level.var_b5079c7c = array("exp_lgt_ar_accurate_t8", "exp_lgt_ar_fastfire_t8", "exp_lgt_ar_modular_t8", "exp_lgt_ar_stealth_t8", "exp_lgt_ar_stealth_t8_2", "exp_lgt_bowie", "exp_lgt_bowie_2", "exp_lgt_lmg_standard_t8", "exp_lgt_pistol_burst_t8", "exp_lgt_pistol_standard_t8", "exp_lgt_shotgun_pump_t8", "exp_lgt_shotgun_trenchgun_t8", "exp_lgt_smg_accurate_t8", "exp_lgt_smg_accurate_t8_2", "exp_lgt_smg_drum_pistol_t8", "exp_lgt_smg_fastfire_t8", "exp_lgt_smg_handling_t8", "exp_lgt_smg_standard_t8", "exp_lgt_sniper_quickscope_t8", "exp_lgt_tr_leveraction_t8", "exp_lgt_tr_longburst_t8", "exp_lgt_tr_powersemi_t8");
 	}
-	namespace_f551babc::register_challenge(#"hash_347b44dd26e1875", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_347b44dd26e1875", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -121,7 +121,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_347b44dd26e1875");
+	challenge = zm_trial::function_a36e8c38(#"hash_347b44dd26e1875");
 	return isdefined(challenge);
 }
 
@@ -136,7 +136,7 @@ function is_active()
 */
 function function_8327d26e()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
@@ -188,10 +188,10 @@ private function function_6fd56055()
 		target_struct = struct::get(wallbuy.target, "targetname");
 		if(isdefined(target_struct) && isdefined(target_struct.target))
 		{
-			var_e75c951b = getent(target_struct.target, "targetname");
-			if(isdefined(var_e75c951b))
+			wallbuy_fx = getent(target_struct.target, "targetname");
+			if(isdefined(wallbuy_fx))
 			{
-				var_e75c951b ghost();
+				wallbuy_fx ghost();
 			}
 		}
 		model = struct::get(wallbuy.target, "targetname");
@@ -237,10 +237,10 @@ private function function_fa70c8c4()
 		target_struct = struct::get(wallbuy.target, "targetname");
 		if(isdefined(target_struct) && isdefined(target_struct.target))
 		{
-			var_e75c951b = getent(target_struct.target, "targetname");
-			if(isdefined(var_e75c951b))
+			wallbuy_fx = getent(target_struct.target, "targetname");
+			if(isdefined(wallbuy_fx))
 			{
-				var_e75c951b show();
+				wallbuy_fx show();
 			}
 		}
 		model = struct::get(wallbuy.target, "targetname");
@@ -268,7 +268,7 @@ private function function_fa70c8c4()
 }
 
 /*
-	Name: function_d3b74d4a
+	Name: _open_arcs
 	Namespace: namespace_497ab7da
 	Checksum: 0xE414D83A
 	Offset: 0xF30
@@ -276,7 +276,7 @@ private function function_fa70c8c4()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d3b74d4a(blocker)
+private function _open_arcs(blocker)
 {
 	if(isdefined(blocker.script_noteworthy) && (blocker.script_noteworthy == "electric_door" || blocker.script_noteworthy == "local_electric_door"))
 	{
@@ -301,7 +301,7 @@ private function function_fcf197fa(targetname, show)
 	{
 		foreach(blocker in blockers)
 		{
-			if(isdefined(blocker.target) && function_d3b74d4a(blocker))
+			if(isdefined(blocker.target) && _open_arcs(blocker))
 			{
 				var_c819ac8 = getentarray(blocker.target, "targetname");
 				if(isdefined(var_c819ac8))

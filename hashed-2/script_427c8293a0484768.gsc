@@ -42,10 +42,10 @@ function __init__()
 	level.var_b1805d48 = array(getweapon(#"hash_7a42b57be462143f"), getweapon(#"hash_7264d6f24a950a5b"), getweapon(#"hash_291e1c117ebbf5e6"), getweapon(#"hash_579652e2459b8c74"));
 	level.var_e027f904 = array(level.var_a3e665cc, level.var_7f6e8568, level.var_cf62bc7a, level.var_e724fe4e);
 	callback::function_20263b9e(&function_20263b9e);
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_7a42b57be462143f");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_7264d6f24a950a5b");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_291e1c117ebbf5e6");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_579652e2459b8c74");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_7a42b57be462143f");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_7264d6f24a950a5b");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_291e1c117ebbf5e6");
+	zm_loadout::register_lethal_grenade_for_level(#"hash_579652e2459b8c74");
 	zm::function_84d343d(#"hash_7a42b57be462143f", &function_23cf8077);
 	zm::function_84d343d(#"hash_166200a2e04510f4", &function_23cf8077);
 	zm::function_84d343d(#"hash_3fec64a2af587850", &function_23cf8077);

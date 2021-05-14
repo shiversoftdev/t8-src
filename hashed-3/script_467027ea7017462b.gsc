@@ -14,11 +14,11 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_93829f86;
+#namespace zm_items;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x1E37467
 	Offset: 0xF8
 	Size: 0x44
@@ -27,12 +27,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1215b02cab483ee7", &__init__, &__main__, undefined);
+	system::register(#"zm_items", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0xC46BCA95
 	Offset: 0x148
 	Size: 0xE4
@@ -67,7 +67,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0xBF2B06D7
 	Offset: 0x238
 	Size: 0x3B0
@@ -143,7 +143,7 @@ function __main__()
 
 /*
 	Name: player_on_spawned
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0xB23ACF2B
 	Offset: 0x5F0
 	Size: 0x32
@@ -164,7 +164,7 @@ function player_on_spawned()
 
 /*
 	Name: function_4d230236
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x25115BAA
 	Offset: 0x630
 	Size: 0x100
@@ -194,7 +194,7 @@ function function_4d230236(var_9c95ad05, fn_callback)
 
 /*
 	Name: function_307756a0
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x6E06E7AD
 	Offset: 0x738
 	Size: 0x68
@@ -206,7 +206,7 @@ private function function_307756a0()
 	while(true)
 	{
 		waitresult = undefined;
-		waitresult = level waittill(#"hash_42e3c90e49eb6699");
+		waitresult = level waittill(#"player_bled_out");
 		player = waitresult.player;
 		player thread function_b64c32cf(player);
 	}
@@ -214,7 +214,7 @@ private function function_307756a0()
 
 /*
 	Name: function_b64c32cf
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x87B63155
 	Offset: 0x7A8
 	Size: 0x110
@@ -240,15 +240,15 @@ private function function_b64c32cf(player)
 }
 
 /*
-	Name: function_e60b2d22
-	Namespace: namespace_93829f86
+	Name: player_has
+	Namespace: zm_items
 	Checksum: 0x2C1B9B94
 	Offset: 0x8C0
 	Size: 0x11A
 	Parameters: 2
 	Flags: Linked
 */
-function function_e60b2d22(player, var_9c95ad05)
+function player_has(player, var_9c95ad05)
 {
 	if(!(isdefined(var_9c95ad05.var_52a84c7a) && var_9c95ad05.var_52a84c7a) && isdefined(player))
 	{
@@ -279,15 +279,15 @@ function function_e60b2d22(player, var_9c95ad05)
 }
 
 /*
-	Name: function_cf4e3354
-	Namespace: namespace_93829f86
+	Name: player_pick_up
+	Namespace: zm_items
 	Checksum: 0x997B4062
 	Offset: 0x9E8
 	Size: 0x25C
 	Parameters: 2
 	Flags: Linked
 */
-function function_cf4e3354(player, var_9c95ad05)
+function player_pick_up(player, var_9c95ad05)
 {
 	if(var_9c95ad05.var_9fffdcee)
 	{
@@ -327,7 +327,7 @@ function function_cf4e3354(player, var_9c95ad05)
 
 /*
 	Name: player_take
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x750D7F83
 	Offset: 0xC50
 	Size: 0x116
@@ -367,7 +367,7 @@ function player_take(player, var_9c95ad05)
 
 /*
 	Name: function_ab3bb6bf
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0x755F7953
 	Offset: 0xD70
 	Size: 0x13A
@@ -393,7 +393,7 @@ function function_ab3bb6bf(holder, var_9c95ad05)
 
 /*
 	Name: spawn_item
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0xBCCF4179
 	Offset: 0xEB8
 	Size: 0x62
@@ -408,7 +408,7 @@ function spawn_item(var_9c95ad05, v_origin, v_angles, var_f93e465d = 1)
 
 /*
 	Name: debug_items
-	Namespace: namespace_93829f86
+	Namespace: zm_items
 	Checksum: 0xD4EAFEA7
 	Offset: 0xF28
 	Size: 0x102

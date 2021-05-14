@@ -7,11 +7,11 @@
 #using scripts\mp_common\gametypes\globallogic.gsc;
 #using scripts\mp_common\gametypes\round.gsc;
 
-#namespace namespace_aa9b5883;
+#namespace platoons;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x34FE4404
 	Offset: 0xA8
 	Size: 0x3C
@@ -25,7 +25,7 @@ autoexec function function_89f2df9()
 
 /*
 	Name: __init__
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x257039BB
 	Offset: 0xF0
 	Size: 0x24
@@ -39,7 +39,7 @@ function __init__()
 
 /*
 	Name: on_start_gametype
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x662161EB
 	Offset: 0x120
 	Size: 0x34
@@ -53,7 +53,7 @@ private function on_start_gametype()
 
 /*
 	Name: function_a1d82bd3
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x9B7A6F6F
 	Offset: 0x160
 	Size: 0x36C
@@ -71,7 +71,7 @@ function function_a1d82bd3()
 		return;
 	}
 	params = {#hash_42c20e77:[], #hash_1ab40902:[]};
-	foreach(var_b6173883, platoon in level.var_aa9b5883)
+	foreach(var_b6173883, platoon in level.platoons)
 	{
 		if(platoon.var_9dd75dad == 0)
 		{
@@ -130,7 +130,7 @@ function function_a1d82bd3()
 
 /*
 	Name: function_a929f627
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xD0D7B02F
 	Offset: 0x4D8
 	Size: 0xAC
@@ -153,7 +153,7 @@ function function_a929f627(params)
 
 /*
 	Name: function_cea75f29
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x700DCA62
 	Offset: 0x590
 	Size: 0x94
@@ -163,9 +163,9 @@ function function_a929f627(params)
 function function_cea75f29()
 {
 	count = 0;
-	foreach(platoon, _ in level.var_aa9b5883)
+	foreach(platoon, _ in level.platoons)
 	{
-		if(!function_6ce0360d(platoon))
+		if(!is_all_dead(platoon))
 		{
 			count++;
 		}
@@ -175,7 +175,7 @@ function function_cea75f29()
 
 /*
 	Name: count_players
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xAC1340E0
 	Offset: 0x630
 	Size: 0x148
@@ -185,7 +185,7 @@ function function_cea75f29()
 function count_players()
 {
 	player_counts = [];
-	foreach(platoon, _ in level.var_aa9b5883)
+	foreach(platoon, _ in level.platoons)
 	{
 		player_counts[platoon] = 0;
 	}
@@ -193,7 +193,7 @@ function count_players()
 	foreach(team, _ in var_6a39bbbd)
 	{
 		platoon = function_22448d6c(team);
-		if(!isdefined(level.var_aa9b5883[platoon]))
+		if(!isdefined(level.platoons[platoon]))
 		{
 			continue;
 		}
@@ -204,7 +204,7 @@ function count_players()
 
 /*
 	Name: function_ef7959f0
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xDEE98996
 	Offset: 0x780
 	Size: 0xD4
@@ -216,7 +216,7 @@ private function function_ef7959f0()
 	playercounts = self count_players();
 	count = 9999;
 	var_c15f9be2 = undefined;
-	foreach(platoon, _ in level.var_aa9b5883)
+	foreach(platoon, _ in level.platoons)
 	{
 		if(count > playercounts[platoon])
 		{
@@ -229,7 +229,7 @@ private function function_ef7959f0()
 
 /*
 	Name: function_77ad4730
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xA91D84E3
 	Offset: 0x860
 	Size: 0xEA
@@ -245,7 +245,7 @@ function function_77ad4730()
 		if(var_7826a1b3.size > 0)
 		{
 			var_51746d07 = var_7826a1b3[self getentitynumber()];
-			if(isdefined(var_51746d07) && isdefined(level.var_aa9b5883[var_51746d07]))
+			if(isdefined(var_51746d07) && isdefined(level.platoons[var_51746d07]))
 			{
 				assignment = hash(var_51746d07);
 			}
@@ -256,7 +256,7 @@ function function_77ad4730()
 
 /*
 	Name: function_4b016b57
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0xCBC62173
 	Offset: 0x958
 	Size: 0xDC
@@ -281,7 +281,7 @@ function function_4b016b57()
 
 /*
 	Name: function_a214d798
-	Namespace: namespace_aa9b5883
+	Namespace: platoons
 	Checksum: 0x791BF358
 	Offset: 0xA40
 	Size: 0x18C
@@ -315,20 +315,20 @@ function function_a214d798(platoon)
 }
 
 /*
-	Name: function_6ce0360d
-	Namespace: namespace_aa9b5883
+	Name: is_all_dead
+	Namespace: platoons
 	Checksum: 0x1E368DE4
 	Offset: 0xBD8
 	Size: 0xAA
 	Parameters: 1
 	Flags: Linked
 */
-function function_6ce0360d(platoon)
+function is_all_dead(platoon)
 {
 	teams = function_37d3bfcb(platoon);
 	foreach(team in teams)
 	{
-		if(!teams::function_6ce0360d(team))
+		if(!teams::is_all_dead(team))
 		{
 			return 0;
 		}

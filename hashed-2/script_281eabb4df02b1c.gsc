@@ -9,11 +9,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_48a3f237;
+#namespace zm_talisman_box_guarantee_lmg;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_48a3f237
+	Namespace: zm_talisman_box_guarantee_lmg
 	Checksum: 0x34450DF
 	Offset: 0xD8
 	Size: 0x3C
@@ -22,12 +22,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_7751636822b561a2", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_box_guarantee_lmg", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_48a3f237
+	Namespace: zm_talisman_box_guarantee_lmg
 	Checksum: 0x41BAE602
 	Offset: 0x120
 	Size: 0x2C
@@ -36,19 +36,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_box_guarantee_lmg", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_box_guarantee_lmg", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_48a3f237
+	Name: activate_talisman
+	Namespace: zm_talisman_box_guarantee_lmg
 	Checksum: 0xC94702DD
 	Offset: 0x158
 	Size: 0x26
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self.var_afb3ba4e = &function_8d50b46a;
 	self.var_c21099c0 = 1;
@@ -56,7 +56,7 @@ function function_fd7e329b()
 
 /*
 	Name: function_8d50b46a
-	Namespace: namespace_48a3f237
+	Namespace: zm_talisman_box_guarantee_lmg
 	Checksum: 0xF5A05B0F
 	Offset: 0x188
 	Size: 0xFA

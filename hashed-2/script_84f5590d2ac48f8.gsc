@@ -152,7 +152,7 @@ function function_3a81612d(localclientnum, value)
 }
 
 /*
-	Name: function_5e22e9d6
+	Name: registerplayer_callout_traversal
 	Namespace: full_screen_movie
 	Checksum: 0x65D7B289
 	Offset: 0x358
@@ -160,9 +160,9 @@ function function_3a81612d(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5e22e9d6(localclientnum, value)
+function registerplayer_callout_traversal(localclientnum, value)
 {
-	[[ self ]]->function_5e22e9d6(localclientnum, value);
+	[[ self ]]->registerplayer_callout_traversal(localclientnum, value);
 }
 
 /*
@@ -336,7 +336,7 @@ function function_3a81612d(localclientnum, value)
 }
 
 /*
-	Name: function_5e22e9d6
+	Name: registerplayer_callout_traversal
 	Namespace: namespace_7ca06143
 	Checksum: 0xE353861D
 	Offset: 0x7E8
@@ -344,7 +344,7 @@ function function_3a81612d(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5e22e9d6(localclientnum, value)
+function registerplayer_callout_traversal(localclientnum, value)
 {
 	[[ self ]]->function_d7d2fcce(localclientnum, "skippable", value);
 }
@@ -405,7 +405,7 @@ private autoexec function function_7ca06143()
 	classes.var_7ca06143[0].__vtable[913321084] = &namespace_6aaccc24::__destructor;
 	classes.var_7ca06143[0].__vtable[913321084] = &namespace_7ca06143::__destructor;
 	classes.var_7ca06143[0].__vtable[622839832] = &namespace_7ca06143::function_251fc818;
-	classes.var_7ca06143[0].__vtable[1579346390] = &namespace_7ca06143::function_5e22e9d6;
+	classes.var_7ca06143[0].__vtable[1579346390] = &namespace_7ca06143::registerplayer_callout_traversal;
 	classes.var_7ca06143[0].__vtable[981557549] = &namespace_7ca06143::function_3a81612d;
 	classes.var_7ca06143[0].__vtable[1228080559] = &namespace_7ca06143::function_493305af;
 	classes.var_7ca06143[0].__vtable[1554653643] = &namespace_7ca06143::function_5caa21cb;

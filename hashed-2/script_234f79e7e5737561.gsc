@@ -22,10 +22,10 @@ event main(eventstruct)
 	{
 		return;
 	}
-	clientfield::register("actor", "tutorial_keyline_fx", 1, 2, "int", &function_d1730bd, 0, 0);
+	clientfield::register("actor", "tutorial_keyline_fx", 1, 2, "int", &tutorial_fx, 0, 0);
 	clientfield::register("zbarrier", "tutorial_keyline_fx", 1, 2, "int", &function_a9c8f9d2, 0, 0);
-	clientfield::register("item", "tutorial_keyline_fx", 1, 2, "int", &function_d1730bd, 0, 0);
-	clientfield::register("scriptmover", "tutorial_keyline_fx", 1, 2, "int", &function_d1730bd, 0, 0);
+	clientfield::register("item", "tutorial_keyline_fx", 1, 2, "int", &tutorial_fx, 0, 0);
+	clientfield::register("scriptmover", "tutorial_keyline_fx", 1, 2, "int", &tutorial_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_1b509b0ba634a25a", 1, 1, "int", &function_7c8084eb, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_1390e08de02cbdc7", 1, 1, "int", &function_8057ebca, 0, 0);
 	clientfield::register("worlduimodel", "hudItems.ztut.showLocation", 1, 1, "int", undefined, 0, 0);
@@ -89,7 +89,7 @@ function function_9fc8cc9c(localclientnum)
 }
 
 /*
-	Name: function_d1730bd
+	Name: tutorial_fx
 	Namespace: namespace_e204d655
 	Checksum: 0x58F61CFF
 	Offset: 0x7B0
@@ -97,7 +97,7 @@ function function_9fc8cc9c(localclientnum)
 	Parameters: 7
 	Flags: Linked
 */
-function function_d1730bd(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function tutorial_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -132,8 +132,8 @@ function function_a9c8f9d2(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		var_5548b1dc = self getnumzbarrierpieces();
-		for(n_index = 0; n_index < var_5548b1dc; n_index++)
+		n_pieces = self getnumzbarrierpieces();
+		for(n_index = 0; n_index < n_pieces; n_index++)
 		{
 			e_piece = self zbarriergetpiece(n_index);
 			e_piece function_bf9d3071(#"hash_2ef4d8e5fdbc8a08");
@@ -141,8 +141,8 @@ function function_a9c8f9d2(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else if(newval == 2)
 	{
-		var_5548b1dc = self getnumzbarrierpieces();
-		for(n_index = 0; n_index < var_5548b1dc; n_index++)
+		n_pieces = self getnumzbarrierpieces();
+		for(n_index = 0; n_index < n_pieces; n_index++)
 		{
 			e_piece = self zbarriergetpiece(n_index);
 			e_piece function_5d482e78(#"hash_2ef4d8e5fdbc8a08");
@@ -186,12 +186,12 @@ function function_8057ebca(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval)
 	{
 		v_forward = anglestoforward(self.angles);
-		self.var_96715094 = playfx(localclientnum, level._effect[#"hash_1390e08de02cbdc7"], self.origin, v_forward);
+		self.blocker_fx = playfx(localclientnum, level._effect[#"hash_1390e08de02cbdc7"], self.origin, v_forward);
 		audio::playloopat(#"hash_7c4e89429c24b4bd", self.origin);
 	}
-	else if(isdefined(self.var_96715094))
+	else if(isdefined(self.blocker_fx))
 	{
-		stopfx(localclientnum, self.var_96715094);
+		stopfx(localclientnum, self.blocker_fx);
 		audio::stoploopat(#"hash_7c4e89429c24b4bd", self.origin);
 		playsound(0, #"hash_2f2d6d08b47e6395", self.origin);
 	}

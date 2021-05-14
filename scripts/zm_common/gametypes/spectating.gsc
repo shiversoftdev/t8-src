@@ -16,7 +16,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_5c3c200df3fab5c5", &__init__, undefined, undefined);
+	system::register(#"zm_spectating", &__init__, undefined, undefined);
 }
 
 /*

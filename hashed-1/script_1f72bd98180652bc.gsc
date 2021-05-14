@@ -37,17 +37,17 @@ function init()
 		level.var_4c6c91cf = 0;
 	}
 	level.var_95c10956 = &function_a0488ba8;
-	level flag::init(#"hash_4f92c2bf16a47cc3");
-	level flag::init(#"hash_787f723b2f0d72f9");
-	namespace_c3287616::function_cc103b38(#"hash_1bab8a0ba811401e", 7);
+	level flag::init(#"flag_gegenees_set_intro");
+	level flag::init(#"flag_skeleton_set_intro");
+	namespace_c3287616::function_cc103b38(#"catalyst", 7);
 	namespace_c3287616::function_cc103b38(#"blight_father", 14);
-	namespace_c3287616::function_2876740e(#"hash_1bab8a0ba811401e", &function_2ffc8cca);
+	namespace_c3287616::function_2876740e(#"catalyst", &function_2ffc8cca);
 	namespace_c3287616::function_2876740e(#"blight_father", &function_ec882ff);
 	namespace_c3287616::function_2876740e(#"gegenees", &function_57fd9735);
 	namespace_c3287616::function_306ce518(#"blight_father", &function_fa00e485);
 	namespace_c3287616::function_306ce518(#"gegenees", &function_c1a0ea97);
-	level thread function_6957c745(#"skeleton", 8, #"hash_787f723b2f0d72f9");
-	level thread function_6957c745(#"gegenees", 12, #"hash_4f92c2bf16a47cc3");
+	level thread function_6957c745(#"skeleton", 8, #"flag_skeleton_set_intro");
+	level thread function_6957c745(#"gegenees", 12, #"flag_gegenees_set_intro");
 	level thread function_990c303a();
 }
 

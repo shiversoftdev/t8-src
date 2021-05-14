@@ -76,10 +76,10 @@ function __main__()
 */
 private function function_8c0ab720()
 {
-	var_36e34c2e = namespace_e0710ee6::function_8d44707e(1) * (isdefined(level.var_1b0cc4f5) ? level.var_1b0cc4f5 : 1);
+	n_hp = namespace_e0710ee6::function_8d44707e(1) * (isdefined(level.var_1b0cc4f5) ? level.var_1b0cc4f5 : 1);
 	if(self.var_9fde8624 == #"gladiator_marauder")
 	{
-		var_36e34c2e = var_36e34c2e * 0.7;
+		n_hp = n_hp * 0.7;
 		self.var_17a22c08 = 150;
 		self playsound(#"zmb_ai_gladiator_spawn_mar");
 	}
@@ -87,18 +87,18 @@ private function function_8c0ab720()
 	{
 		self playsound(#"zmb_ai_gladiator_spawn_des");
 	}
-	self.health = int(var_36e34c2e);
-	self.maxhealth = int(var_36e34c2e);
+	self.health = int(n_hp);
+	self.maxhealth = int(n_hp);
 	self.should_zigzag = 1;
 	self zm_powerup_nuke::function_9a79647b(0.5);
 	self zm_score::function_82732ced();
 	if(self.var_9fde8624 == #"gladiator_destroyer")
 	{
-		namespace_81245006::function_b8cf6ebd(self, "c_t8_zmb_gladiator_dst_weakpoint_def");
+		namespace_81245006::initweakpoints(self, "c_t8_zmb_gladiator_dst_weakpoint_def");
 	}
 	else if(self.var_9fde8624 == #"gladiator_marauder")
 	{
-		namespace_81245006::function_b8cf6ebd(self, "c_t8_zmb_gladiator_mar_weakpoint_def");
+		namespace_81245006::initweakpoints(self, "c_t8_zmb_gladiator_mar_weakpoint_def");
 	}
 	self thread vo();
 }
@@ -128,7 +128,7 @@ function vo()
 		{
 			level.var_7e0bfb6 = 1;
 			line = array::random(a_vo);
-			if(namespace_891c9bac::function_8e0f4696(line))
+			if(zm_vo::function_8e0f4696(line))
 			{
 				arrayremovevalue(a_vo, line);
 				if(!a_vo.size)
@@ -238,7 +238,7 @@ function function_69f309b(n_to_spawn = 1, str_type = array::random(level.var_4d1
 		}
 		else if(isdefined(level.var_14961f90) && level flag::get("special_round"))
 		{
-			s_spawn_loc = [[level.var_14961f90]](var_7aad80fe);
+			s_spawn_loc = [[level.var_14961f90]](gladiator_spawner);
 		}
 		else if(isdefined(level.zm_loc_types[#"gladiator_location"]) && level.zm_loc_types[#"gladiator_location"].size)
 		{
@@ -248,7 +248,7 @@ function function_69f309b(n_to_spawn = 1, str_type = array::random(level.var_4d1
 		{
 			return 0;
 		}
-		ai = function_bfa79e98(var_7aad80fe, s_spawn_loc, str_type, n_round);
+		ai = function_bfa79e98(gladiator_spawner, s_spawn_loc, str_type, n_round);
 		if(isdefined(ai))
 		{
 			ai forceteleport(s_spawn_loc.origin, s_spawn_loc.angles);

@@ -115,17 +115,17 @@ function function_bfd817c1(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self.var_db7bd81e = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_charging", self, "tag_origin");
+		self.death_dash_charging_fx = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_charging", self, "tag_origin");
 		if(!isdefined(self.var_51a4a975))
 		{
 			self.var_51a4a975 = self playloopsound(#"hash_4d72f993ab3784d0");
 		}
 		self playrumbleonentity(localclientnum, #"damage_light");
 	}
-	else if(isdefined(self.var_db7bd81e))
+	else if(isdefined(self.death_dash_charging_fx))
 	{
-		stopfx(localclientnum, self.var_db7bd81e);
-		self.var_db7bd81e = undefined;
+		stopfx(localclientnum, self.death_dash_charging_fx);
+		self.death_dash_charging_fx = undefined;
 	}
 	if(isdefined(self.var_51a4a975))
 	{
@@ -147,7 +147,7 @@ function function_fe2634b2(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self.var_64630ee8 = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_charged", self, "tag_origin");
+		self.death_dash_charged_fx = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_charged", self, "tag_origin");
 		if(!isdefined(self.var_202e9919))
 		{
 			self.var_202e9919 = self playloopsound(#"hash_1bd81725dee72cb");
@@ -159,10 +159,10 @@ function function_fe2634b2(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self playrumbleonentity(localclientnum, #"damage_light");
 	}
-	else if(isdefined(self.var_64630ee8))
+	else if(isdefined(self.death_dash_charged_fx))
 	{
-		stopfx(localclientnum, self.var_64630ee8);
-		self.var_64630ee8 = undefined;
+		stopfx(localclientnum, self.death_dash_charged_fx);
+		self.death_dash_charged_fx = undefined;
 	}
 	if(isdefined(self.var_202e9919))
 	{
@@ -184,7 +184,7 @@ function function_237b1f1e(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self.var_c1726d31 = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_charged_stretch", self, "tag_origin");
+		self.death_dash_charged_mod_fx = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_charged_stretch", self, "tag_origin");
 		if(!isdefined(self.var_202e9919))
 		{
 			self.var_202e9919 = self playloopsound(#"hash_1bd81725dee72cb");
@@ -196,10 +196,10 @@ function function_237b1f1e(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self playrumbleonentity(localclientnum, #"damage_heavy");
 	}
-	else if(isdefined(self.var_c1726d31))
+	else if(isdefined(self.death_dash_charged_mod_fx))
 	{
-		stopfx(localclientnum, self.var_c1726d31);
-		self.var_c1726d31 = undefined;
+		stopfx(localclientnum, self.death_dash_charged_mod_fx);
+		self.death_dash_charged_mod_fx = undefined;
 	}
 	if(isdefined(self.var_202e9919))
 	{
@@ -221,17 +221,17 @@ function function_dced8aba(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self.var_80098dea = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_trail", self, "tag_origin");
+		self.death_dash_trail_fx = util::playfxontag(localclientnum, "zombie/fx8_perk_blaze_phase_trail", self, "tag_origin");
 		if(!isdefined(self.var_884925ad))
 		{
 			self playsound(localclientnum, #"hash_1075f6d6c2524599");
 			self.var_884925ad = self playloopsound(#"hash_fa14d87437616df");
 		}
 	}
-	else if(isdefined(self.var_80098dea))
+	else if(isdefined(self.death_dash_trail_fx))
 	{
-		stopfx(localclientnum, self.var_80098dea);
-		self.var_80098dea = undefined;
+		stopfx(localclientnum, self.death_dash_trail_fx);
+		self.death_dash_trail_fx = undefined;
 	}
 	if(isdefined(self.var_884925ad))
 	{

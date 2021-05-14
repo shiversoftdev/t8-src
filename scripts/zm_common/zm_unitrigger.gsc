@@ -92,11 +92,11 @@ function function_fac87205(var_9d80e6ef, var_e0bc0661, var_98f0ce74 = 0, var_85b
 	{
 		unitrigger_force_per_player_triggers(s_unitrigger, 1);
 	}
-	var_385703b7 = undefined;
-	var_385703b7 = self waittill(#"trigger_activated");
+	s_notify = undefined;
+	s_notify = self waittill(#"trigger_activated");
 	unregister_unitrigger(self.s_unitrigger);
 	self.s_unitrigger = undefined;
-	return var_385703b7.e_who;
+	return s_notify.e_who;
 }
 
 /*

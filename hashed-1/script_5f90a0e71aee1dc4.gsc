@@ -12,8 +12,8 @@
 	Parameters: 5
 	Flags: Linked
 */
-function register(id, var_948bda55, script_noteworthy, var_1c79db43, var_eb6d060d)
+function register(id, version, script_noteworthy, soul_fx, var_eb6d060d)
 {
-	namespace_617a54f4::function_d8383812(id, var_948bda55, script_noteworthy, 300, var_1c79db43, var_eb6d060d, undefined, undefined, 1);
+	namespace_617a54f4::function_d8383812(id, version, script_noteworthy, 300, soul_fx, var_eb6d060d, undefined, undefined, 1);
 }
 

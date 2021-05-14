@@ -356,7 +356,7 @@ private function function_5ca455a0(entity)
 */
 private function function_d996f07c(entity)
 {
-	entity notify(#"hash_5eba2531770c06e3");
+	entity notify(#"is_underground");
 	entity.var_bc0e449a = undefined;
 }
 
@@ -620,7 +620,7 @@ private function function_83a6d3ae(inflictor, attacker, damage, flags, meansofde
 {
 	var_9000ab2 = (isdefined(level.brutus_damage_percent) ? level.brutus_damage_percent : 0.5);
 	var_81dcad68 = 1.5;
-	if(isplayer(attacker) && attacker infection::function_bf46a7aa())
+	if(isplayer(attacker) && attacker infection::is_infected())
 	{
 		return 0;
 	}
@@ -754,13 +754,13 @@ function function_b510a832()
 		for(i = 0; i < self.patrol_path.path.size; i++)
 		{
 			var_cf88d3eb = self.patrol_path.path[start_index + i % self.patrol_path.path.size];
-			var_d9555c14 = getclosestpointonnavmesh(var_cf88d3eb.origin, 100, self getpathfindingradius());
-			if(!isdefined(var_d9555c14))
+			next_goal = getclosestpointonnavmesh(var_cf88d3eb.origin, 100, self getpathfindingradius());
+			if(!isdefined(next_goal))
 			{
 				break;
 			}
-			self.var_80780af2 = var_d9555c14;
-			self.var_9a79d89d = var_d9555c14;
+			self.var_80780af2 = next_goal;
+			self.var_9a79d89d = next_goal;
 			waitresult = undefined;
 			waitresult = self waittill_timeout(30, #"goal");
 			if(isdefined(self.var_50826790) && self.var_50826790)

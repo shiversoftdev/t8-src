@@ -152,7 +152,7 @@ function player_damage_override(einflictor, eattacker, idamage, idflags, mod, we
 }
 
 /*
-	Name: function_6d2fce2a
+	Name: sndonoverride_eye_
 	Namespace: gadget_radiation_field
 	Checksum: 0x6BC897D4
 	Offset: 0x8E8
@@ -160,7 +160,7 @@ function player_damage_override(einflictor, eattacker, idamage, idflags, mod, we
 	Parameters: 0
 	Flags: Linked
 */
-function function_6d2fce2a()
+function sndonoverride_eye_()
 {
 	player = self;
 	player endon(#"death", #"disconnect", #"hash_3641dd31b8121bfb");
@@ -306,7 +306,7 @@ function function_1503c832(weapon)
 	anchor setmodel(#"hash_7d464d864fc43385");
 	anchor ghost();
 	anchor linkto(player);
-	player thread function_6d2fce2a();
+	player thread sndonoverride_eye_();
 	anchor clientfield::set("cf_overclock_fx", 1);
 	anchor clientfield::set("self_destruct_start", 0);
 	anchor clientfield::set("self_destruct_end", 0);
@@ -698,8 +698,8 @@ function function_579fff1b()
 {
 	player = self;
 	player endon(#"death", #"disconnect", #"hash_3641dd31b8121bfb");
-	wait((isdefined(player.var_c9b769a6.var_c9b769a6.var_1123a989 / 1000) ? player.var_c9b769a6.var_1123a989 / 1000 : 0.5));
-	if(player function_d79b93e(player.var_c9b769a6.var_44c79c09))
+	wait((isdefined(player.gadget_weapon.gadget_weapon.var_1123a989 / 1000) ? player.gadget_weapon.var_1123a989 / 1000 : 0.5));
+	if(player function_d79b93e(player.gadget_weapon.var_44c79c09))
 	{
 		var_78da5708 = player fragbuttonpressed();
 		var_5aea88c3 = var_78da5708;
@@ -764,8 +764,8 @@ function shutdown(var_fb096220)
 		player.var_d44d1214 = undefined;
 	}
 	player function_3cbab338(var_fb096220);
-	player.var_e5b19a69 = undefined;
-	player.var_c9b769a6 = undefined;
+	player.gadget_slot = undefined;
+	player.gadget_weapon = undefined;
 	if(isdefined(var_fb096220) && var_fb096220)
 	{
 		player function_91e05fa7();
@@ -856,8 +856,8 @@ function gadget_on(slot, weapon)
 	{
 		return;
 	}
-	player.var_e5b19a69 = slot;
-	player.var_c9b769a6 = weapon;
+	player.gadget_slot = slot;
+	player.gadget_weapon = weapon;
 	power = player gadgetpowerget(slot);
 	if(power < 100)
 	{
@@ -902,7 +902,7 @@ function gadget_off(slot, weapon)
 */
 function function_831bf182()
 {
-	return isdefined(self.var_e5b19a69);
+	return isdefined(self.gadget_slot);
 }
 
 /*
@@ -920,7 +920,7 @@ function function_e68725b4()
 	{
 		return 0;
 	}
-	return self gadgetpowerget(self.var_e5b19a69);
+	return self gadgetpowerget(self.gadget_slot);
 }
 
 /*
@@ -935,7 +935,7 @@ function function_e68725b4()
 function function_a8d8842e()
 {
 	self setclientuivisibilityflag("weapon_hud_visible", 1);
-	self gadgetdeactivate(self.var_e5b19a69, self.var_c9b769a6);
+	self gadgetdeactivate(self.gadget_slot, self.gadget_weapon);
 }
 
 /*
@@ -949,7 +949,7 @@ function function_a8d8842e()
 */
 function power_off()
 {
-	self gadgetpowerset(self.var_e5b19a69, 0);
+	self gadgetpowerset(self.gadget_slot, 0);
 }
 
 /*
@@ -965,7 +965,7 @@ function power_on()
 {
 	if(self function_831bf182())
 	{
-		self gadgetpowerset(self.var_e5b19a69, 100);
+		self gadgetpowerset(self.gadget_slot, 100);
 	}
 }
 

@@ -430,7 +430,7 @@ function aat_response(death, inflictor, attacker, damage, flags, mod, weapon, vp
 	Parameters: 11
 	Flags: Linked
 */
-function register(name, percentage, cooldown_time_entity, cooldown_time_attacker, cooldown_time_global, occurs_on_death, result_func, damage_feedback_icon, damage_feedback_sound, validation_func, var_b2571463)
+function register(name, percentage, cooldown_time_entity, cooldown_time_attacker, cooldown_time_global, occurs_on_death, result_func, damage_feedback_icon, damage_feedback_sound, validation_func, catalyst)
 {
 	/#
 		assert(isdefined(level.aat_initializing) && level.aat_initializing, "");
@@ -502,9 +502,9 @@ function register(name, percentage, cooldown_time_entity, cooldown_time_attacker
 	level.aat[name].immune_trigger = [];
 	level.aat[name].immune_result_direct = [];
 	level.aat[name].immune_result_indirect = [];
-	if(isdefined(var_b2571463))
+	if(isdefined(catalyst))
 	{
-		level.aat[name].var_b2571463 = var_b2571463;
+		level.aat[name].catalyst = catalyst;
 	}
 }
 

@@ -47,11 +47,11 @@ function main()
 */
 function init_clientfields()
 {
-	clientfield::register("scriptmover", "soapstone_start_fx", 24000, 2, "int", &function_97965df6, 0, 0);
+	clientfield::register("scriptmover", "soapstone_start_fx", 24000, 2, "int", &soapstone_fx, 0, 0);
 }
 
 /*
-	Name: function_97965df6
+	Name: soapstone_fx
 	Namespace: namespace_f7a40df8
 	Checksum: 0x768D3FE5
 	Offset: 0x1B0
@@ -59,7 +59,7 @@ function init_clientfields()
 	Parameters: 7
 	Flags: Linked
 */
-function function_97965df6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function soapstone_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(isdefined(self.fx_glow))
 	{

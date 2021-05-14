@@ -52,11 +52,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("actor", "" + #"hash_faeb22982ab79dd", 16000, 1, "counter");
+	clientfield::register("actor", "" + #"gaia_impact_zombie", 16000, 1, "counter");
 	clientfield::register("scriptmover", "" + #"hash_90f855c336338af", 16000, 1, "counter");
-	clientfield::register("scriptmover", "" + #"hash_28495d5e2fe897d2", 16000, 1, "counter");
-	clientfield::register("scriptmover", "" + #"hash_1fedb98c44ca1523", 16000, 1, "counter");
-	clientfield::register("scriptmover", "" + #"hash_1e40b07387ffe8dd", 16000, 1, "counter");
+	clientfield::register("scriptmover", "" + #"gaia_impact", 16000, 1, "counter");
+	clientfield::register("scriptmover", "" + #"spike_explode", 16000, 1, "counter");
+	clientfield::register("scriptmover", "" + #"spike_spawn", 16000, 1, "counter");
 	level.var_53789618 = getweapon(#"hash_67c8dea04eccf4ab");
 	level.var_161aeda7 = getweapon(#"hash_6538045b64145e74");
 	level.var_b784afad = getweapon(#"hash_57feb2fb3f73d361");
@@ -112,9 +112,9 @@ function function_3f8da82c()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"weapon_change");
-		if(var_385703b7.weapon == level.var_53789618 || var_385703b7.weapon == level.var_54ed88ec)
+		s_notify = undefined;
+		s_notify = self waittill(#"weapon_change");
+		if(s_notify.weapon == level.var_53789618 || s_notify.weapon == level.var_54ed88ec)
 		{
 			level.var_a8472176 = 1;
 		}
@@ -136,30 +136,30 @@ function function_10b4d6ac(weapon)
 	if(weapon == level.var_54ed88ec)
 	{
 		n_damage = 8500;
-		var_a4c20abe = 1;
+		b_up = 1;
 	}
 	else
 	{
 		n_damage = 5000;
-		var_a4c20abe = 0;
+		b_up = 0;
 	}
-	a_e_targets = function_31ad5b3d(var_a4c20abe);
+	a_e_targets = function_31ad5b3d(b_up);
 	if(isdefined(a_e_targets))
 	{
 		if(isdefined(a_e_targets[0]) && a_e_targets[0].var_6f84b820 === #"boss")
 		{
-			var_e753f573 = 3;
+			n_proj = 3;
 		}
 		else if(!a_e_targets.size || (a_e_targets.size === 1 && !isactor(a_e_targets[0])))
 		{
-			var_e753f573 = 1;
+			n_proj = 1;
 		}
 		else
 		{
-			var_e753f573 = 3;
+			n_proj = 3;
 		}
 	}
-	for(i = 0; i < var_e753f573; i++)
+	for(i = 0; i < n_proj; i++)
 	{
 		e_projectile = util::spawn_model("tag_origin", self gettagorigin("tag_flash"), self gettagangles("tag_flash"));
 		if(isdefined(e_projectile))
@@ -202,9 +202,9 @@ function function_10b4d6ac(weapon)
 	Parameters: 1
 	Flags: Linked
 */
-function function_31ad5b3d(var_a4c20abe)
+function function_31ad5b3d(b_up)
 {
-	if(var_a4c20abe)
+	if(b_up)
 	{
 		n_range = 3000;
 	}
@@ -412,7 +412,7 @@ function function_ce711b5c(e_projectile, ai_zombie, n_damage)
 	{
 		e_projectile moveto(v_end, n_time);
 		e_projectile waittill(#"movedone");
-		e_projectile clientfield::increment("" + #"hash_28495d5e2fe897d2");
+		e_projectile clientfield::increment("" + #"gaia_impact");
 		waitframe(1);
 	}
 	else
@@ -490,19 +490,19 @@ function function_ce711b5c(e_projectile, ai_zombie, n_damage)
 					var_4d8b7233 = var_4d8b7233 + 20;
 					if(e_projectile.n_index === 1)
 					{
-						var_8ffd01b1 = v_target + anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target + anglestoright(ai_zombie.angles) * 100;
 					}
 					else if(e_projectile.n_index === 2)
 					{
-						var_8ffd01b1 = v_target - anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target - anglestoright(ai_zombie.angles) * 100;
 					}
 					else
 					{
-						var_8ffd01b1 = v_target;
+						v_horz = v_target;
 					}
-					if(isdefined(var_8ffd01b1))
+					if(isdefined(v_horz))
 					{
-						v_end = var_8ffd01b1 + (0, 0, var_4d8b7233);
+						v_end = v_horz + (0, 0, var_4d8b7233);
 					}
 				}
 				else
@@ -630,7 +630,7 @@ function function_794f3059(v_end)
 	Parameters: 5
 	Flags: Linked
 */
-function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_276d45bf, v_dir)
+function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, b_charged, v_dir)
 {
 	self endon(#"disconnect");
 	e_target endon(#"death");
@@ -659,9 +659,9 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 				{
 					e_target dodamage(n_damage, self.origin, self, undefined, "none", "MOD_UNKNOWN", 0, weapon);
 				}
-				else if(isdefined(e_target.marked_for_death) && e_target.marked_for_death || isdefined(var_276d45bf))
+				else if(isdefined(e_target.marked_for_death) && e_target.marked_for_death || isdefined(b_charged))
 				{
-					self thread function_85d88e17(e_target, var_276d45bf, v_dir, n_damage);
+					self thread function_85d88e17(e_target, b_charged, v_dir, n_damage);
 				}
 				else
 				{
@@ -677,9 +677,9 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 			}
 			case "miniboss":
 			{
-				if(!isdefined(var_276d45bf))
+				if(!isdefined(b_charged))
 				{
-					e_target clientfield::increment("" + #"hash_faeb22982ab79dd");
+					e_target clientfield::increment("" + #"gaia_impact_zombie");
 				}
 				n_damage = int(n_damage * 0.3);
 				e_target dodamage(n_damage, e_target.origin, self, undefined, "none", "MOD_UNKNOWN", 0, weapon);
@@ -694,7 +694,7 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, var_27
 			{
 				if(!isactor(e_target))
 				{
-					e_target clientfield::increment("" + #"hash_28495d5e2fe897d2");
+					e_target clientfield::increment("" + #"gaia_impact");
 				}
 				n_damage = 175;
 				e_target dodamage(n_damage, self.origin, self, undefined, "none", "MOD_UNKNOWN", 0, weapon);
@@ -750,12 +750,12 @@ function function_dd7bc108(weapon)
 	if(self.currentweapon === level.var_54ed88ec)
 	{
 		n_damage = 8500;
-		var_a4c20abe = 1;
+		b_up = 1;
 	}
 	else
 	{
 		n_damage = 5000;
-		var_a4c20abe = 0;
+		b_up = 0;
 	}
 	n_inc = 100;
 	v_org = self.origin;
@@ -776,7 +776,7 @@ function function_dd7bc108(weapon)
 		self setweaponammoclip(self.currentweapon, n_ammo);
 	}
 	self notify(#"hash_1b2c21ba7b18dbf9");
-	a_e_targets = function_31ad5b3d(var_a4c20abe);
+	a_e_targets = function_31ad5b3d(b_up);
 	level thread function_35f548bc();
 	var_d29931f9 = 0;
 	for(i = 0; i < 15; i++)
@@ -855,7 +855,7 @@ function function_33f9ab00(a_e_targets, weapon)
 			{
 				self.owner thread function_f2f6947f(e_target);
 			}
-			if(!(isdefined(self.var_6fe9ec3f) && self.var_6fe9ec3f) && (!(isdefined(e_target.var_a447e680) && e_target.var_a447e680)) && (e_target.archetype === #"zombie" || e_target.archetype === #"hash_1bab8a0ba811401e"))
+			if(!(isdefined(self.var_6fe9ec3f) && self.var_6fe9ec3f) && (!(isdefined(e_target.var_a447e680) && e_target.var_a447e680)) && (e_target.archetype === #"zombie" || e_target.archetype === #"catalyst"))
 			{
 				self.var_6fe9ec3f = 1;
 				e_target.var_a447e680 = 1;
@@ -864,11 +864,11 @@ function function_33f9ab00(a_e_targets, weapon)
 		}
 	}
 	wait(1.5);
-	self function_bf0a3b0a(v_pos, weapon);
+	self spike_explode(v_pos, weapon);
 }
 
 /*
-	Name: function_bf0a3b0a
+	Name: spike_explode
 	Namespace: namespace_4834f482
 	Checksum: 0x601B14BF
 	Offset: 0x2BC8
@@ -876,7 +876,7 @@ function function_33f9ab00(a_e_targets, weapon)
 	Parameters: 2
 	Flags: Linked
 */
-function function_bf0a3b0a(v_pos, weapon)
+function spike_explode(v_pos, weapon)
 {
 	self endon(#"death");
 	if(weapon == level.var_54ed88ec)
@@ -991,7 +991,7 @@ function function_5bca6886(e_target, v_dir)
 	Parameters: 4
 	Flags: Linked
 */
-function function_85d88e17(e_target, var_276d45bf, v_dir, n_damage)
+function function_85d88e17(e_target, b_charged, v_dir, n_damage)
 {
 	self endon(#"death");
 	e_target endon(#"death");
@@ -1002,7 +1002,7 @@ function function_85d88e17(e_target, var_276d45bf, v_dir, n_damage)
 	e_target.var_61768419 = 1;
 	[[ level.var_9295b8ef ]]->waitinqueue(e_target);
 	w_weapon = level.var_b784afad;
-	if(isdefined(var_276d45bf) && isdefined(v_dir))
+	if(isdefined(b_charged) && isdefined(v_dir))
 	{
 		e_target.marked_for_death = 1;
 		w_weapon = level.var_53789618;
@@ -1016,7 +1016,7 @@ function function_85d88e17(e_target, var_276d45bf, v_dir, n_damage)
 	}
 	if(isalive(e_target))
 	{
-		e_target clientfield::increment("" + #"hash_faeb22982ab79dd");
+		e_target clientfield::increment("" + #"gaia_impact_zombie");
 		waitframe(1);
 		if(n_damage >= e_target.health)
 		{

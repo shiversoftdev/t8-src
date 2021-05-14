@@ -243,7 +243,7 @@ function death_check_for_challenge_updates(e_attacker)
 			#/
 			break;
 		}
-		case "hash_1bab8a0ba811401e":
+		case "catalyst":
 		{
 			e_attacker zm_stats::increment_challenge_stat(#"hash_73286b5cdcfd7b5e");
 			/#
@@ -319,7 +319,7 @@ function death_check_for_challenge_updates(e_attacker)
 			debug_print("");
 		#/
 	}
-	if(namespace_2ba51478::is_lethal_grenade(w_damage))
+	if(zm_loadout::is_lethal_grenade(w_damage))
 	{
 		e_attacker zm_stats::increment_challenge_stat(#"hash_5f9b7801af13f397");
 		/#
@@ -346,7 +346,7 @@ function death_check_for_challenge_updates(e_attacker)
 	{
 		var_27b9587 = zm_weapons::function_386dacbc(w_damage);
 	}
-	if(namespace_2ba51478::is_hero_weapon(w_damage))
+	if(zm_loadout::is_hero_weapon(w_damage))
 	{
 		e_attacker zm_stats::increment_challenge_stat(#"hash_730e40ef22de352");
 		/#

@@ -82,8 +82,8 @@ function init_flags()
 */
 function main()
 {
-	namespace_93829f86::function_4d230236(getweapon(#"hash_7ca6dc6b2bfb8745"), &function_13febd4b);
-	namespace_93829f86::function_4d230236(getweapon(#"hash_7ca6d96b2bfb822c"), &function_13febd4b);
+	zm_items::function_4d230236(getweapon(#"hash_7ca6dc6b2bfb8745"), &function_13febd4b);
+	zm_items::function_4d230236(getweapon(#"hash_7ca6d96b2bfb822c"), &function_13febd4b);
 	callback::on_connect(&on_player_connect);
 	level.var_4a04c327 = array("facility_front", "facility_back", "lighthouse_to_facility");
 	function_53b616a4();
@@ -149,8 +149,8 @@ function function_6eb4fb79()
 */
 function function_4dc96e66()
 {
-	level.var_c486cf70 = struct::get_array("s_zipline_use");
-	foreach(s_zipline_use in level.var_c486cf70)
+	level.a_s_zipline_use = struct::get_array("s_zipline_use");
+	foreach(s_zipline_use in level.a_s_zipline_use)
 	{
 		s_zipline_use.var_508d5a11 = struct::get_array(s_zipline_use.var_10582773, "targetname");
 		s_zipline_use thread function_220a8687();
@@ -307,24 +307,24 @@ function function_665b4fa6()
 	{
 		self.var_3bc09679 = struct::get("scene_zipline_fore", "targetname");
 	}
-	self.var_3bc09679.var_9b3f6525 = 0;
+	self.var_3bc09679.play_queue = 0;
 	var_ba7236d5 = 0;
 	self.var_3bc09679 thread function_e76a1a06();
 	while(true)
 	{
-		var_bd1bdc73 = undefined;
-		var_bd1bdc73 = self waittill(#"trigger_activated");
-		e_who = var_bd1bdc73.e_who;
-		var_3ba1f680 = 1;
-		while(var_3ba1f680)
+		s_activation = undefined;
+		s_activation = self waittill(#"trigger_activated");
+		e_who = s_activation.e_who;
+		b_using = 1;
+		while(b_using)
 		{
-			var_3ba1f680 = 1;
+			b_using = 1;
 			if(!e_who usebuttonpressed() || !zm_utility::can_use(e_who) || !isdefined(self.s_unitrigger) || !isdefined(self.s_unitrigger.trigger) || !e_who istouching(self.s_unitrigger.trigger))
 			{
-				var_3ba1f680 = 0;
+				b_using = 0;
 				break;
 			}
-			if(var_3ba1f680)
+			if(b_using)
 			{
 				self.var_41580343 rotateroll(-36, 0.1);
 				wait(0.1);
@@ -333,7 +333,7 @@ function function_665b4fa6()
 				var_ba7236d5++;
 				if(var_ba7236d5 % 5 == 0)
 				{
-					self.var_3bc09679.var_9b3f6525++;
+					self.var_3bc09679.play_queue++;
 				}
 			}
 			if(self.var_191e6b71 <= 0)
@@ -359,13 +359,13 @@ function function_e76a1a06()
 	var_efc198c = 0;
 	while(var_efc198c < 10)
 	{
-		if(self.var_9b3f6525 > 0)
+		if(self.play_queue > 0)
 		{
-			while(self.var_9b3f6525 > 0)
+			while(self.play_queue > 0)
 			{
 				self scene::play("move_down_" + var_efc198c);
 				var_efc198c++;
-				self.var_9b3f6525--;
+				self.play_queue--;
 			}
 		}
 		waitframe(1);
@@ -569,9 +569,9 @@ function function_d41f7e0e()
 	level endon(#"end_game");
 	while(true)
 	{
-		var_bd1bdc73 = undefined;
-		var_bd1bdc73 = self waittill(#"trigger_activated");
-		e_who = var_bd1bdc73.e_who;
+		s_activation = undefined;
+		s_activation = self waittill(#"trigger_activated");
+		e_who = s_activation.e_who;
 		if(e_who.var_bf8dfaf4)
 		{
 			continue;
@@ -734,7 +734,7 @@ function function_5dbd6a40(s_zipline_use)
 	#/
 	var_1737c0cf = self thread gestures::function_56e00fbf("gestable_zipline");
 	self thread function_a949ddac();
-	self playsound(#"hash_6455824eaf346693");
+	self playsound(#"evt_zipline_start");
 	self.var_b20b0960 playloopsound(#"hash_19ebbf7f8bd1d5a5");
 	self clientfield::set_to_player("blur_post_fx", 1);
 	self.var_b20b0960 waittill(#"reached_end_node");
@@ -781,7 +781,7 @@ function function_5dbd6a40(s_zipline_use)
 	}
 	if(var_63259c33)
 	{
-		s_landing_point = self thread namespace_eaaeba61::function_d4fbc062(s_zipline_use.var_508d5a11);
+		s_landing_point = self thread zm_fasttravel::function_d4fbc062(s_zipline_use.var_508d5a11);
 		self dontinterpolate();
 		self setorigin(s_landing_point.origin);
 	}
@@ -809,7 +809,7 @@ function function_fc9707f4(vnd_start, s_zipline_use)
 	self disableoffhandspecial();
 	self disableoffhandweapons();
 	w_current = self getcurrentweapon();
-	if(namespace_2ba51478::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || ability_util::is_weapon_gadget(w_current) || ability_util::is_hero_weapon(w_current))
+	if(zm_loadout::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || ability_util::is_weapon_gadget(w_current) || ability_util::is_hero_weapon(w_current))
 	{
 		var_2e07b8ff = self getweaponslistprimaries();
 		if(isdefined(var_2e07b8ff) && var_2e07b8ff.size > 0)
@@ -928,7 +928,7 @@ function function_a949ddac()
 			{
 				if(music_box::function_3adb94b4(ai))
 				{
-					ai namespace_57ff8cbb::function_23621259();
+					ai zm_cleanup::function_23621259();
 					ai kill();
 				}
 			}

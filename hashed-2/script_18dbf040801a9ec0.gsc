@@ -69,21 +69,21 @@ function __main__()
 */
 function function_32639301()
 {
-	level.var_fbf43916 = struct::get("apd_trap", "targetname");
-	level.var_fbf43916.var_38cd3d0e = lightning_chain::create_lightning_chain_params();
-	var_3b2c2d10 = level.var_fbf43916;
-	var_3b2c2d10._trap_type = "soul";
-	var_3b2c2d10.var_8ebf1fe0 = getent(var_3b2c2d10.target, "targetname");
-	var_3b2c2d10.var_8ebf1fe0._trap_type = "soul";
-	var_3b2c2d10.var_54a168f2 = struct::get_array(var_3b2c2d10.target2, "targetname");
-	var_3b2c2d10.a_s_bullets = struct::get_array(var_3b2c2d10.target3, "targetname");
-	var_3b2c2d10.a_e_lights = getentarray(var_3b2c2d10.target4, "targetname");
-	var_3b2c2d10.var_2c0d31a5 = struct::get_array(var_3b2c2d10.target5, "targetname");
-	var_3b2c2d10.var_6b64b967 = 0;
-	var_3b2c2d10.var_41ee2ddc = 1;
+	level.s_apd_trap = struct::get("apd_trap", "targetname");
+	level.s_apd_trap.var_38cd3d0e = lightning_chain::create_lightning_chain_params();
+	s_trap = level.s_apd_trap;
+	s_trap._trap_type = "soul";
+	s_trap.v_touching = getent(s_trap.target, "targetname");
+	s_trap.v_touching._trap_type = "soul";
+	s_trap.var_54a168f2 = struct::get_array(s_trap.target2, "targetname");
+	s_trap.a_s_bullets = struct::get_array(s_trap.target3, "targetname");
+	s_trap.a_e_lights = getentarray(s_trap.target4, "targetname");
+	s_trap.var_2c0d31a5 = struct::get_array(s_trap.target5, "targetname");
+	s_trap.var_6b64b967 = 0;
+	s_trap.var_41ee2ddc = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till(#"hash_25d9cfebd2bdf1f2");
-	foreach(s_button in var_3b2c2d10.var_54a168f2)
+	foreach(s_button in s_trap.var_54a168f2)
 	{
 		s_button zm_unitrigger::create(&function_d1112480, 64);
 		s_button thread function_e14376a3();
@@ -107,7 +107,7 @@ function function_d1112480(e_player)
 		self sethintstring("");
 		return 0;
 	}
-	if(level.var_fbf43916.var_6b64b967 === 1)
+	if(level.s_apd_trap.var_6b64b967 === 1)
 	{
 		self sethintstring(#"hash_39d080503c6a8d96");
 		return 1;
@@ -122,7 +122,7 @@ function function_d1112480(e_player)
 		self sethintstring(#"hash_71158766520dc432");
 		return 1;
 	}
-	if(level.var_fbf43916.var_41ee2ddc === 0)
+	if(level.s_apd_trap.var_41ee2ddc === 0)
 	{
 		self sethintstring(#"hash_21db2780833a8bfd");
 		return 1;
@@ -171,7 +171,7 @@ function function_e14376a3()
 		{
 			continue;
 		}
-		if(level.var_fbf43916.var_6b64b967 === 1)
+		if(level.s_apd_trap.var_6b64b967 === 1)
 		{
 			continue;
 		}
@@ -179,16 +179,16 @@ function function_e14376a3()
 		{
 			continue;
 		}
-		if(zm_utility::is_player_valid(e_who) && level.var_fbf43916.var_41ee2ddc === 1)
+		if(zm_utility::is_player_valid(e_who) && level.s_apd_trap.var_41ee2ddc === 1)
 		{
-			var_b5f26b1a = level.var_fbf43916.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, 1000);
-			if(!var_b5f26b1a)
+			b_purchased = level.s_apd_trap.a_e_lights[0] zm_traps::function_3f0a4c65(e_who, 1000);
+			if(!b_purchased)
 			{
 				continue;
 			}
 			self notify(#"hash_1d482aca0464609a");
 			self.var_64c09f7f = e_who;
-			level.var_fbf43916.var_8ebf1fe0.activated_by_player = e_who;
+			level.s_apd_trap.v_touching.activated_by_player = e_who;
 			if(!(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f) && zm_audio::function_65e5c19a())
 			{
 				e_who thread zm_audio::create_and_play_dialog(#"hash_3f3ef774cd01d778", #"activate");
@@ -209,32 +209,32 @@ function function_e14376a3()
 function function_65c804dc()
 {
 	level endon(#"end_game");
-	function_91ecec97(level.var_fbf43916.a_e_lights, "p8_zm_off_trap_switch_light_green_on");
-	function_eb59d9fe(level.var_fbf43916.var_2c0d31a5);
+	function_91ecec97(level.s_apd_trap.a_e_lights, "p8_zm_off_trap_switch_light_green_on");
+	function_eb59d9fe(level.s_apd_trap.var_2c0d31a5);
 	while(true)
 	{
 		self waittill(#"hash_1d482aca0464609a");
-		function_91ecec97(level.var_fbf43916.a_e_lights, "p8_zm_off_trap_switch_light_red_on");
-		level.var_fbf43916.var_6b64b967 = 1;
+		function_91ecec97(level.s_apd_trap.a_e_lights, "p8_zm_off_trap_switch_light_red_on");
+		level.s_apd_trap.var_6b64b967 = 1;
 		e_who = self.var_64c09f7f;
 		if(isdefined(e_who))
 		{
 			zm_utility::play_sound_at_pos("purchase", e_who.origin);
 			level notify(#"trap_activated", {#trap:self, #hash_dd54ffdb:e_who});
 		}
-		level.var_fbf43916 function_410dbfe(e_who);
-		level.var_fbf43916.var_6b64b967 = 0;
-		level.var_fbf43916.var_41ee2ddc = 0;
-		var_628a2951 = zm_traps::function_da13db45(60, e_who);
-		wait(var_628a2951);
-		level.var_fbf43916.var_41ee2ddc = 1;
-		function_91ecec97(level.var_fbf43916.a_e_lights, "p8_zm_off_trap_switch_light_green_on");
+		level.s_apd_trap apd_trap_activate(e_who);
+		level.s_apd_trap.var_6b64b967 = 0;
+		level.s_apd_trap.var_41ee2ddc = 0;
+		n_cooldown = zm_traps::function_da13db45(60, e_who);
+		wait(n_cooldown);
+		level.s_apd_trap.var_41ee2ddc = 1;
+		function_91ecec97(level.s_apd_trap.a_e_lights, "p8_zm_off_trap_switch_light_green_on");
 		playsoundatposition(#"zmb_trap_ready", self.origin);
 	}
 }
 
 /*
-	Name: function_410dbfe
+	Name: apd_trap_activate
 	Namespace: namespace_f4159bfd
 	Checksum: 0x47E7EFCF
 	Offset: 0xC30
@@ -242,7 +242,7 @@ function function_65c804dc()
 	Parameters: 1
 	Flags: Linked
 */
-function function_410dbfe(e_player)
+function apd_trap_activate(e_player)
 {
 	level endon(#"end_game");
 	n_total_time = 0;
@@ -252,7 +252,7 @@ function function_410dbfe(e_player)
 		var_890584df = [];
 		foreach(ai in getaiteamarray(level.zombie_team))
 		{
-			if(ai istouching(self.var_8ebf1fe0))
+			if(ai istouching(self.v_touching))
 			{
 				if(!isdefined(var_890584df))
 				{
@@ -286,16 +286,16 @@ function function_410dbfe(e_player)
 	Parameters: 1
 	Flags: Linked
 */
-function function_25ede6c7(var_3b2c2d10)
+function function_25ede6c7(s_trap)
 {
 	self endon_callback(&function_171226f4, #"death");
-	self.var_410faa5f = util::spawn_model("tag_origin", var_3b2c2d10.origin);
+	self.var_410faa5f = util::spawn_model("tag_origin", s_trap.origin);
 	fx = playfxontag(level._effect[#"tesla_bolt"], self.var_410faa5f, "tag_origin");
-	playsoundatposition(#"hash_286b88c1d2e99649", var_3b2c2d10.origin);
+	playsoundatposition(#"hash_286b88c1d2e99649", s_trap.origin);
 	self.var_410faa5f moveto(self gettagorigin("J_Spine4"), 0.6);
 	self.var_410faa5f waittill(#"movedone");
 	self.var_410faa5f delete();
-	self thread zm_trap_electric::damage(var_3b2c2d10.var_8ebf1fe0);
+	self thread zm_trap_electric::damage(s_trap.v_touching);
 }
 
 /*

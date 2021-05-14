@@ -495,10 +495,10 @@ function function_c0f30783(s_scenedef)
 	Parameters: 4
 	Flags: None
 */
-function scene_list_settext(strings, var_479a2a4, str_title, var_444abf97)
+function scene_list_settext(strings, n_selected, str_title, var_444abf97)
 {
 	/#
-		level thread function_e67dabcc(strings, var_479a2a4, str_title, var_444abf97);
+		level thread function_e67dabcc(strings, n_selected, str_title, var_444abf97);
 	#/
 }
 
@@ -511,7 +511,7 @@ function scene_list_settext(strings, var_479a2a4, str_title, var_444abf97)
 	Parameters: 4
 	Flags: None
 */
-function function_e67dabcc(strings, var_479a2a4, str_title, var_444abf97)
+function function_e67dabcc(strings, n_selected, str_title, var_444abf97)
 {
 	/#
 		if(!isdefined(var_444abf97))
@@ -545,7 +545,7 @@ function function_e67dabcc(strings, var_479a2a4, str_title, var_444abf97)
 		}
 		for(i = 0; i < 16; i++)
 		{
-			index = i + var_479a2a4 - 5;
+			index = i + n_selected - 5;
 			if(isdefined(strings[index]))
 			{
 				text = strings[index];
@@ -661,7 +661,7 @@ function function_3bafd088(var_a572f325)
 				}
 				var_a572f325.var_3ee40508 = getdvarint(#"hash_13d62f4d290ef671", 0);
 				var_a572f325.var_2640d68e = getdvarint(#"scr_show_shot_info_for_igcs", 0);
-				var_a572f325.var_e4335fdb = getdvarint(#"cg_drawfps", 1);
+				var_a572f325.drawfps = getdvarint(#"cg_drawfps", 1);
 				level.var_a572f325 = var_a572f325;
 				setdvar(#"hash_13d62f4d290ef671", 1);
 				setdvar(#"scr_show_shot_info_for_igcs", 1);
@@ -690,7 +690,7 @@ function function_d2785094(var_a572f325)
 			{
 				var_3ee40508 = 0;
 				var_2640d68e = 0;
-				var_e4335fdb = 1;
+				drawfps = 1;
 				if(isdefined(var_a572f325))
 				{
 					if(isdefined(var_a572f325.var_3ee40508))
@@ -701,14 +701,14 @@ function function_d2785094(var_a572f325)
 					{
 						var_2640d68e = var_a572f325.var_2640d68e;
 					}
-					if(isdefined(var_a572f325.var_e4335fdb))
+					if(isdefined(var_a572f325.drawfps))
 					{
-						var_e4335fdb = var_a572f325.var_e4335fdb;
+						drawfps = var_a572f325.drawfps;
 					}
 				}
 				setdvar(#"hash_13d62f4d290ef671", var_3ee40508);
 				setdvar(#"scr_show_shot_info_for_igcs", var_2640d68e);
-				setdvar(#"cg_drawfps", var_e4335fdb);
+				setdvar(#"cg_drawfps", drawfps);
 				adddebugcommand(0, "");
 			}
 		#/

@@ -54,21 +54,21 @@ function activation()
 	a_players = util::get_players();
 	foreach(player in a_players)
 	{
-		var_ac6ee9a0 = player namespace_2ba51478::get_player_lethal_grenade();
+		var_ac6ee9a0 = player zm_loadout::get_player_lethal_grenade();
 		if(var_ac6ee9a0.isgadget)
 		{
-			var_bcd1c2ff = player gadgetgetslot(var_ac6ee9a0);
+			n_slot = player gadgetgetslot(var_ac6ee9a0);
 			if(var_ac6ee9a0 == getweapon(#"tomahawk_t8") || var_ac6ee9a0 == getweapon(#"tomahawk_t8_upgraded"))
 			{
-				if(!player function_36dfc05f(var_bcd1c2ff))
+				if(!player function_36dfc05f(n_slot))
 				{
 					player notify(#"hash_3d73720d4588203c");
-					player gadgetpowerset(var_bcd1c2ff, 100);
+					player gadgetpowerset(n_slot, 100);
 				}
 			}
 			else
 			{
-				player gadgetpowerreset(var_bcd1c2ff, 0);
+				player gadgetpowerreset(n_slot, 0);
 			}
 		}
 		player thread function_556e219();

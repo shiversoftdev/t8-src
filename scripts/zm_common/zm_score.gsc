@@ -188,11 +188,11 @@ function player_on_spawned()
 	Parameters: 3
 	Flags: Linked
 */
-function score_cf_register_info(name, var_948bda55, max_count)
+function score_cf_register_info(name, version, max_count)
 {
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".score_cf_" + name, var_948bda55, getminbitcountfornum(max_count), "counter");
+		clientfield::register("worlduimodel", "PlayerList.client" + i + ".score_cf_" + name, version, getminbitcountfornum(max_count), "counter");
 	}
 }
 
@@ -461,7 +461,7 @@ function player_add_points_kill_bonus(mod, hit_location, weapon, player_points =
 			return new_points;
 		}
 	}
-	if(mod == "MOD_MELEE" && (!isdefined(weapon) || (!weapon.isriotshield && !namespace_2ba51478::is_hero_weapon(weapon))))
+	if(mod == "MOD_MELEE" && (!isdefined(weapon) || (!weapon.isriotshield && !zm_loadout::is_hero_weapon(weapon))))
 	{
 		self score_cf_increment_info("death_melee", var_e6e61503);
 		scoreevents::processscoreevent("melee_kill", self, undefined, weapon);
@@ -650,7 +650,7 @@ function add_to_player_score(points, b_add_to_total = 1, str_awarded_by = "", va
 		self.pers[#"score"] = self.score;
 		self incrementplayerstat("scoreEarned", n_points_to_add_to_currency);
 		self zm_stats::function_301c4be2("boas_scoreEarned", n_points_to_add_to_currency);
-		self zm_stats::function_c0c6ab19(#"hash_3cabe8f52a05d7be", n_points_to_add_to_currency, 1);
+		self zm_stats::function_c0c6ab19(#"zearned", n_points_to_add_to_currency, 1);
 		level notify(#"earned_points", {#points:points, #player:self});
 		level thread zm_hero_weapon::function_3fe4a02e(self, points, str_awarded_by);
 		self contracts::function_5b88297d(#"hash_781e103e02826009", n_points_to_add_to_currency, #"zstandard");
@@ -676,24 +676,24 @@ function add_to_player_score(points, b_add_to_total = 1, str_awarded_by = "", va
 	Parameters: 2
 	Flags: Linked
 */
-function minus_to_player_score(points, var_7970696c = 0)
+function minus_to_player_score(points, b_forced = 0)
 {
 	if(!isdefined(points) || level.intermission)
 	{
 		return;
 	}
-	if(self bgb::is_enabled(#"zm_bgb_shopping_free") && !var_7970696c)
+	if(self bgb::is_enabled(#"zm_bgb_shopping_free") && !b_forced)
 	{
 		self notify(#"hash_14b0ad44336160bc");
 		self bgb::do_one_shot_use();
 		self playsoundtoplayer(#"zmb_bgb_shoppingfree_coinreturn", self);
 		return;
 	}
-	if(zm_utility::is_standard() && !var_7970696c)
+	if(zm_utility::is_standard() && !b_forced)
 	{
 		return;
 	}
-	if(!var_7970696c)
+	if(!b_forced)
 	{
 		self contracts::function_5b88297d(#"hash_257283d6c7065a1e", points);
 	}
@@ -893,11 +893,11 @@ function function_89db94b3(e_attacker, n_damage, e_inflictor)
 	Parameters: 1
 	Flags: Linked
 */
-function function_acaab828(var_2a94a67e = 1)
+function function_acaab828(b_disabled = 1)
 {
 	if(isdefined(self))
 	{
-		self.var_12745932 = var_2a94a67e;
+		self.var_12745932 = b_disabled;
 	}
 }
 

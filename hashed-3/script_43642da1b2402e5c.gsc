@@ -37,11 +37,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_3ad5e71a03ad70c1", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_3ad5e71a03ad70c1", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -66,7 +66,7 @@ private function function_d1de6a85()
 		player thread function_963b8c82();
 		player thread function_29ee24dd();
 	}
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 }
 
 /*
@@ -84,7 +84,7 @@ private function function_9e7b3f4d(round_reset)
 	callback::remove_on_ai_killed(&on_ai_killed);
 	callback::function_824d206(&function_33f0ddd3);
 	callback::function_5a753d97(&namespace_b22c99a5::function_79518194);
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	level thread refill_ammo();
 }
 
@@ -111,7 +111,7 @@ private function refill_ammo()
 		a_w_weapons = player getweaponslist(0);
 		foreach(w_weapon in a_w_weapons)
 		{
-			if(namespace_2ba51478::is_lethal_grenade(w_weapon) || namespace_2ba51478::is_melee_weapon(w_weapon) || namespace_2ba51478::is_hero_weapon(w_weapon))
+			if(zm_loadout::is_lethal_grenade(w_weapon) || zm_loadout::is_melee_weapon(w_weapon) || zm_loadout::is_hero_weapon(w_weapon))
 			{
 				continue;
 			}
@@ -135,7 +135,7 @@ private function refill_ammo()
 */
 private function function_963b8c82()
 {
-	foreach(weapon in namespace_2ba51478::function_5a5a742a("tactical_grenade"))
+	foreach(weapon in zm_loadout::function_5a5a742a("tactical_grenade"))
 	{
 		self function_28602a03(weapon, 1, 1);
 		if(weapon.dualwieldweapon != level.weaponnone)
@@ -166,7 +166,7 @@ private function function_33f0ddd3(s_event)
 		{
 			return;
 		}
-		if(namespace_2ba51478::is_lethal_grenade(s_event.weapon) || namespace_2ba51478::is_tactical_grenade(s_event.weapon, 1))
+		if(zm_loadout::is_lethal_grenade(s_event.weapon) || zm_loadout::is_tactical_grenade(s_event.weapon, 1))
 		{
 			self function_28602a03(s_event.weapon, 1, 1);
 			if(s_event.weapon.dualwieldweapon != level.weaponnone)
@@ -215,7 +215,7 @@ private function function_29ee24dd()
 			a_weapons = self getweaponslist(0);
 			foreach(weapon in a_weapons)
 			{
-				if(!(namespace_2ba51478::is_lethal_grenade(weapon) || namespace_2ba51478::is_hero_weapon(weapon)))
+				if(!(zm_loadout::is_lethal_grenade(weapon) || zm_loadout::is_hero_weapon(weapon)))
 				{
 					self setweaponammostock(weapon, 0);
 				}
@@ -235,7 +235,7 @@ private function function_29ee24dd()
 */
 function is_active()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_3ad5e71a03ad70c1");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_3ad5e71a03ad70c1");
 	return isdefined(s_challenge);
 }
 
@@ -281,7 +281,7 @@ private function function_af55104(var_f2c84b6b)
 	a_weapons = self getweaponslist(0);
 	foreach(weapon in a_weapons)
 	{
-		if(namespace_2ba51478::is_hero_weapon(weapon) || namespace_2ba51478::is_lethal_grenade(weapon))
+		if(zm_loadout::is_hero_weapon(weapon) || zm_loadout::is_lethal_grenade(weapon))
 		{
 			continue;
 			continue;

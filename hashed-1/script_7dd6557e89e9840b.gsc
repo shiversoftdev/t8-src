@@ -44,7 +44,7 @@ function init_shared(bundlename)
 			bundlename = "killstreak_remote_missile";
 		}
 		bundle = struct::get_script_bundle("killstreak", bundlename);
-		killstreaks::function_25ce781d(bundle, &tryusepredatormissile);
+		killstreaks::register_bundle(bundle, &tryusepredatormissile);
 		killstreaks::set_team_kill_penalty_scale("remote_missile", level.teamkillreducedpenalty);
 		clientfield::register("missile", "remote_missile_brakes", 1, 1, "int");
 		clientfield::register("missile", "remote_missile_bomblet_fired", 1, 1, "int");
@@ -310,7 +310,7 @@ function _fire(lifeid, player, team, killstreak_id)
 	rocket.hackedhealthupdatecallback = &hackedhealthupdate;
 	rocket clientfield::set("enemyvehicle", 1);
 	rocket clientfield::set("remote_missile_phase2", 0);
-	rocket.var_817f15dd = getweapon("remote_missile");
+	rocket.identifier_weapon = getweapon("remote_missile");
 	if(!isdefined(rocket.bomblets))
 	{
 		rocket.bomblets = [];

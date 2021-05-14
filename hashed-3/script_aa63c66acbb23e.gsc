@@ -768,20 +768,20 @@ private function function_3ed19fa3(gameobject, position)
 					}
 				}
 			}
-			if(isdefined(gameobject.var_8753f10b) && isdefined(gameobject.var_8753f10b.var_ff3c99c5) && isdefined(gameobject.var_8753f10b.var_ff3c99c5.var_63e8057))
+			if(isdefined(gameobject.s_minigame) && isdefined(gameobject.s_minigame.var_ff3c99c5) && isdefined(gameobject.s_minigame.var_ff3c99c5.var_63e8057))
 			{
-				foreach(location in gameobject.var_8753f10b.var_ff3c99c5.var_63e8057)
+				foreach(location in gameobject.s_minigame.var_ff3c99c5.var_63e8057)
 				{
 					if(location.mdl_gameobject === gameobject)
 					{
-						if(isdefined(gameobject.var_8753f10b.var_4702e184))
+						if(isdefined(gameobject.s_minigame.var_4702e184))
 						{
-							var_ea15be8 = gameobject.var_8753f10b.var_4702e184;
+							var_ea15be8 = gameobject.s_minigame.var_4702e184;
 							var_7ddeb599 = "";
 						}
-						if(isdefined(gameobject.var_8753f10b.var_eba32ac6))
+						if(isdefined(gameobject.s_minigame.var_eba32ac6))
 						{
-							var_da71cc36 = gameobject.var_8753f10b.var_eba32ac6;
+							var_da71cc36 = gameobject.s_minigame.var_eba32ac6;
 							var_bd3388e8 = "";
 						}
 						break;
@@ -1558,7 +1558,7 @@ function function_423cfbc1(side, var_ebfc3fac = undefined, var_5fbc7570 = undefi
 		strategy = function_d077c2b6(side);
 	}
 	/#
-		var_b57741ff = [0:"" + strategy.name];
+		sdebug = [0:"" + strategy.name];
 	#/
 	strategy = function_1e3c1b91(strategy, strategy);
 	if(isdefined(var_ebfc3fac))
@@ -1569,7 +1569,7 @@ function function_423cfbc1(side, var_ebfc3fac = undefined, var_5fbc7570 = undefi
 			strategy = function_1e3c1b91(strategy, getscriptbundle(var_f57f0f3f));
 		}
 		/#
-			var_b57741ff[var_b57741ff.size] = var_ebfc3fac.type + "" + var_ebfc3fac.name + "" + (isdefined(var_f57f0f3f) ? var_f57f0f3f : "");
+			sdebug[sdebug.size] = var_ebfc3fac.type + "" + var_ebfc3fac.name + "" + (isdefined(var_f57f0f3f) ? var_f57f0f3f : "");
 		#/
 	}
 	if(isdefined(var_5fbc7570))
@@ -1580,27 +1580,27 @@ function function_423cfbc1(side, var_ebfc3fac = undefined, var_5fbc7570 = undefi
 			strategy = function_1e3c1b91(strategy, getscriptbundle(var_e763ef0b));
 		}
 		/#
-			var_b57741ff[var_b57741ff.size] = var_5fbc7570.scriptbundlename + "" + (isdefined(var_e763ef0b) ? var_e763ef0b : "");
+			sdebug[sdebug.size] = var_5fbc7570.scriptbundlename + "" + (isdefined(var_e763ef0b) ? var_e763ef0b : "");
 		#/
 	}
 	if(isdefined(gameobject))
 	{
 		var_3bb544aa = 0;
-		if(isdefined(gameobject.var_8753f10b) && isdefined(gameobject.var_8753f10b.var_ff3c99c5) && isdefined(gameobject.var_8753f10b.var_ff3c99c5.var_63e8057))
+		if(isdefined(gameobject.s_minigame) && isdefined(gameobject.s_minigame.var_ff3c99c5) && isdefined(gameobject.s_minigame.var_ff3c99c5.var_63e8057))
 		{
-			foreach(location in gameobject.var_8753f10b.var_ff3c99c5.var_63e8057)
+			foreach(location in gameobject.s_minigame.var_ff3c99c5.var_63e8057)
 			{
 				if(location.mdl_gameobject === gameobject)
 				{
 					var_3bb544aa = 1;
-					var_1c9cd543 = gameobject.var_8753f10b.("scriptbundle_strategy_" + side);
+					var_1c9cd543 = gameobject.s_minigame.("scriptbundle_strategy_" + side);
 					if(isdefined(var_1c9cd543))
 					{
 						strategy = function_1e3c1b91(strategy, getscriptbundle(var_1c9cd543));
 					}
 				}
 				/#
-					var_b57741ff[var_b57741ff.size] = "" + gameobject getentitynumber() + "" + (isdefined(var_1c9cd543) ? var_1c9cd543 : "") + "";
+					sdebug[sdebug.size] = "" + gameobject getentitynumber() + "" + (isdefined(var_1c9cd543) ? var_1c9cd543 : "") + "";
 				#/
 				break;
 			}
@@ -1617,12 +1617,12 @@ function function_423cfbc1(side, var_ebfc3fac = undefined, var_5fbc7570 = undefi
 				}
 			}
 			/#
-				var_b57741ff[var_b57741ff.size] = "" + gameobject getentitynumber() + "" + (isdefined(var_1c9cd543) ? var_1c9cd543 : "");
+				sdebug[sdebug.size] = "" + gameobject getentitynumber() + "" + (isdefined(var_1c9cd543) ? var_1c9cd543 : "");
 			#/
 		}
 	}
 	/#
-		strategy.var_b57741ff = var_b57741ff;
+		strategy.sdebug = sdebug;
 	#/
 	return strategy;
 }
@@ -2252,7 +2252,7 @@ function function_210f00bf(bot, trigger)
 	Parameters: 2
 	Flags: None
 */
-function function_ba05bd2(var_58548429, side)
+function function_ba05bd2(strategicbundle, side)
 {
 	/#
 		assert(isdefined(side));
@@ -2265,11 +2265,11 @@ function function_ba05bd2(var_58548429, side)
 	{
 		level.var_2731863e = array(level.var_2731863e);
 	}
-	strategy = getscriptbundle(var_58548429);
+	strategy = getscriptbundle(strategicbundle);
 	if(isdefined(strategy) && isdefined(side))
 	{
-		level.var_2731863e[side] = var_58548429;
-		function_1852d313(var_58548429, side);
+		level.var_2731863e[side] = strategicbundle;
+		function_1852d313(strategicbundle, side);
 	}
 }
 
@@ -2302,7 +2302,7 @@ function function_3837a75d(side)
 	Parameters: 2
 	Flags: Linked
 */
-function function_1852d313(var_58548429, side)
+function function_1852d313(strategicbundle, side)
 {
 	/#
 		assert(isdefined(side));
@@ -2315,7 +2315,7 @@ function function_1852d313(var_58548429, side)
 	{
 		level.var_aca184cd = array(level.var_aca184cd);
 	}
-	strategy = getscriptbundle(var_58548429);
+	strategy = getscriptbundle(strategicbundle);
 	if(isdefined(strategy) && isdefined(side))
 	{
 		level.var_aca184cd[side] = function_700c578d(strategy);

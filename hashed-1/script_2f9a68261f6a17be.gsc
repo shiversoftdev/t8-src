@@ -37,11 +37,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_149b9c514fee8fc3", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_149b9c514fee8fc3", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -82,7 +82,7 @@ private function function_d1de6a85()
 	}
 	level.var_153e9058 = 1;
 	level.var_fe2bb2ac = 1;
-	level namespace_f551babc::function_25ee130(1);
+	level zm_trial::function_25ee130(1);
 	level thread function_70594057();
 }
 
@@ -100,7 +100,7 @@ private function function_9e7b3f4d(round_reset)
 	callback::function_824d206(&function_33f0ddd3);
 	level.var_153e9058 = undefined;
 	level.var_fe2bb2ac = undefined;
-	level namespace_f551babc::function_25ee130(0);
+	level zm_trial::function_25ee130(0);
 	foreach(player in getplayers())
 	{
 		player thread namespace_b22c99a5::function_dc0859e();
@@ -128,7 +128,7 @@ private function function_9e7b3f4d(round_reset)
 */
 private function function_33f0ddd3(s_event)
 {
-	if(s_event.event === "give_weapon" && !namespace_2ba51478::function_2ff6913(s_event.weapon))
+	if(s_event.event === "give_weapon" && !zm_loadout::function_2ff6913(s_event.weapon))
 	{
 		self function_28602a03(s_event.weapon, 1, 1);
 		if(s_event.weapon.dualwieldweapon != level.weaponnone)
@@ -153,7 +153,7 @@ private function function_33f0ddd3(s_event)
 */
 function is_active()
 {
-	s_challenge = namespace_f551babc::function_a36e8c38(#"hash_149b9c514fee8fc3");
+	s_challenge = zm_trial::function_a36e8c38(#"hash_149b9c514fee8fc3");
 	return isdefined(s_challenge);
 }
 

@@ -64,7 +64,7 @@ function __init__()
 	level.s_break_large_metal = struct::get("s_break_large_metal");
 	level.var_4b9d0136 = util::spawn_model("p8_fxanim_zm_esc_water_tower_mod", level.s_break_large_metal.origin, level.s_break_large_metal.angles);
 	level.var_70d41750 = getentarray("t_metal_piece", "targetname");
-	callback::on_connect(&function_4da031f5);
+	callback::on_connect(&vtol_dig);
 }
 
 /*
@@ -95,7 +95,7 @@ function __main__()
 }
 
 /*
-	Name: function_4da031f5
+	Name: vtol_dig
 	Namespace: namespace_273ad667
 	Checksum: 0xFD42C3BA
 	Offset: 0x6F0
@@ -103,7 +103,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked
 */
-function function_4da031f5()
+function vtol_dig()
 {
 	self endon(#"disconnect");
 	self flag::init(#"hash_6b33efdeedf241f");
@@ -480,7 +480,7 @@ function function_48d7e846()
 	level.var_4b9d0136 thread scene::play(#"p8_fxanim_zm_esc_water_tower_bundle", level.var_4b9d0136);
 	level thread clientfield::increment("" + #"hash_cd028842e18845e", 1);
 	wait(3);
-	e_closest = arraygetclosest(level.var_4b9d0136.origin, namespace_891c9bac::function_347f7d34());
+	e_closest = arraygetclosest(level.var_4b9d0136.origin, zm_vo::function_347f7d34());
 	if(isalive(e_closest))
 	{
 		e_closest thread zm_audio::create_and_play_dialog(#"catwalk", #"hash_30b3d33fbe5f5328");
@@ -524,18 +524,18 @@ function function_adc74a0d(e_grenade, n_grenade_charge_power)
 	{
 		return 0;
 	}
-	var_f95d25dc = struct::get("s_s_t_loc");
-	if(!isdefined(var_f95d25dc))
+	s_spork = struct::get("s_s_t_loc");
+	if(!isdefined(s_spork))
 	{
 		return 0;
 	}
-	distsq = distancesquared(e_grenade.origin, var_f95d25dc.origin);
+	distsq = distancesquared(e_grenade.origin, s_spork.origin);
 	if(distsq < 200 * 200 && !self flag::get(#"hash_79ab766693ef2532") && level flag::get(#"hash_29dc018e9551ecf"))
 	{
 		self clientfield::set_to_player("" + #"hash_2058d8d474a6b3e1", 0);
 		var_6e6ec518 = namespace_268fc37c::tomahawk_spawn(e_grenade.origin);
 		var_6e6ec518.n_grenade_charge_power = n_grenade_charge_power;
-		var_7b566fb = util::spawn_model("wpn_t8_zm_spork_world", e_grenade.origin, var_f95d25dc.angles);
+		var_7b566fb = util::spawn_model("wpn_t8_zm_spork_world", e_grenade.origin, s_spork.angles);
 		var_7b566fb linkto(var_6e6ec518);
 		self thread namespace_268fc37c::tomahawk_return_player(var_6e6ec518, undefined, 800);
 		self thread function_55a05382(var_6e6ec518, var_7b566fb);

@@ -15,7 +15,7 @@
 */
 function init()
 {
-	if(!zm_utility::function_3bff983f())
+	if(!zm_utility::is_trials())
 	{
 		level thread nuked_population_sign_think();
 	}
@@ -37,8 +37,8 @@ function nuked_population_sign_think()
 	var_50f6b3f4 = getent("counter_tens", "targetname");
 	var_d02e9cd = getent("counter_ones", "targetname");
 	n_step = 36;
-	var_6e8a9999 = 0;
-	var_71c11c96 = 0;
+	n_ones = 0;
+	n_tens = 0;
 	var_aa6e55d3 = 0;
 	var_50f6b3f4 rotateroll(n_step, 0.05);
 	var_d02e9cd rotateroll(n_step, 0.05);
@@ -47,23 +47,23 @@ function nuked_population_sign_think()
 	{
 		if(var_aa6e55d3 < level.total_zombies_killed - level.zombie_total_subtract)
 		{
-			var_6e8a9999--;
+			n_ones--;
 			n_time = set_dvar_float_if_unset("scr_dial_rotate_time", "0.5");
-			if(var_6e8a9999 < 0)
+			if(n_ones < 0)
 			{
-				var_6e8a9999 = 9;
+				n_ones = 9;
 				var_50f6b3f4 rotateroll(0 - n_step, n_time);
 				var_50f6b3f4 playsound("zmb_counter_flip");
-				var_71c11c96--;
+				n_tens--;
 			}
-			if(var_71c11c96 < 0)
+			if(n_tens < 0)
 			{
-				var_71c11c96 = 9;
+				n_tens = 9;
 			}
 			var_d02e9cd rotateroll(0 - n_step, n_time);
 			var_d02e9cd playsound("zmb_counter_flip");
 			var_d02e9cd waittill(#"rotatedone");
-			level.population_count = var_6e8a9999 + var_71c11c96 * 10;
+			level.population_count = n_ones + n_tens * 10;
 			if(level.population_count == 0 || level.population_count == 33 || level.population_count == 66 || level.population_count == 99)
 			{
 				level notify(#"update_doomsday_clock");

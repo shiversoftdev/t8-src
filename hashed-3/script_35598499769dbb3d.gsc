@@ -83,7 +83,7 @@ private function function_3aa023f1(name, entity)
 		gibstruct.gibfx = definition.(gibpiece + "_gibfx");
 		gibstruct.gibfxtag = definition.(gibpiece + "_gibeffecttag");
 		gibstruct.gibdynentfx = definition.(gibpiece + "_gibdynentfx");
-		gibstruct.var_42c89fa1 = definition.(gibpiece + "_gibcinematicfx");
+		gibstruct.gibcinematicfx = definition.(gibpiece + "_gibcinematicfx");
 		gibstruct.gibsound = definition.(gibpiece + "_gibsound");
 		gibstruct.gibhidetag = definition.(gibpiece + "_gibhidetag");
 		var_90aba050[gibflag] = gibstruct;

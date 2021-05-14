@@ -38,11 +38,11 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
-	namespace_f551babc::register_challenge(#"hash_1c600f8141a34a9", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_1c600f8141a34a9", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -60,7 +60,7 @@ private function function_d1de6a85()
 	{
 		level.var_27a02034 = 0;
 	}
-	level thread function_9bf92e71();
+	level thread start_boss_fight();
 }
 
 /*
@@ -77,7 +77,7 @@ private function function_9e7b3f4d(round_reset)
 	if(round_reset)
 	{
 		level.var_27a02034 = 1;
-		namespace_65dba40e::function_3690781e();
+		zm_aoe::function_3690781e();
 	}
 	else
 	{
@@ -89,7 +89,7 @@ private function function_9e7b3f4d(round_reset)
 }
 
 /*
-	Name: function_9bf92e71
+	Name: start_boss_fight
 	Namespace: namespace_187676eb
 	Checksum: 0x2C924659
 	Offset: 0x278
@@ -97,7 +97,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9bf92e71()
+private function start_boss_fight()
 {
 	level endon(#"end_game", #"hash_7646638df88a3656");
 	/#
@@ -120,7 +120,7 @@ private function function_9bf92e71()
 		wait(0.5);
 		level thread lui::screen_fade_in(1);
 	}
-	level flag::wait_till(#"hash_293ba2e98a617133");
+	level flag::wait_till(#"boss_battle_complete");
 	level flag::clear(#"infinite_round_spawning");
 	level flag::clear(#"pause_round_timeout");
 	level.zombie_total = 0;

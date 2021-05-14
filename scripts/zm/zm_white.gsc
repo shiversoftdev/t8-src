@@ -68,11 +68,11 @@
 #using scripts\zm_common\zm_weapons.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_44cfe494;
+#namespace zm_white;
 
 /*
 	Name: opt_in
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x190C9BAF
 	Offset: 0xC68
 	Size: 0x62
@@ -91,7 +91,7 @@ autoexec function opt_in()
 
 /*
 	Name: main
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x65E1471
 	Offset: 0xCD8
 	Size: 0xC74
@@ -111,7 +111,7 @@ event main(eventstruct)
 	level._uses_sticky_grenades = 1;
 	level._uses_taser_knuckles = 1;
 	level.var_c1013f84 = 1;
-	level.var_ef05cff5 = 2250000;
+	level.registertheater_fxanim_kill_trigger_centerterminatetraverse = 2250000;
 	level.var_18d20774 = 1000000;
 	level.var_7199d651 = 1;
 	level.temporary_power_switch_logic = &zm_power::electric_switch;
@@ -144,7 +144,7 @@ event main(eventstruct)
 	level.var_d0ab70a2 = #"hash_6dcfc619b819ab4f";
 	level._allow_melee_weapon_switching = 1;
 	level.var_161cb00c = 1;
-	level.var_6fe07831 = 0;
+	level.registerobjective_qzonejukeinit = 0;
 	level namespace_5c160465::register_clientfields();
 	level namespace_2eb2d493::register_clientfields();
 	level namespace_1846c963::init_clientfields();
@@ -181,7 +181,7 @@ event main(eventstruct)
 	level thread sndfunctions();
 	level thread namespace_9146fc8b::init();
 	level thread namespace_3ce11c08::init();
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		level thread namespace_9269886b::init();
 	}
@@ -214,7 +214,7 @@ event main(eventstruct)
 	{
 		level thread namespace_b9fd696c::function_c4fbad3();
 	}
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
 		level thread namespace_309bc702::main();
 	}
@@ -232,7 +232,7 @@ event main(eventstruct)
 
 /*
 	Name: function_f684d327
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x1C242176
 	Offset: 0x1958
 	Size: 0x44
@@ -250,7 +250,7 @@ function function_f684d327()
 
 /*
 	Name: function_3a7f44f7
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xEB1CC232
 	Offset: 0x19A8
 	Size: 0x2C
@@ -265,7 +265,7 @@ function function_3a7f44f7()
 
 /*
 	Name: function_814cda18
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x7BC41EEF
 	Offset: 0x19E0
 	Size: 0x104
@@ -282,13 +282,13 @@ function function_814cda18()
 		var_d8f4b898 waittill(#"movedone");
 	}
 	var_d8f4b898 disconnectpaths();
-	var_8b9cc8cf = spawn("trigger_box", (-800, -1070, -132), 0, 408, 164, 132);
-	var_8b9cc8cf disconnectpaths();
+	v_blocker = spawn("trigger_box", (-800, -1070, -132), 0, 408, 164, 132);
+	v_blocker disconnectpaths();
 }
 
 /*
 	Name: function_dcf267cf
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x8D52B9EC
 	Offset: 0x1AF0
 	Size: 0xD4
@@ -314,7 +314,7 @@ function function_dcf267cf()
 
 /*
 	Name: function_98b78151
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xE39AA1D2
 	Offset: 0x1BD0
 	Size: 0x7E
@@ -336,7 +336,7 @@ function function_98b78151()
 
 /*
 	Name: pap_power_on
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x5D78525
 	Offset: 0x1C58
 	Size: 0x8C
@@ -354,7 +354,7 @@ function pap_power_on()
 
 /*
 	Name: pap_power_off
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x33421521
 	Offset: 0x1CF0
 	Size: 0x4C
@@ -370,28 +370,28 @@ function pap_power_off()
 
 /*
 	Name: function_9b917fd5
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x4BB71D11
 	Offset: 0x1D48
 	Size: 0x24
 	Parameters: 1
 	Flags: Linked
 */
-function function_9b917fd5(var_634ce82e)
+function function_9b917fd5(is_powered)
 {
 	self pap_power_on();
 }
 
 /*
 	Name: function_70a36cd8
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x8879AC0E
 	Offset: 0x1D78
 	Size: 0x3C
 	Parameters: 1
 	Flags: Linked
 */
-function function_70a36cd8(var_634ce82e)
+function function_70a36cd8(is_powered)
 {
 	self zm_pack_a_punch::function_bb629351(1);
 	exploder::exploder("fxexp_script_pap_lgt");
@@ -399,7 +399,7 @@ function function_70a36cd8(var_634ce82e)
 
 /*
 	Name: function_ba054e47
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xFA969C91
 	Offset: 0x1DC0
 	Size: 0x238
@@ -434,7 +434,7 @@ function function_ba054e47()
 
 /*
 	Name: function_fb29042d
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x10C64636
 	Offset: 0x2000
 	Size: 0xF4
@@ -455,7 +455,7 @@ function function_fb29042d()
 
 /*
 	Name: function_b6f53cd2
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x89DCEA85
 	Offset: 0x2100
 	Size: 0x8E
@@ -475,7 +475,7 @@ function function_b6f53cd2()
 
 /*
 	Name: function_d0f18ffe
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x65C06919
 	Offset: 0x2198
 	Size: 0xBC
@@ -497,7 +497,7 @@ function function_d0f18ffe()
 
 /*
 	Name: function_d5d134ac
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xE263778B
 	Offset: 0x2260
 	Size: 0x104
@@ -526,7 +526,7 @@ function function_d5d134ac()
 
 /*
 	Name: function_1e56a591
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x3ACC6408
 	Offset: 0x2370
 	Size: 0x438
@@ -572,18 +572,18 @@ function function_1e56a591()
 	var_4160471f = struct::get_array("pap_button", "targetname");
 	if(var_4160471f.size > 0)
 	{
-		foreach(var_5478f7ee in var_4160471f)
+		foreach(s_pap_button in var_4160471f)
 		{
-			s_unitrigger = var_5478f7ee zm_unitrigger::create("", 64);
+			s_unitrigger = s_pap_button zm_unitrigger::create("", 64);
 			s_unitrigger.is_on = 0;
-			var_5478f7ee thread function_6762e94d();
+			s_pap_button thread function_6762e94d();
 		}
 	}
 }
 
 /*
 	Name: function_6762e94d
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x759402B9
 	Offset: 0x27B0
 	Size: 0x218
@@ -620,7 +620,7 @@ function function_6762e94d()
 
 /*
 	Name: function_9f50079d
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x79317323
 	Offset: 0x29D0
 	Size: 0x2C
@@ -629,12 +629,12 @@ function function_6762e94d()
 */
 function function_9f50079d()
 {
-	namespace_2ba51478::register_tactical_grenade_for_level(#"hash_603fdd2e4ae5b2b0", 1);
+	zm_loadout::register_tactical_grenade_for_level(#"hash_603fdd2e4ae5b2b0", 1);
 }
 
 /*
 	Name: offhand_weapon_give_override
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xA26CDAFC
 	Offset: 0x2A08
 	Size: 0xC6
@@ -644,17 +644,17 @@ function function_9f50079d()
 function offhand_weapon_give_override(str_weapon)
 {
 	self endon(#"death");
-	if(namespace_2ba51478::is_tactical_grenade(str_weapon) && isdefined(self namespace_2ba51478::get_player_tactical_grenade()) && !self namespace_2ba51478::is_player_tactical_grenade(str_weapon))
+	if(zm_loadout::is_tactical_grenade(str_weapon) && isdefined(self zm_loadout::get_player_tactical_grenade()) && !self zm_loadout::is_player_tactical_grenade(str_weapon))
 	{
-		self setweaponammoclip(self namespace_2ba51478::get_player_tactical_grenade(), 0);
-		self takeweapon(self namespace_2ba51478::get_player_tactical_grenade());
+		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
+		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
 	return 0;
 }
 
 /*
 	Name: function_79672a3d
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x51EEC533
 	Offset: 0x2AD8
 	Size: 0x1A4
@@ -691,7 +691,7 @@ function function_79672a3d()
 
 /*
 	Name: function_39463122
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xBD7DBF2A
 	Offset: 0x2C88
 	Size: 0x15C
@@ -710,17 +710,17 @@ function function_39463122()
 		var_76945247 setinvisibletoall();
 	}
 	e_switch = getent(self.target, "targetname");
-	var_d68dd87d = struct::get(self.target, "targetname");
-	if(isdefined(e_switch) && isdefined(var_d68dd87d))
+	s_fx_pos = struct::get(self.target, "targetname");
+	if(isdefined(e_switch) && isdefined(s_fx_pos))
 	{
-		zm_power::function_8d8fc6c5(e_switch, var_d68dd87d);
+		zm_power::elec_switch_on(e_switch, s_fx_pos);
 	}
-	self.var_a450cb6a notify(#"trigger", {#hash_3fc8547c:1, #activator:player});
+	self.var_a450cb6a notify(#"trigger", {#is_forced:1, #activator:player});
 }
 
 /*
 	Name: function_963beb87
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xC93BC638
 	Offset: 0x2DF0
 	Size: 0x314
@@ -781,7 +781,7 @@ function function_963beb87()
 
 /*
 	Name: function_486119ea
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xF657CDB1
 	Offset: 0x3110
 	Size: 0x208
@@ -829,7 +829,7 @@ function function_486119ea()
 
 /*
 	Name: function_789961d3
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x32B6609C
 	Offset: 0x3320
 	Size: 0x62
@@ -847,7 +847,7 @@ function function_789961d3()
 
 /*
 	Name: custom_magic_box_selection_logic
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xF751B26D
 	Offset: 0x3390
 	Size: 0x50
@@ -856,7 +856,7 @@ function function_789961d3()
 */
 function custom_magic_box_selection_logic(w_weapon, e_player)
 {
-	if(namespace_9cf755b::function_533e8671(w_weapon) && e_player namespace_9cf755b::function_7b08796f())
+	if(namespace_9cf755b::is_ray_gun(w_weapon) && e_player namespace_9cf755b::function_7b08796f())
 	{
 		return 0;
 	}
@@ -865,7 +865,7 @@ function custom_magic_box_selection_logic(w_weapon, e_player)
 
 /*
 	Name: function_2f57e2d2
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x64F4BE7D
 	Offset: 0x33E8
 	Size: 0x80
@@ -875,7 +875,7 @@ function custom_magic_box_selection_logic(w_weapon, e_player)
 function function_2f57e2d2(e_player)
 {
 	var_5f6b2789 = self.stub.trigger_target;
-	if(var_5f6b2789.weapon_out === 1 && namespace_9cf755b::function_533e8671(var_5f6b2789.zbarrier.weapon) && e_player namespace_9cf755b::function_7b08796f())
+	if(var_5f6b2789.weapon_out === 1 && namespace_9cf755b::is_ray_gun(var_5f6b2789.zbarrier.weapon) && e_player namespace_9cf755b::function_7b08796f())
 	{
 		return 0;
 	}
@@ -884,7 +884,7 @@ function function_2f57e2d2(e_player)
 
 /*
 	Name: function_1f712bb1
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xDC113423
 	Offset: 0x3470
 	Size: 0x114
@@ -906,7 +906,7 @@ function function_1f712bb1()
 
 /*
 	Name: function_2336a7c8
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x37EFBC2B
 	Offset: 0x3590
 	Size: 0x34
@@ -927,7 +927,7 @@ function function_2336a7c8()
 
 /*
 	Name: function_da0655c7
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x759E4DBB
 	Offset: 0x35D0
 	Size: 0x25C
@@ -969,7 +969,7 @@ function function_da0655c7()
 
 /*
 	Name: function_cf95fbb7
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x935C7D91
 	Offset: 0x3838
 	Size: 0x176
@@ -999,7 +999,7 @@ function function_cf95fbb7()
 
 /*
 	Name: function_e5c88b7b
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x1A9DDBD7
 	Offset: 0x39B8
 	Size: 0xFC
@@ -1021,7 +1021,7 @@ function function_e5c88b7b()
 
 /*
 	Name: function_785cadc4
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x53ED8DE0
 	Offset: 0x3AC0
 	Size: 0x19A
@@ -1043,7 +1043,7 @@ function function_785cadc4()
 
 /*
 	Name: function_d574cfc6
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xA4A83031
 	Offset: 0x3C68
 	Size: 0x1C4
@@ -1080,7 +1080,7 @@ function function_d574cfc6()
 
 /*
 	Name: function_cf100865
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xD9BEC773
 	Offset: 0x3E38
 	Size: 0xAC
@@ -1102,7 +1102,7 @@ function function_cf100865()
 
 /*
 	Name: function_1c074340
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x76DA4D2A
 	Offset: 0x3EF0
 	Size: 0x24
@@ -1116,7 +1116,7 @@ function function_1c074340()
 
 /*
 	Name: function_4f60590c
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x8F400411
 	Offset: 0x3F20
 	Size: 0x1C
@@ -1130,7 +1130,7 @@ function function_4f60590c()
 
 /*
 	Name: sndfunctions
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x3D39BDF1
 	Offset: 0x3F48
 	Size: 0xF4
@@ -1157,7 +1157,7 @@ function sndfunctions()
 
 /*
 	Name: setupmusic
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x61E5EC57
 	Offset: 0x4048
 	Size: 0x334
@@ -1190,7 +1190,7 @@ function setupmusic()
 
 /*
 	Name: setup_personality_character_exerts
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x55418BB2
 	Offset: 0x4388
 	Size: 0x3C8
@@ -1227,7 +1227,7 @@ function setup_personality_character_exerts()
 
 /*
 	Name: function_e120ae98
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xA4C35D66
 	Offset: 0x4758
 	Size: 0x1B0
@@ -1240,11 +1240,11 @@ function function_e120ae98(var_de1edcdb)
 	{
 		return var_de1edcdb;
 	}
-	var_b6a698b0 = array("zone_bunker_lounge_entrance", "zone_bunker_lounge", "zone_bunker_diner_entrance", "zone_bunker_diner", "zone_bunker_beds_1", "zone_bunker_beds_2", "zone_yellow_backyard", "zone_green_backyard");
+	a_filter = array("zone_bunker_lounge_entrance", "zone_bunker_lounge", "zone_bunker_diner_entrance", "zone_bunker_diner", "zone_bunker_beds_1", "zone_bunker_beds_2", "zone_yellow_backyard", "zone_green_backyard");
 	var_dbc11ffc = [];
 	foreach(s_point in var_de1edcdb)
 	{
-		if(!array::contains(var_b6a698b0, s_point.script_noteworthy))
+		if(!array::contains(a_filter, s_point.script_noteworthy))
 		{
 			if(!isdefined(var_dbc11ffc))
 			{
@@ -1265,7 +1265,7 @@ function function_e120ae98(var_de1edcdb)
 
 /*
 	Name: function_c8ce0a17
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x288720B3
 	Offset: 0x4918
 	Size: 0x88
@@ -1289,7 +1289,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 
 /*
 	Name: function_e5086229
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xEA56BA8E
 	Offset: 0x49A8
 	Size: 0x70
@@ -1309,7 +1309,7 @@ function function_e5086229(var_404e4288, var_8dd554ee)
 
 /*
 	Name: function_7e6cf034
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0xEC04A7EE
 	Offset: 0x4A20
 	Size: 0x372
@@ -1386,7 +1386,7 @@ function function_7e6cf034()
 
 /*
 	Name: function_cc45705b
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x567DD00D
 	Offset: 0x4DA0
 	Size: 0x1B0
@@ -1399,11 +1399,11 @@ function function_cc45705b(var_de1edcdb)
 	{
 		return var_de1edcdb;
 	}
-	var_b6a698b0 = array("zone_bunker_lounge_entrance", "zone_bunker_lounge", "zone_bunker_diner_entrance", "zone_bunker_diner", "zone_bunker_beds_1", "zone_bunker_beds_2", "zone_bunker_power_1", "zone_bunker_power_2");
+	a_filter = array("zone_bunker_lounge_entrance", "zone_bunker_lounge", "zone_bunker_diner_entrance", "zone_bunker_diner", "zone_bunker_beds_1", "zone_bunker_beds_2", "zone_bunker_power_1", "zone_bunker_power_2");
 	var_dbc11ffc = [];
 	foreach(s_point in var_de1edcdb)
 	{
-		if(!array::contains(var_b6a698b0, s_point.script_noteworthy))
+		if(!array::contains(a_filter, s_point.script_noteworthy))
 		{
 			if(!isdefined(var_dbc11ffc))
 			{
@@ -1424,7 +1424,7 @@ function function_cc45705b(var_de1edcdb)
 
 /*
 	Name: function_6919a3fd
-	Namespace: namespace_44cfe494
+	Namespace: zm_white
 	Checksum: 0x37A4ED06
 	Offset: 0x4F60
 	Size: 0x450

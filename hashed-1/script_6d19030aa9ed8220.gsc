@@ -204,7 +204,7 @@ function widows_wine_contact_explosion()
 	a_ai_targets = arraysortclosest(a_ai_targets, self.origin);
 	foreach(ai_target in a_ai_targets)
 	{
-		var_ccc9bda1 = 0;
+		b_freeze = 0;
 		if(!isdefined(ai_target))
 		{
 			continue;
@@ -235,11 +235,11 @@ function widows_wine_contact_explosion()
 			{
 				var_3e5502b5 = #"hash_54016f8b03c9745e";
 				var_ca6267ad = 12;
-				var_ccc9bda1 = 1;
+				b_freeze = 1;
 			}
 		}
 		n_dist_sq = distancesquared(self.origin, ai_target.origin);
-		if(var_ccc9bda1 && n_dist_sq <= 10000)
+		if(b_freeze && n_dist_sq <= 10000)
 		{
 			ai_target thread function_5c114d09(self);
 		}
@@ -501,7 +501,7 @@ function widows_wine_vehicle_behavior(attacker, weapon)
 	Parameters: 4
 	Flags: Linked
 */
-function widows_wine_perk_lost(b_pause, str_perk, str_result, var_bcd1c2ff)
+function widows_wine_perk_lost(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"stop_widows_wine");
 	self endon(#"death");

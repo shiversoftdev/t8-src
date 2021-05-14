@@ -2846,7 +2846,7 @@ function lock_model(model)
 }
 
 /*
-	Name: function_722c0c0
+	Name: unlock_model
 	Namespace: util
 	Checksum: 0x2A8EF3CE
 	Offset: 0x5038
@@ -2854,7 +2854,7 @@ function lock_model(model)
 	Parameters: 1
 	Flags: Linked
 */
-function function_722c0c0(model)
+function unlock_model(model)
 {
 	if(!isdefined(level.model_locks))
 	{

@@ -50,9 +50,9 @@ function __init__()
 */
 function enable()
 {
-	namespace_e613822d::function_c047c228(&function_84832f40);
-	namespace_e613822d::function_33023da5(&function_84832f40);
-	namespace_e613822d::function_48f914bd(&function_a152b188);
+	zm_wallbuy::function_c047c228(&function_84832f40);
+	zm_wallbuy::function_33023da5(&function_84832f40);
+	zm_wallbuy::function_48f914bd(&override_ammo_cost);
 }
 
 /*
@@ -66,9 +66,9 @@ function enable()
 */
 function disable()
 {
-	namespace_e613822d::function_a6889c(&function_84832f40);
-	namespace_e613822d::function_782e8955(&function_84832f40);
-	namespace_e613822d::function_99911dae(&function_a152b188);
+	zm_wallbuy::function_a6889c(&function_84832f40);
+	zm_wallbuy::function_782e8955(&function_84832f40);
+	zm_wallbuy::function_99911dae(&override_ammo_cost);
 }
 
 /*
@@ -104,7 +104,7 @@ function function_84832f40(var_38e724e6, var_2b6f3563)
 }
 
 /*
-	Name: function_a152b188
+	Name: override_ammo_cost
 	Namespace: namespace_6cc2ce5b
 	Checksum: 0xCBF163D0
 	Offset: 0x2B0
@@ -112,7 +112,7 @@ function function_84832f40(var_38e724e6, var_2b6f3563)
 	Parameters: 2
 	Flags: Linked
 */
-function function_a152b188(var_38e724e6, stub)
+function override_ammo_cost(var_38e724e6, stub)
 {
 	if(self zm_weapons::has_upgrade(var_38e724e6))
 	{

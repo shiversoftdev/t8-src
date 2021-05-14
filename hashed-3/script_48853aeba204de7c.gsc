@@ -5,7 +5,7 @@
 #namespace namespace_ec52743e;
 
 /*
-	Name: function_66e26b6f
+	Name: registergladiatorinterfaceattributes
 	Namespace: namespace_ec52743e
 	Checksum: 0x8E01950C
 	Offset: 0x78
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_66e26b6f()
+function registergladiatorinterfaceattributes()
 {
 	ai::registermatchedinterface(#"gladiator", #"run", 0, array(1, 0));
 	ai::registermatchedinterface(#"gladiator", #"axe_throw", 1, array(1, 0));

@@ -5,7 +5,7 @@
 #namespace namespace_7bed886b;
 
 /*
-	Name: function_ce64b76b
+	Name: registergegeneesinterfaceattributes
 	Namespace: namespace_7bed886b
 	Checksum: 0xC0DA991A
 	Offset: 0x78
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_ce64b76b()
+function registergegeneesinterfaceattributes()
 {
 	ai::registermatchedinterface(#"gegenees", #"run", 0, array(1, 0));
 	ai::registernumericinterface(#"gegenees", #"damage_multiplier", 1, 0, 100);

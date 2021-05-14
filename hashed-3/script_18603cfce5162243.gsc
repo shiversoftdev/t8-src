@@ -91,7 +91,7 @@ function function_137d1be7()
 {
 	clientfield::register("scriptmover", "" + #"hash_7199d465a80b4f59", 15000, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_5f545b88ba3e2938", 15000, 1, "int");
-	clientfield::register("actor", "" + #"hash_645137a0f642fa11", 15000, 1, "counter");
+	clientfield::register("actor", "" + #"zombshell_explosion", 15000, 1, "counter");
 }
 
 /*
@@ -147,7 +147,7 @@ function function_a639586f()
 	Parameters: 4
 	Flags: Linked
 */
-function function_7328ce94(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_7328ce94(b_pause, str_perk, str_result, n_slot)
 {
 	self notify(#"hash_36b9957a693185ea" + "_take");
 	self function_993d228c();
@@ -183,13 +183,13 @@ function on_ai_killed(s_params)
 		if(!isdefined(player.var_c153f587) && !player.var_69604b18 && math::cointoss(n_chance) && (isdefined(self.completed_emerging_into_playable_area) && self.completed_emerging_into_playable_area))
 		{
 			self.no_powerups = 1;
-			self function_1d98ee80(player, s_params.weapon);
+			self shell_explosion(player, s_params.weapon);
 		}
 	}
 }
 
 /*
-	Name: function_1d98ee80
+	Name: shell_explosion
 	Namespace: namespace_d7d6f390
 	Checksum: 0x38030131
 	Offset: 0x930
@@ -197,7 +197,7 @@ function on_ai_killed(s_params)
 	Parameters: 2
 	Flags: Linked
 */
-function function_1d98ee80(e_attacker, w_weapon)
+function shell_explosion(e_attacker, w_weapon)
 {
 	e_attacker endon(#"disconnect", #"hash_36b9957a693185ea" + "_take");
 	if(!isdefined(self))
@@ -206,7 +206,7 @@ function function_1d98ee80(e_attacker, w_weapon)
 		return;
 	}
 	v_origin = self.origin + vectorscale((0, 0, 1), 20);
-	self clientfield::increment("" + #"hash_645137a0f642fa11");
+	self clientfield::increment("" + #"zombshell_explosion");
 	if(!isdefined(e_attacker.var_c153f587))
 	{
 		e_attacker.var_c153f587 = util::spawn_model("tag_origin", v_origin);
@@ -527,11 +527,11 @@ function function_7d72c6f9(var_85dcb56c)
 		wait(0.1);
 		self.var_fc63c7bc = self.var_fc63c7bc - 0.1;
 		self.var_fc63c7bc = math::clamp(self.var_fc63c7bc, 0, var_85dcb56c);
-		var_c2093736 = 1 - self.var_fc63c7bc / var_85dcb56c;
-		var_c2093736 = math::clamp(var_c2093736, 0.02, var_85dcb56c);
+		n_percentage = 1 - self.var_fc63c7bc / var_85dcb56c;
+		n_percentage = math::clamp(n_percentage, 0.02, var_85dcb56c);
 		if(self hasperk(#"hash_36b9957a693185ea") && isdefined(self.var_849c3bcf))
 		{
-			self zm_perks::function_13880aa5(self.var_849c3bcf, var_c2093736, #"hash_6fac30b31b5bec64");
+			self zm_perks::function_13880aa5(self.var_849c3bcf, n_percentage, #"hash_6fac30b31b5bec64");
 		}
 	}
 }

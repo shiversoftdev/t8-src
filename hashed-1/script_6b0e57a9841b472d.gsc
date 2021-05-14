@@ -32,7 +32,7 @@ function init()
 	level._effect[#"hash_52f03af6567710a5"] = #"hash_7a9a94bbcf902878";
 	level._effect[#"hash_584149c4564f2d95"] = #"hash_9c7935d1106ec1d";
 	level._effect[#"hash_6c266b19031d2c09"] = #"hash_4dd46a244305d465";
-	level.var_90a3a956 = spawnstruct();
+	level.s_boss_battle = spawnstruct();
 }
 
 /*
@@ -125,15 +125,15 @@ function function_272aa016(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_a27b945a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(!isdefined(level.var_90a3a956.var_4475b443))
+	if(!isdefined(level.s_boss_battle.var_4475b443))
 	{
 		return 0;
 	}
 	str_tag = "tag_origin";
-	level beam::launch(level.var_90a3a956.var_4475b443, str_tag, self, "j_spine4", "beam8_zm_red_peg_lightning_strike", 1);
+	level beam::launch(level.s_boss_battle.var_4475b443, str_tag, self, "j_spine4", "beam8_zm_red_peg_lightning_strike", 1);
 	self playsound(localclientnum, #"hash_61c057ffadb7a5af");
 	wait(1.5);
-	level beam::kill(level.var_90a3a956.var_4475b443, str_tag, self, "j_spine4", "beam8_zm_red_peg_lightning_strike");
+	level beam::kill(level.s_boss_battle.var_4475b443, str_tag, self, "j_spine4", "beam8_zm_red_peg_lightning_strike");
 }
 
 /*
@@ -220,7 +220,7 @@ private function function_e9aa9e80(localclientnum)
 		return;
 	}
 	self.e_fx = util::spawn_model(localclientnum, #"tag_origin", var_9d68990a.origin);
-	self.var_64153c56 = util::playfxontag(localclientnum, level._effect[#"lightning_arc"], self.e_fx, "tag_origin");
+	self.fx_arc = util::playfxontag(localclientnum, level._effect[#"lightning_arc"], self.e_fx, "tag_origin");
 	while(true)
 	{
 		str_fx_tag = (isdefined(self gettagorigin("j_mainroot")) ? "j_mainroot" : "tag_driver");
@@ -255,10 +255,10 @@ private function function_e9aa9e80(localclientnum)
 private function function_954b9602(localclientnum)
 {
 	self waittill(#"death", #"hash_5531647ca0352039");
-	if(isdefined(self.var_64153c56))
+	if(isdefined(self.fx_arc))
 	{
-		stopfx(localclientnum, self.var_64153c56);
-		self.var_64153c56 = undefined;
+		stopfx(localclientnum, self.fx_arc);
+		self.fx_arc = undefined;
 	}
 	if(isdefined(self.e_fx))
 	{

@@ -213,7 +213,7 @@ function function_1c4b5097(item)
 */
 function function_4ac25840(params)
 {
-	foreach(team in params.var_48787ba8)
+	foreach(team in params.teams_alive)
 	{
 		players = getplayers(team);
 		foreach(player in players)

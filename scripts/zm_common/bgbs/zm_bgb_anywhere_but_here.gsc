@@ -243,7 +243,7 @@ function function_91a62549()
 	{
 		var_65500f70 = [[level.var_e120ae98]](var_65500f70);
 	}
-	var_453ce4c3 = undefined;
+	s_player_respawn = undefined;
 	if(var_65500f70.size > 0)
 	{
 		var_53b1aa43 = array::random(var_65500f70);
@@ -253,11 +253,11 @@ function function_91a62549()
 			n_script_int = self getentitynumber() + 1;
 			if(var_5aff2c2c.script_int === n_script_int)
 			{
-				var_453ce4c3 = var_5aff2c2c;
+				s_player_respawn = var_5aff2c2c;
 			}
 		}
 	}
-	return var_453ce4c3;
+	return s_player_respawn;
 }
 
 /*

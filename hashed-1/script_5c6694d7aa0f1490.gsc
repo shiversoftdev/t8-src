@@ -48,7 +48,7 @@ function preload()
 function init()
 {
 	level flag::init(#"hash_2c3411c8b8b421d8");
-	namespace_85e029d3::function_f6ecebca(16, #"hash_18dcf44bdd7a747c", #"hash_459899940f28d8f0", &function_b5f900c3);
+	namespace_85e029d3::register_drop_off(16, #"hash_18dcf44bdd7a747c", #"hash_459899940f28d8f0", &function_b5f900c3);
 }
 
 /*
@@ -72,7 +72,7 @@ function function_5309464a(var_5ea5c94d)
 		{
 			chest zm_magicbox::hide_chest(0);
 		}
-		namespace_b57826b5::function_2336a7c8();
+		zm_orange::function_2336a7c8();
 	}
 	if(!var_5ea5c94d)
 	{
@@ -110,7 +110,7 @@ function function_b5f900c3()
 		iprintlnbold("");
 	#/
 	level notify(#"hash_7b1d7041d240c3da");
-	level thread function_d4832d05();
+	level thread sun_deck_watcher();
 }
 
 /*
@@ -163,7 +163,7 @@ function function_39c9e020()
 }
 
 /*
-	Name: function_d4832d05
+	Name: sun_deck_watcher
 	Namespace: namespace_13b4b4b
 	Checksum: 0x9464413D
 	Offset: 0x6F8
@@ -171,7 +171,7 @@ function function_39c9e020()
 	Parameters: 0
 	Flags: Linked
 */
-function function_d4832d05()
+function sun_deck_watcher()
 {
 	level endon(#"end_game");
 	while(true)

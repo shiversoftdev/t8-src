@@ -22,7 +22,7 @@ function function_4e219272(weapon, var_26b2b1bb)
 	/#
 		level thread update_dvars();
 	#/
-	if(!function_a1b3c3d5(weapon, var_26b2b1bb))
+	if(!setup_arc(weapon, var_26b2b1bb))
 	{
 		return;
 	}
@@ -55,7 +55,7 @@ function update_dvars()
 }
 
 /*
-	Name: function_a1b3c3d5
+	Name: setup_arc
 	Namespace: arc
 	Checksum: 0x9A5BB72E
 	Offset: 0x198
@@ -63,7 +63,7 @@ function update_dvars()
 	Parameters: 2
 	Flags: None
 */
-function function_a1b3c3d5(weapon, var_26b2b1bb)
+function setup_arc(weapon, var_26b2b1bb)
 {
 	/#
 		assert(isdefined(weapon));

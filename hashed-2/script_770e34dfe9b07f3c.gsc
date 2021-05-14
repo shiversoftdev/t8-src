@@ -36,12 +36,12 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	if(!namespace_f551babc::function_b47f6aba())
+	if(!zm_trial::function_b47f6aba())
 	{
 		return;
 	}
 	clientfield::register("zbarrier", "" + #"hash_100f180bf5d2a517", 14000, 1, "int");
-	namespace_f551babc::register_challenge(#"hash_28d1b9857e2ca681", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_28d1b9857e2ca681", &function_d1de6a85, &function_9e7b3f4d);
 }
 
 /*
@@ -55,10 +55,10 @@ function __init__()
 */
 private function function_d1de6a85(var_c4da4541, var_93a137cd)
 {
-	level.var_6f6736a8 = namespace_f551babc::function_5769f26a(var_c4da4541);
+	level.var_6f6736a8 = zm_trial::function_5769f26a(var_c4da4541);
 	if(isdefined(var_93a137cd))
 	{
-		self.var_93a137cd = namespace_f551babc::function_5769f26a(var_93a137cd);
+		self.var_93a137cd = zm_trial::function_5769f26a(var_93a137cd);
 	}
 	level thread function_c3996268();
 	if(isdefined(self.var_93a137cd) && self.var_93a137cd)
@@ -98,11 +98,11 @@ private function function_9e7b3f4d(round_reset)
 		{
 			if(zm_utility::function_166646a6() === 1)
 			{
-				namespace_f551babc::fail(#"hash_11dba2735866a0f6");
+				zm_trial::fail(#"hash_11dba2735866a0f6");
 			}
 			else
 			{
-				namespace_f551babc::fail(#"hash_aaf7fedbbd0fd9");
+				zm_trial::fail(#"hash_aaf7fedbbd0fd9");
 			}
 		}
 		namespace_b22c99a5::function_f3dbeda7();
@@ -130,11 +130,11 @@ private function function_9e7b3f4d(round_reset)
 		{
 			if(zm_utility::function_166646a6() === 1)
 			{
-				namespace_f551babc::fail(#"hash_11dba2735866a0f6", var_ef7fbb73);
+				zm_trial::fail(#"hash_11dba2735866a0f6", var_ef7fbb73);
 			}
 			else
 			{
-				namespace_f551babc::fail(#"hash_aaf7fedbbd0fd9", var_ef7fbb73);
+				zm_trial::fail(#"hash_aaf7fedbbd0fd9", var_ef7fbb73);
 			}
 		}
 	}
@@ -268,7 +268,7 @@ private function function_c33c2895()
 */
 function is_active()
 {
-	challenge = namespace_f551babc::function_a36e8c38(#"hash_28d1b9857e2ca681");
+	challenge = zm_trial::function_a36e8c38(#"hash_28d1b9857e2ca681");
 	return isdefined(challenge);
 }
 

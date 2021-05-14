@@ -30,7 +30,7 @@ function function_6c0434ba(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self.var_b8a353a9 = util::playfxontag(localclientnum, level._effect[#"hash_3a4cca038b97b169"], self, "tag_origin");
+		self.fx_fire = util::playfxontag(localclientnum, level._effect[#"hash_3a4cca038b97b169"], self, "tag_origin");
 	}
 }
 

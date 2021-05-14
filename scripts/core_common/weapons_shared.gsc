@@ -94,12 +94,12 @@ function function_867af0b()
 			{
 				continue;
 			}
-			var_7c0a4d13 = getdvarint(#"hash_41d0d08dc430eacf", 0);
-			if(var_7c0a4d13 == 0)
+			test_mount = getdvarint(#"test_mount", 0);
+			if(test_mount == 0)
 			{
 				continue;
 			}
-			if(var_7c0a4d13 == 1)
+			if(test_mount == 1)
 			{
 				if(isdefined(gameobject_link))
 				{
@@ -110,11 +110,11 @@ function function_867af0b()
 				player playerlinkto(gameobject_link, "", 0, 60, 60, 30, 10, 0);
 				player function_66f3a713();
 			}
-			else if(var_7c0a4d13 == 2)
+			else if(test_mount == 2)
 			{
 				player unlink();
 			}
-			setdvar(#"hash_41d0d08dc430eacf", 0);
+			setdvar(#"test_mount", 0);
 		}
 	#/
 }
@@ -273,7 +273,7 @@ function function_e870d33d()
 		}
 		player_angles = player getplayerangles();
 		player_forward = anglestoforward(player_angles);
-		var_4d7355d2 = player function_7490c803();
+		var_4d7355d2 = player isaisminute();
 		var_a3a6eba5 = player_angles;
 		var_6b6455b9 = anglestoforward(var_a3a6eba5);
 		if(isdefined(var_4d7355d2))

@@ -33,7 +33,7 @@ function init_clientfields()
 	clientfield::register("scriptmover", "" + #"hash_5eff598dc267e32a", 8000, 1, "int", &function_b75c6b4f, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_4f11537440270a3", 8000, 1, "counter", &function_dea9fad1, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_141bb928b3d09e20", 8000, 1, "int", &function_6628d887, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_34c5ab29531f15f0", 8000, 1, "int", &function_b4e6c7be, 0, 0);
+	clientfield::register("scriptmover", "" + #"hash_34c5ab29531f15f0", 8000, 1, "int", &crystal_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_546e7612359187c3", 8000, 1, "counter", &function_a0d4ae11, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_73a4abf07bc65bc3", 8000, 1, "counter", &function_b479829c, 0, 0);
 	clientfield::register("world", "" + #"hash_557a1703971f074c", 8000, 1, "int", &function_bca55d4e, 0, 0);
@@ -83,7 +83,7 @@ function function_b479829c(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_b4e6c7be
+	Name: crystal_fx
 	Namespace: namespace_a8113e97
 	Checksum: 0xAC3F6516
 	Offset: 0x978
@@ -91,7 +91,7 @@ function function_b479829c(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_b4e6c7be(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function crystal_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(newval)
 	{
@@ -136,15 +136,15 @@ function function_6628d887(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		self.var_19fc85d = util::playfxontag(localclientnum, level._effect[#"hash_51c7bc3539ed5540"], self, "tag_origin");
+		self.n_soul_fx = util::playfxontag(localclientnum, level._effect[#"hash_51c7bc3539ed5540"], self, "tag_origin");
 	}
 	else
 	{
 		util::playfxontag(localclientnum, level._effect[#"hash_68213763a7707b92"], self, "tag_origin");
-		if(isdefined(self.var_19fc85d))
+		if(isdefined(self.n_soul_fx))
 		{
-			stopfx(localclientnum, self.var_19fc85d);
-			self.var_19fc85d = undefined;
+			stopfx(localclientnum, self.n_soul_fx);
+			self.n_soul_fx = undefined;
 		}
 	}
 }

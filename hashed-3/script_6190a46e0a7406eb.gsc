@@ -142,9 +142,9 @@ function sq_bg_macguffin_think()
 	self setforcenocull();
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"damage");
-		if(isplayer(var_88706ea7.attacker) && (var_88706ea7.weapon == getweapon(#"tomahawk_t8") || var_88706ea7.weapon == getweapon(#"tomahawk_t8_upgraded")))
+		s_result = undefined;
+		s_result = self waittill(#"damage");
+		if(isplayer(s_result.attacker) && (s_result.weapon == getweapon(#"tomahawk_t8") || s_result.weapon == getweapon(#"tomahawk_t8_upgraded")))
 		{
 			playfx(level._effect[#"ee_skull_shot"], self.origin);
 			self thread wait_and_hide_sq_bg_macguffin();
@@ -197,9 +197,9 @@ function tomahawk_the_macguffin(e_grenade, n_grenade_charge_power)
 		{
 			continue;
 		}
-		if(!(isdefined(var_a2a0a44e.var_410930d5) && var_a2a0a44e.var_410930d5) && distancesquared(var_a2a0a44e.origin, e_grenade.origin) < 100 * 100)
+		if(!(isdefined(var_a2a0a44e.b_collected) && var_a2a0a44e.b_collected) && distancesquared(var_a2a0a44e.origin, e_grenade.origin) < 100 * 100)
 		{
-			var_a2a0a44e.var_410930d5 = 1;
+			var_a2a0a44e.b_collected = 1;
 			var_6e6ec518 = namespace_268fc37c::tomahawk_spawn(e_grenade.origin);
 			var_6e6ec518.n_grenade_charge_power = n_grenade_charge_power;
 			var_a2a0a44e notify(#"caught_by_tomahawk");
@@ -252,9 +252,9 @@ function check_sq_bg_progress()
 	n_macguffins_collected = 0;
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill(#"sq_bg_macguffin_collected");
-		e_player = var_88706ea7.e_player;
+		s_result = undefined;
+		s_result = level waittill(#"sq_bg_macguffin_collected");
+		e_player = s_result.e_player;
 		n_macguffins_collected++;
 		if(n_macguffins_collected >= n_macguffins_total)
 		{
@@ -307,9 +307,9 @@ function give_sq_bg_reward(var_dd7441ab)
 	var_4d0b3b87 thread scene::play(#"p8_fxanim_zm_esc_blundergat_fireplace_hover_bundle", var_4d0b3b87);
 	while(isdefined(self))
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
-		e_player = var_88706ea7.activator;
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
+		e_player = s_result.activator;
 		if(zm_utility::can_use(e_player, 1) && e_player.currentweapon.name != "none")
 		{
 			if(e_player hasweapon(getweapon(#"hash_19c157f2230454ad")) || e_player hasweapon(getweapon(#"hash_cb1cdb5b47f0226")) || e_player hasweapon(getweapon(#"hash_25a13b6f6232a985")) || e_player hasweapon(getweapon(#"hash_4c157b1aeefae09e")) || e_player hasweapon(getweapon(#"hash_23882a5729dceca")) || e_player hasweapon(getweapon(#"hash_1b5092cccdb3d65b")) || e_player hasweapon(getweapon(#"hash_617dcc39334959ce")))
@@ -377,8 +377,8 @@ function sq_bg_spawn_rumble()
 	self endon(#"death");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"trigger");
+		s_result = undefined;
+		s_result = self waittill(#"trigger");
 		wait(0.1);
 	}
 }

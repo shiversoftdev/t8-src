@@ -72,7 +72,7 @@ function widows_wine_client_field_func()
 {
 	clientfield::register("actor", "winters_wail_freeze", 1, 1, "int", &function_fd02d096, 0, 1);
 	clientfield::register("vehicle", "winters_wail_freeze", 1, 1, "int", &function_fd02d096, 0, 0);
-	clientfield::register("allplayers", "winters_wail_explosion", 1, 1, "counter", &function_f2bb4493, 0, 0);
+	clientfield::register("allplayers", "winters_wail_explosion", 1, 1, "counter", &widows_wine_explosion, 0, 0);
 	clientfield::register("allplayers", "winters_wail_slow_field", 1, 1, "int", &function_c6366dbe, 0, 0);
 }
 
@@ -135,7 +135,7 @@ function function_fd02d096(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_f2bb4493
+	Name: widows_wine_explosion
 	Namespace: zm_perk_widows_wine
 	Checksum: 0x743752B3
 	Offset: 0x770
@@ -143,7 +143,7 @@ function function_fd02d096(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_f2bb4493(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function widows_wine_explosion(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval && isdefined(self) && isdefined(level._effect[#"winters_wail_explosion"]))
 	{

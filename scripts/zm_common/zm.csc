@@ -556,7 +556,7 @@ function game_end_time(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 	if(!binitialsnap)
 	{
 		level notify(#"end_game");
-		level.var_ffe43368 = 1;
+		level.b_game_ended = 1;
 	}
 	model = createuimodel(getuimodelforcontroller(localclientnum), "hudItems.time.game_end_time");
 	setuimodelvalue(model, newval);
@@ -1746,9 +1746,9 @@ function laststand(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 	}
 	if(isplayer(self) && self function_21c0fa55())
 	{
-		var_1b5ddafb = getuimodelforcontroller(localclientnum);
-		var_718cbd84 = createuimodel(var_1b5ddafb, "ZMHud.lastStand");
-		setuimodelvalue(var_718cbd84, newval);
+		controller_model = getuimodelforcontroller(localclientnum);
+		laststand_model = createuimodel(controller_model, "ZMHud.lastStand");
+		setuimodelvalue(laststand_model, newval);
 	}
 }
 

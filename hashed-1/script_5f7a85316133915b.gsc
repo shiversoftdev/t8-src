@@ -221,7 +221,7 @@ function function_8dd97732()
 function function_6842bdd7(player)
 {
 	s_altar = self.stub.script_struct;
-	var_acb2149e = struct::get_array(s_altar.target);
+	finalfight_raid = struct::get_array(s_altar.target);
 	if(namespace_59ff1d6c::function_8b8fa6e5(player))
 	{
 		player.var_e07e301b = undefined;
@@ -229,8 +229,8 @@ function function_6842bdd7(player)
 	}
 	if(!(isdefined(s_altar.b_in_use) && s_altar.b_in_use) && isdefined(player.perks_active) && player.perks_active.size > 4)
 	{
-		var_acb2149e = arraysortclosest(var_acb2149e, player util::get_eye(), undefined, 0, 64);
-		foreach(s_interact in var_acb2149e)
+		finalfight_raid = arraysortclosest(finalfight_raid, player util::get_eye(), undefined, 0, 64);
+		foreach(s_interact in finalfight_raid)
 		{
 			n_dist = distancesquared(player util::get_eye(), s_interact.origin);
 			var_b03ef6de = player zm_utility::is_player_looking_at(s_interact.origin, 0.94, 0);
@@ -458,7 +458,7 @@ function function_20fe0559()
 		{
 			continue;
 		}
-		var_bcd1c2ff = player.var_e07e301b.script_int;
+		n_slot = player.var_e07e301b.script_int;
 		n_cost = player.var_e07e301b.n_cost;
 		if(!player zm_score::can_player_purchase(n_cost))
 		{
@@ -488,16 +488,16 @@ function function_20fe0559()
 		level.bottle_spawn_location setmodel(#"tag_origin");
 		if(isdefined(var_5c3cde58) && var_5c3cde58)
 		{
-			if(var_bcd1c2ff == 3 && isdefined(level.var_5355c665))
+			if(n_slot == 3 && isdefined(level.var_5355c665))
 			{
-				player notify(level.var_5355c665[player.var_c27f1e90[var_bcd1c2ff]] + "_stop");
+				player notify(level.var_5355c665[player.var_c27f1e90[n_slot]] + "_stop");
 			}
-			player notify(player.var_c27f1e90[var_bcd1c2ff] + "_stop");
+			player notify(player.var_c27f1e90[n_slot] + "_stop");
 			player thread function_bb1ac745(s_altar);
-			player.var_c27f1e90[var_bcd1c2ff] = var_62fef0f1;
+			player.var_c27f1e90[n_slot] = var_62fef0f1;
 			player notify(#"perk_purchased", {#perk:var_62fef0f1});
-			player thread zm_perks::function_4acf7b43(var_bcd1c2ff, var_62fef0f1);
-			self thread zm_perks::function_9c5d6cd6(player, var_62fef0f1, var_bcd1c2ff);
+			player thread zm_perks::function_4acf7b43(n_slot, var_62fef0f1);
+			self thread zm_perks::taking_cover_tanks_(player, var_62fef0f1, n_slot);
 		}
 		else
 		{
@@ -672,10 +672,10 @@ function function_42171e41(player)
 {
 	s_altar = self.stub.script_struct;
 	s_altar.var_46fe01e2 = 1;
-	var_88706ea7 = undefined;
-	var_88706ea7 = self waittill_timeout(10, #"trigger");
+	s_result = undefined;
+	s_result = self waittill_timeout(10, #"trigger");
 	s_altar.var_46fe01e2 = 0;
-	if(var_88706ea7._notify == "trigger" && var_88706ea7.activator === player)
+	if(s_result._notify == "trigger" && s_result.activator === player)
 	{
 		return 1;
 	}

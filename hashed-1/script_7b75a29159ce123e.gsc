@@ -46,7 +46,7 @@ function on_player_connect()
 	self.var_5a15be2a = &function_ea30554a;
 	self.var_d67976f1 = 0;
 	self.var_32ab02ea = 0;
-	self thread function_260d850a();
+	self thread player_teleport_watcher();
 }
 
 /*
@@ -397,7 +397,7 @@ function function_3db52483()
 }
 
 /*
-	Name: function_260d850a
+	Name: player_teleport_watcher
 	Namespace: namespace_55f8626e
 	Checksum: 0x6BEE8D45
 	Offset: 0xDD0
@@ -405,7 +405,7 @@ function function_3db52483()
 	Parameters: 0
 	Flags: Linked
 */
-function function_260d850a()
+function player_teleport_watcher()
 {
 	self endon(#"disconnect");
 	if(!isdefined(self.var_23688a5e))

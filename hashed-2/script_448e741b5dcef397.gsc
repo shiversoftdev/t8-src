@@ -76,7 +76,7 @@ private function function_654bd68b(localclientnum, oldvalue, newvalue, bnewent, 
 	{
 		if(self flag::exists(#"friendly"))
 		{
-			self renderoverridebundle::function_40d0d1e0(#"friendly", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"rob_sonar_set_friendlyequip_mp"), 0);
+			self renderoverridebundle::stop_bundle(#"friendly", (sessionmodeiscampaigngame() ? #"hash_461520942fd1154d" : #"rob_sonar_set_friendlyequip_mp"), 0);
 		}
 	}
 }
@@ -118,15 +118,15 @@ function function_e464e22b(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		if(isdefined(self.var_cc32e25f))
+		if(isdefined(self.zmpowerupinstakill_introduction))
 		{
-			stopfx(localclientnum, self.var_cc32e25f);
+			stopfx(localclientnum, self.zmpowerupinstakill_introduction);
 		}
-		self.var_cc32e25f = util::playfxontag(localclientnum, "weapon/fx8_hero_sig_lightning_death_dog", self, "j_spine3");
+		self.zmpowerupinstakill_introduction = util::playfxontag(localclientnum, "weapon/fx8_hero_sig_lightning_death_dog", self, "j_spine3");
 	}
-	else if(isdefined(self.var_cc32e25f))
+	else if(isdefined(self.zmpowerupinstakill_introduction))
 	{
-		stopfx(localclientnum, self.var_cc32e25f);
+		stopfx(localclientnum, self.zmpowerupinstakill_introduction);
 	}
 }
 

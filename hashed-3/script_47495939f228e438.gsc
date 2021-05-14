@@ -8,11 +8,11 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm_common\zm.gsc;
 
-#namespace namespace_65dba40e;
+#namespace zm_aoe;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xB0187EA4
 	Offset: 0x178
 	Size: 0x44
@@ -21,7 +21,7 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_20e082d89ccb3c", &__init__, &__main__, undefined);
+	system::register(#"zm_aoe", &__init__, &__main__, undefined);
 }
 
 #namespace namespace_8d574d24;
@@ -55,11 +55,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_65dba40e;
+#namespace zm_aoe;
 
 /*
 	Name: function_8d574d24
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x37EA2DDB
 	Offset: 0x210
 	Size: 0x86
@@ -102,11 +102,11 @@ function __destructor()
 {
 }
 
-#namespace namespace_65dba40e;
+#namespace zm_aoe;
 
 /*
 	Name: function_698343df
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x18106E7C
 	Offset: 0x2C8
 	Size: 0x86
@@ -122,7 +122,7 @@ private autoexec function function_698343df()
 
 /*
 	Name: __init__
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x73727CB6
 	Offset: 0x358
 	Size: 0x84
@@ -137,7 +137,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xBF51508
 	Offset: 0x3E8
 	Size: 0x18C
@@ -157,7 +157,7 @@ private function __main__()
 
 /*
 	Name: function_e969e75
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x480FE14E
 	Offset: 0x580
 	Size: 0x98
@@ -179,7 +179,7 @@ private function function_e969e75(type)
 
 /*
 	Name: function_15dea507
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x903EC8FD
 	Offset: 0x620
 	Size: 0x1EC
@@ -220,7 +220,7 @@ function function_15dea507(var_2fb5df20, type, var_3a11a165, lifetime, var_f2cd3
 
 /*
 	Name: function_371b4147
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x9021B121
 	Offset: 0x818
 	Size: 0x192
@@ -257,7 +257,7 @@ function function_371b4147(var_2fb5df20, type, position, userdata)
 
 /*
 	Name: function_668a9b2d
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xCD6BEE08
 	Offset: 0x9B8
 	Size: 0xA4
@@ -278,7 +278,7 @@ private function function_668a9b2d(aoe, type)
 
 /*
 	Name: function_87bbe4fc
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x14BEE4D
 	Offset: 0xA68
 	Size: 0x104
@@ -307,7 +307,7 @@ private function function_87bbe4fc(type)
 
 /*
 	Name: function_fa03204a
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xF72F73CC
 	Offset: 0xB78
 	Size: 0x104
@@ -333,7 +333,7 @@ private function function_fa03204a(aoe, type)
 
 /*
 	Name: function_4f0db8cf
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xC6CD8CA6
 	Offset: 0xC88
 	Size: 0x24
@@ -348,7 +348,7 @@ private function function_4f0db8cf(entity)
 
 /*
 	Name: function_2c33d107
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xF7B8040A
 	Offset: 0xCB8
 	Size: 0x84
@@ -365,7 +365,7 @@ private function function_2c33d107(type)
 
 /*
 	Name: function_ccf8f659
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xFE9A93AE
 	Offset: 0xD48
 	Size: 0x23A
@@ -415,7 +415,7 @@ private function function_ccf8f659(aoe, forceend = 0)
 
 /*
 	Name: function_3690781e
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xF3631297
 	Offset: 0xF90
 	Size: 0x144
@@ -440,7 +440,7 @@ function function_3690781e()
 
 /*
 	Name: function_e5950b1e
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x5D678723
 	Offset: 0x10E0
 	Size: 0x180
@@ -470,7 +470,7 @@ private function function_e5950b1e(type)
 
 /*
 	Name: function_bea2e288
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0xA5902905
 	Offset: 0x1268
 	Size: 0x300
@@ -515,7 +515,7 @@ private function function_bea2e288(type)
 
 /*
 	Name: function_60bb02f3
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x829AC84
 	Offset: 0x1570
 	Size: 0xA6
@@ -543,7 +543,7 @@ private function function_60bb02f3(type)
 
 /*
 	Name: function_e39c0be4
-	Namespace: namespace_65dba40e
+	Namespace: zm_aoe
 	Checksum: 0x6DEA2CC0
 	Offset: 0x1620
 	Size: 0x2D0

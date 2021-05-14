@@ -44,13 +44,13 @@ function __init__()
 {
 	level.var_f4f794bf = array(5, 7, 9, 12);
 	level.nova_crawler_spawner = getent("nova_crawler_spawner", "script_noteworthy");
-	spawner::add_archetype_spawn_function(#"nova_crawler", &function_b38636ed);
-	namespace_c3287616::register_archetype(#"nova_crawler", &function_c73902fd, &function_ccdfa71b, &function_33bf3983, 10);
+	spawner::add_archetype_spawn_function(#"nova_crawler", &nova_crawler_init);
+	namespace_c3287616::register_archetype(#"nova_crawler", &function_c73902fd, &crawler_round_spawn, &spawn_nova_crawler, 10);
 	zm_score::function_e5d6e6dd(#"nova_crawler", 60);
 }
 
 /*
-	Name: function_b38636ed
+	Name: nova_crawler_init
 	Namespace: namespace_df88241c
 	Checksum: 0x14495D82
 	Offset: 0x2C8
@@ -58,7 +58,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked
 */
-function function_b38636ed()
+function nova_crawler_init()
 {
 	level thread zm_spawner::zombie_death_event(self);
 }
@@ -83,7 +83,7 @@ function function_c73902fd(var_dbce0c44)
 }
 
 /*
-	Name: function_ccdfa71b
+	Name: crawler_round_spawn
 	Namespace: namespace_df88241c
 	Checksum: 0x9C070C82
 	Offset: 0x368
@@ -91,9 +91,9 @@ function function_c73902fd(var_dbce0c44)
 	Parameters: 0
 	Flags: Linked
 */
-function function_ccdfa71b()
+function crawler_round_spawn()
 {
-	ai = function_33bf3983();
+	ai = spawn_nova_crawler();
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
@@ -103,7 +103,7 @@ function function_ccdfa71b()
 }
 
 /*
-	Name: function_33bf3983
+	Name: spawn_nova_crawler
 	Namespace: namespace_df88241c
 	Checksum: 0x90061B17
 	Offset: 0x3B0
@@ -111,7 +111,7 @@ function function_ccdfa71b()
 	Parameters: 1
 	Flags: Linked
 */
-function function_33bf3983(var_8b952619 = undefined)
+function spawn_nova_crawler(override_spawn_location = undefined)
 {
 	var_d8d8ce1b = undefined;
 	if(function_4748fb49() < function_59257d57() && (!(isdefined(level.var_5e45f817) && level.var_5e45f817)) && (isdefined(level.zm_loc_types[#"hash_506aba309cfe3f56"]) && level.zm_loc_types[#"hash_506aba309cfe3f56"].size > 0))
@@ -121,10 +121,10 @@ function function_33bf3983(var_8b952619 = undefined)
 		{
 			var_d8d8ce1b.check_point_in_enabled_zone = &zm_utility::check_point_in_playable_area;
 			var_d8d8ce1b thread zombie_utility::round_spawn_failsafe();
-			if(isdefined(var_8b952619))
+			if(isdefined(override_spawn_location))
 			{
-				var_d8d8ce1b function_e2bab5ec(var_8b952619);
-				var_8b952619.var_d51f4e2d = gettime();
+				var_d8d8ce1b function_e2bab5ec(override_spawn_location);
+				override_spawn_location.var_d51f4e2d = gettime();
 			}
 			else
 			{
@@ -155,7 +155,7 @@ function function_59257d57()
 	{
 		return level.zombie_ai_limit;
 	}
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
 		return level.var_f4f794bf[level.players.size - 1] * 2;
 	}
@@ -186,7 +186,7 @@ function function_4748fb49()
 }
 
 /*
-	Name: function_6b8c8cd1
+	Name: setup_crawler_round
 	Namespace: namespace_df88241c
 	Checksum: 0xDE49FF09
 	Offset: 0x6C8
@@ -194,9 +194,9 @@ function function_4748fb49()
 	Parameters: 1
 	Flags: None
 */
-function function_6b8c8cd1(n_round)
+function setup_crawler_round(n_round)
 {
-	namespace_c3287616::function_b4a8f95a(#"nova_crawler", n_round, &crawler_round_start, &function_c33b7bb5, &function_f6e748b, &function_f726e44, 0);
+	namespace_c3287616::function_b4a8f95a(#"nova_crawler", n_round, &crawler_round_start, &water_drop_triggerreactidgunterminate, &function_f6e748b, &function_f726e44, 0);
 }
 
 /*
@@ -215,7 +215,7 @@ function crawler_round_start()
 }
 
 /*
-	Name: function_c33b7bb5
+	Name: water_drop_triggerreactidgunterminate
 	Namespace: namespace_df88241c
 	Checksum: 0xD0A3A13B
 	Offset: 0x790
@@ -223,7 +223,7 @@ function crawler_round_start()
 	Parameters: 1
 	Flags: Linked
 */
-function function_c33b7bb5(var_d25bbdd5)
+function water_drop_triggerreactidgunterminate(var_d25bbdd5)
 {
 	level flag::clear(#"hash_2a1fc2e349c48462");
 	level flag::clear("crawler_round");
@@ -349,8 +349,8 @@ private function function_9a898f07(e_target)
 */
 function function_87348a88(e_target)
 {
-	var_8b952619 = function_9a898f07(e_target);
-	return function_33bf3983(var_8b952619);
+	override_spawn_location = function_9a898f07(e_target);
+	return spawn_nova_crawler(override_spawn_location);
 }
 
 /*
@@ -408,7 +408,7 @@ private function function_e2bab5ec(spot)
 	{
 		self.custom_riseanim = "ai_t8_zm_quad_traverse_ground_crawlfast";
 		self thread zm_spawner::do_zombie_rise(spot);
-		self thread function_a672326a();
+		self thread rise_anim_watcher();
 	}
 	else
 	{
@@ -449,7 +449,7 @@ private function function_e2bab5ec(spot)
 }
 
 /*
-	Name: function_a672326a
+	Name: rise_anim_watcher
 	Namespace: namespace_df88241c
 	Checksum: 0x699620B3
 	Offset: 0x1040
@@ -457,7 +457,7 @@ private function function_e2bab5ec(spot)
 	Parameters: 0
 	Flags: Linked
 */
-function function_a672326a()
+function rise_anim_watcher()
 {
 	self endon(#"death");
 	self waittill(#"rise_anim_finished");

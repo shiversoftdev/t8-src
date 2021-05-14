@@ -46,14 +46,14 @@ function main()
 	level.var_4cf6900e[#"blue"] = struct::get("blue", "script_noteworthy");
 	level.var_4cf6900e[#"yellow"] = struct::get("yellow", "script_noteworthy");
 	level.var_4cf6900e[#"violet"] = struct::get("violet", "script_noteworthy");
-	foreach(var_c808386b in level.var_4cf6900e)
+	foreach(s_dial in level.var_4cf6900e)
 	{
-		var_c808386b.var_e5f66b29 = 0;
-		var_c808386b.var_3cae7377 = 0;
-		var_c808386b.n_value = 0;
-		var_c808386b.var_7bb4ff56 = function_21a3a673(1, 9);
-		var_c808386b.var_5820f7cc = getent(var_c808386b.target, "targetname");
-		var_c808386b.var_5820f7cc hide();
+		s_dial.var_e5f66b29 = 0;
+		s_dial.b_correct = 0;
+		s_dial.n_value = 0;
+		s_dial.var_7bb4ff56 = function_21a3a673(1, 9);
+		s_dial.dial_model = getent(s_dial.target, "targetname");
+		s_dial.dial_model hide();
 	}
 	function_5f228e90();
 }
@@ -93,10 +93,10 @@ function function_77ed3bab(var_5ea5c94d)
 		namespace_85e029d3::function_3f9e02b8(6, #"hash_2934f352bd60d6d6", #"hash_68fc56c1fbf3b972", &function_bd605daa);
 		namespace_85e029d3::function_d83490c5(6);
 		level flag::wait_till(#"hash_40324afbf4440a0c");
-		foreach(var_c808386b in level.var_4cf6900e)
+		foreach(s_dial in level.var_4cf6900e)
 		{
-			var_c808386b zm_unitrigger::create("", 32);
-			var_c808386b thread function_1e5c0d3b();
+			s_dial zm_unitrigger::create("", 32);
+			s_dial thread function_1e5c0d3b();
 		}
 		while(!function_5a73ee80())
 		{
@@ -119,11 +119,11 @@ function function_51ecc801(var_5ea5c94d, ended_early)
 	if(var_5ea5c94d || ended_early)
 	{
 		namespace_85e029d3::function_6aaeff92(6);
-		foreach(var_c808386b in level.var_4cf6900e)
+		foreach(s_dial in level.var_4cf6900e)
 		{
-			var_c808386b.var_e5f66b29 = 1;
-			var_c808386b.var_3cae7377 = 1;
-			var_c808386b.var_5820f7cc show();
+			s_dial.var_e5f66b29 = 1;
+			s_dial.b_correct = 1;
+			s_dial.dial_model show();
 		}
 	}
 	level flag::set(#"hash_117279bc435c1c9");
@@ -157,7 +157,7 @@ function function_5a73ee80()
 	b_done = 1;
 	foreach(dial in level.var_4cf6900e)
 	{
-		if(!dial.var_3cae7377)
+		if(!dial.b_correct)
 		{
 			b_done = 0;
 		}
@@ -189,23 +189,23 @@ private function function_1e5c0d3b()
 		if(!self.var_e5f66b29)
 		{
 			self.var_e5f66b29 = 1;
-			self.var_5820f7cc show();
-			self.var_5820f7cc playsound("zmb_vessel_drop");
+			self.dial_model show();
+			self.dial_model playsound("zmb_vessel_drop");
 			wait(0.2);
 		}
 		else
 		{
-			self.var_5820f7cc playsound("zmb_quest_dial_turn");
-			var_146d9ed3 = e_who function_c4946c8f(self.var_5820f7cc);
-			if(var_146d9ed3)
+			self.dial_model playsound("zmb_quest_dial_turn");
+			b_left = e_who lavapit_breach_(self.dial_model);
+			if(b_left)
 			{
-				self.var_5820f7cc rotatepitch(36, 0.2, 0.03, 0.06);
+				self.dial_model rotatepitch(36, 0.2, 0.03, 0.06);
 				wait(0.2);
 				self.n_value++;
 			}
 			else
 			{
-				self.var_5820f7cc rotatepitch(-36, 0.2, 0.03, 0.06);
+				self.dial_model rotatepitch(-36, 0.2, 0.03, 0.06);
 				wait(0.2);
 				self.n_value--;
 			}
@@ -230,19 +230,19 @@ private function function_1e5c0d3b()
 						}
 					}
 				#/
-				self.var_3cae7377 = 1;
-				self.var_5820f7cc playsound("zmb_quest_dial_success");
+				self.b_correct = 1;
+				self.dial_model playsound("zmb_quest_dial_success");
 			}
 			else
 			{
-				self.var_3cae7377 = 0;
+				self.b_correct = 0;
 			}
 		}
 	}
 }
 
 /*
-	Name: function_c4946c8f
+	Name: lavapit_breach_
 	Namespace: namespace_45e52e8a
 	Checksum: 0xEA409397
 	Offset: 0xBF8
@@ -250,7 +250,7 @@ private function function_1e5c0d3b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c4946c8f(object)
+private function lavapit_breach_(object)
 {
 	v_origin = object.origin;
 	if(isdefined(object.var_eb397f67))

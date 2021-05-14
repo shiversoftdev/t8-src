@@ -46,7 +46,7 @@ function __init__()
 	clientfield::register("vehicle", "" + #"lightning_arc_fx", 1, 1, "int", &function_311f3501, 0, 0);
 	clientfield::register("actor", "" + #"hash_227b5ad1ba4c6b6d", 1, 1, "int", &function_cd968d6, 0, 0);
 	clientfield::register("vehicle", "" + #"hash_227b5ad1ba4c6b6d", 1, 1, "int", &function_cd968d6, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_5da4c56e7c2e2aad", 1, 1, "counter", &function_1e661e68, 0, 0);
+	clientfield::register("toplayer", "" + #"hammer_rumble", 1, 1, "counter", &hammer_rumble, 0, 0);
 	level._effect[#"hash_9e18cea0c11fb61"] = #"hash_20c78a023629447a";
 	level._effect[#"lightning_miss"] = #"hash_211c80023671737b";
 	level._effect[#"lightning_arc"] = #"hash_5bf3f1914a8ad11f";
@@ -123,21 +123,21 @@ function function_c03894bd(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		if(isdefined(self.var_102d768))
+		if(isdefined(self.n_beacon_fx))
 		{
-			deletefx(localclientnum, self.var_102d768, 1);
+			deletefx(localclientnum, self.n_beacon_fx, 1);
 		}
-		self.var_102d768 = util::playfxontag(localclientnum, level._effect[#"hash_9e18cea0c11fb61"], self, "tag_origin");
+		self.n_beacon_fx = util::playfxontag(localclientnum, level._effect[#"hash_9e18cea0c11fb61"], self, "tag_origin");
 		if(!isdefined(self.var_49f8e089))
 		{
 			self.var_49f8e089 = self playloopsound(#"hash_1fc7648098c65e92");
 			self thread function_9f78a957(localclientnum);
 		}
 	}
-	else if(isdefined(self.var_102d768))
+	else if(isdefined(self.n_beacon_fx))
 	{
-		deletefx(localclientnum, self.var_102d768, 0);
-		self.var_102d768 = undefined;
+		deletefx(localclientnum, self.n_beacon_fx, 0);
+		self.n_beacon_fx = undefined;
 	}
 	self playsound(0, #"hash_15633b83c64a3ebb");
 	if(isdefined(self.var_49f8e089))
@@ -242,7 +242,7 @@ private function function_7dac3bb6(localclientnum)
 		return;
 	}
 	self.e_fx = util::spawn_model(localclientnum, #"tag_origin", var_9d68990a.origin);
-	self.var_64153c56 = util::playfxontag(localclientnum, level._effect[#"lightning_arc"], self.e_fx, "tag_origin");
+	self.fx_arc = util::playfxontag(localclientnum, level._effect[#"lightning_arc"], self.e_fx, "tag_origin");
 	while(true)
 	{
 		var_a05eed18 = self gettagorigin(self zm_utility::function_467efa7b());
@@ -298,10 +298,10 @@ function function_311f3501(localclientnum, oldval, newval, bnewent, binitialsnap
 private function function_85050f7f(localclientnum)
 {
 	self waittill(#"death", #"hash_5531647ca0352039");
-	if(isdefined(self.var_64153c56))
+	if(isdefined(self.fx_arc))
 	{
-		stopfx(localclientnum, self.var_64153c56);
-		self.var_64153c56 = undefined;
+		stopfx(localclientnum, self.fx_arc);
+		self.fx_arc = undefined;
 	}
 	if(isdefined(self.e_fx))
 	{
@@ -354,7 +354,7 @@ function function_cd968d6(localclientnum, oldval, newval, bnewent, binitialsnap,
 }
 
 /*
-	Name: function_1e661e68
+	Name: hammer_rumble
 	Namespace: namespace_3dec9f28
 	Checksum: 0x45FEC1A4
 	Offset: 0x12E8
@@ -362,7 +362,7 @@ function function_cd968d6(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked
 */
-function function_1e661e68(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function hammer_rumble(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{

@@ -362,18 +362,18 @@ function function_cf3224fe(b_success)
 function function_72e84e64()
 {
 	level endon(#"combattraining_logic_finished");
-	level thread function_5c713990();
-	self thread namespace_73e1c3e3::function_68e9fa9e(undefined, 0, level.var_8eac6c9c.size, 1);
+	level thread registerslicendice_enemy_entrance();
+	self thread namespace_73e1c3e3::objcounter_init(undefined, 0, level.var_8eac6c9c.size, 1);
 	level.var_ebad4ea8 = gettime();
 	level.var_bd8b567a = 0;
 	level flag::set("gamemode_started");
 	level thread function_d2ae88f1();
 	level thread namespace_73e1c3e3::function_289b4b9f(#"hash_29f6daee1e40b3af", undefined, 50, "stop_nag", &function_ce452e0);
-	level thread namespace_64a487a9::function_4d9cfd95(12, #"axis");
+	level thread namespace_64a487a9::activate_bots(12, #"axis");
 	level thread function_95f8a9b5();
-	var_806acf86 = int(gettime() + 1000 + int(480 * 1000));
+	n_bomb_timer = int(gettime() + 1000 + int(480 * 1000));
 	setmatchflag("bomb_timer_a", 1);
-	setbombtimer("A", var_806acf86);
+	setbombtimer("A", n_bomb_timer);
 	level.var_a2cbd584 = 0;
 	while(true)
 	{
@@ -412,20 +412,20 @@ function function_72e84e64()
 */
 function function_ca63e908()
 {
-	var_3fdd816d = #"hash_2ec158c9943b9697";
+	waypointname = #"hash_2ec158c9943b9697";
 	var_90cfcf43 = spawn("script_model", self.origin);
 	var_90cfcf43.objectiveid = gameobjects::get_next_obj_id();
 	var_90cfcf43.curorigin = self.origin;
 	var_90cfcf43.ownerteam = game.defenders;
 	var_90cfcf43.team = game.defenders;
 	var_90cfcf43.type = "Waypoint";
-	objective_add(var_90cfcf43.objectiveid, "invisible", var_90cfcf43, var_3fdd816d);
+	objective_add(var_90cfcf43.objectiveid, "invisible", var_90cfcf43, waypointname);
 	var_90cfcf43 gameobjects::set_visible_team("none");
 	self.waypoint = var_90cfcf43;
 }
 
 /*
-	Name: function_5c713990
+	Name: registerslicendice_enemy_entrance
 	Namespace: namespace_28cc2b2e
 	Checksum: 0x6566FA6A
 	Offset: 0x1578
@@ -433,7 +433,7 @@ function function_ca63e908()
 	Parameters: 0
 	Flags: None
 */
-function function_5c713990()
+function registerslicendice_enemy_entrance()
 {
 	foreach(s_beacon in level.var_8eac6c9c)
 	{
@@ -444,7 +444,7 @@ function function_5c713990()
 	}
 	while(level.var_8eac6c9c.size > 0)
 	{
-		level waittill(#"hash_7637af9764ebdb0d");
+		level waittill(#"beacon_destroyed");
 		if(level.var_8eac6c9c.size > 0)
 		{
 			level thread function_965614a5();
@@ -537,7 +537,7 @@ function function_d6c7161f()
 					s_beacon.guard2.var_ef59b90 = 1;
 					s_beacon.guard2 = undefined;
 				}
-				level notify(#"hash_7637af9764ebdb0d");
+				level notify(#"beacon_destroyed");
 				e_player = getplayers()[0];
 				e_player thread namespace_73e1c3e3::function_785eb2ca();
 				wait(0.1);
@@ -685,9 +685,9 @@ function function_2add9e5f()
 	e_player = getplayers(#"allies")[0];
 	e_player namespace_73e1c3e3::function_329f9ba6(#"hash_49da6342b2ffd978", 3, "green");
 	level.var_a2cbd584 = 1;
-	var_39aa8dc8 = util::get_active_players(#"axis");
-	var_73968f4d = var_39aa8dc8.size;
-	e_player namespace_73e1c3e3::function_68e9fa9e(#"hash_6ad369658d92591d", var_73968f4d, var_73968f4d, 0, 0);
+	a_hostiles = util::get_active_players(#"axis");
+	n_hostiles = a_hostiles.size;
+	e_player namespace_73e1c3e3::objcounter_init(#"hash_6ad369658d92591d", n_hostiles, n_hostiles, 0, 0);
 }
 
 /*

@@ -37,7 +37,7 @@ function init(var_5ea5c94d)
 	callback::on_connect(&on_player_connect);
 	zm::register_actor_damage_callback(&function_eb7664aa);
 	level thread function_79fad591();
-	namespace_a1d9b01d::function_d1f16587(#"zblueprint_mansion_silver_bullet", &function_5a6cebce);
+	zm_crafting::function_d1f16587(#"zblueprint_mansion_silver_bullet", &function_5a6cebce);
 	level thread function_766980a4();
 	level.var_c9fce264 = 0;
 }
@@ -86,20 +86,20 @@ function function_3088962c()
 	while(true)
 	{
 		var_255fe317 = 0;
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"weapon_change", #"hash_3cc002901b983064");
-		if(var_385703b7._notify === #"weapon_change")
+		s_notify = undefined;
+		s_notify = self waittill(#"weapon_change", #"hash_3cc002901b983064");
+		if(s_notify._notify === #"weapon_change")
 		{
 			self clientfield::set_to_player("" + #"hash_6a4f537da00ae3f9", 0);
 			self namespace_c05f06c7::function_268efa09(0);
-			var_385703b7 = undefined;
-			var_385703b7 = self waittill_timeout(1.2, #"weapon_change_complete");
+			s_notify = undefined;
+			s_notify = self waittill_timeout(1.2, #"weapon_change_complete");
 		}
 		else
 		{
 			var_255fe317 = 1;
 		}
-		if(var_385703b7._notify === #"timeout")
+		if(s_notify._notify === #"timeout")
 		{
 			var_12680c28 = self getcurrentweapon();
 			if(isdefined(var_12680c28))
@@ -107,7 +107,7 @@ function function_3088962c()
 				var_255fe317 = zm_utility::function_aa45670f(var_12680c28, 0);
 			}
 		}
-		if(var_255fe317 || (isdefined(var_385703b7.weapon) && zm_utility::function_aa45670f(var_385703b7.weapon, 0)))
+		if(var_255fe317 || (isdefined(s_notify.weapon) && zm_utility::function_aa45670f(s_notify.weapon, 0)))
 		{
 			self clientfield::set_to_player("" + #"hash_6a4f537da00ae3f9", 1);
 			self namespace_c05f06c7::function_268efa09(1);
@@ -129,9 +129,9 @@ function function_766980a4()
 	level endon(#"end_game");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = level waittill(#"hash_656719782f57ca1a");
-		if(var_88706ea7.produced == getweapon(#"hash_1d4928987b5f4f6e"))
+		s_result = undefined;
+		s_result = level waittill(#"hash_656719782f57ca1a");
+		if(s_result.produced == getweapon(#"hash_1d4928987b5f4f6e"))
 		{
 			level namespace_6747c550::function_7df6bb60(#"hash_26da6ef83af4ba62", 1);
 			break;
@@ -173,12 +173,12 @@ function function_79fad591()
 */
 function function_62018caa(e_player)
 {
-	var_235457fd = self namespace_a1d9b01d::function_126fc77c(e_player);
+	var_235457fd = self zm_crafting::function_126fc77c(e_player);
 	if(var_235457fd)
 	{
-		var_87d6e5ff = namespace_a1d9b01d::function_b18074d0(self.stub.blueprint.name);
-		var_b3c7df1a = namespace_a1d9b01d::function_b18074d0(#"zblueprint_mansion_silver_molten");
-		if(!namespace_93829f86::function_e60b2d22(e_player, var_87d6e5ff.var_7b8e4241) && namespace_93829f86::function_e60b2d22(e_player, var_b3c7df1a.var_99577dd3) && namespace_93829f86::function_e60b2d22(e_player, var_b3c7df1a.var_670f9944) && namespace_93829f86::function_e60b2d22(e_player, var_b3c7df1a.var_2e0a273a))
+		var_87d6e5ff = zm_crafting::function_b18074d0(self.stub.blueprint.name);
+		var_b3c7df1a = zm_crafting::function_b18074d0(#"zblueprint_mansion_silver_molten");
+		if(!zm_items::player_has(e_player, var_87d6e5ff.var_7b8e4241) && zm_items::player_has(e_player, var_b3c7df1a.var_99577dd3) && zm_items::player_has(e_player, var_b3c7df1a.var_670f9944) && zm_items::player_has(e_player, var_b3c7df1a.var_2e0a273a))
 		{
 			self sethintstring(#"hash_3da7f56d63678947");
 		}
@@ -269,7 +269,7 @@ function function_bdddc37c(w_weapon)
 */
 function function_eb7664aa(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	var_416b12ee = 1;
+	n_multi = 1;
 	if(isalive(attacker) && isplayer(attacker) && isalive(inflictor) && isplayer(inflictor) && meansofdeath != "MOD_UNKNOWN" && meansofdeath != "MOD_MELEE" && meansofdeath != "MOD_AAT" && attacker zm_utility::function_aa45670f(weapon, 0))
 	{
 		if(isdefined(self) && isdefined(self.archetype))
@@ -278,41 +278,41 @@ function function_eb7664aa(inflictor, attacker, damage, flags, meansofdeath, wea
 			{
 				case "zombie":
 				{
-					var_416b12ee = var_416b12ee + 0.25;
+					n_multi = n_multi + 0.25;
 					break;
 				}
 				case "werewolf":
 				{
-					var_416b12ee = var_416b12ee + 1;
+					n_multi = n_multi + 1;
 					break;
 				}
 				case "zombie_dog":
 				{
-					var_416b12ee = var_416b12ee + 0.5;
+					n_multi = n_multi + 0.5;
 					break;
 				}
 				case "blight_father":
 				{
-					var_416b12ee = var_416b12ee + 0.25;
+					n_multi = n_multi + 0.25;
 					break;
 				}
-				case "hash_1bab8a0ba811401e":
+				case "catalyst":
 				{
-					var_416b12ee = var_416b12ee + 0.25;
+					n_multi = n_multi + 0.25;
 					break;
 				}
 				case "bat":
 				{
-					var_416b12ee = var_416b12ee + 0.25;
+					n_multi = n_multi + 0.25;
 					break;
 				}
-				case "hash_50f4e0eea9f4e4a4":
+				case "nosferatu":
 				{
-					var_416b12ee = var_416b12ee + 0.5;
+					n_multi = n_multi + 0.5;
 					break;
 				}
 			}
-			n_damage = int(damage * var_416b12ee);
+			n_damage = int(damage * n_multi);
 			if(n_damage > damage)
 			{
 				/#
@@ -354,7 +354,7 @@ function function_5a6cebce(e_player)
 function function_252cf612(player)
 {
 	var_12680c28 = player getcurrentweapon();
-	if(!namespace_2ba51478::is_hero_weapon(var_12680c28) && !zm_equipment::is_equipment(var_12680c28) && (!(isdefined(var_12680c28.isriotshield) && var_12680c28.isriotshield)) && !zm_weapons::is_wonder_weapon(var_12680c28) && var_12680c28 != level.weaponnone)
+	if(!zm_loadout::is_hero_weapon(var_12680c28) && !zm_equipment::is_equipment(var_12680c28) && (!(isdefined(var_12680c28.isriotshield) && var_12680c28.isriotshield)) && !zm_weapons::is_wonder_weapon(var_12680c28) && var_12680c28 != level.weaponnone)
 	{
 		var_3ce66e88 = zm_weapons::get_base_weapon(var_12680c28);
 		if(!isdefined(level.zombie_weapons[var_3ce66e88]))
@@ -468,7 +468,7 @@ function function_dad1960c()
 			#/
 			if(!level.var_c9fce264)
 			{
-				player thread namespace_891c9bac::function_a2bd5a0c(#"hash_400e358c3529b05f", 1);
+				player thread zm_vo::function_a2bd5a0c(#"hash_400e358c3529b05f", 1);
 				level.var_c9fce264 = 1;
 			}
 			player function_4e849ab();
@@ -493,7 +493,7 @@ function function_ec89dca9()
 	{
 		return 1;
 	}
-	if(namespace_2ba51478::is_hero_weapon(w_current) || zm_equipment::is_equipment(w_current) || (isdefined(w_current.isriotshield) && w_current.isriotshield) || zm_weapons::is_wonder_weapon(w_current) || w_current == level.weaponnone)
+	if(zm_loadout::is_hero_weapon(w_current) || zm_equipment::is_equipment(w_current) || (isdefined(w_current.isriotshield) && w_current.isriotshield) || zm_weapons::is_wonder_weapon(w_current) || w_current == level.weaponnone)
 	{
 		return 1;
 	}

@@ -213,14 +213,14 @@ function last_valid_position(update_rate)
 			{
 				if(isdefined(level.var_2386648b) && level.var_2386648b)
 				{
-					var_adccfa17 = self.origin + vectorscale((0, 0, 1), 20);
+					player_position = self.origin + vectorscale((0, 0, 1), 20);
 					var_f5df51f2 = position + vectorscale((0, 0, 1), 20);
 					player_vehicle = undefined;
 					if(isvehicle(self getgroundent()))
 					{
 						player_vehicle = self getgroundent();
 					}
-					if(bullettracepassed(var_adccfa17, var_f5df51f2, 0, self, player_vehicle))
+					if(bullettracepassed(player_position, var_f5df51f2, 0, self, player_vehicle))
 					{
 						self.last_valid_position = position;
 					}
@@ -941,12 +941,12 @@ function function_6f6c29e(var_b66879ad)
 	Parameters: 2
 	Flags: Variadic
 */
-function function_2f80d95b(var_6ba6db3e, vararg)
+function function_2f80d95b(player_func, vararg)
 {
 	players = level.players;
 	foreach(player in players)
 	{
-		util::single_func_argarray(player, var_6ba6db3e, vararg);
+		util::single_func_argarray(player, player_func, vararg);
 	}
 }
 
@@ -959,11 +959,11 @@ function function_2f80d95b(var_6ba6db3e, vararg)
 	Parameters: 3
 	Flags: Variadic
 */
-function function_4dcd9a89(players, var_6ba6db3e, vararg)
+function function_4dcd9a89(players, player_func, vararg)
 {
 	foreach(player in players)
 	{
-		util::single_func_argarray(player, var_6ba6db3e, vararg);
+		util::single_func_argarray(player, player_func, vararg);
 	}
 }
 
@@ -976,14 +976,14 @@ function function_4dcd9a89(players, var_6ba6db3e, vararg)
 	Parameters: 3
 	Flags: Variadic
 */
-function function_7629df88(team, var_6ba6db3e, vararg)
+function function_7629df88(team, player_func, vararg)
 {
 	players = level.players;
 	foreach(player in players)
 	{
 		if(player.team == team)
 		{
-			util::single_func_argarray(player, var_6ba6db3e, vararg);
+			util::single_func_argarray(player, player_func, vararg);
 		}
 	}
 }
@@ -997,7 +997,7 @@ function function_7629df88(team, var_6ba6db3e, vararg)
 	Parameters: 2
 	Flags: Variadic
 */
-function function_e7f18b20(var_6ba6db3e, vararg)
+function function_e7f18b20(player_func, vararg)
 {
 	players = level.players;
 	foreach(player in players)
@@ -1006,7 +1006,7 @@ function function_e7f18b20(var_6ba6db3e, vararg)
 		{
 			continue;
 		}
-		util::single_func_argarray(player, var_6ba6db3e, vararg);
+		util::single_func_argarray(player, player_func, vararg);
 	}
 }
 

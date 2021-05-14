@@ -221,7 +221,7 @@ function function_45a2294f(str_id)
 	{
 		if(e_pillar.script_string === str_id)
 		{
-			e_pillar thread function_4fa97c72(self);
+			e_pillar thread activate_trap(self);
 			level.var_a6b89158 = getent(e_pillar.target, "targetname");
 			level.var_a6b89158 thread function_6f34f900();
 		}
@@ -229,8 +229,8 @@ function function_45a2294f(str_id)
 	level notify(#"traps_activated", {#hash_be3f58a:str_id});
 	wait(30);
 	level notify(#"hash_3c662e7b29cfc3dd", {#hash_be3f58a:str_id});
-	var_628a2951 = zm_traps::function_da13db45(60, self);
-	wait(var_628a2951);
+	n_cooldown = zm_traps::function_da13db45(60, self);
+	wait(n_cooldown);
 	level notify(#"traps_available", {#hash_be3f58a:str_id});
 }
 
@@ -272,7 +272,7 @@ function function_6f34f900()
 }
 
 /*
-	Name: function_4fa97c72
+	Name: activate_trap
 	Namespace: namespace_a5b1b1d7
 	Checksum: 0xBB28F6E3
 	Offset: 0xAE0
@@ -280,7 +280,7 @@ function function_6f34f900()
 	Parameters: 1
 	Flags: Linked
 */
-function function_4fa97c72(e_player)
+function activate_trap(e_player)
 {
 	if(!self flag::get("activated"))
 	{

@@ -34,7 +34,7 @@ autoexec function init()
 {
 	namespace_b3c8cf82::function_da6eecb2();
 	registerbehaviorscriptfunctions();
-	spawner::add_archetype_spawn_function(#"hash_50f4e0eea9f4e4a4", &function_5b800648);
+	spawner::add_archetype_spawn_function(#"nosferatu", &function_5b800648);
 	clientfield::register("actor", "nfrtu_leap_melee_rumb", 8000, 1, "counter");
 }
 
@@ -134,9 +134,9 @@ private function function_2e5f2af4()
 private function registerbehaviorscriptfunctions()
 {
 	/#
-		assert(isscriptfunctionptr(&function_c620c39f));
+		assert(isscriptfunctionptr(&nosferatushouldmelee));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_85e7829d4ff99f1", &function_c620c39f);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"nosferatushouldmelee", &nosferatushouldmelee);
 	/#
 		assert(isscriptfunctionptr(&function_7ffbbff));
 	#/
@@ -240,7 +240,7 @@ private function function_b75dd595(entity)
 	{
 		return 0;
 	}
-	if(entity.var_9fde8624 !== #"hash_69eff09684574252")
+	if(entity.var_9fde8624 !== #"crimson_nosferatu")
 	{
 		return 0;
 	}
@@ -396,13 +396,13 @@ private function function_2ad18645(notifyhash)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fb3fdf43(entity, var_ece705a4)
+private function function_fb3fdf43(entity, latch_enemy)
 {
 	entity endon_callback(&function_2ad18645, #"death");
-	var_ece705a4 endon_callback(&function_2ad18645, #"disconnect", #"death");
-	if(isdefined(self) && isdefined(entity) && isdefined(var_ece705a4))
+	latch_enemy endon_callback(&function_2ad18645, #"disconnect", #"death");
+	if(isdefined(self) && isdefined(entity) && isdefined(latch_enemy))
 	{
-		self scene::play(#"hash_2f5e51824901e5", array(entity, var_ece705a4));
+		self scene::play(#"hash_2f5e51824901e5", array(entity, latch_enemy));
 	}
 	if(isdefined(entity))
 	{
@@ -427,25 +427,25 @@ private function function_fb3fdf43(entity, var_ece705a4)
 private function function_20a76c21(entity)
 {
 	entity endon_callback(&function_2ad18645, #"death");
-	var_ece705a4 = entity.enemy;
-	var_ece705a4 endon_callback(&function_2ad18645, #"disconnect", #"death");
-	if(isdefined(var_ece705a4))
+	latch_enemy = entity.enemy;
+	latch_enemy endon_callback(&function_2ad18645, #"disconnect", #"death");
+	if(isdefined(latch_enemy))
 	{
-		var_ece705a4 thread function_db62d88a();
+		latch_enemy thread function_db62d88a();
 	}
 	alignnode = spawnstruct();
 	alignnode.origin = entity.enemy.origin;
 	alignnode.angles = entity.enemy.angles;
-	alignnode thread function_fb3fdf43(entity, var_ece705a4);
+	alignnode thread function_fb3fdf43(entity, latch_enemy);
 	alignnode waittill_timeout(7, #"hash_7a32b2af2eef5415");
 	if(isdefined(alignnode))
 	{
 		alignnode struct::delete();
 	}
-	if(isdefined(var_ece705a4))
+	if(isdefined(latch_enemy))
 	{
-		var_ece705a4 val::reset(#"hash_56d5d2157d677c61", "disable_weapons");
-		var_ece705a4 notify(#"hash_7a32b2af2eef5415");
+		latch_enemy val::reset(#"hash_56d5d2157d677c61", "disable_weapons");
+		latch_enemy notify(#"hash_7a32b2af2eef5415");
 	}
 	if(isdefined(entity))
 	{
@@ -453,7 +453,7 @@ private function function_20a76c21(entity)
 		entity clearpath();
 	}
 	var_3bfe8ebe = spawnstruct();
-	var_3bfe8ebe.enemy = var_ece705a4;
+	var_3bfe8ebe.enemy = latch_enemy;
 	blackboard::addblackboardevent("nfrtu_leap_melee", var_3bfe8ebe, randomintrange(6000, 9000));
 }
 
@@ -588,7 +588,7 @@ private function function_b5047448(entity)
 */
 private function function_e9819a23(entity)
 {
-	if(entity.var_9fde8624 !== #"hash_69eff09684574252")
+	if(entity.var_9fde8624 !== #"crimson_nosferatu")
 	{
 		return 0;
 	}
@@ -794,7 +794,7 @@ private function function_e0ad0db2(entity)
 }
 
 /*
-	Name: function_c620c39f
+	Name: nosferatushouldmelee
 	Namespace: namespace_41b4e1ce
 	Checksum: 0xCAE91F19
 	Offset: 0x2348
@@ -802,7 +802,7 @@ private function function_e0ad0db2(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c620c39f(entity)
+private function nosferatushouldmelee(entity)
 {
 	if(function_85d8b15d(entity) || function_7ffbbff(entity) || function_e9819a23(entity) || function_b5047448(entity))
 	{

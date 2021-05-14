@@ -80,7 +80,7 @@ function function_78c32556(cmd)
 				level thread function_1d9dddd0();
 				return 1;
 			}
-			case "hash_626f4c2435ad3772":
+			case "move_pap":
 			{
 				level thread function_10dafedb();
 				return 1;
@@ -210,7 +210,7 @@ function function_10dafedb()
 	/#
 		if(!level flag::get(""))
 		{
-			level.var_7759c77d.var_4ee2e2ab = 0;
+			level.s_pap_quest.var_4ee2e2ab = 0;
 			level flag::set("");
 			return;
 		}
@@ -434,7 +434,7 @@ private function function_51855e65(round_number)
 		}
 		if(round_number >= 13)
 		{
-			level.var_7759c77d.var_4ee2e2ab = 0;
+			level.s_pap_quest.var_4ee2e2ab = 0;
 			level flag::set("");
 		}
 		if(round_number >= 24)

@@ -219,7 +219,7 @@ function _prepare_player(player)
 	#/
 	player endon(#"death");
 	player notify(#"new_shot");
-	var_2bb59a6a = csceneobject::function_24f8cfb5(self._str_shot) || (isdefined(self._o_scene.var_fb968c80) && self._o_scene.var_fb968c80);
+	var_2bb59a6a = csceneobject::function_24f8cfb5(self._str_shot) || (isdefined(self._o_scene.b_play_from_time) && self._o_scene.b_play_from_time);
 	function_dd8a2de2(player);
 	if(player.current_scene === self._o_scene._str_name)
 	{
@@ -570,7 +570,7 @@ function function_7d761e79(player)
 {
 	player notify(#"hash_7ba9e3058f933eb");
 	player endon(#"hash_7ba9e3058f933eb", #"death");
-	var_f577d2fe = 1;
+	b_movement = 1;
 	var_1c45c7f8 = 0;
 	var_966ea21d = 0;
 	var_a3cc5416 = (isdefined(self.var_a3cc5416) ? self.var_a3cc5416 : 0.0001);
@@ -590,26 +590,26 @@ function function_7d761e79(player)
 		result = function_762978f8(player, var_ec50a0d3, var_966ea21d);
 		if(result === "combat")
 		{
-			var_823c6db2 = undefined;
+			n_movement = undefined;
 			b_pressed = undefined;
 		}
 		else if(isfloat(result))
 		{
-			var_823c6db2 = result;
+			n_movement = result;
 			b_pressed = undefined;
-			if(abs(var_823c6db2) < 0.5)
+			if(abs(n_movement) < 0.5)
 			{
-				var_823c6db2 = 0;
+				n_movement = 0;
 			}
 		}
 		else
 		{
-			var_823c6db2 = undefined;
+			n_movement = undefined;
 			b_pressed = result;
 		}
 		foreach(o_obj in self._o_scene._a_objects)
 		{
-			o_obj.var_efc540b6 = [[ o_obj ]]->function_376c9d87(var_ec50a0d3, var_823c6db2, player);
+			o_obj.var_efc540b6 = [[ o_obj ]]->function_376c9d87(var_ec50a0d3, n_movement, player);
 			if(!isdefined(o_obj.var_efc540b6))
 			{
 				o_obj.var_efc540b6 = (isdefined(o_obj._str_current_anim) ? o_obj._str_current_anim : csceneobject::get_animation_name(self._str_shot));
@@ -762,9 +762,9 @@ function function_7d761e79(player)
 			}
 			var_a3cc5416 = 1;
 		}
-		else if(isdefined(var_f2b99dab) && var_f2b99dab || (var_823c6db2 === 0 && var_f577d2fe) || (!isdefined(var_823c6db2) && (!(isdefined(b_pressed) && b_pressed))))
+		else if(isdefined(var_f2b99dab) && var_f2b99dab || (n_movement === 0 && b_movement) || (!isdefined(n_movement) && (!(isdefined(b_pressed) && b_pressed))))
 		{
-			var_f577d2fe = 0;
+			b_movement = 0;
 			var_f2b99dab = undefined;
 			foreach(o_obj in self._o_scene._a_objects)
 			{
@@ -781,11 +781,11 @@ function function_7d761e79(player)
 			}
 			var_966ea21d = 1;
 		}
-		else if(isdefined(var_823c6db2) && var_823c6db2 != 0)
+		else if(isdefined(n_movement) && n_movement != 0)
 		{
-			var_f577d2fe = 1;
+			b_movement = 1;
 			n_anim_length = getanimlength(self._str_current_anim);
-			var_5df5e79a = abs(var_823c6db2);
+			var_5df5e79a = abs(n_movement);
 			n_update_time = float(function_60d95f53()) / 1000 / n_anim_length;
 			var_ea474464 = math::clamp(var_5df5e79a, 1, 1);
 			if(csceneobject::function_a808aac7())
@@ -879,22 +879,22 @@ function function_7d761e79(player)
 function function_c503dca9(player, var_ec50a0d3)
 {
 	a_players = array::exclude(util::get_players(), player);
-	foreach(var_a629792a in a_players)
+	foreach(player_other in a_players)
 	{
-		n_height_diff = abs(var_a629792a.origin[2] - player.origin[2]);
-		if(distancesquared(player.origin, var_a629792a.origin) < 16384)
+		n_height_diff = abs(player_other.origin[2] - player.origin[2]);
+		if(distancesquared(player.origin, player_other.origin) < 16384)
 		{
-			if(var_ec50a0d3.var_9532f6db == "move_up" && player.origin[2] < var_a629792a.origin[2])
+			if(var_ec50a0d3.var_9532f6db == "move_up" && player.origin[2] < player_other.origin[2])
 			{
 				return 0;
 			}
-			if(var_ec50a0d3.var_9532f6db == "move_down" && player.origin[2] > var_a629792a.origin[2])
+			if(var_ec50a0d3.var_9532f6db == "move_down" && player.origin[2] > player_other.origin[2])
 			{
 				return 0;
 			}
 			var_b52c361d = 0;
 			var_55d77e67 = 0;
-			var_9d0b2a04 = vectordot(anglestoright(player.angles), vectornormalize(player.origin - var_a629792a.origin));
+			var_9d0b2a04 = vectordot(anglestoright(player.angles), vectornormalize(player.origin - player_other.origin));
 			if(var_9d0b2a04 > 0)
 			{
 				var_b52c361d = 1;
@@ -1355,16 +1355,16 @@ function function_9a7dd9f2(player)
 		if(isdefined(o_obj))
 		{
 			var_17c01da9 = o_obj._s.shots[csceneobject::get_shot(self._str_shot)];
-			if(o_obj != self && isdefined(var_17c01da9.var_64fbb9f8))
+			if(o_obj != self && isdefined(var_17c01da9.lvlstart_stomach_))
 			{
-				thread [[ o_obj ]]->_play_anim(var_17c01da9.var_64fbb9f8, 1, 0.2, 0, 0);
+				thread [[ o_obj ]]->_play_anim(var_17c01da9.lvlstart_stomach_, 1, 0.2, 0, 0);
 			}
 		}
 	}
 	var_609ac4c9 = self._s.shots[csceneobject::get_shot(self._str_shot)];
-	if(isdefined(var_609ac4c9.var_64fbb9f8))
+	if(isdefined(var_609ac4c9.lvlstart_stomach_))
 	{
-		csceneobject::_play_anim(var_609ac4c9.var_64fbb9f8, 1, 0.2, 0, 0);
+		csceneobject::_play_anim(var_609ac4c9.lvlstart_stomach_, 1, 0.2, 0, 0);
 	}
 	_reset_values();
 	player scene::set_igc_active(0, self._o_scene._str_name);
@@ -1964,7 +1964,7 @@ private autoexec function csceneplayer()
 	classes.csceneplayer[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.csceneplayer[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.csceneplayer[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.csceneplayer[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.csceneplayer[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.csceneplayer[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.csceneplayer[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.csceneplayer[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -2440,7 +2440,7 @@ private autoexec function cscenesharedplayer()
 	classes.cscenesharedplayer[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.cscenesharedplayer[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.cscenesharedplayer[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.cscenesharedplayer[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.cscenesharedplayer[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.cscenesharedplayer[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.cscenesharedplayer[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.cscenesharedplayer[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -2642,7 +2642,7 @@ private autoexec function cscenefakeplayer()
 	classes.cscenefakeplayer[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.cscenefakeplayer[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.cscenefakeplayer[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.cscenefakeplayer[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.cscenefakeplayer[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.cscenefakeplayer[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.cscenefakeplayer[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.cscenefakeplayer[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -2794,7 +2794,7 @@ private autoexec function function_6572d7cd()
 	classes.var_6572d7cd[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.var_6572d7cd[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.var_6572d7cd[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.var_6572d7cd[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.var_6572d7cd[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.var_6572d7cd[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.var_6572d7cd[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.var_6572d7cd[0].__vtable[1695329961] = &csceneobject::is_shared_player;

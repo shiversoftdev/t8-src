@@ -2,7 +2,7 @@
 #namespace namespace_70571b3;
 
 /*
-	Name: function_7b67f76e
+	Name: registernovacrawlerinterfaceattributes
 	Namespace: namespace_70571b3
 	Checksum: 0x80F724D1
 	Offset: 0x68
@@ -10,7 +10,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_7b67f76e()
+function registernovacrawlerinterfaceattributes()
 {
 }
 

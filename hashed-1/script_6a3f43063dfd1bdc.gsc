@@ -158,13 +158,13 @@ function function_80f6206e(a_audio, player, entity)
 	Parameters: 4
 	Flags: None
 */
-function function_fd24e47f(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0, var_a97d4e32 = 0)
+function function_fd24e47f(str_alias, n_variant = int(-1), b_wait_if_busy = 0, var_a97d4e32 = 0)
 {
 	level endon(#"game_ended");
 	player = function_3815943c();
 	if(isdefined(player))
 	{
-		player function_51b752a9(str_alias, var_e29c5f3b, b_wait_if_busy, var_a97d4e32);
+		player function_51b752a9(str_alias, n_variant, b_wait_if_busy, var_a97d4e32);
 	}
 }
 
@@ -177,7 +177,7 @@ function function_fd24e47f(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 	Parameters: 4
 	Flags: Linked
 */
-function function_51b752a9(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0, var_a97d4e32 = 0)
+function function_51b752a9(str_alias, n_variant = int(-1), b_wait_if_busy = 0, var_a97d4e32 = 0)
 {
 	if(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f || !isdefined(self))
 	{
@@ -193,14 +193,14 @@ function function_51b752a9(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 	{
 		self.last_vo_played_time = 0;
 	}
-	if(var_e29c5f3b < 0)
+	if(n_variant < 0)
 	{
-		self namespace_891c9bac::function_a2bd5a0c(str_alias, 0, b_wait_if_busy);
+		self zm_vo::function_a2bd5a0c(str_alias, 0, b_wait_if_busy);
 	}
 	else
 	{
-		n_index = namespace_48f3568::function_dc232a80();
-		str_vo_alias = str_alias + "_plr_" + n_index + "_" + var_e29c5f3b;
+		n_index = zm_characters::function_dc232a80();
+		str_vo_alias = str_alias + "_plr_" + n_index + "_" + n_variant;
 		if(b_wait_if_busy)
 		{
 			self notify(#"hash_7efd5bdf8133ff7b");
@@ -229,7 +229,7 @@ function function_51b752a9(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 	Parameters: 4
 	Flags: Linked
 */
-function function_6a0d675d(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0, var_a97d4e32 = 0)
+function function_6a0d675d(str_alias, n_variant = int(-1), b_wait_if_busy = 0, var_a97d4e32 = 0)
 {
 	if(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f || game.state == "postgame")
 	{
@@ -261,13 +261,13 @@ function function_6a0d675d(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 	{
 		str_vo_alias = str_alias + "_" + self.name;
 	}
-	if(var_e29c5f3b < 0)
+	if(n_variant < 0)
 	{
 		str_vo_alias = array::random(zm_audio::get_valid_lines(str_vo_alias));
 	}
 	else
 	{
-		str_vo_alias = str_vo_alias + "_" + var_e29c5f3b;
+		str_vo_alias = str_vo_alias + "_" + n_variant;
 	}
 	if(!isdefined(level.var_62281818))
 	{
@@ -293,7 +293,7 @@ function function_6a0d675d(str_alias, var_e29c5f3b = int(-1), b_wait_if_busy = 0
 function function_3c173d37()
 {
 	level notify(#"hash_1a91b42d31e0b28d");
-	level namespace_891c9bac::function_3c173d37((0, 0, 0), 2147483647);
+	level zm_vo::function_3c173d37((0, 0, 0), 2147483647);
 	level function_29fe9a5d();
 }
 
@@ -315,7 +315,7 @@ function function_29fe9a5d()
 	{
 		if(isdefined(npc))
 		{
-			npc namespace_891c9bac::function_57b8cd17();
+			npc zm_vo::function_57b8cd17();
 		}
 	}
 }
@@ -640,8 +640,8 @@ function function_91a84161(w_weapon, var_7966d557)
 		}
 		else
 		{
-			var_69648877 = var_7966d557 - n_clip_size;
-			self setweaponammostock(w_weapon, var_69648877);
+			n_stock_ammo = var_7966d557 - n_clip_size;
+			self setweaponammostock(w_weapon, n_stock_ammo);
 			self setweaponammoclip(w_weapon, n_clip_size);
 		}
 	}
@@ -1008,31 +1008,31 @@ function function_715588b3()
 	while(true)
 	{
 		self waittill(#"trigger");
-		var_3ba1f680 = 1;
+		b_using = 1;
 		n_time = 0;
 		while(n_time < 0.5)
 		{
 			foreach(player in util::get_active_players())
 			{
-				if(player util::function_bf5a8f5c())
+				if(player util::is_spectating())
 				{
 					continue;
 				}
 				if(!player usebuttonpressed() || !zm_utility::can_use(player) || player isinmovemode("ufo", "noclip") || !player istouching(self))
 				{
-					var_3ba1f680 = 0;
+					b_using = 0;
 					n_time = 0;
 					break;
 				}
 			}
-			if(var_3ba1f680 == 0 || util::get_active_players().size == 0)
+			if(b_using == 0 || util::get_active_players().size == 0)
 			{
 				break;
 			}
 			wait(0.1);
 			n_time = n_time + 0.1;
 		}
-		if(var_3ba1f680 == 1)
+		if(b_using == 1)
 		{
 			break;
 		}

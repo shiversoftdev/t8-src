@@ -20,8 +20,8 @@ autoexec function function_c3c9d0e5()
 		setdvar(#"anim_debug_pause", 0);
 		while(true)
 		{
-			var_d5601b22 = getdvarint(#"anim_debug", 0) || getdvarint(#"anim_debug_pause", 0);
-			if(var_d5601b22 && !level flagsys::get(""))
+			b_anim_debug = getdvarint(#"anim_debug", 0) || getdvarint(#"anim_debug_pause", 0);
+			if(b_anim_debug && !level flagsys::get(""))
 			{
 				level flagsys::set("");
 				a_players = getlocalplayers();
@@ -35,7 +35,7 @@ autoexec function function_c3c9d0e5()
 					}
 				}
 			}
-			else if(!var_d5601b22 && level flagsys::get(""))
+			else if(!b_anim_debug && level flagsys::get(""))
 			{
 				level notify(#"kill_anim_debug");
 				level flagsys::clear("");

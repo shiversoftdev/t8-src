@@ -284,7 +284,7 @@ private autoexec function csceneactor()
 	classes.csceneactor[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.csceneactor[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.csceneactor[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.csceneactor[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.csceneactor[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.csceneactor[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.csceneactor[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.csceneactor[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -503,7 +503,7 @@ private autoexec function cscenefakeactor()
 	classes.cscenefakeactor[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.cscenefakeactor[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.cscenefakeactor[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.cscenefakeactor[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.cscenefakeactor[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.cscenefakeactor[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.cscenefakeactor[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.cscenefakeactor[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -794,7 +794,7 @@ private autoexec function cscenecompanion()
 	classes.cscenecompanion[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.cscenecompanion[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.cscenecompanion[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.cscenecompanion[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.cscenecompanion[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.cscenecompanion[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.cscenecompanion[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.cscenecompanion[0].__vtable[1695329961] = &csceneobject::is_shared_player;
@@ -1006,7 +1006,7 @@ private autoexec function cscenesharedcompanion()
 	classes.cscenesharedcompanion[0].__vtable[98152468] = &csceneobject::in_a_different_scene;
 	classes.cscenesharedcompanion[0].__vtable[1688292734] = &csceneobject::in_this_scene;
 	classes.cscenesharedcompanion[0].__vtable[1408161249] = &csceneobject::is_vehicle;
-	classes.cscenesharedcompanion[0].__vtable[27123621] = &csceneobject::function_19ddfa5;
+	classes.cscenesharedcompanion[0].__vtable[27123621] = &csceneobject::is_actor;
 	classes.cscenesharedcompanion[0].__vtable[1907870179] = &csceneobject::function_71b7c9e3;
 	classes.cscenesharedcompanion[0].__vtable[1383142318] = &csceneobject::function_527113ae;
 	classes.cscenesharedcompanion[0].__vtable[1695329961] = &csceneobject::is_shared_player;

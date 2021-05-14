@@ -6,11 +6,11 @@
 #using scripts\zm_common\zm_pack_a_punch_util.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
 
-#namespace namespace_f063c3a8;
+#namespace zm_camos;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xD7561F2C
 	Offset: 0x98
 	Size: 0x3C
@@ -19,12 +19,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_1063a77b3446dcd6", &__init__, undefined, undefined);
+	system::register(#"zm_camos", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x89002DA7
 	Offset: 0xE0
 	Size: 0x66
@@ -41,7 +41,7 @@ function __init__()
 
 /*
 	Name: on_connect
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x784F8DF3
 	Offset: 0x150
 	Size: 0x1C
@@ -55,7 +55,7 @@ function on_connect()
 
 /*
 	Name: function_79be4786
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xDCE3235B
 	Offset: 0x178
 	Size: 0xB0
@@ -77,7 +77,7 @@ function function_79be4786(weapon)
 
 /*
 	Name: function_7c982eb6
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xE082EBD8
 	Offset: 0x230
 	Size: 0x94
@@ -87,10 +87,10 @@ function function_79be4786(weapon)
 function function_7c982eb6(weapon)
 {
 	weapon = function_264bcab7(weapon);
-	var_6723ebc5 = function_e5ed6edb(weapon);
-	if(isdefined(var_6723ebc5))
+	s_active_camo = function_e5ed6edb(weapon);
+	if(isdefined(s_active_camo))
 	{
-		weaponstate = var_6723ebc5.var_dd54a13b[weapon];
+		weaponstate = s_active_camo.var_dd54a13b[weapon];
 		if(isdefined(weaponstate) && isdefined(weaponstate.var_d1a848d9))
 		{
 			return weaponstate.var_d1a848d9;
@@ -100,7 +100,7 @@ function function_7c982eb6(weapon)
 
 /*
 	Name: function_6f75f3d3
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x23CA2918
 	Offset: 0x2D0
 	Size: 0xD4
@@ -127,7 +127,7 @@ function function_6f75f3d3(weapon, var_eaad2188)
 
 /*
 	Name: function_4f727cf5
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xBEB7B698
 	Offset: 0x3B0
 	Size: 0x20A
@@ -181,7 +181,7 @@ function function_4f727cf5(weapon, weaponoptions = self getbuildkitweaponoptions
 
 /*
 	Name: function_a24c564f
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xFFF28005
 	Offset: 0x5C8
 	Size: 0x4C
@@ -196,7 +196,7 @@ function function_a24c564f(var_c34665fc, weapon)
 
 /*
 	Name: function_264bcab7
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xA59994EA
 	Offset: 0x620
 	Size: 0x4A
@@ -214,7 +214,7 @@ function function_264bcab7(weapon)
 
 /*
 	Name: function_e5ed6edb
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x50A60DCE
 	Offset: 0x678
 	Size: 0xEE
@@ -224,22 +224,22 @@ function function_264bcab7(weapon)
 private function function_e5ed6edb(weapon)
 {
 	weaponoptions = self getbuildkitweaponoptions(weapon);
-	if(!isdefined(self.pers) || !isdefined(self.pers[#"hash_50096a2a31e9111b"]))
+	if(!isdefined(self.pers) || !isdefined(self.pers[#"activecamo"]))
 	{
 		return;
 	}
 	var_3ded6a21 = getcamoindex(weaponoptions);
 	var_a99ac61d = function_11c873a(var_3ded6a21);
-	if(!isdefined(var_a99ac61d) || !isdefined(self.pers[#"hash_50096a2a31e9111b"][var_a99ac61d]))
+	if(!isdefined(var_a99ac61d) || !isdefined(self.pers[#"activecamo"][var_a99ac61d]))
 	{
 		return;
 	}
-	return self.pers[#"hash_50096a2a31e9111b"][var_a99ac61d];
+	return self.pers[#"activecamo"][var_a99ac61d];
 }
 
 /*
 	Name: function_d0ae71bb
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x98BA8E1E
 	Offset: 0x770
 	Size: 0x72
@@ -262,7 +262,7 @@ private function function_d0ae71bb(weapon)
 
 /*
 	Name: function_7b29c2d2
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xAEFEBF80
 	Offset: 0x7F0
 	Size: 0x144
@@ -284,7 +284,7 @@ function function_7b29c2d2(weapon)
 	self.var_88ebd633.var_d9449a3++;
 	if(self.var_88ebd633.var_d9449a3 >= 5)
 	{
-		self thread namespace_bd02cf1::function_896ac347(weapon, #"hash_31b99e3970f80a7f", 1);
+		self thread activecamo::function_896ac347(weapon, #"hash_31b99e3970f80a7f", 1);
 		self.var_88ebd633.var_d9449a3 = 0;
 		self notify(#"hash_7e9b17b054c01cb3");
 	}
@@ -296,7 +296,7 @@ function function_7b29c2d2(weapon)
 
 /*
 	Name: function_160898c
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xBC106C03
 	Offset: 0x940
 	Size: 0x4E
@@ -313,7 +313,7 @@ private function function_160898c()
 
 /*
 	Name: function_432cf6d
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xA4C26CA0
 	Offset: 0x998
 	Size: 0x144
@@ -335,7 +335,7 @@ function function_432cf6d(weapon)
 	self.var_88ebd633.var_bcacb3a3++;
 	if(self.var_88ebd633.var_bcacb3a3 >= 5)
 	{
-		self thread namespace_bd02cf1::function_896ac347(weapon, #"hash_25e0a2c8e52ead0d", 1);
+		self thread activecamo::function_896ac347(weapon, #"hash_25e0a2c8e52ead0d", 1);
 		self.var_88ebd633.var_bcacb3a3 = 0;
 		self notify(#"hash_3dbf3a8521ba1621");
 	}
@@ -347,7 +347,7 @@ function function_432cf6d(weapon)
 
 /*
 	Name: function_d01affa9
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x67DCFA9A
 	Offset: 0xAE8
 	Size: 0x4E
@@ -364,7 +364,7 @@ private function function_d01affa9()
 
 /*
 	Name: function_4092decc
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0xCD4F3E
 	Offset: 0xB40
 	Size: 0xC4
@@ -375,10 +375,10 @@ function function_4092decc(weapon)
 {
 	if(zm_weapons::is_weapon_upgraded(weapon))
 	{
-		self namespace_bd02cf1::function_896ac347(weapon, #"hash_203688d7883cf38c", 1);
+		self activecamo::function_896ac347(weapon, #"hash_203688d7883cf38c", 1);
 		if(zm_pap_util::function_7352d8cc(weapon))
 		{
-			self namespace_bd02cf1::function_896ac347(weapon, #"hash_300fdf15a515feda", 1);
+			self activecamo::function_896ac347(weapon, #"hash_300fdf15a515feda", 1);
 		}
 	}
 	else
@@ -389,7 +389,7 @@ function function_4092decc(weapon)
 
 /*
 	Name: function_5ae5fabe
-	Namespace: namespace_f063c3a8
+	Namespace: zm_camos
 	Checksum: 0x7336E879
 	Offset: 0xC10
 	Size: 0x4EC

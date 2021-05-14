@@ -600,40 +600,40 @@ function register_gadget_activation_callbacks(type, turn_on, turn_off)
 	Parameters: 3
 	Flags: None
 */
-function function_92292af6(type, var_1a7f628d, var_5ade95a3)
+function function_92292af6(type, deployed_on, deployed_off)
 {
 	register_gadget(type);
-	if(!isdefined(level._gadgets_level[type].var_1a7f628d))
+	if(!isdefined(level._gadgets_level[type].deployed_on))
 	{
-		level._gadgets_level[type].var_1a7f628d = [];
+		level._gadgets_level[type].deployed_on = [];
 	}
-	if(!isdefined(level._gadgets_level[type].var_5ade95a3))
+	if(!isdefined(level._gadgets_level[type].deployed_off))
 	{
-		level._gadgets_level[type].var_5ade95a3 = [];
+		level._gadgets_level[type].deployed_off = [];
 	}
-	if(isdefined(var_1a7f628d))
+	if(isdefined(deployed_on))
 	{
-		if(!isdefined(level._gadgets_level[type].var_1a7f628d))
+		if(!isdefined(level._gadgets_level[type].deployed_on))
 		{
-			level._gadgets_level[type].var_1a7f628d = [];
+			level._gadgets_level[type].deployed_on = [];
 		}
-		else if(!isarray(level._gadgets_level[type].var_1a7f628d))
+		else if(!isarray(level._gadgets_level[type].deployed_on))
 		{
-			level._gadgets_level[type].var_1a7f628d = array(level._gadgets_level[type].var_1a7f628d);
+			level._gadgets_level[type].deployed_on = array(level._gadgets_level[type].deployed_on);
 		}
-		level._gadgets_level[type].var_1a7f628d[level._gadgets_level[type].var_1a7f628d.size] = var_1a7f628d;
+		level._gadgets_level[type].deployed_on[level._gadgets_level[type].deployed_on.size] = deployed_on;
 	}
-	if(isdefined(var_5ade95a3))
+	if(isdefined(deployed_off))
 	{
-		if(!isdefined(level._gadgets_level[type].var_5ade95a3))
+		if(!isdefined(level._gadgets_level[type].deployed_off))
 		{
-			level._gadgets_level[type].var_5ade95a3 = [];
+			level._gadgets_level[type].deployed_off = [];
 		}
-		else if(!isarray(level._gadgets_level[type].var_5ade95a3))
+		else if(!isarray(level._gadgets_level[type].deployed_off))
 		{
-			level._gadgets_level[type].var_5ade95a3 = array(level._gadgets_level[type].var_5ade95a3);
+			level._gadgets_level[type].deployed_off = array(level._gadgets_level[type].deployed_off);
 		}
-		level._gadgets_level[type].var_5ade95a3[level._gadgets_level[type].var_5ade95a3.size] = var_5ade95a3;
+		level._gadgets_level[type].deployed_off[level._gadgets_level[type].deployed_off.size] = deployed_off;
 	}
 }
 
@@ -1095,12 +1095,12 @@ function function_50557027(slot, weapon)
 	{
 		return;
 	}
-	if(isdefined(level._gadgets_level[self._gadgets_player[slot].gadget_type].var_1a7f628d))
+	if(isdefined(level._gadgets_level[self._gadgets_player[slot].gadget_type].deployed_on))
 	{
 		self function_3e8bb406(0);
-		foreach(var_1a7f628d in level._gadgets_level[self._gadgets_player[slot].gadget_type].var_1a7f628d)
+		foreach(deployed_on in level._gadgets_level[self._gadgets_player[slot].gadget_type].deployed_on)
 		{
-			self thread [[var_1a7f628d]](slot, weapon);
+			self thread [[deployed_on]](slot, weapon);
 		}
 	}
 }
@@ -1129,12 +1129,12 @@ function function_d5260ebe(slot, weapon)
 	{
 		return;
 	}
-	if(isdefined(level._gadgets_level[self._gadgets_player[slot].gadget_type].var_5ade95a3))
+	if(isdefined(level._gadgets_level[self._gadgets_player[slot].gadget_type].deployed_off))
 	{
 		self function_3e8bb406(0);
-		foreach(var_5ade95a3 in level._gadgets_level[self._gadgets_player[slot].gadget_type].var_5ade95a3)
+		foreach(deployed_off in level._gadgets_level[self._gadgets_player[slot].gadget_type].deployed_off)
 		{
-			self thread [[var_5ade95a3]](slot, weapon);
+			self thread [[deployed_off]](slot, weapon);
 		}
 	}
 }
@@ -1381,14 +1381,14 @@ function function_3d2a352e(weapon, var_8be5aa55, var_de825ec6)
 	#/
 	if(isdefined(var_de825ec6))
 	{
-		function_fff8c2ac(weapon);
+		tutorial_init(weapon);
 		self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55) = gettime() + var_de825ec6 * 1000;
 	}
 	return isdefined(self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55)) && self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55) > gettime();
 }
 
 /*
-	Name: function_fff8c2ac
+	Name: tutorial_init
 	Namespace: ability_player
 	Checksum: 0x6D7830E4
 	Offset: 0x39C0
@@ -1396,7 +1396,7 @@ function function_3d2a352e(weapon, var_8be5aa55, var_de825ec6)
 	Parameters: 1
 	Flags: Linked
 */
-function function_fff8c2ac(weapon)
+function tutorial_init(weapon)
 {
 	if(!isdefined(self.pers[#"hash_2c18b7a9ddcf325c"]))
 	{
@@ -1421,15 +1421,15 @@ function function_4f74cee6(slot, weapon, var_8430d11b, var_6c65cb8d, var_eadf886
 {
 	self notify("equip_tutorial_text_" + weapon.name);
 	self endon(#"disconnect", #"death", "equip_tutorial_text_" + weapon.name);
-	self function_fff8c2ac(weapon);
+	self tutorial_init(weapon);
 	while(true)
 	{
 		if(!self hasweapon(weapon))
 		{
 			break;
 		}
-		var_abf7af91 = self gadgetgetslot(weapon);
-		if(var_abf7af91 != slot)
+		currentslot = self gadgetgetslot(weapon);
+		if(currentslot != slot)
 		{
 			break;
 		}
@@ -1783,7 +1783,7 @@ function function_2ced294(a_weapons, a_array, weaponname)
 	Parameters: 4
 	Flags: None
 */
-function function_60b82b68(a_weapons, var_5e5ad048, var_c5b1a23e, var_ec1d48cc)
+function function_60b82b68(a_weapons, a_equipment, var_c5b1a23e, var_ec1d48cc)
 {
 	/#
 		if(sessionmodeiszombiesgame())
@@ -1801,7 +1801,7 @@ function function_60b82b68(a_weapons, var_5e5ad048, var_c5b1a23e, var_ec1d48cc)
 			}
 			if(isdefined(fields.var_a7e7cb46))
 			{
-				function_2ced294(a_weapons, var_5e5ad048, fields.var_a7e7cb46);
+				function_2ced294(a_weapons, a_equipment, fields.var_a7e7cb46);
 			}
 			if(isdefined(fields.var_c21d61e9))
 			{
@@ -1875,17 +1875,17 @@ function abilities_devgui_add_gadgets(add_cmd_with_root, pid, menu_index)
 				}
 			}
 		}
-		var_5e5ad048 = [];
+		a_equipment = [];
 		var_c5b1a23e = [];
 		var_ec1d48cc = [];
-		function_60b82b68(var_6b97f6f9, var_5e5ad048, var_c5b1a23e, var_ec1d48cc);
+		function_60b82b68(var_6b97f6f9, a_equipment, var_c5b1a23e, var_ec1d48cc);
 		var_dd06e779 = [];
 		function_1c3e8791(var_6b97f6f9, var_dd06e779);
 		var_ef060ee3 = [];
 		var_cdbfed45 = [];
 		var_7e367d09 = [];
 		var_4557f227 = [];
-		var_fa6298dc = [];
+		a_heal = [];
 		for(i = 0; i < var_6b97f6f9.size; i++)
 		{
 			if(var_6b97f6f9[i].gadget_type == 11 && var_6b97f6f9[i].var_b76e0a09)
@@ -1938,17 +1938,17 @@ function abilities_devgui_add_gadgets(add_cmd_with_root, pid, menu_index)
 			}
 			if(var_6b97f6f9[i].gadget_type == 23)
 			{
-				if(!isdefined(var_fa6298dc))
+				if(!isdefined(a_heal))
 				{
-					var_fa6298dc = [];
+					a_heal = [];
 				}
-				else if(!isarray(var_fa6298dc))
+				else if(!isarray(a_heal))
 				{
-					var_fa6298dc = array(var_fa6298dc);
+					a_heal = array(a_heal);
 				}
-				if(!isinarray(var_fa6298dc, var_6b97f6f9[i]))
+				if(!isinarray(a_heal, var_6b97f6f9[i]))
 				{
-					var_fa6298dc[var_fa6298dc.size] = var_6b97f6f9[i];
+					a_heal[a_heal.size] = var_6b97f6f9[i];
 				}
 				continue;
 			}
@@ -1965,9 +1965,9 @@ function abilities_devgui_add_gadgets(add_cmd_with_root, pid, menu_index)
 				var_4557f227[var_4557f227.size] = var_6b97f6f9[i];
 			}
 		}
-		function_174037fe(add_cmd_with_root, pid, var_5e5ad048, "", menu_index);
+		function_174037fe(add_cmd_with_root, pid, a_equipment, "", menu_index);
 		menu_index++;
-		function_76032a31(add_cmd_with_root, pid, var_fa6298dc, "", menu_index);
+		function_76032a31(add_cmd_with_root, pid, a_heal, "", menu_index);
 		menu_index++;
 		function_a40d04ca(add_cmd_with_root, pid, var_c5b1a23e, "", menu_index);
 		menu_index++;

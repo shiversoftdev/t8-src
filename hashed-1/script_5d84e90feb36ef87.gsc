@@ -5,7 +5,7 @@
 #namespace namespace_16541c1c;
 
 /*
-	Name: function_323ea53e
+	Name: registerblightfatherinterfaceattributes
 	Namespace: namespace_16541c1c
 	Checksum: 0x3D3FAC36
 	Offset: 0x88
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked
 */
-function function_323ea53e()
+function registerblightfatherinterfaceattributes()
 {
 	ai::registermatchedinterface(#"blight_father", #"tongue_grab_enabled", 1, array(1, 0));
 	ai::registermatchedinterface(#"blight_father", #"lockdown_enabled", 1, array(1, 0), &namespace_2ca3706d::function_b95978a7);

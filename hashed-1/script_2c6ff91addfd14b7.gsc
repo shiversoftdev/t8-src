@@ -179,7 +179,7 @@ function state_combat_update(params)
 						point._scoredebug[#"disttoorigin"] = spawnstruct();
 					}
 					point._scoredebug[#"disttoorigin"].score = mapfloat(0, 200, 0, 100, point.disttoorigin2d);
-					point._scoredebug[#"disttoorigin"].var_4b5e0304 = "";
+					point._scoredebug[#"disttoorigin"].scorename = "";
 				#/
 				point.score = point.score + mapfloat(0, 200, 0, 100, point.disttoorigin2d);
 				if(point.inclaimedlocation)
@@ -194,7 +194,7 @@ function state_combat_update(params)
 							point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 						}
 						point._scoredebug[#"inclaimedlocation"].score = -500;
-						point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+						point._scoredebug[#"inclaimedlocation"].scorename = "";
 					#/
 					point.score = point.score + -500;
 				}
@@ -208,7 +208,7 @@ function state_combat_update(params)
 						point._scoredebug[#"random"] = spawnstruct();
 					}
 					point._scoredebug[#"random"].score = randomfloatrange(0, 50);
-					point._scoredebug[#"random"].var_4b5e0304 = "";
+					point._scoredebug[#"random"].scorename = "";
 				#/
 				point.score = point.score + randomfloatrange(0, 50);
 				if(isdefined(self.prevmovedir))
@@ -226,7 +226,7 @@ function state_combat_update(params)
 								point._scoredebug[#"currentmovedir"] = spawnstruct();
 							}
 							point._scoredebug[#"currentmovedir"].score = randomfloatrange(50, 150);
-							point._scoredebug[#"currentmovedir"].var_4b5e0304 = "";
+							point._scoredebug[#"currentmovedir"].scorename = "";
 						#/
 						point.score = point.score + randomfloatrange(50, 150);
 					}
@@ -267,7 +267,7 @@ function state_combat_update(params)
 			waitframe(1);
 			continue;
 		}
-		foundpath = function_9b65b2d6();
+		foundpath = hunt_enemy();
 		if(!foundpath)
 		{
 			pathfailcount++;
@@ -303,7 +303,7 @@ function state_combat_update(params)
 }
 
 /*
-	Name: function_9b65b2d6
+	Name: hunt_enemy
 	Namespace: namespace_c2dce87e
 	Checksum: 0x65CDA49C
 	Offset: 0x1150
@@ -311,7 +311,7 @@ function state_combat_update(params)
 	Parameters: 0
 	Flags: None
 */
-function function_9b65b2d6()
+function hunt_enemy()
 {
 	foundpath = 0;
 	targetpos = function_dcecac3c();
@@ -337,7 +337,7 @@ function function_9b65b2d6()
 						point._scoredebug[#"disttoorigin"] = spawnstruct();
 					}
 					point._scoredebug[#"disttoorigin"].score = mapfloat(0, 200, 0, -200, distance(point.origin, queryresult.origin));
-					point._scoredebug[#"disttoorigin"].var_4b5e0304 = "";
+					point._scoredebug[#"disttoorigin"].scorename = "";
 				#/
 				point.score = point.score + mapfloat(0, 200, 0, -200, distance(point.origin, queryresult.origin));
 				/#
@@ -350,7 +350,7 @@ function function_9b65b2d6()
 						point._scoredebug[#"heighttoorigin"] = spawnstruct();
 					}
 					point._scoredebug[#"heighttoorigin"].score = mapfloat(50, 200, 0, -200, abs(point.origin[2] - queryresult.origin[2]));
-					point._scoredebug[#"heighttoorigin"].var_4b5e0304 = "";
+					point._scoredebug[#"heighttoorigin"].scorename = "";
 				#/
 				point.score = point.score + mapfloat(50, 200, 0, -200, abs(point.origin[2] - queryresult.origin[2]));
 				if(point.inclaimedlocation === 1)
@@ -365,7 +365,7 @@ function function_9b65b2d6()
 							point._scoredebug[#"inclaimedlocation"] = spawnstruct();
 						}
 						point._scoredebug[#"inclaimedlocation"].score = -500;
-						point._scoredebug[#"inclaimedlocation"].var_4b5e0304 = "";
+						point._scoredebug[#"inclaimedlocation"].scorename = "";
 					#/
 					point.score = point.score + -500;
 				}

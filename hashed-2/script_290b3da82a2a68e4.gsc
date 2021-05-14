@@ -42,11 +42,11 @@ function __init__()
 		level.challengescallbacks = [];
 	}
 	contracts::init_player_contract_events();
-	callback::on_finalize_initialization(&function_14d9fa2d);
+	callback::on_finalize_initialization(&finalize_init);
 }
 
 /*
-	Name: function_14d9fa2d
+	Name: finalize_init
 	Namespace: namespace_78a95918
 	Checksum: 0x3A76BFFD
 	Offset: 0x1A8
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked
 */
-function function_14d9fa2d()
+function finalize_init()
 {
 	if(can_process_contracts())
 	{
@@ -176,7 +176,7 @@ function on_vehicle_killed(params)
 */
 function on_player_killed()
 {
-	if(teams::function_6ce0360d(self.team) || !self player::function_73da2f89())
+	if(teams::is_all_dead(self.team) || !self player::function_73da2f89())
 	{
 		self function_521ac7e5();
 	}
@@ -669,7 +669,7 @@ private function function_902ef0de(var_38280f2f, delta)
 		params = spawnstruct();
 		params.player = self;
 		params.var_38280f2f = var_38280f2f;
-		self callback::callback(#"hash_155c52f2d8c6fdbb", params);
+		self callback::callback(#"contract_complete", params);
 		if(isdefined(level.var_90031a39[var_38280f2f]))
 		{
 			self luinotifyevent(#"hash_1739c4bd5baf83bc", 1, level.var_90031a39[var_38280f2f]);
@@ -989,7 +989,7 @@ function function_cdc4c709()
 */
 function function_dd00c744(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.item))
+	if(!gamestate::is_state("playing") || !isdefined(params.item))
 	{
 		return;
 	}
@@ -1055,7 +1055,7 @@ function function_314e09eb(item)
 */
 function function_9d4c3c52(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.item))
+	if(!gamestate::is_state("playing") || !isdefined(params.item))
 	{
 		return;
 	}
@@ -1420,7 +1420,7 @@ function function_6fcfeebb(player)
 */
 function function_c55a0479(params)
 {
-	if(!gamestate::function_4c5eea28("playing") || !isdefined(params.activator))
+	if(!gamestate::is_state("playing") || !isdefined(params.activator))
 	{
 		return;
 	}

@@ -55,8 +55,8 @@ function __init__()
 	clientfield::register("missile", "tomahawk_trail_fx", 1, var_92c56e8d, "int");
 	callback::on_connect(&tomahawk_on_player_connect);
 	level.a_tomahawk_pickup_funcs = [];
-	namespace_2ba51478::register_lethal_grenade_for_level(#"tomahawk_t8");
-	namespace_2ba51478::register_lethal_grenade_for_level(#"tomahawk_t8_upgraded");
+	zm_loadout::register_lethal_grenade_for_level(#"tomahawk_t8");
+	zm_loadout::register_lethal_grenade_for_level(#"tomahawk_t8_upgraded");
 	zm::function_84d343d(#"tomahawk_t8", &function_c34db78);
 	zm::function_84d343d(#"tomahawk_t8_upgraded", &function_c34db78);
 	level.var_6d0e2c1b[getweapon(#"tomahawk_t8")] = &function_932e24b;
@@ -106,10 +106,10 @@ private function watch_for_tomahawk_throw()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"grenade_fire");
-		e_grenade = var_88706ea7.projectile;
-		w_weapon = var_88706ea7.weapon;
+		s_result = undefined;
+		s_result = self waittill(#"grenade_fire");
+		e_grenade = s_result.projectile;
+		w_weapon = s_result.weapon;
 		var_f92d6c6e = getweapon(#"tomahawk_t8");
 		var_91bb47aa = getweapon(#"tomahawk_t8_upgraded");
 		if(w_weapon == var_f92d6c6e || w_weapon == var_91bb47aa)
@@ -180,9 +180,9 @@ private function watch_for_tomahawk_charge()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_88706ea7 = undefined;
-		var_88706ea7 = self waittill(#"grenade_pullback");
-		w_grenade = var_88706ea7.weapon;
+		s_result = undefined;
+		s_result = self waittill(#"grenade_pullback");
+		w_grenade = s_result.weapon;
 		var_f92d6c6e = getweapon(#"tomahawk_t8");
 		var_91bb47aa = getweapon(#"tomahawk_t8_upgraded");
 		if(w_grenade == var_f92d6c6e || w_grenade == var_91bb47aa)
@@ -613,19 +613,19 @@ private function function_d81951f5(var_6e6ec518, var_65f2e452)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e865484a(var_6e6ec518, var_9f841d8f, var_65f2e452)
+private function function_e865484a(var_6e6ec518, a_ai_zombie, var_65f2e452)
 {
 	self endon(#"disconnect");
 	while(true)
 	{
 		ai_zombie = undefined;
-		for(i = 0; i < var_9f841d8f.size; i++)
+		for(i = 0; i < a_ai_zombie.size; i++)
 		{
-			if(isalive(var_9f841d8f[i]) && (!(isdefined(var_9f841d8f[i].hit_by_tomahawk) && var_9f841d8f[i].hit_by_tomahawk)))
+			if(isalive(a_ai_zombie[i]) && (!(isdefined(a_ai_zombie[i].hit_by_tomahawk) && a_ai_zombie[i].hit_by_tomahawk)))
 			{
-				if(isdefined(bullettracepassed(var_6e6ec518.origin, var_9f841d8f[i] geteye(), 0, var_6e6ec518)) && bullettracepassed(var_6e6ec518.origin, var_9f841d8f[i] geteye(), 0, var_6e6ec518))
+				if(isdefined(bullettracepassed(var_6e6ec518.origin, a_ai_zombie[i] geteye(), 0, var_6e6ec518)) && bullettracepassed(var_6e6ec518.origin, a_ai_zombie[i] geteye(), 0, var_6e6ec518))
 				{
-					ai_zombie = var_9f841d8f[i];
+					ai_zombie = a_ai_zombie[i];
 					break;
 				}
 			}
@@ -697,13 +697,13 @@ private function function_c7ddedb2(var_6e6ec518, ai_zombie, var_bfed4a7 = 0.25)
 	Parameters: 3
 	Flags: Linked
 */
-function tomahawk_return_player(var_6e6ec518, var_65f2e452, var_65f77417 = 1600)
+function tomahawk_return_player(var_6e6ec518, var_65f2e452, n_move_speed = 1600)
 {
 	self endon(#"disconnect");
 	if(isdefined(var_6e6ec518))
 	{
 		n_dist = distance(var_6e6ec518.origin, self geteye());
-		var_e65ebf4 = n_dist / var_65f77417;
+		var_e65ebf4 = n_dist / n_move_speed;
 		var_e65ebf4 = (var_e65ebf4 > 0.05 ? var_e65ebf4 : 0.05);
 		n_total_time = undefined;
 		n_dist_sq = distance2dsquared(var_6e6ec518.origin, self geteye());
@@ -728,7 +728,7 @@ function tomahawk_return_player(var_6e6ec518, var_65f2e452, var_65f77417 = 1600)
 			wait(0.1);
 			n_current_time = gettime();
 			n_total_time = n_current_time - n_start_time / 1000;
-			var_e65ebf4 = self function_e2c00ed6(var_6e6ec518, var_65f77417, n_total_time);
+			var_e65ebf4 = self function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time);
 			n_dist_sq = distance2dsquared(var_6e6ec518.origin, self geteye());
 		}
 		if(isdefined(var_6e6ec518.a_has_powerup))
@@ -767,7 +767,7 @@ function tomahawk_return_player(var_6e6ec518, var_65f2e452, var_65f77417 = 1600)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e2c00ed6(var_6e6ec518, var_65f77417, n_total_time)
+private function function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time)
 {
 	if(n_total_time < 0.05)
 	{
@@ -779,7 +779,7 @@ private function function_e2c00ed6(var_6e6ec518, var_65f77417, n_total_time)
 		var_e89ec7fd = 0.05;
 	}
 	var_a6693654 = n_total_time * 0.25;
-	var_5100df85 = var_65f77417 + var_65f77417 * var_a6693654;
+	var_5100df85 = n_move_speed + n_move_speed * var_a6693654;
 	n_dist = distance(var_6e6ec518.origin, self geteye());
 	var_e65ebf4 = n_dist / var_5100df85;
 	var_e65ebf4 = (var_e65ebf4 > var_e89ec7fd ? var_e65ebf4 : var_e89ec7fd);

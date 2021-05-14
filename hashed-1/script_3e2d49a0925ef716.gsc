@@ -558,14 +558,14 @@ private function function_f7c7a416(entity)
 	entity.var_88bd96a9 = gettime() + getdvarfloat(#"hash_6182e0a57e0b549f", 1) * 1000;
 	if(isdefined(entity.enemy) && (!(isdefined(entity.marked_for_death) && entity.marked_for_death)) && (!(isdefined(entity.enemy.ignoreme) && entity.enemy.ignoreme)))
 	{
-		var_336c515d = entity melee();
-		if(isdefined(var_336c515d))
+		hit_enemy = entity melee();
+		if(isdefined(hit_enemy))
 		{
-			if(isalive(var_336c515d) && isdefined(var_336c515d.maxhealth))
+			if(isalive(hit_enemy) && isdefined(hit_enemy.maxhealth))
 			{
 				var_743a2772 = entity function_f00b611e();
-				n_base_damage = var_336c515d.maxhealth;
-				var_7e0e6341 = var_336c515d ai::function_9139c839();
+				n_base_damage = hit_enemy.maxhealth;
+				var_7e0e6341 = hit_enemy ai::function_9139c839();
 				if(isdefined(var_7e0e6341) && isdefined(var_7e0e6341.var_54c33ecd))
 				{
 					var_b1c1c5cf = var_7e0e6341.var_54c33ecd;
@@ -575,9 +575,9 @@ private function function_f7c7a416(entity)
 						n_base_damage = n_base_damage * var_64cc5e50;
 					}
 				}
-				if(isdefined(var_336c515d.var_6f84b820))
+				if(isdefined(hit_enemy.var_6f84b820))
 				{
-					switch(var_336c515d.var_6f84b820)
+					switch(hit_enemy.var_6f84b820)
 					{
 						case "heavy":
 						{
@@ -600,14 +600,14 @@ private function function_f7c7a416(entity)
 						}
 					}
 				}
-				var_336c515d dodamage(n_base_damage, entity.origin, var_743a2772, entity, undefined, "MOD_MELEE", 0, level.var_78032351);
-				if(!isalive(var_336c515d))
+				hit_enemy dodamage(n_base_damage, entity.origin, var_743a2772, entity, undefined, "MOD_MELEE", 0, level.var_78032351);
+				if(!isalive(hit_enemy))
 				{
 					if(randomfloat(1) <= 0.8)
 					{
-						var_336c515d zombie_utility::function_3ab2b4eb();
+						hit_enemy zombie_utility::function_3ab2b4eb();
 					}
-					force = vectornormalize(var_336c515d.origin - entity.origin * (1, 1, 0));
+					force = vectornormalize(hit_enemy.origin - entity.origin * (1, 1, 0));
 					if(isdefined(entity.var_cd8354e0))
 					{
 						force = anglestoforward(entity.angles * (0, 1, 0));
@@ -618,8 +618,8 @@ private function function_f7c7a416(entity)
 						force = rotatepointaroundaxis(force, side, randomfloatrange(0, 75));
 						force = force * randomfloatrange(30, 85);
 					}
-					var_336c515d startragdoll();
-					var_336c515d launchragdoll(force);
+					hit_enemy startragdoll();
+					hit_enemy launchragdoll(force);
 				}
 			}
 			self.var_84f9cc2e = gettime() + 500;

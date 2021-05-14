@@ -205,10 +205,10 @@ private function function_4e9f1680()
 	pixbeginevent(#"hash_73eb0f44c0388afc");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"damage");
-		e_player = var_385703b7.attacker;
-		if(var_385703b7 namespace_509a75d1::function_69320b44("zm_aat_frostbite"))
+		s_notify = undefined;
+		s_notify = self waittill(#"damage");
+		e_player = s_notify.attacker;
+		if(s_notify namespace_509a75d1::function_69320b44("zm_aat_frostbite"))
 		{
 			self setcandamage(0);
 			self thread function_c0fc92d2();
@@ -284,7 +284,7 @@ function function_130ea633()
 {
 	if(zm_utility::is_classic())
 	{
-		self namespace_891c9bac::function_57b8cd17();
+		self zm_vo::function_57b8cd17();
 		self namespace_509a75d1::function_51b752a9("vox_ww_x_ammo_pickup");
 		if(!namespace_3e3742fd::function_6cebbce1())
 		{
@@ -329,7 +329,7 @@ private function function_ecdebc72()
 		{
 			waitframe(1);
 		}
-		if(namespace_9146fc8b::function_8920570d(self.spawn_pos.zone_name) && function_e4f54b1d() < level.var_ae5fb719.var_ad2870bb)
+		if(namespace_9146fc8b::is_bunker_zone(self.spawn_pos.zone_name) && function_e4f54b1d() < level.var_ae5fb719.var_ad2870bb)
 		{
 			self.var_13a2274b = 1;
 			self.actor_damage_func = &function_cdddec81;
@@ -476,12 +476,12 @@ private function function_baec0416(v_pos, v_angles)
 {
 	if(isdefined(v_pos))
 	{
-		var_b82ff340 = namespace_509a75d1::function_6d41bab8(v_pos, 360);
+		v_drop = namespace_509a75d1::function_6d41bab8(v_pos, 360);
 	}
-	if(isdefined(var_b82ff340))
+	if(isdefined(v_drop))
 	{
-		v_ground = groundtrace(var_b82ff340 + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), var_b82ff340 + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
-		v_normal = getnavmeshfacenormal(var_b82ff340, 32);
+		v_ground = groundtrace(v_drop + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_normal = getnavmeshfacenormal(v_drop, 32);
 		var_55ab02db = function_c1fa62a2(v_angles, v_normal);
 		var_a79daf1f = util::spawn_model("p8_zm_whi_goop_puddle_01", v_ground, var_55ab02db);
 		var_a79daf1f namespace_2e9c09b3::function_f1827cc6(&function_cf69599, "", &function_18a1849f, 96);
@@ -578,9 +578,9 @@ private function function_f05be4f1()
 */
 private function function_b99d76c0()
 {
-	var_3b901e6a = struct::get("mk2x_sc");
-	var_3b901e6a zm_unitrigger::create("");
-	var_3b901e6a thread function_473f437();
+	s_sc = struct::get("mk2x_sc");
+	s_sc zm_unitrigger::create("");
+	s_sc thread function_473f437();
 	level.var_ae5fb719.n_step = 3;
 }
 
@@ -598,10 +598,10 @@ private function function_473f437()
 	self endon(#"death", #"stop_think");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"trigger_activated");
+		s_notify = undefined;
+		s_notify = self waittill(#"trigger_activated");
 		playsoundatposition("evt_rgun_frame_putback", (-223, -1658, -178));
-		if(function_18a1849f(var_385703b7.e_who))
+		if(function_18a1849f(s_notify.e_who))
 		{
 			level.var_ae5fb719.var_fead3ae9 = util::spawn_model("p8_zm_whi_fuse_pickup_fluid_purple_half", self.origin, self.angles);
 			namespace_bd74bbd2::start(#"sc_mk2x");
@@ -717,9 +717,9 @@ private function function_2ac1278b()
 	self endon(#"death");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"trigger_activated");
-		e_player = var_385703b7.e_who;
+		s_notify = undefined;
+		s_notify = self waittill(#"trigger_activated");
+		e_player = s_notify.e_who;
 		if(function_18a1849f(e_player))
 		{
 			namespace_bd74bbd2::start(#"sc_mk2x");
@@ -747,9 +747,9 @@ function function_bafa7a2b()
 	}
 	else
 	{
-		var_3b901e6a = struct::get("mk2x_sc");
-		var_3b901e6a notify(#"stop_think");
-		zm_unitrigger::unregister_unitrigger(var_3b901e6a.s_unitrigger);
+		s_sc = struct::get("mk2x_sc");
+		s_sc notify(#"stop_think");
+		zm_unitrigger::unregister_unitrigger(s_sc.s_unitrigger);
 	}
 }
 
@@ -798,7 +798,7 @@ function function_c6fc34a()
 {
 	if(zm_utility::is_classic())
 	{
-		self namespace_891c9bac::function_57b8cd17();
+		self zm_vo::function_57b8cd17();
 		self namespace_509a75d1::function_51b752a9("vox_ww_x_craft");
 		if(!namespace_3e3742fd::function_6cebbce1())
 		{

@@ -1218,7 +1218,7 @@ private function remove_disabled_on_start_spawn_points(spawn_points)
 				}
 				disable_spawn_points[disable_spawn_points.size] = spawn_point;
 			}
-			spawn_point.var_dbb9d994 = 0;
+			spawn_point.trigger_enabled = 0;
 			spawn_point function_8807475c();
 		}
 	}
@@ -1317,7 +1317,7 @@ private function _disable_spawn_points()
 				level flagsys::set(#"spawnpoints_dirty");
 			}
 			spawn_point.disabled = 1;
-			spawn_point.var_dbb9d994 = 0;
+			spawn_point.trigger_enabled = 0;
 			spawn_point function_8807475c();
 		}
 	}
@@ -1349,7 +1349,7 @@ private function _enable_spawn_points()
 				level flagsys::set(#"spawnpoints_dirty");
 			}
 			spawn_point.disabled = undefined;
-			spawn_point.var_dbb9d994 = 1;
+			spawn_point.trigger_enabled = 1;
 			spawn_point function_8807475c();
 		}
 	}
@@ -1367,7 +1367,7 @@ private function _enable_spawn_points()
 private function function_8807475c()
 {
 	self.enabled = 1;
-	self.enabled = self.enabled && (!isdefined(self.var_dbb9d994) || self.var_dbb9d994);
+	self.enabled = self.enabled && (!isdefined(self.trigger_enabled) || self.trigger_enabled);
 	self.enabled = self.enabled && (!isdefined(self.var_bb915a97) || self.var_bb915a97);
 }
 

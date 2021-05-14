@@ -48,7 +48,7 @@ function function_c9509a9c(params)
 {
 	if(isalive(self) && isplayer(self))
 	{
-		if(params.weapon.name === #"hash_4b7e4696d38d13e3")
+		if(params.weapon.name === #"snowball")
 		{
 			var_feafe576 = 0;
 			var_cb01806c = 0;

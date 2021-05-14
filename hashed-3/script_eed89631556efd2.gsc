@@ -124,7 +124,7 @@ function state_off_update(params)
 						point._scoredebug[#"disttoorigin"] = spawnstruct();
 					}
 					point._scoredebug[#"disttoorigin"].score = disttooriginscore;
-					point._scoredebug[#"disttoorigin"].var_4b5e0304 = "";
+					point._scoredebug[#"disttoorigin"].scorename = "";
 				#/
 				point.score = point.score + disttooriginscore;
 				if(point.score > best_score)

@@ -31,7 +31,7 @@ function init_clientfields()
 	clientfield::register("scriptmover", "" + #"hash_47b8db8cde2c4291", 8000, getminbitcountfornum(13), "int", &function_731e7fcf, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_6babc320ed9a08f1", 8000, 1, "int", &function_828749d4, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_1f18edb30c01161a", 8000, 1, "int", &function_9d797e21, 0, 0);
-	clientfield::register("scriptmover", "" + #"ghost_trail", 8000, 1, "int", &function_2be0c633, 0, 0);
+	clientfield::register("scriptmover", "" + #"ghost_trail", 8000, 1, "int", &ghost_trail_fx, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_11eb6b7dc7db71ad", 8000, getminbitcountfornum(1), "int", &function_924f922d, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_58b293ceeb7f93e4", 8000, 1, "int", &function_5fc23aa1, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_33f073e3476b420d", 8000, getminbitcountfornum(17), "int", &function_c0257c1d, 0, 0);
@@ -429,7 +429,7 @@ function function_9d797e21(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_2be0c633
+	Name: ghost_trail_fx
 	Namespace: namespace_b8f22955
 	Checksum: 0xC55603F8
 	Offset: 0x2178
@@ -437,11 +437,11 @@ function function_9d797e21(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_2be0c633(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function ghost_trail_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(newval)
 	{
-		if(!isdefined(self.var_a5874e54))
+		if(!isdefined(self.fx_ghost_trail))
 		{
 			if(!isdefined(level.var_e62313ec))
 			{
@@ -449,19 +449,19 @@ function function_2be0c633(localclientnum, oldval, newval, bnewent, binitialsnap
 			}
 			foreach(var_ff4b3a13 in array::remove_undefined(level.var_e62313ec))
 			{
-				var_ff4b3a13.var_747c0187 = 0;
+				var_ff4b3a13.b_force_stream = 0;
 			}
-			self.var_a5874e54 = util::playfxontag(localclientnum, level._effect[#"ghost_trail"], self, "j_spine4");
+			self.fx_ghost_trail = util::playfxontag(localclientnum, level._effect[#"ghost_trail"], self, "j_spine4");
 			self thread ghost_impact_fx(localclientnum);
 			self.var_ad049408 = self playloopsound(#"hash_298631572be3dd79");
 		}
 	}
-	else if(isdefined(self.var_a5874e54))
+	else if(isdefined(self.fx_ghost_trail))
 	{
 		playfx(localclientnum, level._effect[#"hash_40afbfdd24d6ef3f"], self.origin, anglestoforward(self.angles), anglestoup(self.angles));
-		stopfx(localclientnum, self.var_a5874e54);
+		stopfx(localclientnum, self.fx_ghost_trail);
 		self stoploopsound(self.var_ad049408);
-		self.var_a5874e54 = undefined;
+		self.fx_ghost_trail = undefined;
 	}
 }
 
@@ -480,7 +480,7 @@ function function_924f922d(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		case 1:
 		{
-			self.var_747c0187 = 1;
+			self.b_force_stream = 1;
 			str_model = self.model;
 			if(!isdefined(level.var_e62313ec))
 			{
@@ -500,7 +500,7 @@ function function_924f922d(localclientnum, oldval, newval, bnewent, binitialsnap
 			}
 			self function_bf9d3071(#"hash_51b6bba95848bab8");
 			forcestreamxmodel(str_model);
-			while(isdefined(self) && self.var_747c0187)
+			while(isdefined(self) && self.b_force_stream)
 			{
 				wait(1);
 				e_player = function_5c10bd79(localclientnum);
@@ -535,7 +535,7 @@ function function_924f922d(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		default:
 		{
-			self.var_747c0187 = 0;
+			self.b_force_stream = 0;
 			playfx(localclientnum, level._effect[#"hash_11eb6b7dc7db71ad"], self.origin, anglestoforward(self.angles), anglestoup(self.angles));
 			self function_5d482e78(#"hash_51b6bba95848bab8");
 		}
@@ -564,16 +564,16 @@ function function_3e31854(e_player, v_color)
 		}
 		self notify(#"hash_199d88acd54c89d4");
 		self endon(#"death", #"hash_199d88acd54c89d4");
-		var_7b890daf = self.origin + vectorscale((0, 0, 1), 96);
-		var_14113491 = self.origin - vectorscale((0, 0, 1), 96);
-		var_3ac02792 = vectorscale(anglestoforward(self.angles), 450);
+		v_upper = self.origin + vectorscale((0, 0, 1), 96);
+		v_lower = self.origin - vectorscale((0, 0, 1), 96);
+		v_edge = vectorscale(anglestoforward(self.angles), 450);
 		while(getdvarint(#"hash_3c4df2fe4b1618d5", 0))
 		{
-			circle(var_7b890daf, 450, v_color, 0, 1);
-			circle(var_14113491, 450, v_color, 0, 1);
-			line(var_7b890daf, var_14113491, v_color);
-			line(var_7b890daf, var_7b890daf + var_3ac02792, v_color);
-			line(var_14113491, var_14113491 + var_3ac02792, v_color);
+			circle(v_upper, 450, v_color, 0, 1);
+			circle(v_lower, 450, v_color, 0, 1);
+			line(v_upper, v_lower, v_color);
+			line(v_upper, v_upper + v_edge, v_color);
+			line(v_lower, v_lower + v_edge, v_color);
 			waitframe(1);
 		}
 	#/
@@ -642,34 +642,34 @@ function function_5fc23aa1(localclientnum, oldval, newval, bnewent, binitialsnap
 function ghost_impact_fx(localclientnum)
 {
 	self endon(#"death");
-	var_35144d9b = (0, 0, 0);
-	var_c2b3e9bf = var_35144d9b;
+	v_contact = (0, 0, 0);
+	var_c2b3e9bf = v_contact;
 	while(isdefined(self))
 	{
 		v_start = self gettagorigin("j_spinelower");
 		v_end = v_start + vectorscale(anglestoforward(self.angles), 16);
 		a_trace = physicstrace(v_start, v_end, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self, 8);
-		var_35144d9b = a_trace[#"position"];
-		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(var_35144d9b, var_c2b3e9bf) > 256 * 2)
+		v_contact = a_trace[#"position"];
+		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(v_contact, var_c2b3e9bf) > 256 * 2)
 		{
-			var_c2b3e9bf = var_35144d9b;
+			var_c2b3e9bf = v_contact;
 			v_forward = anglestoforward(self.angles);
 			/#
-				self thread function_e0caca4e(var_35144d9b, v_forward * -1);
+				self thread function_e0caca4e(v_contact, v_forward * -1);
 			#/
-			playfx(localclientnum, level._effect[#"hash_3fee8d30e3aef8f4"], var_35144d9b, v_forward * -1, anglestoup(self.angles));
+			playfx(localclientnum, level._effect[#"hash_3fee8d30e3aef8f4"], v_contact, v_forward * -1, anglestoup(self.angles));
 		}
 		v_end = v_start + vectorscale(anglestoforward(self.angles) * -1, 16);
 		a_trace = physicstrace(v_start, v_end, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self, 8);
-		var_35144d9b = a_trace[#"position"];
-		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(var_35144d9b, var_c2b3e9bf) > 256 * 2)
+		v_contact = a_trace[#"position"];
+		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(v_contact, var_c2b3e9bf) > 256 * 2)
 		{
-			var_c2b3e9bf = var_35144d9b;
+			var_c2b3e9bf = v_contact;
 			v_forward = anglestoforward(self.angles);
 			/#
-				self thread function_e0caca4e(var_35144d9b, v_forward);
+				self thread function_e0caca4e(v_contact, v_forward);
 			#/
-			playfx(localclientnum, level._effect[#"hash_3fee8d30e3aef8f4"], var_35144d9b, v_forward, anglestoup(self.angles));
+			playfx(localclientnum, level._effect[#"hash_3fee8d30e3aef8f4"], v_contact, v_forward, anglestoup(self.angles));
 		}
 		waitframe(1);
 	}

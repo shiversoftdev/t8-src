@@ -45,11 +45,11 @@ function __init__()
 		level.challengescallbacks = [];
 	}
 	init_player_contract_events();
-	callback::on_finalize_initialization(&function_14d9fa2d);
+	callback::on_finalize_initialization(&finalize_init);
 }
 
 /*
-	Name: function_14d9fa2d
+	Name: finalize_init
 	Namespace: contracts
 	Checksum: 0x72FB636B
 	Offset: 0x1C0
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked
 */
-function function_14d9fa2d()
+function finalize_init()
 {
 	if(can_process_contracts())
 	{
@@ -85,7 +85,7 @@ function function_14d9fa2d()
 */
 function on_player_connect()
 {
-	self setup_player_contracts(3, &function_964b7a1);
+	self setup_player_contracts(3, &registerpower_grid_displaycontrolrobotmelee);
 	self.var_6fd8da7 = 0;
 	self.var_45ce0c21 = 0;
 	if(self is_contract_active(#"hash_672bb6ed2dd40cab") || (isdefined(level.var_b4ef4d73) && level.var_b4ef4d73))
@@ -188,7 +188,7 @@ function function_189f87c1()
 			var_c5440c34 = #"hash_1d8d86a4615a816e";
 			break;
 		}
-		case "hash_2a005252d762e06a":
+		case "zm_mansion":
 		{
 			var_c5440c34 = #"hash_747a0c756c61f799";
 			break;
@@ -198,12 +198,12 @@ function function_189f87c1()
 			var_c5440c34 = #"hash_3574ca7394ce67df";
 			break;
 		}
-		case "hash_757b253fe0702e3e":
+		case "zm_white":
 		{
 			var_c5440c34 = #"hash_37d3b7cdc643e3ed";
 			break;
 		}
-		case "hash_309e4fea5d255373":
+		case "zm_orange":
 		{
 			var_c5440c34 = #"hash_59ad299e60457948";
 			break;
@@ -373,7 +373,7 @@ private function function_902ef0de(var_38280f2f, delta)
 }
 
 /*
-	Name: function_964b7a1
+	Name: registerpower_grid_displaycontrolrobotmelee
 	Namespace: contracts
 	Checksum: 0x5F8F3A3F
 	Offset: 0xF10
@@ -381,7 +381,7 @@ private function function_902ef0de(var_38280f2f, delta)
 	Parameters: 1
 	Flags: Linked
 */
-function function_964b7a1(slot)
+function registerpower_grid_displaycontrolrobotmelee(slot)
 {
 	return function_d17bcd3c(slot);
 }
@@ -467,9 +467,9 @@ function function_677a89c8()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = self waittill(#"weapon_change");
-		w_current = var_385703b7.weapon;
+		s_notify = undefined;
+		s_notify = self waittill(#"weapon_change");
+		w_current = s_notify.weapon;
 		if(zm_weapons::is_weapon_upgraded(w_current))
 		{
 			self.var_bd1368a8 = 1;

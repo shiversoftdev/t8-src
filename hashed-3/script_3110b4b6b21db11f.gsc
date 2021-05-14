@@ -69,8 +69,8 @@ function init_clientfields()
 */
 function main()
 {
-	level.var_f030988f = getentarray("e_water", "targetname");
-	level.var_2481807a = struct::get_array("s_float_path", "script_noteworthy");
+	level.a_e_water = getentarray("e_water", "targetname");
+	level.a_s_float_path = struct::get_array("s_float_path", "script_noteworthy");
 	level flag::init(#"hash_69a9d00e65ee6c40");
 	level flag::init(#"hash_17b882aed4431728");
 	level.var_b0a3611a = 0.5;
@@ -143,7 +143,7 @@ function zombie_water_out()
 	self endon(#"death");
 	while(true)
 	{
-		foreach(e_water in level.var_f030988f)
+		foreach(e_water in level.a_e_water)
 		{
 			if(self istouching(e_water))
 			{
@@ -167,7 +167,7 @@ function zombie_water_out()
 function zombie_entered_water()
 {
 	self endon(#"death");
-	self.var_3236cdc2 = 1;
+	self.b_in_water = 1;
 	self zombie_water_move_slow();
 	self thread zombie_water_in();
 }
@@ -221,18 +221,18 @@ function zombie_water_in()
 	self endon(#"death");
 	while(true)
 	{
-		self.var_3236cdc2 = 0;
-		foreach(e_water in level.var_f030988f)
+		self.b_in_water = 0;
+		foreach(e_water in level.a_e_water)
 		{
 			if(self istouching(e_water))
 			{
-				self.var_3236cdc2 = 1;
+				self.b_in_water = 1;
 				if(!isdefined(self.var_3f789444))
 				{
 					self thread function_4c6f90cd();
 				}
 			}
-			if(!self.var_3236cdc2)
+			if(!self.b_in_water)
 			{
 				self zombie_exited_water();
 				return;
@@ -284,7 +284,7 @@ function function_4c6f90cd()
 function zombie_exited_water()
 {
 	self endon(#"death");
-	self.var_3236cdc2 = 0;
+	self.b_in_water = 0;
 	self.var_3f789444 = undefined;
 	self zombie_water_move_normal();
 	self thread zombie_water_out();
@@ -359,10 +359,10 @@ function function_ea0c7ed8()
 	self notify("4c2bcc084cb1ca9b");
 	self endon("4c2bcc084cb1ca9b");
 	level endon(#"end_game", #"hash_507adabe6ce05360");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
+	self endon(#"death", #"player_frozen");
 	while(true)
 	{
-		foreach(e_water in level.var_f030988f)
+		foreach(e_water in level.a_e_water)
 		{
 			if(self istouching(e_water) && !self laststand::player_is_in_laststand())
 			{
@@ -386,8 +386,8 @@ function function_ea0c7ed8()
 function function_b52931e7()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
-	self.var_3236cdc2 = 1;
+	self endon(#"death", #"player_frozen");
+	self.b_in_water = 1;
 	self notify(#"hash_42fcb8fa7aec0734");
 	if(!level flag::get(#"hash_69a9d00e65ee6c40"))
 	{
@@ -447,11 +447,11 @@ function function_26a271e6()
 function function_4ab00cab()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
+	self endon(#"death", #"player_frozen");
 	while(true)
 	{
 		wait(0.1);
-		foreach(e_water in level.var_f030988f)
+		foreach(e_water in level.a_e_water)
 		{
 			if(!self istouching(e_water) || self laststand::player_is_in_laststand())
 			{
@@ -474,8 +474,8 @@ function function_4ab00cab()
 function function_6cf1cc01()
 {
 	level endon(#"end_game");
-	self endon(#"death", #"hash_6bf10f34c45e879b");
-	self.var_3236cdc2 = 0;
+	self endon(#"death", #"player_frozen");
+	self.b_in_water = 0;
 	self notify(#"hash_668824b34b3076bc");
 	if(!level flag::get(#"hash_9cfd45106ac760d") && !level flag::get(#"hash_198bc172b5af7f25"))
 	{
@@ -600,7 +600,7 @@ function water_player_freeze()
 {
 	self endon_callback(&function_c64292f, #"death");
 	self.var_7dc2d507 = 1;
-	self notify(#"hash_6bf10f34c45e879b");
+	self notify(#"player_frozen");
 	self namespace_565e073b::function_3931c78();
 	self function_bad6907c();
 	self clientfield::set("" + #"hash_55543319943057f1", 1);
@@ -684,7 +684,7 @@ function function_bad6907c()
 	self disableoffhandweapons();
 	self allowmelee(0);
 	w_current = self getcurrentweapon();
-	if(namespace_2ba51478::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || ability_util::is_weapon_gadget(w_current) || ability_util::is_hero_weapon(w_current))
+	if(zm_loadout::is_placeable_mine(w_current) || zm_equipment::is_equipment(w_current) || ability_util::is_weapon_gadget(w_current) || ability_util::is_hero_weapon(w_current))
 	{
 		var_2e07b8ff = self getweaponslistprimaries();
 		if(isdefined(var_2e07b8ff) && var_2e07b8ff.size > 0)
@@ -770,7 +770,7 @@ function function_67981637()
 function function_46c3bbf7()
 {
 	self endon_callback(&function_26234f4c, #"disconnect");
-	if(zm_utility::function_3bff983f())
+	if(zm_utility::is_trials())
 	{
 		self namespace_78baa66c::function_b4bd25ef();
 	}
@@ -834,9 +834,9 @@ function function_872ec0b2(var_1d3683e1)
 	self endon(#"death", #"hash_53bfad7081c69dee");
 	while(true)
 	{
-		var_385703b7 = undefined;
-		var_385703b7 = var_1d3683e1 waittill(#"damage");
-		if(var_385703b7.attacker === self)
+		s_notify = undefined;
+		s_notify = var_1d3683e1 waittill(#"damage");
+		if(s_notify.attacker === self)
 		{
 			continue;
 		}
@@ -963,7 +963,7 @@ function function_34e1762b()
 {
 	self endon_callback(&function_f0339fd, #"death");
 	self.var_7dc2d507 = 1;
-	self notify(#"hash_6bf10f34c45e879b");
+	self notify(#"player_frozen");
 	self function_e22d95bc();
 	self clientfield::set("" + #"hash_55543319943057f1", 1);
 	self clientfield::set_to_player("" + #"hash_5160727729fd57a2", 1);
@@ -1028,8 +1028,8 @@ function function_f0339fd(str_notify)
 function function_e22d95bc()
 {
 	self endon_callback(&function_26234f4c, #"disconnect");
-	self val::set(#"hash_18b3834dc2415e43", "freezecontrols", 1);
-	self val::set(#"hash_18b3834dc2415e43", "ignoreme", 1);
+	self val::set(#"fasttravel", "freezecontrols", 1);
+	self val::set(#"fasttravel", "ignoreme", 1);
 	if(!self laststand::player_is_in_laststand())
 	{
 		str_stance = self getstance();
@@ -1065,9 +1065,9 @@ function function_e22d95bc()
 function function_d793c8ff()
 {
 	self endon_callback(&function_d92c3acf, #"disconnect");
-	self val::set(#"hash_18b3834dc2415e43", "freezecontrols", 0);
-	self val::set(#"hash_18b3834dc2415e43", "takedamage", 1);
-	self val::set(#"hash_18b3834dc2415e43", "ignoreme", 0);
+	self val::set(#"fasttravel", "freezecontrols", 0);
+	self val::set(#"fasttravel", "takedamage", 1);
+	self val::set(#"fasttravel", "ignoreme", 0);
 	self unlink();
 	if(isdefined(self.e_tag))
 	{
@@ -1104,8 +1104,8 @@ function function_d92c3acf(str_notify)
 function function_615d3be0()
 {
 	level endon(#"end_game");
-	var_2481807a = array::get_all_closest(self.origin, level.var_2481807a);
-	var_98698d94 = var_2481807a[0];
+	a_s_float_path = array::get_all_closest(self.origin, level.a_s_float_path);
+	var_98698d94 = a_s_float_path[0];
 	while(true)
 	{
 		var_7c1bf084 = self function_e2d41c8d(var_98698d94);
@@ -1154,9 +1154,9 @@ function water_debug_hud_elem_thread(player)
 		self thread update_hud_elem(player);
 		while(true)
 		{
-			if(isdefined(player.var_3236cdc2))
+			if(isdefined(player.b_in_water))
 			{
-				self setvalue(player.var_3236cdc2);
+				self setvalue(player.b_in_water);
 				println("" + player getentitynumber() + "");
 			}
 			player waittill(#"update_frost_state");

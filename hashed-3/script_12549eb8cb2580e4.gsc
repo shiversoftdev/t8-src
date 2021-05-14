@@ -73,11 +73,11 @@ function function_2a58f409(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_a49d33b6 = util::playfxontag(localclientnum, level._effect[#"hash_6a86077d83942719"], self, "tag_origin");
+		self.fx_filled = util::playfxontag(localclientnum, level._effect[#"hash_6a86077d83942719"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_a49d33b6))
+	else if(isdefined(self.fx_filled))
 	{
-		stopfx(localclientnum, self.var_a49d33b6);
+		stopfx(localclientnum, self.fx_filled);
 	}
 }
 
@@ -111,11 +111,11 @@ function discharge_pap(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 {
 	if(newval == 1)
 	{
-		self.var_1a73a3c4 = playfx(localclientnum, level._effect[#"discharge_pap"], self.origin);
+		self.discharge_fx = playfx(localclientnum, level._effect[#"discharge_pap"], self.origin);
 	}
-	else if(isdefined(self.var_1a73a3c4))
+	else if(isdefined(self.discharge_fx))
 	{
-		stopfx(localclientnum, self.var_1a73a3c4);
+		stopfx(localclientnum, self.discharge_fx);
 	}
 }
 
@@ -132,11 +132,11 @@ function discharge_perk(localclientnum, oldval, newval, bnewent, binitialsnap, f
 {
 	if(newval == 1)
 	{
-		self.var_1a73a3c4 = util::playfxontag(localclientnum, level._effect[#"discharge_perk"], self, "tag_origin");
+		self.discharge_fx = util::playfxontag(localclientnum, level._effect[#"discharge_perk"], self, "tag_origin");
 	}
-	else if(isdefined(self.var_1a73a3c4))
+	else if(isdefined(self.discharge_fx))
 	{
-		stopfx(localclientnum, self.var_1a73a3c4);
+		stopfx(localclientnum, self.discharge_fx);
 	}
 }
 
@@ -153,11 +153,11 @@ function discharge_wallbuy(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_1a73a3c4 = playfx(localclientnum, level._effect[#"discharge_wallbuy"], self.origin);
+		self.discharge_fx = playfx(localclientnum, level._effect[#"discharge_wallbuy"], self.origin);
 	}
-	else if(isdefined(self.var_1a73a3c4))
+	else if(isdefined(self.discharge_fx))
 	{
-		stopfx(localclientnum, self.var_1a73a3c4);
+		stopfx(localclientnum, self.discharge_fx);
 	}
 }
 

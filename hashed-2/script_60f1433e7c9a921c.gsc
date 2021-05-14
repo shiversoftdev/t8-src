@@ -47,7 +47,7 @@ private function __init__()
 	plannercommanderutility::registerdaemonapi("daemonSdBomb", &function_4364713f);
 	plannercommanderutility::registerdaemonapi("daemonSdBombZones", &function_c111c0aa);
 	plannercommanderutility::registerdaemonapi("daemonSdDefuseObj", &function_7e03c94a);
-	plannercommanderutility::registerutilityapi("commanderScoreAge", &function_cb29a211);
+	plannercommanderutility::registerutilityapi("commanderScoreAge", &_monkey_water_corvus_vo_cleared);
 	plannercommanderutility::registerutilityapi("commanderScoreAlive", &function_e319475e);
 	plannercommanderutility::registerutilityapi("commanderScoreControlZones", &function_f478ac94);
 	plannercommanderutility::registerutilityapi("commanderScoreDomFlags", &function_78126acd);
@@ -511,7 +511,7 @@ private function function_7e03c94a(commander)
 }
 
 /*
-	Name: function_cb29a211
+	Name: _monkey_water_corvus_vo_cleared
 	Namespace: namespace_e2d53d54
 	Checksum: 0xBC582AFE
 	Offset: 0x1EB0
@@ -519,7 +519,7 @@ private function function_7e03c94a(commander)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_cb29a211(commander, squad, constants)
+private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
 		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), "" + "" + "");

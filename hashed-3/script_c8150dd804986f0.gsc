@@ -207,7 +207,7 @@ function zombie_death_time_limit(e_attacker)
 	waitframe(1);
 	self.takedamage = 1;
 	self.allowdeath = 1;
-	self zm_aat_brain_decay::function_1f84fa6b(var_8651a024, e_attacker);
+	self zm_aat_brain_decay::zombie_death_explosion(var_8651a024, e_attacker);
 	self zm_aat_brain_decay::zombie_death_gib(e_attacker);
 }
 

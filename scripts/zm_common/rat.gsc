@@ -89,7 +89,7 @@ function __init__()
 function function_e1bdc812(params)
 {
 	/#
-		return namespace_f551babc::function_ba9853db();
+		return zm_trial::function_ba9853db();
 	#/
 }
 
@@ -117,7 +117,7 @@ function function_303319e9(params)
 		foreach(zombie in zombies)
 		{
 			zombie forceteleport(spawn, player.angles);
-			if(isdefined(params.var_c464b9f1) && params.var_c464b9f1 == 1)
+			if(isdefined(params.is_dummy) && params.is_dummy == 1)
 			{
 				zombie pathmode("");
 			}
@@ -363,7 +363,7 @@ function function_e2143adf(params)
 function function_1bd3da0f(params)
 {
 	/#
-		chunks = level.var_7759c77d.var_e770eb55;
+		chunks = level.s_pap_quest.var_e770eb55;
 		if(isdefined(chunks))
 		{
 			foreach(chunk in chunks)
@@ -389,7 +389,7 @@ function function_1bd3da0f(params)
 function function_d49caa1a(params)
 {
 	/#
-		return level.var_7759c77d.var_be6e6f65;
+		return level.s_pap_quest.var_be6e6f65;
 	#/
 }
 

@@ -214,7 +214,7 @@ function on_player_killed(params)
 	}
 	if(isdefined(player.var_b6672e47) && player.var_b6672e47 && player === player.var_9db94fe3 && util::function_fbce7263(player.team, attacker.team))
 	{
-		attacker namespace_bd02cf1::function_896ac347(weapon, #"showstopper", 1);
+		attacker activecamo::function_896ac347(weapon, #"showstopper", 1);
 		scoreevents::processscoreevent(#"hash_32b207d17e4776c1", attacker, player.var_9db94fe3, weapon);
 	}
 }

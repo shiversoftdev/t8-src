@@ -98,7 +98,7 @@ function function_5cf91552()
 	Parameters: 3
 	Flags: Linked
 */
-function add_to_player_score_override(n_points, str_awarded_by, var_b43eb4dc)
+function add_to_player_score_override(n_points, str_awarded_by, zm_scr_spawner_location_distance)
 {
 	if(str_awarded_by == #"hash_2fd8f0866dbeda28" || n_points == 0)
 	{
@@ -117,7 +117,7 @@ function add_to_player_score_override(n_points, str_awarded_by, var_b43eb4dc)
 			break;
 		}
 	}
-	if(var_b43eb4dc)
+	if(zm_scr_spawner_location_distance)
 	{
 		var_bed6c5f = int(n_points / 20);
 		var_15fc340f = var_bed6c5f * 10;

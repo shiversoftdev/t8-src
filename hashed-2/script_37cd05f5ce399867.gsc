@@ -9,11 +9,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_58fa9f4;
+#namespace zm_talisman_coagulant;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_58fa9f4
+	Namespace: zm_talisman_coagulant
 	Checksum: 0x6A6ECAC1
 	Offset: 0xC8
 	Size: 0x3C
@@ -22,12 +22,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_18466e57383383c9", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_coagulant", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_58fa9f4
+	Namespace: zm_talisman_coagulant
 	Checksum: 0xFD5EB051
 	Offset: 0x110
 	Size: 0x2C
@@ -36,19 +36,19 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_coagulant", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_coagulant", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_58fa9f4
+	Name: activate_talisman
+	Namespace: zm_talisman_coagulant
 	Checksum: 0x353675D9
 	Offset: 0x148
 	Size: 0x12
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self.var_5c4f1263 = 1.5;
 }

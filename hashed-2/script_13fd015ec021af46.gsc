@@ -85,7 +85,7 @@ private function function_ef0662f9(localclientnum, oldvalue, newvalue, bnewent, 
 {
 	if(newvalue)
 	{
-		self thread function_5d7f95a1(localclientnum);
+		self thread play_seeker_mine_fx(localclientnum);
 	}
 	else
 	{
@@ -94,7 +94,7 @@ private function function_ef0662f9(localclientnum, oldvalue, newvalue, bnewent, 
 }
 
 /*
-	Name: function_5d7f95a1
+	Name: play_seeker_mine_fx
 	Namespace: seeker_mine
 	Checksum: 0x7326D3A6
 	Offset: 0x3D0
@@ -102,7 +102,7 @@ private function function_ef0662f9(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 1
 	Flags: None
 */
-function function_5d7f95a1(localclientnum)
+function play_seeker_mine_fx(localclientnum)
 {
 	self endon(#"death");
 	playsound(0, #"hash_153d2d19a99f3a29", self.origin);

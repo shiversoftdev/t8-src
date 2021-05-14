@@ -12,11 +12,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_a6ea92eb;
+#namespace zm_talisman_impatient;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_a6ea92eb
+	Namespace: zm_talisman_impatient
 	Checksum: 0x24BE7B42
 	Offset: 0xE8
 	Size: 0x3C
@@ -25,12 +25,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_599f3df5ff5ccbe2", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_impatient", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_a6ea92eb
+	Namespace: zm_talisman_impatient
 	Checksum: 0xAE2A2284
 	Offset: 0x130
 	Size: 0x2C
@@ -39,39 +39,39 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_impatient", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_impatient", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_a6ea92eb
+	Name: activate_talisman
+	Namespace: zm_talisman_impatient
 	Checksum: 0x815DCDC6
 	Offset: 0x168
 	Size: 0x58
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	self endon(#"disconnect");
 	self.var_135a4148 = 0;
 	while(true)
 	{
 		self waittill(#"bled_out");
-		self thread function_49849a2f();
+		self thread special_revive();
 	}
 }
 
 /*
-	Name: function_49849a2f
-	Namespace: namespace_a6ea92eb
+	Name: special_revive
+	Namespace: zm_talisman_impatient
 	Checksum: 0x3CC0ADB8
 	Offset: 0x1C8
 	Size: 0x134
 	Parameters: 0
 	Flags: Linked
 */
-function function_49849a2f()
+function special_revive()
 {
 	self endon(#"disconnect", #"end_of_round");
 	if(self.var_135a4148 == namespace_a28acff3::get_round_number())

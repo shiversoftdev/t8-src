@@ -12,11 +12,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_a1429964;
+#namespace zm_talisman_extra_semtex;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_a1429964
+	Namespace: zm_talisman_extra_semtex
 	Checksum: 0x147E9258
 	Offset: 0xE0
 	Size: 0x3C
@@ -25,12 +25,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_43a940623c30cb8", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_extra_semtex", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_a1429964
+	Namespace: zm_talisman_extra_semtex
 	Checksum: 0x8E67164F
 	Offset: 0x128
 	Size: 0x2C
@@ -39,28 +39,28 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_extra_semtex", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_extra_semtex", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_a1429964
+	Name: activate_talisman
+	Namespace: zm_talisman_extra_semtex
 	Checksum: 0x824682FF
 	Offset: 0x160
 	Size: 0x54
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	callback::on_spawned(&function_4d97e9ce);
-	self.var_95097a63 = 1;
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_246c869c9de45f07");
+	self.b_talisman_extra_semtex = 1;
+	zm_loadout::register_lethal_grenade_for_level(#"hash_246c869c9de45f07");
 }
 
 /*
 	Name: function_4d97e9ce
-	Namespace: namespace_a1429964
+	Namespace: zm_talisman_extra_semtex
 	Checksum: 0xB659DEFC
 	Offset: 0x1C0
 	Size: 0xF4
@@ -70,7 +70,7 @@ function function_fd7e329b()
 function function_4d97e9ce()
 {
 	self endon(#"disconnect");
-	if(!(isdefined(self.var_95097a63) && self.var_95097a63))
+	if(!(isdefined(self.b_talisman_extra_semtex) && self.b_talisman_extra_semtex))
 	{
 		return;
 	}

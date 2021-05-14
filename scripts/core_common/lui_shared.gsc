@@ -51,13 +51,13 @@ function __init__()
 	Parameters: 3
 	Flags: Linked
 */
-function function_b95a3ba5(alias, var_dd4bada5, uid)
+function function_b95a3ba5(alias, registerfunc, uid)
 {
 	if(!isdefined(level.luimenus))
 	{
 		level.luimenus = array();
 	}
-	level.luimenus[alias] = [[var_dd4bada5]](uid);
+	level.luimenus[alias] = [[registerfunc]](uid);
 }
 
 /*
@@ -293,12 +293,12 @@ private function function_67373791(str_team, str_movie, b_looping, str_key)
 	Parameters: 8
 	Flags: None
 */
-function function_c6d1cb5d(str_team, str_movie, str_type, show_black_screen = 0, b_looping = 0, var_d687a9b7 = 0, str_key = #"", n_timeout)
+function function_c6d1cb5d(str_team, str_movie, str_type, show_black_screen = 0, b_looping = 0, b_skippable = 0, str_key = #"", n_timeout)
 {
 	callback::remove_on_connect(&function_67373791);
 	foreach(player in util::get_human_players(str_team))
 	{
-		player thread play_movie(str_movie, str_type, show_black_screen, b_looping, var_d687a9b7, str_key, n_timeout);
+		player thread play_movie(str_movie, str_type, show_black_screen, b_looping, b_skippable, str_key, n_timeout);
 	}
 }
 
@@ -311,7 +311,7 @@ function function_c6d1cb5d(str_team, str_movie, str_type, show_black_screen = 0,
 	Parameters: 8
 	Flags: Linked
 */
-function play_movie(str_movie, str_type, show_black_screen = 0, b_looping = 0, var_d687a9b7 = 0, str_key = #"", n_timeout, var_c16d0253 = 1)
+function play_movie(str_movie, str_type, show_black_screen = 0, b_looping = 0, b_skippable = 0, str_key = #"", n_timeout, var_c16d0253 = 1)
 {
 	if(str_type === "fullscreen" || str_type === "fullscreen_additive")
 	{
@@ -345,7 +345,7 @@ function play_movie(str_movie, str_type, show_black_screen = 0, b_looping = 0, v
 			{
 				player thread function_6c2457a9(1);
 			}
-			player thread _play_movie_for_player(str_movie, str_type, show_black_screen, b_looping, var_d687a9b7, str_key, n_timeout);
+			player thread _play_movie_for_player(str_movie, str_type, show_black_screen, b_looping, b_skippable, str_key, n_timeout);
 		}
 		if(a_players.size)
 		{
@@ -371,7 +371,7 @@ function play_movie(str_movie, str_type, show_black_screen = 0, b_looping = 0, v
 	{
 		self thread function_6c2457a9(1);
 	}
-	_play_movie_for_player(str_movie, str_type, 0, b_looping, var_d687a9b7, str_key, n_timeout);
+	_play_movie_for_player(str_movie, str_type, 0, b_looping, b_skippable, str_key, n_timeout);
 	if(isdefined(b_hide_hud) && isdefined(self))
 	{
 		self thread function_6c2457a9(0);
@@ -388,7 +388,7 @@ function play_movie(str_movie, str_type, show_black_screen = 0, b_looping = 0, v
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function _play_movie_for_player(str_movie, str_type, show_black_screen, b_looping, var_d687a9b7, str_key, n_timeout)
+private function _play_movie_for_player(str_movie, str_type, show_black_screen, b_looping, b_skippable, str_key, n_timeout)
 {
 	self endon(#"disconnect");
 	str_menu = undefined;
@@ -419,7 +419,7 @@ private function _play_movie_for_player(str_movie, str_type, show_black_screen, 
 		[[ lui_menu ]]->function_251fc818(self, str_key);
 		[[ lui_menu ]]->function_8f7a8b9c(self, show_black_screen);
 		[[ lui_menu ]]->function_5caa21cb(self, b_looping);
-		[[ lui_menu ]]->function_5e22e9d6(self, var_d687a9b7);
+		[[ lui_menu ]]->registerplayer_callout_traversal(self, b_skippable);
 		[[ lui_menu ]]->function_493305af(self, 0);
 		if(issubstr(str_type, "additive"))
 		{
@@ -486,7 +486,7 @@ private function function_6c2457a9(b_disable = 1)
 }
 
 /*
-	Name: function_6bbde8ac
+	Name: play_outro_movie
 	Namespace: lui
 	Checksum: 0x4F2CD00F
 	Offset: 0x1718
@@ -494,10 +494,10 @@ private function function_6c2457a9(b_disable = 1)
 	Parameters: 1
 	Flags: None
 */
-function function_6bbde8ac(show_black_screen = 1)
+function play_outro_movie(show_black_screen = 1)
 {
-	var_bca36789 = getmapoutromovie();
-	if(!isdefined(var_bca36789) || var_bca36789 == #"")
+	outro_movie = getmapoutromovie();
+	if(!isdefined(outro_movie) || outro_movie == #"")
 	{
 		return;
 	}
@@ -572,7 +572,7 @@ private function function_1bc580af()
 				}
 				else if(response === #"skippable" && isdefined(value))
 				{
-					[[ lui_menu ]]->function_5e22e9d6(self, value);
+					[[ lui_menu ]]->registerplayer_callout_traversal(self, value);
 				}
 			}
 		}
@@ -988,9 +988,9 @@ function setup_clientfields(uid)
 	Parameters: 5
 	Flags: Linked
 */
-function function_da693cbe(field_name, var_948bda55, bits, type, var_59f69872 = 1)
+function function_da693cbe(field_name, version, bits, type, var_59f69872 = 1)
 {
-	clientfield::function_346f95ba(self.var_47e79fc, field_name, var_948bda55, bits, type, var_59f69872);
+	clientfield::function_346f95ba(self.var_47e79fc, field_name, version, bits, type, var_59f69872);
 }
 
 /*
@@ -1002,9 +1002,9 @@ function function_da693cbe(field_name, var_948bda55, bits, type, var_59f69872 = 
 	Parameters: 4
 	Flags: Linked
 */
-function function_dcb34c80(var_2a0de052, field_name, var_948bda55, var_59f69872 = 1)
+function function_dcb34c80(var_2a0de052, field_name, version, var_59f69872 = 1)
 {
-	clientfield::function_78175813("clientuimodel", var_2a0de052, "luielement." + self.var_47e79fc + "." + field_name, var_948bda55, var_59f69872);
+	clientfield::function_78175813("clientuimodel", var_2a0de052, "luielement." + self.var_47e79fc + "." + field_name, version, var_59f69872);
 }
 
 /*

@@ -19,7 +19,7 @@ function init()
 	level._effect[#"hash_64578452d3392d94"] = #"hash_26f4e63105355909";
 	level._effect[#"hash_171687586f676b43"] = #"hash_59977c4c851916e0";
 	level._effect[#"hash_7567992d6a81fd89"] = #"hash_1a06427eff8dfe13";
-	clientfield::register("scriptmover", "vril_device_glow", 24000, 1, "int", &function_b0825bf1, 0, 0);
+	clientfield::register("scriptmover", "vril_device_glow", 24000, 1, "int", &_target_saving, 0, 0);
 	namespace_617a54f4::function_d8383812(#"sc_ww_quest", 24000, "sc_ww_quest", 200, level._effect[#"hash_171687586f676b43"], level._effect[#"hash_7567992d6a81fd89"], undefined, undefined, 1);
 }
 
@@ -45,7 +45,7 @@ function soul_release(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 }
 
 /*
-	Name: function_b0825bf1
+	Name: _target_saving
 	Namespace: zm_orange_ww_quest
 	Checksum: 0x10F461DC
 	Offset: 0x2D8
@@ -53,7 +53,7 @@ function soul_release(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 	Parameters: 7
 	Flags: Linked
 */
-function function_b0825bf1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function _target_saving(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(newval)
 	{

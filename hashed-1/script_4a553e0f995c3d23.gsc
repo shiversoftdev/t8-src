@@ -20,7 +20,7 @@ autoexec function main()
 {
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"blight_father", &function_a27b7fcf);
-	namespace_16541c1c::function_323ea53e();
+	namespace_16541c1c::registerblightfatherinterfaceattributes();
 }
 
 /*

@@ -78,7 +78,7 @@ function function_74872db6()
 	level.var_d614a8b4 = undefined;
 	level.var_11f7a9af = undefined;
 	level.var_18d20774 = undefined;
-	level.var_ef05cff5 = undefined;
+	level.registertheater_fxanim_kill_trigger_centerterminatetraverse = undefined;
 }
 
 /*
@@ -159,7 +159,7 @@ function function_af36af51(n_round_number)
 }
 
 /*
-	Name: function_f95fab30
+	Name: intro_blight_father
 	Namespace: namespace_65cff301
 	Checksum: 0x3B8AA0BF
 	Offset: 0xD38
@@ -167,9 +167,9 @@ function function_af36af51(n_round_number)
 	Parameters: 1
 	Flags: Linked
 */
-function function_f95fab30(n_round_number)
+function intro_blight_father(n_round_number)
 {
-	namespace_3fffba66::function_bdd8aba6(#"blight_father");
+	zm_transform::function_bdd8aba6(#"blight_father");
 }
 
 /*
@@ -204,8 +204,8 @@ function function_b03369f()
 	}
 	level thread scene::play(#"p8_fxanim_zm_towers_pap_door_blue_bundle");
 	level thread scene::play(#"p8_fxanim_zm_towers_pap_door_red_bundle");
-	var_867c1239 = getentarray("mdl_pap_room_debris_clip", "targetname");
-	foreach(mdl_pap_room_debris_clip in var_867c1239)
+	a_mdl_pap_room_debris_clip = getentarray("mdl_pap_room_debris_clip", "targetname");
+	foreach(mdl_pap_room_debris_clip in a_mdl_pap_room_debris_clip)
 	{
 		mdl_pap_room_debris_clip connectpaths();
 		mdl_pap_room_debris_clip delete();
@@ -276,7 +276,7 @@ function function_b9cacd48()
 }
 
 /*
-	Name: function_aa78bcdf
+	Name: activate_pap_altar
 	Namespace: namespace_65cff301
 	Checksum: 0x74860176
 	Offset: 0x13D8
@@ -284,7 +284,7 @@ function function_b9cacd48()
 	Parameters: 0
 	Flags: Linked
 */
-function function_aa78bcdf()
+function activate_pap_altar()
 {
 	level thread function_bbbc20bf();
 	level clientfield::set("pap_force_stream", 1);
@@ -330,7 +330,7 @@ function function_ca35fa36()
 		if(getdvarint(#"hash_b3363e1d25715d7", 0))
 		{
 			level thread function_b03369f();
-			level thread function_aa78bcdf();
+			level thread activate_pap_altar();
 			level notify(#"hash_2ff6268271a25ffa");
 			level thread function_b9cacd48();
 			return;
@@ -384,7 +384,7 @@ function function_ca35fa36()
 	zm_utility::function_33798535(s_defend_area.var_39c44288, s_defend_area.a_str_zones, s_defend_area.var_ed1db1a7, undefined, undefined, 45);
 	level thread function_b03369f();
 	zm_utility::function_11101458(#"temple");
-	level thread function_aa78bcdf();
+	level thread activate_pap_altar();
 	wait(45);
 	zm_zonemgr::zone_wait_till_enabled(#"zone_pap_room");
 	namespace_c3287616::function_306ce518(#"gladiator_marauder", &function_69d1ce85);
@@ -439,7 +439,7 @@ function function_ca35fa36()
 	level zm_utility::open_door(var_420e4589, undefined, 8, 1);
 	util::delay(4, undefined, &zm_utility::function_11101458, var_f79ff5ec);
 	wait(45);
-	namespace_c3287616::function_306ce518(#"blight_father", &function_f95fab30);
+	namespace_c3287616::function_306ce518(#"blight_father", &intro_blight_father);
 	level util::delay("started_defend_area", "end_game", &namespace_c3287616::function_376e51ef, #"blight_father");
 	s_defend_area = zm_utility::function_a877cd10(var_f79ff5ec);
 	zm_zonemgr::function_8caa21df(s_defend_area.a_str_zones);
@@ -581,9 +581,9 @@ function function_ac904e5e()
 	}
 	namespace_c3287616::function_306ce518(#"gladiator_destroyer", &function_e073793e);
 	namespace_c3287616::function_306ce518(#"gladiator_marauder", &function_20d7ebbb);
-	namespace_c3287616::function_306ce518(#"hash_1bab8a0ba811401e", &function_40dfd00b);
+	namespace_c3287616::function_306ce518(#"catalyst", &function_40dfd00b);
 	namespace_c3287616::function_306ce518(#"blight_father", &function_dcf7377c);
-	namespace_c3287616::function_cc103b38(#"hash_1bab8a0ba811401e", 6);
+	namespace_c3287616::function_cc103b38(#"catalyst", 6);
 	level thread function_11962516();
 }
 
@@ -650,7 +650,7 @@ function function_20d7ebbb(n_round_number)
 */
 function function_40dfd00b(n_round_number)
 {
-	zm_utility::function_9b7bc715(#"hash_1bab8a0ba811401e", 1);
+	zm_utility::function_9b7bc715(#"catalyst", 1);
 }
 
 /*

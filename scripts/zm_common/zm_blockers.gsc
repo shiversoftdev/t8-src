@@ -143,11 +143,11 @@ function door_init()
 	self.purchaser = undefined;
 	self._door_open = 0;
 	var_ecc45b8c = struct::get_array(self.target, "targetname");
-	foreach(var_c3be418 in var_ecc45b8c)
+	foreach(s_symbol in var_ecc45b8c)
 	{
-		if(var_c3be418.model === "p8_zm_door_buy_symbol_01" || var_c3be418.model === "p8_zm_debris_buy_symbol_01" || var_c3be418.model === "p8_zm_power_door_symbol_01")
+		if(s_symbol.model === "p8_zm_door_buy_symbol_01" || s_symbol.model === "p8_zm_debris_buy_symbol_01" || s_symbol.model === "p8_zm_power_door_symbol_01")
 		{
-			var_c3be418 function_23cbcd8();
+			s_symbol function_23cbcd8();
 		}
 	}
 	ent_targets = getentarray(self.target, "targetname");
@@ -192,7 +192,7 @@ function door_init()
 	{
 		if(self.script_noteworthy == "electric_door" || self.script_noteworthy == "electric_buyable_door")
 		{
-			if(zm_utility::function_3b2b3a2f() || namespace_59ff1d6c::function_901b751c(#"zmpowerstate") == 0)
+			if(zm_utility::is_grief() || namespace_59ff1d6c::function_901b751c(#"zmpowerstate") == 0)
 			{
 				self setinvisibletoall();
 				return;
@@ -206,7 +206,7 @@ function door_init()
 		}
 		if(self.script_noteworthy == "local_electric_door")
 		{
-			if(zm_utility::function_3b2b3a2f())
+			if(zm_utility::is_grief())
 			{
 				self setinvisibletoall();
 				return;
@@ -308,7 +308,7 @@ function door_buy()
 	waitresult = undefined;
 	waitresult = self waittill(#"trigger");
 	who = waitresult.activator;
-	force = waitresult.var_3fc8547c;
+	force = waitresult.is_forced;
 	if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(force) && force) || (isdefined(level.var_5791d548) && level.var_5791d548))
 	{
 		return 1;
@@ -357,7 +357,7 @@ function door_buy()
 			who zm_stats::function_2726a7c2("doors_purchased");
 			who zm_stats::increment_challenge_stat(#"survivalist_buy_door");
 			who zm_stats::function_8f10788e("boas_doors_purchased");
-			who zm_stats::function_c0c6ab19(#"hash_4b7ef387cb9982f4", 1, 1);
+			who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
 			who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
 			self.purchaser = who;
 			who namespace_e38c57c1::function_c3f3716();
@@ -404,8 +404,8 @@ function function_db84b4f4()
 	level thread function_5989dd12(var_4506f72b);
 	var_38a6b7d0 = getentarray("zombie_airlock_buy", "targetname");
 	level thread function_5989dd12(var_38a6b7d0);
-	var_ed3ddfdf = getentarray("zombie_debris", "targetname");
-	level thread function_5989dd12(var_ed3ddfdf);
+	a_zombie_debris = getentarray("zombie_debris", "targetname");
+	level thread function_5989dd12(a_zombie_debris);
 }
 
 /*
@@ -437,7 +437,7 @@ function function_5989dd12(a_doors)
 */
 function force_open_door(var_64c09f7f)
 {
-	self notify(#"trigger", {#hash_3fc8547c:1, #activator:var_64c09f7f});
+	self notify(#"trigger", {#is_forced:1, #activator:var_64c09f7f});
 }
 
 /*
@@ -1379,9 +1379,9 @@ function debris_init()
 		level flag::init(self.script_flag);
 	}
 	var_ecc45b8c = struct::get_array(self.target, "targetname");
-	foreach(var_c3be418 in var_ecc45b8c)
+	foreach(s_symbol in var_ecc45b8c)
 	{
-		var_c3be418 function_23cbcd8();
+		s_symbol function_23cbcd8();
 	}
 	if(isdefined(level.var_9093a47e))
 	{
@@ -1468,7 +1468,7 @@ function debris_think()
 					continue;
 				}
 			}
-			else if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.var_3fc8547c) && waitresult.var_3fc8547c) || (isdefined(level.var_5791d548) && level.var_5791d548))
+			else if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.is_forced) && waitresult.is_forced) || (isdefined(level.var_5791d548) && level.var_5791d548))
 			{
 			}
 			else if(!who usebuttonpressed())
@@ -1496,7 +1496,7 @@ function debris_think()
 		if(zm_utility::is_player_valid(who))
 		{
 			players = getplayers();
-			if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.var_3fc8547c) && waitresult.var_3fc8547c) || (isdefined(level.var_5791d548) && level.var_5791d548))
+			if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.is_forced) && waitresult.is_forced) || (isdefined(level.var_5791d548) && level.var_5791d548))
 			{
 			}
 			else if(who zm_score::can_player_purchase(self.zombie_cost))
@@ -1510,7 +1510,7 @@ function debris_think()
 				who zm_stats::function_2726a7c2("doors_purchased");
 				who zm_stats::increment_challenge_stat(#"survivalist_buy_door", undefined, 1);
 				who zm_stats::function_8f10788e("boas_doors_purchased");
-				who zm_stats::function_c0c6ab19(#"hash_4b7ef387cb9982f4", 1, 1);
+				who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
 				who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
 				who namespace_e38c57c1::function_c3f3716();
 			}
@@ -1616,7 +1616,7 @@ function debris_think()
 			self delete();
 			break;
 		}
-		if(isdefined(waitresult.var_3fc8547c) && waitresult.var_3fc8547c)
+		if(isdefined(waitresult.is_forced) && waitresult.is_forced)
 		{
 			self notify(#"kill_debris_prompt_thread");
 			if(isdefined(level.var_a9944fbd))
@@ -2192,11 +2192,11 @@ function blocker_init()
 		return;
 	}
 	var_575ce9bb = struct::get_array(self.target);
-	foreach(var_8f7aca1c in var_575ce9bb)
+	foreach(s_part in var_575ce9bb)
 	{
-		if(var_8f7aca1c.script_noteworthy === "trigger_location")
+		if(s_part.script_noteworthy === "trigger_location")
 		{
-			self.trigger_location = var_8f7aca1c;
+			self.trigger_location = s_part;
 			break;
 		}
 	}
@@ -2304,11 +2304,11 @@ function blocker_attack_spots()
 {
 	spots = [];
 	var_575ce9bb = struct::get_array(self.target);
-	foreach(var_8f7aca1c in var_575ce9bb)
+	foreach(s_part in var_575ce9bb)
 	{
-		if(var_8f7aca1c.script_noteworthy === "attack_spots")
+		if(s_part.script_noteworthy === "attack_spots")
 		{
-			var_65bfc901 = var_8f7aca1c;
+			s_attack_spots = s_part;
 			break;
 		}
 	}
@@ -2316,7 +2316,7 @@ function blocker_attack_spots()
 	numslots = int(max(numslots, 1));
 	if(numslots % 2)
 	{
-		spots[spots.size] = zm_utility::groundpos_ignore_water_new(var_65bfc901.origin + vectorscale((0, 0, 1), 60));
+		spots[spots.size] = zm_utility::groundpos_ignore_water_new(s_attack_spots.origin + vectorscale((0, 0, 1), 60));
 	}
 	if(numslots > 1)
 	{
@@ -2325,11 +2325,11 @@ function blocker_attack_spots()
 		for(i = 0; i < reps; i++)
 		{
 			offset = self.zbarrier getzbarrierattackslothorzoffset() * i + 1;
-			spots[spots.size] = zm_utility::groundpos_ignore_water_new(spots[0] + anglestoright(var_65bfc901.angles) * offset + vectorscale((0, 0, 1), 60));
+			spots[spots.size] = zm_utility::groundpos_ignore_water_new(spots[0] + anglestoright(s_attack_spots.angles) * offset + vectorscale((0, 0, 1), 60));
 			slot++;
 			if(slot < numslots)
 			{
-				spots[spots.size] = zm_utility::groundpos_ignore_water_new(spots[0] + anglestoright(var_65bfc901.angles) * offset * -1 + vectorscale((0, 0, 1), 60));
+				spots[spots.size] = zm_utility::groundpos_ignore_water_new(spots[0] + anglestoright(s_attack_spots.angles) * offset * -1 + vectorscale((0, 0, 1), 60));
 				slot++;
 			}
 		}
@@ -3329,7 +3329,7 @@ function open_all_zbarriers()
 	Parameters: 3
 	Flags: Linked
 */
-function function_6f01c3cf(str_value, str_key, var_e9e6d25a = 0)
+function function_6f01c3cf(str_value, str_key, b_hidden = 0)
 {
 	var_734c61ee = [];
 	foreach(s_barrier in level.exterior_goals)
@@ -3365,7 +3365,7 @@ function function_6f01c3cf(str_value, str_key, var_e9e6d25a = 0)
 			for(x = 0; x < barrier.zbarrier getnumzbarrierpieces(); x++)
 			{
 				barrier.zbarrier setzbarrierpiecestate(x, "open");
-				if(var_e9e6d25a)
+				if(b_hidden)
 				{
 					barrier.zbarrier hidezbarrierpiece(x);
 					continue;

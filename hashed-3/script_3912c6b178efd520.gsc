@@ -12,11 +12,11 @@
 #using scripts\zm_common\zm_talisman.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_454851fc;
+#namespace zm_talisman_extra_frag;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_454851fc
+	Namespace: zm_talisman_extra_frag
 	Checksum: 0x6C019F92
 	Offset: 0xE0
 	Size: 0x3C
@@ -25,12 +25,12 @@
 */
 autoexec function function_89f2df9()
 {
-	system::register(#"hash_4344e2c90f1d5b4", &__init__, undefined, undefined);
+	system::register(#"zm_talisman_extra_frag", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_454851fc
+	Namespace: zm_talisman_extra_frag
 	Checksum: 0x10D63840
 	Offset: 0x128
 	Size: 0x2C
@@ -39,28 +39,28 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_talisman::function_88a60d36("talisman_extra_frag", &function_fd7e329b);
+	zm_talisman::function_88a60d36("talisman_extra_frag", &activate_talisman);
 }
 
 /*
-	Name: function_fd7e329b
-	Namespace: namespace_454851fc
+	Name: activate_talisman
+	Namespace: zm_talisman_extra_frag
 	Checksum: 0x6C375951
 	Offset: 0x160
 	Size: 0x54
 	Parameters: 0
 	Flags: Linked
 */
-function function_fd7e329b()
+function activate_talisman()
 {
 	callback::on_spawned(&function_fbcc1e50);
-	self.var_97f80359 = 1;
-	namespace_2ba51478::register_lethal_grenade_for_level(#"hash_244eb1a096b12734");
+	self.b_talisman_extra_frag = 1;
+	zm_loadout::register_lethal_grenade_for_level(#"hash_244eb1a096b12734");
 }
 
 /*
 	Name: function_fbcc1e50
-	Namespace: namespace_454851fc
+	Namespace: zm_talisman_extra_frag
 	Checksum: 0x37FAF9AE
 	Offset: 0x1C0
 	Size: 0x124
@@ -70,7 +70,7 @@ function function_fd7e329b()
 function function_fbcc1e50()
 {
 	self endon(#"disconnect");
-	if(!(isdefined(self.var_97f80359) && self.var_97f80359))
+	if(!(isdefined(self.b_talisman_extra_frag) && self.b_talisman_extra_frag))
 	{
 		return;
 	}
@@ -79,7 +79,7 @@ function function_fbcc1e50()
 	{
 		self takeweapon(getweapon(#"hash_34b7eb9fde56bd35"));
 		self giveweapon(getweapon(#"hash_244eb1a096b12734"));
-		self namespace_2ba51478::set_player_lethal_grenade(getweapon(#"hash_244eb1a096b12734"));
+		self zm_loadout::set_player_lethal_grenade(getweapon(#"hash_244eb1a096b12734"));
 	}
 }
 

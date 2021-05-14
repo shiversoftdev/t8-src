@@ -33,12 +33,12 @@ function __init__()
 {
 	visionset_mgr::register_visionset_info("zm_idgun_vortex" + "_visionset", 1, 30, undefined, "zm_idgun_vortex");
 	visionset_mgr::register_overlay_info_style_speed_blur("zm_idgun_vortex" + "_blur", 1, 1, 0.08, 0.75, 0.9);
-	clientfield::register("scriptmover", "vortex_start", 1, 2, "counter", &function_8e7d94b, 0, 0);
+	clientfield::register("scriptmover", "vortex_start", 1, 2, "counter", &start_vortex, 0, 0);
 	clientfield::register("allplayers", "vision_blur", 1, 1, "int", &vision_blur, 0, 0);
 }
 
 /*
-	Name: function_8e7d94b
+	Name: start_vortex
 	Namespace: zombie_vortex
 	Checksum: 0x138595F9
 	Offset: 0x348
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked
 */
-function function_8e7d94b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function start_vortex(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
 	self endon(#"disconnect");
@@ -59,17 +59,17 @@ function function_8e7d94b(localclientnum, oldval, newval, bnewent, binitialsnap,
 	newval = newval - oldval;
 	if(newval == 2)
 	{
-		var_84c2624b = "zombie/fx_idgun_vortex_ug_zod_zmb";
+		registerplayer_lift_clipbamfupdate = "zombie/fx_idgun_vortex_ug_zod_zmb";
 		var_800bc32d = "zombie/fx_idgun_vortex_explo_ug_zod_zmb";
 		n_vortex_time = 10;
 	}
 	else
 	{
-		var_84c2624b = "zombie/fx_idgun_vortex_zod_zmb";
+		registerplayer_lift_clipbamfupdate = "zombie/fx_idgun_vortex_zod_zmb";
 		var_800bc32d = "zombie/fx_idgun_vortex_explo_zod_zmb";
 		n_vortex_time = 5;
 	}
-	vortex_fx_handle = playfx(localclientnum, var_84c2624b, var_3d2b5c8c);
+	vortex_fx_handle = playfx(localclientnum, registerplayer_lift_clipbamfupdate, var_3d2b5c8c);
 	setfxignorepause(localclientnum, vortex_fx_handle, 1);
 	playsound(0, #"wpn_idgun_portal_start", var_3d2b5c8c);
 	audio::playloopat("wpn_idgun_portal_loop", var_3d2b5c8c);

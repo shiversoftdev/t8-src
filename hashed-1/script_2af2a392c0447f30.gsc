@@ -69,7 +69,7 @@ function function_58d94d9()
 	Parameters: 4
 	Flags: Linked
 */
-function function_bf7ca4a7(b_pause, str_perk, str_result, var_bcd1c2ff)
+function function_bf7ca4a7(b_pause, str_perk, str_result, n_slot)
 {
 }
 
