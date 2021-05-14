@@ -11,4 +11,5 @@ so id rather release it ahead of time since there are a few other people who wou
 Taleb - resources\
 SyGnUs - string decryption help\
 alexisloic21 - Found and reported a bug with for loops\
+Kenshin9977 - Additional hashes\
 Scobalula - Original T7 decompiler
