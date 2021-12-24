@@ -368,7 +368,7 @@ private function function_ada16428(deathcircle, var_898879a6)
 				/#
 					if(getdvarint(#"hash_55e8ad2b1d030870", 0))
 					{
-						iprintlnbold("" + vehicle.scriptvehicletype + "" + vehicle.origin);
+						iprintlnbold((("" + vehicle.scriptvehicletype) + "") + vehicle.origin);
 					}
 					deleted++;
 				#/
@@ -376,7 +376,7 @@ private function function_ada16428(deathcircle, var_898879a6)
 			}
 		}
 		count++;
-		if(count % var_3624d2c5 == 0)
+		if((count % var_3624d2c5) == 0)
 		{
 			util::wait_network_frame(1);
 		}
@@ -385,7 +385,7 @@ private function function_ada16428(deathcircle, var_898879a6)
 	/#
 		if(getdvarint(#"hash_55e8ad2b1d030870", 0) && deleted > 0)
 		{
-			iprintlnbold("" + level.var_cd8f416a.size + "" + deleted);
+			iprintlnbold((("" + level.var_cd8f416a.size) + "") + deleted);
 		}
 	#/
 }
@@ -434,6 +434,6 @@ private function function_3703bc36(entity, deathcircle, var_7e2f7f1f = 0)
 		return 0;
 	}
 	var_be38b475 = (var_7e2f7f1f ? 5000 : 0);
-	return distance2dsquared(entity.origin, deathcircle.origin) >= deathcircle.radius + var_be38b475 * deathcircle.radius + var_be38b475;
+	return distance2dsquared(entity.origin, deathcircle.origin) >= (deathcircle.radius + var_be38b475) * (deathcircle.radius + var_be38b475);
 }
 

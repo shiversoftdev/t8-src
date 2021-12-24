@@ -107,7 +107,7 @@ function timeuntilroundend()
 {
 	if(level.gameended)
 	{
-		timepassed = float(gettime() - level.gameendtime) / 1000;
+		timepassed = (float(gettime() - level.gameendtime)) / 1000;
 		timeremaining = level.roundenddelay[3] - timepassed;
 		if(timeremaining < 0)
 		{
@@ -123,8 +123,8 @@ function timeuntilroundend()
 	{
 		return undefined;
 	}
-	timepassed = float(gettimepassed() - level.starttime) / 1000;
-	timeremaining = level.timelimit * 60 - timepassed;
+	timepassed = (float(gettimepassed() - level.starttime)) / 1000;
+	timeremaining = (level.timelimit * 60) - timepassed;
 	return timeremaining + level.roundenddelay[3];
 }
 
@@ -139,7 +139,7 @@ function timeuntilroundend()
 */
 function gettimeremaining()
 {
-	return level.timelimit * int(60 * 1000) - gettimepassed();
+	return (level.timelimit * (int(60 * 1000))) - gettimepassed();
 }
 
 /*
@@ -226,7 +226,7 @@ function assertproperplacement()
 					for(j = 0; j < numplayers; j++)
 					{
 						player = level.placement[#"all"][j];
-						println("" + j + "" + player.name + "" + player.score);
+						println((((("" + j) + "") + player.name) + "") + player.score);
 					}
 					/#
 						assertmsg("");
@@ -245,7 +245,7 @@ function assertproperplacement()
 					for(j = 0; j < numplayers; j++)
 					{
 						player = level.placement[#"all"][j];
-						println("" + j + "" + player.name + "" + player.pointstowin);
+						println((((("" + j) + "") + player.name) + "") + player.pointstowin);
 					}
 					/#
 						assertmsg("");
@@ -354,11 +354,11 @@ function gametimer()
 	{
 		if(!level.timerstopped)
 		{
-			game.timepassed = game.timepassed + gettime() - prevtime;
+			game.timepassed = game.timepassed + (gettime() - prevtime);
 		}
 		if(!level.playabletimerstopped)
 		{
-			game.playabletimepassed = game.playabletimepassed + gettime() - prevtime;
+			game.playabletimepassed = game.playabletimepassed + (gettime() - prevtime);
 		}
 		prevtime = gettime();
 		wait(1);
@@ -396,7 +396,7 @@ function disableplayerroundstartdelay()
 */
 function getroundstartdelay()
 {
-	waittime = level.roundstartexplosivedelay - float([[level.gettimepassed]]()) / 1000;
+	waittime = level.roundstartexplosivedelay - (float([[level.gettimepassed]]()) / 1000);
 	if(waittime > 0)
 	{
 		return waittime;
@@ -445,9 +445,9 @@ function gettimepassed()
 	}
 	if(level.timerstopped)
 	{
-		return level.timerpausetime - level.starttime - level.discardtime;
+		return (level.timerpausetime - level.starttime) - level.discardtime;
 	}
-	return gettime() - level.starttime - level.discardtime;
+	return (gettime() - level.starttime) - level.discardtime;
 }
 
 /*
@@ -487,7 +487,7 @@ function resumetimer()
 	}
 	level.timerstopped = 0;
 	level.playabletimerstopped = 0;
-	level.discardtime = level.discardtime + gettime() - level.timerpausetime;
+	level.discardtime = level.discardtime + (gettime() - level.timerpausetime);
 }
 
 /*
@@ -563,7 +563,7 @@ function getscoreperminute(team)
 	/#
 		assert(isplayer(self) || isdefined(team));
 	#/
-	minutespassed = gettimepassed() / int(60 * 1000) + 0.0001;
+	minutespassed = (gettimepassed() / (int(60 * 1000))) + 0.0001;
 	if(isplayer(self))
 	{
 		return globallogic_score::_getplayerscore(self) / minutespassed;
@@ -825,22 +825,22 @@ function function_8d61a6c2(var_c1e98979)
 		winner = round::function_9b24638f();
 		if(isplayer(winner))
 		{
-			print("" + winner getxuid() + "" + winner.name + "");
+			print(((("" + winner getxuid()) + "") + winner.name) + "");
 		}
 		if(isdefined(winner))
 		{
 			if(isplayer(winner))
 			{
-				log_string = log_string + "" + winner getxuid() + "" + winner.name + "";
+				log_string = (((log_string + "") + winner getxuid() + "") + winner.name) + "";
 			}
 			else
 			{
-				log_string = log_string + "" + winner;
+				log_string = (log_string + "") + winner;
 			}
 		}
 		foreach(team, str_team in level.teams)
 		{
-			log_string = log_string + "" + str_team + "" + game.stat[#"teamscores"][team];
+			log_string = (((log_string + "") + str_team) + "") + game.stat[#"teamscores"][team];
 		}
 		print(log_string);
 	#/

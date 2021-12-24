@@ -346,7 +346,7 @@ function is_valid_target(e_target, n_range)
 	{
 		return 0;
 	}
-	if(distance2dsquared(self.origin, e_target.origin) <= 64 * 64 && (self zm_utility::is_player_looking_at(e_target getcentroid(), 0.3, 1, self) || self zm_utility::is_player_looking_at(e_target getcentroid() + vectorscale((0, 0, 1), 32), 0.3, 1, self)))
+	if(distance2dsquared(self.origin, e_target.origin) <= (64 * 64) && (self zm_utility::is_player_looking_at(e_target getcentroid(), 0.3, 1, self) || self zm_utility::is_player_looking_at(e_target getcentroid() + vectorscale((0, 0, 1), 32), 0.3, 1, self)))
 	{
 		return 1;
 	}
@@ -419,7 +419,7 @@ function function_ce711b5c(e_projectile, ai_zombie, n_damage)
 	{
 		var_2ed6f142 = self getweaponmuzzlepoint();
 		v_forward = self getweaponforwarddir();
-		v_end = var_2ed6f142 + v_forward * 200;
+		v_end = var_2ed6f142 + (v_forward * 200);
 		n_dist_sq = distance2dsquared(self.origin, v_end);
 		if(isdefined(ai_zombie) && distance2dsquared(e_projectile.origin, ai_zombie.origin) <= n_dist_sq)
 		{
@@ -442,12 +442,12 @@ function function_ce711b5c(e_projectile, ai_zombie, n_damage)
 			v_org = function_30239376(ai_zombie);
 			n_dist = distance(self.origin, v_org);
 			var_7fd007f9 = n_dist * 0.5;
-			v_end = var_2ed6f142 + v_forward * 100;
+			v_end = var_2ed6f142 + (v_forward * 100);
 			var_a93a9211 = distance(self.origin, v_end);
-			v_right = var_2ed6f142 + anglestoright(self.angles) * 50;
-			v_right_end = v_right + v_forward * 100;
-			v_left = var_2ed6f142 - anglestoright(self.angles) * 50;
-			v_left_end = v_left + v_forward * 100;
+			v_right = var_2ed6f142 + (anglestoright(self.angles) * 50);
+			v_right_end = v_right + (v_forward * 100);
+			v_left = var_2ed6f142 - (anglestoright(self.angles) * 50);
+			v_left_end = v_left + (v_forward * 100);
 			n_time = var_a93a9211 / 1500;
 			if(n_time <= 0.1)
 			{
@@ -490,11 +490,11 @@ function function_ce711b5c(e_projectile, ai_zombie, n_damage)
 					var_4d8b7233 = var_4d8b7233 + 20;
 					if(e_projectile.n_index === 1)
 					{
-						v_horz = v_target + anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target + (anglestoright(ai_zombie.angles) * 100);
 					}
 					else if(e_projectile.n_index === 2)
 					{
-						v_horz = v_target - anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target - (anglestoright(ai_zombie.angles) * 100);
 					}
 					else
 					{
@@ -721,7 +721,7 @@ function function_39e8ed04()
 {
 	var_2ed6f142 = self getweaponmuzzlepoint();
 	v_forward = self getweaponforwarddir();
-	v_end = var_2ed6f142 + v_forward * 10000;
+	v_end = var_2ed6f142 + (v_forward * 10000);
 	a_trace = bullettrace(var_2ed6f142, v_end, 0, self);
 	if(isdefined(level.var_1e60b889))
 	{
@@ -786,7 +786,7 @@ function function_dd7bc108(weapon)
 		v_ground = undefined;
 		while(!isdefined(v_ground))
 		{
-			v_trace = groundtrace(v_target + vectorscale((0, 0, 1), 200), v_target + vectorscale((0, 0, -1), 2000), 0, self, 1)[#"position"];
+			v_trace = groundtrace(v_target + vectorscale((0, 0, 1), 200), v_target + (vectorscale((0, 0, -1), 2000)), 0, self, 1)[#"position"];
 			v_trace = v_trace + (randomintrange(-10, 10), randomintrange(-10, 10), 0);
 			v_on_navmesh = zm_utility::function_b0eeaada(v_trace);
 			if(isdefined(v_on_navmesh))
@@ -849,7 +849,7 @@ function function_33f9ab00(a_e_targets, weapon)
 	v_pos = self.origin;
 	foreach(e_target in a_e_targets)
 	{
-		if(isalive(e_target) && distancesquared(v_pos, e_target.origin) <= 60 * 60 && (!(isdefined(e_target.var_317b8f00) && e_target.var_317b8f00)) && (!(isdefined(e_target.var_5a3ebaa3) && e_target.var_5a3ebaa3)) && (!(isdefined(e_target.var_339655cf) && e_target.var_339655cf)) && v_pos[2] <= e_target.origin[2])
+		if(isalive(e_target) && distancesquared(v_pos, e_target.origin) <= (60 * 60) && (!(isdefined(e_target.var_317b8f00) && e_target.var_317b8f00)) && (!(isdefined(e_target.var_5a3ebaa3) && e_target.var_5a3ebaa3)) && (!(isdefined(e_target.var_339655cf) && e_target.var_339655cf)) && v_pos[2] <= e_target.origin[2])
 		{
 			if(isdefined(self.owner))
 			{
@@ -893,16 +893,16 @@ function spike_explode(v_pos, weapon)
 	a_e_targets = function_3874b38f();
 	foreach(e_target in a_e_targets)
 	{
-		if(isalive(e_target) && (!(isdefined(e_target.var_61768419) && e_target.var_61768419)) && (!(isdefined(e_target.var_5a3ebaa3) && e_target.var_5a3ebaa3)) && (!(isdefined(e_target.var_339655cf) && e_target.var_339655cf)) && distancesquared(self.origin, e_target.origin) <= n_dist && abs(self.origin[2] - e_target.origin[2]) <= 20)
+		if(isalive(e_target) && (!(isdefined(e_target.var_61768419) && e_target.var_61768419)) && (!(isdefined(e_target.var_5a3ebaa3) && e_target.var_5a3ebaa3)) && (!(isdefined(e_target.var_339655cf) && e_target.var_339655cf)) && distancesquared(self.origin, e_target.origin) <= n_dist && (abs(self.origin[2] - e_target.origin[2])) <= 20)
 		{
 			e_target.var_61768419 = 1;
 			if(self function_1d315fcd(e_target))
 			{
-				v_dir = anglestoright(self.angles) * randomintrange(100, 150) + (0, 0, randomintrange(50, 150));
+				v_dir = (anglestoright(self.angles) * randomintrange(100, 150)) + (0, 0, randomintrange(50, 150));
 			}
 			else
 			{
-				v_dir = anglestoright(self.angles) * randomintrange(-150, -100) + (0, 0, randomintrange(50, 150));
+				v_dir = (anglestoright(self.angles) * (randomintrange(-150, -100))) + (0, 0, randomintrange(50, 150));
 			}
 			self thread function_5bca6886(e_target, v_dir);
 		}

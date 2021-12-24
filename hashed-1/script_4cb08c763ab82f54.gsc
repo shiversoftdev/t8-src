@@ -190,7 +190,7 @@ private function tryreacquireservice(behaviortreeentity)
 		case 1:
 		case 2:
 		{
-			step_size = 32 + behaviortreeentity.reacquire_state * 32;
+			step_size = 32 + (behaviortreeentity.reacquire_state * 32);
 			reacquirepos = behaviortreeentity reacquirestep(step_size);
 			break;
 		}

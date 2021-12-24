@@ -216,7 +216,7 @@ function callback_playerconnect()
 		self setclientuivisibilityflag("hud_visible", 0);
 		self [[level.spawnintermission]]();
 		self closeingamemenu();
-		profilelog_endtiming(4, "gs=" + game.state + " zom=" + sessionmodeiszombiesgame());
+		profilelog_endtiming(4, (("gs=" + game.state) + " zom=") + sessionmodeiszombiesgame());
 		return;
 	}
 	if(self istestclient())
@@ -294,7 +294,7 @@ function callback_playerconnect()
 	{
 		self thread spawning::onspawnplayer_unified(1);
 	}
-	profilelog_endtiming(4, "gs=" + game.state + " zom=" + sessionmodeiszombiesgame());
+	profilelog_endtiming(4, (("gs=" + game.state) + " zom=") + sessionmodeiszombiesgame());
 	if(!isdefined(level.players))
 	{
 		level.players = [];
@@ -385,11 +385,11 @@ function spectate_player_watcher()
 function callback_playermigrated()
 {
 	/#
-		println("" + self.name + "" + gettime());
+		println((("" + self.name) + "") + gettime());
 	#/
 	self thread inform_clientvm_of_migration();
 	level.hostmigrationreturnedplayercount++;
-	if(level.hostmigrationreturnedplayercount >= level.players.size * 2 / 3)
+	if(level.hostmigrationreturnedplayercount >= ((level.players.size * 2) / 3))
 	{
 		/#
 			println("");
@@ -428,7 +428,7 @@ function arraytostring(inputarray)
 	for(i = 0; i < inputarray.size; i++)
 	{
 		targetstring = targetstring + inputarray[i];
-		if(i != inputarray.size - 1)
+		if(i != (inputarray.size - 1))
 		{
 			targetstring = targetstring + ",";
 		}
@@ -543,7 +543,7 @@ function callback_playerdisconnect()
 	if(isdefined(self.score) && isdefined(self.pers) && isdefined(self.pers[#"team"]))
 	{
 		/#
-			print("" + self.pers[#"team"] + "" + self.score);
+			print((("" + self.pers[#"team"]) + "") + self.score);
 		#/
 		level.dropteam = level.dropteam + 1;
 	}
@@ -591,7 +591,7 @@ function callback_playerdisconnect()
 		self globallogic::removedisconnectedplayerfromplacement();
 	}
 	globallogic::updateteamstatus();
-	profilelog_endtiming(5, "gs=" + game.state + " zom=" + sessionmodeiszombiesgame());
+	profilelog_endtiming(5, (("gs=" + game.state) + " zom=") + sessionmodeiszombiesgame());
 }
 
 /*

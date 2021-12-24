@@ -145,7 +145,7 @@ function function_9ed71eeb(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	v_pos = self.origin + vectorscale((0, 0, 1), 7);
 	v_dir = anglestoforward(self.angles);
-	v_pos = v_pos + v_dir * 9;
+	v_pos = v_pos + (v_dir * 9);
 	v_up = (0, 0, 1);
 	v_forward = (1, 0, 0);
 	switch(newval)
@@ -397,8 +397,8 @@ function fake_physicslaunch(target_pos, power, var_4862f668)
 	dist = distance(start_pos, target_pos);
 	time = dist / power;
 	delta = target_pos - start_pos;
-	drop = 0.5 * gravity * time * time;
-	velocity = (delta[0] / time, delta[1] / time, delta[2] - drop / time);
+	drop = (0.5 * gravity) * (time * time);
+	velocity = (delta[0] / time, delta[1] / time, (delta[2] - drop) / time);
 	self movegravity(velocity, time);
 	return time;
 }

@@ -419,7 +419,7 @@ private function bb_gettraversalheight()
 	if(isdefined(entity.traversemantlenode))
 	{
 		pivotorigin = archetype_mocomps_utility::calculatepivotoriginfromedge(entity, entity.traversemantlenode, entity.origin);
-		traversalheight = pivotorigin[2] - isdefined(entity.var_fad2bca9) && entity.var_fad2bca9 && (isdefined(entity.traversalstartpos) ? entity.traversalstartpos[2] : entity.origin[2]);
+		traversalheight = pivotorigin[2] - (isdefined(entity.var_fad2bca9) && entity.var_fad2bca9 && (isdefined(entity.traversalstartpos) ? entity.traversalstartpos[2] : entity.origin[2]));
 		/#
 			record3dtext("" + traversalheight, self.origin + vectorscale((0, 0, 1), 32), (1, 0, 0), "");
 		#/
@@ -593,7 +593,7 @@ function bb_getparametrictraversaltype()
 	{
 		traversaldistance = distance2d(startposition, endposition);
 		isendpointaboveorsamelevel = startposition[2] <= endposition[2];
-		if(traversaldistance >= 108 && abs(endposition[2] - startposition[2]) <= 100)
+		if(traversaldistance >= 108 && (abs(endposition[2] - startposition[2])) <= 100)
 		{
 			return "jump_across_traversal";
 		}
@@ -838,7 +838,7 @@ function bb_getcoverconcealed()
 */
 function bb_getcurrentlocationcovernodetype()
 {
-	if(isdefined(self.node) && distancesquared(self.origin, self.node.origin) < 48 * 48)
+	if(isdefined(self.node) && distancesquared(self.origin, self.node.origin) < (48 * 48))
 	{
 		return bb_getcurrentcovernodetype();
 	}
@@ -1010,8 +1010,8 @@ function actorgetpredictedyawtoenemy(entity, lookaheadtime)
 	}
 	selfpredictedpos = entity.origin;
 	moveangle = entity.angles[1] + entity getmotionangle();
-	selfpredictedpos = selfpredictedpos + (cos(moveangle), sin(moveangle), 0) * 200 * lookaheadtime;
-	yaw = vectortoangles(entity lastknownpos(entity.enemy) - selfpredictedpos)[1] - entity.angles[1];
+	selfpredictedpos = selfpredictedpos + (((cos(moveangle), sin(moveangle), 0) * 200) * lookaheadtime);
+	yaw = (vectortoangles(entity lastknownpos(entity.enemy) - selfpredictedpos)[1]) - entity.angles[1];
 	yaw = absangleclamp360(yaw);
 	entity.predictedyawtoenemy = yaw;
 	entity.predictedyawtoenemytime = gettime();
@@ -1092,7 +1092,7 @@ function bb_actorgetperfectenemyyaw()
 	{
 		return 0;
 	}
-	toenemyyaw = vectortoangles(enemy.origin - self.origin)[1] - self.angles[1];
+	toenemyyaw = (vectortoangles(enemy.origin - self.origin)[1]) - self.angles[1];
 	toenemyyaw = absangleclamp360(toenemyyaw);
 	/#
 		recordenttext("" + toenemyyaw, self, (1, 0, 0), "");
@@ -1160,7 +1160,7 @@ function getangleusingdirection(direction)
 	yawdiff = directionyaw - self.angles[1];
 	yawdiff = yawdiff * 0.002777778;
 	flooredyawdiff = floor(yawdiff + 0.5);
-	turnangle = yawdiff - flooredyawdiff * 360;
+	turnangle = (yawdiff - flooredyawdiff) * 360;
 	return absangleclamp360(turnangle);
 }
 
@@ -1425,7 +1425,7 @@ function bb_actorgettrackingturnyaw()
 		}
 		else if(issentient(self.enemy))
 		{
-			if(self.highlyawareradius && distance2dsquared(self.enemy.origin, self.origin) < self.highlyawareradius * self.highlyawareradius)
+			if(self.highlyawareradius && distance2dsquared(self.enemy.origin, self.origin) < (self.highlyawareradius * self.highlyawareradius))
 			{
 				var_71a0045b = self.enemy.origin;
 			}
@@ -1452,7 +1452,7 @@ function bb_actorgettrackingturnyaw()
 						lastknownpostime = gettime();
 						lastknownpos = self.enemy.origin;
 					}
-					if(gettime() <= lastknownpostime + 2)
+					if(gettime() <= (lastknownpostime + 2))
 					{
 						if(sighttracepassed(self geteye(), lastknownpos, 0, self, self.enemy))
 						{
@@ -1476,7 +1476,7 @@ function bb_actorgettrackingturnyaw()
 	}
 	if(isdefined(var_71a0045b))
 	{
-		turnyaw = absangleclamp360(self.angles[1] - vectortoangles(var_71a0045b - self.origin)[1]);
+		turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(var_71a0045b - self.origin)[1]));
 		return turnyaw;
 	}
 	return 0;
@@ -1696,7 +1696,7 @@ function updatefrustrationlevel(entity)
 				entity.ai.frustrationlevel = clampfrustration(entity.ai.frustrationlevel);
 			}
 		}
-		isawareofenemy = gettime() - entity lastknowntime(entity.enemy) < int(10 * 1000);
+		isawareofenemy = (gettime() - entity lastknowntime(entity.enemy)) < (int(10 * 1000));
 		if(entity.ai.frustrationlevel == 4)
 		{
 			hasseenenemy = entity seerecently(entity.enemy, 2);
@@ -2129,7 +2129,7 @@ function shouldchoosebettercover(behaviortreeentity)
 			{
 				color = (1, 0, 0);
 			}
-			recordenttext("" + shouldusecovernoderesult + "" + islookingaroundforenemy + "" + abouttoarriveatcover + "" + iswithineffectiverangealready + "" + shouldbeboredatcurrentcover, behaviortreeentity, color, "");
+			recordenttext((((((((("" + shouldusecovernoderesult) + "") + islookingaroundforenemy) + "") + abouttoarriveatcover) + "") + iswithineffectiverangealready) + "") + shouldbeboredatcurrentcover, behaviortreeentity, color, "");
 		#/
 	}
 	else
@@ -2376,14 +2376,14 @@ function canseeenemywrapper()
 	}
 	node = self.node;
 	enemyeye = self.enemy geteye();
-	yawtoenemy = angleclamp180(node.angles[1] - vectortoangles(enemyeye - node.origin)[1]);
+	yawtoenemy = angleclamp180(node.angles[1] - (vectortoangles(enemyeye - node.origin)[1]));
 	if(node.type == #"hash_63cbb4767da2a801" || node.type == #"hash_2a7b1ca393696762")
 	{
 		if(yawtoenemy > 60 || yawtoenemy < -60)
 		{
 			return 0;
 		}
-		if(isdefined(node.spawnflags) && node.spawnflags & 4 == 4)
+		if(isdefined(node.spawnflags) && (node.spawnflags & 4) == 4)
 		{
 			if(node.type == #"hash_63cbb4767da2a801" && yawtoenemy > 10)
 			{
@@ -2399,7 +2399,7 @@ function canseeenemywrapper()
 	if(node.type == #"hash_7a0e62fbbe3989d4")
 	{
 		/#
-			assert(!(isdefined(node.spawnflags) && node.spawnflags & 2048 == 2048) || (!(isdefined(node.spawnflags) && node.spawnflags & 1024 == 1024)));
+			assert(!(isdefined(node.spawnflags) && (node.spawnflags & 2048) == 2048) || (!(isdefined(node.spawnflags) && (node.spawnflags & 1024) == 1024)));
 		#/
 		canseefromleft = 1;
 		canseefromright = 1;
@@ -2448,7 +2448,7 @@ function calculatenodeoffsetposition(node, nodeoffset)
 {
 	right = anglestoright(node.angles);
 	forward = anglestoforward(node.angles);
-	return node.origin + vectorscale(right, nodeoffset[0]) + vectorscale(forward, nodeoffset[1]) + (0, 0, nodeoffset[2]);
+	return (node.origin + vectorscale(right, nodeoffset[0])) + vectorscale(forward, nodeoffset[1]) + (0, 0, nodeoffset[2]);
 }
 
 /*
@@ -2465,20 +2465,20 @@ function gethighestnodestance(node)
 	/#
 		assert(isdefined(node));
 	#/
-	if(isdefined(node.spawnflags) && node.spawnflags & 4 == 4)
+	if(isdefined(node.spawnflags) && (node.spawnflags & 4) == 4)
 	{
 		return "stand";
 	}
-	if(isdefined(node.spawnflags) && node.spawnflags & 8 == 8)
+	if(isdefined(node.spawnflags) && (node.spawnflags & 8) == 8)
 	{
 		return "crouch";
 	}
-	if(isdefined(node.spawnflags) && node.spawnflags & 16 == 16)
+	if(isdefined(node.spawnflags) && (node.spawnflags & 16) == 16)
 	{
 		return "prone";
 	}
 	/#
-		errormsg(node.type + "" + node.origin + "");
+		errormsg(((node.type + "") + node.origin) + "");
 	#/
 	if(node.type == #"hash_6d8019ab9d39bf96" || node.type == #"hash_280d1247a6abdbae" || node.type == #"hash_171465527444ed14")
 	{
@@ -2504,15 +2504,15 @@ function isstanceallowedatnode(stance, node)
 	/#
 		assert(isdefined(node));
 	#/
-	if(stance == "stand" && (isdefined(node.spawnflags) && node.spawnflags & 4 == 4))
+	if(stance == "stand" && (isdefined(node.spawnflags) && (node.spawnflags & 4) == 4))
 	{
 		return 1;
 	}
-	if(stance == "crouch" && (isdefined(node.spawnflags) && node.spawnflags & 8 == 8))
+	if(stance == "crouch" && (isdefined(node.spawnflags) && (node.spawnflags & 8) == 8))
 	{
 		return 1;
 	}
-	if(stance == "prone" && (isdefined(node.spawnflags) && node.spawnflags & 16 == 16))
+	if(stance == "prone" && (isdefined(node.spawnflags) && (node.spawnflags & 16) == 16))
 	{
 		return 1;
 	}
@@ -2574,7 +2574,7 @@ function setcurrentweapon(weapon)
 	if(weapon != level.weaponnone)
 	{
 		/#
-			assert(isdefined(weapon.worldmodel), "" + weapon.name + "");
+			assert(isdefined(weapon.worldmodel), ("" + weapon.name) + "");
 		#/
 	}
 	self.weaponmodel = weapon.worldmodel;
@@ -2596,7 +2596,7 @@ function setprimaryweapon(weapon)
 	if(weapon != level.weaponnone)
 	{
 		/#
-			assert(isdefined(weapon.worldmodel), "" + weapon.name + "");
+			assert(isdefined(weapon.worldmodel), ("" + weapon.name) + "");
 		#/
 	}
 }
@@ -2617,7 +2617,7 @@ function setsecondaryweapon(weapon)
 	if(weapon != level.weaponnone)
 	{
 		/#
-			assert(isdefined(weapon.worldmodel), "" + weapon.name + "");
+			assert(isdefined(weapon.worldmodel), ("" + weapon.name) + "");
 		#/
 	}
 }
@@ -2663,7 +2663,7 @@ function releaseclaimnode(behaviortreeentity)
 */
 function getaimyawtoenemyfromnode(behaviortreeentity, node, enemy)
 {
-	return angleclamp180(vectortoangles(behaviortreeentity lastknownpos(behaviortreeentity.enemy) - node.origin)[1] - node.angles[1]);
+	return angleclamp180((vectortoangles(behaviortreeentity lastknownpos(behaviortreeentity.enemy) - node.origin)[1]) - node.angles[1]);
 }
 
 /*
@@ -2677,7 +2677,7 @@ function getaimyawtoenemyfromnode(behaviortreeentity, node, enemy)
 */
 function getaimpitchtoenemyfromnode(behaviortreeentity, node, enemy)
 {
-	return angleclamp180(vectortoangles(behaviortreeentity lastknownpos(behaviortreeentity.enemy) - node.origin)[0] - node.angles[0]);
+	return angleclamp180((vectortoangles(behaviortreeentity lastknownpos(behaviortreeentity.enemy) - node.origin)[0]) - node.angles[0]);
 }
 
 /*
@@ -3058,7 +3058,7 @@ function shouldnormalmelee(behaviortreeentity)
 */
 function shouldmelee(entity)
 {
-	if(isdefined(entity.ai.lastshouldmeleeresult) && !entity.ai.lastshouldmeleeresult && entity.ai.lastshouldmeleechecktime + 50 >= gettime())
+	if(isdefined(entity.ai.lastshouldmeleeresult) && !entity.ai.lastshouldmeleeresult && (entity.ai.lastshouldmeleechecktime + 50) >= gettime())
 	{
 		return 0;
 	}
@@ -3146,8 +3146,8 @@ function hascloseenemytomeleewithrange(entity, melee_range_sq)
 	}
 	predicitedposition = entity.enemy.origin + vectorscale(entity getenemyvelocity(), 0.25);
 	distsq = distancesquared(entity.origin, predicitedposition);
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.enemy.origin - entity.origin)[1]);
-	if(distsq <= 36 * 36)
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.enemy.origin - entity.origin)[1]));
+	if(distsq <= (36 * 36))
 	{
 		return abs(yawtoenemy) <= 40;
 	}
@@ -3189,10 +3189,10 @@ function shouldchargemelee(entity)
 	{
 		return 0;
 	}
-	offset = entity.enemy.origin - vectornormalize(entity.enemy.origin - entity.origin) * 36;
-	if(enemydistsq < 140 * 140 && entity maymovetopoint(offset, 1, 1))
+	offset = entity.enemy.origin - ((vectornormalize(entity.enemy.origin - entity.origin)) * 36);
+	if(enemydistsq < (140 * 140) && entity maymovetopoint(offset, 1, 1))
 	{
-		yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.enemy.origin - entity.origin)[1]);
+		yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.enemy.origin - entity.origin)[1]));
 		return abs(yawtoenemy) <= 80;
 	}
 	return 0;
@@ -3213,7 +3213,7 @@ private function shouldattackinchargemelee(behaviortreeentity)
 	{
 		if(distancesquared(behaviortreeentity.origin, behaviortreeentity.enemy.origin) < 74 * 74)
 		{
-			yawtoenemy = angleclamp180(behaviortreeentity.angles[1] - vectortoangles(behaviortreeentity.enemy.origin - behaviortreeentity.origin)[1]);
+			yawtoenemy = angleclamp180(behaviortreeentity.angles[1] - (vectortoangles(behaviortreeentity.enemy.origin - behaviortreeentity.origin)[1]));
 			if(abs(yawtoenemy) > 80)
 			{
 				return 0;
@@ -3430,7 +3430,7 @@ function isbalconydeath(behaviortreeentity)
 		return 0;
 	}
 	covermode = behaviortreeentity getblackboardattribute("_cover_mode");
-	if(isdefined(behaviortreeentity.node.script_balconydeathchance) && randomint(100) > int(100 * behaviortreeentity.node.script_balconydeathchance))
+	if(isdefined(behaviortreeentity.node.script_balconydeathchance) && randomint(100) > (int(100 * behaviortreeentity.node.script_balconydeathchance)))
 	{
 		return 0;
 	}
@@ -3530,7 +3530,7 @@ function preshootlaserandglinton(ai)
 			{
 				type = (isdefined(ai.classname) ? "" + ai.classname : "");
 				/#
-					println("" + type + "");
+					println(("" + type) + "");
 				#/
 				playfxontag(sniper_glint, ai, "tag_eye");
 			}
@@ -3816,7 +3816,7 @@ private function function_81c32010(behaviortreeentity)
 		case 1:
 		case 2:
 		{
-			step_size = 32 + behaviortreeentity.reacquire_state * 32;
+			step_size = 32 + (behaviortreeentity.reacquire_state * 32);
 			reacquirepos = behaviortreeentity reacquirestep(step_size);
 			break;
 		}

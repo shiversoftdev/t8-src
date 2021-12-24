@@ -465,7 +465,7 @@ function function_4c0ed253(location, context)
 	{
 		return 0;
 	}
-	if(context.check_same_floor === 1 && abs(location[2] - self.origin[2]) > 96)
+	if(context.check_same_floor === 1 && (abs(location[2] - self.origin[2])) > 96)
 	{
 		return 0;
 	}
@@ -520,7 +520,7 @@ function islocationgood(location, context)
 	{
 		closestpoint = getclosestpointonnavmesh(location, max(context.max_dist_from_location, 24), context.dist_from_boundary);
 		isvalidpoint = isdefined(closestpoint);
-		if(isvalidpoint && context.check_same_floor === 1 && abs(location[2] - closestpoint[2]) > 96)
+		if(isvalidpoint && context.check_same_floor === 1 && (abs(location[2] - closestpoint[2])) > 96)
 		{
 			isvalidpoint = 0;
 		}
@@ -727,11 +727,11 @@ function crateland(crate, category, owner, team, context)
 	{
 		radius = 5;
 		mask = 1 | 4;
-		cratebottom = physicstrace(origin + vectorscale((0, 0, 1), 25), origin + vectorscale((0, 0, -1), 50), (radius * -1, radius * -1, 0), (radius, radius, 2 * radius), crate, mask);
+		cratebottom = physicstrace(origin + vectorscale((0, 0, 1), 25), origin + (vectorscale((0, 0, -1), 50)), (radius * -1, radius * -1, 0), (radius, radius, 2 * radius), crate, mask);
 	}
 	else
 	{
-		cratebottom = bullettrace(origin, origin + vectorscale((0, 0, -1), 50), 0, crate);
+		cratebottom = bullettrace(origin, origin + (vectorscale((0, 0, -1), 50)), 0, crate);
 	}
 	if(isdefined(cratebottom))
 	{
@@ -1538,7 +1538,7 @@ private function update_player_threat(player)
 	}
 	if(isdefined(player.score))
 	{
-		player.var_629a6b13[entnum] = player.var_629a6b13[entnum] + player.score * 2;
+		player.var_629a6b13[entnum] = player.var_629a6b13[entnum] + (player.score * 2);
 	}
 	if(player weapons::has_launcher())
 	{
@@ -1617,7 +1617,7 @@ private function update_actor_threat(actor)
 		}
 		if(isdefined(actor.owner.score))
 		{
-			actor.var_629a6b13[entnum] = actor.var_629a6b13[entnum] + actor.owner.score * 4;
+			actor.var_629a6b13[entnum] = actor.var_629a6b13[entnum] + (actor.owner.score * 4);
 		}
 		if(isdefined(actor.owner.antithreat))
 		{
@@ -1862,7 +1862,7 @@ function function_dd91d091(params)
 		isatgoal = isdefined(var_1f2328d0.isatgoal) && var_1f2328d0.isatgoal || (self isapproachinggoal() && isdefined(self.overridegoalpos));
 		itsbeenawhile = isdefined(var_1f2328d0.isatgoal) && var_1f2328d0.isatgoal && gettime() > self.ai.var_88b0fd29;
 		var_48ea0381 = 0;
-		var_2a8c95a5 = forcedgoal && isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, var_1f2328d0.goalpos) < self.radius * self.radius;
+		var_2a8c95a5 = forcedgoal && isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, var_1f2328d0.goalpos) < (self.radius * self.radius);
 		if(isdefined(self.enemy) && !self haspath())
 		{
 			var_48ea0381 = !self seerecently(self.enemy, randomintrange(3, 5));
@@ -1902,7 +1902,7 @@ function function_dd91d091(params)
 						{
 							continue;
 						}
-						if(isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, goal.origin) < 100 * 100)
+						if(isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, goal.origin) < (100 * 100))
 						{
 							continue;
 						}
@@ -2280,7 +2280,7 @@ function kill_monitor()
 		{
 			continue;
 		}
-		if(!self.controlled && last_kill_vo + kill_vo_spacing < gettime())
+		if(!self.controlled && (last_kill_vo + kill_vo_spacing) < gettime())
 		{
 			self killstreaks::play_pilot_dialog_on_owner("kill", "tank_robot", self.killstreak_id);
 			last_kill_vo = gettime();
@@ -2501,7 +2501,7 @@ function tank_damage_think()
 		self.maxhealth = 999999;
 		self.health = self.maxhealth;
 		/#
-			self.damage_debug = damage + "" + weapon.name + "";
+			self.damage_debug = ((damage + "") + weapon.name) + "";
 		#/
 		if(weapon.isemp && mod == "MOD_GRENADE_SPLASH")
 		{
@@ -2553,7 +2553,7 @@ function tank_damage_think()
 			return;
 		}
 		self function_aa61ec2b(weapon_damage);
-		if(!low_health && self.damagetaken > maxhealth / 1.8)
+		if(!low_health && self.damagetaken > (maxhealth / 1.8))
 		{
 			self killstreaks::play_pilot_dialog_on_owner("damaged", "tank_robot", self.killstreak_id);
 			self thread tank_low_health_fx();
@@ -2574,7 +2574,7 @@ function tank_damage_think()
 function tank_low_health_fx()
 {
 	self endon(#"death");
-	self.damage_fx = spawn("script_model", self gettagorigin("tag_origin") + vectorscale((0, 0, -1), 14));
+	self.damage_fx = spawn("script_model", self gettagorigin("tag_origin") + (vectorscale((0, 0, -1), 14)));
 	if(!isdefined(self.damage_fx))
 	{
 		return;
@@ -2707,7 +2707,7 @@ function function_4110f8dd(isjammed)
 	self cancelaimove();
 	self function_d4c687c9();
 	forward = anglestoforward(self.angles);
-	forward = self.origin + forward * 128;
+	forward = self.origin + (forward * 128);
 	forward = forward - vectorscale((0, 0, 1), 64);
 	self turretsettarget(0, forward);
 	self disablegunnerfiring(0, 1);
@@ -2808,7 +2808,7 @@ function emp_crazy_death()
 	{
 		if(isdefined(self) && function_3238d10d(self.origin))
 		{
-			self turretsettarget(0, self.origin + anglestoforward((randomintrange(305, 315), int(randomangle + time * 180), 0)) * 100);
+			self turretsettarget(0, self.origin + ((anglestoforward((randomintrange(305, 315), int(randomangle + (time * 180)), 0))) * 100));
 			if(time > 0.2)
 			{
 				self fireweapon(0);
@@ -3274,9 +3274,9 @@ function shoot_targets(projectile, max_missiles)
 			var_8712c5b8 = owner.var_6b2d5c29[ti];
 			if(var_8712c5b8.state == 3)
 			{
-				dir = target.origin + vectorscale((0, 0, 1), 40) - origin;
+				dir = (target.origin + vectorscale((0, 0, 1), 40)) - origin;
 				dir = vectornormalize(dir);
-				rocket = magicbullet(weapon, origin, origin + dir * 1000, owner);
+				rocket = magicbullet(weapon, origin, origin + (dir * 1000), owner);
 				if(isdefined(rocket) && rocket.classname === "rocket")
 				{
 					rocket missile_settarget(target);
@@ -3462,6 +3462,6 @@ function watchwater()
 private function function_3c4843e3(tank_robot, timetoadd)
 {
 	player = self;
-	tank_robot.var_7b7607df[player.clientid] = gettime() + int(timetoadd * 1000);
+	tank_robot.var_7b7607df[player.clientid] = gettime() + (int(timetoadd * 1000));
 }
 

@@ -638,7 +638,7 @@ function damage_feedback_growth(victim, mod, weapon)
 			stage = damage_feedback_get_stage(victim);
 			self.hud_damagefeedback.x = -11 + -1 * stage;
 			self.hud_damagefeedback.y = -11 + -1 * stage;
-			size_x = 22 + 2 * stage;
+			size_x = 22 + (2 * stage);
 			size_y = size_x * 2;
 			self.hud_damagefeedback setshader(#"damage_feedback", size_x, size_y);
 			if(damage_feedback_get_dead(victim, mod, weapon, stage))

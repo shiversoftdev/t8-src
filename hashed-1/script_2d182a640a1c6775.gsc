@@ -1291,7 +1291,7 @@ private function function_9ead836c()
 function function_c577b1bf()
 {
 	var_81f76694 = getent("pegasus_cloud", "targetname");
-	var_10d4f67d = util::spawn_model("c_t8_zmb_dlc2_pegasus_fb", var_81f76694.origin + vectorscale((0, 0, -1), 285), var_81f76694.angles);
+	var_10d4f67d = util::spawn_model("c_t8_zmb_dlc2_pegasus_fb", var_81f76694.origin + (vectorscale((0, 0, -1), 285)), var_81f76694.angles);
 	var_10d4f67d.linkto = util::spawn_model("tag_origin", var_10d4f67d.origin, var_10d4f67d.angles);
 	scene::add_scene_func("aib_zm_red_vign_peg_inair_flapattack_01", &function_4b198b8f, "play");
 	var_10d4f67d.linkto thread scene::play("aib_zm_red_vign_peg_inair_flapattack_01", "start", var_10d4f67d);
@@ -1715,7 +1715,7 @@ function function_4fe65f31(n_zombies, n_timeout)
 		{
 			return;
 		}
-		n_time_passed = float(gettime() - n_start_time) / 1000;
+		n_time_passed = (float(gettime() - n_start_time)) / 1000;
 		if(n_time_passed >= n_timeout)
 		{
 			return;
@@ -1775,7 +1775,7 @@ function function_72d7e85b(var_1c6bf395, var_29826eea, n_timeout)
 					arrayremovevalue(var_29826eea, n_section);
 				}
 			}
-			n_time_passed = float(gettime() - n_start_time) / 1000;
+			n_time_passed = (float(gettime() - n_start_time)) / 1000;
 			if(var_29826eea.size == 0 || n_time_passed >= n_timeout)
 			{
 				break;

@@ -181,7 +181,7 @@ function function_7a1e21a9(v_loc)
 	self endon(#"death");
 	self.origin = v_loc;
 	self.angles = self.angles + (0, randomint(360), 0);
-	trace = bullettrace(v_loc + vectorscale((0, 0, 1), 40), v_loc + vectorscale((0, 0, -1), 150), 0, undefined);
+	trace = bullettrace(v_loc + vectorscale((0, 0, 1), 40), v_loc + (vectorscale((0, 0, -1), 150)), 0, undefined);
 	if(trace[#"fraction"] < 1)
 	{
 		v_loc = trace[#"position"];

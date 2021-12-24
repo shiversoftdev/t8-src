@@ -805,7 +805,7 @@ function function_94fc7512(var_b374fe7b)
 {
 	if(isstring(var_b374fe7b))
 	{
-		level flag::set("crystal_" + var_b374fe7b + "_key");
+		level flag::set(("crystal_" + var_b374fe7b) + "_key");
 	}
 	level flag::wait_till(#"hash_6453fae6f9a19033");
 	level flag::clear(#"hash_6453fae6f9a19033");
@@ -1216,12 +1216,12 @@ function function_9e7129d2(e_player, s_stone, var_6cf4ded4, str_hint)
 	}
 	s_anim.angles = var_476002f7;
 	e_player thread namespace_c05f06c7::function_5f42b3e2(s_anim);
-	v_cam = s_teleport_room.origin + vectorscale((0, 0, 1), 64) + vectorscale(anglestoforward(s_teleport_room.angles), 16);
+	v_cam = (s_teleport_room.origin + vectorscale((0, 0, 1), 64)) + vectorscale(anglestoforward(s_teleport_room.angles), 16);
 	var_59e3224a = 1090;
 	/#
 		var_59e3224a = getdvarint(#"hash_1775ae42c634445e", var_59e3224a);
 	#/
-	v_loc = v_cam + anglestoforward(s_teleport_room.angles) * var_59e3224a;
+	v_loc = v_cam + (anglestoforward(s_teleport_room.angles) * var_59e3224a);
 	s_wormhole = struct::spawn(v_loc, (s_teleport_room.angles[0], s_teleport_room.angles[1] + 90, s_teleport_room.angles[2]));
 	/#
 		s_wormhole thread debug_draw_star();
@@ -1259,7 +1259,7 @@ function function_9e7129d2(e_player, s_stone, var_6cf4ded4, str_hint)
 	if(isdefined(n_time))
 	{
 		n_timeout = int(3 * 1000);
-		while(isplayer(e_player) && gettime() - n_time < n_timeout)
+		while(isplayer(e_player) && (gettime() - n_time) < n_timeout)
 		{
 			waitframe(1);
 		}
@@ -1430,7 +1430,7 @@ function function_5713470b()
 		{
 			continue;
 		}
-		if(!zm_utility::can_use(player) || distancesquared(groundtrace(player.origin, player.origin + vectorscale((0, 0, -1), 128), 0, player)[#"position"], player.origin) > 16)
+		if(!zm_utility::can_use(player) || (distancesquared(groundtrace(player.origin, player.origin + (vectorscale((0, 0, -1), 128)), 0, player)[#"position"], player.origin)) > 16)
 		{
 			continue;
 		}
@@ -1922,7 +1922,7 @@ function function_16288b92(str_type, s_loc, mdl_key, vol_transform)
 			s_loc = e_trail.s_portal;
 			s_loc.origin = e_trail.s_portal.origin + vectorscale((0, 0, 1), 48);
 			t_portal = getent("trigger_portal", "targetname");
-			t_portal.origin = groundtrace(s_loc.origin, s_loc.origin + vectorscale((0, 0, -1), 128), 0, e_trail)[#"position"];
+			t_portal.origin = groundtrace(s_loc.origin, s_loc.origin + (vectorscale((0, 0, -1), 128)), 0, e_trail)[#"position"];
 			t_portal waittill(#"trigger");
 			e_trail clientfield::set("" + #"soul_fx", 0);
 			wait(0.1);
@@ -3048,7 +3048,7 @@ function function_c9c7a593()
 function function_d480d1a3()
 {
 	self endon(#"death");
-	n_damage = int(self.health / 4) + 1;
+	n_damage = (int(self.health / 4)) + 1;
 	n_count = 0;
 	if(n_damage >= 250)
 	{
@@ -3258,11 +3258,11 @@ function function_900b7dca(var_878f0f0a, var_5a365909 = 0, e_player, var_a797e72
 			self.var_9c715b4f = 1;
 			function_1da9c778(var_49e93815);
 		}
-		if(self.var_aa273e8b >= self.var_f2831f45 / 2)
+		if(self.var_aa273e8b >= (self.var_f2831f45 / 2))
 		{
 			level notify(#"hash_10a51d6f30d3daf8");
 		}
-		if(self.var_aa273e8b >= self.var_f2831f45 - 1)
+		if(self.var_aa273e8b >= (self.var_f2831f45 - 1))
 		{
 			level notify(#"hash_73c2d56d8912635b");
 			self.var_c176969a notify(#"hash_73c2d56d8912635b");

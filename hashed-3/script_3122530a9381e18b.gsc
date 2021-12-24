@@ -339,7 +339,7 @@ private function function_87e09347()
 private function function_22b5323d()
 {
 	exploder::exploder("fxexp_quest_raygun_m2_v_stage_3_xtra_hint_" + self.exploder_id);
-	t_damage = spawn("trigger_damage_new", self.origin - vectorscale((0, 0, 1), 12), 1048576 | 2097152 | 8388608, 24, 24);
+	t_damage = spawn("trigger_damage_new", self.origin - vectorscale((0, 0, 1), 12), (1048576 | 2097152) | 8388608, 24, 24);
 	t_damage.n_hit_count = 0;
 	t_damage.s_target = self;
 	t_damage thread function_27766b0b();

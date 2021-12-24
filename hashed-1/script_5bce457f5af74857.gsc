@@ -75,7 +75,7 @@ function main()
 		}
 		for(i = 0; i < a_e_players.size; i++)
 		{
-			var_de3a312c.var_1b5be828[i] = util::spawn_model(i, "tag_origin", var_de3a312c.origin + vectorscale((0, 0, -1), 16), var_de3a312c.angles);
+			var_de3a312c.var_1b5be828[i] = util::spawn_model(i, "tag_origin", var_de3a312c.origin + (vectorscale((0, 0, -1), 16)), var_de3a312c.angles);
 		}
 	}
 }

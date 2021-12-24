@@ -171,7 +171,7 @@ private function _planexpandaction(planner, action)
 		_blackboardsreadwritemode(planner);
 		actioninfo.params = [[actionfuncs[#"parameterize"]]](planner, action.constants);
 		/#
-			assert(isstruct(actioninfo.params), "" + action.api + "");
+			assert(isstruct(actioninfo.params), ("" + action.api) + "");
 		#/
 		_blackboardsreadmode(planner);
 	}
@@ -466,7 +466,7 @@ private function _planprocessstack(planner)
 			default:
 			{
 				/#
-					assert(0, "" + nodeentry.node.type + "");
+					assert(0, ("" + nodeentry.node.type) + "");
 				#/
 				break;
 			}
@@ -702,7 +702,7 @@ function createpostcondition(functionname, constants)
 		assert(!isdefined(constants) || isarray(constants));
 	#/
 	/#
-		assert(isfunctionptr(plannerutility::getplannerapifunction(functionname)), "" + function_9e72a96(functionname) + "");
+		assert(isfunctionptr(plannerutility::getplannerapifunction(functionname)), ("" + function_9e72a96(functionname)) + "");
 	#/
 	node = spawnstruct();
 	node.type = "postcondition";
@@ -729,7 +729,7 @@ function createprecondition(functionname, constants)
 		assert(!isdefined(constants) || isarray(constants));
 	#/
 	/#
-		assert(isfunctionptr(plannerutility::getplannerapifunction(functionname)), "" + function_9e72a96(functionname) + "");
+		assert(isfunctionptr(plannerutility::getplannerapifunction(functionname)), ("" + function_9e72a96(functionname)) + "");
 	#/
 	node = spawnstruct();
 	node.type = "precondition";
@@ -979,11 +979,11 @@ private function function_3af5bab0(node)
 		text = node.type;
 		if(isdefined(node.name))
 		{
-			text = text + "" + node.name;
+			text = text + ("" + node.name);
 		}
 		if(isdefined(node.api))
 		{
-			text = text + "" + node.api;
+			text = text + ("" + node.api);
 		}
 		if(isdefined(node.constants))
 		{
@@ -997,19 +997,19 @@ private function function_3af5bab0(node)
 				}
 				if(isint(value) || isfloat(value))
 				{
-					text = text + key + "" + value;
+					text = text + ((key + "") + value);
 				}
 				else if(isstring(value))
 				{
-					text = text + key + "" + value + "";
+					text = text + (((key + "") + value) + "");
 				}
 				else if(isarray(value))
 				{
-					text = text + key + "";
+					text = text + (key + "");
 				}
 				else if(!isdefined(value))
 				{
-					text = text + key + "";
+					text = text + (key + "");
 				}
 				first = 0;
 			}
@@ -1223,7 +1223,7 @@ function getplannerapifunction(functionname)
 		assert(function_7a600918(functionname) && functionname != "", "");
 	#/
 	/#
-		assert(isdefined(level._plannerscriptfunctions[#"api"][functionname]), "" + function_9e72a96(functionname) + "");
+		assert(isdefined(level._plannerscriptfunctions[#"api"][functionname]), ("" + function_9e72a96(functionname)) + "");
 	#/
 	return level._plannerscriptfunctions[#"api"][functionname];
 }
@@ -1243,7 +1243,7 @@ function getplanneractionfunctions(actionname)
 		assert(function_7a600918(actionname) && actionname != "", "");
 	#/
 	/#
-		assert(isdefined(level._plannerscriptfunctions[#"action"][actionname]), "" + function_9e72a96(actionname) + "");
+		assert(isdefined(level._plannerscriptfunctions[#"action"][actionname]), ("" + function_9e72a96(actionname)) + "");
 	#/
 	return level._plannerscriptfunctions[#"action"][actionname];
 }
@@ -1263,11 +1263,11 @@ function registerplannerapi(functionname, functionptr)
 		assert(function_7a600918(functionname) && functionname != "", "");
 	#/
 	/#
-		assert(isfunctionptr(functionptr), "" + function_9e72a96(functionname) + "");
+		assert(isfunctionptr(functionptr), ("" + function_9e72a96(functionname)) + "");
 	#/
 	planner::_initializeplannerfunctions(#"api");
 	/#
-		assert(!isdefined(level._plannerscriptfunctions[#"api"][functionname]), "" + functionname + "");
+		assert(!isdefined(level._plannerscriptfunctions[#"api"][functionname]), ("" + functionname) + "");
 	#/
 	level._plannerscriptfunctions[#"api"][functionname] = functionptr;
 }
@@ -1288,7 +1288,7 @@ function registerplanneraction(actionname, paramfuncptr, initializefuncptr, upda
 	#/
 	planner::_initializeplannerfunctions("Action");
 	/#
-		assert(!isdefined(level._plannerscriptfunctions[#"action"][actionname]), "" + function_9e72a96(actionname) + "");
+		assert(!isdefined(level._plannerscriptfunctions[#"action"][actionname]), ("" + function_9e72a96(actionname)) + "");
 	#/
 	level._plannerscriptfunctions[#"action"][actionname] = [];
 	if(isfunctionptr(paramfuncptr))

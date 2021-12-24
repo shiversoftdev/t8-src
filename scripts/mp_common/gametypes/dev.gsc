@@ -325,7 +325,7 @@ function function_30d59c86(team, target, players)
 			angles = target getplayerangles();
 			yaw = (0, angles[1], 0);
 			forward = anglestoforward(yaw);
-			spawn_origin = origin + forward * 128 + vectorscale((0, 0, 1), 16);
+			spawn_origin = (origin + (forward * 128)) + vectorscale((0, 0, 1), 16);
 			if(!bullettracepassed(target geteye(), spawn_origin, 0, target))
 			{
 				spawn_origin = undefined;
@@ -405,7 +405,7 @@ function updatedevsettingszm()
 				{
 					location = level.default_start_location;
 				}
-				match_string = level.scr_zm_ui_gametype + "" + location;
+				match_string = (level.scr_zm_ui_gametype + "") + location;
 				if(level.streamdumpteamindex < level.teams.size)
 				{
 					structs = struct::get_array("", "");
@@ -446,8 +446,8 @@ function updatedevsettingszm()
 					averageangles = (0, 0, 0);
 					foreach(spawnpoint in spawnpoints)
 					{
-						averageorigin = averageorigin + spawnpoint.origin / numpoints;
-						averageangles = averageangles + spawnpoint.angles / numpoints;
+						averageorigin = averageorigin + (spawnpoint.origin / numpoints);
+						averageangles = averageangles + (spawnpoint.angles / numpoints);
 					}
 					level.players[0] setplayerangles(averageangles);
 					level.players[0] setorigin(averageorigin);
@@ -851,8 +851,8 @@ function updatedevsettings()
 					averageangles = (0, 0, 0);
 					foreach(spawnpoint in level.spawn_start[teamname])
 					{
-						averageorigin = averageorigin + spawnpoint.origin / numpoints;
-						averageangles = averageangles + spawnpoint.angles / numpoints;
+						averageorigin = averageorigin + (spawnpoint.origin / numpoints);
+						averageangles = averageangles + (spawnpoint.angles / numpoints);
 					}
 					level.players[0] setplayerangles(averageangles);
 					level.players[0] setorigin(averageorigin);
@@ -877,7 +877,7 @@ function updatedevsettings()
 			perk = getdvarstring(#"scr_giveperk");
 			specialties = strtok(perk, "");
 			players = getplayers();
-			iprintln("" + perk + "");
+			iprintln(("" + perk) + "");
 			for(i = 0; i < players.size; i++)
 			{
 				for(j = 0; j < specialties.size; j++)
@@ -908,7 +908,7 @@ function updatedevsettings()
 			talentname = getdvarstring(#"hash_2d9131ec76baa766");
 			var_2fe3f7e3 = hash(talentname);
 			players = getplayers();
-			iprintln("" + talentname + "");
+			iprintln(("" + talentname) + "");
 			foreach(player in players)
 			{
 				if(!isdefined(player))
@@ -940,7 +940,7 @@ function updatedevsettings()
 			talentname = getdvarstring(#"hash_5b311cf6da67afb");
 			var_2fe3f7e3 = hash(talentname);
 			players = getplayers();
-			iprintln("" + talentname + "");
+			iprintln(("" + talentname) + "");
 			foreach(player in players)
 			{
 				if(!isdefined(player))
@@ -1232,7 +1232,7 @@ function function_48a6b85()
 				var_f94a23 = 0;
 			}
 			debug2dtext((100, 750, 0), "" + level.var_94f4ca81.var_e3c223f5[level.var_94f4ca81.var_1fde6598].name, (1, 0, 0));
-			debug2dtext((100, 800, 0), "" + string(level.var_94f4ca81.var_64799f7) + "" + string(level.var_94f4ca81.var_e3c223f5[level.var_94f4ca81.var_1fde6598].spawns.size), (1, 0, 0));
+			debug2dtext((100, 800, 0), (("" + string(level.var_94f4ca81.var_64799f7)) + "") + string(level.var_94f4ca81.var_e3c223f5[level.var_94f4ca81.var_1fde6598].spawns.size), (1, 0, 0));
 			waitframe(1);
 		}
 	#/
@@ -1486,7 +1486,7 @@ function devgui_health_debug()
 		for(;;)
 		{
 			waitframe(1);
-			width = self.health / self.maxhealth * 300;
+			width = (self.health / self.maxhealth) * 300;
 			width = int(max(width, 1));
 			self.debug_health_bar setshader(#"black", width, 8);
 			self.debug_health_text setvalue(self.health);
@@ -1514,7 +1514,7 @@ function giveextraperks()
 		for(i = 0; i < perks.size; i++)
 		{
 			/#
-				println("" + self.name + "" + perks[i] + "");
+				println(((("" + self.name) + "") + perks[i]) + "");
 			#/
 			self perks::function_7637bafa(perks[i]);
 		}
@@ -2265,7 +2265,7 @@ function debug_realtime_engage_dist()
 					engagedistmax = level.weaponengagedistvalues.engagedistmax;
 					if(tracedist >= engagedistmin && tracedist <= engagedistmax)
 					{
-						if(tracedist >= engagedistoptimal - engagedistmulligan && tracedist <= engagedistoptimal + engagedistmulligan)
+						if(tracedist >= (engagedistoptimal - engagedistmulligan) && tracedist <= (engagedistoptimal + engagedistmulligan))
 						{
 							hudobjarray engagedist_hud_changetext("", tracedist);
 							hudobj_changecolor(hudobjarray, level.green);
@@ -2446,7 +2446,7 @@ function larry_init(larry)
 			eye = self geteye();
 			trace = bullettrace(eye, eye + vectorscale(direction_vec, 8000), 0, undefined);
 			dist = distance(eye, trace[#"position"]);
-			position = eye + vectorscale(direction_vec, dist - 64);
+			position = eye + (vectorscale(direction_vec, dist - 64));
 			larry.model.origin = position;
 			larry.model.angles = self.angles + vectorscale((0, 1, 0), 180);
 			if(self usebuttonpressed())
@@ -3222,9 +3222,9 @@ function draworiginlines()
 		red = (1, 0, 0);
 		green = (0, 1, 0);
 		blue = (0, 0, 1);
-		line(self.origin, self.origin + anglestoforward(self.angles) * 10, red);
-		line(self.origin, self.origin + anglestoright(self.angles) * 10, green);
-		line(self.origin, self.origin + anglestoup(self.angles) * 10, blue);
+		line(self.origin, self.origin + (anglestoforward(self.angles) * 10), red);
+		line(self.origin, self.origin + (anglestoright(self.angles) * 10), green);
+		line(self.origin, self.origin + (anglestoup(self.angles) * 10), blue);
 	#/
 }
 
@@ -3284,7 +3284,7 @@ function draworigintext(textcolor, textalpha, textscale, textoffset)
 		{
 			textoffset = (0, 0, 0);
 		}
-		originstring = "" + self.origin[0] + "" + self.origin[1] + "" + self.origin[2] + "";
+		originstring = ((((("" + self.origin[0]) + "") + self.origin[1]) + "") + self.origin[2]) + "";
 		print3d(self.origin + textoffset, originstring, textcolor, textalpha, textscale);
 	#/
 }

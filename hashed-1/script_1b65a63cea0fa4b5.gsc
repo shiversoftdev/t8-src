@@ -275,14 +275,14 @@ private function function_fdc3c7c4()
 function get_best_spawnpoint(e_player)
 {
 	v_forward = anglestoforward(e_player.angles);
-	var_8afe96c9 = e_player.origin + v_forward * 64;
+	var_8afe96c9 = e_player.origin + (v_forward * 64);
 	var_8afe96c9 = getclosestpointonnavmesh(var_8afe96c9, 100, 24);
 	var_36bf7c2c = util::spawn_model("tag_origin", var_8afe96c9);
 	var_8afe96c9 = var_36bf7c2c.origin;
 	var_40b8a6a8 = self function_22e77bc1(var_36bf7c2c, var_8afe96c9, e_player);
 	if(!var_40b8a6a8)
 	{
-		var_8afe96c9 = e_player.origin + v_forward * -1 * 64;
+		var_8afe96c9 = e_player.origin + ((v_forward * -1) * 64);
 		var_8afe96c9 = getclosestpointonnavmesh(var_8afe96c9, 128, 24);
 		var_2632943e = util::spawn_model("tag_origin", var_8afe96c9);
 		var_40b8a6a8 = self function_22e77bc1(var_36bf7c2c, var_8afe96c9, e_player);

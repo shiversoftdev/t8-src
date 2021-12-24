@@ -80,7 +80,7 @@ function function_583cad13(var_2753f06a)
 		}
 		else
 		{
-			str_suffix = #"hash_353c8321de1d10b1" + var_2753f06a + "_" + var_5316ea7d;
+			str_suffix = ((#"hash_353c8321de1d10b1" + var_2753f06a) + "_") + var_5316ea7d;
 		}
 		b_played = e_player zm_vo::function_a2bd5a0c(str_suffix, 0, 1);
 		if(var_2753f06a == 0 && var_5316ea7d == "stuh" && (!(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f)))
@@ -102,11 +102,11 @@ function function_583cad13(var_2753f06a)
 		}
 		else
 		{
-			level.host function_51b752a9(#"hash_71bde3a512edb440" + var_2753f06a + "_" + var_5316ea7d);
+			level.host function_51b752a9(((#"hash_71bde3a512edb440" + var_2753f06a) + "_") + var_5316ea7d);
 			var_d1e952c4 = namespace_509a75d1::function_3815943c(a_players);
 			if(isdefined(var_d1e952c4))
 			{
-				var_d1e952c4 function_51b752a9(#"hash_71bde3a512edb440" + var_2753f06a + "_" + var_5316ea7d);
+				var_d1e952c4 function_51b752a9(((#"hash_71bde3a512edb440" + var_2753f06a) + "_") + var_5316ea7d);
 			}
 		}
 		b_played = 1;
@@ -255,7 +255,7 @@ function function_8123b826(str_category, var_39acfdda)
 	if(isdefined(self.var_fbbeefe6) && isdefined(level.sndplayervox[str_category]) && isdefined(level.sndplayervox[str_category][var_39acfdda]))
 	{
 		vox = level.sndplayervox[str_category][var_39acfdda];
-		str_alias = vox.suffix + "_plr_5_" + self.var_fbbeefe6;
+		str_alias = (vox.suffix + "_plr_5_") + self.var_fbbeefe6;
 		if(soundexists(str_alias))
 		{
 			zm_audio::play_vo_internal(str_alias, self);
@@ -308,11 +308,12 @@ function function_51b752a9(str_alias, n_variant = int(-1), b_wait_if_busy = 0, v
 	}
 	else
 	{
-		str_vo_alias = str_alias + "_plr_" + n_index + "_" + n_variant;
+		str_vo_alias = (((str_alias + "_plr_") + n_index) + "_") + n_variant;
 		if(b_wait_if_busy)
 		{
 			self notify(#"hash_7efd5bdf8133ff7b");
 			self endon(#"hash_7efd5bdf8133ff7b");
+			loc_0000116E:
 			var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 			while(!zm_audio::function_65e5c19a(self.var_8dd99641, var_215d4efb))
 			{
@@ -327,7 +328,7 @@ function function_51b752a9(str_alias, n_variant = int(-1), b_wait_if_busy = 0, v
 		self zm_audio::do_player_or_npc_playvox(str_vo_alias);
 		if(n_index === 17)
 		{
-			str_vo_alias = str_alias + "_plr_5_" + n_variant;
+			str_vo_alias = (str_alias + "_plr_5_") + n_variant;
 			if(soundexists(str_vo_alias))
 			{
 				self.var_5b6ebfd0 = 1;
@@ -353,7 +354,7 @@ function function_ab3ed097(aliasprefix)
 	var_a5e8d5c7 = [];
 	for(i = 0; i < 20; i++)
 	{
-		str_alias = aliasprefix + "_" + i;
+		str_alias = (aliasprefix + "_") + i;
 		if(soundexists(str_alias))
 		{
 			if(!isdefined(var_a5e8d5c7))
@@ -468,7 +469,7 @@ private function function_bf1b121a(timeout, n_range, var_618a04)
 		}
 		waitframe(5);
 	}
-	while(!(__timeout__ >= 0 && __timeout__ - float(gettime() - var_a51f2d59) / 1000 <= 0));
+	while(!(__timeout__ >= 0 && (__timeout__ - ((float(gettime() - var_a51f2d59)) / 1000)) <= 0));
 }
 
 /*

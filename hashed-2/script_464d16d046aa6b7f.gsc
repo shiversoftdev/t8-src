@@ -278,7 +278,7 @@ function function_a84fcb78(var_3a553e99)
 		self.var_3748ec02 = self.origin;
 		self clientfield::set_to_player("" + #"hash_24e322568c9492c5", 1);
 	}
-	if(var_3a553e99 % var_cf385861 == 0)
+	if((var_3a553e99 % var_cf385861) == 0)
 	{
 		self function_7e0559c1();
 		self function_c25b980c();
@@ -331,7 +331,7 @@ function function_11154900(inflictor, attacker, damage, flags, meansofdeath, wea
 {
 	if(isdefined(attacker.var_807f94d7))
 	{
-		damage = damage + damage * attacker.var_807f94d7 / 100;
+		damage = damage + (damage * (attacker.var_807f94d7 / 100));
 	}
 	return damage;
 }

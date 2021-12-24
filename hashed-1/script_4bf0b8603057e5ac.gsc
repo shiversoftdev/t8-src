@@ -110,7 +110,7 @@ function function_d9ff5189()
 				max = (max(max[0], spawn[0]), max(max[1], spawn[1]), max(max[2], spawn[2]));
 				min = (min(min[0], spawn[0]), min(min[1], spawn[1]), min(min[2], spawn[2]));
 			}
-			var_f7b61e5e.origin = min + max / 2;
+			var_f7b61e5e.origin = (min + max) / 2;
 			var_f7b61e5e.max = max;
 			var_f7b61e5e.min = min;
 			var_f7b61e5e.spawn_points = var_c8dd66c4;
@@ -131,7 +131,7 @@ function function_d9ff5189()
 */
 function function_f488681f()
 {
-	if(isdefined(self.var_139ab759) && self.var_139ab759 + 0 >= gettime())
+	if(isdefined(self.var_139ab759) && (self.var_139ab759 + 0) >= gettime())
 	{
 		return;
 	}
@@ -241,7 +241,7 @@ function function_89116a1e()
 	{
 		var_5b345622 = min(level.deathcircle.radius - level.deathcircle.var_7aec140c.radius, 10000);
 		var_3fe45e06 = [];
-		var_89e77f16 = level.deathcircle.radius - var_5b345622 * level.deathcircle.radius - var_5b345622;
+		var_89e77f16 = (level.deathcircle.radius - var_5b345622) * (level.deathcircle.radius - var_5b345622);
 		nextorigin = level.deathcircle.origin;
 		for(index = 0; index < zones.size; index++)
 		{
@@ -546,7 +546,7 @@ private function function_44b9dd1d()
 		}
 		mapname = util::function_53bbf9d2();
 		adddebugcommand("");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 	#/
 }
 
@@ -605,7 +605,7 @@ private function function_cdd9b388()
 					radius = 64;
 					if(var_57791385 < var_84dd2a8b * var_84dd2a8b)
 					{
-						radius = max(distance(origin, point.origin) / var_84dd2a8b * radius, 1);
+						radius = max((distance(origin, point.origin) / var_84dd2a8b) * radius, 1);
 					}
 					color = (1, 0, 1);
 					sphere(point.origin, radius, color, 1, 0, 10, 20);

@@ -32,7 +32,7 @@ private function function_685505ce(inputarray)
 	for(i = 0; i < inputarray.size; i++)
 	{
 		targetstring = targetstring + inputarray[i];
-		if(i != inputarray.size - 1)
+		if(i != (inputarray.size - 1))
 		{
 			targetstring = targetstring + ",";
 		}
@@ -185,7 +185,7 @@ function function_96d38b95(result)
 	{
 		deaths = 1;
 	}
-	kdratio = player.kills * 1000 / deaths;
+	kdratio = (player.kills * 1000) / deaths;
 	bestkdratio = "0";
 	if(isdefined(player.pers[#"lasthighestkdratio"]) && kdratio > player.pers[#"lasthighestkdratio"])
 	{
@@ -344,7 +344,7 @@ function record_global_mp_stats_for_player_at_match_start()
 	startprestige = self stats::function_441050ca(#"plevel");
 	startunlockpoints = self stats::get_stat(#"unlocks", 0);
 	ties = self stats::function_441050ca(#"ties");
-	startgamesplayed = startwins + startlosses + ties;
+	startgamesplayed = (startwins + startlosses) + ties;
 	self.startkills = startkills;
 	self.starthits = starthits;
 	self.totalmatchshots = 0;
@@ -387,7 +387,7 @@ function record_global_mp_stats_for_player_at_match_end()
 	endprestige = self stats::function_441050ca(#"plevel");
 	endunlockpoints = self stats::get_stat(#"unlocks", 0);
 	ties = self stats::function_441050ca(#"ties");
-	endgamesplayed = endwins + endlosses + ties;
+	endgamesplayed = (endwins + endlosses) + ties;
 	recordplayerstats(self, "end_kills", endkills);
 	recordplayerstats(self, "end_deaths", enddeaths);
 	recordplayerstats(self, "end_wins", endwins);

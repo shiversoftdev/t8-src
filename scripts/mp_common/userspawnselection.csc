@@ -51,7 +51,7 @@ function __init__()
 */
 private function getdatamodelprefix(id)
 {
-	return "spawngroupStatus." + id + ".";
+	return ("spawngroupStatus." + id) + ".";
 }
 
 /*

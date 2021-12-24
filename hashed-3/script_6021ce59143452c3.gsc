@@ -555,7 +555,7 @@ function function_5769f26a(var_c00ecbf1)
 {
 	for(i = 0; i <= 5000; i++)
 	{
-		if(hash("" + i) == var_c00ecbf1)
+		if((hash("" + i)) == var_c00ecbf1)
 		{
 			return i;
 		}
@@ -845,11 +845,11 @@ private function function_4dbf2663()
 	var_3b363b7a = getgametypesetting(#"zmtrialsvariant");
 	if(isdefined(var_3b363b7a) && var_3b363b7a > 0)
 	{
-		table = hash("gamedata/tables/zm/" + util::function_53bbf9d2() + "_trials_variant_" + var_3b363b7a + ".csv");
+		table = hash(((("gamedata/tables/zm/") + util::function_53bbf9d2() + "_trials_variant_") + var_3b363b7a) + ".csv");
 	}
 	else
 	{
-		table = hash("gamedata/tables/zm/" + util::function_53bbf9d2() + "_trials.csv");
+		table = hash(("gamedata/tables/zm/") + util::function_53bbf9d2() + "_trials.csv");
 	}
 	var_a183f42b = tablelookupcolumncount(table);
 	var_e1617d73 = tablelookuprowcount(table);

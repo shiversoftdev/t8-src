@@ -200,11 +200,12 @@ function function_51b752a9(str_alias, n_variant = int(-1), b_wait_if_busy = 0, v
 	else
 	{
 		n_index = zm_characters::function_dc232a80();
-		str_vo_alias = str_alias + "_plr_" + n_index + "_" + n_variant;
+		str_vo_alias = (((str_alias + "_plr_") + n_index) + "_") + n_variant;
 		if(b_wait_if_busy)
 		{
 			self notify(#"hash_7efd5bdf8133ff7b");
 			self endon(#"hash_7efd5bdf8133ff7b");
+			loc_000008B6:
 			var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 			while(!zm_audio::function_65e5c19a(self.var_8dd99641, var_215d4efb))
 			{
@@ -241,6 +242,7 @@ function function_6a0d675d(str_alias, n_variant = int(-1), b_wait_if_busy = 0, v
 	{
 		self notify(#"hash_7efd5bdf8133ff7b");
 		self endon(#"hash_7efd5bdf8133ff7b");
+		loc_00000A46:
 		var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 		while(!zm_audio::function_65e5c19a(self.var_8dd99641, var_215d4efb))
 		{
@@ -259,7 +261,7 @@ function function_6a0d675d(str_alias, n_variant = int(-1), b_wait_if_busy = 0, v
 	str_vo_alias = str_alias;
 	if(isdefined(self.name))
 	{
-		str_vo_alias = str_alias + "_" + self.name;
+		str_vo_alias = (str_alias + "_") + self.name;
 	}
 	if(n_variant < 0)
 	{
@@ -267,7 +269,7 @@ function function_6a0d675d(str_alias, n_variant = int(-1), b_wait_if_busy = 0, v
 	}
 	else
 	{
-		str_vo_alias = str_vo_alias + "_" + n_variant;
+		str_vo_alias = (str_vo_alias + "_") + n_variant;
 	}
 	if(!isdefined(level.var_62281818))
 	{
@@ -1349,13 +1351,13 @@ function function_4eb5a6ad()
 {
 	/#
 		dir = "";
-		filename = level.script + "" + getutc() + "";
-		path = dir + "" + filename;
+		filename = (level.script + "") + getutc() + "";
+		path = (dir + "") + filename;
 		file = openfile(path, "");
 		fprintln(file, "");
 		foreach(s_event in level.var_df9f1a00)
 		{
-			fprintln(file, s_event.n_time + "" + s_event.str_event + "" + s_event.var_8c7a21ea + "" + s_event.var_7dc08477 + "" + s_event.var_b8eefad3);
+			fprintln(file, (((((((s_event.n_time + "") + s_event.str_event) + "") + s_event.var_8c7a21ea) + "") + s_event.var_7dc08477) + "") + s_event.var_b8eefad3);
 		}
 		closefile(file);
 		println("" + path);

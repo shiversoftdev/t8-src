@@ -334,7 +334,7 @@ function function_2ca96414()
 	self zm_perks::function_f0ac059f(self.var_95df0a1b, self.var_eb319d10, #"hash_e58ff2df5bfd9b3");
 	self thread function_d2bbaa76(self.var_740ffad6);
 	self.var_30d7498d++;
-	self.var_740ffad6 = self.var_740ffad6 + 60 * self.var_30d7498d;
+	self.var_740ffad6 = self.var_740ffad6 + (60 * self.var_30d7498d);
 	self clientfield::set("" + #"hash_10f459edea6b3eb", 0);
 }
 
@@ -420,7 +420,7 @@ function function_7d72c6f9(var_85dcb56c)
 		wait(0.1);
 		self.var_3e48c35a = self.var_3e48c35a - 0.1;
 		self.var_3e48c35a = math::clamp(self.var_3e48c35a, 0, var_85dcb56c);
-		n_percentage = 1 - self.var_3e48c35a / var_85dcb56c;
+		n_percentage = 1 - (self.var_3e48c35a / var_85dcb56c);
 		n_percentage = math::clamp(n_percentage, 0.02, var_85dcb56c);
 		if(self hasperk(#"hash_5b141f82a55645a9") && isdefined(self.var_95df0a1b))
 		{

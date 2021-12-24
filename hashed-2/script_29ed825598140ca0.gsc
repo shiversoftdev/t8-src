@@ -163,7 +163,7 @@ function function_ca27b62b(attacker, player)
 	{
 		return 0;
 	}
-	if(isdefined(level.var_c77de7d6) && gettime() > int(level.var_c77de7d6 * 1000) + self.attackerdamage[player.clientid].lastdamagetime)
+	if(isdefined(level.var_c77de7d6) && gettime() > ((int(level.var_c77de7d6 * 1000)) + self.attackerdamage[player.clientid].lastdamagetime))
 	{
 		return 0;
 	}
@@ -206,7 +206,7 @@ function function_284c61bd(attacker, meansofdeath, bledout = 0)
 			{
 				continue;
 			}
-			if(isdefined(level.var_c77de7d6) && level.var_c77de7d6 && gettime() > int(level.var_c77de7d6 * 1000) + self.attackerdamage[player.clientid].lastdamagetime && !bledout)
+			if(isdefined(level.var_c77de7d6) && level.var_c77de7d6 && gettime() > ((int(level.var_c77de7d6 * 1000)) + self.attackerdamage[player.clientid].lastdamagetime) && !bledout)
 			{
 				continue;
 			}
@@ -364,7 +364,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 			self.killcam_entity_info_cached = self.laststandparams.killcam_entity_info_cached;
 			if(!(isdefined(self.laststandparams.var_59b19c1b) && self.laststandparams.var_59b19c1b))
 			{
-				deathtimeoffset = float(gettime() - self.laststandparams.laststandstarttime) / 1000;
+				deathtimeoffset = (float(gettime() - self.laststandparams.laststandstarttime)) / 1000;
 			}
 			bledout = self.laststandparams.bledout;
 			wasinlaststand = 1;
@@ -404,7 +404,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 				{
 					continue;
 				}
-				if(isdefined(level.var_c77de7d6) && gettime() > int(level.var_c77de7d6 * 1000) + self.attackerdamage[player.clientid].lastdamagetime)
+				if(isdefined(level.var_c77de7d6) && gettime() > ((int(level.var_c77de7d6 * 1000)) + self.attackerdamage[player.clientid].lastdamagetime))
 				{
 					continue;
 				}
@@ -475,7 +475,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 		{
 			self.alivetimes[self.alivetimecurrentindex] = 0;
 		}
-		self.alivetimecurrentindex = self.alivetimecurrentindex + 1 % level.alivetimemaxcount;
+		self.alivetimecurrentindex = (self.alivetimecurrentindex + 1) % level.alivetimemaxcount;
 	}
 	attacker = function_4ac2aefc(attacker, weapon);
 	einflictor = function_91cd8b0d(einflictor);
@@ -520,7 +520,7 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 		self.deathcount++;
 	}
 	/#
-		println("" + self.clientid + "" + self.deathcount);
+		println((("" + self.clientid) + "") + self.deathcount);
 	#/
 	if(bledout == 0)
 	{
@@ -810,10 +810,10 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 	attackerstring = "none";
 	if(isplayer(attacker))
 	{
-		attackerstring = attacker getxuid() + "(" + lpattackname + ")";
+		attackerstring = ((attacker getxuid() + "(") + lpattackname) + ")";
 	}
 	/#
-		print("" + smeansofdeath + "" + weapon.name + "" + attackerstring + "" + idamage + "" + shitloc + "" + int(self.origin[0]) + "" + int(self.origin[1]) + "" + int(self.origin[2]));
+		print((((((((((((("" + smeansofdeath) + "") + weapon.name) + "") + attackerstring) + "") + idamage) + "") + shitloc) + "") + int(self.origin[0]) + "") + int(self.origin[1]) + "") + int(self.origin[2]));
 	#/
 	level thread globallogic::updateteamstatus();
 	level thread globallogic::updatealivetimes(self.team);
@@ -1183,7 +1183,7 @@ private function function_93115f65()
 		timepassed = undefined;
 		if(isdefined(self.respawntimerstarttime) && userespawntime)
 		{
-			timepassed = float(gettime() - self.respawntimerstarttime) / 1000;
+			timepassed = (float(gettime() - self.respawntimerstarttime)) / 1000;
 		}
 		self thread [[level.spawnclient]](timepassed);
 		self.respawntimerstarttime = undefined;
@@ -1318,7 +1318,7 @@ private function watch_death(weapon, attacker, smeansofdeath, deathanimduration)
 	defaultplayerdeathwatchtime = 1.75;
 	if(smeansofdeath == "MOD_MELEE_ASSASSINATE" || 0 > weapon.deathcamtime)
 	{
-		defaultplayerdeathwatchtime = deathanimduration * 0.001 + 0.5;
+		defaultplayerdeathwatchtime = (deathanimduration * 0.001) + 0.5;
 	}
 	else if(0 < weapon.deathcamtime)
 	{
@@ -1723,7 +1723,7 @@ private function team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
 		{
 			var_821200bb = 1;
 		}
-		else if(attacker.pers[#"teamkills_nostats"] > 1 && globallogic_utils::gettimepassed() < int(8 + attacker.pers[#"teamkills_nostats"] * 1000))
+		else if(attacker.pers[#"teamkills_nostats"] > 1 && globallogic_utils::gettimepassed() < (int((8 + attacker.pers[#"teamkills_nostats"]) * 1000)))
 		{
 			var_821200bb = 1;
 		}
@@ -2026,7 +2026,7 @@ private function function_395ef176()
 			level.var_a236b703[self.team] = 1;
 			thread globallogic_audio::leader_dialog("controlNoLives", self.team);
 			thread globallogic_audio::leader_dialog("controlNoLivesEnemy", enemy_team);
-			clientfield::set_world_uimodel("hudItems.team" + level.teamindex[self.team] + ".noRespawnsLeft", 1);
+			clientfield::set_world_uimodel(("hudItems.team" + level.teamindex[self.team]) + ".noRespawnsLeft", 1);
 			game.lives[self.team] = 0;
 			level.var_9161927e[self.team] = teamarray.size;
 			teammates = util::get_active_players(self.team);
@@ -2346,10 +2346,10 @@ private function function_dd602974()
 		timeplayedtotal = self stats::function_441050ca(#"time_played_total");
 		minutesplayed = timeplayedtotal / 60;
 		freebees = 2;
-		banallowance = int(floor(minutesplayed / playlistbanquantum)) + freebees;
+		banallowance = (int(floor(minutesplayed / playlistbanquantum))) + freebees;
 		if(self.sessionbans > banallowance)
 		{
-			self stats::function_4db3fba1(#"gametypeban", timeplayedtotal + playlistbanpenalty * 60);
+			self stats::function_4db3fba1(#"gametypeban", timeplayedtotal + (playlistbanpenalty * 60));
 		}
 	}
 	globallogic::gamehistoryplayerkicked();
@@ -2375,8 +2375,8 @@ function function_821200bb()
 		{
 			return 0;
 		}
-		exceeded = teamkills - level.var_fe3ff9c1 - 1;
-		return level.var_ca1c5097 + level.var_2c3d094b * exceeded;
+		exceeded = (teamkills - level.var_fe3ff9c1) - 1;
+		return level.var_ca1c5097 + (level.var_2c3d094b * exceeded);
 	}
 	if(level.minimumallowedteamkills < 0 || teamkills <= level.minimumallowedteamkills)
 	{
@@ -2403,7 +2403,7 @@ private function function_78a6af2d(var_821200bb)
 	}
 	if(level.friendlyfire == 4)
 	{
-		if(self.pers[#"teamkills_nostats"] >= level.var_fe3ff9c1 + level.var_3297fce5)
+		if(self.pers[#"teamkills_nostats"] >= (level.var_fe3ff9c1 + level.var_3297fce5))
 		{
 			return 1;
 		}
@@ -2795,13 +2795,13 @@ function function_ed2725ad(einflictor, attacker, weapon)
 				attacker.pers[#"cur_kill_streak"]++;
 				if(attacker.pers[#"cur_kill_streak"] >= 2)
 				{
-					if(attacker.pers[#"cur_kill_streak"] % 5 == 0)
+					if((attacker.pers[#"cur_kill_streak"] % 5) == 0)
 					{
 						attacker activecamo::function_896ac347(weapon, #"killstreak_5", 1);
 						attacker contracts::function_a54e2068(#"hash_4c15367eed618401");
 						attacker contracts::function_a54e2068(#"hash_3f1070327daed588");
 					}
-					if(attacker.pers[#"cur_kill_streak"] % 10 == 0)
+					if((attacker.pers[#"cur_kill_streak"] % 10) == 0)
 					{
 						attacker challenges::killstreakten();
 						attacker contracts::function_a54e2068(#"hash_73a8663654fdba0b");

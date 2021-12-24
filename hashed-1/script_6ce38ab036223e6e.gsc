@@ -493,15 +493,15 @@ function get_zombie_count_for_round(n_round, n_player_count)
 	}
 	if(n_round >= 10)
 	{
-		multiplier = multiplier * n_round * zombie_utility::function_d2dfacfd(#"hash_607bc50072c2a386");
+		multiplier = multiplier * (n_round * zombie_utility::function_d2dfacfd(#"hash_607bc50072c2a386"));
 	}
 	if(n_player_count == 1)
 	{
-		max = max + int(zombie_utility::function_d2dfacfd(#"hash_67b3cbf79292e047") * zombie_utility::function_d2dfacfd(#"zombie_ai_per_player") * multiplier);
+		max = max + (int((zombie_utility::function_d2dfacfd(#"hash_67b3cbf79292e047") * zombie_utility::function_d2dfacfd(#"zombie_ai_per_player")) * multiplier));
 	}
 	else
 	{
-		max = max + int(n_player_count - 1 * zombie_utility::function_d2dfacfd(#"zombie_ai_per_player") * multiplier);
+		max = max + (int((n_player_count - 1) * zombie_utility::function_d2dfacfd(#"zombie_ai_per_player") * multiplier));
 	}
 	if(!isdefined(level.max_zombie_func))
 	{
@@ -529,12 +529,12 @@ function function_c112af8e(n_zombie_count)
 	if(isdefined(level.var_a2831281) && level.var_a2831281)
 	{
 		n_zombie_count = n_zombie_count * (isdefined(level.var_928a4995) ? level.var_928a4995 : 1);
-		n_zombie_count = int(max(n_zombie_count * 0.1 + 0.5, 1));
+		n_zombie_count = int(max((n_zombie_count * 0.1) + 0.5, 1));
 	}
 	else if(isdefined(level.var_76934955) && level.var_76934955)
 	{
 		n_zombie_count = n_zombie_count * (isdefined(level.var_cd345b49) ? level.var_cd345b49 : 1);
-		n_zombie_count = int(max(n_zombie_count * 0.2 + 0.5, 1));
+		n_zombie_count = int(max((n_zombie_count * 0.2) + 0.5, 1));
 	}
 	else if(isdefined(level.var_2b94ce72) && level.var_2b94ce72)
 	{
@@ -569,7 +569,7 @@ function function_1687c93(n_round, n_player_count)
 			return n_zombie_count;
 		}
 	}
-	return n_player_count + 4 + int(n_round % 2);
+	return (n_player_count + 4) + (int(n_round % 2));
 }
 
 /*
@@ -1065,7 +1065,7 @@ function round_think(restart = 0)
 			level thread award_grenades_for_survivors();
 		}
 		/#
-			println("" + level.round_number + "" + level.players.size);
+			println((("" + level.round_number) + "") + level.players.size);
 		#/
 		level.round_start_time = gettime();
 		while(level.zm_loc_types[#"zombie_location"].size <= 0)
@@ -1131,9 +1131,9 @@ function round_think(restart = 0)
 		{
 			level thread zm_player::spectators_respawn();
 		}
-		if(int(level.round_number / 5) * 5 == level.round_number)
+		if(((int(level.round_number / 5)) * 5) == level.round_number)
 		{
-			level clientfield::set("round_complete_time", int(level.time - level.n_gameplay_start_time + 500 / 1000));
+			level clientfield::set("round_complete_time", int(((level.time - level.n_gameplay_start_time) + 500) / 1000));
 			level clientfield::set("round_complete_num", level.round_number);
 		}
 		if(level flag::get("round_reset"))
@@ -1153,7 +1153,7 @@ function round_think(restart = 0)
 		players = getplayers();
 		foreach(player in players)
 		{
-			if(level.curr_gametype_affects_rank && get_round_number() > 3 + level.start_round)
+			if(level.curr_gametype_affects_rank && get_round_number() > (3 + level.start_round))
 			{
 				player zm_stats::add_client_stat("weighted_rounds_played", get_round_number());
 			}
@@ -1396,7 +1396,7 @@ function print_zombie_counts()
 				}
 				currentcount = zombie_utility::get_current_zombie_count();
 				number_to_kill = level.zombie_total;
-				level.debug_zombie_count_hud settext("" + currentcount + "" + number_to_kill);
+				level.debug_zombie_count_hud settext((("" + currentcount) + "") + number_to_kill);
 			}
 			else if(isdefined(level.debug_zombie_count_hud))
 			{

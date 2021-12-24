@@ -181,7 +181,7 @@ function sd_getteamkillscore(einflictor, attacker, smeansofdeath, weapon)
 */
 function onroundswitch()
 {
-	if(game.stat[#"teamscores"][#"allies"] == level.roundwinlimit - 1 && game.stat[#"teamscores"][#"axis"] == level.roundwinlimit - 1)
+	if(game.stat[#"teamscores"][#"allies"] == (level.roundwinlimit - 1) && game.stat[#"teamscores"][#"axis"] == (level.roundwinlimit - 1))
 	{
 		aheadteam = getbetterteam();
 		if(aheadteam != game.defenders)
@@ -778,7 +778,7 @@ function bombs()
 		/#
 			assert(isdefined(bombzone.bombdefusetrig));
 		#/
-		bombzone.bombdefusetrig.origin = bombzone.bombdefusetrig.origin + vectorscale((0, 0, -1), 10000);
+		bombzone.bombdefusetrig.origin = bombzone.bombdefusetrig.origin + (vectorscale((0, 0, -1), 10000));
 		bombzone.bombdefusetrig.label = label;
 	}
 	for(index = 0; index < level.bombzones.size; index++)
@@ -1004,7 +1004,7 @@ function onuseplantobject(player)
 		level.bombzones[index] gameobjects::disable_object();
 		level.bombzones[index].waypoint gameobjects::disable_object();
 	}
-	thread sound::play_on_players("mus_sd_planted" + "_" + level.teampostfix[player.pers[#"team"]]);
+	thread sound::play_on_players(("mus_sd_planted" + "_") + level.teampostfix[player.pers[#"team"]]);
 	player notify(#"bomb_planted");
 	level thread popups::displayteammessagetoall(#"hash_12473d7e6ed6e752", player);
 	if(isdefined(player.pers[#"plants"]))
@@ -1205,17 +1205,17 @@ function bombplanted(destroyedobj, player)
 	level thread bombplantedmusicdelay();
 	level.tickingobject = destroyedobj.visuals[0];
 	level.timelimitoverride = 1;
-	setgameendtime(gettime() + int(level.bombtimer * 1000));
+	setgameendtime(gettime() + (int(level.bombtimer * 1000)));
 	label = destroyedobj gameobjects::get_label();
 	setmatchflag("bomb_timer" + label, 1);
 	if(label == "_a")
 	{
-		setbombtimer("A", gettime() + int(level.bombtimer * 1000));
+		setbombtimer("A", gettime() + (int(level.bombtimer * 1000)));
 		setmatchflag("bomb_timer_a", 1);
 	}
 	else
 	{
-		setbombtimer("B", gettime() + int(level.bombtimer * 1000));
+		setbombtimer("B", gettime() + (int(level.bombtimer * 1000)));
 		setmatchflag("bomb_timer_b", 1);
 	}
 	bb::function_95a5b5c2("sd_bombplant", label, team, player.origin);
@@ -1426,17 +1426,17 @@ function sd_iskillboosting()
 	{
 		return 0;
 	}
-	if(game.totalkills > level.totalkillsmax * roundsplayed + 1)
+	if(game.totalkills > level.totalkillsmax * (roundsplayed + 1))
 	{
 		return 1;
 	}
-	if(self.kills > level.playerkillsmax * roundsplayed + 1)
+	if(self.kills > level.playerkillsmax * (roundsplayed + 1))
 	{
 		return 1;
 	}
 	if(level.teambased && (self.team == #"allies" || self.team == #"axis"))
 	{
-		if(game.totalkillsteam[self.team] > level.playerkillsmax * roundsplayed + 1)
+		if(game.totalkillsteam[self.team] > level.playerkillsmax * (roundsplayed + 1))
 		{
 			return 1;
 		}

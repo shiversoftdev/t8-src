@@ -384,7 +384,7 @@ function is_valid_target(e_target, n_range)
 	{
 		return 0;
 	}
-	if(distance2dsquared(self.origin, e_target.origin) <= 64 * 64 && (self zm_utility::is_player_looking_at(e_target getcentroid(), 0.3, 1, self) || self zm_utility::is_player_looking_at(e_target getcentroid() + vectorscale((0, 0, 1), 32), 0.3, 1, self)))
+	if(distance2dsquared(self.origin, e_target.origin) <= (64 * 64) && (self zm_utility::is_player_looking_at(e_target getcentroid(), 0.3, 1, self) || self zm_utility::is_player_looking_at(e_target getcentroid() + vectorscale((0, 0, 1), 32), 0.3, 1, self)))
 	{
 		return 1;
 	}
@@ -461,7 +461,7 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 	{
 		var_2ed6f142 = self getweaponmuzzlepoint();
 		v_forward = self getweaponforwarddir();
-		v_end = var_2ed6f142 + v_forward * 200;
+		v_end = var_2ed6f142 + (v_forward * 200);
 		n_dist_sq = distance2dsquared(self.origin, v_end);
 		if(isdefined(ai_zombie) && distance2dsquared(e_projectile.origin, ai_zombie.origin) <= n_dist_sq)
 		{
@@ -484,12 +484,12 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 			v_org = function_30239376(ai_zombie);
 			n_dist = distance(self.origin, v_org);
 			var_7fd007f9 = n_dist * 0.5;
-			v_end = var_2ed6f142 + v_forward * 100;
+			v_end = var_2ed6f142 + (v_forward * 100);
 			var_a93a9211 = distance(self.origin, v_end);
-			v_right = var_2ed6f142 + anglestoright(self.angles) * 50;
-			v_right_end = v_right + v_forward * 100 + vectorscale((0, 0, 1), 24);
-			v_left = var_2ed6f142 - anglestoright(self.angles) * 50;
-			v_left_end = v_left + v_forward * 100 + vectorscale((0, 0, -1), 24);
+			v_right = var_2ed6f142 + (anglestoright(self.angles) * 50);
+			v_right_end = (v_right + (v_forward * 100)) + vectorscale((0, 0, 1), 24);
+			v_left = var_2ed6f142 - (anglestoright(self.angles) * 50);
+			v_left_end = (v_left + (v_forward * 100)) + (vectorscale((0, 0, -1), 24));
 			n_time = var_a93a9211 / 1500;
 			if(n_time <= 0.1)
 			{
@@ -535,11 +535,11 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 					}
 					if(e_projectile.n_index === 1)
 					{
-						v_horz = v_target + anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target + (anglestoright(ai_zombie.angles) * 100);
 					}
 					else if(e_projectile.n_index === 2)
 					{
-						v_horz = v_target - anglestoright(ai_zombie.angles) * 100;
+						v_horz = v_target - (anglestoright(ai_zombie.angles) * 100);
 					}
 					else
 					{
@@ -790,7 +790,7 @@ function function_3f079da()
 {
 	var_2ed6f142 = self getweaponmuzzlepoint();
 	v_forward = self getweaponforwarddir();
-	v_end = var_2ed6f142 + v_forward * 3000;
+	v_end = var_2ed6f142 + (v_forward * 3000);
 	a_trace = bullettrace(var_2ed6f142, v_end, 1, self);
 	if(isdefined(level.var_137b8e71))
 	{
@@ -812,7 +812,7 @@ function function_b27148c8(weapon)
 {
 	self endon_callback(&function_8a56ed15, #"death", #"disconnect", #"weapon_change", #"weapon_fired", #"hash_609518a5a35564bf");
 	v_trace = self function_3f079da();
-	v_ground = groundtrace(v_trace + vectorscale((0, 0, 1), 200), v_trace + vectorscale((0, 0, -1), 1000), 0, self)[#"position"];
+	v_ground = groundtrace(v_trace + vectorscale((0, 0, 1), 200), v_trace + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
 	if(!isdefined(self.var_8999a4bf))
 	{
 		self.var_8999a4bf = util::spawn_model("tag_origin", v_ground);
@@ -841,7 +841,7 @@ function function_b27148c8(weapon)
 		v_trace = self function_3f079da();
 		if(isdefined(v_trace))
 		{
-			v_ground = groundtrace(v_trace + vectorscale((0, 0, 1), 100), v_trace + vectorscale((0, 0, -1), 1000), 0, self)[#"position"];
+			v_ground = groundtrace(v_trace + vectorscale((0, 0, 1), 100), v_trace + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
 		}
 		if(isdefined(v_ground) && isdefined(self.var_8999a4bf))
 		{

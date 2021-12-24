@@ -106,7 +106,7 @@ function grenade_spawn(watcher, owner)
 function grenade_timeout(timeout)
 {
 	self endon(#"death");
-	frames = int(timeout / float(function_60d95f53()) / 1000);
+	frames = int(timeout / (float(function_60d95f53()) / 1000));
 	waitframe(frames);
 	self notify(#"grenade_timeout");
 }
@@ -170,7 +170,7 @@ function apply_sprint_boost(duration)
 	player endon(#"apply_sprint_boost_singleton");
 	player setsprintboost(1);
 	duration = math::clamp((isdefined(duration) ? duration : 10), 1, 1200);
-	frames_to_wait = int(duration / float(function_60d95f53()) / 1000);
+	frames_to_wait = int(duration / (float(function_60d95f53()) / 1000));
 	waitframe(frames_to_wait);
 	player setsprintboost(0);
 }

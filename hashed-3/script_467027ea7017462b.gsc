@@ -230,7 +230,7 @@ private function function_b64c32cf(player)
 			if(item.var_9fffdcee)
 			{
 				/#
-					assertmsg("" + item.name + "");
+					assertmsg(("" + item.name) + "");
 				#/
 				continue;
 			}
@@ -255,7 +255,7 @@ function player_has(player, var_9c95ad05)
 		if(var_9c95ad05.var_9fffdcee)
 		{
 			/#
-				assertmsg("" + var_9c95ad05.name + "");
+				assertmsg(("" + var_9c95ad05.name) + "");
 			#/
 		}
 		else
@@ -341,7 +341,7 @@ function player_take(player, var_9c95ad05)
 		if(var_9c95ad05.var_9fffdcee)
 		{
 			/#
-				assertmsg("" + var_9c95ad05.name + "");
+				assertmsg(("" + var_9c95ad05.name) + "");
 			#/
 		}
 		else

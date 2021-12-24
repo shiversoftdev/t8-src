@@ -670,7 +670,7 @@ function dodeadeventupdates()
 		}
 		if(isdefined(level.onlastteamaliveevent))
 		{
-			if(alldeadteamcount() == level.teams.size - 1)
+			if(alldeadteamcount() == (level.teams.size - 1))
 			{
 				foreach(team, _ in level.teams)
 				{
@@ -830,7 +830,7 @@ function matchstarttimer()
 	waitforplayers();
 	counttime = int(level.prematchperiod);
 	var_5654073f = counttime >= 2;
-	luinotifyevent(#"create_prematch_timer", 2, gettime() + int(counttime * 1000), var_5654073f);
+	luinotifyevent(#"create_prematch_timer", 2, gettime() + (int(counttime * 1000)), var_5654073f);
 	if(var_5654073f)
 	{
 		while(counttime > 0 && !level.gameended)
@@ -1476,7 +1476,7 @@ function removedisconnectedplayerfromplacement()
 	}
 	level.placement[#"all"][numplayers - 1] = undefined;
 	/#
-		assert(level.placement[#"all"].size == numplayers - 1);
+		assert(level.placement[#"all"].size == (numplayers - 1));
 	#/
 	/#
 		globallogic_utils::assertproperplacement();
@@ -2247,7 +2247,7 @@ function callback_startgametype()
 	level.inprematchperiod = 1;
 	if(level.prematchperiod > 2)
 	{
-		level.prematchperiod = level.prematchperiod + randomfloat(4) - 2;
+		level.prematchperiod = level.prematchperiod + (randomfloat(4) - 2);
 	}
 	if(level.numlives || anyteamhaswavedelay() || level.playerqueuedrespawn)
 	{
@@ -2334,7 +2334,7 @@ function forcedebughostmigration()
 */
 function registerfriendlyfiredelay(dvarstring, defaultvalue, minvalue, maxvalue)
 {
-	dvarstring = "scr_" + dvarstring + "_friendlyFireDelayTime";
+	dvarstring = ("scr_" + dvarstring) + "_friendlyFireDelayTime";
 	if(getdvarstring(dvarstring) == "")
 	{
 		setdvar(dvarstring, defaultvalue);
@@ -2372,7 +2372,7 @@ function checkroundswitch()
 	/#
 		assert(game.roundsplayed > 0);
 	#/
-	if(game.roundsplayed % level.roundswitch == 0)
+	if((game.roundsplayed % level.roundswitch) == 0)
 	{
 		[[level.onroundswitch]]();
 		return 1;

@@ -90,7 +90,7 @@ function function_90ee7a97(var_79cf244b, activation_func)
 	{
 		/#
 			/#
-				assertmsg("" + function_9e72a96(var_79cf244b) + "");
+				assertmsg(("" + function_9e72a96(var_79cf244b)) + "");
 			#/
 		#/
 		return;

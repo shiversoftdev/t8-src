@@ -275,7 +275,7 @@ private function get_favorite_enemy(entity)
 		{
 			continue;
 		}
-		if(isdefined(targets[i].var_15da7e3f) && gettime() < targets[i].var_15da7e3f + 1000)
+		if(isdefined(targets[i].var_15da7e3f) && gettime() < (targets[i].var_15da7e3f + 1000))
 		{
 			continue;
 		}
@@ -329,7 +329,7 @@ private function function_af59b7a5(entity)
 			}
 		}
 		locomotion_target = namespace_5eb9b9b6::get_locomotion_target(entity);
-		if(isdefined(locomotion_target) && (!isdefined(entity.lasttargetposition) || distancesquared(entity.lasttargetposition, locomotion_target) > 16 * 16 || !entity haspath()))
+		if(isdefined(locomotion_target) && (!isdefined(entity.lasttargetposition) || distancesquared(entity.lasttargetposition, locomotion_target) > (16 * 16) || !entity haspath()))
 		{
 			path = generatenavmeshpath(entity.origin, locomotion_target, entity);
 			if(isdefined(path) && isdefined(path.pathdistance) && isdefined(player_owner) && path.pathdistance > 3000)
@@ -356,7 +356,7 @@ private function function_af59b7a5(entity)
 		if(var_7f215628 > 200 || var_3050773c > 300 || (var_3050773c > var_b270b65e && !entity isingoal(entity.origin)))
 		{
 			entity.var_951e8469 = 0;
-			if(!isdefined(player_owner.var_15da7e3f) || gettime() > player_owner.var_15da7e3f + 300)
+			if(!isdefined(player_owner.var_15da7e3f) || gettime() > (player_owner.var_15da7e3f + 300))
 			{
 				path = generatenavmeshpath(entity.origin, player_owner.last_valid_position, entity);
 				if(isdefined(path) && isdefined(path.pathdistance) && isdefined(player_owner) && path.pathdistance > 3000)
@@ -383,7 +383,7 @@ private function function_af59b7a5(entity)
 		else if(var_3050773c <= 300 && entity.var_951e8469 < 1.5)
 		{
 			player_owner.var_15da7e3f = undefined;
-			entity.var_951e8469 = entity.var_951e8469 + float(function_60d95f53()) / 1000;
+			entity.var_951e8469 = entity.var_951e8469 + (float(function_60d95f53()) / 1000);
 			entity setgoal(entity.origin);
 		}
 		else if(gettime() > entity.next_move_time)
@@ -536,7 +536,7 @@ private function function_ba0f4046(entity)
 	{
 		var_7e0e6341 = entity ai::function_9139c839();
 		distance_sq = distancesquared(entity.origin, entity.favoriteenemy.origin);
-		if(isdefined(var_7e0e6341) && distance_sq <= var_7e0e6341.var_23bae7cc * var_7e0e6341.var_23bae7cc)
+		if(isdefined(var_7e0e6341) && distance_sq <= (var_7e0e6341.var_23bae7cc * var_7e0e6341.var_23bae7cc))
 		{
 			result = 1;
 		}
@@ -555,7 +555,7 @@ private function function_ba0f4046(entity)
 */
 private function function_f7c7a416(entity)
 {
-	entity.var_88bd96a9 = gettime() + getdvarfloat(#"hash_6182e0a57e0b549f", 1) * 1000;
+	entity.var_88bd96a9 = gettime() + (getdvarfloat(#"hash_6182e0a57e0b549f", 1) * 1000);
 	if(isdefined(entity.enemy) && (!(isdefined(entity.marked_for_death) && entity.marked_for_death)) && (!(isdefined(entity.enemy.ignoreme) && entity.enemy.ignoreme)))
 	{
 		hit_enemy = entity melee();
@@ -607,7 +607,7 @@ private function function_f7c7a416(entity)
 					{
 						hit_enemy zombie_utility::function_3ab2b4eb();
 					}
-					force = vectornormalize(hit_enemy.origin - entity.origin * (1, 1, 0));
+					force = vectornormalize((hit_enemy.origin - entity.origin) * (1, 1, 0));
 					if(isdefined(entity.var_cd8354e0))
 					{
 						force = anglestoforward(entity.angles * (0, 1, 0));
@@ -680,7 +680,7 @@ private function function_4e970354(entity)
 {
 	result = 0;
 	player_owner = function_f00b611e();
-	if(isdefined(player_owner) && isdefined(player_owner.var_772b4ad2) && player_owner.var_772b4ad2 * 300 >= 1500)
+	if(isdefined(player_owner) && isdefined(player_owner.var_772b4ad2) && (player_owner.var_772b4ad2 * 300) >= 1500)
 	{
 		result = 1;
 	}
@@ -781,11 +781,11 @@ function function_14a8c157(entity)
 		predictedenemypos = entity.enemy.origin;
 		distancesq = distancesquared(entity.origin, entity.enemy.origin);
 		var_7e0e6341 = entity ai::function_9139c839();
-		if(isdefined(var_7e0e6341) && distancesq < var_7e0e6341.var_23bae7cc * var_7e0e6341.var_23bae7cc)
+		if(isdefined(var_7e0e6341) && distancesq < (var_7e0e6341.var_23bae7cc * var_7e0e6341.var_23bae7cc))
 		{
 			return 0;
 		}
-		if(isplayer(entity.enemy) && distancesq >= 100 * 100)
+		if(isplayer(entity.enemy) && distancesq >= (100 * 100))
 		{
 			if(entity.enemy issprinting())
 			{
@@ -898,7 +898,7 @@ function function_e023eac9(entity, mocompanim, mocompanimblendouttime, mocompani
 		if(length(velocity) > 0)
 		{
 			animlength = getanimlength(mocompanim) * 1000;
-			var_16c6aa5b = entity.var_cd8354e0.var_6392c3a2 * animlength - entity.var_cd8354e0.var_98bc84b7 * animlength;
+			var_16c6aa5b = (entity.var_cd8354e0.var_6392c3a2 * animlength) - (entity.var_cd8354e0.var_98bc84b7 * animlength);
 			var_b1145e11 = vectorscale(velocity, var_16c6aa5b / 1000);
 			predictedenemypos = predictedenemypos + var_b1145e11;
 		}
@@ -938,7 +938,7 @@ function function_e023eac9(entity, mocompanim, mocompanimblendouttime, mocompani
 			#/
 			entity.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_65cbfb52 >= 300 * 300)
+		else if(var_65cbfb52 >= (300 * 300))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
@@ -964,7 +964,7 @@ function function_e023eac9(entity, mocompanim, mocompanimblendouttime, mocompani
 			var_7948b2f3 = var_6738a702 && var_175919d1;
 			var_425c4c8b = isvisible || var_535d098c && var_7948b2f3;
 			/#
-				reasons = "" + isvisible + "" + var_6738a702 + "" + var_175919d1;
+				reasons = (((("" + isvisible) + "") + var_6738a702) + "") + var_175919d1;
 				if(var_425c4c8b)
 				{
 					record3dtext(reasons, entity.origin + vectorscale((0, 0, 1), 60), (0, 1, 0), "");
@@ -1000,7 +1000,7 @@ function function_e023eac9(entity, mocompanim, mocompanimblendouttime, mocompani
 		/#
 			assert(isdefined(entity.var_cd8354e0.var_10b8b6d1) && isdefined(entity.var_cd8354e0.var_8b9a15a6));
 		#/
-		adjustedorigin = entity.origin + entity.var_cd8354e0.var_10b8b6d1 * entity.var_cd8354e0.var_8b9a15a6;
+		adjustedorigin = entity.origin + (entity.var_cd8354e0.var_10b8b6d1 * entity.var_cd8354e0.var_8b9a15a6);
 		/#
 			recordsphere(entity.var_cd8354e0.var_cb28f380, 3, (0, 1, 0), "");
 			recordsphere(adjustedorigin + offset, 1, (0, 0, 1), "");

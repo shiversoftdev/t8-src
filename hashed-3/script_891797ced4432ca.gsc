@@ -1215,7 +1215,7 @@ function function_cab1990a()
 		{
 			v_origin = self getweaponmuzzlepoint();
 			v_dir = self getweaponforwarddir();
-			a_trace = beamtrace(v_origin, v_origin + v_dir * 20000, 1, self);
+			a_trace = beamtrace(v_origin, v_origin + (v_dir * 20000), 1, self);
 			v_hit = a_trace[#"position"];
 			if(isdefined(v_hit) && istouching(v_hit, vol_roof))
 			{

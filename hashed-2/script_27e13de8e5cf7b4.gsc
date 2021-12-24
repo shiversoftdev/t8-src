@@ -1035,10 +1035,10 @@ function plant_gravity_trap(var_4052dd74)
 	v_right = anglestoright(self.angles);
 	v_spawn_pos_right = self.origin + vectorscale((0, 0, 1), 32);
 	v_spawn_pos_left = v_spawn_pos_right;
-	a_trace = physicstraceex(v_spawn_pos_right, v_spawn_pos_right + v_right * 24, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
-	v_spawn_pos_right = v_spawn_pos_right + v_right * a_trace[#"fraction"] * 24;
-	a_trace = physicstraceex(v_spawn_pos_left, v_spawn_pos_left + v_right * -24, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
-	v_spawn_pos_left = v_spawn_pos_left + v_right * a_trace[#"fraction"] * -24;
+	a_trace = physicstraceex(v_spawn_pos_right, v_spawn_pos_right + (v_right * 24), vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
+	v_spawn_pos_right = v_spawn_pos_right + (v_right * (a_trace[#"fraction"] * 24));
+	a_trace = physicstraceex(v_spawn_pos_left, v_spawn_pos_left + (v_right * -24), vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
+	v_spawn_pos_left = v_spawn_pos_left + (v_right * (a_trace[#"fraction"] * -24));
 	var_f4daeb3f = util::function_97cf7eb0(v_spawn_pos_right, 1000, 24);
 	var_d7061a0d = util::function_97cf7eb0(v_spawn_pos_left, 1000, 24);
 	a_s_spawn_pos = array(var_f4daeb3f, var_d7061a0d);
@@ -1432,7 +1432,7 @@ private function zombie_lift(player, v_attack_source, n_push_away, n_lift_height
 			self thread track_lifted_for_ragdoll_count();
 			self.var_42d5176d = 1;
 			self val::set(#"hash_77bfbbee3d2c15d", "ignoreall", 1);
-			v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 100), self.origin + vectorscale((0, 0, -1), 1000), 0, self)[#"position"];
+			v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 100), self.origin + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
 			if(!isdefined(v_pos))
 			{
 				v_pos = self.origin;
@@ -1515,7 +1515,7 @@ private function zombie_lift(player, v_attack_source, n_push_away, n_lift_height
 			if(!(isdefined(level.ignore_gravityspikes_ragdoll) && level.ignore_gravityspikes_ragdoll))
 			{
 				self startragdoll();
-				self launchragdoll(150 * anglestoup(self.angles) + (v_away_from_source[0], v_away_from_source[1], 0));
+				self launchragdoll((150 * anglestoup(self.angles)) + (v_away_from_source[0], v_away_from_source[1], 0));
 			}
 			self clientfield::set("ragdoll_impact_watch", 1);
 			self clientfield::set("sparky_zombie_trail_fx", 1);
@@ -1554,7 +1554,7 @@ private function zombie_lift(player, v_attack_source, n_push_away, n_lift_height
 				self clientfield::set("ragdoll_impact_watch", 1);
 				v_land_pos = util::ground_position(self.origin, 1000);
 				n_fall_dist = abs(self.origin[2] - v_land_pos[2]);
-				n_slam_wait = n_fall_dist / 200 * 0.75;
+				n_slam_wait = (n_fall_dist / 200) * 0.75;
 				self thread corpse_off_navmesh_watcher(n_slam_wait);
 				if(n_slam_wait > 0)
 				{
@@ -1737,7 +1737,7 @@ private function corpse_off_navmesh_watcher(n_timeout)
 	if(s_result._notify == "actor_corpse")
 	{
 		v_pos = getclosestpointonnavmesh(s_result.corpse.origin, 256);
-		if(!isdefined(v_pos) || s_result.corpse.origin[2] > v_pos[2] + 64)
+		if(!isdefined(v_pos) || s_result.corpse.origin[2] > (v_pos[2] + 64))
 		{
 			s_result.corpse thread do_zombie_explode();
 		}

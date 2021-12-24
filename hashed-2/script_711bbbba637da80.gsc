@@ -1097,7 +1097,7 @@ function function_ffd0f7c6(localclientnum)
 	{
 		for(j = 0; j <= 9; j++)
 		{
-			tag = "tag_nixie_number_" + i + "_" + j;
+			tag = (("tag_nixie_number_" + i) + "_") + j;
 			if(self haspart(localclientnum, tag))
 			{
 				self hidepart(localclientnum, tag);

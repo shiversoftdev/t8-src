@@ -245,7 +245,7 @@ function function_4ed420e3()
 			waitframe(1);
 		}
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		level thread function_7eabf705();
 	#/
 }

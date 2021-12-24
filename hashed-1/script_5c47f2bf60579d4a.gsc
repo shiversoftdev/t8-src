@@ -259,7 +259,7 @@ function freezegun_get_enemies_in_range(is_upgraded)
 			continue;
 		}
 		level.freezegun_enemies[level.freezegun_enemies.size] = ai;
-		level.freezegun_enemies_dist_ratio[level.freezegun_enemies_dist_ratio.size] = freezegun_outer_range_squared - test_range_squared / freezegun_outer_range_squared - freezegun_inner_range_squared;
+		level.freezegun_enemies_dist_ratio[level.freezegun_enemies_dist_ratio.size] = (freezegun_outer_range_squared - test_range_squared) / (freezegun_outer_range_squared - freezegun_inner_range_squared);
 	}
 }
 
@@ -487,7 +487,7 @@ function mp_dom_flag_d_captured_byinterfaceattributes()
 	shatter_trigger enablelinkto();
 	shatter_trigger linkto(self);
 	shatter_trigger thread function_e31780b1();
-	spawnflags = 512 | 1 | 512 | 2 | 512 | 4 | 16;
+	spawnflags = (512 | 1) | (512 | 2) | (512 | 4) | 16;
 	crumple_trigger = spawn("trigger_radius", self.origin, spawnflags, 15, 72);
 	crumple_trigger enablelinkto();
 	crumple_trigger linkto(self);

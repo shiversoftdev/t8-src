@@ -298,11 +298,11 @@ private function _debugcommander(commander)
 			/#
 				if(commander.pause)
 				{
-					recordtext(function_9e72a96(commander.planner.name) + "" + function_9e72a96(team) + "", position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);
+					recordtext((function_9e72a96(commander.planner.name) + "") + function_9e72a96(team) + "", position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);
 					waitframe(1);
 					continue;
 				}
-				recordtext(function_9e72a96(commander.planner.name) + "" + function_9e72a96(team) + "" + commander.planstarttime + "" + commander.planfinishtime + "" + int(commander.planfinishtime - commander.planstarttime / int(float(function_60d95f53()) / 1000 * 1000) + 1) + "", position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);
+				recordtext(((((((function_9e72a96(commander.planner.name) + "") + function_9e72a96(team) + "") + commander.planstarttime) + "") + commander.planfinishtime) + "") + (int((commander.planfinishtime - commander.planstarttime) / (int((float(function_60d95f53()) / 1000) * 1000)) + 1)) + "", position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);
 			#/
 			xoffset = xoffset + 15;
 			/#
@@ -499,7 +499,7 @@ private function _evaluatefitness(commander, squad)
 		evaluatorfunc = plannercommanderutility::getutilityapifunction(evaluatorentry[0]);
 		score = [[evaluatorfunc]](commander, squad, evaluatorentry[1]);
 		/#
-			assert(score >= 0 && score <= 1, "" + evaluatorentry[0] + "" + 0 + "" + 1 + "");
+			assert(score >= 0 && score <= 1, ((((("" + evaluatorentry[0]) + "") + 0) + "") + 1) + "");
 		#/
 		scores[evaluatorentry[0]] = score;
 		aiprofile_endentry();
@@ -1237,7 +1237,7 @@ private function _updateplanner(commander)
 			continue;
 		}
 		time = gettime();
-		var_e1f110d9 = time - commander.lastupdatetime > commander.updaterate;
+		var_e1f110d9 = (time - commander.lastupdatetime) > commander.updaterate;
 		if(var_e1f110d9 || function_f9d38682(commander) > 0)
 		{
 			_strategize(commander);
@@ -1261,13 +1261,13 @@ private function _updateplanner(commander)
 	Parameters: 3
 	Flags: Linked
 */
-function adddaemon(commander, daemonname, updaterate = float(function_60d95f53()) / 1000 * 10)
+function adddaemon(commander, daemonname, updaterate = (float(function_60d95f53()) / 1000) * 10)
 {
 	/#
 		assert(isstruct(commander));
 	#/
 	/#
-		assert(!isdefined(commander.daemons[daemonname]), "" + daemonname + "");
+		assert(!isdefined(commander.daemons[daemonname]), ("" + daemonname) + "");
 	#/
 	daemonjob = spawnstruct();
 	daemonjob.func = getdaemonapifunction(daemonname);
@@ -1306,7 +1306,7 @@ function addsquadevaluator(commander, evaluatorname, constants = [])
 	Parameters: 7
 	Flags: Linked
 */
-function createcommander(team, commanderplanner, squadplanner, commanderupdaterate = float(function_60d95f53()) / 1000 * 40, squadupdaterate = float(function_60d95f53()) / 1000 * 100, commandermaxframetime = 2, squadmaxplannerframetime = 2)
+function createcommander(team, commanderplanner, squadplanner, commanderupdaterate = (float(function_60d95f53()) / 1000) * 40, squadupdaterate = (float(function_60d95f53()) / 1000) * 100, commandermaxframetime = 2, squadmaxplannerframetime = 2)
 {
 	/#
 		assert(isstruct(commanderplanner));
@@ -1414,7 +1414,7 @@ function getdaemonapifunction(functionname)
 		assert(isstring(functionname) || function_7a600918(functionname) && functionname != "", "");
 	#/
 	/#
-		assert(isdefined(level._daemonscriptfunctions[#"api"][functionname]), "" + functionname + "");
+		assert(isdefined(level._daemonscriptfunctions[#"api"][functionname]), ("" + functionname) + "");
 	#/
 	return level._daemonscriptfunctions[#"api"][functionname];
 }
@@ -1434,7 +1434,7 @@ function getutilityapifunction(functionname)
 		assert(isstring(functionname) || function_7a600918(functionname) && functionname != "", "");
 	#/
 	/#
-		assert(isdefined(level._squadutilityscriptfunctions[#"api"][functionname]), "" + functionname + "");
+		assert(isdefined(level._squadutilityscriptfunctions[#"api"][functionname]), ("" + functionname) + "");
 	#/
 	return level._squadutilityscriptfunctions[#"api"][functionname];
 }
@@ -1457,7 +1457,7 @@ function function_b822982(commander)
 	{
 		/#
 			team = blackboard::getstructblackboardattribute(commander, #"team");
-			iprintlnbold("" + team + "");
+			iprintlnbold(("" + team) + "");
 		#/
 		commander.pause = 1;
 	}
@@ -1482,7 +1482,7 @@ function registerdaemonapi(functionname, functionptr)
 	#/
 	plannercommander::_initializedaemonfunctions(#"api");
 	/#
-		assert(!isdefined(level._daemonscriptfunctions[#"api"][functionname]), "" + functionname + "");
+		assert(!isdefined(level._daemonscriptfunctions[#"api"][functionname]), ("" + functionname) + "");
 	#/
 	level._daemonscriptfunctions[#"api"][functionname] = functionptr;
 }
@@ -1506,7 +1506,7 @@ function registerutilityapi(functionname, functionptr)
 	#/
 	plannercommander::_initializeutilityfunctions(#"api");
 	/#
-		assert(!isdefined(level._squadutilityscriptfunctions[#"api"][functionname]), "" + functionname + "");
+		assert(!isdefined(level._squadutilityscriptfunctions[#"api"][functionname]), ("" + functionname) + "");
 	#/
 	level._squadutilityscriptfunctions[#"api"][functionname] = functionptr;
 }
@@ -1529,7 +1529,7 @@ function function_2974807c(commander)
 	{
 		/#
 			team = blackboard::getstructblackboardattribute(commander, #"team");
-			iprintlnbold("" + function_9e72a96(team) + "");
+			iprintlnbold(("" + function_9e72a96(team)) + "");
 		#/
 		commander.pause = 0;
 	}

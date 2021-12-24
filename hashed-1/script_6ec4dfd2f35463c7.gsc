@@ -85,7 +85,7 @@ private function pulse_rumble_loop(duration)
 	self endon(#"pulse_rumble_loop");
 	self notify(#"pulse_rumble_loop");
 	self endon(#"hash_13d72ca5a7cfd2bd");
-	goaltime = gettime() + int(duration * 1000);
+	goaltime = gettime() + (int(duration * 1000));
 	while(gettime() < goaltime)
 	{
 		self.owner playrumbleonentity("damage_heavy");

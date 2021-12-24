@@ -782,7 +782,7 @@ function trigger_trap_explosion(v_pos, var_64c09f7f)
 	}
 	if(isdefined(level.s_soapstone) && isdefined(level.s_soapstone.var_4eed727b))
 	{
-		if(distancesquared(v_pos, level.s_soapstone.var_4eed727b.origin) <= 250 * 250)
+		if(distancesquared(v_pos, level.s_soapstone.var_4eed727b.origin) <= (250 * 250))
 		{
 			level.s_soapstone.is_charged = 1;
 			level.s_soapstone.is_hot = 1;
@@ -819,7 +819,7 @@ function function_576ecbe6(v_pos)
 function function_27304b98(var_a5a067c5, var_a75e9b3b)
 {
 	var_82224aaf = (isdefined(var_a5a067c5.var_82224aaf) ? var_a5a067c5.var_82224aaf : 500);
-	var_548dce62 = var_a5a067c5.origin + var_82224aaf * namespace_509a75d1::function_b649cf93();
+	var_548dce62 = var_a5a067c5.origin + (var_82224aaf * namespace_509a75d1::function_b649cf93());
 	self function_1b488412(var_548dce62, var_a75e9b3b);
 }
 

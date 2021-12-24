@@ -376,7 +376,7 @@ function function_81f056fe(localclientnum, newval, var_db37a1f6)
 		{
 			var_79b95a68 = getent(localclientnum, var_db37a1f6 + i, "targetname");
 		}
-		var_f1b20bef = getent(localclientnum, var_db37a1f6 + i + 1, "targetname");
+		var_f1b20bef = getent(localclientnum, var_db37a1f6 + (i + 1), "targetname");
 		if(isdefined(var_79b95a68) && isdefined(var_f1b20bef))
 		{
 			if(i == 2 && var_db37a1f6 == "beam_man_" || (i == 0 && var_db37a1f6 == "beam_obs_"))
@@ -490,7 +490,7 @@ function function_986307c4(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.e_target = getent(localclientnum, "obs_target", "targetname");
 		v_angles = self gettagangles("tag_fx_beam");
-		v_end = self.origin + anglestoforward(v_angles) * 9999;
+		v_end = self.origin + (anglestoforward(v_angles) * 9999);
 		self.e_target.origin = v_end;
 		self.e_target.angles = v_angles;
 		if(newval == 2)

@@ -569,11 +569,11 @@ private function function_e39c0be4(var_46f1b5eb)
 						line(aoe.position, aoe.position + (0, 0, var_46f1b5eb.height), (1, 0.5, 0));
 						if(aoe == var_87bbe4fc)
 						{
-							print3d(aoe.position + (0, 0, var_46f1b5eb.height + 5), "" + var_46f1b5eb.type + "" + i + "", (1, 0, 0));
+							print3d(aoe.position + (0, 0, var_46f1b5eb.height + 5), ((("" + var_46f1b5eb.type) + "") + i) + "", (1, 0, 0));
 						}
 						else
 						{
-							print3d(aoe.position + (0, 0, var_46f1b5eb.height + 5), "" + var_46f1b5eb.type + "" + i + "", (1, 0.5, 0));
+							print3d(aoe.position + (0, 0, var_46f1b5eb.height + 5), ((("" + var_46f1b5eb.type) + "") + i) + "", (1, 0.5, 0));
 						}
 						i++;
 					}

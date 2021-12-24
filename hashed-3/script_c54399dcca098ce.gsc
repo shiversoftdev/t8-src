@@ -523,7 +523,7 @@ function function_4999f099(var_9427f9e7)
 	var_57d9b9a5 = [];
 	var_d17bd352 = 1;
 	var_6219bef = (0, 0, 1.6 * 256);
-	var_409d46fe = 0.5 + 1.6 * 0.1;
+	var_409d46fe = 0.5 + (1.6 * 0.1);
 	var_daa7e03a = var_409d46fe * 4;
 	while(true)
 	{
@@ -535,7 +535,7 @@ function function_4999f099(var_9427f9e7)
 			var_d17bd352 = 0;
 		}
 		self setspeed(self.settings.defaultmovespeed * var_dbac44db);
-		var_6c9efff0 = var_9427f9e7.origin + var_6219bef + (0, 0, randomintrange(0, 84) * 1.6);
+		var_6c9efff0 = (var_9427f9e7.origin + var_6219bef) + (0, 0, randomintrange(0, 84) * 1.6);
 		self function_a57c34b7(var_6c9efff0, 0, 0);
 		self vehlookat(var_6c9efff0);
 		self.var_5e3ca234 = self.var_3c20808;
@@ -614,9 +614,9 @@ function function_3c9915f4(var_9427f9e7, var_2bab3af1)
 		self endon(#"death", #"near_goal");
 		while(true)
 		{
-			var_b2bd87c7 = groundtrace(var_9427f9e7.origin + vectorscale((0, 0, 1), 8), var_9427f9e7.origin + vectorscale((0, 0, -1), 100000), 0, undefined)[#"position"];
-			var_e9683beb = groundtrace(var_2bab3af1.origin + vectorscale((0, 0, 1), 8), var_2bab3af1.origin + vectorscale((0, 0, -1), 100000), 0, undefined)[#"position"];
-			sphere(groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + vectorscale((0, 0, -1), 100000), 0, self)[#"position"], 4, (1, 0, 0), 1, 1, 4, 12);
+			var_b2bd87c7 = groundtrace(var_9427f9e7.origin + vectorscale((0, 0, 1), 8), var_9427f9e7.origin + (vectorscale((0, 0, -1), 100000)), 0, undefined)[#"position"];
+			var_e9683beb = groundtrace(var_2bab3af1.origin + vectorscale((0, 0, 1), 8), var_2bab3af1.origin + (vectorscale((0, 0, -1), 100000)), 0, undefined)[#"position"];
+			sphere(groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"], 4, (1, 0, 0), 1, 1, 4, 12);
 			sphere(var_b2bd87c7, 4, (1, 1, 0), 1, 1, 8, 12);
 			sphere(var_e9683beb, 8, (0, 1, 0), 1, 1, 8, 12);
 			line(var_b2bd87c7, var_e9683beb, (1, 1, 1), 1, 1, 12);
@@ -665,7 +665,7 @@ function function_58439640()
 		#/
 		var_e2d0a89 = vectornormalize(var_44a24b57 - self.origin);
 		var_e2d0a89 = (var_e2d0a89[0], var_e2d0a89[1], 0);
-		var_e2d0a89 = var_e2d0a89 * self.origin[2] - var_44a24b57[2] * 0.8;
+		var_e2d0a89 = var_e2d0a89 * ((self.origin[2] - var_44a24b57[2]) * 0.8);
 		return var_e2d0a89;
 	}
 }
@@ -701,7 +701,7 @@ function function_44a776ee()
 	{
 		level.var_b434e769 delete();
 	}
-	level.var_5f2726dc = groundtrace(level.var_5f2726dc + vectorscale((0, 0, 1), 8), level.var_5f2726dc + vectorscale((0, 0, -1), 100000), 0, undefined)[#"position"];
+	level.var_5f2726dc = groundtrace(level.var_5f2726dc + vectorscale((0, 0, 1), 8), level.var_5f2726dc + (vectorscale((0, 0, -1), 100000)), 0, undefined)[#"position"];
 	var_b434e769 = util::spawn_model(#"hash_6f97a0d9c769da03", level.var_5f2726dc);
 	util::wait_network_frame();
 	s_loc = spawnstruct();
@@ -793,13 +793,13 @@ function function_68a875b(v_pos)
 	}
 	for(i = 1; i <= 10; i++)
 	{
-		var_48dba99e = zm_utility::function_b0eeaada(v_pos + (64 * i * -1, 0, 0), 3200);
+		var_48dba99e = zm_utility::function_b0eeaada(v_pos + (64 * (i * -1), 0, 0), 3200);
 		if(isdefined(var_48dba99e))
 		{
 			if(zm_zonemgr::function_66bf6a43(var_48dba99e[#"point"]))
 			{
 				/#
-					iprintln("" + 64 * i);
+					iprintln("" + (64 * i));
 				#/
 				return var_48dba99e[#"point"];
 			}
@@ -810,7 +810,7 @@ function function_68a875b(v_pos)
 			if(zm_zonemgr::function_66bf6a43(var_dc4239c1[#"point"]))
 			{
 				/#
-					iprintln("" + 64 * i);
+					iprintln("" + (64 * i));
 				#/
 				return var_dc4239c1[#"point"];
 			}
@@ -821,18 +821,18 @@ function function_68a875b(v_pos)
 			if(zm_zonemgr::function_66bf6a43(var_f21e9d9b[#"point"]))
 			{
 				/#
-					iprintln("" + 64 * i);
+					iprintln("" + (64 * i));
 				#/
 				return var_f21e9d9b[#"point"];
 			}
 		}
-		var_23fdc586 = zm_utility::function_b0eeaada(v_pos + (0, 64 * i * -1, 0), 3200);
+		var_23fdc586 = zm_utility::function_b0eeaada(v_pos + (0, 64 * (i * -1), 0), 3200);
 		if(isdefined(var_23fdc586))
 		{
 			if(zm_zonemgr::function_66bf6a43(var_23fdc586[#"point"]))
 			{
 				/#
-					iprintln("" + 64 * i);
+					iprintln("" + (64 * i));
 				#/
 				return var_23fdc586[#"point"];
 			}
@@ -868,7 +868,7 @@ function function_cfffc455()
 	{
 		return;
 	}
-	v_loc = groundtrace(v_loc + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), v_loc + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+	v_loc = groundtrace((v_loc + vectorscale((0, 0, 1), 32)) + vectorscale((0, 0, 1), 8), (v_loc + vectorscale((0, 0, 1), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 	if(!isdefined(v_loc))
 	{
 		return;
@@ -1319,7 +1319,7 @@ function function_be3fbc6f(s_params)
 		{
 			s_loc.origin = getclosestpointonnavmesh(struct::get("nosferatu_pos").origin, 256, 32);
 		}
-		s_loc.origin = groundtrace(s_loc.origin + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), s_loc.origin + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		s_loc.origin = groundtrace((s_loc.origin + vectorscale((0, 0, 1), 32)) + vectorscale((0, 0, 1), 8), (s_loc.origin + vectorscale((0, 0, 1), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 		level thread function_6f3f4e18(s_loc);
 	}
 }
@@ -1578,7 +1578,7 @@ function function_bc8c390e()
 	foreach(var_bcc0d06a in var_7846fbf)
 	{
 		var_bcc0d06a.var_ac144521 = 0;
-		var_bcc0d06a.var_b92834ee = util::spawn_model("tag_origin", var_bcc0d06a.origin + vectorscale((0, 0, -1), 16));
+		var_bcc0d06a.var_b92834ee = util::spawn_model("tag_origin", var_bcc0d06a.origin + (vectorscale((0, 0, -1), 16)));
 		var_bcc0d06a thread function_de394c52();
 	}
 }

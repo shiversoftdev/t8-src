@@ -70,7 +70,7 @@ function setupminimap(material = "", zone = 0)
 */
 function setupminimapzone(zone)
 {
-	corners = getentarray("zone_0" + zone + "_corner", "targetname");
+	corners = getentarray(("zone_0" + zone) + "_corner", "targetname");
 	if(corners.size != 2)
 	{
 		/#

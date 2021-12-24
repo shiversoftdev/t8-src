@@ -570,7 +570,7 @@ function zombie_assure_node()
 			{
 				/#
 					self zombie_history("" + self.entrance_nodes[i].origin);
-					println("" + self.origin + "" + self.entrance_nodes[i].origin);
+					println((("" + self.origin) + "") + self.entrance_nodes[i].origin);
 					level thread zm_utility::draw_line_ent_to_pos(self, self.entrance_nodes[i].origin, "");
 				#/
 				self.first_node = self.entrance_nodes[i];
@@ -591,7 +591,7 @@ function zombie_assure_node()
 			{
 				/#
 					self zombie_history("" + self.entrance_nodes[i].origin);
-					println("" + self.origin + "" + self.entrance_nodes[i].origin);
+					println((("" + self.origin) + "") + self.entrance_nodes[i].origin);
 					level thread zm_utility::draw_line_ent_to_pos(self, self.entrance_nodes[i].origin, "");
 				#/
 				self.first_node = self.entrance_nodes[i];
@@ -791,11 +791,11 @@ function window_notetracks(msg)
 				{
 					playerdistsq = distance2dsquared(self.player_targets[i].origin, self.origin);
 					heightdiff = abs(self.player_targets[i].origin[2] - self.origin[2]);
-					if(playerdistsq < var_e3df303a && heightdiff * heightdiff < var_e3df303a)
+					if(playerdistsq < var_e3df303a && (heightdiff * heightdiff) < var_e3df303a)
 					{
 						triggerdistsq = distance2dsquared(self.player_targets[i].origin, self.first_node.trigger_location.origin);
 						heightdiff = abs(self.player_targets[i].origin[2] - self.first_node.trigger_location.origin[2]);
-						if(triggerdistsq < 2601 && heightdiff * heightdiff < 2601)
+						if(triggerdistsq < 2601 && (heightdiff * heightdiff) < 2601)
 						{
 							self.player_targets[i] dodamage(self.meleedamage, self.origin, self, self, "none", "MOD_MELEE");
 							break;
@@ -1865,7 +1865,7 @@ function zombie_death_event(zombie)
 		}
 		else if(isdefined(zombie.damageweapon.doannihilate) && zombie.damageweapon.doannihilate || (is_weapon_shotgun(zombie.damageweapon) && zm_weapons::is_weapon_upgraded(zombie.damageweapon)) || zm_loadout::is_placeable_mine(zombie.damageweapon) || (zombie.damagemod === "MOD_GRENADE" || zombie.damagemod === "MOD_GRENADE_SPLASH" || zombie.damagemod === "MOD_EXPLOSIVE"))
 		{
-			if(isdefined(zombie.damageweapon.doannihilate) && zombie.damageweapon.doannihilate || (isdefined(zombie.damagehit_origin) && distancesquared(zombie.origin, zombie.damagehit_origin) < 180 * 180))
+			if(isdefined(zombie.damageweapon.doannihilate) && zombie.damageweapon.doannihilate || (isdefined(zombie.damagehit_origin) && distancesquared(zombie.origin, zombie.damagehit_origin) < (180 * 180)))
 			{
 				tag = "J_SpineLower";
 				if(isdefined(zombie.isdog) && zombie.isdog)
@@ -2108,7 +2108,7 @@ function function_dce9f1a6(spots)
 			zones = namespace_df043b58::function_f1ec5df(player_info.player, v_player_dir, 1);
 			for(i = 0; i < spots.size; i++)
 			{
-				if(isdefined(spots[i].var_d51f4e2d) && gettime() - spots[i].var_d51f4e2d < 3000)
+				if(isdefined(spots[i].var_d51f4e2d) && (gettime() - spots[i].var_d51f4e2d) < 3000)
 				{
 					continue;
 				}
@@ -2163,7 +2163,7 @@ function function_dce9f1a6(spots)
 			}
 		}
 		/#
-			if(getdvarint(#"hash_72ad1fcf80c5738d", -1) > -1 && level.players[getdvarint(#"hash_72ad1fcf80c5738d", -1)] == player_info.player)
+			if((getdvarint(#"hash_72ad1fcf80c5738d", -1)) > -1 && (level.players[getdvarint(#"hash_72ad1fcf80c5738d", -1)]) == player_info.player)
 			{
 				foreach(index, spot in a_candidates)
 				{
@@ -2292,7 +2292,7 @@ function do_zombie_spawn()
 			debugstar(spot.origin, getdvarint(#"scr_spawner_location_time", 0), (0, 1, 0));
 			host_player = util::gethostplayer();
 			distance = distance(spot.origin, host_player.origin);
-			iprintln("" + distance / 12 + "");
+			iprintln(("" + (distance / 12)) + "");
 		}
 	#/
 	if(isdefined(spot.var_c078a32) && getdvarint(#"hash_24e49958fe736182", 0) && (isdefined(self.var_a9b2d989) && self.var_a9b2d989 || (isdefined(level.var_d4a79133) && level.var_d4a79133 > 0)) && isdefined(level.var_322d0819))
@@ -2356,7 +2356,7 @@ function function_65439499(spawn_points, var_12af83a0 = 5000)
 {
 	foreach(point in spawn_points)
 	{
-		if(isdefined(point.var_d51f4e2d) && gettime() - point.var_d51f4e2d > var_12af83a0)
+		if(isdefined(point.var_d51f4e2d) && (gettime() - point.var_d51f4e2d) > var_12af83a0)
 		{
 			return point;
 		}

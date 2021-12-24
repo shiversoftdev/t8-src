@@ -86,7 +86,7 @@ function function_8beb8552(localclientnum, owner, position)
 	{
 		fx = level._effect[#"groundhit_1p"];
 		fwd = anglestoforward(owner.angles);
-		playfx(localclientnum, fx, position + fwd * 100, fwd);
+		playfx(localclientnum, fx, position + (fwd * 100), fwd);
 	}
 	else
 	{

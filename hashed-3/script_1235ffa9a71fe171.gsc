@@ -570,7 +570,7 @@ function function_4589bd24()
 		predictedpos = self lastknownpos(self.favoriteenemy);
 		if(isdefined(predictedpos))
 		{
-			turnyaw = absangleclamp360(self.angles[1] - vectortoangles(predictedpos - self.origin)[1]);
+			turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(predictedpos - self.origin)[1]));
 			return turnyaw;
 		}
 	}
@@ -1160,7 +1160,7 @@ private function function_afce1cf(inflictor, attacker, damage, flags, meansofdam
 	}
 	else
 	{
-		final_damage = final_damage * 1 / entity.var_2703428f;
+		final_damage = final_damage * (1 / entity.var_2703428f);
 	}
 	return final_damage;
 }
@@ -1401,16 +1401,16 @@ private function function_8fe8a946(entity)
 	height = self.maxs[2] - self.mins[2];
 	forward = anglestoforward(self.angles);
 	var_725b8fb5 = forward * entity ai::function_9139c839().var_167cbf22;
-	var_edabd3cd = bullettracepassed(self.origin + (0, 0, height), self.origin + var_725b8fb5 + (0, 0, height + entity ai::function_9139c839().var_73212b51), 0, self);
+	var_edabd3cd = bullettracepassed(self.origin + (0, 0, height), (self.origin + var_725b8fb5) + (0, 0, height + entity ai::function_9139c839().var_73212b51), 0, self);
 	/#
-		recordline(self.origin + (0, 0, height), self.origin + var_725b8fb5 + (0, 0, height + entity ai::function_9139c839().var_73212b51), (0, 1, 0));
+		recordline(self.origin + (0, 0, height), (self.origin + var_725b8fb5) + (0, 0, height + entity ai::function_9139c839().var_73212b51), (0, 1, 0));
 	#/
 	if(!var_edabd3cd)
 	{
 		return 0;
 	}
 	var_9c2b856b = distancesquared(entity.origin, entity.favoriteenemy.origin);
-	if(var_9c2b856b < entity ai::function_9139c839().var_cdf6b76d * entity ai::function_9139c839().var_cdf6b76d || var_9c2b856b > entity ai::function_9139c839().var_652a36f2 * entity ai::function_9139c839().var_652a36f2)
+	if(var_9c2b856b < (entity ai::function_9139c839().var_cdf6b76d * entity ai::function_9139c839().var_cdf6b76d) || var_9c2b856b > (entity ai::function_9139c839().var_652a36f2 * entity ai::function_9139c839().var_652a36f2))
 	{
 		return 0;
 	}
@@ -1540,7 +1540,7 @@ private function blightfatherlaunchchaosmissile(var_f794172e, var_61622673, var_
 	normal_vector = anglestoforward(angles_to_enemy);
 	var_892397fd.angles = angles_to_enemy;
 	var_892397fd.var_209ff2fa = normal_vector * self ai::function_9139c839().var_f988064f;
-	max_trail_iterations = int(self ai::function_9139c839().var_652a36f2 / self ai::function_9139c839().var_52bddd4 * self ai::function_9139c839().var_9e5ebf3c);
+	max_trail_iterations = int(self ai::function_9139c839().var_652a36f2 / (self ai::function_9139c839().var_52bddd4 * self ai::function_9139c839().var_9e5ebf3c));
 	var_892397fd.missile_target = var_f794172e;
 	var_892397fd thread function_5f3390fd(var_61622673, 60);
 	var_892397fd playloopsound(#"hash_5b21b7c645692f8", 0.1);
@@ -1625,7 +1625,7 @@ private function function_581a06c7(forward_dir, var_ced3ec54, var_27e1ee12, max_
 	}
 	plane_normal = vectorcross(forward_dir, vec_to_enemy_normal);
 	perpendicular_normal = vectorcross(plane_normal, forward_dir);
-	var_21f9edfd = forward_dir * cos(max_angle) + perpendicular_normal * sin(max_angle);
+	var_21f9edfd = (forward_dir * cos(max_angle)) + (perpendicular_normal * sin(max_angle));
 	return var_21f9edfd;
 }
 
@@ -1719,7 +1719,7 @@ private function function_1974d26f(var_3fa92868, var_10ed5867, var_eb325a79)
 		{
 			angle_between_vectors = 0.0001;
 		}
-		ratio = var_10ed5867 * var_eb325a79 / angle_between_vectors;
+		ratio = (var_10ed5867 * var_eb325a79) / angle_between_vectors;
 		if(ratio > 1)
 		{
 			ratio = 1;
@@ -1733,7 +1733,7 @@ private function function_1974d26f(var_3fa92868, var_10ed5867, var_eb325a79)
 		normal_vector = self.var_209ff2fa;
 	}
 	move_distance = var_3fa92868 * var_eb325a79;
-	move_vector = var_3fa92868 * var_eb325a79 * normal_vector;
+	move_vector = (var_3fa92868 * var_eb325a79) * normal_vector;
 	move_to_point = self.origin + move_vector;
 	trace = bullettrace(self.origin, move_to_point, 0, self);
 	if(trace[#"surfacetype"] !== "none")
@@ -1842,9 +1842,9 @@ private function function_44e3e0d1(var_51a7ab9c)
 			v_dir = (v_dir[0], v_dir[1], 0.1);
 			v_dir = vectornormalize(v_dir);
 			n_push_strength = getdvarint(#"hash_708ca0a943843f57", 500);
-			n_push_strength = 200 + randomint(n_push_strength - 200);
+			n_push_strength = 200 + (randomint(n_push_strength - 200));
 			v_player_velocity = player getvelocity();
-			player setvelocity(v_player_velocity + v_dir * n_push_strength);
+			player setvelocity(v_player_velocity + (v_dir * n_push_strength));
 		}
 	}
 }

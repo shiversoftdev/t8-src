@@ -207,7 +207,7 @@ private function function_21a979f7()
 		{
 			self.angles = self.angles + vectorscale((1, 0, 0), 360);
 		}
-		self rotatepitch(self.angles[0] + 180 * -1, 2);
+		self rotatepitch((self.angles[0] + 180) * -1, 2);
 		self waittill(#"rotatedone");
 	}
 }
@@ -674,7 +674,7 @@ function function_4928382a(str_category, var_39acfdda)
 	if(a_e_players.size > 1)
 	{
 		var_e04d003f = self zm_characters::function_d35e4c92();
-		str_vo = "vox_revive_down_plr_" + var_e04d003f + "_" + randomint(4);
+		str_vo = (("vox_revive_down_plr_" + var_e04d003f) + "_") + randomint(4);
 		self zm_audio::play_vo_internal(hash(str_vo));
 	}
 	return 1;

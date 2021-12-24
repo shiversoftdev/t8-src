@@ -325,7 +325,7 @@ function default_onspawnintermission(endgame)
 function default_gettimelimit()
 {
 	/#
-		if(getdvarfloat(#"hash_5424bc2a81bcb188", -1) != -1)
+		if((getdvarfloat(#"hash_5424bc2a81bcb188", -1)) != -1)
 		{
 			return math::clamp(getdvarfloat(#"hash_5424bc2a81bcb188", -1), level.timelimitmin, level.timelimitmax);
 		}

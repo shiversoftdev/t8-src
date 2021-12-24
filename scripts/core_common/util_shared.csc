@@ -1114,7 +1114,7 @@ function get_eye()
 */
 function spawn_player_arms()
 {
-	arms = spawn(self getlocalclientnumber(), self.origin + vectorscale((0, 0, -1), 1000), "script_model");
+	arms = spawn(self getlocalclientnumber(), self.origin + (vectorscale((0, 0, -1), 1000)), "script_model");
 	if(isdefined(level.player_viewmodel))
 	{
 		arms setmodel(level.player_viewmodel);
@@ -1366,7 +1366,7 @@ function server_wait(localclientnum, seconds, waitbetweenchecks, level_endon)
 		waitcompletedsuccessfully = 0;
 		starttime = getservertime(0);
 		lasttime = starttime;
-		endtime = starttime + int(seconds * 1000);
+		endtime = starttime + (int(seconds * 1000));
 		while(getservertime(0) < endtime && getservertime(0) >= lasttime)
 		{
 			lasttime = getservertime(0);
@@ -1580,7 +1580,7 @@ function note_elapsed_time(start_time, label = "unspecified")
 		{
 			elapsed_time = int(elapsed_time);
 		}
-		msg = label + "" + elapsed_time + "";
+		msg = ((label + "") + elapsed_time) + "";
 		profileprintln(msg);
 		iprintlnbold(msg);
 	#/
@@ -1625,7 +1625,7 @@ function note_elapsed_times(elapsed_time_array, label = "unspecified")
 		{
 			return;
 		}
-		msg = label + "" + elapsed_time_array.size;
+		msg = (label + "") + elapsed_time_array.size;
 		profileprintln(msg);
 		if(elapsed_time_array.size == 0)
 		{
@@ -1654,16 +1654,16 @@ function note_elapsed_times(elapsed_time_array, label = "unspecified")
 			{
 				elapsed_time = int(elapsed_time);
 			}
-			msg = label + "" + elapsed_time + "";
+			msg = ((label + "") + elapsed_time) + "";
 			profileprintln(msg);
 		}
 		average_elapsed_time = total_elapsed_time / elapsed_time_array.size;
-		msg = label + "" + average_elapsed_time + "";
+		msg = ((label + "") + average_elapsed_time) + "";
 		profileprintln(msg);
 		iprintlnbold(msg);
-		msg = label + "" + largest_elapsed_time + "";
+		msg = ((label + "") + largest_elapsed_time) + "";
 		profileprintln(msg);
-		msg = label + "" + smallest_elapsed_time + "";
+		msg = ((label + "") + smallest_elapsed_time) + "";
 		profileprintln(msg);
 	#/
 }
@@ -2890,7 +2890,7 @@ function function_48e57e36(var_1f1d12d8)
 	{
 		if(var_1f1d12d8[i] >= "0" && var_1f1d12d8[i] <= "9")
 		{
-			decimal = decimal + int(var_1f1d12d8[i]) * base;
+			decimal = decimal + (int(var_1f1d12d8[i]) * base);
 			base = base * 16;
 			continue;
 		}
@@ -2920,7 +2920,7 @@ function function_48e57e36(var_1f1d12d8)
 			{
 				number = 15;
 			}
-			decimal = decimal + number * base;
+			decimal = decimal + (number * base);
 			base = base * 16;
 		}
 	}
@@ -2939,7 +2939,7 @@ function function_48e57e36(var_1f1d12d8)
 function function_e2e9d901(localclientnum, menu_path, commands)
 {
 	/#
-		adddebugcommand(localclientnum, "" + menu_path + "" + commands + "");
+		adddebugcommand(localclientnum, ((("" + menu_path) + "") + commands) + "");
 	#/
 }
 
@@ -2955,7 +2955,7 @@ function function_e2e9d901(localclientnum, menu_path, commands)
 function function_d84da933(localclientnum, menu_path)
 {
 	/#
-		adddebugcommand(localclientnum, "" + menu_path + "");
+		adddebugcommand(localclientnum, ("" + menu_path) + "");
 	#/
 }
 

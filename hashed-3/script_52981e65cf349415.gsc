@@ -76,11 +76,11 @@ function set_gadget_other_status(weapon, status, time)
 		timestr = "";
 		if(isdefined(time))
 		{
-			timestr = "" + "" + time;
+			timestr = ("" + "") + time;
 		}
 		if(getdvarint(#"scr_cpower_debug_prints", 0) > 0)
 		{
-			self iprintlnbold("" + weapon.name + "" + status + timestr);
+			self iprintlnbold(((("" + weapon.name) + "") + status) + timestr);
 		}
 	#/
 }

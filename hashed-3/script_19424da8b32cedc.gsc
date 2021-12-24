@@ -833,7 +833,7 @@ function function_13f886a2(entity)
 			return 0;
 		}
 	}
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.favoriteenemy.origin - entity.origin)[1]);
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.favoriteenemy.origin - entity.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
 		return 0;
@@ -889,7 +889,7 @@ function function_61e7d5f5(entity)
 			return 0;
 		}
 	}
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.favoriteenemy.origin - entity.origin)[1]);
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.favoriteenemy.origin - entity.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
 		return 0;
@@ -1308,25 +1308,25 @@ function function_3f15e557(entity, mocompanim, mocompanimblendouttime, mocompani
 			}
 		}
 		var_83fd29ee = vectornormalize(predictedenemypos - entity.origin);
-		var_1efb2395 = predictedenemypos - var_83fd29ee * entity getpathfindingradius();
+		var_1efb2395 = predictedenemypos - (var_83fd29ee * entity getpathfindingradius());
 		self.var_cd8354e0.var_736d2cce = var_1efb2395;
 		var_776ddabf = distancesquared(self.var_cd8354e0.var_cb28f380, self.var_cd8354e0.var_736d2cce);
 		var_65cbfb52 = distancesquared(self.var_cd8354e0.var_9bfa8497, self.var_cd8354e0.var_736d2cce);
-		if(var_776ddabf <= 20 * 20)
+		if(var_776ddabf <= (20 * 20))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
 			#/
 			self.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_65cbfb52 <= 90 * 90)
+		else if(var_65cbfb52 <= (90 * 90))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
 			#/
 			self.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_65cbfb52 >= 400 * 400)
+		else if(var_65cbfb52 >= (400 * 400))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
@@ -1346,7 +1346,7 @@ function function_3f15e557(entity, mocompanim, mocompanimblendouttime, mocompani
 			isvisible = bullettracepassed(entity.origin, entity.favoriteenemy.origin, 0, self);
 			var_425c4c8b = isvisible && var_7948b2f3;
 			/#
-				reasons = "" + isvisible + "" + var_6738a702 + "" + var_175919d1;
+				reasons = (((("" + isvisible) + "") + var_6738a702) + "") + var_175919d1;
 				if(var_425c4c8b)
 				{
 					record3dtext(reasons, entity.origin + vectorscale((0, 0, 1), 60), (0, 1, 0), "");
@@ -1386,7 +1386,7 @@ function function_3f15e557(entity, mocompanim, mocompanimblendouttime, mocompani
 			recordsphere(self.var_cd8354e0.var_cb28f380, 3, (0, 1, 0), "");
 			recordsphere(self.var_cd8354e0.var_736d2cce, 3, (0, 0, 1), "");
 		#/
-		adjustedorigin = entity.origin + entity.var_cd8354e0.var_10b8b6d1 * self.var_cd8354e0.var_8b9a15a6;
+		adjustedorigin = entity.origin + (entity.var_cd8354e0.var_10b8b6d1 * self.var_cd8354e0.var_8b9a15a6);
 		entity forceteleport(adjustedorigin);
 	}
 }
@@ -1494,7 +1494,7 @@ function function_3f7c46a(entity, mocompanim, mocompanimblendouttime, mocompanim
 {
 	if(isdefined(entity.favoriteenemy))
 	{
-		if(distancesquared(entity.origin, entity.favoriteenemy.origin) <= 50 * 50)
+		if(distancesquared(entity.origin, entity.favoriteenemy.origin) <= (50 * 50))
 		{
 			entity animmode("angle deltas");
 		}
@@ -1719,7 +1719,7 @@ private function function_75f32da6(inflictor, attacker, damage, idflags, meansof
 	{
 		if(isdefined(var_dd54fdb1.var_8223b0cf) && var_dd54fdb1.var_8223b0cf > 0)
 		{
-			adjusted_damage = damage * var_786d7e06.damage_scale * var_dd54fdb1.var_8223b0cf;
+			adjusted_damage = (damage * var_786d7e06.damage_scale) * var_dd54fdb1.var_8223b0cf;
 		}
 		adjusted_damage = int(adjusted_damage);
 		if(var_88e794fb)
@@ -1913,7 +1913,7 @@ private function function_fbc2806e(var_a4388d06, var_9e7687f8)
 		enemy = self.favoriteenemy;
 		if(isdefined(enemy) && isplayer(enemy) && enemy issliding() && (!(isdefined(var_6b72740e) && var_6b72740e)))
 		{
-			if(distance2dsquared(enemy.origin, axe.origin) <= 45 * 45)
+			if(distance2dsquared(enemy.origin, axe.origin) <= (45 * 45))
 			{
 				/#
 					recordsphere(enemy.origin, 3, (0, 0, 1), "");
@@ -1923,7 +1923,7 @@ private function function_fbc2806e(var_a4388d06, var_9e7687f8)
 				var_6b72740e = 1;
 			}
 		}
-		move_pos = axe.origin + var_7900b267 * interval_dist;
+		move_pos = axe.origin + (var_7900b267 * interval_dist);
 		if(isdefined(var_6b72740e) && var_6b72740e && !isdefined(var_1fed6c4e))
 		{
 			if(isdefined(enemy))
@@ -2110,7 +2110,7 @@ private function function_137ed431(axe, var_a4388d06, var_9e7687f8)
 	{
 		tag_pos = self gettagorigin(var_a4388d06);
 		var_7900b267 = vectornormalize(tag_pos - axe.origin);
-		move_pos = axe.origin + var_7900b267 * interval_dist;
+		move_pos = axe.origin + (var_7900b267 * interval_dist);
 		self function_88d65504(axe, var_7900b267, move_pos);
 		axe moveto(move_pos, 0.1);
 		wait(0.1);
@@ -2270,7 +2270,7 @@ function function_dfcfc03b()
 		predictedpos = self lastknownpos(self.favoriteenemy);
 		if(isdefined(predictedpos))
 		{
-			turnyaw = absangleclamp360(self.angles[1] - vectortoangles(predictedpos - self.origin)[1]);
+			turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(predictedpos - self.origin)[1]));
 			return turnyaw;
 		}
 	}
@@ -2301,14 +2301,14 @@ function function_831dd6bd()
 		{
 			shouldrepath = 1;
 		}
-		else if(distancesquared(self.origin, self.favoriteenemy.origin) <= zigzag_activation_distance * zigzag_activation_distance)
+		else if(distancesquared(self.origin, self.favoriteenemy.origin) <= (zigzag_activation_distance * zigzag_activation_distance))
 		{
 			shouldrepath = 1;
 		}
 		else if(isdefined(pathgoalpos))
 		{
 			distancetogoalsqr = distancesquared(self.origin, pathgoalpos);
-			shouldrepath = distancetogoalsqr < 72 * 72;
+			shouldrepath = distancetogoalsqr < (72 * 72);
 		}
 	}
 	if(isdefined(level.validate_on_navmesh) && level.validate_on_navmesh)
@@ -2387,7 +2387,7 @@ function function_831dd6bd()
 						for(index = 1; index < path.size; index++)
 						{
 							recordline(path[index - 1], path[index], (1, 0.5, 0), "", self);
-							record3dtext(abs(path[index - 1][2] - path[index][2]), path[index - 1], (1, 0, 0));
+							record3dtext(abs((path[index - 1][2]) - path[index][2]), path[index - 1], (1, 0, 0));
 						}
 					}
 				#/
@@ -2399,21 +2399,21 @@ function function_831dd6bd()
 				segmentlength = 0;
 				for(index = 1; index < path.size; index++)
 				{
-					if(isdefined(level.var_562c8f67) && abs(path[index - 1][2] - path[index][2]) > level.var_562c8f67)
+					if(isdefined(level.var_562c8f67) && (abs((path[index - 1][2]) - path[index][2])) > level.var_562c8f67)
 					{
 						break;
 					}
 					currentseglength = distance(path[index - 1], path[index]);
-					var_570a7c72 = segmentlength + currentseglength > deviationdistance;
-					if(index == path.size - 1 && !var_570a7c72)
+					var_570a7c72 = (segmentlength + currentseglength) > deviationdistance;
+					if(index == (path.size - 1) && !var_570a7c72)
 					{
-						deviationdistance = segmentlength + currentseglength - 1;
+						deviationdistance = (segmentlength + currentseglength) - 1;
 						var_eb1c6f1c = 1;
 					}
 					if(var_570a7c72 || var_eb1c6f1c)
 					{
 						remaininglength = deviationdistance - segmentlength;
-						seedposition = path[index - 1] + vectornormalize(path[index] - path[index - 1]) * remaininglength;
+						seedposition = (path[index - 1]) + ((vectornormalize(path[index] - (path[index - 1]))) * remaininglength);
 						/#
 							recordcircle(seedposition, 2, (1, 0.5, 0), "", self);
 						#/

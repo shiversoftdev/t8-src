@@ -268,7 +268,7 @@ private function function_33593a44(localclientnum, var_312d65d1, var_68f7ce2e, n
 	self notify("6e700fd90329871b");
 	self endon("6e700fd90329871b");
 	n_blend = 0;
-	n_increment = 1 / n_time / 0.016;
+	n_increment = 1 / (n_time / 0.016);
 	if(var_312d65d1 == 1 && var_68f7ce2e == 2)
 	{
 		while(n_blend < 1)

@@ -125,12 +125,12 @@ private function function_e79ccfd8(localclientnum)
 private function setcontrollerlightbarcolorpulsing(localclientnum, color, pulserate)
 {
 	curcolor = color * 0.2;
-	scale = gettime() % pulserate / pulserate * 0.5;
+	scale = (gettime() % pulserate) / (pulserate * 0.5);
 	if(scale > 1)
 	{
-		scale = scale - 2 * -1;
+		scale = (scale - 2) * -1;
 	}
-	curcolor = curcolor + color * 0.8 * scale;
+	curcolor = curcolor + ((color * 0.8) * scale);
 	setcontrollerlightbarcolor(localclientnum, curcolor);
 }
 
@@ -378,7 +378,7 @@ function ramprobsetting(localclientnum, from, to, ramptime, key)
 function function_1126eb8c(currenttime, elapsedtime, localclientnum, duration, var_2347e08e, var_991d3376, key, rob)
 {
 	percent = elapsedtime / duration;
-	amount = var_991d3376 * percent + var_2347e08e * 1 - percent;
+	amount = (var_991d3376 * percent) + (var_2347e08e * (1 - percent));
 	self function_78233d29(rob, "", key, amount);
 }
 
@@ -581,8 +581,8 @@ private function function_b51756a0(localclientnum, splatter, damage)
 */
 private function splatter_postfx(localclientnum, player, damage, var_cd141ca2, death, dot)
 {
-	level notify(localclientnum + "splatter_postfx" + var_cd141ca2);
-	level endon(localclientnum + "splatter_postfx" + var_cd141ca2);
+	level notify((localclientnum + "splatter_postfx") + var_cd141ca2);
+	level endon((localclientnum + "splatter_postfx") + var_cd141ca2);
 	blur = 0;
 	opacity = 0;
 	var_587ce5b0 = 0;
@@ -601,7 +601,7 @@ private function splatter_postfx(localclientnum, player, damage, var_cd141ca2, d
 	{
 		for(i = level.blood.var_de10c136.var_58f1f80e - 1; i >= 0; i--)
 		{
-			if(damage > level.blood.var_de10c136.range[i].start || (level.blood.scriptbundle.var_3e1e9389 - 1 == i && death))
+			if(damage > level.blood.var_de10c136.range[i].start || ((level.blood.scriptbundle.var_3e1e9389 - 1) == i && death))
 			{
 				blur = level.blood.var_de10c136.range[i].blur;
 				opacity = level.blood.var_de10c136.range[i].opacity;
@@ -639,8 +639,8 @@ private function splatter_postfx(localclientnum, player, damage, var_cd141ca2, d
 */
 function rampvalue(localclientnum, var_2347e08e, var_991d3376, ramptime, var_cd141ca2, key)
 {
-	level notify(localclientnum + "rampValue" + var_cd141ca2 + key);
-	level endon(localclientnum + "rampValue" + var_cd141ca2 + key);
+	level notify(((localclientnum + "rampValue") + var_cd141ca2) + key);
+	level endon(((localclientnum + "rampValue") + var_cd141ca2) + key);
 	util::lerp_generic(localclientnum, ramptime, &function_441ef0ca, var_2347e08e, var_991d3376, var_cd141ca2, key);
 }
 
@@ -660,7 +660,7 @@ function function_441ef0ca(currenttime, elapsedtime, localclientnum, duration, v
 	{
 		percent = elapsedtime / duration;
 	}
-	amount = var_991d3376 * percent + var_2347e08e * 1 - percent;
+	amount = (var_991d3376 * percent) + (var_2347e08e * (1 - percent));
 	splatter = getsplatter(localclientnum);
 	if(amount > 0 && isdefined(splatter.splatters[var_cd141ca2][key]) && splatter.splatters[var_cd141ca2][key] == 0)
 	{
@@ -1039,8 +1039,8 @@ function function_c0cdd1f2(localclientnum, var_2347e08e, var_991d3376, ramptime,
 {
 	self endon(#"death");
 	self endon(#"hash_6d50f64fe99aed76");
-	self notify("rampPostFx" + key + postfx);
-	self endon("rampPostFx" + key + postfx);
+	self notify(("rampPostFx" + key) + postfx);
+	self endon(("rampPostFx" + key) + postfx);
 	util::lerp_generic(localclientnum, ramptime, &function_b0298a0, var_2347e08e, var_991d3376, key, postfx);
 }
 
@@ -1056,7 +1056,7 @@ function function_c0cdd1f2(localclientnum, var_2347e08e, var_991d3376, ramptime,
 function function_b0298a0(currenttime, elapsedtime, localclientnum, duration, var_2347e08e, var_991d3376, key, postfx)
 {
 	percent = elapsedtime / duration;
-	amount = var_991d3376 * percent + var_2347e08e * 1 - percent;
+	amount = (var_991d3376 * percent) + (var_2347e08e * (1 - percent));
 	if(isdefined(self.blood_enabled) && self.blood_enabled)
 	{
 		self function_116b95e5(postfx, key, amount);

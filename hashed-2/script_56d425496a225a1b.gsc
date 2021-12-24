@@ -736,7 +736,7 @@ function onpickupturret(turret)
 */
 function onturretdamage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
-	empdamage = int(idamage + self.healthdefault * 1 + 0.5);
+	empdamage = int((idamage + (self.healthdefault * 1)) + 0.5);
 	var_820fb5ae = self.damagetaken;
 	idamage = self killstreaks::ondamageperweapon("ultimate_turret", eattacker, idamage, idflags, smeansofdeath, weapon, self.maxhealth, undefined, self.maxhealth * 0.4, undefined, empdamage, undefined, 1, 1);
 	self.damagetaken = self.damagetaken + idamage;
@@ -941,7 +941,7 @@ function createturretinfluencer(name)
 	{
 		return;
 	}
-	projected_point = turret.origin + vectorscale(anglestoforward(turret.angles), preset[#"radius"] * 0.7);
+	projected_point = turret.origin + (vectorscale(anglestoforward(turret.angles), preset[#"radius"] * 0.7));
 	return influencers::create_enemy_influencer(name, turret.origin, turret.team);
 }
 
@@ -1131,6 +1131,7 @@ function function_fefefcc4()
 	veh endon(#"death", #"hash_6f331ac7d2a40217", #"end_turret_scanning");
 	wait(0.8);
 	bundle = get_killstreak_bundle();
+	loc_00003BB8:
 	var_beeadda8 = (isdefined(bundle.var_5fa88c50) ? bundle.var_5fa88c50 : 300);
 	while(true)
 	{
@@ -1195,7 +1196,7 @@ function function_9d86d74c(enemy)
 	shoot_at_pos = enemy getshootatpos(self);
 	var_6551f24e = anglestoforward(fire_angles);
 	target_offset = shoot_at_pos - fire_origin;
-	if(lengthsquared(target_offset) < 22 * 22 && vectordot(var_6551f24e, target_offset) < 0)
+	if(lengthsquared(target_offset) < (22 * 22) && vectordot(var_6551f24e, target_offset) < 0)
 	{
 		return 1;
 	}
@@ -1219,7 +1220,7 @@ function function_2034705c(bundle)
 	{
 		var_c112caa0 = int((isdefined(bundle.var_33561c46) ? bundle.var_33561c46 : 3) * 1000);
 	}
-	return gettime() < var_351b3c55 + var_c112caa0;
+	return gettime() < (var_351b3c55 + var_c112caa0);
 }
 
 /*
@@ -1416,7 +1417,7 @@ function turretscanning()
 			if(!isdefined(veh.turret_target) || veh.turret_target != veh.enemy)
 			{
 				veh.turret_target = veh.enemy;
-				if(!isdefined(veh.var_2b8e6720) || veh.var_2b8e6720 + 5000 < gettime())
+				if(!isdefined(veh.var_2b8e6720) || (veh.var_2b8e6720 + 5000) < gettime())
 				{
 					veh playsoundtoteam("mpl_ultimate_turret_lockon", veh.team);
 					veh playsoundtoteam("mpl_ultimate_turret_lockon_enemy", util::getotherteam(veh.team));
@@ -1717,7 +1718,7 @@ function function_31477582()
 {
 	self endon(#"death");
 	waitframe(1);
-	var_463c449d = 386.0886 * float(function_60d95f53()) / 1000;
+	var_463c449d = 386.0886 * (float(function_60d95f53()) / 1000);
 	max_delta = 1;
 	while(true)
 	{
@@ -1726,11 +1727,11 @@ function function_31477582()
 			wait(1);
 			continue;
 		}
-		trace = physicstrace(self.origin + vectorscale((0, 0, 1), 15), self.origin + vectorscale((0, 0, -1), 10), (-3, -3, -1), (3, 3, 1), self.turret, 1 | 16);
+		trace = physicstrace(self.origin + vectorscale((0, 0, 1), 15), self.origin + (vectorscale((0, 0, -1), 10)), (-3, -3, -1), (3, 3, 1), self.turret, 1 | 16);
 		if(trace[#"fraction"] > 0)
 		{
 			new_origin = trace[#"position"];
-			self.origin = (new_origin[0], new_origin[1], self.origin[2] - min(max_delta, self.origin[2] - new_origin[2]));
+			self.origin = (new_origin[0], new_origin[1], self.origin[2] - (min(max_delta, self.origin[2] - new_origin[2])));
 			max_delta = max_delta + var_463c449d;
 			waitframe(1);
 			continue;

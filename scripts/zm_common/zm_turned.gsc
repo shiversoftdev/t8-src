@@ -108,7 +108,7 @@ function turn_to_zombie()
 		playsoundatposition(#"evt_disappear_3d", self.origin);
 		if(!self.is_zombie)
 		{
-			playsoundatposition(#"vox_plr_" + randomintrange(0, 4) + "_exert_death_high_" + randomintrange(0, 4), self.origin);
+			playsoundatposition(((#"vox_plr_" + randomintrange(0, 4)) + "_exert_death_high_") + randomintrange(0, 4), self.origin);
 		}
 	}
 	self._can_score = 1;

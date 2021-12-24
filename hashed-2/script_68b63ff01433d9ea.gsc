@@ -209,8 +209,8 @@ function function_ff726bbb(var_2afee46 = 1)
 	var_7b9ecc98 linkto(var_db4a4ab3, "tag_origin");
 	var_84d63a77 disconnectpaths();
 	var_7b9ecc98 disconnectpaths();
-	level.var_d1e98ce7 = util::spawn_model("tag_origin", var_84d63a77.origin + var_7b9ecc98.origin / 2);
-	level.var_44c19f1a = util::spawn_model("tag_origin", var_19d968b8.origin + var_d16a9f7c.origin / 2);
+	level.var_d1e98ce7 = util::spawn_model("tag_origin", (var_84d63a77.origin + var_7b9ecc98.origin) / 2);
+	level.var_44c19f1a = util::spawn_model("tag_origin", (var_19d968b8.origin + var_d16a9f7c.origin) / 2);
 	var_d6a83f7c = array(#"p8_zm_man_book_symbol_02", #"p8_zm_man_book_symbol_03", #"p8_zm_man_book_symbol_01", #"hash_5a2bfbb29186d2d6");
 	_plyr_exterior_gunner_front = array("w_secret_left_object", "e_secret_left_object", "w_secret_right_object", "e_secret_right_object");
 	var_b4536237 = array(0, 1, 2, 3);
@@ -575,7 +575,7 @@ function function_c63076b4(var_2afee46 = 1)
 		wait(0.1);
 		if(isdefined(level.var_992001f4[i].var_b0fe1e03))
 		{
-			level.var_992001f4[i].n_rate = var_38376e1d + var_38376e1d * i;
+			level.var_992001f4[i].n_rate = var_38376e1d + (var_38376e1d * i);
 			level.var_992001f4[i].t_trig = getent(level.var_992001f4[i].target, "targetname");
 			level.var_992001f4[i] thread function_3e37bb63();
 			if(var_2afee46)
@@ -637,7 +637,7 @@ function function_85e39c4d()
 			{
 				level flag::set(#"hash_521d6bb11da55099");
 			}
-			if(!level flag::get(#"hash_63f87f83cf6cbc6a") && self == level.var_992001f4[level.var_8efe799b.size - 1])
+			if(!level flag::get(#"hash_63f87f83cf6cbc6a") && self == (level.var_992001f4[level.var_8efe799b.size - 1]))
 			{
 				self thread function_5e130882();
 				self.e_attacker = s_notify.attacker;
@@ -982,7 +982,7 @@ function function_cf048af(oldval, newval)
 			level flag::set(#"hash_4207012c64662b4d");
 		}
 	}
-	iprintln("" + var_52fa3cae + "");
+	iprintln(("" + var_52fa3cae) + "");
 }
 
 /*
@@ -1066,7 +1066,7 @@ function function_f21f0537(var_a276c861)
 		}
 		case 2:
 		{
-			zm_powerups::specific_powerup_drop("bonus_points_player", s_pocket.origin + vectorscale((0, 0, -1), 8), undefined, undefined, undefined, 1);
+			zm_powerups::specific_powerup_drop("bonus_points_player", s_pocket.origin + (vectorscale((0, 0, -1), 8)), undefined, undefined, undefined, 1);
 			break;
 		}
 		case 3:
@@ -1191,7 +1191,7 @@ function function_cd9f1d74(n_reward)
 		str_powerup = "carpenter";
 		str_powerup = "double_points";
 		wait(4);
-		zm_powerups::specific_powerup_drop(str_powerup, s_shelf.origin + vectorscale((0, 0, -1), 16), undefined, undefined, undefined, 1);
+		zm_powerups::specific_powerup_drop(str_powerup, s_shelf.origin + (vectorscale((0, 0, -1), 16)), undefined, undefined, undefined, 1);
 		return;
 	}
 }

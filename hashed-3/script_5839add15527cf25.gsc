@@ -341,7 +341,7 @@ function function_579553d8(n_interval)
 		{
 			debug2dtext((8, 400, 0), "" + n_interval, undefined, undefined, undefined, 1);
 			waitframe(1);
-			n_interval = n_interval - float(function_60d95f53()) / 1000;
+			n_interval = n_interval - (float(function_60d95f53()) / 1000);
 			n_interval = math::clamp(n_interval, 0, 999);
 		}
 	#/
@@ -364,7 +364,7 @@ function function_27cd9d6(var_41f1a085 = 0)
 	while(!isalive(self) || self laststand::player_is_in_laststand() || self isusingoffhand() || self function_55acff10() || self zm_laststand::is_reviving_any() || n_time < var_41f1a085)
 	{
 		waitframe(1);
-		n_time = n_time + float(function_60d95f53()) / 1000;
+		n_time = n_time + (float(function_60d95f53()) / 1000);
 	}
 }
 

@@ -262,7 +262,7 @@ function function_24c1b38f()
 	{
 		n_player_modifier = a_players.size * self ai::function_9139c839().var_854eebd;
 	}
-	var_eb6e4e3a = self ai::function_9139c839().var_544b0295 * n_player_modifier * level.brutus_round_count;
+	var_eb6e4e3a = (self ai::function_9139c839().var_544b0295 * n_player_modifier) * level.brutus_round_count;
 	var_eb6e4e3a = int(min(var_eb6e4e3a, self ai::function_9139c839().var_d0d2e3ce * n_player_modifier));
 	return var_eb6e4e3a;
 }
@@ -550,7 +550,7 @@ private function function_3c3e6f4a(entity)
 		{
 			var_7162cf15 = [];
 			var_7162cf15[#"point"] = stub.origin;
-			halfheight = stub.origin - zm_utility::groundpos(stub.origin)[2] + 1;
+			halfheight = (stub.origin - zm_utility::groundpos(stub.origin)[2]) + 1;
 		}
 		var_239124a9 = positionquery_source_navigation(var_7162cf15[#"point"], 0, 256, halfheight, 20, 1);
 		if(var_239124a9.data.size == 0)
@@ -615,7 +615,7 @@ private function function_eb1f805(entity)
 */
 private function function_3006441d(entity)
 {
-	if(!isdefined(entity.var_722a34a3) || !isdefined(entity.var_52e3b294) || distancesquared(entity.var_52e3b294, entity.origin) > 10 * 10)
+	if(!isdefined(entity.var_722a34a3) || !isdefined(entity.var_52e3b294) || distancesquared(entity.var_52e3b294, entity.origin) > (10 * 10))
 	{
 		return 0;
 	}
@@ -685,7 +685,7 @@ function function_20fa0d4c(entity)
 	{
 		return 0;
 	}
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.enemy.origin - entity.origin)[1]);
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.enemy.origin - entity.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
 		return 0;
@@ -768,7 +768,7 @@ private function function_3bda3c55(entity)
 */
 private function function_f4a61e6a(entity)
 {
-	entity.var_96b5e3f1 = gettime() + int(entity ai::function_9139c839().var_d5427206 * 1000);
+	entity.var_96b5e3f1 = gettime() + (int(entity ai::function_9139c839().var_d5427206 * 1000));
 }
 
 /*
@@ -1044,7 +1044,7 @@ function function_530c54e3()
 {
 	self.hashelmet = 0;
 	self zombie_utility::set_zombie_run_cycle("sprint");
-	self.var_71ab4927 = gettime() + int(self ai::function_9139c839().var_d463e760 * 1000);
+	self.var_71ab4927 = gettime() + (int(self ai::function_9139c839().var_d463e760 * 1000));
 	destructserverutils::function_9885f550(self, "helmet");
 	self playsound(#"evt_brutus_helmet");
 	self thread zm_audio::zmbaivox_playvox(self, "roar", 1, 3);

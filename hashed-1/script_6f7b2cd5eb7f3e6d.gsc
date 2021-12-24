@@ -262,7 +262,7 @@ function start_timed_vortex(effect_version, v_vortex_origin, n_vortex_radius, n_
 		waitframe(1);
 		n_currtime = gettime() - n_starttime;
 	}
-	n_time_to_wait_for_explosion = n_vortex_time_cl - n_vortex_time_sv + 0.35;
+	n_time_to_wait_for_explosion = (n_vortex_time_cl - n_vortex_time_sv) + 0.35;
 	wait(n_time_to_wait_for_explosion);
 	svortex.in_use = 0;
 	arrayremovevalue(level.vortex_manager.a_active_vorticies, s_active_vortex);
@@ -345,7 +345,7 @@ private function vortex_explosion(v_vortex_explosion_origin, eattacker, n_vortex
 			n_dist_mult = n_distance_sqr / n_radius_sqr;
 			v_fling = vectornormalize(ai_zombie.origin - v_vortex_explosion_origin);
 			v_fling = (v_fling[0], v_fling[1], abs(v_fling[2]));
-			v_fling = vectorscale(v_fling, 100 + 100 * n_dist_mult);
+			v_fling = vectorscale(v_fling, 100 + (100 * n_dist_mult));
 			ai_zombie startragdoll();
 			ai_zombie launchragdoll(v_fling);
 		}
@@ -464,7 +464,7 @@ function state_idgun_crush_update(params)
 			}
 			self.crush_anim_started = 1;
 		}
-		fly_ent.origin = fly_ent.origin + veh_to_black_hole_vec * 8;
+		fly_ent.origin = fly_ent.origin + (veh_to_black_hole_vec * 8);
 		wait(0.1);
 	}
 }

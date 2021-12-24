@@ -231,7 +231,7 @@ private function function_c0fc92d2()
 {
 	self endon(#"death");
 	exploder::stop_exploder("fxexp_mk2_x_smoke_emit_" + level.var_ae5fb719.s_start.exploder_id);
-	v_dest = self.origin + 8 * self.var_e1434cbd;
+	v_dest = self.origin + (8 * self.var_e1434cbd);
 	level.var_ae5fb719.var_fead3ae9 linkto(self);
 	self playsound("zmb_ee_drawer_open");
 	self moveto(v_dest, 0.1);
@@ -480,7 +480,7 @@ private function function_baec0416(v_pos, v_angles)
 	}
 	if(isdefined(v_drop))
 	{
-		v_ground = groundtrace(v_drop + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_ground = groundtrace((v_drop + vectorscale((0, 0, 1), 32)) + vectorscale((0, 0, 1), 8), (v_drop + vectorscale((0, 0, 1), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 		v_normal = getnavmeshfacenormal(v_drop, 32);
 		var_55ab02db = function_c1fa62a2(v_angles, v_normal);
 		var_a79daf1f = util::spawn_model("p8_zm_whi_goop_puddle_01", v_ground, var_55ab02db);

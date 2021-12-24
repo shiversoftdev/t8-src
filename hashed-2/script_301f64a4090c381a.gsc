@@ -510,13 +510,13 @@ function function_53bb2a5()
 	/#
 		self function_1c3ffffd();
 		var_21c1ba1 = self getentitynumber() + 1;
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
-		adddebugcommand("" + self.name + "" + var_21c1ba1 + "" + var_21c1ba1 + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
+		adddebugcommand(((((("" + self.name) + "") + var_21c1ba1) + "") + var_21c1ba1) + "");
 	#/
 }
 
@@ -532,7 +532,7 @@ function function_53bb2a5()
 function function_1c3ffffd()
 {
 	/#
-		adddebugcommand("" + self.name + "");
+		adddebugcommand(("" + self.name) + "");
 	#/
 }
 

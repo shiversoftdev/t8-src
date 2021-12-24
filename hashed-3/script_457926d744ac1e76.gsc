@@ -349,7 +349,7 @@ private function zone_watcher(challenge, var_2d5ebf67, var_530e040f, timeout)
 	self.var_4cb0b91f = 0;
 	self zm_utility::function_ba39d198(challenge.var_df62490a, 1);
 	self thread start_timer(timeout, var_2d5ebf67);
-	var_60fa6139 = level.time + timeout * 1000;
+	var_60fa6139 = level.time + (timeout * 1000);
 	while(true)
 	{
 		var_a5096cb5 = self function_2191cc5d();
@@ -498,7 +498,7 @@ private function function_ff66b979()
 			continue;
 		}
 		var_d1659cdf = var_a0328dd5 - player.var_356935bb.start_time;
-		timeout = int(max(player.var_356935bb.timeout - float(var_d1659cdf) / 1000, 0));
+		timeout = int(max(player.var_356935bb.timeout - (float(var_d1659cdf) / 1000), 0));
 		player thread zone_watcher(player.var_356935bb.challenge, player.var_356935bb.var_2d5ebf67, player.var_356935bb.var_530e040f, timeout);
 		player thread damage_watcher();
 	}

@@ -150,7 +150,7 @@ function function_a38d2d73(tacpoint)
 	players = getplayers();
 	foreach(player in players)
 	{
-		if(distancesquared(tacpoint.origin, player.origin) <= 150 * 150)
+		if(distancesquared(tacpoint.origin, player.origin) <= (150 * 150))
 		{
 			return 1;
 		}
@@ -537,7 +537,7 @@ function function_441cdbb6()
 */
 private function function_e74b21de(owner)
 {
-	if(isdefined(owner) && distancesquared(owner.origin, self.origin) < 256 * 256)
+	if(isdefined(owner) && distancesquared(owner.origin, self.origin) < (256 * 256))
 	{
 		origin = owner.origin;
 		angles = owner getplayerangles();

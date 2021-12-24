@@ -186,7 +186,7 @@ function function_ffda8476(var_c14ca2e6, var_9522ba0f, amount)
 		prevxp = player stats::function_441050ca("RANKXP");
 		player addrankxpvalue(var_c14ca2e6, amount);
 		curxp = player stats::function_441050ca("RANKXP");
-		if(isdefined(player.pers) && isdefined(player.pers[#"plevel"]) && player.pers[#"plevel"] == level.maxprestige - 1)
+		if(isdefined(player.pers) && isdefined(player.pers[#"plevel"]) && player.pers[#"plevel"] == (level.maxprestige - 1))
 		{
 			if(curxp == level.rankxpcap)
 			{
@@ -299,7 +299,7 @@ function function_2c8aac6()
 	if(isdefined(player.pers[#"hash_39220b202c67c56b"]) && player.pers[#"hash_39220b202c67c56b"])
 	{
 		/#
-			println("" + (isdefined(player.name) ? player.name : "") + "");
+			println(("" + (isdefined(player.name) ? player.name : "")) + "");
 		#/
 		return;
 	}
@@ -315,7 +315,7 @@ function function_2c8aac6()
 	player challenges::function_659f7dc(var_1ef5a3ba, var_87ecbce6, var_7f6396f0);
 	player function_4835d26a();
 	/#
-		println("" + (isdefined(player.name) ? player.name : "") + "" + player.pers[#"hash_50ee08d8d2973448"] + "" + "" + player.pers[#"hash_95906bc03912ac4"] + "" + "" + player.pers[#"kills"] + "" + "" + player.pers[#"hash_4e1bb8dada2d90f5"] + "");
+		println((((((((((((("" + (isdefined(player.name) ? player.name : "")) + "") + player.pers[#"hash_50ee08d8d2973448"]) + "") + "") + player.pers[#"hash_95906bc03912ac4"]) + "") + "") + player.pers[#"kills"]) + "") + "") + player.pers[#"hash_4e1bb8dada2d90f5"]) + "");
 	#/
 	player.pers[#"hash_39220b202c67c56b"] = 1;
 }
@@ -342,7 +342,7 @@ function function_59c85637()
 	var_1ef5a3ba = 0;
 	if(isdefined(self.pers[#"hash_150795bee4d46ce4"]))
 	{
-		var_1ef5a3ba = max(gettime() - self.pers[#"hash_150795bee4d46ce4"] - var_c06441ec, 0);
+		var_1ef5a3ba = max((gettime() - self.pers[#"hash_150795bee4d46ce4"]) - var_c06441ec, 0);
 	}
 	return var_1ef5a3ba;
 }
@@ -560,7 +560,7 @@ function team_eliminated(team, var_4aee0d2d)
 		level [[level.var_29ab88df]](a_players, var_4aee0d2d);
 	}
 	/#
-		println("" + (isdefined(team) ? team : "") + "" + var_4aee0d2d + "");
+		println(((("" + (isdefined(team) ? team : "")) + "") + var_4aee0d2d) + "");
 	#/
 	foreach(player in a_players)
 	{
@@ -711,7 +711,7 @@ function function_66fe9481(vehicle, player, seatindex)
 		if(isdefined(player.lastdamagetime))
 		{
 			time = gettime();
-			if(time - player.lastdamagetime <= 3000)
+			if((time - player.lastdamagetime) <= 3000)
 			{
 				player thread function_d0c523bf();
 			}
@@ -747,16 +747,6 @@ function function_d0c523bf()
 	Parameters: 1
 	Flags: Linked
 */
-function function_f8072c71()
-{
-System.InvalidOperationException: Stack empty.
-   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
-   at System.Collections.Generic.Stack`1.Pop()
-   at Cerberus.Logic.Decompiler.BuildExpression(ScriptOp startOp) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1185
-   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2343
-   at Cerberus.Logic.Decompiler.DecompileBlock(DecompilerBlock decompilerBlock, Int32 tabs) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 998
-   at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 222
-/*
 function function_f8072c71(player)
 {
 	if(!isplayer(player) || !isdefined(self))
@@ -769,32 +759,56 @@ function function_f8072c71(player)
 	distancetraveled = 0;
 	var_b01d9212 = isairborne(self);
 	var_7c6311c4 = self.vehicleclass === "boat";
-
-*/
-
-	/* ======== */
-
-/* 
-	Stack: 
-*/
-	/* ======== */
-
-/* 
-	Blocks: 
-	Cerberus.Logic.BasicBlock at 0x2BB0, end at 0x2FC3
-	Cerberus.Logic.IfBlock at 0x2C0A, end at 0x2C34
-	Cerberus.Logic.WhileLoop at 0x2CE0, end at 0x2FBC
-	Cerberus.Logic.IfBlock at 0x2CFA, end at 0x2FBC
-	Cerberus.Logic.IfBlock at 0x2D48, end at 0x2FBC
-	Cerberus.Logic.IfBlock at 0x2D54, end at 0x2E22
-	Cerberus.Logic.IfBlock at 0x2DE4, end at 0x2E22
-	Cerberus.Logic.IfBlock at 0x2E22, end at 0x2EEA
-	Cerberus.Logic.IfBlock at 0x2EAC, end at 0x2EEA
-	Cerberus.Logic.IfBlock at 0x2EEA, end at 0x2FB2
-	Cerberus.Logic.IfBlock at 0x2F74, end at 0x2FB2
-*/
-	/* ======== */
-
+	var_f03db647 = !var_b01d9212 && !var_7c6311c4;
+	while(isdefined(self) && isdefined(player))
+	{
+		wait(1);
+		if(isdefined(self) && isdefined(player))
+		{
+			distancetraveled = int(distancetraveled + distance2d(self.origin, var_d98c5084));
+			var_d98c5084 = self.origin;
+			if(distancetraveled > 1000)
+			{
+				if(var_f03db647)
+				{
+					player stats::function_dad108fa(#"hash_6923291b0654e45f", distancetraveled);
+					var_ae40ba19 = player stats::function_441050ca(#"hash_6923291b0654e45f");
+					var_7f444a72 = int(var_ae40ba19 / 63360);
+					var_a7f485eb = player stats::function_441050ca(#"hash_83f7445bc09cd22");
+					if(var_7f444a72 > var_a7f485eb)
+					{
+						diff = var_7f444a72 - var_a7f485eb;
+						player stats::function_dad108fa(#"hash_83f7445bc09cd22", diff);
+					}
+				}
+				if(var_b01d9212)
+				{
+					player stats::function_dad108fa(#"hash_539ef3a516f1caba", distancetraveled);
+					var_ae40ba19 = player stats::function_441050ca(#"hash_539ef3a516f1caba");
+					var_7f444a72 = int(var_ae40ba19 / 63360);
+					var_a7f485eb = player stats::function_441050ca(#"hash_74f7e7cb7f38eaa3");
+					if(var_7f444a72 > var_a7f485eb)
+					{
+						diff = var_7f444a72 - var_a7f485eb;
+						player stats::function_dad108fa(#"hash_74f7e7cb7f38eaa3", diff);
+					}
+				}
+				if(var_7c6311c4)
+				{
+					player stats::function_dad108fa(#"hash_3fab092fd8ce8149", distancetraveled);
+					var_ae40ba19 = player stats::function_441050ca(#"hash_3fab092fd8ce8149");
+					var_7f444a72 = int(var_ae40ba19 / 63360);
+					var_a7f485eb = player stats::function_441050ca(#"hash_14117457d348c414");
+					if(var_7f444a72 > var_a7f485eb)
+					{
+						diff = var_7f444a72 - var_a7f485eb;
+						player stats::function_dad108fa(#"hash_14117457d348c414", diff);
+					}
+				}
+				distancetraveled = 0;
+			}
+		}
+	}
 }
 
 /*
@@ -1076,7 +1090,7 @@ function function_35ac33e1(attacker, victim, var_c5948a69 = {})
 		}
 		var_2fba6abe = attacker.var_37ef8626;
 		currenttime = gettime();
-		if(isdefined(var_2fba6abe) && currenttime - var_2fba6abe <= 60000)
+		if(isdefined(var_2fba6abe) && (currenttime - var_2fba6abe) <= 60000)
 		{
 			attacker stats::function_d40764f3(#"hash_199467721898923a", 1);
 			attacker callback::callback(#"hash_22c795c5dddbfc97");

@@ -282,7 +282,7 @@ function display_scene_menu(str_type, str_scene)
 			names[1] = "";
 			if(level flagsys::get(#"hash_5bcd66a9c21f5b2d"))
 			{
-				println("" + toupper(str_type) + "");
+				println(("" + toupper(str_type)) + "");
 			}
 			var_72acc069 = 1;
 			foreach(s_scenedef in a_scenedefs)
@@ -294,7 +294,7 @@ function display_scene_menu(str_type, str_scene)
 						if(is_active(s_scenedef.name) && function_c0f30783(s_scenedef))
 						{
 							array::add_sorted(names, s_scenedef.name, 0);
-							println("" + toupper(str_type) + "" + var_72acc069 + "" + s_scenedef.name);
+							println((((("" + toupper(str_type)) + "") + var_72acc069) + "") + s_scenedef.name);
 							var_72acc069++;
 						}
 						continue;
@@ -307,7 +307,7 @@ function display_scene_menu(str_type, str_scene)
 			}
 			if(level flagsys::get(#"hash_5bcd66a9c21f5b2d"))
 			{
-				println("" + toupper(str_type) + "");
+				println(("" + toupper(str_type)) + "");
 			}
 			names[names.size] = "";
 			str_title = str_type + "";
@@ -448,7 +448,7 @@ function display_scene_menu(str_type, str_scene)
 					}
 					else
 					{
-						setdvar(#"run_client_scene", str_scene + "" + names[selected]);
+						setdvar(#"run_client_scene", (str_scene + "") + names[selected]);
 					}
 				}
 				while(level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed(""))
@@ -545,7 +545,7 @@ function function_e67dabcc(strings, n_selected, str_title, var_444abf97)
 		}
 		for(i = 0; i < 16; i++)
 		{
-			index = i + n_selected - 5;
+			index = i + (n_selected - 5);
 			if(isdefined(strings[index]))
 			{
 				text = strings[index];
@@ -570,10 +570,10 @@ function function_e67dabcc(strings, n_selected, str_title, var_444abf97)
 			}
 			if(i == 5)
 			{
-				text = "" + text + "";
+				text = ("" + text) + "";
 				str_color = (0.8, 0.4, 0);
 			}
-			debug2dtext((136, 400 + i * 25, 0), text, str_color, 1, (0, 0, 0), 1, 1, var_444abf97);
+			debug2dtext((136, 400 + (i * 25), 0), text, str_color, 1, (0, 0, 0), 1, 1, var_444abf97);
 		}
 	#/
 }
@@ -773,10 +773,10 @@ function debug_display()
 				{
 					foreach(i, o_scene in self.scenes)
 					{
-						n_offset = 15 * i + 1;
+						n_offset = 15 * (i + 1);
 						print3d(self.origin - (0, 0, n_offset), o_scene._str_name, (0.8, 0.2, 0.8), 1, 0.3, debug_frames);
-						print3d(self.origin - (0, 0, n_offset + 5), "" + (isdefined([[ o_scene ]]->function_2ba44cd0()) ? "" + [[ o_scene ]]->function_2ba44cd0() : "") + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
-						print3d(self.origin - (0, 0, n_offset + 10), "" + (isdefined(function_12479eba(o_scene._str_name)) ? "" + function_12479eba(o_scene._str_name) : "") + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
+						print3d(self.origin - (0, 0, n_offset + 5), ("" + (isdefined([[ o_scene ]]->function_2ba44cd0()) ? "" + ([[ o_scene ]]->function_2ba44cd0()) : "")) + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
+						print3d(self.origin - (0, 0, n_offset + 10), ("" + (isdefined(function_12479eba(o_scene._str_name)) ? "" + function_12479eba(o_scene._str_name) : "")) + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
 					}
 				}
 				else if(isdefined(self.scriptbundlename))

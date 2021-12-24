@@ -62,7 +62,7 @@ function blind_apply(var_756fda07, weapon, var_84171a6c)
 	{
 		var_3860e7da[var_c94d654b] = 0;
 	}
-	if(isdefined(var_3860e7da[var_c94d654b]) && var_3860e7da[var_c94d654b] + 3000 < gettime())
+	if(isdefined(var_3860e7da[var_c94d654b]) && (var_3860e7da[var_c94d654b] + 3000) < gettime())
 	{
 		if(isdefined(weapon) && weapon == getweapon(#"hash_3f62a872201cd1ce"))
 		{

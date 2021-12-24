@@ -73,7 +73,7 @@ function function_1d474ba9(var_756fda07, weapon, var_84171a6c)
 	self.var_5cf129b8 = self.var_dc45cd85;
 	self.var_adb1692a = self.var_73c55eee;
 	self.var_848a19e0 = var_756fda07.var_848a19e0;
-	self.var_200f6b2b = 1 / self.var_5cf129b8 / 1000;
+	self.var_200f6b2b = 1 / (self.var_5cf129b8 / 1000);
 	self.weapon = weapon;
 	self.var_8df76e2f = var_756fda07.var_8df76e2f;
 	self.var_423e3c32 = var_756fda07.var_423e3c32;
@@ -196,7 +196,7 @@ private function function_5236325e(var_84171a6c, killcament)
 			{
 				resistance = self.owner status_effect::function_3c54ae98(7);
 			}
-			var_d6bae87d = 1 - resistance * self.var_adb1692a;
+			var_d6bae87d = (1 - resistance) * self.var_adb1692a;
 			if(isdefined(self.var_4b22e697) && self.owner === self.var_4b22e697)
 			{
 				var_d6bae87d = var_d6bae87d * self.owner status_effect::function_37683813();

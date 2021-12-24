@@ -144,7 +144,7 @@ function function_8d93c592(var_f2a06582)
 	{
 		v_position = self getweaponmuzzlepoint();
 		v_forward = self getweaponforwarddir();
-		a_trace = beamtrace(v_position, v_position + v_forward * 20000, 1, self);
+		a_trace = beamtrace(v_position, v_position + (v_forward * 20000), 1, self);
 		var_1c218ece = a_trace[#"position"];
 		/#
 			function_7067b673(v_position, var_1c218ece, (1, 1, 0));
@@ -302,7 +302,7 @@ private function function_5c035588(e_target, v_target_pos, var_f2a06582, b_launc
 	{
 		n_random_x = randomfloatrange(-3, 3);
 		n_random_y = randomfloatrange(-3, 3);
-		v_fling = 200 * vectornormalize(e_target.origin - v_target_pos + (n_random_x, n_random_y, 100));
+		v_fling = 200 * (vectornormalize((e_target.origin - v_target_pos) + (n_random_x, n_random_y, 100)));
 		e_target zm_utility::function_ffc279(v_fling, self, undefined, var_f2a06582);
 	}
 }

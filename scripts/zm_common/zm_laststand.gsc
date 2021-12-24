@@ -72,7 +72,7 @@ function __init__()
 	{
 		level.laststand_update_clientfields[i] = "laststand_update" + i;
 		clientfield::register("world", level.laststand_update_clientfields[i], 1, 5, "float");
-		clientfield::register("clientuimodel", "WorldSpaceIndicators.bleedOutModel" + i + ".hide", 1, 1, "int");
+		clientfield::register("clientuimodel", ("WorldSpaceIndicators.bleedOutModel" + i) + ".hide", 1, 1, "int");
 	}
 	level.weaponsuicide = getweapon(#"death_self");
 	if(!isdefined(getdvar(#"revive_trigger_radius")))
@@ -2349,7 +2349,7 @@ function add_weighted_down()
 	weighted_down = 1000;
 	if(level.round_number > 0)
 	{
-		weighted_down = int(1000 / ceil(level.round_number / 5));
+		weighted_down = int(1000 / (ceil(level.round_number / 5)));
 	}
 	if(!level.onlinegame || (isdefined(level.zm_disable_recording_stats) && level.zm_disable_recording_stats))
 	{

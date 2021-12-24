@@ -544,7 +544,7 @@ function function_a4fa2df0(n_index)
 			var_a4cd10ea = [];
 			foreach(loc in a_locations)
 			{
-				if(loc.targetname === self.zone + "_spawns")
+				if(loc.targetname === (self.zone + "_spawns"))
 				{
 					if(!isdefined(var_a4cd10ea))
 					{

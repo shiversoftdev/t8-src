@@ -166,7 +166,7 @@ function function_4d07056d(localclientnum, oldval, newval, bnewent, binitialsnap
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(self gettagorigin("j_nose4"), e_player.origin);
 	var_b12c8a00 = 1400 * 1400;
-	n_scale = var_b12c8a00 - n_dist / var_b12c8a00;
+	n_scale = (var_b12c8a00 - n_dist) / var_b12c8a00;
 	if(n_scale > 0.01)
 	{
 		earthquake(localclientnum, n_scale, 1, self.origin, n_dist);

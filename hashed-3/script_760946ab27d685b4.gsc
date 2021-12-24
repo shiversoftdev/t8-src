@@ -385,7 +385,7 @@ function grenade_throw_watcher()
 function function_fefbf8c2(e_grenade)
 {
 	/#
-		iprintln("" + self.playernum + "");
+		iprintln(("" + self.playernum) + "");
 	#/
 	var_be17187b = undefined;
 	var_be17187b = e_grenade waittill(#"explode", #"death");
@@ -572,7 +572,7 @@ function function_84eca8f8()
 			foreach(var_774bf522 in var_6b43c32f)
 			{
 				v_position = var_774bf522 getweaponmuzzlepoint();
-				v_forward = v_position + var_774bf522 getweaponforwarddir() * 1600;
+				v_forward = v_position + (var_774bf522 getweaponforwarddir() * 1600);
 				var_b2171ef7 = pointonsegmentnearesttopoint(v_position, v_forward, var_4acd2b1);
 				if(distancesquared(var_b2171ef7, var_4acd2b1) < 10 && beamtrace(v_position, var_4acd2b1, 1, var_774bf522, 0, 0, self.var_ce3d3ff6)[#"fraction"] == 1)
 				{
@@ -1316,7 +1316,7 @@ function function_7e04b65f()
 			if(e_player.var_c859fa3a >= var_4162b7c9)
 			{
 				/#
-					iprintlnbold("" + e_player getentnum() + "" + e_player.var_c859fa3a + "");
+					iprintlnbold(((("" + e_player getentnum()) + "") + e_player.var_c859fa3a) + "");
 				#/
 				e_player thread zm_magicbox::function_830b7ecd(level.var_87e6a031);
 				e_player thread function_1704df5e();
@@ -1372,7 +1372,7 @@ function function_1704df5e()
 	var_c2415b72 = zm_weapons::function_93cd8e76(var_94899c49);
 	var_c2415b72 = zm_weapons::get_base_weapon(var_c2415b72);
 	/#
-		iprintlnbold("" + self getentnum() + "" + function_9e72a96(var_c2415b72.name));
+		iprintlnbold((("" + self getentnum()) + "") + function_9e72a96(var_c2415b72.name));
 	#/
 	while(self function_1ec86044(var_c2415b72) || (isdefined(level.pap_machine) && level.pap_machine.pack_player === self) || self scene::function_c935c42())
 	{
@@ -1464,7 +1464,7 @@ function function_6366a177(s_lookat, var_3ac8690f, var_149b3205)
 	self val::set(#"hash_69fe6012338fa244", #"freezecontrols");
 	self val::set(#"hash_69fe6012338fa244", "ignoreme", 1);
 	self val::set(#"hash_69fe6012338fa244", "takedamage", 0);
-	var_6c759f99 = util::spawn_model(#"hash_3ae1ad382a5ec0c8", s_lookat.origin + vectorscale((0, 0, -1), 62), s_lookat.angles);
+	var_6c759f99 = util::spawn_model(#"hash_3ae1ad382a5ec0c8", s_lookat.origin + (vectorscale((0, 0, -1), 62)), s_lookat.angles);
 	var_6c759f99 hide();
 	var_6c759f99 showtoplayer(self);
 	if(isdefined(var_149b3205))
@@ -1478,11 +1478,11 @@ function function_6366a177(s_lookat, var_3ac8690f, var_149b3205)
 	var_4b540767 = (v_angles[0] * -1, v_angles[1] + 180, v_angles[2] * -1);
 	if(isdefined(var_3ac8690f))
 	{
-		var_6c9efff0 = var_3ac8690f + vectornormalize(anglestoforward(v_angles)) * 13 + vectornormalize(anglestoup(v_angles)) * -62;
+		var_6c9efff0 = (var_3ac8690f + (vectornormalize(anglestoforward(v_angles)) * 13)) + (vectornormalize(anglestoup(v_angles)) * -62);
 	}
 	else
 	{
-		var_6c9efff0 = self geteye() + vectornormalize(anglestoforward(v_angles)) * 13 + vectornormalize(anglestoup(v_angles)) * -62;
+		var_6c9efff0 = (self geteye() + (vectornormalize(anglestoforward(v_angles)) * 13)) + (vectornormalize(anglestoup(v_angles)) * -62);
 	}
 	var_6c759f99 rotateto(var_4b540767, 0.3);
 	var_6c759f99 moveto(var_6c9efff0, 0.3);
@@ -1784,8 +1784,8 @@ function function_6e0ed3e()
 		{
 			foreach(n_index, e_player in getplayers())
 			{
-				n_y_pos = 720 + 18.7 * n_index;
-				debug2dtext((120, n_y_pos, 0), "" + n_index + "", (1, 1, 0), 1, (0, 0, 0), 0.4, 1, 2);
+				n_y_pos = 720 + (18.7 * n_index);
+				debug2dtext((120, n_y_pos, 0), ("" + n_index) + "", (1, 1, 0), 1, (0, 0, 0), 0.4, 1, 2);
 				debug2dtext((120 + 100, n_y_pos, 0), "" + e_player.var_c859fa3a, (1, 1, 1), 1, (0, 0, 0), 0.4, 1, 2);
 			}
 			waitframe(2);
@@ -1823,7 +1823,7 @@ function function_3ddf07f4()
 				var_538ff835 = array(var_538ff835);
 			}
 			var_538ff835[var_538ff835.size] = var_54887c6a;
-			if(i != level.var_ce277759 % 4)
+			if(i != (level.var_ce277759 % 4))
 			{
 				var_54887c6a.var_c859fa3a = 2;
 				continue;
@@ -1840,7 +1840,7 @@ function function_3ddf07f4()
 				if(var_54887c6a.var_c859fa3a >= var_4162b7c9)
 				{
 					/#
-						iprintlnbold("" + var_54887c6a.var_21c1ba1 + "" + var_54887c6a.var_c859fa3a + "");
+						iprintlnbold(((("" + var_54887c6a.var_21c1ba1) + "") + var_54887c6a.var_c859fa3a) + "");
 					#/
 				}
 			}

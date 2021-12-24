@@ -286,7 +286,7 @@ function function_c9ff0dce()
 				}
 				else
 				{
-					str_spawn = "s_torque_tut_" + level.var_8ca3c62 + "_enemy_spawn";
+					str_spawn = ("s_torque_tut_" + level.var_8ca3c62) + "_enemy_spawn";
 					self thread _enemy_setup(str_spawn);
 				}
 			}
@@ -1736,7 +1736,7 @@ function function_20547133(var_5a5260d8)
 function function_a854ca60()
 {
 	var_3608d414 = array("vox_tvoi_tutor_torq_team_1_down", "vox_tvoi_tutor_torq_team_2_down", "vox_tvoi_tutor_torq_team_all_down");
-	if(level.var_5c91565b <= var_3608d414.size - 1)
+	if(level.var_5c91565b <= (var_3608d414.size - 1))
 	{
 		e_player = namespace_73e1c3e3::get_player();
 		e_player thread namespace_8c007aa6::function_831e0584(array(var_3608d414[level.var_5c91565b]));
@@ -3259,7 +3259,7 @@ function function_f82de132(newcover)
 */
 function function_6de225c7()
 {
-	while(self.var_86a21346 !== &smart_cover::function_d2368084)
+	while(self.var_86a21346 !== (&smart_cover::function_d2368084))
 	{
 		waitframe(1);
 	}
@@ -3278,7 +3278,7 @@ function function_6de225c7()
 */
 function function_e8bbfb11()
 {
-	while(self.var_86a21346 !== &concertina_wire::function_82c4beb0)
+	while(self.var_86a21346 !== (&concertina_wire::function_82c4beb0))
 	{
 		waitframe(1);
 	}
@@ -3319,9 +3319,9 @@ function function_84fcafbc()
 	self endon(#"death");
 	v_right = anglestoright(self.angles);
 	v_forward = anglestoforward(self.angles);
-	var_10ed11b0 = self.origin + v_right * 32;
-	var_dbfef697 = self.origin - v_right * 32;
-	var_84e90289 = self.origin - v_forward * 92;
+	var_10ed11b0 = self.origin + (v_right * 32);
+	var_dbfef697 = self.origin - (v_right * 32);
+	var_84e90289 = self.origin - (v_forward * 92);
 	/#
 		debugstar(self.origin, 10000);
 		debugstar(var_dbfef697, 10000, (0, 1, 0));
@@ -3357,7 +3357,7 @@ function function_1df46b8d(n_percentage = 0.25)
 		if(s_notify.mod == "MOD_MELEE_WEAPON_BUTT")
 		{
 			e_player = s_notify.attacker;
-			e_player.health = e_player.health + int(s_notify.amount / 2);
+			e_player.health = e_player.health + (int(s_notify.amount / 2));
 			if(e_player.health > e_player.maxhealth)
 			{
 				e_player.health = e_player.maxhealth;
@@ -3416,11 +3416,11 @@ function function_4906c896(newcover)
 				var_d79d2df = struct::get("s_barricade_destroy_back_right", "targetname");
 				v_fwd = anglestoforward(e_cover.angles);
 				v_right = anglestoright(e_cover.angles);
-				var_d877e7e8 = e_cover.origin - v_right * 64 + v_fwd * 70;
-				var_52875b95 = e_cover.origin + v_right * 64 + v_fwd * 70;
-				var_fb034023 = e_cover.origin - v_right * 64 - v_fwd * 64;
-				var_e95f1cd7 = e_cover.origin - v_fwd * 64;
-				var_9ef3080c = e_cover.origin + v_right * 64 - v_fwd * 64;
+				var_d877e7e8 = (e_cover.origin - (v_right * 64)) + (v_fwd * 70);
+				var_52875b95 = (e_cover.origin + (v_right * 64)) + (v_fwd * 70);
+				var_fb034023 = (e_cover.origin - (v_right * 64)) - (v_fwd * 64);
+				var_e95f1cd7 = e_cover.origin - (v_fwd * 64);
+				var_9ef3080c = (e_cover.origin + (v_right * 64)) - (v_fwd * 64);
 				var_aec0cd16 = 64;
 				var_d42616a6 = 48;
 				var_5e0a08e8 = getclosestpointonnavmesh(var_d877e7e8, var_aec0cd16, var_d42616a6);
@@ -3448,7 +3448,7 @@ function function_4906c896(newcover)
 				level.var_3ba8ccc1 = newcover.smartcover;
 				level.var_d116fd0d = struct::get("s_torque_tut_4_barrier_dest", "targetname");
 				v_fwd = anglestoforward(level.var_3ba8ccc1.angles);
-				level.var_d116fd0d.origin = level.var_3ba8ccc1.origin + v_fwd * 72;
+				level.var_d116fd0d.origin = level.var_3ba8ccc1.origin + (v_fwd * 72);
 			}
 		}
 	}

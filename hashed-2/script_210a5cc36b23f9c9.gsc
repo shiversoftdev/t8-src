@@ -44,26 +44,26 @@ function __init__()
 		for(index = 1; index <= destructbundle.piececount; index++)
 		{
 			piecestruct = spawnstruct();
-			piecestruct.gibmodel = destructible.("piece" + index + "_gibmodel");
-			piecestruct.gibtag = destructible.("piece" + index + "_gibtag");
-			piecestruct.gibfx = destructible.("piece" + index + "_gibfx");
-			piecestruct.gibfxtag = destructible.("piece" + index + "_gibeffecttag");
-			if(isdefined(destructible.("piece" + index + "_gibdirX")) || isdefined(destructible.("piece" + index + "_gibdirY")) || isdefined(destructible.("piece" + index + "_gibdirZ")))
+			piecestruct.gibmodel = destructible.(("piece" + index) + "_gibmodel");
+			piecestruct.gibtag = destructible.(("piece" + index) + "_gibtag");
+			piecestruct.gibfx = destructible.(("piece" + index) + "_gibfx");
+			piecestruct.gibfxtag = destructible.(("piece" + index) + "_gibeffecttag");
+			if(isdefined(destructible.(("piece" + index) + "_gibdirX")) || isdefined(destructible.(("piece" + index) + "_gibdirY")) || isdefined(destructible.(("piece" + index) + "_gibdirZ")))
 			{
 				loc_000004B8:
 				loc_00000500:
-				piecestruct.gibdir = ((isdefined(destructible.("piece" + index + "_gibdirX")) ? destructible.("piece" + index + "_gibdirX") : 0), (isdefined(destructible.("piece" + index + "_gibdirY")) ? destructible.("piece" + index + "_gibdirY") : 0), (isdefined(destructible.("piece" + index + "_gibdirZ")) ? destructible.("piece" + index + "_gibdirZ") : 0));
+				piecestruct.gibdir = ((isdefined(destructible.(("piece" + index) + "_gibdirX")) ? destructible.(("piece" + index) + "_gibdirX") : 0), (isdefined(destructible.(("piece" + index) + "_gibdirY")) ? destructible.(("piece" + index) + "_gibdirY") : 0), (isdefined(destructible.(("piece" + index) + "_gibdirZ")) ? destructible.(("piece" + index) + "_gibdirZ") : 0));
 			}
-			piecestruct.var_8e57b530 = destructible.("piece" + index + "_gibdirscale");
-			piecestruct.gibdynentfx = destructible.("piece" + index + "_gibdynentfx");
-			piecestruct.gibsound = destructible.("piece" + index + "_gibsound");
-			piecestruct.hitlocation = destructible.("piece" + index + "_hitlocation");
-			piecestruct.hidetag = destructible.("piece" + index + "_hidetag");
-			piecestruct.detachmodel = destructible.("piece" + index + "_detachmodel");
-			if(isdefined(destructible.("piece" + index + "_hittags")))
+			piecestruct.var_8e57b530 = destructible.(("piece" + index) + "_gibdirscale");
+			piecestruct.gibdynentfx = destructible.(("piece" + index) + "_gibdynentfx");
+			piecestruct.gibsound = destructible.(("piece" + index) + "_gibsound");
+			piecestruct.hitlocation = destructible.(("piece" + index) + "_hitlocation");
+			piecestruct.hidetag = destructible.(("piece" + index) + "_hidetag");
+			piecestruct.detachmodel = destructible.(("piece" + index) + "_detachmodel");
+			if(isdefined(destructible.(("piece" + index) + "_hittags")))
 			{
 				piecestruct.var_d8fa3d82 = [];
-				foreach(var_5440c126 in destructible.("piece" + index + "_hittags"))
+				foreach(var_5440c126 in destructible.(("piece" + index) + "_hittags"))
 				{
 					if(!isdefined(piecestruct.var_d8fa3d82))
 					{
@@ -159,7 +159,7 @@ private function _destructpiece(localclientnum, entity, piecenumber, shouldspawn
 		if(shouldspawngibs)
 		{
 			gibclientutils::_playgibfx(localclientnum, entity, piece.gibfx, piece.gibfxtag);
-			entity thread gibclientutils::_gibpiece(localclientnum, entity, piece.gibmodel, piece.gibtag, piece.gibdynentfx, piece.gibdir, piece.var_8e57b530, 1 | 2 | 4);
+			entity thread gibclientutils::_gibpiece(localclientnum, entity, piece.gibmodel, piece.gibtag, piece.gibdynentfx, piece.gibdir, piece.var_8e57b530, (1 | 2) | 4);
 			gibclientutils::_playgibsound(localclientnum, entity, piece.gibsound);
 		}
 		else if(isdefined(piece.gibfx) && function_9229eb67(piece.gibfx))
@@ -249,6 +249,6 @@ function adddestructpiececallback(localclientnum, entity, piecenumber, callbackf
 */
 function ispiecedestructed(localclientnum, entity, piecenumber)
 {
-	return _getdestructstate(localclientnum, entity) & 1 << piecenumber;
+	return _getdestructstate(localclientnum, entity) & (1 << piecenumber);
 }
 

@@ -104,7 +104,7 @@ private function function_51356342(duration)
 	self notify(#"hash_50998937b8ffdf86");
 	self endon(#"hash_50998937b8ffdf86", #"hash_13d72ca5a7cfd2bd");
 	self.owner endon(#"disconnect", #"death");
-	goaltime = gettime() + int(duration * 1000);
+	goaltime = gettime() + (int(duration * 1000));
 	while(gettime() < goaltime && isdefined(self.owner))
 	{
 		self.owner playrumbleonentity("proximity_grenade");

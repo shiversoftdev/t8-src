@@ -306,7 +306,7 @@ function init_zombie_run_cycle()
 		}
 		if(self._starting_round_number >= level.speed_change_round)
 		{
-			speed_percent = 0.2 + self._starting_round_number - level.speed_change_round * 0.2;
+			speed_percent = 0.2 + ((self._starting_round_number - level.speed_change_round) * 0.2);
 			speed_percent = min(speed_percent, 1);
 			change_round_max = int(level.speed_change_max * speed_percent);
 			change_left = change_round_max - level.speed_change_num;
@@ -788,7 +788,7 @@ function check_point_in_enabled_zone(origin, zone_is_active, player_zones, playe
 */
 function round_up_to_ten(score)
 {
-	new_score = score - score % 10;
+	new_score = score - (score % 10);
 	if(new_score < score)
 	{
 		new_score = new_score + 10;
@@ -808,7 +808,7 @@ function round_up_to_ten(score)
 function round_up_score(score, value)
 {
 	score = int(score);
-	new_score = score - score % value;
+	new_score = score - (score % value);
 	if(new_score < score)
 	{
 		new_score = new_score + value;
@@ -1063,18 +1063,18 @@ function generated_radius_attract_positions(forward, offset, num_positions, attr
 	while(i < 360 + offset)
 	{
 		altforward = forward * attract_radius;
-		rotated_forward = (cos(i) * altforward[0] - sin(i) * altforward[1], sin(i) * altforward[0] + cos(i) * altforward[1], altforward[2]);
+		rotated_forward = ((cos(i) * altforward[0]) - (sin(i) * altforward[1]), (sin(i) * altforward[0]) + (cos(i) * altforward[1]), altforward[2]);
 		if(isdefined(level.poi_positioning_func))
 		{
 			pos = [[level.poi_positioning_func]](self.origin, rotated_forward);
 		}
 		else if(isdefined(level.use_alternate_poi_positioning) && level.use_alternate_poi_positioning)
 		{
-			pos = zm_server_throttle::server_safe_ground_trace("poi_trace", 10, self.origin + rotated_forward + vectorscale((0, 0, 1), 10));
+			pos = zm_server_throttle::server_safe_ground_trace("poi_trace", 10, (self.origin + rotated_forward) + vectorscale((0, 0, 1), 10));
 		}
 		else
 		{
-			pos = zm_server_throttle::server_safe_ground_trace("poi_trace", 10, self.origin + rotated_forward + vectorscale((0, 0, 1), 100));
+			pos = zm_server_throttle::server_safe_ground_trace("poi_trace", 10, (self.origin + rotated_forward) + vectorscale((0, 0, 1), 100));
 		}
 		if(!isdefined(pos))
 		{
@@ -1084,7 +1084,7 @@ function generated_radius_attract_positions(forward, offset, num_positions, attr
 		{
 			if(isdefined(self) && isdefined(self.origin))
 			{
-				if(self.origin[2] >= pos[2] - 1 && self.origin[2] - pos[2] <= 150)
+				if(self.origin[2] >= (pos[2] - 1) && (self.origin[2] - pos[2]) <= 150)
 				{
 					pos_array = [];
 					pos_array[0] = pos;
@@ -1962,7 +1962,7 @@ function function_c52e1749(origin, players)
 				{
 					if(isdefined(level.var_cd24b30))
 					{
-						if(distance2dsquared(position, goalpos) < 16 * 16 && abs(position[2] - goalpos[2]) <= level.var_cd24b30)
+						if(distance2dsquared(position, goalpos) < (16 * 16) && (abs(position[2] - goalpos[2])) <= level.var_cd24b30)
 						{
 							closestplayer = players[index];
 						}
@@ -2266,7 +2266,7 @@ function get_number_of_valid_players()
 */
 function in_revive_trigger()
 {
-	if(isdefined(self.rt_time) && self.rt_time + 100 >= gettime())
+	if(isdefined(self.rt_time) && (self.rt_time + 100) >= gettime())
 	{
 		return self.in_rt_cached;
 	}
@@ -2997,8 +2997,8 @@ function fake_physicslaunch(target_pos, power)
 	dist = distance(start_pos, target_pos);
 	time = dist / power;
 	delta = target_pos - start_pos;
-	drop = 0.5 * gravity * time * time;
-	velocity = (delta[0] / time, delta[1] / time, delta[2] - drop / time);
+	drop = (0.5 * gravity) * (time * time);
+	velocity = (delta[0] / time, delta[1] / time, (delta[2] - drop) / time);
 	/#
 		level thread draw_line_ent_to_pos(self, target_pos);
 	#/
@@ -3139,7 +3139,7 @@ function play_sound_at_pos(ref, pos, ent)
 	if(!isdefined(level.zombie_sounds[ref]))
 	{
 		/#
-			assertmsg("" + ref + "");
+			assertmsg(("" + ref) + "");
 		#/
 		return;
 	}
@@ -3173,7 +3173,7 @@ function play_sound_on_ent(ref)
 	if(!isdefined(level.zombie_sounds[ref]))
 	{
 		/#
-			assertmsg("" + ref + "");
+			assertmsg(("" + ref) + "");
 		#/
 		return;
 	}
@@ -3202,7 +3202,7 @@ function play_loopsound_on_ent(ref)
 	if(!isdefined(level.zombie_sounds[ref]))
 	{
 		/#
-			assertmsg("" + ref + "");
+			assertmsg(("" + ref) + "");
 		#/
 		return;
 	}
@@ -3326,8 +3326,8 @@ function drawcylinder(pos, rad, height)
 		curheight = height;
 		for(r = 0; r < 20; r++)
 		{
-			theta = r / 20 * 360;
-			theta2 = r + 1 / 20 * 360;
+			theta = (r / 20) * 360;
+			theta2 = ((r + 1) / 20) * 360;
 			line(pos + (cos(theta) * currad, sin(theta) * currad, 0), pos + (cos(theta2) * currad, sin(theta2) * currad, 0));
 			line(pos + (cos(theta) * currad, sin(theta) * currad, curheight), pos + (cos(theta2) * currad, sin(theta2) * currad, curheight));
 			line(pos + (cos(theta) * currad, sin(theta) * currad, 0), pos + (cos(theta) * currad, sin(theta) * currad, curheight));
@@ -3368,7 +3368,7 @@ function debug_attack_spots_taken()
 				}
 				circle(self.attack_spots[i], 12, (0, 1, 0), 0, 1, 1);
 			}
-			msg = "" + count + "" + self.attack_spots_taken.size;
+			msg = (("" + count) + "") + self.attack_spots_taken.size;
 			print3d(self.origin, msg);
 		}
 	#/
@@ -3387,7 +3387,7 @@ function float_print3d(msg, time)
 {
 	/#
 		self endon(#"death");
-		time = gettime() + time * 1000;
+		time = gettime() + (time * 1000);
 		offset = vectorscale((0, 0, 1), 72);
 		while(gettime() < time)
 		{
@@ -3410,10 +3410,10 @@ function float_print3d(msg, time)
 function do_player_vo(snd, variation_count)
 {
 	index = get_player_index(self);
-	sound = "zmb_vox_plr_" + index + "_" + snd;
+	sound = (("zmb_vox_plr_" + index) + "_") + snd;
 	if(isdefined(variation_count))
 	{
-		sound = sound + "_" + randomintrange(0, variation_count);
+		sound = (sound + "_") + randomintrange(0, variation_count);
 	}
 	if(!isdefined(level.player_is_speaking))
 	{
@@ -3609,7 +3609,7 @@ function get_current_zone(return_zone = 0)
 		var_3e5dca65 = self.origin;
 		if(isplayer(self))
 		{
-			if(isdefined(self.last_valid_position) && distancesquared(self.origin, self.last_valid_position) < 32 * 32)
+			if(isdefined(self.last_valid_position) && distancesquared(self.origin, self.last_valid_position) < (32 * 32))
 			{
 				var_3e5dca65 = self.last_valid_position;
 			}
@@ -3770,7 +3770,7 @@ function shock_onpain()
 function shock_onexplosion(damage, shocktype, shocklight)
 {
 	time = 0;
-	scaled_damage = 100 * damage / self.maxhealth;
+	scaled_damage = (100 * damage) / self.maxhealth;
 	if(scaled_damage >= 90)
 	{
 		time = 4;
@@ -4138,7 +4138,7 @@ function should_watch_for_emp()
 */
 function groundpos(origin)
 {
-	return bullettrace(origin, origin + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+	return bullettrace(origin, origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 }
 
 /*
@@ -4152,7 +4152,7 @@ function groundpos(origin)
 */
 function groundpos_ignore_water(origin)
 {
-	return bullettrace(origin, origin + vectorscale((0, 0, -1), 100000), 0, self, 1)[#"position"];
+	return bullettrace(origin, origin + (vectorscale((0, 0, -1), 100000)), 0, self, 1)[#"position"];
 }
 
 /*
@@ -4166,7 +4166,7 @@ function groundpos_ignore_water(origin)
 */
 function groundpos_ignore_water_new(origin)
 {
-	return groundtrace(origin, origin + vectorscale((0, 0, -1), 100000), 0, self, 1)[#"position"];
+	return groundtrace(origin, origin + (vectorscale((0, 0, -1), 100000)), 0, self, 1)[#"position"];
 }
 
 /*
@@ -4421,7 +4421,7 @@ function pick_up()
 */
 function function_ab9a9770()
 {
-	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + vectorscale((0, 0, -1), 100), 0, self);
+	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(s_trace[#"entity"]) && s_trace[#"entity"] ismovingplatform())
 	{
 		return 1;
@@ -4440,7 +4440,7 @@ function function_ab9a9770()
 */
 function function_52046128()
 {
-	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + vectorscale((0, 0, -1), 100), 0, self);
+	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(s_trace[#"entity"]))
 	{
 		return s_trace[#"entity"];
@@ -4725,7 +4725,7 @@ function track_players_intersection_tracker()
 			{
 				if(isdefined(var_e42ab7b4.maxhealth) && var_e42ab7b4.maxhealth > 0)
 				{
-					n_damage = var_e42ab7b4.maxhealth / 3 + 1;
+					n_damage = (var_e42ab7b4.maxhealth / 3) + 1;
 				}
 				else
 				{
@@ -5208,7 +5208,7 @@ function general_vox_timer(timer, type)
 {
 	level endon(#"end_game");
 	/#
-		println("" + type + "" + timer + "");
+		println(((("" + type) + "") + timer) + "");
 	#/
 	while(timer > 0)
 	{
@@ -5217,7 +5217,7 @@ function general_vox_timer(timer, type)
 	}
 	level.votimer[type] = timer;
 	/#
-		println("" + type + "" + timer + "");
+		println(((("" + type) + "") + timer) + "");
 	#/
 }
 
@@ -5282,7 +5282,7 @@ function set_demo_intermission_point()
 	{
 		location = level.default_start_location;
 	}
-	match_string = level.scr_zm_ui_gametype + "_" + location;
+	match_string = (level.scr_zm_ui_gametype + "_") + location;
 	for(i = 0; i < spawnpoints.size; i++)
 	{
 		if(isdefined(spawnpoints[i].script_string))
@@ -6830,7 +6830,7 @@ function function_4a25b584(v_start_pos, var_487ba56d, n_radius = 512, b_randomiz
 {
 	level endon(#"end_game");
 	var_bf08dccd = [];
-	v_start_pos = groundtrace(v_start_pos + vectorscale((0, 0, 1), 8), v_start_pos + vectorscale((0, 0, -1), 100000), 0, undefined)[#"position"];
+	v_start_pos = groundtrace(v_start_pos + vectorscale((0, 0, 1), 8), v_start_pos + (vectorscale((0, 0, -1), 100000)), 0, undefined)[#"position"];
 	if(isdefined(var_21aae2c6))
 	{
 		s_result = positionquery_source_navigation(var_21aae2c6, 32, n_radius, n_half_height, 16, 1, 32);
@@ -7096,7 +7096,7 @@ function function_7618c8ef(var_6e4c63cc = 0.0667)
 			n_damage_multiplier = n_damage_multiplier + 0.75;
 		}
 	}
-	var_16e6b8ea = int(self.maxhealth * var_6e4c63cc * n_damage_multiplier);
+	var_16e6b8ea = int((self.maxhealth * var_6e4c63cc) * n_damage_multiplier);
 	return var_16e6b8ea;
 }
 

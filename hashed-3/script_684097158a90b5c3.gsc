@@ -498,11 +498,11 @@ function function_c251d29f(var_dbce0c44)
 	n_player_count = zm_utility::function_a2541519(level.players.size);
 	if(n_player_count == 1)
 	{
-		var_1797c23a = 1 + max(0, floor(level.round_number - level.var_15aa32df / 4));
+		var_1797c23a = 1 + (max(0, floor((level.round_number - level.var_15aa32df) / 4)));
 	}
 	else
 	{
-		var_1797c23a = 1 + max(0, floor(level.round_number - level.var_15aa32df / 3));
+		var_1797c23a = 1 + (max(0, floor((level.round_number - level.var_15aa32df) / 3)));
 	}
 	var_2506688 = (var_1797c23a > 8 ? var_1797c23a * 0.75 : max(var_1797c23a - 3, 0));
 	return function_21a3a673(int(var_2506688), int(min(var_8cf00d40, var_1797c23a)));

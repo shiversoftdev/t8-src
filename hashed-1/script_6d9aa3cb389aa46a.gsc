@@ -446,21 +446,21 @@ function hackertooltargetloop(weapon)
 			}
 			if(self.hackertoollostsightlinetime == 0)
 			{
-				self.hackertoollocktimeelapsed = self.hackertoollocktimeelapsed + 0.1 * hackingtimescale(self.hackertooltarget);
-				hackpercentage = self.hackertoollocktimeelapsed / lockontime * 100;
+				self.hackertoollocktimeelapsed = self.hackertoollocktimeelapsed + (0.1 * hackingtimescale(self.hackertooltarget));
+				hackpercentage = (self.hackertoollocktimeelapsed / lockontime) * 100;
 				self setweaponhackpercent(weapon, hackpercentage);
 				heatseekingmissile::setfriendlyflags(weapon, self.hackertooltarget);
 			}
 			else
 			{
-				self.hackertoollocktimeelapsed = self.hackertoollocktimeelapsed - 0.1 * hackingtimenolineofsightscale(self.hackertooltarget);
+				self.hackertoollocktimeelapsed = self.hackertoollocktimeelapsed - (0.1 * hackingtimenolineofsightscale(self.hackertooltarget));
 				if(self.hackertoollocktimeelapsed < 0)
 				{
 					self.hackertoollocktimeelapsed = 0;
 					self clearhackertarget(weapon, 0, 0);
 					continue;
 				}
-				hackpercentage = self.hackertoollocktimeelapsed / lockontime * 100;
+				hackpercentage = (self.hackertoollocktimeelapsed / lockontime) * 100;
 				self setweaponhackpercent(weapon, hackpercentage);
 				heatseekingmissile::setfriendlyflags(weapon, self.hackertooltarget);
 			}
@@ -714,7 +714,7 @@ function hackingtimescale(target)
 			hackertooldebugtext = getdvarint(#"hackertooldebugtext", 0);
 			if(hackertooldebugtext)
 			{
-				print3d(target.origin, "" + scale + "" + radiusinner + "" + radiusouter, (0, 0, 0), 1, hackertooldebugtext, 2);
+				print3d(target.origin, (((("" + scale) + "") + radiusinner) + "") + radiusouter, (0, 0, 0), 1, hackertooldebugtext, 2);
 			}
 			/#
 				assert(hacktime > 0);

@@ -181,7 +181,7 @@ function function_7a1e21a9(v_loc)
 		n_y_offset = n_y_offset * -1;
 	}
 	v_loc = v_loc + (n_x_offset, n_y_offset, 0);
-	trace = bullettrace(v_loc + vectorscale((0, 0, 1), 40), v_loc + vectorscale((0, 0, -1), 150), 0, undefined);
+	trace = bullettrace(v_loc + vectorscale((0, 0, 1), 40), v_loc + (vectorscale((0, 0, -1), 150)), 0, undefined);
 	if(trace[#"fraction"] < 1)
 	{
 		v_loc = trace[#"position"];

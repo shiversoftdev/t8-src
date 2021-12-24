@@ -315,7 +315,7 @@ function gadget_health_regen_off(slot, weapon)
 		{
 			var_d9dbb072 = weapon.gadget_powermax / var_406dcd04;
 		}
-		if(int(var_d9dbb072 * 1000) + self.var_eedfcc6e <= gettime() + 100)
+		if(((int(var_d9dbb072 * 1000)) + self.var_eedfcc6e) <= (gettime() + 100))
 		{
 			function_34daf34a(slot, weapon);
 		}
@@ -410,7 +410,7 @@ function enable_healing(slot, weapon, player)
 		{
 			heal_ammount = self.var_66cb03ad;
 		}
-		self.heal.rate = heal_ammount / float(weapon.var_4465ef1e) / 1000;
+		self.heal.rate = heal_ammount / (float(weapon.var_4465ef1e) / 1000);
 	}
 	else
 	{

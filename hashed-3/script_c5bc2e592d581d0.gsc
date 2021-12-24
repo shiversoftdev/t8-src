@@ -146,17 +146,17 @@ private function function_3e6c9e50(weapon)
 */
 private function function_48d6c189(weapon)
 {
-	var_f8e2456f = weapon.clipsize * weapon.firetime + weapon.reloadtime;
+	var_f8e2456f = (weapon.clipsize * weapon.firetime) + weapon.reloadtime;
 	if(isdefined(weapon.firetype) && weapon.firetype == #"hash_74e162e14a20482b")
 	{
-		var_f8e2456f = var_f8e2456f + weapon.clipsize * 0.5;
+		var_f8e2456f = var_f8e2456f + (weapon.clipsize * 0.5);
 	}
 	if(var_f8e2456f <= 0)
 	{
 		return 0;
 	}
 	var_f01cee59 = 1 / var_f8e2456f;
-	var_2a27ca05 = weapon.clipsize * function_5af8e31c(weapon) * function_3e6c9e50(weapon);
+	var_2a27ca05 = (weapon.clipsize * function_5af8e31c(weapon)) * function_3e6c9e50(weapon);
 	damagepersecond = var_2a27ca05 * var_f01cee59;
 	return damagepersecond;
 }
@@ -215,7 +215,7 @@ private function function_8cfcffa3(bot, weapon, ammo = undefined)
 	{
 		return 0;
 	}
-	return damagepersecond * 2 + var_688479c * 0.05;
+	return (damagepersecond * 2) + (var_688479c * 0.05);
 }
 
 /*
@@ -400,10 +400,10 @@ private function function_e0bf989(planner, params)
 private function function_14c67eb3(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	/#
-		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), "" + "" + "");
+		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), ("" + "") + "");
 	#/
 	params = function_98118579(planner);
 	if(params.bots.size <= 0)
@@ -441,7 +441,7 @@ private function function_14c67eb3(planner, constants)
 			{
 				cost = [[level._custom_perks[perk].cost]]();
 			}
-			if(cost > params.var_3ff64dd6 || cost / params.var_3ff64dd6 > constants[#"hash_387e0c5db2788b7f"])
+			if(cost > params.var_3ff64dd6 || (cost / params.var_3ff64dd6) > constants[#"hash_387e0c5db2788b7f"])
 			{
 				continue;
 			}
@@ -533,10 +533,10 @@ private function function_e442b780(planner, params)
 private function function_2af9b775(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	/#
-		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), "" + "" + "");
+		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), ("" + "") + "");
 	#/
 	params = function_98118579(planner);
 	if(params.bots.size <= 0)
@@ -559,7 +559,7 @@ private function function_2af9b775(planner, constants)
 				recordsphere(var_a1cd9f8e[#"origin"], 4, (1, 0.5, 0), "");
 			}
 		#/
-		if(isdefined(var_a1cd9f8e) && var_a1cd9f8e[#"cost"] <= params.var_3ff64dd6 && var_a1cd9f8e[#"cost"] / params.var_3ff64dd6 <= constants[#"hash_387e0c5db2788b7f"])
+		if(isdefined(var_a1cd9f8e) && var_a1cd9f8e[#"cost"] <= params.var_3ff64dd6 && (var_a1cd9f8e[#"cost"] / params.var_3ff64dd6) <= constants[#"hash_387e0c5db2788b7f"])
 		{
 			closeenough = 1;
 			foreach(botposition in params.botpositions)
@@ -688,10 +688,10 @@ private function function_73f656f5(planner, params)
 private function function_e057582f(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	/#
-		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), "" + "" + "");
+		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), ("" + "") + "");
 	#/
 	params = function_98118579(planner);
 	if(params.bots.size <= 0)
@@ -707,7 +707,7 @@ private function function_e057582f(planner, constants)
 	}
 	foreach(var_a0633d6d in chests)
 	{
-		if(isdefined(var_a0633d6d) && var_a0633d6d[#"cost"] <= params.var_3ff64dd6 && var_a0633d6d[#"cost"] / params.var_3ff64dd6 <= constants[#"hash_387e0c5db2788b7f"])
+		if(isdefined(var_a0633d6d) && var_a0633d6d[#"cost"] <= params.var_3ff64dd6 && (var_a0633d6d[#"cost"] / params.var_3ff64dd6) <= constants[#"hash_387e0c5db2788b7f"])
 		{
 			closeenough = 1;
 			foreach(botposition in params.botpositions)
@@ -860,7 +860,7 @@ private function function_29e16403(planner, params)
 private function function_4f6a626d(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	params = function_98118579(planner);
 	if(params.bots.size <= 0)
@@ -1005,7 +1005,7 @@ private function function_6e8fe489(planner, params)
 private function function_557051df(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	params = function_98118579(planner);
 	if(params.bots.size <= 0)
@@ -1152,13 +1152,13 @@ private function function_6fe73720(planner, params)
 private function function_393b9c76(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	/#
-		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), "" + "" + "");
+		assert(isint(constants[#"hash_387e0c5db2788b7f"]) || isfloat(constants[#"hash_387e0c5db2788b7f"]), ("" + "") + "");
 	#/
 	/#
-		assert(isint(constants[#"hash_357612272d0dca05"]) || isfloat(constants[#"hash_357612272d0dca05"]), "" + "" + "");
+		assert(isint(constants[#"hash_357612272d0dca05"]) || isfloat(constants[#"hash_357612272d0dca05"]), ("" + "") + "");
 	#/
 	var_66c1c955 = isdefined(constants[#"hash_4149860c20496820"]) && constants[#"hash_4149860c20496820"];
 	var_45bdcccb = isdefined(constants[#"hash_5011e8f2767fd1f"]) && constants[#"hash_5011e8f2767fd1f"];
@@ -1180,7 +1180,7 @@ private function function_393b9c76(planner, constants)
 	}
 	foreach(var_df2f03d1 in wallbuys)
 	{
-		if(isdefined(var_df2f03d1) && var_df2f03d1[#"cost"] <= params.var_3ff64dd6 && var_df2f03d1[#"cost"] / params.var_3ff64dd6 <= constants[#"hash_387e0c5db2788b7f"])
+		if(isdefined(var_df2f03d1) && var_df2f03d1[#"cost"] <= params.var_3ff64dd6 && (var_df2f03d1[#"cost"] / params.var_3ff64dd6) <= constants[#"hash_387e0c5db2788b7f"])
 		{
 			closeenough = 1;
 			foreach(botposition in params.botpositions)
@@ -1206,7 +1206,7 @@ private function function_393b9c76(planner, constants)
 	foreach(var_df2f03d1 in var_8c60fdb3)
 	{
 		weapon = var_df2f03d1[#"weapon"];
-		if(params.bots[0] getammocount(weapon) >= weapon.startammo * 0.5)
+		if(params.bots[0] getammocount(weapon) >= (weapon.startammo * 0.5))
 		{
 			continue;
 		}
@@ -1485,7 +1485,7 @@ function function_6e494c0e()
 function function_fc9f37f4(trigger)
 {
 	/#
-		heightoffset = (0, 0, 72 * -1 / 2);
+		heightoffset = (0, 0, (72 * -1) / 2);
 		var_e790dc87 = (15.1875, 15.1875, 72 / 2);
 		return ai::function_470c0597(trigger.origin + heightoffset, trigger.maxs + var_e790dc87, trigger.angles);
 	#/

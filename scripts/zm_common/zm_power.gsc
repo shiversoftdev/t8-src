@@ -682,7 +682,7 @@ function add_local_power(origin, radius)
 {
 	localpower = spawnstruct();
 	/#
-		println("" + origin + "" + radius + "");
+		println(((("" + origin) + "") + radius) + "");
 	#/
 	localpower.origin = origin;
 	localpower.radius = radius;
@@ -740,7 +740,7 @@ function move_local_power(localpower, origin)
 function end_local_power(localpower)
 {
 	/#
-		println("" + localpower.origin + "" + localpower.radius + "");
+		println(((("" + localpower.origin) + "") + localpower.radius) + "");
 	#/
 	if(isdefined(localpower.enabled_list))
 	{
@@ -1232,7 +1232,7 @@ function perk_range(delta, origin, radius)
 function perk_power_on(origin, radius)
 {
 	/#
-		println("" + self.target zm_perks::getvendingmachinenotify() + "");
+		println(("" + self.target zm_perks::getvendingmachinenotify()) + "");
 	#/
 	level notify(self.target zm_perks::getvendingmachinenotify() + "_on");
 	zm_perks::perk_unpause(self.target.script_noteworthy);
@@ -1258,7 +1258,7 @@ function perk_power_off(origin, radius)
 		}
 	}
 	/#
-		println("" + self.target.script_noteworthy + "");
+		println(("" + self.target.script_noteworthy) + "");
 	#/
 	self.target notify(#"death");
 	self.target thread zm_perks::vending_trigger_think();

@@ -625,7 +625,7 @@ function function_6d45375a(weapon)
 	n_multiplier = 1;
 	if(isdefined(self.var_2843d3cc) && isdefined(self.var_2843d3cc[weapon]))
 	{
-		n_multiplier = n_multiplier + 2 - 1 * self.var_2843d3cc[weapon] / 4;
+		n_multiplier = n_multiplier + (2 - 1) * (self.var_2843d3cc[weapon] / 4);
 	}
 	return n_multiplier;
 }

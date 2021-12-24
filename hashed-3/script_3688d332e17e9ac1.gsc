@@ -170,7 +170,7 @@ private function function_78ccee50(params)
 	while(self isfiring() && self.var_9979ffd6 > 0)
 	{
 		waitframe(1);
-		self.var_9979ffd6 = self.var_9979ffd6 - float(function_60d95f53()) / 1000;
+		self.var_9979ffd6 = self.var_9979ffd6 - (float(function_60d95f53()) / 1000);
 	}
 	self function_b33ed7bd();
 }

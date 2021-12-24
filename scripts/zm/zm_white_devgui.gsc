@@ -138,7 +138,7 @@ private function devgui()
 				}
 				case "hash_429bdbdfaae45ca7":
 				{
-					iprintlnbold("" + level.var_276bd207[0] + level.var_276bd207[1] + level.var_276bd207[2] + level.var_276bd207[3]);
+					iprintlnbold(((("" + level.var_276bd207[0]) + level.var_276bd207[1]) + level.var_276bd207[2]) + level.var_276bd207[3]);
 					break;
 				}
 				case "hash_67d502f654392103":

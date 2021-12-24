@@ -1038,7 +1038,7 @@ function function_39f9d433()
 	e_player.var_d5d10814 = undefined;
 	wait(0.1);
 	n_cost = killstreaks::get_killstreak_momentum_cost(e_player, level.var_b4a06c5b);
-	n_max_zombies = n_cost / 50 - 6;
+	n_max_zombies = (n_cost / 50) - 6;
 	level thread function_bb44f289(10, n_max_zombies, 1);
 	level.var_a86320e8 = gettime() / 1000;
 	while(!(isdefined(e_player.var_d5d10814) && e_player.var_d5d10814))
@@ -1318,7 +1318,7 @@ function function_79d4c106()
 	e_player thread namespace_d82263d5::function_1be7e4f(#"ray_gun");
 	level thread function_bb44f289(10, 19, 0);
 	wait(0.5);
-	var_6256b329 = gettime() / 1000 + 40;
+	var_6256b329 = (gettime() / 1000) + 40;
 	while(level.var_6f71c916)
 	{
 		n_time = gettime() / 1000;
@@ -1636,7 +1636,7 @@ function function_9b0a398a(s_loc)
 		if(isdefined(self.var_59943abb) && self.var_59943abb && !var_3a9de7bb)
 		{
 			v_dir = anglestoforward(self.s_path_end.angles);
-			v_pos = self.origin + v_dir * 100;
+			v_pos = self.origin + (v_dir * 100);
 			self.var_2925fedc = v_pos;
 			var_3a9de7bb = 1;
 		}

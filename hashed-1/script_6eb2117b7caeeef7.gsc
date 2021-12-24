@@ -121,8 +121,8 @@ function function_6c288c45(spawnorigin, spawnangles)
 	turretvehicle.use_non_teambased_enemy_selection = 1;
 	turretvehicle.waittill_turret_on_target_delay = 0.25;
 	turretvehicle.ignore_vehicle_underneath_splash_scalar = 1;
-	turretvehicle.killstreak_duration = float((isdefined(bundle.ksduration) ? bundle.ksduration : int(120 * 1000))) / 1000;
-	turretvehicle.killstreak_end_time = gettime() + int(turretvehicle.killstreak_duration * 1000);
+	turretvehicle.killstreak_duration = (float((isdefined(bundle.ksduration) ? bundle.ksduration : int(120 * 1000)))) / 1000;
+	turretvehicle.killstreak_end_time = gettime() + (int(turretvehicle.killstreak_duration * 1000));
 	turretvehicle turretsetontargettolerance(0, 15);
 	turretvehicle.soundmod = "mini_turret";
 	turretvehicle.var_63d65a8d = "circle";
@@ -231,7 +231,7 @@ function function_1c601b99()
 function onturretdamage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	turretvehicle = self;
-	empdamage = int(idamage + turretvehicle.maxhealth * 1 + 0.5);
+	empdamage = int((idamage + (turretvehicle.maxhealth * 1)) + 0.5);
 	idamage = turretvehicle killstreaks::ondamageperweapon("ultimate_turret", eattacker, idamage, idflags, smeansofdeath, weapon, turretvehicle.maxhealth, undefined, turretvehicle.maxhealth * 0.4, undefined, empdamage, undefined, 1, 1, 1);
 	turretvehicle.damagetaken = turretvehicle.damagetaken + idamage;
 	if(isdefined(einflictor) && isvehicle(einflictor) && issentient(einflictor))
@@ -397,6 +397,7 @@ function function_fefefcc4()
 	turretvehicle endon(#"death", #"hash_6f331ac7d2a40217", #"end_turret_scanning");
 	wait(0.8);
 	bundle = get_killstreak_bundle();
+	loc_000014E0:
 	var_beeadda8 = (isdefined(bundle.var_5fa88c50) ? bundle.var_5fa88c50 : 300);
 	while(true)
 	{
@@ -461,7 +462,7 @@ function function_9d86d74c(enemy)
 	shoot_at_pos = enemy getshootatpos(self);
 	var_6551f24e = anglestoforward(fire_angles);
 	target_offset = shoot_at_pos - fire_origin;
-	if(lengthsquared(target_offset) < 22 * 22 && vectordot(var_6551f24e, target_offset) < 0)
+	if(lengthsquared(target_offset) < (22 * 22) && vectordot(var_6551f24e, target_offset) < 0)
 	{
 		return 1;
 	}
@@ -485,7 +486,7 @@ function function_2034705c(bundle)
 	{
 		var_c112caa0 = int((isdefined(bundle.var_33561c46) ? bundle.var_33561c46 : 3) * 1000);
 	}
-	return gettime() < var_351b3c55 + var_c112caa0;
+	return gettime() < (var_351b3c55 + var_c112caa0);
 }
 
 /*
@@ -617,7 +618,7 @@ function turretscanning()
 			if(!isdefined(turretvehicle.turret_target) || turretvehicle.turret_target != turretvehicle.enemy)
 			{
 				turretvehicle.turret_target = turretvehicle.enemy;
-				if(!isdefined(turretvehicle.var_2b8e6720) || turretvehicle.var_2b8e6720 + 5000 < gettime())
+				if(!isdefined(turretvehicle.var_2b8e6720) || (turretvehicle.var_2b8e6720 + 5000) < gettime())
 				{
 					turretvehicle playsoundtoteam("mpl_ultimate_turret_lockon", turretvehicle.team);
 					turretvehicle playsoundtoteam("mpl_ultimate_turret_lockon_enemy", util::getotherteam(turretvehicle.team));

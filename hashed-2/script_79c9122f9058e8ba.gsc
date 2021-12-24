@@ -331,7 +331,7 @@ private function function_c12f7b53()
 	self.var_b467f3a1 = &function_201862b;
 	self.deathfunction = &zm_spawner::zombie_death_animscript;
 	level thread zm_spawner::zombie_death_event(self);
-	self.var_2e5407fc = gettime() + int(self ai::function_9139c839().var_e61d73b0 * 1000);
+	self.var_2e5407fc = gettime() + (int(self ai::function_9139c839().var_e61d73b0 * 1000));
 	/#
 		self thread function_cd801084();
 	#/
@@ -357,7 +357,7 @@ private function function_8a2cb5ed(params)
 		{
 			attackerdistance = distancesquared(params.eattacker.origin, self.origin);
 			isexplosive = isinarray(array("MOD_CRUSH", "MOD_GRENADE", "MOD_GRENADE_SPLASH", "MOD_PROJECTILE", "MOD_PROJECTILE_SPLASH", "MOD_EXPLOSIVE"), params.smeansofdeath);
-			iscloseexplosive = distancesquared(params.einflictor.origin, self.origin) <= 300 * 300;
+			iscloseexplosive = distancesquared(params.einflictor.origin, self.origin) <= (300 * 300);
 			if(isexplosive && iscloseexplosive)
 			{
 				gibserverutils::annihilate(self);
@@ -1003,7 +1003,7 @@ private function function_7d874447(entity)
 {
 	var_e47d78cb = spawnstruct();
 	blackboard::addblackboardevent("nfrtu_summon", var_e47d78cb, randomintrange(50000, 100000));
-	entity.var_2e5407fc = gettime() + int(entity ai::function_9139c839().var_e61d73b0 * 1000);
+	entity.var_2e5407fc = gettime() + (int(entity ai::function_9139c839().var_e61d73b0 * 1000));
 	entity clientfield::set("summon_nfrtu", 1);
 }
 
@@ -1018,7 +1018,7 @@ private function function_7d874447(entity)
 */
 private function function_7fef620b(entity)
 {
-	entity.var_2e5407fc = gettime() + int(entity ai::function_9139c839().var_e61d73b0 * 1000);
+	entity.var_2e5407fc = gettime() + (int(entity ai::function_9139c839().var_e61d73b0 * 1000));
 	entity clientfield::set("summon_nfrtu", 0);
 }
 
@@ -1061,7 +1061,7 @@ private function function_76d6482e(entity)
 		}
 		var_c9528359 = int(max(0, min(3, a_ai_zombies.size)));
 		/#
-			iprintln("" + var_c9528359 + "");
+			iprintln(("" + var_c9528359) + "");
 		#/
 		for(i = 0; i < var_c9528359; i++)
 		{
@@ -1071,7 +1071,7 @@ private function function_76d6482e(entity)
 	if(var_c9528359)
 	{
 		/#
-			iprintln("" + var_c9528359 + "");
+			iprintln(("" + var_c9528359) + "");
 		#/
 		entity thread function_13b48cdd(var_c9528359, queryresult);
 	}

@@ -641,7 +641,7 @@ function cannon_effect()
 	if(!isdefined(level._effect[self.v[#"fxid"]]))
 	{
 		/#
-			assertmsg("" + self.v[#"fxid"] + "");
+			assertmsg(("" + self.v[#"fxid"]) + "");
 		#/
 		return;
 	}

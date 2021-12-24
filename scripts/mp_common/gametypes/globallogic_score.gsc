@@ -176,7 +176,7 @@ function function_78e7b549(scale, type, var_7da9f0c)
 {
 	var_f6ecfcf0 = self function_61f303f5(var_7da9f0c);
 	spm = self rank::getspm();
-	playerscore = int(scale * var_7da9f0c / 60 * spm * var_f6ecfcf0 / var_7da9f0c);
+	playerscore = int((scale * ((var_7da9f0c / 60) * spm)) * (var_f6ecfcf0 / var_7da9f0c));
 	self thread givematchbonus(type, playerscore);
 	self.matchbonus = playerscore;
 }
@@ -494,7 +494,7 @@ function roundtonearestfive(score)
 	{
 		return score - rounding;
 	}
-	return score + 5 - rounding;
+	return score + (5 - rounding);
 }
 
 /*
@@ -543,7 +543,7 @@ function giveplayermomentumnotification(score, label, descvalue, countstowardram
 	score = score;
 	if(score > 0 && self hasperk(#"specialty_earnmoremomentum"))
 	{
-		score = roundtonearestfive(int(score * getdvarfloat(#"perk_killstreakmomentummultiplier", 0) + 0.5));
+		score = roundtonearestfive(int((score * getdvarfloat(#"perk_killstreakmomentummultiplier", 0)) + 0.5));
 	}
 	if(isalive(self))
 	{
@@ -621,7 +621,7 @@ function resetplayermomentumonspawn()
 		}
 		if(var_a4e87ee3)
 		{
-			new_momentum = int(self.pers[#"momentum"] * 1 - math::clamp(self function_3ef59ab3(), 0, 1));
+			new_momentum = int(self.pers[#"momentum"] * (1 - math::clamp(self function_3ef59ab3(), 0, 1)));
 			_setplayermomentum(self, new_momentum);
 			self thread resetscorechain();
 		}
@@ -936,12 +936,12 @@ function _setplayerscore(player, score, var_e21e8076, var_53c3aa0b)
 	{
 		if(isarenamode())
 		{
-			amount = var_e21e8076 - player.pers[#"hash_6061882505788180"] + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"arenavalue");
+			amount = (var_e21e8076 - player.pers[#"hash_6061882505788180"]) + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"arenavalue");
 			player stats::set_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"arenavalue", amount);
 		}
 		else
 		{
-			amount = var_e21e8076 - player.pers[#"hash_6061882505788180"] + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"statvalue");
+			amount = (var_e21e8076 - player.pers[#"hash_6061882505788180"]) + player stats::get_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"statvalue");
 			player stats::set_stat(#"playerstatsbygametype", level.var_12323003, #"objective_score", #"statvalue", amount);
 		}
 		player.pers[#"hash_6061882505788180"] = var_e21e8076;
@@ -1263,7 +1263,7 @@ function setplayermomentumdebug()
 				}
 				if(isdefined(player.killstreak))
 				{
-					_setplayermomentum(player, int(2000 * momentumpercent / 100));
+					_setplayermomentum(player, int(2000 * (momentumpercent / 100)));
 				}
 			}
 		}
@@ -2425,7 +2425,7 @@ function givekillstats(smeansofdeath, weapon, evictim, var_e7a369ea)
 		{
 			evictim recordkillmodifier("headshot");
 		}
-		if(attacker.headshots % 5 == 0)
+		if((attacker.headshots % 5) == 0)
 		{
 			self contracts::function_a54e2068(#"hash_ca75e54eb5e5ef8");
 		}
@@ -2550,7 +2550,7 @@ function function_b1a3b359(killedplayer, damagedone, weapon, assist_level = unde
 	{
 		assist_level_value = 3;
 	}
-	assist_level = assist_level + "_" + assist_level_value * 25;
+	assist_level = (assist_level + "_") + (assist_level_value * 25);
 	self incpersstat(#"assists", 1, 1, 1);
 	self.assists = self getpersstat(#"assists");
 	if(isdefined(weapon))
@@ -2716,7 +2716,7 @@ function function_e7b4c25c(nemesis_name, value, nemesis_rank, var_15574043, neme
 			assert(isdefined(nemesis_name), "" + self.name);
 		#/
 		/#
-			assert(isstring(nemesis_name), "" + nemesis_name + "" + self.name);
+			assert(isstring(nemesis_name), (("" + nemesis_name) + "") + self.name);
 		#/
 		self.pers[#"nemesis_name"] = nemesis_name;
 		self.pers[#"nemesis_rank"] = nemesis_rank;

@@ -217,7 +217,7 @@ function function_b9934c1d()
 	playfxontag(level._effect[#"monkey_glow"], self, "tag_weapon");
 	self thread scene::play(#"hash_2b352ec1d391daaa", self);
 	self thread util::delay(6.5, "death", &function_4e61e1d);
-	var_de3026af = gettime() + int(8 * 1000);
+	var_de3026af = gettime() + (int(8 * 1000));
 	while(gettime() < var_de3026af)
 	{
 		if(!isdefined(self.var_38af96b9))

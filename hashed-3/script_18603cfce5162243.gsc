@@ -291,7 +291,7 @@ function function_4e547cfd(var_4eaa1f4c)
 	{
 		array::thread_all(level.activeplayers, &function_279e31b8, self);
 		n_frame = self function_6b9dcec(var_4eaa1f4c);
-		var_adaf2ccb = math::clamp(0.25 - n_frame * 0.05, 0.05, 0.25);
+		var_adaf2ccb = math::clamp(0.25 - (n_frame * 0.05), 0.05, 0.25);
 		if(!isdefined(var_adaf2ccb))
 		{
 			var_adaf2ccb = 0.25;
@@ -527,7 +527,7 @@ function function_7d72c6f9(var_85dcb56c)
 		wait(0.1);
 		self.var_fc63c7bc = self.var_fc63c7bc - 0.1;
 		self.var_fc63c7bc = math::clamp(self.var_fc63c7bc, 0, var_85dcb56c);
-		n_percentage = 1 - self.var_fc63c7bc / var_85dcb56c;
+		n_percentage = 1 - (self.var_fc63c7bc / var_85dcb56c);
 		n_percentage = math::clamp(n_percentage, 0.02, var_85dcb56c);
 		if(self hasperk(#"hash_36b9957a693185ea") && isdefined(self.var_849c3bcf))
 		{

@@ -98,7 +98,7 @@ function init()
 	match_string = level.scr_zm_ui_gametype;
 	if("" != location)
 	{
-		match_string = match_string + "_" + location;
+		match_string = (match_string + "_") + location;
 	}
 	match_string_plus_space = " " + match_string;
 	for(i = 0; i < spawnable_weapon_spawns.size; i++)
@@ -131,7 +131,7 @@ function init()
 	level._active_wallbuys = [];
 	for(i = 0; i < spawn_list.size; i++)
 	{
-		spawn_list[i].script_label = spawn_list[i].zombie_weapon_upgrade + "_" + spawn_list[i].origin;
+		spawn_list[i].script_label = (spawn_list[i].zombie_weapon_upgrade + "_") + spawn_list[i].origin;
 		level._active_wallbuys[spawn_list[i].script_label] = spawn_list[i];
 		numbits = 2;
 		if(isdefined(level._wallbuy_override_num_bits))
@@ -288,7 +288,7 @@ function wallbuy_callback(localclientnum, oldval, newval, bnewent, binitialsnap,
 				{
 					vec_offset = struct.models[localclientnum].parent_struct.script_vector;
 				}
-				struct.models[localclientnum].origin = struct.models[localclientnum].parent_struct.origin + anglestoright(struct.models[localclientnum].angles + vec_offset) * 8;
+				struct.models[localclientnum].origin = struct.models[localclientnum].parent_struct.origin + ((anglestoright(struct.models[localclientnum].angles + vec_offset)) * 8);
 				struct.models[localclientnum] show();
 				struct.models[localclientnum] moveto(struct.models[localclientnum].parent_struct.origin, 1);
 			}

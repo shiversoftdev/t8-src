@@ -880,7 +880,7 @@ function function_8701f84e(item_index, item_type)
 	#/
 	if(self.var_f5c0467b[item_type] != item_index)
 	{
-		self.var_b627749c = self.var_b627749c | item_type == 0 || item_type == 2 || item_type == 3 || item_type == 4 || item_type == 6;
+		self.var_b627749c = self.var_b627749c | (item_type == 0 || item_type == 2 || item_type == 3 || item_type == 4 || item_type == 6);
 		self.var_f5c0467b[item_type] = item_index;
 	}
 }
@@ -1425,7 +1425,7 @@ function function_ef064067(params, force_update)
 		self.var_a287debe = undefined;
 		self.var_228f64da thread character_customization::play_intro_and_animation(self._origin, self.var_7e5e7fa2, params.anim_intro_name, self.var_cbcee022, 0);
 	}
-	else if(isdefined(params.scene) && (params.scene !== self.var_54430cb6 || params.var_c66a4a5d !== self.var_a287debe || (isdefined(params.var_a34c858c) && params.var_a34c858c != self.var_8d2161e9) || force_update))
+	else if(isdefined(params.scene) && (params.scene !== self.var_54430cb6 || params.var_c66a4a5d !== self.var_a287debe || ((isdefined(params.var_a34c858c) && params.var_a34c858c) != self.var_8d2161e9) || force_update))
 	{
 		changed = 1;
 		[[ self ]]->function_39a68bf2(0);
@@ -2822,7 +2822,7 @@ private function update_model_rotation_for_right_stick(localclientnum, var_d0b01
 				}
 				if(abs(change) > 0.0001)
 				{
-					model.angles = (model.angles[0], absangleclamp360(model.angles[1] + change * 3), model.angles[2]);
+					model.angles = (model.angles[0], absangleclamp360(model.angles[1] + (change * 3)), model.angles[2]);
 				}
 			}
 		}
@@ -2893,7 +2893,7 @@ function setup_character_extracam_settings(localclientnum, var_d0b01271, extraca
 	if(!isdefined(camera_ent))
 	{
 		initializedextracam = 1;
-		multi_extracam::extracam_init_index(localclientnum, "character_staging_extracam" + extracam_data_struct.extracamindex + 1, extracam_data_struct.extracamindex);
+		multi_extracam::extracam_init_index(localclientnum, "character_staging_extracam" + (extracam_data_struct.extracamindex + 1), extracam_data_struct.extracamindex);
 		camera_ent = level.camera_ents[localclientnum][extracam_data_struct.extracamindex];
 	}
 	/#
@@ -2936,7 +2936,7 @@ function setup_character_extracam_settings(localclientnum, var_d0b01271, extraca
 	}
 	setextracamrenderready(extracam_data_struct.jobindex);
 	extracam_data_struct.jobindex = undefined;
-	level waittill("render_complete_" + localclientnum + "_" + extracam_data_struct.extracamindex);
+	level waittill((("render_complete_" + localclientnum) + "_") + extracam_data_struct.extracamindex);
 	if(initializedextracam)
 	{
 		multi_extracam::extracam_reset_index(localclientnum, extracam_data_struct.extracamindex);

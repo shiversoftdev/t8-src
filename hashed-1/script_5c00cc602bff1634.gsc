@@ -79,7 +79,7 @@ private function function_d00809d8(localclientnum, pos, surface, notetrack, bone
 	}
 	if(var_a34b4731 > 0)
 	{
-		n_scale = var_a34b4731 - n_dist / var_a34b4731;
+		n_scale = (var_a34b4731 - n_dist) / var_a34b4731;
 	}
 	else
 	{
@@ -238,7 +238,7 @@ private function function_ce49549a(localclientnum, oldval, newval, bnewent, bini
 	var_a34b4731 = 1000000;
 	if(var_a34b4731 > 0)
 	{
-		n_scale = var_a34b4731 - n_dist / var_a34b4731;
+		n_scale = (var_a34b4731 - n_dist) / var_a34b4731;
 	}
 	else
 	{

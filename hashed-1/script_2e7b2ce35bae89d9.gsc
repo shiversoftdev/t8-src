@@ -296,7 +296,7 @@ function function_51cbae24(params)
 		return 0;
 	}
 	dir = vectornormalize(params.endpos - params.startpos);
-	result = bullettrace(params.startpos, params.startpos + dir * 512, 0, self);
+	result = bullettrace(params.startpos, params.startpos + (dir * 512), 0, self);
 	if(result[#"surfacetype"] == "ladder")
 	{
 		return 1;
@@ -516,7 +516,7 @@ function function_b34ef250(var_f125b440, normal, dist = 0)
 			recordtext = "";
 			if(dist > 0)
 			{
-				recordtext = recordtext + "" + dist;
+				recordtext = (recordtext + "") + dist;
 			}
 			record3dtext(recordtext, var_f125b440, (1, 1, 1), "", undefined, 0.5);
 			recordsphere(var_f125b440, 3, (0, 1, 0), "", self);

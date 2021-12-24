@@ -157,7 +157,7 @@ function function_a4f516ef()
 function function_2ed2a1bb(max)
 {
 	random = randomfloat(1);
-	return random * random * random * max;
+	return ((random * random) * random) * max;
 }
 
 /*
@@ -299,7 +299,7 @@ private function function_8f2f3bcd()
 		center = level.deathcircle.origin;
 		radius = level.deathcircle.radius * 0.75;
 	}
-	goal = center + anglestoforward((0, randomint(360), 0)) * radius;
+	goal = center + (anglestoforward((0, randomint(360), 0)) * radius);
 	return goal;
 }
 

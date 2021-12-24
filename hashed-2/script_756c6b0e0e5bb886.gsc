@@ -93,7 +93,7 @@ private function function_5bab934a(struct, var_d1d733b4)
 */
 private function follow_path()
 {
-	starttime = int(floor(getservertime(0) / self.var_3dc92b90) * self.var_3dc92b90 + self.var_3dc92b90);
+	starttime = int(((floor(getservertime(0) / self.var_3dc92b90)) * self.var_3dc92b90) + self.var_3dc92b90);
 	while(getservertime(0) < starttime)
 	{
 		waitframe(1);

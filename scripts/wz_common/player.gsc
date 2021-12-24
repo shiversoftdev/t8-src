@@ -118,7 +118,7 @@ function function_cd8ee3c5()
 	waitresult = self waittill(#"explode", #"death");
 	if(waitresult._notify == #"explode")
 	{
-		trace = groundtrace(waitresult.position, waitresult.position + vectorscale((0, 0, -1), 20000), 0, self, 0);
+		trace = groundtrace(waitresult.position, waitresult.position + (vectorscale((0, 0, -1), 20000)), 0, self, 0);
 		if(isdefined(trace[#"position"]) && trace[#"surfacetype"] != #"none")
 		{
 			org = trace[#"position"];
@@ -144,7 +144,7 @@ function function_f3edce9a()
 	if(waitresult._notify == #"explode")
 	{
 		position = (isdefined(waitresult.position) ? waitresult.position : waitresult.attacker.origin);
-		trace = groundtrace(position, position + vectorscale((0, 0, -1), 20000), 0, self, 0);
+		trace = groundtrace(position, position + (vectorscale((0, 0, -1), 20000)), 0, self, 0);
 		if(isdefined(trace[#"position"]) && trace[#"surfacetype"] != #"none")
 		{
 			org = trace[#"position"];

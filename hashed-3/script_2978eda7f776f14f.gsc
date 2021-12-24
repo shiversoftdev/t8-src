@@ -507,7 +507,7 @@ private function function_4e1abe8f()
 	while(true)
 	{
 		str_zone = self zm_zonemgr::get_player_zone();
-		if(!zm_utility::is_player_valid(self) || !isdefined(str_zone) || !isdefined(level.var_eb91e07c[str_zone]) || level.round_number < level.var_eb91e07c[str_zone] + 3)
+		if(!zm_utility::is_player_valid(self) || !isdefined(str_zone) || !isdefined(level.var_eb91e07c[str_zone]) || level.round_number < (level.var_eb91e07c[str_zone] + 3))
 		{
 			wait(5);
 			continue;
@@ -642,7 +642,7 @@ private function function_e1bfb2de()
 		if(namespace_59ff1d6c::function_901b751c(#"zmpowerupsactive") && zm_utility::is_player_valid(self) && !self zm_utility::is_drinking() && (!(isdefined(var_59130748) && var_59130748)) && !self zm_laststand::is_reviving_any())
 		{
 			w_weapon = self getcurrentweapon();
-			if(self getweaponammostock(w_weapon) < self function_f09c133d(w_weapon) && self getweaponammoclip(w_weapon) <= int(self function_f09c133d(w_weapon) / 2) && !isinarray(level.var_e8ccb5b4, w_weapon))
+			if(self getweaponammostock(w_weapon) < self function_f09c133d(w_weapon) && self getweaponammoclip(w_weapon) <= (int(self function_f09c133d(w_weapon) / 2)) && !isinarray(level.var_e8ccb5b4, w_weapon))
 			{
 				if(self function_3b81466e(1) == 1)
 				{
@@ -795,8 +795,8 @@ private function function_de053460(pap_machine)
 			self switchtoweapon(var_60da4cc1);
 			if(isdefined(self.var_655c0753) && self.var_655c0753 && (!(isdefined(var_b64e889a) && var_b64e889a)))
 			{
-				new_clip = self.restore_clip + var_60da4cc1.clipsize - self.restore_clip_size;
-				new_stock = self.restore_stock + var_60da4cc1.maxammo - self.restore_max;
+				new_clip = self.restore_clip + (var_60da4cc1.clipsize - self.restore_clip_size);
+				new_stock = self.restore_stock + (var_60da4cc1.maxammo - self.restore_max);
 				self setweaponammostock(var_60da4cc1, new_stock);
 				self setweaponammoclip(var_60da4cc1, new_clip);
 			}

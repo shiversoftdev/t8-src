@@ -244,7 +244,7 @@ private function function_1802ad1e(challenge, var_2d5ebf67, var_530e040f, timeou
 	level endon(#"hash_7646638df88a3656", #"host_migration_begin");
 	self.var_e5cde66 = {#hash_530e040f:var_530e040f, #hash_2d5ebf67:var_2d5ebf67, #challenge:challenge, #timeout:timeout, #start_time:level.time};
 	self start_timer(timeout, var_2d5ebf67);
-	var_2bf2b5dd = level.time + timeout * 1000;
+	var_2bf2b5dd = level.time + (timeout * 1000);
 	while(true)
 	{
 		var_a5096cb5 = self function_2191cc5d();
@@ -387,7 +387,7 @@ private function function_ff66b979()
 			continue;
 		}
 		var_d1659cdf = var_a0328dd5 - player.var_e5cde66.start_time;
-		timeout = int(max(player.var_e5cde66.timeout - float(var_d1659cdf) / 1000, 0));
+		timeout = int(max(player.var_e5cde66.timeout - (float(var_d1659cdf) / 1000), 0));
 		player thread function_1802ad1e(player.var_e5cde66.challenge, player.var_e5cde66.var_2d5ebf67, player.var_e5cde66.var_530e040f, timeout);
 		player thread damage_watcher(0);
 	}

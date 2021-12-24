@@ -159,13 +159,13 @@ function devgui_notif_getchallengestablename(tableid)
 	/#
 		if(sessionmodeiscampaigngame())
 		{
-			return #"hash_929b58638c59880" + tableid + "";
+			return (#"hash_929b58638c59880" + tableid) + "";
 		}
 		if(sessionmodeiszombiesgame())
 		{
-			return #"hash_34a621a5800b5b4a" + tableid + "";
+			return (#"hash_34a621a5800b5b4a" + tableid) + "";
 		}
-		return #"hash_287cf26422669b76" + tableid + "";
+		return (#"hash_287cf26422669b76" + tableid) + "";
 	#/
 }
 
@@ -306,7 +306,7 @@ function notif_devgui_rank()
 				display_level = "" + display_level;
 			}
 			util::waittill_can_add_debug_command();
-			adddebugcommand(notif_rank_devgui_base + display_level + "" + "" + "" + "" + i + "");
+			adddebugcommand(((((((notif_rank_devgui_base + display_level) + "") + "") + "") + "") + i) + "");
 		}
 		waitframe(1);
 		level thread notif_devgui_rank_up_think();
@@ -456,9 +456,9 @@ function notif_devgui_gun_rank()
 			{
 				foreach(attachment, attachment_data in attachment_group[#"attachments"])
 				{
-					devgui_cmd_gun_path = notif_gun_rank_devgui_base + function_9e72a96(group_name) + "" + function_9e72a96(gun_group[gun][#"ref"]) + "" + function_9e72a96(attachment);
+					devgui_cmd_gun_path = (((notif_gun_rank_devgui_base + function_9e72a96(group_name)) + "") + function_9e72a96(gun_group[gun][#"ref"]) + "") + function_9e72a96(attachment);
 					util::waittill_can_add_debug_command();
-					adddebugcommand(devgui_cmd_gun_path + "" + "" + "" + "" + "" + attachment_data[#"xp"] + "" + "" + "" + attachment_data[#"itemindex"] + "" + "" + "" + gun_group[gun][#"itemindex"] + "" + "" + "" + attachment_data[#"rankid"] + "");
+					adddebugcommand(((((((((((((((((((devgui_cmd_gun_path + "") + "") + "") + "") + "") + attachment_data[#"xp"]) + "") + "") + "") + attachment_data[#"itemindex"]) + "") + "") + "") + gun_group[gun][#"itemindex"]) + "") + "") + "") + attachment_data[#"rankid"]) + "");
 				}
 			}
 			waitframe(1);
@@ -531,9 +531,9 @@ function notif_devgui_challenges()
 						challengetierstring = "" + challengetier;
 					}
 					name = tablelookupcolumnforrow(tablename, j, 5);
-					devgui_cmd_challenge_path = notif_challenges_devgui_base + function_9e72a96(type) + "" + function_9e72a96(name) + "" + challengetierstring + "" + challengeid;
+					devgui_cmd_challenge_path = (((((notif_challenges_devgui_base + function_9e72a96(type)) + "") + function_9e72a96(name) + "") + challengetierstring) + "") + challengeid;
 					util::waittill_can_add_debug_command();
-					adddebugcommand(devgui_cmd_challenge_path + "" + "" + "" + "" + "" + j + "" + "" + "" + i + "");
+					adddebugcommand(((((((((((devgui_cmd_challenge_path + "") + "") + "") + "") + "") + j) + "") + "") + "") + i) + "");
 					if(int(challengeid) % 10)
 					{
 						waitframe(1);

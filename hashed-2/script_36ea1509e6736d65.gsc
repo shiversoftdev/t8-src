@@ -319,7 +319,7 @@ function function_5e1138a2()
 				if(self function_91cfddc4())
 				{
 					/#
-						iprintlnbold("" + i + 1);
+						iprintlnbold("" + (i + 1));
 					#/
 					/#
 						iprintlnbold("" + "");

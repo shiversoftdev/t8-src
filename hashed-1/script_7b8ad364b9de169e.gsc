@@ -93,7 +93,7 @@ function function_9a2b3318(origin, angles, player)
 {
 	if(isdefined(level.var_5101157d.bundle.var_bc78f60e))
 	{
-		length2 = level.var_5101157d.bundle.var_bc78f60e + level.var_5101157d.bundle.maxwidth * level.var_5101157d.bundle.var_bc78f60e + level.var_5101157d.bundle.maxwidth;
+		length2 = (level.var_5101157d.bundle.var_bc78f60e + level.var_5101157d.bundle.maxwidth) * (level.var_5101157d.bundle.var_bc78f60e + level.var_5101157d.bundle.maxwidth);
 		foreach(protectedzone in level.var_5101157d.var_d6a27a84)
 		{
 			if(isdefined(protectedzone))

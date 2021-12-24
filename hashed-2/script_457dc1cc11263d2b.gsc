@@ -312,7 +312,7 @@ function function_323c6715()
 						break;
 					}
 				}
-				var_29da3a57 = var_29da3a57 + score * (isdefined(stat.var_26568428) ? stat.var_26568428 : 0);
+				var_29da3a57 = var_29da3a57 + (score * (isdefined(stat.var_26568428) ? stat.var_26568428 : 0));
 				var_6ad8c73b[var_6ad8c73b.size] = score;
 			}
 			for(index = 0; index < 3; index++)
@@ -379,7 +379,7 @@ private function function_cd851b02(stat, var_9b4eeccc, ddl)
 	else
 	{
 		score = (isdefined(self.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.var_82670522]) ? self.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.var_82670522] : 0);
-		score = score + self stats::get_stat(ddl, stat.var_82670522, #"statvalue") - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.var_82670522];
+		score = score + (self stats::get_stat(ddl, stat.var_82670522, #"statvalue") - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.var_82670522]);
 	}
 	return score;
 }
@@ -400,7 +400,7 @@ private function function_d0c02a50(stat, var_aa1fbd8c, ddl)
 		self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.var_82670522] = 0;
 	}
 	var_6fda3763 = self stats::get_stat(ddl, stat.var_82670522, #"statvalue");
-	self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.var_82670522] = self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.var_82670522] + var_6fda3763 - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.var_82670522];
+	self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.var_82670522] = self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.var_82670522] + (var_6fda3763 - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.var_82670522]);
 	return var_6fda3763;
 }
 
@@ -422,7 +422,7 @@ private function function_1fa30a47(stat, currentscore, var_9b4eeccc)
 	else
 	{
 		score = (isdefined(self.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype]) ? self.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype] : 0);
-		score = score + currentscore - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.stattype];
+		score = score + (currentscore - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.stattype]);
 	}
 	return score;
 }
@@ -442,7 +442,7 @@ private function function_b535c32e(stat, score, var_aa1fbd8c)
 	{
 		self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype] = 0;
 	}
-	self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype] = self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype] + score - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.stattype];
+	self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype] = self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype] + (score - self.pers[#"hash_33112f192fb3c234"][#"current"][stat.stattype]);
 	return score;
 }
 

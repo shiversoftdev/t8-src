@@ -710,7 +710,7 @@ function function_1f712bb1()
 function function_19a4e7cf(n_offset, var_e503dc79)
 {
 	var_ef61bf9 = util::spawn_model("tag_origin", level.chests[var_e503dc79].origin + (0, 0, n_offset - 75));
-	var_ef61bf9.angles = level.chests[level.chest_index].angles + vectorscale((-1, 0, -1), 90);
+	var_ef61bf9.angles = level.chests[level.chest_index].angles + (vectorscale((-1, 0, -1), 90));
 	playfxontag(level._effect[#"hash_572a14944ad27060"], var_ef61bf9, "tag_origin");
 	return var_ef61bf9;
 }

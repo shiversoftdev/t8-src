@@ -662,7 +662,7 @@ function function_7f14a56f(var_df1e8764)
 	{
 		if(effect.var_67e2281d == 7)
 		{
-			var_e2997f02 = var_e2997f02 + effect.var_adb1692a * effect.var_5cf129b8 / 1000;
+			var_e2997f02 = var_e2997f02 + ((effect.var_adb1692a * effect.var_5cf129b8) / 1000);
 		}
 	}
 	return var_e2997f02;
@@ -745,7 +745,7 @@ private function function_cc42cac2(var_756fda07, var_b0144580, var_ab5b905e, var
 	{
 		var_7a1fa72a = var_756fda07.var_77449e9;
 	}
-	var_7a1fa72a = int(var_7a1fa72a * 1 - resistance * var_fb887b00);
+	var_7a1fa72a = int((var_7a1fa72a * (1 - resistance)) * var_fb887b00);
 	var_2226e3f0 = self.endtime;
 	time = level.time;
 	maxduration = self function_f9ca1b6a(var_756fda07);
@@ -811,7 +811,7 @@ private function function_57f33b96(var_756fda07, var_b0144580, var_ab5b905e, var
 	{
 		var_7a1fa72a = var_756fda07.var_77449e9;
 	}
-	var_7a1fa72a = int(var_7a1fa72a * 1 - resistance * var_fb887b00);
+	var_7a1fa72a = int((var_7a1fa72a * (1 - resistance)) * var_fb887b00);
 	time = level.time;
 	maxduration = self function_f9ca1b6a(var_756fda07);
 	if(isdefined(self.duration))
@@ -998,7 +998,7 @@ private function function_f9ca1b6a(var_756fda07)
 {
 	effect = self;
 	resistance = effect function_a6613b51(var_756fda07);
-	maxduration = int(var_756fda07.var_ca171ecc * 1 - resistance);
+	maxduration = int(var_756fda07.var_ca171ecc * (1 - resistance));
 	return maxduration;
 }
 

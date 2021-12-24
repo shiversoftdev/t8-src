@@ -1022,7 +1022,7 @@ function function_14dcccc6(localclientnum, oldval, newval, bnewent, binitialsnap
 	while(isdefined(self))
 	{
 		n_cycle_time = randomfloatrange(2, 8);
-		n_pulse_increment = 1 - 0.4 / n_cycle_time / 0.1;
+		n_pulse_increment = (1 - 0.4) / (n_cycle_time / 0.1);
 		while(n_pulse < 1 && isdefined(self))
 		{
 			self mapshaderconstant(0, 0, "scriptVector0", 1, n_pulse, 0, 0);
@@ -1030,7 +1030,7 @@ function function_14dcccc6(localclientnum, oldval, newval, bnewent, binitialsnap
 			wait(0.1);
 		}
 		n_cycle_time = randomfloatrange(2, 8);
-		n_pulse_increment = 1 - 0.4 / n_cycle_time / 0.1;
+		n_pulse_increment = (1 - 0.4) / (n_cycle_time / 0.1);
 		while(0.4 < n_pulse && isdefined(self))
 		{
 			self mapshaderconstant(0, 0, "scriptVector0", 1, n_pulse, 0, 0);

@@ -173,10 +173,10 @@ function gondola_sway()
 	{
 		randomswingangle = randomfloatrange(2, 5);
 		randomswingtime = randomfloatrange(2, 3);
-		gondola_cab rotateto((randomswingangle * 0.5, randomswingangle * 0.6 + 90, randomswingangle * 0.8), randomswingtime, randomswingtime * 0.3, randomswingtime * 0.3);
+		gondola_cab rotateto((randomswingangle * 0.5, (randomswingangle * 0.6) + 90, randomswingangle * 0.8), randomswingtime, randomswingtime * 0.3, randomswingtime * 0.3);
 		gondola_cab playsound("amb_gondola_swing");
 		wait(randomswingtime);
-		gondola_cab rotateto((randomswingangle * 0.5 * -1, randomswingangle * -1 * 0.6 + 90, randomswingangle * 0.8 * -1), randomswingtime, randomswingtime * 0.3, randomswingtime * 0.3);
+		gondola_cab rotateto(((randomswingangle * 0.5) * -1, ((randomswingangle * -1) * 0.6) + 90, (randomswingangle * 0.8) * -1), randomswingtime, randomswingtime * 0.3, randomswingtime * 0.3);
 		gondola_cab playsound("amb_gondola_swing_back");
 		wait(randomswingtime);
 	}

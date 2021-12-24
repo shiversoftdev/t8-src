@@ -309,7 +309,7 @@ private function function_873b1369(commander)
 private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
-		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), "" + "" + "");
+		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), ("" + "") + "");
 	#/
 	if(gettime() > squad.createtime + constants[#"hash_2fe4d5f6cd1c7ca8"])
 	{

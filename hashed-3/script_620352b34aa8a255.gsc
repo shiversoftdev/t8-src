@@ -105,7 +105,7 @@ private function function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28
 	self.var_b2c60867 = var_b2c60867;
 	self.var_e14296de = level.time;
 	self.var_cd0a3ad3 = timeout;
-	self.var_60fa6139 = level.time + timeout * 1000 - var_ca735ce8 * 1000;
+	self.var_60fa6139 = (level.time + (timeout * 1000)) - (var_ca735ce8 * 1000);
 	self.b_teleporting = 0;
 	level.var_f995ece6 zm_trial_timer::open(self);
 	level.var_f995ece6 zm_trial_timer::function_8ede8e82(self, var_b2c60867);
@@ -122,7 +122,7 @@ private function function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28
 		wait(3.75);
 		self namespace_b22c99a5::start_timer(timeout);
 		self.var_e14296de = level.time;
-		self.var_60fa6139 = level.time + timeout * 1000;
+		self.var_60fa6139 = level.time + (timeout * 1000);
 		self.b_teleporting = 0;
 		if(!level.var_f995ece6 zm_trial_timer::is_open(self))
 		{

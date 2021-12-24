@@ -337,7 +337,7 @@ function function_732cbc35()
 	level.var_e72728b8 = array(#"sig_buckler_dw", #"eq_swat_grenade");
 	e_player = getplayers()[0];
 	v_forward = anglestoforward(e_player.angles);
-	v_pos = e_player.origin + v_forward * 60;
+	v_pos = e_player.origin + (v_forward * 60);
 	e_player thread namespace_73e1c3e3::player_collisionbox(undefined, v_pos, 0);
 	namespace_8c007aa6::function_3ca1b77d();
 	var_5be6a7a9 = array(#"hash_6a49c57530e1762c");

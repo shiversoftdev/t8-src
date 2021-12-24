@@ -210,7 +210,7 @@ function _fire(lifeid, player, team, killstreak_id)
 		/#
 		#/
 		vector = vectornormalize(startpos - targetpos);
-		startpos = vector * level.missileremotelaunchvert + targetpos;
+		startpos = (vector * level.missileremotelaunchvert) + targetpos;
 	}
 	else
 	{
@@ -218,8 +218,8 @@ function _fire(lifeid, player, team, killstreak_id)
 		backdist = level.missileremotelaunchhorz;
 		targetdist = level.missileremotelaunchtargetdist;
 		forward = anglestoforward(player.angles);
-		startpos = player.origin + upvector + forward * backdist * -1;
-		targetpos = player.origin + forward * targetdist;
+		startpos = (player.origin + upvector) + ((forward * backdist) * -1);
+		targetpos = player.origin + (forward * targetdist);
 	}
 	self util::setusingremote("remote_missile");
 	self val::set(#"hash_2eb933ec367f456d", "freezecontrols");
@@ -249,7 +249,7 @@ function _fire(lifeid, player, team, killstreak_id)
 	}
 	loc_00001042:
 	loc_00001072:
-	var_b984f2ed = (level.mapcenter[0] + (isdefined(level.var_5d4b4923) ? level.var_5d4b4923 : 0) + offset, level.mapcenter[1] + (isdefined(level.var_462a6e1e) ? level.var_462a6e1e : 0) + offset, startpos[2] + (isdefined(level.var_654c4b25) ? level.var_654c4b25 : 0));
+	var_b984f2ed = ((level.mapcenter[0] + (isdefined(level.var_5d4b4923) ? level.var_5d4b4923 : 0)) + offset, (level.mapcenter[1] + (isdefined(level.var_462a6e1e) ? level.var_462a6e1e : 0)) + offset, startpos[2] + (isdefined(level.var_654c4b25) ? level.var_654c4b25 : 0));
 	startpos = var_b984f2ed - vectorscale((1, 0, 0), 5000);
 	fwd = var_b984f2ed - startpos;
 	startangles = vectortoangles(fwd);
@@ -624,7 +624,7 @@ function function_71f4cd34()
 {
 	rocket = self;
 	var_d0c52d0b = getweapon(#"hash_33be4792feeabece");
-	var_a70219cf = magicbullet(var_d0c52d0b, rocket.origin, rocket.origin + anglestoforward(rocket.angles) * 1000, rocket.owner);
+	var_a70219cf = magicbullet(var_d0c52d0b, rocket.origin, rocket.origin + (anglestoforward(rocket.angles) * 1000), rocket.owner);
 }
 
 /*
@@ -1038,7 +1038,7 @@ function getvalidtargets(rocket, trace, max_targets)
 	mapcenterz = level.mapcenter[2];
 	diff = mapcenterz - rocketz;
 	ratio = diff / forward[2];
-	var_7650a84 = rocket.origin + forward * ratio;
+	var_7650a84 = rocket.origin + (forward * ratio);
 	rocket.var_7650a84 = var_7650a84;
 	pixendevent();
 	pixbeginevent(#"remotemissile_getvts_enemies");
@@ -1387,7 +1387,7 @@ function targeting_hud_think(rocket)
 				if(!isdefined(target.missileiconindex))
 				{
 					target.missileiconindex = rocket.iconindexother;
-					rocket.iconindexother = rocket.iconindexother + 1 % 3;
+					rocket.iconindexother = (rocket.iconindexother + 1) % 3;
 				}
 				index = target.missileiconindex;
 				if(index == 0)
@@ -1662,7 +1662,7 @@ function fire_random_bomblet(rocket, quadrant, waitframes)
 	{
 		return;
 	}
-	angle = randomintrange(10 + 60 * quadrant, 50 + 60 * quadrant);
+	angle = randomintrange(10 + (60 * quadrant), 50 + (60 * quadrant));
 	radius = randomintrange(200, 1000);
 	x = min(radius, 850) * cos(angle);
 	y = min(radius, 850) * sin(angle);

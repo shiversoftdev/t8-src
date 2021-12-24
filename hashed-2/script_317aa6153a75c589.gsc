@@ -55,7 +55,7 @@ private function drawtraversal(traversal, entity, animation, mocompanimblendoutt
 	segmenttime = 0;
 	while(segmenttime <= animlength)
 	{
-		nexttime = segmenttime + float(function_60d95f53()) / 1000;
+		nexttime = segmenttime + (float(function_60d95f53()) / 1000);
 		if(nexttime > animlength)
 		{
 			nexttime = animlength;
@@ -66,7 +66,7 @@ private function drawtraversal(traversal, entity, animation, mocompanimblendoutt
 			recordline(currentposition, nextposition, (1, 0.5, 0), "", entity);
 		#/
 		currentposition = nextposition;
-		segmenttime = segmenttime + float(function_60d95f53()) / 1000;
+		segmenttime = segmenttime + (float(function_60d95f53()) / 1000);
 	}
 	/#
 		recordsphere(nextposition, 2, (1, 0, 0), "", entity);
@@ -126,7 +126,7 @@ private function drawtraversalsection(section, entity, animation, mocompanimblen
 	segmenttime = section.starttime;
 	while(segmenttime <= section.endtime)
 	{
-		nexttime = segmenttime + float(function_60d95f53()) / 1000;
+		nexttime = segmenttime + (float(function_60d95f53()) / 1000);
 		if(nexttime > section.endtime)
 		{
 			nexttime = section.endtime;
@@ -139,7 +139,7 @@ private function drawtraversalsection(section, entity, animation, mocompanimblen
 			deltatoendtotal = deltatoendtotal + adjusteddeltaperframe;
 			if(lengthsquared(deltatoendtotal) > lengthsquared(section.deltatoendposition))
 			{
-				adjusteddeltaperframe = adjusteddeltaperframe - deltatoendtotal - section.deltatoendposition;
+				adjusteddeltaperframe = adjusteddeltaperframe - (deltatoendtotal - section.deltatoendposition);
 			}
 			nextposition = nextposition + adjusteddeltaperframe;
 			/#
@@ -148,7 +148,7 @@ private function drawtraversalsection(section, entity, animation, mocompanimblen
 		}
 		recordline(currentposition, nextposition, (1, 0.5, 0), "", entity);
 		currentposition = nextposition;
-		segmenttime = segmenttime + float(function_60d95f53()) / 1000;
+		segmenttime = segmenttime + (float(function_60d95f53()) / 1000);
 	}
 }
 
@@ -202,7 +202,7 @@ private function calculatetraveralsection(entity, traversal, animation, starttim
 		}
 	}
 	section.mocomptimelength = section.mocompendtime - section.mocompstarttime;
-	section.mocomptimeinframes = floor(section.mocomptimelength / float(function_60d95f53()) / 1000);
+	section.mocomptimeinframes = floor(section.mocomptimelength / (float(function_60d95f53()) / 1000));
 	if(section.mocomptimeinframes <= 0)
 	{
 		section.mocomptimeinframes = 1;
@@ -240,7 +240,7 @@ private function calculatetraveralsection(entity, traversal, animation, starttim
 	if(timescale && section.deltatoendmocomplength > 0 && section.deltatoendmocomplengthdesired > 0)
 	{
 		section.deltatoendmocompmultiplier = section.deltatoendmocomplength / section.deltatoendmocomplengthdesired;
-		section.deltatoendmocompmultiplier = max(0.01, float(int(section.deltatoendmocompmultiplier * 10)) / 10);
+		section.deltatoendmocompmultiplier = max(0.01, (float(int(section.deltatoendmocompmultiplier * 10))) / 10);
 	}
 	section.deltatoendtotal = (0, 0, 0);
 	if(isdefined(traversal.pivotorigin) && isdefined(traversal.pivottime))
@@ -255,12 +255,12 @@ private function calculatetraveralsection(entity, traversal, animation, starttim
 		{
 			startposition = traversal.pivotorigin;
 		}
-		if(endposition - startposition[2] <= 0 && section.deltatoendmocompmultiplier < 1)
+		if((endposition - startposition[2]) <= 0 && section.deltatoendmocompmultiplier < 1)
 		{
 			section.deltatoendmocompmultiplier = 1;
 		}
 	}
-	else if(section.endposition - section.startposition[2] <= 0 && section.deltatoendmocompmultiplier < 1)
+	else if((section.endposition - section.startposition[2]) <= 0 && section.deltatoendmocompmultiplier < 1)
 	{
 		section.deltatoendmocompmultiplier = 1;
 	}
@@ -306,8 +306,8 @@ function calculatepivotoriginfromedge(entity, mantlenode, traversalstart)
 	{
 		right = anglestoright(mantlenode.angles);
 		extents = mantlenode.aabb_extents;
-		mantlestart = mantlenode.origin - right * extents[1];
-		mantleend = mantlenode.origin + right * extents[1];
+		mantlestart = mantlenode.origin - (right * extents[1]);
+		mantleend = mantlenode.origin + (right * extents[1]);
 	}
 	mantlestartproj = mantlestart;
 	mantleendproj = (mantleend[0], mantleend[1], mantlestartproj[2]);
@@ -318,20 +318,20 @@ function calculatepivotoriginfromedge(entity, mantlenode, traversalstart)
 	if(mantlepoints.size > 0)
 	{
 		mantleedgelength = length(mantleendproj - mantlestartproj);
-		time = length(mantleoriginproj - mantlestartproj) / mantleedgelength;
+		time = (length(mantleoriginproj - mantlestartproj)) / mantleedgelength;
 		mantleorigin = mantlepoints[0];
 		for(index = 1; index < mantlepoints.size; index++)
 		{
 			endpoint = mantlepoints[index];
 			endpointproj = (endpoint[0], endpoint[1], mantlestartproj[2]);
-			endpointtime = length(endpointproj - mantlestartproj) / mantleedgelength;
+			endpointtime = (length(endpointproj - mantlestartproj)) / mantleedgelength;
 			if(endpointtime > time)
 			{
 				startpoint = mantlepoints[index - 1];
 				startpointproj = (startpoint[0], startpoint[1], mantlestartproj[2]);
-				startpointtime = length(startpointproj - mantlestartproj) / mantleedgelength;
+				startpointtime = (length(startpointproj - mantlestartproj)) / mantleedgelength;
 				timedelta = time - startpointtime;
-				mantleorigin = startpoint + endpoint - startpoint * timedelta / endpointtime - startpointtime;
+				mantleorigin = startpoint + (endpoint - startpoint) * (timedelta / (endpointtime - startpointtime));
 				break;
 			}
 		}
@@ -476,7 +476,7 @@ function mocomptraversalproceduralpivotinit(entity, mocompanim, mocompanimblendo
 	{
 		traversal.pivottime = pivottimes[0] * traversal.animlength;
 	}
-	traversal.pivottime = floor(traversal.pivottime / float(function_60d95f53()) / 1000) * float(function_60d95f53()) / 1000;
+	traversal.pivottime = (floor(traversal.pivottime / (float(function_60d95f53()) / 1000))) * (float(function_60d95f53()) / 1000);
 	traversal.pivotorigin = calculatepivotoriginfromedge(entity, traversal.mantlenode, traversal.startposition);
 	pivottagorigin = getanimtagorigin(mocompanim, 0, "tag_sync");
 	animpivotorigin = traversal.pivotorigin;
@@ -490,7 +490,7 @@ function mocomptraversalproceduralpivotinit(entity, mocompanim, mocompanimblendo
 	{
 		animlen = math::clamp(traversal.pivottime / traversal.animlength, 0, 1);
 	}
-	pivotorigin = traversal.startposition + rotatepoint(getmovedelta(mocompanim, 0, animlen), traversal.startangles) + pivotoffset;
+	pivotorigin = (traversal.startposition + rotatepoint(getmovedelta(mocompanim, 0, animlen), traversal.startangles)) + pivotoffset;
 	/#
 		if(getdvarint(#"ai_debugvolumetool", 0) > 1)
 		{
@@ -568,7 +568,7 @@ function mocomptraversalproceduralpivotupdate(entity, mocompanim, mocompanimblen
 	}
 	if(traversal.lastanimtime >= section.mocompstarttime && lengthsquared(section.deltatoendtotal) < lengthsquared(section.deltatoendposition))
 	{
-		animationtimedelta = animationnextsteptime - traversal.lastanimtime / float(function_60d95f53()) / 1000;
+		animationtimedelta = (animationnextsteptime - traversal.lastanimtime) / (float(function_60d95f53()) / 1000);
 		adjusteddeltaperframe = section.adjusteddeltaperframe * animationtimedelta;
 		section.deltatoendtotal = section.deltatoendtotal + adjusteddeltaperframe;
 		if(traversal.lastanimtime <= section.mocompendtime && section.deltatoendmocompmultiplier < 1 && (!(isdefined(level.var_881e464e) && level.var_881e464e)))
@@ -577,12 +577,12 @@ function mocomptraversalproceduralpivotupdate(entity, mocompanim, mocompanimblen
 		}
 		if(lengthsquared(section.deltatoendtotal) > lengthsquared(section.deltatoendposition))
 		{
-			adjusteddeltaperframe = adjusteddeltaperframe - section.deltatoendtotal - section.deltatoendposition;
+			adjusteddeltaperframe = adjusteddeltaperframe - (section.deltatoendtotal - section.deltatoendposition);
 		}
 	}
 	traversal.lastanimtime = animationnextsteptime;
 	traversal.var_98d8ca66 = traversal.var_98d8ca66 + adjusteddeltaperframe;
-	newentityorigin = traversal.startposition + rotatepoint(movedelta, traversal.startangles) + traversal.var_98d8ca66;
+	newentityorigin = (traversal.startposition + rotatepoint(movedelta, traversal.startangles)) + traversal.var_98d8ca66;
 	if(isdefined(traversal.endnodeparent))
 	{
 		parentdelta = traversal.endnodeparent.origin - traversal.lastendnodeparentorigin;
@@ -835,8 +835,8 @@ private function debuglocoexplosion(entity)
 		while(gettime() - starttime < 10000)
 		{
 			recordsphere(startorigin, 5, (1, 0, 0), "", entity);
-			recordline(startorigin, startorigin + startyawforward * 100, (0, 0, 1), "", entity);
-			recordline(startorigin, startorigin + damageyawforward * 100, (1, 0, 0), "", entity);
+			recordline(startorigin, startorigin + (startyawforward * 100), (0, 0, 1), "", entity);
+			recordline(startorigin, startorigin + (damageyawforward * 100), (1, 0, 0), "", entity);
 			waitframe(1);
 		}
 	#/
@@ -937,7 +937,7 @@ private function mocompadjusttocoverupdate(entity, mocompanim, mocompanimblendou
 		movevector = vectornormalize(movevector) * 1;
 	}
 	entity forceteleport(entity.origin + movevector, entity.angles, 0);
-	normalizedtime = entity getanimtime(mocompanim) * getanimlength(mocompanim) + mocompanimblendouttime / mocompduration;
+	normalizedtime = ((entity getanimtime(mocompanim) * getanimlength(mocompanim)) + mocompanimblendouttime) / mocompduration;
 	if(normalizedtime > entity.mocompanglestarttime)
 	{
 		entity orientmode("face angle", entity.nodeoffsetangles);
@@ -948,9 +948,9 @@ private function mocompadjusttocoverupdate(entity, mocompanim, mocompanimblendou
 		{
 			record3dtext(entity.mocompanglestarttime, entity.origin + vectorscale((0, 0, 1), 5), (0, 1, 0), "");
 			hiptagorigin = entity gettagorigin("");
-			recordline(entity.nodeoffsetorigin, entity.nodeoffsetorigin + entity.nodeoffsetforward * 30, (1, 0.5, 0), "", entity);
-			recordline(entity.adjustnode.origin, entity.adjustnode.origin + entity.nodeforward * 20, (0, 1, 0), "", entity);
-			recordline(entity.origin, entity.origin + anglestoforward(entity.angles) * 10, (1, 0, 0), "", entity);
+			recordline(entity.nodeoffsetorigin, entity.nodeoffsetorigin + (entity.nodeoffsetforward * 30), (1, 0.5, 0), "", entity);
+			recordline(entity.adjustnode.origin, entity.adjustnode.origin + (entity.nodeforward * 20), (0, 1, 0), "", entity);
+			recordline(entity.origin, entity.origin + (anglestoforward(entity.angles) * 10), (1, 0, 0), "", entity);
 			recordline(hiptagorigin, (hiptagorigin[0], hiptagorigin[1], entity.origin[2]), (0, 0, 1), "", entity);
 		}
 	#/

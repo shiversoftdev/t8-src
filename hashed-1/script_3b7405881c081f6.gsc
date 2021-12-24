@@ -124,7 +124,7 @@ function function_cf70f2fe(startstruct)
 	if(isstring(startstruct))
 	{
 		/#
-			assert(isdefined(struct::get(startstruct)), "" + "" + startstruct);
+			assert(isdefined(struct::get(startstruct)), ("" + "") + startstruct);
 		#/
 	}
 	if(!isbot(self))

@@ -237,7 +237,7 @@ private function mine_watch(wpn_type)
 			mine.owner = self;
 			mine.team = self.team;
 			mine.weapon = fired_weapon;
-			self notify("zmb_enable_" + fired_weapon.name + "_prompt");
+			self notify(("zmb_enable_" + fired_weapon.name) + "_prompt");
 			if(mine safe_to_plant())
 			{
 				mine run_planted_callbacks(self);
@@ -323,7 +323,7 @@ function setup_for_player(wpn_type, ui_model = "hudItems.showDpadRight")
 */
 function disable_prompt_for_player(wpn_type)
 {
-	self notify("zmb_disable_" + wpn_type.name + "_prompt");
+	self notify(("zmb_disable_" + wpn_type.name) + "_prompt");
 }
 
 /*
@@ -372,7 +372,7 @@ private function pickup_placeable_mine()
 		player zm_loadout::set_player_placeable_mine(wpn_type);
 		player setactionslot(4, "weapon", wpn_type);
 		player setweaponammoclip(wpn_type, 0);
-		player notify("zmb_enable_" + wpn_type.name + "_prompt");
+		player notify(("zmb_enable_" + wpn_type.name) + "_prompt");
 	}
 	else
 	{
@@ -425,7 +425,7 @@ private function pickup_placeable_mine_trigger_listener_enable(trigger, player)
 	self endon(#"delete", #"death");
 	while(true)
 	{
-		player waittill("zmb_enable_" + self.weapon.name + "_prompt", #"spawned_player");
+		player waittill(("zmb_enable_" + self.weapon.name) + "_prompt", #"spawned_player");
 		if(!isdefined(trigger))
 		{
 			return;
@@ -449,7 +449,7 @@ private function pickup_placeable_mine_trigger_listener_disable(trigger, player)
 	self endon(#"delete", #"death");
 	while(true)
 	{
-		player waittill("zmb_disable_" + self.weapon.name + "_prompt");
+		player waittill(("zmb_disable_" + self.weapon.name) + "_prompt");
 		if(!isdefined(trigger))
 		{
 			return;

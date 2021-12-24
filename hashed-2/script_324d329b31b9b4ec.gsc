@@ -175,7 +175,7 @@ function function_82a8db78(localclientnum, invalid)
 		trace1 = bullettrace(eye_pos, eye_pos + vectorscale(forward, 300), 0, player, 1);
 		if(trace1[#"fraction"] >= 1)
 		{
-			trace1 = bullettrace(trace1[#"position"], trace1[#"position"] + vectorscale((0, 0, -1), 1000), 0, player, 1);
+			trace1 = bullettrace(trace1[#"position"], trace1[#"position"] + (vectorscale((0, 0, -1), 1000)), 0, player, 1);
 		}
 	}
 	else

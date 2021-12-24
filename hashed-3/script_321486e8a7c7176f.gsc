@@ -82,7 +82,7 @@ private function _debugsquad(squad)
 					bot = botentry[#"__unsafe__"][#"bot"];
 					if(strategiccommandutility::isvalidbot(bot))
 					{
-						bottext = bottext + "" + bot getentitynumber() + "" + bot.name;
+						bottext = bottext + ((("" + bot getentitynumber()) + "") + bot.name);
 					}
 				}
 				team = plannersquadutility::getblackboardattribute(squad, "");
@@ -90,7 +90,7 @@ private function _debugsquad(squad)
 				recordtext(side + bottext, position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);
 				xoffset = xoffset + 15;
 				yoffset = yoffset + 13;
-				timing = "" + squad.planstarttime + "" + squad.planfinishtime + "" + int(squad.planfinishtime - squad.planstarttime / float(function_60d95f53()) / 1000 * 1000 + 1) + "";
+				timing = (((("" + squad.planstarttime) + "") + squad.planfinishtime) + "") + (int((squad.planfinishtime - squad.planstarttime) / ((float(function_60d95f53()) / 1000) * 1000) + 1)) + "";
 				recordtext(timing, position + (xoffset, yoffset, 0), (1, 1, 1), "", textscale);
 				xoffset = xoffset + 15;
 				target = plannersquadutility::getblackboardattribute(squad, "");
@@ -222,7 +222,7 @@ private function function_101999aa(strategy, header, var_71b35362, position, col
 		foreach(field in var_71b35362)
 		{
 			yoffset = yoffset + 13;
-			recordtext(field + "" + strategy.(field), position + (xoffset, yoffset, 0), color, channel, textscale);
+			recordtext((field + "") + strategy.(field), position + (xoffset, yoffset, 0), color, channel, textscale);
 		}
 		yoffset = yoffset + 13;
 		return yoffset;
@@ -418,7 +418,7 @@ private function _updateplanner(squad)
 	{
 		[[ level.strategic_command_throttle ]]->waitinqueue(squad);
 		time = gettime();
-		if(squad.plan.size == 0 || time - squad.lastupdatetime > squad.updaterate && !squad.planning)
+		if(squad.plan.size == 0 || (time - squad.lastupdatetime) > squad.updaterate && !squad.planning)
 		{
 			squad _strategize(squad);
 		}
@@ -438,7 +438,7 @@ private function _updateplanner(squad)
 	Parameters: 4
 	Flags: Linked
 */
-function createsquad(blackboard, planner, updaterate = float(function_60d95f53()) / 1000 * 100, maxplannerframetime = 2)
+function createsquad(blackboard, planner, updaterate = (float(function_60d95f53()) / 1000) * 100, maxplannerframetime = 2)
 {
 	/#
 		assert(isstruct(blackboard));

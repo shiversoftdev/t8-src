@@ -331,7 +331,7 @@ function function_665b4fa6()
 				playsoundatposition(#"hash_12cbe85436ddc720", self.origin);
 				self.var_191e6b71 = self.var_191e6b71 - 0.1;
 				var_ba7236d5++;
-				if(var_ba7236d5 % 5 == 0)
+				if((var_ba7236d5 % 5) == 0)
 				{
 					self.var_3bc09679.play_queue++;
 				}
@@ -768,7 +768,7 @@ function function_5dbd6a40(s_zipline_use)
 	players = getplayers();
 	foreach(player in players)
 	{
-		if(self == player || abs(self.origin[2] - player.origin[2]) > 60)
+		if(self == player || (abs(self.origin[2] - player.origin[2])) > 60)
 		{
 			continue;
 		}
@@ -884,7 +884,7 @@ private function function_85a2c43b()
 		speed = length(velocity);
 		speed = speed * 0.05681818;
 		/#
-			print3d(self.origin + player_forward * 100 + vectorscale((0, 0, 1), 60), "" + speed, (1, 0, 0), 1, 1, 1);
+			print3d((self.origin + (player_forward * 100)) + vectorscale((0, 0, 1), 60), "" + speed, (1, 0, 0), 1, 1, 1);
 			record3dtext("" + speed, self.origin, (1, 0, 0), "");
 		#/
 	}

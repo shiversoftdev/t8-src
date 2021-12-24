@@ -111,7 +111,7 @@ function is_encounter()
 */
 function round_up_to_ten(score)
 {
-	new_score = score - score % 10;
+	new_score = score - (score % 10);
 	if(new_score < score)
 	{
 		new_score = new_score + 10;
@@ -131,7 +131,7 @@ function round_up_to_ten(score)
 function round_up_score(score, value)
 {
 	score = int(score);
-	new_score = score - score % value;
+	new_score = score - (score % value);
 	if(new_score < score)
 	{
 		new_score = new_score + value;
@@ -416,8 +416,8 @@ function drawcylinder(pos, rad, height, color)
 		debugstar(pos, 1, color);
 		for(r = 0; r < 20; r++)
 		{
-			theta = r / 20 * 360;
-			theta2 = r + 1 / 20 * 360;
+			theta = (r / 20) * 360;
+			theta2 = ((r + 1) / 20) * 360;
 			line(pos + (cos(theta) * currad, sin(theta) * currad, 0), pos + (cos(theta2) * currad, sin(theta2) * currad, 0), color, 1, 1, 100);
 			line(pos + (cos(theta) * currad, sin(theta) * currad, curheight), pos + (cos(theta2) * currad, sin(theta2) * currad, curheight), color, 1, 1, 100);
 			line(pos + (cos(theta) * currad, sin(theta) * currad, 0), pos + (cos(theta) * currad, sin(theta) * currad, curheight), color, 1, 1, 100);
@@ -675,7 +675,7 @@ function zm_zone_edge_marker_count(localclientnum, oldval, newval, bnewent, bini
 		v_forward = anglestoforward(self.angles);
 		v_right = anglestoright(self.angles);
 		v_spacing = (0, 0, 0);
-		self.origin = self.origin + v_right * 6;
+		self.origin = self.origin + (v_right * 6);
 		for(i = 1; i <= newval; i++)
 		{
 			var_a05a609b = playfx(localclientnum, level._effect[#"hash_7dc0459342cedaa4"], self.origin + v_spacing, v_forward);
@@ -688,7 +688,7 @@ function zm_zone_edge_marker_count(localclientnum, oldval, newval, bnewent, bini
 				self.var_dd1709dd = array(self.var_dd1709dd);
 			}
 			self.var_dd1709dd[self.var_dd1709dd.size] = var_a05a609b;
-			v_spacing = v_right * 32 * i;
+			v_spacing = v_right * (32 * i);
 		}
 	}
 	else if(isarray(self.var_dd1709dd))

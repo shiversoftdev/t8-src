@@ -26,14 +26,14 @@ autoexec function main()
 		processedfxbundle.name = fxbundle.name;
 		for(index = 1; index <= fxbundle.effectcount; index++)
 		{
-			fx = fxbundle.("effect" + index + "_fx");
+			fx = fxbundle.(("effect" + index) + "_fx");
 			if(isdefined(fx))
 			{
 				fxstruct = spawnstruct();
-				fxstruct.attachtag = fxbundle.("effect" + index + "_attachtag");
-				fxstruct.fx = fxbundle.("effect" + index + "_fx");
-				fxstruct.stopongib = fxclientutils::_gibpartnametogibflag(fxbundle.("effect" + index + "_stopongib"));
-				fxstruct.stoponpiecedestroyed = fxbundle.("effect" + index + "_stoponpiecedestroyed");
+				fxstruct.attachtag = fxbundle.(("effect" + index) + "_attachtag");
+				fxstruct.fx = fxbundle.(("effect" + index) + "_fx");
+				fxstruct.stopongib = fxclientutils::_gibpartnametogibflag(fxbundle.(("effect" + index) + "_stopongib"));
+				fxstruct.stoponpiecedestroyed = fxbundle.(("effect" + index) + "_stoponpiecedestroyed");
 				processedfxbundle.fx[processedfxbundle.fx.size] = fxstruct;
 			}
 		}

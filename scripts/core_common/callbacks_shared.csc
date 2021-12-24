@@ -713,7 +713,7 @@ event codecallback_statechange(eventstruct)
 	{
 		[[level._systemstates[eventstruct.system].callback]](eventstruct.localclientnum, eventstruct.state);
 	}
-	println("" + eventstruct.system + "");
+	println(("" + eventstruct.system) + "");
 }
 
 /*

@@ -986,7 +986,7 @@ function do_gib(model, tag)
 	angles = undefined;
 	if(!isdefined(self))
 	{
-		end_pos = start_pos + anglestoforward(start_angles) * 10;
+		end_pos = start_pos + (anglestoforward(start_angles) * 10);
 		angles = start_angles;
 	}
 	else

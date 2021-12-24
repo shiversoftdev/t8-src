@@ -189,7 +189,7 @@ function function_eb9250cd(powerup, var_93829fae, eventname)
 	function_92d1707f(#"hash_7edbd2a2dee992e9", zmpowerups);
 	foreach(player in level.players)
 	{
-		function_626a79d4(player, "powerup_" + powerup.powerup_name + "_" + eventname);
+		function_626a79d4(player, (("powerup_" + powerup.powerup_name) + "_") + eventname);
 	}
 }
 

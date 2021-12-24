@@ -141,7 +141,7 @@ function onspawnretrievetrigger(watcher, player)
 	}
 	else
 	{
-		trigger_pos = retrievable_model.origin + vec_scale * normal;
+		trigger_pos = retrievable_model.origin + (vec_scale * normal);
 	}
 	retrievable_model clientfield::set("retrievable", 1);
 	retrievable_model clientfield::set("enemyequip", 1);

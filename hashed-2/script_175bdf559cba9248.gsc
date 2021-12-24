@@ -276,7 +276,7 @@ function function_ce74ad2e()
 	self endon(#"death", #"disconnect", #"wolf_protector_spawn");
 	self.var_669304d0 = 1;
 	wait(4);
-	if(self.var_2dc0d63c <= level.zombie_health * 6 || self.var_841cdb3 <= 6)
+	if(self.var_2dc0d63c <= (level.zombie_health * 6) || self.var_841cdb3 <= 6)
 	{
 		self.var_669304d0 = 0;
 	}
@@ -299,7 +299,7 @@ function function_f3cd6eac()
 	while(self.var_669304d0)
 	{
 		waitframe(1);
-		if(self.var_2dc0d63c >= level.zombie_health * 6 || self.var_841cdb3 >= 6 && !isdefined(self.var_5e8ff98e) && !self scene::is_igc_active())
+		if(self.var_2dc0d63c >= (level.zombie_health * 6) || self.var_841cdb3 >= 6 && !isdefined(self.var_5e8ff98e) && !self scene::is_igc_active())
 		{
 			/#
 				iprintlnbold("");
@@ -327,7 +327,7 @@ function function_f3cd6eac()
 */
 function function_562ade9e()
 {
-	spawn_location = getclosestpointonnavmesh(anglestoforward(self.angles) * 100 + self.origin, 100);
+	spawn_location = getclosestpointonnavmesh((anglestoforward(self.angles) * 100) + self.origin, 100);
 	if(isdefined(spawn_location) && !is_in_playable_space(spawn_location))
 	{
 		spawn_location = function_d5b75a76(spawn_location);
@@ -585,7 +585,7 @@ function function_7d72c6f9(var_85dcb56c)
 		wait(0.1);
 		self.var_72c60d5 = self.var_72c60d5 - 0.1;
 		self.var_72c60d5 = math::clamp(self.var_72c60d5, 0, var_85dcb56c);
-		n_percentage = 1 - self.var_72c60d5 / var_85dcb56c;
+		n_percentage = 1 - (self.var_72c60d5 / var_85dcb56c);
 		n_percentage = math::clamp(n_percentage, 0.02, var_85dcb56c);
 		if(self hasperk(#"hash_4519dc1d3ac79139") && isdefined(self.var_7d46fb46))
 		{

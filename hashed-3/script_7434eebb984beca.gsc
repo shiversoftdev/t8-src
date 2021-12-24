@@ -194,7 +194,7 @@ function function_944f0911(hintstring)
 */
 function function_ab9a9770(player)
 {
-	results = groundtrace(player.origin + vectorscale((0, 0, 1), 70), player.origin + vectorscale((0, 0, -1), 100), 0, player);
+	results = groundtrace(player.origin + vectorscale((0, 0, 1), 70), player.origin + (vectorscale((0, 0, -1), 100)), 0, player);
 	if(isdefined(results) && isdefined(results[#"entity"]) && results[#"entity"] ismovingplatform())
 	{
 		return 1;
@@ -261,7 +261,7 @@ function function_87bf6422(killstreak)
 */
 function function_6936559a(context)
 {
-	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 50), self.origin + vectorscale((0, 0, -1), 100000), 0, self);
+	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 50), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self);
 	if(isdefined(trace[#"position"]) && isdefined(trace[#"normal"]))
 	{
 		origin = trace[#"position"];
@@ -464,7 +464,7 @@ private function function_5bc83fac(entity)
 */
 private function swatshouldmelee(entity)
 {
-	if(isdefined(entity.ai.lastshouldmeleeresult) && !entity.ai.lastshouldmeleeresult && entity.ai.lastshouldmeleechecktime + 200 >= gettime())
+	if(isdefined(entity.ai.lastshouldmeleeresult) && !entity.ai.lastshouldmeleeresult && (entity.ai.lastshouldmeleechecktime + 200) >= gettime())
 	{
 		return 0;
 	}
@@ -857,7 +857,7 @@ private function function_994477c0(entity)
 		case 1:
 		case 2:
 		{
-			step_size = 32 + entity.reacquire_state * 32;
+			step_size = 32 + (entity.reacquire_state * 32);
 			reacquirepos = entity reacquirestep(step_size);
 			break;
 		}
@@ -1498,7 +1498,7 @@ private function function_5ca48510(helicopter, var_1c996690)
 	helicopter endon(#"death", #"heli_leave");
 	level endon(#"game_ended");
 	var_88a01f7c = var_1c996690;
-	var_27668b46 = max(helicopter.origin[2] - var_1c996690[2] - 600 / 625, 0.8);
+	var_27668b46 = max(((helicopter.origin[2] - var_1c996690[2]) - 600) / 625, 0.8);
 	helicopter animation::play("ai_swat_rifle_ent_litlbird_rappel_stn_vehicle2", var_88a01f7c, (0, helicopter.angles[1], 0), 1, 0.1, 0.2, var_27668b46);
 	while(true)
 	{
@@ -1628,7 +1628,7 @@ private function function_67c394f2(helicopter, destination)
 	for(remaining_tries = 30; continue_waiting && remaining_tries > 0; remaining_tries--)
 	{
 		current_distance_from_goal_squared = distance2dsquared(helicopter.origin, destination);
-		continue_waiting = current_distance_from_goal_squared < last_distance_from_goal_squared && current_distance_from_goal_squared > 4 * 4;
+		continue_waiting = current_distance_from_goal_squared < last_distance_from_goal_squared && current_distance_from_goal_squared > (4 * 4);
 		last_distance_from_goal_squared = current_distance_from_goal_squared;
 		/#
 			if(getdvarint(#"hash_2f40f6aa0b2a337e", 0))
@@ -2565,7 +2565,7 @@ private function function_820e7c92(owner, var_1c996690, nodes, context)
 	}
 	helicopter thread function_5ca48510(helicopter, var_1c996690);
 	var_19f450c9 = gettime();
-	while(helicopter.origin[2] - var_1c996690[2] > 620 && gettime() - var_19f450c9 < 1000)
+	while((helicopter.origin[2] - var_1c996690[2]) > 620 && (gettime() - var_19f450c9) < 1000)
 	{
 		wait(0.1);
 	}
@@ -2707,27 +2707,27 @@ private function registerrein_amb(type)
 	{
 		case "swat_arrive":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_arrive");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_arrive");
 			break;
 		}
 		case "swat_destroyed":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_destroyed");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_destroyed");
 			break;
 		}
 		case "swat_engaging":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_engaging");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_engaging");
 			break;
 		}
 		case "swat_kill":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_kill");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_kill");
 			break;
 		}
 		case "swat_ready":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_ready");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_ready");
 		}
 		case "generic_pain":
 		{
@@ -2753,22 +2753,22 @@ private function registerrein_amb(type)
 		{
 			if(randomint(100) > 50)
 			{
-				self playsound("vox_swa" + self.voxid + "_ult_swat_electro");
+				self playsound(("vox_swa" + self.voxid) + "_ult_swat_electro");
 			}
 			else
 			{
-				self playsound("vox_swa" + self.voxid + "_ult_swat_blind");
+				self playsound(("vox_swa" + self.voxid) + "_ult_swat_blind");
 			}
 			break;
 		}
 		case "fire_pain":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_burn_dead");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_burn_dead");
 			break;
 		}
 		case "stab_pain":
 		{
-			self playsound("vox_swa" + self.voxid + "_ult_swat_stabbed");
+			self playsound(("vox_swa" + self.voxid) + "_ult_swat_stabbed");
 			break;
 		}
 		default:
@@ -3155,7 +3155,7 @@ private function function_2d44c54f(var_eca4744a, var_56bd1bef, nodes)
 	tacpoint = function_ad6356f5(var_56bd1bef);
 	foreach(node in nodes)
 	{
-		var_175919d1 = vectordot(var_eca4744a, vectornormalize(node.origin - var_56bd1bef) > cos(30));
+		var_175919d1 = vectordot(var_eca4744a, (vectornormalize(node.origin - var_56bd1bef)) > cos(30));
 		if(var_175919d1 && function_96c81b85(tacpoint, node.origin))
 		{
 			node.score = 100;
@@ -3338,7 +3338,7 @@ function function_4c2ed78d(owner, forced = 0)
 				continue;
 			}
 			var_470b2385 = distancesquared(swat.origin, nearbyplayer.origin);
-			if(swat cansee(nearbyplayer) || var_470b2385 < 300 * 300)
+			if(swat cansee(nearbyplayer) || var_470b2385 < (300 * 300))
 			{
 				waitframe(1);
 				continue;
@@ -3392,11 +3392,11 @@ function function_4c2ed78d(owner, forced = 0)
 			}
 			else if(isdefined(swat.var_ecdaf39))
 			{
-				shouldmove = distancesquared(var_56bd1bef, swat.var_ecdaf39) >= 600 * 600;
+				shouldmove = distancesquared(var_56bd1bef, swat.var_ecdaf39) >= (600 * 600);
 			}
 			else
 			{
-				shouldmove = distancesquared(var_56bd1bef, swat.origin) >= 600 * 600;
+				shouldmove = distancesquared(var_56bd1bef, swat.origin) >= (600 * 600);
 			}
 		}
 		if(shouldmove)
@@ -3461,7 +3461,7 @@ function swat_guard()
 		var_2b4c258c = trace[#"position"] - eye;
 		for(i = 0; i < 8; i++)
 		{
-			testpos = eye + vectorscale(var_2b4c258c, 8 - i / 8);
+			testpos = eye + (vectorscale(var_2b4c258c, (8 - i) / 8));
 			position = function_9cc082d2(testpos, 800);
 			if(isdefined(position))
 			{
@@ -3541,7 +3541,7 @@ function function_a38d2d73(tacpoint)
 	players = getplayers();
 	foreach(player in players)
 	{
-		if(distancesquared(tacpoint.origin, player.origin) <= 200 * 200)
+		if(distancesquared(tacpoint.origin, player.origin) <= (200 * 200))
 		{
 			return 1;
 		}
@@ -3991,7 +3991,7 @@ function function_4c0ed253(location, context)
 	{
 		return 0;
 	}
-	if(context.check_same_floor === 1 && abs(location[2] - self.origin[2]) > 96)
+	if(context.check_same_floor === 1 && (abs(location[2] - self.origin[2])) > 96)
 	{
 		return 0;
 	}
@@ -4039,11 +4039,11 @@ function islocationgood(location, context)
 	}
 	closestpoint = getclosestpointonnavmesh(location, max(context.max_dist_from_location, 24), context.dist_from_boundary);
 	isvalidpoint = isdefined(closestpoint);
-	if(isvalidpoint && context.check_same_floor === 1 && abs(location[2] - closestpoint[2]) > 96)
+	if(isvalidpoint && context.check_same_floor === 1 && (abs(location[2] - closestpoint[2])) > 96)
 	{
 		isvalidpoint = 0;
 	}
-	if(isvalidpoint && distance2dsquared(location, closestpoint) > context.max_dist_from_location * context.max_dist_from_location)
+	if(isvalidpoint && distance2dsquared(location, closestpoint) > (context.max_dist_from_location * context.max_dist_from_location))
 	{
 		isvalidpoint = 0;
 	}

@@ -558,11 +558,11 @@ function function_12944b2e()
 			{
 				if(var_4059c402 > 1)
 				{
-					if(level.round_number == n_charcoal + 1)
+					if(level.round_number == (n_charcoal + 1))
 					{
 						var_6e231fa2 clientfield::set("" + #"hash_c382c02584ba249", 1);
 					}
-					if(level.round_number == n_charcoal + 3)
+					if(level.round_number == (n_charcoal + 3))
 					{
 						var_6e231fa2 playsound(#"hash_5f8e33ac1c927130");
 						var_6e231fa2 clientfield::set("" + #"hash_c382c02584ba249", 0);
@@ -575,7 +575,7 @@ function function_12944b2e()
 					var_6e231fa2 setmodel(#"hash_4286272708c5e5c0");
 				}
 			}
-			if(level.round_number >= n_charcoal + var_4059c402)
+			if(level.round_number >= (n_charcoal + var_4059c402))
 			{
 				var_8eba7a9f++;
 			}
@@ -1454,12 +1454,12 @@ function function_d1499d43(var_4d6e64ec = 0)
 			}
 			var_11ecbb2b = var_be17187b.attacker;
 		}
-		if(!self.var_dcef4be8 && self.health < self.maxhealth * 0.66)
+		if(!self.var_dcef4be8 && self.health < (self.maxhealth * 0.66))
 		{
 			self.var_dcef4be8 = 1;
 			self thread scene::play(#"p8_fxanim_zm_towers_chaos_pustule_bundle", "damage01", self);
 		}
-		if(!self.var_f3ab07e && self.health < self.maxhealth * 0.33)
+		if(!self.var_f3ab07e && self.health < (self.maxhealth * 0.33))
 		{
 			self.var_f3ab07e = 1;
 			self thread scene::play(#"p8_fxanim_zm_towers_chaos_pustule_bundle", "damage02", self);
@@ -1486,7 +1486,7 @@ function function_d1499d43(var_4d6e64ec = 0)
 	#/
 	if(var_4d6e64ec)
 	{
-		var_fc13edbc = groundtrace(var_11ecbb2b.origin + vectorscale((0, 0, 1), 8), var_11ecbb2b.origin + vectorscale((0, 0, -1), 100000), 0, var_11ecbb2b)[#"position"];
+		var_fc13edbc = groundtrace(var_11ecbb2b.origin + vectorscale((0, 0, 1), 8), var_11ecbb2b.origin + (vectorscale((0, 0, -1), 100000)), 0, var_11ecbb2b)[#"position"];
 		level thread function_93e3f429(self.origin, var_fc13edbc);
 	}
 	level notify(#"hash_4a0610c40e953981");
@@ -1559,8 +1559,8 @@ function function_777126b7()
 		var_be1510fd hide();
 		foreach(var_9ffe8bc6 in var_b9272bd9)
 		{
-			var_be1510fd hidepart("tag_" + var_9ffe8bc6 + "_glyph");
-			var_be1510fd hidepart("tag_" + var_9ffe8bc6 + "_glow");
+			var_be1510fd hidepart(("tag_" + var_9ffe8bc6) + "_glyph");
+			var_be1510fd hidepart(("tag_" + var_9ffe8bc6) + "_glow");
 		}
 	}
 	foreach(var_be1510fd in level.var_f099a2a5)
@@ -1568,8 +1568,8 @@ function function_777126b7()
 		var_be1510fd hide();
 		foreach(var_9ffe8bc6 in var_b9272bd9)
 		{
-			var_be1510fd hidepart("tag_" + var_9ffe8bc6 + "_glyph");
-			var_be1510fd hidepart("tag_" + var_9ffe8bc6 + "_glow");
+			var_be1510fd hidepart(("tag_" + var_9ffe8bc6) + "_glyph");
+			var_be1510fd hidepart(("tag_" + var_9ffe8bc6) + "_glow");
 		}
 	}
 	level.var_b80418e2 = getent("s_puzzle_beam_start", "targetname");
@@ -2818,8 +2818,8 @@ function function_53f96a9e(var_7ecdee63)
 	var_b9272bd9 = array("b", "c", "d", "m", "p", "r", "t", "w");
 	foreach(var_9ffe8bc6 in var_b9272bd9)
 	{
-		self hidepart("tag_" + var_9ffe8bc6 + "_glyph");
-		self hidepart("tag_" + var_9ffe8bc6 + "_glow");
+		self hidepart(("tag_" + var_9ffe8bc6) + "_glyph");
+		self hidepart(("tag_" + var_9ffe8bc6) + "_glow");
 	}
 	switch(var_7ecdee63)
 	{
@@ -3128,7 +3128,7 @@ function function_d6a5d146()
 		var_49c750a8 flag::set(#"hash_66eb0aa5f179e140");
 		for(i = 1; i <= 6; i++)
 		{
-			n_threshold = 8500 - var_e41dced6 * i;
+			n_threshold = 8500 - (var_e41dced6 * i);
 			switch(i)
 			{
 				case 1:
@@ -4285,7 +4285,7 @@ function function_64afc2b6(str_spawn)
 		if(getaiarray().size < 24 && n_spawned < var_c18ec884)
 		{
 			n_available = var_c18ec884 - n_spawned;
-			if(n_available - 2 >= 0)
+			if((n_available - 2) >= 0)
 			{
 				n_to_spawn = 2;
 			}
@@ -4294,7 +4294,7 @@ function function_64afc2b6(str_spawn)
 				for(i = 1; i <= n_available; i++)
 				{
 					n_option = 2 - i;
-					if(n_available - n_option >= 0)
+					if((n_available - n_option) >= 0)
 					{
 						n_to_spawn = n_option;
 						break;
@@ -4697,7 +4697,7 @@ private function function_a4d75da8()
 	a_set = getentarray(self.targetname, "targetname");
 	foreach(var_370a1aca in a_set)
 	{
-		if(var_370a1aca.script_int == self.script_int + 1)
+		if(var_370a1aca.script_int == (self.script_int + 1))
 		{
 			self.var_9bb031f4 = var_370a1aca;
 			break;
@@ -4852,7 +4852,7 @@ private function function_4c6f5906(v_pos, v_dir, e_player)
 {
 	s_line = spawnstruct();
 	s_line.v_from = v_pos;
-	s_line.v_to = s_line.v_from + v_dir * 3000;
+	s_line.v_to = s_line.v_from + (v_dir * 3000);
 	s_result = self function_fa986cd(s_line.v_from, s_line.v_to, v_dir);
 	/#
 		e_player.var_8f40324e = array();
@@ -4915,7 +4915,7 @@ private function function_fa986cd(v_start, v_end, v_heading)
 	{
 		var_bc4b78ae = self.var_9bb031f4;
 		v_heading = function_e5778b63(v_heading, var_bc4b78ae);
-		v_end = v_start + v_heading * 3000;
+		v_end = v_start + (v_heading * 3000);
 	}
 	while(t_walltrap_hazard_helmet !== v_start)
 	{
@@ -4925,11 +4925,11 @@ private function function_fa986cd(v_start, v_end, v_heading)
 			var_358bb309 = bullettrace(v_start, v_end, 0, self);
 			if(isdefined(var_358bb309[#"position"]))
 			{
-				v_start = var_358bb309[#"position"] + v_heading * 1;
+				v_start = var_358bb309[#"position"] + (v_heading * 1);
 				if(distancesquared(var_358bb309[#"position"], var_bc4b78ae.s_anchor.origin) < 1600)
 				{
 					v_heading = function_e5778b63(v_heading, var_bc4b78ae);
-					v_end = v_start + v_heading * 3000;
+					v_end = v_start + (v_heading * 3000);
 					var_bc4b78ae = var_bc4b78ae.var_9bb031f4;
 					if(!isdefined(a_v_points))
 					{
@@ -5518,7 +5518,7 @@ private function function_faee09d2()
 	var_617c504e = 9;
 	var_76ed7b30 = 9;
 	var_3cb006b6 = 9.230769;
-	level.var_34a4aede = array({#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"normal", #time:0}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 1.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 2}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 3}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:var_617c504e * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"tiger", #time:var_617c504e * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"tiger", #time:var_617c504e * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 6}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:var_617c504e * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 7.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 7.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:3, #archetype:#"tiger", #time:var_617c504e * 8}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:var_617c504e * 9}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:var_617c504e * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 2}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"corrosive", #time:90 + var_76ed7b30 * 4}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 4}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:90 + var_76ed7b30 * 4}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + var_76ed7b30 * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + var_76ed7b30 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"corrosive", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"corrosive", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + var_76ed7b30 * 8}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + var_76ed7b30 * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"tiger", #time:180 + var_3cb006b6 * 2}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 2.5}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + var_3cb006b6 * 3}, {#hash_6d1df6c7:3, #lanes:array(1, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 4}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + var_3cb006b6 * 4}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:180 + var_3cb006b6 * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:180 + var_3cb006b6 * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + var_3cb006b6 * 7}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 8}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6 * 8.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:2, #archetype:#"hash_59e711c9eeda26ca", #time:180 + var_3cb006b6 * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:1, #archetype:#"corrosive", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:3, #archetype:#"tiger", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:2, #lanes:array(2), #quantity:2, #archetype:#"hash_59e714c9eeda2be3", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:4, #lanes:array(1, 3), #quantity:2, #archetype:#"hash_59e711c9eeda26ca", #time:180 + var_3cb006b6 * 10}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + var_3cb006b6 * 11}, {#hash_6d1df6c7:1, #lanes:array(1), #quantity:1, #archetype:#"blight", #time:180 + var_3cb006b6 * 11}, {#hash_6d1df6c7:2, #lanes:array(3), #quantity:1, #archetype:#"blight", #time:180 + var_3cb006b6 * 11}, {#hash_6d1df6c7:4, #lanes:array(3), #quantity:1, #archetype:#"blight", #time:180 + var_3cb006b6 * 11.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + var_3cb006b6 * 12}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + var_3cb006b6 * 12.5});
+	level.var_34a4aede = array({#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"normal", #time:0}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 1.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 2}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 3}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:var_617c504e * 3}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:var_617c504e * 4}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"tiger", #time:var_617c504e * 5}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"tiger", #time:var_617c504e * 5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 6}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 6}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 7}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:var_617c504e * 7}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:var_617c504e * 7.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 7.5}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:3, #archetype:#"tiger", #time:var_617c504e * 8}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 8}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:var_617c504e * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:var_617c504e * 9}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:var_617c504e * 9}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + var_76ed7b30}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + (var_76ed7b30 * 2)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + (var_76ed7b30 * 3)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"corrosive", #time:90 + (var_76ed7b30 * 4)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + (var_76ed7b30 * 4)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"plasma", #time:90 + (var_76ed7b30 * 4)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + (var_76ed7b30 * 5)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + (var_76ed7b30 * 5)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + (var_76ed7b30 * 5)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + (var_76ed7b30 * 6)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + (var_76ed7b30 * 7)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:90 + (var_76ed7b30 * 7)}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"corrosive", #time:90 + (var_76ed7b30 * 7)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"corrosive", #time:90 + (var_76ed7b30 * 7)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + (var_76ed7b30 * 7)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:90 + (var_76ed7b30 * 8)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:90 + (var_76ed7b30 * 9)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + (var_76ed7b30 * 9)}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + (var_76ed7b30 * 9)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:90 + (var_76ed7b30 * 9)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:180 + var_3cb006b6}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"tiger", #time:180 + (var_3cb006b6 * 2)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + (var_3cb006b6 * 2.5)}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + (var_3cb006b6 * 3)}, {#hash_6d1df6c7:3, #lanes:array(1, 3), #quantity:2, #archetype:#"tiger", #time:180 + (var_3cb006b6 * 3)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + (var_3cb006b6 * 4)}, {#hash_6d1df6c7:2, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + (var_3cb006b6 * 4)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + (var_3cb006b6 * 5)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:180 + (var_3cb006b6 * 5)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e711c9eeda26ca", #time:180 + (var_3cb006b6 * 5)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + (var_3cb006b6 * 6)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"plasma", #time:180 + (var_3cb006b6 * 6)}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:2, #archetype:#"tiger", #time:180 + (var_3cb006b6 * 7)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"normal", #time:180 + (var_3cb006b6 * 7)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"tiger", #time:180 + (var_3cb006b6 * 8)}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:2, #archetype:#"tiger", #time:180 + (var_3cb006b6 * 8.5)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:2, #archetype:#"hash_59e714c9eeda2be3", #time:180 + (var_3cb006b6 * 9)}, {#hash_6d1df6c7:4, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + (var_3cb006b6 * 9)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:1, #archetype:#"hash_59e714c9eeda2be3", #time:180 + (var_3cb006b6 * 9)}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:2, #archetype:#"hash_59e711c9eeda26ca", #time:180 + (var_3cb006b6 * 9)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:3, #archetype:#"normal", #time:180 + (var_3cb006b6 * 10)}, {#hash_6d1df6c7:1, #lanes:array(1, 3), #quantity:1, #archetype:#"corrosive", #time:180 + (var_3cb006b6 * 10)}, {#hash_6d1df6c7:1, #lanes:array(2), #quantity:3, #archetype:#"tiger", #time:180 + (var_3cb006b6 * 10)}, {#hash_6d1df6c7:2, #lanes:array(2), #quantity:2, #archetype:#"hash_59e714c9eeda2be3", #time:180 + (var_3cb006b6 * 10)}, {#hash_6d1df6c7:4, #lanes:array(1, 3), #quantity:2, #archetype:#"hash_59e711c9eeda26ca", #time:180 + (var_3cb006b6 * 10)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + (var_3cb006b6 * 11)}, {#hash_6d1df6c7:1, #lanes:array(1), #quantity:1, #archetype:#"blight", #time:180 + (var_3cb006b6 * 11)}, {#hash_6d1df6c7:2, #lanes:array(3), #quantity:1, #archetype:#"blight", #time:180 + (var_3cb006b6 * 11)}, {#hash_6d1df6c7:4, #lanes:array(3), #quantity:1, #archetype:#"blight", #time:180 + (var_3cb006b6 * 11.5)}, {#hash_6d1df6c7:1, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + (var_3cb006b6 * 12)}, {#hash_6d1df6c7:3, #lanes:array(1, 2, 3), #quantity:4, #archetype:#"normal", #time:180 + (var_3cb006b6 * 12.5)});
 	while(!level flag::get(#"hash_277d03629ade12e8"))
 	{
 		level waittill(#"hash_54e0394dae6dd7");
@@ -5989,7 +5989,7 @@ function function_d4e923e7()
 	while(positionwouldtelefrag(s_loc.origin))
 	{
 		i++;
-		if(i >= var_3de22b91.size - 1)
+		if(i >= (var_3de22b91.size - 1))
 		{
 			i = 0;
 			waitframe(1);

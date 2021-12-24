@@ -197,7 +197,7 @@ function tomahawk_the_macguffin(e_grenade, n_grenade_charge_power)
 		{
 			continue;
 		}
-		if(!(isdefined(var_a2a0a44e.b_collected) && var_a2a0a44e.b_collected) && distancesquared(var_a2a0a44e.origin, e_grenade.origin) < 100 * 100)
+		if(!(isdefined(var_a2a0a44e.b_collected) && var_a2a0a44e.b_collected) && distancesquared(var_a2a0a44e.origin, e_grenade.origin) < (100 * 100))
 		{
 			var_a2a0a44e.b_collected = 1;
 			var_6e6ec518 = namespace_268fc37c::tomahawk_spawn(e_grenade.origin);

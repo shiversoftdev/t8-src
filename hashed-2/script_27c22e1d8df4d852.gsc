@@ -181,8 +181,8 @@ private function finalize_clientfields()
 	clientfield::register("clientuimodel", "zmhud.currentSpecialLocked", 16000, 1, "int");
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("worlduimodel", "PlayerList.client" + i + "." + "trialsCheckState", 1, 2, "int");
-		clientfield::register("worlduimodel", "PlayerList.client" + i + "." + "trialsCounterValue", 1, getminbitcountfornum(1000), "int");
+		clientfield::register("worlduimodel", (("PlayerList.client" + i) + ".") + "trialsCheckState", 1, 2, "int");
+		clientfield::register("worlduimodel", (("PlayerList.client" + i) + ".") + "trialsCounterValue", 1, getminbitcountfornum(1000), "int");
 	}
 	level thread function_8f7e46db();
 }
@@ -460,8 +460,8 @@ function function_2190356a(var_96936cca, b_mute = 0)
 	{
 		self playsoundtoplayer(#"hash_1377aa36d8ba27e1", self);
 	}
-	clientfield::set_world_uimodel("PlayerList.client" + self.entity_num + "." + "trialsCheckState", 1);
-	clientfield::set_world_uimodel("PlayerList.client" + self.entity_num + "." + "trialsCounterValue", var_96936cca);
+	clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 1);
+	clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCounterValue", var_96936cca);
 }
 
 /*
@@ -481,16 +481,16 @@ function function_63060af4(var_acc46b81, b_mute = 0)
 	/#
 		assert(var_acc46b81 == 0 || var_acc46b81 == 1);
 	#/
-	clientfield::set_world_uimodel("PlayerList.client" + self.entity_num + "." + "trialsCounterValue", 0);
+	clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCounterValue", 0);
 	if(var_acc46b81 == 0)
 	{
-		clientfield::set_world_uimodel("PlayerList.client" + self.entity_num + "." + "trialsCheckState", 2);
+		clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 2);
 	}
 	else if(!b_mute)
 	{
 		self playsoundtoplayer(#"hash_1377aa36d8ba27e1", self);
 	}
-	clientfield::set_world_uimodel("PlayerList.client" + self.entity_num + "." + "trialsCheckState", 3);
+	clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 3);
 }
 
 /*
@@ -507,7 +507,7 @@ function function_f3aacffb()
 	/#
 		assert(isplayer(self));
 	#/
-	clientfield::set_world_uimodel("PlayerList.client" + self.entity_num + "." + "trialsCheckState", 0);
+	clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 0);
 }
 
 /*
@@ -816,7 +816,7 @@ function function_1e223bce(players)
 	var_10991f64 = 0;
 	foreach(player in players)
 	{
-		var_10991f64 = var_10991f64 | 1 << player getentitynumber();
+		var_10991f64 = var_10991f64 | (1 << player getentitynumber());
 	}
 	return var_10991f64;
 }
@@ -833,7 +833,7 @@ function function_1e223bce(players)
 function function_85d088ed(player)
 {
 	var_10991f64 = 0;
-	var_10991f64 = var_10991f64 | 1 << player getentitynumber();
+	var_10991f64 = var_10991f64 | (1 << player getentitynumber());
 	return var_10991f64;
 }
 

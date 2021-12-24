@@ -213,7 +213,7 @@ function function_2085db3b()
 	/#
 		mapname = util::function_53bbf9d2();
 		adddebugcommand("");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		level thread function_9cc59537();
 		level thread function_13a77bfa();
 		level thread function_10c650e6();
@@ -392,7 +392,7 @@ function function_9cc59537()
 									{
 										if(item_type.var_a6762160 === var_d76a7255.var_a6762160.name && var_d76a7255.var_a6762160.name === items[0].var_a6762160.name)
 										{
-											print3d(point.origin + vectorscale((0, 0, 1), 18), item_type.var_a6762160 + "" + var_24b0b1ea, (1, 0.5, 0), 1, 0.3, 8);
+											print3d(point.origin + vectorscale((0, 0, 1), 18), (item_type.var_a6762160 + "") + var_24b0b1ea, (1, 0.5, 0), 1, 0.3, 8);
 											line(var_d76a7255.origin, point.origin, (1, 0.5, 0), 1, 0, 8);
 										}
 									}
@@ -408,16 +408,16 @@ function function_9cc59537()
 								n_depth = 12;
 								n_width = 48;
 							}
-							var_7cb887a8[0] = point.origin + (0, 0, 16) + vectorscale(anglestoforward(v_angles), n_depth);
-							var_7cb887a8[1] = point.origin + (0, 0, 16) + vectorscale(anglestoforward(v_angles) * -1, n_depth);
-							var_7cb887a8[2] = point.origin + (0, 0, 16) + vectorscale(anglestoright(v_angles), n_width);
-							var_7cb887a8[3] = point.origin + (0, 0, 16) + vectorscale(anglestoright(v_angles) * -1, n_width);
+							var_7cb887a8[0] = (point.origin + (0, 0, 16)) + vectorscale(anglestoforward(v_angles), n_depth);
+							var_7cb887a8[1] = (point.origin + (0, 0, 16)) + (vectorscale(anglestoforward(v_angles) * -1, n_depth));
+							var_7cb887a8[2] = (point.origin + (0, 0, 16)) + vectorscale(anglestoright(v_angles), n_width);
+							var_7cb887a8[3] = (point.origin + (0, 0, 16)) + (vectorscale(anglestoright(v_angles) * -1, n_width));
 						}
 						else
 						{
 							for(i = 0; i < 8; i++)
 							{
-								var_7cb887a8[i] = point.origin + (0, 0, 16) + vectorscale(anglestoforward(v_angles), var_47748885);
+								var_7cb887a8[i] = (point.origin + (0, 0, 16)) + vectorscale(anglestoforward(v_angles), var_47748885);
 								v_angles = v_angles + (0, var_3e832e74, 0);
 							}
 						}
@@ -443,7 +443,7 @@ function function_9cc59537()
 									var_47748885 = n_width;
 								}
 								a_trace = bullettrace(point.origin + vectorscale((0, 0, 1), 24), v_test, 0, level.players[0]);
-								if(distancesquared(a_trace[#"position"], point.origin + vectorscale((0, 0, 1), 24)) < var_47748885 * var_47748885 - 2 && !isdefined(a_trace[#"dynent"]))
+								if((distancesquared(a_trace[#"position"], point.origin + vectorscale((0, 0, 1), 24))) < ((var_47748885 * var_47748885) - 2) && !isdefined(a_trace[#"dynent"]))
 								{
 									v_color = (1, 0, 0);
 									b_failed = 1;
@@ -460,7 +460,7 @@ function function_9cc59537()
 							foreach(v_test in var_7cb887a8)
 							{
 								a_trace = bullettrace(point.origin + (0, 0, 16), v_test, 0, level.players[0]);
-								if(distancesquared(a_trace[#"position"], point.origin + (0, 0, 16)) < var_47748885 * var_47748885 - 3 && !isdefined(a_trace[#"dynent"]))
+								if((distancesquared(a_trace[#"position"], point.origin + (0, 0, 16))) < ((var_47748885 * var_47748885) - 3) && !isdefined(a_trace[#"dynent"]))
 								{
 									v_color = (1, 0, 0);
 									b_failed = 1;
@@ -568,8 +568,8 @@ function function_47351fa3(org, ang, opcolor, frames)
 			blue = opcolor;
 		}
 		line(org, org + forwardfar, red, 0.9, 0, frames);
-		line(org + forwardfar, org + forwardclose + rightdraw, red, 0.9, 0, frames);
-		line(org + forwardfar, org + forwardclose + leftdraw, red, 0.9, 0, frames);
+		line(org + forwardfar, (org + forwardclose) + rightdraw, red, 0.9, 0, frames);
+		line(org + forwardfar, (org + forwardclose) + leftdraw, red, 0.9, 0, frames);
 		line(org, org + right, blue, 0.9, 0, frames);
 		line(org, org + left, blue, 0.9, 0, frames);
 		line(org, org + up, green, 0.9, 0, frames);
@@ -640,7 +640,7 @@ function function_e8f0335f()
 			{
 				for(i = 0; i < 8; i++)
 				{
-					var_7cb887a8[i] = origin + (0, 0, 12) + vectorscale(anglestoforward(v_angles), 32);
+					var_7cb887a8[i] = (origin + (0, 0, 12)) + vectorscale(anglestoforward(v_angles), 32);
 					v_angles = v_angles + (0, var_3e832e74, 0);
 				}
 				foreach(v_test in var_7cb887a8)
@@ -650,7 +650,7 @@ function function_e8f0335f()
 					{
 						a_trace = bullettrace(origin + (0, 0, 12), v_test, 0, a_trace[#"entity"]);
 					}
-					if(distancesquared(a_trace[#"position"], origin + (0, 0, 12)) < 32 * 32 - 2)
+					if(distancesquared(a_trace[#"position"], origin + (0, 0, 12)) < (32 * 32) - 2)
 					{
 						v_color = (1, 0, 0);
 						b_failed = 1;
@@ -801,7 +801,7 @@ function function_13a77bfa()
 				}
 				total_spawns = total_spawns + spawns.size;
 				var_ad802a37 = var_ad802a37 + (0, 28, 0);
-				debug2dtext(var_ad802a37, influencer.target + "" + spawns.size, (1, 0.7529412, 0.7960784), 1, (0, 0, 0), 0.5, 1, 12);
+				debug2dtext(var_ad802a37, (influencer.target + "") + spawns.size, (1, 0.7529412, 0.7960784), 1, (0, 0, 0), 0.5, 1, 12);
 			}
 			var_ad802a37 = var_ad802a37 + (0, 28, 0);
 			debug2dtext(var_ad802a37, "" + total_spawns, (1, 0.7529412, 0.7960784), 1, (0, 0, 0), 0.5, 1.3, 12);
@@ -901,7 +901,7 @@ function function_f567f0cd()
 				{
 					if(isvehicle(var_3ed342fe) && isdefined(var_f0ffe8b2) && isdefined(var_f0ffe8b2[0]) && isdefined(var_f0ffe8b2[0].vehicletype))
 					{
-						debug2dtext((810, var_bd9acc19, 0), function_9e72a96(var_f0ffe8b2[0].vehicletype) + "" + var_f0ffe8b2.size, var_3ed342fe function_b2775b52());
+						debug2dtext((810, var_bd9acc19, 0), (function_9e72a96(var_f0ffe8b2[0].vehicletype) + "") + var_f0ffe8b2.size, var_3ed342fe function_b2775b52());
 						break;
 					}
 				}

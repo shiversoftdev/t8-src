@@ -316,7 +316,7 @@ private function create_class_exclusion_list()
 		currentdvar++;
 	}
 	level.attachmentexclusions = [];
-	for(currentdvar = 0; getdvarstring("attachment_exclusion_" + currentdvar) != ""; currentdvar++)
+	for(currentdvar = 0; (getdvarstring("attachment_exclusion_" + currentdvar)) != ""; currentdvar++)
 	{
 		level.attachmentexclusions[currentdvar] = getdvarstring("attachment_exclusion_" + currentdvar);
 	}
@@ -390,7 +390,7 @@ private function weapon_class_register(weaponname, weapon_type)
 	{
 		level.inventory_array[getweapon(weaponname)] = 1;
 	}
-	assert(0, "" + weapon_type + "" + weaponname);
+	assert(0, (("" + weapon_type) + "") + weaponname);
 }
 
 /*
@@ -604,7 +604,7 @@ function function_51dceab7()
 		if(isdefined(killstreakindex) && killstreakindex > 0)
 		{
 			/#
-				assert(isdefined(level.tbl_killstreakdata[killstreakindex]), "" + killstreakindex + "");
+				assert(isdefined(level.tbl_killstreakdata[killstreakindex]), ("" + killstreakindex) + "");
 			#/
 			if(isdefined(level.tbl_killstreakdata[killstreakindex]))
 			{
@@ -1557,7 +1557,7 @@ private function function_8e961216(slot, previous_weapon)
 		primaryoffhandcount = (var_46119dfa ? 2 : 1);
 		if(isdefined(self.pers[#"primarygrenadecount"]) && self.pers[#"primarygrenadecount"] < primaryoffhandcount && isdefined(self.pers[#"held_gadgets_power"]) && isdefined(self.pers[#"held_gadgets_power"][primaryoffhand]))
 		{
-			self.pers[#"held_gadgets_power"][primaryoffhand] = self.pers[#"held_gadgets_power"][primaryoffhand] * self.pers[#"primarygrenadecount"] / primaryoffhandcount;
+			self.pers[#"held_gadgets_power"][primaryoffhand] = self.pers[#"held_gadgets_power"][primaryoffhand] * (self.pers[#"primarygrenadecount"] / primaryoffhandcount);
 		}
 		self.pers[#"primarygrenadecount"] = primaryoffhandcount;
 	}
@@ -2205,49 +2205,49 @@ function cac_modified_damage(victim, attacker, damage, mod, weapon, inflictor, h
 				/#
 					if(debug)
 					{
-						println("" + victim.name + "" + attacker.name + "");
+						println(((("" + victim.name) + "") + attacker.name) + "");
 					}
 				#/
 			}
 			else
 			{
-				final_damage = damage * 100 + level.cac_bulletdamage_data / 100;
+				final_damage = (damage * (100 + level.cac_bulletdamage_data)) / 100;
 				/#
 					if(debug)
 					{
-						println("" + attacker.name + "" + victim.name);
+						println((("" + attacker.name) + "") + victim.name);
 					}
 				#/
 			}
 		}
 		else if(victim hasperk(#"specialty_armorvest") && isprimarydamage(mod) && !function_4c80bca1(hitloc))
 		{
-			final_damage = damage * level.cac_armorvest_data * 0.01;
+			final_damage = damage * (level.cac_armorvest_data * 0.01);
 			/#
 				if(debug)
 				{
-					println("" + attacker.name + "" + victim.name);
+					println((("" + attacker.name) + "") + victim.name);
 				}
 			#/
 		}
 		else if(victim hasperk(#"specialty_fireproof") && weapon_utils::isfiredamage(weapon, mod))
 		{
-			final_damage = damage * level.cac_fireproof_data * 0.01;
+			final_damage = damage * (level.cac_fireproof_data * 0.01);
 			/#
 				if(debug)
 				{
-					println("" + attacker.name + "" + victim.name);
+					println((("" + attacker.name) + "") + victim.name);
 				}
 			#/
 		}
 		else if(!var_81ca51d && victim hasperk(#"specialty_flakjacket") && weapon_utils::isexplosivedamage(mod) && !weapon.ignoresflakjacket && !victim grenade_stuck(inflictor))
 		{
 			cac_data = (level.hardcoremode ? level.cac_flakjacket_hardcore_data : level.cac_flakjacket_data);
-			final_damage = int(damage * cac_data / 100);
+			final_damage = int(damage * (cac_data / 100));
 			/#
 				if(debug)
 				{
-					println("" + victim.name + "" + attacker.name + "");
+					println(((("" + victim.name) + "") + attacker.name) + "");
 				}
 			#/
 		}
@@ -2261,7 +2261,7 @@ function cac_modified_damage(victim, attacker, damage, mod, weapon, inflictor, h
 		victim.cac_debug_range = int(distance(attacker.origin, victim.origin));
 		if(debug)
 		{
-			println("" + final_damage / damage + "" + damage + "" + final_damage);
+			println((((("" + (final_damage / damage)) + "") + damage) + "") + final_damage);
 		}
 	#/
 	final_damage = int(final_damage);

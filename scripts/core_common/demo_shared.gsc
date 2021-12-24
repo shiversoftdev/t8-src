@@ -146,7 +146,7 @@ function function_c6ae5fd6(var_65e76577, winningteamindex, losingteamindex)
 	if(!isdefined(bookmark))
 	{
 		/#
-			println("" + var_65e76577 + "");
+			println(("" + var_65e76577) + "");
 		#/
 		return;
 	}

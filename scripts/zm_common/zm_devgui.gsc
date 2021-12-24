@@ -154,7 +154,7 @@ function function_358c899d()
 		i = 0;
 		foreach(score in var_faf3d613)
 		{
-			adddebugcommand("" + score + "" + i + "" + score + "");
+			adddebugcommand(((((("" + score) + "") + i) + "") + score) + "");
 			i++;
 		}
 	#/
@@ -233,7 +233,7 @@ function player_on_connect()
 function function_2467e049(playername)
 {
 	/#
-		rootclear = "" + playername + "";
+		rootclear = ("" + playername) + "";
 		adddebugcommand(rootclear);
 	#/
 }
@@ -257,9 +257,9 @@ function function_c7dd7a17(archetype, var_9fde8624)
 		displayname = archetype;
 		if(isdefined(var_9fde8624) && var_9fde8624 != "")
 		{
-			displayname = displayname + "" + var_9fde8624;
+			displayname = (displayname + "") + var_9fde8624;
 		}
-		adddebugcommand("" + displayname + "" + archetype + "" + var_9fde8624 + "");
+		adddebugcommand(((((("" + displayname) + "") + archetype) + "") + var_9fde8624) + "");
 	#/
 }
 
@@ -342,28 +342,28 @@ function function_d068f39d(player)
 	/#
 		function_2467e049(player.name);
 		ip1 = player getentitynumber() + 1;
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + player.name + "" + ip1 + "" + ip1 + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + player.name) + "") + ip1) + "") + ip1) + "");
 		if(isdefined(level.validcharacters))
 		{
 			for(i = 0; i < level.validcharacters.size; i++)
 			{
 				var_abaefc38 = level.validcharacters[i];
 				var_b82273f = getcharacterfields(var_abaefc38, currentsessionmode());
-				adddebugcommand("" + player.name + "" + ip1 + "" + var_abaefc38 + "" + var_b82273f.chrname + "" + var_abaefc38 + 1 + "" + ip1 + "" + var_abaefc38 + "");
+				adddebugcommand((((((((((((("" + player.name) + "") + ip1) + "") + var_abaefc38) + "") + var_b82273f.chrname) + "") + (var_abaefc38 + 1) + "") + ip1) + "") + var_abaefc38) + "");
 			}
 		}
 		if(isdefined(level.var_e2c54606))
@@ -433,7 +433,7 @@ function function_38184bf8()
 					}
 					circle(print_origin, 30, color);
 					print3d(print_origin, function_9e72a96(var_375627f0), color, 1, 0.5);
-					print3d(print_origin + vectorscale((0, 0, -1), 10), "" + var_e2414b1b.cost, color, 1, 0.5);
+					print3d(print_origin + (vectorscale((0, 0, -1), 10)), "" + var_e2414b1b.cost, color, 1, 0.5);
 					if(isdefined(var_e2414b1b.var_ab176ce9))
 					{
 						var_ab176ce9 = level.zones[var_e2414b1b.var_ab176ce9];
@@ -802,18 +802,18 @@ function function_c9444b77(spawn_point, var_bf388c81)
 				thread function_a77bfcc6(var_bf388c81, undefined, undefined, node.origin, undefined, self.archetype);
 				if(isdefined(self.archetype))
 				{
-					println("" + function_9e72a96(self.archetype) + "" + var_bf388c81 + "" + spawn_point.targetname);
-					iprintlnbold("" + function_9e72a96(self.archetype) + "" + var_bf388c81 + "" + spawn_point.targetname);
+					println((((("" + function_9e72a96(self.archetype)) + "") + var_bf388c81) + "") + spawn_point.targetname);
+					iprintlnbold((((("" + function_9e72a96(self.archetype)) + "") + var_bf388c81) + "") + spawn_point.targetname);
 				}
 				else
 				{
-					println("" + var_bf388c81 + "" + spawn_point.targetname);
-					iprintlnbold("" + var_bf388c81 + "" + spawn_point.targetname);
+					println((("" + var_bf388c81) + "") + spawn_point.targetname);
+					iprintlnbold((("" + var_bf388c81) + "") + spawn_point.targetname);
 				}
 			}
 			nodeforward = anglestoforward(node.angles);
 			nodeforward = vectornormalize(nodeforward);
-			var_1b36fba4 = node.origin + nodeforward * 100;
+			var_1b36fba4 = node.origin + (nodeforward * 100);
 			return var_1b36fba4;
 		}
 		return var_bf388c81;
@@ -851,13 +851,13 @@ function function_ae52f3e8(zone, var_b71fd758, spawn_point)
 						thread function_a77bfcc6(var_b71fd758, undefined, var_2d665149, undefined, undefined, self.archetype);
 						if(isdefined(self.archetype))
 						{
-							println("" + function_9e72a96(self.archetype) + "" + var_b71fd758 + "" + spawn_point.targetname);
-							iprintlnbold("" + function_9e72a96(self.archetype) + "" + var_b71fd758 + "" + spawn_point.targetname);
+							println((((("" + function_9e72a96(self.archetype)) + "") + var_b71fd758) + "") + spawn_point.targetname);
+							iprintlnbold((((("" + function_9e72a96(self.archetype)) + "") + var_b71fd758) + "") + spawn_point.targetname);
 						}
 						else
 						{
-							println("" + var_b71fd758 + "" + spawn_point.targetname);
-							iprintlnbold("" + var_b71fd758 + "" + spawn_point.targetname);
+							println((("" + var_b71fd758) + "") + spawn_point.targetname);
+							iprintlnbold((("" + var_b71fd758) + "") + spawn_point.targetname);
 						}
 						return 0;
 					}
@@ -922,7 +922,7 @@ function function_a77bfcc6(origin, zone_name, var_58d99545, var_e0e9b194, zone_n
 					circle(origin, 32, (0, 0, 1));
 					if(isdefined(archetype))
 					{
-						print3d(origin, archetype + "" + origin, (1, 1, 1), 1, 0.5);
+						print3d(origin, (archetype + "") + origin, (1, 1, 1), 1, 0.5);
 					}
 					else
 					{
@@ -937,7 +937,7 @@ function function_a77bfcc6(origin, zone_name, var_58d99545, var_e0e9b194, zone_n
 					circle(origin, 32, (0, 0, 1));
 					if(isdefined(archetype))
 					{
-						print3d(origin, archetype + "" + origin, (1, 1, 1), 1, 0.5);
+						print3d(origin, (archetype + "") + origin, (1, 1, 1), 1, 0.5);
 					}
 					else
 					{
@@ -950,7 +950,7 @@ function function_a77bfcc6(origin, zone_name, var_58d99545, var_e0e9b194, zone_n
 				else if(isdefined(zone_node))
 				{
 					circle(origin, 32, (1, 0, 0));
-					print3d(origin, "" + (isdefined(zone_node.targetname) ? zone_node.targetname : "") + "" + origin + "", (1, 1, 1), 1, 0.5);
+					print3d(origin, ((("" + (isdefined(zone_node.targetname) ? zone_node.targetname : "")) + "") + origin) + "", (1, 1, 1), 1, 0.5);
 				}
 				else
 				{
@@ -1187,7 +1187,7 @@ function function_bcc8843e(weapon_name, up, root)
 		{
 			uppath = "";
 		}
-		cmd = "" + rootslash + weapon_name + uppath + "" + weapon_name + "";
+		cmd = ((((("" + rootslash) + weapon_name) + uppath) + "") + weapon_name) + "";
 		adddebugcommand(cmd);
 	#/
 }
@@ -1207,26 +1207,26 @@ function devgui_add_weapon_entry(weapon, root, n_order)
 		weapon_name = function_a16a090d(weapon);
 		if(isdefined(root) && root.size)
 		{
-			adddebugcommand("" + root + "" + n_order + "" + weapon_name + "" + weapon_name + "");
+			adddebugcommand(((((((("" + root) + "") + n_order) + "") + weapon_name) + "") + weapon_name) + "");
 		}
 		else if(getdvarint(#"hash_4fef1bbe47719319", 0))
 		{
 			var_876795bf = weapon.supportedattachments;
-			var_e5088518 = "" + weapon_name + "";
-			adddebugcommand(var_e5088518 + weapon_name + "" + weapon_name + "");
+			var_e5088518 = ("" + weapon_name) + "";
+			adddebugcommand((((var_e5088518 + weapon_name) + "") + weapon_name) + "");
 			foreach(var_96bc131f in var_876795bf)
 			{
 				if(var_96bc131f != "" && var_96bc131f != "")
 				{
 					util::waittill_can_add_debug_command();
-					var_29c3a74d = weapon_name + "" + var_96bc131f;
-					adddebugcommand(var_e5088518 + var_29c3a74d + "" + var_29c3a74d + "");
+					var_29c3a74d = (weapon_name + "") + var_96bc131f;
+					adddebugcommand((((var_e5088518 + var_29c3a74d) + "") + var_29c3a74d) + "");
 				}
 			}
 		}
 		else
 		{
-			adddebugcommand("" + weapon_name + "" + weapon_name + "");
+			adddebugcommand(((("" + weapon_name) + "") + weapon_name) + "");
 		}
 	#/
 }
@@ -1499,9 +1499,9 @@ function devgui_add_ability(name, upgrade_active_func, stat_name, stat_desired_v
 			level thread zombie_ability_devgui_think();
 			level.devgui_watch_abilities = 1;
 		}
-		cmd = "" + name + "" + name + "";
+		cmd = ((("" + name) + "") + name) + "";
 		adddebugcommand(cmd);
-		cmd = "" + name + "" + name + "";
+		cmd = ((("" + name) + "") + name) + "";
 		adddebugcommand(cmd);
 	#/
 }
@@ -3096,7 +3096,7 @@ function function_6f066ef()
 	/#
 		player = getplayers()[0];
 		forward = anglestoforward(player.angles);
-		spawn = player.origin + forward * 25;
+		spawn = player.origin + (forward * 25);
 		guy = devgui_zombie_spawn();
 		if(isdefined(guy))
 		{
@@ -3120,7 +3120,7 @@ function function_7c17d00f()
 	/#
 		player = getplayers()[0];
 		forward = anglestoforward(player.angles);
-		spawn = player.origin + forward * 100;
+		spawn = player.origin + (forward * 100);
 		guy = devgui_zombie_spawn();
 		if(isdefined(guy))
 		{
@@ -3492,27 +3492,27 @@ function function_4bb7eb36()
 		forward = anglestoforward(chest.zbarrier.angles);
 		right = anglestoright(chest.zbarrier.angles);
 		var_21f5823e = vectortoangles(right);
-		var_916d3dfe = origin - 48 * right;
+		var_916d3dfe = origin - (48 * right);
 		switch(entnum)
 		{
 			case 0:
 			{
-				var_916d3dfe = var_916d3dfe + 16 * right;
+				var_916d3dfe = var_916d3dfe + (16 * right);
 				break;
 			}
 			case 1:
 			{
-				var_916d3dfe = var_916d3dfe + 16 * forward;
+				var_916d3dfe = var_916d3dfe + (16 * forward);
 				break;
 			}
 			case 2:
 			{
-				var_916d3dfe = var_916d3dfe - 16 * right;
+				var_916d3dfe = var_916d3dfe - (16 * right);
 				break;
 			}
 			case 3:
 			{
-				var_916d3dfe = var_916d3dfe - 16 * forward;
+				var_916d3dfe = var_916d3dfe - (16 * forward);
 				break;
 			}
 		}
@@ -3544,27 +3544,27 @@ function function_84f0a909()
 		forward = anglestoforward(pap.angles);
 		right = anglestoright(pap.angles);
 		var_21f5823e = vectortoangles(right * -1);
-		var_916d3dfe = origin + 72 * right;
+		var_916d3dfe = origin + (72 * right);
 		switch(entnum)
 		{
 			case 0:
 			{
-				var_916d3dfe = var_916d3dfe - 16 * right;
+				var_916d3dfe = var_916d3dfe - (16 * right);
 				break;
 			}
 			case 1:
 			{
-				var_916d3dfe = var_916d3dfe + 16 * forward;
+				var_916d3dfe = var_916d3dfe + (16 * forward);
 				break;
 			}
 			case 2:
 			{
-				var_916d3dfe = var_916d3dfe + 16 * right;
+				var_916d3dfe = var_916d3dfe + (16 * right);
 				break;
 			}
 			case 3:
 			{
-				var_916d3dfe = var_916d3dfe - 16 * forward;
+				var_916d3dfe = var_916d3dfe - (16 * forward);
 				break;
 			}
 		}
@@ -4140,17 +4140,6 @@ function zombie_devgui_kill()
 */
 function zombie_devgui_toggle_ammo()
 {
-System.InvalidOperationException: Stack empty.
-   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
-   at System.Collections.Generic.Stack`1.Pop()
-   at Cerberus.Logic.Decompiler.BuildExpression(ScriptOp startOp) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1185
-   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2343
-   at Cerberus.Logic.Decompiler.DecompileBlock(DecompilerBlock decompilerBlock, Int32 tabs) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 998
-   at Cerberus.Logic.Decompiler.DecompileBlock(DecompilerBlock decompilerBlock, Int32 tabs) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 968
-   at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 222
-/*
-function zombie_devgui_toggle_ammo()
-{
 	/#
 		/#
 			assert(isdefined(self));
@@ -4163,35 +4152,43 @@ function zombie_devgui_toggle_ammo()
 		#/
 		self notify(#"devgui_toggle_ammo");
 		self endon(#"devgui_toggle_ammo");
-
-*/
-
-	/* ======== */
-
-/* 
-	Stack: 
-*/
-	/* ======== */
-
-/* 
-	Blocks: 
-	Cerberus.Logic.BasicBlock at 0xA750, end at 0xAA39
-	Cerberus.Logic.DevBlock at 0xA76A, end at 0xAA36
-	Cerberus.Logic.DevBlock at 0xA76E, end at 0xA78A
-	Cerberus.Logic.DevBlock at 0xA78A, end at 0xA7B2
-	Cerberus.Logic.DevBlock at 0xA7B2, end at 0xA7DA
-	Cerberus.Logic.WhileLoop at 0xA81C, end at 0xAA32
-	Cerberus.Logic.IfBlock at 0xA832, end at 0xAA2C
-	Cerberus.Logic.IfBlock at 0xA864, end at 0xA97A
-	Cerberus.Logic.IfBlock at 0xA8D8, end at 0xA8FA
-	Cerberus.Logic.IfBlock at 0xA8FA, end at 0xA93A
-	Cerberus.Logic.IfBlock at 0xA93A, end at 0xA97A
-	Cerberus.Logic.ForLoopBlock at 0xA980, end at 0xAA28
-	Cerberus.Logic.IfBlock at 0xA98C, end at 0xAA22
-	Cerberus.Logic.IfBlock at 0xA9C6, end at 0xAA22
-*/
-	/* ======== */
-
+		self.ammo4evah = !(isdefined(self.ammo4evah) && self.ammo4evah);
+		while(isdefined(self) && self.ammo4evah)
+		{
+			if(!self zm_utility::is_drinking())
+			{
+				weapon = self getcurrentweapon();
+				if(weapon != level.weaponnone && weapon != level.weaponzmfists && (!(isdefined(weapon.isflourishweapon) && weapon.isflourishweapon)))
+				{
+					self setweaponoverheating(0, 0);
+					max = weapon.maxammo;
+					if(isdefined(max))
+					{
+						self setweaponammostock(weapon, max);
+					}
+					if(isdefined(self zm_loadout::get_player_tactical_grenade()))
+					{
+						self givemaxammo(self zm_loadout::get_player_tactical_grenade());
+					}
+					if(isdefined(self zm_loadout::get_player_lethal_grenade()))
+					{
+						self givemaxammo(self zm_loadout::get_player_lethal_grenade());
+					}
+				}
+				for(i = 0; i < 3; i++)
+				{
+					if(isdefined(self._gadgets_player[i]) && self hasweapon(self._gadgets_player[i]))
+					{
+						if(!self util::gadget_is_in_use(i) && self gadgetcharging(i))
+						{
+							self gadgetpowerset(i, self._gadgets_player[i].gadget_powermax);
+						}
+					}
+				}
+			}
+			wait(1);
+		}
+	#/
 }
 
 /*
@@ -4784,7 +4781,7 @@ function zombie_devgui_dump_zombie_vars()
 		for(i = 0; i < level.zombie_vars.size; i++)
 		{
 			key = var_392d3ebe[i];
-			println(key + "" + zombie_utility::function_d2dfacfd(key));
+			println((key + "") + zombie_utility::function_d2dfacfd(key));
 		}
 		println("");
 	#/
@@ -5574,10 +5571,10 @@ function showonespawnpoint(spawn_point, color, notification, height, print)
 		right = anglestoright(spawn_point.angles);
 		forward = vectorscale(forward, 16);
 		right = vectorscale(right, 16);
-		a = center + forward - right;
-		b = center + forward + right;
-		c = center - forward + right;
-		d = center - forward - right;
+		a = (center + forward) - right;
+		b = (center + forward) + right;
+		c = (center - forward) + right;
+		d = (center - forward) - right;
 		thread lineuntilnotified(a, b, color, 0, notification);
 		thread lineuntilnotified(b, c, color, 0, notification);
 		thread lineuntilnotified(c, d, color, 0, notification);
@@ -5602,8 +5599,8 @@ function showonespawnpoint(spawn_point, color, notification, height, print)
 		arrowhead_forward = vectorscale(arrowhead_forward, 24);
 		arrowhead_right = vectorscale(arrowhead_right, 8);
 		a = center + arrow_forward;
-		b = center + arrowhead_forward - arrowhead_right;
-		c = center + arrowhead_forward + arrowhead_right;
+		b = (center + arrowhead_forward) - arrowhead_right;
+		c = (center + arrowhead_forward) + arrowhead_right;
 		thread lineuntilnotified(center, a, color, 0, notification);
 		thread lineuntilnotified(a, b, color, 0, notification);
 		thread lineuntilnotified(a, c, color, 0, notification);
@@ -5903,7 +5900,7 @@ function zombie_draw_traversals()
 						print3d(node.origin, node.animscript, txt_color, 1, 0.5);
 						if(isdefined(node.bad_crawler_traverse) && node.bad_crawler_traverse)
 						{
-							print3d(node.origin + vectorscale((0, 0, -1), 12), "", (1, 0, 0), 1, 0.5);
+							print3d(node.origin + (vectorscale((0, 0, -1), 12)), "", (1, 0, 0), 1, 0.5);
 						}
 					}
 				}
@@ -5969,7 +5966,7 @@ function function_e9b89aac()
 						var_747013f8 = node.targetname;
 						if(isdefined(node_region))
 						{
-							var_747013f8 = node_region + "" + node.targetname;
+							var_747013f8 = (node_region + "") + node.targetname;
 						}
 						print3d(node.origin + vectorscale((0, 0, 1), 12), var_747013f8, (0, 1, 0), 1, 1);
 					}
@@ -6106,7 +6103,7 @@ function function_8817dd98()
 						zombie_runners++;
 					}
 				}
-				level.var_fcfab54a settext("" + zombie_count + "" + zombie_left + "" + zombie_runners);
+				level.var_fcfab54a settext((((("" + zombie_count) + "") + zombie_left) + "") + zombie_runners);
 			}
 			else if(isdefined(level.var_fcfab54a))
 			{
@@ -6529,7 +6526,7 @@ function spawn_archetype(spawner_name)
 		spawn_point = function_b4dcb9ce();
 		if(spawners.size == 0)
 		{
-			iprintln("" + spawner_name + "");
+			iprintln(("" + spawner_name) + "");
 			return;
 		}
 		entity = spawners[0] spawnfromspawner(0, 1);
@@ -6671,7 +6668,7 @@ function function_15ee6847()
 			teststring = "";
 			foreach(player in level.players)
 			{
-				teststring = teststring + "" + player getentitynumber() + "";
+				teststring = teststring + (("" + player getentitynumber()) + "");
 				if(player.sessionstate == "")
 				{
 					teststring = teststring + "";
@@ -6763,7 +6760,7 @@ function init_debug_center_screen()
 		level flag::wait_till("");
 		zero_idle_movement = 0;
 		var_74757534 = "";
-		adddebugcommand(var_74757534 + "" + "" + "");
+		adddebugcommand(((var_74757534 + "") + "") + "");
 		for(;;)
 		{
 			if(getdvarint(#"debug_center_screen", 0))
@@ -6907,8 +6904,8 @@ function function_7c9dd642()
 			num = pow(2, mapping.numbits);
 			for(i = 0; i < num; i++)
 			{
-				cmdarg = function_9e72a96(key) + "" + i;
-				util::function_e2e9d901(path + function_9e72a96(key) + "" + i, cmd + cmdarg);
+				cmdarg = (function_9e72a96(key) + "") + i;
+				util::function_e2e9d901(((path + function_9e72a96(key)) + "") + i, cmd + cmdarg);
 			}
 		}
 		var_30a96cf9 = "";
@@ -7059,7 +7056,7 @@ function function_2cde0af9(text, color, start, velocity, frames)
 		{
 			print3d(location, text, color, alpha, 0.6, 1);
 			location = location + velocity;
-			alpha = alpha - 1 / frames * 2;
+			alpha = alpha - (1 / (frames * 2));
 			waitframe(1);
 		}
 	#/

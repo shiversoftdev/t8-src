@@ -156,7 +156,7 @@ function gadget_vision_pulse_on_spawn()
 */
 function gadget_vision_pulse_ramp_hold_func()
 {
-	self waittill_timeout(float(level.var_2e3031be.var_4d88a1ff) / 1000 - 0.35, #"ramp_out_visionset");
+	self waittill_timeout((float(level.var_2e3031be.var_4d88a1ff) / 1000) - 0.35, #"ramp_out_visionset");
 }
 
 /*
@@ -434,12 +434,12 @@ function gadget_vision_pulse_flicker(slot, weapon)
 		return;
 	}
 	eventtime = self._gadgets_player[slot].gadget_flickertime;
-	self set_gadget_vision_pulse_status("^1" + "Flickering.", eventtime);
+	self set_gadget_vision_pulse_status(("^1") + "Flickering.", eventtime);
 	while(true)
 	{
 		if(!self gadgetflickering(slot))
 		{
-			set_gadget_vision_pulse_status("^2" + "Normal");
+			set_gadget_vision_pulse_status(("^2") + "Normal");
 			return;
 		}
 		wait(0.25);
@@ -460,11 +460,11 @@ function set_gadget_vision_pulse_status(status, time)
 	timestr = "";
 	if(isdefined(time))
 	{
-		timestr = "^3" + ", time: " + time;
+		timestr = (("^3") + ", time: ") + time;
 	}
 	if(getdvarint(#"scr_cpower_debug_prints", 0) > 0)
 	{
-		self iprintlnbold("Vision Pulse:" + status + timestr);
+		self iprintlnbold(("Vision Pulse:" + status) + timestr);
 	}
 }
 

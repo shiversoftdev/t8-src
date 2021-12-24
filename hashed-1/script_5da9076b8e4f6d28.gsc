@@ -17,17 +17,17 @@ autoexec function __init__()
 	level.var_d8caca76 = function_a3975ce9();
 	level.var_3f501cff = function_a04d222e() - 500;
 	level.var_d051f0fe = function_d634ed59();
-	level.var_8ee4985f = 115 * 16 + 1 + 6 + 1 + 6 + 1;
+	level.var_8ee4985f = 115 * (((((16 + 1) + 6) + 1) + 6) + 1);
 	level.var_c4160ac0 = level.var_d8caca76 - 2;
 	/#
-		assert(level.var_c4160ac0 + 1 == 32767);
+		assert((level.var_c4160ac0 + 1) == 32767);
 	#/
 	level.var_c1fb34bd = level.var_c4160ac0;
 	level.var_b52c46a6 = level.var_c1fb34bd - level.var_8ee4985f;
 	level.var_7d942c18 = level.var_b52c46a6 - 1;
 	level.var_afaaa0ee = level.var_3f501cff;
 	/#
-		assert(level.var_7d942c18 - level.var_afaaa0ee > 1024);
+		assert((level.var_7d942c18 - level.var_afaaa0ee) > 1024);
 	#/
 	level.var_b7364e19 = level.var_afaaa0ee - 1;
 	level.var_6e47811c = 0;
@@ -52,8 +52,8 @@ function function_2eb2c17c(origin, item)
 	{
 		if(var_5d97fed1)
 		{
-			var_acdfe076 = isdefined(var_b0fbfe59[#"dynent"]) && distance2dsquared(var_b0fbfe59[#"dynent"].origin, item.origin) <= 12 * 12;
-			var_45127074 = isdefined(var_b0fbfe59[#"entity"]) && distance2dsquared(var_b0fbfe59[#"entity"].origin, item.origin) <= 12 * 12;
+			var_acdfe076 = isdefined(var_b0fbfe59[#"dynent"]) && distance2dsquared(var_b0fbfe59[#"dynent"].origin, item.origin) <= (12 * 12);
+			var_45127074 = isdefined(var_b0fbfe59[#"entity"]) && distance2dsquared(var_b0fbfe59[#"entity"].origin, item.origin) <= (12 * 12);
 			if(!var_acdfe076 && !var_45127074)
 			{
 				return 0;
@@ -107,7 +107,7 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 		}
 		var_47684cd2 = itemdef.origin - origin;
 		var_abd887b5 = distance2dsquared(itemdef.origin, origin);
-		if(var_abd887b5 < var_66347f1f && abs(itemdef.origin[2] - origin[2]) < 72)
+		if(var_abd887b5 < var_66347f1f && (abs(itemdef.origin[2] - origin[2])) < 72)
 		{
 			dot = vectordot(forward, vectornormalize(var_47684cd2));
 			if(dot >= 0.965 && var_abd887b5 < var_66347f1f && dot > var_9fd8216d)
@@ -199,8 +199,8 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 	if(isdefined(var_9b882d22))
 	{
 		neardist = util::function_4c1656d5();
-		var_9b882d22.var_5a15eef2 = neardist < maxdist && distance2dsquared(origin, var_9b882d22.origin) > neardist * neardist;
-		var_9b882d22.var_dae3e8db = distance2dsquared(origin, var_9b882d22.origin) < 128 - 12 * 128 - 12;
+		var_9b882d22.var_5a15eef2 = neardist < maxdist && distance2dsquared(origin, var_9b882d22.origin) > (neardist * neardist);
+		var_9b882d22.var_dae3e8db = distance2dsquared(origin, var_9b882d22.origin) < (128 - 12) * (128 - 12);
 		var_9b882d22.var_5d97fed1 = var_9b882d22.var_8e092725 === -1;
 	}
 	return var_9b882d22;
@@ -257,9 +257,9 @@ function function_808be9a3(player, var_bd027dd9)
 	/#
 		assert(entnum < 115);
 	#/
-	slotid = var_bd027dd9 - level.var_b52c46a6 - entnum * 16 + 1 + 6 + 1 + 6 + 1;
+	slotid = (var_bd027dd9 - level.var_b52c46a6) - (entnum * (((((16 + 1) + 6) + 1) + 6) + 1));
 	/#
-		assert(slotid >= 0 && slotid < 16 + 1 + 6 + 1 + 6 + 1);
+		assert(slotid >= 0 && slotid < (((((16 + 1) + 6) + 1) + 6) + 1));
 	#/
 	return slotid;
 }
@@ -339,13 +339,13 @@ function function_970b8d86(player, slotid, var_259f58f3 = undefined)
 		slotid = slotid + var_259f58f3;
 	}
 	/#
-		assert(slotid >= 0 && slotid < 16 + 1 + 6 + 1 + 6 + 1);
+		assert(slotid >= 0 && slotid < (((((16 + 1) + 6) + 1) + 6) + 1));
 	#/
 	entnum = player getentitynumber();
 	/#
 		assert(entnum < 115);
 	#/
-	var_f5e3c230 = entnum * 16 + 1 + 6 + 1 + 6 + 1 + slotid;
+	var_f5e3c230 = (entnum * (((((16 + 1) + 6) + 1) + 6) + 1)) + slotid;
 	var_bd027dd9 = var_f5e3c230 + level.var_b52c46a6;
 	/#
 		assert(var_bd027dd9 >= level.var_b52c46a6 && var_bd027dd9 <= level.var_c1fb34bd);
@@ -386,7 +386,7 @@ function function_6af455de(localclientnum, origin, angles)
 			var_bf3cabc9 = vehicle;
 			var_e664ecda = var_aba3faed;
 		}
-		if(dot >= 0.5 && var_aba3faed <= 128 * 128 && (!isdefined(var_1dd6e163) || var_aba3faed < var_1dd6e163))
+		if(dot >= 0.5 && var_aba3faed <= (128 * 128) && (!isdefined(var_1dd6e163) || var_aba3faed < var_1dd6e163))
 		{
 			var_33b49591 = vehicle;
 			var_1dd6e163 = var_aba3faed;

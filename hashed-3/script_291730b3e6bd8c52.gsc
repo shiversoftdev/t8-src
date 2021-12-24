@@ -318,7 +318,7 @@ private function function_ce9e3dc7(animname)
 	self thread animation::play(var_1d3061ce);
 	while(endtime > gettime())
 	{
-		scale = 1 - gettime() - starttime / animlength;
+		scale = 1 - ((gettime() - starttime) / animlength);
 		if(scale > 0)
 		{
 			self setscale(scale);

@@ -120,7 +120,7 @@ private function function_938bdf98()
 	usetrigger function_4bf6de9a(0);
 	usetrigger function_c96c67a5(0);
 	usetrigger function_89fca53b(1);
-	usetrigger function_49462027(1, 1 | 16 | 1024);
+	usetrigger function_49462027(1, (1 | 16) | 1024);
 	usetrigger callback::function_a04381e0(&function_46502841);
 	return usetrigger;
 }
@@ -142,7 +142,7 @@ private function update_loop()
 	{
 		foreach(i, player in getplayers())
 		{
-			if(i % 5 == var_1a1c0d86)
+			if((i % 5) == var_1a1c0d86)
 			{
 				if(!isdefined(player.var_8a022726))
 				{
@@ -156,7 +156,7 @@ private function update_loop()
 				player function_2f394f36();
 			}
 		}
-		var_1a1c0d86 = var_1a1c0d86 + 1 % 5;
+		var_1a1c0d86 = (var_1a1c0d86 + 1) % 5;
 		waitframe(1);
 	}
 }
@@ -351,13 +351,13 @@ private function function_2b9e2224(trigger)
 			{
 				success = 1;
 				var_a852a7dd = trigger function_bf7b8a27(dynent, self);
-				dynent.var_a548ec11 = gettime() + var_a852a7dd * 1000;
+				dynent.var_a548ec11 = gettime() + (var_a852a7dd * 1000);
 				trigger triggerenable(0);
 				break;
 			}
 			if(usetime > 0)
 			{
-				progress = gettime() - begintime / usetime;
+				progress = (gettime() - begintime) / usetime;
 				progress = max(progress, 0.01);
 				self clientfield::set_player_uimodel("hudItems.dynentUseHoldProgress", progress);
 			}
@@ -521,10 +521,10 @@ private event function_3981d015(eventstruct)
 				gametime = gettime();
 				if(isdefined(newstate.var_e23400ad) && newstate.var_e23400ad)
 				{
-					gametime = gametime + abs(dynent.origin[0] + dynent.origin[1] + dynent.origin[2]);
+					gametime = gametime + (abs((dynent.origin[0] + dynent.origin[1]) + dynent.origin[2]));
 				}
 				animlength = int(getanimlength(newstate.var_879eb2ff) * 1000);
-				starttime = gametime / animlength / rate;
+				starttime = gametime / (animlength / rate);
 				starttime = starttime - int(starttime);
 			}
 			else if(teleport && !isanimlooping(newstate.var_879eb2ff))

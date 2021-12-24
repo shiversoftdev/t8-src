@@ -115,8 +115,8 @@ private function finalize_clientfields(localclientnum)
 	clientfield::register("clientuimodel", "zmhud.currentSpecialLocked", 16000, 1, "int", undefined, 0, 0);
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("worlduimodel", "PlayerList.client" + i + "." + "trialsCheckState", 1, 2, "int", undefined, 0, 0);
-		clientfield::register("worlduimodel", "PlayerList.client" + i + "." + "trialsCounterValue", 1, getminbitcountfornum(1000), "int", undefined, 0, 0);
+		clientfield::register("worlduimodel", (("PlayerList.client" + i) + ".") + "trialsCheckState", 1, 2, "int", undefined, 0, 0);
+		clientfield::register("worlduimodel", (("PlayerList.client" + i) + ".") + "trialsCounterValue", 1, getminbitcountfornum(1000), "int", undefined, 0, 0);
 	}
 }
 

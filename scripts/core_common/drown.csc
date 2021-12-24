@@ -165,7 +165,7 @@ function enable_drown(localclientnum, stage)
 {
 	filter::init_filter_drowning_damage(localclientnum);
 	filter::enable_filter_drowning_damage(localclientnum, 1);
-	self.drown_start_time = getservertime(localclientnum) - stage - 1 * self function_1a9dc208();
+	self.drown_start_time = getservertime(localclientnum) - (stage - 1) * self function_1a9dc208();
 	self.drown_outerradius = 0;
 	self.drown_innerradius = 0;
 	self.drown_opacity = 0;
@@ -202,7 +202,7 @@ function player_drown_fx(localclientnum, stage)
 	self endon(#"player_drown_fx");
 	self player_init_drown_values();
 	var_f0886300 = self function_1a9dc208();
-	lastoutwatertimestage = self.drown_start_time + stage - 1 * var_f0886300;
+	lastoutwatertimestage = self.drown_start_time + ((stage - 1) * var_f0886300);
 	stageduration = var_f0886300;
 	if(stage == 1)
 	{
@@ -212,7 +212,7 @@ function player_drown_fx(localclientnum, stage)
 	{
 		currenttime = getservertime(localclientnum);
 		elapsedtime = currenttime - self.drown_start_time;
-		stageratio = math::clamp(currenttime - lastoutwatertimestage / stageduration, 0, 1);
+		stageratio = math::clamp((currenttime - lastoutwatertimestage) / stageduration, 0, 1);
 		if(!isdefined(stage))
 		{
 			stage = 1;
@@ -248,7 +248,7 @@ function player_fade_out_drown_fx(localclientnum)
 	currenttime = getservertime(localclientnum);
 	while(currenttime - fadestarttime < 250)
 	{
-		ratio = currenttime - fadestarttime / 250;
+		ratio = (currenttime - fadestarttime) / 250;
 		outerradius = lerpfloat(self.drown_outerradius, 1.41421, ratio);
 		innerradius = lerpfloat(self.drown_innerradius, 1.41421, ratio);
 		opacity = lerpfloat(self.drown_opacity, 0, ratio);

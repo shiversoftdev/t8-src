@@ -166,7 +166,7 @@ function state_death_update(params)
 				dist = distance(self.origin, params.attacker.origin);
 				if(dist < params.weapon.maxgibdistance)
 				{
-					gib_chance = 1 - dist / params.weapon.maxgibdistance;
+					gib_chance = 1 - (dist / params.weapon.maxgibdistance);
 					if(randomfloatrange(0, 2) < gib_chance)
 					{
 						death_type = "gibbed";
@@ -261,7 +261,7 @@ function state_emped_update(params)
 	self fall_and_bounce(killonimpact_speed, self.settings.killonimpact_time, 1);
 	self notify(#"landed");
 	self setvehvelocity((0, 0, 0));
-	self setphysacceleration((0, 0, gravity * -1 * 0.1));
+	self setphysacceleration((0, 0, (gravity * -1) * 0.1));
 	self setangularvelocity((0, 0, 0));
 	while(!util::iscooldownready("emped_timer"))
 	{
@@ -357,7 +357,7 @@ function fall_and_bounce(killonimpact_speed, killonimpact_time, var_666e0401 = 0
 	anglesstablizeinitialscale = 0.6;
 	anglesstablizeincrement = 0.2;
 	fallstart = gettime();
-	while(bouncedtime < maxbouncetime && lengthsquared(self.velocity) > 10 * 10)
+	while(bouncedtime < maxbouncetime && lengthsquared(self.velocity) > (10 * 10))
 	{
 		waitresult = undefined;
 		waitresult = self waittill(#"veh_collision");
@@ -367,7 +367,7 @@ function fall_and_bounce(killonimpact_speed, killonimpact_time, var_666e0401 = 0
 		{
 			self kill();
 		}
-		else if(lengthsquared(impact_vel) > killonimpact_speed * killonimpact_speed || (util::timesince(fallstart) > killonimpact_time && lengthsquared(impact_vel) > killonimpact_speed * 0.8 * killonimpact_speed * 0.8))
+		else if(lengthsquared(impact_vel) > (killonimpact_speed * killonimpact_speed) || (util::timesince(fallstart) > killonimpact_time && lengthsquared(impact_vel) > (killonimpact_speed * 0.8) * (killonimpact_speed * 0.8)))
 		{
 			self kill();
 		}
@@ -382,29 +382,29 @@ function fall_and_bounce(killonimpact_speed, killonimpact_time, var_666e0401 = 0
 		oldvelocity = self.velocity;
 		vel_hitdir = vectorprojection(impact_vel, normal) * -1;
 		vel_hitdirup = vectorprojection(vel_hitdir, (0, 0, 1));
-		velscale = min(bouncescale * bouncedtime + 1, 0.9);
-		newvelocity = oldvelocity - vectorprojection(oldvelocity, vel_hitdir) * 1 - velocityloss;
-		newvelocity = newvelocity + vel_hitdir * velscale;
+		velscale = min(bouncescale * (bouncedtime + 1), 0.9);
+		newvelocity = (oldvelocity - vectorprojection(oldvelocity, vel_hitdir)) * (1 - velocityloss);
+		newvelocity = newvelocity + (vel_hitdir * velscale);
 		shouldbounce = vectordot(normal, (0, 0, 1)) > 0.76;
 		if(shouldbounce)
 		{
 			velocitylengthsqr = lengthsquared(newvelocity);
 			stablizescale = mapfloat(5 * 5, 60 * 60, 0.1, 1, velocitylengthsqr);
 			ang_vel = self getangularvelocity();
-			ang_vel = ang_vel * angularvelstablizeparams * stablizescale;
+			ang_vel = ang_vel * (angularvelstablizeparams * stablizescale);
 			self setangularvelocity(ang_vel);
 			angles = self.angles;
-			anglesstablizescale = min(anglesstablizeinitialscale - bouncedtime * anglesstablizeincrement, 0.1);
+			anglesstablizescale = min(anglesstablizeinitialscale - (bouncedtime * anglesstablizeincrement), 0.1);
 			pitch = angles[0];
 			yaw = angles[1];
 			roll = angles[2];
 			surfaceangles = vectortoangles(normal);
 			surfaceroll = surfaceangles[2];
-			if(pitch < maxangle * -1 || pitch > maxangle)
+			if(pitch < (maxangle * -1) || pitch > maxangle)
 			{
 				pitch = pitch * anglesstablizescale;
 			}
-			if(roll < surfaceroll - maxangle || roll > surfaceroll + maxangle)
+			if(roll < (surfaceroll - maxangle) || roll > (surfaceroll + maxangle))
 			{
 				roll = lerpfloat(surfaceroll, roll, anglesstablizescale);
 			}
@@ -530,7 +530,7 @@ function get_guard_points(owner)
 	foreach(point in self._guard_points)
 	{
 		offset = rotatepoint(point, owner.angles);
-		worldpoint = offset + owner.origin + owner getvelocity() * 0.5;
+		worldpoint = (offset + owner.origin) + (owner getvelocity() * 0.5);
 		if(ispointinnavvolume(worldpoint, "navvolume_small"))
 		{
 			if(!isdefined(points_array))
@@ -586,7 +586,7 @@ function state_guard_can_enter(from_state, to_state, connection)
 	{
 		return 1;
 	}
-	if(distancesquared(self.owner.origin, self.enemy.origin) > 1200 * 1200 && distancesquared(self.origin, self.enemy.origin) > 300 * 300)
+	if(distancesquared(self.owner.origin, self.enemy.origin) > (1200 * 1200) && distancesquared(self.origin, self.enemy.origin) > (300 * 300))
 	{
 		return 1;
 	}
@@ -716,7 +716,7 @@ function state_guard_update(params)
 	stuckcount = 0;
 	while(true)
 	{
-		if(isdefined(self.enemy) && distancesquared(self.owner.origin, self.enemy.origin) < 1000 * 1000 && self seerecently(self.enemy, 1) && ispointinnavvolume(self.origin, "navvolume_small"))
+		if(isdefined(self.enemy) && distancesquared(self.owner.origin, self.enemy.origin) < (1000 * 1000) && self seerecently(self.enemy, 1) && ispointinnavvolume(self.origin, "navvolume_small"))
 		{
 			self vehicle_ai::evaluate_connections();
 			wait(1);
@@ -827,7 +827,7 @@ function state_guard_update(params)
 			if(isdefined(self.current_pathto_pos))
 			{
 				distancetogoalsq = distancesquared(self.current_pathto_pos, self.origin);
-				if(!onnavvolume || distancetogoalsq > 60 * 60)
+				if(!onnavvolume || distancetogoalsq > (60 * 60))
 				{
 					if(distancetogoalsq > 600 * 600)
 					{
@@ -924,16 +924,16 @@ function turretfireupdate()
 					drone.favoriteenemy = self.enemy;
 				}
 			}
-			if(distancesquared(self.enemy.origin, self.origin) < 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax * 3 * 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax * 3)
+			if(distancesquared(self.enemy.origin, self.origin) < ((0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax)) * 3) * ((0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax)) * 3))
 			{
 				self vehlookat(self.enemy);
 				if(isrockettype)
 				{
-					self turretsettarget(0, self.enemy, self.enemy getvelocity() * 0.3 - vehicle_ai::gettargeteyeoffset(self.enemy) * 0.3);
+					self turretsettarget(0, self.enemy, (self.enemy getvelocity() * 0.3) - (vehicle_ai::gettargeteyeoffset(self.enemy) * 0.3));
 				}
 				else
 				{
-					self turretsettarget(0, self.enemy, vehicle_ai::gettargeteyeoffset(self.enemy) * -1 * 0.3);
+					self turretsettarget(0, self.enemy, (vehicle_ai::gettargeteyeoffset(self.enemy) * -1) * 0.3);
 				}
 				startaim = gettime();
 				while(!self.turretontarget && util::timesince(startaim) < 3)
@@ -1038,7 +1038,7 @@ function path_update_interrupt()
 			{
 				self notify(#"near_goal");
 			}
-			if(self cansee(self.enemy) && distance2dsquared(self.origin, self.enemy.origin) < 250 * 250)
+			if(self cansee(self.enemy) && distance2dsquared(self.origin, self.enemy.origin) < (250 * 250))
 			{
 				self notify(#"near_goal");
 			}
@@ -1089,7 +1089,7 @@ function wait_till_something_happens(timeout)
 			{
 				break;
 			}
-			goalheight = self.enemy.origin[2] + 0.5 * self.settings.engagementheightmin + self.settings.engagementheightmax;
+			goalheight = self.enemy.origin[2] + (0.5 * (self.settings.engagementheightmin + self.settings.engagementheightmax));
 			distfrompreferredheight = abs(self.origin[2] - goalheight);
 			if(distfrompreferredheight > 100)
 			{
@@ -1398,7 +1398,7 @@ function state_combat_update(params)
 		if(isdefined(self.current_pathto_pos))
 		{
 			distancetogoalsq = distancesquared(self.current_pathto_pos, self.origin);
-			if(!onnavvolume || distancetogoalsq > 75 * 75)
+			if(!onnavvolume || distancetogoalsq > (75 * 75))
 			{
 				if(distancetogoalsq > 2000 * 2000)
 				{
@@ -1441,7 +1441,7 @@ function state_combat_update(params)
 function getnextmoveposition_wander()
 {
 	querymultiplier = 1;
-	queryresult = positionquery_source_navigation(self.origin, 80, 500 * querymultiplier, 130, 3 * self.radius * querymultiplier, self, self.radius * querymultiplier);
+	queryresult = positionquery_source_navigation(self.origin, 80, 500 * querymultiplier, 130, (3 * self.radius) * querymultiplier, self, self.radius * querymultiplier);
 	positionquery_filter_distancetogoal(queryresult, self);
 	vehicle_ai::positionquery_filter_outofgoalanchor(queryresult);
 	self.isonnav = queryresult.centeronnav;
@@ -1451,7 +1451,7 @@ function getnextmoveposition_wander()
 	{
 		randomscore = randomfloatrange(0, 100);
 		disttooriginscore = point.disttoorigin2d * 0.2;
-		point.score = point.score + randomscore + disttooriginscore;
+		point.score = point.score + (randomscore + disttooriginscore);
 		/#
 			if(!isdefined(point._scoredebug))
 			{
@@ -1495,7 +1495,7 @@ function getnextmoveposition_tactical()
 		return self getnextmoveposition_wander();
 	}
 	selfdisttotarget = distance2d(self.origin, self.enemy.origin);
-	gooddist = 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax;
+	gooddist = 0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
 	closedist = 1.2 * gooddist;
 	fardist = 3 * gooddist;
 	querymultiplier = mapfloat(closedist, fardist, 1, 3, selfdisttotarget);
@@ -1558,7 +1558,7 @@ function getnextmoveposition_tactical()
 	}
 	else
 	{
-		queryresult = positionquery_source_navigation(self.origin, 0, 500 * min(querymultiplier, 2), 130, 3 * self.radius * querymultiplier, self, 2.2 * self.radius * querymultiplier);
+		queryresult = positionquery_source_navigation(self.origin, 0, 500 * min(querymultiplier, 2), 130, (3 * self.radius) * querymultiplier, self, (2.2 * self.radius) * querymultiplier);
 		team_mates = getaiteamarray(self.team);
 		avoid_radius = 140;
 		foreach(guy in team_mates)
@@ -1613,7 +1613,7 @@ function getnextmoveposition_tactical()
 			point._scoredebug[#"engagementdist"].score = point.distawayfromengagementarea * -1;
 			point._scoredebug[#"engagementdist"].scorename = "";
 		#/
-		point.score = point.score + point.distawayfromengagementarea * -1;
+		point.score = point.score + (point.distawayfromengagementarea * -1);
 		/#
 			if(!isdefined(point._scoredebug))
 			{
@@ -1623,10 +1623,10 @@ function getnextmoveposition_tactical()
 			{
 				point._scoredebug[#"height"] = spawnstruct();
 			}
-			point._scoredebug[#"height"].score = point.distengagementheight * -1 * 1.4;
+			point._scoredebug[#"height"].score = (point.distengagementheight * -1) * 1.4;
 			point._scoredebug[#"height"].scorename = "";
 		#/
-		point.score = point.score + point.distengagementheight * -1 * 1.4;
+		point.score = point.score + ((point.distengagementheight * -1) * 1.4);
 		if(point.disttoorigin2d < 120)
 		{
 			/#
@@ -1638,10 +1638,10 @@ function getnextmoveposition_tactical()
 				{
 					point._scoredebug[#"tooclosetoself"] = spawnstruct();
 				}
-				point._scoredebug[#"tooclosetoself"].score = 120 - point.disttoorigin2d * -1.5;
+				point._scoredebug[#"tooclosetoself"].score = (120 - point.disttoorigin2d) * -1.5;
 				point._scoredebug[#"tooclosetoself"].scorename = "";
 			#/
-			point.score = point.score + 120 - point.disttoorigin2d * -1.5;
+			point.score = point.score + ((120 - point.disttoorigin2d) * -1.5);
 		}
 		foreach(location in avoid_locations)
 		{
@@ -1659,7 +1659,7 @@ function getnextmoveposition_tactical()
 					point._scoredebug[#"tooclosetoothers"].score = avoid_radius * -1;
 					point._scoredebug[#"tooclosetoothers"].scorename = "";
 				#/
-				point.score = point.score + avoid_radius * -1;
+				point.score = point.score + (avoid_radius * -1);
 			}
 		}
 		if(point.inclaimedlocation)

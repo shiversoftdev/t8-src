@@ -220,7 +220,7 @@ function function_aa6e2f52(watcher, owner)
 */
 function function_7cc07921(ent)
 {
-	if(distancesquared(self.origin, ent.origin) <= level.var_a5ff950.var_9c0267f2 * level.var_a5ff950.var_9c0267f2)
+	if(distancesquared(self.origin, ent.origin) <= (level.var_a5ff950.var_9c0267f2 * level.var_a5ff950.var_9c0267f2))
 	{
 		return 1;
 	}
@@ -334,7 +334,7 @@ function function_33020ed7(ent)
 */
 function function_c23ed15d(ent, var_3ee2edfa)
 {
-	if(isdefined(ent.var_21f48975) && ent.var_21f48975 + var_3ee2edfa + int((isdefined(level.var_a5ff950.var_80cecde8) ? level.var_a5ff950.var_80cecde8 : 0) * 1000) > gettime())
+	if(isdefined(ent.var_21f48975) && (ent.var_21f48975 + var_3ee2edfa) + (int((isdefined(level.var_a5ff950.var_80cecde8) ? level.var_a5ff950.var_80cecde8 : 0) * 1000)) > gettime())
 	{
 		return 1;
 	}
@@ -626,7 +626,7 @@ function function_92eabc2f(ent, var_51415470)
 	ent.var_beee9523 = 1;
 	var_3ee2edfa = ent function_a64504d2();
 	params = function_4d1e7b48(#"shock_rifle_shock");
-	ent status_effect::status_effect_apply(params, level.var_1b72f911, self.owner, 0, int(var_3ee2edfa + level.var_a5ff950.var_772f6a9c * 1000), undefined, self.origin);
+	ent status_effect::status_effect_apply(params, level.var_1b72f911, self.owner, 0, int((var_3ee2edfa + level.var_a5ff950.var_772f6a9c) * 1000), undefined, self.origin);
 	isplayer = isplayer(ent);
 	if(isplayer)
 	{

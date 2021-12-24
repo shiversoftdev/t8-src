@@ -278,7 +278,7 @@ function function_814cda18()
 	var_e1177b43 = 0;
 	if(var_e1177b43)
 	{
-		var_d8f4b898 rotateto(var_d8f4b898.angles + vectorscale((0, -1, 0), 170), 1);
+		var_d8f4b898 rotateto(var_d8f4b898.angles + (vectorscale((0, -1, 0), 170)), 1);
 		var_d8f4b898 waittill(#"movedone");
 	}
 	var_d8f4b898 disconnectpaths();
@@ -538,7 +538,7 @@ function function_1e56a591()
 	level.var_74c82857 = 0;
 	for(i = 1; i <= 4; i++)
 	{
-		var_df155a8 = getentarray("pap_light_" + i + "_green", "targetname");
+		var_df155a8 = getentarray(("pap_light_" + i) + "_green", "targetname");
 		foreach(var_c2147f5e in var_df155a8)
 		{
 			var_c2147f5e hide();
@@ -546,7 +546,7 @@ function function_1e56a591()
 	}
 	for(i = 1; i <= 4; i++)
 	{
-		var_daf9be5b = getentarray("pap_light_" + i + "_red", "targetname");
+		var_daf9be5b = getentarray(("pap_light_" + i) + "_red", "targetname");
 		foreach(var_c2147f5e in var_daf9be5b)
 		{
 			var_c2147f5e hide();
@@ -555,7 +555,7 @@ function function_1e56a591()
 	level flag::wait_till(#"power_on3");
 	for(i = 1; i <= 4; i++)
 	{
-		var_daf9be5b = getentarray("pap_light_" + i + "_red", "targetname");
+		var_daf9be5b = getentarray(("pap_light_" + i) + "_red", "targetname");
 		foreach(var_c2147f5e in var_daf9be5b)
 		{
 			var_c2147f5e show();
@@ -563,7 +563,7 @@ function function_1e56a591()
 	}
 	for(i = 1; i <= 4; i++)
 	{
-		var_650332fe = getentarray("pap_light_" + i + "_off", "targetname");
+		var_650332fe = getentarray(("pap_light_" + i) + "_off", "targetname");
 		foreach(var_c2147f5e in var_650332fe)
 		{
 			var_c2147f5e hide();
@@ -600,12 +600,12 @@ function function_6762e94d()
 		{
 			self.s_unitrigger.is_on = 1;
 			level.var_74c82857 = level.var_74c82857 + 1;
-			var_df155a8 = getentarray("pap_light_" + self.script_noteworthy + "_green", "targetname");
+			var_df155a8 = getentarray(("pap_light_" + self.script_noteworthy) + "_green", "targetname");
 			foreach(var_c2147f5e in var_df155a8)
 			{
 				var_c2147f5e show();
 			}
-			var_daf9be5b = getentarray("pap_light_" + self.script_noteworthy + "_red", "targetname");
+			var_daf9be5b = getentarray(("pap_light_" + self.script_noteworthy) + "_red", "targetname");
 			foreach(var_c2147f5e in var_daf9be5b)
 			{
 				var_c2147f5e hide();
@@ -899,8 +899,8 @@ function function_1f712bb1()
 		return undefined;
 	}
 	wait(3);
-	level.var_af3a53b2 = util::spawn_model("tag_origin", level.chests[level.chest_index].origin + vectorscale((0, 0, -1), 75));
-	level.var_af3a53b2.angles = level.chests[level.chest_index].angles + vectorscale((-1, 0, -1), 90);
+	level.var_af3a53b2 = util::spawn_model("tag_origin", level.chests[level.chest_index].origin + (vectorscale((0, 0, -1), 75)));
+	level.var_af3a53b2.angles = level.chests[level.chest_index].angles + (vectorscale((-1, 0, -1), 90));
 	playfxontag(level._effect[#"hash_572a14944ad27060"], level.var_af3a53b2, "tag_origin");
 }
 
@@ -947,8 +947,8 @@ function function_da0655c7()
 			continue;
 		}
 		wait(0.1);
-		level.var_3caf613d[i] = util::spawn_model("tag_origin", level.chests[i].origin + vectorscale((0, 0, -1), 75));
-		level.var_3caf613d[i].angles = level.chests[level.chest_index].angles + vectorscale((-1, 0, -1), 90);
+		level.var_3caf613d[i] = util::spawn_model("tag_origin", level.chests[i].origin + (vectorscale((0, 0, -1), 75)));
+		level.var_3caf613d[i].angles = level.chests[level.chest_index].angles + (vectorscale((-1, 0, -1), 90));
 		playfxontag(level._effect[#"hash_572a14944ad27060"], level.var_3caf613d[i], "tag_origin");
 	}
 	level waittill(#"fire_sale_off");
@@ -991,8 +991,8 @@ function function_cf95fbb7()
 			continue;
 		}
 		wait(0.1);
-		level.var_3caf613d[i] = util::spawn_model("tag_origin", level.chests[i].origin + vectorscale((0, 0, -1), 75));
-		level.var_3caf613d[i].angles = level.chests[level.chest_index].angles + vectorscale((-1, 0, -1), 90);
+		level.var_3caf613d[i] = util::spawn_model("tag_origin", level.chests[i].origin + (vectorscale((0, 0, -1), 75)));
+		level.var_3caf613d[i].angles = level.chests[level.chest_index].angles + (vectorscale((-1, 0, -1), 90));
 		playfxontag(level._effect[#"hash_572a14944ad27060"], level.var_3caf613d[i], "tag_origin");
 	}
 }

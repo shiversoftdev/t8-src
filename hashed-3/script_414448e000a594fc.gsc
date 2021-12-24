@@ -141,16 +141,16 @@ function function_7dfe3289(var_d8138db2)
 	var_c7588ce0 = (0, playerangles[1], 0);
 	forward = anglestoforward(var_c7588ce0);
 	forward = forward * 20;
-	spawnpos = self.origin + vectorscale((0, 0, 1), 90) + forward;
+	spawnpos = (self.origin + vectorscale((0, 0, 1), 90)) + forward;
 	trace = self function_6ada73f(spawnpos);
 	if(trace[#"fraction"] < 1)
 	{
-		spawnpos = self.origin + vectorscale((0, 0, 1), 75) + forward;
+		spawnpos = (self.origin + vectorscale((0, 0, 1), 75)) + forward;
 		trace = function_6ada73f(spawnpos);
 	}
 	if(trace[#"fraction"] < 1)
 	{
-		spawnpos = self.origin + vectorscale((0, 0, 1), 45) + forward;
+		spawnpos = (self.origin + vectorscale((0, 0, 1), 45)) + forward;
 		trace = function_6ada73f(spawnpos);
 	}
 	if(trace[#"fraction"] < 1)
@@ -233,7 +233,7 @@ function function_7dfe3289(var_d8138db2)
 */
 function function_b162cdbd(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
-	if(gettime() - self.birthtime <= 350)
+	if((gettime() - self.birthtime) <= 350)
 	{
 		return 0;
 	}
@@ -289,7 +289,7 @@ function function_ed9fa4fc(vehicle, playerorigin)
 	vehicle.var_b61d83c4 = 0;
 	self.hawk.var_b61d83c4 = 0;
 	distsqr = distancesquared(vehicle.origin, playerorigin);
-	if(distsqr > level.hawk_settings.bundle.var_6e4818a6 * level.hawk_settings.bundle.var_6e4818a6 || vehicle.origin[2] > level.var_5718bd08)
+	if(distsqr > (level.hawk_settings.bundle.var_6e4818a6 * level.hawk_settings.bundle.var_6e4818a6) || vehicle.origin[2] > level.var_5718bd08)
 	{
 		vehicle clientfield::set("hawk_range", 1);
 		vehicle.var_b61d83c4 = 1;
@@ -314,7 +314,7 @@ function function_ed9fa4fc(vehicle, playerorigin)
 					vehicle.var_3de57a77 = gettime();
 				}
 				var_a71a8383 = gettime() - vehicle.var_3de57a77;
-				if(int(1 * 1000) <= var_a71a8383)
+				if((int(1 * 1000)) <= var_a71a8383)
 				{
 					vehicle hawk::function_4c1ea6ce();
 				}
@@ -523,7 +523,7 @@ function function_1b057db2()
 		var_a4137bf5 = gettime() - self.var_f97921ea;
 		if(var_a4137bf5 < 850)
 		{
-			wait(float(850 - var_a4137bf5) / 1000);
+			wait((float(850 - var_a4137bf5)) / 1000);
 		}
 	}
 	var_37ea2019 = 0;

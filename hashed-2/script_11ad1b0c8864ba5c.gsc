@@ -514,11 +514,11 @@ private function function_1aba0132()
 			/#
 				if(self cansee(self.enemy))
 				{
-					recordline(eyeorigin, eyeorigin + var_a4d90ed8 * 100, (0, 1, 0), "");
+					recordline(eyeorigin, eyeorigin + (var_a4d90ed8 * 100), (0, 1, 0), "");
 				}
 				else
 				{
-					recordline(eyeorigin, eyeorigin + var_a4d90ed8 * 100, (1, 0, 0), "");
+					recordline(eyeorigin, eyeorigin + (var_a4d90ed8 * 100), (1, 0, 0), "");
 				}
 				record3dtext("" + distance, self.origin, (0, 0, 1), "");
 			#/
@@ -678,7 +678,7 @@ private function function_ebf85268(inflictor, attacker, damage, idflags, meansof
 	/#
 		if(level.var_abe0b71d)
 		{
-			iprintlnbold("" + var_786d7e06.damage_scale + "" + final_damage + "" + self.health - final_damage);
+			iprintlnbold((((("" + var_786d7e06.damage_scale) + "") + final_damage) + "") + (self.health - final_damage));
 		}
 	#/
 	if(isdefined(self.var_c59e2dbf))
@@ -689,7 +689,7 @@ private function function_ebf85268(inflictor, attacker, damage, idflags, meansof
 	{
 		self.var_c59e2dbf = final_damage;
 	}
-	if(!(isdefined(self.var_48baa747) && self.var_48baa747) && (!(isdefined(self.var_e9ed8a62) && self.var_e9ed8a62)) && self.var_c59e2dbf > self.maxhealth * self ai::function_9139c839().var_96b9b674 / 100)
+	if(!(isdefined(self.var_48baa747) && self.var_48baa747) && (!(isdefined(self.var_e9ed8a62) && self.var_e9ed8a62)) && self.var_c59e2dbf > (self.maxhealth * (self ai::function_9139c839().var_96b9b674 / 100)))
 	{
 		if(self.var_b7ba7211 < gettime() && hasasm(self) && self function_ebbebf56() >= 1)
 		{
@@ -842,7 +842,7 @@ private function werewolfshouldshowpain(entity)
 private function function_4014790a(entity)
 {
 	entity.var_1cfbbe3d = undefined;
-	entity.var_b7ba7211 = gettime() + int(entity ai::function_9139c839().var_bd87ef4d * 1000);
+	entity.var_b7ba7211 = gettime() + (int(entity ai::function_9139c839().var_bd87ef4d * 1000));
 	entity.blockingpain = 1;
 	function_43f02cf0(entity);
 }
@@ -1080,7 +1080,7 @@ private function function_4b392ea3(entity)
 	{
 		foreach(var_462d3042 in var_34529779)
 		{
-			if(isdefined(var_462d3042.data.pos) && distancesquared(var_462d3042.data.pos, entity.origin) <= 800 * 800)
+			if(isdefined(var_462d3042.data.pos) && distancesquared(var_462d3042.data.pos, entity.origin) <= (800 * 800))
 			{
 				return 0;
 			}
@@ -1108,13 +1108,13 @@ private function function_a5c42011(entity)
 		if(isdefined(pathgoalpos))
 		{
 			distsq = distancesquared(entity.origin, pathgoalpos);
-			if(currentstance == "upright" && distsq > entity ai::function_9139c839().var_ed83d6e9 * entity ai::function_9139c839().var_ed83d6e9)
+			if(currentstance == "upright" && distsq > (entity ai::function_9139c839().var_ed83d6e9 * entity ai::function_9139c839().var_ed83d6e9))
 			{
 				desiredstance = "quad";
 				self allowpitchangle(1);
 				self setpitchorient();
 			}
-			else if(currentstance == "quad" && distsq < entity ai::function_9139c839().var_e5f93adc * entity ai::function_9139c839().var_e5f93adc)
+			else if(currentstance == "quad" && distsq < (entity ai::function_9139c839().var_e5f93adc * entity ai::function_9139c839().var_e5f93adc))
 			{
 				desiredstance = "upright";
 				self allowpitchangle(0);
@@ -1125,7 +1125,7 @@ private function function_a5c42011(entity)
 		{
 			desiredstance = "upright";
 		}
-		entity.ai.var_d6cd1d4e = gettime() + int(entity ai::function_9139c839().var_6d4b0dd6 * 1000);
+		entity.ai.var_d6cd1d4e = gettime() + (int(entity ai::function_9139c839().var_6d4b0dd6 * 1000));
 		entity setblackboardattribute("_werewolf_stance", desiredstance);
 		var_462d3042 = spawnstruct();
 		var_462d3042.pos = entity.origin;
@@ -1319,7 +1319,7 @@ private function function_6cde7a8b(entity, predictedenemypos)
 	}
 	dirtoenemy = vectornormalize(enemypos - entity.origin);
 	dirtoenemy = vectornormalize(dirtoenemy);
-	return enemypos + dirtoenemy * -1 * 45;
+	return enemypos + ((dirtoenemy * -1) * 45);
 }
 
 /*
@@ -1458,9 +1458,9 @@ private function function_fca0332e(entity)
 	}
 	radiusdamage(entity.origin, 200, 15, 5, entity, "MOD_MELEE");
 	zombies = getaiarchetypearray(#"zombie", level.zombie_team);
-	zombies = arraysortclosest(zombies, self.origin + anglestoforward(self.angles) * 65 * 0.5, undefined, undefined, self getpathfindingradius() + 65);
+	zombies = arraysortclosest(zombies, self.origin + ((anglestoforward(self.angles) * 65) * 0.5), undefined, undefined, self getpathfindingradius() + 65);
 	/#
-		recordcircle(self.origin + anglestoforward(self.angles) * 65 * 0.5, self getpathfindingradius() + 65, (0, 0, 1));
+		recordcircle(self.origin + ((anglestoforward(self.angles) * 65) * 0.5), self getpathfindingradius() + 65, (0, 0, 1));
 	#/
 	foreach(zombie in zombies)
 	{
@@ -1645,14 +1645,14 @@ function function_8b63ee0e(entity, mocompanim, mocompanimblendouttime, mocompani
 			#/
 			entity.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_cf699df5 > var_65cbfb52 && var_776ddabf >= entity ai::function_9139c839().var_d781a7cc * entity ai::function_9139c839().var_d781a7cc)
+		else if(var_cf699df5 > var_65cbfb52 && var_776ddabf >= (entity ai::function_9139c839().var_d781a7cc * entity ai::function_9139c839().var_d781a7cc))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
 			#/
 			entity.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_776ddabf >= entity ai::function_9139c839().var_e49498dc * entity ai::function_9139c839().var_e49498dc)
+		else if(var_776ddabf >= (entity ai::function_9139c839().var_e49498dc * entity ai::function_9139c839().var_e49498dc))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
@@ -1678,7 +1678,7 @@ function function_8b63ee0e(entity, mocompanim, mocompanimblendouttime, mocompani
 			var_7948b2f3 = var_6738a702 && var_175919d1;
 			var_425c4c8b = isvisible || var_535d098c && var_7948b2f3;
 			/#
-				reasons = "" + isvisible + "" + var_6738a702 + "" + var_175919d1;
+				reasons = (((("" + isvisible) + "") + var_6738a702) + "") + var_175919d1;
 				if(var_425c4c8b)
 				{
 					record3dtext(reasons, entity.origin + vectorscale((0, 0, 1), 60), (0, 1, 0), "");
@@ -1720,7 +1720,7 @@ function function_8b63ee0e(entity, mocompanim, mocompanimblendouttime, mocompani
 				recordsphere(entity.var_cd8354e0.var_cb28f380, 3, (0, 1, 0), "");
 				recordsphere(entity.var_cd8354e0.var_736d2cce, 3, (0, 0, 1), "");
 			#/
-			adjustedorigin = entity.origin + entity.var_cd8354e0.var_10b8b6d1 * entity.var_cd8354e0.var_8b9a15a6;
+			adjustedorigin = entity.origin + (entity.var_cd8354e0.var_10b8b6d1 * entity.var_cd8354e0.var_8b9a15a6);
 			entity forceteleport(adjustedorigin);
 		}
 		else if(isdefined(entity.enemy))
@@ -1845,7 +1845,7 @@ private function function_f8912291(entity)
 private function function_fcc1c537(entity)
 {
 	entity.var_48baa747 = 0;
-	entity.ai.var_d6cd1d4e = gettime() + int(entity ai::function_9139c839().var_6d4b0dd6 * 1000);
+	entity.ai.var_d6cd1d4e = gettime() + (int(entity ai::function_9139c839().var_6d4b0dd6 * 1000));
 	entity.var_1a60ad62 = gettime() + entity ai::function_9139c839().var_fe050356;
 	entity.blockingpain = 0;
 }
@@ -1861,7 +1861,7 @@ private function function_fcc1c537(entity)
 */
 private function function_aa43003c(entity)
 {
-	var_c59b482e = self.maxhealth * entity ai::function_9139c839().var_362e4d4c / 100;
+	var_c59b482e = self.maxhealth * (entity ai::function_9139c839().var_362e4d4c / 100);
 	self.health = int(min(self.health + var_c59b482e, self.maxhealth));
 }
 
@@ -1932,7 +1932,7 @@ private function function_91180121()
 			var_f16c2276 = (isdefined(var_dd54fdb1.var_51e8b151) ? var_dd54fdb1.var_51e8b151 : var_dd54fdb1.var_910e2f9b);
 			if(isdefined(var_f16c2276))
 			{
-				adddebugcommand("" + var_f16c2276 + "" + var_f16c2276 + "");
+				adddebugcommand(((("" + var_f16c2276) + "") + var_f16c2276) + "");
 			}
 		}
 	#/

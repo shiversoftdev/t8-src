@@ -206,7 +206,7 @@ private function function_3e9077b(localclientnum)
 			foreach(test_point in var_9901d38a)
 			{
 				trace_dist = length(to_self) + 100;
-				trace_end = test_point + vectorscale(player_forward, trace_dist * -1);
+				trace_end = test_point + (vectorscale(player_forward, trace_dist * -1));
 				trace = bullettrace(test_point, trace_end, 1, self);
 				if(trace[#"fraction"] < 1 && trace[#"entity"] === player)
 				{

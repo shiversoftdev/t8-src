@@ -68,7 +68,7 @@ function function_d79e9bb5(attacker, victim, weapon, attackerweapon, meansofdeat
 	{
 		return 0;
 	}
-	return attacker isgrappling() || (isdefined(attacker.var_700a5910) && attacker.var_700a5910 + 2000 > gettime());
+	return attacker isgrappling() || (isdefined(attacker.var_700a5910) && (attacker.var_700a5910 + 2000) > gettime());
 }
 
 /*

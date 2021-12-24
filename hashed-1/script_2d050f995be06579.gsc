@@ -29,7 +29,7 @@ function function_ce66ebf2()
 	}
 	if(level.var_f0eb9bca)
 	{
-		while(!level.var_fdd4b16 || float(globallogic_utils::gettimeremaining()) / 1000 > level.var_e4cfa0c3)
+		while(!level.var_fdd4b16 || (float(globallogic_utils::gettimeremaining()) / 1000) > level.var_e4cfa0c3)
 		{
 			wait(level.var_f0eb9bca);
 			var_bc40925b = level.var_f0eb9bca > 10;

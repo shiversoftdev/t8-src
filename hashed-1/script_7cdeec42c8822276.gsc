@@ -85,7 +85,7 @@ function function_4074a9e2()
 	zm_powerups::function_41cedb05("bonus_points_team");
 	zm_powerups::function_41cedb05("double_points");
 	/#
-		iprintlnbold("" + level.var_baf33f0e + "");
+		iprintlnbold(("" + level.var_baf33f0e) + "");
 	#/
 	level thread function_88b87834();
 }
@@ -124,7 +124,7 @@ function function_b741acea()
 {
 	level.var_bdc8b034 = [];
 	level.var_bdc8b034[#"zombie"] = namespace_a28acff3::get_zombie_count_for_round(level.var_37769559, level.activeplayers.size);
-	var_d90bc041 = min(level.var_37769559 - 10 / 40, 1);
+	var_d90bc041 = min((level.var_37769559 - 10) / 40, 1);
 	var_82981c27 = lerpfloat(0.1, 0.3, var_d90bc041);
 	var_2f8a58bb = lerpfloat(0.2, 0.4, var_d90bc041);
 	var_8c110732 = randomfloatrange(var_82981c27, var_2f8a58bb);

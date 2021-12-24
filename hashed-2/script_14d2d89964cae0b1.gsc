@@ -458,7 +458,7 @@ private function _gibentity(localclientnum, gibflags, shouldspawngibs)
 	var_8e57b530 = undefined;
 	if(isplayer(entity) || entity isplayercorpse())
 	{
-		yaw_bits = gibflags >> 9 & 8 - 1;
+		yaw_bits = (gibflags >> 9) & (8 - 1);
 		yaw = getanglefrombits(yaw_bits, 3);
 		gibdir = anglestoforward((0, yaw, 0));
 	}
@@ -530,7 +530,7 @@ private function _gibentity(localclientnum, gibflags, shouldspawngibs)
 */
 private function _setgibbed(localclientnum, entity, gibflag)
 {
-	gib_state = _getgibbedstate(localclientnum, entity) | gibflag & 512 - 1;
+	gib_state = _getgibbedstate(localclientnum, entity) | (gibflag & (512 - 1));
 	if(isdefined(entity.gib_data))
 	{
 		entity.gib_data.gib_state = gib_state;
@@ -699,7 +699,7 @@ function _gibpiece(localclientnum, entity, gibmodel, gibtag, gibfx, gibdir, var_
 		}
 		else
 		{
-			endposition = startposition + anglestoforward(startangles) * 10;
+			endposition = startposition + (anglestoforward(startangles) * 10);
 			endangles = startangles;
 		}
 		if(!isdefined(endposition) || !isdefined(endangles))
@@ -1119,7 +1119,7 @@ function isundamaged(localclientnum, entity)
 function gibentity(localclientnum, gibflags)
 {
 	self _gibentity(localclientnum, gibflags, 1);
-	self.gib_state = _getgibbedstate(localclientnum, self) | gibflags & 512 - 1;
+	self.gib_state = _getgibbedstate(localclientnum, self) | (gibflags & (512 - 1));
 }
 
 /*

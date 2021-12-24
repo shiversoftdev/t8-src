@@ -242,7 +242,7 @@ function function_cc4c5d4b(localclientnum, oldval, newval, bnewent, binitialsnap
 		var_f18c8464 = math::clamp(newval, 1, 7);
 		n_blur_amount = var_f18c8464 / 16;
 		n_inner_radius = var_f18c8464 / 16;
-		n_outer_radius = 1 - var_f18c8464 / 16;
+		n_outer_radius = 1 - (var_f18c8464 / 16);
 		enablespeedblur(localclientnum, n_blur_amount, n_inner_radius, n_outer_radius);
 		self setblur(var_f18c8464 * 2, 1);
 		if(!isdefined(self.var_7c82d805))

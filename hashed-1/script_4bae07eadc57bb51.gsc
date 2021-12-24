@@ -140,7 +140,7 @@ function function_1792ae3(var_2e1f34dd)
 	if(isdefined(s_reel))
 	{
 		s_reel.var_85f707f6 = 1;
-		str_alias = #"hash_3b57b74e2c90aee5" + level.var_804a56e3 + 1 + "_pickup";
+		str_alias = (#"hash_3b57b74e2c90aee5" + (level.var_804a56e3 + 1)) + "_pickup";
 		self thread zm_vo::function_a2bd5a0c(str_alias);
 		if(isdefined(var_2e1f34dd))
 		{

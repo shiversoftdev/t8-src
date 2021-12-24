@@ -515,7 +515,7 @@ function function_a51b6403(is_opening)
 	if(is_opening)
 	{
 		self playsound("evt_bunker_door_interior_open");
-		self moveto(self.v_start_pos + vectorscale((0, 0, -1), 128), 1);
+		self moveto(self.v_start_pos + (vectorscale((0, 0, -1), 128)), 1);
 	}
 	else
 	{
@@ -593,9 +593,9 @@ function function_1e88595a()
 function function_eaa63f5b(n_minutes = 1)
 {
 	/#
-		iprintlnbold("" + n_minutes + "");
+		iprintlnbold(("" + n_minutes) + "");
 	#/
-	n_time_end = gettime() + n_minutes * 60 * 1000;
+	n_time_end = gettime() + ((n_minutes * 60) * 1000);
 	level flag::set(#"hash_1b68ccd211cab219");
 	while(true)
 	{
@@ -801,7 +801,7 @@ function function_e29e2b0b()
 function timer_actual(kills, time)
 {
 	self endon(#"disconnect", #"death");
-	timer = gettime() + time * 1000;
+	timer = gettime() + (time * 1000);
 	while(gettime() < timer)
 	{
 		if(self.killcounter > kills)

@@ -98,7 +98,7 @@ function function_bad944b5()
 		level.var_4952e1[i].s_scene = level.var_6aa46602[i];
 		level.var_4952e1[i] thread soul_catcher_check();
 		level.var_4952e1[i] thread soul_catcher_state_manager();
-		level.var_4952e1[i] thread wolf_head_removal("tomahawk_door_sign_" + i + 1);
+		level.var_4952e1[i] thread wolf_head_removal("tomahawk_door_sign_" + (i + 1));
 		level.var_b5ca4338[i] = getent(level.var_4952e1[i].target, "targetname");
 	}
 	level thread soul_catchers_charged();
@@ -726,7 +726,7 @@ function tomahawk_pickup()
 function function_5fd2c72e()
 {
 	var_f14a8b00 = struct::get("tom_pil");
-	str_shot_name = "Shot " + level.n_soul_catchers_charged + 1;
+	str_shot_name = "Shot " + (level.n_soul_catchers_charged + 1);
 	var_f14a8b00 thread scene::play(str_shot_name);
 }
 

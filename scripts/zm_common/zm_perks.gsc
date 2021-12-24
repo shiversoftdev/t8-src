@@ -210,7 +210,7 @@ function on_player_connect()
 				str_perk = "";
 			}
 		}
-		iprintlnbold("" + self.name + "");
+		iprintlnbold(("" + self.name) + "");
 		if(!namespace_59ff1d6c::function_d9f0defb(str_perk))
 		{
 			self function_2ac7579(i - 1, 3);
@@ -1319,7 +1319,7 @@ function perk_pause(perk)
 				player thread [[level._custom_perks[perk].player_thread_take]](1, undefined, undefined, -1);
 			}
 			/#
-				println("" + player.name + "" + perk + "");
+				println(((("" + player.name) + "") + perk) + "");
 			#/
 		}
 	}
@@ -1369,7 +1369,7 @@ function perk_unpause(perk)
 				}
 			}
 			/#
-				println("" + player.name + "" + perk + "");
+				println(((("" + player.name) + "") + perk) + "");
 			#/
 			player zm_utility::function_e0448fec();
 			if(isdefined(level._custom_perks[perk]) && isdefined(level._custom_perks[perk].player_thread_give))
@@ -1606,7 +1606,7 @@ function perk_machine_spawn_init()
 	{
 		location = level.default_start_location;
 	}
-	match_string = level.scr_zm_ui_gametype + "_perks_" + location;
+	match_string = (level.scr_zm_ui_gametype + "_perks_") + location;
 	a_s_spawn_pos = [];
 	if(isdefined(level.override_perk_targetname))
 	{
@@ -1676,7 +1676,7 @@ function perk_machine_spawn_init()
 			fwd = 20;
 			forward = anglestoright(s_spawn_pos.angles) * fwd;
 			unitrigger_stub = spawnstruct();
-			unitrigger_stub.origin = s_spawn_pos.origin + (0, 0, up) + forward;
+			unitrigger_stub.origin = (s_spawn_pos.origin + (0, 0, up)) + forward;
 			unitrigger_stub.angles = s_spawn_pos.angles;
 			unitrigger_stub.script_unitrigger_type = "unitrigger_box_use";
 			unitrigger_stub.cursor_hint = "HINT_NOICON";
@@ -1911,15 +1911,15 @@ function perks_register_clientfield()
 	}
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".itemIndex", 1, 5, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".state", 1, 2, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".progress", 1, 5, "float", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".chargeCount", 1, 3, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".timerActive", 1, 1, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".bleedoutOrderIndex", 1, 2, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".bleedoutActive", 1, 1, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".specialEffectActive", 1, 1, "int", 0);
-		clientfield::function_a8bbc967("hudItems.perkVapor." + i + ".modifierActive", 6000, 1, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".itemIndex", 1, 5, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".state", 1, 2, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".progress", 1, 5, "float", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".chargeCount", 1, 3, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".timerActive", 1, 1, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".bleedoutOrderIndex", 1, 2, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".bleedoutActive", 1, 1, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".specialEffectActive", 1, 1, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.perkVapor." + i) + ".modifierActive", 6000, 1, "int", 0);
 	}
 	clientfield::function_a8bbc967("hudItems.perkVapor.bleedoutProgress", 9000, 8, "float", 0);
 	for(i = 0; i < 6; i++)
@@ -1929,12 +1929,12 @@ function perks_register_clientfield()
 		{
 			n_version = 8000;
 		}
-		clientfield::function_a8bbc967("hudItems.extraPerkVapor." + i + ".itemIndex", n_version, 5, "int", 0);
-		clientfield::function_a8bbc967("hudItems.extraPerkVapor." + i + ".state", n_version, 2, "int", 0);
-		clientfield::function_a8bbc967("hudItems.extraPerkVapor." + i + ".progress", n_version, 5, "float", 0);
-		clientfield::function_a8bbc967("hudItems.extraPerkVapor." + i + ".chargeCount", n_version, 3, "int", 0);
-		clientfield::function_a8bbc967("hudItems.extraPerkVapor." + i + ".timerActive", n_version, 1, "int", 0);
-		clientfield::function_a8bbc967("hudItems.extraPerkVapor." + i + ".specialEffectActive", n_version, 1, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.extraPerkVapor." + i) + ".itemIndex", n_version, 5, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.extraPerkVapor." + i) + ".state", n_version, 2, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.extraPerkVapor." + i) + ".progress", n_version, 5, "float", 0);
+		clientfield::function_a8bbc967(("hudItems.extraPerkVapor." + i) + ".chargeCount", n_version, 3, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.extraPerkVapor." + i) + ".timerActive", n_version, 1, "int", 0);
+		clientfield::function_a8bbc967(("hudItems.extraPerkVapor." + i) + ".specialEffectActive", n_version, 1, "int", 0);
 	}
 	clientfield::register("scriptmover", "" + #"hash_cf74c35ecc5a49", 1, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_35fe26fc5cb223b3", 1, 3, "int");
@@ -1966,7 +1966,7 @@ function function_ad1814a1(n_index, var_b0ab4cec)
 		return 1;
 	}
 	/#
-		println("" + function_9e72a96(var_b0ab4cec) + "");
+		println(("" + function_9e72a96(var_b0ab4cec)) + "");
 	#/
 	return 0;
 }
@@ -1986,12 +1986,12 @@ function function_81bc6765(var_481d50cb, var_b0ab4cec)
 	{
 		if(function_ad1814a1(self.var_eabca645[var_b0ab4cec], var_b0ab4cec))
 		{
-			self clientfield::set_player_uimodel("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec] + ".itemIndex", getitemindexfromref(var_b0ab4cec));
+			self clientfield::set_player_uimodel(("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec]) + ".itemIndex", getitemindexfromref(var_b0ab4cec));
 		}
 	}
 	else if(var_481d50cb < 4)
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".itemIndex", getitemindexfromref(var_b0ab4cec));
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".itemIndex", getitemindexfromref(var_b0ab4cec));
 	}
 }
 
@@ -2017,12 +2017,12 @@ function function_2ac7579(var_481d50cb, var_dc149467 = 0, var_b0ab4cec)
 	{
 		if(function_ad1814a1(self.var_eabca645[var_b0ab4cec], var_b0ab4cec))
 		{
-			self clientfield::set_player_uimodel("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec] + ".state", var_dc149467);
+			self clientfield::set_player_uimodel(("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec]) + ".state", var_dc149467);
 		}
 	}
 	else if(var_481d50cb < 4)
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".state", var_dc149467);
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".state", var_dc149467);
 	}
 }
 
@@ -2061,12 +2061,12 @@ function function_13880aa5(var_481d50cb, var_87eb3522 = 0, var_b0ab4cec)
 	{
 		if(function_ad1814a1(self.var_eabca645[var_b0ab4cec], var_b0ab4cec))
 		{
-			self clientfield::set_player_uimodel("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec] + ".progress", var_87eb3522);
+			self clientfield::set_player_uimodel(("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec]) + ".progress", var_87eb3522);
 		}
 	}
 	else if(var_481d50cb < 4)
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".progress", var_87eb3522);
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".progress", var_87eb3522);
 	}
 }
 
@@ -2092,12 +2092,12 @@ function function_f2ff97a6(var_481d50cb, var_c3d1c893 = 0, var_b0ab4cec)
 	{
 		if(function_ad1814a1(self.var_eabca645[var_b0ab4cec], var_b0ab4cec))
 		{
-			self clientfield::set_player_uimodel("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec] + ".chargeCount", var_c3d1c893);
+			self clientfield::set_player_uimodel(("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec]) + ".chargeCount", var_c3d1c893);
 		}
 	}
 	else
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".chargeCount", var_c3d1c893);
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".chargeCount", var_c3d1c893);
 	}
 }
 
@@ -2123,12 +2123,12 @@ function function_f0ac059f(var_481d50cb, b_active = 0, var_b0ab4cec)
 	{
 		if(function_ad1814a1(self.var_eabca645[var_b0ab4cec], var_b0ab4cec))
 		{
-			self clientfield::set_player_uimodel("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec] + ".timerActive", b_active);
+			self clientfield::set_player_uimodel(("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec]) + ".timerActive", b_active);
 		}
 	}
 	else
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".timerActive", b_active);
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".timerActive", b_active);
 	}
 }
 
@@ -2154,12 +2154,12 @@ function function_c8c7bc5(var_481d50cb, b_active = 0, var_b0ab4cec)
 	{
 		if(function_ad1814a1(self.var_eabca645[var_b0ab4cec], var_b0ab4cec))
 		{
-			self clientfield::set_player_uimodel("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec] + ".specialEffectActive", b_active);
+			self clientfield::set_player_uimodel(("hudItems.extraPerkVapor." + self.var_eabca645[var_b0ab4cec]) + ".specialEffectActive", b_active);
 		}
 	}
 	else
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".specialEffectActive", b_active);
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".specialEffectActive", b_active);
 	}
 }
 
@@ -2176,7 +2176,7 @@ function function_b8c12b0f(var_481d50cb, b_active = 0)
 {
 	if(var_481d50cb < 4)
 	{
-		self clientfield::set_player_uimodel("hudItems.perkVapor." + var_481d50cb + ".modifierActive", b_active);
+		self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_481d50cb) + ".modifierActive", b_active);
 	}
 }
 
@@ -2843,7 +2843,7 @@ function perk_vapor_altar_init()
 		{
 			forward = anglestoright(s_spawn_pos.angles) * 0;
 			unitrigger_stub = spawnstruct();
-			unitrigger_stub.origin = s_spawn_pos.origin + (0, 0, 0) + forward;
+			unitrigger_stub.origin = (s_spawn_pos.origin + (0, 0, 0)) + forward;
 			unitrigger_stub.angles = s_spawn_pos.angles;
 			unitrigger_stub.script_unitrigger_type = "unitrigger_box_use";
 			unitrigger_stub.cursor_hint = "HINT_NOICON";
@@ -3420,12 +3420,12 @@ function function_b2ac6ee7()
 	start_on = 1;
 	if(!isdefined(self.cost))
 	{
-		cost = 500 * n_slot + 1 + 1000;
+		cost = (500 * (n_slot + 1)) + 1000;
 		self.cost = cost;
 	}
 	if(!start_on)
 	{
-		notify_name = "perk_vapor_altar_" + n_slot + "_power_on";
+		notify_name = ("perk_vapor_altar_" + n_slot) + "_power_on";
 		level waittill(notify_name);
 	}
 	start_on = 0;
@@ -3540,7 +3540,7 @@ function function_9bdf581f(perk, n_slot, b_bought = 0)
 		self.var_466b927f[self.var_466b927f.size] = perk;
 	}
 	function_fc0e5f36();
-	if(isdefined(self.var_c4cce77d) && self.var_c4cce77d - 1 == n_slot || zm_utility::is_standard())
+	if(isdefined(self.var_c4cce77d) && (self.var_c4cce77d - 1) == n_slot || zm_utility::is_standard())
 	{
 		if(!isdefined(self.var_774e0ad7))
 		{
@@ -4575,7 +4575,7 @@ function function_c99f4d81(var_c188cf87, var_59ad3e22)
 */
 function function_66c0d837(e_player, var_c188cf87, var_59ad3e22)
 {
-	if(zm_utility::is_player_valid(e_player) && distancesquared(e_player.origin, var_c188cf87) < 562500 && abs(e_player.origin[2] - var_c188cf87[2]) < 85 && vectordot(vectornormalize(e_player.origin - var_c188cf87), anglestoforward(var_59ad3e22)) > 0)
+	if(zm_utility::is_player_valid(e_player) && distancesquared(e_player.origin, var_c188cf87) < 562500 && (abs(e_player.origin[2] - var_c188cf87[2])) < 85 && (vectordot(vectornormalize(e_player.origin - var_c188cf87), anglestoforward(var_59ad3e22))) > 0)
 	{
 		return 1;
 	}
@@ -4672,7 +4672,7 @@ function function_b4c0e0ee(n_bleedout_time)
 	{
 		return;
 	}
-	n_wait = n_bleedout_time - 0.1 / 4;
+	n_wait = (n_bleedout_time - 0.1) / 4;
 	self function_28ac0614(n_wait);
 }
 
@@ -4768,8 +4768,8 @@ private function function_dc10fc94(var_cd5d9345, var_bbb2c705)
 	{
 		for(n_slot = 0; n_slot < 4; n_slot++)
 		{
-			self clientfield::set_player_uimodel("hudItems.perkVapor." + n_slot + ".bleedoutOrderIndex", n_slot);
-			self clientfield::set_player_uimodel("hudItems.perkVapor." + n_slot + ".bleedoutActive", 0);
+			self clientfield::set_player_uimodel(("hudItems.perkVapor." + n_slot) + ".bleedoutOrderIndex", n_slot);
+			self clientfield::set_player_uimodel(("hudItems.perkVapor." + n_slot) + ".bleedoutActive", 0);
 		}
 		self clientfield::set_player_uimodel("hudItems.perkVapor.bleedoutProgress", 1);
 		var_b0696a17 = array::reverse(var_c25e1f9c);
@@ -4786,14 +4786,14 @@ private function function_dc10fc94(var_cd5d9345, var_bbb2c705)
 				arrayremovevalue(var_c25e1f9c, var_224c0c9c);
 				if(var_224c0c9c >= 0 && var_224c0c9c < 4)
 				{
-					self clientfield::set_player_uimodel("hudItems.perkVapor." + var_224c0c9c + ".bleedoutActive", 1);
+					self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_224c0c9c) + ".bleedoutActive", 1);
 				}
 			}
 			if(!isdefined(var_224c0c9c))
 			{
 				var_224c0c9c = var_c25e1f9c[0];
 				arrayremoveindex(var_c25e1f9c, 0);
-				self clientfield::set_player_uimodel("hudItems.perkVapor." + var_224c0c9c + ".bleedoutActive", 0);
+				self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_224c0c9c) + ".bleedoutActive", 0);
 			}
 			if(var_224c0c9c >= 0 && var_224c0c9c < 4)
 			{
@@ -4806,7 +4806,7 @@ private function function_dc10fc94(var_cd5d9345, var_bbb2c705)
 					var_b0696a17 = array(var_b0696a17);
 				}
 				var_b0696a17[var_b0696a17.size] = var_224c0c9c;
-				self clientfield::set_player_uimodel("hudItems.perkVapor." + var_224c0c9c + ".bleedoutOrderIndex", n_slot);
+				self clientfield::set_player_uimodel(("hudItems.perkVapor." + var_224c0c9c) + ".bleedoutOrderIndex", n_slot);
 			}
 			var_224c0c9c = undefined;
 		}
@@ -4837,7 +4837,7 @@ private function function_67bdfe40(var_bbb2c705, var_b0696a17)
 	while(var_73db1c5d < 4)
 	{
 		var_21243f81 = math::clamp(n_time_elapsed / var_bbb2c705, 0, 1);
-		var_78835e6 = 1 * var_21243f81 + var_73db1c5d / 4;
+		var_78835e6 = (1 * (var_21243f81 + var_73db1c5d)) / 4;
 		self clientfield::set_player_uimodel("hudItems.perkVapor.bleedoutProgress", 1 - var_78835e6);
 		if(var_21243f81 == 1)
 		{
@@ -5111,40 +5111,40 @@ function function_756e6a6d()
 {
 	/#
 		ip1 = self getentitynumber() + 1;
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
-		adddebugcommand("" + self.name + "" + ip1 + "" + ip1 + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
+		adddebugcommand(((((("" + self.name) + "") + ip1) + "") + ip1) + "");
 	#/
 }
 

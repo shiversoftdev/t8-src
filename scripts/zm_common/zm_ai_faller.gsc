@@ -191,7 +191,7 @@ function zombie_faller_do_fall()
 			self.zombie_faller_should_drop = 1;
 			break;
 		}
-		else if(gettime() >= self.zombie_faller_wait_start + 20000)
+		else if(gettime() >= (self.zombie_faller_wait_start + 20000))
 		{
 			self.zombie_faller_should_drop = 1;
 			break;
@@ -218,7 +218,7 @@ function zombie_faller_do_fall()
 	self stopanimscripted();
 	landanimdelta = 15;
 	ground_pos = zm_utility::groundpos_ignore_water_new(self.origin);
-	physdist = self.origin[2] - ground_pos[2] + landanimdelta;
+	physdist = (self.origin[2] - ground_pos[2]) + landanimdelta;
 	if(physdist > 0)
 	{
 		self animcustom(&zombie_fall_loop);
@@ -758,7 +758,7 @@ function in_player_fov(player)
 	{
 		banzaivsplayerfovbuffer = 0.2;
 	}
-	inplayerfov = anglefromcenter <= playerfov * 0.5 * 1 - banzaivsplayerfovbuffer;
+	inplayerfov = anglefromcenter <= (playerfov * 0.5) * (1 - banzaivsplayerfovbuffer);
 	return inplayerfov;
 }
 

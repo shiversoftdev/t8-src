@@ -460,7 +460,7 @@ function function_6d5a79fe(var_5ea5c94d, ended_early)
 			}
 		}
 		/#
-			iprintlnbold("" + level.var_276bd207[0] + level.var_276bd207[1] + level.var_276bd207[2] + level.var_276bd207[3]);
+			iprintlnbold(((("" + level.var_276bd207[0]) + level.var_276bd207[1]) + level.var_276bd207[2]) + level.var_276bd207[3]);
 		#/
 	}
 }

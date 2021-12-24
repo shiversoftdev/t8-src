@@ -215,7 +215,7 @@ private function function_dcc24343(localclientnum, oldval, newval, bnewent, bini
 		{
 			playsound(localclientnum, var_46f1b5eb.startsound, self.origin);
 		}
-		if(isdefined(var_46f1b5eb.effectradius) && distsq <= var_46f1b5eb.effectradius * var_46f1b5eb.effectradius)
+		if(isdefined(var_46f1b5eb.effectradius) && distsq <= (var_46f1b5eb.effectradius * var_46f1b5eb.effectradius))
 		{
 			if(isdefined(var_46f1b5eb.earthquakescale))
 			{
@@ -257,7 +257,7 @@ private function function_dcc24343(localclientnum, oldval, newval, bnewent, bini
 		{
 			playsound(localclientnum, var_46f1b5eb.var_7404e5a0, self.origin);
 		}
-		if(isdefined(var_46f1b5eb.effectradius) && distsq <= var_46f1b5eb.effectradius * var_46f1b5eb.effectradius)
+		if(isdefined(var_46f1b5eb.effectradius) && distsq <= (var_46f1b5eb.effectradius * var_46f1b5eb.effectradius))
 		{
 			if(isdefined(var_46f1b5eb.var_fbd0f7e5))
 			{

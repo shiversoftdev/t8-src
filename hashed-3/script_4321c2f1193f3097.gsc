@@ -239,8 +239,8 @@ function flash_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldna
 		case 2:
 		case 3:
 		{
-			var_27aa6343 = "scepter" + newval + "_muzzle_flash1p";
-			var_a1f103c8 = "scepter" + newval + "_muzzle_flash3p";
+			var_27aa6343 = ("scepter" + newval) + "_muzzle_flash1p";
+			var_a1f103c8 = ("scepter" + newval) + "_muzzle_flash3p";
 			if(self zm_utility::function_f8796df3(localclientnum))
 			{
 				if(viewmodelhastag(localclientnum, "tag_flash"))

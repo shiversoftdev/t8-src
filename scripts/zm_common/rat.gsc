@@ -113,7 +113,7 @@ function function_303319e9(params)
 		{
 			distance = float(params.distance);
 		}
-		spawn = player.origin + forward * distance;
+		spawn = player.origin + (forward * distance);
 		foreach(zombie in zombies)
 		{
 			zombie forceteleport(spawn, player.angles);
@@ -729,7 +729,7 @@ function function_1428d95e(params)
 	/#
 		player = util::gethostplayer();
 		forward = anglestoforward(player.angles);
-		spawn = player.origin + forward * 10;
+		spawn = player.origin + (forward * 10);
 		zombie = zm_devgui::devgui_zombie_spawn();
 		if(isdefined(zombie))
 		{
@@ -865,11 +865,11 @@ function derriesezombiespawnnavmeshtest(params, inrat)
 			errmsg = "";
 			for(i = 0; i < size; i++)
 			{
-				errmsg = errmsg + "" + failed_spawn_origin[i] + "" + failed_node_origin[i] + "";
+				errmsg = errmsg + (((("" + failed_spawn_origin[i]) + "") + failed_node_origin[i]) + "");
 			}
 			for(i = 0; i < failed_attack_spot_size; i++)
 			{
-				errmsg = errmsg + "" + failed_attack_spot_spawn_origin[i] + "" + failed_attack_spot[i] + "";
+				errmsg = errmsg + (((("" + failed_attack_spot_spawn_origin[i]) + "") + failed_attack_spot[i]) + "");
 			}
 			if(size > 0 || failed_attack_spot_size > 0)
 			{

@@ -122,7 +122,7 @@ function function_9335851()
 				{
 					self setweaponammoclip(weapon, n_clip + var_8e477029);
 					self setweaponammostock(weapon, n_stock_size - var_8e477029);
-					if(n_clip + var_8e477029 >= n_clip_size)
+					if((n_clip + var_8e477029) >= n_clip_size)
 					{
 						self playsoundtoplayer(#"hash_1306cd3cf0ce7b64", self);
 					}

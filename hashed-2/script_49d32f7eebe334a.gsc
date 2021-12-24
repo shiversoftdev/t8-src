@@ -143,7 +143,7 @@ function zombie_blood_powerup(var_9c0bf2db, e_player)
 	e_player notify(#"zombie_blood_over");
 	if(isdefined(e_player.characterindex))
 	{
-		e_player playsound("vox_plr_" + e_player.characterindex + "_exert_grunt_" + randomintrange(0, 3));
+		e_player playsound((("vox_plr_" + e_player.characterindex) + "_exert_grunt_") + randomintrange(0, 3));
 	}
 	e_player.zombie_vars[#"zombie_powerup_zombie_blood_on"] = 0;
 	e_player.zombie_vars[#"zombie_powerup_zombie_blood_time"] = 30;

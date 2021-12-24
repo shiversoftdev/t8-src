@@ -120,7 +120,7 @@ function gettrackerfxposition(localclientnum)
 	pos = self.origin + offset;
 	if(distancesquared(self.tracker_last_pos, pos) > dist2)
 	{
-		trace = physicstraceex(pos, pos + vectorscale((0, 0, -1), 10), (0, 0, 0), (0, 0, 0), self, 1);
+		trace = physicstraceex(pos, pos + (vectorscale((0, 0, -1), 10)), (0, 0, 0), (0, 0, 0), self, 1);
 		if(trace[#"fraction"] < 1)
 		{
 			up = trace[#"normal"];

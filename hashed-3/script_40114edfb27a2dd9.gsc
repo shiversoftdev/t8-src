@@ -181,7 +181,7 @@ function open(localclientnum)
 function function_693a2be8(localclientnum)
 {
 	current_val = [[ self ]]->function_92ba69fa(localclientnum, "pulse");
-	new_val = current_val + 1 % 2;
+	new_val = (current_val + 1) % 2;
 	[[ self ]]->function_d7d2fcce(localclientnum, "pulse", new_val);
 }
 

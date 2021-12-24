@@ -39,10 +39,10 @@ function __init__()
 		return;
 	}
 	bgb::register(#"zm_bgb_burned_out", "event", &event, undefined, undefined, undefined);
-	clientfield::register("toplayer", "zm_bgb_burned_out" + "_1p" + "toplayer", 1, 1, "counter");
-	clientfield::register("allplayers", "zm_bgb_burned_out" + "_3p" + "_allplayers", 1, 1, "counter");
-	clientfield::register("actor", "zm_bgb_burned_out" + "_fire_torso" + "_actor", 1, 1, "counter");
-	clientfield::register("vehicle", "zm_bgb_burned_out" + "_fire_torso" + "_vehicle", 1, 1, "counter");
+	clientfield::register("toplayer", ("zm_bgb_burned_out" + "_1p") + "toplayer", 1, 1, "counter");
+	clientfield::register("allplayers", ("zm_bgb_burned_out" + "_3p") + "_allplayers", 1, 1, "counter");
+	clientfield::register("actor", ("zm_bgb_burned_out" + "_fire_torso") + "_actor", 1, 1, "counter");
+	clientfield::register("vehicle", ("zm_bgb_burned_out" + "_fire_torso") + "_vehicle", 1, 1, "counter");
 }
 
 /*
@@ -93,8 +93,8 @@ function event()
 */
 function result()
 {
-	self clientfield::increment_to_player("zm_bgb_burned_out" + "_1p" + "toplayer");
-	self clientfield::increment("zm_bgb_burned_out" + "_3p" + "_allplayers");
+	self clientfield::increment_to_player(("zm_bgb_burned_out" + "_1p") + "toplayer");
+	self clientfield::increment(("zm_bgb_burned_out" + "_3p") + "_allplayers");
 	zombies = array::get_all_closest(self.origin, getaiteamarray(level.zombie_team), undefined, undefined, 128);
 	if(!isdefined(zombies))
 	{
@@ -127,11 +127,11 @@ function result()
 		}
 		if(isvehicle(zombies[i]))
 		{
-			zombies[i] clientfield::increment("zm_bgb_burned_out" + "_fire_torso" + "_vehicle");
+			zombies[i] clientfield::increment(("zm_bgb_burned_out" + "_fire_torso") + "_vehicle");
 		}
 		else
 		{
-			zombies[i] clientfield::increment("zm_bgb_burned_out" + "_fire_torso" + "_actor");
+			zombies[i] clientfield::increment(("zm_bgb_burned_out" + "_fire_torso") + "_actor");
 		}
 		var_7694ea6b[var_7694ea6b.size] = zombies[i];
 	}

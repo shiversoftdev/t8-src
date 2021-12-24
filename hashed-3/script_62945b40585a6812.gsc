@@ -108,7 +108,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function function_60845be6()
 {
-	var_92217b88 = level.var_a0f5e369 + level.var_3a748490 * 10;
+	var_92217b88 = (level.var_a0f5e369 + level.var_3a748490) * 10;
 	level.zombie_total = int(max(level.zombie_total, var_92217b88));
 }
 

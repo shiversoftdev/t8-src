@@ -680,13 +680,13 @@ function function_3be93b07(var_1c041bd9)
 	var_a85d39a2 = [];
 	var_2ed6f142 = self getweaponmuzzlepoint();
 	var_a993e05e = self getweaponforwarddir();
-	var_a812a69b = var_2ed6f142 + var_a993e05e * 40;
+	var_a812a69b = var_2ed6f142 + (var_a993e05e * 40);
 	var_a812a69b = getclosestpointonnavmesh(var_a812a69b, 128, 16);
 	if(!isdefined(var_a812a69b))
 	{
 		var_a812a69b = var_2ed6f142;
 	}
-	s_trace = groundtrace(var_a812a69b + vectorscale((0, 0, 1), 100), var_a812a69b + vectorscale((0, 0, -1), 1000), 0, undefined, 0);
+	s_trace = groundtrace(var_a812a69b + vectorscale((0, 0, 1), 100), var_a812a69b + (vectorscale((0, 0, -1), 1000)), 0, undefined, 0);
 	if(!isdefined(self.var_be72e7c2))
 	{
 		self.var_be72e7c2 = util::spawn_model("tag_origin");
@@ -794,13 +794,13 @@ function function_6c891578(var_a993e05e, var_a85d39a2)
 				v_target_pos = ai_zombie.origin;
 				arrayremovevalue(var_a85d39a2, ai_zombie);
 			}
-			else if(isdefined(bullettracepassed(var_2ddb51af, var_2ddb51af + var_a993e05e * var_94a175c3, 0, self)) && bullettracepassed(var_2ddb51af, var_2ddb51af + var_a993e05e * var_94a175c3, 0, self))
+			else if(isdefined(bullettracepassed(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self)) && bullettracepassed(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self))
 			{
-				v_target_pos = var_2ddb51af + var_a993e05e * var_94a175c3;
+				v_target_pos = var_2ddb51af + (var_a993e05e * var_94a175c3);
 			}
 			else
 			{
-				v_target_pos = bullettrace(var_2ddb51af, var_2ddb51af + var_a993e05e * var_94a175c3, 0, self)[#"position"];
+				v_target_pos = bullettrace(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self)[#"position"];
 			}
 		}
 		else if(var_a85d39a2.size)
@@ -818,7 +818,7 @@ function function_6c891578(var_a993e05e, var_a85d39a2)
 		{
 			v_target_pos = var_6fba13f1;
 		}
-		var_6fba13f1 = groundtrace(v_target_pos + vectorscale((0, 0, 1), 100), v_target_pos + vectorscale((0, 0, -1), 1000), 0, undefined, 0)[#"position"];
+		var_6fba13f1 = groundtrace(v_target_pos + vectorscale((0, 0, 1), 100), v_target_pos + (vectorscale((0, 0, -1), 1000)), 0, undefined, 0)[#"position"];
 		if(isdefined(var_6fba13f1))
 		{
 			v_target_pos = var_6fba13f1;
@@ -989,7 +989,7 @@ private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_h
 			self dodamage(self.maxhealth * 0.18, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
 			self.var_42d5176d = 1;
 			self val::set(#"hash_77bfbbee3d2c15d", "ignoreall", 1);
-			v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 100), self.origin + vectorscale((0, 0, -1), 1000), 0, self)[#"position"];
+			v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 100), self.origin + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
 			if(!isdefined(v_pos))
 			{
 				v_pos = self.origin;
@@ -1060,7 +1060,7 @@ private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_h
 			if(!(isdefined(level.ignore_gravityspikes_ragdoll) && level.ignore_gravityspikes_ragdoll))
 			{
 				self startragdoll();
-				self launchragdoll(100 * anglestoup(self.angles) + (v_away_from_source[0], v_away_from_source[1], 0));
+				self launchragdoll((100 * anglestoup(self.angles)) + (v_away_from_source[0], v_away_from_source[1], 0));
 			}
 			self clientfield::set("ragdoll_impact_watch", 1);
 		}
@@ -1159,19 +1159,19 @@ private function function_58942bba(e_ignore)
 	{
 		return 0;
 	}
-	if(!bullettracepassed(v_start_pos, v_start_pos + anglestoforward(self.angles) * 50, 0, e_ignore))
+	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoforward(self.angles) * 50), 0, e_ignore))
 	{
 		return 0;
 	}
-	if(!bullettracepassed(v_start_pos, v_start_pos + anglestoforward(self.angles) * 50 * -1, 0, e_ignore))
+	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoforward(self.angles) * (50 * -1)), 0, e_ignore))
 	{
 		return 0;
 	}
-	if(!bullettracepassed(v_start_pos, v_start_pos + anglestoright(self.angles) * 50, 0, e_ignore))
+	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoright(self.angles) * 50), 0, e_ignore))
 	{
 		return 0;
 	}
-	if(!bullettracepassed(v_start_pos, v_start_pos + anglestoright(self.angles) * 50 * -1, 0, e_ignore))
+	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoright(self.angles) * (50 * -1)), 0, e_ignore))
 	{
 		return 0;
 	}

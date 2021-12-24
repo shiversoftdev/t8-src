@@ -62,7 +62,7 @@ private function function_918ce680(localclientnum, pos, surface, notetrack, bone
 	var_dfce5acd = 1000000;
 	if(var_dfce5acd > 0)
 	{
-		n_scale = var_dfce5acd - n_dist / var_dfce5acd;
+		n_scale = (var_dfce5acd - n_dist) / var_dfce5acd;
 	}
 	else
 	{

@@ -223,7 +223,7 @@ private function function_486ef0f6()
 		if(!(isdefined(level.var_d486e9c4) && level.var_d486e9c4))
 		{
 			level.var_99b333e1 = level function_23fa3cae();
-			var_4894fd91 = "" + level.var_99b333e1[0] + level.var_99b333e1[1] + level.var_99b333e1[2];
+			var_4894fd91 = (("" + level.var_99b333e1[0]) + level.var_99b333e1[1]) + level.var_99b333e1[2];
 			level thread function_c5319ebe();
 			callback::on_connect(&function_c5319ebe);
 			level thread function_5b7bbc40();
@@ -571,7 +571,7 @@ private function function_b264ca4d()
 	level.var_a33f961e playsound(#"hash_2cd9134632e7f398");
 	level.var_a33f961e playloopsound(#"hash_5ca999a30dd19c01");
 	var_b9526d6f = struct::get("gh_b_pos", "targetname");
-	level.var_aca3d5e = spawn("trigger_radius_new", var_b9526d6f.origin, 512 | 2 + 8, var_b9526d6f.radius);
+	level.var_aca3d5e = spawn("trigger_radius_new", var_b9526d6f.origin, (512 | 2) + 8, var_b9526d6f.radius);
 	while(true)
 	{
 		s_result = undefined;
@@ -687,7 +687,7 @@ private function function_5dc786f7()
 	wtp_post_amws_intro_color_trigger_activate = randomint(10);
 	var_a31c3d78 = randomint(10);
 	var_17a14b0b = randomint(10);
-	var_3df8381d = wtp_post_amws_intro_color_trigger_activate + var_a31c3d78 + var_17a14b0b;
+	var_3df8381d = (wtp_post_amws_intro_color_trigger_activate + var_a31c3d78) + var_17a14b0b;
 	level.var_533e85d0 = [];
 	var_991213f6 = struct::get_array("m_c_pos", "targetname");
 	foreach(var_844fa02e in var_991213f6)
@@ -804,7 +804,7 @@ private function function_76e46dd1(e_player)
 				wait(0.1);
 				w_current = e_player getcurrentweapon();
 				n_current_time = gettime();
-				n_total_time = n_current_time - n_start_time / 1000;
+				n_total_time = (n_current_time - n_start_time) / 1000;
 			}
 			e_player clientfield::set_to_player("" + #"hash_46bc4b451b7419bb", 0);
 			if(e_player clientfield::get_to_player("" + #"hash_7d4d423d8dabbee3"))
@@ -1084,7 +1084,7 @@ private function function_bfe4e5a9(var_5faf08a9, n_entry)
 			return 0;
 		}
 		var_f661e07a = gettime();
-		n_total_time = var_f661e07a - n_start_time / 1000;
+		n_total_time = (var_f661e07a - n_start_time) / 1000;
 		if(n_total_time <= 1.25)
 		{
 			var_751473a9 = #"hash_4436799f2c213e5c";
@@ -1349,7 +1349,7 @@ private function function_54e0f89(e_player)
 {
 	self endon(#"death");
 	v_dir = vectornormalize(e_player.origin - self.origin);
-	v_pos = e_player.origin + v_dir * 40;
+	v_pos = e_player.origin + (v_dir * 40);
 	v_pos = getclosestpointonnavmesh(v_pos, 128, 16);
 	if(isdefined(v_pos))
 	{
@@ -1678,7 +1678,7 @@ private function function_b88f57f9()
 {
 	s_brutus_location = struct::get("cel_bru_pos", "targetname");
 	var_a9c0254c = struct::get(s_brutus_location.target, "targetname");
-	if(level.brutus_count + 1 <= level.brutus_max_count)
+	if((level.brutus_count + 1) <= level.brutus_max_count)
 	{
 		ai_brutus = zombie_utility::spawn_zombie(level.var_d668eae7[0]);
 		if(isalive(ai_brutus))
@@ -2487,7 +2487,7 @@ private function function_685fffc4()
 		{
 			var_31adaadb++;
 		}
-		var_36f8baa8 = var_9636ee0 - var_31adaadb / var_9636ee0;
+		var_36f8baa8 = (var_9636ee0 - var_31adaadb) / var_9636ee0;
 		var_b25755cf = int(var_36f8baa8 * 10);
 		if(var_b25755cf != var_49154180)
 		{
@@ -2926,7 +2926,7 @@ private function function_33701563()
 private function function_613cf0a7(var_81de1755)
 {
 	self endon(#"death", #"hash_60f9171b687c9d06", #"hash_4636f041ae52f0fa", #"hash_300e9fed7925cd69");
-	level.var_3f1b1c67 = spawn("trigger_radius_new", var_81de1755.origin, 512 | 1 + 2, 80, 64);
+	level.var_3f1b1c67 = spawn("trigger_radius_new", var_81de1755.origin, (512 | 1) + 2, 80, 64);
 	var_81de1755 clientfield::set("" + #"hash_a51ae59006ab41b", 1);
 	while(isdefined(var_81de1755))
 	{
@@ -2942,7 +2942,7 @@ private function function_613cf0a7(var_81de1755)
 		{
 			case 0:
 			{
-				if(var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b") !== 1)
+				if((var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b")) !== 1)
 				{
 					var_81de1755 clientfield::set("" + #"hash_a51ae59006ab41b", 1);
 					level.var_3f1b1c67.maxs = (80, 80, 64);
@@ -2951,7 +2951,7 @@ private function function_613cf0a7(var_81de1755)
 			}
 			case 1:
 			{
-				if(var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b") !== 2)
+				if((var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b")) !== 2)
 				{
 					var_81de1755 clientfield::set("" + #"hash_a51ae59006ab41b", 2);
 					level.var_3f1b1c67.maxs = (98, 98, 64);
@@ -2960,7 +2960,7 @@ private function function_613cf0a7(var_81de1755)
 			}
 			case 2:
 			{
-				if(var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b") !== 3)
+				if((var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b")) !== 3)
 				{
 					var_81de1755 clientfield::set("" + #"hash_a51ae59006ab41b", 3);
 					level.var_3f1b1c67.maxs = (112, 112, 64);
@@ -2970,7 +2970,7 @@ private function function_613cf0a7(var_81de1755)
 			case 3:
 			case 4:
 			{
-				if(var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b") !== 4)
+				if((var_81de1755 clientfield::get("" + #"hash_a51ae59006ab41b")) !== 4)
 				{
 					var_81de1755 clientfield::set("" + #"hash_a51ae59006ab41b", 4);
 					level.var_3f1b1c67.maxs = (128, 128, 64);
@@ -2999,7 +2999,7 @@ private function function_6bb299fa()
 	while(level.var_b1060d52 < var_202d423f)
 	{
 		n_percent = level.var_b1060d52 / 29;
-		n_blood = int(10 - n_percent * 10);
+		n_blood = int(10 - (n_percent * 10));
 		if(n_blood != var_9cdf5d68 && n_blood < 9)
 		{
 			if(isdefined(level.var_4dad7caf))
@@ -3257,7 +3257,7 @@ private function function_dc369dee(var_b51b4b08)
 		level.var_8eec9430 waittill_timeout(20, #"goal");
 		if(isdefined(level.var_8eec9430.b_visible) && level.var_8eec9430.b_visible && isinarray(level.var_62f48651, s_next_pos.script_int))
 		{
-			var_ad0c3ba3 = getent("flicker_" + s_next_pos.script_int + 1, "targetname");
+			var_ad0c3ba3 = getent("flicker_" + (s_next_pos.script_int + 1), "targetname");
 			var_ad0c3ba3 scene::play(#"hash_fa0e1383821390e", array(level.var_8eec9430, var_ad0c3ba3));
 			if(!isdefined(level.var_ed42611e))
 			{
@@ -3277,13 +3277,13 @@ private function function_dc369dee(var_b51b4b08)
 		}
 		else
 		{
-			var_ad0c3ba3 = getent("flicker_" + s_next_pos.script_int + 1, "targetname");
+			var_ad0c3ba3 = getent("flicker_" + (s_next_pos.script_int + 1), "targetname");
 			var_ad0c3ba3 scene::play(#"hash_f73b18cc3a4c4ef", level.var_8eec9430);
 			if(!isinarray(level.var_ed42611e, var_ad0c3ba3))
 			{
 				if(isdefined(level.var_8eec9430.b_visible) && level.var_8eec9430.b_visible && isinarray(level.var_62f48651, s_next_pos.script_int))
 				{
-					var_ad0c3ba3 = getent("flicker_" + s_next_pos.script_int + 1, "targetname");
+					var_ad0c3ba3 = getent("flicker_" + (s_next_pos.script_int + 1), "targetname");
 					var_ad0c3ba3 scene::play(#"hash_fa0e1383821390e", array(level.var_8eec9430, var_ad0c3ba3));
 					if(!isdefined(level.var_ed42611e))
 					{
@@ -3388,7 +3388,7 @@ private function function_34e153c7()
 	level.var_6df70f90 = getentarray("jcc_01", "targetname");
 	foreach(var_a001c66d in level.var_6df70f90)
 	{
-		var_aa794395 = var_a001c66d.origin + anglestoforward(var_a001c66d.angles) * -15;
+		var_aa794395 = var_a001c66d.origin + (anglestoforward(var_a001c66d.angles) * -15);
 		var_a001c66d.t_interact = spawn("trigger_radius_use", var_aa794395, 0, 64, 64);
 		var_a001c66d.t_interact sethintstring(#"");
 		var_a001c66d.t_interact setcursorhint("HINT_NOICON");
@@ -3755,7 +3755,7 @@ private function function_dc164d78()
 	b_trace_passed = 0;
 	n_start_time = gettime();
 	n_total_time = 0;
-	while(!(isdefined(b_trace_passed) && b_trace_passed) & n_total_time < 6.1)
+	while((!(isdefined(b_trace_passed) && b_trace_passed)) & (n_total_time < 6.1))
 	{
 		foreach(e_player in util::get_players())
 		{
@@ -3767,7 +3767,7 @@ private function function_dc164d78()
 		}
 		waitframe(1);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 	}
 	self thread function_bd132295();
 	while(var_56eace20 <= level.var_6ab72806)
@@ -3866,7 +3866,7 @@ private function function_1b0a3e6e()
 	for(i = 0; i < level.var_6ab72806; i++)
 	{
 		s_pos[i] = array::random(level.var_f7febee4);
-		if(i >= 2 && (s_pos[i] == var_f3b29ae8 && s_pos[i] == s_pos[i - 2]))
+		if(i >= 2 && (s_pos[i] == var_f3b29ae8 && s_pos[i] == (s_pos[i - 2])))
 		{
 			while(s_pos[i] === var_f3b29ae8)
 			{
@@ -4013,7 +4013,7 @@ private function function_ca9ddf1b()
 {
 	self endon(#"death", #"hash_300e9fed7925cd69");
 	var_e1b1210d = getent("md_te_mi", "targetname");
-	var_aa794395 = var_e1b1210d.origin + anglestoforward(var_e1b1210d.angles) * -15 + vectorscale((0, 0, 1), 5);
+	var_aa794395 = (var_e1b1210d.origin + (anglestoforward(var_e1b1210d.angles) * -15)) + vectorscale((0, 0, 1), 5);
 	var_e1b1210d.t_interact = spawn("trigger_radius_use", var_aa794395, 0, 64, 64);
 	var_e1b1210d.t_interact sethintstring(#"");
 	var_e1b1210d.t_interact setcursorhint("HINT_NOICON");
@@ -4449,7 +4449,7 @@ private function function_1db8a8b2(var_b51b4b08)
 private function function_768e71d5()
 {
 	self endon(#"death", #"hash_71716a8e79096aee");
-	self.t_interact = spawn("trigger_radius_use", self.origin + anglestoforward(self.angles) * 15 + vectorscale((0, 0, 1), 5), 0, 64, 64);
+	self.t_interact = spawn("trigger_radius_use", (self.origin + (anglestoforward(self.angles) * 15)) + vectorscale((0, 0, 1), 5), 0, 64, 64);
 	self.t_interact enablelinkto();
 	self.t_interact linkto(self);
 	self.t_interact sethintstring(#"");
@@ -4602,7 +4602,7 @@ private function function_b952c1b(var_4bdd091b, str_tag = "j_spinelower")
 		if(isalive(var_4bdd091b))
 		{
 			n_current_time = gettime();
-			n_total_time = n_current_time - n_start_time / 1000;
+			n_total_time = (n_current_time - n_start_time) / 1000;
 			n_move_time = var_4bdd091b namespace_b4a066ff::function_f40aa0ef(var_88f24b00, n_total_time);
 			if(n_move_time == 0)
 			{
@@ -4638,7 +4638,7 @@ private function function_56e41aa6(var_7df17d61)
 	if(isdefined(var_b212834c))
 	{
 		var_7df17d61 = var_b212834c;
-		var_b212834c = groundtrace(var_7df17d61 + vectorscale((0, 0, 1), 100), var_7df17d61 + vectorscale((0, 0, -1), 1000), 0, undefined, 0)[#"position"];
+		var_b212834c = groundtrace(var_7df17d61 + vectorscale((0, 0, 1), 100), var_7df17d61 + (vectorscale((0, 0, -1), 1000)), 0, undefined, 0)[#"position"];
 		if(isdefined(var_b212834c))
 		{
 			var_7df17d61 = var_b212834c;

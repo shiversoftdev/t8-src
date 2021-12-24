@@ -244,7 +244,7 @@ private function function_28663a8f()
 		{
 			var_b8db7c29 = arraygetfarthest(self.origin, var_f1b2ce83);
 		}
-		if(isdefined(var_b8db7c29) & !(isdefined(self.aat_turned) && self.aat_turned))
+		if(isdefined(var_b8db7c29) & (!(isdefined(self.aat_turned) && self.aat_turned)))
 		{
 			var_b1756ffd = 20;
 			while(var_b1756ffd > 0)
@@ -268,7 +268,7 @@ private function function_28663a8f()
 				}
 				self setgoal(var_b8db7c29.origin, 0, 0, 16384);
 				waitframe(1);
-				var_b1756ffd = var_b1756ffd - float(function_60d95f53()) / 1000;
+				var_b1756ffd = var_b1756ffd - (float(function_60d95f53()) / 1000);
 				if(distance2dsquared(self.origin, var_b8db7c29.origin) < 16384)
 				{
 					break;

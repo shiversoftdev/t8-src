@@ -329,7 +329,7 @@ function repair_far_boards(barriers)
 		{
 			zm_blockers::blocker_disconnect_paths(barrier.neg_start, barrier.neg_end);
 		}
-		if(i % 4 == 0)
+		if((i % 4) == 0)
 		{
 			util::wait_network_frame();
 		}

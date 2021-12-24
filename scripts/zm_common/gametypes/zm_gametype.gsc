@@ -295,7 +295,7 @@ function onspawnintermission()
 	if(spawnpoints.size < 1)
 	{
 		/#
-			println("" + spawnpointname + "");
+			println(("" + spawnpointname) + "");
 		#/
 		return;
 	}
@@ -414,7 +414,7 @@ function onfindvalidspawnpoint()
 		{
 			location = level.default_start_location;
 		}
-		match_string = level.scr_zm_ui_gametype + "_" + location;
+		match_string = (level.scr_zm_ui_gametype + "_") + location;
 		spawnpoints = [];
 		structs = struct::get_array("initial_spawn", "script_noteworthy");
 		if(isdefined(structs))

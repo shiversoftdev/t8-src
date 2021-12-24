@@ -157,21 +157,21 @@ function mayspawn()
 */
 function timeuntilwavespawn(minimumwait)
 {
-	earliestspawntime = gettime() + minimumwait * 1000;
+	earliestspawntime = gettime() + (minimumwait * 1000);
 	lastwavetime = level.lastwave[self.pers[#"team"]];
 	wavedelay = level.wavedelay[self.pers[#"team"]] * 1000;
 	if(wavedelay == 0)
 	{
 		return 0;
 	}
-	numwavespassedearliestspawntime = earliestspawntime - lastwavetime / wavedelay;
+	numwavespassedearliestspawntime = (earliestspawntime - lastwavetime) / wavedelay;
 	numwaves = ceil(numwavespassedearliestspawntime);
-	timeofspawn = lastwavetime + numwaves * wavedelay;
+	timeofspawn = lastwavetime + (numwaves * wavedelay);
 	if(isdefined(self.wavespawnindex))
 	{
-		timeofspawn = timeofspawn + 50 * self.wavespawnindex;
+		timeofspawn = timeofspawn + (50 * self.wavespawnindex);
 	}
-	return timeofspawn - gettime() / 1000;
+	return (timeofspawn - gettime()) / 1000;
 }
 
 /*
@@ -376,7 +376,7 @@ function function_7455b680()
 	self notify(#"spawned_player");
 	self callback::callback(#"on_player_spawned");
 	/#
-		print("" + self.origin[0] + "" + self.origin[1] + "" + self.origin[2] + "");
+		print(((((("" + self.origin[0]) + "") + self.origin[1]) + "") + self.origin[2]) + "");
 	#/
 	setdvar(#"scr_selecting_location", "");
 	self zm_utility::function_e0448fec();
@@ -554,8 +554,8 @@ function kickifidontspawninternal()
 	}
 	starttime = gettime();
 	kickwait(waittime);
-	timepassed = gettime() - starttime / 1000;
-	if(timepassed < waittime - 0.1 && timepassed < mintime)
+	timepassed = (gettime() - starttime) / 1000;
+	if(timepassed < (waittime - 0.1) && timepassed < mintime)
 	{
 		return;
 	}
@@ -763,7 +763,7 @@ function allteamsnearscorelimit()
 	}
 	foreach(team, _ in level.teams)
 	{
-		if(!game.stat[#"teamscores"][team] >= level.scorelimit - 1)
+		if(!game.stat[#"teamscores"][team] >= (level.scorelimit - 1))
 		{
 			return 0;
 		}

@@ -1130,7 +1130,7 @@ function laststand_bleedout(bleedouttime, var_969fabf4)
 					var_7c962084 = time;
 				}
 				self.var_eb33efbc = 1;
-				if(time >= var_7c962084 + var_cb141a23)
+				if(time >= (var_7c962084 + var_cb141a23))
 				{
 					self.bleedout_time = self.bleedout_time - var_93b9385d;
 					var_7c962084 = time;
@@ -1141,7 +1141,7 @@ function laststand_bleedout(bleedouttime, var_969fabf4)
 			{
 				self.bleedout_time = self.bleedout_time - 1;
 				var_7c962084 = undefined;
-				var_9da219f5 = time + int(1 * 1000);
+				var_9da219f5 = time + (int(1 * 1000));
 			}
 			self.var_2d19ce3c = self.bleedout_time / bleedouttime;
 			if(self.var_d887a4ad !== 1)
@@ -1787,7 +1787,7 @@ function can_revive(revivee, ignore_touch_checks = 0, height = undefined)
 	if(isdefined(height))
 	{
 		delta = revivee.origin[2] - self.origin[2];
-		if(delta > height || delta < height * -1)
+		if(delta > height || delta < (height * -1))
 		{
 			return 0;
 		}
@@ -1932,7 +1932,7 @@ function revive_do_revive(playerbeingrevived)
 		}
 		self clientfield::set_player_uimodel("hudItems.laststand.reviveProgress", playerbeingrevived.reviveprogress);
 		waitframe(1);
-		timer = timer + float(function_60d95f53()) / 1000;
+		timer = timer + (float(function_60d95f53()) / 1000);
 	}
 	self clientfield::set_player_uimodel("hudItems.laststand.reviveProgress", 0);
 	self clientfield::set_player_uimodel("hudItems.laststand.revivingClientNum", int(min(getdvarint(#"com_maxclients", 0), pow(2, 7))) - 1);

@@ -93,7 +93,7 @@ function __init__()
 		clientfield::register("clientuimodel", "vehicle.invalidLanding", 1, 1, "int", undefined, 0, 0);
 		for(i = 0; i < 3; i++)
 		{
-			clientfield::register("clientuimodel", "vehicle.bindingCooldown" + i + ".cooldown", 1, 5, "float", undefined, 0, 0);
+			clientfield::register("clientuimodel", ("vehicle.bindingCooldown" + i) + ".cooldown", 1, 5, "float", undefined, 0, 0);
 		}
 	}
 	clientfield::register("toplayer", "toggle_dnidamagefx", 1, 1, "int", &field_toggle_dnidamagefx, 0, 0);
@@ -648,17 +648,17 @@ function aircraft_dustkick()
 		}
 		trace = bullettrace(self.origin, self.origin - (0, 0, 700 * 2), 0, self, 1);
 		distsqr = distancesquared(self.origin, trace[#"position"]);
-		if(trace[#"fraction"] < 0.01 || distsqr < 0 * 0)
+		if(trace[#"fraction"] < 0.01 || distsqr < (0 * 0))
 		{
 			wait(0.2);
 			continue;
 		}
-		else if(trace[#"fraction"] >= 1 || distsqr > 700 * 700)
+		else if(trace[#"fraction"] >= 1 || distsqr > (700 * 700))
 		{
 			wait(1);
 			continue;
 		}
-		if(0 * 0 < distsqr && distsqr < 700 * 700)
+		if((0 * 0) < distsqr && distsqr < (700 * 700))
 		{
 			surfacetype = trace[#"surfacetype"];
 			if(!isdefined(surfacetype))
@@ -1360,7 +1360,7 @@ function function_44729756(localclientnum, duration = 8, var_5db078ba = 1)
 		return;
 	}
 	state = 1;
-	durationleft = gettime() + int(duration * 1000);
+	durationleft = gettime() + (int(duration * 1000));
 	settings = struct::get_script_bundle("vehiclecustomsettings", self.scriptbundlesettings);
 	if(!isdefined(settings) || !isdefined(settings.lightgroups_numgroups))
 	{
@@ -1575,13 +1575,13 @@ function toggle_fx_bundle(localclientnum, name, turnon)
 		i = 1;
 		for(;;)
 		{
-			fx = self.settings.(name + "_fx_" + i);
+			fx = self.settings.((name + "_fx_") + i);
 			if(!isdefined(fx))
 			{
 				return;
 			}
-			tag = self.settings.(name + "_tag_" + i);
-			delay = self.settings.(name + "_delay_" + i);
+			tag = self.settings.((name + "_tag_") + i);
+			delay = self.settings.((name + "_delay_") + i);
 			self thread delayed_fx_thread(localclientnum, name, fx, tag, delay);
 			i++;
 		}
@@ -2686,7 +2686,7 @@ function field_update_damage_state(localclientnum, oldval, newval, bnewent, bini
 		numslots = settings.(var_c0e21df2 + "_numslots");
 		for(fxindex = 1; isdefined(numslots) && fxindex <= numslots; fxindex++)
 		{
-			addfxandtagtolists(settings.(var_c0e21df2 + "_fx" + fxindex), settings.(var_c0e21df2 + "_tag" + fxindex), fxlist, taglist, fxindex, numslots);
+			addfxandtagtolists(settings.((var_c0e21df2 + "_fx") + fxindex), settings.((var_c0e21df2 + "_tag") + fxindex), fxlist, taglist, fxindex, numslots);
 		}
 		sound = settings.(var_c0e21df2 + "_sound");
 	}

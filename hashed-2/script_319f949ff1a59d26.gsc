@@ -169,7 +169,7 @@ private function function_10687511(entity)
 		}
 	#/
 	var_eef1279d = 0;
-	if(distancesquared(entity.origin, entity.favoriteenemy.origin) >= 400 * 400)
+	if(distancesquared(entity.origin, entity.favoriteenemy.origin) >= (400 * 400))
 	{
 		var_eef1279d = 1;
 	}
@@ -188,7 +188,7 @@ private function function_10687511(entity)
 	if(isdefined(entity.var_cc94acec) && entity.var_cc94acec && (!(isdefined(entity.var_b11272e3) && entity.var_b11272e3)))
 	{
 		self function_a57c34b7(entity.var_826049b6);
-		if(distancesquared(entity.origin, entity.var_826049b6) <= 64 * 64)
+		if(distancesquared(entity.origin, entity.var_826049b6) <= (64 * 64))
 		{
 			entity.var_b11272e3 = 1;
 			self function_d4c687c9();
@@ -239,7 +239,7 @@ private function function_4703be8a()
 	var_4a8dc744 = vectortoangles(self.origin - self.favoriteenemy.origin)[1];
 	var_36294491 = absangleclamp360(var_4a8dc744 + var_77f4782e);
 	var_ef2595f9 = anglestoforward((0, var_36294491, 0));
-	var_9b0fde6d = enemy.origin + var_ef2595f9 * 400;
+	var_9b0fde6d = enemy.origin + (var_ef2595f9 * 400);
 	var_b4a11ac2 = getclosestpointonnavmesh(var_9b0fde6d, 128, self getpathfindingradius());
 	if(isdefined(var_b4a11ac2))
 	{

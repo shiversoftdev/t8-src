@@ -407,12 +407,12 @@ function waittill_player_nearby(e_player, var_5a365909 = 0)
 		{
 			if(var_5a365909)
 			{
-				if(isdefined(e_player.b_is_designated_target) && e_player.b_is_designated_target && distance2dsquared(self.origin, e_player.origin) <= 150 * 150 && e_player util::is_player_looking_at(self.origin, 0.1, 0, self))
+				if(isdefined(e_player.b_is_designated_target) && e_player.b_is_designated_target && distance2dsquared(self.origin, e_player.origin) <= (150 * 150) && e_player util::is_player_looking_at(self.origin, 0.1, 0, self))
 				{
 					return;
 				}
 			}
-			else if(distance2dsquared(self.origin, e_player.origin) <= 150 * 150 && e_player util::is_player_looking_at(self.origin, 0.1, 0, self))
+			else if(distance2dsquared(self.origin, e_player.origin) <= (150 * 150) && e_player util::is_player_looking_at(self.origin, 0.1, 0, self))
 			{
 				return;
 			}
@@ -427,13 +427,13 @@ function waittill_player_nearby(e_player, var_5a365909 = 0)
 				}
 				if(var_5a365909)
 				{
-					if(isdefined(player.b_is_designated_target) && player.b_is_designated_target && distance2dsquared(self.origin, player.origin) <= self.n_radius * self.n_radius && player util::is_player_looking_at(self.origin, 0.1, 0, self))
+					if(isdefined(player.b_is_designated_target) && player.b_is_designated_target && distance2dsquared(self.origin, player.origin) <= (self.n_radius * self.n_radius) && player util::is_player_looking_at(self.origin, 0.1, 0, self))
 					{
 						return;
 					}
 					continue;
 				}
-				if(distance2dsquared(self.origin, player.origin) <= self.n_radius * self.n_radius && player util::is_player_looking_at(self.origin, 0.1, 0, self))
+				if(distance2dsquared(self.origin, player.origin) <= (self.n_radius * self.n_radius) && player util::is_player_looking_at(self.origin, 0.1, 0, self))
 				{
 					return;
 				}
@@ -556,7 +556,7 @@ function function_9e147e0c(s_params)
 				if(isdefined(v_drop))
 				{
 					s_loc = spawnstruct();
-					s_loc.origin = groundtrace(v_drop + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+					s_loc.origin = groundtrace((v_drop + vectorscale((0, 0, 1), 32)) + vectorscale((0, 0, 1), 8), (v_drop + vectorscale((0, 0, 1), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 					v_normal = getnavmeshfacenormal(v_drop, 32);
 					s_loc.angles = function_c1fa62a2(var_9cb648a3, v_normal);
 					wait(0.5);
@@ -1080,7 +1080,7 @@ function function_f15c4657()
 		level.sam_clue_dig_traversal = 0;
 	}
 	level.sam_clue_dig_traversal++;
-	str_alias = #"hash_63097ff550404256" + level.sam_clue_dig_traversal + "_pickup";
+	str_alias = (#"hash_63097ff550404256" + level.sam_clue_dig_traversal) + "_pickup";
 	if(self zm_characters::is_character(array(#"hash_5ebf024e1559c04a")) && level.sam_clue_dig_traversal == 3)
 	{
 		self zm_vo::function_a2bd5a0c(#"hash_4c470787fc7738eb");
@@ -1135,7 +1135,7 @@ function get_closest_valid_player(n_range_sq = 9000000)
 	{
 		v_player = player getcentroid();
 		n_dist = distance2dsquared(self.origin, v_player);
-		if(zm_utility::is_player_valid(player) && n_dist < n_range_sq * 4.5)
+		if(zm_utility::is_player_valid(player) && n_dist < (n_range_sq * 4.5))
 		{
 			return player;
 		}
@@ -1201,7 +1201,7 @@ function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round
 		n_players = 1;
 	}
 	n_spawn_delay = n_spawn_delay / n_players;
-	var_e8711f44 = 14 + n_players * 2;
+	var_e8711f44 = 14 + (n_players * 2);
 	var_3a615dd8 = getspawnerarray("spawner_zm_zombie", "targetname");
 	var_7c332548 = arraycopy(var_eb3b90d);
 	while(true)
@@ -1315,8 +1315,8 @@ function draw_arrow(org, ang, opcolor, str)
 			blue = opcolor;
 		}
 		line(org, org + forwardfar, red, 0.9);
-		line(org + forwardfar, org + forwardclose + rightdraw, red, 0.9);
-		line(org + forwardfar, org + forwardclose + leftdraw, red, 0.9);
+		line(org + forwardfar, (org + forwardclose) + rightdraw, red, 0.9);
+		line(org + forwardfar, (org + forwardclose) + leftdraw, red, 0.9);
 		line(org, org + right, blue, 0.9);
 		line(org, org + left, blue, 0.9);
 		line(org, org + up, green, 0.9);
@@ -1373,7 +1373,7 @@ function function_2057ddc1(v_loc, var_9fa0c0f, var_bff0cf99, var_440d7980, var_d
 				{
 					vox_idgun_upgrade_ready_orb_ = 0;
 				}
-				str_vo = "vox_" + var_9fa0c0f + "_" + var_bff0cf99 + "_plr_" + n_character_index + "_" + vox_idgun_upgrade_ready_orb_;
+				str_vo = (((((("vox_" + var_9fa0c0f) + "_") + var_bff0cf99) + "_plr_") + n_character_index) + "_") + vox_idgun_upgrade_ready_orb_;
 				if(isdefined(var_eb20a7c) && var_eb20a7c)
 				{
 					e_player stopsounds();

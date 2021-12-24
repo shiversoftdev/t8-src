@@ -297,7 +297,7 @@ function beginclasschoice(comingfrommenu)
 	{
 		self player_role::set(getdvarint(#"auto_select_character", 1));
 		started_waiting = gettime();
-		while(!self isstreamerready(-1, 1) && started_waiting + 90000 > gettime())
+		while(!self isstreamerready(-1, 1) && (started_waiting + 90000) > gettime())
 		{
 			waitframe(1);
 		}
@@ -513,7 +513,7 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 			timepassed = undefined;
 			if(isdefined(self.respawntimerstarttime))
 			{
-				timepassed = float(gettime() - self.respawntimerstarttime) / 1000;
+				timepassed = (float(gettime() - self.respawntimerstarttime)) / 1000;
 			}
 			self thread [[level.spawnclient]](timepassed);
 			self.respawntimerstarttime = undefined;

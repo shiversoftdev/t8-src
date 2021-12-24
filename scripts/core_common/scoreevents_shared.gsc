@@ -293,7 +293,7 @@ function function_2b96d7dc()
 			table_name = table_name + arg;
 			if(index < args.size - 1)
 			{
-				table_name = table_name + "/";
+				table_name = table_name + ("/");
 			}
 		}
 	}
@@ -336,7 +336,7 @@ function getscoreeventtablename(gametype)
 	gametype = function_ea13f55(gametype, "_hc", "");
 	gametype = function_ea13f55(gametype, "_cwl", "");
 	gametype = function_ea13f55(gametype, "_bb", "");
-	tablename = prefix + "_" + gametype + ".csv";
+	tablename = ((prefix + "_") + gametype) + ".csv";
 	if(!(isdefined(isassetloaded("stringtable", tablename)) && isassetloaded("stringtable", tablename)))
 	{
 		tablename = prefix + "_base.csv";

@@ -97,7 +97,7 @@ function register(str_name, var_3509ed3e, call_on = "$self", func, vararg)
 	if(isinarray(a_registered, hash(str_name)))
 	{
 		/#
-			assertmsg("" + str_name + "");
+			assertmsg(("" + str_name) + "");
 		#/
 		return;
 	}
@@ -126,7 +126,7 @@ private function assert_registered(str_name)
 		if(!isinarray(a_registered, hash(str_name)))
 		{
 			/#
-				assertmsg("" + str_name + "");
+				assertmsg(("" + str_name) + "");
 			#/
 			return 0;
 		}
@@ -684,7 +684,7 @@ private function validate(str_name, call_on, func, vararg)
 		if(!isinarray(a_registered, hash(str_name)))
 		{
 			/#
-				assertmsg("" + str_name + "");
+				assertmsg(("" + str_name) + "");
 			#/
 			return;
 		}
@@ -726,7 +726,7 @@ private function _validate_value(str_name, value, b_assert)
 		if(b_assert)
 		{
 			/#
-				assert(b_match, "" + function_9e72a96(str_name) + "" + current_value + "" + value + "");
+				assert(b_match, ((((("" + function_9e72a96(str_name)) + "") + current_value) + "") + value) + "");
 			#/
 		}
 		return b_match;
@@ -772,7 +772,7 @@ private function debug_values()
 					str_key = a_toks[1];
 				}
 				hud_ent = getent(str_value, str_key, 1);
-				str_label = str_value + "" + str_key;
+				str_label = (str_value + "") + str_key;
 			}
 			debug2dtext((200, 100, 0), str_label, (1, 1, 1), 1, (0, 0, 0), 0.5, 0.8, 1);
 			if(!isdefined(hud_ent) || !isdefined(hud_ent.values))
@@ -838,14 +838,14 @@ function display_value(index, str_name, str_id, value, b_valid, on_hud)
 			str_value = string::rjust(str_name, 20);
 			if(isdefined(value))
 			{
-				str_value = str_value + "" + value;
+				str_value = str_value + ("" + value);
 			}
-			str_value = str_value + "" + string::ljust((isdefined(str_id) ? "" + str_id : ""), 30);
+			str_value = str_value + ("" + (string::ljust((isdefined(str_id) ? "" + str_id : ""), 30)));
 		}
 		color = (b_valid ? (1, 1, 1) : (1, 0, 0));
 		if(on_hud)
 		{
-			debug2dtext((200, 100 + index * 20, 0), str_value, color, 1, (0, 0, 0), 0.5, 0.8, 1);
+			debug2dtext((200, 100 + (index * 20), 0), str_value, color, 1, (0, 0, 0), 0.5, 0.8, 1);
 		}
 		print3d(self.origin - (0, 0, index * 8), str_value, color, 1, 0.3, 1);
 	#/

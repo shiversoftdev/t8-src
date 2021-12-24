@@ -334,7 +334,7 @@ function function_bcb3a1a1()
 		predictedpos = self lastknownpos(self.favoriteenemy);
 		if(isdefined(predictedpos))
 		{
-			turnyaw = absangleclamp360(self.angles[1] - vectortoangles(predictedpos - self.origin)[1]);
+			turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(predictedpos - self.origin)[1]));
 			return turnyaw;
 		}
 	}
@@ -370,7 +370,7 @@ function function_7d1989aa(entity, mocompanim, mocompanimblendouttime, mocompani
 {
 	entity orientmode("face enemy");
 	entity animmode("zonly physics");
-	if(isdefined(entity.enemy) && distancesquared(entity.enemy.origin, entity.origin) < 60 * 60)
+	if(isdefined(entity.enemy) && distancesquared(entity.enemy.origin, entity.origin) < (60 * 60))
 	{
 		entity animmode("angle deltas");
 	}
@@ -389,7 +389,7 @@ function function_5ff8994e(entity, mocompanim, mocompanimblendouttime, mocompani
 {
 	entity orientmode("face enemy");
 	entity animmode("zonly physics");
-	if(isdefined(entity.enemy) && distancesquared(entity.enemy.origin, entity.origin) < 60 * 60)
+	if(isdefined(entity.enemy) && distancesquared(entity.enemy.origin, entity.origin) < (60 * 60))
 	{
 		entity animmode("angle deltas");
 	}
@@ -482,7 +482,7 @@ private function function_7ef4937e(entity)
 	}
 	if(isdefined(self.is_charging) && self.is_charging)
 	{
-		if(distance2dsquared(self.enemy.origin, entity.origin) >= 1000 * 1000 || gettime() >= self.var_a2691e6b)
+		if(distance2dsquared(self.enemy.origin, entity.origin) >= (1000 * 1000) || gettime() >= self.var_a2691e6b)
 		{
 			function_9f7eb359(entity);
 		}

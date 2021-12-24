@@ -397,7 +397,7 @@ function function_32b5113(ai_zombie)
 		/#
 			if(isdefined(ai_zombie.archetype))
 			{
-				println("" + ai_zombie.archetype + "");
+				println(("" + ai_zombie.archetype) + "");
 			}
 		#/
 		return 0;
@@ -754,7 +754,7 @@ function is_on_navmesh(e_player)
 		if(!(isdefined(var_3fb36683) && var_3fb36683))
 		{
 			v_dir = vectornormalize(e_origin - self.origin);
-			v_pos = self.origin + v_dir * 24;
+			v_pos = self.origin + (v_dir * 24);
 			v_valid_point = getclosestpointonnavmesh(v_pos, 150, 12);
 			if(isdefined(v_valid_point))
 			{
@@ -886,7 +886,7 @@ function function_e383ca2f()
 function function_f33bde5c(b_immediate = 0)
 {
 	self endon(#"death", #"explode");
-	s_trace = groundtrace(self.mdl_anchor.origin + vectorscale((0, 0, 1), 16), self.mdl_anchor.origin + vectorscale((0, 0, -1), 1000), 0, self.mdl_anchor);
+	s_trace = groundtrace(self.mdl_anchor.origin + vectorscale((0, 0, 1), 16), self.mdl_anchor.origin + (vectorscale((0, 0, -1), 1000)), 0, self.mdl_anchor);
 	var_a75fe4be = s_trace[#"position"];
 	if(isdefined(s_trace[#"entity"]))
 	{

@@ -257,7 +257,7 @@ function function_71699fe2()
 	{
 		if(isdefined(s_radiant.targetname))
 		{
-			s_radiant.str_identifier = s_radiant.targetname + "_" + n_count;
+			s_radiant.str_identifier = (s_radiant.targetname + "_") + n_count;
 		}
 		else
 		{
@@ -1520,7 +1520,7 @@ function set_drop_offset(height)
 */
 function set_trigger_origin(origin)
 {
-	offset = self.maxs[2] - self.mins[2] / 2;
+	offset = (self.maxs[2] - self.mins[2]) / 2;
 	self.origin = (origin[0], origin[1], origin[2] + offset);
 	if(isvec(self.trigger_offset))
 	{
@@ -1604,7 +1604,7 @@ function set_dropped(var_e329a2fa)
 			{
 				if(trace[#"walkable"] == 0)
 				{
-					end_reflect = forward * 1000 + trace[#"position"];
+					end_reflect = (forward * 1000) + trace[#"position"];
 					reflect_trace = physicstrace(trace[#"position"], end_reflect, (trace_size * -1, trace_size * -1, trace_size * -1), (trace_size, trace_size, trace_size), self, 32);
 					if(isdefined(reflect_trace))
 					{
@@ -1957,7 +1957,7 @@ function take_object(object)
 function wait_take_carry_weapon(weapon)
 {
 	self thread take_carry_weapon_on_death(weapon);
-	wait(max(0, weapon.firetime - 2 * float(function_60d95f53()) / 1000));
+	wait(max(0, weapon.firetime - (2 * (float(function_60d95f53()) / 1000))));
 	self take_carry_weapon(weapon);
 }
 
@@ -2258,19 +2258,19 @@ function function_2544bab6()
 			waitframe(1);
 		}
 		var_f783260f = gettime();
-		while(self usebuttonpressed() && var_f783260f + 500 > gettime())
+		while(self usebuttonpressed() && (var_f783260f + 500) > gettime())
 		{
 			waitframe(1);
 		}
-		if(var_f783260f + 500 <= gettime())
+		if((var_f783260f + 500) <= gettime())
 		{
 			continue;
 		}
-		while(!self usebuttonpressed() && var_f783260f + 1000 > gettime())
+		while(!self usebuttonpressed() && (var_f783260f + 1000) > gettime())
 		{
 			waitframe(1);
 		}
-		if(var_f783260f + 1000 <= gettime())
+		if((var_f783260f + 1000) <= gettime())
 		{
 			continue;
 		}
@@ -3113,7 +3113,7 @@ function use_object_prox_think()
 				{
 					if(isdefined(self.autodecaytime) && self.autodecaytime > 0 && self.curprogress > 0)
 					{
-						self.curprogress = self.curprogress - level.var_9fee970c * self.usetime / int(self.autodecaytime * 1000);
+						self.curprogress = self.curprogress - (level.var_9fee970c * (self.usetime / (int(self.autodecaytime * 1000))));
 						deltaprogress = self.curprogress - previousprogress;
 						function_72307b09(deltaprogress);
 						self update_current_progress();
@@ -3149,7 +3149,7 @@ function use_object_prox_think()
 					{
 						decayscale = self.usetime / self.decaytime;
 					}
-					self.curprogress = self.curprogress - level.var_9fee970c * self.userate * decayscale;
+					self.curprogress = self.curprogress - ((level.var_9fee970c * self.userate) * decayscale);
 					deltaprogress = self.curprogress - previousprogress;
 					function_72307b09(deltaprogress);
 					if(isdefined(self.decayprogressmin) && self.curprogress < self.decayprogressmin)
@@ -3209,17 +3209,17 @@ function use_object_prox_think()
 				else
 				{
 					self.inuse = 1;
-					self.curprogress = self.curprogress + level.var_9fee970c * self.userate;
+					self.curprogress = self.curprogress + (level.var_9fee970c * self.userate);
 					deltaprogress = self.curprogress - previousprogress;
 					function_72307b09(deltaprogress);
 					self update_current_progress();
 					if(isdefined(self.onuseupdate))
 					{
-						self [[self.onuseupdate]](self get_claim_team(), self.curprogress / self.usetime, level.var_9fee970c * self.userate / self.usetime);
+						self [[self.onuseupdate]](self get_claim_team(), self.curprogress / self.usetime, (level.var_9fee970c * self.userate) / self.usetime);
 					}
 					if(isdefined(self.var_ff74c7e9))
 					{
-						self [[self.var_ff74c7e9]](self get_claim_team(), self.curprogress / self.usetime, level.var_9fee970c * self.userate / self.usetime);
+						self [[self.var_ff74c7e9]](self get_claim_team(), self.curprogress / self.usetime, (level.var_9fee970c * self.userate) / self.usetime);
 					}
 				}
 			}
@@ -3250,7 +3250,7 @@ function use_object_prox_think()
 				function_4783042a();
 			}
 		}
-		else if(!self.decayprogress && self.curprogress > 0 && self.var_79f2beba !== 1 && gettime() - self.lastclaimtime > int(self.claimgraceperiod * 1000))
+		else if(!self.decayprogress && self.curprogress > 0 && self.var_79f2beba !== 1 && (gettime() - self.lastclaimtime) > (int(self.claimgraceperiod * 1000)))
 		{
 			self clear_progress();
 		}
@@ -3605,7 +3605,7 @@ function set_claim_team(newteam)
 	#/
 	if(self.var_5083077c !== 1)
 	{
-		if(!self.decayprogress && self.claimteam == #"none" && gettime() - self.lastclaimtime > int(self.claimgraceperiod * 1000))
+		if(!self.decayprogress && self.claimteam == #"none" && (gettime() - self.lastclaimtime) > (int(self.claimgraceperiod * 1000)))
 		{
 			self clear_progress();
 		}
@@ -4321,7 +4321,7 @@ function use_hold_think_loop(player)
 				playerusemultiplier = self [[self.getuseratemultiplier]](player);
 			}
 			previousprogress = self.curprogress;
-			self.curprogress = self.curprogress + level.var_9fee970c * self.userate * playerusemultiplier;
+			self.curprogress = self.curprogress + ((level.var_9fee970c * self.userate) * playerusemultiplier);
 			deltaprogress = self.curprogress - previousprogress;
 			if(isdefined(self.var_5c196da4) && self.var_5c196da4 && isdefined(self.var_1dbb2b2b))
 			{
@@ -6251,7 +6251,7 @@ function get_packicon_offset(index = 0)
 		size = 35;
 		base = -40;
 	}
-	int = base - size * index;
+	int = base - (size * index);
 	return int;
 }
 
@@ -6376,7 +6376,7 @@ function init_game_object(str_bundle, str_team_override, str_tag_override, str_i
 {
 	self.m_s_bundle = getscriptbundle(str_bundle);
 	/#
-		assert(isdefined(self.m_s_bundle), "" + str_bundle + "");
+		assert(isdefined(self.m_s_bundle), ("" + str_bundle) + "");
 	#/
 	if(isdefined(str_tag_override))
 	{
@@ -6397,7 +6397,7 @@ function init_game_object(str_bundle, str_team_override, str_tag_override, str_i
 		/#
 			if(isentity(self.e_object))
 			{
-				println("" + self.m_s_bundle.str_tag + "" + self.e_object.model);
+				println((("" + self.m_s_bundle.str_tag) + "") + self.e_object.model);
 			}
 		#/
 	}
@@ -6516,11 +6516,11 @@ function create_gameobject_trigger()
 	{
 		if(self.m_str_type === "generic" || self.m_str_trigger_type === "proximity")
 		{
-			self.m_t_interact = spawn("trigger_radius", self.m_v_tag_origin + self.m_n_trigger_offset + (0, 0, self.m_n_trigger_height / 2), 0, self.m_n_trigger_radius, self.m_n_trigger_height, 1);
+			self.m_t_interact = spawn("trigger_radius", (self.m_v_tag_origin + self.m_n_trigger_offset) + (0, 0, self.m_n_trigger_height / 2), 0, self.m_n_trigger_radius, self.m_n_trigger_height, 1);
 		}
 		else
 		{
-			self.m_t_interact = spawn("trigger_radius_use", self.m_v_tag_origin + self.m_n_trigger_offset + (0, 0, self.m_n_trigger_height / 2), 0, self.m_n_trigger_radius, self.m_n_trigger_height, 1);
+			self.m_t_interact = spawn("trigger_radius_use", (self.m_v_tag_origin + self.m_n_trigger_offset) + (0, 0, self.m_n_trigger_height / 2), 0, self.m_n_trigger_radius, self.m_n_trigger_height, 1);
 			if(isdefined(self.e_object.angles))
 			{
 				self.m_t_interact.angles = self.e_object.angles;
@@ -6810,7 +6810,7 @@ function function_aa070e6f(e_player)
 {
 	if(isdefined(self.e_object) && isdefined(self.e_object.mdl_gameobject) && isdefined(e_player) && (isdefined(self.e_object.mdl_gameobject.b_enabled) && self.e_object.mdl_gameobject.b_enabled))
 	{
-		return distance2dsquared(self.e_object.origin, e_player.origin) < 675 * 675 && e_player util::is_player_looking_at(self.e_object.origin);
+		return distance2dsquared(self.e_object.origin, e_player.origin) < (675 * 675) && e_player util::is_player_looking_at(self.e_object.origin);
 	}
 	return 0;
 }
@@ -7143,7 +7143,7 @@ function function_c6fa00c2()
 	foreach(contribution in var_1dbb2b2b)
 	{
 		var_9b38d2c0 = contribution.player;
-		percentage = 100 * contribution.contribution / self.usetime;
+		percentage = (100 * contribution.contribution) / self.usetime;
 		var_9b38d2c0.var_759a143b = int(0.5 + percentage);
 		if(var_9b38d2c0.var_759a143b > getgametypesetting(#"hash_1c94fa23e276efe9"))
 		{

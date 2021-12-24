@@ -682,7 +682,7 @@ function function_9689b55c(var_88f24b00)
 				var_ddbc98df thread clientfield::set("" + #"hash_5f7eb9d1316d02a7", 1);
 				var_ddbc98df playsound(#"hash_4fad63fcdab19a1d");
 			}
-			else if(level.var_19a54d73 == var_39662a63 * 2)
+			else if(level.var_19a54d73 == (var_39662a63 * 2))
 			{
 				var_f697c38 setmodel("p8_zm_esc_skull_afterlife");
 				var_f697c38 thread clientfield::set("" + #"hash_5f7eb9d1316d02a7", 1);
@@ -1245,7 +1245,7 @@ function function_d3db303d()
 {
 	v_weapon_origin_offset = vectorscale((0, 0, 1), 9);
 	v_weapon_angles_offset = vectorscale((0, -1, 0), 90);
-	self.stub.v_weapon_origin = level.var_bff24582.origin + anglestoforward(level.var_bff24582.angles) * 15 + v_weapon_origin_offset;
+	self.stub.v_weapon_origin = (level.var_bff24582.origin + (anglestoforward(level.var_bff24582.angles) * 15)) + v_weapon_origin_offset;
 	self.stub.v_weapon_angles = level.var_bff24582.angles + v_weapon_angles_offset;
 	while(true)
 	{

@@ -59,7 +59,7 @@ function function_5b1f1713(localclientnum, oldval, newval, bnewent, binitialsnap
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(self.origin, e_player.origin);
 	var_56cb57e3 = 200 * 200;
-	n_scale = var_56cb57e3 - n_dist / var_56cb57e3;
+	n_scale = (var_56cb57e3 - n_dist) / var_56cb57e3;
 	n_scale = n_scale * 0.75;
 	if(n_scale > 0.01)
 	{

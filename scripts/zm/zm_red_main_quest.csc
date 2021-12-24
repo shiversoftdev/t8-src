@@ -1173,7 +1173,7 @@ function function_6d38ea52(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		waitframe(1);
 		n_current_time = gettime();
-		n_time_passed = float(n_current_time - n_start_time) / 1000;
+		n_time_passed = (float(n_current_time - n_start_time)) / 1000;
 		n_percent = n_time_passed / 10;
 		n_earthquake = 0.25 * n_percent;
 		if(n_earthquake > 0.01)
@@ -2318,9 +2318,9 @@ function function_5b807116(localclientnum)
 		if(isplayer(e_player))
 		{
 			n_dist = distance2dsquared(self.origin, e_player.origin);
-			if(n_dist <= 512 * 512)
+			if(n_dist <= (512 * 512))
 			{
-				n_percent = 1 - n_dist / 512 * 512;
+				n_percent = 1 - (n_dist / (512 * 512));
 				n_earthquake = 0.15 * n_percent;
 				if(n_earthquake > 0.01)
 				{

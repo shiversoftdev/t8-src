@@ -65,11 +65,11 @@ function __init__()
 function physics_explosion_and_rumble(origin, radius, physics_explosion)
 {
 	/#
-		assert(radius <= pow(2, 10) - 1);
+		assert(radius <= (pow(2, 10) - 1));
 	#/
 	if(isdefined(physics_explosion) && physics_explosion)
 	{
-		radius = radius + 1 << 9;
+		radius = radius + (1 << 9);
 	}
 	self clientfield::set("start_destructible_explosion", radius);
 }

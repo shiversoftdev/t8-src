@@ -579,7 +579,7 @@ function function_c2bf7f10()
 		predictedpos = self function_18c9035f(self.enemy);
 		if(isdefined(predictedpos))
 		{
-			turnyaw = absangleclamp360(self.angles[1] - vectortoangles(predictedpos - self.origin)[1]);
+			turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(predictedpos - self.origin)[1]));
 			return turnyaw;
 		}
 	}
@@ -939,7 +939,7 @@ function target_enemy(entity)
 	if(isdefined(last_enemy))
 	{
 		var_dc0b544b = entity function_dc0b544b(entity, last_enemy);
-		if(!var_dc0b544b && isdefined(entity.ai.var_4520deec) && gettime() >= entity.ai.var_4520deec + 15000)
+		if(!var_dc0b544b && isdefined(entity.ai.var_4520deec) && gettime() >= (entity.ai.var_4520deec + 15000))
 		{
 			newenemy = entity get_favorite_enemy();
 			if(isdefined(newenemy) && newenemy != last_enemy)
@@ -981,7 +981,7 @@ function target_enemy(entity)
 	}
 	if(isdefined(entity.favoriteenemy) && (isdefined(entity.ai.hasseenfavoriteenemy) && entity.ai.hasseenfavoriteenemy))
 	{
-		if(gettime() >= entity.ai.var_4520deec + 50)
+		if(gettime() >= (entity.ai.var_4520deec + 50))
 		{
 			enemypos = getclosestpointonnavmesh(entity.favoriteenemy.origin, 400, 1.2 * entity getpathfindingradius());
 			if(isdefined(enemypos))
@@ -1011,7 +1011,7 @@ function function_df8cb62a(entity)
 	wait(1);
 	while(entity.ai.state != 2 && (isdefined(entity.ai.hasseenfavoriteenemy) && entity.ai.hasseenfavoriteenemy))
 	{
-		if(isdefined(entity.enemy) && distancesquared(entity.enemy.origin, entity.origin) <= 400 * 400 && entity cansee(entity.enemy))
+		if(isdefined(entity.enemy) && distancesquared(entity.enemy.origin, entity.origin) <= (400 * 400) && entity cansee(entity.enemy))
 		{
 			entity clientfield::set("ks_dog_bark", 1);
 			entity playsound(#"hash_21775fa77c0df395");
@@ -1164,7 +1164,7 @@ function function_6c2426d3(entity)
 		return 0;
 	}
 	disttoenemysq = distancesquared(entity.origin, entity.enemy.origin);
-	if(disttoenemysq < 1800 * 1800 && disttoenemysq >= 400 * 400)
+	if(disttoenemysq < (1800 * 1800) && disttoenemysq >= (400 * 400))
 	{
 		if(util::within_fov(entity.origin, entity.angles, entity.enemy.origin, cos(30)))
 		{
@@ -1278,7 +1278,7 @@ function function_3089bb44(entity)
 	{
 		predictedenemypos = entity.enemy.origin;
 		distancesq = distancesquared(entity.origin, entity.enemy.origin);
-		if(isplayer(entity.enemy) && distancesq >= 100 * 100)
+		if(isplayer(entity.enemy) && distancesq >= (100 * 100))
 		{
 			if(entity.enemy issprinting())
 			{
@@ -1476,14 +1476,14 @@ function function_a5923bea(entity, mocompanim, mocompanimblendouttime, mocompani
 			#/
 			entity.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_cf699df5 > var_65cbfb52 && var_776ddabf >= 90 * 90)
+		else if(var_cf699df5 > var_65cbfb52 && var_776ddabf >= (90 * 90))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
 			#/
 			entity.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_65cbfb52 >= 300 * 300)
+		else if(var_65cbfb52 >= (300 * 300))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
@@ -1509,7 +1509,7 @@ function function_a5923bea(entity, mocompanim, mocompanimblendouttime, mocompani
 			var_7948b2f3 = var_6738a702 && var_175919d1;
 			var_425c4c8b = isvisible || var_535d098c && var_7948b2f3;
 			/#
-				reasons = "" + isvisible + "" + var_6738a702 + "" + var_175919d1;
+				reasons = (((("" + isvisible) + "") + var_6738a702) + "") + var_175919d1;
 				if(var_425c4c8b)
 				{
 					record3dtext(reasons, entity.origin + vectorscale((0, 0, 1), 60), (0, 1, 0), "");
@@ -1549,7 +1549,7 @@ function function_a5923bea(entity, mocompanim, mocompanimblendouttime, mocompani
 			recordsphere(entity.var_cd8354e0.var_cb28f380, 3, (0, 1, 0), "");
 			recordsphere(entity.var_cd8354e0.var_736d2cce, 3, (0, 0, 1), "");
 		#/
-		adjustedorigin = entity.origin + entity.var_cd8354e0.var_10b8b6d1 * entity.var_cd8354e0.var_8b9a15a6;
+		adjustedorigin = entity.origin + (entity.var_cd8354e0.var_10b8b6d1 * entity.var_cd8354e0.var_8b9a15a6);
 		entity forceteleport(adjustedorigin);
 	}
 }

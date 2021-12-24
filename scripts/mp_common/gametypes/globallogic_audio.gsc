@@ -301,7 +301,7 @@ function announce_round_winner(delay)
 	{
 		foreach(team, _ in level.teams)
 		{
-			thread sound::play_on_players("mus_round_draw" + "_" + level.teampostfix[team]);
+			thread sound::play_on_players(("mus_round_draw" + "_") + level.teampostfix[team]);
 		}
 		leader_dialog("roundDraw");
 	}
@@ -1486,7 +1486,7 @@ function sndmusictimelimitwatcher()
 	{
 		return;
 	}
-	halfway = level.timelimit * 60 * 0.5;
+	halfway = (level.timelimit * 60) * 0.5;
 	while(true)
 	{
 		timeleft = float(globallogic_utils::gettimeremaining()) / 1000;

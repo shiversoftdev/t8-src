@@ -425,7 +425,7 @@ private function hascloseaivsaienemy(behaviortreeentity)
 	{
 		selfpredictedpos = behaviortreeentity.origin;
 		moveangle = behaviortreeentity.angles[1] + behaviortreeentity getmotionangle();
-		selfpredictedpos = selfpredictedpos + (cos(moveangle), sin(moveangle), 0) * 200 * 0.2;
+		selfpredictedpos = selfpredictedpos + (((cos(moveangle), sin(moveangle), 0) * 200) * 0.2);
 		/#
 			record3dtext("" + distance(selfpredictedpos, animationstartorigin), behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
@@ -460,7 +460,7 @@ private function chooseaivsaimeleeanimations(behaviortreeentity)
 	if(!aivsaimeleebundleexists(behaviortreeentity, attacker_variant, defender_variant))
 	{
 		/#
-			record3dtext("" + function_9e72a96(behaviortreeentity.archetype) + "" + behaviortreeentity.enemy.archetype + "" + attacker_variant + "" + defender_variant, behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
+			record3dtext((((((("" + function_9e72a96(behaviortreeentity.archetype)) + "") + behaviortreeentity.enemy.archetype) + "") + attacker_variant) + "") + defender_variant, behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
 		return 0;
 	}

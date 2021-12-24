@@ -374,7 +374,7 @@ function function_e8ad1d81(position, owner, normal, velocity, killcament, weapon
 	if(normal[2] < 0.1 && !isdefined(var_e76400c0))
 	{
 		black = vectorscale((1, 1, 1), 0.1);
-		trace = hitpos(startpos, startpos + normal * -1 * 70 + (0, 0, -1) * 70, black);
+		trace = hitpos(startpos, (startpos + ((normal * -1) * 70)) + ((0, 0, -1) * 70), black);
 		traceposition = trace[#"position"];
 		if(trace[#"fraction"] < 0.9)
 		{
@@ -397,7 +397,7 @@ function function_e8ad1d81(position, owner, normal, velocity, killcament, weapon
 */
 function function_523961e2(startpos, normal, var_4997e17c, fxindex, fxcount, defaultdistance, rotation)
 {
-	currentangle = 360 / fxcount * fxindex;
+	currentangle = (360 / fxcount) * fxindex;
 	var_7ee25402 = rotatepointaroundaxis(var_4997e17c * defaultdistance, normal, currentangle + rotation);
 	return startpos + var_7ee25402;
 }
@@ -432,7 +432,7 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 	locations[#"steam"] = [];
 	fxcount = var_4dd46f8a.var_b650dc43;
 	var_33ad9452 = (isdefined(var_4dd46f8a.var_bc24d9d3) ? var_4dd46f8a.var_bc24d9d3 : 0);
-	fxcount = int(math::clamp(fxcount * multiplier + 6, 6, var_4dd46f8a.var_b650dc43));
+	fxcount = int(math::clamp((fxcount * multiplier) + 6, 6, var_4dd46f8a.var_b650dc43));
 	if(multiplier < 0.04)
 	{
 		fxcount = 0;
@@ -464,7 +464,7 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		}
 		if(!hitsomething)
 		{
-			var_e5d1793d = hitpos(traceposition, traceposition - normal * defaultdropdistance, locations[#"color"][count]);
+			var_e5d1793d = hitpos(traceposition, traceposition - (normal * defaultdropdistance), locations[#"color"][count]);
 			if(var_e5d1793d[#"fraction"] != 1)
 			{
 				function_85ff22aa(var_e5d1793d[#"position"], 10, (0, 0, 1), 0.6, 200);
@@ -486,16 +486,16 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		randangle = randomint(360);
 		var_c4b09917 = randomfloatrange(-25, 25);
 		var_7ee25402 = rotatepointaroundaxis(var_4997e17c, normal, randangle);
-		var_995eb37a = int(min(var_33ad9452 * multiplier * trace[#"fraction"] + 1, var_33ad9452));
-		for(var_ecef2fde = 0; var_ecef2fde < var_995eb37a && count % 2 == 0; var_ecef2fde++)
+		var_995eb37a = int(min(((var_33ad9452 * multiplier) * trace[#"fraction"]) + 1, var_33ad9452));
+		for(var_ecef2fde = 0; var_ecef2fde < var_995eb37a && (count % 2) == 0; var_ecef2fde++)
 		{
-			fraction = var_ecef2fde + 1 / var_995eb37a + 1;
-			offsetpoint = startpos + traceposition - startpos * fraction + var_7ee25402 * var_c4b09917;
-			var_9417df90 = hitpos(offsetpoint, offsetpoint - normal * defaultdropdistance, locations[#"color"][count]);
+			fraction = (var_ecef2fde + 1) / (var_995eb37a + 1);
+			offsetpoint = (startpos + ((traceposition - startpos) * fraction)) + (var_7ee25402 * var_c4b09917);
+			var_9417df90 = hitpos(offsetpoint, offsetpoint - (normal * defaultdropdistance), locations[#"color"][count]);
 			if(var_9417df90[#"fraction"] != 1)
 			{
 				function_85ff22aa(var_9417df90[#"position"], 10, (0, 0, 1), 0.6, 200);
-				locindex = count + fxcount * var_ecef2fde + 1;
+				locindex = count + (fxcount * (var_ecef2fde + 1));
 				locations[#"loc"][locindex] = var_9417df90[#"position"];
 				var_c84f4998 = function_330c2616(var_9417df90[#"position"]);
 				if(function_a66ba8cc(var_c84f4998))
@@ -513,14 +513,14 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 	var_1c8ca3ba = getweapon(#"hash_753ba1d1412a4962");
 	var_c0fe81f1 = getweapon(#"hash_5e1f4dd6a8a34700");
 	var_fc031a6d = getweapon(#"hash_5624a55eb03372d0");
-	var_6b23e1c9 = impactpos + normal * 1.5;
+	var_6b23e1c9 = impactpos + (normal * 1.5);
 	forward = (1, 0, 0);
 	if(abs(vectordot(forward, normal)) > 0.999)
 	{
 		forward = (0, 0, 1);
 	}
 	mdl_anchor = util::spawn_model("tag_origin", var_6b23e1c9);
-	s_trace = groundtrace(mdl_anchor.origin + vectorscale((0, 0, 1), 10), mdl_anchor.origin + vectorscale((0, 0, -1), 100), 0, mdl_anchor);
+	s_trace = groundtrace(mdl_anchor.origin + vectorscale((0, 0, 1), 10), mdl_anchor.origin + (vectorscale((0, 0, -1), 100)), 0, mdl_anchor);
 	if(isdefined(s_trace[#"entity"]) && s_trace[#"entity"] ismovingplatform())
 	{
 		mdl_anchor linkto(s_trace[#"entity"]);
@@ -703,7 +703,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 	spawnflags = function_30125f88();
 	if(isdefined(var_e76400c0) && isdefined(wallnormal))
 	{
-		var_21f4217c = var_e76400c0 + vectorscale(wallnormal, 12) - (0, 0, var_cbaaea69);
+		var_21f4217c = (var_e76400c0 + vectorscale(wallnormal, 12)) - (0, 0, var_cbaaea69);
 		var_289a74bc = spawn("trigger_radius", var_21f4217c, spawnflags, 12, var_cbaaea69);
 		var_289a74bc function_4e5a1dd3(mdl_anchor);
 		/#
@@ -730,7 +730,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 	self.var_ebf0b1c9 = [];
 	burntime = 0;
 	var_d0603aba = 1;
-	damageendtime = int(gettime() + var_4dd46f8a.var_b79d64a9 * 1000);
+	damageendtime = int(gettime() + (var_4dd46f8a.var_b79d64a9 * 1000));
 	while(gettime() < damageendtime)
 	{
 		damageapplied = 0;
@@ -745,7 +745,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 			var_2d3611fa = owner.var_14e5c74a.size;
 			if(var_2d3611fa > 0 && burntime < gettime())
 			{
-				burntime = gettime() + int(var_4dd46f8a.var_5c06ec56 * 1000);
+				burntime = gettime() + (int(var_4dd46f8a.var_5c06ec56 * 1000));
 			}
 			if(isdefined(level.playgadgetsuccess) && var_d0603aba)
 			{
@@ -929,7 +929,7 @@ function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd4
 	spawnflags = function_30125f88();
 	if(isdefined(var_e76400c0) && isdefined(wallnormal))
 	{
-		var_21f4217c = var_e76400c0 + vectorscale(wallnormal, 12) - (0, 0, var_cbaaea69);
+		var_21f4217c = (var_e76400c0 + vectorscale(wallnormal, 12)) - (0, 0, var_cbaaea69);
 		var_289a74bc = spawn("trigger_radius", var_21f4217c, spawnflags, 12, var_cbaaea69);
 		var_289a74bc function_4e5a1dd3(mdl_anchor);
 	}
@@ -939,7 +939,7 @@ function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd4
 		fireeffectarea function_4e5a1dd3(mdl_anchor);
 	}
 	self.var_ebf0b1c9 = [];
-	damageendtime = int(gettime() + var_4dd46f8a.var_b79d64a9 * 1000);
+	damageendtime = int(gettime() + (var_4dd46f8a.var_b79d64a9 * 1000));
 	while(gettime() < damageendtime)
 	{
 		damageapplied = 0;

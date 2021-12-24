@@ -262,7 +262,7 @@ function on_player_killed()
 	}
 	if(isdefined(attacker.var_700a5910))
 	{
-		dt = gettime() - attacker.var_700a5910 / 1000;
+		dt = (gettime() - attacker.var_700a5910) / 1000;
 		if(dt <= 3)
 		{
 			attacker function_ed661177(#"hash_d0e756015e4f2e4");
@@ -270,7 +270,7 @@ function on_player_killed()
 	}
 	if(attacker === self.var_53b73ccf)
 	{
-		dt = gettime() - self.var_2481a15b / 1000;
+		dt = (gettime() - self.var_2481a15b) / 1000;
 		if(dt <= 2)
 		{
 			attacker function_ed661177(#"hash_55d855a64a351c16");
@@ -295,7 +295,7 @@ function on_player_killed()
 		{
 			var_38dce50e = gettime();
 		}
-		dt = var_38dce50e - self.laststunnedtime / 1000;
+		dt = (var_38dce50e - self.laststunnedtime) / 1000;
 		if(dt <= 3)
 		{
 			attacker function_ed661177(#"hash_500fb646c4b9ca1a");
@@ -665,7 +665,7 @@ private function function_902ef0de(var_38280f2f, delta)
 			self.timeplayed = [];
 		}
 		var_9d12108c = (isdefined(self.timeplayed[self.team]) ? self.timeplayed[self.team] : 0);
-		self.pers[#"contracts"][var_38280f2f].var_be5bf249 = self stats::function_441050ca(#"time_played_total") - self.pers[#"hash_5651f00c6c1790a4"] + var_9d12108c;
+		self.pers[#"contracts"][var_38280f2f].var_be5bf249 = (self stats::function_441050ca(#"time_played_total") - self.pers[#"hash_5651f00c6c1790a4"]) + var_9d12108c;
 		params = spawnstruct();
 		params.player = self;
 		params.var_38280f2f = var_38280f2f;
@@ -678,7 +678,7 @@ private function function_902ef0de(var_38280f2f, delta)
 	/#
 		if(getdvarint(#"scr_contract_debug", 0) > 0)
 		{
-			iprintln(function_9e72a96(var_38280f2f) + "" + new_progress + "" + target_value);
+			iprintln((((function_9e72a96(var_38280f2f) + "") + new_progress) + "") + target_value);
 			if(old_progress < target_value && target_value <= new_progress)
 			{
 				iprintln(function_9e72a96(var_38280f2f) + "");
@@ -1401,7 +1401,7 @@ function function_6fcfeebb(player)
 		time = gettime();
 		self waittill(#"veh_landed");
 		var_6f285389 = gettime();
-		var_3cb46af = float(var_6f285389 - time) / 1000;
+		var_3cb46af = (float(var_6f285389 - time)) / 1000;
 		if(var_3cb46af >= 2)
 		{
 			player function_ed661177(#"hash_64c765ebb1ad37db");

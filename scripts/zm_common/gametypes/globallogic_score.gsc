@@ -105,7 +105,7 @@ function roundtonearestfive(score)
 	{
 		return score - rounding;
 	}
-	return score + 5 - rounding;
+	return score + (5 - rounding);
 }
 
 /*
@@ -133,7 +133,7 @@ function giveplayermomentumnotification(score, label, descvalue, countstowardram
 		}
 		if(isdefined(self.scorechain) && self.scorechain >= 999)
 		{
-			rampagebonus = roundtonearestfive(int(score * level.rampagebonusscale + 0.5));
+			rampagebonus = roundtonearestfive(int((score * level.rampagebonusscale) + 0.5));
 		}
 	}
 	combat_efficiency_factor = 0;
@@ -144,7 +144,7 @@ function giveplayermomentumnotification(score, label, descvalue, countstowardram
 	score = score + rampagebonus;
 	if(score > 0 && self hasperk(#"specialty_earnmoremomentum"))
 	{
-		score = roundtonearestfive(int(score * getdvarfloat(#"perk_killstreakmomentummultiplier", 0) + 0.5));
+		score = roundtonearestfive(int((score * getdvarfloat(#"perk_killstreakmomentummultiplier", 0)) + 0.5));
 	}
 	_setplayermomentum(self, self.pers[#"momentum"] + score);
 }
@@ -192,7 +192,7 @@ function giveplayerxpdisplay(event, player, victim, descvalue)
 		xpscale = player getxpscale();
 		if(1 != xpscale)
 		{
-			xp = int(xp * xpscale + 0.5);
+			xp = int((xp * xpscale) + 0.5);
 		}
 		player luinotifyevent(#"score_event", 2, label, xp);
 	}
@@ -320,7 +320,7 @@ function setplayermomentumdebug()
 				}
 				if(isdefined(player.killstreak))
 				{
-					_setplayermomentum(player, int(2000 * momentumpercent / 100));
+					_setplayermomentum(player, int(2000 * (momentumpercent / 100)));
 				}
 			}
 		}
@@ -1009,7 +1009,7 @@ function processassist(killedplayer, damagedone, weapon, assist_level = undefine
 	{
 		assist_level_value = 3;
 	}
-	assist_level = assist_level + "_" + assist_level_value * 25;
+	assist_level = (assist_level + "_") + (assist_level_value * 25);
 	self incpersstat(#"assists", 1, 1, 1);
 	self.assists = self getpersstat(#"assists");
 	switch(weapon.name)

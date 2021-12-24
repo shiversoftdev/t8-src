@@ -412,7 +412,7 @@ private function function_f09367a0(var_dc77251f, regen_delay)
 	{
 		var_dc77251f.var_ba47a7a3 = 1;
 	}
-	if(!(isdefined(self.ignore_health_regen_delay) && self.ignore_health_regen_delay) && var_dc77251f.var_fc296337 - var_dc77251f.var_ba47a7a3 < regen_delay)
+	if(!(isdefined(self.ignore_health_regen_delay) && self.ignore_health_regen_delay) && (var_dc77251f.var_fc296337 - var_dc77251f.var_ba47a7a3) < regen_delay)
 	{
 		return 0;
 	}
@@ -562,7 +562,7 @@ private function heal(var_dc77251f)
 	else
 	{
 		var_d12d33e7 = player function_8ca62ae3();
-		regen_amount = var_d12d33e7 * float(var_dc77251f.time_elapsed) / 1000 / var_bc840360;
+		regen_amount = (var_d12d33e7 * (float(var_dc77251f.time_elapsed) / 1000)) / var_bc840360;
 	}
 	if(regen_amount == 0)
 	{
@@ -577,7 +577,7 @@ private function heal(var_dc77251f)
 	{
 		player function_df115fb1();
 	}
-	new_health = var_dc77251f.var_ec8863bf * var_bc840360 + var_dc77251f.var_e65dca8d;
+	new_health = (var_dc77251f.var_ec8863bf * var_bc840360) + var_dc77251f.var_e65dca8d;
 	player.health = int(math::clamp(floor(new_health), 0, max(self.maxhealth, self.var_66cb03ad)));
 	var_dc77251f.var_e65dca8d = new_health - player.health;
 	if(player.health >= var_bc840360 && var_dc77251f.old_health < var_bc840360)
@@ -771,7 +771,7 @@ private function function_b506b922()
 		var_1556c25 = function_8168c82a();
 		foreach(player in getplayers())
 		{
-			if(player getentitynumber() + var_1556c25 & 1 != 0)
+			if(((player getentitynumber() + var_1556c25) & 1) != 0)
 			{
 				continue;
 			}

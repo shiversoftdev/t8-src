@@ -50,7 +50,7 @@ function __init__()
 		level.laststands[i] = spawnstruct();
 		level.laststands[i].laststand_update_clientfields = "laststand_update" + i;
 		clientfield::register("world", level.laststands[i].laststand_update_clientfields, 1, 5, "float", &update_bleedout_timer, 0, 0);
-		clientfield::register("clientuimodel", "WorldSpaceIndicators.bleedOutModel" + i + ".hide", 1, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("WorldSpaceIndicators.bleedOutModel" + i) + ".hide", 1, 1, "int", undefined, 0, 0);
 	}
 	level thread wait_and_set_revive_shader_constant();
 }
@@ -89,7 +89,7 @@ function update_bleedout_timer(localclientnum, oldval, newval, bnewent, binitial
 {
 	substr = getsubstr(fieldname, 16);
 	playernum = int(substr);
-	model = getuimodel(getuimodelforcontroller(localclientnum), "WorldSpaceIndicators.bleedOutModel" + playernum + ".bleedOutPercent");
+	model = getuimodel(getuimodelforcontroller(localclientnum), ("WorldSpaceIndicators.bleedOutModel" + playernum) + ".bleedOutPercent");
 	if(isdefined(model))
 	{
 		setuimodelvalue(model, newval);
@@ -145,7 +145,7 @@ function function_be34e28f(localclientnum, var_d2c301e0)
 {
 	self endon_callback(&function_ac994c83, #"death", #"hash_2f1dc2ea83ba9e2");
 	self postfx::playpostfxbundle("pstfx_zm_last_stand");
-	var_6c2f58e2 = var_d2c301e0 + int(level.var_629da31e * 1000);
+	var_6c2f58e2 = var_d2c301e0 + (int(level.var_629da31e * 1000));
 	if(util::function_cd6c95db(localclientnum) || namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{
 		self postfx::function_c8b5f318("pstfx_zm_last_stand", "Desaturation", 1);

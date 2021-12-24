@@ -640,7 +640,7 @@ function brutus_round_spawn_failsafe_respawn()
 */
 function attempt_brutus_spawn(n_spawn_num, str_zone_name, var_dde9ff11 = 0, var_68ffecfb = 0)
 {
-	if(level.brutus_count + n_spawn_num > level.brutus_max_count && (!(isdefined(level.var_a2831281) && level.var_a2831281)) || (isdefined(level.var_153e9058) && level.var_153e9058))
+	if((level.brutus_count + n_spawn_num) > level.brutus_max_count && (!(isdefined(level.var_a2831281) && level.var_a2831281)) || (isdefined(level.var_153e9058) && level.var_153e9058))
 	{
 		/#
 			iprintln("");
@@ -733,7 +733,7 @@ function brutus_death()
 			{
 				level.powerup_drop_count = level.zombie_vars[#"zombie_powerup_drop_max_per_round"] - 1;
 			}
-			var_1f8ae158 = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+			var_1f8ae158 = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 			level thread zm_powerups::powerup_drop(var_1f8ae158, undefined, 0);
 		}
 	}
@@ -783,7 +783,7 @@ function brutus_death()
 */
 function function_4621cb04(var_1c01fdda)
 {
-	var_70f6878b = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+	var_70f6878b = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 	mdl_key = util::spawn_model(var_1c01fdda.worldmodel, var_70f6878b + vectorscale((0, 0, 1), 36), self.angles);
 	mdl_key endon(#"death");
 	var_9c95ad05 = zm_items::spawn_item(var_1c01fdda, var_70f6878b + vectorscale((0, 0, 1), 12), self.angles);
@@ -944,7 +944,7 @@ function wait_on_box_alarm()
 				}
 				if(attempt_brutus_spawn(1))
 				{
-					if(level.next_brutus_round == level.round_number + 1)
+					if(level.next_brutus_round == (level.round_number + 1))
 					{
 						level.next_brutus_round++;
 					}
@@ -1159,7 +1159,7 @@ function brutus_lockdown_client_effects(delay)
 */
 private function function_61263ebc()
 {
-	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + vectorscale((0, 0, -1), 100), 0, self);
+	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(trace[#"entity"]))
 	{
 		entity = trace[#"entity"];

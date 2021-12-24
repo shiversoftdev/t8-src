@@ -117,7 +117,7 @@ function state_emped_update(params)
 	{
 		forward = vectornormalize((self getvelocity()[0], self getvelocity()[1], 0));
 		side = vectorcross(forward, (0, 0, 1)) * math::randomsign();
-		self function_a57c34b7(self.origin + side * 500 + forward * randomfloat(400), 0, 0);
+		self function_a57c34b7((self.origin + (side * 500)) + (forward * randomfloat(400)), 0, 0);
 		wait(0.6);
 		self function_d4c687c9();
 		self waittill_timeout(1.5, #"veh_collision");
@@ -317,7 +317,7 @@ function hunt_enemy()
 	targetpos = function_dcecac3c();
 	if(isdefined(targetpos))
 	{
-		if(distancesquared(self.origin, targetpos) > 400 * 400 && self isposinclaimedlocation(targetpos))
+		if(distancesquared(self.origin, targetpos) > (400 * 400) && self isposinclaimedlocation(targetpos))
 		{
 			pixbeginevent(#"hash_4ded37bdb584c358");
 			queryresult = positionquery_source_navigation(targetpos, 0, self.settings.max_move_dist, self.settings.max_move_dist, self.radius, self);
@@ -339,7 +339,7 @@ function hunt_enemy()
 					point._scoredebug[#"disttoorigin"].score = mapfloat(0, 200, 0, -200, distance(point.origin, queryresult.origin));
 					point._scoredebug[#"disttoorigin"].scorename = "";
 				#/
-				point.score = point.score + mapfloat(0, 200, 0, -200, distance(point.origin, queryresult.origin));
+				point.score = point.score + (mapfloat(0, 200, 0, -200, distance(point.origin, queryresult.origin)));
 				/#
 					if(!isdefined(point._scoredebug))
 					{
@@ -352,7 +352,7 @@ function hunt_enemy()
 					point._scoredebug[#"heighttoorigin"].score = mapfloat(50, 200, 0, -200, abs(point.origin[2] - queryresult.origin[2]));
 					point._scoredebug[#"heighttoorigin"].scorename = "";
 				#/
-				point.score = point.score + mapfloat(50, 200, 0, -200, abs(point.origin[2] - queryresult.origin[2]));
+				point.score = point.score + (mapfloat(50, 200, 0, -200, abs(point.origin[2] - queryresult.origin[2])));
 				if(point.inclaimedlocation === 1)
 				{
 					/#
@@ -420,7 +420,7 @@ function prevent_stuck()
 	previous_origin = undefined;
 	while(true)
 	{
-		if(isdefined(previous_origin) && distancesquared(previous_origin, self.origin) < 0.1 * 0.1 && (!(isdefined(level.bzm_worldpaused) && level.bzm_worldpaused)))
+		if(isdefined(previous_origin) && distancesquared(previous_origin, self.origin) < (0.1 * 0.1) && (!(isdefined(level.bzm_worldpaused) && level.bzm_worldpaused)))
 		{
 			count++;
 		}
@@ -452,7 +452,7 @@ function check_detonation_dist(origin, enemy)
 	{
 		enemy_look_dir_offst = anglestoforward(enemy.angles) * 30;
 		targetpoint = enemy.origin + enemy_look_dir_offst;
-		if(distance2dsquared(targetpoint, origin) < self.settings.detonation_distance * self.settings.detonation_distance && (abs(targetpoint[2] - origin[2]) < self.settings.detonation_distance || abs(targetpoint[2] - self.settings.jump_height - origin[2]) < self.settings.detonation_distance))
+		if(distance2dsquared(targetpoint, origin) < (self.settings.detonation_distance * self.settings.detonation_distance) && ((abs(targetpoint[2] - origin[2])) < self.settings.detonation_distance || (abs((targetpoint[2] - self.settings.jump_height) - origin[2])) < self.settings.detonation_distance))
 		{
 			return 1;
 		}
@@ -602,21 +602,21 @@ function function_ded83def(lastenemy)
 		disttoenemysquared = distancesquared(self.origin, enemy_origin);
 		if(disttoenemysquared < 250 * 250)
 		{
-			if(lastdisttoenemysquared > 250 * 250 && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_6dacc5a8faf1b6f3"]))
+			if(lastdisttoenemysquared > (250 * 250) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_6dacc5a8faf1b6f3"]))
 			{
 				self playsoundtoplayer(self.sndalias[#"hash_6dacc5a8faf1b6f3"], self.enemy);
 			}
 		}
 		else if(disttoenemysquared < 750 * 750)
 		{
-			if(lastdisttoenemysquared > 750 * 750 && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_26569720e0ae76f3"]))
+			if(lastdisttoenemysquared > (750 * 750) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_26569720e0ae76f3"]))
 			{
 				self playsoundtoplayer(self.sndalias[#"hash_26569720e0ae76f3"], self.enemy);
 			}
 		}
 		else if(disttoenemysquared < 1500 * 1500)
 		{
-			if(lastdisttoenemysquared > 1500 * 1500 && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_22b0b71c07ac7fea"]))
+			if(lastdisttoenemysquared > (1500 * 1500) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_22b0b71c07ac7fea"]))
 			{
 				self playsoundtoplayer(self.sndalias[#"hash_22b0b71c07ac7fea"], self.enemy);
 			}
@@ -625,7 +625,7 @@ function function_ded83def(lastenemy)
 		{
 			lastdisttoenemysquared = disttoenemysquared;
 		}
-		lastdisttoenemysquared = lastdisttoenemysquared + 10 * 10;
+		lastdisttoenemysquared = lastdisttoenemysquared + (10 * 10);
 	}
 }
 
@@ -678,7 +678,7 @@ function try_detonate()
 			can_jump = 1;
 			if(can_jump)
 			{
-				jump_origin = self.origin + self getvelocity() * jump_time;
+				jump_origin = self.origin + (self getvelocity() * jump_time);
 				centroid = self.enemy getcentroid();
 				if(centroid[2] - self.settings.jump_height > jump_origin[2])
 				{
@@ -783,7 +783,7 @@ function function_dcecac3c()
 	}
 	if(isdefined(self.enemy))
 	{
-		if(distancesquared(target_pos, target_pos_onnavmesh) > self.settings.detonation_distance * 0.9 * self.settings.detonation_distance * 0.9)
+		if(distancesquared(target_pos, target_pos_onnavmesh) > (self.settings.detonation_distance * 0.9) * (self.settings.detonation_distance * 0.9))
 		{
 			self setpersonalthreatbias(self.enemy, -2000, 5);
 		}
@@ -953,7 +953,7 @@ function function_ec8d8bbc(einflictor, eattacker, idamage, idflags, smeansofdeat
 	{
 		if(eattacker != self && isdefined(vdir) && lengthsquared(vdir) > 0.1 && (!isdefined(eattacker) || eattacker.team === self.team) && (!isdefined(einflictor) || einflictor.team === self.team))
 		{
-			self setvehvelocity(self.velocity + vectornormalize(vdir) * 300);
+			self setvehvelocity(self.velocity + (vectornormalize(vdir) * 300));
 			return 1;
 		}
 	}

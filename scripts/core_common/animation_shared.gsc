@@ -192,7 +192,7 @@ function debug_print(str_animation, str_msg)
 			}
 			if(b_print)
 			{
-				printtoprightln(str_animation + "" + string::rjust(str_msg, 10) + "" + string::rjust("" + self getentitynumber(), 4) + "" + string::rjust("" + gettime(), 6) + "", (1, 1, 0), -1);
+				printtoprightln((((str_animation + "") + string::rjust(str_msg, 10) + "") + (string::rjust("" + self getentitynumber(), 4)) + "") + (string::rjust("" + gettime(), 6)) + "", (1, 1, 0), -1);
 			}
 		}
 	#/
@@ -240,7 +240,7 @@ function _play(animation, v_origin_or_ent, v_angles_or_tag, n_rate, n_blend_in, 
 		v_angles = v_origin_or_ent gettagangles(str_tag);
 		/#
 			/#
-				assert(isdefined(v_origin) && isdefined(v_angles), "" + function_9e72a96(animation) + "" + v_origin_or_ent getentitynumber() + "" + v_angles_or_tag + "");
+				assert(isdefined(v_origin) && isdefined(v_angles), (((("" + function_9e72a96(animation)) + "") + v_origin_or_ent getentitynumber() + "") + v_angles_or_tag) + "");
 			#/
 		#/
 	}
@@ -380,7 +380,7 @@ function function_2adc2518(str_notify)
 function _blend_out(animation, n_blend, n_rate, n_start_time)
 {
 	self endon(#"death", #"end", #"scriptedanim", #"new_scripted_anim");
-	n_server_length = floor(getanimlength(animation) / float(function_60d95f53()) / 1000) * float(function_60d95f53()) / 1000;
+	n_server_length = (floor(getanimlength(animation) / (float(function_60d95f53()) / 1000))) * (float(function_60d95f53()) / 1000);
 	while(true)
 	{
 		n_current_time = self getanimtime(animation) * n_server_length;

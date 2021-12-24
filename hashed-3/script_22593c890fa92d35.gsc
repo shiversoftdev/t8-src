@@ -143,11 +143,11 @@ function function_9dc0fa01()
 		center = level.deathcircle.origin;
 		radius = level.deathcircle.radius;
 		angle = randomint(360);
-		x_pos = center[0] + radius * cos(angle);
-		y_pos = center[1] + radius * sin(angle);
+		x_pos = center[0] + (radius * cos(angle));
+		y_pos = center[1] + (radius * sin(angle));
 		var_7206c0ef.origin = (x_pos, y_pos, 10000);
-		var_e3b87be8 = center[0] + radius * cos(angle + 180);
-		var_8e6c495b = center[1] + radius * sin(angle + 180);
+		var_e3b87be8 = center[0] + (radius * (cos(angle + 180)));
+		var_8e6c495b = center[1] + (radius * (sin(angle + 180)));
 		var_cb4de8b0.origin = (var_e3b87be8, var_8e6c495b, 10000);
 		var_69f123e5 = spawnvehicle("vehicle_zmb_air_alcatraz_plane", var_7206c0ef.origin, vectortoangles(vectornormalize(var_cb4de8b0.origin - var_7206c0ef.origin)));
 		if(!isdefined(var_69f123e5))
@@ -180,7 +180,7 @@ function function_fc45523f()
 			waitframe(1);
 		}
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		level thread function_37401a52();
 	#/
 }
@@ -243,11 +243,11 @@ function function_de4b0705()
 				center = var_8a2c40d0.origin;
 				radius = 9000;
 				angle = randomint(360);
-				x_pos = center[0] + radius * cos(angle);
-				y_pos = center[1] + radius * sin(angle);
+				x_pos = center[0] + (radius * cos(angle));
+				y_pos = center[1] + (radius * sin(angle));
 				var_7206c0ef.origin = (x_pos, y_pos, 10000);
-				var_e3b87be8 = center[0] + radius * cos(angle + 180);
-				var_8e6c495b = center[1] + radius * sin(angle + 180);
+				var_e3b87be8 = center[0] + (radius * (cos(angle + 180)));
+				var_8e6c495b = center[1] + (radius * (sin(angle + 180)));
 				var_cb4de8b0.origin = (var_e3b87be8, var_8e6c495b, 10000);
 				var_69f123e5 = spawnvehicle("", var_7206c0ef.origin, vectortoangles(vectornormalize(var_cb4de8b0.origin - var_7206c0ef.origin)));
 				if(!isdefined(var_69f123e5))

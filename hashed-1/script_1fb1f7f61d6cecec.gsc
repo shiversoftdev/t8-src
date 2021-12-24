@@ -210,7 +210,7 @@ function function_a33a15c()
 	/#
 		if(isdefined(level.var_fa38e985) && level.var_fa38e985)
 		{
-			iprintlnbold("" + level.var_d64e4374 + "" + 7);
+			iprintlnbold((("" + level.var_d64e4374) + "") + 7);
 		}
 	#/
 	if(level.var_d64e4374 >= 7)
@@ -317,7 +317,7 @@ function function_1443aaa(b_success = 0)
 			{
 				level.var_d64e4374 = 0;
 			}
-			iprintlnbold("" + level.var_d64e4374 + "" + 7 + "");
+			iprintlnbold(((("" + level.var_d64e4374) + "") + 7) + "");
 		}
 	#/
 	level.var_17bf15ba = undefined;

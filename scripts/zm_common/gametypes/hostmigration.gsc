@@ -35,10 +35,10 @@ function debug_script_structs()
 				struct = level.struct[i];
 				if(isdefined(struct.targetname))
 				{
-					println("" + i + "" + struct.targetname);
+					println((("" + i) + "") + struct.targetname);
 					continue;
 				}
-				println("" + i + "" + "");
+				println((("" + i) + "") + "");
 			}
 		}
 		else
@@ -68,7 +68,7 @@ function updatetimerpausedness()
 	else if(level.timerstopped && !shouldbestopped)
 	{
 		level.timerstopped = 0;
-		level.discardtime = level.discardtime + gettime() - level.timerpausetime;
+		level.discardtime = level.discardtime + (gettime() - level.timerpausetime);
 	}
 }
 
@@ -135,7 +135,7 @@ function pausetimer()
 */
 function resumetimer()
 {
-	level.discardtime = level.discardtime + gettime() - level.migrationtimerpausetime;
+	level.discardtime = level.discardtime + (gettime() - level.migrationtimerpausetime);
 }
 
 /*
@@ -156,7 +156,7 @@ function locktimer()
 		waitframe(1);
 		if(!level.timerstopped && isdefined(level.discardtime))
 		{
-			level.discardtime = level.discardtime + gettime() - currtime;
+			level.discardtime = level.discardtime + (gettime() - currtime);
 		}
 	}
 }
@@ -178,7 +178,7 @@ function callback_hostmigration()
 	if(level.gameended)
 	{
 		/#
-			println("" + gettime() + "");
+			println(("" + gettime()) + "");
 		#/
 		return;
 	}
@@ -386,7 +386,7 @@ function matchstarttimerconsole_internal(counttime)
 {
 	waittillframeend();
 	level endon(#"match_start_timer_beginning");
-	luinotifyevent(#"create_prematch_timer", 2, gettime() + int(counttime * 1000), 1);
+	luinotifyevent(#"create_prematch_timer", 2, gettime() + (int(counttime * 1000)), 1);
 	wait(counttime);
 }
 
@@ -424,7 +424,7 @@ function matchstarttimerconsole(type, duration)
 function hostmigrationwait()
 {
 	level endon(#"game_ended");
-	if(level.hostmigrationreturnedplayercount < level.players.size * 2 / 3)
+	if(level.hostmigrationreturnedplayercount < (level.players.size * 2) / 3)
 	{
 		thread matchstarttimerconsole("waiting_for_teams", 20);
 		hostmigrationwaitforplayers();
@@ -576,10 +576,10 @@ function waitlongdurationwithhostmigrationpause(duration)
 		assert(duration > 0);
 	#/
 	starttime = gettime();
-	endtime = gettime() + duration * 1000;
+	endtime = gettime() + (duration * 1000);
 	while(gettime() < endtime)
 	{
-		waittillhostmigrationstarts(endtime - gettime() / 1000);
+		waittillhostmigrationstarts((endtime - gettime()) / 1000);
 		if(isdefined(level.hostmigrationtimer))
 		{
 			timepassed = waittillhostmigrationdone();
@@ -589,7 +589,7 @@ function waitlongdurationwithhostmigrationpause(duration)
 	if(gettime() != endtime)
 	{
 		/#
-			println("" + gettime() + "" + endtime);
+			println((("" + gettime()) + "") + endtime);
 		#/
 	}
 	waittillhostmigrationdone();
@@ -615,10 +615,10 @@ function waitlongdurationwithgameendtimeupdate(duration)
 		assert(duration > 0);
 	#/
 	starttime = gettime();
-	endtime = gettime() + duration * 1000;
+	endtime = gettime() + (duration * 1000);
 	while(gettime() < endtime)
 	{
-		waittillhostmigrationstarts(endtime - gettime() / 1000);
+		waittillhostmigrationstarts((endtime - gettime()) / 1000);
 		while(isdefined(level.hostmigrationtimer))
 		{
 			endtime = endtime + 1000;
@@ -629,7 +629,7 @@ function waitlongdurationwithgameendtimeupdate(duration)
 	/#
 		if(gettime() != endtime)
 		{
-			println("" + gettime() + "" + endtime);
+			println((("" + gettime()) + "") + endtime);
 		}
 	#/
 	while(isdefined(level.hostmigrationtimer))
@@ -728,7 +728,7 @@ function hostmigration_put_player_in_better_place()
 		{
 			location = level.default_start_location;
 		}
-		match_string = level.scr_zm_ui_gametype + "_" + location;
+		match_string = (level.scr_zm_ui_gametype + "_") + location;
 		spawnpoints = [];
 		structs = struct::get_array("initial_spawn", "script_noteworthy");
 		if(isdefined(structs))

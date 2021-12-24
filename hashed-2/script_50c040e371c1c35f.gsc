@@ -459,7 +459,7 @@ function function_2bdb235d()
 */
 private function function_2bdff7e1(entity, stub, node)
 {
-	var_5bd89846 = groundtrace(node.origin + vectorscale((0, 0, 1), 8), node.origin + vectorscale((0, 0, -1), 100000), 0, entity)[#"position"];
+	var_5bd89846 = groundtrace(node.origin + vectorscale((0, 0, 1), 8), node.origin + (vectorscale((0, 0, -1), 100000)), 0, entity)[#"position"];
 	var_66694b96 = {#angles:node.angles, #origin:var_5bd89846};
 	if(!(isdefined(stub.var_7c2f9a8b) && stub.var_7c2f9a8b))
 	{
@@ -497,7 +497,7 @@ function function_dab6d796(entity, stub)
 	}
 	radius = entity getpathfindingradius();
 	height = entity function_6a9ae71();
-	heightoffset = (0, 0, height * -1 / 2);
+	heightoffset = (0, 0, (height * -1) / 2);
 	var_e790dc87 = (radius, radius, height / 2);
 	if(isentity(stub))
 	{
@@ -1716,7 +1716,7 @@ function function_f3cff6ff(entity)
 		{
 			return;
 		}
-		if(getdvarint(#"hash_11ff7a9ab79d4434", -1) != entity getentitynumber())
+		if((getdvarint(#"hash_11ff7a9ab79d4434", -1)) != entity getentitynumber())
 		{
 			return;
 		}
@@ -1763,7 +1763,7 @@ function function_f3cff6ff(entity)
 				}
 				case 8:
 				{
-					text = text + "" + var_ca00d79a.args[0];
+					text = text + ("" + var_ca00d79a.args[0]);
 					break;
 				}
 				case 9:
@@ -1778,7 +1778,7 @@ function function_f3cff6ff(entity)
 				}
 				case 11:
 				{
-					text = text + "" + var_ca00d79a.args[0];
+					text = text + ("" + var_ca00d79a.args[0]);
 					break;
 				}
 				case 10:
@@ -1797,7 +1797,7 @@ function function_f3cff6ff(entity)
 					text = text + "";
 					recordstar(var_ca00d79a.args[0], (0, 1, 1));
 					recordstar(var_ca00d79a.args[1].origin, (1, 0, 1));
-					recordline(var_ca00d79a.args[1].origin, var_ca00d79a.args[1].origin + anglestoforward(var_ca00d79a.args[1].angles) * 10, (1, 1, 0));
+					recordline(var_ca00d79a.args[1].origin, var_ca00d79a.args[1].origin + (anglestoforward(var_ca00d79a.args[1].angles) * 10), (1, 1, 0));
 					break;
 				}
 				case 15:
@@ -1945,7 +1945,7 @@ private function function_6e1690d5()
 				if(isdefined(var_754b10b4))
 				{
 					box(var_754b10b4.origin, var_3bd3c0c1, var_cbe5413e, var_754b10b4.angles[1], (0, 1, 0), 1, 0, 10);
-					line(var_754b10b4.origin, var_754b10b4.origin + anglestoforward(var_754b10b4.angles) * 32, (0, 1, 0), 1, 0, 10);
+					line(var_754b10b4.origin, var_754b10b4.origin + (anglestoforward(var_754b10b4.angles) * 32), (0, 1, 0), 1, 0, 10);
 					continue;
 				}
 				circle(stub.origin, 16, (1, 0, 0), 0, 0, 10);

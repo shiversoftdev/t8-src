@@ -361,7 +361,7 @@ function onplaceturret(turret)
 */
 function onturretdamage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
-	empdamage = int(idamage + self.healthdefault * 1 + 0.5);
+	empdamage = int((idamage + (self.healthdefault * 1)) + 0.5);
 	var_820fb5ae = self.damagetaken;
 	self.damagetaken = self.damagetaken + idamage;
 	if(self.controlled)
@@ -738,7 +738,7 @@ function has_active_enemy()
 	{
 		return 0;
 	}
-	return gettime() < self.enemylastseentime + 1000;
+	return gettime() < (self.enemylastseentime + 1000);
 }
 
 /*
@@ -798,7 +798,7 @@ function function_31477582()
 {
 	self endon(#"death");
 	waitframe(1);
-	var_463c449d = 386.0886 * float(function_60d95f53()) / 1000;
+	var_463c449d = 386.0886 * (float(function_60d95f53()) / 1000);
 	max_delta = 1;
 	while(true)
 	{
@@ -807,11 +807,11 @@ function function_31477582()
 			wait(1);
 			continue;
 		}
-		trace = physicstrace(self.origin + (0, 0, 0), self.origin + vectorscale((0, 0, -1), 10), (-3, -3, -1), (3, 3, 1), self.turret, 1 | 16);
+		trace = physicstrace(self.origin + (0, 0, 0), self.origin + (vectorscale((0, 0, -1), 10)), (-3, -3, -1), (3, 3, 1), self.turret, 1 | 16);
 		if(trace[#"fraction"] > 0)
 		{
 			new_origin = trace[#"position"];
-			self.origin = (new_origin[0], new_origin[1], self.origin[2] - min(max_delta, self.origin[2] - new_origin[2]));
+			self.origin = (new_origin[0], new_origin[1], self.origin[2] - (min(max_delta, self.origin[2] - new_origin[2])));
 			max_delta = max_delta + var_463c449d;
 			waitframe(1);
 			continue;

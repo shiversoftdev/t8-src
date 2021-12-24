@@ -86,7 +86,7 @@ function update_wc_icon_extracam(localclientnum)
 */
 function wait_for_extracam_close(localclientnum, camera_ent, extracam_data_struct)
 {
-	level waittill("render_complete_" + localclientnum + "_" + extracam_data_struct.extracamindex);
+	level waittill((("render_complete_" + localclientnum) + "_") + extracam_data_struct.extracamindex);
 	multi_extracam::extracam_reset_index(localclientnum, extracam_data_struct.extracamindex);
 	if(isdefined(extracam_data_struct.weapon_script_model))
 	{

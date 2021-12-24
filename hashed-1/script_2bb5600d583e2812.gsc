@@ -233,7 +233,7 @@ private event function_4776caf4(eventstruct)
 					level.var_2da60c10 = array(level.var_2da60c10);
 				}
 				level.var_2da60c10[level.var_2da60c10.size] = var_48ad08f5;
-				var_48ad08f5.despawn_time = gettime() + int(120 * 1000);
+				var_48ad08f5.despawn_time = gettime() + (int(120 * 1000));
 				playfx(#"zm_weapons/fx8_equip_homunc_spawn", var_48ad08f5.origin);
 				var_48ad08f5 playsound(#"hash_21206f1b7fb27f81");
 				var_255a121f = 0;
@@ -378,7 +378,7 @@ private function function_b053b486()
 private function drop_to_ground(b_immediate = 0)
 {
 	self endon(#"death");
-	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 16), self.origin + vectorscale((0, 0, -1), 1000), 0, self);
+	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 16), self.origin + (vectorscale((0, 0, -1), 1000)), 0, self);
 	var_a75fe4be = s_trace[#"position"];
 	if(b_immediate)
 	{

@@ -112,9 +112,9 @@ function function_2085db3b()
 {
 	/#
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
 	#/
 }
 

@@ -119,7 +119,7 @@ function function_445e3d3d()
 			/#
 				iprintlnbold("" + level.var_b53764f7);
 			#/
-			namespace_509a75d1::function_e308175e(#"hash_6b6fadebd260d209" + level.var_b53764f7 + "_sfx", self.origin);
+			namespace_509a75d1::function_e308175e((#"hash_6b6fadebd260d209" + level.var_b53764f7) + "_sfx", self.origin);
 			/#
 				iprintlnbold("");
 			#/
@@ -162,7 +162,7 @@ function function_7a70f281()
 	v_forward = anglestoforward(self.angles);
 	wait(0.5);
 	self playsound("evt_punch_card_insert");
-	self moveto(self.origin + v_forward * -14, 3);
+	self moveto(self.origin + (v_forward * -14), 3);
 	wait(1);
 	level flag::set(#"hash_7b2be1fafb5f35c7");
 	self waittill(#"movedone");
@@ -276,7 +276,7 @@ function function_22393009()
 			self.is_complete = 1;
 		}
 	}
-	namespace_509a75d1::function_e308175e(#"hash_418aee32f9446941" + self.script_int + 1 + "_sfx", self.origin);
+	namespace_509a75d1::function_e308175e((#"hash_418aee32f9446941" + (self.script_int + 1)) + "_sfx", self.origin);
 }
 
 /*
@@ -457,7 +457,7 @@ function function_8c80503()
 	}
 	self thread function_d4c6dc0d();
 	wait(2);
-	namespace_509a75d1::function_e308175e(#"hash_2d0c86fd62ab3853" + self.var_614bfc5c + 1 + "_sfx", self.origin);
+	namespace_509a75d1::function_e308175e((#"hash_2d0c86fd62ab3853" + (self.var_614bfc5c + 1)) + "_sfx", self.origin);
 	/#
 		iprintlnbold("" + self.var_614bfc5c);
 	#/
@@ -501,7 +501,7 @@ function function_d4c6dc0d()
 */
 function uin_kls_counteruavdefeated()
 {
-	namespace_509a75d1::function_e308175e(#"hash_d065c4529d709fe" + self.var_614bfc5c + 1 + "_sfx", self.origin);
+	namespace_509a75d1::function_e308175e((#"hash_d065c4529d709fe" + (self.var_614bfc5c + 1)) + "_sfx", self.origin);
 	/#
 		iprintlnbold("" + self.var_614bfc5c);
 	#/
@@ -655,7 +655,7 @@ function function_8352562a()
 			wait(2);
 			namespace_509a75d1::function_52c3fe8d(s_reel.vo_line, level.var_94b00cff.origin);
 			/#
-				iprintlnbold("" + s_reel.play_order + "");
+				iprintlnbold(("" + s_reel.play_order) + "");
 			#/
 			var_e578920c++;
 			level.var_94b00cff stoploopsound();

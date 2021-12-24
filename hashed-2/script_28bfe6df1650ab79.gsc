@@ -134,7 +134,7 @@ function is_active()
 */
 private function height_check(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	if(isdefined(attacker.origin) && isdefined(self.origin) && attacker.origin[2] > self.origin[2] + 40)
+	if(isdefined(attacker.origin) && isdefined(self.origin) && attacker.origin[2] > (self.origin[2] + 40))
 	{
 		return damage;
 	}

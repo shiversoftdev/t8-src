@@ -254,7 +254,7 @@ function spawn_boss()
 	exploder::exploder("fxexp_pyramid_open");
 	var_1c91a56e = struct::get("apd_door_scene", "targetname");
 	level waittill(#"zombie_total_set");
-	n_threshold = level.total_zombies_killed - level.zombie_total_subtract + level.zombie_total;
+	n_threshold = (level.total_zombies_killed - level.zombie_total_subtract) + level.zombie_total;
 	s_notify = undefined;
 	s_notify = level waittill(#"hash_715188521b564b16");
 	var_1c91a56e scene::play("open");

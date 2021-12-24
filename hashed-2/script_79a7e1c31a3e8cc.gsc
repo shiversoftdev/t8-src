@@ -361,7 +361,7 @@ private function function_831707e8(player, deployable_weapon)
 	{
 		return 0;
 	}
-	traceresults = bullettrace(player.origin + vectorscale((0, 0, 1), 10), player.origin + vectorscale((0, 0, -1), 10), 0, player);
+	traceresults = bullettrace(player.origin + vectorscale((0, 0, 1), 10), player.origin + (vectorscale((0, 0, -1), 10)), 0, player);
 	if(isdefined(traceresults[#"entity"]))
 	{
 		entity = traceresults[#"entity"];
@@ -734,7 +734,7 @@ function function_54d27855(var_503cdc82, var_421003af, var_36baa3f1, previs_weap
 		}
 		if(!var_def28dc4 && var_6165e0de)
 		{
-			hit_location = var_503cdc82 + (forward_vector[0], forward_vector[1], 0) * trace_result[#"fraction"];
+			hit_location = var_503cdc82 + ((forward_vector[0], forward_vector[1], 0) * trace_result[#"fraction"]);
 			var_db3ce012 = (0, 0, 1);
 			var_ae7d780d = 1;
 			var_d22ba639 = 0;
@@ -751,12 +751,12 @@ function function_54d27855(var_503cdc82, var_421003af, var_36baa3f1, previs_weap
 		var_7af8b86b = anglestoforward((0, var_421003af[1], 0));
 		var_f7e67f28 = previs_weapon.var_f7e67f28;
 		var_75e7a61 = var_503cdc82 + (0, 0, previs_weapon.var_227c90e1);
-		var_1a606e14 = var_75e7a61 + var_7af8b86b * var_f7e67f28;
+		var_1a606e14 = var_75e7a61 + (var_7af8b86b * var_f7e67f28);
 		var_b6085963 = bullettrace(var_75e7a61, var_1a606e14, 0, ignore_entity);
 		if(var_b6085963[#"fraction"] > 0)
 		{
-			var_f7e67f28 = previs_weapon.var_f7e67f28 * var_b6085963[#"fraction"] - var_f94d59f8;
-			var_14b67847 = var_503cdc82 + var_7af8b86b * var_f7e67f28 + (0, 0, previs_weapon.var_227c90e1);
+			var_f7e67f28 = (previs_weapon.var_f7e67f28 * var_b6085963[#"fraction"]) - var_f94d59f8;
+			var_14b67847 = (var_503cdc82 + (var_7af8b86b * var_f7e67f28)) + (0, 0, previs_weapon.var_227c90e1);
 			var_c9851f67 = var_14b67847 - (0, 0, previs_weapon.var_227c90e1 - previs_weapon.var_849af6b4);
 			var_4bc118b9 = groundtrace(var_14b67847, var_c9851f67, 0, ignore_entity);
 			hitent = var_4bc118b9[#"entity"];
@@ -800,7 +800,7 @@ function function_54d27855(var_503cdc82, var_421003af, var_36baa3f1, previs_weap
 	var_5130f5dd = var_caa96e8a && var_a7bfb && (!var_e76d3149 || var_68e91c5c) && !var_ae7d780d;
 	if(var_5130f5dd && (!(isdefined(previs_weapon.var_33d50507) && previs_weapon.var_33d50507)))
 	{
-		var_e3c2e9c6 = var_5adff8ce + (0, 0, 1) * 30;
+		var_e3c2e9c6 = var_5adff8ce + ((0, 0, 1) * 30);
 		var_cc9ea9b = physicstrace(var_36baa3f1, var_e3c2e9c6, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), ignore_entity);
 		var_5130f5dd = var_cc9ea9b[#"fraction"] == 1;
 	}

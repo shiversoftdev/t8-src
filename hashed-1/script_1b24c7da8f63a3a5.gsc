@@ -74,11 +74,11 @@ function __init__()
 */
 function function_79f6f273(params)
 {
-	if(params.weapon == getweapon(#"hash_95dd69e40d99560") || params.weapon == getweapon(#"hash_95dd69e40d99560" + "_upgraded"))
+	if(params.weapon == getweapon(#"hash_95dd69e40d99560") || params.weapon == (getweapon(#"hash_95dd69e40d99560" + "_upgraded")))
 	{
 		self function_71233d37(params);
 	}
-	else if(params.weapon == getweapon(#"hash_539f784146391d2") || params.weapon == getweapon(#"hash_539f784146391d2" + "_upgraded"))
+	else if(params.weapon == getweapon(#"hash_539f784146391d2") || params.weapon == (getweapon(#"hash_539f784146391d2" + "_upgraded")))
 	{
 		var_88fd6852 = self function_3e2e539(params);
 		if(var_88fd6852)
@@ -289,7 +289,7 @@ function function_54d03fdd(weapon, b_packed)
 			continue;
 		}
 		n_dist_sq = distancesquared(v_start, var_b7523d07);
-		n_damage = 5000 * 122500 - n_dist_sq / 122500;
+		n_damage = 5000 * ((122500 - n_dist_sq) / 122500);
 		if(n_damage < 3000)
 		{
 			n_damage = 3000;
@@ -318,7 +318,7 @@ function function_54d03fdd(weapon, b_packed)
 		if(!isalive(ai))
 		{
 			ai startragdoll(1);
-			ai launchragdoll(vectornormalize(var_b7523d07 - self.origin) * n_launch);
+			ai launchragdoll((vectornormalize(var_b7523d07 - self.origin)) * n_launch);
 			continue;
 		}
 		if(var_a6127b01 == 1)
@@ -422,11 +422,11 @@ function function_14d49bd7(weapon)
 	self function_68e4ed32(weapon);
 	v_start = self getweaponmuzzlepoint();
 	v_forward = self getweaponforwarddir();
-	v_end = v_start + v_forward * 4000;
+	v_end = v_start + (v_forward * 4000);
 	results = undefined;
 	results = self waittill(#"projectile_impact");
 	v_impact = results.position;
-	if(weapon == getweapon(#"hash_5004e2171c2be97d" + "_upgraded"))
+	if(weapon == (getweapon(#"hash_5004e2171c2be97d" + "_upgraded")))
 	{
 		var_bdbde2d2 = #"hash_64aafe3cc04860be";
 		n_duration = 5;
@@ -578,7 +578,7 @@ function function_3e2e539(params)
 		if(self.health <= params.idamage)
 		{
 			v_z_offset = (0, 0, randomfloat(0.6));
-			v_launch = vectornormalize(params.vdir) + v_z_offset * randomintrange(75, 125);
+			v_launch = (vectornormalize(params.vdir) + v_z_offset) * randomintrange(75, 125);
 			self startragdoll(1);
 			self launchragdoll(v_launch);
 			return 0;
@@ -621,7 +621,7 @@ function function_aa1a2228(params)
 	{
 		return;
 	}
-	if(params.weapon === getweapon(#"hash_539f784146391d2" + "_upgraded"))
+	if(params.weapon === (getweapon(#"hash_539f784146391d2" + "_upgraded")))
 	{
 		self namespace_9ff9f642::burn(#"hash_474208b088fd5b3d", params.eattacker, params.weapon);
 	}

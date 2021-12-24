@@ -1374,7 +1374,7 @@ function quick_sort(array, compare_func)
 */
 function quick_sort_mid(array, start, end, compare_func)
 {
-	if(end - start >= 1)
+	if((end - start) >= 1)
 	{
 		if(!isdefined(compare_func))
 		{
@@ -1564,7 +1564,7 @@ function function_d1f43a84(max_entries, minval, maxval, compare_func, var_c8e96e
 			var_c8e96eee = 1;
 		}
 		var_365f3054 = randomintrange(0, max_entries);
-		println("" + var_365f3054 + "" + minval + "" + maxval + "");
+		println(((((("" + var_365f3054) + "") + minval) + "") + maxval) + "");
 		source_array = [];
 		for(i = 0; i < var_365f3054; i++)
 		{
@@ -1585,7 +1585,7 @@ function function_d1f43a84(max_entries, minval, maxval, compare_func, var_c8e96e
 			for(i = 0; i < var_365f3054 - 1; i++)
 			{
 				/#
-					assert(sorted_array[i] <= sorted_array[i + 1], "");
+					assert(sorted_array[i] <= (sorted_array[i + 1]), "");
 				#/
 			}
 		}
@@ -1594,7 +1594,7 @@ function function_d1f43a84(max_entries, minval, maxval, compare_func, var_c8e96e
 			for(i = 0; i < var_365f3054 - 1; i++)
 			{
 				/#
-					assert(sorted_array[i] >= sorted_array[i + 1], "");
+					assert(sorted_array[i] >= (sorted_array[i + 1]), "");
 				#/
 			}
 		}
@@ -1661,7 +1661,7 @@ function function_70daaa9d(max_entries, minval, maxval, compare_func, var_c8e96e
 			var_c8e96eee = 1;
 		}
 		var_365f3054 = randomintrange(0, max_entries);
-		println("" + var_365f3054 + "" + minval + "" + maxval + "");
+		println(((((("" + var_365f3054) + "") + minval) + "") + maxval) + "");
 		source_array = [];
 		for(i = 0; i < var_365f3054; i++)
 		{
@@ -1682,7 +1682,7 @@ function function_70daaa9d(max_entries, minval, maxval, compare_func, var_c8e96e
 			for(i = 0; i < var_365f3054 - 1; i++)
 			{
 				/#
-					assert(sorted_array[i] <= sorted_array[i + 1], "");
+					assert(sorted_array[i] <= (sorted_array[i + 1]), "");
 				#/
 			}
 		}
@@ -1691,7 +1691,7 @@ function function_70daaa9d(max_entries, minval, maxval, compare_func, var_c8e96e
 			for(i = 0; i < var_365f3054 - 1; i++)
 			{
 				/#
-					assert(sorted_array[i] >= sorted_array[i + 1], "");
+					assert(sorted_array[i] >= (sorted_array[i + 1]), "");
 				#/
 			}
 		}

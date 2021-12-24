@@ -213,11 +213,11 @@ private function function_1fc427dc()
 		adddebugcommand("");
 		adddebugcommand("");
 		adddebugcommand("");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
 		waitframe(1);
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 	#/
 }
 

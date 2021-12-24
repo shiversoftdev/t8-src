@@ -498,7 +498,7 @@ private function turn_on(origin, radius)
 		return;
 	}
 	pap_machine.unitrigger_stub.origin = pap_machine.origin + level.pack_a_punch.var_fcdf795b;
-	pap_machine.unitrigger_stub.angles = pap_machine.angles + vectorscale((0, -1, 0), 90);
+	pap_machine.unitrigger_stub.angles = pap_machine.angles + (vectorscale((0, -1, 0), 90));
 	zm_unitrigger::register_static_unitrigger(pap_machine.unitrigger_stub, &function_72cf5db2);
 	zm_unitrigger::function_c4a5fdf5(pap_machine.unitrigger_stub, 1);
 	pap_machine flag::set("pap_waiting_for_user");
@@ -1007,7 +1007,7 @@ private function third_person_weapon_upgrade(current_weapon, var_eaad2188, upgra
 	origin_base = pap_machine.origin;
 	angles_base = pap_machine.angles;
 	forward = anglestoforward(angles_base + angles_offset);
-	interact_offset = origin_offset + forward * -25;
+	interact_offset = origin_offset + (forward * -25);
 	offsetdw = vectorscale((1, 1, 1), 3);
 	var_397d50da = (isdefined(level.var_fbca9d31) ? level.var_fbca9d31 : 3.35);
 	if(self hasperk(#"hash_37aa3a5919757781"))
@@ -1188,8 +1188,8 @@ private function wait_for_player_to_take(player, weapon, packa_timer, var_a86430
 				}
 				if(isdefined(player.var_655c0753) && player.var_655c0753 && (!(isdefined(pap_machine.var_b64e889a) && pap_machine.var_b64e889a)))
 				{
-					new_clip = player.restore_clip + upgrade_weapon.clipsize - player.restore_clip_size;
-					new_stock = player.restore_stock + upgrade_weapon.maxammo - player.restore_max;
+					new_clip = player.restore_clip + (upgrade_weapon.clipsize - player.restore_clip_size);
+					new_stock = player.restore_stock + (upgrade_weapon.maxammo - player.restore_max);
 					player setweaponammostock(upgrade_weapon, new_stock);
 					player setweaponammoclip(upgrade_weapon, new_clip);
 				}

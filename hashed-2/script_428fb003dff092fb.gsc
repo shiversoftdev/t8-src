@@ -402,7 +402,7 @@ function spawnalllocs(owner, startpos)
 	{
 		trace = hitpos(startpos, locations[#"point"][count], locations[#"color"][count]);
 		locations[#"tracepos"][count] = trace;
-		locations[#"loc"][count] = startpos / 2 + trace / 2;
+		locations[#"loc"][count] = (startpos / 2) + (trace / 2);
 		locations[#"loc"][count] = locations[#"loc"][count] - vectorscale((0, 0, 1), 12);
 		locations[#"distsqrd"][count] = distancesquared(startpos, trace);
 	}
@@ -565,7 +565,7 @@ function getcenteroflocations(locations)
 	centroid = (0, 0, 0);
 	for(i = 0; i < locations[#"loc"].size; i++)
 	{
-		centroid = centroid + locations[#"loc"][i] / locations[#"loc"].size;
+		centroid = centroid + (locations[#"loc"][i] / locations[#"loc"].size);
 	}
 	/#
 		level.tabun_debug = getdvarint(#"scr_tabun_debug", 0);
@@ -618,8 +618,8 @@ function getcenter(locations)
 			miny = cury;
 		}
 	}
-	avgx = maxx + minx / 2;
-	avgy = maxy + miny / 2;
+	avgx = (maxx + minx) / 2;
+	avgy = (maxy + miny) / 2;
 	center = (avgx, avgy, locations[#"tracepos"][0][2]);
 	/#
 		level.tabun_debug = getdvarint(#"scr_tabun_debug", 0);

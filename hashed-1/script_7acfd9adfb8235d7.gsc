@@ -550,7 +550,7 @@ function function_c929af49()
 	{
 		n_duration = 60;
 	}
-	self.var_ea6941e2 = gettime() + int(n_duration * 1000);
+	self.var_ea6941e2 = gettime() + (int(n_duration * 1000));
 	self waittill_timeout(0.5 + n_duration, #"hash_115d2cc01ac8b1e9", #"end_game", #"bgb_update");
 	self stoploopsound(1);
 	self playsound(#"zmb_bgb_nysm_end");

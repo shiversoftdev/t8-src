@@ -663,11 +663,11 @@ private function function_8ae62d74(entity)
 		var_379116fa = checknavmeshdirection(navmeshpoint, right, 100, 0);
 		var_cfa253f9 = [];
 		var_d3c9cafc = 1;
-		if(distance(navmeshpoint, var_f53c23cf) + var_d3c9cafc >= 100)
+		if((distance(navmeshpoint, var_f53c23cf) + var_d3c9cafc) >= 100)
 		{
 			var_cfa253f9[var_cfa253f9.size] = "LEFT";
 		}
-		if(distance(navmeshpoint, var_379116fa) + var_d3c9cafc >= 100)
+		if((distance(navmeshpoint, var_379116fa) + var_d3c9cafc) >= 100)
 		{
 			var_cfa253f9[var_cfa253f9.size] = "RIGHT";
 		}
@@ -736,7 +736,7 @@ private function function_6e16f65f(entity)
 */
 private function function_3df69749()
 {
-	self.var_95a46290 = gettime() + randomfloatrange(2, 4) * 1000;
+	self.var_95a46290 = gettime() + (randomfloatrange(2, 4) * 1000);
 }
 
 /*
@@ -751,7 +751,7 @@ private function function_3df69749()
 private function function_12aaa2f7(entity)
 {
 	function_3df69749();
-	self.var_a89d0c1a = gettime() + randomfloatrange(3, 4) * 1000;
+	self.var_a89d0c1a = gettime() + (randomfloatrange(3, 4) * 1000);
 }
 
 /*
@@ -800,8 +800,8 @@ private function function_c21c2cf7(entity)
 */
 private function function_ba6a44f()
 {
-	self.var_a89d0c1a = gettime() + randomfloatrange(3, 4) * 1000;
-	self.var_5b8bf6ba = gettime() + randomfloatrange(0, 1.5) * 1000;
+	self.var_a89d0c1a = gettime() + (randomfloatrange(3, 4) * 1000);
+	self.var_5b8bf6ba = gettime() + (randomfloatrange(0, 1.5) * 1000);
 }
 
 /*
@@ -914,7 +914,7 @@ private function function_ac651298(inflictor, attacker, damage, flags, meansofde
 {
 	if(self.archetype == #"nova_crawler" && isdefined(self.var_b421bafe) && self.var_b421bafe && self.var_71841cf9 == -1)
 	{
-		self.var_71841cf9 = gettime() + randomfloatrange(1, 3) * 1000;
+		self.var_71841cf9 = gettime() + (randomfloatrange(1, 3) * 1000);
 	}
 	else if(self.archetype == #"nova_crawler" && isdefined(self.var_9fde8624) && self.var_9fde8624 == #"hash_536e9f304d677717" && !isplayer(attacker))
 	{
@@ -1070,13 +1070,13 @@ private function function_90388f5b(entity)
 private function function_fc9e257f(entity)
 {
 	result = 0;
-	if(entity.var_71841cf9 < 0 && isdefined(entity.var_3fc4c097) && isdefined(entity.favoriteenemy) && distancesquared(entity.origin, entity.favoriteenemy.origin) > 1024 * 1024)
+	if(entity.var_71841cf9 < 0 && isdefined(entity.var_3fc4c097) && isdefined(entity.favoriteenemy) && distancesquared(entity.origin, entity.favoriteenemy.origin) > (1024 * 1024))
 	{
-		entity.var_71841cf9 = gettime() + randomfloatrange(1, 3) * 1000;
+		entity.var_71841cf9 = gettime() + (randomfloatrange(1, 3) * 1000);
 	}
 	if(entity.var_71841cf9 < 0 && entity.var_2208281f > 0 && gettime() > entity.var_2208281f)
 	{
-		entity.var_71841cf9 = gettime() + randomfloatrange(1, 3) * 1000;
+		entity.var_71841cf9 = gettime() + (randomfloatrange(1, 3) * 1000);
 	}
 	if(isdefined(entity.var_b421bafe) && entity.var_b421bafe && isdefined(entity.var_3fc4c097) && entity.var_71841cf9 > 0)
 	{
@@ -1119,7 +1119,7 @@ private function function_c708afa4(entity)
 */
 private function function_f0eb1b7e(entity)
 {
-	self.var_15aa1ae0 = gettime() + randomfloatrange(3, 5) * 1000;
+	self.var_15aa1ae0 = gettime() + (randomfloatrange(3, 5) * 1000);
 	function_349ae23d();
 	function_8eb7fbb7();
 }
@@ -1139,7 +1139,7 @@ private function function_8261512d(entity)
 	if(isdefined(entity.can_shoot) && entity.can_shoot && level.var_e6cea2c0 < gettime() && gettime() > entity.var_42ecd9f3 && isdefined(entity.favoriteenemy))
 	{
 		var_eab3f54a = distance2dsquared(entity.origin, entity.favoriteenemy.origin);
-		if(var_eab3f54a > 200 * 200 && entity function_4ee74b24() && entity can_see_enemy() && !entity function_68469a59())
+		if(var_eab3f54a > (200 * 200) && entity function_4ee74b24() && entity can_see_enemy() && !entity function_68469a59())
 		{
 			result = 1;
 		}
@@ -1503,7 +1503,7 @@ private function function_aaf0b660(entity)
 */
 private function function_349ae23d()
 {
-	self.var_926f011e = gettime() + randomfloatrange(5, 8) * 1000;
+	self.var_926f011e = gettime() + (randomfloatrange(5, 8) * 1000);
 }
 
 /*
@@ -1583,7 +1583,7 @@ private function function_1ded4b3e(entity)
 */
 private function function_41d1cdd5()
 {
-	self.var_ce83fefe = gettime() + randomfloatrange(5, 8) * 1000;
+	self.var_ce83fefe = gettime() + (randomfloatrange(5, 8) * 1000);
 }
 
 /*
@@ -1727,7 +1727,7 @@ function shoot_spore(spore, target)
 	spore endon(#"death");
 	start_location = self gettagorigin("j_spine4");
 	target_velocity = target getvelocity();
-	var_85e6dc61 = target getcentroid() + target_velocity * 0.5;
+	var_85e6dc61 = target getcentroid() + (target_velocity * 0.5);
 	spore.origin = start_location;
 	wait(0.1);
 	spore clientfield::set("white_nova_crawler_spore_clientfield", 1);

@@ -68,7 +68,7 @@ private function function_e8549ef6()
 	self.vehaircraftcollisionenabled = 1;
 	self.var_94e2cf87 = 1;
 	self.settings = struct::get_script_bundle("vehiclecustomsettings", self.scriptbundlesettings);
-	self.var_ec0d66ce = 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax;
+	self.var_ec0d66ce = 0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
 	self.var_ff6d7c88 = self.var_ec0d66ce * self.var_ec0d66ce;
 	self.vehaircraftcollisionenabled = 0;
 	self.ai.var_88b0fd29 = gettime();
@@ -789,7 +789,7 @@ function function_9bbb40ab(einflictor, eattacker, idamage, idflags, smeansofdeat
 			self notify(#"emped", {#param2:einflictor, #param1:eattacker, #param0:randomfloatrange(minempdowntime, maxempdowntime)});
 		}
 	}
-	emp_damage = self.healthdefault * 0.5 + 0.5;
+	emp_damage = (self.healthdefault * 0.5) + 0.5;
 	idamage = killstreaks::ondamageperweapon("drone_squadron", eattacker, idamage, idflags, smeansofdeath, weapon, self.maxhealth, &destroyed_cb, self.maxhealth * 0.4, &low_health_cb, emp_damage, undefined, 1, 1);
 	if(isdefined(weapon))
 	{

@@ -568,7 +568,7 @@ function precache_mp_anticheat_leaderboards()
 	{
 		postfix = "_ARENA";
 	}
-	anticheatleaderboard = "LB_MP_ANTICHEAT_" + level.gametype + postfix;
+	anticheatleaderboard = ("LB_MP_ANTICHEAT_" + level.gametype) + postfix;
 	if(level.gametype != "fr")
 	{
 		anticheatleaderboard = anticheatleaderboard + " LB_MP_ANTICHEAT_GLOBAL";
@@ -612,14 +612,14 @@ function precache_mp_public_leaderboards()
 	}
 	careerleaderboard = " LB_MP_GB_SCORE" + postfix;
 	prestigelb = " LB_MP_GB_XPPRESTIGE";
-	gamemodeleaderboard = "LB_MP_GM_" + level.gametype + postfix;
+	gamemodeleaderboard = ("LB_MP_GM_" + level.gametype) + postfix;
 	arenaleaderboard = "";
 	if(gamemodeismode(6))
 	{
 		arenaslot = arenagetslot();
 		arenaleaderboard = " LB_MP_ARENA_MASTERS_0" + arenaslot;
 	}
-	precacheleaderboards(gamemodeleaderboard + careerleaderboard + prestigelb + arenaleaderboard);
+	precacheleaderboards(((gamemodeleaderboard + careerleaderboard) + prestigelb) + arenaleaderboard);
 }
 
 /*
@@ -1470,7 +1470,7 @@ function matchstarttimer()
 	counttime = int(level.prematchperiod);
 	var_5654073f = counttime >= 2;
 	level.var_5654073f = var_5654073f;
-	level.var_fd167bf6 = gettime() + int(counttime * 1000);
+	level.var_fd167bf6 = gettime() + (int(counttime * 1000));
 	luinotifyevent(#"create_prematch_timer", 2, level.var_fd167bf6, var_5654073f);
 	if(var_5654073f)
 	{
@@ -1702,7 +1702,7 @@ function getteamscoreratio()
 	}
 	if(level.teams.size > 1)
 	{
-		otherteamscore = otherteamscore / level.teams.size - 1;
+		otherteamscore = otherteamscore / (level.teams.size - 1);
 	}
 	if(otherteamscore != 0)
 	{
@@ -1794,7 +1794,7 @@ function recordplaystyleinformation()
 	movementupdatedenom = int(movementupdatecount / 5);
 	if(movementupdatedenom > 0)
 	{
-		percenttimemoving = numspeedswhenmovingentries / movementupdatedenom * 100;
+		percenttimemoving = (numspeedswhenmovingentries / movementupdatedenom) * 100;
 	}
 	if(numspeedswhenmovingentries > 0)
 	{
@@ -2717,7 +2717,7 @@ function end_round(var_c1e98979)
 		do
 		{
 			waitframe(1);
-			endtime = gettime() - 2 * float(function_60d95f53()) / 1000;
+			endtime = gettime() - (2 * (float(function_60d95f53()) / 1000));
 		}
 		while(level.lastslowprocessframe > endtime || level.var_a5c930dd > endtime || level.var_697b1d55 > endtime);
 	}
@@ -2859,7 +2859,7 @@ private function function_159d7b6f()
 	var_69cbb8c = [];
 	for(i = 0; i < itemcount; i++)
 	{
-		if(i % 100 == 0)
+		if((i % 100) == 0)
 		{
 			wait(0.1);
 		}
@@ -3200,7 +3200,7 @@ function function_4636deca(player)
 		assert(isdefined(nemesis), "" + player.name);
 	#/
 	/#
-		assert(isstring(nemesis), "" + nemesis + "" + player.name);
+		assert(isstring(nemesis), (("" + nemesis) + "") + player.name);
 	#/
 	if(!isdefined(player.pers[#"killed_players"][nemesis]))
 	{
@@ -3733,7 +3733,7 @@ function removedisconnectedplayerfromplacement()
 	}
 	level.placement[#"all"][numplayers - 1] = undefined;
 	/#
-		assert(level.placement[#"all"].size == numplayers - 1);
+		assert(level.placement[#"all"].size == (numplayers - 1));
 	#/
 	/#
 		globallogic_utils::assertproperplacement();
@@ -4259,7 +4259,7 @@ function updatealivetimes(team)
 		if(count)
 		{
 			total_value_count = total_value_count + count;
-			average_player_spawn_time = average_player_spawn_time + average_time / count;
+			average_player_spawn_time = average_player_spawn_time + (average_time / count);
 			total_player_count++;
 		}
 	}
@@ -4289,7 +4289,7 @@ function updatealivetimes(team)
 		if(count)
 		{
 			total_value_count = total_value_count + count;
-			average_player_spawn_time = average_player_spawn_time + average_time / count;
+			average_player_spawn_time = average_player_spawn_time + (average_time / count);
 			total_player_count++;
 		}
 	}
@@ -4302,7 +4302,7 @@ function updatealivetimes(team)
 	/#
 		if(getdvarint(#"hash_7d48f244ba0d0b2d", 0))
 		{
-			iprintln("" + level.alivetimesaverage[#"allies"] + "" + level.alivetimesaverage[#"axis"]);
+			iprintln((("" + level.alivetimesaverage[#"allies"]) + "") + level.alivetimesaverage[#"axis"]);
 		}
 	#/
 }
@@ -4446,7 +4446,7 @@ function timelimitclock()
 			{
 				level notify(#"match_ending_vox");
 			}
-			if(timeleftint <= 10 || (timeleftint <= 30 && timeleftint % 2 == 0) || (level.low_ticket_count === 1 && timeleftint % 2 == 0) || level.very_low_ticket_count === 1)
+			if(timeleftint <= 10 || (timeleftint <= 30 && (timeleftint % 2) == 0) || (level.low_ticket_count === 1 && (timeleftint % 2) == 0) || level.very_low_ticket_count === 1)
 			{
 				level notify(#"match_ending_very_soon", "time");
 				if(timeleftint == 0)
@@ -4462,7 +4462,7 @@ function timelimitclock()
 					wait(0.5);
 					continue;
 				}
-				else if(timeleft - floor(timeleft) >= 0.05)
+				else if((timeleft - floor(timeleft)) >= 0.05)
 				{
 					wait(timeleft - floor(timeleft));
 				}
@@ -4503,7 +4503,7 @@ function timelimitclock()
 */
 function timelimitclock_intermission(waittime)
 {
-	setgameendtime(gettime() + int(waittime * 1000));
+	setgameendtime(gettime() + (int(waittime * 1000)));
 	clockobject = spawn("script_origin", (0, 0, 0));
 	if(waittime >= 10)
 	{
@@ -4742,7 +4742,7 @@ function waitforplayers()
 				{
 					temp_player_ready[player_num] = gettime();
 				}
-				if(temp_player_ready[player_num] + 5000 < gettime() || player isstreamerready(-1, 1))
+				if((temp_player_ready[player_num] + 5000) < gettime() || player isstreamerready(-1, 1))
 				{
 					if(level.teambased)
 					{
@@ -4772,7 +4772,7 @@ function waitforplayers()
 				accepttestclient = 1;
 			}
 		}
-		if(level.rankedmatch && gettime() - starttime > int(120 * 1000))
+		if(level.rankedmatch && (gettime() - starttime) > (int(120 * 1000)))
 		{
 			exit_level();
 			while(true)
@@ -5259,7 +5259,7 @@ function function_b9b7618()
 	level.inprematchperiod = 1;
 	if(level.prematchperiod > 2 && level.rankedmatch)
 	{
-		level.prematchperiod = level.prematchperiod + randomfloat(4) - 2;
+		level.prematchperiod = level.prematchperiod + (randomfloat(4) - 2);
 	}
 	if(level.numlives || anyteamhaswavedelay() || level.playerqueuedrespawn)
 	{
@@ -5305,7 +5305,7 @@ function function_b9b7618()
 		var_1141ae61 = getdvarfloat(#"hash_5349c39a9c2a9357", 1E-06);
 		if(var_1141ae61 > 0)
 		{
-			var_480ff6af = (var_1141ae61 <= 1E-06 ? 0 : var_1141ae61);
+			var_480ff6af = (var_1141ae61 <= (1E-06) ? 0 : var_1141ae61);
 			setgametypesetting("scoreHeroPowerTimeFactor", var_480ff6af);
 		}
 	}
@@ -5411,7 +5411,7 @@ function forcedebughostmigration()
 */
 function registerfriendlyfiredelay(dvarstring, defaultvalue, minvalue, maxvalue)
 {
-	dvarstring = "scr_" + dvarstring + "_friendlyFireDelayTime";
+	dvarstring = ("scr_" + dvarstring) + "_friendlyFireDelayTime";
 	if(getdvarstring(dvarstring) == "")
 	{
 		setdvar(dvarstring, defaultvalue);

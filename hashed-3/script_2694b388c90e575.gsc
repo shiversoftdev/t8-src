@@ -487,7 +487,7 @@ function function_d82e684c(is_not_upgraded = 1)
 		}
 	}
 	vec = anglestoforward(var_d571151f);
-	trace_end = var_d0407533 + vec * 20000;
+	trace_end = var_d0407533 + (vec * 20000);
 	trace = bullettrace(var_d0407533, trace_end, 1, self);
 	var_7a29db08 = trace[#"position"] + function_40e83b36(55);
 	e_dart = magicbullet(getweapon(#"hash_3de0926b89369160"), var_d0407533, var_7a29db08, self);
@@ -616,7 +616,7 @@ function function_482c54d5(watcher, owner)
 	waitframe(1);
 	if(isplayer(s_result.target))
 	{
-		v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, 1), 8), self.origin + vectorscale((0, 0, 1), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_pos = groundtrace((self.origin + vectorscale((0, 0, 1), 32)) + vectorscale((0, 0, 1), 8), (self.origin + vectorscale((0, 0, 1), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 		if(isdefined(v_pos))
 		{
 			self ghost();
@@ -685,10 +685,10 @@ private function function_bf2a4486(var_f846fec1, owner, weapon)
 	{
 		level.var_56f299e3[0] notify(#"hash_39da21c99d3cf743");
 	}
-	var_f846fec1.trigger = spawn("trigger_radius_new", var_f846fec1.origin, 512 | 1 + 2, 64, 32);
+	var_f846fec1.trigger = spawn("trigger_radius_new", var_f846fec1.origin, (512 | 1) + 2, 64, 32);
 	if(abs(var_f846fec1.angles[2]) > 160)
 	{
-		var_f846fec1.trigger.origin = var_f846fec1.origin + anglestoup(var_f846fec1.angles) * 32;
+		var_f846fec1.trigger.origin = var_f846fec1.origin + (anglestoup(var_f846fec1.angles) * 32);
 	}
 	var_f846fec1 thread function_c74dfed4(weapon);
 	var_f846fec1 thread function_7b25328b(owner);
@@ -714,7 +714,7 @@ private function function_7b25328b(e_player)
 	{
 		w_current = e_player getcurrentweapon();
 	}
-	v_ground_pos = groundtrace(self.origin, self.origin + vectorscale((0, 0, -1), 1000), 0, self)[#"position"];
+	v_ground_pos = groundtrace(self.origin, self.origin + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
 	if(!isdefined(v_ground_pos) || distance(v_ground_pos, self.origin) > 64)
 	{
 		return;
@@ -1389,7 +1389,7 @@ private function function_7f95d262(eattacker, weapon)
 		self thread namespace_9ff9f642::slowdown(#"hash_716657b9842cfd1b");
 		wait(1);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 	}
 	self dodamage(self.health + 100, self getcentroid(), eattacker, eattacker, "torso_lower", "MOD_BURNED", 0, weapon);
 }
@@ -1592,7 +1592,7 @@ function function_b1347a6()
 	{
 		return;
 	}
-	v_weapon_origin_offset = anglestoforward(v_angles) * 2 + anglestoright(v_angles) * 21 + anglestoup(v_angles) * 1.75;
+	v_weapon_origin_offset = (anglestoforward(v_angles) * 2) + (anglestoright(v_angles) * 21) + (anglestoup(v_angles) * 1.75);
 	v_weapon_angles_offset = (0, 90, -90);
 	var_13202c94.v_weapon_origin = var_13202c94 gettagorigin("tag_origin") + v_weapon_origin_offset;
 	var_13202c94.v_weapon_angles = v_angles + v_weapon_angles_offset;

@@ -250,7 +250,7 @@ function function_a5ed9221(weapon)
 	forward_view_angles = self getweaponforwarddir();
 	end_pos = view_pos + vectorscale(forward_view_angles, 64);
 	/#
-		sphere(end_pos, 48, (1, 0, 0), 0.1, 1, 16, int(5 * 1 / float(function_60d95f53()) / 1000));
+		sphere(end_pos, 48, (1, 0, 0), 0.1, 1, 16, int(5 * (1 / (float(function_60d95f53()) / 1000))));
 	#/
 	a_e_targets = array::get_all_closest(end_pos, a_e_targets, undefined, undefined, 48);
 	if(!isdefined(a_e_targets) || a_e_targets.size < 1)

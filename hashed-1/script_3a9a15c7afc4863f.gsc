@@ -270,7 +270,7 @@ function function_97a7641d(w_current, n_clip_current, n_clip_max)
 	}
 	else
 	{
-		n_time = 10 - n_fraction * 10;
+		n_time = 10 - (n_fraction * 10);
 	}
 	if(n_time < 2)
 	{

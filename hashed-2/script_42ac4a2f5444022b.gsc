@@ -141,31 +141,31 @@ function function_8c4357b4(str_state, b_on)
 	{
 		if(isdefined(b_on) && b_on)
 		{
-			exploder::exploder("exp_lgt_fireplace_mainhall_" + self.script_int + "_" + str_state);
+			exploder::exploder((("exp_lgt_fireplace_mainhall_" + self.script_int) + "_") + str_state);
 		}
 		else
 		{
-			exploder::stop_exploder("exp_lgt_fireplace_mainhall_" + self.script_int + "_" + str_state);
+			exploder::stop_exploder((("exp_lgt_fireplace_mainhall_" + self.script_int) + "_") + str_state);
 		}
 	}
 	else if(self.script_noteworthy === "kp_fireplace_cemetery")
 	{
 		if(isdefined(b_on) && b_on)
 		{
-			exploder::exploder("exp_lgt_fireplace_cemetery_" + self.script_int + "_" + str_state);
+			exploder::exploder((("exp_lgt_fireplace_cemetery_" + self.script_int) + "_") + str_state);
 		}
 		else
 		{
-			exploder::stop_exploder("exp_lgt_fireplace_cemetery_" + self.script_int + "_" + str_state);
+			exploder::stop_exploder((("exp_lgt_fireplace_cemetery_" + self.script_int) + "_") + str_state);
 		}
 	}
 	else if(isdefined(b_on) && b_on)
 	{
-		exploder::exploder("exp_lgt_fireplace_greenhouse_" + self.script_int + "_" + str_state);
+		exploder::exploder((("exp_lgt_fireplace_greenhouse_" + self.script_int) + "_") + str_state);
 	}
 	else
 	{
-		exploder::stop_exploder("exp_lgt_fireplace_greenhouse_" + self.script_int + "_" + str_state);
+		exploder::stop_exploder((("exp_lgt_fireplace_greenhouse_" + self.script_int) + "_") + str_state);
 	}
 }
 
@@ -655,7 +655,7 @@ function function_55b79f54()
 		waitresult = undefined;
 		waitresult = self waittill(#"trigger");
 		player = waitresult.activator;
-		if(!zm_utility::can_use(player) || (isdefined(player.b_gazing) && player.b_gazing) || (isdefined(player.var_d049df11) && player.var_d049df11) || distancesquared(groundtrace(player.origin, player.origin + vectorscale((0, 0, -1), 128), 0, player)[#"position"], player.origin) > 16)
+		if(!zm_utility::can_use(player) || (isdefined(player.b_gazing) && player.b_gazing) || (isdefined(player.var_d049df11) && player.var_d049df11) || (distancesquared(groundtrace(player.origin, player.origin + (vectorscale((0, 0, -1), 128)), 0, player)[#"position"], player.origin)) > 16)
 		{
 			continue;
 		}
@@ -835,7 +835,7 @@ function function_2aa04f9f()
 					{
 						e_player.var_aed1893c[#"hash_7a226c41930a49a3"] = 1;
 						var_6a01d8dc = e_player.characterindex;
-						str_vo = "vox_fireplace_change_react_plr_" + var_6a01d8dc + "_0";
+						str_vo = ("vox_fireplace_change_react_plr_" + var_6a01d8dc) + "_0";
 						e_player thread zm_vo::function_8e0f4696(str_vo, 0, 1, 9999);
 					}
 					s_loc = struct::get(self.target);
@@ -1248,7 +1248,7 @@ function function_d409a74f(var_9e7c3935)
 			self bobbing((0, 0, 1), 2, 3);
 			self.var_199faf5e = 0;
 		}
-		if(isdefined(n_dist) && n_dist > 22500 * 4.5)
+		if(isdefined(n_dist) && n_dist > (22500 * 4.5))
 		{
 			self.var_199faf5e = 0;
 			n_timer = n_timer + 0.25;
@@ -1352,7 +1352,7 @@ function function_226e15cc()
 */
 function function_4175b958(var_88206a50, ent)
 {
-	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= 400 * 400;
+	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= (400 * 400);
 }
 
 /*
@@ -1407,7 +1407,7 @@ function function_138b784e(var_f0e6c7a2, ent)
 */
 function function_a23300bc(var_88206a50, ent)
 {
-	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= 400 * 400;
+	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= (400 * 400);
 }
 
 /*
@@ -1457,7 +1457,7 @@ function function_3d90aae2(var_f0e6c7a2, ent)
 */
 function function_53e85e3d(var_88206a50, ent)
 {
-	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= 400 * 400;
+	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= (400 * 400);
 }
 
 /*
@@ -1512,7 +1512,7 @@ function function_25d21cdb(var_f0e6c7a2, ent)
 */
 function function_ecb921f0(var_88206a50, ent)
 {
-	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= 400 * 400;
+	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= (400 * 400);
 }
 
 /*
@@ -1562,7 +1562,7 @@ function function_49798eb9(var_f0e6c7a2, ent)
 */
 function function_5e8b7383(var_88206a50, ent)
 {
-	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= 400 * 400;
+	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= (400 * 400);
 }
 
 /*
@@ -1617,7 +1617,7 @@ function function_28082147(var_f0e6c7a2, ent)
 */
 function function_ba203e13(var_88206a50, ent)
 {
-	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= 400 * 400;
+	return isdefined(ent.attacker) && isplayer(ent.attacker) || (isdefined(ent.damageinflictor) && isplayer(ent.damageinflictor)) && isdefined(ent) && distance2dsquared(var_88206a50.origin, ent.origin) <= (400 * 400);
 }
 
 /*

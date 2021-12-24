@@ -222,7 +222,7 @@ function function_71919555(var_45302432, fieldname, archetype)
 	{
 		if(isdefined(archetype))
 		{
-			return level.var_e3a467cf[var_45302432].(archetype + "_" + fieldname);
+			return level.var_e3a467cf[var_45302432].((archetype + "_") + fieldname);
 		}
 		return level.var_e3a467cf[var_45302432].(fieldname);
 	}

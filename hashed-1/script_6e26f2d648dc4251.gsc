@@ -187,7 +187,7 @@ function function_4d8676af(attacker, victim, weapon, attackerweapon, meansofdeat
 	{
 		foreach(dart in attacker.var_f208fb92)
 		{
-			if(isdefined(dart) && distancesquared(victim.origin, dart.origin) < (function_f99d2668() ? 2400 : 800) + 50 * (function_f99d2668() ? 2400 : 800) + 50 && weapon != attackerweapon)
+			if(isdefined(dart) && distancesquared(victim.origin, dart.origin) < ((function_f99d2668() ? 2400 : 800) + 50) * ((function_f99d2668() ? 2400 : 800) + 50) && weapon != attackerweapon)
 			{
 				dart.killcount = (isdefined(dart.killcount) ? dart.killcount : 0) + 1;
 				if(!isdefined(dart.var_cbca1a8f) && isdefined(level.var_ac6052e9) && dart.killcount >= [[level.var_ac6052e9]]("sensorDartSuccessKillCount", 0) && isdefined(level.playgadgetsuccess) && isdefined(dart.owner))

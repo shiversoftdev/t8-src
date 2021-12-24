@@ -134,7 +134,7 @@ function function_65337201(n_set, n_value, n_id)
 */
 function function_c010f073(n_set, n_digit, n_value)
 {
-	var_1be59246 = "code_set" + n_set + "_digit" + n_digit;
+	var_1be59246 = (("code_set" + n_set) + "_digit") + n_digit;
 	s_scene = struct::get(var_1be59246, "script_noteworthy");
 	s_scene scene::play("num" + n_value);
 }
@@ -150,7 +150,7 @@ function function_c010f073(n_set, n_digit, n_value)
 */
 function function_282e13e0(n_set, n_digit, n_value, n_id)
 {
-	level.var_40361d9a[n_id] = "code_set" + n_set + "_digit" + n_digit;
+	level.var_40361d9a[n_id] = (("code_set" + n_set) + "_digit") + n_digit;
 	level.var_3bf3d61e[n_id] = getent(level.var_40361d9a[n_id], "script_noteworthy");
 	waitframe(1);
 	level.var_3bf3d61e[n_id].tagorigin = util::spawn_model("tag_origin", level.var_3bf3d61e[n_id].origin);
@@ -232,7 +232,7 @@ function function_74c94af4()
 */
 function function_4ff138eb()
 {
-	self.n_value = 1000 * self.var_ba4b2753[0].n_value + 100 * self.var_ba4b2753[1].n_value + 10 * self.var_ba4b2753[2].n_value + self.var_ba4b2753[3].n_value;
+	self.n_value = (1000 * self.var_ba4b2753[0].n_value) + (100 * self.var_ba4b2753[1].n_value) + (10 * self.var_ba4b2753[2].n_value) + self.var_ba4b2753[3].n_value;
 }
 
 /*

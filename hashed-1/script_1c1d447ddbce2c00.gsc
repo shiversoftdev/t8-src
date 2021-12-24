@@ -63,7 +63,7 @@ function nuked_population_sign_think()
 			var_d02e9cd rotateroll(0 - n_step, n_time);
 			var_d02e9cd playsound("zmb_counter_flip");
 			var_d02e9cd waittill(#"rotatedone");
-			level.population_count = n_ones + n_tens * 10;
+			level.population_count = n_ones + (n_tens * 10);
 			if(level.population_count == 0 || level.population_count == 33 || level.population_count == 66 || level.population_count == 99)
 			{
 				level notify(#"update_doomsday_clock");

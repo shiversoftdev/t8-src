@@ -82,7 +82,7 @@ function saygenericdialoguewithimportance(typestring, importance)
 		#/
 		return;
 	}
-	soundalias = soundalias + "_" + typestring;
+	soundalias = soundalias + ("_" + typestring);
 	if(soundexists(soundalias))
 	{
 		self thread playfacethread(undefined, soundalias, importance);
@@ -209,7 +209,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 					return;
 				}
 				/#
-					println("" + self.a.facialsoundalias + "" + str_script_alias);
+					println((("" + self.a.facialsoundalias) + "") + str_script_alias);
 				#/
 				while(self.istalking)
 				{
@@ -220,7 +220,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 		else
 		{
 			/#
-				println("" + self.a.facialsoundalias + "" + str_script_alias);
+				println((("" + self.a.facialsoundalias) + "") + str_script_alias);
 			#/
 			self stopsound(self.a.facialsoundalias);
 			self notify(#"hash_5d02e24cebf138cb");
@@ -261,7 +261,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 			println("" + str_script_alias);
 		}
 	#/
-	uniquenotify = notifystring + " " + level.talknotifyseed;
+	uniquenotify = (notifystring + " ") + level.talknotifyseed;
 	level.talknotifyseed = level.talknotifyseed + 1;
 	if(isdefined(level.scr_sound) && isdefined(level.scr_sound[#"generic"]))
 	{
@@ -288,7 +288,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 				self playsoundwithnotify(str_vox_file, uniquenotify);
 			}
 		}
-		println("" + str_script_alias + "");
+		println(("" + str_script_alias) + "");
 		self thread _missing_dialog(str_script_alias, str_vox_file, uniquenotify);
 	}
 	else
@@ -361,7 +361,7 @@ private function _temp_dialog(str_line, uniquenotify, b_missing_vo = 0)
 	setdvar(#"bgcache_disablewarninghints", 1);
 	if(!b_missing_vo && isdefined(self.propername))
 	{
-		str_line = self.propername + ": " + str_line;
+		str_line = (self.propername + ": ") + str_line;
 	}
 	foreach(player in level.players)
 	{
@@ -377,7 +377,7 @@ private function _temp_dialog(str_line, uniquenotify, b_missing_vo = 0)
 		}
 		player setluimenudata(player getluimenu("TempDialog"), #"title", "TEMP VO");
 	}
-	n_wait_time = strtok(str_line, " ").size - 1 / 2;
+	n_wait_time = (strtok(str_line, " ").size - 1) / 2;
 	n_wait_time = math::clamp(n_wait_time, 2, 5);
 	self waittill_timeout(n_wait_time, #"death", #"hash_5d02e24cebf138cb");
 	foreach(player in level.players)
@@ -402,7 +402,7 @@ private function _temp_dialog(str_line, uniquenotify, b_missing_vo = 0)
 */
 private function _missing_dialog(str_script_alias, str_vox_file, uniquenotify)
 {
-	_temp_dialog("script id: " + str_script_alias + " sound alias: " + str_vox_file, uniquenotify, 1);
+	_temp_dialog((("script id: " + str_script_alias) + " sound alias: ") + str_vox_file, uniquenotify, 1);
 }
 
 /*

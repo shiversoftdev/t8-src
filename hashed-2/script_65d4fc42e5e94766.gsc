@@ -32,7 +32,7 @@ function function_f468d9a5(spawnpoint)
 	height = getdvarfloat(#"hash_73c6222ce96fa34a", 5000);
 	velocity = getdvarfloat(#"hash_ae6b05a24ae0d2a", 1760);
 	dir = anglestoforward(spawnpoint.angles);
-	pos = spawnpoint.origin - dir * distance;
+	pos = spawnpoint.origin - (dir * distance);
 	hold_origin = (pos[0], pos[1], spawnpoint.origin[2] + height);
 	hold_angles = vectortoangles(vectornormalize(spawnpoint.origin - pos));
 	vec = anglestoforward(hold_angles);
@@ -172,7 +172,7 @@ function function_b76a2e3f(ispredictedspawn)
 	var_bae3dcae = teamindex % level.var_7767cea8.size;
 	dest = level.var_7767cea8[var_bae3dcae];
 	var_c1a973a4 = int(teamindex / level.var_7767cea8.size);
-	var_92438b9c = var_c1a973a4 * level.maxteamplayers % dest.spawns.size;
+	var_92438b9c = (var_c1a973a4 * level.maxteamplayers) % dest.spawns.size;
 	self.var_25fe2d03 = dest.var_343828ba;
 	spawn = undefined;
 	spawntime = gettime();
@@ -191,7 +191,7 @@ function function_b76a2e3f(ispredictedspawn)
 		var_e34bb789 = dest.spawns[var_f5bb80c2].spawntime;
 		for(idx = 0; idx < level.maxteamplayers; idx++)
 		{
-			spawnindex = idx + var_92438b9c % dest.spawns.size;
+			spawnindex = (idx + var_92438b9c) % dest.spawns.size;
 			if(!isdefined(dest.spawns[spawnindex].spawntime))
 			{
 				dest.spawns[spawnindex].spawntime = spawntime;
@@ -382,21 +382,21 @@ private function function_c263fd97()
 	{
 		wait(0.5);
 		now = gettime();
-		self clientfield::set_player_uimodel("hudItems.streamerLoadFraction", now - starttime / var_ffa47239 + var_2ee361bf);
+		self clientfield::set_player_uimodel("hudItems.streamerLoadFraction", (now - starttime) / (var_ffa47239 + var_2ee361bf));
 	}
 	/#
 		println("");
 	#/
-	var_4fcc3493 = starttime + var_ffa47239 + var_2ee361bf;
+	var_4fcc3493 = (starttime + var_ffa47239) + var_2ee361bf;
 	var_8cd82180 = getdvarint(#"hash_723f28907e9e4cd0", 3);
 	var_45d7d746 = 0;
 	var_ccb4a8be = namespace_4b76712::function_d2a1520c();
-	streamermodelhint(var_ccb4a8be, float(var_ffa47239 + var_2ee361bf) / 1000);
+	streamermodelhint(var_ccb4a8be, (float(var_ffa47239 + var_2ee361bf)) / 1000);
 	while(true)
 	{
 		wait(0.5);
 		now = gettime();
-		self clientfield::set_player_uimodel("hudItems.streamerLoadFraction", now - starttime / var_ffa47239 + var_2ee361bf);
+		self clientfield::set_player_uimodel("hudItems.streamerLoadFraction", (now - starttime) / (var_ffa47239 + var_2ee361bf));
 		if(now > var_4fcc3493)
 		{
 			/#

@@ -116,7 +116,7 @@ private function setup_lighthouse()
 		var_611e46b7 = undefined;
 		foreach(var_143bf55a in level.var_9f657597)
 		{
-			if(var_143bf55a.script_noteworthy == level.var_7d8bf93f.script_noteworthy + "_debris")
+			if(var_143bf55a.script_noteworthy == (level.var_7d8bf93f.script_noteworthy + "_debris"))
 			{
 				var_611e46b7 = var_143bf55a;
 				break;

@@ -256,7 +256,7 @@ function function_d8cebda3(var_a6762160)
 		{
 			if(isdefined(var_a6762160.(var_b80d223d[index])) && var_a6762160.(var_b80d223d[index]))
 			{
-				mutators = mutators | 1 << index;
+				mutators = mutators | (1 << index);
 			}
 		}
 	}
@@ -554,11 +554,11 @@ function function_b6a27222(slotid)
 	/#
 		assert(isdefined(slotid));
 	#/
-	foreach(weaponslot in array(16 + 1, 16 + 1 + 6 + 1))
+	foreach(weaponslot in array(16 + 1, ((16 + 1) + 6) + 1))
 	{
 		foreach(var_259f58f3 in array(1, 2, 3, 4, 5, 6))
 		{
-			if(slotid == weaponslot + var_259f58f3)
+			if(slotid == (weaponslot + var_259f58f3))
 			{
 				return 1;
 			}
@@ -606,7 +606,7 @@ function function_398b9770(var_4838b749, var_f9f8c0b5)
 	#/
 	foreach(var_259f58f3 in array(1, 2, 3, 4, 5, 6))
 	{
-		if(var_f9f8c0b5 == var_4838b749 + var_259f58f3)
+		if(var_f9f8c0b5 == (var_4838b749 + var_259f58f3))
 		{
 			return 1;
 		}

@@ -127,10 +127,10 @@ private function setup_devgui()
 			if(key != "")
 			{
 				name = function_9e72a96(key);
-				adddebugcommand(aat_devgui_base + name + "" + "" + "" + name + "");
+				adddebugcommand((((((aat_devgui_base + name) + "") + "") + "") + name) + "");
 			}
 		}
-		adddebugcommand(aat_devgui_base + "" + "" + "" + "" + "");
+		adddebugcommand(((((aat_devgui_base + "") + "") + "") + "") + "");
 		level thread aat_devgui_think();
 	#/
 }
@@ -196,7 +196,7 @@ private function aat_set_debug_text(name, success, success_reroll, fail)
 		}
 		self.aat_debug_text fadeovertime(0.05);
 		self.aat_debug_text.alpha = 1;
-		self.aat_debug_text settext("" + name + "" + percentage);
+		self.aat_debug_text settext((("" + name) + "") + percentage);
 		if(success)
 		{
 			self.aat_debug_text.color = (0, 1, 0);
@@ -252,7 +252,7 @@ private function aat_cooldown_init()
 */
 function aat_vehicle_damage_monitor(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
-	willbekilled = self.health - idamage <= 0;
+	willbekilled = (self.health - idamage) <= 0;
 	if(isdefined(level.aat_in_use) && level.aat_in_use)
 	{
 		self thread aat_response(willbekilled, einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, damagefromunderneath, vsurfacenormal);
@@ -335,15 +335,15 @@ function aat_response(death, inflictor, attacker, damage, flags, mod, weapon, vp
 		return;
 	}
 	now = float(gettime()) / 1000;
-	if(isdefined(self.aat_cooldown_start) && now <= self.aat_cooldown_start[name] + level.aat[name].cooldown_time_entity)
+	if(isdefined(self.aat_cooldown_start) && now <= (self.aat_cooldown_start[name] + level.aat[name].cooldown_time_entity))
 	{
 		return;
 	}
-	if(now <= attacker.aat_cooldown_start[name] + level.aat[name].cooldown_time_attacker)
+	if(now <= (attacker.aat_cooldown_start[name] + level.aat[name].cooldown_time_attacker))
 	{
 		return;
 	}
-	if(now <= level.aat[name].cooldown_time_global_start + level.aat[name].cooldown_time_global)
+	if(now <= (level.aat[name].cooldown_time_global_start + level.aat[name].cooldown_time_global))
 	{
 		return;
 	}
@@ -439,52 +439,52 @@ function register(name, percentage, cooldown_time_entity, cooldown_time_attacker
 		assert(isdefined(name), "");
 	#/
 	/#
-		assert("" != name, "" + "" + "");
+		assert("" != name, ("" + "") + "");
 	#/
 	/#
-		assert(!isdefined(level.aat[name]), "" + name + "");
+		assert(!isdefined(level.aat[name]), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(percentage), "" + name + "");
+		assert(isdefined(percentage), ("" + name) + "");
 	#/
 	/#
-		assert(0 <= percentage && 1 > percentage, "" + name + "");
+		assert(0 <= percentage && 1 > percentage, ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(cooldown_time_entity), "" + name + "");
+		assert(isdefined(cooldown_time_entity), ("" + name) + "");
 	#/
 	/#
-		assert(0 <= cooldown_time_entity, "" + name + "");
+		assert(0 <= cooldown_time_entity, ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(cooldown_time_entity), "" + name + "");
+		assert(isdefined(cooldown_time_entity), ("" + name) + "");
 	#/
 	/#
-		assert(0 <= cooldown_time_entity, "" + name + "");
+		assert(0 <= cooldown_time_entity, ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(cooldown_time_global), "" + name + "");
+		assert(isdefined(cooldown_time_global), ("" + name) + "");
 	#/
 	/#
-		assert(0 <= cooldown_time_global, "" + name + "");
+		assert(0 <= cooldown_time_global, ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(occurs_on_death), "" + name + "");
+		assert(isdefined(occurs_on_death), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(result_func), "" + name + "");
+		assert(isdefined(result_func), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(damage_feedback_icon), "" + name + "");
+		assert(isdefined(damage_feedback_icon), ("" + name) + "");
 	#/
 	/#
-		assert(isstring(damage_feedback_icon), "" + name + "");
+		assert(isstring(damage_feedback_icon), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(damage_feedback_sound), "" + name + "");
+		assert(isdefined(damage_feedback_sound), ("" + name) + "");
 	#/
 	/#
-		assert(isstring(damage_feedback_sound), "" + name + "");
+		assert(isstring(damage_feedback_sound), ("" + name) + "");
 	#/
 	level.aat[name] = spawnstruct();
 	level.aat[name].name = name;
@@ -632,25 +632,25 @@ function register_reroll(name, count, active_func, damage_feedback_icon)
 		assert(isdefined(name), "");
 	#/
 	/#
-		assert("" != name, "" + "" + "");
+		assert("" != name, ("" + "") + "");
 	#/
 	/#
-		assert(!isdefined(level.aat[name]), "" + name + "");
+		assert(!isdefined(level.aat[name]), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(count), "" + name + "");
+		assert(isdefined(count), ("" + name) + "");
 	#/
 	/#
-		assert(0 < count, "" + name + "");
+		assert(0 < count, ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(active_func), "" + name + "");
+		assert(isdefined(active_func), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(damage_feedback_icon), "" + name + "");
+		assert(isdefined(damage_feedback_icon), ("" + name) + "");
 	#/
 	/#
-		assert(isstring(damage_feedback_icon), "" + name + "");
+		assert(isstring(damage_feedback_icon), ("" + name) + "");
 	#/
 	level.aat_reroll[name] = spawnstruct();
 	level.aat_reroll[name].name = name;
@@ -731,10 +731,10 @@ function acquire(weapon, name, var_77cf85b7)
 	if(isdefined(name))
 	{
 		/#
-			assert("" != name, "" + "" + "");
+			assert("" != name, ("" + "") + "");
 		#/
 		/#
-			assert(isdefined(level.aat[name]), "" + name + "");
+			assert(isdefined(level.aat[name]), ("" + name) + "");
 		#/
 		self.aat[weapon] = name;
 	}

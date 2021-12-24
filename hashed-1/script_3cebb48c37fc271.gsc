@@ -511,13 +511,13 @@ function function_b9c7ccbb(var_12230d08, var_829a20a8 = 0)
 					}
 					self.var_85c91ccc = n_idx;
 				}
-				nd_path_start = getvehiclenode("fasttravel_" + var_f80635c + "_start_" + n_idx, "targetname");
-				var_384528 = getvehiclenode("fasttravel_" + var_f80635c + "_zipline_end_" + n_idx, "targetname");
-				str_notify = "fasttravel_" + var_f80635c + "_zipline_end_" + n_idx;
+				nd_path_start = getvehiclenode((("fasttravel_" + var_f80635c) + "_start_") + n_idx, "targetname");
+				var_384528 = getvehiclenode((("fasttravel_" + var_f80635c) + "_zipline_end_") + n_idx, "targetname");
+				str_notify = (("fasttravel_" + var_f80635c) + "_zipline_end_") + n_idx;
 			}
 			else
 			{
-				nd_path_start = getvehiclenode("fasttravel_" + var_f80635c + "_start", "targetname");
+				nd_path_start = getvehiclenode(("fasttravel_" + var_f80635c) + "_start", "targetname");
 				str_notify = var_f80635c + "_end";
 			}
 			var_5314bd63 = getent("veh_fasttravel_cam", "targetname");
@@ -533,7 +533,7 @@ function function_b9c7ccbb(var_12230d08, var_829a20a8 = 0)
 				return;
 			}
 			self.var_85c91ccc = n_idx;
-			str_notify = "fasttravel_" + var_f80635c + "_end_" + n_idx;
+			str_notify = (("fasttravel_" + var_f80635c) + "_end_") + n_idx;
 			self function_66d020b0(undefined, undefined, undefined, str_notify, undefined, var_12230d08, undefined, undefined);
 			break;
 		}
@@ -708,7 +708,7 @@ function function_7a74dbfd(str_targetname)
 	{
 		var_f0bbde5 = struct::get(str_targetname + i);
 		/#
-			assert(isdefined(var_f0bbde5), "" + str_targetname + i);
+			assert(isdefined(var_f0bbde5), ("" + str_targetname) + i);
 		#/
 		if(!isdefined(var_6a4c362c))
 		{
@@ -756,7 +756,7 @@ function function_66d020b0(var_5314bd63, nd_path_start, var_384528, str_notify, 
 	}
 	foreach(e_player in getplayers())
 	{
-		e_player clientfield::set_player_uimodel("WorldSpaceIndicators.bleedOutModel" + self getentitynumber() + ".hide", 1);
+		e_player clientfield::set_player_uimodel(("WorldSpaceIndicators.bleedOutModel" + self getentitynumber()) + ".hide", 1);
 	}
 	if(!self laststand::player_is_in_laststand())
 	{
@@ -858,7 +858,7 @@ function function_66d020b0(var_5314bd63, nd_path_start, var_384528, str_notify, 
 	self notify(#"hash_66790eb1100e11a2", {#hash_9fa6220c:var_12230d08});
 	foreach(e_player in getplayers())
 	{
-		e_player clientfield::set_player_uimodel("WorldSpaceIndicators.bleedOutModel" + self getentitynumber() + ".hide", 0);
+		e_player clientfield::set_player_uimodel(("WorldSpaceIndicators.bleedOutModel" + self getentitynumber()) + ".hide", 0);
 	}
 	if(isdefined(var_6e7468ee) && var_6e7468ee && isdefined(level.var_34eb792d))
 	{
@@ -1177,7 +1177,7 @@ function function_5165d69()
 			#/
 			continue;
 		}
-		var_616025ba = getvehiclenode("fasttravel_dropdown_" + player.var_388ee880 + "_start", "targetname");
+		var_616025ba = getvehiclenode(("fasttravel_dropdown_" + player.var_388ee880) + "_start", "targetname");
 		if(!isdefined(var_616025ba))
 		{
 			/#
@@ -1294,7 +1294,7 @@ function function_a78584c0(var_6c365dbf)
 	var_1e1e92e9 = [];
 	for(i = 0; i < 4; i++)
 	{
-		str_name = "s_teleport_room_" + i + 1;
+		str_name = "s_teleport_room_" + (i + 1);
 		var_1e1e92e9[i] = struct::get(str_name, "targetname");
 	}
 	if(!isdefined(level.var_98b11ed9))
@@ -1384,7 +1384,7 @@ function function_82c1415f()
 		v_offset = vectorscale((0, 0, 1), 60);
 	}
 	var_cfda6c19 = self.origin + v_offset;
-	v_loc = var_cfda6c19 + anglestoforward(self.angles) * 1000;
+	v_loc = var_cfda6c19 + (anglestoforward(self.angles) * 1000);
 	s_wormhole = struct::spawn(v_loc, (self.angles[0], self.angles[1] - 90, self.angles[2]));
 	if(!isdefined(level.var_f3901984))
 	{

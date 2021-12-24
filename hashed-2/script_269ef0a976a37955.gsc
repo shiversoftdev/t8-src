@@ -65,7 +65,7 @@ function on_ai_killed(s_params)
 	if(s_params.weapon === level.var_b77d3496 && isdefined(self) && isactor(self) && isdefined(s_params.eattacker))
 	{
 		var_5b84ed9a = s_params.eattacker getcentroid();
-		var_2640e082 = 15 * vectornormalize(self getcentroid() - var_5b84ed9a) + vectorscale((0, 0, 1), 0.1);
+		var_2640e082 = 15 * (vectornormalize(self getcentroid() - var_5b84ed9a)) + vectorscale((0, 0, 1), 0.1);
 		self startragdoll();
 		self launchragdoll(var_2640e082);
 	}

@@ -70,11 +70,11 @@ private function __init__()
 	clientfield::function_a8bbc967("zmhud.bgb_carousel.global_cooldown", 1, 5, "float", 0);
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::function_a8bbc967("zmhud.bgb_carousel." + i + ".state", 1, 2, "int", 0);
-		clientfield::function_a8bbc967("zmhud.bgb_carousel." + i + ".gum_idx", 1, 7, "int", 0);
-		clientfield::function_a8bbc967("zmhud.bgb_carousel." + i + ".cooldown_perc", 1, 5, "float", 0);
-		clientfield::function_a8bbc967("zmhud.bgb_carousel." + i + ".lockdown", 1, 1, "float", 0);
-		clientfield::function_a8bbc967("zmhud.bgb_carousel." + i + ".unavailable", 1, 1, "float", 0);
+		clientfield::function_a8bbc967(("zmhud.bgb_carousel." + i) + ".state", 1, 2, "int", 0);
+		clientfield::function_a8bbc967(("zmhud.bgb_carousel." + i) + ".gum_idx", 1, 7, "int", 0);
+		clientfield::function_a8bbc967(("zmhud.bgb_carousel." + i) + ".cooldown_perc", 1, 5, "float", 0);
+		clientfield::function_a8bbc967(("zmhud.bgb_carousel." + i) + ".lockdown", 1, 1, "float", 0);
+		clientfield::function_a8bbc967(("zmhud.bgb_carousel." + i) + ".unavailable", 1, 1, "float", 0);
 	}
 	/#
 		if(!sessionmodeisonlinegame())
@@ -163,7 +163,7 @@ private function on_player_spawned()
 function function_9d4db403(name, var_81f8ab0f, var_f1d1c3e6)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	/#
 		assert(isdefined(var_81f8ab0f), "");
@@ -184,7 +184,7 @@ function function_9d4db403(name, var_81f8ab0f, var_f1d1c3e6)
 function function_430d063b(name)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_58860b3 = 1;
 }
@@ -201,7 +201,7 @@ function function_430d063b(name)
 function function_a1194b9a(name)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_8fd0fb47 = 1;
 }
@@ -218,7 +218,7 @@ function function_a1194b9a(name)
 function function_4de6c08a(name)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_8b1ba43c = 1;
 }
@@ -926,8 +926,8 @@ function function_7dd2a9c9(n_index, n_cooldown)
 	self endon("end_slot_cooldown" + n_index, #"disconnect", #"hash_738988561a113fac");
 	if(n_cooldown > 0)
 	{
-		n_percentage = 0.01 * n_cooldown / 20;
-		n_step = 1 / n_cooldown * 20;
+		n_percentage = 0.01 * (n_cooldown / 20);
+		n_step = 1 / (n_cooldown * 20);
 		var_729b3c2f = 0;
 		n_count = 0;
 		while(var_729b3c2f <= 1)
@@ -936,7 +936,7 @@ function function_7dd2a9c9(n_index, n_cooldown)
 			n_count++;
 			var_729b3c2f = var_729b3c2f + n_step;
 			var_729b3c2f = math::clamp(var_729b3c2f, 0, 1);
-			self.var_2d8082a0[n_index] = n_cooldown - n_cooldown * var_729b3c2f;
+			self.var_2d8082a0[n_index] = n_cooldown - (n_cooldown * var_729b3c2f);
 			if(!self.var_bd0d5874)
 			{
 				self function_1d5d39b0(n_index, var_729b3c2f);
@@ -971,8 +971,8 @@ private function function_d84ec5ee(var_707fd977)
 	#/
 	if(n_cooldown > 0 && var_707fd977)
 	{
-		n_percentage = 0.01 * n_cooldown / 20;
-		n_step = 1 / n_cooldown * 20;
+		n_percentage = 0.01 * (n_cooldown / 20);
+		n_step = 1 / (n_cooldown * 20);
 		var_729b3c2f = 0;
 		n_count = 0;
 		while(var_729b3c2f < 1)
@@ -1062,7 +1062,7 @@ function function_2ca4f95b(visible)
 */
 function function_7b91e81c(slot_index, item_index)
 {
-	self clientfield::set_player_uimodel("zmhud.bgb_carousel." + slot_index + ".gum_idx", item_index);
+	self clientfield::set_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".gum_idx", item_index);
 }
 
 /*
@@ -1076,7 +1076,7 @@ function function_7b91e81c(slot_index, item_index)
 */
 function function_1d5d39b0(slot_index, var_365a98bd)
 {
-	self clientfield::set_player_uimodel("zmhud.bgb_carousel." + slot_index + ".cooldown_perc", var_365a98bd);
+	self clientfield::set_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".cooldown_perc", var_365a98bd);
 }
 
 /*
@@ -1106,7 +1106,7 @@ function function_69b5ca2a(slot_index, var_b23960a)
 {
 	if(isdefined(self.var_7d0afffb[slot_index]) && isdefined(level.bgb[self.var_7d0afffb[slot_index]]) && (!(isdefined(level.bgb[self.var_7d0afffb[slot_index]].var_58860b3) && level.bgb[self.var_7d0afffb[slot_index]].var_58860b3)))
 	{
-		self clientfield::set_player_uimodel("zmhud.bgb_carousel." + slot_index + ".lockdown", var_b23960a);
+		self clientfield::set_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".lockdown", var_b23960a);
 	}
 }
 
@@ -1121,7 +1121,7 @@ function function_69b5ca2a(slot_index, var_b23960a)
 */
 function function_4f8aa77a(slot_index)
 {
-	return self clientfield::get_player_uimodel("zmhud.bgb_carousel." + slot_index + ".lockdown");
+	return self clientfield::get_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".lockdown");
 }
 
 /*
@@ -1137,7 +1137,7 @@ function function_da912bff(slot_index, var_b23960a)
 {
 	if(isdefined(self.var_7d0afffb[slot_index]) && isdefined(level.bgb[self.var_7d0afffb[slot_index]]))
 	{
-		self clientfield::set_player_uimodel("zmhud.bgb_carousel." + slot_index + ".unavailable", var_b23960a);
+		self clientfield::set_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".unavailable", var_b23960a);
 	}
 }
 
@@ -1152,7 +1152,7 @@ function function_da912bff(slot_index, var_b23960a)
 */
 function function_a9ecc0a0(slot_index)
 {
-	return self clientfield::get_player_uimodel("zmhud.bgb_carousel." + slot_index + ".unavailable");
+	return self clientfield::get_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".unavailable");
 }
 
 /*
@@ -1166,7 +1166,7 @@ function function_a9ecc0a0(slot_index)
 */
 function function_b2308cd(slot_index, state)
 {
-	self clientfield::set_player_uimodel("zmhud.bgb_carousel." + slot_index + ".state", state);
+	self clientfield::set_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".state", state);
 }
 
 /*
@@ -1180,7 +1180,7 @@ function function_b2308cd(slot_index, state)
 */
 function function_834d35e(slot_index)
 {
-	return self clientfield::get_player_uimodel("zmhud.bgb_carousel." + slot_index + ".state");
+	return self clientfield::get_player_uimodel(("zmhud.bgb_carousel." + slot_index) + ".state");
 }
 
 /*
@@ -1242,7 +1242,7 @@ private function function_f2173c97(var_607319eb)
 	{
 		if(isdefined(self.var_7d0afffb[x]) && isdefined(level.bgb[self.var_7d0afffb[x]]) && (!(isdefined(level.bgb[self.var_7d0afffb[x]].var_58860b3) && level.bgb[self.var_7d0afffb[x]].var_58860b3)) && self function_834d35e(x) != 3)
 		{
-			self clientfield::set_player_uimodel("zmhud.bgb_carousel." + x + ".lockdown", (var_607319eb ? 1 : 0));
+			self clientfield::set_player_uimodel(("zmhud.bgb_carousel." + x) + ".lockdown", (var_607319eb ? 1 : 0));
 		}
 	}
 }
@@ -1379,14 +1379,14 @@ private function setup_devgui()
 		adddebugcommand(bgb_devgui_base + "");
 		adddebugcommand(bgb_devgui_base + "");
 		adddebugcommand(bgb_devgui_base + "");
-		adddebugcommand(bgb_devgui_base + "" + "");
-		adddebugcommand(bgb_devgui_base + "" + "");
-		adddebugcommand(bgb_devgui_base + "" + "");
-		adddebugcommand(bgb_devgui_base + "" + "");
+		adddebugcommand((bgb_devgui_base + "") + "");
+		adddebugcommand((bgb_devgui_base + "") + "");
+		adddebugcommand((bgb_devgui_base + "") + "");
+		adddebugcommand((bgb_devgui_base + "") + "");
 		foreach(key in keys)
 		{
 			name = function_9e72a96(level.bgb[key].name);
-			adddebugcommand(bgb_devgui_base + name + "" + name + "");
+			adddebugcommand((((bgb_devgui_base + name) + "") + name) + "");
 		}
 	#/
 }

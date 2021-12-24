@@ -215,7 +215,7 @@ function start_bundle(flag, bundle)
 	{
 		self flag::toggle(flag);
 		self function_bf9d3071(bundle);
-		self notify("kill" + flag + bundle);
+		self notify(("kill" + flag) + bundle);
 	}
 }
 
@@ -230,7 +230,7 @@ function start_bundle(flag, bundle)
 */
 function stop_bundle(flag, bundle, var_e156fd4)
 {
-	self notify("kill" + flag + bundle);
+	self notify(("kill" + flag) + bundle);
 	if(flag::get(flag))
 	{
 		self flag::toggle(flag);
@@ -277,7 +277,7 @@ function fade_bundle(localclientnum, flag, bundle, fadeduration)
 function function_9e7290f5(currenttime, elapsedtime, localclientnum, fadeduration, from, to, bundle)
 {
 	percent = elapsedtime / fadeduration;
-	amount = to * percent + from * 1 - percent;
+	amount = (to * percent) + (from * (1 - percent));
 	self function_78233d29(bundle, "", #"alpha", amount);
 }
 

@@ -321,7 +321,7 @@ private function function_66dd488a()
 {
 	foreach(bolt in level.var_58143890)
 	{
-		if(isalive(bolt.owner) || bolt clientfield::get("" + #"hash_699d5bb1a9339a93") == 1)
+		if(isalive(bolt.owner) || (bolt clientfield::get("" + #"hash_699d5bb1a9339a93")) == 1)
 		{
 			continue;
 		}

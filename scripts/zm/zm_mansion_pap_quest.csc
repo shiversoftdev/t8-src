@@ -509,7 +509,7 @@ function function_924f922d(localclientnum, oldval, newval, bnewent, binitialsnap
 					continue;
 				}
 				v_eye = e_player geteye();
-				if(abs(self.origin[2] - v_eye[2]) <= 96 && distance2dsquared(v_eye, self.origin) <= 202500)
+				if((abs(self.origin[2] - v_eye[2])) <= 96 && distance2dsquared(v_eye, self.origin) <= 202500)
 				{
 					/#
 						self thread function_3e31854(e_player);
@@ -650,7 +650,7 @@ function ghost_impact_fx(localclientnum)
 		v_end = v_start + vectorscale(anglestoforward(self.angles), 16);
 		a_trace = physicstrace(v_start, v_end, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self, 8);
 		v_contact = a_trace[#"position"];
-		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(v_contact, var_c2b3e9bf) > 256 * 2)
+		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(v_contact, var_c2b3e9bf) > (256 * 2))
 		{
 			var_c2b3e9bf = v_contact;
 			v_forward = anglestoforward(self.angles);
@@ -659,10 +659,10 @@ function ghost_impact_fx(localclientnum)
 			#/
 			playfx(localclientnum, level._effect[#"hash_3fee8d30e3aef8f4"], v_contact, v_forward * -1, anglestoup(self.angles));
 		}
-		v_end = v_start + vectorscale(anglestoforward(self.angles) * -1, 16);
+		v_end = v_start + (vectorscale(anglestoforward(self.angles) * -1, 16));
 		a_trace = physicstrace(v_start, v_end, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self, 8);
 		v_contact = a_trace[#"position"];
-		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(v_contact, var_c2b3e9bf) > 256 * 2)
+		if(a_trace[#"surfacetype"] != "none" && distance2dsquared(v_contact, var_c2b3e9bf) > (256 * 2))
 		{
 			var_c2b3e9bf = v_contact;
 			v_forward = anglestoforward(self.angles);
@@ -773,7 +773,7 @@ function function_466c2fa3(str_fx, newval)
 		str_hint = function_f415205b(newval);
 		while(getdvarint(#"hash_3c4df2fe4b1618d5", 0) && isdefined(self))
 		{
-			debug2dtext((100, 800, 0), "" + newval + "" + str_hint + "" + function_9e72a96(str_fx), (1, 1, 1));
+			debug2dtext((100, 800, 0), (((("" + newval) + "") + str_hint) + "") + function_9e72a96(str_fx), (1, 1, 1));
 			waitframe(1);
 		}
 	#/
@@ -812,7 +812,7 @@ function function_5545acc1(newval)
 			foreach(i, n_step in level.var_d23472c9)
 			{
 				var_8b7c6b64 = var_8b7c6b64 + n_offset;
-				debug2dtext(v_pos + (0, var_8b7c6b64, 0), function_9e72a96(i) + "" + n_step, (0, 1, 0));
+				debug2dtext(v_pos + (0, var_8b7c6b64, 0), (function_9e72a96(i) + "") + n_step, (0, 1, 0));
 			}
 			waitframe(1);
 		}
@@ -980,8 +980,8 @@ function debug_arrow(org, ang, opcolor)
 			blue = opcolor;
 		}
 		line(org, org + forwardfar, red, 0.9);
-		line(org + forwardfar, org + forwardclose + rightdraw, red, 0.9);
-		line(org + forwardfar, org + forwardclose + leftdraw, red, 0.9);
+		line(org + forwardfar, (org + forwardclose) + rightdraw, red, 0.9);
+		line(org + forwardfar, (org + forwardclose) + leftdraw, red, 0.9);
 		line(org, org + right, blue, 0.9);
 		line(org, org + up, green, 0.9);
 	#/

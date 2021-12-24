@@ -213,13 +213,13 @@ private function function_b96833b2(vehicle)
 					vehicle.var_3de57a77 = gettime();
 				}
 				var_a71a8383 = gettime() - vehicle.var_3de57a77;
-				if(int(3 * 1000) <= var_a71a8383)
+				if((int(3 * 1000)) <= var_a71a8383)
 				{
 					vehicle usevehicle(self, 0);
 					self clientfield::set_to_player("recon_out_of_circle", 0);
 				}
 				var_e96a9222 = min(var_a71a8383, int(3 * 1000));
-				var_e96a9222 = var_e96a9222 / int(3 * 1000);
+				var_e96a9222 = var_e96a9222 / (int(3 * 1000));
 				var_e96a9222 = var_e96a9222 * 31;
 				self clientfield::set_to_player("recon_out_of_circle", int(var_e96a9222));
 				waitframe(1);

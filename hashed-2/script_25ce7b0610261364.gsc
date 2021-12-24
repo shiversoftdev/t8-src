@@ -113,7 +113,7 @@ function function_70a07f6f(localclientnum, newval, fieldname)
 {
 	for(ti = 0; ti < 6; ti++)
 	{
-		if(fieldname == "luielement.remote_missile_target_lockon" + ti + ".clientnum")
+		if(fieldname == (("luielement.remote_missile_target_lockon" + ti) + ".clientnum"))
 		{
 			level.remote_missile_targets[ti].clientnum = newval;
 		}
@@ -133,7 +133,7 @@ function function_e656f88a(localclientnum, newval, fieldname)
 {
 	for(ti = 0; ti < 6; ti++)
 	{
-		if(fieldname == "luielement.remote_missile_target_lockon" + ti + ".target_locked")
+		if(fieldname == (("luielement.remote_missile_target_lockon" + ti) + ".target_locked"))
 		{
 			if(newval)
 			{
@@ -354,7 +354,7 @@ function function_3759fcf(localclientnum, var_c5e2f09a)
 */
 function function_2e07be71(localclientnum)
 {
-	var_fa108926 = localclientnum + "_" + self getentitynumber();
+	var_fa108926 = (localclientnum + "_") + self getentitynumber();
 	self notify("cfc7ae5c0a7a3ce" + var_fa108926);
 	self endon("cfc7ae5c0a7a3ce" + var_fa108926);
 	/#
@@ -383,7 +383,7 @@ function function_2e07be71(localclientnum)
 */
 function function_5a1bf101(localclientnum)
 {
-	var_fa108926 = localclientnum + "_" + self getentitynumber();
+	var_fa108926 = (localclientnum + "_") + self getentitynumber();
 	self notify("7f2100a11fa32baf" + var_fa108926);
 	self endon("7f2100a11fa32baf" + var_fa108926);
 	self endon(#"death");
@@ -476,12 +476,12 @@ function function_5a1bf101(localclientnum)
 			}
 			if(!isdefined(var_6c8b920a[ti]))
 			{
-				var_6c8b920a[ti] = now - 100 - 10;
+				var_6c8b920a[ti] = (now - 100) - 10;
 			}
 			var_4759b4d3 = project3dto2d(localclientnum, target_player.origin);
 			var_20a99afd = project3dto2d(localclientnum, target_player.origin + vectorscale((0, 0, 1), 60));
 			screen_height = distance2d(var_4759b4d3, var_20a99afd);
-			var_fcd926d5 = var_59d4144b * screen_height / 60;
+			var_fcd926d5 = (var_59d4144b * screen_height) / 60;
 			var_fcd926d5 = math::clamp(var_fcd926d5, var_e7c561e2, var_98977cea);
 			setuimodelvalue(var_1f3cc5f9[ti], var_fcd926d5);
 			cooldown_time = now - var_6c8b920a[ti];

@@ -348,7 +348,7 @@ function function_d7cd849c(var_cb0f3959, team, var_86a79150)
 		level.spawnbeaconsettings.var_d741a6a4[var_cb0f3959] = 0;
 	}
 	var_ad7969ca = level.spawnbeaconsettings.var_d741a6a4[var_cb0f3959];
-	if(var_ad7969ca != 0 && gettime() < int(5 * 1000) + var_ad7969ca)
+	if(var_ad7969ca != 0 && gettime() < ((int(5 * 1000)) + var_ad7969ca))
 	{
 		return;
 	}
@@ -709,7 +709,7 @@ function function_4d9f82ce()
 	}
 	var_4dbaac09 = player gadgetgetslot(level.spawnbeaconsettings.var_c1a364b9);
 	currentpower = player gadgetpowerget(var_4dbaac09) / 100;
-	penalty = (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d) ? level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d : 0) - (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d) ? level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d : 0) * currentpower;
+	penalty = (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d) ? level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d : 0) - ((isdefined(level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d) ? level.spawnbeaconsettings.var_51d5c26f.var_da5fcc2d : 0) * currentpower);
 	player.var_299012ff = int(penalty);
 }
 
@@ -913,7 +913,7 @@ function getspawnbeaconspawns(origin)
 		{
 			continue;
 		}
-		if(var_a62d9bc > 0 && abs(spawnpoint.origin[2] - origin[2]) > var_a62d9bc)
+		if(var_a62d9bc > 0 && (abs(spawnpoint.origin[2] - origin[2])) > var_a62d9bc)
 		{
 			continue;
 		}
@@ -1034,7 +1034,7 @@ function function_425d8006()
 	}
 	function_d7cd849c(level.spawnbeaconsettings.var_51d5c26f.var_1068819a, spawnbeacon.team, undefined);
 	function_d7cd849c(level.spawnbeaconsettings.var_51d5c26f.var_c5d0582b, util::getotherteam(spawnbeacon.team), undefined);
-	setbombtimer(var_f1c32a14, gettime() + int(var_d7760961 * 1000));
+	setbombtimer(var_f1c32a14, gettime() + (int(var_d7760961 * 1000)));
 	wait(var_d7760961);
 	spawnbeacon.isdisabled = 0;
 	spawnbeacon notify(#"beacon_enabled");

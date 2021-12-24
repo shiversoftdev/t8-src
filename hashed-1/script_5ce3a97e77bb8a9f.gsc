@@ -318,11 +318,11 @@ function hud_update(localclientnum)
 	{
 		cur_z = missile.origin[2];
 		setuimodelvalue(altitude_ui_data_model, cur_z);
-		dist = prev_z - cur_z * fps;
+		dist = (prev_z - cur_z) * fps;
 		val = dist / 17.6;
 		setuimodelvalue(speed_ui_data_model, val);
 		prev_z = cur_z;
-		remainingtime = 1 - gettime() - birthtime / lifetime;
+		remainingtime = 1 - ((gettime() - birthtime) / lifetime);
 		setuimodelvalue(var_2c36f843, remainingtime);
 		wait(delay);
 	}

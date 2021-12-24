@@ -803,7 +803,7 @@ function function_f665fde0(trig)
 	{
 		angles = (0, 0, 0);
 	}
-	unitrigger_stub.origin = trig.origin + anglestoright(angles) * -6;
+	unitrigger_stub.origin = trig.origin + (anglestoright(angles) * -6);
 	unitrigger_stub.angles = trig.angles;
 	if(isdefined(trig.script_angles))
 	{
@@ -2212,7 +2212,7 @@ function function_3012605d(unitrigger)
 			name = unitrigger.craftfoundry.displayname;
 		}
 		util::waittill_can_add_debug_command();
-		str_cmd = "" + table_id + "" + name + "" + table_id + "";
+		str_cmd = ((((("" + table_id) + "") + name) + "") + table_id) + "";
 		adddebugcommand(str_cmd);
 	#/
 }
@@ -2270,7 +2270,7 @@ function function_e9e4a1d0(var_a13e8cac, component)
 	/#
 		util::waittill_can_add_debug_command();
 		name = function_a16a090d(component);
-		str_cmd = "" + var_a13e8cac + "" + name + "" + name + "";
+		str_cmd = ((((("" + var_a13e8cac) + "") + name) + "") + name) + "";
 		adddebugcommand(str_cmd);
 	#/
 }
@@ -2336,7 +2336,7 @@ function devgui_think()
 		for(i = 1; i <= 4; i++)
 		{
 			util::waittill_can_add_debug_command();
-			str_cmd = "" + i + "" + i + "" + i + "";
+			str_cmd = ((((("" + i) + "") + i) + "") + i) + "";
 			adddebugcommand(str_cmd);
 		}
 		while(true)
@@ -2394,27 +2394,27 @@ function function_fe738a08(table_id)
 		forward = anglestoforward(unitrigger.angles);
 		right = anglestoright(unitrigger.angles);
 		var_21f5823e = vectortoangles(forward * -1);
-		var_916d3dfe = origin + 48 * forward;
+		var_916d3dfe = origin + (48 * forward);
 		switch(entnum)
 		{
 			case 0:
 			{
-				var_916d3dfe = var_916d3dfe + 16 * right;
+				var_916d3dfe = var_916d3dfe + (16 * right);
 				break;
 			}
 			case 1:
 			{
-				var_916d3dfe = var_916d3dfe + 16 * forward;
+				var_916d3dfe = var_916d3dfe + (16 * forward);
 				break;
 			}
 			case 2:
 			{
-				var_916d3dfe = var_916d3dfe - 16 * right;
+				var_916d3dfe = var_916d3dfe - (16 * right);
 				break;
 			}
 			case 3:
 			{
-				var_916d3dfe = var_916d3dfe - 16 * forward;
+				var_916d3dfe = var_916d3dfe - (16 * forward);
 				break;
 			}
 		}

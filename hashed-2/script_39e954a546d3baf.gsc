@@ -652,7 +652,7 @@ function function_aad01548(v_start_pos, var_b545186e = 0)
 	if(!function_880bd896())
 	{
 		/#
-			iprintlnbold("" + level.var_92b13539 + "");
+			iprintlnbold(("" + level.var_92b13539) + "");
 		#/
 		return;
 	}
@@ -738,7 +738,7 @@ function function_34bcd465()
 		/#
 			if(n_timer > 0)
 			{
-				iprintlnbold("" + e_player.name + "" + n_timer + "");
+				iprintlnbold(((("" + e_player.name) + "") + n_timer) + "");
 			}
 		#/
 		self dontinterpolate();
@@ -836,7 +836,7 @@ function function_c492c4d6(str_index, var_ed1db1a7, a_str_zones, var_cc0c35ca, v
 	}
 	/#
 		/#
-			assert(isdefined(struct::get(var_ed1db1a7)), "" + var_ed1db1a7 + "");
+			assert(isdefined(struct::get(var_ed1db1a7)), ("" + var_ed1db1a7) + "");
 		#/
 	#/
 	level.var_f05f7e16[str_index] = {#hash_9fc5eea1:var_9fc5eea1, #hash_c13f5c4b:var_c13f5c4b, #hash_39c44288:var_39c44288, #hash_16a34df0:var_16a34df0, #hash_cc0c35ca:var_cc0c35ca, #a_str_zones:a_str_zones, #hash_ed1db1a7:var_ed1db1a7};
@@ -858,12 +858,12 @@ function function_1e856719()
 		foreach(str_index, s_defend_area in level.var_f05f7e16)
 		{
 			/#
-				assert(isarray(s_defend_area.var_cc0c35ca), "" + function_9e72a96(str_index) + "");
+				assert(isarray(s_defend_area.var_cc0c35ca), ("" + function_9e72a96(str_index)) + "");
 			#/
 			foreach(var_f79ff5ec in s_defend_area.var_cc0c35ca)
 			{
 				/#
-					assert(isinarray(var_f95f5bc7, var_f79ff5ec), "" + function_9e72a96(var_f79ff5ec) + "");
+					assert(isinarray(var_f95f5bc7, var_f79ff5ec), ("" + function_9e72a96(var_f79ff5ec)) + "");
 				#/
 			}
 		}
@@ -969,7 +969,7 @@ function function_a877cd10(str_index)
 {
 	/#
 		/#
-			assert(isdefined(level.var_f05f7e16[str_index]), "" + function_9e72a96(str_index) + "");
+			assert(isdefined(level.var_f05f7e16[str_index]), ("" + function_9e72a96(str_index)) + "");
 		#/
 	#/
 	return level.var_f05f7e16[str_index];
@@ -1463,7 +1463,7 @@ function function_766eff6(var_31721422, a_str_zones, var_de0f1997, var_f7c3c527)
 	n_time = var_de0f1997;
 	while(n_time >= 0)
 	{
-		if(n_time <= 30 && n_time % 5 == 0 || n_time <= 10)
+		if(n_time <= 30 && (n_time % 5) == 0 || n_time <= 10)
 		{
 			self playsoundtoplayer(#"hash_531658e82d2845f7", self);
 		}
@@ -1684,32 +1684,32 @@ function player_left_zone(a_str_zones, var_8e2567b1, var_9faecc20)
 			{
 				case 5:
 				{
-					n_damage = int(self.maxhealth * 10 / self.maxhealth);
+					n_damage = int(self.maxhealth * (10 / self.maxhealth));
 					break;
 				}
 				case 4:
 				{
-					n_damage = int(self.maxhealth * 20 / self.maxhealth);
+					n_damage = int(self.maxhealth * (20 / self.maxhealth));
 					break;
 				}
 				case 3:
 				{
-					n_damage = int(self.maxhealth * 30 / self.maxhealth);
+					n_damage = int(self.maxhealth * (30 / self.maxhealth));
 					break;
 				}
 				case 2:
 				{
-					n_damage = int(self.maxhealth * 40 / self.maxhealth);
+					n_damage = int(self.maxhealth * (40 / self.maxhealth));
 					break;
 				}
 				case 1:
 				{
-					n_damage = int(self.maxhealth * 45 / self.maxhealth);
+					n_damage = int(self.maxhealth * (45 / self.maxhealth));
 					break;
 				}
 				default:
 				{
-					n_damage = int(self.maxhealth * 150 / self.maxhealth);
+					n_damage = int(self.maxhealth * (150 / self.maxhealth));
 					break;
 				}
 			}

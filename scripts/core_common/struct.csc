@@ -74,7 +74,7 @@ function get(kvp_value, kvp_key = "targetname")
 	a_result = get_array(kvp_value, kvp_key);
 	/#
 		/#
-			assert(a_result.size < 2, "" + kvp_key + "" + kvp_value + "");
+			assert(a_result.size < 2, ((("" + kvp_key) + "") + kvp_value) + "");
 		#/
 	#/
 	return (a_result.size > 0 ? a_result[0] : undefined);

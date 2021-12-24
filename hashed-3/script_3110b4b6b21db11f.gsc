@@ -516,7 +516,7 @@ function function_6577cacc()
 		{
 			var_24e0e73d = 15;
 		}
-		if(self.var_36a93d1 >= int(var_24e0e73d * 0.5))
+		if(self.var_36a93d1 >= (int(var_24e0e73d * 0.5)))
 		{
 			self thread zm_audio::create_and_play_dialog(#"freeze", #"start");
 		}
@@ -1157,7 +1157,7 @@ function water_debug_hud_elem_thread(player)
 			if(isdefined(player.b_in_water))
 			{
 				self setvalue(player.b_in_water);
-				println("" + player getentitynumber() + "");
+				println(("" + player getentitynumber()) + "");
 			}
 			player waittill(#"update_frost_state");
 		}

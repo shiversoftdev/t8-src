@@ -441,9 +441,9 @@ function function_ebaedcdd(w_minigun)
 			clientfield::increment("minigun_launcher_muzzle_fx");
 			var_70346f17 = var_a993e05e[0] * 1650;
 			var_5a76439b = var_a993e05e[1] * 1650;
-			var_4bbea62c = var_a993e05e[2] * 1650 + 250;
+			var_4bbea62c = (var_a993e05e[2] * 1650) + 250;
 			var_a460aa94 = (var_70346f17, var_5a76439b, var_4bbea62c);
-			self magicgrenadetype(getweapon(#"hash_492e530f9862f6cc"), var_79db2feb + var_98739a5 + var_52594630, var_a460aa94);
+			self magicgrenadetype(getweapon(#"hash_492e530f9862f6cc"), (var_79db2feb + var_98739a5) + var_52594630, var_a460aa94);
 			waitframe(1);
 		}
 	}
@@ -475,7 +475,7 @@ function function_9d166ae8(w_minigun)
 			var_a993e05e = anglestoforward(self getplayerangles());
 			var_70346f17 = var_a993e05e[0] * 850;
 			var_5a76439b = var_a993e05e[1] * 850;
-			var_4bbea62c = var_a993e05e[2] * 850 + 150;
+			var_4bbea62c = (var_a993e05e[2] * 850) + 150;
 			var_a460aa94 = (var_70346f17, var_5a76439b, var_4bbea62c);
 			var_40076092 = vectorscale((0, 0, 1), 12);
 			e_grenade = self magicgrenadetype(getweapon(#"hash_628d99860c78650f"), var_79db2feb, var_a460aa94, 2);
@@ -487,7 +487,7 @@ function function_9d166ae8(w_minigun)
 				{
 					if(s_result._notify == "stationary")
 					{
-						v_ground_pos = groundtrace(e_grenade.origin + vectorscale((0, 0, 1), 50), e_grenade.origin + vectorscale((0, 0, -1), 500), 0, e_grenade, 0, 0)[#"position"];
+						v_ground_pos = groundtrace(e_grenade.origin + vectorscale((0, 0, 1), 50), e_grenade.origin + (vectorscale((0, 0, -1), 500)), 0, e_grenade, 0, 0)[#"position"];
 						if(isdefined(v_ground_pos))
 						{
 							v_end_pos = getclosestpointonnavmesh(v_ground_pos, 128, 24);
@@ -521,7 +521,7 @@ function function_9d166ae8(w_minigun)
 			}
 			if(!isdefined(v_end_pos))
 			{
-				v_end_pos = self.origin + anglestoforward(self.angles) * 128;
+				v_end_pos = self.origin + (anglestoforward(self.angles) * 128);
 			}
 			self thread function_13409329(v_end_pos, w_minigun);
 			self gadgetpowerset(self gadgetgetslot(w_minigun), 0);
@@ -620,7 +620,7 @@ function function_13409329(v_end_pos, w_minigun)
 	n_score = 0;
 	if(var_1ae49e8d > 0)
 	{
-		n_score = int(var_1ae49e8d * 1 / level.players.size);
+		n_score = int(var_1ae49e8d * (1 / level.players.size));
 	}
 	if(level.players.size == 1 && n_score > 400)
 	{

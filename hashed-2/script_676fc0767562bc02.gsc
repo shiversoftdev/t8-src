@@ -352,7 +352,7 @@ private function function_d60f39c2(entity, player, duration, color)
 					line(start, end, color);
 					sphere(end, 2, color, 1, 0, 4, 1);
 					distance = distance(start, end);
-					print3d(end + vectorscale((0, 0, 1), 30), "" + distance + retreat + var_1fee3f71, color, 1, 1, 1);
+					print3d(end + vectorscale((0, 0, 1), 30), (("" + distance) + retreat) + var_1fee3f71, color, 1, 1, 1);
 				#/
 			}
 			if(var_b90a4dc9 == 4 && isdefined(level.avogadro_outro_location))
@@ -562,7 +562,7 @@ private function function_cace91f9()
 			var_648a4b29 = checknavmeshdirection(var_e22f98ec, var_4bd2cffc, var_5e1a56a9, 0);
 			var_398f9190 = distance(var_e22f98ec, var_648a4b29);
 			self.var_3f536874 = gettime() + 50;
-			if(var_398f9190 + 0.1 >= var_5e1a56a9)
+			if((var_398f9190 + 0.1) >= var_5e1a56a9)
 			{
 				var_e5fbbfea = 1;
 			}
@@ -744,7 +744,7 @@ private function function_be9ade6d(entity)
 private function function_15b528d9(duration, var_2610777)
 {
 	self endon_callback(&function_866bf053, #"death", #"disconnect");
-	wait(float(function_60d95f53()) / 1000 * var_2610777);
+	wait((float(function_60d95f53()) / 1000) * var_2610777);
 	if(zm_utility::is_player_valid(self))
 	{
 		self val::set(#"hash_75b4cc8231699ebe", "disable_weapons", 1);
@@ -877,7 +877,7 @@ private function function_96e43661(entity)
 	var_c89fc811 = entity getangles();
 	registernotice_walla = anglestoforward(var_c89fc811);
 	var_e98404d8 = entity getcentroid();
-	var_9a123fd6 = var_e98404d8 + registernotice_walla * 30;
+	var_9a123fd6 = var_e98404d8 + (registernotice_walla * 30);
 	players = getplayers();
 	result = 0;
 	/#
@@ -1211,12 +1211,12 @@ private function function_7615515e(entity)
 	}
 	if(player_in_range)
 	{
-		entity.var_52a38d7d = entity.var_52a38d7d + float(function_60d95f53()) / 1000;
+		entity.var_52a38d7d = entity.var_52a38d7d + (float(function_60d95f53()) / 1000);
 		entity.var_8db49d5e = 0;
 	}
 	else
 	{
-		entity.var_8db49d5e = entity.var_8db49d5e + float(function_60d95f53()) / 1000;
+		entity.var_8db49d5e = entity.var_8db49d5e + (float(function_60d95f53()) / 1000);
 		if(entity.var_8db49d5e >= 1)
 		{
 			entity.var_52a38d7d = 0;
@@ -1235,7 +1235,7 @@ private function function_7615515e(entity)
 */
 private function function_5aceb20c(entity)
 {
-	if(!can_see_enemy() && gettime() > entity.var_d307828d + 1000)
+	if(!can_see_enemy() && gettime() > (entity.var_d307828d + 1000))
 	{
 		if(gettime() > entity.var_d307828d + 5000)
 		{
@@ -1637,11 +1637,11 @@ private function function_23f14b08(entity, asmstatename)
 	result = 5;
 	if(isdefined(entity.var_f10dd7ca) && isdefined(entity.zombie_move_speed))
 	{
-		if(entity.zombie_move_speed == "run" && gettime() > entity.var_f10dd7ca + int(1.5 * 1000))
+		if(entity.zombie_move_speed == "run" && gettime() > (entity.var_f10dd7ca + (int(1.5 * 1000))))
 		{
 			entity zombie_utility::set_zombie_run_cycle("sprint");
 		}
-		else if(entity.zombie_move_speed == "sprint" && gettime() > entity.var_f10dd7ca + int(4 * 1000))
+		else if(entity.zombie_move_speed == "sprint" && gettime() > (entity.var_f10dd7ca + (int(4 * 1000))))
 		{
 			entity zombie_utility::set_zombie_run_cycle("super_sprint");
 		}

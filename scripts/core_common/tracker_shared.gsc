@@ -75,7 +75,7 @@ function function_c8241070(player, weapon)
 	level.var_f791a4f2.var_75492b09[player.clientid].var_2e0b3c25 = player.origin;
 	level.var_f791a4f2.var_75492b09[player.clientid].var_2672a259 = weapon;
 	level.var_f791a4f2.var_75492b09[player.clientid].var_851de005 = player;
-	level.var_f791a4f2.var_75492b09[player.clientid].expiretime = gettime() + float(getdvarint(#"hash_6f3f10e68d2fedba", 0)) / 1000;
+	level.var_f791a4f2.var_75492b09[player.clientid].expiretime = gettime() + (float(getdvarint(#"hash_6f3f10e68d2fedba", 0)) / 1000);
 }
 
 /*

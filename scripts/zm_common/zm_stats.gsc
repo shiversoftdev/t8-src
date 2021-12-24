@@ -505,7 +505,7 @@ function update_playing_utc_time(matchendutctime)
 	{
 		for(i = 5; i > diff_days; i--)
 		{
-			timestamp_name = "TIMESTAMPLASTDAY" + i - diff_days;
+			timestamp_name = "TIMESTAMPLASTDAY" + (i - diff_days);
 			timestamp_name_to = "TIMESTAMPLASTDAY" + i;
 			timestamp_value = self get_global_stat(timestamp_name);
 			self set_global_stat(timestamp_name_to, timestamp_value);
@@ -577,7 +577,7 @@ function set_global_stat(stat_name, value)
 	self stats::set_stat(#"playerstatslist", stat_name, #"statvalue", value);
 	/#
 		var_ba1fb8c1 = self stats::get_stat(#"playerstatslist", stat_name, #"statvalue");
-		println("" + self.entity_num + "" + stat_name + "" + var_ba1fb8c1);
+		println((((("" + self.entity_num) + "") + stat_name) + "") + var_ba1fb8c1);
 	#/
 }
 
@@ -1291,11 +1291,11 @@ function increment_challenge_stat(stat_name, amount = 1, var_b68b08b1 = 0)
 		var_ba1fb8c1 = self stats::function_441050ca(stat_name);
 		if(isdefined(self.entity_num))
 		{
-			println("" + self.entity_num + "" + function_9e72a96(stat_name) + "" + var_ba1fb8c1);
+			println(((("" + self.entity_num) + "") + function_9e72a96(stat_name) + "") + var_ba1fb8c1);
 		}
 		else
 		{
-			println("" + function_9e72a96(stat_name) + "" + var_ba1fb8c1);
+			println((("" + function_9e72a96(stat_name)) + "") + var_ba1fb8c1);
 		}
 	#/
 }
@@ -1854,7 +1854,7 @@ function track_craftables_pickedup(craftable)
 function get_stat_distance_traveled()
 {
 	miles = int(self.pers[#"distance_traveled"] / 63360);
-	remainder = self.pers[#"distance_traveled"] / 63360 - miles;
+	remainder = (self.pers[#"distance_traveled"] / 63360) - miles;
 	if(miles < 1 && remainder < 0.5)
 	{
 		miles = 1;
@@ -1897,7 +1897,7 @@ function get_stat_combined_rank_value_survival_classic()
 	{
 		rounds = 99;
 	}
-	result = rounds * 10000000 + kills;
+	result = (rounds * 10000000) + kills;
 	return result;
 }
 
@@ -2367,7 +2367,7 @@ function function_ea5b4947(b_end_game = 0)
 			var_83b23c0c = max(player function_c52bcf79(), float(getdvarint(#"hash_1624faaee3c04f09", 1)));
 			var_78c18942 = player.var_78c18942 * var_83b23c0c;
 			/#
-				println("" + player.name + "" + player.var_78c18942 + "" + var_78c18942);
+				println((((("" + player.name) + "") + player.var_78c18942) + "") + var_78c18942);
 			#/
 			player function_e8f77739(#"zm_timeplayed", int(var_78c18942));
 		}
@@ -2536,7 +2536,7 @@ function function_7f377150(s_event_calling_task, n_value = 1)
 	var_e4edaaf0 = self stats::get_stat(#"hash_3b52e51401f0229c", level.var_6ad5a223, #"progress");
 	if(var_e4edaaf0 < s_event_calling_task.var_e226ec4f)
 	{
-		if(var_e4edaaf0 + n_value >= s_event_calling_task.var_e226ec4f)
+		if((var_e4edaaf0 + n_value) >= s_event_calling_task.var_e226ec4f)
 		{
 			self luinotifyevent(#"hash_675b38b81564449", 4, 0, level.var_1aa5a6d6, self function_3e561f63(), self getentitynumber());
 			self stats::set_stat(#"hash_3b52e51401f0229c", level.var_6ad5a223, #"progress", 0);
@@ -2545,7 +2545,7 @@ function function_7f377150(s_event_calling_task, n_value = 1)
 			self stats::set_stat(#"hash_3b52e51401f0229c", level.var_6ad5a223, s_event_calling_task.var_1f2bdb95, 1);
 			uploadstats(self);
 			/#
-				println(function_9e72a96(level.var_6ad5a223) + "" + self stats::get_stat(#"hash_3b52e51401f0229c", level.var_6ad5a223, "") + "" + function_9e72a96(s_event_calling_task.var_ad971622));
+				println(((function_9e72a96(level.var_6ad5a223) + "") + self stats::get_stat(#"hash_3b52e51401f0229c", level.var_6ad5a223, "") + "") + function_9e72a96(s_event_calling_task.var_ad971622));
 			#/
 		}
 		else
@@ -2553,7 +2553,7 @@ function function_7f377150(s_event_calling_task, n_value = 1)
 			/#
 				progress = var_e4edaaf0 + n_value;
 				target = s_event_calling_task.var_e226ec4f;
-				iprintln(self.name + "" + function_9e72a96(s_event_calling_task.var_ad971622) + "" + progress + "" + target);
+				iprintln(((((self.name + "") + function_9e72a96(s_event_calling_task.var_ad971622) + "") + progress) + "") + target);
 			#/
 			self stats::inc_stat(#"hash_3b52e51401f0229c", level.var_6ad5a223, #"progress", n_value);
 		}
@@ -2610,7 +2610,7 @@ function function_55109709(s_daily_calling_task, n_value = 1)
 	var_e4edaaf0 = self stats::get_stat(#"hash_18e3320ccf4091e5", #"progress");
 	if(isdefined(var_e4edaaf0) && isdefined(s_daily_calling_task) && isdefined(s_daily_calling_task.var_e226ec4f) && var_e4edaaf0 < s_daily_calling_task.var_e226ec4f)
 	{
-		if(var_e4edaaf0 + n_value >= s_daily_calling_task.var_e226ec4f)
+		if((var_e4edaaf0 + n_value) >= s_daily_calling_task.var_e226ec4f)
 		{
 			self stats::set_stat(#"hash_18e3320ccf4091e5", #"progress", s_daily_calling_task.var_e226ec4f);
 			self luinotifyevent(#"hash_675b38b81564449", 3, 1, s_daily_calling_task.var_de86e878, self getentitynumber());
@@ -2623,7 +2623,7 @@ function function_55109709(s_daily_calling_task, n_value = 1)
 				println("" + function_9e72a96(s_daily_calling_task.var_ad971622));
 			#/
 			/#
-				iprintln(self.name + "" + function_9e72a96(s_daily_calling_task.var_ad971622) + "" + s_daily_calling_task.n_xp + "");
+				iprintln((((self.name + "") + function_9e72a96(s_daily_calling_task.var_ad971622) + "") + s_daily_calling_task.n_xp) + "");
 			#/
 		}
 		else
@@ -2631,7 +2631,7 @@ function function_55109709(s_daily_calling_task, n_value = 1)
 			/#
 				progress = var_e4edaaf0 + n_value;
 				target = s_daily_calling_task.var_e226ec4f;
-				iprintln(self.name + "" + function_9e72a96(s_daily_calling_task.var_ad971622) + "" + progress + "" + target);
+				iprintln(((((self.name + "") + function_9e72a96(s_daily_calling_task.var_ad971622) + "") + progress) + "") + target);
 			#/
 			self stats::inc_stat(#"hash_18e3320ccf4091e5", #"progress", n_value);
 		}

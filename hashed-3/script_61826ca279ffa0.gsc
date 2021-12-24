@@ -521,14 +521,14 @@ function function_be3a76b7(var_7756eaf3)
 		level.var_13ae9d89[#"fadeout"] = hash(var_7756eaf3 + "_fadeout_training");
 	}
 	level.var_f4bbd9a8 = [];
-	var_595f0d40 = #"hash_1077be9b5c6f2d9b" + var_7756eaf3 + "_MISSION_SUCCESS";
+	var_595f0d40 = (#"hash_1077be9b5c6f2d9b" + var_7756eaf3) + "_MISSION_SUCCESS";
 	level.var_f4bbd9a8[#"success"] = var_595f0d40;
 	level.var_f4bbd9a8[#"hash_6aca9de9c415da07"] = #"hash_101aa27ea217ee3d";
 	level.var_f4bbd9a8[#"hash_586014641b63b8f5"] = #"hash_55f0485560f0e4b3";
 	var_37b94f55 = function_f0149e2f();
 	level.var_8758a1cf = var_7756eaf3 + "_start";
 	level thread function_6b71f442();
-	level.var_f01ac782 = #"hash_1077be9b5c6f2d9b" + var_7756eaf3 + "_OBJCOUNTER_LABEL";
+	level.var_f01ac782 = (#"hash_1077be9b5c6f2d9b" + var_7756eaf3) + "_OBJCOUNTER_LABEL";
 }
 
 /*
@@ -664,13 +664,13 @@ function function_c4f8317a(var_5a5260d8)
 function minutesandsecondsstring(milliseconds)
 {
 	minutes = floor(float(milliseconds) / 60000);
-	milliseconds = milliseconds - minutes * 60000;
+	milliseconds = milliseconds - (minutes * 60000);
 	seconds = floor(float(milliseconds) / 1000);
 	if(seconds < 10)
 	{
-		return minutes + ":0" + seconds;
+		return (minutes + ":0") + seconds;
 	}
-	return minutes + ":" + seconds;
+	return (minutes + ":") + seconds;
 }
 
 /*
@@ -708,7 +708,7 @@ function onscoreclosemusic()
 			}
 		}
 		scoredif = topscore - runnerupscore;
-		if(topscore >= scorelimit * 0.5)
+		if(topscore >= (scorelimit * 0.5))
 		{
 			level notify(#"sndmusichalfway");
 			return;
@@ -1025,7 +1025,7 @@ function function_2914a896(str_state, var_dd646e5, var_e8ee1cd1 = 0)
 function function_c314f6b1(n_seconds)
 {
 	var_f08fde43 = function_4c27be22("A");
-	bombtimer = int(var_f08fde43 + int(n_seconds * 1000));
+	bombtimer = int(var_f08fde43 + (int(n_seconds * 1000)));
 	setbombtimer("A", bombtimer);
 	setmatchflag("bomb_timer_a", 1);
 }
@@ -1272,7 +1272,7 @@ function function_c94d8a8a(var_58d4bf93)
 		while(n_dist > 90)
 		{
 			v_dir = vectornormalize(s_loc.origin - e_fx.origin);
-			v_target_pos = e_fx.origin + v_dir * 80;
+			v_target_pos = e_fx.origin + (v_dir * 80);
 			e_fx moveto(v_target_pos, 0.05, 0.05);
 			e_fx waittill(#"movedone");
 			n_dist = distance(e_fx.origin, s_loc.origin);
@@ -1836,7 +1836,7 @@ function function_aa9c8fbf()
 */
 function face_target(target)
 {
-	targetangles = vectortoangles(target.origin + vectorscale((0, 0, 1), 32) - self geteye());
+	targetangles = vectortoangles((target.origin + vectorscale((0, 0, 1), 32)) - self geteye());
 	targetangles = (absangleclamp360(targetangles[0]), targetangles[1], targetangles[2]);
 	self setplayerangles(targetangles);
 }
@@ -2542,7 +2542,7 @@ function function_9ff75262()
 function function_ebd7bf6a(n_seconds = 60, var_f6dfeaa0 = "countdown_timer_done")
 {
 	level endon_callback(&function_18747fb7, #"hash_582be86269c7fecc");
-	n_bomb_timer = int(gettime() + int(n_seconds * 1000));
+	n_bomb_timer = int(gettime() + (int(n_seconds * 1000)));
 	setmatchflag("bomb_timer_a", 1);
 	setbombtimer("A", n_bomb_timer);
 	while(true)
@@ -2921,7 +2921,7 @@ function get_player()
 */
 function function_6d7f4ec6(var_cfc2603c)
 {
-	n_bomb_timer = int(gettime() + 1000 + int(var_cfc2603c * 1000));
+	n_bomb_timer = int((gettime() + 1000) + (int(var_cfc2603c * 1000)));
 	setbombtimer("A", n_bomb_timer);
 	setmatchflag("bomb_timer_a", 1);
 	level.var_ebad4ea8 = gettime();
@@ -3129,7 +3129,7 @@ function function_2cc00dba(var_14fe1698)
 				break;
 			}
 			v_dir = anglestoforward(s_loc.angles) * -1;
-			v_behind = s_loc.origin + v_dir * 250;
+			v_behind = s_loc.origin + (v_dir * 250);
 			n_dist = distance(v_behind, bot.origin);
 			if(n_dist < 500)
 			{
@@ -3550,7 +3550,7 @@ function function_1db91571()
 		if(isdefined(level.var_cbcb0078) && level.var_cbcb0078)
 		{
 			var_79b7845d = function_4c27be22("A");
-			setbombtimer("A", var_79b7845d + n_time_ms - var_881a9f68);
+			setbombtimer("A", var_79b7845d + (n_time_ms - var_881a9f68));
 		}
 		else
 		{
@@ -3578,7 +3578,7 @@ function function_e768df25(v_target, var_368c41b6)
 {
 	e_player = self;
 	n_dist = distance(e_player.origin, v_target);
-	if(n_dist <= var_368c41b6 - 10)
+	if(n_dist <= (var_368c41b6 - 10))
 	{
 		if(isdefined(level.var_29a4ccd4))
 		{
@@ -3807,7 +3807,7 @@ function function_e0d36a2c(str_vo, var_8a30c2bf, var_aa62f5bf, arena_defend_wasp
 	{
 		level.var_32ff41f7 = undefined;
 	}
-	trace = bullettrace(s_loc.origin, s_loc.origin + vectorscale((0, 0, -1), 500), 0, e_player);
+	trace = bullettrace(s_loc.origin, s_loc.origin + (vectorscale((0, 0, -1), 500)), 0, e_player);
 	v_ground_pos = trace[#"position"];
 	level.var_e72728b8 = var_aa62f5bf;
 	if(isdefined(level.var_c06def85))
@@ -3969,7 +3969,7 @@ function function_b7f367ed(old_position, new_position)
 */
 function is_falling(position)
 {
-	return function_b7f367ed(position, position + vectorscale((0, 0, -1), 500));
+	return function_b7f367ed(position, position + (vectorscale((0, 0, -1), 500)));
 }
 
 /*
@@ -4515,7 +4515,7 @@ function function_15e01238(s_loc, n_max_dist, var_9c8d914, var_c9af632d, var_4df
 		}
 		e_player = get_player();
 		v_dir = anglestoforward(e_player.angles);
-		v_loc = e_player.origin + v_dir * 100;
+		v_loc = e_player.origin + (v_dir * 100);
 		n_dist = distance(v_loc, s_loc.origin);
 		if(n_dist < n_max_dist)
 		{
@@ -5301,7 +5301,7 @@ function function_9aca2fa0(state)
 	{
 		return;
 	}
-	music::setmusicstate(state + "_" + level.var_820c5561);
+	music::setmusicstate((state + "_") + level.var_820c5561);
 }
 
 /*
@@ -5830,7 +5830,7 @@ function function_ee33a140()
 function function_6434a9f(n_start_scale = 0.01, var_a8de9b22 = 1, n_time = 1, n_steps = 5)
 {
 	self endon(#"death", #"hash_5e367f32a795be37");
-	var_21cfaeb2 = var_a8de9b22 - n_start_scale / n_steps;
+	var_21cfaeb2 = (var_a8de9b22 - n_start_scale) / n_steps;
 	n_time_delta = n_time / n_steps;
 	n_scale = n_start_scale;
 	if(n_start_scale <= var_a8de9b22)
@@ -6104,7 +6104,7 @@ function function_944e4110(params)
 	{
 		cost = killstreaks::get_killstreak_momentum_cost(eattacker, level.var_b4a06c5b);
 		level.var_78a31a59 = cost;
-		var_595e41ee = int(cost / level.var_dd8875fe + 0.5);
+		var_595e41ee = int((cost / level.var_dd8875fe) + 0.5);
 		if(isdefined(level.var_28cfc859))
 		{
 			var_595e41ee = level.var_28cfc859;
@@ -6133,7 +6133,7 @@ function function_b3b2c91e()
 	}
 	e_player = getplayers()[0];
 	cost = killstreaks::get_killstreak_momentum_cost(e_player, level.var_b4a06c5b);
-	var_595e41ee = int(cost / level.var_dd8875fe + 0.5);
+	var_595e41ee = int((cost / level.var_dd8875fe) + 0.5);
 	if(isdefined(level.var_28cfc859))
 	{
 		var_595e41ee = level.var_28cfc859;
@@ -6477,7 +6477,7 @@ function function_89cd182c(s_loc)
 {
 	self endon(#"death");
 	v_dir = anglestoforward(s_loc.angles);
-	var_c657828f = s_loc.origin + v_dir * 100;
+	var_c657828f = s_loc.origin + (v_dir * 100);
 	self.var_2925fedc = var_c657828f;
 	wait(2);
 	self.var_2925fedc = undefined;

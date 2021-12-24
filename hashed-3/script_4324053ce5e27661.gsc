@@ -155,7 +155,7 @@ function function_67525edc(var_3f1f1429)
 		if(isplayer(target))
 		{
 			distsq = distancesquared(var_3f1f1429.origin, target.origin);
-			if(distsq <= 150 * 150)
+			if(distsq <= (150 * 150))
 			{
 				params = function_4d1e7b48(#"hash_12a64221f4d27f9b");
 				weapon = getweapon(#"eq_molotov");
@@ -425,15 +425,15 @@ function function_4b28fc8c(entity)
 	var_f5022ab9 setmodel("tag_origin");
 	vectorfromenemy = vectornormalize(entity.origin - landpos);
 	vectorfromenemy = vectorscale(vectorfromenemy, 250);
-	targetpos = landpos + vectorfromenemy + vectorscale((0, 0, 1), 200);
+	targetpos = (landpos + vectorfromenemy) + vectorscale((0, 0, 1), 200);
 	var_f5022ab9 clientfield::set("towers_boss_head_proj_fx_cf", 1);
 	trajectory = [];
 	dirtotarget = targetpos - launchpos;
 	var_f1c85329 = vectorscale((0, 0, 1), 30);
 	var_62e75be4 = vectorscale((0, 0, 1), 200);
-	trajectory[trajectory.size] = launchpos + dirtotarget * 0.85 + var_f1c85329;
-	trajectory[trajectory.size] = launchpos + dirtotarget * 0.5 + var_62e75be4;
-	trajectory[trajectory.size] = launchpos + dirtotarget * 0.15 + var_f1c85329;
+	trajectory[trajectory.size] = (launchpos + (dirtotarget * 0.85)) + var_f1c85329;
+	trajectory[trajectory.size] = (launchpos + (dirtotarget * 0.5)) + var_62e75be4;
+	trajectory[trajectory.size] = (launchpos + (dirtotarget * 0.15)) + var_f1c85329;
 	trajectory = array::reverse(trajectory);
 	/#
 		self thread function_8d7ad318(launchpos, trajectory, targetpos);
@@ -555,7 +555,7 @@ function function_9d14fcee()
 		predictedpos = self.enemy.origin;
 		if(isdefined(predictedpos))
 		{
-			turnyaw = absangleclamp360(self.angles[1] - vectortoangles(predictedpos - self.origin)[1]);
+			turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(predictedpos - self.origin)[1]));
 			return turnyaw;
 		}
 	}
@@ -738,7 +738,7 @@ private function function_7427c937(elephant, rider)
 	{
 		return 0;
 	}
-	if(!util::within_fov(rider.origin + vectorscale((0, 0, -1), 40), rider.angles, elephant.closestenemy.origin, cos(70)))
+	if(!util::within_fov(rider.origin + (vectorscale((0, 0, -1), 40)), rider.angles, elephant.closestenemy.origin, cos(70)))
 	{
 		return 0;
 	}
@@ -767,7 +767,7 @@ private function function_67fbc3a3(elephant, rider, var_c3f91959)
 	}
 	if(isdefined(predictedpos))
 	{
-		turnyaw = absangleclamp360(rider.angles[1] - vectortoangles(predictedpos - rider.origin)[1]);
+		turnyaw = absangleclamp360(rider.angles[1] - (vectortoangles(predictedpos - rider.origin)[1]));
 		if(turnyaw >= 67.5 && turnyaw <= 180)
 		{
 			return "attack_right";
@@ -862,7 +862,7 @@ private function function_978a4592(elephant, rider)
 function function_202012ad(elephant, rider)
 {
 	currenttime = gettime();
-	if(isdefined(rider.ai.var_37e9f736) && gettime() - rider.ai.var_37e9f736 <= 50)
+	if(isdefined(rider.ai.var_37e9f736) && (gettime() - rider.ai.var_37e9f736) <= 50)
 	{
 		return 1;
 	}
@@ -1179,7 +1179,7 @@ private function function_4c731a08()
 	self.maxhealth = self ai::function_9139c839().minhealth;
 	for(i = 0; i < level.players.size - 1; i++)
 	{
-		self.maxhealth = self.maxhealth + int(self ai::function_9139c839().minhealth * self ai::function_9139c839().var_854eebd);
+		self.maxhealth = self.maxhealth + (int(self ai::function_9139c839().minhealth * self ai::function_9139c839().var_854eebd));
 	}
 	self.health = self.maxhealth;
 	self setrepairpaths(0);
@@ -1377,7 +1377,7 @@ function function_74fba881(elephant)
 	{
 		return;
 	}
-	if(var_dd54fdb1.health <= var_dd54fdb1.maxhealth * 0.1)
+	if(var_dd54fdb1.health <= (var_dd54fdb1.maxhealth * 0.1))
 	{
 		if(elephant isattached(#"hash_4fa83d5b64e75bed", "tag_origin"))
 		{
@@ -1392,7 +1392,7 @@ function function_74fba881(elephant)
 			elephant playsound(#"hash_9d86c1e08ca3809");
 		}
 	}
-	else if(var_dd54fdb1.health <= var_dd54fdb1.maxhealth * 0.25)
+	else if(var_dd54fdb1.health <= (var_dd54fdb1.maxhealth * 0.25))
 	{
 		if(elephant isattached(#"hash_4fa83b5b64e75887", "tag_origin"))
 		{
@@ -1409,7 +1409,7 @@ function function_74fba881(elephant)
 			elephant playsound(#"hash_55bac56f7a46775c");
 		}
 	}
-	else if(var_dd54fdb1.health <= var_dd54fdb1.maxhealth * 0.5)
+	else if(var_dd54fdb1.health <= (var_dd54fdb1.maxhealth * 0.5))
 	{
 		if(elephant isattached(#"hash_4fa8385b64e7536e", "tag_origin"))
 		{
@@ -1424,7 +1424,7 @@ function function_74fba881(elephant)
 			elephant playsound(#"hash_55bac56f7a46775c");
 		}
 	}
-	else if(var_dd54fdb1.health <= var_dd54fdb1.maxhealth * 0.75)
+	else if(var_dd54fdb1.health <= (var_dd54fdb1.maxhealth * 0.75))
 	{
 		if(elephant isattached(#"hash_4fa8395b64e75521", "tag_origin"))
 		{
@@ -1439,7 +1439,7 @@ function function_74fba881(elephant)
 			elephant playsound(#"hash_55bac56f7a46775c");
 		}
 	}
-	else if(var_dd54fdb1.health <= var_dd54fdb1.maxhealth * 0.95)
+	else if(var_dd54fdb1.health <= (var_dd54fdb1.maxhealth * 0.95))
 	{
 		if(elephant isattached(#"hash_4fa8365b64e75008", "tag_origin"))
 		{
@@ -1471,7 +1471,7 @@ function function_c153d922(elephant, point, bonename)
 		assert(isdefined(point) && isdefined(bonename));
 	#/
 	var_845efb9f = elephant gettagorigin(bonename);
-	if(distancesquared(var_845efb9f, point) <= 40 * 40)
+	if(distancesquared(var_845efb9f, point) <= (40 * 40))
 	{
 		/#
 			recordsphere(point, 4, (0, 1, 0), "");
@@ -1652,9 +1652,9 @@ function function_ee23b15d(inflictor, attacker, damage, idflags, meansofdeath, w
 	{
 		return 0;
 	}
-	if(self.health - damage <= 0)
+	if((self.health - damage) <= 0)
 	{
-		self.health = self.health + int(damage + 1);
+		self.health = self.health + (int(damage + 1));
 		self.ai.var_37e9f736 = gettime();
 	}
 	/#
@@ -1861,7 +1861,7 @@ private function function_4d479d22(elephant)
 	elephant.maxhealth = elephant ai::function_9139c839().minhealth;
 	for(i = 0; i < level.players.size - 1; i++)
 	{
-		elephant.maxhealth = elephant.maxhealth + int(elephant ai::function_9139c839().minhealth * elephant ai::function_9139c839().var_854eebd);
+		elephant.maxhealth = elephant.maxhealth + (int(elephant ai::function_9139c839().minhealth * elephant ai::function_9139c839().var_854eebd));
 	}
 	elephant.health = elephant.maxhealth;
 	elephant animation::play("ch_vign_tplt_inbtl_hllpht_evlve_2_stg_2_00_hllpht", undefined, undefined, 1, 0.2, 0.1, undefined, undefined, undefined, 0);
@@ -1894,8 +1894,8 @@ private function function_f51431a9(elephant)
 	elephant endon(#"death");
 	while(true)
 	{
-		var_55fb74b2 = elephant.health <= elephant.maxhealth * 0.5;
-		var_e8e6826f = elephant.health <= elephant.maxhealth * 0.2;
+		var_55fb74b2 = elephant.health <= (elephant.maxhealth * 0.5);
+		var_e8e6826f = elephant.health <= (elephant.maxhealth * 0.2);
 		currentstate = elephant.ai.var_112ec817;
 		switch(currentstate)
 		{
@@ -2028,12 +2028,12 @@ function function_ce8fe2b0(entity, var_ab9f62ef)
 	}
 	else
 	{
-		var_6629fd0d = entity.origin + forwarddist * forwardvec;
+		var_6629fd0d = entity.origin + (forwarddist * forwardvec);
 	}
 	var_cbdae441 = getclosestpointonnavmesh(var_6629fd0d, 500, 200);
 	if(isdefined(var_cbdae441))
 	{
-		trace = groundtrace(var_cbdae441 + vectorscale((0, 0, 1), 200), var_cbdae441 + vectorscale((0, 0, -1), 200), 0, undefined);
+		trace = groundtrace(var_cbdae441 + vectorscale((0, 0, 1), 200), var_cbdae441 + (vectorscale((0, 0, -1), 200)), 0, undefined);
 		if(isdefined(trace[#"position"]))
 		{
 			newpos = trace[#"position"];
@@ -2189,8 +2189,8 @@ private function elephantshouldmelee(entity)
 		return 0;
 	}
 	disttoenemysq = distancesquared(entity.favoriteenemy.origin, entity.origin);
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.favoriteenemy.origin - entity.origin)[1]);
-	if(disttoenemysq <= 440 * 440 && abs(yawtoenemy) < 80)
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.favoriteenemy.origin - entity.origin)[1]));
+	if(disttoenemysq <= (440 * 440) && abs(yawtoenemy) < 80)
 	{
 		return 1;
 	}
@@ -2251,7 +2251,7 @@ private function function_2ff17378(entity)
 		return 0;
 	}
 	disttoenemysq = distancesquared(entity.favoriteenemy.origin, entity.origin);
-	if(disttoenemysq <= 850 * 850)
+	if(disttoenemysq <= (850 * 850))
 	{
 		return 0;
 	}
@@ -2441,7 +2441,7 @@ private function function_f8145b00(entity)
 						recordsphere(targetpos, 8, (0, 1, 1), "");
 					#/
 					dirtoenemy = vectornormalize(targetpos - self.origin);
-					targetpos = targetpos + vectorscale(dirtoenemy * -1, 170);
+					targetpos = targetpos + (vectorscale(dirtoenemy * -1, 170));
 					targetpos = getclosestpointonnavmesh(targetpos, 400, entity getpathfindingradius() * 1.2);
 					if(isdefined(targetpos))
 					{

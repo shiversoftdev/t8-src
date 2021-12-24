@@ -451,7 +451,7 @@ function wait_endon(waittime, endonstring, endonstring2, endonstring3, endonstri
 function getfx(fx)
 {
 	/#
-		assert(isdefined(level._effect[fx]), "" + fx + "");
+		assert(isdefined(level._effect[fx]), ("" + fx) + "");
 	#/
 	return level._effect[fx];
 }
@@ -559,7 +559,7 @@ function trigger_thread(ent, on_enter_payload, on_exit_payload)
 		return;
 	}
 	self add_trigger_to_ent(ent);
-	ender = "end_trig_death_monitor" + self getentitynumber() + " " + ent getentitynumber();
+	ender = (("end_trig_death_monitor" + self getentitynumber()) + " ") + ent getentitynumber();
 	self thread trigger_thread_death_monitor(ent, ender);
 	endon_condition = "leave_trigger_" + self getentitynumber();
 	if(isdefined(on_enter_payload))

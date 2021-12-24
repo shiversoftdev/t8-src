@@ -94,9 +94,9 @@ function __main__()
 */
 function function_c6e2a4fd()
 {
-	var_5dac9747 = self.target2 + "_" + self.script_noteworthy;
-	str_trigger = self.target3 + "_" + self.script_noteworthy;
-	str_volume = self.target4 + "_" + self.script_noteworthy;
+	var_5dac9747 = (self.target2 + "_") + self.script_noteworthy;
+	str_trigger = (self.target3 + "_") + self.script_noteworthy;
+	str_volume = (self.target4 + "_") + self.script_noteworthy;
 	self.var_5aecd907 = [];
 	self.var_f35c90d7 = [];
 	self.var_1be9f510 = [];
@@ -485,7 +485,7 @@ function function_242055cf()
 	level endon(#"end_game");
 	var_c82ab529 = self.var_5aecd907[0].var_c82ab529;
 	v_start_pos = var_c82ab529.origin;
-	var_65c6475f = ceil(40 / 3 * 2);
+	var_65c6475f = ceil(40 / (3 * 2));
 	for(i = 0; i < var_65c6475f; i++)
 	{
 		var_c82ab529 moveto(self.origin, 2);

@@ -229,7 +229,7 @@ function markerupdatethread(context)
 			results = bullettrace(eyepos, eyepos + forwardvector, 0, player, 1);
 			if(results[#"fraction"] >= 1)
 			{
-				results = bullettrace(results[#"position"], results[#"position"] + vectorscale((0, 0, -1), 1000), 0, player, 1);
+				results = bullettrace(results[#"position"], results[#"position"] + (vectorscale((0, 0, -1), 1000)), 0, player, 1);
 			}
 		}
 		else
@@ -245,7 +245,7 @@ function markerupdatethread(context)
 		{
 			var_6aa266d6 = node.origin;
 		}
-		tooclose = distancesquared(markermodel.origin, player.origin) < minrange * minrange;
+		tooclose = distancesquared(markermodel.origin, player.origin) < (minrange * minrange);
 		waterheight = getwaterheight(markermodel.origin);
 		inwater = markermodel.origin[2] < waterheight;
 		if(isdefined(var_6aa266d6) && !tooclose && !inwater && isdefined(context.islocationgood) && [[context.islocationgood]](markermodel.origin, context))

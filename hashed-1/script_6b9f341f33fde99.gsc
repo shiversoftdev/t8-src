@@ -132,7 +132,7 @@ function calcspawnorigin(origin, angles)
 		for(i = 0; i < testangles.size; i++)
 		{
 			startpoint = origin + (0, 0, heightoffset);
-			endpoint = startpoint + vectorscale(anglestoforward((0, angles[1], 0) + testangles[i]), 70);
+			endpoint = startpoint + (vectorscale(anglestoforward((0, angles[1], 0) + testangles[i]), 70));
 			mask = 1 | 2;
 			trace = physicstrace(startpoint, endpoint, mins, maxs, self, mask);
 			if(isdefined(trace[#"entity"]) && isplayer(trace[#"entity"]))
@@ -176,7 +176,7 @@ function calcspawnorigin(origin, angles)
 		#/
 		var_56e2a4e0 = randomintrange(800, 1200);
 		dir = vectornormalize(startnode.origin - origin);
-		pos = origin + dir * var_56e2a4e0;
+		pos = origin + (dir * var_56e2a4e0);
 		pos = (pos[0], pos[1], heightoffset);
 		spawnloc = getclosestpointonnavvolume(pos, "navvolume_small", 2000);
 		if(isdefined(spawnloc))
@@ -249,7 +249,7 @@ function function_d52c51c6(killstreaktype)
 	drone_squadron.lowhealth = killstreak_bundles::get_low_health("drone_squadron");
 	drone_squadron.health = drone_squadron.maxhealth;
 	drone_squadron.hackedhealth = killstreak_bundles::get_hacked_health("drone_squadron");
-	drone_squadron.rocketdamage = drone_squadron.maxhealth / 2 + 1;
+	drone_squadron.rocketdamage = (drone_squadron.maxhealth / 2) + 1;
 	drone_squadron.playeddamaged = 0;
 	drone_squadron.treat_owner_damage_as_friendly_fire = 1;
 	drone_squadron.ignore_team_kills = 1;
@@ -277,7 +277,7 @@ function function_d52c51c6(killstreaktype)
 	var_3daa0416 = drone_right * -1;
 	var_1b4e1739 = anglestoforward(drone_squadron.angles) * -1;
 	waitframe(1);
-	var_91edb2b7 = drone_squadron.origin + drone_right * 128 + var_1b4e1739 * 128;
+	var_91edb2b7 = (drone_squadron.origin + (drone_right * 128)) + (var_1b4e1739 * 128);
 	var_91edb2b7 = getclosestpointonnavvolume(var_91edb2b7, "navvolume_small", 2000);
 	wing_drone = spawnvehicle("spawner_boct_mp_wing_drone", var_91edb2b7, drone_squadron.angles, "wing_drone_ai");
 	if(isdefined(level.var_14151f16))
@@ -299,7 +299,7 @@ function function_d52c51c6(killstreaktype)
 	player.drone_squadron = drone_squadron;
 	player.var_e80d9471 = 1;
 	waitframe(1);
-	var_91edb2b7 = drone_squadron.origin + var_3daa0416 * 128 + var_1b4e1739 * 128;
+	var_91edb2b7 = (drone_squadron.origin + (var_3daa0416 * 128)) + (var_1b4e1739 * 128);
 	var_91edb2b7 = getclosestpointonnavvolume(var_91edb2b7, "navvolume_small", 2000);
 	wing_drone = spawnvehicle("spawner_boct_mp_wing_drone", var_91edb2b7, drone_squadron.angles, "wing_drone_ai");
 	wing_drone.leader = drone_squadron;

@@ -111,7 +111,7 @@ function _play(animation, v_origin_or_ent, v_angles_or_tag, n_rate = 1, n_blend_
 	else if(isstring(v_angles_or_tag))
 	{
 		/#
-			assert(isdefined(v_origin_or_ent.model), "" + animation + "" + v_angles_or_tag + "");
+			assert(isdefined(v_origin_or_ent.model), ((("" + animation) + "") + v_angles_or_tag) + "");
 		#/
 		v_pos = v_origin_or_ent gettagorigin(v_angles_or_tag);
 		v_ang = v_origin_or_ent gettagangles(v_angles_or_tag);

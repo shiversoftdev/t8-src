@@ -187,7 +187,7 @@ function debug_print_kill_info()
 			return;
 		}
 		player = self;
-		iprintln("" + player.pers[#"blackjack_specialist_kills"] + "" + player.pers[#"blackjack_unique_specialist_kills"]);
+		iprintln((("" + player.pers[#"blackjack_specialist_kills"]) + "") + player.pers[#"blackjack_unique_specialist_kills"]);
 	#/
 }
 
@@ -548,7 +548,7 @@ function track_blackjack_consumable()
 	}
 	while(isdefined(player))
 	{
-		random_wait_time = getdvarfloat(#"mp_blackjack_consumable_wait", 20) + randomfloatrange(-5, 5);
+		random_wait_time = getdvarfloat(#"mp_blackjack_consumable_wait", 20) + (randomfloatrange(-5, 5));
 		wait(random_wait_time);
 		player report_consumable();
 	}

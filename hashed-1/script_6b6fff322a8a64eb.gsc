@@ -881,8 +881,8 @@ function function_6ad0e23f()
 			}
 		#/
 	}
-	iprintlnbold("" + level.meteor_counter + "");
-	println("" + level.meteor_counter + "");
+	iprintlnbold(("" + level.meteor_counter) + "");
+	println(("" + level.meteor_counter) + "");
 	zm_unitrigger::unregister_unitrigger(self.stub);
 }
 

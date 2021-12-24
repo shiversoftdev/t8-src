@@ -908,7 +908,7 @@ function function_71be28e1(zombie, start_portal, end_portal)
 	}
 	end_target = end_portal.var_52a6f692[0];
 	zombie setentitypaused(0);
-	zombie forceteleport(end_portal.origin + anglestoforward(end_portal.angles) * randomfloatrange(0, 32), end_target.angles);
+	zombie forceteleport(end_portal.origin + (anglestoforward(end_portal.angles) * randomfloatrange(0, 32)), end_target.angles);
 	zombie function_1f034d46();
 	playfx(level._effect[#"hash_692bbec56d4f9a18"], zombie.origin);
 	playfx(level._effect[#"hash_51e5effc17815d68"], end_portal.origin, (1, 0, 0), (0, 0, 1));
@@ -1696,7 +1696,7 @@ function function_35babccd(ent)
 			ent.floor_num = index + 1;
 			return ent.floor_num;
 		}
-		index = index + 1 % var_4e37b34;
+		index = (index + 1) % var_4e37b34;
 	}
 	/#
 		println("");

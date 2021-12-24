@@ -251,7 +251,7 @@ function claymore_detonation(e_planter)
 	self endon(#"death");
 	self zm_utility::waittill_not_moving();
 	detonateradius = 96;
-	damagearea = spawn("trigger_radius", self.origin, 512 | 1 + 8, detonateradius, detonateradius * 2);
+	damagearea = spawn("trigger_radius", self.origin, (512 | 1) + 8, detonateradius, detonateradius * 2);
 	damagearea setexcludeteamfortrigger(self.owner.team);
 	damagearea enablelinkto();
 	damagearea linkto(self);

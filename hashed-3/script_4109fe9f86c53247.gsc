@@ -179,7 +179,7 @@ function function_7d81b8c1()
 		{
 			var_24e0e73d = 15;
 		}
-		if(self.var_8b5609a4 >= int(var_24e0e73d * 0.5))
+		if(self.var_8b5609a4 >= (int(var_24e0e73d * 0.5)))
 		{
 			self thread zm_audio::create_and_play_dialog(#"freeze", #"start");
 		}

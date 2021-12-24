@@ -88,7 +88,7 @@ private function _dampenexplosivedamage(inflictor, attacker, damage, flags, mean
 		fractiondistance = 1;
 		if(weapon.explosionradius > 0)
 		{
-			fractiondistance = weapon.explosionradius - distancetoentity / weapon.explosionradius;
+			fractiondistance = (weapon.explosionradius - distancetoentity) / weapon.explosionradius;
 		}
 		return int(max(damage * fractiondistance, 1));
 	}
@@ -244,12 +244,12 @@ private function _getphalanxpositions(phalanxtype, tier)
 		default:
 		{
 			/#
-				assert("" + phalanxtype + "");
+				assert(("" + phalanxtype) + "");
 			#/
 		}
 	}
 	/#
-		assert("" + tier + "");
+		assert(("" + tier) + "");
 	#/
 }
 
@@ -266,10 +266,10 @@ private function _getphalanxspawner(tier)
 {
 	spawner = getspawnerarray(tier, "targetname");
 	/#
-		assert(spawner.size >= 0, "" + "" + "");
+		assert(spawner.size >= 0, ("" + "") + "");
 	#/
 	/#
-		assert(spawner.size == 1, "" + "" + "");
+		assert(spawner.size == 1, ("" + "") + "");
 	#/
 	return spawner[0];
 }
@@ -371,7 +371,7 @@ private function _movephalanxtier(sentients, phalanxtype, tier, destination, for
 		if(isdefined(sentient) && isalive(sentient))
 		{
 			/#
-				assert(isvec(positions[index]), "" + index + "" + tier + "" + phalanxtype);
+				assert(isvec(positions[index]), (((("" + index) + "") + tier) + "") + phalanxtype);
 			#/
 			orientedpos = _rotatevec(positions[index], angles[1] - 90);
 			navmeshposition = getclosestpointonnavmesh(destination + orientedpos, 200);
@@ -500,7 +500,7 @@ private function _resumefiresentients(sentients)
 */
 private function _rotatevec(vector, angle)
 {
-	return (vector[0] * cos(angle) - vector[1] * sin(angle), vector[0] * sin(angle) + vector[1] * cos(angle), vector[2]);
+	return ((vector[0] * cos(angle)) - (vector[1] * sin(angle)), (vector[0] * sin(angle)) + (vector[1] * cos(angle)), vector[2]);
 }
 
 /*
@@ -572,7 +572,7 @@ private function _updatephalanx()
 		self.sentienttiers_[name] = _prunedead(tier);
 		self.currentsentientcount_ = self.currentsentientcount_ + self.sentienttiers_[name].size;
 	}
-	if(self.currentsentientcount_ <= self.startsentientcount_ - self.breakingpoint_)
+	if(self.currentsentientcount_ <= (self.startsentientcount_ - self.breakingpoint_))
 	{
 		scatterphalanx();
 		return 0;

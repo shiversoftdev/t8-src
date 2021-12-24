@@ -330,7 +330,7 @@ function scoreeventplayerkill(data, time)
 	{
 		if(level.teambased)
 		{
-			if(isdefined(victim.lastkilltime) && victim.lastkilltime > time - 3000)
+			if(isdefined(victim.lastkilltime) && victim.lastkilltime > (time - 3000))
 			{
 				if(isdefined(victim.lastkilledplayer) && victim.lastkilledplayer util::isenemyplayer(attacker) == 0 && attacker != victim.lastkilledplayer)
 				{
@@ -527,7 +527,7 @@ function scoreeventplayerkill(data, time)
 				processscoreevent(#"kill_enemy_with_their_hero_ability", attacker, victim, getweapon(#"gadget_speed_burst"));
 			}
 		}
-		if(isdefined(attacker.var_6f3f5189) && attacker.var_6f3f5189 + 2000 >= time && !weapon.var_76ce72e8 === 1)
+		if(isdefined(attacker.var_6f3f5189) && (attacker.var_6f3f5189 + 2000) >= time && !weapon.var_76ce72e8 === 1)
 		{
 			processscoreevent("kill_enemy_after_switching_weapons", attacker, victim, weapon);
 		}
@@ -564,7 +564,7 @@ function scoreeventplayerkill(data, time)
 		{
 			processscoreevent(#"electrified", victimelectrifiedby, victim, weapon);
 		}
-		if(victimvisionpulseactivatetime != 0 && victimvisionpulseactivatetime > time - 4000)
+		if(victimvisionpulseactivatetime != 0 && victimvisionpulseactivatetime > (time - 4000))
 		{
 			for(i = 0; i < victimvisionpulsearray.size; i++)
 			{
@@ -593,7 +593,7 @@ function scoreeventplayerkill(data, time)
 				attacker notify(#"hero_shutdown_gadget", {#victim:victim, #gadget:victimheroability});
 			}
 		}
-		if(victimlastvisionpulsedtime != 0 && victimlastvisionpulsedtime > time - level.var_2e3031be.var_9d776ba6)
+		if(victimlastvisionpulsedtime != 0 && victimlastvisionpulsedtime > (time - level.var_2e3031be.var_9d776ba6))
 		{
 			if(isdefined(victimlastvisionpulsedby) && attacker != victimlastvisionpulsedby && attacker util::isenemyplayer(victimlastvisionpulsedby) == 0)
 			{
@@ -677,7 +677,7 @@ function scoreeventplayerkill(data, time)
 		}
 		if(isdefined(attacker.var_a7f5c61e) && attacker.var_a7f5c61e)
 		{
-			if(isdefined(level.playgadgetsuccess) && weapon != getweapon(#"hash_4bb2d7f789b561eb") && gettime() > (isdefined(attacker.var_5069fdec) ? attacker.var_5069fdec : int(-30 * 1000)) + int(30 * 1000))
+			if(isdefined(level.playgadgetsuccess) && weapon != getweapon(#"hash_4bb2d7f789b561eb") && gettime() > (isdefined(attacker.var_5069fdec) ? attacker.var_5069fdec : int(-30 * 1000)) + (int(30 * 1000)))
 			{
 				attacker [[level.playgadgetsuccess]](getweapon(#"hash_3a19c6a9c8caef33"), undefined, undefined, undefined);
 				attacker.var_5069fdec = gettime();
@@ -720,7 +720,7 @@ function scoreeventplayerkill(data, time)
 				}
 			}
 		}
-		else if(isdefined(victimpowerarmorlasttookdamagetime) && time - victimpowerarmorlasttookdamagetime <= 3000)
+		else if(isdefined(victimpowerarmorlasttookdamagetime) && (time - victimpowerarmorlasttookdamagetime) <= 3000)
 		{
 			attacker notify(#"hero_shutdown", {#gadget:victimheroability});
 			attacker notify(#"hero_shutdown_gadget", {#victim:victim, #gadget:victimheroability});
@@ -881,7 +881,7 @@ function scoreeventplayerkill(data, time)
 						attacker.var_ea1458aa.var_eb577364 = 0;
 					}
 					attacker.var_ea1458aa.var_eb577364++;
-					if(attacker.var_ea1458aa.var_eb577364 % 3 == 0)
+					if((attacker.var_ea1458aa.var_eb577364 % 3) == 0)
 					{
 						attacker stats::function_dad108fa(#"longshot_3_onelife", 1);
 					}
@@ -904,7 +904,7 @@ function scoreeventplayerkill(data, time)
 				}
 			}
 		}
-		else if(isdefined(attacker.deathtime) && attacker.deathtime + 800 < time && !attacker isinvehicle())
+		else if(isdefined(attacker.deathtime) && (attacker.deathtime + 800) < time && !attacker isinvehicle())
 		{
 			level.globalafterlifes++;
 			processscoreevent(#"kill_enemy_after_death", attacker, victim, weapon);
@@ -982,7 +982,7 @@ function scoreeventplayerkill(data, time)
 				attacker stats::function_e24eec31(weapon, #"kill_enemy_one_bullet", 1);
 			}
 		}
-		if(isdefined(victim.var_d6f11c60) && attacker == victim.var_d6f11c60 && victim.var_e6c1bab8 + 2000 > gettime())
+		if(isdefined(victim.var_d6f11c60) && attacker == victim.var_d6f11c60 && (victim.var_e6c1bab8 + 2000) > gettime())
 		{
 			var_21877ec1 = 1;
 		}
@@ -998,7 +998,7 @@ function scoreeventplayerkill(data, time)
 			assert(isdefined(attacker));
 		#/
 		/#
-			assert(isdefined(attacker.tookweaponfrom), "" + attacker getentnum() + "");
+			assert(isdefined(attacker.tookweaponfrom), ("" + attacker getentnum()) + "");
 		#/
 		if(isdefined(attacker) && isdefined(attacker.tookweaponfrom) && isdefined(attacker.tookweaponfrom[weapon]) && isdefined(attacker.tookweaponfrom[weapon].previousowner))
 		{
@@ -1036,7 +1036,7 @@ function scoreeventplayerkill(data, time)
 		attacker stats::function_dad108fa(#"kill_as_support_gunner", 1);
 		processscoreevent(#"mothership_assist_kill", level.vtol.owner, victim, weapon);
 	}
-	if(isdefined(var_7117b104) && time - var_7117b104 < 5300)
+	if(isdefined(var_7117b104) && (time - var_7117b104) < 5300)
 	{
 		processscoreevent(#"hash_3382a0f71afb182f", attacker, victim, weapon);
 	}
@@ -2289,7 +2289,7 @@ function function_c28e2c05(var_152c14d0, var_f208fb92, var_e13a103a)
 		{
 			continue;
 		}
-		if(distancesquared(var_152c14d0, sensor.origin) < (function_f99d2668() ? 2400 : 800) + 50 * (function_f99d2668() ? 2400 : 800) + 50)
+		if(distancesquared(var_152c14d0, sensor.origin) < ((function_f99d2668() ? 2400 : 800) + 50) * ((function_f99d2668() ? 2400 : 800) + 50))
 		{
 			return sensor;
 		}

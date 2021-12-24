@@ -369,7 +369,7 @@ function function_8fb44aff(localclientnum, origin, angles, isvalid, var_eb65925c
 */
 function function_d66a0190(row, column)
 {
-	var_c21dfa9e = row * level.var_5101157d.bundle.var_f0b4da50 + column;
+	var_c21dfa9e = (row * level.var_5101157d.bundle.var_f0b4da50) + column;
 	if(var_c21dfa9e < 10)
 	{
 		return "joint_0" + var_c21dfa9e;
@@ -414,13 +414,13 @@ function function_5a8becdc(localclientnum, player, var_7daa4df9, var_4b1c8937)
 	var_59cc3b18 = level.var_5101157d.bundle.maxheight / level.var_5101157d.bundle.var_f0b4da50;
 	var_6d7689d4 = level.var_5101157d.bundle.maxwidth / level.var_5101157d.bundle.var_b118698f;
 	var_b963136f = int(var_7daa4df9.width / var_6d7689d4);
-	var_227adab7 = var_7daa4df9.width - var_6d7689d4 * var_b963136f;
-	if(var_227adab7 > 0 && var_227adab7 / 2 < level.var_5101157d.bundle.var_3dfbdbeb && var_b963136f + 2 <= level.var_5101157d.bundle.var_b118698f)
+	var_227adab7 = var_7daa4df9.width - (var_6d7689d4 * var_b963136f);
+	if(var_227adab7 > 0 && (var_227adab7 / 2) < level.var_5101157d.bundle.var_3dfbdbeb && (var_b963136f + 2) <= level.var_5101157d.bundle.var_b118698f)
 	{
 		var_b963136f = var_b963136f + 2;
 	}
 	var_9de92bd5 = int(var_7daa4df9.height / var_59cc3b18);
-	var_2582dbd = var_7daa4df9.height - var_59cc3b18 * var_9de92bd5;
+	var_2582dbd = var_7daa4df9.height - (var_59cc3b18 * var_9de92bd5);
 	if(var_2582dbd > 0 && var_2582dbd < level.var_5101157d.bundle.var_3dfbdbeb && var_2582dbd < level.var_5101157d.bundle.var_f0b4da50)
 	{
 		var_9de92bd5++;
@@ -429,7 +429,7 @@ function function_5a8becdc(localclientnum, player, var_7daa4df9, var_4b1c8937)
 	var_e465f403 = level.var_5101157d.bundle.var_f0b4da50 - var_9de92bd5;
 	for(rowindex = 0; rowindex < var_e465f403; rowindex++)
 	{
-		rownum = level.var_5101157d.bundle.var_f0b4da50 - rowindex - 1;
+		rownum = (level.var_5101157d.bundle.var_f0b4da50 - rowindex) - 1;
 		for(colindex = 1; colindex < level.var_5101157d.bundle.var_b118698f; colindex++)
 		{
 			var_c4027b0a = function_d66a0190(rownum, colindex);
@@ -568,8 +568,8 @@ function microwavefxhash(trace, origin, name)
 	counter = 2;
 	for(i = 0; i < 5; i++)
 	{
-		endofhalffxsq = i * 150 + 125 * i * 150 + 125;
-		endoffullfxsq = i * 150 + 200 * i * 150 + 200;
+		endofhalffxsq = ((i * 150) + 125) * ((i * 150) + 125);
+		endoffullfxsq = ((i * 150) + 200) * ((i * 150) + 200);
 		tracedistsq = distancesquared(origin, trace[#"position"]);
 		if(tracedistsq >= endofhalffxsq || i == 0)
 		{
@@ -721,8 +721,8 @@ function playmicrowavefx(localclientnum, trace, traceright, traceleft, origin, t
 {
 	for(i = 0; i < 5; i++)
 	{
-		endofhalffxsq = i * 150 + 125 * i * 150 + 125;
-		endoffullfxsq = i * 150 + 200 * i * 150 + 200;
+		endofhalffxsq = ((i * 150) + 125) * ((i * 150) + 125);
+		endoffullfxsq = ((i * 150) + 200) * ((i * 150) + 200);
 		tracedistsq = distancesquared(origin, trace[#"position"]);
 		startfx = tracedistsq >= endofhalffxsq || i == 0;
 		fxname = (tracedistsq < endoffullfxsq ? "weapon/fx8_equip_smart_cover_microwave_sm" : "weapon/fx8_equip_smart_cover_microwave");

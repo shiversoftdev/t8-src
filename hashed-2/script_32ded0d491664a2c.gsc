@@ -48,7 +48,7 @@ function init()
 	level flag::init("killstreak_earned");
 	level flag::init("mission_complete");
 	var_88546af8 = soundgetplaybacktime(#"hash_6923615495bbfbcf");
-	level.var_53f396c6 = var_88546af8 * 0.05 / 1000;
+	level.var_53f396c6 = (var_88546af8 * 0.05) / 1000;
 	/#
 		level thread function_421135df();
 	#/
@@ -1016,7 +1016,7 @@ function function_96e7c232()
 			if(n_dist < 700)
 			{
 				v_dir = vectornormalize(e_player.origin - beacon.origin);
-				v_pos = beacon.origin + v_dir * 50;
+				v_pos = beacon.origin + (v_dir * 50);
 				if(e_player namespace_73e1c3e3::can_see(v_pos, 1))
 				{
 					wait(1);
@@ -1474,15 +1474,15 @@ function function_1c78b967()
 	e_player namespace_64a487a9::function_fd2d220e();
 	setdvar(#"hash_3fb2952874e511c2", #"");
 	starttime = gettime();
-	n_bomb_timer = starttime + int(16 * 1000);
+	n_bomb_timer = starttime + (int(16 * 1000));
 	setmatchflag("bomb_timer_a", 1);
 	setbombtimer("A", n_bomb_timer);
 	level thread function_139e074b();
-	wait(max(randomfloatrange(1.6, 2) - gettime() - starttime / 1000, 0));
+	wait(max(randomfloatrange(1.6, 2) - ((gettime() - starttime) / 1000), 0));
 	function_22720795("s_enemy_hardpoint_loc0");
-	wait(max(randomfloatrange(3.6, 4) - gettime() - starttime / 1000, 0));
+	wait(max(randomfloatrange(3.6, 4) - ((gettime() - starttime) / 1000), 0));
 	function_22720795("s_enemy_hardpoint_loc1");
-	wait(max(5 - gettime() - starttime / 1000, 0));
+	wait(max(5 - ((gettime() - starttime) / 1000), 0));
 	namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_1_hell_5_sec"), 0);
 	while(true)
 	{
@@ -1511,8 +1511,8 @@ function function_1c78b967()
 		rocket thread remotemissile::function_9761dd1d();
 		rocket playsound("wpn_remote_missile_launch_npc");
 		killstreak_detect::killstreaktargetset(rocket);
-		magicbullet(getweapon(#"hash_33be4792feeabece"), rocket.origin, rocket.origin + anglestoforward(rocket.angles + vectorscale((1, 0, 0), 20)) * 1000, rocket.owner);
-		magicbullet(getweapon(#"hash_33be4792feeabece"), rocket.origin, rocket.origin + anglestoforward(rocket.angles - vectorscale((1, 0, 0), 20)) * 1000, rocket.owner);
+		magicbullet(getweapon(#"hash_33be4792feeabece"), rocket.origin, rocket.origin + ((anglestoforward(rocket.angles + vectorscale((1, 0, 0), 20))) * 1000), rocket.owner);
+		magicbullet(getweapon(#"hash_33be4792feeabece"), rocket.origin, rocket.origin + ((anglestoforward(rocket.angles - vectorscale((1, 0, 0), 20))) * 1000), rocket.owner);
 		e_player waittill_timeout(1, #"death");
 	}
 	level thread namespace_73e1c3e3::function_79957328(undefined);
@@ -1619,7 +1619,7 @@ function earn_the_hellstorm_objective()
 		level thread namespace_64a487a9::activate_bots(level.var_7b46025.size, #"axis");
 		starttime = gettime();
 		var_40b03ff = 61;
-		n_bomb_timer = starttime + int(var_40b03ff * 1000);
+		n_bomb_timer = starttime + (int(var_40b03ff * 1000));
 		setmatchflag("bomb_timer_a", 1);
 		setbombtimer("A", n_bomb_timer);
 		e_player namespace_73e1c3e3::function_61c3d59c(undefined, undefined, "dynobj_KillToEarnHellstorm");
@@ -1765,7 +1765,7 @@ function function_356af630()
 	while(true)
 	{
 		otherteam = util::getotherteam(e_player.team);
-		newpos = getclosestpointonnavmesh(e_player.origin + vectorscale((-1, -1, 0), 600), 800, 60);
+		newpos = getclosestpointonnavmesh(e_player.origin + (vectorscale((-1, -1, 0), 600)), 800, 60);
 		drone = spawnvehicle(#"hash_153a326c2357a196", newpos + vectorscale((0, 0, 1), 20), (0, 0, 0), "talon", undefined, 1);
 		drone.vehicletype = #"hash_153a326c2357a196";
 		ai_tank::function_9b13ebf(drone);
@@ -1824,11 +1824,11 @@ function function_1f212110(params)
 		eventindex = level.scoreinfo[event][#"row"];
 		var_6a98b865 = eattacker.momentum;
 		eattacker globallogic_score::giveplayermomentumnotification(var_595e41ee, #"hash_480234a872bd64ac", undefined, 0, weapon, 0, eventindex, event, undefined);
-		if(eattacker.momentum >= cost * 0.6 && var_6a98b865 < cost * 0.6)
+		if(eattacker.momentum >= (cost * 0.6) && var_6a98b865 < (cost * 0.6))
 		{
 			namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_2_score_success"), 0);
 		}
-		else if(eattacker.momentum >= cost * 0.3 && var_6a98b865 < cost * 0.3)
+		else if(eattacker.momentum >= (cost * 0.3) && var_6a98b865 < (cost * 0.3))
 		{
 			namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_2_score_success"), 0);
 		}

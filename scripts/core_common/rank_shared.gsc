@@ -179,7 +179,7 @@ function getrankxpcapped(inrankxp)
 */
 function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_obj, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181)
 {
-	overridedvar = "scr_" + level.gametype + "_score_" + type;
+	overridedvar = (("scr_" + level.gametype) + "_score_") + type;
 	if(getdvarstring(overridedvar) != "")
 	{
 		value = getdvarint(overridedvar, 0);
@@ -704,7 +704,7 @@ function on_player_connect()
 	self.rankupdatetotal = 0;
 	self.cur_ranknum = rankid;
 	/#
-		assert(isdefined(self.cur_ranknum), "" + rankid + "");
+		assert(isdefined(self.cur_ranknum), ("" + rankid) + "");
 	#/
 	prestige = self stats::function_441050ca(#"plevel", 1);
 	if(!isdefined(prestige))
@@ -830,7 +830,7 @@ function updaterank()
 		rankid++;
 	}
 	/#
-		print("" + oldrank + "" + newrankid + "" + self stats::function_441050ca(#"time_played_total"));
+		print((((("" + oldrank) + "") + newrankid) + "") + self stats::function_441050ca(#"time_played_total"));
 	#/
 	self setrank(newrankid);
 	return 1;
@@ -888,7 +888,7 @@ function getitemindex(refstring)
 {
 	itemindex = getitemindexfromref(refstring);
 	/#
-		assert(itemindex > 0, "" + refstring + "" + itemindex);
+		assert(itemindex > 0, (("" + refstring) + "") + itemindex);
 	#/
 	return itemindex;
 }
@@ -946,7 +946,7 @@ function getspm()
 	{
 		ranklevel = self getrank() + 1;
 	}
-	return 3 + ranklevel * 0.5 * 10;
+	return (3 + (ranklevel * 0.5)) * 10;
 }
 
 /*

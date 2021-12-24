@@ -70,7 +70,7 @@ function function_6d7e1f79(localclientnum)
 */
 function function_76110e92(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(abs(newval - oldval) == 1)
+	if((abs(newval - oldval)) == 1)
 	{
 		self postfx::playpostfxbundle("pstfx_tiger_slash");
 	}

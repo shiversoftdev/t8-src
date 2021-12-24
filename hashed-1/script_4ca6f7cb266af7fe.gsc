@@ -171,7 +171,7 @@ function watchtargethack(localclientnum, player, isbreachingfirewall)
 		inverse = 40 - distancefromcenter;
 		ratio = inverse / 40;
 		heatval = getweaponhackratio(localclientnum);
-		ratio = ratio * ratio * ratio * ratio;
+		ratio = ((ratio * ratio) * ratio) * ratio;
 		if(ratio > 1 || ratio < 0.001)
 		{
 			ratio = 0;
@@ -181,7 +181,7 @@ function watchtargethack(localclientnum, player, isbreachingfirewall)
 		{
 			horizontal = targetent gethorizontaloffsetfromscreencenter(localclientnum, 40);
 		}
-		setuimodelvalue(createuimodel(getuimodelforcontroller(localclientnum), "hudItems.blackhat.offsetShaderValue"), horizontal + " " + ratio + " 0 0");
+		setuimodelvalue(createuimodel(getuimodelforcontroller(localclientnum), "hudItems.blackhat.offsetShaderValue"), ((horizontal + " ") + ratio) + " 0 0");
 		setuimodelvalue(createuimodel(getuimodelforcontroller(localclientnum), "hudItems.blackhat.perc"), heatval);
 		if(ratio > 0.8)
 		{

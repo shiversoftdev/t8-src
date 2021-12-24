@@ -232,8 +232,8 @@ function ouranos_impact_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		v_org = self.origin;
 	}
-	v_forward = anglestoforward(self.angles) * 1000 + self.origin;
-	v_back = anglestoforward(self.angles) * -100 + self.origin;
+	v_forward = (anglestoforward(self.angles) * 1000) + self.origin;
+	v_back = (anglestoforward(self.angles) * -100) + self.origin;
 	a_trace = bullettrace(v_back, v_forward, 0, self);
 	if(isdefined(a_trace[#"normal"]))
 	{

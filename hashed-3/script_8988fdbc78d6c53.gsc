@@ -750,7 +750,7 @@ function addweaponobjecttowatcher(watchername, weapon_instance)
 {
 	watcher = getweaponobjectwatcher(watchername);
 	/#
-		assert(isdefined(watcher), "" + watchername + "");
+		assert(isdefined(watcher), ("" + watchername) + "");
 	#/
 	self addweaponobject(watcher, weapon_instance);
 }
@@ -2024,15 +2024,15 @@ function showcone(angle, range, color)
 		forward = anglestoforward(self.angles);
 		right = vectorcross(forward, (0, 0, 1));
 		up = vectorcross(forward, right);
-		fullforward = forward * range * cos(angle);
+		fullforward = (forward * range) * cos(angle);
 		sideamnt = range * sin(angle);
 		while(true)
 		{
 			prevpoint = (0, 0, 0);
 			for(i = 0; i <= 20; i++)
 			{
-				coneangle = i / 20 * 360;
-				point = start + fullforward + sideamnt * right * cos(coneangle) + up * sin(coneangle);
+				coneangle = (i / 20) * 360;
+				point = (start + fullforward) + (sideamnt * (right * cos(coneangle)) + (up * sin(coneangle)));
 				if(i > 0)
 				{
 					line(start, point, color);
@@ -2062,7 +2062,7 @@ function weaponobjectdetectionmovable(ownerteam)
 	{
 		return;
 	}
-	self.detectid = "rcBomb" + gettime() + randomint(1000000);
+	self.detectid = ("rcBomb" + gettime()) + randomint(1000000);
 }
 
 /*
@@ -2109,7 +2109,7 @@ function weaponobjectdetectiontrigger_wait(ownerteam)
 function weaponobjectdetectiontrigger(ownerteam)
 {
 	trigger = spawn("trigger_radius", self.origin - vectorscale((0, 0, 1), 128), 0, 512, 256);
-	trigger.detectid = "trigger" + gettime() + randomint(1000000);
+	trigger.detectid = ("trigger" + gettime()) + randomint(1000000);
 	trigger sethintlowpriority(1);
 	self waittill(#"death", #"hacked", #"detonating");
 	trigger notify(#"end_detection");
@@ -2361,7 +2361,7 @@ function hackerresult(player, owner)
 		return 0;
 	}
 	self thread hackerunfreezeplayer(player);
-	while(time + int(hacktime * 1000) > gettime())
+	while(time + (int(hacktime * 1000)) > gettime())
 	{
 		if(!canhack(player, owner, 0))
 		{
@@ -2560,7 +2560,7 @@ function hackerremoveweapon(weapon_instance)
 */
 function proximityweaponobject_createdamagearea(watcher)
 {
-	damagearea = spawn("trigger_radius", self.origin + (0, 0, 0 - watcher.detonateradius), 4096 | 16384 | level.aitriggerspawnflags | level.vehicletriggerspawnflags, watcher.detonateradius, watcher.detonateradius * 2);
+	damagearea = spawn("trigger_radius", self.origin + (0, 0, 0 - watcher.detonateradius), ((4096 | 16384) | level.aitriggerspawnflags) | level.vehicletriggerspawnflags, watcher.detonateradius, watcher.detonateradius * 2);
 	damagearea enablelinkto();
 	damagearea linkto(self);
 	self thread deleteondeath(damagearea);
@@ -2843,7 +2843,7 @@ function shouldaffectweaponobject(object, watcher)
 {
 	radius = object.weapon.explosionradius;
 	distancesqr = distancesquared(self.origin, object.origin);
-	if(radius != 0 && radius * radius < distancesqr)
+	if(radius != 0 && (radius * radius) < distancesqr)
 	{
 		return 0;
 	}
@@ -2905,7 +2905,7 @@ function testkillbrushonstationary(a_killbrushes, player)
 			{
 				continue;
 			}
-			if(!(isdefined(self.spawnflags) && self.spawnflags & 8 == 8) && (!(isdefined(self.spawnflags) && self.spawnflags & 512 == 512)) && (!(isdefined(self.spawnflags) && self.spawnflags & 32768 == 32768)))
+			if(!(isdefined(self.spawnflags) && (self.spawnflags & 8) == 8) && (!(isdefined(self.spawnflags) && (self.spawnflags & 512) == 512)) && (!(isdefined(self.spawnflags) && (self.spawnflags & 32768) == 32768)))
 			{
 				continue;
 			}
@@ -2948,7 +2948,7 @@ function deleteonkillbrush(player)
 				{
 					continue;
 				}
-				if(!(isdefined(self.spawnflags) && self.spawnflags & 8 == 8) && (!(isdefined(self.spawnflags) && self.spawnflags & 512 == 512)) && (!(isdefined(self.spawnflags) && self.spawnflags & 32768 == 32768)))
+				if(!(isdefined(self.spawnflags) && (self.spawnflags & 8) == 8) && (!(isdefined(self.spawnflags) && (self.spawnflags & 512) == 512)) && (!(isdefined(self.spawnflags) && (self.spawnflags & 32768) == 32768)))
 				{
 					continue;
 				}

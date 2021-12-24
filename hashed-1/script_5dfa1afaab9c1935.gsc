@@ -206,7 +206,7 @@ function checkapproachangles(transtypes)
 					actualangle = angleclamp180(anim.covertransangles[trans][i]);
 					if(absangleclamp180(actualangle - correctangle) > 7)
 					{
-						println("" + trans + "" + i + "" + actualangle + "" + correctangle + "");
+						println(((((((("" + trans) + "") + i) + "") + actualangle) + "") + correctangle) + "");
 					}
 				}
 			}
@@ -227,11 +227,11 @@ function checkapproachangles(transtypes)
 				}
 				if(isdefined(anim.coverexitangles[trans][i]))
 				{
-					correctangle = angleclamp180(-1 * idealtransangles[i] + idealadd + 180);
+					correctangle = angleclamp180(-1 * ((idealtransangles[i] + idealadd) + 180));
 					actualangle = angleclamp180(anim.coverexitangles[trans][i]);
 					if(absangleclamp180(actualangle - correctangle) > 7)
 					{
-						println("" + trans + "" + i + "" + actualangle + "" + correctangle + "");
+						println(((((((("" + trans) + "") + i) + "") + actualangle) + "") + correctangle) + "");
 					}
 				}
 			}

@@ -108,10 +108,10 @@ function run_scene_tests()
 				b_series = str_mode == "";
 				if(str_mode == "" || str_mode == "")
 				{
-					str_mode = str_mode + "" + getdvarstring(#"hash_3018c0b9207d1c", "");
-					str_mode = str_mode + "" + getdvarstring(#"hash_51617678bebb961a", "");
-					str_mode = str_mode + "" + getdvarstring(#"hash_4bf15ae7a6fbf73c", "");
-					str_mode = str_mode + "" + getdvarstring(#"hash_7b946c8966b56a8e", "");
+					str_mode = str_mode + ("" + getdvarstring(#"hash_3018c0b9207d1c", ""));
+					str_mode = str_mode + ("" + getdvarstring(#"hash_51617678bebb961a", ""));
+					str_mode = str_mode + ("" + getdvarstring(#"hash_4bf15ae7a6fbf73c", ""));
+					str_mode = str_mode + ("" + getdvarstring(#"hash_7b946c8966b56a8e", ""));
 				}
 				level thread test_play(str_scene, str_shot, str_mode);
 			}
@@ -352,7 +352,7 @@ function display_scene_menu(str_type, str_scene)
 			level flagsys::set(str_type + "");
 			if(level flagsys::get(#"hash_5bcd66a9c21f5b2d"))
 			{
-				println("" + toupper(str_type) + "");
+				println(("" + toupper(str_type)) + "");
 			}
 			var_72acc069 = 1;
 			foreach(str_scenedef in level.scenedefs)
@@ -365,7 +365,7 @@ function display_scene_menu(str_type, str_scene)
 						if(is_scene_active(s_scenedef.name) && function_c0f30783(s_scenedef))
 						{
 							array::add_sorted(names, s_scenedef.name, 0);
-							println("" + toupper(str_type) + "" + var_72acc069 + "" + s_scenedef.name);
+							println((((("" + toupper(str_type)) + "") + var_72acc069) + "") + s_scenedef.name);
 							var_72acc069++;
 						}
 						continue;
@@ -378,7 +378,7 @@ function display_scene_menu(str_type, str_scene)
 			}
 			if(level flagsys::get(#"hash_5bcd66a9c21f5b2d"))
 			{
-				println("" + toupper(str_type) + "");
+				println(("" + toupper(str_type)) + "");
 			}
 			foreach(str_scene_name in names)
 			{
@@ -414,7 +414,7 @@ function display_scene_menu(str_type, str_scene)
 			{
 				if(isdefined(level.last_scene_state) && isdefined(level.last_scene_state[str_scene]))
 				{
-					str_title = str_scene + "" + level.last_scene_state[str_scene] + "";
+					str_title = ((str_scene + "") + level.last_scene_state[str_scene]) + "";
 				}
 				else
 				{
@@ -543,7 +543,7 @@ function display_scene_menu(str_type, str_scene)
 			}
 			if(b_shot_menu && function_940c526f() && isdefined(str_scene) && function_9730988a(str_scene, names[selected]))
 			{
-				setdvar(#"run_scene", str_scene + "" + names[selected] + "" + "");
+				setdvar(#"run_scene", (((str_scene + "") + names[selected]) + "") + "");
 			}
 			else if(function_606f1f21())
 			{
@@ -589,7 +589,7 @@ function display_scene_menu(str_type, str_scene)
 					}
 					else
 					{
-						setdvar(#"run_scene", str_scene + "" + names[selected]);
+						setdvar(#"run_scene", (str_scene + "") + names[selected]);
 					}
 				}
 				while(function_606f1f21() || function_940c526f())
@@ -733,7 +733,7 @@ private function function_e67dabcc(strings, n_selected, str_title, b_shot_menu, 
 		}
 		for(i = 0; i < 16; i++)
 		{
-			index = i + n_selected - 5;
+			index = i + (n_selected - 5);
 			if(isdefined(strings[index]))
 			{
 				text = strings[index];
@@ -745,11 +745,11 @@ private function function_e67dabcc(strings, n_selected, str_title, b_shot_menu, 
 			str_scene = text;
 			if(isdefined(level.last_scene_state) && isdefined(level.last_scene_state[text]))
 			{
-				text = text + "" + level.last_scene_state[text] + "";
+				text = text + (("" + level.last_scene_state[text]) + "");
 			}
 			if(i == 5)
 			{
-				text = "" + text + "";
+				text = ("" + text) + "";
 				str_color = (0.8, 0.4, 0);
 			}
 			else if(is_scene_active(str_scene))
@@ -760,7 +760,7 @@ private function function_e67dabcc(strings, n_selected, str_title, b_shot_menu, 
 			{
 				str_color = (1, 1, 1);
 			}
-			debug2dtext((136, 400 + i * 25, 0), text, str_color, 1, (0, 0, 0), 1, 1, var_444abf97);
+			debug2dtext((136, 400 + (i * 25), 0), text, str_color, 1, (0, 0, 0), 1, 1, var_444abf97);
 		}
 		if(b_shot_menu)
 		{
@@ -886,7 +886,7 @@ function test_play(arg1, arg2, str_mode)
 		n_skipto = getdvarfloat(#"scr_scene_skipto_time", 0);
 		if(n_skipto > 0)
 		{
-			str_mode = str_mode + "" + n_skipto;
+			str_mode = str_mode + ("" + n_skipto);
 		}
 		var_a572f325 = spawnstruct();
 		var_a572f325.name = arg1;
@@ -1012,10 +1012,10 @@ function print_scene_debug(debug_frames, i, str_scene, str_state)
 {
 	/#
 		v_origin = debug_display_origin();
-		n_offset = 15 * i + 1;
+		n_offset = 15 * (i + 1);
 		str_scene = function_9e72a96(str_scene);
 		print3d(v_origin - (0, 0, n_offset), str_scene, (0.8, 0.2, 0.8), 1, 0.3, debug_frames);
-		print3d(v_origin - (0, 0, n_offset + 5), "" + str_state + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
+		print3d(v_origin - (0, 0, n_offset + 5), ("" + str_state) + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
 	#/
 }
 

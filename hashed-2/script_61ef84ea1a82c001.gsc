@@ -530,7 +530,7 @@ function function_adc74a0d(e_grenade, n_grenade_charge_power)
 		return 0;
 	}
 	distsq = distancesquared(e_grenade.origin, s_spork.origin);
-	if(distsq < 200 * 200 && !self flag::get(#"hash_79ab766693ef2532") && level flag::get(#"hash_29dc018e9551ecf"))
+	if(distsq < (200 * 200) && !self flag::get(#"hash_79ab766693ef2532") && level flag::get(#"hash_29dc018e9551ecf"))
 	{
 		self clientfield::set_to_player("" + #"hash_2058d8d474a6b3e1", 0);
 		var_6e6ec518 = namespace_268fc37c::tomahawk_spawn(e_grenade.origin);

@@ -248,10 +248,10 @@ function start_cooldown()
 	#/
 	player endon(#"disconnect", #"hash_7fa9c275efb510e2");
 	cooldowntime = getgametypesetting(#"hash_2b88c6ac064e9c59");
-	var_e5e81b59 = cooldowntime * 1000 + gettime();
+	var_e5e81b59 = (cooldowntime * 1000) + gettime();
 	while(gettime() < var_e5e81b59)
 	{
-		timeleft = var_e5e81b59 - gettime() / 1000;
+		timeleft = (var_e5e81b59 - gettime()) / 1000;
 		player clientfield::set_player_uimodel("PositionDraft.cooldown", int(timeleft));
 		player.var_7d68fce3 = timeleft;
 		wait(1);
@@ -427,7 +427,7 @@ function function_9f408cf7(oldval, newval)
 {
 	player = self;
 	/#
-		function_95c03d66("" + player.name + "");
+		function_95c03d66(("" + player.name) + "");
 	#/
 	player function_4b8d2217(newval);
 }
@@ -503,7 +503,7 @@ function all_players_connected()
 	if(level.players.size < var_5c6783e9)
 	{
 		/#
-			function_95c03d66("" + var_5c6783e9 + "" + level.players.size);
+			function_95c03d66((("" + var_5c6783e9) + "") + level.players.size);
 		#/
 		return 0;
 	}
@@ -512,7 +512,7 @@ function all_players_connected()
 		if(!player function_9b95ed9f() && !isbot(player))
 		{
 			/#
-				function_95c03d66("" + player.name + "");
+				function_95c03d66(("" + player.name) + "");
 			#/
 			return 0;
 		}
@@ -573,7 +573,7 @@ function function_21f5a2c1()
 		if(teamcount[team] < var_e8cb777)
 		{
 			/#
-				function_95c03d66("" + var_e8cb777 + "" + team + "" + teamcount[team]);
+				function_95c03d66((((("" + var_e8cb777) + "") + team) + "") + teamcount[team]);
 			#/
 			return 0;
 		}
@@ -596,7 +596,7 @@ function wait_for_players()
 	{
 		wait(0.2);
 	}
-	level.var_b318d3d1 = getgametypesetting(#"drafttime") + getgametypesetting(#"hash_4e4352bd1aaeedfe") + 20;
+	level.var_b318d3d1 = (getgametypesetting(#"drafttime") + getgametypesetting(#"hash_4e4352bd1aaeedfe")) + 20;
 	function_ee80d2e8(int(max(0, level.var_b318d3d1)));
 	starttime = gettime();
 	while(!all_players_connected())
@@ -834,7 +834,7 @@ function assign_remaining_players(only_assign_player)
 			}
 		}
 	}
-	if(getdvarint(#"hash_595a93ece672a7da", -1) == 1)
+	if((getdvarint(#"hash_595a93ece672a7da", -1)) == 1)
 	{
 		foreach(player in level.players)
 		{
@@ -892,7 +892,7 @@ function assign_remaining_players(only_assign_player)
 			foreach(player in team)
 			{
 				characterindex = player player_role::get();
-				println("" + player.name + "" + characterindex);
+				println((("" + player.name) + "") + characterindex);
 			}
 		#/
 		foreach(player in team)
@@ -993,7 +993,7 @@ function assign_remaining_players(only_assign_player)
 				player.pers[#"class"] = undefined;
 			}
 			/#
-				println("" + player.name + "" + selectedcharacter);
+				println((("" + player.name) + "") + selectedcharacter);
 			#/
 			if(player select_character(selectedcharacter, 1, 1))
 			{
@@ -1075,7 +1075,7 @@ function draft_finalize()
 		if(player.sessionstate == "playing")
 		{
 			/#
-				println("" + player.name + "" + player.curclass + "" + player getspecialistindex());
+				println((((("" + player.name) + "") + player.curclass) + "") + player getspecialistindex());
 			#/
 			player loadout::give_loadout(player.team, player.curclass);
 			player.pers[#"lastcurclass"] = player.curclass;

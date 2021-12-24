@@ -134,7 +134,7 @@ private function function_26d46af3(eventstruct)
 		return;
 	}
 	/#
-		println(self.name + "" + eventstruct.parachute);
+		println((self.name + "") + eventstruct.parachute);
 	#/
 	parachute = self namespace_eb06e24d::function_fc6b6f3b();
 	var_dbb94a = parachute.("parachuteLit");
@@ -201,7 +201,7 @@ private function function_c9a18304(eventstruct)
 		return;
 	}
 	/#
-		println(self.name + "" + eventstruct.freefall);
+		println((self.name + "") + eventstruct.freefall);
 	#/
 	if(eventstruct.freefall)
 	{
@@ -258,7 +258,7 @@ function function_3f6dfc34(localclientnum)
 */
 function function_cc5ed6ff(pitch, min_pitch, max_pitch, var_2ff50798, var_9988e8ec)
 {
-	return var_9988e8ec - var_2ff50798 / max_pitch - min_pitch * pitch + var_2ff50798;
+	return ((var_9988e8ec - var_2ff50798) / (max_pitch - min_pitch) * pitch) + var_2ff50798;
 }
 
 /*
@@ -278,7 +278,7 @@ function function_9a3dbe71(var_80943462)
 		{
 			vel = self getvelocity();
 			speed = length(vel);
-			iprintlnbold("" + speed + "" + var_80943462);
+			iprintlnbold((("" + speed) + "") + var_80943462);
 			wait(1);
 		}
 	#/
@@ -303,7 +303,7 @@ function function_ec3388e3(localclientnum, var_695a7111)
 		self thread function_2bdd64a4(localclientnum);
 	}
 	/#
-		println(self.name + "" + var_695a7111);
+		println((self.name + "") + var_695a7111);
 	#/
 	self callback::add_entity_callback(#"death", &function_5d6b77ae);
 	self thread function_e8a9e948(localclientnum, var_695a7111);
@@ -483,7 +483,7 @@ function function_a993866(localclientnum, var_9a17b15c)
 		wait(var_9a17b15c);
 	}
 	/#
-		println(self.name + "" + var_9a17b15c);
+		println((self.name + "") + var_9a17b15c);
 	#/
 	trail_fx = namespace_eb06e24d::function_2328db2c();
 	if(self function_21c0fa55())

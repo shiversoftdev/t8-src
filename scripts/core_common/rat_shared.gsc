@@ -641,7 +641,7 @@ function function_dec22d87(params)
 		{
 			distance = float(params.distance);
 		}
-		spawn = player.origin + forward * distance;
+		spawn = player.origin + (forward * distance);
 		foreach(other_player in level.players)
 		{
 			if(other_player == player)
@@ -676,7 +676,7 @@ function function_e3ab4393(params)
 		{
 			distance = float(params.distance);
 		}
-		spawn = player.origin + forward * distance;
+		spawn = player.origin + (forward * distance);
 		foreach(other_player in level.players)
 		{
 			if(isdefined(params.bot) && int(params.bot) && !isdefined(other_player.bot))
@@ -713,7 +713,7 @@ function function_1ac5a32b(params)
 		{
 			distance = float(params.distance);
 		}
-		front = player.origin + forward * distance;
+		front = player.origin + (forward * distance);
 		player setorigin(front);
 	#/
 }
@@ -913,7 +913,7 @@ function rscrecteleport(params)
 		player = [[level.rat.common.gethostplayer]]();
 		pos = player getorigin();
 		angles = player getplayerangles();
-		cmd = "" + pos[0] + "" + pos[1] + "" + pos[2] + "" + angles[0] + "" + angles[1] + "" + angles[2];
+		cmd = (((((((((("" + pos[0]) + "") + pos[1]) + "") + pos[2]) + "") + angles[0]) + "") + angles[1]) + "") + angles[2];
 		ratrecordmessage(0, "", cmd);
 		setdvar(#"rat_record_teleport_request", 0);
 	#/

@@ -285,8 +285,8 @@ private function function_c2a75696()
 {
 	/#
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
 		while(true)
 		{
 			waitframe(1);
@@ -385,7 +385,7 @@ private function function_23600e7d()
 	{
 		level.var_9290cd7c = 1;
 	}
-	level.var_25fc8e84 = int(ceil(level.max_wait_time * 60 / level.var_9290cd7c));
+	level.var_25fc8e84 = int(ceil((level.max_wait_time * 60) / level.var_9290cd7c));
 	starttime = gettime();
 	var_fb9555e1 = 3;
 	level.var_a132ca2b = level.var_8fcd8a61;
@@ -448,10 +448,10 @@ private function function_23600e7d()
 			level.var_8ca0499 = level.var_3f631d69;
 			level.var_493d04d3 = 0;
 			/#
-				println("" + level.max_wait_time + "");
+				println(("" + level.max_wait_time) + "");
 			#/
 			/#
-				println("" + level.var_a132ca2b + "" + level.var_8ca0499);
+				println((("" + level.var_a132ca2b) + "") + level.var_8ca0499);
 			#/
 		}
 		if(level.activeplayers.size >= level.var_a132ca2b)
@@ -461,7 +461,7 @@ private function function_23600e7d()
 			if(level.activeplayers.size < level.var_8fcd8a61)
 			{
 				/#
-					println("" + level.var_8fcd8a61 + "" + level.activeplayers.size);
+					println((("" + level.var_8fcd8a61) + "") + level.activeplayers.size);
 				#/
 				if(level.var_8ca0499 > 0)
 				{
@@ -877,7 +877,7 @@ private function function_ec2c9808(response, intpayload)
 			if(response == "placed")
 			{
 				xcoord = int(intpayload / 1000);
-				ycoord = intpayload - xcoord * 1000;
+				ycoord = intpayload - (xcoord * 1000);
 				player luinotifyevent(#"hash_34bb692dbc392d7f", 3, self getentitynumber(), xcoord, ycoord);
 				continue;
 			}
@@ -973,7 +973,7 @@ function on_player_spawned()
 		self val::reset(#"spawn_player", "freezecontrols");
 		self val::reset(#"spawn_player", "disablegadgets");
 		self val::set(#"hash_2c372a1c55b534a4", "takedamage", 0);
-		if(level.var_79219af4 > 0 && level.activeplayers.size + 1 >= level.var_79219af4)
+		if(level.var_79219af4 > 0 && (level.activeplayers.size + 1) >= level.var_79219af4)
 		{
 			level function_73b0f715();
 		}
@@ -2606,7 +2606,7 @@ private function function_3c8be2d2(trigger_struct)
 	if(isplayer(activator))
 	{
 		/#
-			iprintlnbold("" + activator.origin[0] + "" + activator.origin[1] + "" + activator.origin[2] + "");
+			iprintlnbold(((((("" + activator.origin[0]) + "") + activator.origin[1]) + "") + activator.origin[2]) + "");
 		#/
 		function_293cd859(activator);
 		if(activator isinvehicle())
@@ -2629,7 +2629,7 @@ private function function_3c8be2d2(trigger_struct)
 	else if(isentity(activator))
 	{
 		/#
-			iprintlnbold("" + activator.origin[0] + "" + activator.origin[1] + "" + activator.origin[2] + "");
+			iprintlnbold(((((("" + activator.origin[0]) + "") + activator.origin[1]) + "") + activator.origin[2]) + "");
 		#/
 		function_293cd859(activator);
 		activator delete();
@@ -2674,7 +2674,7 @@ private function function_2a3d483d(start)
 	steps = int(var_d80c8cde / jumpdistance);
 	for(index = 1; index <= steps; index++)
 	{
-		newpoint = start + var_fa57b4b3 * index * jumpdistance;
+		newpoint = start + ((var_fa57b4b3 * index) * jumpdistance);
 		if(!oob::chr_party(newpoint))
 		{
 			return newpoint;
@@ -2741,7 +2741,7 @@ private function _teleport_player(origin, angles, var_9914886a = 0)
 private function function_b777ff94(entity)
 {
 	/#
-		iprintlnbold("" + entity.origin[0] + "" + entity.origin[1] + "" + entity.origin[2] + "");
+		iprintlnbold(((((("" + entity.origin[0]) + "") + entity.origin[1]) + "") + entity.origin[2]) + "");
 	#/
 	if(!isdefined(entity))
 	{
@@ -2767,7 +2767,7 @@ private function function_b777ff94(entity)
 	for(index = 0; index < players.size; index++)
 	{
 		player = players[index];
-		startpoint = player.origin + playeroffset * index;
+		startpoint = player.origin + (playeroffset * index);
 		var_8390ff37 = function_2a3d483d(startpoint);
 		var_8390ff37 = function_c1471c7c(var_8390ff37);
 		var_ee243d11 = vectortoangles(mapcenter - player.origin);
@@ -2818,13 +2818,13 @@ private function function_6ee52dd0(damage, var_c71fc4f4)
 				player.var_21b83511 = time + delta;
 				continue;
 			}
-			if(i % 10 == var_366959 && player.var_21b83511 < time)
+			if((i % 10) == var_366959 && player.var_21b83511 < time)
 			{
 				player dodamage(damage, player.origin, undefined, undefined, undefined, "MOD_BLED_OUT");
 				player.var_21b83511 = time + var_1b5e849;
 			}
 		}
-		var_366959 = var_366959 + 1 % 10;
+		var_366959 = (var_366959 + 1) % 10;
 		waitframe(1);
 	}
 }

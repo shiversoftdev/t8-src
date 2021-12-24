@@ -2068,7 +2068,7 @@ function function_b35c3e0b(var_7ce59f05, n_index)
 		player = array::random(var_9103f439);
 		if(isdefined(player))
 		{
-			player zm_vo::function_a2bd5a0c(#"hash_71bde3a512edb440" + n_index + "_" + var_7ce59f05, 0.5);
+			player zm_vo::function_a2bd5a0c(((#"hash_71bde3a512edb440" + n_index) + "_") + var_7ce59f05, 0.5);
 		}
 	}
 }

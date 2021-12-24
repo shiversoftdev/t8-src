@@ -85,7 +85,7 @@ function abilities_devgui_add_gadgets_custom(root, pname, pid, menu_index)
 {
 	/#
 		var_61b8f8fb = "";
-		add_cmd_with_root = "" + var_61b8f8fb + pname + "";
+		add_cmd_with_root = (("" + var_61b8f8fb) + pname) + "";
 		a_abilities = [];
 		arrayinsert(a_abilities, getweapon(#"hash_34b7eb9fde56bd35"), 0);
 		arrayinsert(a_abilities, getweapon(#"incendiary_grenade"), 0);
@@ -524,7 +524,7 @@ function take(equipment = self get_player_equipment())
 		current_weapon = 1;
 	}
 	/#
-		println("" + self.name + "" + function_a16a090d(equipment) + "");
+		println((("" + self.name) + "") + function_a16a090d(equipment) + "");
 	#/
 	notify_strings = get_notify_strings(equipment);
 	if(isdefined(self.current_equipment_active[equipment]) && self.current_equipment_active[equipment])
@@ -580,7 +580,7 @@ function give(equipment)
 		return;
 	}
 	/#
-		println("" + self.name + "" + function_a16a090d(equipment) + "");
+		println((("" + self.name) + "") + function_a16a090d(equipment) + "");
 	#/
 	curr_weapon = self getcurrentweapon();
 	curr_weapon_was_curr_equipment = self is_player_equipment(curr_weapon);
@@ -612,7 +612,7 @@ function buy(equipment)
 		equipment = getweapon(equipment);
 	}
 	/#
-		println("" + self.name + "" + function_a16a090d(equipment) + "");
+		println((("" + self.name) + "") + function_a16a090d(equipment) + "");
 	#/
 	if(isdefined(self.current_equipment) && equipment != self.current_equipment && self.current_equipment != level.weaponnone)
 	{
@@ -1243,7 +1243,7 @@ function function_7d948481(n_boss = 0.1, n_miniboss = 0.25, n_heavy = 0.5, n_bas
 function function_379f6b5d(n_base_damage, var_177ec733 = 1, var_b68e56de = 1, var_694e2cee = 4, var_f14e81ea = 30)
 {
 	n_base_damage = n_base_damage * var_177ec733;
-	var_5d7b4163 = n_base_damage * var_b68e56de * math::clamp(level.round_number, var_694e2cee, var_f14e81ea);
+	var_5d7b4163 = (n_base_damage * var_b68e56de) * math::clamp(level.round_number, var_694e2cee, var_f14e81ea);
 	return int(var_5d7b4163);
 }
 
@@ -1263,7 +1263,7 @@ function function_e418901e()
 		waitframe(1);
 		level flag::wait_till("");
 		waitframe(1);
-		str_cmd = "" + "" + "";
+		str_cmd = ("" + "") + "";
 		adddebugcommand(str_cmd);
 		while(true)
 		{
@@ -1307,7 +1307,7 @@ function function_1d34b98d(equipment)
 		if(isdefined(equipment))
 		{
 			equipment_id = function_a16a090d(equipment);
-			str_cmd = "" + equipment_id + "" + equipment_id + "";
+			str_cmd = ((("" + equipment_id) + "") + equipment_id) + "";
 			adddebugcommand(str_cmd);
 		}
 	#/

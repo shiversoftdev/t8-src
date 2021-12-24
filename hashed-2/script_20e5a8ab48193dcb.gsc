@@ -167,7 +167,7 @@ function function_5ff12a45(inflictor, attacker, damage, flags, meansofdeath, wea
 	}
 	else
 	{
-		damage = ceil(self.maxhealth / 3) + 1;
+		damage = (ceil(self.maxhealth / 3)) + 1;
 		if(self.health <= damage)
 		{
 			self.water_damage = 1;

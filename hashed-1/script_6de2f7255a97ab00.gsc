@@ -158,15 +158,15 @@ private function function_44b9dd1d()
 			waitframe(1);
 		}
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
 		level thread function_eaba72c9();
 	#/
 }
@@ -264,8 +264,8 @@ private function function_c7bd0aa8(point, startpoint)
 		/#
 			assert(var_dd00b78e[0] != 0);
 		#/
-		t = min[0] - var_49e5fac9[0] / var_dd00b78e[0];
-		var_1ccbeeaa = var_49e5fac9 + var_dd00b78e * t;
+		t = (min[0] - var_49e5fac9[0]) / var_dd00b78e[0];
+		var_1ccbeeaa = var_49e5fac9 + (var_dd00b78e * t);
 	}
 	else if(var_1ccbeeaa[0] > max[0])
 	{
@@ -273,8 +273,8 @@ private function function_c7bd0aa8(point, startpoint)
 		/#
 			assert(var_dd00b78e[0] != 0);
 		#/
-		t = max[0] - var_49e5fac9[0] / var_dd00b78e[0];
-		var_1ccbeeaa = var_49e5fac9 + var_dd00b78e * t;
+		t = (max[0] - var_49e5fac9[0]) / var_dd00b78e[0];
+		var_1ccbeeaa = var_49e5fac9 + (var_dd00b78e * t);
 	}
 	if(var_1ccbeeaa[1] < min[1])
 	{
@@ -282,8 +282,8 @@ private function function_c7bd0aa8(point, startpoint)
 		/#
 			assert(var_dd00b78e[1] != 0);
 		#/
-		t = min[1] - var_49e5fac9[1] / var_dd00b78e[1];
-		var_1ccbeeaa = var_49e5fac9 + var_dd00b78e * t;
+		t = (min[1] - var_49e5fac9[1]) / var_dd00b78e[1];
+		var_1ccbeeaa = var_49e5fac9 + (var_dd00b78e * t);
 	}
 	else if(var_1ccbeeaa[1] > max[1])
 	{
@@ -291,8 +291,8 @@ private function function_c7bd0aa8(point, startpoint)
 		/#
 			assert(var_dd00b78e[1] != 0);
 		#/
-		t = max[1] - var_49e5fac9[1] / var_dd00b78e[1];
-		var_1ccbeeaa = var_49e5fac9 + var_dd00b78e * t;
+		t = (max[1] - var_49e5fac9[1]) / var_dd00b78e[1];
+		var_1ccbeeaa = var_49e5fac9 + (var_dd00b78e * t);
 	}
 	point = (var_1ccbeeaa[0], var_1ccbeeaa[1], point[2]);
 	return point;
@@ -517,8 +517,8 @@ private function function_ba3be344()
 	left = anglestoforward(self.angles + (0, exitangle * -1, 0));
 	var_7a66fccd = function_43e35f94();
 	startpoint = self.origin;
-	leftpoint = function_c7bd0aa8(startpoint + left * var_7a66fccd, startpoint);
-	rightpoint = function_c7bd0aa8(startpoint + right * var_7a66fccd, startpoint);
+	leftpoint = function_c7bd0aa8(startpoint + (left * var_7a66fccd), startpoint);
+	rightpoint = function_c7bd0aa8(startpoint + (right * var_7a66fccd), startpoint);
 	endpoint = rightpoint;
 	if(distance2d(startpoint, leftpoint) < distance2d(startpoint, rightpoint))
 	{
@@ -591,7 +591,7 @@ private function function_67d7d040(var_d91c179d)
 	supplydrop useanimtree("generic");
 	supplydrop.var_a64ed253 = 1;
 	supplydrop.var_bad13452 = 0;
-	supplydrop.targetname = supplydrop getentitynumber() + "_stash_" + randomint(2147483647);
+	supplydrop.targetname = (supplydrop getentitynumber() + "_stash_") + randomint(2147483647);
 	supplydrop clientfield::set("dynamic_stash", 1);
 	supplydrop clientfield::set("dynamic_stash_type", 1);
 	supplydrop.var_ed175c5 = 1;
@@ -700,11 +700,11 @@ private function function_16bbdd8b(point)
 */
 private function function_415bdb1d(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
-	if(isdefined(self.vehicletype) && self.vehicletype == "vehicle_t8_mil_helicopter_transport_dark_wz" && max(self.health - idamage, 0) <= 0)
+	if(isdefined(self.vehicletype) && self.vehicletype == "vehicle_t8_mil_helicopter_transport_dark_wz" && (max(self.health - idamage, 0)) <= 0)
 	{
 		return 0;
 	}
-	if(max(self.health - idamage, 0) <= self.var_b9b5403c)
+	if((max(self.health - idamage, 0)) <= self.var_b9b5403c)
 	{
 		self thread function_500a6615();
 		self thread function_ba3be344();
@@ -773,10 +773,10 @@ private function function_eafcba42(startpoint, endpoint, droppoint, maxheight, m
 	}
 	for(var_c742cad6 = 1; var_c742cad6 <= var_28021cac; var_c742cad6++)
 	{
-		var_a1bc57e1 = startpoint + var_bb96e272 * 5000 * var_c742cad6;
+		var_a1bc57e1 = startpoint + ((var_bb96e272 * 5000) * var_c742cad6);
 		if(isdefined(droppoint))
 		{
-			if(distancesquared(startpoint, var_a1bc57e1) >= var_66d25ef4 && distancesquared(startpoint, points[points.size - 1]) <= var_66d25ef4)
+			if(distancesquared(startpoint, var_a1bc57e1) >= var_66d25ef4 && (distancesquared(startpoint, points[points.size - 1])) <= var_66d25ef4)
 			{
 				points[points.size] = droppoint;
 			}
@@ -895,9 +895,9 @@ private function function_924a11ff(itemspawnlist)
 		self delete();
 		return;
 	}
-	neworigin = self.origin + anglestoup(self.angles) * 27.5;
+	neworigin = self.origin + (anglestoup(self.angles) * 27.5);
 	self.angles = function_a40836e(self.angles);
-	self.origin = neworigin - anglestoup(self.angles) * 27.5;
+	self.origin = neworigin - (anglestoup(self.angles) * 27.5);
 	self dontinterpolate();
 	self setmodel("p8_fxanim_wz_supply_stash_04_mod");
 	items = self namespace_65181344::function_5eada592(itemspawnlist, 1);
@@ -940,7 +940,7 @@ private function function_c2edbefb(path, droppoint, var_86928932 = 1, var_2118f7
 		var_f155e743 = 0;
 		if(isdefined(droppoint))
 		{
-			var_f155e743 = distancesquared(path[pathindex], droppoint) < 128 * 128;
+			var_f155e743 = distancesquared(path[pathindex], droppoint) < (128 * 128);
 		}
 		self function_a57c34b7(path[pathindex], var_f155e743 && var_86928932, 0);
 		while(true)
@@ -1045,7 +1045,7 @@ private function function_261b0e67(spawnpoint, endpoint, droppoint, var_d9151bd0
 		var_f155e743 = 0;
 		if(isdefined(droppoint))
 		{
-			var_f155e743 = distancesquared(var_47736ddd[pathindex], droppoint) < 128 * 128;
+			var_f155e743 = distancesquared(var_47736ddd[pathindex], droppoint) < (128 * 128);
 		}
 		var_7366c0ff function_a57c34b7(var_47736ddd[pathindex], 0, 0);
 		while(true)
@@ -1112,14 +1112,14 @@ function function_7d4a448f(var_47d17dcb = 0)
 	if(var_be734526 > 0)
 	{
 		var_e7993c63 = vectornormalize(var_e1ae630e - (deathcircle.origin[0], deathcircle.origin[1], var_94f13d8b));
-		var_8df04549 = var_e1ae630e - var_e7993c63 * var_4f59c30d;
-		exitpoint = var_e1ae630e + var_e7993c63 * var_4f59c30d;
+		var_8df04549 = var_e1ae630e - (var_e7993c63 * var_4f59c30d);
+		exitpoint = var_e1ae630e + (var_e7993c63 * var_4f59c30d);
 	}
 	else
 	{
 		degrees = randomint(360);
 		var_8df04549 = (cos(degrees) * var_4f59c30d, sin(degrees) * var_4f59c30d, 0) + var_e1ae630e;
-		exitpoint = (cos(degrees) * -1 * var_4f59c30d, sin(degrees) * -1 * var_4f59c30d, 0) + var_e1ae630e;
+		exitpoint = ((cos(degrees) * -1) * var_4f59c30d, (sin(degrees) * -1) * var_4f59c30d, 0) + var_e1ae630e;
 	}
 	waitframe(1);
 	droppoint = var_e1ae630e;
@@ -1128,12 +1128,12 @@ function function_7d4a448f(var_47d17dcb = 0)
 	var_bb96e272 = vectornormalize(exitpoint - var_8df04549);
 	var_142db926 = 5000;
 	var_a2712870 = distance2d(deathcircle.origin, var_e1ae630e);
-	var_6eae2ffb = var_396cbf6e + var_a2712870 + var_142db926;
+	var_6eae2ffb = (var_396cbf6e + var_a2712870) + var_142db926;
 	var_429b69c0 = max(var_6eae2ffb, 15000);
 	var_e9e24bda = max(var_396cbf6e, 45000);
-	spawnpoint = var_8df04549 - var_bb96e272 * var_429b69c0;
+	spawnpoint = var_8df04549 - (var_bb96e272 * var_429b69c0);
 	spawnpoint = function_c7bd0aa8(spawnpoint, droppoint);
-	endpoint = exitpoint + var_bb96e272 * var_e9e24bda;
+	endpoint = exitpoint + (var_bb96e272 * var_e9e24bda);
 	endpoint = function_c7bd0aa8(endpoint, droppoint);
 	level thread function_261b0e67(spawnpoint, endpoint, droppoint, 1);
 	angles = vectortoangles(var_bb96e272);
@@ -1141,9 +1141,9 @@ function function_7d4a448f(var_47d17dcb = 0)
 	leftoffset = rightoffset * -1;
 	var_ae85ee87 = var_bb96e272 * -1024;
 	vehicleoverride = undefined;
-	offset = rightoffset + var_ae85ee87 + (0, 0, randomintrange(25, 50));
+	offset = (rightoffset + var_ae85ee87) + (0, 0, randomintrange(25, 50));
 	level thread function_261b0e67(spawnpoint + offset, endpoint + offset, droppoint + offset, 0, vehicleoverride);
-	offset = leftoffset + var_ae85ee87 + (0, 0, randomintrange(-50, -25));
+	offset = (leftoffset + var_ae85ee87) + (0, 0, randomintrange(-50, -25));
 	level thread function_261b0e67(spawnpoint + offset, endpoint + offset, droppoint + offset, 0, vehicleoverride);
 }
 
@@ -1193,7 +1193,7 @@ function function_418e26fe(var_2118f785 = undefined, helicopter = 0, var_58ca282
 	var_be734526 = deathcircle.radius - var_4f59c30d;
 	degrees = randomint(360);
 	var_8df04549 = (cos(degrees) * var_4f59c30d, sin(degrees) * var_4f59c30d, var_94f13d8b) + var_e1ae630e;
-	exitpoint = (cos(degrees) * -1 * var_4f59c30d, sin(degrees) * -1 * var_4f59c30d, var_94f13d8b) + var_e1ae630e;
+	exitpoint = ((cos(degrees) * -1) * var_4f59c30d, (sin(degrees) * -1) * var_4f59c30d, var_94f13d8b) + var_e1ae630e;
 	waitframe(1);
 	var_e2be9787 = 10;
 	droppoint = undefined;
@@ -1222,9 +1222,9 @@ function function_418e26fe(var_2118f785 = undefined, helicopter = 0, var_58ca282
 	var_bb96e272 = vectornormalize(exitpoint - var_8df04549);
 	var_429b69c0 = max(var_396cbf6e, 15000);
 	var_e9e24bda = max(var_396cbf6e, 45000);
-	spawnpoint = var_8df04549 - var_bb96e272 * var_429b69c0;
+	spawnpoint = var_8df04549 - (var_bb96e272 * var_429b69c0);
 	spawnpoint = function_c7bd0aa8(spawnpoint, droppoint);
-	endpoint = exitpoint + var_bb96e272 * var_e9e24bda;
+	endpoint = exitpoint + (var_bb96e272 * var_e9e24bda);
 	endpoint = function_c7bd0aa8(endpoint, droppoint);
 	if(helicopter)
 	{
@@ -1377,10 +1377,10 @@ function function_1b48df6d(droppoint, helicopter = 0, var_d6388d1 = 0, vehiclety
 	var_b98da7dd = droppoint - mapcenter;
 	var_b98da7dd = (var_b98da7dd[0], var_b98da7dd[1], 0);
 	var_b98da7dd = vectornormalize(var_b98da7dd);
-	spawnpoint = mapcenter + var_b98da7dd * var_7a66fccd;
+	spawnpoint = mapcenter + (var_b98da7dd * var_7a66fccd);
 	spawnpoint = (spawnpoint[0], spawnpoint[1], droppoint[2]);
 	spawnpoint = function_c7bd0aa8(spawnpoint, droppoint);
-	endpoint = mapcenter - var_b98da7dd * var_7a66fccd;
+	endpoint = mapcenter - (var_b98da7dd * var_7a66fccd);
 	endpoint = (endpoint[0], endpoint[1], droppoint[2]);
 	endpoint = function_c7bd0aa8(endpoint, droppoint);
 	if(helicopter)

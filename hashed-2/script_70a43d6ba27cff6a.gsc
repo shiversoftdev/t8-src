@@ -76,9 +76,9 @@ function function_c5343206(eattacker, einflictor, idamage, smeansofdeath, weapon
 		var_d72bd991.var_121392a1 = (isdefined(eattacker.var_121392a1) ? arraycopy(eattacker.var_121392a1) : undefined);
 		var_d72bd991.ismantling = eattacker ismantling();
 		var_d72bd991.isjumping = !eattacker isonground() && !eattacker isonladder() && !eattacker isplayerswimming();
-		var_d72bd991.var_bd77a1eb = (isdefined(eattacker.var_6f3f5189) ? eattacker.var_6f3f5189 : 0) + 2500 >= time;
-		var_d72bd991.var_e8072c8d = eattacker issprinting() || (isdefined(eattacker.challenge_sprint_end) ? eattacker.challenge_sprint_end : 0) + 2000 > time;
-		var_d72bd991.var_14f058c7 = isdefined(eattacker.lastreloadtime) && eattacker.lastreloadtime + 5000 >= time;
+		var_d72bd991.var_bd77a1eb = ((isdefined(eattacker.var_6f3f5189) ? eattacker.var_6f3f5189 : 0) + 2500) >= time;
+		var_d72bd991.var_e8072c8d = eattacker issprinting() || ((isdefined(eattacker.challenge_sprint_end) ? eattacker.challenge_sprint_end : 0) + 2000) > time;
+		var_d72bd991.var_14f058c7 = isdefined(eattacker.lastreloadtime) && (eattacker.lastreloadtime + 5000) >= time;
 		var_d72bd991.var_8e35fb71 = function_ce33e204(eattacker);
 		var_d72bd991.var_5745c480 = function_5af0c53c(eattacker);
 		var_d72bd991.var_54433d4b = eattacker.scavenged === 1;
@@ -101,15 +101,15 @@ function function_c5343206(eattacker, einflictor, idamage, smeansofdeath, weapon
 		var_98a6bdf5 = eattacker.var_ea1458aa;
 		if(isdefined(var_98a6bdf5))
 		{
-			var_46a82df0 = isdefined(var_98a6bdf5.var_a440c10) && var_98a6bdf5.var_a440c10 + 3000 > time;
+			var_46a82df0 = isdefined(var_98a6bdf5.var_a440c10) && (var_98a6bdf5.var_a440c10 + 3000) > time;
 			var_d72bd991.var_46a82df0 = var_46a82df0;
-			var_d72bd991.var_69b66e8e = var_46a82df0 && var_98a6bdf5.var_55a37dc7 === 1 && (isdefined(var_ca60c93e.lastdamagetime) ? var_ca60c93e.lastdamagetime : 0) + 10000 > var_98a6bdf5.var_a440c10;
+			var_d72bd991.var_69b66e8e = var_46a82df0 && var_98a6bdf5.var_55a37dc7 === 1 && ((isdefined(var_ca60c93e.lastdamagetime) ? var_ca60c93e.lastdamagetime : 0) + 10000) > var_98a6bdf5.var_a440c10;
 			if(isdefined(var_98a6bdf5.attackerdamage))
 			{
 				var_8bc6e971 = var_98a6bdf5.attackerdamage[self.clientid];
 				if(isdefined(var_8bc6e971))
 				{
-					if(isdefined(var_8bc6e971.var_a74d2db8) && var_8bc6e971.var_a74d2db8 + 2500 > time)
+					if(isdefined(var_8bc6e971.var_a74d2db8) && (var_8bc6e971.var_a74d2db8 + 2500) > time)
 					{
 						var_d72bd991.var_d7bd6f9b = 1;
 					}
@@ -214,7 +214,7 @@ function function_9f942458(var_6ba44c6, var_fbbdf63c)
 		{
 			continue;
 		}
-		if(distancesquared(var_6ba44c6.origin, sensor.origin) < (function_f99d2668() ? 2400 : 800) + 50 * (function_f99d2668() ? 2400 : 800) + 50)
+		if(distancesquared(var_6ba44c6.origin, sensor.origin) < ((function_f99d2668() ? 2400 : 800) + 50) * ((function_f99d2668() ? 2400 : 800) + 50))
 		{
 			return 1;
 		}

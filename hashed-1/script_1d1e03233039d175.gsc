@@ -282,7 +282,7 @@ function function_1b0af429()
 	{
 		if(isdefined(attachments[i]))
 		{
-			name = "primaryAttachment" + i + 1;
+			name = "primaryAttachment" + (i + 1);
 			var_1bb1502d[name] = attachments[i];
 			self botclassaddattachment(0, var_1bb1502d[#"primaryweapon"], var_1bb1502d[name], name);
 			var_dc111f5++;
@@ -328,7 +328,7 @@ function function_1b0af429()
 		attachments = getrandomcompatibleattachmentsforweapon(getweapon(var_1bb1502d[#"secondaryweapon"]), var_4540e733);
 		for(i = 0; i < attachments.size; i++)
 		{
-			attachtag = "secondaryAttachment" + i + 1;
+			attachtag = "secondaryAttachment" + (i + 1);
 			var_1bb1502d[attachtag] = attachments[i];
 			self botclassaddattachment(0, var_1bb1502d[#"secondaryweapon"], var_1bb1502d[attachtag], attachtag);
 			var_dc111f5++;
@@ -515,7 +515,7 @@ function set_rank()
 	human_avg = math::array_average(human_ranks);
 	while(bot_ranks.size + human_ranks.size < 5)
 	{
-		r = human_avg + randomintrange(-5, 5);
+		r = human_avg + (randomintrange(-5, 5));
 		rank = math::clamp(r, 0, level.maxrank);
 		human_ranks[human_ranks.size] = rank;
 	}

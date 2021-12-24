@@ -172,7 +172,7 @@ function function_e0525d4e(var_6a3758f2, e_source, meansofdeath, weapon, shitloc
 	var_bf7a56c5 = int(ceil(a_zombies.size / 3));
 	for(i = 0; i < a_zombies.size; i++)
 	{
-		if(i % var_bf7a56c5 == 0)
+		if((i % var_bf7a56c5) == 0)
 		{
 			wait(1.5 / 3);
 		}

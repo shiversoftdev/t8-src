@@ -110,7 +110,7 @@ function function_772f66bd(localclientnum)
 		}
 	}
 	n_base = var_ca9c0ca2.("plyBaseHealth" + str_suffix);
-	n_target = int(max(n_base + 50 * var_d75008e3, 1));
+	n_target = int(max(n_base + (50 * var_d75008e3), 1));
 	localplayer.var_ee9b8af0 = n_target;
 }
 
@@ -179,7 +179,7 @@ function function_901b751c(var_c9db62d5)
 	}
 	setting = getgametypesetting(var_c9db62d5);
 	/#
-		assert(isdefined(setting), "" + var_c9db62d5 + "");
+		assert(isdefined(setting), ("" + var_c9db62d5) + "");
 	#/
 	return setting;
 }

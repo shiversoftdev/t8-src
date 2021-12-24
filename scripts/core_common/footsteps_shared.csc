@@ -18,7 +18,7 @@ function missing_ai_footstep_callback()
 		{
 			type = "";
 		}
-		println("" + type + "" + self._aitype + "");
+		println(((("" + type) + "") + self._aitype) + "");
 	#/
 }
 
@@ -38,7 +38,7 @@ function registeraitypefootstepcb(archetype, callback)
 		level._footstepcbfuncs = [];
 	}
 	/#
-		assert(!isdefined(level._footstepcbfuncs[archetype]), "" + archetype + "");
+		assert(!isdefined(level._footstepcbfuncs[archetype]), ("" + archetype) + "");
 	#/
 	level._footstepcbfuncs[archetype] = callback;
 }

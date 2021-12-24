@@ -276,7 +276,7 @@ function function_c6366dbe()
 	self notify(#"start_slow_field");
 	self endon_callback(&function_10519783, #"disconnect", #"player_downed", #"start_slow_field");
 	level endon_callback(&function_10519783, #"end_game");
-	n_end_time = gettime() + int(5 * 1000);
+	n_end_time = gettime() + (int(5 * 1000));
 	self clientfield::set("winters_wail_slow_field", 1);
 	while(gettime() < n_end_time)
 	{
@@ -585,7 +585,7 @@ function function_bcb4c0e3()
 		n_total_charges = self function_fc256a55();
 		if(self.var_a33a5a37 < n_total_charges)
 		{
-			self.var_8376b1a = self.var_8376b1a + 1 / 60;
+			self.var_8376b1a = self.var_8376b1a + (1 / 60);
 			if(self.var_8376b1a >= 1)
 			{
 				self.var_a33a5a37++;

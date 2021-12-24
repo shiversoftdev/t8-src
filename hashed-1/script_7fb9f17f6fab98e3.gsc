@@ -696,7 +696,7 @@ function function_af65fe93(var_79bf62e6)
 		return;
 	}
 	str_loc = var_79bf62e6.stub.script_string;
-	s_loc = struct::get(str_loc + "_end_" + self getentitynumber());
+	s_loc = struct::get((str_loc + "_end_") + self getentitynumber());
 	self util::create_streamer_hint(s_loc.origin, s_loc.angles, 5);
 	self util::delay("fasttravel_over", "disconnect", &util::clear_streamer_hint);
 }

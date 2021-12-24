@@ -769,7 +769,7 @@ function function_84c5200d(entity)
 		}
 		var_a9e4d1ee = int(max(0, min(5, a_ai_zombies.size)));
 		/#
-			iprintln("" + var_a9e4d1ee + "");
+			iprintln(("" + var_a9e4d1ee) + "");
 		#/
 		for(i = 0; i < var_a9e4d1ee; i++)
 		{
@@ -779,7 +779,7 @@ function function_84c5200d(entity)
 	if(var_a9e4d1ee)
 	{
 		/#
-			iprintln("" + var_a9e4d1ee + "");
+			iprintln(("" + var_a9e4d1ee) + "");
 		#/
 		entity thread function_d1371239(var_a9e4d1ee);
 	}
@@ -862,7 +862,7 @@ function function_bc0facd3()
 	}
 	foreach(player in getplayers())
 	{
-		if(zm_utility::is_player_valid(player) && player != self.favoriteenemy && distancesquared(player.origin, self.origin) < 300 * 300 && distancesquared(self.favoriteenemy.origin, self.origin) > 150 * 150)
+		if(zm_utility::is_player_valid(player) && player != self.favoriteenemy && distancesquared(player.origin, self.origin) < (300 * 300) && distancesquared(self.favoriteenemy.origin, self.origin) > (150 * 150))
 		{
 			self function_f3ce0f2b(player);
 			return;

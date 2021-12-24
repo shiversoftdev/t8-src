@@ -201,7 +201,7 @@ private function evaluate_constant(input_def)
 		}
 	}
 	/#
-		assertmsg("" + input_def.type + "");
+		assertmsg(("" + input_def.type) + "");
 	#/
 	return undefined;
 }
@@ -317,11 +317,11 @@ private function get_graph_def(graph_name, force_refresh = 0)
 	{
 		output_node = graph_def.nodes[wire_def.outputnodeuuid];
 		/#
-			assert(isdefined(output_node), "" + graph_name + "");
+			assert(isdefined(output_node), ("" + graph_name) + "");
 		#/
 		input_node = graph_def.nodes[wire_def.inputnodeuuid];
 		/#
-			assert(isdefined(input_node), "" + graph_name + "");
+			assert(isdefined(input_node), ("" + graph_name) + "");
 		#/
 		output_param_index = get_node_output_param_index(output_node, wire_def.outputparamname);
 		input_param_index = get_node_input_param_index(input_node, wire_def.inputparamname);
@@ -437,10 +437,10 @@ function kick(outputs = [], block = 0)
 		outputs = array(outputs);
 	}
 	/#
-		assert(isarray(outputs), "" + self.def.uuid + "");
+		assert(isarray(outputs), ("" + self.def.uuid) + "");
 	#/
 	/#
-		assert(outputs.size == self.def.outputs.size, "" + self.def.uuid + "" + self.def.outputs.size + "");
+		assert(outputs.size == self.def.outputs.size, ((("" + self.def.uuid) + "") + self.def.outputs.size) + "");
 	#/
 	self.outputs = outputs;
 	for(i = 0; i < self.def.outputs.size; i++)
@@ -498,7 +498,7 @@ function collect_inputs()
 			else
 			{
 				/#
-					assert(input_def.connections.size == 1, "" + input_def.name + "");
+					assert(input_def.connections.size == 1, ("" + input_def.name) + "");
 				#/
 				connection_def = input_def.connections[0];
 				node_inst = self.owner.nodes[connection_def.node.uuid];
@@ -533,7 +533,7 @@ event run(eventstruct)
 {
 	graph_def = get_graph_def(eventstruct.flowgraph_asset);
 	/#
-		assert(isdefined(graph_def), "" + eventstruct.flowgraph_asset + "");
+		assert(isdefined(graph_def), ("" + eventstruct.flowgraph_asset) + "");
 	#/
 	graph_inst = spawnstruct();
 	graph_inst.def = graph_def;

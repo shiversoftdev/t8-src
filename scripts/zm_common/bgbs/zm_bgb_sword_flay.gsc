@@ -86,7 +86,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath,
 				case "basic":
 				case "enhanced":
 				{
-					damage = self.health + damage * 5;
+					damage = self.health + (damage * 5);
 					break;
 				}
 				default:

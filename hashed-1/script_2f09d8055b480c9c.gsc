@@ -685,7 +685,7 @@ private function function_698ddbd9(weapon)
 			if(isactor(e_target))
 			{
 				e_target clientfield::increment("" + #"hash_513a7427138027da");
-				if(n_level > 0 && i == a_e_targets.size - 1)
+				if(n_level > 0 && i == (a_e_targets.size - 1))
 				{
 					var_fb504c3b = a_e_targets[i] getcentroid();
 					var_774fab40 = a_e_targets[i];
@@ -707,7 +707,7 @@ private function function_698ddbd9(weapon)
 	}
 	else if(n_level > 0)
 	{
-		v_end = var_2ed6f142 + var_16d329c7 * sqrt(var_825c6643);
+		v_end = var_2ed6f142 + (var_16d329c7 * sqrt(var_825c6643));
 		a_trace = bullettrace(var_2ed6f142, v_end, 0, self);
 		var_a1db2464 = a_trace[#"position"];
 		check1 = distance(var_2ed6f142, var_a1db2464);
@@ -820,7 +820,7 @@ function function_5ff8ad0b(weapon, var_fb504c3b)
 	}
 	var_2ed6f142 = self getweaponmuzzlepoint();
 	v_forward = self getweaponforwarddir();
-	v_end = var_2ed6f142 + v_forward * 10000;
+	v_end = var_2ed6f142 + (v_forward * 10000);
 	a_trace = bullettrace(var_2ed6f142, v_end, 0, self);
 	level notify(#"hero_weapon_hit", {#v_position:var_fb504c3b, #hash_80e17549:weapon, #e_entity:a_trace[#"entity"], #player:self});
 }
@@ -880,7 +880,7 @@ private function function_e47a52e0(weapon)
 	}
 	v_pos = self getweaponmuzzlepoint();
 	v_forward = self getweaponforwarddir();
-	var_ea317f4d = v_pos + v_forward * var_d52bf5d8;
+	var_ea317f4d = v_pos + (v_forward * var_d52bf5d8);
 	var_ea317f4d = bullettrace(v_pos, var_ea317f4d, 0, undefined)[#"position"];
 	var_3c23401c = self function_5c924730();
 	if(isdefined(var_3c23401c))

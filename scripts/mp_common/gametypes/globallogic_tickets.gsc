@@ -145,7 +145,7 @@ function watch_time_penalties(team)
 			wait(0.5);
 			continue;
 		}
-		frames_to_wait = int(ceil(penalty_interval / float(function_60d95f53()) / 1000));
+		frames_to_wait = int(ceil(penalty_interval / (float(function_60d95f53()) / 1000)));
 		waitframe(frames_to_wait);
 		lose_tickets(team, (isdefined(getgametypesetting(#"ticketslostontimeamount")) ? getgametypesetting(#"ticketslostontimeamount") : 0));
 	}

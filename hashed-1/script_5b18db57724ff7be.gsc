@@ -163,7 +163,7 @@ function function_4f727cf5(weapon, weaponoptions = self getbuildkitweaponoptions
 		if(var_b07a5171 && isdefined(var_e5c037f4) && var_e5c037f4 >= level.pack_a_punch_camo_index)
 		{
 			var_c44040bf = var_e5c037f4 + 1;
-			if(var_c44040bf >= level.pack_a_punch_camo_index + level.pack_a_punch_camo_index_number_variants)
+			if(var_c44040bf >= (level.pack_a_punch_camo_index + level.pack_a_punch_camo_index_number_variants))
 			{
 				var_c44040bf = level.pack_a_punch_camo_index;
 			}

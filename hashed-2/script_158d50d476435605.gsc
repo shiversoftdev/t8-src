@@ -562,7 +562,7 @@ function function_c55b3123(stage, tagname, var_eb6a239c, lerptime, var_f023ca7d,
 	self endon(#"death", #"weapon_change");
 	if(!var_d71e8c6e && lerptime > 0)
 	{
-		endtime = gettime() + stage.var_2eeeee1b * 1000;
+		endtime = gettime() + (stage.var_2eeeee1b * 1000);
 		do
 		{
 			waitframe(1);
@@ -616,7 +616,7 @@ function function_42887bfe(stage, tagname, layer, impulse, var_d71e8c6e)
 		tint = (isdefined(stage.(var_bc211a50)) ? stage.(var_bc211a50) : 0);
 		if(lerptime > 0)
 		{
-			endtime = gettime() + lerptime * 1000;
+			endtime = gettime() + (lerptime * 1000);
 			do
 			{
 				waitframe(1);
@@ -649,7 +649,7 @@ function function_42887bfe(stage, tagname, layer, impulse, var_d71e8c6e)
 	tint = (isdefined(stage.(var_7fd61736)) ? stage.(var_7fd61736) : 0);
 	if(!var_d71e8c6e && lerptime > 0)
 	{
-		endtime = gettime() + lerptime * 1000;
+		endtime = gettime() + (lerptime * 1000);
 		do
 		{
 			waitframe(1);

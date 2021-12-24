@@ -100,7 +100,7 @@ private function _calculatepositionquerypath(queryresult, position, entity)
 		while(index < queryresult.data.size)
 		{
 			goalpoints = [];
-			for(goalindex = index; goalindex - index < 16 && goalindex < queryresult.data.size; goalindex++)
+			for(goalindex = index; (goalindex - index) < 16 && goalindex < queryresult.data.size; goalindex++)
 			{
 				goalpoints[goalpoints.size] = queryresult.data[goalindex].origin;
 			}
@@ -522,7 +522,7 @@ private function function_7e03c94a(commander)
 private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
-		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), "" + "" + "");
+		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), ("" + "") + "");
 	#/
 	if(gettime() > squad.createtime + constants[#"hash_2fe4d5f6cd1c7ca8"])
 	{

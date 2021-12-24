@@ -175,12 +175,12 @@ private function function_e3a084cd(localclientnum)
 				var_354c76a5 = atan(radius / distance);
 				if(var_3d3d7bb1 > 0)
 				{
-					var_354c76a5 = var_354c76a5 * 250 - var_3d3d7bb1 / 250;
+					var_354c76a5 = var_354c76a5 * ((250 - var_3d3d7bb1) / 250);
 					self function_5e00861(0);
 				}
 				else
 				{
-					self function_5e00861(radius / 200 * 0.6);
+					self function_5e00861((radius / 200) * 0.6);
 				}
 				self function_5db470de(localclientnum, distance, 1, var_354c76a5 * 2);
 			}
@@ -189,7 +189,7 @@ private function function_e3a084cd(localclientnum)
 		parent = self getlinkedent();
 		if(isdefined(parent) || var_dc3f8ecd == self.origin)
 		{
-			var_3d3d7bb1 = var_3d3d7bb1 + getservertime(localclientnum) - var_450cbe48;
+			var_3d3d7bb1 = (var_3d3d7bb1 + getservertime(localclientnum)) - var_450cbe48;
 		}
 		else
 		{

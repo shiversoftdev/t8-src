@@ -157,7 +157,7 @@ function watchforkillstreakend(team, influencer, killstreak_id)
 function getplaneflyheight(bundle)
 {
 	loc_000006E2:
-	return airsupport::getminimumflyheight() + (isdefined(bundle.var_d4f45bfd) ? bundle.var_d4f45bfd : 0) + randomint((isdefined(bundle.var_f7478ae6) ? bundle.var_f7478ae6 : 1));
+	return (airsupport::getminimumflyheight() + (isdefined(bundle.var_d4f45bfd) ? bundle.var_d4f45bfd : 0)) + randomint((isdefined(bundle.var_f7478ae6) ? bundle.var_f7478ae6 : 1));
 }
 
 /*
@@ -301,7 +301,7 @@ function function_4b1354ff()
 	var_6fe4cf51 = 30000;
 	var_15f570c1 = plane.origin + vectorscale(planedir, 30000);
 	plane setplanegoalpos(var_15f570c1, var_15f570c1 + vectorscale(planedir, 300));
-	plane setspeed(0.05681818 * var_6fe4cf51 / var_fc8999ee, 100);
+	plane setspeed((0.05681818 * var_6fe4cf51) / var_fc8999ee, 100);
 	plane setneargoalnotifydist(100);
 	plane waittill(#"curve_end");
 }
@@ -331,10 +331,10 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	var_c23fc1e3 = var_1330ab2b * bundle.var_31cddd6;
 	var_e41f7c67 = var_1330ab2b * 0.5;
 	var_15b62717 = var_c23fc1e3 * 0.5;
-	var_368f3731 = 15 + 30 / bundle.var_31cddd6;
+	var_368f3731 = 15 + (30 / bundle.var_31cddd6);
 	var_8a172643 = var_e41f7c67 * sin(var_368f3731);
 	var_a4c5b0ed = var_15b62717 * cos(var_368f3731);
-	var_e3c75fef = 15 + 15 / bundle.var_31cddd6;
+	var_e3c75fef = 15 + (15 / bundle.var_31cddd6);
 	var_a8afe3e3 = var_e41f7c67 * sin(var_e3c75fef);
 	var_cb3c02d3 = var_15b62717 * cos(var_e3c75fef);
 	var_61cc72b5 = 60;
@@ -357,7 +357,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_f460c99e = array(var_f460c99e);
 	}
-	var_f460c99e[var_f460c99e.size] = var_675219e7 + vectorscale(var_aff95821, var_8be5e7a8) + vectorscale(var_d1769adf, var_e41f7c67 * -1 + var_aa3875fe);
+	var_f460c99e[var_f460c99e.size] = (var_675219e7 + vectorscale(var_aff95821, var_8be5e7a8)) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) + var_aa3875fe));
 	if(!isdefined(var_f460c99e))
 	{
 		var_f460c99e = [];
@@ -366,7 +366,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_f460c99e = array(var_f460c99e);
 	}
-	var_f460c99e[var_f460c99e.size] = var_675219e7 + vectorscale(var_aff95821, var_a4c5b0ed) + vectorscale(var_d1769adf, var_e41f7c67 * -1 + var_8a172643);
+	var_f460c99e[var_f460c99e.size] = (var_675219e7 + vectorscale(var_aff95821, var_a4c5b0ed)) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) + var_8a172643));
 	if(!isdefined(var_f460c99e))
 	{
 		var_f460c99e = [];
@@ -375,7 +375,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_f460c99e = array(var_f460c99e);
 	}
-	var_f460c99e[var_f460c99e.size] = var_675219e7 + vectorscale(var_aff95821, var_cb3c02d3) + vectorscale(var_d1769adf, var_e41f7c67 * -1 + var_a8afe3e3);
+	var_f460c99e[var_f460c99e.size] = (var_675219e7 + vectorscale(var_aff95821, var_cb3c02d3)) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) + var_a8afe3e3));
 	if(!isdefined(var_f460c99e))
 	{
 		var_f460c99e = [];
@@ -384,7 +384,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_f460c99e = array(var_f460c99e);
 	}
-	var_f460c99e[var_f460c99e.size] = var_675219e7 + vectorscale(var_aff95821, var_15b62717) + vectorscale(var_d1769adf, var_e41f7c67 * -1);
+	var_f460c99e[var_f460c99e.size] = (var_675219e7 + vectorscale(var_aff95821, var_15b62717)) + (vectorscale(var_d1769adf, var_e41f7c67 * -1));
 	if(!isdefined(var_f460c99e))
 	{
 		var_f460c99e = [];
@@ -393,7 +393,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_f460c99e = array(var_f460c99e);
 	}
-	var_f460c99e[var_f460c99e.size] = var_675219e7 + vectorscale(var_aff95821, var_cb3c02d3) + vectorscale(var_d1769adf, var_e41f7c67 * -1 - var_a8afe3e3);
+	var_f460c99e[var_f460c99e.size] = (var_675219e7 + vectorscale(var_aff95821, var_cb3c02d3)) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) - var_a8afe3e3));
 	if(!isdefined(var_f460c99e))
 	{
 		var_f460c99e = [];
@@ -402,7 +402,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_f460c99e = array(var_f460c99e);
 	}
-	var_f460c99e[var_f460c99e.size] = var_675219e7 + vectorscale(var_aff95821, var_a4c5b0ed) + vectorscale(var_d1769adf, var_e41f7c67 * -1 - var_8a172643);
+	var_f460c99e[var_f460c99e.size] = (var_675219e7 + vectorscale(var_aff95821, var_a4c5b0ed)) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) - var_8a172643));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -411,7 +411,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_d1769adf, var_1330ab2b * -1);
+	var_219e510[var_219e510.size] = var_675219e7 + (vectorscale(var_d1769adf, var_1330ab2b * -1));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -420,7 +420,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_aff95821, var_a4c5b0ed * -1) + vectorscale(var_d1769adf, var_e41f7c67 * -1 - var_8a172643);
+	var_219e510[var_219e510.size] = (var_675219e7 + (vectorscale(var_aff95821, var_a4c5b0ed * -1))) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) - var_8a172643));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -429,7 +429,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_aff95821, var_cb3c02d3 * -1) + vectorscale(var_d1769adf, var_e41f7c67 * -1 - var_a8afe3e3);
+	var_219e510[var_219e510.size] = (var_675219e7 + (vectorscale(var_aff95821, var_cb3c02d3 * -1))) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) - var_a8afe3e3));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -438,7 +438,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_aff95821, var_15b62717 * -1) + vectorscale(var_d1769adf, var_e41f7c67 * -1);
+	var_219e510[var_219e510.size] = (var_675219e7 + (vectorscale(var_aff95821, var_15b62717 * -1))) + (vectorscale(var_d1769adf, var_e41f7c67 * -1));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -447,7 +447,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_aff95821, var_cb3c02d3 * -1) + vectorscale(var_d1769adf, var_e41f7c67 * -1 + var_a8afe3e3);
+	var_219e510[var_219e510.size] = (var_675219e7 + (vectorscale(var_aff95821, var_cb3c02d3 * -1))) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) + var_a8afe3e3));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -456,7 +456,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_aff95821, var_a4c5b0ed * -1) + vectorscale(var_d1769adf, var_e41f7c67 * -1 + var_8a172643);
+	var_219e510[var_219e510.size] = (var_675219e7 + (vectorscale(var_aff95821, var_a4c5b0ed * -1))) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) + var_8a172643));
 	if(!isdefined(var_219e510))
 	{
 		var_219e510 = [];
@@ -465,7 +465,7 @@ function function_a9ef6d5d(plane, var_675219e7, var_aff95821, var_d1769adf)
 	{
 		var_219e510 = array(var_219e510);
 	}
-	var_219e510[var_219e510.size] = var_675219e7 + vectorscale(var_aff95821, var_8be5e7a8 * -1) + vectorscale(var_d1769adf, var_e41f7c67 * -1 + var_aa3875fe);
+	var_219e510[var_219e510.size] = (var_675219e7 + (vectorscale(var_aff95821, var_8be5e7a8 * -1))) + (vectorscale(var_d1769adf, (var_e41f7c67 * -1) + var_aa3875fe));
 	/#
 		function_8c164ce0(var_f460c99e);
 	#/
@@ -560,14 +560,14 @@ function function_598dc586(plane, position, yaw, team, killstreak_id, fly_height
 			var_47b0cb83 = vectornormalize(var_dc88ed1e - startpoint);
 			var_aab835e2 = anglestoright(var_37bb8781);
 			rightoffset = vectorscale(var_aab835e2, bundle.var_ed4e0bcc + util::function_a1281365(bundle.var_64e90954));
-			leftoffset = vectorscale(var_aab835e2, bundle.var_ed4e0bcc * -1 + util::function_a1281365(bundle.var_64e90954));
+			leftoffset = vectorscale(var_aab835e2, (bundle.var_ed4e0bcc * -1) + util::function_a1281365(bundle.var_64e90954));
 			fire_right = vectorcross((0, 0, 1), var_47b0cb83);
 			var_71d1c0cb = plane gettagorigin("tag_gunner_flash2");
 			var_8cdd6f66 = plane gettagorigin("tag_gunner_flash1");
 			playfxontag(bundle.var_cf763c03, plane, "tag_gunner_flash2");
 			playfxontag(bundle.var_cf763c03, plane, "tag_gunner_flash1");
-			var_5bbbb605 = targetpoint + initialoffset + rightoffset + vectorscale(var_c6aa53c, var_41c99c37 * bundle.var_f936eadc + util::function_a1281365(bundle.var_178f3ad6));
-			var_3fddb9e8 = targetpoint + initialoffset + leftoffset + vectorscale(var_c6aa53c, var_41c99c37 * bundle.var_f936eadc + util::function_a1281365(bundle.var_178f3ad6));
+			var_5bbbb605 = ((targetpoint + initialoffset) + rightoffset) + (vectorscale(var_c6aa53c, (var_41c99c37 * bundle.var_f936eadc) + util::function_a1281365(bundle.var_178f3ad6)));
+			var_3fddb9e8 = ((targetpoint + initialoffset) + leftoffset) + (vectorscale(var_c6aa53c, (var_41c99c37 * bundle.var_f936eadc) + util::function_a1281365(bundle.var_178f3ad6)));
 			var_3e44dbbe = 1;
 			if(var_3e44dbbe)
 			{
@@ -615,7 +615,7 @@ function function_598dc586(plane, position, yaw, team, killstreak_id, fly_height
 			plane playsound(#"hash_3e7e330ab5fcdcd");
 			wait(bundle.var_768e166a);
 		}
-		if(sweep + 1 < bundle.var_b88f3e5a && bundle.var_de725346 > 0 && function_1f3792ee(plane))
+		if((sweep + 1) < bundle.var_b88f3e5a && bundle.var_de725346 > 0 && function_1f3792ee(plane))
 		{
 			wait(bundle.var_de725346);
 		}
@@ -921,7 +921,7 @@ function function_6cd200d2()
 			goaly = goaly * -1;
 		}
 		planedir = anglestoforward(plane.angles);
-		plane setplanegoalpos(plane.origin + (goalx, goaly, randomfloatrange(600, 700) * -1) + vectorscale(planedir, 3500));
+		plane setplanegoalpos((plane.origin + (goalx, goaly, randomfloatrange(600, 700) * -1)) + vectorscale(planedir, 3500));
 		var_8518e93e = randomfloatrange(3, 4);
 		plane setplanebarrelroll(randomfloatrange(0.08333334, 0.1111111), randomfloatrange(4, 5));
 		plane_speed = plane getspeedmph();

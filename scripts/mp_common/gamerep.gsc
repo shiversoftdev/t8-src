@@ -298,18 +298,18 @@ function gamerepupdatepersistentplayerinformation()
 		timeplayed = 1;
 	}
 	game.gamerep[#"players"][name][#"score"] = self.score;
-	game.gamerep[#"players"][name][#"scorepermin"] = int(game.gamerep[#"players"][name][#"score"] / timeplayed / 60);
+	game.gamerep[#"players"][name][#"scorepermin"] = int(game.gamerep[#"players"][name][#"score"] / (timeplayed / 60));
 	game.gamerep[#"players"][name][#"kills"] = self.kills;
 	game.gamerep[#"players"][name][#"deaths"] = self.deaths;
 	if(game.gamerep[#"players"][name][#"deaths"] != 0)
 	{
-		game.gamerep[#"players"][name][#"killdeathratio"] = int(game.gamerep[#"players"][name][#"kills"] / game.gamerep[#"players"][name][#"deaths"] * 100);
+		game.gamerep[#"players"][name][#"killdeathratio"] = int((game.gamerep[#"players"][name][#"kills"] / game.gamerep[#"players"][name][#"deaths"]) * 100);
 	}
 	else
 	{
 		game.gamerep[#"players"][name][#"killdeathratio"] = game.gamerep[#"players"][name][#"kills"] * 100;
 	}
-	game.gamerep[#"players"][name][#"killspermin"] = int(game.gamerep[#"players"][name][#"kills"] / timeplayed / 60);
+	game.gamerep[#"players"][name][#"killspermin"] = int(game.gamerep[#"players"][name][#"kills"] / (timeplayed / 60));
 	game.gamerep[#"players"][name][#"plants"] = self.plants;
 	game.gamerep[#"players"][name][#"defuses"] = self.defuses;
 	game.gamerep[#"players"][name][#"captures"] = self.captures;
@@ -334,7 +334,7 @@ function getparamvalueforplayer(playername, paramname)
 		return game.gamerep[#"players"][playername][paramname];
 	}
 	/#
-		assertmsg("" + paramname + "");
+		assertmsg(("" + paramname) + "");
 	#/
 }
 
@@ -415,7 +415,7 @@ function getgamerepparamlimit(paramname)
 		return game.gamerep[#"gamelimit"][#"default"][paramname];
 	}
 	/#
-		assertmsg("" + paramname + "");
+		assertmsg(("" + paramname) + "");
 	#/
 }
 

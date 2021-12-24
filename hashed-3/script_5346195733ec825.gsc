@@ -36,7 +36,7 @@ private function function_cdaddee(team)
 */
 function createcommander(team)
 {
-	commander = plannercommanderutility::createcommander(team, function_cdaddee(team), namespace_1aa9e8f3::function_ce59625f(team), float(function_60d95f53()) / 1000 * 40, float(function_60d95f53()) / 1000 * 100, 3, 3);
+	commander = plannercommanderutility::createcommander(team, function_cdaddee(team), namespace_1aa9e8f3::function_ce59625f(team), (float(function_60d95f53()) / 1000) * 40, (float(function_60d95f53()) / 1000) * 100, 3, 3);
 	plannergenericcommander::commanderdaemons(commander);
 	plannercommanderutility::adddaemon(commander, "daemonControlZones");
 	plannercommanderutility::addsquadevaluator(commander, "commanderScoreBotPresence");

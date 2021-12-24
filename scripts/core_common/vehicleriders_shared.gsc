@@ -340,7 +340,7 @@ private function on_vehicle_spawned()
 	self.var_761c973.var_3acc1a95 = var_3acc1a95;
 	for(position = 1; position <= 9; position++)
 	{
-		flag::init("crew" + position + "_occupied", 0);
+		flag::init(("crew" + position) + "_occupied", 0);
 	}
 	if(isdefined(self.script_vehicleride))
 	{
@@ -410,7 +410,7 @@ private function function_e1008fbd(vehicle)
 	#/
 	for(position = 1; position <= vehicle.var_761c973.var_3acc1a95; position++)
 	{
-		if(!vehicle flag::get("crew" + position + "_occupied"))
+		if(!vehicle flag::get(("crew" + position) + "_occupied"))
 		{
 			return "crew" + position;
 		}
@@ -606,7 +606,7 @@ private function function_3eb6760(ai, vehicle, seat)
 	{
 		/#
 			/#
-				assertmsg("" + seat + "" + function_9e72a96(ai.vehicle.vehicletype) + "");
+				assertmsg((("" + seat) + "") + function_9e72a96(ai.vehicle.vehicletype) + "");
 			#/
 		#/
 	}
@@ -614,7 +614,7 @@ private function function_3eb6760(ai, vehicle, seat)
 	{
 		/#
 			/#
-				assertmsg("" + seat + "" + function_9e72a96(ai.vehicle.vehicletype) + "" + ai.var_ec30f5da.aligntag + "");
+				assertmsg((((("" + seat) + "") + function_9e72a96(ai.vehicle.vehicletype) + "") + ai.var_ec30f5da.aligntag) + "");
 			#/
 		#/
 	}
@@ -640,7 +640,7 @@ function fill_riders(a_ai, vehicle, seat)
 	{
 		/#
 			/#
-				assertmsg("" + function_9e72a96(vehicle.vehicletype) + "");
+				assertmsg(("" + function_9e72a96(vehicle.vehicletype)) + "");
 			#/
 		#/
 		return;
@@ -746,7 +746,7 @@ function unload(seat)
 	{
 		/#
 			/#
-				assertmsg("" + function_9e72a96(self.vehicletype) + "");
+				assertmsg(("" + function_9e72a96(self.vehicletype)) + "");
 			#/
 		#/
 		return;
@@ -1108,7 +1108,7 @@ function exit_ground(ai)
 		ai animation::set_death_anim(ai.var_ec30f5da.exitgrounddeathanim);
 	}
 	/#
-		assert(isdefined(ai.var_ec30f5da.exitgroundanim), "" + ai.var_ec30f5da.position + "");
+		assert(isdefined(ai.var_ec30f5da.exitgroundanim), ("" + ai.var_ec30f5da.position) + "");
 	#/
 	if(isdefined(ai.var_ec30f5da.exitgroundanim))
 	{
@@ -1204,9 +1204,9 @@ private function forward_euler_integration(e_move, v_target_landing, n_initial_s
 	while(!landed)
 	{
 		previousposition = position;
-		velocity = velocity + gravity * 0.1;
-		position = position + velocity * 0.1;
-		if(position[2] + velocity[2] * 0.1 <= v_target_landing[2])
+		velocity = velocity + (gravity * 0.1);
+		position = position + (velocity * 0.1);
+		if((position[2] + (velocity[2] * 0.1)) <= v_target_landing[2])
 		{
 			landed = 1;
 			position = v_target_landing;
@@ -1242,7 +1242,7 @@ function exit_variable(ai)
 	ai thread handle_falling_death();
 	ai animation::set_death_anim(ai.var_ec30f5da.exithighdeathanim);
 	/#
-		assert(isdefined(ai.var_ec30f5da.exithighanim), "" + ai.var_ec30f5da.position + "");
+		assert(isdefined(ai.var_ec30f5da.exithighanim), ("" + ai.var_ec30f5da.position) + "");
 	#/
 	animation::play(ai.var_ec30f5da.exithighanim, ai.vehicle, ai.var_ec30f5da.aligntag, 1, 0, 0);
 	ai animation::set_death_anim(ai.var_ec30f5da.exithighloopdeathanim);
@@ -1251,11 +1251,11 @@ function exit_variable(ai)
 	n_target_height = bundle.highexitlandheight;
 	if(isdefined(ai.var_ec30f5da.dropundervehicleorigin) && ai.var_ec30f5da.dropundervehicleorigin || (isdefined(ai.dropundervehicleoriginoverride) && ai.dropundervehicleoriginoverride))
 	{
-		v_target_landing = (ai.vehicle.origin[0], ai.vehicle.origin[1], ai.origin[2] - n_cur_height + n_target_height);
+		v_target_landing = (ai.vehicle.origin[0], ai.vehicle.origin[1], (ai.origin[2] - n_cur_height) + n_target_height);
 	}
 	else
 	{
-		v_target_landing = (ai.origin[0], ai.origin[1], ai.origin[2] - n_cur_height + n_target_height);
+		v_target_landing = (ai.origin[0], ai.origin[1], (ai.origin[2] - n_cur_height) + n_target_height);
 	}
 	if(isdefined(ai.overridedropposition))
 	{
@@ -1273,7 +1273,7 @@ function exit_variable(ai)
 	ai thread exit_high_loop_anim(e_move);
 	distance = n_target_height - n_cur_height;
 	initialspeed = bundle.dropspeed;
-	n_fall_time = initialspeed * -1 + sqrt(pow(initialspeed, 2) - 2 * 385.8 * distance) / 385.8;
+	n_fall_time = (initialspeed * -1) + (sqrt(pow(initialspeed, 2) - ((2 * 385.8) * distance))) / 385.8;
 	ai notify(#"falling", {#fall_time:n_fall_time});
 	forward_euler_integration(e_move, v_target_landing, bundle.dropspeed);
 	e_move waittill(#"movedone");
@@ -1316,7 +1316,7 @@ function exit_high_loop_anim(e_parent)
 */
 function get_height(e_ignore = self)
 {
-	trace = groundtrace(self.origin + (0, 0, 10), self.origin + vectorscale((0, 0, -1), 10000), 0, e_ignore, 0);
+	trace = groundtrace(self.origin + (0, 0, 10), self.origin + (vectorscale((0, 0, -1), 10000)), 0, e_ignore, 0);
 	/#
 		recordline(self.origin + (0, 0, 10), trace[#"position"], (1, 0.5, 0), "", self);
 	#/
@@ -1370,7 +1370,7 @@ function get_in(ai, vehicle, seat, var_7c3e4d44 = 1)
 					if(var_7c3e4d44)
 					{
 						/#
-							assertmsg("" + function_9e72a96(vehicle.vehicletype) + "");
+							assertmsg(("" + function_9e72a96(vehicle.vehicletype)) + "");
 						#/
 					}
 				#/
@@ -1387,7 +1387,7 @@ function get_in(ai, vehicle, seat, var_7c3e4d44 = 1)
 					if(var_7c3e4d44)
 					{
 						/#
-							assertmsg("" + function_9e72a96(vehicle.vehicletype) + "");
+							assertmsg(("" + function_9e72a96(vehicle.vehicletype)) + "");
 						#/
 					}
 				#/
@@ -1404,7 +1404,7 @@ function get_in(ai, vehicle, seat, var_7c3e4d44 = 1)
 					if(var_7c3e4d44)
 					{
 						/#
-							assertmsg("" + function_9e72a96(vehicle.vehicletype) + "");
+							assertmsg(("" + function_9e72a96(vehicle.vehicletype)) + "");
 						#/
 					}
 				#/
@@ -1422,7 +1422,7 @@ function get_in(ai, vehicle, seat, var_7c3e4d44 = 1)
 					if(var_7c3e4d44)
 					{
 						/#
-							assertmsg("" + function_9e72a96(vehicle.vehicletype) + "");
+							assertmsg(("" + function_9e72a96(vehicle.vehicletype)) + "");
 						#/
 					}
 				#/
@@ -1443,7 +1443,7 @@ function get_in(ai, vehicle, seat, var_7c3e4d44 = 1)
 	{
 		/#
 			/#
-				assertmsg("" + seat + "" + function_9e72a96(vehicle.vehicletype) + "" + function_e84837df(ai, vehicle));
+				assertmsg(((("" + seat) + "") + function_9e72a96(vehicle.vehicletype) + "") + function_e84837df(ai, vehicle));
 			#/
 		#/
 		return;

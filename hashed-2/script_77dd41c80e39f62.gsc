@@ -213,7 +213,7 @@ function function_cf065988(params)
 	cover = params.cover;
 	owner endon(#"death");
 	cover endon(#"death");
-	slots = namespace_b912c30b::function_bdb2b85b(cover, owner.smartcover.var_add809de.origin, owner.smartcover.var_add809de.angles, owner.smartcover.var_add809de.width / 2 + 12, 6, level.var_5101157d.bundle.var_b345c668);
+	slots = namespace_b912c30b::function_bdb2b85b(cover, owner.smartcover.var_add809de.origin, owner.smartcover.var_add809de.angles, (owner.smartcover.var_add809de.width / 2) + 12, 6, level.var_5101157d.bundle.var_b345c668);
 	if(!isdefined(slots) || slots.size <= 0)
 	{
 		return;
@@ -310,12 +310,12 @@ function function_847ab632()
 			{
 				if(isdefined(self.var_6501ffdf) && self.var_6501ffdf)
 				{
-					damage = int(var_aabf4080 / 2) + 1;
+					damage = (int(var_aabf4080 / 2)) + 1;
 					hitent dodamage(damage, hitent.origin, self, self);
 				}
 				else
 				{
-					damage = int(var_aabf4080 / 20) + 1;
+					damage = (int(var_aabf4080 / 20)) + 1;
 					hitent dodamage(damage, hitent.origin, self, self);
 				}
 			}
@@ -950,7 +950,7 @@ function function_9c573bc6()
 private function function_e91d8371(entity)
 {
 	level.var_8de0b84e[level.var_a2fbb776] = entity getentitynumber();
-	level.var_a2fbb776 = level.var_a2fbb776 + 1 % 2;
+	level.var_a2fbb776 = (level.var_a2fbb776 + 1) % 2;
 	if(getdvarint(#"hash_4cfef227405e3c46", 0) || getdvarint(#"hash_6e86098ccb2a7c2b", 0) && (isdefined(entity.var_f9a12c59) && entity.var_f9a12c59))
 	{
 		function_eea7a68a(entity);
@@ -1053,7 +1053,7 @@ private function zombieshouldmelee(entity)
 	{
 		return 0;
 	}
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.enemy.origin - entity.origin)[1]);
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.enemy.origin - entity.origin)[1]));
 	if(abs(yawtoenemy) > (isdefined(entity.var_1c0eb62a) ? entity.var_1c0eb62a : 60))
 	{
 		return 0;
@@ -1098,7 +1098,7 @@ private function function_d8b225ae(entity)
 	{
 		return 0;
 	}
-	if(isdefined(entity.var_b238ef38) && distance2dsquared(entity.origin, entity.var_b238ef38.position) < 16 * 16 && abs(entity.origin[2] - entity.var_b238ef38.position[2]) < 50)
+	if(isdefined(entity.var_b238ef38) && distance2dsquared(entity.origin, entity.var_b238ef38.position) < (16 * 16) && (abs(entity.origin[2] - entity.var_b238ef38.position[2])) < 50)
 	{
 		return 1;
 	}
@@ -1327,7 +1327,7 @@ private function function_5aeeecac(entity)
 	{
 		radiusmultiplier = 3;
 	}
-	forwardoffset = anglestoforward(entity.angles) * entity getpathfindingradius() * radiusmultiplier;
+	forwardoffset = (anglestoforward(entity.angles) * entity getpathfindingradius()) * radiusmultiplier;
 	var_d54999e4 = ee_head(entity, 0.8, forwardoffset);
 	foreach(dynent in var_d54999e4)
 	{
@@ -1512,7 +1512,7 @@ private function function_c6787767(entity)
 */
 private function zombiemoveactionupdate(entity)
 {
-	if(!(isdefined(entity.missinglegs) && entity.missinglegs) && gettime() - entity.movetime > 1000)
+	if(!(isdefined(entity.missinglegs) && entity.missinglegs) && (gettime() - entity.movetime) > 1000)
 	{
 		distsq = distance2dsquared(entity.origin, entity.moveorigin);
 		if(distsq < 144)
@@ -1555,9 +1555,9 @@ private function function_f8250d5e(entity)
 */
 private function function_860d5d8(entity)
 {
-	if(!(isdefined(entity.missinglegs) && entity.missinglegs) && gettime() - entity.idletime > 1000)
+	if(!(isdefined(entity.missinglegs) && entity.missinglegs) && (gettime() - entity.idletime) > 1000)
 	{
-		if(getdvarint(#"hash_4cfef227405e3c46", 0) == 1 && gettime() - entity.idletime < 1700)
+		if(getdvarint(#"hash_4cfef227405e3c46", 0) == 1 && (gettime() - entity.idletime) < 1700)
 		{
 			return;
 		}
@@ -1812,7 +1812,7 @@ function function_e261b81d()
 		}
 		if(isdefined(level.var_3140c814) && level.var_3140c814 && (isdefined(self.var_721a3dbd) && self.var_721a3dbd))
 		{
-			if(self.aistate !== 5 && self isonground() && isdefined(self.var_6bcb6977) && gettime() - self.var_6bcb6977 > self.var_f9d7afa3)
+			if(self.aistate !== 5 && self isonground() && isdefined(self.var_6bcb6977) && (gettime() - self.var_6bcb6977) > self.var_f9d7afa3)
 			{
 				self.var_ef59b90 = 5;
 			}
@@ -1855,7 +1855,7 @@ function function_e261b81d()
 		}
 		if(self.aistate == 3)
 		{
-			if(self getentitynumber() & 1 == function_8168c82a() & 1)
+			if((self getentitynumber() & 1) == (function_8168c82a() & 1))
 			{
 				self.clamptonavmesh = !self.var_37f16e2e && isdefined(self.var_4dc5382f) && self istouching(self.var_4dc5382f.def);
 			}
@@ -2144,7 +2144,7 @@ function function_9d0a9f4e(entity, var_49413202)
 {
 	if(isdefined(entity.var_b4b8ad5f))
 	{
-		if(distancesquared(entity.var_b4b8ad5f.position, var_49413202.position) <= 64 * 64)
+		if(distancesquared(entity.var_b4b8ad5f.position, var_49413202.position) <= (64 * 64))
 		{
 			return 0;
 		}
@@ -2486,7 +2486,7 @@ function function_c241ef9a(ai, enemy, var_fb09158c)
 		return;
 	}
 	ai.favoriteenemy = enemy;
-	ai.var_6324ed63 = gettime() + int(var_fb09158c * 1000);
+	ai.var_6324ed63 = gettime() + (int(var_fb09158c * 1000));
 }
 
 /*
@@ -2801,7 +2801,7 @@ private function function_2ae5a795()
 */
 private function function_bf21ead1()
 {
-	if(getdvarint(#"hash_4cfef227405e3c46", 0) == 1 || getdvarint(#"hash_6e86098ccb2a7c2b", 0) && self getentitynumber() & 1 == function_8168c82a() & 1)
+	if(getdvarint(#"hash_4cfef227405e3c46", 0) == 1 || getdvarint(#"hash_6e86098ccb2a7c2b", 0) && (self getentitynumber() & 1) == (function_8168c82a() & 1))
 	{
 		return;
 	}
@@ -2832,7 +2832,7 @@ private function function_bf21ead1()
 		{
 			self.var_bb185cc5 = gettime();
 		}
-		if(gettime() - self.var_bb185cc5 > 8000 || !namespace_b912c30b::is_player_valid(self.favoriteenemy))
+		if((gettime() - self.var_bb185cc5) > 8000 || !namespace_b912c30b::is_player_valid(self.favoriteenemy))
 		{
 			self.favoriteenemy = undefined;
 		}
@@ -3287,10 +3287,10 @@ private function function_36151fe3()
 function function_b184324d(origin, radius, var_5e8ea34a = 0, dist_from_boundary = 15)
 {
 	theta = randomfloatrange(0, 360);
-	x = var_5e8ea34a + cos(theta) * radius - var_5e8ea34a * randomfloatrange(0, 1);
-	y = var_5e8ea34a + sin(theta) * radius - var_5e8ea34a * randomfloatrange(0, 1);
+	x = var_5e8ea34a + (cos(theta) * (radius - var_5e8ea34a)) * randomfloatrange(0, 1);
+	y = var_5e8ea34a + (sin(theta) * (radius - var_5e8ea34a)) * randomfloatrange(0, 1);
 	point = (origin[0] + x, origin[1] + y, origin[2]);
-	var_d1a33279 = groundtrace(point + vectorscale((0, 0, 1), 8), point + vectorscale((0, 0, -1), 100000), 0, undefined)[#"position"];
+	var_d1a33279 = groundtrace(point + vectorscale((0, 0, 1), 8), point + (vectorscale((0, 0, -1), 100000)), 0, undefined)[#"position"];
 	if(isdefined(var_d1a33279))
 	{
 		return getclosestpointonnavmesh(var_d1a33279, 50, dist_from_boundary);
@@ -3602,7 +3602,7 @@ private function function_936718a8()
 	{
 		delaytime = int(self.var_46618155 * 1000);
 		currenttime = gettime();
-		if(!self.var_620ecd9d && currenttime > self.var_7340c103 + delaytime)
+		if(!self.var_620ecd9d && currenttime > (self.var_7340c103 + delaytime))
 		{
 			self.var_620ecd9d = 1;
 			self.var_3f2dc1d = 1;
@@ -3721,7 +3721,7 @@ function turretthink()
 		var_c71fc4f4 = level.deathcircle.var_c71fc4f4;
 		damage = level.deathcircle.damage;
 	}
-	var_f4d9a132 = gettime() + var_c71fc4f4 * 1000;
+	var_f4d9a132 = gettime() + (var_c71fc4f4 * 1000);
 	while(gettime() < self.var_2853518c + self.var_fdeb16c7)
 	{
 		dodamage = gettime() >= var_f4d9a132;
@@ -3755,7 +3755,7 @@ function turretthink()
 					ent dodamage(damage, org, turret, undefined, undefined, "MOD_DEATH_CIRCLE");
 				}
 			}
-			var_f4d9a132 = gettime() + var_c71fc4f4 * 1000;
+			var_f4d9a132 = gettime() + (var_c71fc4f4 * 1000);
 		}
 		/#
 			turret turretdebug();
@@ -4499,7 +4499,7 @@ function zombie_should_gib(amount, attacker, type)
 	{
 		prev_health = 1;
 	}
-	damage_percent = amount / prev_health * 100;
+	damage_percent = (amount / prev_health) * 100;
 	weapon = undefined;
 	if(isdefined(attacker))
 	{
@@ -4610,7 +4610,7 @@ function head_should_gib(attacker, type, point)
 	{
 		return 0;
 	}
-	low_health_percent = self.health / self.maxhealth * 100;
+	low_health_percent = (self.health / self.maxhealth) * 100;
 	if(low_health_percent > 10)
 	{
 		return 0;
@@ -4930,7 +4930,7 @@ function zmbaivox_playvox(zombie, type, override, priority, delayambientvox = 0)
 		self.delayambientvox = 1;
 		self thread zmbaivox_ambientdelay();
 	}
-	alias = "zmb_vocals_" + zombie.voiceprefix + "_" + type;
+	alias = (("zmb_vocals_" + zombie.voiceprefix) + "_") + type;
 	if(sndisnetworksafe())
 	{
 		if(isdefined(override) && override)
@@ -5375,7 +5375,7 @@ private function function_ef4bd1a6()
 		util::waittill_can_add_debug_command();
 		mapname = util::function_53bbf9d2();
 		adddebugcommand("");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 	#/
 }
 

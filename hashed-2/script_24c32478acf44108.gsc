@@ -82,7 +82,7 @@ function burn(str_type, e_attacker, weapon, var_477abb8f)
 	if(!isdefined(level.var_981dd9cf) || !isdefined(level.var_981dd9cf[#"burn"]) || !isdefined(level.var_981dd9cf[#"burn"][str_type]))
 	{
 		/#
-			assertmsg("" + str_type + "");
+			assertmsg(("" + str_type) + "");
 		#/
 		return;
 	}
@@ -445,7 +445,7 @@ function slowdown(str_type, var_a47cf2b2)
 	if(!isdefined(level.var_981dd9cf) || !isdefined(level.var_981dd9cf[#"slow"]) || !isdefined(level.var_981dd9cf[#"slow"][str_type]))
 	{
 		/#
-			assertmsg("" + str_type + "");
+			assertmsg(("" + str_type) + "");
 		#/
 		return;
 	}
@@ -459,7 +459,7 @@ function slowdown(str_type, var_a47cf2b2)
 	}
 	s_slowdown = level.var_981dd9cf[#"slow"][str_type];
 	n_time = gettime();
-	n_timeout = n_time + int(s_slowdown.n_duration * 1000);
+	n_timeout = n_time + (int(s_slowdown.n_duration * 1000));
 	if(!isdefined(self.a_n_slowdown_timeouts[str_type]) || self.a_n_slowdown_timeouts[str_type] < n_timeout)
 	{
 		self.a_n_slowdown_timeouts[str_type] = n_timeout;

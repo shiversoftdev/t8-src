@@ -144,7 +144,7 @@ function function_9d347621(var_1c114591)
 	n_ammo_total = 0;
 	var_510d7f2b = self getweaponammostock(var_1c114591);
 	n_ammo_clip = self getweaponammoclip(var_1c114591);
-	n_ammo_total = n_ammo_total + var_510d7f2b + n_ammo_clip;
+	n_ammo_total = n_ammo_total + (var_510d7f2b + n_ammo_clip);
 	if(n_ammo_total == 0)
 	{
 		self setweaponammoclip(var_1c114591, 1);

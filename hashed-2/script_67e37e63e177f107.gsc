@@ -241,7 +241,7 @@ function function_9ddc7275(params)
 	self.var_33506050 = undefined;
 	self.favoriteenemy = undefined;
 	duration = 2;
-	self.var_373d5c91 = gettime() + int(duration * 1000);
+	self.var_373d5c91 = gettime() + (int(duration * 1000));
 	self thread function_ef0bfb9d();
 	self thread function_419f8ccb();
 	if(isdefined(self.settings.var_d76543dd))
@@ -345,7 +345,7 @@ function function_ef0bfb9d()
 		foreach(target in var_61c9e8b6)
 		{
 			var_87c0ec9c = distancesquared(target.origin, self function_d3a9800e());
-			if(var_87c0ec9c <= self.settings.damage_radius * self.settings.damage_radius)
+			if(var_87c0ec9c <= (self.settings.damage_radius * self.settings.damage_radius))
 			{
 				if(isdefined(target.archetype))
 				{
@@ -464,7 +464,7 @@ function function_419f8ccb()
 		if(isdefined(self.favoriteenemy))
 		{
 			distfromplayer = distancesquared(self.origin, self.favoriteenemy.origin);
-			if(distfromplayer < self.settings.var_2c001f55 * self.settings.var_2c001f55 && (!(isdefined(self.var_8d5279eb) && self.var_8d5279eb)))
+			if(distfromplayer < (self.settings.var_2c001f55 * self.settings.var_2c001f55) && (!(isdefined(self.var_8d5279eb) && self.var_8d5279eb)))
 			{
 				self.fxent clientfield::set("towers_boss_dust_ball_fx", 2);
 				self.var_8d5279eb = 1;

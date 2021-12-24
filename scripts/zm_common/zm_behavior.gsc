@@ -914,14 +914,14 @@ function zombieupdategoal()
 		{
 			shouldrepath = 1;
 		}
-		else if(distancesquared(self.origin, self.favoriteenemy.origin) <= zigzag_activation_distance * zigzag_activation_distance)
+		else if(distancesquared(self.origin, self.favoriteenemy.origin) <= (zigzag_activation_distance * zigzag_activation_distance))
 		{
 			shouldrepath = 1;
 		}
 		else if(isdefined(pathgoalpos))
 		{
 			distancetogoalsqr = distancesquared(self.origin, pathgoalpos);
-			shouldrepath = distancetogoalsqr < 72 * 72;
+			shouldrepath = distancetogoalsqr < (72 * 72);
 		}
 	}
 	if(isdefined(level.validate_on_navmesh) && level.validate_on_navmesh)
@@ -1018,7 +1018,7 @@ function zombieupdategoal()
 							for(index = 1; index < path.size; index++)
 							{
 								recordline(path[index - 1], path[index], (1, 0.5, 0), "", self);
-								record3dtext(abs(path[index - 1][2] - path[index][2]), path[index - 1], (1, 0, 0));
+								record3dtext(abs((path[index - 1][2]) - path[index][2]), path[index - 1], (1, 0, 0));
 							}
 						}
 					#/
@@ -1030,21 +1030,21 @@ function zombieupdategoal()
 					segmentlength = 0;
 					for(index = 1; index < path.size; index++)
 					{
-						if(isdefined(level.var_562c8f67) && abs(path[index - 1][2] - path[index][2]) > level.var_562c8f67)
+						if(isdefined(level.var_562c8f67) && (abs((path[index - 1][2]) - path[index][2])) > level.var_562c8f67)
 						{
 							break;
 						}
 						currentseglength = distance(path[index - 1], path[index]);
-						var_570a7c72 = segmentlength + currentseglength > deviationdistance;
-						if(index == path.size - 1 && !var_570a7c72)
+						var_570a7c72 = (segmentlength + currentseglength) > deviationdistance;
+						if(index == (path.size - 1) && !var_570a7c72)
 						{
-							deviationdistance = segmentlength + currentseglength - 1;
+							deviationdistance = (segmentlength + currentseglength) - 1;
 							var_eb1c6f1c = 1;
 						}
 						if(var_570a7c72 || var_eb1c6f1c)
 						{
 							remaininglength = deviationdistance - segmentlength;
-							seedposition = path[index - 1] + vectornormalize(path[index] - path[index - 1]) * remaininglength;
+							seedposition = (path[index - 1]) + ((vectornormalize(path[index] - (path[index - 1]))) * remaininglength);
 							/#
 								recordcircle(seedposition, 2, (1, 0.5, 0), "", self);
 							#/
@@ -1113,14 +1113,14 @@ function zombieupdategoalcode()
 		{
 			shouldrepath = 1;
 		}
-		else if(distancesquared(self.origin, self.enemy.origin) <= 200 * 200)
+		else if(distancesquared(self.origin, self.enemy.origin) <= (200 * 200))
 		{
 			shouldrepath = 1;
 		}
 		else if(isdefined(self.pathgoalpos))
 		{
 			distancetogoalsqr = distancesquared(self.origin, self.pathgoalpos);
-			shouldrepath = distancetogoalsqr < 72 * 72;
+			shouldrepath = distancetogoalsqr < (72 * 72);
 		}
 	}
 	if(isdefined(self.keep_moving) && self.keep_moving)
@@ -1165,7 +1165,7 @@ function zombieupdategoalcode()
 					if(segmentlength + currentseglength > deviationdistance)
 					{
 						remaininglength = deviationdistance - segmentlength;
-						seedposition = path[index - 1] + vectornormalize(path[index] - path[index - 1]) * remaininglength;
+						seedposition = (path[index - 1]) + ((vectornormalize(path[index] - (path[index - 1]))) * remaininglength);
 						/#
 							recordcircle(seedposition, 2, (1, 0.5, 0), "", self);
 						#/
@@ -2111,7 +2111,7 @@ function findnodesservice(behaviortreeentity)
 		}
 		behaviortreeentity.entrance_nodes[behaviortreeentity.entrance_nodes.size] = node;
 		/#
-			assert(isdefined(node), "" + behaviortreeentity.find_flesh_struct_string + "");
+			assert(isdefined(node), ("" + behaviortreeentity.find_flesh_struct_string) + "");
 		#/
 		behaviortreeentity.first_node = node;
 		goal_pos = getclosestpointonnavmesh(node.origin, 128, self getpathfindingradius());
@@ -2511,7 +2511,7 @@ function barricadeentermocompstart(entity, mocompanim, mocompanimblendouttime, m
 	}
 	if(isdefined(entity.mocomp_barricade_offset))
 	{
-		origin = origin + anglestoforward(angles) * entity.mocomp_barricade_offset;
+		origin = origin + (anglestoforward(angles) * entity.mocomp_barricade_offset);
 	}
 	entity forceteleport(origin, angles, 1);
 	entity animmode("noclip", 0);
@@ -2581,7 +2581,7 @@ function barricadeentermocompnozstart(entity, mocompanim, mocompanimblendouttime
 	}
 	if(isdefined(entity.mocomp_barricade_offset))
 	{
-		origin = origin + anglestoforward(angles) * entity.mocomp_barricade_offset;
+		origin = origin + (anglestoforward(angles) * entity.mocomp_barricade_offset);
 	}
 	entity forceteleport(origin, angles, 1);
 	entity animmode("noclip", 0);
@@ -2674,11 +2674,11 @@ function notetrackboardmelee(animationentity)
 			}
 			playerdistsq = distance2dsquared(animationentity.player_targets[i].origin, animationentity.origin);
 			heightdiff = abs(animationentity.player_targets[i].origin[2] - animationentity.origin[2]);
-			if(playerdistsq < meleedistsq && heightdiff * heightdiff < meleedistsq)
+			if(playerdistsq < meleedistsq && (heightdiff * heightdiff) < meleedistsq)
 			{
 				playertriggerdistsq = distance2dsquared(animationentity.player_targets[i].origin, animationentity.first_node.trigger_location.origin);
 				heightdiff = abs(animationentity.player_targets[i].origin[2] - animationentity.first_node.trigger_location.origin[2]);
-				if(playertriggerdistsq < triggerdistsq && heightdiff * heightdiff < triggerdistsq)
+				if(playertriggerdistsq < triggerdistsq && (heightdiff * heightdiff) < triggerdistsq)
 				{
 					animationentity.player_targets[i] playsoundtoplayer(#"hash_75318bcffca7ff06", animationentity.player_targets[i]);
 					animationentity.player_targets[i] dodamage(animationentity.meleeweapon.meleedamage, animationentity.origin, self, self, "none", "MOD_MELEE");
@@ -2825,7 +2825,7 @@ function zombieblackholebombpullupdate(entity, asmstatename)
 	{
 		entity.v_zombie_custom_goal_pos = entity.damageorigin;
 	}
-	if(!(isdefined(entity.missinglegs) && entity.missinglegs) && gettime() - entity.pulltime > 1000)
+	if(!(isdefined(entity.missinglegs) && entity.missinglegs) && (gettime() - entity.pulltime) > 1000)
 	{
 		distsq = distance2dsquared(entity.origin, entity.pullorigin);
 		if(distsq < 144)

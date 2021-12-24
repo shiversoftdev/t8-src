@@ -44,20 +44,20 @@ function __init__()
 		for(index = 1; index <= destructbundle.piececount; index++)
 		{
 			piecestruct = spawnstruct();
-			piecestruct.gibmodel = destructible.("piece" + index + "_gibmodel");
-			piecestruct.gibtag = destructible.("piece" + index + "_gibtag");
-			piecestruct.gibfx = destructible.("piece" + index + "_gibfx");
-			piecestruct.gibfxtag = destructible.("piece" + index + "_gibeffecttag");
-			piecestruct.gibdynentfx = destructible.("piece" + index + "_gibdynentfx");
-			piecestruct.gibsound = destructible.("piece" + index + "_gibsound");
-			piecestruct.hitlocation = destructible.("piece" + index + "_hitlocation");
-			piecestruct.hidetag = destructible.("piece" + index + "_hidetag");
-			piecestruct.detachmodel = destructible.("piece" + index + "_detachmodel");
-			piecestruct.var_1377a2a4 = destructible.("piece" + index + "_detachtag");
-			if(isdefined(destructible.("piece" + index + "_hittags")))
+			piecestruct.gibmodel = destructible.(("piece" + index) + "_gibmodel");
+			piecestruct.gibtag = destructible.(("piece" + index) + "_gibtag");
+			piecestruct.gibfx = destructible.(("piece" + index) + "_gibfx");
+			piecestruct.gibfxtag = destructible.(("piece" + index) + "_gibeffecttag");
+			piecestruct.gibdynentfx = destructible.(("piece" + index) + "_gibdynentfx");
+			piecestruct.gibsound = destructible.(("piece" + index) + "_gibsound");
+			piecestruct.hitlocation = destructible.(("piece" + index) + "_hitlocation");
+			piecestruct.hidetag = destructible.(("piece" + index) + "_hidetag");
+			piecestruct.detachmodel = destructible.(("piece" + index) + "_detachmodel");
+			piecestruct.var_1377a2a4 = destructible.(("piece" + index) + "_detachtag");
+			if(isdefined(destructible.(("piece" + index) + "_hittags")))
 			{
 				piecestruct.var_d8fa3d82 = [];
-				foreach(var_5440c126 in destructible.("piece" + index + "_hittags"))
+				foreach(var_5440c126 in destructible.(("piece" + index) + "_hittags"))
 				{
 					if(!isdefined(piecestruct.var_d8fa3d82))
 					{
@@ -467,7 +467,7 @@ function isdestructed(entity, piecenumber)
 			assert(1 <= piecenumber && piecenumber <= 20);
 		#/
 	#/
-	return function_b9568365(entity) & 1 << piecenumber;
+	return function_b9568365(entity) & (1 << piecenumber);
 }
 
 /*

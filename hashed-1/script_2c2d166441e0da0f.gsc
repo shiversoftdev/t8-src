@@ -351,7 +351,7 @@ function function_f910ed8a()
 	zombie_count = max(level.var_aad912ad, 1);
 	if(isdedicated())
 	{
-		iprintlnbold("Zombie count is " + zombie_count + "\n");
+		iprintlnbold(("Zombie count is " + zombie_count) + "\n");
 	}
 	var_c3bb4e09 = zombie_count;
 	var_f1fbce84 = zombie_count;

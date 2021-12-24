@@ -138,18 +138,18 @@ private function function_a2270a7e(vehicle)
 	}
 	while(true)
 	{
-		if(vehicle depthinwater() > 0 && gettime() - vehicle.birthtime > 350)
+		if(vehicle depthinwater() > 0 && (gettime() - vehicle.birthtime) > 350)
 		{
 			vehicle dodamage(vehicle.health, vehicle.origin);
 		}
 		if(isdefined(vehicle.var_b61d83c4) && vehicle.var_b61d83c4)
 		{
-			if(vehicle.vehicletype != "veh_hawk_player_far_range_" + str_mode)
+			if(vehicle.vehicletype != ("veh_hawk_player_far_range_" + str_mode))
 			{
 				vehicle setvehicletype("veh_hawk_player_far_range_" + str_mode);
 			}
 		}
-		else if(vehicle.vehicletype != "veh_hawk_player_" + str_mode)
+		else if(vehicle.vehicletype != ("veh_hawk_player_" + str_mode))
 		{
 			vehicle setvehicletype("veh_hawk_player_" + str_mode);
 		}

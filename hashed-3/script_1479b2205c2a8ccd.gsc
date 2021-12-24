@@ -225,8 +225,8 @@ function function_ede90521()
 		{
 			if(getdvarint(#"hash_11ad6a9695943217", 0))
 			{
-				iprintlnbold("" + self.targetname + "" + self.script_int);
-				println("" + self.targetname + "" + self.script_int);
+				iprintlnbold((("" + self.targetname) + "") + self.script_int);
+				println((("" + self.targetname) + "") + self.script_int);
 			}
 		}
 	#/

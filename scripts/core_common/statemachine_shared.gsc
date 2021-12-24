@@ -209,7 +209,7 @@ function set_state(name, state_params)
 	if(!isdefined(state))
 	{
 		/#
-			assertmsg("" + name + "" + self.name);
+			assertmsg((("" + name) + "") + self.name);
 		#/
 		return 0;
 	}
@@ -427,11 +427,11 @@ function function_acc83382()
 				if(!getdvarint(#"recorder_enablerec", 0))
 				{
 					heightoffset = var_88791e00 * i;
-					print3d(owner.origin + (0, 0, heightoffset), "" + state_machine.name + "" + statename, (1, 1, 0));
+					print3d(owner.origin + (0, 0, heightoffset), (("" + state_machine.name) + "") + statename, (1, 1, 0));
 				}
 				else
 				{
-					record3dtext("" + state_machine.name + "" + statename, owner.origin, (1, 1, 0), "", owner, 1);
+					record3dtext((("" + state_machine.name) + "") + statename, owner.origin, (1, 1, 0), "", owner, 1);
 				}
 				i++;
 			}

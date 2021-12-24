@@ -736,32 +736,32 @@ function function_7d9e84f9(str_color = "red")
 	{
 		case "hash_1da63a56d335126d":
 		{
-			self.str_exploder = "fxexp_tf_" + str_color + "_mh";
+			self.str_exploder = ("fxexp_tf_" + str_color) + "_mh";
 			break;
 		}
 		case "hash_1eac9298079b93a8":
 		{
-			self.str_exploder = "fxexp_tf_" + str_color + "_clr";
+			self.str_exploder = ("fxexp_tf_" + str_color) + "_clr";
 			break;
 		}
 		case "hash_4ff91fde07ff6a11":
 		{
-			self.str_exploder = "fxexp_tf_" + str_color + "_br";
+			self.str_exploder = ("fxexp_tf_" + str_color) + "_br";
 			break;
 		}
 		case "hash_fe1fc05e30fa5c6":
 		{
-			self.str_exploder = "fxexp_tf_" + str_color + "_lb";
+			self.str_exploder = ("fxexp_tf_" + str_color) + "_lb";
 			break;
 		}
 		case "hash_1fe78db53e6ed30f":
 		{
-			self.str_exploder = "fxexp_tf_" + str_color + "_msm";
+			self.str_exploder = ("fxexp_tf_" + str_color) + "_msm";
 			break;
 		}
 		case "hash_6403fa19e4d17902":
 		{
-			self.str_exploder = "fxexp_tf_" + str_color + "_gh";
+			self.str_exploder = ("fxexp_tf_" + str_color) + "_gh";
 			break;
 		}
 	}
@@ -926,7 +926,7 @@ private function function_1eeda1e5()
 	self endon(#"disconnect");
 	self.var_a46d8eee = 1;
 	n_character_index = zm_characters::function_d35e4c92();
-	str_vo = "vox_generic_responses_positive_plr_" + n_character_index + "_" + randomint(9);
+	str_vo = (("vox_generic_responses_positive_plr_" + n_character_index) + "_") + randomint(9);
 	self thread zm_vo::function_8e0f4696(str_vo, 0, 1, 9999);
 }
 

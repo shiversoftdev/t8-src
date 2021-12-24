@@ -431,7 +431,7 @@ private function function_53b04cab(var_378e29b9)
 		{
 			return;
 		}
-		iprintln(str_name + "" + var_378e29b9);
+		iprintln((str_name + "") + var_378e29b9);
 	#/
 }
 

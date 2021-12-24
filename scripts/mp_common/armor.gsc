@@ -305,7 +305,7 @@ function has_armor()
 */
 function get_damage_time_threshold_ms(not_damaged_time_seconds = 0.5)
 {
-	damage_time_threshold_ms = gettime() - int(not_damaged_time_seconds * 1000);
+	damage_time_threshold_ms = gettime() - (int(not_damaged_time_seconds * 1000));
 	return damage_time_threshold_ms;
 }
 
@@ -346,7 +346,7 @@ function boost_armor(bars_to_give, damage_time_threshold_ms)
 	{
 		player update_max_armor(1);
 	}
-	player.armor = player.armor + int(bars_to_give * player.armorperbar);
+	player.armor = player.armor + (int(bars_to_give * player.armorperbar));
 }
 
 /*
@@ -364,7 +364,7 @@ function get_empty_bars()
 	{
 		return 0;
 	}
-	return self.maxarmor - self.armor / self.armorperbar;
+	return (self.maxarmor - self.armor) / self.armorperbar;
 }
 
 /*
@@ -434,7 +434,7 @@ function get_max_armor_bars(bonus_bars)
 	{
 		return 0;
 	}
-	return math::clamp(ceil(self.armor / self.armorperbar) + bonus_bars, 0, max(self.armorbarmaxcount, 1));
+	return math::clamp((ceil(self.armor / self.armorperbar)) + bonus_bars, 0, max(self.armorbarmaxcount, 1));
 }
 
 /*
@@ -558,7 +558,7 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 	{
 		self function_9c8b5737();
 	}
-	var_737c8f6e = var_737c8f6e * isdefined(weapon.var_ed6ea786) && (weapon.var_ed6ea786 ? self.var_59a874a7.var_e6683a43 : self.var_59a874a7.var_cdeeec29);
+	var_737c8f6e = var_737c8f6e * (isdefined(weapon.var_ed6ea786) && (weapon.var_ed6ea786 ? self.var_59a874a7.var_e6683a43 : self.var_59a874a7.var_cdeeec29));
 	var_2274e560 = weapon.var_7b0ea85;
 	if(getdvarint(#"hash_4cfef227405e3c46", 0))
 	{
@@ -597,16 +597,16 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 	}
 	if(isdefined(self.var_59a874a7) && isdefined(self.var_59a874a7.var_735ae1ee))
 	{
-		var_2274e560 = var_2274e560 + 1 - var_2274e560 * 1 - self.var_59a874a7.var_735ae1ee.(shitloc);
+		var_2274e560 = var_2274e560 + (1 - var_2274e560) * (1 - self.var_59a874a7.var_735ae1ee.(shitloc));
 	}
 	var_aacd5df1 = damage * var_737c8f6e;
 	var_9bb721d3 = 0;
 	if(var_aacd5df1 > 0)
 	{
 		armor_damage = float(math::clamp(var_aacd5df1, 0, self.armor));
-		var_e27873f2 = damage * 1 - var_2274e560;
+		var_e27873f2 = damage * (1 - var_2274e560);
 		var_b1417997 = math::clamp(var_aacd5df1 - self.armor, 0, var_aacd5df1);
-		var_9bb721d3 = var_e27873f2 * var_b1417997 / var_aacd5df1;
+		var_9bb721d3 = var_e27873f2 * (var_b1417997 / var_aacd5df1);
 		self.armor = self.armor - int(ceil(armor_damage));
 		if(isdefined(self.var_3f1410dd))
 		{
@@ -662,7 +662,7 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 		var_d72bd991 = self.var_ea1458aa.attackerdamage[eattacker.clientid];
 		var_d72bd991.var_a74d2db8 = gettime();
 	}
-	remaining_damage = int(ceil(math::clamp(damage * var_2274e560 + var_9bb721d3, 0, damage)));
+	remaining_damage = int(ceil(math::clamp((damage * var_2274e560) + var_9bb721d3, 0, damage)));
 	return remaining_damage;
 }
 

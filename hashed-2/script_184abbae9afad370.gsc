@@ -276,7 +276,7 @@ function function_f5cfe2b4(einflictor, eattacker, idamage, idflags)
 		{
 			eattacker playsoundtoplayer(#"hash_14586b7702eea859", eattacker);
 		}
-		var_2be81a5b = idamage * var_4e3e876f / 100;
+		var_2be81a5b = (idamage * var_4e3e876f) / 100;
 		newhealth = eattacker.health + var_2be81a5b;
 		eattacker.health = int(math::clamp(newhealth, 0, max(eattacker.health, eattacker.maxhealth)));
 	}
@@ -376,7 +376,7 @@ private function function_961fe569(einflictor, eattacker, idamage, idflags, smea
 	if(!level.console && idflags & 8 && isplayer(eattacker))
 	{
 		/#
-			println("" + self getentitynumber() + "" + self.health + "" + eattacker.clientid + "" + isplayer(einflictor) + "" + idamage + "" + shitloc);
+			println(((((((((("" + self getentitynumber()) + "") + self.health) + "") + eattacker.clientid) + "") + isplayer(einflictor) + "") + idamage) + "") + shitloc);
 		#/
 		eattacker stats::function_dad108fa(#"penetration_shots", 1);
 	}
@@ -419,7 +419,7 @@ private function function_961fe569(einflictor, eattacker, idamage, idflags, smea
 		}
 		if(var_81ccea1a && !var_f727da4 && weapon != getweapon(#"hero_pineapplegun"))
 		{
-			idamage = int(idamage * 1 - var_771902ea);
+			idamage = int(idamage * (1 - var_771902ea));
 		}
 		var_677cfdb0 = function_4d1e7b48("explosive_damage");
 		status_effect::status_effect_apply(var_677cfdb0, weapon, eattacker);
@@ -475,7 +475,7 @@ private function function_961fe569(einflictor, eattacker, idamage, idflags, smea
 			var_9277fb8e = var_9277fb8e + self.var_9277fb8e;
 		}
 		var_e6544856 = max(self.maxhealth, self.health);
-		var_7c61c7a1 = var_e6544856 - self.health + var_9277fb8e;
+		var_7c61c7a1 = (var_e6544856 - self.health) + var_9277fb8e;
 		var_56712f4 = self function_401b9b57();
 		var_62b80170 = var_e6544856 - var_56712f4;
 		if(var_7c61c7a1 > var_62b80170)
@@ -599,7 +599,7 @@ private function player_damage_log(einflictor, eattacker, idamage, idflags, smea
 	/#
 		if(getdvarint(#"g_debugdamage", 0))
 		{
-			println("" + self getentitynumber() + "" + self.health + "" + eattacker.clientid + "" + isplayer(einflictor) + "" + idamage + "" + shitloc);
+			println(((((((((("" + self getentitynumber()) + "") + self.health) + "") + eattacker.clientid) + "") + isplayer(einflictor) + "") + idamage) + "") + shitloc);
 		}
 	#/
 	if(self.sessionstate != "dead")
@@ -842,7 +842,7 @@ private function does_player_completely_avoid_damage(idflags, shitloc, weapon, f
 			if(var_a0c3f41d > 0)
 			{
 				var_709ce886 = idamage;
-				var_709ce886 = var_709ce886 * 1 - var_a0c3f41d;
+				var_709ce886 = var_709ce886 * (1 - var_a0c3f41d);
 				function_56dc620b(einflictor, eattacker, int(var_709ce886), weapon, getscriptbundle(self.currentweapon.var_4dd46f8a));
 				idamage = idamage * var_a0c3f41d;
 				return int(idamage);
@@ -1196,7 +1196,7 @@ private function modify_player_damage(einflictor, eattacker, idamage, idflags, s
 		}
 	}
 	idamage = custom_gamemodes_modified_damage(self, eattacker, idamage, smeansofdeath, weapon, einflictor, shitloc);
-	if(level.onplayerdamage != &globallogic::blank)
+	if(level.onplayerdamage != (&globallogic::blank))
 	{
 		modifieddamage = [[level.onplayerdamage]](einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime);
 		if(isdefined(modifieddamage))
@@ -1449,7 +1449,7 @@ private function function_104e1126(einflictor, eattacker, idamage, idflags, smea
 				self.laststunnedby = eattacker;
 				self.laststunnedtime = self.idflagstime;
 			}
-			if(isdefined(eattacker.lastgrenadesuicidetime) && eattacker.lastgrenadesuicidetime >= gettime() - 50 && isfrag)
+			if(isdefined(eattacker.lastgrenadesuicidetime) && eattacker.lastgrenadesuicidetime >= (gettime() - 50) && isfrag)
 			{
 				self.explosiveinfo[#"suicidegrenadekill"] = 1;
 			}
@@ -1497,7 +1497,7 @@ private function function_acca46ef()
 	{
 		return 0;
 	}
-	if(level.friendlyfiredelay && level.friendlyfiredelaytime >= float(gettime() - level.starttime - level.discardtime) / 1000)
+	if(level.friendlyfiredelay && level.friendlyfiredelaytime >= ((float((gettime() - level.starttime) - level.discardtime)) / 1000))
 	{
 		return 1;
 	}

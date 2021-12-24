@@ -468,7 +468,7 @@ function function_1cf2437c(localclientnum, var_d0c67621, var_c0286f82, var_121d6
 	{
 		return;
 	}
-	if([[ var_d0c67621 ]]->function_82e05d64().localclientnum === localclientnum && isdefined([[ var_d0c67621 ]]->function_82e05d64().var_c018da16) && player_role::is_valid([[ var_d0c67621 ]]->function_82e05d64().var_c018da16.charactertype))
+	if(([[ var_d0c67621 ]]->function_82e05d64().localclientnum) === localclientnum && isdefined([[ var_d0c67621 ]]->function_82e05d64().var_c018da16) && player_role::is_valid([[ var_d0c67621 ]]->function_82e05d64().var_c018da16.charactertype))
 	{
 		if(isdefined(level.var_aefa616f) && level.var_aefa616f && dialog_shared::dialog_chance("characterSelectMaldivesChance"))
 		{
@@ -681,21 +681,21 @@ function function_4ccc033d(localclientnum, var_d0c67621)
 		}
 		if(isdefined(level.var_ea696257) && level.var_ea696257)
 		{
-			return [[ var_d0c67621 ]]->function_82e05d64().activeweapon != getweapon(#"pistol_standard_t8");
+			return ([[ var_d0c67621 ]]->function_82e05d64().activeweapon) != getweapon(#"pistol_standard_t8");
 		}
 		if(isdefined(level.var_8eef5741) && level.var_8eef5741)
 		{
-			return [[ var_d0c67621 ]]->function_82e05d64().activeweapon != level.var_bf82f6b0;
+			return ([[ var_d0c67621 ]]->function_82e05d64().activeweapon) != level.var_bf82f6b0;
 		}
 		if(isdefined(level.isgungame) && level.isgungame)
 		{
-			return [[ var_d0c67621 ]]->function_82e05d64().activeweapon != getweapon(#"pistol_fullauto_t8");
+			return ([[ var_d0c67621 ]]->function_82e05d64().activeweapon) != getweapon(#"pistol_fullauto_t8");
 		}
 		if(isdefined(level.var_207a1c9a) && level.var_207a1c9a)
 		{
-			return [[ var_d0c67621 ]]->function_82e05d64().activeweapon != getweapon(#"hash_124cfa74fbc2fd96");
+			return ([[ var_d0c67621 ]]->function_82e05d64().activeweapon) != getweapon(#"hash_124cfa74fbc2fd96");
 		}
-		var_aec11cf1 = [[ var_d0c67621 ]]->function_82e05d64().activeweapon != [[ var_d0c67621 ]]->function_82e05d64().primaryweapon || [[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 !== [[ var_d0c67621 ]]->function_82e05d64().primaryweaponoptions;
+		var_aec11cf1 = ([[ var_d0c67621 ]]->function_82e05d64().activeweapon) != ([[ var_d0c67621 ]]->function_82e05d64().primaryweapon) || ([[ var_d0c67621 ]]->function_82e05d64().var_b8f20727) !== ([[ var_d0c67621 ]]->function_82e05d64().primaryweaponoptions);
 		return var_aec11cf1;
 	}
 	return 0;
@@ -736,7 +736,7 @@ function function_a1c71160(localclientnum, var_d0c67621)
 			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = getweapon(#"special_crossbow_t8");
 			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
 		}
-		else if([[ var_d0c67621 ]]->function_82e05d64().primaryweapon == level.weaponnone)
+		else if(([[ var_d0c67621 ]]->function_82e05d64().primaryweapon) == level.weaponnone)
 		{
 			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = [[ var_d0c67621 ]]->function_82e05d64().secondaryweapon;
 			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = [[ var_d0c67621 ]]->function_82e05d64().secondaryweaponoptions;

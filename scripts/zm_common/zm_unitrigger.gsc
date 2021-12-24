@@ -271,7 +271,7 @@ private function register_unitrigger_internal(unitrigger_stub, trigger_func)
 			{
 				unitrigger_stub.script_height = 64;
 			}
-			unitrigger_stub.test_radius_sq = unitrigger_stub.radius + 15 * unitrigger_stub.radius + 15;
+			unitrigger_stub.test_radius_sq = (unitrigger_stub.radius + 15) * (unitrigger_stub.radius + 15);
 			break;
 		}
 		case "unitrigger_box_use":
@@ -294,13 +294,13 @@ private function register_unitrigger_internal(unitrigger_stub, trigger_func)
 			{
 				unitrigger_stub.radius = box_radius;
 			}
-			unitrigger_stub.test_radius_sq = box_radius + 15 * box_radius + 15;
+			unitrigger_stub.test_radius_sq = (box_radius + 15) * (box_radius + 15);
 			break;
 		}
 		default:
 		{
 			/#
-				println("" + unitrigger_stub.targetname + "");
+				println(("" + unitrigger_stub.targetname) + "");
 			#/
 			return;
 		}
@@ -443,7 +443,7 @@ function register_static_unitrigger(unitrigger_stub, trigger_func, recalculate_z
 	{
 		var_e790dc87 = (15, 15, 35);
 		maxs = (unitrigger_stub.script_width / 2, unitrigger_stub.script_height / 2, unitrigger_stub.script_length / 2);
-		var_e63e6402 = max(unitrigger_stub.script_width, unitrigger_stub.script_length) / 2 + 15;
+		var_e63e6402 = (max(unitrigger_stub.script_width, unitrigger_stub.script_length) / 2) + 15;
 		trigger = ai::function_470c0597(unitrigger_stub.origin + heightoffset, maxs + var_e790dc87, unitrigger_stub.angles);
 	}
 	else if(unitrigger_stub.script_unitrigger_type == "unitrigger_radius" || unitrigger_stub.script_unitrigger_type == "unitrigger_radius_use")
@@ -1042,7 +1042,7 @@ private function function_933f3bf3(s_stub, trigger, player)
 			/#
 				/#
 					loc_0000278C:
-					assertmsg("" + (isdefined(s_stub.targetname) ? s_stub.targetname : "") + "" + (isdefined(s_stub.origin) ? s_stub.origin : (0, 0, 0)) + "");
+					assertmsg((("" + (isdefined(s_stub.targetname) ? s_stub.targetname : "")) + "") + (isdefined(s_stub.origin) ? s_stub.origin : (0, 0, 0)) + "");
 				#/
 			#/
 			usable = 0;
@@ -1774,7 +1774,7 @@ function function_3fdbe6d3(trigger, var_5ca10e3c, color)
 		sphere(var_5ca10e3c, 4, color, 1, 1, 10, 1);
 		/#
 			forward = anglestoforward(tangles);
-			line(torigin, torigin + 12 * forward, color, 0, 1);
+			line(torigin, torigin + (12 * forward), color, 0, 1);
 			box(torigin, tmins, tmaxs, tangles[1], color, 1, 0, 1);
 		#/
 		switch(trigger.classname)

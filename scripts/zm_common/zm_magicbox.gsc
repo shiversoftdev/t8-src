@@ -300,7 +300,7 @@ function get_chest_pieces()
 		self.zbarrier zbarrierpieceuseboxriselogic(4);
 	}
 	self.unitrigger_stub = zm_unitrigger::function_9267812e(104, 45, 50);
-	zm_unitrigger::function_47625e58(self.unitrigger_stub, self.origin + anglestoright(self.angles) * -22.5, self.angles);
+	zm_unitrigger::function_47625e58(self.unitrigger_stub, self.origin + (anglestoright(self.angles) * -22.5), self.angles);
 	zm_unitrigger::function_2547d31f(self.unitrigger_stub, &boxtrigger_update_prompt);
 	zm_unitrigger::unitrigger_force_per_player_triggers(self.unitrigger_stub, 1);
 	self.unitrigger_stub.trigger_target = self;
@@ -708,7 +708,7 @@ function default_pandora_fx_func()
 	{
 		self.pandora_light.origin = s_pandora_fx_pos_override.origin;
 	}
-	self.pandora_light.angles = self.zbarrier.angles + vectorscale((-1, 0, -1), 90);
+	self.pandora_light.angles = self.zbarrier.angles + (vectorscale((-1, 0, -1), 90));
 	self.pandora_light setmodel(#"tag_origin");
 	if(!(isdefined(level._box_initialized) && level._box_initialized))
 	{
@@ -1300,7 +1300,7 @@ function default_box_move_logic()
 	index = -1;
 	for(i = 0; i < level.chests.size; i++)
 	{
-		if(issubstr(level.chests[i].script_noteworthy, "move" + level.chest_moves + 1) && i != level.chest_index)
+		if(issubstr(level.chests[i].script_noteworthy, "move" + (level.chest_moves + 1)) && i != level.chest_index)
 		{
 			index = i;
 			break;
@@ -1859,7 +1859,7 @@ function decide_hide_show_hint(endon_notify, second_endon_notify, onlyplayer, ca
 		}
 		if(use_choke)
 		{
-			while(level._weapon_show_hint_choke > 4 && gettime() < last_update + 150)
+			while(level._weapon_show_hint_choke > 4 && gettime() < (last_update + 150))
 			{
 				waitframe(1);
 			}
@@ -1973,7 +1973,7 @@ function treasure_chest_should_move(chest, player)
 		}
 		if(namespace_59ff1d6c::function_901b751c(#"hash_1513b70c43495cc0"))
 		{
-			var_4066429c = level.chest_accessed - namespace_59ff1d6c::function_901b751c(#"hash_1513b70c43495cc0") * level.chest_moves;
+			var_4066429c = level.chest_accessed - (namespace_59ff1d6c::function_901b751c(#"hash_1513b70c43495cc0") * level.chest_moves);
 			if(level.chest_accessed >= namespace_59ff1d6c::function_901b751c(#"hash_1513b70c43495cc0"))
 			{
 				chance_of_joker = 100;
@@ -2343,12 +2343,12 @@ function treasure_chest_weapon_spawn(chest, player, respin)
 		wait(2);
 		if(isdefined(self.weapon_model))
 		{
-			v_fly_away = self.origin + anglestoup(self.angles) * 500;
+			v_fly_away = self.origin + (anglestoup(self.angles) * 500);
 			self.weapon_model moveto(v_fly_away, 4, 3);
 		}
 		if(isdefined(self.weapon_model_dw))
 		{
-			v_fly_away = self.origin + anglestoup(self.angles) * 500;
+			v_fly_away = self.origin + (anglestoup(self.angles) * 500);
 			self.weapon_model_dw moveto(v_fly_away, 4, 3);
 		}
 		if(isdefined(self.weapon_model))
@@ -2527,7 +2527,7 @@ function timer_til_despawn(v_float)
 		self.angles = (self.angles[0] + 90, self.angles[1], self.angles[2]);
 	}
 	var_3be81b3b = (isdefined(level.var_ad2674fe) ? level.var_ad2674fe : 12);
-	self moveto(self.origin - v_float * 0.85, var_3be81b3b, var_3be81b3b * 0.5);
+	self moveto(self.origin - (v_float * 0.85), var_3be81b3b, var_3be81b3b * 0.5);
 	wait(var_3be81b3b);
 	if(isdefined(self))
 	{
@@ -2714,7 +2714,7 @@ function treasure_chest_give_weapon(weapon, var_75c86f89, var_545bb17f)
 private function function_e62595c2(var_545bb17f)
 {
 	var_545bb17f zm_vo::function_57b8cd17();
-	b_said = zm_vo::function_8e0f4696(#"hash_6364370b57ccf050" + zm_vo::function_82f9bc9f() + "_homu");
+	b_said = zm_vo::function_8e0f4696((#"hash_6364370b57ccf050" + zm_vo::function_82f9bc9f()) + "_homu");
 	if(isdefined(b_said) && b_said)
 	{
 		wait(1);
@@ -2821,13 +2821,13 @@ function function_4873c058()
 				n_z_offset = 8;
 				while(!isdefined(chest.zone_name) && n_z_offset <= 64)
 				{
-					chest.zone_name = zm_zonemgr::get_zone_from_position(chest.zbarrier.origin + var_bbab3105 + (0, 0, n_z_offset), 1);
+					chest.zone_name = zm_zonemgr::get_zone_from_position((chest.zbarrier.origin + var_bbab3105) + (0, 0, n_z_offset), 1);
 					n_z_offset = n_z_offset + 8;
 				}
 				if(!isdefined(chest.zone_name))
 				{
 					/#
-						assert(0, "" + chest.zbarrier.origin + "");
+						assert(0, ("" + chest.zbarrier.origin) + "");
 					#/
 				}
 			}

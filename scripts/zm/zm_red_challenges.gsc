@@ -678,14 +678,14 @@ function setup_models()
 		if(!(isdefined(s_bowl.var_b4a48463) && s_bowl.var_b4a48463))
 		{
 			v_dir = anglestoforward(s_info.angles);
-			v_pos = v_pos + v_dir * -9;
+			v_pos = v_pos + (v_dir * -9);
 		}
 		s_info.var_9d32404 = util::spawn_model(#"tag_origin", v_pos, s_bowl.angles);
 		s_info.var_1a34d8e = level.var_3e72dc3c[n_index].var_9d32404.origin + vectorscale((0, 0, 1), 35);
 		s_info.var_7b63dcba = (0, 0, 0);
 		v_dir = anglestoforward(s_info.angles);
-		v_pos = s_info.var_1a34d8e + v_dir * 85;
-		s_info.var_8f683ef8 = groundtrace(v_pos, v_pos + vectorscale((0, 0, -1), 400), 0, s_info.var_99f92cf4)[#"position"];
+		v_pos = s_info.var_1a34d8e + (v_dir * 85);
+		s_info.var_8f683ef8 = groundtrace(v_pos, v_pos + (vectorscale((0, 0, -1), 400)), 0, s_info.var_99f92cf4)[#"position"];
 	}
 	waitframe(1);
 	var_e668d197 = 1;

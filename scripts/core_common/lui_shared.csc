@@ -872,7 +872,7 @@ function function_dcb34c80(var_2a0de052, field_name, version)
 	/#
 		assert(!self.var_47d8642e, "");
 	#/
-	clientfield::function_78175813("clientuimodel", var_2a0de052, "luielement." + self.var_47e79fc + "." + field_name, version, undefined, 0, 0);
+	clientfield::function_78175813("clientuimodel", var_2a0de052, (("luielement." + self.var_47e79fc) + ".") + field_name, version, undefined, 0, 0);
 }
 
 /*

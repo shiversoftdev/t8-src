@@ -94,7 +94,7 @@ private function function_11421106(typestring, type)
 		loc_0000044C:
 		loc_00000480:
 		loc_0000050C:
-		return typestring + "" + (isdefined(level.var_efeab371[type]) ? level.var_efeab371[type] : 0) + "" + int((isdefined(level.var_efeab371[type]) ? level.var_efeab371[type] : 0) / int(max(level.var_66e56764, 1)) * 100) + "" + tab + "" + (isdefined(level.var_d80c35aa[type]) ? level.var_d80c35aa[type] : 0) + "" + int((isdefined(level.var_d80c35aa[type]) ? level.var_d80c35aa[type] : 0) / int(max(level.var_136445c0, 1)) * 100) + "" + tab + "" + (isdefined(level.var_8d9ad8e8[type]) ? level.var_8d9ad8e8[type] : 0) + "" + int((isdefined(level.var_8d9ad8e8[type]) ? level.var_8d9ad8e8[type] : 0) / int(max(level.var_5720c09a, 1)) * 100) + "" + tab + "" + (isdefined(level.var_ecf16fd3[type]) ? level.var_ecf16fd3[type] : 0) + "" + int((isdefined(level.var_ecf16fd3[type]) ? level.var_ecf16fd3[type] : 0) / int(max(level.var_2850ef5, 1)) * 100) + "";
+		return ((((((((((((((typestring + "") + (isdefined(level.var_efeab371[type]) ? level.var_efeab371[type] : 0) + "") + (int((isdefined(level.var_efeab371[type]) ? level.var_efeab371[type] : 0) / int(max(level.var_66e56764, 1)) * 100)) + "") + tab) + "") + (isdefined(level.var_d80c35aa[type]) ? level.var_d80c35aa[type] : 0) + "") + (int((isdefined(level.var_d80c35aa[type]) ? level.var_d80c35aa[type] : 0) / int(max(level.var_136445c0, 1)) * 100)) + "") + tab) + "") + (isdefined(level.var_8d9ad8e8[type]) ? level.var_8d9ad8e8[type] : 0) + "") + (int((isdefined(level.var_8d9ad8e8[type]) ? level.var_8d9ad8e8[type] : 0) / int(max(level.var_5720c09a, 1)) * 100)) + "") + tab) + "") + (isdefined(level.var_ecf16fd3[type]) ? level.var_ecf16fd3[type] : 0) + "") + (int((isdefined(level.var_ecf16fd3[type]) ? level.var_ecf16fd3[type] : 0) / int(max(level.var_2850ef5, 1)) * 100)) + "";
 	#/
 }
 
@@ -115,7 +115,7 @@ private function function_bebe535()
 		foreach(i, list in level.var_2e96a450)
 		{
 			var_98ed4e60 = function_9e72a96(i);
-			println(var_98ed4e60 + "" + list);
+			println((var_98ed4e60 + "") + list);
 			n_total = n_total + list;
 			a_tokens = strtok(var_98ed4e60, "");
 			foreach(token in a_tokens)
@@ -268,7 +268,7 @@ private function function_b6ea080()
 					}
 					if(isdefined(var_5819b8d4[0].var_a6762160))
 					{
-						debug_string = var_5819b8d4[0].var_a6762160.name + "" + function_9e72a96(var_5819b8d4[0].targetname) + "" + var_5819b8d4[0].origin + "" + type;
+						debug_string = ((((var_5819b8d4[0].var_a6762160.name + "") + function_9e72a96(var_5819b8d4[0].targetname) + "") + var_5819b8d4[0].origin) + "") + type;
 						fprintln(file, debug_string);
 						item_count++;
 					}
@@ -276,7 +276,7 @@ private function function_b6ea080()
 			}
 			count++;
 		}
-		println("" + item_count + "");
+		println(("" + item_count) + "");
 		println("");
 		closefile(file);
 	#/
@@ -388,7 +388,7 @@ private function function_938d798a()
 				{
 					v_player_pos = var_7099d03[level.var_eedfa327].origin;
 				}
-				var_543a44a5 = vectortoangles(var_7099d03[level.var_eedfa327].origin - v_player_pos + vectorscale((0, 0, 1), 36));
+				var_543a44a5 = vectortoangles(var_7099d03[level.var_eedfa327].origin - (v_player_pos + vectorscale((0, 0, 1), 36)));
 				player setorigin(v_player_pos);
 				player setplayerangles(var_543a44a5);
 				var_d4714efb = level.var_eedfa327;
@@ -449,8 +449,8 @@ private function function_f9efe895()
 			}
 			if(n_index != var_d4714efb)
 			{
-				v_player_pos = var_7f0b4b6b[n_index].origin + anglestoforward(var_7f0b4b6b[n_index].angles) * 96;
-				var_543a44a5 = vectortoangles(var_7f0b4b6b[n_index].origin - v_player_pos + vectorscale((0, 0, 1), 36));
+				v_player_pos = var_7f0b4b6b[n_index].origin + (anglestoforward(var_7f0b4b6b[n_index].angles) * 96);
+				var_543a44a5 = vectortoangles(var_7f0b4b6b[n_index].origin - (v_player_pos + vectorscale((0, 0, 1), 36)));
 				player setorigin(v_player_pos);
 				player setplayerangles(var_543a44a5);
 				var_d4714efb = n_index;
@@ -514,7 +514,7 @@ private function function_f0d72128()
 			if(level.var_99026891 != var_d4714efb)
 			{
 				debugstar(var_df1e5fef[level.var_99026891].origin, 190, (1, 1, 1));
-				v_player_pos = var_df1e5fef[level.var_99026891].origin - anglestoright(var_df1e5fef[level.var_99026891].angles) * 128;
+				v_player_pos = var_df1e5fef[level.var_99026891].origin - (anglestoright(var_df1e5fef[level.var_99026891].angles) * 128);
 				var_543a44a5 = vectortoangles(var_df1e5fef[level.var_99026891].origin - v_player_pos);
 				v_player_pos = v_player_pos - v_offset;
 				player setorigin(v_player_pos);
@@ -618,7 +618,7 @@ private function function_cdd9b388()
 				if(!isdefined(level.var_f0d0335b))
 				{
 					level.var_f0d0335b = function_13d7bba(xoffset, yoffset);
-					yoffset = yoffset + var_27afd540 + var_9e681fbf;
+					yoffset = yoffset + (var_27afd540 + var_9e681fbf);
 				}
 				if(!isdefined(level.var_7f7d26cc))
 				{
@@ -628,7 +628,7 @@ private function function_cdd9b388()
 				if(!isdefined(level.var_6deb23ed))
 				{
 					level.var_6deb23ed = function_13d7bba(xoffset, yoffset);
-					yoffset = yoffset + var_27afd540 + var_9e681fbf;
+					yoffset = yoffset + (var_27afd540 + var_9e681fbf);
 				}
 				if(!isdefined(level.var_5c6c77b3))
 				{
@@ -668,7 +668,7 @@ private function function_cdd9b388()
 				if(!isdefined(level.var_67220c03))
 				{
 					level.var_67220c03 = function_13d7bba(xoffset, yoffset);
-					yoffset = yoffset + var_27afd540 + var_9e681fbf;
+					yoffset = yoffset + (var_27afd540 + var_9e681fbf);
 				}
 				if(!isdefined(level.var_58faba13))
 				{
@@ -678,9 +678,9 @@ private function function_cdd9b388()
 				tab = "";
 				loc_000025B8:
 				loc_00002600:
-				level.var_f0d0335b settext("" + (isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0) + "" + int((isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0) / int(max(level.var_136445c0, 1) + (isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0)) * 100) + "");
-				level.var_7f7d26cc settext("" + level.var_136445c0 + (isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0));
-				level.var_6deb23ed settext("" + level.var_66e56764 + tab + tab + "" + level.var_136445c0 + tab + tab + "" + level.var_5720c09a + tab + tab + "" + level.var_2850ef5);
+				level.var_f0d0335b settext((("" + (isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0)) + "") + (int((isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0) / (int(max(level.var_136445c0, 1) + (isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0))) * 100)) + "");
+				level.var_7f7d26cc settext("" + (level.var_136445c0 + (isdefined(level.var_d80c35aa[#"blank"]) ? level.var_d80c35aa[#"blank"] : 0)));
+				level.var_6deb23ed settext((((((((((((("" + level.var_66e56764) + tab) + tab) + "") + level.var_136445c0) + tab) + tab) + "") + level.var_5720c09a) + tab) + tab) + "") + level.var_2850ef5);
 				level.var_5c6c77b3 settext(function_11421106("", ""));
 				level.var_5471e557 settext(function_11421106("", ""));
 				level.var_544a823a settext(function_11421106("", ""));
@@ -815,7 +815,7 @@ private function function_cdd9b388()
 				var_f4b807cb = item_world::function_2e3efdda(origin, undefined, 128, 2000);
 				foreach(item in var_f4b807cb)
 				{
-					print3d(item.origin + vectorscale((0, 0, 1), 10), "" + item.var_bd027dd9 + "" + item.var_a6762160.name, (1, 0.5, 0), 1, 0.4);
+					print3d(item.origin + vectorscale((0, 0, 1), 10), (("" + item.var_bd027dd9) + "") + item.var_a6762160.name, (1, 0.5, 0), 1, 0.4);
 				}
 			}
 			if(getdvarint(#"hash_326974dd9b8c3414", 0))
@@ -850,7 +850,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0, 0), 1, 0, 10, 20);
 					}
@@ -860,7 +860,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 1, 0), 1, 0, 10, 20);
 					}
@@ -870,7 +870,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 1, 0), 1, 0, 10, 20);
 					}
@@ -880,7 +880,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0, 1), 1, 0, 10, 20);
 					}
@@ -890,7 +890,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0, 1), 1, 0, 10, 20);
 					}
@@ -900,7 +900,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
 					}
@@ -910,7 +910,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
 					}
@@ -920,7 +920,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
 					}
@@ -930,7 +930,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
 					}
@@ -940,7 +940,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
 					}
@@ -950,7 +950,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
 					}
@@ -960,7 +960,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (0, 1, 1), 1, 0, 10, 20);
 					}
@@ -970,7 +970,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (0, 1, 1), 1, 0, 10, 20);
 					}
@@ -980,7 +980,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, vectorscale((1, 1, 0), 0.5019608), 1, 0, 10, 20);
 					}
@@ -990,7 +990,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						sphere(vehicle.origin, radius, (0, 1, 0), 1, 0, 10, 20);
 					}
@@ -1005,7 +1005,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 4096;
 						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, vehicle.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
 						}
 						if(isdefined(vehicle.scriptvehicletype))
 						{
@@ -1050,7 +1050,7 @@ private function function_cdd9b388()
 							var_84dd2a8b = 4096;
 							if(distancesquared(origin, point.origin) < var_84dd2a8b * var_84dd2a8b)
 							{
-								radius = max(distance(origin, point.origin) / var_84dd2a8b * radius, 1);
+								radius = max((distance(origin, point.origin) / var_84dd2a8b) * radius, 1);
 							}
 							var_58e1eac5 = item_world::function_2e3efdda(point.origin, undefined, 100, 1);
 							if(var_58e1eac5.size > 0)
@@ -1149,7 +1149,7 @@ private function function_cdd9b388()
 						var_84dd2a8b = 2048;
 						if(distancesquared(origin, item.origin) < var_84dd2a8b * var_84dd2a8b)
 						{
-							radius = max(distance(origin, item.origin) / var_84dd2a8b * radius, 1);
+							radius = max((distance(origin, item.origin) / var_84dd2a8b) * radius, 1);
 						}
 						switch(itemtype)
 						{
@@ -1320,7 +1320,7 @@ private function function_cdd9b388()
 							var_84dd2a8b = 2048;
 							if(distancesquared(origin, spawnpoint) < var_84dd2a8b * var_84dd2a8b)
 							{
-								radius = max(distance(origin, spawnpoint) / var_84dd2a8b * radius, 10);
+								radius = max((distance(origin, spawnpoint) / var_84dd2a8b) * radius, 10);
 							}
 							sphere(spawnpoint, radius, (1, 1, 0), 1, 0, 10, 20);
 							line(spawnpoint, vehicle.origin, (0, 1, 0));
@@ -1351,19 +1351,19 @@ private function function_44b9dd1d()
 		}
 		mapname = util::function_53bbf9d2();
 		adddebugcommand("");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		adddebugcommand("");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
+		adddebugcommand(("" + mapname) + "");
 	#/
 }
 

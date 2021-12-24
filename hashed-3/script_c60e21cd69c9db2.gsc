@@ -100,7 +100,7 @@ function path_update_interrupt()
 		}
 		if(isdefined(self.enemy))
 		{
-			if(self cansee(self.enemy) && distance2dsquared(self.origin, self.enemy.origin) < 0.4 * self.settings.engagementdistmin + self.settings.engagementdistmax * 0.4 * self.settings.engagementdistmin + self.settings.engagementdistmax)
+			if(self cansee(self.enemy) && distance2dsquared(self.origin, self.enemy.origin) < (0.4 * (self.settings.engagementdistmin + self.settings.engagementdistmax)) * (0.4 * (self.settings.engagementdistmin + self.settings.engagementdistmax)))
 			{
 				self notify(#"near_goal");
 			}

@@ -242,9 +242,9 @@ private function function_d1dabace(n_time = 30)
 	level.var_236b9f7a = &function_37fe3e07;
 	level.func_override_wallbuy_prompt = &function_3d4fea64;
 	level.func_magicbox_update_prompt_use_override = &function_bf591b5a;
-	level.var_7f7fd2ac = gettime() + int(n_time * 1000);
+	level.var_7f7fd2ac = gettime() + (int(n_time * 1000));
 	wait(12);
-	level.var_7f7fd2ac = gettime() + int(n_time * 1000);
+	level.var_7f7fd2ac = gettime() + (int(n_time * 1000));
 	foreach(player in getplayers())
 	{
 		player namespace_b22c99a5::function_128378c9(n_time);

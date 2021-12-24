@@ -379,7 +379,7 @@ function function_5daa45ac()
 		{
 			var_9449a4d2 = [];
 			var_9449a4d2[#"gas_cloud"] = s_gas_cloud;
-			var_f1c779a7 = s_gas_cloud.script_string + "_" + s_gas_cloud.script_int;
+			var_f1c779a7 = (s_gas_cloud.script_string + "_") + s_gas_cloud.script_int;
 			var_9449a4d2[#"group"] = s_gas_cloud.script_string;
 			var_9449a4d2[#"hash_3c7656a1cdb9849a"] = 0;
 			var_9449a4d2[#"hash_e027de9788f58f0"] = 0;
@@ -398,7 +398,7 @@ function function_5daa45ac()
 	level.var_d4a0b9f4 = var_d4a0b9f4;
 	foreach(var_ab611263 in level.var_d4a0b9f4)
 	{
-		var_f1c779a7 = var_ab611263[#"gas_cloud"].script_string + "_" + var_ab611263[#"gas_cloud"].script_int;
+		var_f1c779a7 = (var_ab611263[#"gas_cloud"].script_string + "_") + var_ab611263[#"gas_cloud"].script_int;
 		level function_503db3da(var_f1c779a7);
 	}
 }
@@ -781,7 +781,7 @@ function function_778aec95()
 		s_activation = self waittill(#"trigger_activated");
 		e_who = s_activation.e_who;
 		b_using = 1;
-		var_f1c779a7 = self.script_string + "_" + self.script_int;
+		var_f1c779a7 = (self.script_string + "_") + self.script_int;
 		while(b_using && (!level flag::get(#"hash_1478cafcd626c361") || level flag::get(#"circuit_step_complete")))
 		{
 			if(isdefined(e_who))
@@ -802,9 +802,9 @@ function function_778aec95()
 			level.var_d4a0b9f4[var_f1c779a7][#"hash_3524befbbbbe0afe"] thread function_c5552e49(self.var_a1edb69e);
 			playsoundatposition(#"hash_49d9da44ea86bf03", self.origin);
 			/#
-				var_847964c = floor(self.var_a1edb69e / 10 * 100);
+				var_847964c = floor((self.var_a1edb69e / 10) * 100);
 				var_ca13796a = level function_b822e13(self.script_string);
-				iprintlnbold(var_ca13796a + "" + var_847964c + "");
+				iprintlnbold(((var_ca13796a + "") + var_847964c) + "");
 			#/
 			wait(1);
 			if(self.var_a1edb69e >= 10)
@@ -968,7 +968,7 @@ function function_d81c4786()
 		var_cde7175c = level function_10671c7e(0);
 		if(isdefined(var_cde7175c))
 		{
-			var_e09dd0ac = var_cde7175c[#"gas_cloud"].script_string + "_" + var_cde7175c[#"gas_cloud"].script_int;
+			var_e09dd0ac = (var_cde7175c[#"gas_cloud"].script_string + "_") + var_cde7175c[#"gas_cloud"].script_int;
 			level function_7b706d1d(var_e09dd0ac);
 			foreach(var_ab611263 in level.var_d4a0b9f4)
 			{
@@ -1068,7 +1068,7 @@ function function_2b6db5eb()
 	{
 		var_453a5b46 = 1;
 	}
-	n_spawn_count = floor(var_111a6185 + var_453a5b46 * n_players);
+	n_spawn_count = floor(var_111a6185 + (var_453a5b46 * n_players));
 	return n_spawn_count;
 }
 
@@ -1099,7 +1099,7 @@ function function_8a3b2065(var_f1c779a7)
 function function_5bb49d44()
 {
 	self notify(#"hash_462324f983b236df");
-	var_f1c779a7 = self.script_string + "_" + self.script_int;
+	var_f1c779a7 = (self.script_string + "_") + self.script_int;
 }
 
 /*
@@ -1410,7 +1410,7 @@ function function_751e9580()
 	if(level.var_154aee78 <= namespace_a28acff3::get_round_number() && level.var_bcaf8591 > 0 && (!level flag::get(#"hash_1478cafcd626c361") || level flag::get(#"circuit_step_complete")))
 	{
 		n_zombie_count = level.var_38b15968;
-		var_26d4dd52 = floor(randomfloatrange(floor(n_zombie_count / 5), floor(n_zombie_count * 2 / 3)));
+		var_26d4dd52 = floor(randomfloatrange(floor(n_zombie_count / 5), floor((n_zombie_count * 2) / 3)));
 		while(level.var_9427911d > var_26d4dd52)
 		{
 			wait(1);
@@ -1422,7 +1422,7 @@ function function_751e9580()
 			playsoundatposition(#"hash_3fc59a2ac3e3a5b9", (0, 0, 0));
 			waitframe(1);
 			var_cde7175c = level function_10671c7e(1);
-			var_e09dd0ac = var_cde7175c[#"gas_cloud"].script_string + "_" + var_cde7175c[#"gas_cloud"].script_int;
+			var_e09dd0ac = (var_cde7175c[#"gas_cloud"].script_string + "_") + var_cde7175c[#"gas_cloud"].script_int;
 			level.var_bcaf8591 = level.var_bcaf8591 - 1;
 			level function_7b706d1d(var_e09dd0ac);
 			level.var_7a86ba58 function_ccc74648("string_05");
@@ -2360,7 +2360,7 @@ function function_696a0eca()
 				if(var_e6da0a39 < 5)
 				{
 					n_time_remaining = 5 - var_e6da0a39;
-					iprintlnbold("" + n_time_remaining + "");
+					iprintlnbold(("" + n_time_remaining) + "");
 				}
 			#/
 		}

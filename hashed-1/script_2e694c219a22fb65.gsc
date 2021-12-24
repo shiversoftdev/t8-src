@@ -1339,7 +1339,7 @@ function function_e17f2b8a()
 				level.var_3a0d2784 = 0;
 				level.players[0] val::reset("scorestreak_protect", "takedamage");
 				a_bots = level.players[0] namespace_64a487a9::function_dde6edbd();
-				if(isdefined(a_bots) && a_bots.size <= n_alive * 0.5)
+				if(isdefined(a_bots) && a_bots.size <= (n_alive * 0.5))
 				{
 					level flag::set("scorestreak_done");
 					level.players[0] namespace_73e1c3e3::function_8881abec();

@@ -189,7 +189,7 @@ function sndvonotify(notifystring, dialog)
 	for(;;)
 	{
 		self waittill(notifystring);
-		soundalias = self.teamclientprefix + "_" + dialog;
+		soundalias = (self.teamclientprefix + "_") + dialog;
 		self playsound(0, soundalias);
 	}
 }
@@ -315,7 +315,7 @@ function snd_set_snapshot(state)
 {
 	level._sndnextsnapshot = state;
 	/#
-		println("" + state + "");
+		println(("" + state) + "");
 	#/
 	level notify(#"new_bus");
 }
@@ -614,7 +614,7 @@ function startsoundloops()
 		/#
 			if(getdvarint(#"debug_audio", 0) > 0)
 			{
-				println("" + loopers.size + "");
+				println(("" + loopers.size) + "");
 			}
 		#/
 		for(i = 0; i < loopers.size; i++)
@@ -623,7 +623,7 @@ function startsoundloops()
 			loopers[i].script_label = undefined;
 			loopers[i] thread soundloopthink();
 			delay = delay + 1;
-			if(delay % 20 == 0)
+			if((delay % 20) == 0)
 			{
 				waitframe(1);
 			}
@@ -650,7 +650,7 @@ function startlineemitters()
 		/#
 			if(getdvarint(#"debug_audio", 0) > 0)
 			{
-				println("" + lineemitters.size + "");
+				println(("" + lineemitters.size) + "");
 			}
 		#/
 		for(i = 0; i < lineemitters.size; i++)
@@ -659,7 +659,7 @@ function startlineemitters()
 			lineemitters[i].script_label = undefined;
 			lineemitters[i] thread soundlinethink();
 			delay = delay + 1;
-			if(delay % 20 == 0)
+			if((delay % 20) == 0)
 			{
 				waitframe(1);
 			}
@@ -683,14 +683,14 @@ function startrattles()
 	if(isdefined(rattles))
 	{
 		/#
-			println("" + rattles.size + "");
+			println(("" + rattles.size) + "");
 		#/
 		delay = 0;
 		for(i = 0; i < rattles.size; i++)
 		{
 			soundrattlesetup(rattles[i].script_sound, rattles[i].origin);
 			delay = delay + 1;
-			if(delay % 20 == 0)
+			if((delay % 20) == 0)
 			{
 				waitframe(1);
 			}
@@ -720,8 +720,8 @@ function init_audio_triggers(localclientnum)
 	/#
 		if(getdvarint(#"debug_audio", 0) > 0)
 		{
-			println("" + steptrigs.size + "");
-			println("" + materialtrigs.size + "");
+			println(("" + steptrigs.size) + "");
+			println(("" + materialtrigs.size) + "");
 		}
 	#/
 	array::thread_all(steptrigs, &audio_step_trigger, localclientnum);
@@ -1096,9 +1096,9 @@ function scale_speed(x1, x2, y1, y2, z)
 		z = x2;
 	}
 	dx = x2 - x1;
-	n = z - x1 / dx;
+	n = (z - x1) / dx;
 	dy = y2 - y1;
-	w = n * dy + y1;
+	w = (n * dy) + y1;
 	return w;
 }
 
@@ -1154,7 +1154,7 @@ function closest_point_on_line_to_point(point, linestart, lineend)
 {
 	self endon(#"hash_66fcfbe39e07bd83");
 	linemagsqrd = lengthsquared(lineend - linestart);
-	t = point[0] - linestart[0] * lineend[0] - linestart[0] + point[1] - linestart[1] * lineend[1] - linestart[1] + point[2] - linestart[2] * lineend[2] - linestart[2] / linemagsqrd;
+	t = (point[0] - linestart[0]) * (lineend[0] - linestart[0]) + (point[1] - linestart[1]) * (lineend[1] - linestart[1]) + (point[2] - linestart[2]) * (lineend[2] - linestart[2]) / linemagsqrd;
 	if(t < 0)
 	{
 		self.origin = linestart;
@@ -1165,9 +1165,9 @@ function closest_point_on_line_to_point(point, linestart, lineend)
 	}
 	else
 	{
-		start_x = linestart[0] + t * lineend[0] - linestart[0];
-		start_y = linestart[1] + t * lineend[1] - linestart[1];
-		start_z = linestart[2] + t * lineend[2] - linestart[2];
+		start_x = linestart[0] + (t * (lineend[0] - linestart[0]));
+		start_y = linestart[1] + (t * (lineend[1] - linestart[1]));
+		start_z = linestart[2] + (t * (lineend[2] - linestart[2]));
 		self.origin = (start_x, start_y, start_z);
 	}
 }
@@ -1200,7 +1200,7 @@ function snd_print_fx_id(fxid, type, ent)
 	/#
 		if(getdvarint(#"debug_audio", 0) > 0)
 		{
-			println("" + fxid + "" + type);
+			println((("" + fxid) + "") + type);
 		}
 	#/
 }

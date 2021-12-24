@@ -458,7 +458,7 @@ private function function_5b8256ca(package, isammo = 0, var_e120a933 = undefined
 	}
 	else if(isdefined(var_e120a933))
 	{
-		cost = package.var_95c30fc5[var_e120a933 - 1].purchasecost * registerend_prestige_imp;
+		cost = (package.var_95c30fc5[var_e120a933 - 1].purchasecost) * registerend_prestige_imp;
 	}
 	cost = int(cost);
 	if(!isdefined(cost))
@@ -610,7 +610,7 @@ private function addammo(slot, package)
 		}
 		else
 		{
-			var_5eb7db94.ammo = weapon.maxammo / weapon.clipsize + 1;
+			var_5eb7db94.ammo = (weapon.maxammo / weapon.clipsize) + 1;
 		}
 	}
 }
@@ -902,11 +902,11 @@ private function function_c1932ad3(weap, data)
 {
 	if(data.ammo > 0)
 	{
-		self setweaponammostock(weap, int(data.ammo * weap.clipsize) - weap.clipsize);
+		self setweaponammostock(weap, (int(data.ammo * weap.clipsize)) - weap.clipsize);
 	}
 	else
 	{
-		self setweaponammostock(weap, int(data.startammo * weap.clipsize) - weap.clipsize);
+		self setweaponammostock(weap, (int(data.startammo * weap.clipsize)) - weap.clipsize);
 	}
 	if(self getweaponammoclip(weap) <= 0)
 	{

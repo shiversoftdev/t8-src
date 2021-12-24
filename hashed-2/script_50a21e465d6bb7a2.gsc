@@ -656,9 +656,9 @@ function function_b693a570()
 	var_8f5b3e75 = 2;
 	var_69503500 = 12;
 	var_5f530783 = [];
-	for(i = 0; i <= var_69503500 - var_8f5b3e75; i++)
+	for(i = 0; i <= (var_69503500 - var_8f5b3e75); i++)
 	{
-		var_5f530783[i] = "im_" + var_8f5b3e75 + i;
+		var_5f530783[i] = "im_" + (var_8f5b3e75 + i);
 	}
 	zm_audio::playstate("im_1");
 	var_432c4ea2 = array::randomize(var_5f530783);

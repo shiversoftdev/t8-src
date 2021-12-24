@@ -390,7 +390,7 @@ private function is_spawn_trapped(team)
 	{
 		return 0;
 	}
-	if(isdefined(level.alivetimesaverage) && isdefined(level.alivetimesaverage[team]) && level.alivetimesaverage[team] != 0 && level.alivetimesaverage[team] < int(level.spawntraptriggertime * 1000))
+	if(isdefined(level.alivetimesaverage) && isdefined(level.alivetimesaverage[team]) && level.alivetimesaverage[team] != 0 && level.alivetimesaverage[team] < (int(level.spawntraptriggertime * 1000)))
 	{
 		return 1;
 	}
@@ -434,7 +434,7 @@ private function use_start_spawns(predictedspawn)
 	if(level.teambased)
 	{
 		spawnteam = self.pers[#"team"];
-		if(level.aliveplayers[spawnteam].size + level.spawningplayers[self.team].size >= level.spawn_start[spawnteam].size)
+		if((level.aliveplayers[spawnteam].size + level.spawningplayers[self.team].size) >= level.spawn_start[spawnteam].size)
 		{
 			if(!predictedspawn)
 			{
@@ -443,7 +443,7 @@ private function use_start_spawns(predictedspawn)
 			return 0;
 		}
 	}
-	else if(isdefined(level.spawn_start[#"free"]) && level.aliveplayers[#"free"].size + level.spawningplayers[#"free"].size >= level.spawn_start[#"free"].size)
+	else if(isdefined(level.spawn_start[#"free"]) && (level.aliveplayers[#"free"].size + level.spawningplayers[#"free"].size) >= level.spawn_start[#"free"].size)
 	{
 		if(!predictedspawn)
 		{
@@ -801,14 +801,14 @@ function clear_and_add_spawn_points(str_team, classnames, vararg)
 {
 	str_team = util::get_team_mapping(str_team);
 	/#
-		assert(vararg.size % 2 == 0, "");
+		assert((vararg.size % 2) == 0, "");
 	#/
 	clear_spawn_points();
 	team_array = array(str_team);
 	classnames_array = array(classnames);
 	for(index = 0; index < vararg.size; index++)
 	{
-		if(index % 2 == 0)
+		if((index % 2) == 0)
 		{
 			if(!isdefined(team_array))
 			{
@@ -997,7 +997,7 @@ private function update_explored_spawn_points_for_team(team, explored_radius_sq)
 				{
 					continue;
 				}
-				if(abs(player.origin[2] - spawnpoint.origin[2]) < 100 && distancesquared(spawnpoint.origin, player.origin) <= explored_radius_sq)
+				if((abs(player.origin[2] - spawnpoint.origin[2])) < 100 && distancesquared(spawnpoint.origin, player.origin) <= explored_radius_sq)
 				{
 					set_player_explored_spawn_point(spawnpoint, player);
 				}
@@ -1059,7 +1059,7 @@ function spawn_exploration_wait_for_one_frame()
 */
 private function has_player_explored_spawn_point(spawnpoint, player)
 {
-	return spawnpoint.explored & 1 << player getentitynumber();
+	return spawnpoint.explored & (1 << player getentitynumber());
 }
 
 /*
@@ -1073,10 +1073,10 @@ private function has_player_explored_spawn_point(spawnpoint, player)
 */
 private function set_player_explored_spawn_point(spawnpoint, player)
 {
-	spawnpoint.explored = spawnpoint.explored | 1 << player getentitynumber();
+	spawnpoint.explored = spawnpoint.explored | (1 << player getentitynumber());
 	if(isdefined(player.companion))
 	{
-		spawnpoint.explored = spawnpoint.explored | 1 << player.companion getentitynumber();
+		spawnpoint.explored = spawnpoint.explored | (1 << player.companion getentitynumber());
 	}
 }
 
@@ -1113,13 +1113,11 @@ function clear_spawn_point_explored_for_player(spawnpoint, player)
 {
 	if(isdefined(spawnpoint.explored))
 	{
-		~spawnpoint;
-		spawnpoint.explored = spawnpoint.explored & 1 << player getentitynumber();
+		spawnpoint.explored = spawnpoint.explored & (~(1 << player getentitynumber()));
 	}
 	if(isdefined(player.companion))
 	{
-		~player;
-		spawnpoint.explored = spawnpoint.explored & 1 << player.companion getentitynumber();
+		spawnpoint.explored = spawnpoint.explored & (~(1 << player.companion getentitynumber()));
 	}
 }
 
@@ -1405,10 +1403,10 @@ function place_spawn_points(spawnpointname)
 	if(!spawnpoints.size && level.requirespawnpointstoexistinlevel)
 	{
 		/#
-			println("" + spawnpointname + "");
+			println(("" + spawnpointname) + "");
 		#/
 		/#
-			assert(spawnpoints.size, "" + spawnpointname + "");
+			assert(spawnpoints.size, ("" + spawnpointname) + "");
 		#/
 		callback::abort_level();
 		wait(1);
@@ -1435,7 +1433,7 @@ function drop_spawn_points(spawnpointname)
 	if(!spawnpoints.size)
 	{
 		/#
-			println("" + spawnpointname + "");
+			println(("" + spawnpointname) + "");
 		#/
 		return;
 	}
@@ -1811,10 +1809,10 @@ function spawnpoint_debug()
 		index = 0;
 		foreach(s_list in a_spawnlists)
 		{
-			adddebugcommand("" + s_list + "" + index + "");
+			adddebugcommand(((("" + s_list) + "") + index) + "");
 			index++;
 		}
-		adddebugcommand("" + "" + "");
+		adddebugcommand(("" + "") + "");
 		adddebugcommand("");
 		adddebugcommand("");
 		while(true)

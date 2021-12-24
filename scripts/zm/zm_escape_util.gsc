@@ -128,7 +128,7 @@ function function_28d0cf11(str_script_noteworthy)
 			break;
 		}
 	}
-	var_637f088d = namespace_a28acff3::get_zombie_count_for_round(level.round_number, level.activeplayers.size) - level.round_number * n_multiplier;
+	var_637f088d = namespace_a28acff3::get_zombie_count_for_round(level.round_number, level.activeplayers.size) - (level.round_number * n_multiplier);
 	level.var_c843e795 = var_637f088d;
 	if(var_637f088d < 0)
 	{

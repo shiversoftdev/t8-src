@@ -98,7 +98,7 @@ function function_61418721(point, line_start, line_end)
 	var_13d62e0a = point - line_start;
 	var_1ad356b8 = vectornormalize(line_end - line_start);
 	var_f6451fc1 = vectordot(var_13d62e0a, var_1ad356b8);
-	closest_point = line_start + var_1ad356b8 * var_f6451fc1;
+	closest_point = line_start + (var_1ad356b8 * var_f6451fc1);
 	return closest_point;
 }
 
@@ -164,7 +164,7 @@ function function_dc61ccae(vnd_start, var_6f06d19d, var_ca144d1e)
 				var_41aabd6d = number_b_(self.var_b20b0960.origin, (0, 0, 1), var_af2e4b51, var_2b30dcba);
 				if(isdefined(var_41aabd6d))
 				{
-					var_b43bc141 = self.var_b20b0960.origin + (0, 0, 1) * var_41aabd6d;
+					var_b43bc141 = self.var_b20b0960.origin + ((0, 0, 1) * var_41aabd6d);
 					height_difference = var_b43bc141[2] - self.var_b20b0960.origin[2];
 					/#
 						line(self.var_b20b0960.origin, var_b43bc141, (1, 0, 1));

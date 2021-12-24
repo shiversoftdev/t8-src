@@ -726,7 +726,7 @@ function update_loop()
 				waitframe(1);
 				continue;
 			}
-			record3dtext("" + tacbundle.name + "", self.origin, (1, 1, 1), "", self, 0.5);
+			record3dtext(("" + tacbundle.name) + "", self.origin, (1, 1, 1), "", self, 0.5);
 			if(isdefined(self get_revive_target()))
 			{
 				target = self get_revive_target().origin;
@@ -914,10 +914,10 @@ function update_swim()
 	{
 		if(!isdefined(self.bot.resurfacetime))
 		{
-			self.bot.resurfacetime = gettime() + int(self.playerrole.swimtime - 1 * 1000);
+			self.bot.resurfacetime = gettime() + (int((self.playerrole.swimtime - 1) * 1000));
 		}
 	}
-	else if(isdefined(self.bot.resurfacetime) && gettime() - self.bot.resurfacetime < int(2 * 1000))
+	else if(isdefined(self.bot.resurfacetime) && (gettime() - self.bot.resurfacetime) < (int(2 * 1000)))
 	{
 		self bottapbutton(67);
 		return;
@@ -938,7 +938,7 @@ function update_swim()
 		self bottapbutton(67);
 		return;
 	}
-	bottomtrace = groundtrace(self.origin, self.origin + vectorscale((0, 0, -1), 1000), 0, self, 1);
+	bottomtrace = groundtrace(self.origin, self.origin + (vectorscale((0, 0, -1), 1000)), 0, self, 1);
 	swimheight = self.origin[2] - bottomtrace[#"position"][2];
 	if(swimheight < 25)
 	{
@@ -1406,7 +1406,7 @@ function fwd_dot(point)
 */
 function function_7aeb27f1(smin, smax)
 {
-	return gettime() + 1000 * randomfloatrange(smin, smax);
+	return gettime() + (1000 * randomfloatrange(smin, smax));
 }
 
 /*
@@ -1569,7 +1569,7 @@ function function_f0c35734(trigger)
 	#/
 	radius = self getpathfindingradius();
 	height = self function_6a9ae71();
-	heightoffset = (0, 0, height * -1 / 2);
+	heightoffset = (0, 0, (height * -1) / 2);
 	var_e790dc87 = (radius, radius, height / 2);
 	var_75ae35a4 = ai::function_470c0597(trigger.origin + heightoffset, trigger.maxs + var_e790dc87, trigger.angles);
 	return var_75ae35a4;
@@ -1594,7 +1594,7 @@ function function_52947b70(trigger)
 	#/
 	radius = self getpathfindingradius();
 	height = self function_6a9ae71();
-	heightoffset = (0, 0, height * -1 / 2);
+	heightoffset = (0, 0, (height * -1) / 2);
 	var_e790dc87 = (radius, radius, height / 2);
 	maxs = (trigger.script_width, trigger.script_length, trigger.script_height);
 	var_75ae35a4 = ai::function_470c0597(trigger.origin + heightoffset, maxs + var_e790dc87, trigger.angles);
@@ -1813,10 +1813,10 @@ function devgui_bot_loop()
 				}
 				displayname = makelocalizedstring(getcharacterdisplayname(index, sessionmode));
 				assetname = function_9e72a96(getcharacterassetname(index, sessionmode));
-				name = displayname + "" + assetname + "";
-				cmd = "" + name + "" + index + "" + index + "";
+				name = ((displayname + "") + assetname) + "";
+				cmd = ((((("" + name) + "") + index) + "") + index) + "";
 				adddebugcommand(cmd);
-				cmd = "" + name + "" + index + "" + index + "";
+				cmd = ((((("" + name) + "") + index) + "") + index) + "";
 				adddebugcommand(cmd);
 			}
 		}
@@ -1953,25 +1953,25 @@ function add_bot_devgui_menu()
 			return;
 		}
 		i = 0;
-		self add_bot_devgui_cmd(entnum, "" + i + "", 0, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 1, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 0, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 1, "", "");
 		i++;
-		self add_bot_devgui_cmd(entnum, "" + i + "", 0, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 1, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 2, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 0, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 1, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 2, "", "");
 		i++;
-		self add_bot_devgui_cmd(entnum, "" + i + "", 0, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 1, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 0, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 1, "", "");
 		i++;
-		self add_bot_devgui_cmd(entnum, "" + i + "", 0, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 1, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 0, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 1, "", "");
 		i++;
-		self add_bot_devgui_cmd(entnum, "" + i + "", 0, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 1, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 0, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 1, "", "");
 		i++;
-		self add_bot_devgui_cmd(entnum, "" + i + "", 0, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 1, "", "");
-		self add_bot_devgui_cmd(entnum, "" + i + "", 2, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 0, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 1, "", "");
+		self add_bot_devgui_cmd(entnum, ("" + i) + "", 2, "", "");
 		i++;
 		self add_bot_devgui_cmd(entnum, "", i, "");
 		i++;
@@ -2000,7 +2000,7 @@ function add_bot_devgui_cmd(entnum, path, sortkey, devguiarg, cmdargs)
 		{
 			cmdargs = "";
 		}
-		cmd = "" + entnum + "" + self.name + "" + entnum + "" + path + "" + sortkey + "" + devguiarg + "" + entnum + "" + cmdargs + "";
+		cmd = ((((((((((((((("" + entnum) + "") + self.name) + "") + entnum) + "") + path) + "") + sortkey) + "") + devguiarg) + "") + entnum) + "") + cmdargs) + "";
 		util::function_345e5b9a(cmd);
 	#/
 }
@@ -2022,7 +2022,7 @@ function clear_bot_devgui_menu()
 		{
 			return;
 		}
-		cmd = "" + entnum + "" + self.name + "";
+		cmd = ((("" + entnum) + "") + self.name) + "";
 		util::function_345e5b9a(cmd);
 	#/
 }
@@ -2059,7 +2059,7 @@ function function_2d5436be(origin, spiral)
 	c = getdvarfloat(#"hash_451263221fa2d63d", 1);
 	min = getdvarfloat(#"hash_6eab9c95ab563fcb", 50);
 	radius = max(spiral.radius, min);
-	degrees = spacing * 360 / 6.283185 * radius;
+	degrees = (spacing * 360) / (6.283185 * radius);
 	spiral.angle = spiral.angle + degrees;
 	spiral.radius = math::function_b1820790(a, b, c, spiral.angle);
 	var_17e94d83 = rotatepointaroundaxis((spiral.radius, 0, 0), (0, 0, 1), spiral.angle + spiral.var_2b9d3922);

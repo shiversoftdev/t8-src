@@ -717,9 +717,9 @@ function function_303c5d09()
 			{
 				return;
 			}
-			if(isassetloaded("xmodel", self.model + "_color_0" + string(var_bd8043ec)))
+			if(isassetloaded("xmodel", (self.model + "_color_0") + string(var_bd8043ec)))
 			{
-				self setmodel(self.model + "_color_0" + string(var_bd8043ec));
+				self setmodel((self.model + "_color_0") + string(var_bd8043ec));
 			}
 		}
 	}
@@ -1622,8 +1622,8 @@ function function_15534b78()
 			}
 		#/
 	}
-	iprintlnbold("" + level.meteor_counter + "");
-	println("" + level.meteor_counter + "");
+	iprintlnbold(("" + level.meteor_counter) + "");
+	println(("" + level.meteor_counter) + "");
 	zm_unitrigger::unregister_unitrigger(self.stub);
 }
 

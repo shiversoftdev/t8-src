@@ -883,7 +883,7 @@ private function function_2b2ed159(entity, var_dbd1a594)
 		var_50c86c4 = var_3d69d460 / var_87bdc7d3;
 		var_dbd1a594 clientfield::set_player_uimodel("IcePickInfo.currentHackProgress", var_50c86c4);
 		timediff = gettime() - lasttime;
-		var_3d69d460 = var_3d69d460 + timediff * (isdefined(var_dbd1a594.var_6704e6fa) ? var_dbd1a594.var_6704e6fa : 1);
+		var_3d69d460 = var_3d69d460 + (timediff * (isdefined(var_dbd1a594.var_6704e6fa) ? var_dbd1a594.var_6704e6fa : 1));
 		lasttime = gettime();
 		waitframe(1);
 	}
@@ -1197,7 +1197,7 @@ private function function_bf744a1e(var_dbd1a594, var_11a83c3a)
 	var_51d5c26f = function_13f4415c();
 	var_e7af1dd4 = (var_11a83c3a function_6c32d092(#"talent_resistance") ? (isdefined(var_51d5c26f.var_4624074e) ? var_51d5c26f.var_4624074e : 1) : 1);
 	statuseffect = function_4d1e7b48("hacked");
-	var_645d17c2 = statuseffect.var_77449e9 * var_e7af1dd4 * (isdefined(var_51d5c26f.var_9b5b082d) ? var_51d5c26f.var_9b5b082d : 1);
+	var_645d17c2 = (statuseffect.var_77449e9 * var_e7af1dd4) * (isdefined(var_51d5c26f.var_9b5b082d) ? var_51d5c26f.var_9b5b082d : 1);
 	var_11a83c3a.var_e92132fd = var_11a83c3a.var_e92132fd + var_645d17c2;
 	var_11a83c3a status_effect::status_effect_apply(statuseffect, var_8b745faa, var_dbd1a594, 0, var_645d17c2);
 }

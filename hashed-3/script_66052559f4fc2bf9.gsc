@@ -594,7 +594,7 @@ function checkroundswitch()
 	/#
 		assert(game.roundsplayed > 0);
 	#/
-	if(game.roundsplayed % level.roundswitch == 0)
+	if((game.roundsplayed % level.roundswitch) == 0)
 	{
 		[[level.onroundswitch]]();
 		return 1;
@@ -1056,7 +1056,7 @@ function function_ad717b18(var_c139bfe2)
 	}
 	else
 	{
-		var_f05b8779 = delay / 2 + var_f05b8779;
+		var_f05b8779 = (delay / 2) + var_f05b8779;
 	}
 	level notify(#"give_match_bonus");
 	if(var_f05b8779 > 0)

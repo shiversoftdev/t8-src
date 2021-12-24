@@ -369,7 +369,7 @@ private function function_e1273acb(localclientnum, intensity = 0)
 		{
 			continue;
 		}
-		if(var_4a4e047 >= 10 || player function_21c0fa55() || player clientfield::get("outsidedeathcircle") || !isalive(player) || distance2dsquared(origin, player.origin) > maxdistsq || vectordot(fwd, player.origin - origin) <= 0)
+		if(var_4a4e047 >= 10 || player function_21c0fa55() || player clientfield::get("outsidedeathcircle") || !isalive(player) || distance2dsquared(origin, player.origin) > maxdistsq || (vectordot(fwd, player.origin - origin)) <= 0)
 		{
 			player function_de4523(localclientnum);
 			player function_9e8e1f4f(localclientnum);
@@ -480,7 +480,7 @@ private function function_32f7227c(deathcircle, currentradius, localclientnum)
 	if(isdefined(localplayer))
 	{
 		endpos = (localplayer.origin[0], localplayer.origin[1], 0);
-		var_fc612cde = vectornormalize(endpos - startpos) * currentradius;
+		var_fc612cde = (vectornormalize(endpos - startpos)) * currentradius;
 		eyepos = localplayer geteyeapprox();
 	}
 	var_ba5c9ce6 = deathcircle.origin + var_fc612cde;

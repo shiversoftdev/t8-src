@@ -302,7 +302,7 @@ private function function_104c5d35()
 			self luinotifyevent(#"hash_675b38b81564449", 4, 3, function_7b01d125(self.var_e06cb519, self.var_d0b65bbe) + 1, self.var_e06cb519 + 1, self getentitynumber());
 			self stats::inc_stat(#"hash_5ae679fef1e88988", #"hash_ffbfacdd776e531", self.var_e06cb519, #"factions", self.var_d0b65bbe, #"hash_7a54171ce10db54f", 1);
 			/#
-				iprintln("" + function_9e72a96(var_acbd7392) + "" + function_9e72a96(self.var_d0b65bbe));
+				iprintln((("" + function_9e72a96(var_acbd7392)) + "") + function_9e72a96(self.var_d0b65bbe));
 			#/
 		}
 	}
@@ -323,14 +323,14 @@ function function_4368582a(var_d1017f27, n_value = 1)
 	n_target = var_d1017f27.var_e226ec4f;
 	if(var_e4edaaf0 < n_target)
 	{
-		if(var_e4edaaf0 + n_value >= n_target)
+		if((var_e4edaaf0 + n_value) >= n_target)
 		{
 			var_d1017f27.var_89ed7b39 = 1;
 			self function_a6a40735(var_d1017f27, self.var_e06cb519, self.var_bf6f8ec3, n_target, 1);
 			self addrankxpvalue("faction_calling_task", var_d1017f27.n_xp);
 			self luinotifyevent(#"hash_675b38b81564449", 3, 2, var_d1017f27.var_de86e878, self getentitynumber());
 			/#
-				iprintln(self.name + "" + function_9e72a96(var_d1017f27.var_ad971622) + "" + var_d1017f27.n_xp + "");
+				iprintln((((self.name + "") + function_9e72a96(var_d1017f27.var_ad971622) + "") + var_d1017f27.n_xp) + "");
 			#/
 			self function_104c5d35();
 			uploadstats(self);
@@ -341,7 +341,7 @@ function function_4368582a(var_d1017f27, n_value = 1)
 			/#
 				progress = var_e4edaaf0 + n_value;
 				target = n_target;
-				iprintln(self.name + "" + function_9e72a96(var_d1017f27.var_ad971622) + "" + progress + "" + target);
+				iprintln(((((self.name + "") + function_9e72a96(var_d1017f27.var_ad971622) + "") + progress) + "") + target);
 			#/
 			self function_66714869(var_d1017f27, self.var_e06cb519, self.var_bf6f8ec3, n_value);
 		}

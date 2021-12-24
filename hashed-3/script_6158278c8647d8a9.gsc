@@ -356,7 +356,7 @@ function function_6ee03a5f(failurecount)
 	if(self function_96f55844())
 	{
 		/#
-			self botprintwarning("" + startpos + "" + self.origin);
+			self botprintwarning((("" + startpos) + "") + self.origin);
 		#/
 	}
 	self botprinterror("" + startpos);
@@ -464,7 +464,7 @@ function can_teleport()
 			continue;
 		}
 		fwd = anglestoforward(player.angles);
-		if(self.team == player.team && vectordot(fwd, self.origin - player.origin) > 0)
+		if(self.team == player.team && (vectordot(fwd, self.origin - player.origin)) > 0)
 		{
 			return 0;
 		}
@@ -714,7 +714,7 @@ function function_51cc7d9a(params, tacbundle)
 		{
 			/#
 				self bot::record_text("" + function_9e72a96(params.center), (1, 0, 0), "");
-				self botprinterror(function_9e72a96(params.name) + "" + params.center);
+				self botprinterror((function_9e72a96(params.name) + "") + params.center);
 			#/
 			return 0;
 		}
@@ -757,7 +757,7 @@ function function_8adaa75f(params, tacbundle)
 	}
 	handled = 1;
 	minradius = 30;
-	if(distance2dsquared(self.origin, revivetarget.revivetrigger.origin) > minradius * minradius && self istouching(revivetarget.revivetrigger))
+	if(distance2dsquared(self.origin, revivetarget.revivetrigger.origin) > (minradius * minradius) && self istouching(revivetarget.revivetrigger))
 	{
 		self set_position(self.origin);
 		handled = 1;
@@ -1016,7 +1016,7 @@ function function_356f5b61(trigger)
 	{
 		return self function_b2dbe6b0(trigger);
 	}
-	var_f34dd95d = !isdefined(self.var_7aaea35d) || gettime() - self.var_7aaea35d > 3000;
+	var_f34dd95d = !isdefined(self.var_7aaea35d) || (gettime() - self.var_7aaea35d) > 3000;
 	if(!self istouching(trigger))
 	{
 		var_f34dd95d = 1;
@@ -1058,7 +1058,7 @@ function function_ad687b7f(region)
 	{
 		return 0;
 	}
-	var_f34dd95d = !isdefined(self.var_d494450c) || gettime() - self.var_d494450c > 3000;
+	var_f34dd95d = !isdefined(self.var_d494450c) || (gettime() - self.var_d494450c) > 3000;
 	if(var_f34dd95d)
 	{
 		self.var_d494450c = gettime();
@@ -1210,7 +1210,7 @@ function function_d0cf287b(params, tacbundle)
 	{
 		/#
 			self bot::record_text("" + function_9e72a96(params.center), (1, 0, 0), "");
-			self botprinterror(function_9e72a96(params.name) + "" + params.center);
+			self botprinterror((function_9e72a96(params.name) + "") + params.center);
 		#/
 		return 0;
 	}
@@ -1281,7 +1281,7 @@ function function_b33e4e67(center, fillpos, enemy, var_470022ca)
 		}
 	#/
 	forward = anglestoforward(self.angles);
-	forwardpos = self.origin + forward * 100;
+	forwardpos = self.origin + (forward * 100);
 	lastenemypos = (isentity(enemy) ? enemy.origin : enemy);
 	foreach(query in var_470022ca)
 	{
@@ -1310,7 +1310,7 @@ function function_b33e4e67(center, fillpos, enemy, var_470022ca)
 			continue;
 		}
 		/#
-			self bot::record_text("" + tacpoints.size + "", (0, 1, 1), "");
+			self bot::record_text(("" + tacpoints.size) + "", (0, 1, 1), "");
 			if(self bot::should_record(""))
 			{
 				foreach(point in tacpoints)
@@ -1332,7 +1332,7 @@ function function_b33e4e67(center, fillpos, enemy, var_470022ca)
 		if(distsq > 900)
 		{
 			/#
-				self botprinterror("" + sqrt(distsq) + "");
+				self botprinterror(("" + sqrt(distsq)) + "");
 			#/
 			return var_65c3e15e.origin;
 		}

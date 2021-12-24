@@ -95,7 +95,7 @@ private function function_5bab934a(struct, var_d1d733b4)
 */
 private function follow_path()
 {
-	starttime = int(floor(gettime() / self.var_3dc92b90) * self.var_3dc92b90 + self.var_3dc92b90);
+	starttime = int(((floor(gettime() / self.var_3dc92b90)) * self.var_3dc92b90) + self.var_3dc92b90);
 	while(gettime() < starttime)
 	{
 		waitframe(1);
@@ -137,7 +137,7 @@ private event function_209450ae(eventstruct)
 	}
 	angles = dynent.angles - vectorscale((0, 1, 0), 270);
 	fwd = anglestoforward(angles);
-	if(vectordot((0, 0, 0) - eventstruct.dir, fwd) <= 0)
+	if((vectordot((0, 0, 0) - eventstruct.dir, fwd)) <= 0)
 	{
 		return;
 	}
@@ -151,7 +151,7 @@ private event function_209450ae(eventstruct)
 			animlength = getanimlength(var_daedea1b.var_879eb2ff);
 			wait(animlength);
 			function_e2a06860(dynent, 0);
-			dynent.hitindex = 1 + dynent.hitindex % 2;
+			dynent.hitindex = 1 + (dynent.hitindex % 2);
 		}
 	}
 }

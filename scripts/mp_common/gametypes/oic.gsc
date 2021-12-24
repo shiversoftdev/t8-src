@@ -516,14 +516,14 @@ function watchelimination()
 */
 private function function_ce7ffccb(winner)
 {
-	if(globallogic_utils::gettimeremaining() <= int(level.var_18823aed * 1000))
+	if(globallogic_utils::gettimeremaining() <= (int(level.var_18823aed * 1000)))
 	{
 		return;
 	}
 	if(level.var_18823aed > 0)
 	{
 		level.timelimitoverride = 1;
-		setgameendtime(gettime() + int(level.var_18823aed * 1000));
+		setgameendtime(gettime() + (int(level.var_18823aed * 1000)));
 		hostmigration::waitlongdurationwithgameendtimeupdate(level.var_18823aed);
 		if(game.state != "playing")
 		{

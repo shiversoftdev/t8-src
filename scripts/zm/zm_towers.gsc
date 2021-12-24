@@ -1084,7 +1084,7 @@ function function_73602c6f()
 	{
 		self.pandora_light.origin = s_pandora_fx_pos_override.origin;
 	}
-	self.pandora_light.angles = self.zbarrier.angles + vectorscale((-1, 0, -1), 90);
+	self.pandora_light.angles = self.zbarrier.angles + (vectorscale((-1, 0, -1), 90));
 	self.pandora_light setmodel(#"tag_origin");
 	if(!(isdefined(level._box_initialized) && level._box_initialized))
 	{

@@ -579,7 +579,7 @@ function function_aaaf780e(var_87658653, t_damage)
 {
 	self endon(#"disconnect");
 	var_87658653 endon(#"hash_656721b8c4297ad5");
-	var_fdc48fc2 = (var_87658653.origin[0], var_87658653.origin[1], var_87658653.origin[2] + var_87658653.n_trigger_height * 0.5);
+	var_fdc48fc2 = (var_87658653.origin[0], var_87658653.origin[1], var_87658653.origin[2] + (var_87658653.n_trigger_height * 0.5));
 	while(true)
 	{
 		self waittill(#"weapon_melee");
@@ -1428,7 +1428,7 @@ private function function_f7cee57d(s_quest)
 	if(distance(s_quest.var_ed424981.origin, self.origin) >= 100)
 	{
 		v_dir = vectornormalize(self.origin - s_quest.var_ed424981.origin);
-		v_pos = s_quest.var_ed424981.origin + v_dir * 95;
+		v_pos = s_quest.var_ed424981.origin + (v_dir * 95);
 		v_pos = getclosestpointonnavmesh(v_pos, 128, 16);
 		if(positionwouldtelefrag(v_pos))
 		{
@@ -1460,7 +1460,7 @@ private function function_f7cee57d(s_quest)
 			if(distance(s_quest.var_ed424981.origin, e_player.origin) <= 100)
 			{
 				v_dir = vectornormalize(s_quest.var_ed424981.origin - self.origin);
-				v_pos = s_quest.var_ed424981.origin + v_dir * 110;
+				v_pos = s_quest.var_ed424981.origin + (v_dir * 110);
 				v_pos = getclosestpointonnavmesh(v_pos, 128, 16);
 				if(positionwouldtelefrag(v_pos))
 				{
@@ -2608,7 +2608,7 @@ function function_e6e126b4(e_target, w_weapon)
 		{
 			waitframe(1);
 			n_current_time = gettime();
-			n_total_time = float(n_current_time - n_start_time) / 1000;
+			n_total_time = (float(n_current_time - n_start_time)) / 1000;
 		}
 		n_increase = 4 / 11;
 		s_quest.var_39b71b44++;
@@ -2655,9 +2655,9 @@ function function_e6e126b4(e_target, w_weapon)
 function function_cdbadaff(var_a06d0f4f, var_2d8a1db5, n_time)
 {
 	starttime = gettime();
-	while(gettime() <= starttime + int(n_time * 1000))
+	while(gettime() <= (starttime + (int(n_time * 1000))))
 	{
-		ratio = gettime() - starttime / int(n_time * 1000);
+		ratio = (gettime() - starttime) / (int(n_time * 1000));
 		n_stop = lerpfloat(var_a06d0f4f, var_2d8a1db5, ratio);
 		self setlightintensity(function_5d783702(n_stop));
 		waitframe(1);
@@ -3026,7 +3026,7 @@ function function_2a290bb7(var_542837e6, v_position, e_player)
 	v_tag_angles = self gettagangles("tag_beam");
 	v_tag_origin = self gettagorigin("tag_beam");
 	v_forward = anglestoforward(v_tag_angles);
-	v_end = v_tag_origin + v_forward * 5000;
+	v_end = v_tag_origin + (v_forward * 5000);
 	a_trace = bullettrace(v_tag_origin, v_end, 1, self);
 	v_end = a_trace[#"position"];
 	n_dist = distance(e_projectile.origin, v_end);
@@ -3708,7 +3708,7 @@ function function_6d466962(var_8290a028, s_original, var_9bf51af3, e_player = un
 	var_8290a028 thread scene::play(#"hash_3305bad57b82b3bc", "feather01_float", var_9bf51af3);
 	var_40bb500f = struct::get(self.target, "targetname");
 	n_dist = distance(var_8290a028.origin, var_40bb500f.origin);
-	n_time = n_dist / 100 * self.script_int / 100;
+	n_time = n_dist / (100 * (self.script_int / 100));
 	var_8290a028 moveto(var_40bb500f.origin, n_time);
 	if(!isdefined(var_40bb500f.target))
 	{
@@ -6014,7 +6014,7 @@ function function_b2a3182b(e_player)
 			}
 			else
 			{
-				var_d3a4b6e7 = float(gettime() - var_1715a29f) / 1000;
+				var_d3a4b6e7 = (float(gettime() - var_1715a29f)) / 1000;
 				if(var_d3a4b6e7 > 10)
 				{
 					break;
@@ -6026,7 +6026,7 @@ function function_b2a3182b(e_player)
 			var_1715a29f = undefined;
 		}
 		wait(0.25);
-		n_time_passed = float(gettime() - n_start_time) / 1000;
+		n_time_passed = (float(gettime() - n_start_time)) / 1000;
 	}
 	e_player notify(#"hash_2026d806e71dfad5", {#b_success:1});
 }

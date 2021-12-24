@@ -126,8 +126,7 @@ private function function_a4c14f8c(value)
 */
 private function function_ff16ec5f(value)
 {
-	~;
-	return value & 1;
+	return (~value) & 1;
 }
 
 /*
@@ -452,7 +451,7 @@ function function_cbe63de1(localclientnum, delta_t)
 		}
 	}
 	cameravec = anglestoforward(var_6775ae79);
-	camerapos = var_c9c16c96 - 1600 * cameravec;
+	camerapos = var_c9c16c96 - (1600 * cameravec);
 	player camerasetposition(camerapos);
 	player camerasetlookat(var_6775ae79);
 }
@@ -491,7 +490,7 @@ function function_c8ea4bcc(localclientnum, delta_t)
 		}
 	}
 	cameravec = anglestoforward(var_6775ae79);
-	camerapos = var_c9c16c96 - 1600 * cameravec;
+	camerapos = var_c9c16c96 - (1600 * cameravec);
 	player camerasetposition(camerapos);
 	player camerasetlookat(var_6775ae79);
 	player function_36b630a3(0);
@@ -683,8 +682,8 @@ function function_65cca2e1(localclientnum, var_1e7db62f)
 	var_2cbd1af = level.var_a3ede655[var_1e7db62f].origin;
 	var_b286938d = level.var_697988b1[var_1e7db62f].origin;
 	direction = anglestoforward(level.var_a3ede655[var_1e7db62f].angles);
-	start_point = var_2cbd1af - direction * 150000;
-	end_point = var_b286938d + direction * 150000;
+	start_point = var_2cbd1af - (direction * 150000);
+	end_point = var_b286938d + (direction * 150000);
 	var_5a20cc9d = createuimodel(getuimodelforcontroller(localclientnum), "hudItems.freeFallStartAltitude");
 	setuimodelvalue(var_5a20cc9d, var_2cbd1af[2]);
 	var_7eb8f61a = (isdefined(getgametypesetting(#"hash_648fb3af9bc11566")) ? getgametypesetting(#"hash_648fb3af9bc11566") : 0);

@@ -419,7 +419,7 @@ function function_7903608c(var_c1ed7977)
 	while(true)
 	{
 		var_baf7d060 = getaiteamarray(level.zombie_team);
-		var_a812a69b = self.origin + anglestoforward(self.angles) * 40;
+		var_a812a69b = self.origin + (anglestoforward(self.angles) * 40);
 		a_ai_zombies = array::get_all_closest(var_a812a69b, var_baf7d060, undefined, undefined, 80);
 		foreach(ai_zombie in a_ai_zombies)
 		{
@@ -584,7 +584,7 @@ function function_269ad6a5(var_c1ed7977)
 */
 function function_8520d1c9(var_f1149aba, str_hitloc, var_c1ed7977)
 {
-	var_a812a69b = self.origin + anglestoforward(self.angles) * var_f1149aba / 2;
+	var_a812a69b = self.origin + (anglestoforward(self.angles) * (var_f1149aba / 2));
 	a_ai_zombies = array::get_all_closest(var_a812a69b, getaiteamarray(level.zombie_team), undefined, undefined, var_f1149aba);
 	foreach(ai_zombie in a_ai_zombies)
 	{

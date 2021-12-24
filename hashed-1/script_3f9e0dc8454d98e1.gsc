@@ -227,7 +227,7 @@ function initanimtree(animscript)
 function updateanimpose()
 {
 	/#
-		assert(self.a.movement == "" || self.a.movement == "" || self.a.movement == "", "" + self.a.pose + "" + self.a.movement);
+		assert(self.a.movement == "" || self.a.movement == "" || self.a.movement == "", (("" + self.a.pose) + "") + self.a.movement);
 	#/
 	self.desired_anim_pose = undefined;
 }
@@ -365,7 +365,7 @@ function getcovernodeyawtoenemy()
 		forward = vectorscale(forward, 150);
 		pos = self.origin + forward;
 	}
-	yaw = self.covernode.angles[1] + self.animarray[#"angle_step_out"][self.a.cornermode] - getyaw(pos);
+	yaw = (self.covernode.angles[1] + self.animarray[#"angle_step_out"][self.a.cornermode]) - getyaw(pos);
 	yaw = angleclamp180(yaw);
 	return yaw;
 }
@@ -604,7 +604,7 @@ function geteyeyawtoorigin(org)
 */
 function getcovernodeyawtoorigin(org)
 {
-	yaw = self.covernode.angles[1] + self.animarray[#"angle_step_out"][self.a.cornermode] - getyaw(org);
+	yaw = (self.covernode.angles[1] + self.animarray[#"angle_step_out"][self.a.cornermode]) - getyaw(org);
 	yaw = angleclamp180(yaw);
 	return yaw;
 }
@@ -750,7 +750,7 @@ function safemod(a, b)
 function angleclamp(angle)
 {
 	anglefrac = angle / 360;
-	angle = anglefrac - floor(anglefrac) * 360;
+	angle = (anglefrac - floor(anglefrac)) * 360;
 	return angle;
 }
 
@@ -765,8 +765,8 @@ function angleclamp(angle)
 */
 function quadrantanimweights(yaw)
 {
-	forwardweight = 90 - abs(yaw) / 90;
-	leftweight = 90 - absangleclamp180(abs(yaw - 90)) / 90;
+	forwardweight = (90 - abs(yaw)) / 90;
+	leftweight = (90 - (absangleclamp180(abs(yaw - 90)))) / 90;
 	result[#"front"] = 0;
 	result[#"right"] = 0;
 	result[#"back"] = 0;
@@ -1062,7 +1062,7 @@ function showdebugproc(frompoint, topoint, color, printtime)
 */
 function showdebugline(frompoint, topoint, color, printtime)
 {
-	self thread showdebugproc(frompoint, topoint + vectorscale((0, 0, -1), 5), color, printtime);
+	self thread showdebugproc(frompoint, topoint + (vectorscale((0, 0, -1), 5)), color, printtime);
 }
 
 /*
@@ -1148,7 +1148,7 @@ function getnodeoffset(node)
 */
 function calculatenodeoffset(right, forward, baseoffset)
 {
-	return vectorscale(right, baseoffset[0]) + vectorscale(forward, baseoffset[1]) + (0, 0, baseoffset[2]);
+	return (vectorscale(right, baseoffset[0]) + vectorscale(forward, baseoffset[1])) + (0, 0, baseoffset[2]);
 }
 
 /*
@@ -1169,7 +1169,7 @@ function checkpitchvisibility(frompoint, topoint, atnode)
 		{
 			return 0;
 		}
-		if(pitch > 45 || pitch < anim.covercrouchleanpitch - 45)
+		if(pitch > 45 || pitch < (anim.covercrouchleanpitch - 45))
 		{
 			return 0;
 		}
@@ -1327,7 +1327,7 @@ function print3drise(org, msg, color, alpha, scale)
 */
 function crossproduct(vec1, vec2)
 {
-	return vec1[0] * vec2[1] - vec1[1] * vec2[0] > 0;
+	return (vec1[0] * vec2[1]) - (vec1[1] * vec2[0]) > 0;
 }
 
 /*
@@ -1371,7 +1371,7 @@ function delayedscriptchange()
 */
 function sawenemymove(timer = 500)
 {
-	return gettime() - self.personalsighttime < timer;
+	return (gettime() - self.personalsighttime) < timer;
 }
 
 /*
@@ -1490,7 +1490,7 @@ function persistentdebugline(start, end)
 */
 function isnodedontstand()
 {
-	return self.spawnflags & 4 == 4;
+	return (self.spawnflags & 4) == 4;
 }
 
 /*
@@ -1504,7 +1504,7 @@ function isnodedontstand()
 */
 function isnodedontcrouch()
 {
-	return self.spawnflags & 8 == 8;
+	return (self.spawnflags & 8) == 8;
 }
 
 /*
@@ -1547,7 +1547,7 @@ function animarray(animname)
 		{
 			dumpanimarray();
 			/#
-				assert(isdefined(self.a.array[animname]), "" + animname + "");
+				assert(isdefined(self.a.array[animname]), ("" + animname) + "");
 			#/
 		}
 	#/
@@ -1573,7 +1573,7 @@ function animarrayanyexist(animname)
 		{
 			dumpanimarray();
 			/#
-				assert(isdefined(self.a.array[animname]), "" + animname + "");
+				assert(isdefined(self.a.array[animname]), ("" + animname) + "");
 			#/
 		}
 	#/
@@ -1599,7 +1599,7 @@ function animarraypickrandom(animname)
 		{
 			dumpanimarray();
 			/#
-				assert(isdefined(self.a.array[animname]), "" + animname + "");
+				assert(isdefined(self.a.array[animname]), ("" + animname) + "");
 			#/
 		}
 	#/
@@ -1634,10 +1634,10 @@ function dumpanimarray()
 		{
 			if(isarray(v))
 			{
-				println("" + k + "" + v.size + "");
+				println(((("" + k) + "") + v.size) + "");
 				continue;
 			}
-			println("" + k + "", v);
+			println(("" + k) + "", v);
 		}
 	#/
 }
@@ -1941,11 +1941,11 @@ function set_orient_mode(mode, val1)
 		{
 			if(isdefined(val1))
 			{
-				println("" + mode + "" + val1 + "" + gettime());
+				println((((("" + mode) + "") + val1) + "") + gettime());
 			}
 			else
 			{
-				println("" + mode + "" + gettime());
+				println((("" + mode) + "") + gettime());
 			}
 		}
 	#/
@@ -1973,11 +1973,11 @@ function debug_anim_print(text)
 	/#
 		if(isdefined(level.dog_debug_anims) && level.dog_debug_anims)
 		{
-			println(text + "" + gettime());
+			println((text + "") + gettime());
 		}
 		if(isdefined(level.dog_debug_anims_ent) && level.dog_debug_anims_ent == self getentnum())
 		{
-			println(text + "" + gettime());
+			println((text + "") + gettime());
 		}
 	#/
 }
@@ -2005,7 +2005,7 @@ function debug_turn_print(text, line)
 			lookaheaddir = self.lookaheaddir;
 			lookaheadangles = vectortoangles(lookaheaddir);
 			lookaheadyaw = angleclamp180(lookaheadangles[1]);
-			println(text + "" + gettime() + "" + currentyaw + "" + lookaheadyaw + "" + desiredyaw);
+			println(((((((text + "") + gettime() + "") + currentyaw) + "") + lookaheadyaw) + "") + desiredyaw);
 		}
 	#/
 }
@@ -2273,7 +2273,7 @@ function get_desired_origin()
 			ent = getnode(self.target, "targetname");
 		}
 		/#
-			assert(isdefined(ent), "" + self.target + "" + self.origin);
+			assert(isdefined(ent), (("" + self.target) + "") + self.origin);
 		#/
 		return ent.origin;
 	}
@@ -2578,7 +2578,7 @@ function round_spawn_failsafe()
 		{
 			continue;
 		}
-		if(isdefined(self.lastchunk_destroy_time) && gettime() - self.lastchunk_destroy_time < 8000)
+		if(isdefined(self.lastchunk_destroy_time) && (gettime() - self.lastchunk_destroy_time) < 8000)
 		{
 			continue;
 		}
@@ -2668,7 +2668,7 @@ function ai_calculate_health(var_88f4c6ec, round_number)
 		if(i >= 10 && (!(isdefined(level.var_50dd0ec5) && level.var_50dd0ec5)))
 		{
 			old_health = var_d082c739;
-			var_d082c739 = var_d082c739 + int(var_d082c739 * function_d2dfacfd(#"zombie_health_increase_multiplier"));
+			var_d082c739 = var_d082c739 + (int(var_d082c739 * function_d2dfacfd(#"zombie_health_increase_multiplier")));
 			if(var_d082c739 < old_health)
 			{
 				var_d082c739 = old_health;
@@ -3513,7 +3513,7 @@ function zombie_should_gib(amount, attacker, type)
 	{
 		prev_health = 1;
 	}
-	damage_percent = amount / prev_health * 100;
+	damage_percent = (amount / prev_health) * 100;
 	weapon = undefined;
 	if(isdefined(attacker))
 	{
@@ -3644,7 +3644,7 @@ function head_should_gib(attacker, type, point)
 	{
 		return 0;
 	}
-	low_health_percent = self.health / self.maxhealth * 100;
+	low_health_percent = (self.health / self.maxhealth) * 100;
 	if(low_health_percent > 10)
 	{
 		return 0;
@@ -4126,7 +4126,7 @@ function register_ignore_player_handler(archetype, ignore_player_func)
 		assert(isdefined(archetype), "");
 	#/
 	/#
-		assert(!isdefined(level._ignore_player_handler[archetype]), "" + archetype + "");
+		assert(!isdefined(level._ignore_player_handler[archetype]), ("" + archetype) + "");
 	#/
 	level._ignore_player_handler[archetype] = ignore_player_func;
 }

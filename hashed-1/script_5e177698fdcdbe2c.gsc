@@ -365,7 +365,7 @@ function spawn_guide()
 	}
 	var_a41818b5.origin = level.var_5d5b7e8e.nd_start.origin;
 	var_a41818b5.angles = level.var_5d5b7e8e.nd_start.angles;
-	var_a41818b5.var_e70e15ad = util::spawn_model("p8_zm_ora_elemental_vessel", var_a41818b5.origin + vectorscale((0, 0, -1), 10));
+	var_a41818b5.var_e70e15ad = util::spawn_model("p8_zm_ora_elemental_vessel", var_a41818b5.origin + (vectorscale((0, 0, -1), 10)));
 	var_a41818b5.var_e70e15ad linkto(var_a41818b5);
 	var_a41818b5.var_e70e15ad thread rotate_forever(vectorscale((0, 1, 0), 45));
 	var_a41818b5.var_e70e15ad clientfield::set("" + #"hash_54e24ec6e84ad6e6", 1);
@@ -419,7 +419,7 @@ function function_bda09311()
 function function_a31d9184(n_points)
 {
 	n_round = max(level.round_number, 30);
-	return n_round * n_round * 2;
+	return (n_round * n_round) * 2;
 }
 
 /*
@@ -673,7 +673,7 @@ function function_36eb3c96(var_88206a50, ent)
 	if(isdefined(ent))
 	{
 		b_killed_by_player = isplayer(ent.attacker) || isplayer(ent.damageinflictor);
-		b_in_range = distancesquared(var_88206a50.origin, ent.origin) < level.var_5d5b7e8e.var_a41818b5.e_ring.n_radius * level.var_5d5b7e8e.var_a41818b5.e_ring.n_radius;
+		b_in_range = distancesquared(var_88206a50.origin, ent.origin) < (level.var_5d5b7e8e.var_a41818b5.e_ring.n_radius * level.var_5d5b7e8e.var_a41818b5.e_ring.n_radius);
 		return b_killed_by_player && b_in_range;
 	}
 	return 0;
@@ -752,9 +752,9 @@ function function_5e3a92e()
 			s_drop = struct::get(self.target);
 			v_drop = s_drop.origin;
 		}
-		v_ground = groundtrace(v_drop + vectorscale((1, 0, 0), 32) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((1, 0, 0), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_ground = groundtrace((v_drop + vectorscale((1, 0, 0), 32)) + vectorscale((0, 0, 1), 8), (v_drop + vectorscale((1, 0, 0), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 		level thread zm_powerups::specific_powerup_drop("full_ammo", v_ground, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 1);
-		v_ground = groundtrace(v_drop - vectorscale((1, 0, 0), 32) + vectorscale((0, 0, 1), 8), v_drop - vectorscale((1, 0, 0), 32) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_ground = groundtrace((v_drop - vectorscale((1, 0, 0), 32)) + vectorscale((0, 0, 1), 8), (v_drop - vectorscale((1, 0, 0), 32)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 		level thread zm_powerups::specific_powerup_drop("carpenter", v_ground, undefined, undefined, undefined, undefined, undefined, undefined, undefined, 1);
 	}
 	function_cb00d0e9();

@@ -173,7 +173,7 @@ function function_bf7d5b02(arc_source_origin, max_range)
 function function_7a0599d(var_955a2e18, range, depth, var_94a1d56d)
 {
 	/#
-		var_227ac3be = depth / var_94a1d56d - 1;
+		var_227ac3be = depth / (var_94a1d56d - 1);
 		circle(var_955a2e18, range, (0, 1 - var_227ac3be, var_227ac3be), 0, 1, 500);
 	#/
 }

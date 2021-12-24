@@ -60,10 +60,10 @@ function function_5980b4fd(localclientnum, oldval, newval, bnewent, binitialsnap
 	for(i = 0; i < 4; i++)
 	{
 		level.var_a791c3be[i] = [];
-		level.var_a791c3be[i][0] = findvolumedecalindexarray("a_skeet_fink_carvel_0" + i + "_air");
-		level.var_a791c3be[i][1] = findvolumedecalindexarray("a_skeet_fink_carvel_0" + i + "_earth");
-		level.var_a791c3be[i][2] = findvolumedecalindexarray("a_skeet_fink_carvel_0" + i + "_fire");
-		level.var_a791c3be[i][3] = findvolumedecalindexarray("a_skeet_fink_carvel_0" + i + "_water");
+		level.var_a791c3be[i][0] = findvolumedecalindexarray(("a_skeet_fink_carvel_0" + i) + "_air");
+		level.var_a791c3be[i][1] = findvolumedecalindexarray(("a_skeet_fink_carvel_0" + i) + "_earth");
+		level.var_a791c3be[i][2] = findvolumedecalindexarray(("a_skeet_fink_carvel_0" + i) + "_fire");
+		level.var_a791c3be[i][3] = findvolumedecalindexarray(("a_skeet_fink_carvel_0" + i) + "_water");
 		foreach(var_9d4544e1 in level.var_a791c3be[i])
 		{
 			foreach(var_97af50b7 in var_9d4544e1)
@@ -78,11 +78,11 @@ function function_5980b4fd(localclientnum, oldval, newval, bnewent, binitialsnap
 	for(i = 0; i < 4; i++)
 	{
 		level.var_97a6ac9f[i] = [];
-		level.var_97a6ac9f[i][0] = findvolumedecalindexarray("a_skeet_fink_step_2_carvel_0" + i + "_air");
-		level.var_97a6ac9f[i][1] = findvolumedecalindexarray("a_skeet_fink_step_2_carvel_0" + i + "_earth");
-		level.var_97a6ac9f[i][2] = findvolumedecalindexarray("a_skeet_fink_step_2_carvel_0" + i + "_fire");
-		level.var_97a6ac9f[i][3] = findvolumedecalindexarray("a_skeet_fink_step_2_carvel_0" + i + "_water");
-		level.var_97a6ac9f[i][4] = findvolumedecalindexarray("a_skeet_fink_step_2_carvel_0" + i + "_slash");
+		level.var_97a6ac9f[i][0] = findvolumedecalindexarray(("a_skeet_fink_step_2_carvel_0" + i) + "_air");
+		level.var_97a6ac9f[i][1] = findvolumedecalindexarray(("a_skeet_fink_step_2_carvel_0" + i) + "_earth");
+		level.var_97a6ac9f[i][2] = findvolumedecalindexarray(("a_skeet_fink_step_2_carvel_0" + i) + "_fire");
+		level.var_97a6ac9f[i][3] = findvolumedecalindexarray(("a_skeet_fink_step_2_carvel_0" + i) + "_water");
+		level.var_97a6ac9f[i][4] = findvolumedecalindexarray(("a_skeet_fink_step_2_carvel_0" + i) + "_slash");
 		foreach(var_9d4544e1 in level.var_97a6ac9f[i])
 		{
 			foreach(var_97af50b7 in var_9d4544e1)

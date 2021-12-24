@@ -1160,7 +1160,7 @@ function gadget_checkheroabilitykill(attacker)
 			case "gadget_armor":
 			case "gadget_speed_burst":
 			{
-				if(isdefined(attacker.heroabilityactive) || (isdefined(attacker.heroabilitydectivatetime) && attacker.heroabilitydectivatetime > gettime() - 100))
+				if(isdefined(attacker.heroabilityactive) || (isdefined(attacker.heroabilitydectivatetime) && attacker.heroabilitydectivatetime > (gettime() - 100)))
 				{
 					heroabilitystat = 1;
 				}
@@ -1169,7 +1169,7 @@ function gadget_checkheroabilitykill(attacker)
 			case "gadget_resurrect":
 			case "gadget_camo":
 			{
-				if(isdefined(attacker.heroabilityactive) || (isdefined(attacker.heroabilitydectivatetime) && attacker.heroabilitydectivatetime > gettime() - 6000))
+				if(isdefined(attacker.heroabilityactive) || (isdefined(attacker.heroabilitydectivatetime) && attacker.heroabilitydectivatetime > (gettime() - 6000)))
 				{
 					heroabilitystat = 1;
 				}
@@ -1204,7 +1204,7 @@ function gadget_checkheroabilitykill(attacker)
 					heroabilitystat = 1;
 					break;
 				}
-				else if(isdefined(attacker.combatefficiencylastontime) && attacker.combatefficiencylastontime > gettime() - 100)
+				else if(isdefined(attacker.combatefficiencylastontime) && attacker.combatefficiencylastontime > (gettime() - 100))
 				{
 					heroabilitystat = 1;
 					break;
@@ -1382,7 +1382,7 @@ function function_3d2a352e(weapon, var_8be5aa55, var_de825ec6)
 	if(isdefined(var_de825ec6))
 	{
 		tutorial_init(weapon);
-		self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55) = gettime() + var_de825ec6 * 1000;
+		self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55) = gettime() + (var_de825ec6 * 1000);
 	}
 	return isdefined(self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55)) && self.pers[#"hash_2c18b7a9ddcf325c"][weapon].(var_8be5aa55) > gettime();
 }
@@ -1622,7 +1622,7 @@ function abilities_devgui_player_connect()
 function abilities_devgui_add_player_commands(root, pname, index)
 {
 	/#
-		add_cmd_with_root = "" + root + pname + "";
+		add_cmd_with_root = (("" + root) + pname) + "";
 		pid = "" + index;
 		menu_index = 1;
 		if(isdefined(level.abilities_devgui_add_gadgets_custom))
@@ -1657,10 +1657,10 @@ function abilities_devgui_add_player_command(root, pid, cmdname, menu_index, cmd
 		{
 			argdvar = "";
 		}
-		var_eece3d04 = "" + "" + "" + pid;
-		var_9b1fa683 = "" + "" + "" + cmddvar;
-		var_dc0fa12c = "" + "" + "" + argdvar + "";
-		util::add_queued_debug_command(root + cmdname + var_eece3d04 + var_9b1fa683 + var_dc0fa12c);
+		var_eece3d04 = (("" + "") + "") + pid;
+		var_9b1fa683 = (("" + "") + "") + cmddvar;
+		var_dc0fa12c = ((("" + "") + "") + argdvar) + "";
+		util::add_queued_debug_command((((root + cmdname) + var_eece3d04) + var_9b1fa683) + var_dc0fa12c);
 	#/
 }
 
@@ -1676,7 +1676,7 @@ function abilities_devgui_add_player_command(root, pid, cmdname, menu_index, cmd
 function abilities_devgui_add_power(add_cmd_with_root, pid, menu_index)
 {
 	/#
-		root = add_cmd_with_root + "" + menu_index + "";
+		root = ((add_cmd_with_root + "") + menu_index) + "";
 		abilities_devgui_add_player_command(root, pid, "", 1, "", "");
 		abilities_devgui_add_player_command(root, pid, "", 2, "", "");
 		power = 0;
@@ -1707,7 +1707,7 @@ function function_2e0162e9(add_cmd_with_root, pid, menu_index)
 		{
 			return;
 		}
-		root = add_cmd_with_root + "" + menu_index + "";
+		root = ((add_cmd_with_root + "") + menu_index) + "";
 		session_mode = currentsessionmode();
 		var_a2865de6 = getplayerroletemplatecount(session_mode);
 		for(i = 1; i < var_a2865de6; i++)
@@ -1725,7 +1725,7 @@ function function_2e0162e9(add_cmd_with_root, pid, menu_index)
 				var_1a27a47a = "";
 			}
 			var_eb49090f = function_9e72a96(function_b14806c6(i, session_mode));
-			var_4f6b7b98 = var_1a27a47a + "" + (isdefined(var_eb49090f) ? var_eb49090f : "") + "";
+			var_4f6b7b98 = (var_1a27a47a + "") + (isdefined(var_eb49090f) ? var_eb49090f : "") + "";
 			if(!isdefined(var_d59b8ebf.enabled) || var_d59b8ebf.enabled == 0)
 			{
 				var_4f6b7b98 = var_4f6b7b98 + "";
@@ -1995,7 +1995,7 @@ function function_174037fe(root, pid, a_weapons, weapon_type, menu_index)
 	/#
 		if(isdefined(a_weapons))
 		{
-			player_devgui_root = root + weapon_type + "";
+			player_devgui_root = (root + weapon_type) + "";
 			for(i = 0; i < a_weapons.size; i++)
 			{
 				function_b04fbf27(player_devgui_root, pid, function_a16a090d(a_weapons[i]), i + 1);
@@ -2018,7 +2018,7 @@ function function_76032a31(root, pid, a_weapons, weapon_type, menu_index)
 	/#
 		if(isdefined(a_weapons))
 		{
-			player_devgui_root = root + weapon_type + "";
+			player_devgui_root = (root + weapon_type) + "";
 			for(i = 0; i < a_weapons.size; i++)
 			{
 				function_50543efb(player_devgui_root, pid, function_a16a090d(a_weapons[i]), i + 1);
@@ -2041,7 +2041,7 @@ function function_a40d04ca(root, pid, a_weapons, weapon_type, menu_index)
 	/#
 		if(isdefined(a_weapons))
 		{
-			player_devgui_root = root + weapon_type + "";
+			player_devgui_root = (root + weapon_type) + "";
 			for(i = 0; i < a_weapons.size; i++)
 			{
 				function_90502d72(player_devgui_root, pid, function_a16a090d(a_weapons[i]), i + 1);
@@ -2062,7 +2062,7 @@ function function_a40d04ca(root, pid, a_weapons, weapon_type, menu_index)
 function function_b04fbf27(root, pid, weap_name, cmdindex)
 {
 	/#
-		util::add_queued_debug_command(root + weap_name + "" + "" + "" + pid + "" + "" + "" + "" + "" + "" + "" + weap_name + "");
+		util::add_queued_debug_command((((((((((((((root + weap_name) + "") + "") + "") + pid) + "") + "") + "") + "") + "") + "") + "") + weap_name) + "");
 	#/
 }
 
@@ -2078,7 +2078,7 @@ function function_b04fbf27(root, pid, weap_name, cmdindex)
 function function_50543efb(root, pid, weap_name, cmdindex)
 {
 	/#
-		util::add_queued_debug_command(root + weap_name + "" + "" + "" + pid + "" + "" + "" + "" + "" + "" + "" + weap_name + "");
+		util::add_queued_debug_command((((((((((((((root + weap_name) + "") + "") + "") + pid) + "") + "") + "") + "") + "") + "") + "") + weap_name) + "");
 	#/
 }
 
@@ -2094,7 +2094,7 @@ function function_50543efb(root, pid, weap_name, cmdindex)
 function function_90502d72(root, pid, weap_name, cmdindex)
 {
 	/#
-		util::add_queued_debug_command(root + weap_name + "" + "" + "" + pid + "" + "" + "" + "" + "" + "" + "" + weap_name + "");
+		util::add_queued_debug_command((((((((((((((root + weap_name) + "") + "") + "") + pid) + "") + "") + "") + "") + "") + "") + "") + weap_name) + "");
 	#/
 }
 
@@ -2114,7 +2114,7 @@ function abilities_devgui_player_disconnect()
 		{
 			return;
 		}
-		remove_cmd_with_root = "" + level.abilities_devgui_base + self.playername + "";
+		remove_cmd_with_root = (("" + level.abilities_devgui_base) + self.playername) + "";
 		util::add_queued_debug_command(remove_cmd_with_root);
 	#/
 }
@@ -2367,7 +2367,7 @@ function function_f3fa2789(offhandslot, var_f0242d8a)
 					break;
 				}
 			}
-			var_29bc3853 = var_29bc3853 + 1 % var_f0242d8a.size;
+			var_29bc3853 = (var_29bc3853 + 1) % var_f0242d8a.size;
 			weapon_name = var_f0242d8a[var_29bc3853];
 		}
 		if(2 == offhandslot)

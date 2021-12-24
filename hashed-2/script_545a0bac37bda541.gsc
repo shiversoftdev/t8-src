@@ -547,7 +547,7 @@ private function function_eced93f5(objective, var_c217216c)
 	{
 		return;
 	}
-	if(var_c217216c - self.var_60f43bac > int(20 * 1000) || objective != self.var_e3d30669)
+	if((var_c217216c - self.var_60f43bac) > (int(20 * 1000)) || objective != self.var_e3d30669)
 	{
 		return;
 	}
@@ -736,7 +736,7 @@ function function_f7f7b14e(data)
 			attacker activecamo::function_896ac347(weapon, #"showstopper", 1);
 		}
 	}
-	if(!isdefined(var_3d2a11cf) && isdefined(victim.heroability) && isdefined(victim.heroabilityactivatetime) && victim.heroabilityactivatetime + 700 > time)
+	if(!isdefined(var_3d2a11cf) && isdefined(victim.heroability) && isdefined(victim.heroabilityactivatetime) && (victim.heroabilityactivatetime + 700) > time)
 	{
 		var_3d2a11cf = function_3cbc4c6c(victim.heroability.var_2e4a8800);
 		attacker activecamo::function_896ac347(weapon, #"showstopper", 1);
@@ -805,7 +805,7 @@ private function function_d68ae402(inflictor, meansofdeath, victim, attacker, sc
 				attacker.pers[#"hash_52e978325c91fe24"] = 0;
 			}
 			attacker.pers[#"hash_52e978325c91fe24"]++;
-			if(attacker.pers[#"hash_52e978325c91fe24"] % 2 == 0)
+			if((attacker.pers[#"hash_52e978325c91fe24"] % 2) == 0)
 			{
 				attacker stats::function_dad108fa(#"hash_52e978325c91fe24", 1);
 			}
@@ -1366,7 +1366,7 @@ function function_bb9f3842()
 				foreach(var_d975dd49 in getarraykeys(var_594354f3))
 				{
 					count = var_594354f3[var_d975dd49];
-					println(var_d975dd49 + "" + (isdefined(count) ? "" + count : ""));
+					println((var_d975dd49 + "") + (isdefined(count) ? "" + count : ""));
 				}
 				println("");
 				setdvar(#"hash_35960c7344552dce", 0);

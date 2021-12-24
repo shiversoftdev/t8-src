@@ -199,7 +199,7 @@ private function function_607b1eb0()
 		{
 			if(self.var_d675d730.var_ec50ac8e < 1)
 			{
-				var_77aee2d6 = gettime() - self.var_d675d730.var_40cb1997 / 1000;
+				var_77aee2d6 = (gettime() - self.var_d675d730.var_40cb1997) / 1000;
 				self.var_d675d730.var_ec50ac8e = math::clamp(var_77aee2d6 / 3, 0, 1);
 				if(self.var_d675d730.var_ec50ac8e >= 1)
 				{
@@ -209,7 +209,7 @@ private function function_607b1eb0()
 			}
 			if(self hasperk(#"hash_1b2d5c9444ac98f2") && self.var_d675d730.var_f658b938 < 1)
 			{
-				var_77aee2d6 = gettime() - self.var_d675d730.var_40cb1997 / 1000;
+				var_77aee2d6 = (gettime() - self.var_d675d730.var_40cb1997) / 1000;
 				self.var_d675d730.var_f658b938 = math::clamp(var_77aee2d6 / 6, 0, 1);
 				if(self.var_d675d730.var_f658b938 >= 1)
 				{
@@ -306,7 +306,7 @@ function function_b1d12202()
 	self clientfield::set("death_dash_trail", 1);
 	self clientfield::set_to_player("death_dash_dash_postfx", 1);
 	self.var_d675d730.n_kill_count = 0;
-	var_8e317f6c = vectornormalize(anglestoforward(self.angles) + vectorscale((0, 0, -1), 0.66));
+	var_8e317f6c = vectornormalize(anglestoforward(self.angles) + (vectorscale((0, 0, -1), 0.66)));
 	var_8e317f6c = var_8e317f6c * 1500;
 	self thread function_aeda9580(var_8e317f6c);
 	self thread function_749be7c5();
@@ -377,7 +377,7 @@ function function_aeda9580(var_8e317f6c)
 */
 function function_d5fc01cc()
 {
-	s_trace = groundtrace(self.origin, self.origin + vectorscale((0, 0, -1), 96), 0, self);
+	s_trace = groundtrace(self.origin, self.origin + (vectorscale((0, 0, -1), 96)), 0, self);
 	v_pos = s_trace[#"position"];
 	n_dist = self.origin[2] - v_pos[2];
 	if(n_dist >= 48)
@@ -403,7 +403,7 @@ function function_749be7c5()
 	while(true)
 	{
 		var_baf7d060 = getaiteamarray(level.zombie_team);
-		var_a812a69b = self.origin + anglestoforward(self.angles) * 40;
+		var_a812a69b = self.origin + (anglestoforward(self.angles) * 40);
 		a_ai_zombies = array::get_all_closest(var_a812a69b, var_baf7d060, undefined, undefined, 80);
 		foreach(ai_zombie in a_ai_zombies)
 		{
@@ -552,7 +552,7 @@ function function_7d72c6f9(var_85dcb56c)
 		wait(0.1);
 		self.var_d675d730.var_471d9402 = self.var_d675d730.var_471d9402 - 0.1;
 		self.var_d675d730.var_471d9402 = math::clamp(self.var_d675d730.var_471d9402, 0, var_85dcb56c);
-		n_percentage = 1 - self.var_d675d730.var_471d9402 / var_85dcb56c;
+		n_percentage = 1 - (self.var_d675d730.var_471d9402 / var_85dcb56c);
 		n_percentage = math::clamp(n_percentage, 0.02, var_85dcb56c);
 		if(self hasperk(#"hash_377149a415143f1b") && isdefined(self.var_d675d730.var_775a4a2a))
 		{

@@ -131,7 +131,7 @@ function arc_damage(source_enemy, player, arc_num, params = level.default_lightn
 		player.tesla_enemies_hit = 0;
 	}
 	/#
-		zm_utility::debug_print("" + arc_num + "" + player.tesla_enemies_hit);
+		zm_utility::debug_print((("" + arc_num) + "") + player.tesla_enemies_hit);
 	#/
 	lc_flag_hit(self, 1);
 	radius_decay = params.radius_decay * arc_num;
@@ -145,7 +145,7 @@ function arc_damage(source_enemy, player, arc_num, params = level.default_lightn
 	lc_flag_hit(enemies, 1);
 	self thread lc_do_damage(source_enemy, arc_num, player, params);
 	/#
-		zm_utility::debug_print("" + enemies.size + "" + arc_num);
+		zm_utility::debug_print((("" + enemies.size) + "") + arc_num);
 	#/
 	for(i = 0; i < enemies.size; i++)
 	{
@@ -204,7 +204,7 @@ private function lc_end_arc_damage(arc_num, enemies_hit_num, params)
 		return 1;
 	}
 	radius_decay = params.radius_decay * arc_num;
-	if(params.radius_start - radius_decay <= 0)
+	if((params.radius_start - radius_decay) <= 0)
 	{
 		/#
 			zm_utility::debug_print("");

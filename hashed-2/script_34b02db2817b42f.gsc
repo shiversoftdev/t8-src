@@ -169,7 +169,7 @@ private function function_b60df00d()
 		iprintlnbold("");
 	#/
 	/#
-		iprintlnbold("" + level.var_74170866.s_cabinet.script_string + "");
+		iprintlnbold(("" + level.var_74170866.s_cabinet.script_string) + "");
 	#/
 	level.var_74170866.n_step = 1;
 	s_cabinet = level.var_74170866.s_cabinet;
@@ -319,7 +319,7 @@ private function function_87e09347()
 	{
 		wait(3);
 	}
-	exploder::exploder("fxexp_mk2_Z_smoke_chimney_" + level.var_74170866.s_fireplace.script_string + "_house");
+	exploder::exploder(("fxexp_mk2_Z_smoke_chimney_" + level.var_74170866.s_fireplace.script_string) + "_house");
 	level.var_74170866.n_step = 2;
 	level thread function_91563ae6();
 }
@@ -348,10 +348,10 @@ private function function_91563ae6()
 	{
 		level.var_74170866.e_player thread namespace_9cf755b::function_491673da(#"hash_5dc92cbe0fbe5da");
 	}
-	exploder::stop_exploder("fxexp_mk2_Z_smoke_chimney_" + level.var_74170866.s_fireplace.script_string + "_house");
+	exploder::stop_exploder(("fxexp_mk2_Z_smoke_chimney_" + level.var_74170866.s_fireplace.script_string) + "_house");
 	level.var_74170866.s_fireplace.var_7126b6eb triggerenable(0);
 	wait(1);
-	exploder::exploder("fxexp_mk2_Z_fire_chimney_" + level.var_74170866.s_fireplace.script_string + "_house");
+	exploder::exploder(("fxexp_mk2_Z_fire_chimney_" + level.var_74170866.s_fireplace.script_string) + "_house");
 	pixendevent();
 	function_b99d76c0();
 }
@@ -367,7 +367,7 @@ private function function_91563ae6()
 */
 private function function_f05be4f1()
 {
-	exploder::stop_exploder("fxexp_mk2_Z_smoke_chimney_" + level.var_74170866.s_fireplace.script_string + "_house");
+	exploder::stop_exploder(("fxexp_mk2_Z_smoke_chimney_" + level.var_74170866.s_fireplace.script_string) + "_house");
 }
 
 /*
@@ -504,7 +504,7 @@ private function function_b9a31cb(var_2e1f34dd, e_player)
 			println(e_player.name + "");
 		}
 	#/
-	exploder::stop_exploder("fxexp_mk2_Z_fire_chimney_" + level.var_74170866.s_fireplace.script_string + "_house");
+	exploder::stop_exploder(("fxexp_mk2_Z_fire_chimney_" + level.var_74170866.s_fireplace.script_string) + "_house");
 	namespace_6747c550::function_7df6bb60("zm_white_ww_mk2z_ammo", 2, e_player);
 	e_player.var_f7694097 = 3;
 	e_player playsound("evt_canister_pickup");
@@ -594,7 +594,7 @@ private function function_2ac1278b()
 */
 function function_bafa7a2b()
 {
-	exploder::stop_exploder("fxexp_mk2_Z_fire_chimney_" + level.var_74170866.s_fireplace.script_string + "_house");
+	exploder::stop_exploder(("fxexp_mk2_Z_fire_chimney_" + level.var_74170866.s_fireplace.script_string) + "_house");
 	if(isdefined(level.var_74170866.var_fead3ae9))
 	{
 		namespace_bd74bbd2::end(hash(level.var_74170866.s_fireplace.script_noteworthy));

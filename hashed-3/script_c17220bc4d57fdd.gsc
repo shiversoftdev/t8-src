@@ -316,7 +316,7 @@ function function_eb7664aa(inflictor, attacker, damage, flags, meansofdeath, wea
 			if(n_damage > damage)
 			{
 				/#
-					iprintln("" + n_damage - damage);
+					iprintln("" + (n_damage - damage));
 				#/
 				return n_damage;
 			}
@@ -399,7 +399,7 @@ function function_252cf612(player)
 			else
 			{
 				/#
-					iprintln("" + function_9e72a96(var_12680c28.name) + "");
+					iprintln(("" + function_9e72a96(var_12680c28.name)) + "");
 				#/
 				return 0;
 			}
@@ -431,7 +431,7 @@ function function_dad1960c()
 		{
 			w_weapon = player getcurrentweapon();
 			/#
-				iprintln("" + function_9e72a96(w_weapon.name) + "");
+				iprintln(("" + function_9e72a96(w_weapon.name)) + "");
 			#/
 			continue;
 		}

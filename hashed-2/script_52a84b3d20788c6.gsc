@@ -477,7 +477,7 @@ private function function_f4e7fd8f(behaviortreeentity)
 	{
 		return 1;
 	}
-	yawtoenemy = angleclamp180(behaviortreeentity.angles[1] - vectortoangles(behaviortreeentity.enemy.origin - behaviortreeentity.origin)[1]);
+	yawtoenemy = angleclamp180(behaviortreeentity.angles[1] - (vectortoangles(behaviortreeentity.enemy.origin - behaviortreeentity.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
 		return 1;
@@ -722,7 +722,7 @@ private function function_e13aa91c()
 		trigger_midpoint = self.origin + (0, 0, self ai::function_9139c839().var_2a523c14 / 2);
 		foreach(player in level.players)
 		{
-			if(isalive(player) && (!(isdefined(player.var_a0a1475c) && player.var_a0a1475c)) && !player scene::is_igc_active() && distancesquared(player.origin, self.origin) <= self ai::function_9139c839().var_f3af70e6 * self ai::function_9139c839().var_f3af70e6 && (abs(player.origin[2] - trigger_midpoint[2]) <= self ai::function_9139c839().var_2a523c14 / 2 || abs(player geteye()[2] - trigger_midpoint[2]) <= self ai::function_9139c839().var_2a523c14 / 2))
+			if(isalive(player) && (!(isdefined(player.var_a0a1475c) && player.var_a0a1475c)) && !player scene::is_igc_active() && distancesquared(player.origin, self.origin) <= (self ai::function_9139c839().var_f3af70e6 * self ai::function_9139c839().var_f3af70e6) && ((abs(player.origin[2] - trigger_midpoint[2])) <= (self ai::function_9139c839().var_2a523c14 / 2) || (abs(player geteye()[2] - trigger_midpoint[2])) <= (self ai::function_9139c839().var_2a523c14 / 2)))
 			{
 				player status_effect::status_effect_apply(var_7a79774b, undefined, self, 0);
 				player thread zm_audio::create_and_play_dialog(#"hash_50660c7d730b03a1", #"react");
@@ -1009,7 +1009,7 @@ private function function_57285eec()
 	self setblackboardattribute("_catalyst_type", "plasma");
 	self function_befab5d9();
 	self zombie_utility::set_zombie_run_cycle("walk");
-	self.var_146fbd4b = gettime() + self ai::function_9139c839().var_c7d67645 + self ai::function_9139c839().var_65b97e5e;
+	self.var_146fbd4b = (gettime() + self ai::function_9139c839().var_c7d67645) + self ai::function_9139c839().var_65b97e5e;
 	self thread zm_audio::zmbaivox_notifyconvert();
 	self.var_ab8f2b90 = 2;
 	self.b_override_explosive_damage_cap = 1;
@@ -1078,7 +1078,7 @@ private function function_dec8327a(behaviortreeentity)
 		{
 			continue;
 		}
-		if(distancesquared(player.origin, behaviortreeentity.origin) <= behaviortreeentity ai::function_9139c839().var_febbf56f * behaviortreeentity ai::function_9139c839().var_febbf56f)
+		if(distancesquared(player.origin, behaviortreeentity.origin) <= (behaviortreeentity ai::function_9139c839().var_febbf56f * behaviortreeentity ai::function_9139c839().var_febbf56f))
 		{
 			return 1;
 		}
@@ -1100,7 +1100,7 @@ private function function_de076722(entity)
 	origins = spawnstruct();
 	origins.eye = entity geteye();
 	origins.feet = entity.origin + vectorscale((0, 0, 1), 8);
-	origins.mid = (origins.feet[0], origins.feet[1], origins.feet[2] + origins.eye[2] / 2);
+	origins.mid = (origins.feet[0], origins.feet[1], (origins.feet[2] + origins.eye[2]) / 2);
 	return origins;
 }
 
@@ -1439,7 +1439,7 @@ private function function_75070c6()
 		{
 			if(isalive(zombie) && (isdefined(zombie.var_d53c2370) && zombie.var_d53c2370) && (!(isdefined(zombie.var_5c8ac43e) && zombie.var_5c8ac43e)))
 			{
-				if(zombie.origin[2] >= self.origin[2] && abs(zombie.origin[2] - self.origin[2]) <= trigger_height && distancesquared(zombie.origin, self.origin) <= var_a00ff069)
+				if(zombie.origin[2] >= self.origin[2] && (abs(zombie.origin[2] - self.origin[2])) <= trigger_height && distancesquared(zombie.origin, self.origin) <= var_a00ff069)
 				{
 					zombie thread function_e5e8cbd2(0);
 					wait(2);
@@ -2152,10 +2152,10 @@ private function function_1a0ae193()
 {
 	/#
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + 1 + "");
-		adddebugcommand("" + 3 + "");
-		adddebugcommand("" + 2 + "");
-		adddebugcommand("" + 4 + "");
+		adddebugcommand(("" + 1) + "");
+		adddebugcommand(("" + 3) + "");
+		adddebugcommand(("" + 2) + "");
+		adddebugcommand(("" + 4) + "");
 		while(true)
 		{
 			waitframe(1);

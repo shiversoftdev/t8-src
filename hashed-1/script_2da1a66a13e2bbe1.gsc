@@ -796,7 +796,7 @@ function function_82457e35(params)
 		v_origin = self gettagorigin("tag_eye");
 		v_angles = self gettagangles("tag_eye");
 		var_4095cc33 = anglestoup(v_angles);
-		v_down = v_origin + var_4095cc33 * -4;
+		v_down = v_origin + (var_4095cc33 * -4);
 		mdl_fx = util::spawn_model("tag_origin", v_origin, v_angles);
 		mdl_fx linkto(self, "tag_eye", v_down - v_origin, (60, 0, 90));
 		mdl_fx clientfield::set("" + #"hash_7876f33937c8a764", 1);
@@ -1061,7 +1061,7 @@ function boom()
 	e_player = level.var_f13364b4.var_12633dc5;
 	if(isdefined(s_spawn_loc) && isdefined(s_keypad) && isdefined(e_player))
 	{
-		v_spawn = s_keypad.origin + anglestoforward(s_keypad.angles) * 4;
+		v_spawn = s_keypad.origin + (anglestoforward(s_keypad.angles) * 4);
 		v_velocity = vectorscale((0, 0, 1), 200);
 		var_b5b97738 = e_player magicgrenadeplayer(getweapon(#"hash_34b7eb9fde56bd35"), v_spawn, v_velocity);
 	}

@@ -98,7 +98,7 @@ private function cleanup_main()
 			}
 			level.n_cleanup_manager_restart_time = undefined;
 		}
-		n_round_time = n_time - level.round_start_time / 1000;
+		n_round_time = (n_time - level.round_start_time) / 1000;
 		if(level.round_number <= 5 && n_round_time < 30)
 		{
 			continue;
@@ -507,8 +507,8 @@ private function get_wait_locations_in_zones(a_zones)
 		}
 		/#
 			str_zone = function_9e72a96(zone);
-			println("" + str_zone + "");
-			iprintln("" + str_zone + "");
+			println(("" + str_zone) + "");
+			iprintln(("" + str_zone) + "");
 		#/
 	}
 	return a_wait_locations;

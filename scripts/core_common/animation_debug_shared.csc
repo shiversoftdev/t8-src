@@ -72,7 +72,7 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag)
 			}
 			var_958054e5 = getanimlength(animation);
 			var_f667af2f = self getanimtime(animation) * var_958054e5;
-			str_extra_info = str_extra_info + "" + var_f667af2f + "" + var_958054e5 + "";
+			str_extra_info = str_extra_info + (((("" + var_f667af2f) + "") + var_958054e5) + "");
 			s_pos = _get_align_pos(v_origin_or_ent, v_angles_or_tag);
 			self anim_origin_render(s_pos.origin, s_pos.angles);
 			line(self.origin, s_pos.origin, color, 0.5, 1);
@@ -104,7 +104,7 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag)
 			{
 				str_name = self.targetname;
 			}
-			print3d(self.origin, self getentnum() + get_ent_type() + "" + str_name, color, 0.8, 0.3);
+			print3d(self.origin, ((self getentnum() + get_ent_type()) + "") + str_name, color, 0.8, 0.3);
 			print3d(self.origin - vectorscale((0, 0, 1), 5), "" + function_9e72a96(animation), color, 0.8, 0.3);
 			print3d(self.origin - vectorscale((0, 0, 1), 7), str_extra_info, color, 0.8, 0.15);
 			render_tag("", "");
@@ -129,7 +129,7 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag)
 function get_ent_type()
 {
 	/#
-		return "" + (isdefined((isdefined(self.classname) ? self.classname : self.type)) ? "" + (isdefined(self.classname) ? self.classname : self.type) : "") + "";
+		return ("" + (isdefined((isdefined(self.classname) ? self.classname : self.type)) ? "" + (isdefined(self.classname) ? self.classname : self.type) : "")) + "";
 	#/
 }
 
@@ -212,7 +212,7 @@ function anim_origin_render(org, angles, line_length, str_label)
 		if(isdefined(org) && isdefined(angles))
 		{
 			originendpoint = org + vectorscale(anglestoforward(angles), line_length);
-			originrightpoint = org + vectorscale(anglestoright(angles), -1 * line_length);
+			originrightpoint = org + (vectorscale(anglestoright(angles), -1 * line_length));
 			originuppoint = org + vectorscale(anglestoup(angles), line_length);
 			line(org, originendpoint, (1, 0, 0));
 			line(org, originrightpoint, (0, 1, 0));

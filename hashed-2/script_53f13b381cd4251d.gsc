@@ -299,7 +299,7 @@ function function_cd815ad0(bot)
 	if(isdefined(target))
 	{
 		/#
-			iprintlnbold(bot.name + "" + target.zombie_weapon_upgrade);
+			iprintlnbold((bot.name + "") + target.zombie_weapon_upgrade);
 		#/
 		bot bot::function_7a6eea9c(target);
 		return;

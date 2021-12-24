@@ -329,7 +329,7 @@ function function_958ba8d1(localclientnum, pos, surface, notetrack, bone)
 	var_166f3552 = 1000000;
 	if(var_166f3552 > 0)
 	{
-		n_scale = var_166f3552 - n_dist / var_166f3552;
+		n_scale = (var_166f3552 - n_dist) / var_166f3552;
 	}
 	else
 	{

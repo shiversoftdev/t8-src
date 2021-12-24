@@ -102,7 +102,7 @@ function set_ent_val(str_key, value, ent = self._e)
 {
 	if(isdefined(ent))
 	{
-		ent val::set(self._o_scene._str_name + ":" + self._str_shot, str_key, value);
+		ent val::set((self._o_scene._str_name + ":") + self._str_shot, str_key, value);
 	}
 }
 
@@ -119,7 +119,7 @@ function reset_ent_val(str_key, ent = self._e)
 {
 	if(isdefined(ent))
 	{
-		ent val::reset(self._o_scene._str_name + ":" + self._str_shot, str_key);
+		ent val::reset((self._o_scene._str_name + ":") + self._str_shot, str_key);
 	}
 }
 
@@ -840,11 +840,11 @@ function play(str_shot = "play", n_start_time)
 							/#
 								if(function_7a600918(entry))
 								{
-									error(!isassetloaded("", entry), "" + function_9e72a96(entry) + "");
+									error(!isassetloaded("", entry), ("" + function_9e72a96(entry)) + "");
 								}
 								else
 								{
-									error(!isassetloaded("", entry), "" + entry + "");
+									error(!isassetloaded("", entry), ("" + entry) + "");
 								}
 							#/
 							var_aa49b05f = 1;
@@ -858,20 +858,20 @@ function play(str_shot = "play", n_start_time)
 								{
 									if(function_7a600918(entry))
 									{
-										error(!isassetloaded("", entry), "" + function_9e72a96(entry) + "");
+										error(!isassetloaded("", entry), ("" + function_9e72a96(entry)) + "");
 									}
 									else
 									{
-										error(!isassetloaded("", entry), "" + entry + "");
+										error(!isassetloaded("", entry), ("" + entry) + "");
 									}
 								}
 								else if(function_7a600918(entry))
 								{
-									error(!isassetloaded("", entry), "" + function_9e72a96(entry) + "");
+									error(!isassetloaded("", entry), ("" + function_9e72a96(entry)) + "");
 								}
 								else
 								{
-									error(!isassetloaded("", entry), "" + entry + "");
+									error(!isassetloaded("", entry), ("" + entry) + "");
 								}
 							#/
 							var_aa49b05f = 1;
@@ -881,7 +881,7 @@ function play(str_shot = "play", n_start_time)
 						default:
 						{
 							/#
-								error(1, "" + str_entry_type + "");
+								error(1, ("" + str_entry_type) + "");
 							#/
 						}
 					}
@@ -1075,7 +1075,7 @@ function run_wait(wait_time)
 	wait_start_time = 0;
 	while(wait_start_time < wait_time && !is_skipping_scene())
 	{
-		wait_start_time = wait_start_time + float(function_60d95f53()) / 1000;
+		wait_start_time = wait_start_time + (float(function_60d95f53()) / 1000);
 		waitframe(1);
 	}
 }
@@ -1384,7 +1384,7 @@ function get_align_ent()
 		{
 			loc_0000442C:
 			loc_0000445C:
-			str_msg = "Align target '" + (isdefined(var_690ec5fb) ? "" + var_690ec5fb : "") + "' doesn't exist for scene object " + (isdefined(self._str_name) ? "" + self._str_name : "") + " in shot named " + (isdefined(self._str_shot) ? "" + self._str_shot : "");
+			str_msg = ((("Align target '" + (isdefined(var_690ec5fb) ? "" + var_690ec5fb : "")) + "' doesn't exist for scene object ") + (isdefined(self._str_name) ? "" + self._str_name : "") + " in shot named ") + (isdefined(self._str_shot) ? "" + self._str_shot : "");
 			if(!warning(self._o_scene._b_testing, str_msg))
 			{
 				error(getdvarint(#"scene_align_errors", 1), str_msg);
@@ -1667,6 +1667,7 @@ function function_b485ee21(s_shot, var_37fa9b04)
 	var_5b7900ec = self._e.var_5b7900ec;
 	foreach(var_74f5d118 in var_5b7900ec)
 	{
+		var_95e1c1f6 = GetNextArrayKey(var_db657f0d, var_e66a173d);
 		while(!var_74f5d118)
 		{
 			waitframe(1);
@@ -1862,7 +1863,7 @@ function _assign_unique_name()
 	}
 	else
 	{
-		self._str_name = self._o_scene._str_name + "_noname" + [[ self._o_scene ]]->get_object_id();
+		self._str_name = (self._o_scene._str_name + "_noname") + ([[ self._o_scene ]]->get_object_id());
 	}
 }
 
@@ -2125,8 +2126,8 @@ function update_alignment()
 	var_f3bd6699 = ((isdefined(self.var_55b4f21e.var_16999a5d) ? self.var_55b4f21e.var_16999a5d : 0), (isdefined(self.var_55b4f21e.var_29563fd6) ? self.var_55b4f21e.var_29563fd6 : 0), (isdefined(self.var_55b4f21e.var_eb00c330) ? self.var_55b4f21e.var_eb00c330 : 0));
 	if(isdefined(self._o_scene._s.var_6a17a93d) && self._o_scene._s.var_6a17a93d)
 	{
-		var_d3c21d73 = var_2dd2901f + var_2a3b0294 + var_24a7cd13;
-		v_ang_offset = var_acf1be3a + var_f3bd6699 + var_75cdf4bd;
+		var_d3c21d73 = (var_2dd2901f + var_2a3b0294) + var_24a7cd13;
+		v_ang_offset = (var_acf1be3a + var_f3bd6699) + var_75cdf4bd;
 	}
 	else if(var_2a3b0294 != (0, 0, 0))
 	{
@@ -2250,7 +2251,7 @@ function _play_anim(animation, n_rate, n_blend, n_time, var_7d32b2c6, paused)
 	/#
 		if(getdvarint(#"debug_scene", 0) > 0)
 		{
-			printtoprightln("" + (isdefined(self._s.name) ? self._s.name : self._s.model) + "" + animation);
+			printtoprightln((("" + (isdefined(self._s.name) ? self._s.name : self._s.model)) + "") + animation);
 		}
 	#/
 	/#
@@ -2259,7 +2260,7 @@ function _play_anim(animation, n_rate, n_blend, n_time, var_7d32b2c6, paused)
 			if(!isdefined(level.animation_played))
 			{
 				level.animation_played = [];
-				animation_played_name = (isdefined(self._s.name) ? self._s.name : self._s.model) + "" + animation;
+				animation_played_name = ((isdefined(self._s.name) ? self._s.name : self._s.model) + "") + animation;
 				if(!isdefined(level.animation_played))
 				{
 					level.animation_played = [];
@@ -2305,7 +2306,7 @@ function _play_anim(animation, n_rate, n_blend, n_time, var_7d32b2c6, paused)
 	/#
 		if(getdvarint(#"debug_scene", 0) > 0)
 		{
-			log(toupper(self._s.type) + "" + function_9e72a96(animation) + "");
+			log((toupper(self._s.type) + "") + function_9e72a96(animation) + "");
 		}
 	#/
 	if(!isdefined(self._e) || !self._e isplayinganimscripted())
@@ -2319,7 +2320,7 @@ function _play_anim(animation, n_rate, n_blend, n_time, var_7d32b2c6, paused)
 			{
 				for(i = 0; i < level.animation_played.size; i++)
 				{
-					animation_played_name = (isdefined(self._s.name) ? self._s.name : self._s.model) + "" + animation;
+					animation_played_name = ((isdefined(self._s.name) ? self._s.name : self._s.model) + "") + animation;
 					if(level.animation_played[i] == animation_played_name)
 					{
 						arrayremovevalue(level.animation_played, animation_played_name);
@@ -2331,7 +2332,7 @@ function _play_anim(animation, n_rate, n_blend, n_time, var_7d32b2c6, paused)
 		}
 		if(getdvarint(#"debug_scene", 0) > 0)
 		{
-			printtoprightln("" + (isdefined(self._s.name) ? self._s.name : self._s.model) + "" + animation);
+			printtoprightln((("" + (isdefined(self._s.name) ? self._s.name : self._s.model)) + "") + animation);
 		}
 	#/
 }
@@ -2355,6 +2356,7 @@ function function_5c082667()
 	}
 	self._e endon(#"death", #"scene_stop");
 	s_current_struct = struct::get(s_start_spot.target);
+	loc_00007660:
 	n_move_time = (isdefined(s_start_spot.script_float) ? s_start_spot.script_float : 1);
 	while(isdefined(s_current_struct))
 	{
@@ -3011,7 +3013,7 @@ function skip_animation_on_client()
 				/#
 					if(getdvarint(#"debug_scene_skip", 0) > 0)
 					{
-						printtoprightln("" + self.current_playing_anim[player getentitynumber()] + "" + gettime(), vectorscale((1, 1, 1), 0.8));
+						printtoprightln((("" + self.current_playing_anim[player getentitynumber()]) + "") + gettime(), vectorscale((1, 1, 1), 0.8));
 					}
 				#/
 				skip_anim_on_client(player, self.current_playing_anim[player getentitynumber()]);
@@ -3022,7 +3024,7 @@ function skip_animation_on_client()
 			/#
 				if(getdvarint(#"debug_scene_skip", 0) > 0)
 				{
-					printtoprightln("" + self.current_playing_anim[self._n_ent_num] + "" + gettime(), vectorscale((1, 1, 1), 0.8));
+					printtoprightln((("" + self.current_playing_anim[self._n_ent_num]) + "") + gettime(), vectorscale((1, 1, 1), 0.8));
 				}
 			#/
 			skip_anim_on_client(self._e, self.current_playing_anim[self._n_ent_num]);
@@ -3052,7 +3054,7 @@ function skip_animation_on_server()
 				/#
 					if(getdvarint(#"debug_scene_skip", 0) > 0)
 					{
-						printtoprightln("" + self.current_playing_anim[player getentitynumber()] + "" + gettime(), vectorscale((1, 1, 1), 0.8));
+						printtoprightln((("" + self.current_playing_anim[player getentitynumber()]) + "") + gettime(), vectorscale((1, 1, 1), 0.8));
 					}
 				#/
 				skip_anim_on_server(player, self.current_playing_anim[player getentitynumber()]);
@@ -3063,7 +3065,7 @@ function skip_animation_on_server()
 			/#
 				if(getdvarint(#"debug_scene_skip", 0) > 0)
 				{
-					printtoprightln("" + self.current_playing_anim[self._n_ent_num] + "" + gettime(), vectorscale((1, 1, 1), 0.8));
+					printtoprightln((("" + self.current_playing_anim[self._n_ent_num]) + "") + gettime(), vectorscale((1, 1, 1), 0.8));
 				}
 			#/
 			skip_anim_on_server(self._e, self.current_playing_anim[self._n_ent_num]);
@@ -3137,7 +3139,7 @@ function is_skipping_scene()
 function log(str_msg)
 {
 	/#
-		println(self._o_scene._s.type + "" + function_9e72a96(self._o_scene._str_name) + "" + (isdefined(self._s.name) ? "" + self._s.name : (isdefined("") ? "" + "" : "")) + "" + str_msg);
+		println((((self._o_scene._s.type + "") + function_9e72a96(self._o_scene._str_name) + "") + (isdefined(self._s.name) ? "" + self._s.name : (isdefined("") ? "" + "" : "")) + "") + str_msg);
 	#/
 }
 
@@ -3155,7 +3157,7 @@ function error(condition, str_msg)
 	if(condition)
 	{
 		loc_00008F98:
-		str_msg = "[ " + self._o_scene._str_name + " ][ " + (isdefined(self._str_shot) ? "" + self._str_shot : (isdefined("unknown shot") ? "" + "unknown shot" : "")) + " ] " + (isdefined(self._s.name) ? "" + self._s.name : (isdefined("no name") ? "" + "no name" : "")) + ": " + str_msg;
+		str_msg = (((("[ " + self._o_scene._str_name) + " ][ ") + (isdefined(self._str_shot) ? "" + self._str_shot : (isdefined("unknown shot") ? "" + "unknown shot" : "")) + " ] ") + (isdefined(self._s.name) ? "" + self._s.name : (isdefined("no name") ? "" + "no name" : "")) + ": ") + str_msg;
 		if(isdefined(self._o_scene._b_testing) && self._o_scene._b_testing)
 		{
 			/#
@@ -3182,7 +3184,7 @@ function warning(condition, str_msg)
 {
 	if(condition)
 	{
-		str_msg = "[ " + self._o_scene._str_name + " ] " + (isdefined(self._s.name) ? "" + self._s.name : (isdefined("no name") ? "" + "no name" : "")) + ": " + str_msg;
+		str_msg = ((("[ " + self._o_scene._str_name) + " ] ") + (isdefined(self._s.name) ? "" + self._s.name : (isdefined("no name") ? "" + "no name" : "")) + ": ") + str_msg;
 		/#
 			scene::warning_on_screen(str_msg);
 		#/
@@ -3373,7 +3375,7 @@ function function_4412dc65(str_shot)
 			{
 				if(str_shot_name != str_shot)
 				{
-					var_82bbc872 = var_82bbc872 + ceil(scene::function_8582657c(self._s, str_shot_name) * 30);
+					var_82bbc872 = var_82bbc872 + (ceil(scene::function_8582657c(self._s, str_shot_name) * 30));
 					continue;
 				}
 				break;
@@ -3387,10 +3389,10 @@ function function_4412dc65(str_shot)
 					continue;
 				}
 				v_pos = (1350, 195, 0);
-				var_204b44d3 = var_9d90ef8b * self.n_frame_counter / ceil(var_9d90ef8b * 30);
-				var_962ef8af = "" + self.n_frame_counter + "" + ceil(var_9d90ef8b * 30) + "" + var_204b44d3 + "" + var_9d90ef8b + "";
+				var_204b44d3 = var_9d90ef8b * (self.n_frame_counter / (ceil(var_9d90ef8b * 30)));
+				var_962ef8af = (((((("" + self.n_frame_counter) + "") + (ceil(var_9d90ef8b * 30)) + "") + var_204b44d3) + "") + var_9d90ef8b) + "";
 				debug2dtext(v_pos, var_962ef8af, undefined, undefined, undefined, 1, 0.8);
-				v_pos = v_pos + vectorscale((0, 1, 0), 20) * 2;
+				v_pos = v_pos + (vectorscale((0, 1, 0), 20) * 2);
 				foreach(obj in self._a_objects)
 				{
 					if(!isdefined(obj._e) || !isdefined(obj._str_current_anim))
@@ -3410,12 +3412,12 @@ function function_4412dc65(str_shot)
 					var_7b160393 = ceil(obj._e getanimtime(animation) * var_13edeb1f);
 					var_958054e5 = getanimlength(animation);
 					var_f667af2f = obj._e getanimtime(animation) * var_958054e5;
-					var_2e63fccd = obj._str_name + "" + function_9e72a96(animation);
-					var_1cae5962 = "" + str_shot + "" + var_7b160393 + "" + var_13edeb1f + "" + var_f667af2f + "" + var_958054e5 + "";
+					var_2e63fccd = (obj._str_name + "") + function_9e72a96(animation);
+					var_1cae5962 = ((((((((("" + str_shot) + "") + var_7b160393) + "") + var_13edeb1f) + "") + var_f667af2f) + "") + var_958054e5) + "";
 					debug2dtext(v_pos, var_2e63fccd, undefined, undefined, undefined, 1, 0.8);
 					v_pos = v_pos + vectorscale((0, 1, 0), 20);
 					debug2dtext(v_pos, var_1cae5962, undefined, undefined, undefined, 1, 0.8);
-					v_pos = v_pos + vectorscale((0, 1, 0), 20) * 1.25;
+					v_pos = v_pos + (vectorscale((0, 1, 0), 20) * 1.25);
 					self.n_frame_counter = var_82bbc872 + var_7b160393;
 				}
 				waitframe(1);
@@ -3985,7 +3987,7 @@ function new_object(str_type)
 		}
 		default:
 		{
-			error(0, "Unsupported object type '" + str_type + "'.");
+			error(0, ("Unsupported object type '" + str_type) + "'.");
 		}
 	}
 }
@@ -4226,7 +4228,7 @@ function _assign_ents_by_name(a_objects, a_ents)
 		/#
 			foreach(i, ent in a_ents)
 			{
-				error(isstring(i) || function_7a600918(i), "" + i + "");
+				error(isstring(i) || function_7a600918(i), ("" + i) + "");
 			}
 		#/
 	}
@@ -4406,7 +4408,7 @@ function get_anim_relative_start_time(animation, n_start_time, b_camera_anim = 0
 		n_anim_length = getanimlength(animation);
 		var_e2483c7 = isanimlooping(animation);
 	}
-	var_68219fcf = self.var_a0c66830 / n_anim_length * n_start_time;
+	var_68219fcf = (self.var_a0c66830 / n_anim_length) * n_start_time;
 	if(var_e2483c7)
 	{
 		if(var_68219fcf > 0.95)
@@ -4583,14 +4585,14 @@ function play(str_shot = "play", a_ents, b_testing = 0, str_mode = "")
 			{
 				if(issubstr(self._str_mode, "") || getdvarint(#"hash_6a54249f0cc48945", 0) == 2)
 				{
-					var_3a6bcf6e = self._str_name + "" + str_shot;
+					var_3a6bcf6e = (self._str_name + "") + str_shot;
 				}
 				else
 				{
 					var_3a6bcf6e = self._str_name;
 				}
 				level flagsys::set(#"hash_20a4053fe3e70f8");
-				str_command = "" + depth + "" + fps + "" + var_6d1932c7 + "" + self._str_name + "" + var_3a6bcf6e;
+				str_command = (((((((("" + depth) + "") + fps) + "") + var_6d1932c7) + "") + self._str_name) + "") + var_3a6bcf6e;
 				adddebugcommand("");
 				adddebugcommand(str_command);
 			}
@@ -5015,7 +5017,7 @@ function function_19015532(str_current_shot = self._a_active_shots[0])
 	}
 	foreach(i, str_shot in self.var_5a2219f0)
 	{
-		if(str_shot === str_current_shot && isdefined(self.var_5a2219f0[i + 1]) && self.var_5a2219f0[i + 1] !== "init")
+		if(str_shot === str_current_shot && isdefined(self.var_5a2219f0[i + 1]) && (self.var_5a2219f0[i + 1]) !== "init")
 		{
 			return 1;
 		}
@@ -5077,14 +5079,14 @@ function run_next(str_current_shot)
 				var_43cf9254 = 0;
 				while(!flagsys::get(#"hash_5a8a0284760e5913") || var_43cf9254 > 5)
 				{
-					var_43cf9254 = var_43cf9254 + float(function_60d95f53()) / 1000;
+					var_43cf9254 = var_43cf9254 + (float(function_60d95f53()) / 1000);
 					waitframe(1);
 				}
 				flagsys::clear(#"hash_5a8a0284760e5913");
 			}
 			if(self._s.scenetype == "fxanim" && self._s.nextscenemode === "init")
 			{
-				if(!error(!has_init_state(), "Scene can't init next scene '" + self._s.nextscenebundle + "' because it doesn't have an init state."))
+				if(!error(!has_init_state(), ("Scene can't init next scene '" + self._s.nextscenebundle) + "' because it doesn't have an init state."))
 				{
 					self._e_root thread scene::init(self._s.nextscenebundle);
 				}
@@ -5116,7 +5118,7 @@ function run_next(str_current_shot)
 					/#
 						if(getdvarint(#"debug_scene_skip", 0) > 0 && is_skipping_scene())
 						{
-							printtoprightln("" + str_current_shot + "" + gettime(), (1, 1, 0));
+							printtoprightln((("" + str_current_shot) + "") + gettime(), (1, 1, 0));
 						}
 					#/
 					switch(self._s.scenetype)
@@ -5234,7 +5236,7 @@ function _call_shot_funcs(str_shot, b_waittill_go = 0)
 		self notify(#"scene_stop");
 		function_3e22b6ac();
 	}
-	level notify(self._str_notify_name + "_" + str_shot);
+	level notify((self._str_notify_name + "_") + str_shot);
 	if(str_shot == "sequence_done")
 	{
 		if(isdefined(level.scene_sequence_names[self._s.name]))
@@ -5341,7 +5343,7 @@ function get_align_ent()
 		}
 		if(!isdefined(e_gdt_align))
 		{
-			str_msg = "Align target '" + (isdefined(self._s.aligntarget) ? "" + self._s.aligntarget : "") + "' doesn't exist for scene.";
+			str_msg = ("Align target '" + (isdefined(self._s.aligntarget) ? "" + self._s.aligntarget : "")) + "' doesn't exist for scene.";
 			if(!warning(self._b_testing, str_msg))
 			{
 				error(getdvarint(#"scene_align_errors", 1), str_msg);
@@ -5601,7 +5603,7 @@ function skip_scene(var_11843b70, str_shot = self._a_active_shots[0])
 		/#
 			if(getdvarint(#"debug_scene_skip", 0) > 0)
 			{
-				printtoprightln("" + self._s.name + "" + gettime(), (1, 0, 0));
+				printtoprightln((("" + self._s.name) + "") + gettime(), (1, 0, 0));
 			}
 		#/
 		finish_scene_skipping();
@@ -5615,7 +5617,7 @@ function skip_scene(var_11843b70, str_shot = self._a_active_shots[0])
 	/#
 		if(getdvarint(#"debug_scene_skip", 0) > 0)
 		{
-			printtoprightln("" + self._s.name + "" + gettime(), (0, 1, 0));
+			printtoprightln((("" + self._s.name) + "") + gettime(), (0, 1, 0));
 		}
 	#/
 	if(!(isdefined(var_11843b70) && var_11843b70))
@@ -5662,7 +5664,7 @@ function skip_scene(var_11843b70, str_shot = self._a_active_shots[0])
 	/#
 		if(getdvarint(#"debug_scene_skip", 0) > 0)
 		{
-			printtoprightln("" + self._s.name + "" + gettime(), (0, 0, 1));
+			printtoprightln((("" + self._s.name) + "") + gettime(), (0, 0, 1));
 		}
 	#/
 	thread _skip_scene();
@@ -5699,7 +5701,7 @@ function skip_scene(var_11843b70, str_shot = self._a_active_shots[0])
 		/#
 			if(getdvarint(#"debug_scene_skip", 0) > 0)
 			{
-				printtoprightln("" + self._s.name + "" + gettime(), (1, 0.5, 0));
+				printtoprightln((("" + self._s.name) + "") + gettime(), (1, 0.5, 0));
 			}
 		#/
 		_call_shot_funcs("skip_completed");
@@ -5882,7 +5884,7 @@ function remove_object(o_object)
 function log(str_msg)
 {
 	/#
-		println(self._s.type + "" + function_9e72a96(self._str_name) + "" + str_msg);
+		println(((self._s.type + "") + function_9e72a96(self._str_name) + "") + str_msg);
 	#/
 }
 
@@ -5905,7 +5907,7 @@ function error(condition, str_msg)
 				scene::error_on_screen(str_msg);
 			#/
 		}
-		assertmsg(self._s.type + "" + function_9e72a96(self._str_name) + "" + str_msg);
+		assertmsg(((self._s.type + "") + function_9e72a96(self._str_name) + "") + str_msg);
 		thread [[ self ]]->on_error();
 		return 1;
 	}
@@ -5928,7 +5930,7 @@ function warning(condition, str_msg)
 		if(self._b_testing)
 		{
 			/#
-				scene::warning_on_screen("" + self._str_name + "" + str_msg);
+				scene::warning_on_screen((("" + self._str_name) + "") + str_msg);
 			#/
 		}
 		return 1;

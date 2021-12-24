@@ -54,7 +54,7 @@ function gadgets_print(str)
 		if(getdvarint(#"scr_debug_gadgets", 0))
 		{
 			toprint = str;
-			println(self.playername + "" + "" + toprint);
+			println(((self.playername + "") + "") + toprint);
 		}
 	#/
 }
@@ -111,7 +111,7 @@ function on_player_spawned()
 event gadget_give_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::give_gadget(eventstruct.slot, eventstruct.weapon);
 }
@@ -128,7 +128,7 @@ event gadget_give_callback(eventstruct)
 event gadget_take_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::take_gadget(eventstruct.slot, eventstruct.weapon);
 }
@@ -145,7 +145,7 @@ event gadget_take_callback(eventstruct)
 event gadget_primed_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::gadget_primed(eventstruct.slot, eventstruct.weapon);
 }
@@ -162,7 +162,7 @@ event gadget_primed_callback(eventstruct)
 event gadget_ready_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	if(level flag::get("all_players_spawned"))
 	{
@@ -184,7 +184,7 @@ event gadget_ready_callback(eventstruct)
 event gadget_on_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	if(level flag::get("all_players_spawned"))
 	{
@@ -206,7 +206,7 @@ event gadget_on_callback(eventstruct)
 event gadget_off_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::turn_gadget_off(eventstruct.slot, eventstruct.weapon);
 }
@@ -223,7 +223,7 @@ event gadget_off_callback(eventstruct)
 event function_40d8d1ec(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::function_50557027(eventstruct.slot, eventstruct.weapon);
 }
@@ -240,7 +240,7 @@ event function_40d8d1ec(eventstruct)
 event function_15061ae6(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::function_d5260ebe(eventstruct.slot, eventstruct.weapon);
 }
@@ -257,7 +257,7 @@ event function_15061ae6(eventstruct)
 event gadget_flicker_callback(eventstruct)
 {
 	/#
-		eventstruct.entity gadgets_print("" + eventstruct.slot + "");
+		eventstruct.entity gadgets_print(("" + eventstruct.slot) + "");
 	#/
 	eventstruct.entity ability_player::gadget_flicker(eventstruct.slot, eventstruct.weapon);
 }

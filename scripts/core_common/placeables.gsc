@@ -364,7 +364,7 @@ function waitforplaceabletobebuilt(player)
 		}
 		if(isdefined(placeable.buildprogressfunc))
 		{
-			[[placeable.buildprogressfunc]](placeable, player, gettime() - starttime / buildlength);
+			[[placeable.buildprogressfunc]](placeable, player, (gettime() - starttime) / buildlength);
 		}
 		waitframe(1);
 	}

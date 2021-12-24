@@ -142,7 +142,7 @@ function function_9d9bff80(var_2fe3186e, attacker)
 	{
 		if(isalive(e_zombie))
 		{
-			var_c0225146 = var_b7fc8c3e + vectornormalize(e_zombie getcentroid() - var_b7fc8c3e) * 80;
+			var_c0225146 = var_b7fc8c3e + ((vectornormalize(e_zombie getcentroid() - var_b7fc8c3e)) * 80);
 			n_distance = distance(e_zombie getcentroid(), var_b7fc8c3e);
 			e_zombie.var_c70b3f89 moveto(var_c0225146, n_distance / 100);
 			var_358047f1 = vectortoangles(e_zombie getcentroid() - var_b7fc8c3e);
@@ -169,7 +169,7 @@ function function_9d9bff80(var_2fe3186e, attacker)
 		{
 			[[ level.var_14160fb0 ]]->waitinqueue(e_zombie);
 			e_zombie startragdoll(1);
-			var_23ef51ef = vectornormalize(e_zombie getcentroid() - var_b7fc8c3e) * randomfloatrange(150, 250);
+			var_23ef51ef = (vectornormalize(e_zombie getcentroid() - var_b7fc8c3e)) * randomfloatrange(150, 250);
 			e_zombie launchragdoll(var_23ef51ef + vectorscale((0, 0, 1), 32));
 			e_zombie dodamage(e_zombie.maxhealth, e_zombie.origin, attacker, self, 0, "MOD_GRENADE", 0, self.weapon);
 			e_zombie clientfield::set("" + #"hash_4881cb6bc59fdc49", 1);
@@ -313,7 +313,7 @@ function _second_compass_map_mp_ruins(e_owner)
 		return 1;
 	}
 	v_dir = vectornormalize(e_owner.origin - self.origin);
-	v_pos = self.origin + v_dir * 32;
+	v_pos = self.origin + (v_dir * 32);
 	v_valid_point = getclosestpointonnavmesh(self.origin, 150);
 	if(isdefined(v_valid_point))
 	{

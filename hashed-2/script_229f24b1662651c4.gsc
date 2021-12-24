@@ -77,7 +77,7 @@ function init()
 	/#
 		level.killstreak_init_end_time = getmillisecondsraw();
 		elapsed_time = level.killstreak_init_end_time - level.killstreak_init_start_time;
-		println("" + elapsed_time + "");
+		println(("" + elapsed_time) + "");
 		level thread killstreak_debug_think();
 	#/
 }

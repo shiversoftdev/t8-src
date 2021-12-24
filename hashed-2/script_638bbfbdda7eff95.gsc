@@ -110,10 +110,10 @@ function registerbehaviorscriptfunctions()
 	behaviortreenetworkutility::registerbehaviortreescriptapi("rioterReaquireService", &rioterreaquireservice);
 	/#
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "" + "" + "" + "" + "");
-		adddebugcommand("" + mapname + "" + "" + "" + "" + "");
-		adddebugcommand("" + mapname + "" + "" + "" + "" + "");
-		adddebugcommand("" + mapname + "" + "" + "" + "" + "");
+		adddebugcommand(((((("" + mapname) + "") + "") + "") + "") + "");
+		adddebugcommand(((((("" + mapname) + "") + "") + "") + "") + "");
+		adddebugcommand(((((("" + mapname) + "") + "") + "") + "") + "");
+		adddebugcommand(((((("" + mapname) + "") + "") + "") + "") + "");
 		level thread function_686ab596();
 	#/
 }
@@ -716,7 +716,7 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 		}
 	}
 	throw_dist = distance2dsquared(behaviortreeentity.origin, behaviortreeentity lastknownpos(behaviortreeentity.enemy));
-	if(throw_dist < 300 * 300 || throw_dist > 1250 * 1250)
+	if(throw_dist < (300 * 300) || throw_dist > (1250 * 1250))
 	{
 		return 0;
 	}
@@ -785,8 +785,7 @@ private function civiliancleanuptothrowgrenade(behaviortreeentity)
 			{
 				grenade.owner = behaviortreeentity;
 				grenade.team = behaviortreeentity.team;
-				~grenade;
-				grenade setcontents(grenade setcontents(0) & 32768 | 67108864 | 8388608 | 33554432);
+				grenade setcontents(grenade setcontents(0) & (~(((32768 | 67108864) | 8388608) | 33554432)));
 			}
 		}
 	}
@@ -838,7 +837,7 @@ private function rioterreaquireservice(entity)
 		case 1:
 		case 2:
 		{
-			step_size = 32 + entity.reacquire_state * 32;
+			step_size = 32 + (entity.reacquire_state * 32);
 			reacquirepos = entity reacquirestep(step_size);
 			break;
 		}

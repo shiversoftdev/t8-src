@@ -240,7 +240,7 @@ private function _burntag(localclientnum, tag, postfix)
 {
 	if(isdefined(self) && self hasdobj(localclientnum))
 	{
-		fxname = "burn_" + tag + postfix;
+		fxname = ("burn_" + tag) + postfix;
 		if(isdefined(level._effect[fxname]))
 		{
 			return util::playfxontag(localclientnum, level._effect[fxname], self, tag);

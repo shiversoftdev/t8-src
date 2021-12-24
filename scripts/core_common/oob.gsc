@@ -352,9 +352,9 @@ function function_11c959d9(entity)
 {
 	player = self;
 	player notify(#"oob_enter");
-	if(isdefined(level.oob_timekeep_ms) && isdefined(player.last_oob_timekeep_ms) && isdefined(player.last_oob_duration_ms) && gettime() - player.last_oob_timekeep_ms < level.oob_timekeep_ms)
+	if(isdefined(level.oob_timekeep_ms) && isdefined(player.last_oob_timekeep_ms) && isdefined(player.last_oob_duration_ms) && (gettime() - player.last_oob_timekeep_ms) < level.oob_timekeep_ms)
 	{
-		player.oob_start_time = gettime() - level.oob_timelimit_ms - player.last_oob_duration_ms;
+		player.oob_start_time = gettime() - (level.oob_timelimit_ms - player.last_oob_duration_ms);
 	}
 	else
 	{
@@ -473,7 +473,7 @@ function updatevisualeffects(entity)
 	timeremaining = 0;
 	if(isdefined(level.oob_timelimit_ms) && isdefined(self.oob_start_time))
 	{
-		timeremaining = level.oob_timelimit_ms - gettime() - self.oob_start_time;
+		timeremaining = level.oob_timelimit_ms - (gettime() - self.oob_start_time);
 	}
 	if(entity.var_c5d65381 === 1 && isplayer(self) && !self isremotecontrolling() && isvehicle(entity))
 	{
@@ -492,12 +492,12 @@ function updatevisualeffects(entity)
 		{
 			self.oob_lasteffectvalue = getdistancefromlastvalidplayerloc(entity);
 		}
-		time_val = 1 - timeremaining / level.oob_time_remaining_before_black;
+		time_val = 1 - (timeremaining / level.oob_time_remaining_before_black);
 		if(time_val > 1)
 		{
 			time_val = 1;
 		}
-		oob_effectvalue = self.oob_lasteffectvalue + 1 - self.oob_lasteffectvalue * time_val;
+		oob_effectvalue = self.oob_lasteffectvalue + ((1 - self.oob_lasteffectvalue) * time_val);
 	}
 	else
 	{

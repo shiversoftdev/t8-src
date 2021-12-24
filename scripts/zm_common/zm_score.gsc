@@ -192,7 +192,7 @@ function score_cf_register_info(name, version, max_count)
 {
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".score_cf_" + name, version, getminbitcountfornum(max_count), "counter");
+		clientfield::register("worlduimodel", (("PlayerList.client" + i) + ".score_cf_") + name, version, getminbitcountfornum(max_count), "counter");
 	}
 }
 
@@ -209,7 +209,7 @@ function score_cf_increment_info(name, var_ce49f2dd = 0)
 {
 	if(!var_ce49f2dd && self bgb::function_69b88b5())
 	{
-		clientfield::increment_world_uimodel("PlayerList.client" + self.entity_num + ".score_cf_" + name);
+		clientfield::increment_world_uimodel((("PlayerList.client" + self.entity_num) + ".score_cf_") + name);
 	}
 }
 
@@ -370,7 +370,7 @@ function player_add_points(event, mod, hit_location, e_target, zombie_team, dama
 	player_points = multiplier * zm_utility::round_up_score(player_points, 10);
 	if(isdefined(self.point_split_receiver) && event == "death")
 	{
-		split_player_points = player_points - zm_utility::round_up_score(player_points * self.point_split_keep_percent, 10);
+		split_player_points = player_points - (zm_utility::round_up_score(player_points * self.point_split_keep_percent, 10));
 		self.point_split_receiver add_to_player_score(split_player_points);
 		player_points = player_points - split_player_points;
 	}
@@ -573,7 +573,7 @@ function player_reduce_points(event, n_amount)
 				step = zombie_utility::function_d2dfacfd(#"hash_3037a1f286b662e6");
 				if(step > 0)
 				{
-					percent = percent * int(self.score / step);
+					percent = percent * (int(self.score / step));
 				}
 				if(percent > 0.5)
 				{
@@ -823,11 +823,11 @@ function function_82732ced()
 	{
 		var_7afe66bc = function_e5ca5733(self.archetype);
 		/#
-			assert(var_7afe66bc, "" + function_9e72a96(self.archetype) + "");
+			assert(var_7afe66bc, ("" + function_9e72a96(self.archetype)) + "");
 		#/
 	}
 	self.var_f256a4d9 = var_7afe66bc;
-	self.var_d8caf335 = max(1, int(self.maxhealth / var_7afe66bc * 0.1));
+	self.var_d8caf335 = max(1, int(self.maxhealth / (var_7afe66bc * 0.1)));
 	self.var_8d5c706f = [];
 }
 
@@ -859,7 +859,7 @@ function function_89db94b3(e_attacker, n_damage, e_inflictor)
 	var_810a69da = var_20701980 + n_damage;
 	var_86e74a5c = int(var_20701980 / self.var_d8caf335);
 	var_6fb77dc8 = int(var_810a69da / self.var_d8caf335);
-	n_points = var_6fb77dc8 - var_86e74a5c * 10;
+	n_points = (var_6fb77dc8 - var_86e74a5c) * 10;
 	if(n_points > self.var_f256a4d9)
 	{
 		n_points = self.var_f256a4d9;

@@ -119,7 +119,7 @@ function add_zombie_powerup(powerup_name, client_field_name, clientfield_version
 	level.zombie_powerups[powerup_name] = struct;
 	if(isdefined(client_field_name))
 	{
-		var_4e6e65fa = "hudItems.zmPowerUps." + client_field_name + ".state";
+		var_4e6e65fa = ("hudItems.zmPowerUps." + client_field_name) + ".state";
 		clientfield::register("clientuimodel", var_4e6e65fa, clientfield_version, 2, "int", &powerup_state_callback, 0, 1);
 		struct.client_field_name = var_4e6e65fa;
 	}

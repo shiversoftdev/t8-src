@@ -284,7 +284,7 @@ function function_ba25a76f(n_max_time, var_62002857 = 0)
 		var_cddd0f11 = n_part;
 		wait(0.1);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 	}
 	for(i = 1; i < 10; i++)
 	{
@@ -337,7 +337,7 @@ function function_152c339e()
 	var_18b64c03.unitrigger_stub.cursor_hint = "HINT_NOICON";
 	var_18b64c03.unitrigger_stub.targetname = var_18b64c03.script_string;
 	var_18b64c03.unitrigger_stub.s_tube = var_18b64c03;
-	v_pos = var_18b64c03.origin + anglestoright(var_18b64c03.angles) * 24;
+	v_pos = var_18b64c03.origin + (anglestoright(var_18b64c03.angles) * 24);
 	var_18b64c03.unitrigger_stub.origin = v_pos;
 	zm_unitrigger::unitrigger_force_per_player_triggers(var_18b64c03.unitrigger_stub, 1);
 }
@@ -408,7 +408,7 @@ function function_290d172d()
 			if(isdefined(var_dc40fc85) && var_dc40fc85 || (isdefined(var_6c48173b) && var_6c48173b))
 			{
 				s_tube.var_ba528742 hidepart("tag_nixie_" + s_tube.script_int);
-				s_tube.script_int = s_tube.script_int + 1 % 10;
+				s_tube.script_int = (s_tube.script_int + 1) % 10;
 				s_tube.var_ba528742 showpart("tag_nixie_" + s_tube.script_int);
 				s_tube.var_ba528742 playsound(#"hash_1aead9e7cdebe7d2");
 				break;
@@ -503,7 +503,7 @@ function function_c1cc29be(var_64c09f7f)
 		var_62002857 = 0;
 		if(var_954ac27a)
 		{
-			var_d46a1171 = "" + var_8171dd3a + var_8dfff656 + var_44e1e41b;
+			var_d46a1171 = (("" + var_8171dd3a) + var_8dfff656) + var_44e1e41b;
 			level thread function_a5d20d9b(var_d46a1171);
 			if(var_d46a1171 == "115" && (!(isdefined(level.var_4f8596bf) && level.var_4f8596bf)))
 			{
@@ -703,7 +703,7 @@ function function_4b17c9f6(n_max_time)
 	var_9229dbba = randomfloat(0.2);
 	wait(var_9229dbba);
 	n_current_time = gettime();
-	n_total_time = n_current_time - n_start_time / 1000;
+	n_total_time = (n_current_time - n_start_time) / 1000;
 	while(n_total_time < n_max_time)
 	{
 		if(b_hidden)
@@ -721,7 +721,7 @@ function function_4b17c9f6(n_max_time)
 		}
 		wait(0.1);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 	}
 	var_ba528742 showpart("tag_nixie_" + self.script_int);
 	var_ba528742 hidepart("tag_nixie_off");
@@ -748,7 +748,7 @@ function function_a23db4d2()
 	{
 		if(i > 0)
 		{
-			var_ba528742 hidepart("tag_nixie_" + i - 1);
+			var_ba528742 hidepart("tag_nixie_" + (i - 1));
 		}
 		var_ba528742 showpart("tag_nixie_" + i);
 		var_ba528742 playsound(#"hash_12da80f02ef99473");

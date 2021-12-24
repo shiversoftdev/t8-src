@@ -126,7 +126,7 @@ function init()
 	foreach(canister in level.var_f9fe0920)
 	{
 		canister thread function_ffa1c335();
-		canister.fx_handle = util::spawn_model("tag_origin", canister.origin + vectorscale((0, 0, -1), 56));
+		canister.fx_handle = util::spawn_model("tag_origin", canister.origin + (vectorscale((0, 0, -1), 56)));
 		if(canister.script_int === 1 && canister.script_noteworthy != "cp_toast_apd")
 		{
 			canister function_8c2bda65(1, 0);
@@ -1387,7 +1387,7 @@ function function_1fba7fc2()
 				str_name = var_d1e952c4 zm_vo::function_82f9bc9f();
 				if(var_d1e952c4 zm_audio::function_65e5c19a())
 				{
-					alias = var_4854a91b + str_name + "_avog_" + a_taunts[str_name][0];
+					alias = ((var_4854a91b + str_name) + "_avog_") + a_taunts[str_name][0];
 					namespace_509a75d1::function_3c173d37();
 					var_d1e952c4 zm_audio::do_player_or_npc_playvox(alias, 1);
 					arrayremoveindex(a_taunts[str_name], 0);
@@ -1687,7 +1687,7 @@ function function_8c2bda65(n_rate, b_drain)
 		self.fx_handle clientfield::set("soul_capture_filled", 0);
 		while(self.n_captured > 2)
 		{
-			self.n_captured = self.n_captured - int(self.n_captured / n_rate);
+			self.n_captured = self.n_captured - (int(self.n_captured / n_rate));
 			wait(1);
 		}
 		self.n_captured = 0;
@@ -1696,7 +1696,7 @@ function function_8c2bda65(n_rate, b_drain)
 	{
 		while(self.n_captured < 26)
 		{
-			self.n_captured = self.n_captured + int(28 / n_rate);
+			self.n_captured = self.n_captured + (int(28 / n_rate));
 			wait(1);
 		}
 		self.n_captured = 28;

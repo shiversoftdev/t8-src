@@ -155,7 +155,7 @@ function playerzombie_downed_state()
 	self endon(#"death", #"disconnect");
 	downtime = 15;
 	starttime = gettime();
-	endtime = starttime + downtime * 1000;
+	endtime = starttime + (downtime * 1000);
 	self thread playerzombie_downed_hud();
 	self.playerzombie_soundboard_disable = 1;
 	self thread zombie_utility::zombie_eye_glow_stop();
@@ -381,7 +381,7 @@ function playerzombie_waitfor_buttonrelease(inputtype)
 	if(inputtype != "use" && inputtype != "attack" && inputtype != "ads")
 	{
 		/#
-			assertmsg("" + inputtype + "");
+			assertmsg(("" + inputtype) + "");
 		#/
 		return;
 	}

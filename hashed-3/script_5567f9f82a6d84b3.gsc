@@ -84,12 +84,12 @@ function watchkillstreakweapondelay()
 		killstreak = killstreaks::get_killstreak_for_weapon(newweapon);
 		if(killstreaks::is_delayable_killstreak(killstreak) && newweapon.iscarriedkillstreak)
 		{
-			timeleft = int(level.roundstartkillstreakdelay - float(globallogic_utils::gettimepassed()) / 1000);
+			timeleft = int(level.roundstartkillstreakdelay - (float(globallogic_utils::gettimepassed()) / 1000));
 			if(!timeleft)
 			{
 				timeleft = 1;
 			}
-			self iprintlnbold(#"hash_55a79f95e07a10bc", " " + timeleft + " ", #"hash_79a58948c3b976f5");
+			self iprintlnbold(#"hash_55a79f95e07a10bc", (" " + timeleft) + " ", #"hash_79a58948c3b976f5");
 			self switchtoweapon(currentweapon);
 			wait(0.5);
 		}
@@ -223,7 +223,7 @@ function usecarriedkillstreakweapon(hardpointtype)
 	if(isfrominventory)
 	{
 		self setweaponammoclip(killstreakweapon, self.pers[#"held_killstreak_clip_count"][killstreakweapon]);
-		self setweaponammostock(killstreakweapon, self.pers[#"killstreak_ammo_count"][self.pers[#"killstreak_ammo_count"].size - 1] - self.pers[#"held_killstreak_clip_count"][killstreakweapon]);
+		self setweaponammostock(killstreakweapon, (self.pers[#"killstreak_ammo_count"][self.pers[#"killstreak_ammo_count"].size - 1]) - self.pers[#"held_killstreak_clip_count"][killstreakweapon]);
 	}
 	notifystring = "killstreakWeapon_" + killstreakweapon.name;
 	self notify(notifystring);
@@ -403,7 +403,7 @@ function watchkillstreakweapondeath(killstreakweapon, killstreak_id, isfrominven
 		currentammoinclip = 0;
 	}
 	maxclipsize = killstreakweapon.clipsize;
-	newammo = int(currentammo - maxammo * penalty);
+	newammo = int(currentammo - (maxammo * penalty));
 	killstreakid = killstreaks::get_top_killstreak_unique_id();
 	if(self.lastnonkillstreakweapon == killstreakweapon)
 	{

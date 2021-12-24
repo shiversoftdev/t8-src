@@ -424,7 +424,7 @@ function function_c40f70df(var_21c1ba1)
 	level endon(#"end_game");
 	self endon(#"death");
 	/#
-		println("" + var_21c1ba1 + "");
+		println(("" + var_21c1ba1) + "");
 	#/
 	self bgb::suspend_weapon_cycling();
 	self namespace_7d0afffb::function_ac9cb612(1);
@@ -442,7 +442,7 @@ function function_c40f70df(var_21c1ba1)
 	}
 	waitframe(1);
 	/#
-		println("" + var_21c1ba1 + "");
+		println(("" + var_21c1ba1) + "");
 	#/
 	self namespace_b22c99a5::function_3f8a4145(0);
 	if(!self laststand::player_is_in_laststand())
@@ -454,7 +454,7 @@ function function_c40f70df(var_21c1ba1)
 			{
 				self setstance("stand");
 				/#
-					println("" + var_21c1ba1 + "");
+					println(("" + var_21c1ba1) + "");
 				#/
 				wait(0.2);
 				break;
@@ -463,7 +463,7 @@ function function_c40f70df(var_21c1ba1)
 			{
 				self setstance("stand");
 				/#
-					println("" + var_21c1ba1 + "");
+					println(("" + var_21c1ba1) + "");
 				#/
 				wait(1);
 				break;
@@ -471,7 +471,7 @@ function function_c40f70df(var_21c1ba1)
 		}
 	}
 	/#
-		println("" + var_21c1ba1 + "");
+		println(("" + var_21c1ba1) + "");
 	#/
 }
 

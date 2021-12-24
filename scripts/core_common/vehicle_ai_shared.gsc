@@ -159,12 +159,12 @@ function fire_for_time(totalfiretime, turretidx = 0, target, intervalscale = 1)
 	if(!isdefined(weapon) || weapon.name == #"none" || weapon.firetime <= 0)
 	{
 		/#
-			println("" + turretidx + "" + self getentnum() + "" + self.model);
+			println(((("" + turretidx) + "") + self getentnum() + "") + self.model);
 		#/
 		return;
 	}
 	firetime = weapon.firetime * intervalscale;
-	firecount = int(floor(totalfiretime / firetime)) + 1;
+	firecount = (int(floor(totalfiretime / firetime))) + 1;
 	__fire_for_rounds_internal(firecount, firetime, turretidx, target);
 }
 
@@ -188,7 +188,7 @@ function fire_for_rounds(firecount, turretidx, target)
 	if(!isdefined(weapon) || weapon.name == #"none" || weapon.firetime <= 0)
 	{
 		/#
-			println("" + turretidx + "" + self getentnum() + "" + self.model);
+			println(((("" + turretidx) + "") + self getentnum() + "") + self.model);
 		#/
 		return;
 	}
@@ -410,7 +410,7 @@ function getairfollowingorigin()
 	/#
 		assert(isairborne(self));
 	#/
-	origin = self.host.origin + self.host.mins + self.host.maxs;
+	origin = (self.host.origin + self.host.mins) + self.host.maxs;
 	if(isdefined(self.host.airfollowconfig) && self.host.airfollowconfig.tag !== "")
 	{
 		origin = self.host gettagorigin(self.host.airfollowconfig.tag);
@@ -438,7 +438,7 @@ function getairfollowinglength(targetent)
 	{
 		size = self.host.maxs - self.host.mins;
 		distance = 0.5 * length(size);
-		distance = 0.5 * distance + size[2];
+		distance = 0.5 * (distance + size[2]);
 	}
 	return distance;
 }
@@ -529,7 +529,7 @@ function javelin_losetargetatrighttimeprojectile(proj, target)
 		if(proj getvelocity()[2] < -150)
 		{
 			distsq = distancesquared(proj.origin, target.origin);
-			if(!isdefined(sound_played) && distsq <= 1400 * 1400)
+			if(!isdefined(sound_played) && distsq <= (1400 * 1400))
 			{
 				proj playsound(#"prj_quadtank_javelin_incoming");
 				sound_played = 1;
@@ -652,7 +652,7 @@ function throw_off_balance(damagetype, hitpoint, hitdirection, hitlocationinfo)
 {
 	if(damagetype == "MOD_EXPLOSIVE" || damagetype == "MOD_GRENADE_SPLASH" || damagetype == "MOD_PROJECTILE_SPLASH")
 	{
-		self setvehvelocity(self.velocity + vectornormalize(hitdirection) * 300);
+		self setvehvelocity(self.velocity + (vectornormalize(hitdirection) * 300));
 		ang_vel = self getangularvelocity();
 		ang_vel = ang_vel + (randomfloatrange(-300, 300), randomfloatrange(-300, 300), randomfloatrange(-300, 300));
 		self setangularvelocity(ang_vel);
@@ -661,7 +661,7 @@ function throw_off_balance(damagetype, hitpoint, hitdirection, hitlocationinfo)
 	{
 		ang_vel = self getangularvelocity();
 		yaw_vel = randomfloatrange(-320, 320);
-		yaw_vel = yaw_vel + math::sign(yaw_vel) * 150;
+		yaw_vel = yaw_vel + (math::sign(yaw_vel) * 150);
 		ang_vel = ang_vel + (randomfloatrange(-150, 150), yaw_vel, randomfloatrange(-150, 150));
 		self setangularvelocity(ang_vel);
 	}
@@ -703,7 +703,7 @@ function predicted_collision()
 function collision_fx(normal)
 {
 	tilted = normal[2] < 0.6;
-	fx_origin = self.origin - normal * (tilted ? 28 : 10);
+	fx_origin = self.origin - (normal * (tilted ? 28 : 10));
 	self playsound(#"veh_wasp_wall_imp");
 }
 
@@ -736,7 +736,7 @@ function nudge_collision()
 		empedoroff = self get_current_state() === "emped" || self get_current_state() === "off";
 		if(isalive(self) && (normal[2] < 0.6 || !empedoroff))
 		{
-			self setvehvelocity(self.velocity + normal * 90);
+			self setvehvelocity(self.velocity + (normal * 90));
 			self collision_fx(normal);
 		}
 		else if(empedoroff)
@@ -754,7 +754,7 @@ function nudge_collision()
 				return;
 			}
 			self.bounced = 1;
-			self setvehvelocity(self.velocity + normal * 30);
+			self setvehvelocity(self.velocity + (normal * 30));
 			self collision_fx(normal);
 		}
 		else
@@ -762,7 +762,7 @@ function nudge_collision()
 			impact_vel = abs(vectordot(velocity, normal));
 			if(normal[2] < 0.6 && impact_vel < 100)
 			{
-				self setvehvelocity(self.velocity + normal * 90);
+				self setvehvelocity(self.velocity + (normal * 90));
 				self collision_fx(normal);
 			}
 			else
@@ -793,7 +793,7 @@ function level_out_for_landing()
 		self.angles = (self.angles[0] * 0.85, self.angles[1], self.angles[2] * 0.85);
 		ang_vel = self getangularvelocity() * 0.85;
 		self setangularvelocity(ang_vel);
-		self setvehvelocity(velocity + vectorscale((0, 0, -1), 60));
+		self setvehvelocity(velocity + (vectorscale((0, 0, -1), 60)));
 		waitframe(1);
 	}
 }
@@ -856,7 +856,7 @@ function burning_thread(attacker, inflictor)
 	{
 		previoustime = gettime();
 		wait(interval);
-		damage = damage + util::timesince(previoustime) * damagepersecond;
+		damage = damage + (util::timesince(previoustime) * damagepersecond);
 		damageint = int(damage);
 		self dodamage(damageint, self.origin, attacker, self, "none", "MOD_BURNED");
 		damage = damage - damageint;
@@ -961,7 +961,7 @@ function blink_lights_for_time(time)
 	starttime = gettime();
 	self vehicle::lights_off();
 	wait(0.1);
-	while(gettime() < starttime + int(time * 1000))
+	while(gettime() < starttime + (int(time * 1000)))
 	{
 		self vehicle::lights_off();
 		wait(0.2);
@@ -2461,16 +2461,16 @@ function debugscore(entity, num, sorted)
 		recordstar(self.origin, color);
 		if(isdefined(sorted) && sorted)
 		{
-			record3dtext("" + num + "" + self.score + "", self.origin - (0, 0, 10 * count), color);
+			record3dtext(((("" + num) + "") + self.score) + "", self.origin - (0, 0, 10 * count), color);
 		}
 		else
 		{
-			record3dtext("" + self.score + "", self.origin - (0, 0, 10 * count), color);
+			record3dtext(("" + self.score) + "", self.origin - (0, 0, 10 * count), color);
 		}
 		foreach(score in self._scoredebug)
 		{
 			count++;
-			record3dtext(score.scorename + "" + score.score, self.origin - (0, 0, 10 * count), color);
+			record3dtext((score.scorename + "") + score.score, self.origin - (0, 0, 10 * count), color);
 		}
 	#/
 }
@@ -2590,7 +2590,7 @@ function positionquery_filter_outofgoalanchor(queryresult, tolerance = 1)
 	{
 		if(point.disttogoal > tolerance)
 		{
-			score = -10000 - point.disttogoal * 10;
+			score = -10000 - (point.disttogoal * 10);
 			/#
 				if(!isdefined(point._scoredebug))
 				{
@@ -2625,7 +2625,7 @@ function positionquery_filter_engagementdist(queryresult, enemy, engagementdista
 	}
 	if(!isdefined(engagementdistance))
 	{
-		engagementdistance = engagementdistancemin + engagementdistancemax * 0.5;
+		engagementdistance = (engagementdistancemin + engagementdistancemax) * 0.5;
 	}
 	half_engagement_width = abs(engagementdistancemax - engagementdistance);
 	enemy_origin = (enemy.origin[0], enemy.origin[1], 0);
@@ -2693,7 +2693,7 @@ function positionquery_filter_distawayfromtarget(queryresult, targetarray, dista
 			{
 				origin = target.origin;
 			}
-			if(isdefined(origin) && distance2dsquared(point.origin, origin) < distance * distance)
+			if(isdefined(origin) && distance2dsquared(point.origin, origin) < (distance * distance))
 			{
 				tooclose = 1;
 				break;
@@ -2734,7 +2734,7 @@ function distancepointtoengagementheight(origin, enemy, engagementheightmin, eng
 		return undefined;
 	}
 	result = 0;
-	engagementheight = 0.5 * self.settings.engagementheightmin + self.settings.engagementheightmax;
+	engagementheight = 0.5 * (self.settings.engagementheightmin + self.settings.engagementheightmax);
 	half_height = abs(engagementheightmax - engagementheight);
 	targetheight = enemy.origin[2] + engagementheight;
 	distfromengagementheight = abs(origin[2] - targetheight);
@@ -2760,7 +2760,7 @@ function positionquery_filter_engagementheight(queryresult, enemy, engagementhei
 	{
 		return;
 	}
-	engagementheight = 0.5 * engagementheightmin + engagementheightmax;
+	engagementheight = 0.5 * (engagementheightmin + engagementheightmax);
 	half_height = abs(engagementheightmax - engagementheight);
 	foreach(point in queryresult.data)
 	{
@@ -2956,7 +2956,7 @@ function function_1d436633(vararg)
 	isatgoal = isdefined(var_1f2328d0.isatgoal) && var_1f2328d0.isatgoal || (self isapproachinggoal() && isdefined(self.overridegoalpos));
 	itsbeenawhile = isdefined(var_1f2328d0.isatgoal) && var_1f2328d0.isatgoal && gettime() > self.ai.var_88b0fd29;
 	var_48ea0381 = 0;
-	var_2a8c95a5 = forcedgoal && isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, var_1f2328d0.goalpos) < self.radius * self.radius;
+	var_2a8c95a5 = forcedgoal && isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, var_1f2328d0.goalpos) < (self.radius * self.radius);
 	if(isdefined(self.enemy) && !self haspath())
 	{
 		var_48ea0381 = !self seerecently(self.enemy, randomintrange(3, 5));
@@ -2988,7 +2988,7 @@ function function_1d436633(vararg)
 					{
 						continue;
 					}
-					if(isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, goal.origin) < self.radius * self.radius)
+					if(isdefined(self.overridegoalpos) && distancesquared(self.overridegoalpos, goal.origin) < (self.radius * self.radius))
 					{
 						continue;
 					}
@@ -3023,7 +3023,7 @@ private function function_4ab1a63a(goal)
 {
 	if(isdefined(self.settings.engagementheightmax) && isdefined(self.settings.engagementheightmin))
 	{
-		var_20b5eeff = 0.5 * self.settings.engagementheightmax + self.settings.engagementheightmin;
+		var_20b5eeff = 0.5 * (self.settings.engagementheightmax + self.settings.engagementheightmin);
 	}
 	else
 	{
@@ -3098,7 +3098,7 @@ function function_1e0d693b(goal, enemy)
 	prefereddistawayfromorigin = (isdefined(self.settings.var_99955aeb) ? self.settings.var_99955aeb : 150);
 	if(isdefined(self.settings.engagementheightmax) && isdefined(self.settings.engagementheightmin))
 	{
-		var_20b5eeff = 0.5 * self.settings.engagementheightmax + self.settings.engagementheightmin;
+		var_20b5eeff = 0.5 * (self.settings.engagementheightmax + self.settings.engagementheightmin);
 	}
 	else
 	{
@@ -3111,7 +3111,7 @@ function function_1e0d693b(goal, enemy)
 		enemypos = enemy.var_88f8feeb;
 	}
 	var_caa2a43c = max(prefereddistawayfromorigin, goal.goalradius + distance2d(self.origin, goal.goalpos));
-	var_a51de54a = goal.goalheight + abs(self.origin[2] - goal.goalpos[2]);
+	var_a51de54a = goal.goalheight + (abs(self.origin[2] - goal.goalpos[2]));
 	closedist = 1.2 * self.var_ec0d66ce;
 	fardist = 3 * self.var_ec0d66ce;
 	selfdisttoenemy = distance2d(self.origin, enemypos);
@@ -3125,12 +3125,12 @@ function function_1e0d693b(goal, enemy)
 	positionquery_filter_inclaimedlocation(queryresult, self);
 	positionquery_filter_sight(queryresult, enemypos, self geteye() - self.origin, self, 0, enemy);
 	self positionquery_filter_engagementdist(queryresult, enemy, self.settings.engagementdistmin, self.settings.engagementdistmax, var_3069c020);
-	goalheight = enemypos[2] + 0.5 * self.settings.engagementheightmin + self.settings.engagementheightmax;
+	goalheight = enemypos[2] + (0.5 * (self.settings.engagementheightmin + self.settings.engagementheightmax));
 	foreach(point in queryresult.data)
 	{
 		if(point.disttogoal > 0)
 		{
-			score = -5000 - point.disttogoal * 2;
+			score = -5000 - (point.disttogoal * 2);
 			/#
 				if(!isdefined(point._scoredebug))
 				{
@@ -3173,7 +3173,7 @@ function function_1e0d693b(goal, enemy)
 			point._scoredebug[#"engagementdist"].score = point.distawayfromengagementarea * -1;
 			point._scoredebug[#"engagementdist"].scorename = "";
 		#/
-		point.score = point.score + point.distawayfromengagementarea * -1;
+		point.score = point.score + (point.distawayfromengagementarea * -1);
 		/#
 			if(!isdefined(point._scoredebug))
 			{
@@ -3186,7 +3186,7 @@ function function_1e0d693b(goal, enemy)
 			point._scoredebug[#"hash_6c444b535ec20313"].score = mapfloat(0, prefereddistawayfromorigin, -5000, 0, point.disttoorigin2d);
 			point._scoredebug[#"hash_6c444b535ec20313"].scorename = "";
 		#/
-		point.score = point.score + mapfloat(0, prefereddistawayfromorigin, -5000, 0, point.disttoorigin2d);
+		point.score = point.score + (mapfloat(0, prefereddistawayfromorigin, -5000, 0, point.disttoorigin2d));
 		if(point.inclaimedlocation)
 		{
 			/#
@@ -3271,7 +3271,7 @@ private function function_4646fb11(goal)
 	{
 		if(point.disttogoal > 0)
 		{
-			score = -5000 - point.disttogoal * 2;
+			score = -5000 - (point.disttogoal * 2);
 			/#
 				if(!isdefined(point._scoredebug))
 				{
@@ -3365,7 +3365,7 @@ function function_b1bd875a()
 	haspath = self haspath();
 	isapproachinggoal = !isatgoal && haspath && self isapproachinggoal();
 	itsbeenawhile = currenttime >= self.ai.var_88b0fd29;
-	var_ed3f071f = currenttime >= self.ai.var_88b0fd29 + 5000;
+	var_ed3f071f = currenttime >= (self.ai.var_88b0fd29 + 5000);
 	var_48ea0381 = 0;
 	if(issentient(enemy) && !haspath)
 	{
@@ -3375,7 +3375,7 @@ function function_b1bd875a()
 			var_48ea0381 = !self attackedrecently(enemy, randomintrange(5, 7));
 		}
 	}
-	var_3e782e85 = forcedgoal || (var_1f2328d0.goalradius < 2 * self.radius && var_1f2328d0.goalheight < 2 * self.radius);
+	var_3e782e85 = forcedgoal || (var_1f2328d0.goalradius < (2 * self.radius) && var_1f2328d0.goalheight < (2 * self.radius));
 	var_f5ae7ee0 = isatgoal && !var_3e782e85 && (itsbeenawhile || var_48ea0381);
 	var_633ff15a = !isatgoal && (!isapproachinggoal || var_ed3f071f);
 	var_12cb92c6 = var_f5ae7ee0 || var_633ff15a;
@@ -3410,7 +3410,7 @@ function function_b1bd875a()
 			if(!isdefined(newpos))
 			{
 				/#
-					record3dtext("" + var_1f2328d0.goalpos + "" + var_1f2328d0.goalradius + "" + var_1f2328d0.goalheight, self.origin + vectorscale((0, 0, 1), 8), (1, 0, 0));
+					record3dtext((((("" + var_1f2328d0.goalpos) + "") + var_1f2328d0.goalradius) + "") + var_1f2328d0.goalheight, self.origin + vectorscale((0, 0, 1), 8), (1, 0, 0));
 					recordline(self.origin, var_1f2328d0.goalpos, (1, 0, 0));
 				#/
 				newpos = var_1f2328d0.goalpos;
@@ -3418,12 +3418,12 @@ function function_b1bd875a()
 			else if(!self isingoal(newpos))
 			{
 				/#
-					record3dtext("" + newpos + "" + var_1f2328d0.goalpos + "" + var_1f2328d0.goalradius + "" + var_1f2328d0.goalheight, self.origin + vectorscale((0, 0, 1), 8), (1, 0, 0));
+					record3dtext((((((("" + newpos) + "") + var_1f2328d0.goalpos) + "") + var_1f2328d0.goalradius) + "") + var_1f2328d0.goalheight, self.origin + vectorscale((0, 0, 1), 8), (1, 0, 0));
 					recordline(self.origin, newpos, (1, 0, 0));
 				#/
 				newpos = var_1f2328d0.goalpos;
 			}
-			if(distancesquared(self.origin, newpos) < self.radius * 2 * self.radius * 2)
+			if(distancesquared(self.origin, newpos) < (self.radius * 2) * (self.radius * 2))
 			{
 				newpos = undefined;
 			}

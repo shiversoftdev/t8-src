@@ -371,7 +371,7 @@ function function_72e84e64()
 	level thread namespace_73e1c3e3::function_289b4b9f(#"hash_29f6daee1e40b3af", undefined, 50, "stop_nag", &function_ce452e0);
 	level thread namespace_64a487a9::activate_bots(12, #"axis");
 	level thread function_95f8a9b5();
-	n_bomb_timer = int(gettime() + 1000 + int(480 * 1000));
+	n_bomb_timer = int((gettime() + 1000) + (int(480 * 1000)));
 	setmatchflag("bomb_timer_a", 1);
 	setbombtimer("A", n_bomb_timer);
 	level.var_a2cbd584 = 0;
@@ -515,10 +515,10 @@ function function_d6c7161f()
 		}
 		if(isdefined(var_326df4eb))
 		{
-			var_583c5a3b = 1.75 + 0.6 * level.var_f3bb2d59;
+			var_583c5a3b = 1.75 + (0.6 * level.var_f3bb2d59);
 			n_start_time = gettime() / 1000;
 			self waittill_timeout(var_583c5a3b, #"hash_4aaf6d6479e7cf20");
-			dt = gettime() / 1000 - n_start_time;
+			dt = (gettime() / 1000) - n_start_time;
 			if(dt >= 1.75)
 			{
 				arrayremovevalue(level.var_8eac6c9c, s_beacon);

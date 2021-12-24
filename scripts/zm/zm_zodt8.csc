@@ -294,7 +294,7 @@ function function_3353845b(localclientnum)
 		wait(n_waittime);
 		if(n_chance >= randomint(100))
 		{
-			if(self.var_655d9e4b === 0 || gettime() - var_d82f94cd >= self.var_655d9e4b)
+			if(self.var_655d9e4b === 0 || (gettime() - var_d82f94cd) >= self.var_655d9e4b)
 			{
 				self playsound(localclientnum, self.var_e95193b8[function_21a3a673(0, 2)][self.var_25e6f383]);
 				self.var_655d9e4b = gettime();
@@ -894,7 +894,7 @@ function function_b7fc06b2(localclientnum, oldval, newval, bnewent, binitialsnap
 	wait(25);
 	var_17623425 = 4;
 	n_time = 0;
-	var_1713b028 = 4 - 1 / 45 - 25 / 1;
+	var_1713b028 = (4 - 1) / ((45 - 25) / 1);
 	while(var_17623425 > 1)
 	{
 		n_time = n_time + 1;

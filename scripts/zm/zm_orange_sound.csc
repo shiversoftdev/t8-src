@@ -37,7 +37,7 @@ function function_9290b227()
 		/#
 			if(getdvarint(#"debug_audio", 0) > 0)
 			{
-				println("" + loopers.size + "");
+				println(("" + loopers.size) + "");
 			}
 		#/
 		for(i = 0; i < loopers.size; i++)
@@ -48,7 +48,7 @@ function function_9290b227()
 			}
 			loopers[i] thread soundloopthink();
 			delay = delay + 1;
-			if(delay % 20 == 0)
+			if((delay % 20) == 0)
 			{
 				waitframe(1);
 			}

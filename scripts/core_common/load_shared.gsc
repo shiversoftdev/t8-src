@@ -297,13 +297,13 @@ function weapon_ammo()
 				if(!isdefined(clip))
 				{
 					/#
-						assertmsg("" + weap.classname + "" + weap.origin + "");
+						assertmsg(((("" + weap.classname) + "") + weap.origin) + "");
 					#/
 				}
 				if(!isdefined(extra))
 				{
 					/#
-						assertmsg("" + weap.classname + "" + weap.origin + "");
+						assertmsg(((("" + weap.classname) + "") + weap.origin) + "");
 					#/
 				}
 				weap itemweaponsetammo(clip, extra);
@@ -466,7 +466,7 @@ function water_think()
 					{
 						continue;
 					}
-					newspeed = int(level.default_run_speed - abs(d * 5));
+					newspeed = int(level.default_run_speed - (abs(d * 5)));
 					if(newspeed < 50)
 					{
 						newspeed = 50;
@@ -591,7 +591,7 @@ function lerp_trigger_dvar_value(trigger, dvar, value, time)
 	trigger.lerping_dvar[dvar] = 1;
 	steps = time * 20;
 	curr_value = getdvarfloat(dvar, 0);
-	diff = curr_value - value / steps;
+	diff = (curr_value - value) / steps;
 	for(i = 0; i < steps; i++)
 	{
 		curr_value = curr_value - diff;
@@ -614,9 +614,9 @@ function lerp_trigger_dvar_value(trigger, dvar, value, time)
 function set_fog_progress(progress)
 {
 	anti_progress = 1 - progress;
-	startdist = self.script_start_dist * anti_progress + self.script_start_dist * progress;
-	halfwaydist = self.script_halfway_dist * anti_progress + self.script_halfway_dist * progress;
-	color = self.script_color * anti_progress + self.script_color * progress;
+	startdist = (self.script_start_dist * anti_progress) + (self.script_start_dist * progress);
+	halfwaydist = (self.script_halfway_dist * anti_progress) + (self.script_halfway_dist * progress);
+	color = (self.script_color * anti_progress) + (self.script_color * progress);
 	setvolfog(startdist, halfwaydist, self.script_halfway_height, self.script_base_height, color[0], color[1], color[2], 0.4);
 }
 

@@ -619,7 +619,7 @@ function elevator_buy_think(elevator)
 			elevator disable_elevator_buys();
 			call_box_array = getentarray(elevator.station, "script_noteworthy");
 			call_box = call_box_array[0];
-			if(call_box.script_noteworthy == elevator.targetname + "_up")
+			if(call_box.script_noteworthy == (elevator.targetname + "_up"))
 			{
 				call_box.destination = elevator.targetname + "_down";
 			}
@@ -758,7 +758,7 @@ function elevator_move_to(elevator)
 	elevator block_elev_doors(0);
 	elevator notify(#"start_3d_audio");
 	elevator thread elev_clean_up_corpses();
-	if(elevator.station == elevator.targetname + "_up")
+	if(elevator.station == (elevator.targetname + "_up"))
 	{
 		if(elevator.targetname == "elevator1")
 		{
@@ -808,12 +808,12 @@ function elevator_move_to(elevator)
 	if(elevator.targetname == "elevator2")
 	{
 		util::clientnotify("ele1e");
-		if(elevator.station == elevator.targetname + "_up")
+		if(elevator.station == (elevator.targetname + "_up"))
 		{
 			function_db4ac61a();
 			elevator playsound(#"hash_6dc5b145a42639b7");
 		}
-		else if(elevator.station == elevator.targetname + "_down")
+		else if(elevator.station == (elevator.targetname + "_down"))
 		{
 			function_db4ac61a();
 			elevator playsound(#"hash_3faa2aca94611bdc");
@@ -822,12 +822,12 @@ function elevator_move_to(elevator)
 	else if(elevator.targetname == "elevator1")
 	{
 		util::clientnotify("ele2e");
-		if(elevator.station == elevator.targetname + "_up")
+		if(elevator.station == (elevator.targetname + "_up"))
 		{
 			function_4cf5b4dd();
 			elevator playsound(#"hash_3faa2aca94611bdc");
 		}
-		else if(elevator.station == elevator.targetname + "_down")
+		else if(elevator.station == (elevator.targetname + "_down"))
 		{
 			function_4cf5b4dd();
 			elevator playsound(#"hash_74f5fc759e9f23d5");
@@ -1061,7 +1061,7 @@ function close_elev_doors()
 			self.doors_up[l] thread relink_elev_doors(newpos4, self, 1);
 			playsoundatposition(#"evt_elevator_freight_door_close", newpos4);
 		}
-		if(self.station == self.targetname + "_down")
+		if(self.station == (self.targetname + "_down"))
 		{
 			nd_elev1_in_labs = getnode("nd_elev1_in_labs", "targetname");
 			if(isdefined(nd_elev1_in_labs))
@@ -1084,7 +1084,7 @@ function close_elev_doors()
 	{
 		for(m = 0; m < self.doors.size; m++)
 		{
-			if(self.station == self.targetname + "_up")
+			if(self.station == (self.targetname + "_up"))
 			{
 				newpos5 = self.doors[m].startpos;
 			}
@@ -1095,7 +1095,7 @@ function close_elev_doors()
 			self.doors[m] thread relink_elev_doors(newpos5, self, 1);
 			playsoundatposition(#"evt_elevator_office_door_close", newpos5);
 		}
-		if(self.station == self.targetname + "_down")
+		if(self.station == (self.targetname + "_down"))
 		{
 			nd_elev2_in_war_room = getnode("nd_elev2_in_war_room", "targetname");
 			if(isdefined(nd_elev2_in_war_room))
@@ -1127,7 +1127,7 @@ function close_elev_doors()
 */
 function open_elev_doors()
 {
-	if(self.station == self.targetname + "_down")
+	if(self.station == (self.targetname + "_down"))
 	{
 		for(j = 0; j < self.doors_outer_down.size; j++)
 		{
@@ -1164,7 +1164,7 @@ function open_elev_doors()
 			for(m = 0; m < self.doors.size; m++)
 			{
 				pos2 = self.doors[m].startpos + self.doors[m].script_vector;
-				if(self.station == self.targetname + "_up")
+				if(self.station == (self.targetname + "_up"))
 				{
 					newpos2 = (pos2[0], pos2[1], self.doors[m].startpos[2]);
 				}

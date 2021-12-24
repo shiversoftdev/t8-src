@@ -415,7 +415,7 @@ function function_765e5d1c()
 	n_step = 120 / 600;
 	n_original = self clientfield::get_player_uimodel("zmhud.bgb_timer");
 	self.var_718eafbc++;
-	var_4bfcf47f = 1 - self.var_718eafbc * n_step;
+	var_4bfcf47f = 1 - (self.var_718eafbc * n_step);
 	if(n_original > var_4bfcf47f)
 	{
 		self bgb::set_timer(600 * var_4bfcf47f, 600, 1);

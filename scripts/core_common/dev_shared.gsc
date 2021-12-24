@@ -24,7 +24,7 @@ function debug_sphere(origin, radius, color, alpha, time)
 		{
 			color = (1, 1, 1);
 		}
-		sides = int(10 * 1 + int(radius) % 100);
+		sides = int(10 * (1 + (int(radius) % 100)));
 		sphere(origin, radius, color, alpha, 1, sides, time);
 	#/
 }
@@ -179,7 +179,7 @@ function updateminimapsetting()
 							{
 								incr = requiredmapaspectratio / mapaspectratio;
 								disttoside = disttoside * incr;
-								addvec = vecscale(eastvector, vectordot(eastvector, maxcorner - viewpos) * incr - 1);
+								addvec = vecscale(eastvector, (vectordot(eastvector, maxcorner - viewpos)) * (incr - 1));
 								mincorner = mincorner - addvec;
 								maxcorner = maxcorner + addvec;
 							}
@@ -187,7 +187,7 @@ function updateminimapsetting()
 							{
 								incr = mapaspectratio / requiredmapaspectratio;
 								disttotop = disttotop * incr;
-								addvec = vecscale(northvector, vectordot(northvector, maxcorner - viewpos) * incr - 1);
+								addvec = vecscale(northvector, (vectordot(northvector, maxcorner - viewpos)) * (incr - 1));
 								mincorner = mincorner - addvec;
 								maxcorner = maxcorner + addvec;
 							}
@@ -195,14 +195,14 @@ function updateminimapsetting()
 						if(level.console)
 						{
 							aspectratioguess = 1.777778;
-							angleside = 2 * atan(disttoside * 0.8 / minimapheight);
-							angletop = 2 * atan(disttotop * aspectratioguess * 0.8 / minimapheight);
+							angleside = 2 * (atan((disttoside * 0.8) / minimapheight));
+							angletop = 2 * (atan(((disttotop * aspectratioguess) * 0.8) / minimapheight));
 						}
 						else
 						{
 							aspectratioguess = 1.333333;
-							angleside = 2 * atan(disttoside / minimapheight);
-							angletop = 2 * atan(disttotop * aspectratioguess / minimapheight);
+							angleside = 2 * (atan(disttoside / minimapheight));
+							angletop = 2 * (atan((disttotop * aspectratioguess) / minimapheight));
 						}
 						if(angleside > angletop)
 						{
@@ -294,10 +294,10 @@ function drawminimapbounds(viewpos, mincorner, maxcorner)
 		diaglen = length(mincorner - maxcorner);
 		mincorneroffset = mincorner - viewpos;
 		mincorneroffset = vectornormalize((mincorneroffset[0], mincorneroffset[1], 0));
-		mincorner = mincorner + vecscale(mincorneroffset, diaglen * 1 / 800);
+		mincorner = mincorner + (vecscale(mincorneroffset, (diaglen * 1) / 800));
 		maxcorneroffset = maxcorner - viewpos;
 		maxcorneroffset = vectornormalize((maxcorneroffset[0], maxcorneroffset[1], 0));
-		maxcorner = maxcorner + vecscale(maxcorneroffset, diaglen * 1 / 800);
+		maxcorner = maxcorner + (vecscale(maxcorneroffset, (diaglen * 1) / 800));
 		diagonal = maxcorner - mincorner;
 		side = vecscale(north, vectordot(diagonal, north));
 		sidenorth = vecscale(north, abs(vectordot(diagonal, north)));
@@ -305,7 +305,7 @@ function drawminimapbounds(viewpos, mincorner, maxcorner)
 		corner1 = mincorner + side;
 		corner2 = maxcorner;
 		corner3 = maxcorner - side;
-		toppos = vecscale(mincorner + maxcorner, 0.5) + vecscale(sidenorth, 0.51);
+		toppos = (vecscale(mincorner + maxcorner, 0.5)) + vecscale(sidenorth, 0.51);
 		textscale = diaglen * 0.003;
 		while(true)
 		{
@@ -435,7 +435,7 @@ function body_customization_process_command(character_index)
 {
 	/#
 		/#
-			println("" + character_index + "");
+			println(("" + character_index) + "");
 		#/
 		split = strtok(character_index, "");
 		switch(split.size)
@@ -445,7 +445,7 @@ function body_customization_process_command(character_index)
 				command0 = strtok(split[0], "");
 				bodytype = int(command0[1]);
 				/#
-					println("" + bodytype + "");
+					println(("" + bodytype) + "");
 				#/
 				function_5639909a(bodytype, 0);
 				break;
@@ -457,7 +457,7 @@ function body_customization_process_command(character_index)
 				command1 = strtok(split[1], "");
 				outfitindex = int(command1[1]);
 				/#
-					println("" + bodytype + "" + outfitindex + "");
+					println(((("" + bodytype) + "") + outfitindex) + "");
 				#/
 				function_5639909a(bodytype, outfitindex);
 				break;
@@ -472,7 +472,7 @@ function body_customization_process_command(character_index)
 				var_c1154821 = var_e7f74d2b[0];
 				index = int(var_e7f74d2b[1]);
 				/#
-					println("" + bodytype + "" + outfitindex + "" + var_c1154821 + "" + index + "");
+					println(((((((("" + bodytype) + "") + outfitindex) + "") + var_c1154821) + "") + index) + "");
 				#/
 				function_f413b4d5(bodytype, outfitindex, var_c1154821, index);
 				break;
@@ -501,7 +501,7 @@ function function_3cec5609(arr, var_7956c7ac, bodytype, outfitindex, optiontype)
 		{
 			if(option.isvalid)
 			{
-				util::function_345e5b9a(var_7956c7ac + index + "" + "" + "" + "" + bodytype + "" + "" + outfitindex + "" + optiontype + "" + index + "");
+				util::function_345e5b9a((((((((((((((var_7956c7ac + index) + "") + "") + "") + "") + bodytype) + "") + "") + outfitindex) + "") + optiontype) + "") + index) + "");
 			}
 		}
 	#/
@@ -539,8 +539,8 @@ function function_970d4891(mode)
 		bodies = getallcharacterbodies(mode);
 		foreach(playerbodytype in bodies)
 		{
-			body_name = function_2c6232e5(makelocalizedstring(getcharacterdisplayname(playerbodytype, mode))) + "" + function_9e72a96(getcharacterassetname(playerbodytype, mode));
-			util::function_e2e9d901("" + body_name + "", "" + "" + "" + body_name);
+			body_name = (function_2c6232e5(makelocalizedstring(getcharacterdisplayname(playerbodytype, mode))) + "") + function_9e72a96(getcharacterassetname(playerbodytype, mode));
+			util::function_e2e9d901(("" + body_name) + "", (("" + "") + "") + body_name);
 		}
 	#/
 }
@@ -561,12 +561,12 @@ function body_customization_populate(mode, var_ef4940a5)
 		body_customization_devgui_base = "" + "";
 		foreach(playerbodytype in bodies)
 		{
-			body_name = function_2c6232e5(makelocalizedstring(getcharacterdisplayname(playerbodytype, mode))) + "" + function_9e72a96(getcharacterassetname(playerbodytype, mode));
+			body_name = (function_2c6232e5(makelocalizedstring(getcharacterdisplayname(playerbodytype, mode))) + "") + function_9e72a96(getcharacterassetname(playerbodytype, mode));
 			if(isdefined(var_ef4940a5) && var_ef4940a5 != body_name)
 			{
 				continue;
 			}
-			util::function_345e5b9a(body_customization_devgui_base + body_name + "" + "" + "" + "" + "" + playerbodytype + "");
+			util::function_345e5b9a((((((((body_customization_devgui_base + body_name) + "") + "") + "") + "") + "") + playerbodytype) + "");
 			var_13240050 = function_d299ef16(playerbodytype, mode);
 			for(outfitindex = 0; outfitindex < var_13240050; outfitindex++)
 			{
@@ -574,9 +574,9 @@ function body_customization_populate(mode, var_ef4940a5)
 				if(var_9cf37283.valid)
 				{
 					var_346660ac = function_2c6232e5(makelocalizedstring(function_9e72a96(var_9cf37283.var_74996050)));
-					var_1bf829f2 = outfitindex + "" + var_346660ac + "" + function_9e72a96(var_9cf37283.var_3cf2d21) + "" + outfitindex;
-					var_a818c4e = body_customization_devgui_base + body_name + "" + var_1bf829f2;
-					util::function_345e5b9a(var_a818c4e + "" + "" + "" + "" + "" + playerbodytype + "" + "" + outfitindex + "");
+					var_1bf829f2 = ((((outfitindex + "") + var_346660ac) + "") + function_9e72a96(var_9cf37283.var_3cf2d21) + "") + outfitindex;
+					var_a818c4e = ((body_customization_devgui_base + body_name) + "") + var_1bf829f2;
+					util::function_345e5b9a((((((((((var_a818c4e + "") + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "");
 					types = [7:{#field:"", #path:""}, 6:{#field:"", #path:""}, 5:{#field:"", #path:""}, 4:{#field:"", #path:""}, 3:{#field:"", #path:""}, 2:{#field:"", #path:""}, 1:{#field:"", #path:""}, 0:{#field:"", #path:""}];
 					foreach(type, data in types)
 					{
@@ -585,7 +585,7 @@ function body_customization_populate(mode, var_ef4940a5)
 							if(option.isvalid)
 							{
 								util::waittill_can_add_debug_command();
-								util::function_345e5b9a(var_a818c4e + "" + data.path + "" + index + "" + index + "" + "" + "" + "" + playerbodytype + "" + "" + outfitindex + "" + data.field + "" + index + "");
+								util::function_345e5b9a(((((((((((((((((((var_a818c4e + "") + data.path) + "") + index) + "") + index) + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "") + data.field) + "") + index) + "");
 							}
 						}
 					}
@@ -597,12 +597,12 @@ function body_customization_populate(mode, var_ef4940a5)
 							continue;
 						}
 						util::waittill_can_add_debug_command();
-						util::function_345e5b9a(var_a818c4e + "" + "" + var_56fe70a0 + "" + var_56fe70a0 + "" + "" + "" + "" + playerbodytype + "" + "" + outfitindex + "" + "" + "" + var_56fe70a0 + "");
+						util::function_345e5b9a((((((((((((((((((var_a818c4e + "") + "") + var_56fe70a0) + "") + var_56fe70a0) + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "") + "") + "") + var_56fe70a0) + "");
 					}
 				}
 				if(isdefined(var_ef4940a5))
 				{
-					util::function_d84da933("" + body_name + "");
+					util::function_d84da933(("" + body_name) + "");
 				}
 			}
 		}
@@ -655,8 +655,8 @@ function add_perk_devgui(name, specialties)
 	/#
 		perk_devgui_base = "";
 		perk_name = name;
-		test = perk_devgui_base + perk_name + "" + "" + "" + specialties + "";
-		util::function_345e5b9a(perk_devgui_base + perk_name + "" + "" + "" + specialties + "");
+		test = (((((perk_devgui_base + perk_name) + "") + "") + "") + specialties) + "";
+		util::function_345e5b9a((((((perk_devgui_base + perk_name) + "") + "") + "") + specialties) + "");
 	#/
 }
 
@@ -685,8 +685,8 @@ function function_373068ca(name, postfix)
 			return;
 		}
 		util::waittill_can_add_debug_command();
-		talentname = "" + name + postfix;
-		cmd = "" + "" + "" + talentname;
+		talentname = ("" + name) + postfix;
+		cmd = (("" + "") + "") + talentname;
 		util::function_e2e9d901("" + talentname, cmd);
 	#/
 }
@@ -716,8 +716,8 @@ function function_8263c0d5(name, postfix)
 			return;
 		}
 		util::waittill_can_add_debug_command();
-		talentname = "" + getsubstr(name, 7) + postfix;
-		cmd = "" + "" + "" + talentname;
+		talentname = ("" + getsubstr(name, 7)) + postfix;
+		cmd = (("" + "") + "") + talentname;
 		util::function_e2e9d901("" + talentname, cmd);
 	#/
 }

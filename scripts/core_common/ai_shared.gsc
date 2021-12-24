@@ -694,13 +694,13 @@ function patrol(start_path_node)
 	if(start_path_node.type === #"hash_397b1509f632dd34")
 	{
 		/#
-			errormsg = "" + start_path_node.targetname + "" + int(start_path_node.origin[0]) + "" + int(start_path_node.origin[1]) + "" + int(start_path_node.origin[2]) + "";
+			errormsg = (((("" + start_path_node.targetname) + "") + int(start_path_node.origin[0]) + "") + int(start_path_node.origin[1]) + "") + int(start_path_node.origin[2]) + "";
 			iprintln(errormsg);
 		#/
 		return;
 	}
 	/#
-		assert(start_path_node.type === #"path" || isdefined(start_path_node.scriptbundlename), "" + start_path_node.targetname + "");
+		assert(start_path_node.type === #"path" || isdefined(start_path_node.scriptbundlename), ("" + start_path_node.targetname) + "");
 	#/
 	self notify(#"go_to_spawner_target");
 	self.target = undefined;
@@ -1222,7 +1222,7 @@ function stun(duration = self.var_95d94ac4)
 	{
 		return;
 	}
-	end_time = gettime() + int(duration * 1000);
+	end_time = gettime() + (int(duration * 1000));
 	if(isdefined(self.var_3d461e6f) && self.var_3d461e6f > end_time)
 	{
 		return;

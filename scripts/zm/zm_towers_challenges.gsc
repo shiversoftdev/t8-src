@@ -175,11 +175,11 @@ function function_3e23c5c0(var_2a0eed37 = 1)
 		str_color = function_7e61f202(banner);
 		if(var_2a0eed37)
 		{
-			banner scene::init("p8_fxanim_zm_towers_banner_achievement_" + str_color + "_bundle", banner);
+			banner scene::init(("p8_fxanim_zm_towers_banner_achievement_" + str_color) + "_bundle", banner);
 		}
 		else
 		{
-			banner thread scene::play("p8_fxanim_zm_towers_banner_achievement_" + str_color + "_bundle", banner);
+			banner thread scene::play(("p8_fxanim_zm_towers_banner_achievement_" + str_color) + "_bundle", banner);
 		}
 		foreach(tag in level.var_286b00eb)
 		{
@@ -2275,7 +2275,7 @@ function function_ea1042c6(var_986431d3, var_394c506d)
 	var_20e5c3e2 = var_986431d3.target + "_banner";
 	var_c1c87772 = getent(var_20e5c3e2, "targetname");
 	str_color = function_7e61f202(var_c1c87772);
-	var_c1c87772 scene::play("p8_fxanim_zm_towers_banner_achievement_" + str_color + "_bundle");
+	var_c1c87772 scene::play(("p8_fxanim_zm_towers_banner_achievement_" + str_color) + "_bundle");
 }
 
 /*

@@ -199,6 +199,7 @@ function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
 		var_b7d663a9 = 0;
 		foreach(replacement in replacements)
 		{
+			var_b1229237 = GetNextArrayKey(var_a4b2a635, var_29604996);
 			while(var_b7d663a9 < var_64f52ca3.size && replacement.count > 0)
 			{
 				var_efecc884 = var_64f52ca3[var_b7d663a9];

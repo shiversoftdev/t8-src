@@ -237,7 +237,7 @@ function setupkillcament()
 function cleanupkillcamentondeath()
 {
 	self waittill(#"death");
-	self.killcament util::deleteaftertime(4 + level.proximitygrenadedotdamagetime * level.proximitygrenadedotdamageinstances);
+	self.killcament util::deleteaftertime(4 + (level.proximitygrenadedotdamagetime * level.proximitygrenadedotdamageinstances));
 }
 
 /*
@@ -435,7 +435,7 @@ function proximitygrenadechain(eattacker, einflictor, killcament, weapon, meanso
 	chaineventradiussq = weapon.chaineventradius * weapon.chaineventradius;
 	endtime = gettime() + weapon.chaineventtime;
 	proximitychain.proximitychainent addplayertochain(self);
-	proximitychain.activeendtime = endtime + int(delay * 1000) + level.proximitychaingraceperiod;
+	proximitychain.activeendtime = (endtime + (int(delay * 1000))) + level.proximitychaingraceperiod;
 	if(delay > 0)
 	{
 		wait(delay);
@@ -643,7 +643,7 @@ function damageplayerinradius(position, eattacker, killcament)
 		if(!self hasperk(#"specialty_proximityprotection"))
 		{
 			self.lastshockedby = eattacker;
-			self.shockendtime = gettime() + int(level.proximitygrenadeduration * 1000);
+			self.shockendtime = gettime() + (int(level.proximitygrenadeduration * 1000));
 			self shellshock(#"proximity_grenade", level.proximitygrenadeduration, 0);
 		}
 		self clientfield::set_to_player("tazered", 1);
@@ -658,7 +658,7 @@ function damageplayerinradius(position, eattacker, killcament)
 			killcament = spawn("script_model", position + vectorscale((0, 0, 1), 8));
 		}
 		killcament.soundmod = "taser_spike";
-		killcament util::deleteaftertime(3 + level.proximitygrenadedotdamagetime * level.proximitygrenadedotdamageinstances);
+		killcament util::deleteaftertime(3 + (level.proximitygrenadedotdamagetime * level.proximitygrenadedotdamageinstances));
 		self val::set(#"grenade_damage", "show_hud", 0);
 		damage = level.proximitygrenadedotdamageamount;
 		if(level.hardcoremode)
@@ -674,14 +674,14 @@ function damageplayerinradius(position, eattacker, killcament)
 			{
 				killcament = spawn("script_model", position + vectorscale((0, 0, 1), 8));
 				killcament.soundmod = "taser_spike";
-				killcament util::deleteaftertime(3 + level.proximitygrenadedotdamagetime * level.proximitygrenadedotdamageinstances - i);
+				killcament util::deleteaftertime(3 + (level.proximitygrenadedotdamagetime * (level.proximitygrenadedotdamageinstances - i)));
 			}
 			self dodamage(damage, position, eattacker, killcament, "none", "MOD_GAS", 0, getweapon(#"proximity_grenade_aoe"));
 			wait(level.proximitygrenadedotdamagetime);
 		}
 		if(gettime() - g_time < int(level.proximitygrenadeduration * 1000))
 		{
-			wait(float(gettime() - g_time) / 1000);
+			wait((float(gettime() - g_time)) / 1000);
 		}
 		self val::reset(#"grenade_damage", "show_hud");
 	}

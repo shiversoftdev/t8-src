@@ -365,7 +365,7 @@ function function_ad9c4f0(localclientnum, value)
 function function_96972b9c(localclientnum)
 {
 	current_val = [[ self ]]->function_92ba69fa(localclientnum, "progress");
-	new_val = current_val + 1 % 2;
+	new_val = (current_val + 1) % 2;
 	[[ self ]]->function_d7d2fcce(localclientnum, "progress", new_val);
 }
 

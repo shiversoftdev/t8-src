@@ -177,9 +177,9 @@ function function_9f97e1a3(watcher)
 */
 function function_ec88b3b9(pos)
 {
-	newx = (pos[0] - int(pos[0]) >= 0.5 ? ceil(pos[0]) : floor(pos[0]));
-	newy = (pos[1] - int(pos[1]) >= 0.5 ? ceil(pos[1]) : floor(pos[1]));
-	newz = (pos[2] - int(pos[2]) >= 0.5 ? ceil(pos[2]) : floor(pos[2]));
+	newx = ((pos[0] - int(pos[0])) >= 0.5 ? ceil(pos[0]) : floor(pos[0]));
+	newy = ((pos[1] - int(pos[1])) >= 0.5 ? ceil(pos[1]) : floor(pos[1]));
+	newz = ((pos[2] - int(pos[2])) >= 0.5 ? ceil(pos[2]) : floor(pos[2]));
 	pos = (newx, newy, newz);
 	return pos;
 }
@@ -242,14 +242,14 @@ function function_32854cb2(watcher, player)
 	self util::function_c596f193();
 	self.hitnormal = waitresult.normal;
 	self.origin = function_ec88b3b9(waitresult.position);
-	killcament = spawn("script_model", self.origin + self.hitnormal * 5);
+	killcament = spawn("script_model", self.origin + (self.hitnormal * 5));
 	killcament.targetname = "gadget_tripwire_killcament";
 	self.killcament = killcament;
 	if(isdefined(waitresult.target) && (isvehicle(waitresult.target) || waitresult.target ismovingplatform() || waitresult.target.dynamicent === 1))
 	{
 		self thread function_15566346(waitresult.target);
 	}
-	self.var_db7f2def = self gettagorigin("tag_fx") + self.hitnormal * 2;
+	self.var_db7f2def = self gettagorigin("tag_fx") + (self.hitnormal * 2);
 	self.owner = player;
 	self.team = player.team;
 	self.watcher = watcher;
@@ -451,7 +451,7 @@ function function_55c50f15()
 		{
 			continue;
 		}
-		if(distancesquared(tripwire.origin, self.origin) >= 100 && distancesquared(tripwire.origin, self.origin) <= level.var_c72e8c51.var_831055cb * level.var_c72e8c51.var_831055cb)
+		if(distancesquared(tripwire.origin, self.origin) >= 100 && distancesquared(tripwire.origin, self.origin) <= (level.var_c72e8c51.var_831055cb * level.var_c72e8c51.var_831055cb))
 		{
 			trace = beamtrace(tripwire.var_db7f2def, self.var_db7f2def, 0, self, 0, 0, tripwire);
 			var_f2edf308 = beamtrace(self.var_db7f2def, tripwire.var_db7f2def, 0, self, 0, 0, tripwire);
@@ -697,7 +697,7 @@ function function_15de8daf()
 		}
 		else if(self.detonating == 0)
 		{
-			endpos = self.var_db7f2def + self.hitnormal * level.var_c72e8c51.var_9e266f9b;
+			endpos = self.var_db7f2def + (self.hitnormal * level.var_c72e8c51.var_9e266f9b);
 			dotrace = 1;
 			if(function_d334c3fa(endpos))
 			{
@@ -707,7 +707,7 @@ function function_15de8daf()
 			}
 			if(dotrace)
 			{
-				trace = beamtrace(self.var_db7f2def - self.hitnormal * 5, endpos, 1, self);
+				trace = beamtrace(self.var_db7f2def - (self.hitnormal * 5), endpos, 1, self);
 				if(trace[#"fraction"] < 0.95)
 				{
 					if(function_430b5b99(trace[#"entity"], self))
@@ -855,11 +855,11 @@ function function_9e546fb3(attacker, weapon, target, var_2f6adbe3, var_83b1839e)
 					maxdamage = maxdamage * 1.5;
 					mindamage = mindamage * 1.5;
 				}
-				self radiusdamage(self.origin + self.hitnormal * 5, var_f4df6811 * 0.75, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
+				self radiusdamage(self.origin + (self.hitnormal * 5), var_f4df6811 * 0.75, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
 			}
 			else if(!isdefined(var_2f6adbe3))
 			{
-				self radiusdamage(self.origin + self.hitnormal * 5, var_f4df6811 / 2, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
+				self radiusdamage(self.origin + (self.hitnormal * 5), var_f4df6811 / 2, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
 			}
 			else
 			{

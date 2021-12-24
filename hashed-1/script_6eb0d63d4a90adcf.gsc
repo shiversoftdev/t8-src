@@ -297,14 +297,14 @@ private function function_729bf68e()
 		}
 		self.pers[#"movement_update_count"]++;
 		prevpos = self.origin;
-		if(self.pers[#"movement_update_count"] % 5 == 0)
+		if((self.pers[#"movement_update_count"] % 5) == 0)
 		{
 			distancemoving = distance(self.origin, positionptm);
 			positionptm = self.origin;
 			if(distancemoving > minimummovedistance)
 			{
 				self.pers[#"num_speeds_when_moving_entries"]++;
-				self.pers[#"total_speeds_when_moving"] = self.pers[#"total_speeds_when_moving"] + distancemoving / waittime;
+				self.pers[#"total_speeds_when_moving"] = self.pers[#"total_speeds_when_moving"] + (distancemoving / waittime);
 				self.pers[#"time_played_moving"] = self.pers[#"time_played_moving"] + waittime;
 			}
 		}
@@ -338,7 +338,7 @@ private function function_dddb1a7a()
 		self.lastwallrunstarttime = gettime();
 		notification = undefined;
 		notification = self waittill(#"wallrun_end", #"death", #"disconnect", #"stop_player_monitor_wall_run");
-		self.timespentwallrunninginlife = self.timespentwallrunninginlife + gettime() - self.lastwallrunstarttime;
+		self.timespentwallrunninginlife = self.timespentwallrunninginlife + (gettime() - self.lastwallrunstarttime);
 		if(notification._notify == "death")
 		{
 			break;
@@ -373,7 +373,7 @@ private function swimming()
 		self.lastswimmingstarttime = gettime();
 		notification = undefined;
 		notification = self waittill(#"swimming_end", #"death", #"disconnect", #"stop_player_monitor_swimming");
-		self.timespentswimminginlife = self.timespentswimminginlife + gettime() - self.lastswimmingstarttime;
+		self.timespentswimminginlife = self.timespentswimminginlife + (gettime() - self.lastswimmingstarttime);
 		if(notification._notify == "death")
 		{
 			break;

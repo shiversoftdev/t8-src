@@ -185,7 +185,7 @@ function function_fff5377e(localclientnum)
 						{
 							var_f2c7b8b0 = (ai.origin[0], ai.origin[1], self.origin[2]);
 						}
-						var_5d77125a = 1000 * 0.05 + 0.016 * a_ai.size + 0.015;
+						var_5d77125a = 1000 * ((0.05 + (0.016 * a_ai.size)) + 0.015);
 						self addawarenessindicator(var_f2c7b8b0, "noncombat_danger", int(var_5d77125a));
 					}
 					waitframe(1);

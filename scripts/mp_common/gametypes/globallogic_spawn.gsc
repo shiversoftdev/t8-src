@@ -303,7 +303,7 @@ function function_82ca1565(spawnpoint, gametype)
 		default:
 		{
 			/#
-				assertmsg("" + gametype + "" + spawnpoint.origin[0] + "" + spawnpoint.origin[1] + "" + spawnpoint.origin[2]);
+				assertmsg((((((("" + gametype) + "") + spawnpoint.origin[0]) + "") + spawnpoint.origin[1]) + "") + spawnpoint.origin[2]);
 			#/
 			break;
 		}
@@ -685,7 +685,7 @@ function timeuntilspawn(includeteamkilldelay)
 		}
 		if(isdefined(level.playerincrementalrespawndelay) && isdefined(self.pers[#"spawns"]))
 		{
-			respawndelay = respawndelay + level.playerincrementalrespawndelay * self.pers[#"spawns"];
+			respawndelay = respawndelay + (level.playerincrementalrespawndelay * self.pers[#"spawns"]);
 		}
 		if(isdefined(self.suicide) && self.suicide && level.suicidespawndelay > 0)
 		{
@@ -826,12 +826,12 @@ function mayspawn()
 */
 function function_ac5b273c(minimumwait)
 {
-	earliestspawntime = gettime() + int(minimumwait * 1000);
+	earliestspawntime = gettime() + (int(minimumwait * 1000));
 	if(!isdefined(level.var_56baa802))
 	{
 		return 0;
 	}
-	return max(float(level.var_56baa802 - gettime()) / 1000, 0);
+	return max((float(level.var_56baa802 - gettime())) / 1000, 0);
 }
 
 /*
@@ -845,21 +845,21 @@ function function_ac5b273c(minimumwait)
 */
 function timeuntilwavespawn(minimumwait)
 {
-	earliestspawntime = gettime() + int(minimumwait * 1000);
+	earliestspawntime = gettime() + (int(minimumwait * 1000));
 	lastwavetime = level.lastwave[self.pers[#"team"]];
 	wavedelay = int(level.wavedelay[self.pers[#"team"]] * 1000);
 	if(wavedelay == 0)
 	{
 		return 0;
 	}
-	numwavespassedearliestspawntime = earliestspawntime - lastwavetime / wavedelay;
+	numwavespassedearliestspawntime = (earliestspawntime - lastwavetime) / wavedelay;
 	numwaves = ceil(numwavespassedearliestspawntime);
-	timeofspawn = lastwavetime + numwaves * wavedelay;
+	timeofspawn = lastwavetime + (numwaves * wavedelay);
 	if(isdefined(self.wavespawnindex))
 	{
-		timeofspawn = timeofspawn + 50 * self.wavespawnindex;
+		timeofspawn = timeofspawn + (50 * self.wavespawnindex);
 	}
-	return float(timeofspawn - gettime()) / 1000;
+	return (float(timeofspawn - gettime())) / 1000;
 }
 
 /*
@@ -1048,7 +1048,7 @@ function spawnplayer()
 	self.diedonvehicle = undefined;
 	if(isdefined(self.wasaliveatmatchstart) && !self.wasaliveatmatchstart)
 	{
-		if(level.ingraceperiod || globallogic_utils::gettimepassed() < int(20 * 1000))
+		if(level.ingraceperiod || globallogic_utils::gettimepassed() < (int(20 * 1000)))
 		{
 			self.wasaliveatmatchstart = 1;
 		}
@@ -1182,7 +1182,7 @@ function spawnplayer()
 	callback::callback(#"on_player_spawned");
 	self thread player_monitor::monitor();
 	/#
-		print("" + self.origin[0] + "" + self.origin[1] + "" + self.origin[2] + "");
+		print(((((("" + self.origin[0]) + "") + self.origin[1]) + "") + self.origin[2]) + "");
 	#/
 	setdvar(#"scr_selecting_location", "");
 	if(gamestate::is_game_over())
@@ -1259,7 +1259,7 @@ function function_3ee5119e()
 			{
 				self.var_92e86779 = player.team;
 				/#
-					println("" + player.team + "" + self.name + "" + self.team + "" + player.name + "");
+					println(((((((("" + player.team) + "") + self.name) + "") + self.team) + "") + player.name) + "");
 				#/
 				return;
 			}
@@ -1270,14 +1270,14 @@ function function_3ee5119e()
 			{
 				self.var_92e86779 = player.var_92e86779;
 				/#
-					println("" + player.var_92e86779 + "" + self.name + "" + self.team + "" + player.name + "");
+					println(((((((("" + player.var_92e86779) + "") + self.name) + "") + self.team) + "") + player.name) + "");
 				#/
 				return;
 			}
 		}
 		self.var_92e86779 = self.team;
 		/#
-			println("" + self.var_92e86779 + "" + self.name + "" + self.team + "");
+			println(((((("" + self.var_92e86779) + "") + self.name) + "") + self.team) + "");
 		#/
 	}
 }
@@ -1434,8 +1434,8 @@ function kickifidontspawninternal()
 	}
 	starttime = gettime();
 	kickwait(waittime);
-	timepassed = float(gettime() - starttime) / 1000;
-	if(timepassed < waittime - 0.1 && timepassed < mintime)
+	timepassed = (float(gettime() - starttime)) / 1000;
+	if(timepassed < (waittime - 0.1) && timepassed < mintime)
 	{
 		return;
 	}
@@ -1627,7 +1627,7 @@ function allteamsnearscorelimit()
 	}
 	foreach(team, _ in level.teams)
 	{
-		if(!game.stat[#"teamscores"][team] >= level.scorelimit - 1)
+		if(!game.stat[#"teamscores"][team] >= (level.scorelimit - 1))
 		{
 			return 0;
 		}

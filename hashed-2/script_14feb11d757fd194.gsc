@@ -366,8 +366,8 @@ private function play_next()
 		{
 			tempname = "Unknown";
 		}
-		str_line = tempname + ": " + voice.scriptkey;
-		n_wait_time = strtok(voice.scriptkey, " ").size - 1 / 2;
+		str_line = (tempname + ": ") + voice.scriptkey;
+		n_wait_time = (strtok(voice.scriptkey, " ").size - 1) / 2;
 		n_wait_time = math::clamp(n_wait_time, 2, 5);
 		if(isdefined(voice.var_17ee4803) && isentity(voice.var_17ee4803))
 		{
@@ -877,7 +877,7 @@ function function_93932552(s_voice)
 		}
 		for(i = 0; i < self.var_556f910a.size; i++)
 		{
-			if(priority <= function_8e0c80fb(self.var_556f910a[i]) && priority > function_8e0c80fb(self.var_556f910a[i + 1]))
+			if(priority <= function_8e0c80fb(self.var_556f910a[i]) && priority > (function_8e0c80fb(self.var_556f910a[i + 1])))
 			{
 				arrayinsert(self.var_556f910a, s_voice, i + 1);
 				break;

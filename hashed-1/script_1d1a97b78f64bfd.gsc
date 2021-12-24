@@ -534,16 +534,6 @@ function watchremotecontroldeactivate()
 	Parameters: 2
 	Flags: Linked
 */
-function endremotecontrolweaponuse()
-{
-System.InvalidOperationException: Stack empty.
-   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
-   at System.Collections.Generic.Stack`1.Pop()
-   at Cerberus.Logic.Decompiler.BuildExpression(ScriptOp startOp) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1185
-   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2343
-   at Cerberus.Logic.Decompiler.DecompileBlock(DecompilerBlock decompilerBlock, Int32 tabs) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 998
-   at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 222
-/*
 function endremotecontrolweaponuse(exitrequestedbyowner, gameended)
 {
 	weapon = self;
@@ -552,43 +542,94 @@ function endremotecontrolweaponuse(exitrequestedbyowner, gameended)
 		return;
 	}
 	weapon.endremotecontrolweapon = 1;
-
-*/
-
-	/* ======== */
-
-/* 
-	Stack: 
-*/
-	/* ======== */
-
-/* 
-	Blocks: 
-	Cerberus.Logic.BasicBlock at 0x15F0, end at 0x1B31
-	Cerberus.Logic.IfBlock at 0x1628, end at 0x1656
-	Cerberus.Logic.WhileLoop at 0x16A8, end at 0x171E
-	Cerberus.Logic.IfBlock at 0x1722, end at 0x172C
-	Cerberus.Logic.IfBlock at 0x172C, end at 0x1902
-	Cerberus.Logic.IfBlock at 0x1748, end at 0x1766
-	Cerberus.Logic.IfBlock at 0x1774, end at 0x17EC
-	Cerberus.Logic.IfBlock at 0x17B0, end at 0x17E8
-	Cerberus.Logic.ElseIfBlock at 0x17EC, end at 0x186C
-	Cerberus.Logic.TernaryBlock at 0x183C, end at 0x1860
-	Cerberus.Logic.IfBlock at 0x186C, end at 0x1902
-	Cerberus.Logic.IfBlock at 0x18A2, end at 0x18C2
-	Cerberus.Logic.IfBlock at 0x1902, end at 0x1946
-	Cerberus.Logic.IfBlock at 0x1946, end at 0x1A3A
-	Cerberus.Logic.IfBlock at 0x195C, end at 0x1A3A
-	Cerberus.Logic.IfBlock at 0x196E, end at 0x19EA
-	Cerberus.Logic.IfBlock at 0x1992, end at 0x19C2
-	Cerberus.Logic.IfBlock at 0x19EA, end at 0x1A3A
-	Cerberus.Logic.IfBlock at 0x1A3A, end at 0x1B2E
-	Cerberus.Logic.IfBlock at 0x1A42, end at 0x1A92
-	Cerberus.Logic.IfBlock at 0x1AAC, end at 0x1ADA
-	Cerberus.Logic.IfBlock at 0x1ADA, end at 0x1B2E
-*/
-	/* ======== */
-
+	remote_controlled = isdefined(weapon.control_initiated) && weapon.control_initiated || (isdefined(weapon.controlled) && weapon.controlled);
+	while(isdefined(weapon) && weapon.forcewaitremotecontrol === 1 && remote_controlled == 0)
+	{
+		remote_controlled = isdefined(weapon.control_initiated) && weapon.control_initiated || (isdefined(weapon.controlled) && weapon.controlled);
+		waitframe(1);
+	}
+	if(!isdefined(weapon))
+	{
+		return;
+	}
+	if(isdefined(weapon.remoteowner) && remote_controlled)
+	{
+		if(isdefined(weapon.remoteweaponshutdowndelay))
+		{
+			wait(weapon.remoteweaponshutdowndelay);
+		}
+		player = weapon.remoteowner;
+		if(player.dofutz === 1)
+		{
+			player clientfield::set_to_player("static_postfx", 1);
+			wait(1);
+			if(isdefined(player))
+			{
+				player clientfield::set_to_player("static_postfx", 0);
+				player.dofutz = 0;
+			}
+		}
+		else if(!exitrequestedbyowner && weapon.watch_remote_weapon_death === 1 && !isalive(weapon))
+		{
+			weapon.dontfreeme = 1;
+			wait((isdefined(weapon.watch_remote_weapon_death_duration) ? weapon.watch_remote_weapon_death_duration : 1));
+			weapon.dontfreeme = undefined;
+		}
+		if(isdefined(player))
+		{
+			player thread fadetoblackandbackin();
+			player waittill(#"fade2black");
+			if(remote_controlled)
+			{
+				player unlink();
+			}
+			player killstreaks::clear_using_remote(0, undefined, gameended);
+			cleared_killstreak_delay = 1;
+			player enableusability();
+		}
+	}
+	if(isdefined(weapon) && isdefined(weapon.remotename))
+	{
+		self [[level.remoteweapons[weapon.remotename].endusecallback]](weapon, exitrequestedbyowner);
+	}
+	if(isdefined(weapon))
+	{
+		weapon.killcament = weapon;
+		if(isdefined(weapon.remoteowner))
+		{
+			if(remote_controlled)
+			{
+				weapon.remoteowner unlink();
+				if(!(isdefined(cleared_killstreak_delay) && cleared_killstreak_delay))
+				{
+					weapon.remoteowner killstreaks::reset_killstreak_delay_killcam();
+				}
+				weapon.remoteowner util::clientnotify("nofutz");
+			}
+			if(isdefined(level.gameended) && level.gameended)
+			{
+				weapon.remoteowner val::set(#"game_end", "freezecontrols");
+			}
+		}
+	}
+	if(isdefined(weapon))
+	{
+		if(isdefined(weapon.var_57446df7) && weapon.var_57446df7)
+		{
+			weapon callback::function_52ac9652(#"on_end_game", &function_31a1aa18);
+		}
+		weapon.control_initiated = 0;
+		weapon.controlled = 0;
+		if(isdefined(weapon.remoteowner))
+		{
+			weapon.remoteowner killstreaks::unhide_compass();
+		}
+		if(!exitrequestedbyowner || (isdefined(weapon.one_remote_use) && weapon.one_remote_use))
+		{
+			weapon.remote_weapon_end = 1;
+			weapon notify(#"remote_weapon_end");
+		}
+	}
 }
 
 /*

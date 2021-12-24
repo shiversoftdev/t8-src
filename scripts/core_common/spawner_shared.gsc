@@ -716,7 +716,7 @@ function go_to_node_using_funcs(node, get_target_func, set_goal_func_quits, opti
 			if(!self flag::exists(node.script_ent_flag_set))
 			{
 				/#
-					assertmsg("" + node.script_ent_flag_set + "");
+					assertmsg(("" + node.script_ent_flag_set) + "");
 				#/
 			}
 			self flag::set(node.script_ent_flag_set);
@@ -726,7 +726,7 @@ function go_to_node_using_funcs(node, get_target_func, set_goal_func_quits, opti
 			if(!self flag::exists(node.script_ent_flag_clear))
 			{
 				/#
-					assertmsg("" + node.script_ent_flag_clear + "");
+					assertmsg(("" + node.script_ent_flag_clear) + "");
 				#/
 			}
 			self flag::clear(node.script_ent_flag_clear);
@@ -1077,10 +1077,10 @@ function function_fe02300()
 		}
 		foreach(aigroup in var_e7463378)
 		{
-			cmd = "" + aigroup + "" + aigroup + "";
+			cmd = ((("" + aigroup) + "") + aigroup) + "";
 			adddebugcommand(cmd);
 		}
-		cmd = "" + "" + "" + "" + "";
+		cmd = ((("" + "") + "") + "") + "";
 		adddebugcommand(cmd);
 		while(true)
 		{
@@ -1307,27 +1307,27 @@ function spawn(b_force = 0, str_targetname, v_origin, v_angles, bignorespawningl
 	}
 	if(isactorspawner(self))
 	{
-		if(isdefined(self.spawnflags) && self.spawnflags & 2 == 2)
+		if(isdefined(self.spawnflags) && (self.spawnflags & 2) == 2)
 		{
 			makeroom = 1;
 		}
-		if(isdefined(self.spawnflags) && self.spawnflags & 128 == 128)
+		if(isdefined(self.spawnflags) && (self.spawnflags & 128) == 128)
 		{
 			deleteonzerocount = 1;
 		}
 	}
 	else if(isvehiclespawner(self))
 	{
-		if(isdefined(self.spawnflags) && self.spawnflags & 8 == 8)
+		if(isdefined(self.spawnflags) && (self.spawnflags & 8) == 8)
 		{
 			makeroom = 1;
 		}
 	}
-	if(b_force || (isdefined(self.spawnflags) && self.spawnflags & 16 == 16) || isdefined(self.script_forcespawn))
+	if(b_force || (isdefined(self.spawnflags) && (self.spawnflags & 16) == 16) || isdefined(self.script_forcespawn))
 	{
 		force_spawn = 1;
 	}
-	if(isdefined(self.spawnflags) && self.spawnflags & 64 == 64)
+	if(isdefined(self.spawnflags) && (self.spawnflags & 64) == 64)
 	{
 		infinitespawn = 1;
 	}
@@ -1402,7 +1402,7 @@ function spawn(b_force = 0, str_targetname, v_origin, v_angles, bignorespawningl
 				archetype_spawner.targetname = originaltargetname;
 				archetype_spawner.origin = originalorigin;
 				archetype_spawner.angles = originalangles;
-				if(isdefined(archetype_spawner.spawnflags) && archetype_spawner.spawnflags & 64 == 64)
+				if(isdefined(archetype_spawner.spawnflags) && (archetype_spawner.spawnflags & 64) == 64)
 				{
 					archetype_spawner.count++;
 				}
@@ -1661,7 +1661,7 @@ function set_ai_group_cleared_count(aigroup, count)
 function waittill_ai_group_cleared(aigroup)
 {
 	/#
-		assert(isdefined(level._ai_group[aigroup]), "" + aigroup + "");
+		assert(isdefined(level._ai_group[aigroup]), ("" + aigroup) + "");
 	#/
 	level flag::wait_till(aigroup + "_cleared");
 }
@@ -2098,7 +2098,7 @@ function simple_spawn(name_or_spawners, spawn_func, vararg)
 	{
 		spawners = getentarray(name_or_spawners, "targetname");
 		/#
-			assert(spawners.size, "" + name_or_spawners + "");
+			assert(spawners.size, ("" + name_or_spawners) + "");
 		#/
 	}
 	else if(!isdefined(name_or_spawners))

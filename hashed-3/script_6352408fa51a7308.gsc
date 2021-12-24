@@ -102,7 +102,7 @@ private function function_b8f6e02f()
 */
 private function function_67189b6b(localclientnum, newval)
 {
-	var_be90d3da = newval & 4 != 0;
+	var_be90d3da = (newval & 4) != 0;
 	newval = newval & -5;
 	if(newval == 0)
 	{
@@ -143,7 +143,7 @@ private function function_67189b6b(localclientnum, newval)
 		level.var_a4a4012e[self.var_bd027dd9] = self;
 		item_world::function_b78a9820(localclientnum);
 		player = function_5c10bd79(localclientnum);
-		if(isplayer(player) && distance2dsquared(self.origin, player.origin) <= 1350 * 1350)
+		if(isplayer(player) && distance2dsquared(self.origin, player.origin) <= (1350 * 1350))
 		{
 			player.var_506495f9 = 1;
 		}
@@ -299,7 +299,7 @@ function function_e7bb925a(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	level.var_624588d5[level.var_624588d5.size] = self;
 	player = function_5c10bd79(localclientnum);
-	if(isplayer(player) && distance2dsquared(self.origin, player.origin) <= 1350 * 1350)
+	if(isplayer(player) && distance2dsquared(self.origin, player.origin) <= (1350 * 1350))
 	{
 		item_world::function_a4886b1e(localclientnum, undefined, self);
 	}

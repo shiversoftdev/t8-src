@@ -151,7 +151,7 @@ private function function_932e24b(w_weapon)
 	self endon(#"disconnect", #"hash_3d73720d4588203c");
 	self waittill(#"hash_1a7714f0d7e25f27");
 	self ability_player::function_f2250880(w_weapon);
-	var_eec22f7e = 100 / 8 / 0.25;
+	var_eec22f7e = 100 / (8 / 0.25);
 	n_start_time = gettime();
 	n_total_time = 0;
 	n_power = 0;
@@ -161,7 +161,7 @@ private function function_932e24b(w_weapon)
 		self gadgetpowerset(self gadgetgetslot(w_weapon), n_power);
 		wait(0.25);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 	}
 	self gadgetpowerset(self gadgetgetslot(w_weapon), 100);
 }
@@ -492,7 +492,7 @@ private function tomahawk_ricochet_attack(var_65f2e452, e_grenade, var_bc201c9e,
 	e_ignore = self;
 	do
 	{
-		s_trace = bullettrace(v_start_pos, v_start_pos + anglestoforward(self getplayerangles()) * 900, 1, e_ignore);
+		s_trace = bullettrace(v_start_pos, v_start_pos + (anglestoforward(self getplayerangles()) * 900), 1, e_ignore);
 		if(isdefined(s_trace[#"entity"]) && isinarray(getaiteamarray(level.zombie_team), s_trace[#"entity"]))
 		{
 			if(!(isdefined(s_trace[#"entity"].hit_by_tomahawk) && s_trace[#"entity"].hit_by_tomahawk))
@@ -727,7 +727,7 @@ function tomahawk_return_player(var_6e6ec518, var_65f2e452, n_move_speed = 1600)
 			}
 			wait(0.1);
 			n_current_time = gettime();
-			n_total_time = n_current_time - n_start_time / 1000;
+			n_total_time = (n_current_time - n_start_time) / 1000;
 			var_e65ebf4 = self function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time);
 			n_dist_sq = distance2dsquared(var_6e6ec518.origin, self geteye());
 		}
@@ -779,7 +779,7 @@ private function function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time)
 		var_e89ec7fd = 0.05;
 	}
 	var_a6693654 = n_total_time * 0.25;
-	var_5100df85 = n_move_speed + n_move_speed * var_a6693654;
+	var_5100df85 = n_move_speed + (n_move_speed * var_a6693654);
 	n_dist = distance(var_6e6ec518.origin, self geteye());
 	var_e65ebf4 = n_dist / var_5100df85;
 	var_e65ebf4 = (var_e65ebf4 > var_e89ec7fd ? var_e65ebf4 : var_e89ec7fd);

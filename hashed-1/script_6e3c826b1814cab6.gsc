@@ -87,7 +87,7 @@ function function_901b751c(var_c9db62d5)
 	setting = getgametypesetting(var_c9db62d5);
 	/#
 		/#
-			assert(isdefined(setting), "" + function_9e72a96(var_c9db62d5) + "");
+			assert(isdefined(setting), ("" + function_9e72a96(var_c9db62d5)) + "");
 		#/
 	#/
 	return setting;
@@ -1877,14 +1877,14 @@ private function function_34c2aeb5()
 			break;
 		}
 	}
-	n_target = int(max(zombie_utility::function_d2dfacfd(#"player_base_health") + 50 * var_d75008e3, 1));
+	n_target = int(max(zombie_utility::function_d2dfacfd(#"player_base_health") + (50 * var_d75008e3), 1));
 	n_mod = math::clamp(n_target - player.var_66cb03ad, 0, n_target);
 	player player::function_2a67df65(#"hash_3d6fdba64710a6ae", n_mod);
 	player.var_66cb03ad = n_target;
 	player setmaxhealth(player.var_66cb03ad);
 	player zm_utility::function_e0448fec();
 	/#
-		println("" + player.name + "" + player.var_66cb03ad);
+		println((("" + player.name) + "") + player.var_66cb03ad);
 	#/
 	switch(var_edd3eb35)
 	{
@@ -2070,7 +2070,7 @@ private function function_6607cdee(einflictor, eattacker, idamage, idflags, smea
 {
 	if(idamage > 0)
 	{
-		idamage = max(int(idamage * 0.25 / 2), 1);
+		idamage = max(int((idamage * 0.25) / 2), 1);
 	}
 	eattacker dodamage(idamage, self.origin);
 	return idamage;
@@ -2972,7 +2972,7 @@ private function function_172decfc()
 			{
 				var_2f572bbb = var_2f572bbb + "";
 			}
-			var_2f572bbb = var_2f572bbb + var_325bac97[i].name + "";
+			var_2f572bbb = var_2f572bbb + (var_325bac97[i].name + "");
 			if(var_325bac97[i].state[0] != "" && isdefined(var_325bac97[i].state[int(getgametypesetting(var_325bac97[i].name))]))
 			{
 				var_2f572bbb = var_2f572bbb + var_325bac97[i].state[int(getgametypesetting(var_325bac97[i].name))];
@@ -3005,8 +3005,8 @@ private function function_172decfc()
 						var_5f0a1940 = var_5f0a1940 - 29;
 						var_af35ffa2++;
 					}
-					v_pos = 300 + 18 * var_5f0a1940;
-					var_f993b45d = 200 + 400 * var_af35ffa2;
+					v_pos = 300 + (18 * var_5f0a1940);
+					var_f993b45d = 200 + (400 * var_af35ffa2);
 					debug2dtext((var_f993b45d, v_pos, 0), var_32d62863[i], (0, 1, 0), undefined, (0, 0, 0), 0.75, 0.85, 360);
 				}
 			}

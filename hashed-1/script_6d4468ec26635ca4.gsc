@@ -61,7 +61,7 @@ function function_301b775b()
 {
 	if(clientfield::function_6b3b55da("hudItems.warzone.waveRespawnTimer"))
 	{
-		time = int(gettime() + int(level.waverespawndelay * 1000));
+		time = int(gettime() + (int(level.waverespawndelay * 1000)));
 		level clientfield::set_world_uimodel("hudItems.warzone.waveRespawnTimer", time);
 	}
 }
@@ -77,7 +77,7 @@ function function_301b775b()
 */
 private function function_a27362d0(params)
 {
-	if(level.var_52b56362 >= level.var_fb91af8.size - 2)
+	if(level.var_52b56362 >= (level.var_fb91af8.size - 2))
 	{
 		foreach(player in getplayers())
 		{
@@ -140,7 +140,7 @@ function function_1540761c(params)
 		return;
 	}
 	time = death_circle::function_49443399();
-	level.var_75db41a7 = gettime() + int(time - level.waverespawndelay * 1000);
+	level.var_75db41a7 = gettime() + (int((time - level.waverespawndelay) * 1000));
 }
 
 /*

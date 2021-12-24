@@ -22,12 +22,12 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 		{
 			constprefix = constprefix + "0";
 		}
-		constprefix = constprefix + constidx + "_";
+		constprefix = constprefix + (constidx + "_");
 		startvalue = getshaderconstantvalue(bundle, constprefix, "start", 0);
 		endvalue = getshaderconstantvalue(bundle, constprefix, "end", 0);
 		delays = getshaderconstantvalue(bundle, constprefix, "delay", 1);
 		channels = bundle.(constprefix + "channels");
-		iscolor = isstring(channels) && (channels == "color" || channels == "color+alpha");
+		iscolor = isstring(channels) && (channels == "color" || channels == ("color+alpha"));
 		animname = bundle.(constprefix + "anm");
 		values = [];
 		for(i = 0; i < 4; i++)
@@ -39,7 +39,7 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 			delaytime = int(delays[(iscolor ? 0 : chanidx)] * 1000);
 			if(accumtime > delaytime && stagelength > delaytime)
 			{
-				timeratio = accumtime - delaytime / stagelength - delaytime;
+				timeratio = (accumtime - delaytime) / (stagelength - delaytime);
 				timeratio = math::clamp(timeratio, 0, 1);
 				lerpratio = 0;
 				delta = endvalue[chanidx] - startvalue[chanidx];
@@ -62,7 +62,7 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 					}
 					case "hash_6debf0d1b5b68767":
 					{
-						lerpratio = timeratio * -1 * timeratio - 2;
+						lerpratio = (timeratio * -1) * (timeratio - 2);
 						break;
 					}
 					case "hash_275b09ce780d184a":
@@ -70,12 +70,12 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 						timeratio = timeratio * 2;
 						if(timeratio < 1)
 						{
-							lerpratio = 0.5 * lerpratio * lerpratio;
+							lerpratio = (0.5 * lerpratio) * lerpratio;
 						}
 						else
 						{
 							timeratio = timeratio - 1;
-							lerpratio = -0.5 * lerpratio * lerpratio - 2 - 1;
+							lerpratio = -0.5 * ((lerpratio * (lerpratio - 2)) - 1);
 						}
 						break;
 					}
@@ -98,7 +98,7 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 					}
 					case "sin":
 					{
-						lerpratio = 0.5 - 0.5 * cos(360 * timeratio);
+						lerpratio = 0.5 - (0.5 * (cos(360 * timeratio)));
 						break;
 					}
 					default:
@@ -107,7 +107,7 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 					}
 				}
 				lerpratio = math::clamp(lerpratio, 0, 1);
-				values[chanidx] = startvalue[chanidx] + lerpratio * delta;
+				values[chanidx] = startvalue[chanidx] + (lerpratio * delta);
 				continue;
 			}
 			values[chanidx] = startvalue[chanidx];
@@ -134,7 +134,7 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 function getshaderconstantvalue(bundle, constprefix, constname, delay)
 {
 	channels = bundle.(constprefix + "channels");
-	if(delay && isstring(channels) && (channels == "color" || channels == "color+alpha"))
+	if(delay && isstring(channels) && (channels == "color" || channels == ("color+alpha")))
 	{
 		channels = 1;
 	}
@@ -144,46 +144,46 @@ function getshaderconstantvalue(bundle, constprefix, constname, delay)
 		case 1:
 		case "1":
 		{
-			vals[0] = getstructfieldorzero(bundle, constprefix + constname + "_x");
+			vals[0] = getstructfieldorzero(bundle, (constprefix + constname) + "_x");
 			break;
 		}
 		case 2:
 		case "2":
 		{
-			vals[0] = getstructfieldorzero(bundle, constprefix + constname + "_x");
-			vals[1] = getstructfieldorzero(bundle, constprefix + constname + "_y");
+			vals[0] = getstructfieldorzero(bundle, (constprefix + constname) + "_x");
+			vals[1] = getstructfieldorzero(bundle, (constprefix + constname) + "_y");
 			break;
 		}
 		case 3:
 		case "3":
 		{
-			vals[0] = getstructfieldorzero(bundle, constprefix + constname + "_x");
-			vals[1] = getstructfieldorzero(bundle, constprefix + constname + "_y");
-			vals[2] = getstructfieldorzero(bundle, constprefix + constname + "_z");
+			vals[0] = getstructfieldorzero(bundle, (constprefix + constname) + "_x");
+			vals[1] = getstructfieldorzero(bundle, (constprefix + constname) + "_y");
+			vals[2] = getstructfieldorzero(bundle, (constprefix + constname) + "_z");
 			break;
 		}
 		case 4:
 		case "4":
 		{
-			vals[0] = getstructfieldorzero(bundle, constprefix + constname + "_x");
-			vals[1] = getstructfieldorzero(bundle, constprefix + constname + "_y");
-			vals[2] = getstructfieldorzero(bundle, constprefix + constname + "_z");
-			vals[3] = getstructfieldorzero(bundle, constprefix + constname + "_w");
+			vals[0] = getstructfieldorzero(bundle, (constprefix + constname) + "_x");
+			vals[1] = getstructfieldorzero(bundle, (constprefix + constname) + "_y");
+			vals[2] = getstructfieldorzero(bundle, (constprefix + constname) + "_z");
+			vals[3] = getstructfieldorzero(bundle, (constprefix + constname) + "_w");
 			break;
 		}
 		case "color":
 		{
-			vals[0] = getstructfieldorzero(bundle, constprefix + constname + "_clr_r");
-			vals[1] = getstructfieldorzero(bundle, constprefix + constname + "_clr_g");
-			vals[2] = getstructfieldorzero(bundle, constprefix + constname + "_clr_b");
+			vals[0] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_r");
+			vals[1] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_g");
+			vals[2] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_b");
 			break;
 		}
 		case "color+alpha":
 		{
-			vals[0] = getstructfieldorzero(bundle, constprefix + constname + "_clr_r");
-			vals[1] = getstructfieldorzero(bundle, constprefix + constname + "_clr_g");
-			vals[2] = getstructfieldorzero(bundle, constprefix + constname + "_clr_b");
-			vals[3] = getstructfieldorzero(bundle, constprefix + constname + "_clr_a");
+			vals[0] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_r");
+			vals[1] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_g");
+			vals[2] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_b");
+			vals[3] = getstructfieldorzero(bundle, (constprefix + constname) + "_clr_a");
 			break;
 		}
 	}

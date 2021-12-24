@@ -113,7 +113,7 @@ function state_off_update(params)
 			{
 				randomscore = randomfloatrange(0, 100);
 				disttooriginscore = point.disttoorigin2d * 0.2;
-				point.score = point.score + randomscore + disttooriginscore;
+				point.score = point.score + (randomscore + disttooriginscore);
 				/#
 					if(!isdefined(point._scoredebug))
 					{
@@ -273,10 +273,10 @@ function spawnflakrocket(missile, spawnpos, parent)
 		if(isdefined(parent))
 		{
 			parentvelocity = parent getvelocity();
-			parentpredictedlocation = parent.origin + parentvelocity * 0.05;
+			parentpredictedlocation = parent.origin + (parentvelocity * 0.05);
 			missilevelocity = missile getvelocity();
-			missilepredictedlocation = missile.origin + missilevelocity * 0.05;
-			if(distancesquared(parentpredictedlocation, missilepredictedlocation) < 1000 * 1000 || distancesquared(parent.origin, missilepredictedlocation) < 1000 * 1000)
+			missilepredictedlocation = missile.origin + (missilevelocity * 0.05);
+			if(distancesquared(parentpredictedlocation, missilepredictedlocation) < (1000 * 1000) || distancesquared(parent.origin, missilepredictedlocation) < (1000 * 1000))
 			{
 				tooclosetopredictedparent = 1;
 			}
@@ -395,7 +395,7 @@ function drone_pain_for_time(time, stablizeparam, restorelookpoint)
 	if(!(isdefined(self.inpain) && self.inpain))
 	{
 		self.inpain = 1;
-		while(gettime() < self.painstarttime + int(time * 1000))
+		while(gettime() < self.painstarttime + (int(time * 1000)))
 		{
 			self setvehvelocity(self.velocity * stablizeparam);
 			self setangularvelocity(self getangularvelocity() * stablizeparam);
@@ -478,7 +478,7 @@ function spawn(parent, ondeathcallback)
 		#/
 		return undefined;
 	}
-	spawnpoint = parent.origin + vectorscale((0, 0, -1), 50);
+	spawnpoint = parent.origin + (vectorscale((0, 0, -1), 50));
 	drone = spawnvehicle("veh_flak_drone_mp", spawnpoint, parent.angles, "dynamic_spawn_ai");
 	drone.death_callback = ondeathcallback;
 	drone configureteam(parent, 0);

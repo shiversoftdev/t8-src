@@ -227,7 +227,7 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 		}
 	}
 	throw_dist = distance2dsquared(entity.origin, entity lastknownpos(entity.enemy));
-	if(throw_dist < 500 * 500 || throw_dist > 1250 * 1250)
+	if(throw_dist < (500 * 500) || throw_dist > (1250 * 1250))
 	{
 		return 0;
 	}
@@ -255,7 +255,7 @@ private function sensenearbyplayers(entity)
 	foreach(player in players)
 	{
 		distancesq = distancesquared(player.origin, entity.origin);
-		if(distancesq <= 360 * 360)
+		if(distancesq <= (360 * 360))
 		{
 			distancetoplayer = sqrt(distancesq);
 			chancetodetect = randomfloat(1);
@@ -323,8 +323,7 @@ private function covercleanuptothrowgrenade(entity)
 			{
 				grenade.owner = entity;
 				grenade.team = entity.team;
-				~grenade;
-				grenade setcontents(grenade setcontents(0) & 32768 | 67108864 | 8388608 | 33554432);
+				grenade setcontents(grenade setcontents(0) & (~(((32768 | 67108864) | 8388608) | 33554432)));
 			}
 		}
 	}
@@ -394,7 +393,7 @@ private function shouldreturntocovercondition(entity)
 		{
 			return 0;
 		}
-		if(isdefined(entity.enemy) && isplayer(entity.enemy) && entity.enemy.health < entity.enemy.maxhealth * 0.5)
+		if(isdefined(entity.enemy) && isplayer(entity.enemy) && entity.enemy.health < (entity.enemy.maxhealth * 0.5))
 		{
 			if(gettime() < entity.covershootstarttime + 3000)
 			{
@@ -475,7 +474,7 @@ private function shouldvantageatcovercondition(entity)
 	pitchtoenemyposition = aiutility::getaimpitchtoenemyfromnode(entity, entity.node, entity.enemy);
 	aimlimitsforcover = entity getaimlimitsfromentry("cover_vantage");
 	legalaim = 0;
-	if(yawtoenemyposition < aimlimitsforcover[#"aim_left"] && yawtoenemyposition > aimlimitsforcover[#"aim_right"] && pitchtoenemyposition < 85 && pitchtoenemyposition > 25 && entity.node.origin[2] - entity.enemy.origin[2] >= 36)
+	if(yawtoenemyposition < aimlimitsforcover[#"aim_left"] && yawtoenemyposition > aimlimitsforcover[#"aim_right"] && pitchtoenemyposition < 85 && pitchtoenemyposition > 25 && (entity.node.origin[2] - entity.enemy.origin[2]) >= 36)
 	{
 		legalaim = 1;
 	}
@@ -698,19 +697,19 @@ function temp_get_arm_offset(entity, throwposition)
 				leftoffset = (-24, 0, 76);
 				rightoffset = (24, 0, 76);
 			}
-			if(isdefined(entity.node.spawnflags) && entity.node.spawnflags & 1024 == 1024)
+			if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024)
 			{
 				arm_offset = rightoffset;
 			}
-			else if(isdefined(entity.node.spawnflags) && entity.node.spawnflags & 2048 == 2048)
+			else if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 2048) == 2048)
 			{
 				arm_offset = leftoffset;
 			}
 			else
 			{
-				yawtoenemyposition = angleclamp180(vectortoangles(throwposition - entity.node.origin)[1] - entity.node.angles[1]);
+				yawtoenemyposition = angleclamp180((vectortoangles(throwposition - entity.node.origin)[1]) - entity.node.angles[1]);
 				aimlimitsfordirectionright = entity getaimlimitsfromentry("pillar_right_lean");
-				legalrightdirectionyaw = yawtoenemyposition >= aimlimitsfordirectionright[#"aim_right"] - 10 && yawtoenemyposition <= 0;
+				legalrightdirectionyaw = yawtoenemyposition >= (aimlimitsfordirectionright[#"aim_right"] - 10) && yawtoenemyposition <= 0;
 				if(legalrightdirectionyaw)
 				{
 					arm_offset = rightoffset;

@@ -209,7 +209,7 @@ function setcategorytypeweight(category, type, weight)
 			{
 				startindex = cratename;
 			}
-			if(isdefined(finalindex) && finalindex + 1 != cratename)
+			if(isdefined(finalindex) && (finalindex + 1) != cratename)
 			{
 				/#
 					util::error("");
@@ -707,11 +707,11 @@ function islocationgood(location, context)
 	}
 	closestpoint = getclosestpointonnavmesh(location, max(context.max_dist_from_location, 24), context.dist_from_boundary);
 	isvalidpoint = isdefined(closestpoint);
-	if(isvalidpoint && context.check_same_floor === 1 && abs(location[2] - closestpoint[2]) > 96)
+	if(isvalidpoint && context.check_same_floor === 1 && (abs(location[2] - closestpoint[2])) > 96)
 	{
 		isvalidpoint = 0;
 	}
-	if(isvalidpoint && distance2dsquared(location, closestpoint) > context.max_dist_from_location * context.max_dist_from_location)
+	if(isvalidpoint && distance2dsquared(location, closestpoint) > (context.max_dist_from_location * context.max_dist_from_location))
 	{
 		isvalidpoint = 0;
 	}
@@ -933,7 +933,7 @@ function markerupdatethread(context)
 		radius = 2;
 		results = physicstrace(player geteye(), player geteye() + forwardvector, (radius * -1, radius * -1, 0), (radius, radius, 0), player, mask);
 		markermodel.origin = results[#"position"];
-		tooclose = distancesquared(markermodel.origin, player.origin) < minrange * minrange;
+		tooclose = distancesquared(markermodel.origin, player.origin) < (minrange * minrange);
 		if(results[#"normal"][2] > 0.7 && !tooclose && isdefined(context.islocationgood) && [[context.islocationgood]](markermodel.origin, context))
 		{
 			player.markerposition = markermodel.origin;
@@ -1310,7 +1310,7 @@ function setricochetprotectionendtime(killstreak, killstreak_id, owner)
 	ksbundle = level.killstreakbundle[killstreak];
 	if(isdefined(ksbundle) && isdefined(ksbundle.ksricochetpostlandduration) && ksbundle.ksricochetpostlandduration > 0)
 	{
-		endtime = gettime() + int(ksbundle.ksricochetpostlandduration * 1000);
+		endtime = gettime() + (int(ksbundle.ksricochetpostlandduration * 1000));
 		killstreaks::set_ricochet_protection_endtime(killstreak_id, owner, endtime);
 	}
 }
@@ -1915,7 +1915,7 @@ function function_703ed715(trace)
 		mask = 1;
 		radius = 30;
 		origin = trace[#"position"];
-		trace = physicstrace(origin + vectorscale((0, 0, -1), 100), origin + vectorscale((0, 0, -1), 10000), (radius * -1, radius * -1, 0), (radius, radius, 2 * radius), undefined, mask);
+		trace = physicstrace(origin + (vectorscale((0, 0, -1), 100)), origin + (vectorscale((0, 0, -1), 10000)), (radius * -1, radius * -1, 0), (radius, radius, 2 * radius), undefined, mask);
 		return trace;
 	}
 	return trace;
@@ -1962,7 +1962,7 @@ function dropcrate(origin, angle, killstreak, owner, team, killcament, killstrea
 	}
 	mask = 1;
 	radius = 30;
-	trace = physicstrace(crate.origin + vectorscale((0, 0, -1), 100), crate.origin + vectorscale((0, 0, -1), 10000), (radius * -1, radius * -1, 0), (radius, radius, 2 * radius), undefined, mask);
+	trace = physicstrace(crate.origin + (vectorscale((0, 0, -1), 100)), crate.origin + (vectorscale((0, 0, -1), 10000)), (radius * -1, radius * -1, 0), (radius, radius, 2 * radius), undefined, mask);
 	trace = function_703ed715(trace);
 	v_target_location = trace[#"position"];
 	/#
@@ -2368,7 +2368,7 @@ function cratedroptogroundkill()
 */
 function cratedroptogroundtrace(start)
 {
-	end = start + vectorscale((0, 0, -1), 8000);
+	end = start + (vectorscale((0, 0, -1), 8000));
 	trace = bullettrace(start, end, 1, self, 0, 1);
 	if(isdefined(trace[#"entity"]) && isplayer(trace[#"entity"]) && isalive(trace[#"entity"]))
 	{
@@ -2760,7 +2760,7 @@ function useholdthinkloop(player)
 	while(self continueholdthinkloop(player))
 	{
 		timedout = timedout + 0.05;
-		self.curprogress = self.curprogress + level.var_9fee970c * self.userate;
+		self.curprogress = self.curprogress + (level.var_9fee970c * self.userate);
 		self.userate = 1;
 		if(self.curprogress >= self.usetime)
 		{
@@ -2877,7 +2877,7 @@ function personalusebar(object)
 				capturecratetotaltime = 0;
 				if(rateofchange > 0)
 				{
-					capturecratetotaltime = 1 - barfrac / rateofchange;
+					capturecratetotaltime = (1 - barfrac) / rateofchange;
 				}
 				self clientfield::set_player_uimodel("hudItems.captureCrateTotalTime", int(capturecratetotaltime));
 				self clientfield::set_player_uimodel("hudItems.captureCrateState", capturecratestate);
@@ -3059,8 +3059,8 @@ function gethelistart(drop_origin, drop_direction)
 	dist = -1 * getdvarint(#"scr_supplydropincomingdistance", 15000);
 	pathrandomness = 100;
 	direction = drop_direction + (0, randomintrange(-2, 3), 0);
-	start_origin = drop_origin + anglestoforward(direction) * dist;
-	start_origin = start_origin + (randomfloat(2) - 1 * pathrandomness, randomfloat(2) - 1 * pathrandomness, 0);
+	start_origin = drop_origin + (anglestoforward(direction) * dist);
+	start_origin = start_origin + ((randomfloat(2) - 1) * pathrandomness, (randomfloat(2) - 1) * pathrandomness, 0);
 	/#
 		if(getdvarint(#"scr_noflyzones_debug", 0))
 		{
@@ -3070,7 +3070,7 @@ function gethelistart(drop_origin, drop_direction)
 				delta = drop_origin - level.noflyzones[index].origin;
 				delta = (delta[0] + randomint(10), delta[1] + randomint(10), 0);
 				delta = vectornormalize(delta);
-				start_origin = drop_origin + delta * dist;
+				start_origin = drop_origin + (delta * dist);
 			}
 		}
 	#/
@@ -3099,8 +3099,8 @@ function getheliend(drop_origin, drop_direction)
 		turn = -1 * randomintrange(60, 121);
 	}
 	direction = drop_direction + (0, turn, 0);
-	end_origin = drop_origin + anglestoforward(direction) * dist;
-	end_origin = end_origin + (randomfloat(2) - 1 * pathrandomness, randomfloat(2) - 1 * pathrandomness, 0);
+	end_origin = drop_origin + (anglestoforward(direction) * dist);
+	end_origin = end_origin + ((randomfloat(2) - 1) * pathrandomness, (randomfloat(2) - 1) * pathrandomness, 0);
 	return end_origin;
 }
 
@@ -3191,11 +3191,11 @@ function supplydrophelistartpath(goal, goal_offset)
 		{
 			if(goalpath.path.size > 1)
 			{
-				direction = goalpath.path[goalpath.path.size - 1] - goalpath.path[goalpath.path.size - 2];
+				direction = (goalpath.path[goalpath.path.size - 1]) - (goalpath.path[goalpath.path.size - 2]);
 			}
 			else
 			{
-				direction = goalpath.path[goalpath.path.size - 1] - goalpath.start;
+				direction = (goalpath.path[goalpath.path.size - 1]) - goalpath.start;
 			}
 			goalpath.path[goalpath.path.size - 1] = addoffsetontopoint(goalpath.path[goalpath.path.size - 1], direction, goal_offset);
 			/#
@@ -3667,7 +3667,7 @@ function helidelivercrate(origin, weapon, owner, team, killstreak_id, package_co
 	{
 		drop_height = getdropheight(drop_origin);
 	}
-	drop_height = drop_height + level.zoffsetcounter * 350;
+	drop_height = drop_height + (level.zoffsetcounter * 350);
 	level.zoffsetcounter++;
 	if(level.zoffsetcounter >= 5)
 	{
@@ -3835,7 +3835,7 @@ function helidelivercrate(origin, weapon, owner, team, killstreak_id, package_co
 		chopper [[context.epilog]](context);
 	}
 	/#
-		println("" + gettime() - chopper.spawntime);
+		println("" + (gettime() - chopper.spawntime));
 		if(getdvarint(#"scr_supply_drop_valid_location_debug", 0))
 		{
 			if(isdefined(context.dropoffset))
@@ -3846,7 +3846,7 @@ function helidelivercrate(origin, weapon, owner, team, killstreak_id, package_co
 			{
 				chopper_drop_point = chopper getchopperdroppoint(context);
 			}
-			trace = groundtrace(chopper_drop_point + vectorscale((0, 0, -1), 100), chopper_drop_point + vectorscale((0, 0, -1), 10000), 0, undefined, 0);
+			trace = groundtrace(chopper_drop_point + (vectorscale((0, 0, -1), 100)), chopper_drop_point + (vectorscale((0, 0, -1), 10000)), 0, undefined, 0);
 			debug_drop_location = trace[#"position"];
 			util::drawcylinder(debug_drop_location, context.radius, 8000, 99999999, "", (1, 0.6, 0), 0.9);
 			iprintln("" + distance2d(chopper_drop_point, heli_drop_goal));
@@ -3866,7 +3866,7 @@ function helidelivercrate(origin, weapon, owner, team, killstreak_id, package_co
 			chopper_drop_point = chopper getchopperdroppoint(context);
 		}
 		current_distance_from_goal_squared = distance2dsquared(chopper_drop_point, heli_drop_goal);
-		continue_waiting = current_distance_from_goal_squared < last_distance_from_goal_squared && current_distance_from_goal_squared > 3.7 * 3.7;
+		continue_waiting = current_distance_from_goal_squared < last_distance_from_goal_squared && current_distance_from_goal_squared > (3.7 * 3.7);
 		last_distance_from_goal_squared = current_distance_from_goal_squared;
 		/#
 			if(getdvarint(#"scr_supply_drop_valid_location_debug", 0))
@@ -3920,7 +3920,7 @@ function helidelivercrate(origin, weapon, owner, team, killstreak_id, package_co
 		chopper airsupport::followpath(goalpath.path, undefined, 0);
 	}
 	/#
-		println("" + gettime() - chopper.droptime);
+		println("" + (gettime() - chopper.droptime));
 	#/
 	chopper notify(#"leaving");
 	chopper delete();
@@ -4038,7 +4038,7 @@ function helidropcrate(killstreak, originalowner, offset, killcament, killstreak
 	{
 		rear_hatch_offset_height = getdvarint(#"scr_supplydropoffsetheight", 200);
 		rear_hatch_offset_world = rotatepoint((offset, 0, 0), angles);
-		drop_origin = origin - (0, 0, rear_hatch_offset_height) - rear_hatch_offset_world;
+		drop_origin = (origin - (0, 0, rear_hatch_offset_height)) - rear_hatch_offset_world;
 		thread dropcrate(drop_origin, angles, killstreak, owner, team, killcament, killstreak_id, package_contents_id, crate, context, var_83f3c388);
 	}
 }
@@ -4088,7 +4088,7 @@ function helidestroyed()
 */
 function lbexplode()
 {
-	forward = self.origin + (0, 0, 1) - self.origin;
+	forward = (self.origin + (0, 0, 1)) - self.origin;
 	fxpos = self gettagorigin("tag_deathfx");
 	if(!isdefined(fxpos))
 	{
@@ -4125,7 +4125,7 @@ function lbspin(speed)
 	self setyawspeed(speed, speed, speed);
 	while(isdefined(self))
 	{
-		self settargetyaw(self.angles[1] + speed * 0.9);
+		self settargetyaw(self.angles[1] + (speed * 0.9));
 		wait(1);
 	}
 }

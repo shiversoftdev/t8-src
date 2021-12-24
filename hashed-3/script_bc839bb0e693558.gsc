@@ -17,7 +17,7 @@ function cpower_print(slot, str)
 {
 	/#
 		color = "";
-		toprint = color + "" + str;
+		toprint = (color + "") + str;
 		weaponname = "";
 		if(isdefined(self._gadgets_player[slot]))
 		{
@@ -29,7 +29,7 @@ function cpower_print(slot, str)
 		}
 		else
 		{
-			println(self.playername + "" + weaponname + "" + toprint);
+			println((((self.playername + "") + weaponname) + "") + toprint);
 		}
 	#/
 }
@@ -136,7 +136,7 @@ function power_gain_event_score(event, eattacker, score, weapon)
 	{
 		perkfactor = getdvarfloat(#"gadgetpoweroverchargeperkscorefactor", 0);
 	}
-	var_ec6ee937 = score * gametypefactor * perkfactor * var_f1ee6456;
+	var_ec6ee937 = ((score * gametypefactor) * perkfactor) * var_f1ee6456;
 	if(var_ec6ee937 <= 0)
 	{
 		return;
@@ -257,7 +257,7 @@ function power_gain_event(slot, eattacker, val, source)
 			self.var_aec4af05[slot] = self.var_aec4af05[slot] + powertoadd;
 		}
 		/#
-			self cpower_print(slot, "" + powertoadd + "" + source + "" + powerleft);
+			self cpower_print(slot, (((("" + powertoadd) + "") + source) + "") + powerleft);
 		#/
 	}
 }
@@ -320,7 +320,7 @@ function power_loss_event(slot, eattacker, val, source)
 	{
 		powerleft = self gadgetpowerchange(slot, powertoremove);
 		/#
-			self cpower_print(slot, "" + powertoremove + "" + source + "" + powerleft);
+			self cpower_print(slot, (((("" + powertoremove) + "") + source) + "") + powerleft);
 		#/
 	}
 }
@@ -353,7 +353,7 @@ function ismovingpowerloss()
 {
 	velocity = self getvelocity();
 	speedsq = lengthsquared(velocity);
-	return speedsq > self._gadgets_player.gadget_powermovespeed * self._gadgets_player.gadget_powermovespeed;
+	return speedsq > (self._gadgets_player.gadget_powermovespeed * self._gadgets_player.gadget_powermovespeed);
 }
 
 /*
@@ -392,11 +392,11 @@ function power_consume_timer_think(slot, weapon)
 		{
 			if(self._gadgets_player[slot].gadget_powersprintloss > 0 && self issprinting())
 			{
-				powerconsumpted = powerconsumpted + 1 * float(interval) / 1000 * self._gadgets_player[slot].gadget_powersprintloss;
+				powerconsumpted = powerconsumpted + ((1 * (float(interval) / 1000)) * self._gadgets_player[slot].gadget_powersprintloss);
 			}
 			else if(self._gadgets_player[slot].gadget_powermoveloss && self ismovingpowerloss())
 			{
-				powerconsumpted = powerconsumpted + 1 * float(interval) / 1000 * self._gadgets_player[slot].gadget_powermoveloss;
+				powerconsumpted = powerconsumpted + ((1 * (float(interval) / 1000)) * self._gadgets_player[slot].gadget_powermoveloss);
 			}
 		}
 		if(powerconsumpted > 0.1)

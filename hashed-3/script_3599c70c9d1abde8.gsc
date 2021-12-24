@@ -167,7 +167,7 @@ private function function_f4b140ab(localclientnum, pos, surface, notetrack, bone
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(pos, e_player.origin);
 	var_107019dc = 1000 * 1000;
-	n_scale = var_107019dc - n_dist / var_107019dc;
+	n_scale = (var_107019dc - n_dist) / var_107019dc;
 	n_scale = n_scale * 0.25;
 	if(n_scale <= 0.01)
 	{
@@ -202,7 +202,7 @@ private function function_e980911c(localclientnum, oldval, newval, bnewent, bini
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(self.origin, e_player.origin);
 	var_107019dc = 500 * 500;
-	n_scale = var_107019dc - n_dist / var_107019dc;
+	n_scale = (var_107019dc - n_dist) / var_107019dc;
 	n_scale = min(n_scale, 0.75);
 	if(n_scale <= 0.01)
 	{

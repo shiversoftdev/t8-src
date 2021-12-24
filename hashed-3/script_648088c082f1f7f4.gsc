@@ -268,8 +268,8 @@ private function function_8d3b7a66()
 	var_8d430fcb = self getplayerangles();
 	forward = anglestoforward(var_8d430fcb);
 	eyepos = self getplayercamerapos();
-	endpos = eyepos + forward * 50;
-	var_f45df727 = eyepos + forward * 200;
+	endpos = eyepos + (forward * 50);
+	var_f45df727 = eyepos + (forward * 200);
 	traceresults = {};
 	traceresults.trace = bullettrace(eyepos, var_f45df727, 1, self, 1, 1);
 	traceresults.isvalid = traceresults.trace[#"fraction"] >= 1;
@@ -502,13 +502,13 @@ private function function_d13b1540(vehicle)
 					vehicle.var_3de57a77 = gettime();
 				}
 				var_a71a8383 = gettime() - vehicle.var_3de57a77;
-				if(int(3 * 1000) <= var_a71a8383)
+				if((int(3 * 1000)) <= var_a71a8383)
 				{
 					vehicle usevehicle(self, 0);
 					self clientfield::set_to_player("recon_out_of_circle", 0);
 				}
 				var_e96a9222 = min(var_a71a8383, int(3 * 1000));
-				var_e96a9222 = var_e96a9222 / int(3 * 1000);
+				var_e96a9222 = var_e96a9222 / (int(3 * 1000));
 				var_e96a9222 = var_e96a9222 * 31;
 				self clientfield::set_to_player("recon_out_of_circle", int(var_e96a9222));
 				waitframe(1);
@@ -540,7 +540,7 @@ function function_3a595d3c()
 {
 	camera_pos = isdefined(self.owner) && (isdefined(self getseatoccupant(0)) ? self.owner getplayercamerapos() : self.origin);
 	dir = anglestoforward(self.angles);
-	results = bullettrace(camera_pos, camera_pos + dir * 96, 1, self, 1, 1);
+	results = bullettrace(camera_pos, camera_pos + (dir * 96), 1, self, 1, 1);
 	if(isdefined(results))
 	{
 		if(isdefined(results[#"fraction"]) && results[#"fraction"] > 0.99)

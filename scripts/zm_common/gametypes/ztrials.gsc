@@ -86,7 +86,7 @@ event function_a97958c3(eventstruct)
 	var_3b363b7a = getgametypesetting(#"zmtrialsvariant");
 	if(isdefined(var_3b363b7a) && var_3b363b7a > 0)
 	{
-		var_189d26ca = util::function_53bbf9d2() + "_variant_" + var_3b363b7a;
+		var_189d26ca = (util::function_53bbf9d2() + "_variant_") + var_3b363b7a;
 	}
 	else if(var_189d26ca == "")
 	{
@@ -386,11 +386,11 @@ private function function_9a6b2309()
 		#/
 		foreach(var_48c6ec2e in level.var_6d87ac05.rounds)
 		{
-			adddebugcommand("" + var_48c6ec2e.round + "" + function_9e72a96(var_48c6ec2e.name) + "" + var_48c6ec2e.round + "" + var_48c6ec2e.round + "");
+			adddebugcommand((((((("" + var_48c6ec2e.round) + "") + function_9e72a96(var_48c6ec2e.name) + "") + var_48c6ec2e.round) + "") + var_48c6ec2e.round) + "");
 		}
 		for(i = 0; i <= 3; i++)
 		{
-			adddebugcommand("" + i + "" + i + "");
+			adddebugcommand(((("" + i) + "") + i) + "");
 		}
 		adddebugcommand("");
 		adddebugcommand("");

@@ -193,7 +193,7 @@ function addflyswatterstat(weapon, aircraft)
 	{
 		self.destroyedaircrafttime = [];
 	}
-	if(isdefined(self.destroyedaircrafttime[weapon]) && gettime() - self.destroyedaircrafttime[weapon] < 10000)
+	if(isdefined(self.destroyedaircrafttime[weapon]) && (gettime() - self.destroyedaircrafttime[weapon]) < 10000)
 	{
 		self stats::function_e24eec31(weapon, #"destroyed_2aircraft_quickly", 1);
 		self.destroyedaircrafttime[weapon] = undefined;
@@ -428,14 +428,14 @@ function perkkills(victim, isstunned, time)
 	}
 	if(player hasperk(#"specialty_longersprint"))
 	{
-		if(isdefined(player.lastsprinttime) && gettime() - player.lastsprinttime < 2500)
+		if(isdefined(player.lastsprinttime) && (gettime() - player.lastsprinttime) < 2500)
 		{
 			player stats::function_dad108fa(#"perk_longersprint", 1);
 		}
 	}
 	if(player hasperk(#"specialty_fastmantle"))
 	{
-		if(isdefined(player.lastsprinttime) && gettime() - player.lastsprinttime < 2500 && player playerads() >= 1)
+		if(isdefined(player.lastsprinttime) && (gettime() - player.lastsprinttime) < 2500 && player playerads() >= 1)
 		{
 			player stats::function_dad108fa(#"perk_fastmantle_kills", 1);
 		}
@@ -1009,7 +1009,7 @@ function function_90185171(totaltimeplayed, credits, var_e1020153)
 	var_dbb56f7e = getdvarint(#"hash_4574f0b1608d9ea8", 0);
 	if(var_dbb56f7e && player function_875e4dbc() && totaltimeplayed > 0)
 	{
-		timeoffset = getdvarint(#"hash_59e760d0f14ae13b", 0) * 60 * 60 * 24;
+		timeoffset = ((getdvarint(#"hash_59e760d0f14ae13b", 0) * 60) * 60) * 24;
 		timemultiplier = getdvarfloat(#"hash_2956967233bebd4f", 1);
 		var_bf107145 = totaltimeplayed;
 		if(timemultiplier > 1)
@@ -1080,7 +1080,7 @@ function function_90185171(totaltimeplayed, credits, var_e1020153)
 					{
 						self.pers[#"controllerparticipationendgameresult"] = 0;
 						/#
-							println(player.name + "" + var_7be1e671 + "" + level.var_8e1c2aa1 + "");
+							println(((((player.name + "") + var_7be1e671) + "") + level.var_8e1c2aa1) + "");
 						#/
 						return;
 					}
@@ -1096,29 +1096,29 @@ function function_90185171(totaltimeplayed, credits, var_e1020153)
 			if(isdefined(var_3595e9d5) && var_3595e9d5 > 0)
 			{
 				var_3595e9d5 = min(var_3595e9d5, getdvarint(#"hash_20997c814ed4b7ed", 25));
-				credits = credits + credits * var_3595e9d5 / 100;
+				credits = credits + (credits * (var_3595e9d5 / 100));
 				/#
-					println("" + player.name + "" + var_3595e9d5);
+					println((("" + player.name) + "") + var_3595e9d5);
 				#/
 			}
 			var_15a07618 = player stats::function_ff8f4f17(#"hash_46bff228e40d37d7");
 			if(isdefined(var_15a07618) && var_15a07618 > 0)
 			{
-				credits = credits + credits * var_15a07618 / 100;
+				credits = credits + (credits * (var_15a07618 / 100));
 				/#
-					println("" + player.name + "" + var_15a07618);
+					println((("" + player.name) + "") + var_15a07618);
 				#/
 			}
 			var_1cd516f6 = player stats::function_ff8f4f17(#"hash_2d1bca92ffa133e6");
 			if(isdefined(var_1cd516f6) && var_1cd516f6 > 0)
 			{
-				credits = credits + credits * var_1cd516f6 / 100;
+				credits = credits + (credits * (var_1cd516f6 / 100));
 				/#
-					println("" + player.name + "" + var_1cd516f6);
+					println((("" + player.name) + "") + var_1cd516f6);
 				#/
 			}
 			/#
-				println("" + player.name + "" + totaltimeplayed + "" + credits + "" + var_e1020153);
+				println((((((("" + player.name) + "") + totaltimeplayed) + "") + credits) + "") + var_e1020153);
 			#/
 			if(player function_875e4dbc())
 			{
@@ -1709,7 +1709,7 @@ function capturedobjective(capturetime, objective)
 	}
 	else
 	{
-		heroabilitywasactiverecently = isdefined(self.heroabilityactive) || (isdefined(self.heroabilitydectivatetime) && self.heroabilitydectivatetime > gettime() - 3000);
+		heroabilitywasactiverecently = isdefined(self.heroabilityactive) || (isdefined(self.heroabilitydectivatetime) && self.heroabilitydectivatetime > (gettime() - 3000));
 		if(heroabilitywasactiverecently && isdefined(self.heroability) && self.heroability.name == "gadget_camo")
 		{
 			scoreevents::processscoreevent(#"optic_camo_capture_objective", self);
@@ -2546,7 +2546,7 @@ function killstreakten()
 	}
 	for(numspecialties = 0; numspecialties < level.maxspecialties; numspecialties++)
 	{
-		perk = self getloadoutitem(self.class_num, "specialty" + numspecialties + 1);
+		perk = self getloadoutitem(self.class_num, "specialty" + (numspecialties + 1));
 		if(perk != 0)
 		{
 			return;
@@ -2661,7 +2661,7 @@ function playerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, shit
 		}
 	}
 	victimentnum = victim getentitynumber();
-	waslockingon = waslockingon & 1 << victimentnum;
+	waslockingon = waslockingon & (1 << victimentnum);
 	if(waslockingon != 0)
 	{
 		data.waslockingon = 1;
@@ -2851,8 +2851,8 @@ function playerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, shit
 		data.attackeristhief = attacker.isthief === 1;
 		data.attackerisroulette = attacker.isroulette === 1;
 		data.var_911b9b40 = attacker isremotecontrolling();
-		data.var_be469b25 = attacker isgrappling() || (isdefined(attacker.var_700a5910) && attacker.var_700a5910 + 2000 > gettime());
-		data.var_5fa4aeed = isdefined(victim.lastattackedshieldtime) && victim.lastattackedshieldtime + 500 > gettime();
+		data.var_be469b25 = attacker isgrappling() || (isdefined(attacker.var_700a5910) && (attacker.var_700a5910 + 2000) > gettime());
+		data.var_5fa4aeed = isdefined(victim.lastattackedshieldtime) && (victim.lastattackedshieldtime + 500) > gettime();
 		data.attacker_jump_begin = attacker.challenge_jump_begin;
 		data.attacker_jump_end = attacker.challenge_jump_end;
 		data.attacker_swimming_begin = attacker.challenge_swimming_begin;

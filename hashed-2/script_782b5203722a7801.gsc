@@ -155,7 +155,7 @@ function function_51f76fdb(inflictor, attacker, damage, flags, smeansofdeath, we
 		}
 		self.instakill_func = &function_b0477b86;
 	}
-	else if(self.instakill_func === &function_b0477b86)
+	else if(self.instakill_func === (&function_b0477b86))
 	{
 		self.instakill_func = undefined;
 	}
@@ -521,7 +521,7 @@ function function_c805f2f9(params)
 	}
 	if(player.var_7cfd8159.size >= 2)
 	{
-		var_f0aeb173 = player.var_7cfd8159.size - 2 + 1;
+		var_f0aeb173 = (player.var_7cfd8159.size - 2) + 1;
 		for(i = 0; i < var_f0aeb173; i++)
 		{
 			ai_zombie = player.var_7cfd8159[i];
@@ -824,7 +824,7 @@ function function_e1c4ab06(params)
 				/#
 					if(isalive(ai) && !isdefined(ai.maxhealth) && isdefined(ai.archetype))
 					{
-						iprintlnbold("" + function_9e72a96(ai.archetype) + "");
+						iprintlnbold(("" + function_9e72a96(ai.archetype)) + "");
 					}
 				#/
 				if(isalive(ai) && isdefined(ai.maxhealth))
@@ -1133,7 +1133,7 @@ function function_b3ac0cab(params)
 	/#
 		if(!isdefined(self.maxhealth) && isdefined(self.archetype))
 		{
-			iprintlnbold("" + function_9e72a96(self.archetype) + "");
+			iprintlnbold(("" + function_9e72a96(self.archetype)) + "");
 		}
 	#/
 	n_damage = 0;
@@ -1143,7 +1143,7 @@ function function_b3ac0cab(params)
 	}
 	else if(isdefined(self.maxhealth))
 	{
-		var_56334cba = var_a3abe438 - level.round_number - 23 * var_a7727af5 / 100;
+		var_56334cba = var_a3abe438 - (((level.round_number - 23) * var_a7727af5) / 100);
 		var_56334cba = math::clamp(var_56334cba, 0.01, 1);
 		n_damage = int(self.maxhealth * var_56334cba);
 	}
@@ -1171,7 +1171,7 @@ function function_62d37304(weapon)
 	if(level flagsys::get(#"hash_cad6742c753621"))
 	{
 		v_start = self getweaponmuzzlepoint();
-		v_end = v_start + self getweaponforwarddir() * 1000;
+		v_end = v_start + (self getweaponforwarddir() * 1000);
 		s_trace = bullettrace(v_start, v_end, 0, self);
 		level notify(#"hash_1720dddfc9bf0b2f", {#position:s_trace[#"position"], #player:self});
 	}
@@ -1183,7 +1183,7 @@ function function_62d37304(weapon)
 			{
 				continue;
 			}
-			if(var_5f7ab57f.onfizzleout === &function_74106de1)
+			if(var_5f7ab57f.onfizzleout === (&function_74106de1))
 			{
 				continue;
 			}

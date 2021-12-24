@@ -61,7 +61,7 @@ function callback_playerdisconnect()
 	if(isdefined(self.score) && isdefined(self.pers) && isdefined(self.pers[#"team"]))
 	{
 		/#
-			print("" + self.pers[#"team"] + "" + self.score);
+			print((("" + self.pers[#"team"]) + "") + self.score);
 		#/
 		level.dropteam = level.dropteam + 1;
 	}
@@ -146,7 +146,7 @@ private function function_79915d44()
 		assert(isdefined(nemesisname), "" + self.name);
 	#/
 	/#
-		assert(isstring(nemesisname), "" + nemesisname + "" + self.name);
+		assert(isstring(nemesisname), (("" + nemesisname) + "") + self.name);
 	#/
 	self.pers[#"nemesis_name"] = nemesisname;
 	if(nemesisname != "")

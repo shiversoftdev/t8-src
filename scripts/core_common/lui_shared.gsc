@@ -203,7 +203,7 @@ function timer(n_time, str_endon, x = 1080, y = 200, height = 60)
 	self setluimenudata(lui, #"x", x);
 	self setluimenudata(lui, #"y", y);
 	self setluimenudata(lui, #"height", height);
-	self setluimenudata(lui, #"time", gettime() + int(n_time * 1000));
+	self setluimenudata(lui, #"time", gettime() + (int(n_time * 1000)));
 	if(isdefined(str_endon))
 	{
 		self waittill_timeout(n_time, str_endon);
@@ -403,7 +403,7 @@ private function _play_movie_for_player(str_movie, str_type, show_black_screen, 
 		default:
 		{
 			/#
-				assertmsg("" + str_type + "");
+				assertmsg(("" + str_type) + "");
 			#/
 		}
 	}
@@ -438,7 +438,7 @@ private function _play_movie_for_player(str_movie, str_type, show_black_screen, 
 				waitresult = undefined;
 				waitresult = self waittill(#"menuresponse");
 			}
-			n_total_time = float(gettime() - n_start_time) / 1000;
+			n_total_time = (float(gettime() - n_start_time)) / 1000;
 			menu = waitresult.menu;
 			response = waitresult.response;
 			if(waitresult._notify == "timeout" || (menu === hash(str_menu) && response === #"finished_movie_playback"))
@@ -1004,7 +1004,7 @@ function function_da693cbe(field_name, version, bits, type, var_59f69872 = 1)
 */
 function function_dcb34c80(var_2a0de052, field_name, version, var_59f69872 = 1)
 {
-	clientfield::function_78175813("clientuimodel", var_2a0de052, "luielement." + self.var_47e79fc + "." + field_name, version, var_59f69872);
+	clientfield::function_78175813("clientuimodel", var_2a0de052, (("luielement." + self.var_47e79fc) + ".") + field_name, version, var_59f69872);
 }
 
 /*

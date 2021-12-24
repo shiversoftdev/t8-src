@@ -595,16 +595,16 @@ function function_d7b6ee00(activator, laststate, state)
 		right = anglestoright(self.angles);
 		bounds = function_c440d28e(self.var_15d44120);
 		start = self.origin + vectorscale((0, 0, 1), 35);
-		start = start - right * bounds.mins[1] + bounds.maxs[1] * 0.5;
+		start = start - ((right * (bounds.mins[1] + bounds.maxs[1])) * 0.5);
 		if(state == 1)
 		{
-			start = start + forward * 5;
-			end = start + forward * 35;
+			start = start + (forward * 5);
+			end = start + (forward * 35);
 		}
 		else
 		{
-			start = start - forward * 5;
-			end = start - forward * 35;
+			start = start - (forward * 5);
+			end = start - (forward * 35);
 		}
 		/#
 			line(start, end, (1, 1, 1), 1, 1, 300);
@@ -651,16 +651,16 @@ function function_51a020(activator, laststate, state)
 			right = anglestoright(var_a9309589.angles);
 			bounds = function_c440d28e(var_a9309589.var_15d44120);
 			center = var_a9309589.origin + vectorscale((0, 0, 1), 25);
-			start = center + right * bounds.mins[1] * 0.85;
-			end = center + right * bounds.maxs[1] * 0.85;
+			start = center + ((right * bounds.mins[1]) * 0.85);
+			end = center + ((right * bounds.maxs[1]) * 0.85);
 			results = bullettracepassed(start, end, 0, activator);
 			if(!results)
 			{
 				return 0;
 			}
 			center = var_a9309589.origin + vectorscale((0, 0, 1), 40);
-			start = center + right * bounds.mins[1] * 0.85;
-			end = center + right * bounds.maxs[1] * 0.85;
+			start = center + ((right * bounds.mins[1]) * 0.85);
+			end = center + ((right * bounds.maxs[1]) * 0.85);
 			results = bullettracepassed(start, end, 0, activator);
 			if(!results)
 			{
@@ -700,7 +700,7 @@ private function function_724a2fa5(eventstruct)
 		return;
 	}
 	var_a852a7dd = namespace_b6ee49c3::function_bf7b8a27(dynent);
-	dynent.var_a548ec11 = gettime() + var_a852a7dd * 1000;
+	dynent.var_a548ec11 = gettime() + (var_a852a7dd * 1000);
 }
 
 /*

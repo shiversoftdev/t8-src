@@ -122,7 +122,7 @@ private function _burntag(localclientnum, tag, postfix, prefix)
 		fx_to_play = undefined;
 		if(isdefined(level.var_60a09d68) && isdefined(level.var_60a09d68[self.archetype]))
 		{
-			var_f02438b2 = prefix + tag + postfix;
+			var_f02438b2 = (prefix + tag) + postfix;
 			fx_to_play = level.var_60a09d68[self.archetype][var_f02438b2];
 			if(isdefined(fx_to_play))
 			{

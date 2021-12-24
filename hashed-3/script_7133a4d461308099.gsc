@@ -284,7 +284,7 @@ function function_3aa81e0e(activecamoinfo)
 				/#
 					if(!isdefined(stage.var_19b6044e))
 					{
-						self function_8530ef96("" + info.name + "" + function_9e72a96((isdefined(var_3594168e.var_879c8798) ? var_3594168e.var_879c8798 : "")) + "" + key);
+						self function_8530ef96(((("" + info.name) + "") + function_9e72a96((isdefined(var_3594168e.var_879c8798) ? var_3594168e.var_879c8798 : "")) + "") + key);
 					}
 					else
 					{
@@ -296,11 +296,11 @@ function function_3aa81e0e(activecamoinfo)
 						}
 						if(!isdefined(var_31567a86))
 						{
-							self function_8530ef96("" + info.name + "" + stage.var_19b6044e + "" + key);
+							self function_8530ef96((((("" + info.name) + "") + stage.var_19b6044e) + "") + key);
 						}
 						else if(!isdefined(var_31567a86.name) || var_31567a86.name != info.name)
 						{
-							self function_8530ef96("" + info.name + "" + stage.var_19b6044e + "" + (isdefined(var_31567a86.name) ? var_31567a86.name : "") + "" + key);
+							self function_8530ef96(((((("" + info.name) + "") + stage.var_19b6044e) + "") + (isdefined(var_31567a86.name) ? var_31567a86.name : "") + "") + key);
 						}
 					}
 				#/
@@ -854,7 +854,7 @@ function function_896ac347(var_8659b480, statname, value)
 			{
 				/#
 					/#
-						assertmsg("" + function_9e72a96(activecamo.baseweapon.name) + "");
+						assertmsg(("" + function_9e72a96(activecamo.baseweapon.name)) + "");
 					#/
 				#/
 				return;
@@ -1091,7 +1091,7 @@ function function_b9119037(activecamo)
 			if(stage.var_dd54a13b[activecamo.baseweapon].statvalue >= stage.info.var_e2dbd42d)
 			{
 				stage.var_dd54a13b[activecamo.baseweapon].cleared = 1;
-				if(activecamo.info.var_9ae5a2b8 === 1 && var_d1a848d9 == activecamo.stages.size - 1)
+				if(activecamo.info.var_9ae5a2b8 === 1 && var_d1a848d9 == (activecamo.stages.size - 1))
 				{
 					var_c70461e6 = 1;
 					break;
@@ -1239,7 +1239,7 @@ function function_d2f57b97(activecamo, var_d1a848d9)
 		self function_bd3cce02(activecamo.weapon, setstage.info.var_19b6044e);
 	}
 	/#
-		self debug_print("" + activecamo.info.name + "" + var_d1a848d9 + "" + (isdefined(setstage.info.info.var_19b6044e) ? setstage.info.var_19b6044e : ""));
+		self debug_print((((("" + activecamo.info.name) + "") + var_d1a848d9) + "") + (isdefined(setstage.info.info.var_19b6044e) ? setstage.info.var_19b6044e : ""));
 	#/
 	self thread function_a80cb651(activecamo, var_d1a848d9);
 	return 1;
@@ -1320,8 +1320,8 @@ function function_8530ef96(message, weapon)
 			{
 				weaponname = "" + function_9e72a96(weapon.name);
 			}
-			self iprintlnbold("" + message + weaponname);
-			println("" + self.playername + "" + message + weaponname);
+			self iprintlnbold(("" + message) + weaponname);
+			println(((("" + self.playername) + "") + message) + weaponname);
 		}
 	#/
 }
@@ -1345,8 +1345,8 @@ function debug_print(message, weapon)
 			{
 				weaponname = "" + function_9e72a96(weapon.name);
 			}
-			self iprintlnbold("" + message + weaponname);
-			println("" + self.playername + "" + message + weaponname);
+			self iprintlnbold(("" + message) + weaponname);
+			println(((("" + self.playername) + "") + message) + weaponname);
 		}
 	#/
 }
@@ -1458,7 +1458,7 @@ function devgui_player_disconnect()
 			return;
 		}
 		root = level.var_630fbd77 + "";
-		cmd = "" + root + self.playername + "";
+		cmd = (("" + root) + self.playername) + "";
 		thread util::function_345e5b9a(cmd);
 	#/
 }
@@ -1475,7 +1475,7 @@ function devgui_player_disconnect()
 function devgui_add_player_commands(root, pname, index)
 {
 	/#
-		add_cmd_with_root = "" + root + pname + "";
+		add_cmd_with_root = (("" + root) + pname) + "";
 		pid = "" + index;
 		function_f1d01720(add_cmd_with_root, index);
 		function_85cb822d(add_cmd_with_root, index);
@@ -1496,7 +1496,7 @@ function devgui_add_player_commands(root, pname, index)
 function function_1039ce5c(root)
 {
 	/#
-		cmd = root + "" + "";
+		cmd = (root + "") + "";
 		thread util::function_345e5b9a(cmd);
 	#/
 }
@@ -1518,11 +1518,11 @@ function function_f1d01720(root, index)
 		{
 			index = 0;
 		}
-		cmd = root + "" + "" + index + "";
+		cmd = (((root + "") + "") + index) + "";
 		thread util::function_345e5b9a(cmd);
-		cmd = root + "" + "" + index + "";
+		cmd = (((root + "") + "") + index) + "";
 		thread util::function_345e5b9a(cmd);
-		cmd = root + "" + "" + index + "";
+		cmd = (((root + "") + "") + index) + "";
 		thread util::function_345e5b9a(cmd);
 	#/
 }
@@ -1548,7 +1548,7 @@ function function_85cb822d(root, index)
 		foreach(activecamo in activecamos)
 		{
 			activecamoname = function_9e72a96(activecamo);
-			cmd = var_37949de1 + activecamoname + "" + activecamoname + "" + index + "";
+			cmd = (((((var_37949de1 + activecamoname) + "") + activecamoname) + "") + index) + "";
 			thread util::function_345e5b9a(cmd);
 		}
 	#/
@@ -1578,7 +1578,7 @@ function function_de358bfd(root, index)
 		weapons[3] = "";
 		foreach(weapon in weapons)
 		{
-			cmd = var_1520a1da + weapon + "" + weapon + "" + index + "";
+			cmd = (((((var_1520a1da + weapon) + "") + weapon) + "") + index) + "";
 			thread util::function_345e5b9a(cmd);
 		}
 	#/
@@ -1604,7 +1604,7 @@ function function_50d79d31(root, index)
 		stages = [9:9, 8:8, 7:7, 6:6, 5:5, 4:4, 3:3, 2:2, 1:1, 0:0];
 		foreach(stage in stages)
 		{
-			cmd = var_82c49718 + stage + "" + stage + "" + index + "";
+			cmd = (((((var_82c49718 + stage) + "") + stage) + "") + index) + "";
 			thread util::function_345e5b9a(cmd);
 		}
 	#/
@@ -1896,11 +1896,11 @@ function function_633fbf17(weapon, back)
 						var_ee939e0c = (isdefined(activecamo.var_dd54a13b[activecamo.var_dd54a13b[activecamo.baseweapon].baseweapon].var_d1a848d9) ? activecamo.var_dd54a13b[activecamo.baseweapon].var_d1a848d9 : -1);
 						if(back)
 						{
-							var_632b0128 = var_ee939e0c - 1 + activecamo.stages.size % activecamo.stages.size;
+							var_632b0128 = ((var_ee939e0c - 1) + activecamo.stages.size) % activecamo.stages.size;
 						}
 						else
 						{
-							var_632b0128 = var_ee939e0c + 1 % activecamo.stages.size;
+							var_632b0128 = (var_ee939e0c + 1) % activecamo.stages.size;
 						}
 						self function_779a9561(var_632b0128);
 					}

@@ -424,7 +424,7 @@ private function function_1bd1ebe7(entity)
 */
 private function function_3006441d(entity)
 {
-	if(!isdefined(entity.var_722a34a3) || !isdefined(entity.var_52e3b294) || distancesquared(entity.var_52e3b294, entity.origin) > 10 * 10)
+	if(!isdefined(entity.var_722a34a3) || !isdefined(entity.var_52e3b294) || distancesquared(entity.var_52e3b294, entity.origin) > (10 * 10))
 	{
 		return 0;
 	}
@@ -504,7 +504,7 @@ private function function_3bda3c55(entity)
 */
 private function function_f4a61e6a(entity)
 {
-	entity.var_96b5e3f1 = gettime() + int(entity ai::function_9139c839().var_d5427206 * 1000);
+	entity.var_96b5e3f1 = gettime() + (int(entity ai::function_9139c839().var_d5427206 * 1000));
 }
 
 /*
@@ -753,7 +753,7 @@ function function_b510a832()
 	{
 		for(i = 0; i < self.patrol_path.path.size; i++)
 		{
-			var_cf88d3eb = self.patrol_path.path[start_index + i % self.patrol_path.path.size];
+			var_cf88d3eb = self.patrol_path.path[(start_index + i) % self.patrol_path.path.size];
 			next_goal = getclosestpointonnavmesh(var_cf88d3eb.origin, 100, self getpathfindingradius());
 			if(!isdefined(next_goal))
 			{

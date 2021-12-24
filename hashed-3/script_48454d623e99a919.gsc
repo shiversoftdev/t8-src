@@ -216,7 +216,7 @@ function function_7374e868(weapon)
 			{
 				n_ammo_max = n_ammo_max * 2;
 			}
-			if(var_b8624c26 >= n_ammo_max + n_clip_size + var_5916b9ab)
+			if(var_b8624c26 >= ((n_ammo_max + n_clip_size) + var_5916b9ab))
 			{
 				var_cd9d17e0 = 0;
 			}
@@ -289,7 +289,7 @@ function give_clip_of_ammo(w_weapon)
 	{
 		n_clip = w_weapon.clipsize;
 	}
-	n_stock = int(min(n_pool, var_df670713 - var_98f6dae8 + n_clip));
+	n_stock = int(min(n_pool, (var_df670713 - var_98f6dae8) + n_clip));
 	self setweaponammostock(w_weapon, n_stock);
 }
 

@@ -419,7 +419,7 @@ function function_4b5c96a0()
 	if(level.var_9b517372 == 0)
 	{
 		level notify(#"combat_training_started");
-		n_bomb_timer = int(gettime() + 1000 + int(40 * 1000));
+		n_bomb_timer = int((gettime() + 1000) + (int(40 * 1000)));
 		setbombtimer("A", n_bomb_timer);
 		setmatchflag("bomb_timer_a", 1);
 		level thread namespace_64a487a9::activate_bots(15, #"axis");

@@ -211,7 +211,7 @@ function function_c3eed624()
 	if(self function_490dc3d3())
 	{
 		forward = anglestoforward(self.angles);
-		origin = origin + forward * self function_85d25868();
+		origin = origin + (forward * self function_85d25868());
 		origin = origin - (0, 0, (isdefined(self.var_2d23ee07) ? self.var_2d23ee07 : 0));
 	}
 	return origin;
@@ -246,7 +246,7 @@ function last_valid_position()
 			continue;
 		}
 		var_fab0ffd6 = self getpathfindingradius();
-		if(distance2dsquared(origin, self.last_valid_position) < var_fab0ffd6 * var_fab0ffd6 && origin[2] - self.last_valid_position[2] * origin[2] - self.last_valid_position[2] < 16 * 16)
+		if(distance2dsquared(origin, self.last_valid_position) < (var_fab0ffd6 * var_fab0ffd6) && (origin[2] - self.last_valid_position[2]) * (origin[2] - self.last_valid_position[2]) < (16 * 16))
 		{
 			wait(0.1);
 			continue;
@@ -255,7 +255,7 @@ function last_valid_position()
 		{
 			self.last_valid_position = origin;
 		}
-		else if(!ispointonnavmesh(origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(origin, self.last_valid_position) < 32 * 32)
+		else if(!ispointonnavmesh(origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(origin, self.last_valid_position) < (32 * 32))
 		{
 			wait(0.1);
 			continue;

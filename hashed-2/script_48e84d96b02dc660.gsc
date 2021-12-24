@@ -70,7 +70,7 @@ function function_7a81018e()
 	self.vehaircraftcollisionenabled = 1;
 	self.var_94e2cf87 = 1;
 	self.settings = struct::get_script_bundle("vehiclecustomsettings", self.scriptbundlesettings);
-	self.var_ec0d66ce = 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax;
+	self.var_ec0d66ce = 0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
 	self.var_ff6d7c88 = self.var_ec0d66ce * self.var_ec0d66ce;
 	self.vehaircraftcollisionenabled = 0;
 	self.ai.var_88b0fd29 = gettime();
@@ -364,16 +364,16 @@ function function_789652f2(origin, owner, innerradius, outerradius, halfheight, 
 function function_ede09a4e(leader)
 {
 	protectdest = undefined;
-	var_8c46694c = anglestoforward(leader.angles) * -1 * 125;
+	var_8c46694c = (anglestoforward(leader.angles) * -1) * 125;
 	if(self.formation == "right")
 	{
 		var_7a1bb341 = anglestoright(leader.angles) * 125;
 	}
 	else
 	{
-		var_7a1bb341 = anglestoright(leader.angles) * -1 * 125;
+		var_7a1bb341 = (anglestoright(leader.angles) * -1) * 125;
 	}
-	var_b4debf4a = leader.origin + var_8c46694c + var_7a1bb341;
+	var_b4debf4a = (leader.origin + var_8c46694c) + var_7a1bb341;
 	goalpos = self getclosestpointonnavvolume(var_b4debf4a, 2000);
 	if(!isdefined(goalpos))
 	{
@@ -411,21 +411,21 @@ function function_b0c75ada(leader)
 		assert(isdefined(leader));
 	#/
 	distsq = distancesquared(self.origin, self.leader.origin);
-	if(distsq <= 125 * 125)
+	if(distsq <= (125 * 125))
 	{
 		return undefined;
 	}
 	protectdest = undefined;
-	var_8c46694c = anglestoforward(leader.angles) * -1 * 125;
+	var_8c46694c = (anglestoforward(leader.angles) * -1) * 125;
 	if(self.formation == "right")
 	{
 		var_7a1bb341 = anglestoright(leader.angles) * 125;
 	}
 	else
 	{
-		var_7a1bb341 = anglestoright(leader.angles) * -1 * 125;
+		var_7a1bb341 = (anglestoright(leader.angles) * -1) * 125;
 	}
-	var_b4debf4a = leader.origin + var_8c46694c + var_7a1bb341;
+	var_b4debf4a = (leader.origin + var_8c46694c) + var_7a1bb341;
 	groundpos = getclosestpointonnavmesh(var_b4debf4a, 10000);
 	if(isdefined(groundpos))
 	{
@@ -595,7 +595,7 @@ function function_9bbb40ab(einflictor, eattacker, idamage, idflags, smeansofdeat
 			self notify(#"emped", {#param2:einflictor, #param1:eattacker, #param0:randomfloatrange(minempdowntime, maxempdowntime)});
 		}
 	}
-	emp_damage = self.healthdefault * 0.5 + 0.5;
+	emp_damage = (self.healthdefault * 0.5) + 0.5;
 	idamage = killstreaks::ondamageperweapon("drone_squadron", eattacker, idamage, idflags, smeansofdeath, weapon, self.maxhealth, &destroyed_cb, self.maxhealth * 0.4, &low_health_cb, emp_damage, undefined, 1, 1);
 	if(isdefined(weapon))
 	{

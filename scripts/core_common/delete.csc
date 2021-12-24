@@ -24,7 +24,7 @@ event main(eventstruct)
 				if(self.classname == "" || self.classname == "" || self.classname == "")
 				{
 					println("");
-					println("" + self getentitynumber() + "" + self.origin);
+					println((("" + self getentitynumber()) + "") + self.origin);
 					println("");
 				}
 			}

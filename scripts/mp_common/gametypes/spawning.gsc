@@ -30,11 +30,11 @@ function getteamstartspawnname(team, spawnpointnamebase)
 		if(!util::isoneround())
 		{
 			number = int(getsubstr(spawn_point_team_name, 4, 5)) - 1;
-			number = number + game.roundsplayed % level.teams.size + 1;
+			number = ((number + game.roundsplayed) % level.teams.size) + 1;
 			spawn_point_team_name = "team" + number;
 		}
 	}
-	return spawnpointnamebase + "_" + spawn_point_team_name + "_start";
+	return ((spawnpointnamebase + "_") + spawn_point_team_name) + "_start";
 }
 
 /*

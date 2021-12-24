@@ -853,17 +853,17 @@ function function_4fe7d9d5()
 		if(v_offset[0])
 		{
 			v_side = anglestoforward(v_angles);
-			v_pos = v_pos + v_offset[0] * v_side;
+			v_pos = v_pos + (v_offset[0] * v_side);
 		}
 		if(v_offset[1])
 		{
 			v_dir = anglestoright(v_angles);
-			v_pos = v_pos + v_offset[1] * v_dir;
+			v_pos = v_pos + (v_offset[1] * v_dir);
 		}
 		if(v_offset[2])
 		{
 			v_up = anglestoup(v_angles);
-			v_pos = v_pos + v_offset[2] * v_up;
+			v_pos = v_pos + (v_offset[2] * v_up);
 		}
 	}
 	return v_pos;
@@ -1082,7 +1082,7 @@ function init_trigger(v_offset, n_radius)
 		}
 		else
 		{
-			self.m_e_trigger = spawn("trigger_radius", v_pos, 16384 | 4096 | 16 | 512, n_radius, self.m_n_trigger_height);
+			self.m_e_trigger = spawn("trigger_radius", v_pos, ((16384 | 4096) | 16) | 512, n_radius, self.m_n_trigger_height);
 		}
 	}
 	if(isdefined(self.m_s_bundle.var_e182494f) && self.m_s_bundle.var_e182494f)
@@ -1258,17 +1258,17 @@ function calculate_offset_position(v_origin, v_angles, v_offset)
 	if(v_offset[0])
 	{
 		v_side = anglestoforward(v_angles);
-		v_pos = v_pos + v_offset[0] * v_side;
+		v_pos = v_pos + (v_offset[0] * v_side);
 	}
 	if(v_offset[1])
 	{
 		v_dir = anglestoright(v_angles);
-		v_pos = v_pos + v_offset[1] * v_dir;
+		v_pos = v_pos + (v_offset[1] * v_dir);
 	}
 	if(v_offset[2])
 	{
 		v_up = anglestoup(v_angles);
-		v_pos = v_pos + v_offset[2] * v_up;
+		v_pos = v_pos + (v_offset[2] * v_up);
 	}
 	return v_pos;
 }
@@ -2225,7 +2225,7 @@ function trigger_wait_until_clear(c_door)
 			last_trigger_time = time;
 		}
 		var_39533c4 = 0;
-		dt = float(time - last_trigger_time) / 1000;
+		dt = (float(time - last_trigger_time)) / 1000;
 		if(dt >= 0.3)
 		{
 			var_39533c4 = 1;

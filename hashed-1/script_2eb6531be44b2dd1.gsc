@@ -45,12 +45,12 @@ function __init__()
 */
 function adjust_side_death_dir_if_trace_fail(origin, side_dir, fxlength, up_dir)
 {
-	end = origin + side_dir * fxlength;
+	end = origin + (side_dir * fxlength);
 	trace = bullettrace(origin, end, 0, self);
 	if(trace[#"fraction"] < 1)
 	{
 		new_side_dir = vectornormalize(side_dir + up_dir);
-		end = origin + new_side_dir * fxlength;
+		end = origin + (new_side_dir * fxlength);
 		new_trace = bullettrace(origin, end, 0, self);
 		if(new_trace[#"fraction"] > trace[#"fraction"])
 		{
@@ -91,10 +91,10 @@ function do_side_death_fx(localclientnum, oldval, newval, bnewent, binitialsnap,
 		}
 		right_direction = vectorcross(forward_direction, up_direction);
 		right_direction = vectornormalize(right_direction);
-		right_start = origin + right_direction * radius;
+		right_start = origin + (right_direction * radius);
 		right_direction = adjust_side_death_dir_if_trace_fail(right_start, right_direction, fxlength, up_direction);
 		left_direction = right_direction * -1;
-		left_start = origin + left_direction * radius;
+		left_start = origin + (left_direction * radius);
 		left_direction = adjust_side_death_dir_if_trace_fail(left_start, left_direction, fxlength, up_direction);
 		if(isdefined(self.settings.sideexplosionfx))
 		{

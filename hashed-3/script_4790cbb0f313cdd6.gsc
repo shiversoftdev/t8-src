@@ -109,10 +109,10 @@ event function_3981d015(eventstruct)
 				gametime = gettime();
 				if(isdefined(newstate.var_e23400ad) && newstate.var_e23400ad)
 				{
-					gametime = gametime + abs(dynent.origin[0] + dynent.origin[1] + dynent.origin[2]);
+					gametime = gametime + (abs((dynent.origin[0] + dynent.origin[1]) + dynent.origin[2]));
 				}
 				animlength = int(getanimlength(newstate.var_879eb2ff) * 1000);
-				starttime = gametime / animlength / rate;
+				starttime = gametime / (animlength / rate);
 				starttime = starttime - int(starttime);
 			}
 			else if(teleport && !isanimlooping(0, newstate.var_879eb2ff))

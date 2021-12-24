@@ -160,7 +160,7 @@ private function function_848ff0cc(elephant, rider)
 				distsq = distancesquared(elephant.origin, struct.origin);
 				if(distsq > 200 * 200)
 				{
-					if(util::within_fov(rider.origin + vectorscale((0, 0, -1), 40), rider.angles, struct.origin, cos(70)))
+					if(util::within_fov(rider.origin + (vectorscale((0, 0, -1), 40)), rider.angles, struct.origin, cos(70)))
 					{
 						array::add(var_acbadbe9, struct);
 					}
@@ -317,13 +317,13 @@ function function_7b10e526(index, multival, target)
 	normal = vectornormalize(target.origin - self.origin);
 	pitch = randomfloatrange(15, 30);
 	var_a978e158 = randomfloatrange(-10, 10);
-	yaw = -180 + 360 / multival * index + var_a978e158;
+	yaw = -180 + ((360 / multival) * index) + var_a978e158;
 	angles = (pitch * -1, yaw, 0);
 	dir = anglestoforward(angles);
 	c = vectorcross(normal, dir);
 	f = vectorcross(c, normal);
 	theta = 90 - pitch;
-	dir = normal * cos(theta) + f * sin(theta);
+	dir = (normal * cos(theta)) + (f * sin(theta));
 	dir = vectornormalize(dir);
 	return dir;
 }
@@ -355,14 +355,14 @@ private function function_d13a21cb(entity, projectile)
 	{
 		var_e2e956c1 = randomintrange(120, 360);
 		var_a978e158 = randomfloatrange(-10, 10);
-		yaw = -180 + 72 * i + var_a978e158;
+		yaw = -180 + (72 * i) + var_a978e158;
 		angles = (0, yaw, 0);
 		dir = anglestoforward(angles) * var_e2e956c1;
 		var_c6b637a5 = landpos + dir;
 		/#
 			recordsphere(var_c6b637a5, 15, (1, 0.5, 0), "");
 		#/
-		launchvelocity = vectornormalize(var_c6b637a5 - projectile.origin) * 1400;
+		launchvelocity = (vectornormalize(var_c6b637a5 - projectile.origin)) * 1400;
 		grenade = entity magicmissile(entity.ai.var_a05929e4, projectile.origin, launchvelocity);
 		grenade thread function_7d162bd0(grenade);
 	}
@@ -412,11 +412,11 @@ private function function_7d162bd0(projectile, var_e15d8b1f, var_c3f91959)
 			{
 				if(isdefined(var_c3f91959))
 				{
-					aoe = zm_aoe::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + vectorscale((0, 0, -1), 100000), 0, projectile)[#"position"], var_c3f91959);
+					aoe = zm_aoe::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + (vectorscale((0, 0, -1), 100000)), 0, projectile)[#"position"], var_c3f91959);
 				}
 				else
 				{
-					aoe = zm_aoe::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + vectorscale((0, 0, -1), 100000), 0, projectile)[#"position"]);
+					aoe = zm_aoe::function_371b4147(id, var_f34f8a95, groundtrace(result.position + vectorscale((0, 0, 1), 8), result.position + (vectorscale((0, 0, -1), 100000)), 0, projectile)[#"position"]);
 				}
 			}
 			var_a5a1f99c = getaiarchetypearray(#"zombie");

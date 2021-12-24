@@ -210,7 +210,7 @@ function play_blood(localclientnum)
 	{
 		self.var_2ba49f48.var_dcb0fc42++;
 	}
-	var_61187e1e = 1 - self.var_2ba49f48.var_dcb0fc42 * 0.05;
+	var_61187e1e = 1 - (self.var_2ba49f48.var_dcb0fc42 * 0.05);
 	function_4238734d(localclientnum, #"hash_4bc228d5f3bcffe5", "Sprite Count Squash", var_61187e1e);
 	self thread watch_timeout(localclientnum);
 }
@@ -250,7 +250,7 @@ function function_2789edf8(currenttime, elapsedtime, localclientnum, duration)
 	percent = 1;
 	if(duration > 0)
 	{
-		percent = 1 - elapsedtime / duration;
+		percent = 1 - (elapsedtime / duration);
 	}
 	function_4238734d(localclientnum, #"hash_4bc228d5f3bcffe5", "Opacity", percent);
 }

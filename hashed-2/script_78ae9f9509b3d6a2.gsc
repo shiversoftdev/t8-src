@@ -210,7 +210,7 @@ private function function_93b89303(localclientnum)
 					}
 					if(distancesquared(enemy_player.origin, player.origin) < 25000000)
 					{
-						if(isdefined(enemy_player.var_7c34933) && enemy_player.var_7c34933 + 1500 > gettime())
+						if(isdefined(enemy_player.var_7c34933) && (enemy_player.var_7c34933 + 1500) > gettime())
 						{
 							var_81279b22[enemy_player.var_cbe9b5b4] = enemy_player.var_cbe9b5b4;
 							continue;
@@ -275,7 +275,7 @@ private function function_93b89303(localclientnum)
 */
 function function_4fec33b5(clientnum, value)
 {
-	var_ff5f6756 = "Clients." + clientnum + ".hasCash";
+	var_ff5f6756 = ("Clients." + clientnum) + ".hasCash";
 	var_45d5c75f = createuimodel(getglobaluimodel(), var_ff5f6756);
 	setuimodelvalue(var_45d5c75f, value);
 }

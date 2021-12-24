@@ -203,7 +203,7 @@ private function function_2d44c54f(points)
 	else
 	{
 		new_points = [];
-		for(i = 0; i < points.size / 2 + 1; i++)
+		for(i = 0; i < (points.size / 2) + 1; i++)
 		{
 			if(!isdefined(new_points))
 			{
@@ -266,11 +266,11 @@ function get_point_of_interest()
 	}
 	var_c951a2c2 = distance(ai_target.origin, var_56bd1bef);
 	var_3ac8b299 = distance(objective_target.origin, var_56bd1bef);
-	if(var_c951a2c2 + var_3ac8b299 == 0)
+	if((var_c951a2c2 + var_3ac8b299) == 0)
 	{
 		return level.mapcenter;
 	}
-	var_3d454e88 = var_c951a2c2 / var_c951a2c2 + var_3ac8b299;
+	var_3d454e88 = var_c951a2c2 / (var_c951a2c2 + var_3ac8b299);
 	origin = vectorlerp(ai_target.origin, objective_target.origin, var_3d454e88);
 	return origin;
 }
@@ -470,17 +470,17 @@ function function_11d6df2c()
 	}
 	if(isdefined(self.ai.escort.var_8d8186ad))
 	{
-		if(distancesquared(self.ai.escort.var_8d8186ad, var_56bd1bef) >= self.ai.escort.var_5a529222 * self.ai.escort.var_5a529222)
+		if(distancesquared(self.ai.escort.var_8d8186ad, var_56bd1bef) >= (self.ai.escort.var_5a529222 * self.ai.escort.var_5a529222))
 		{
 			return 1;
 		}
 	}
-	else if(distancesquared(self.origin, var_56bd1bef) >= self.ai.escort.var_5a529222 * self.ai.escort.var_5a529222)
+	else if(distancesquared(self.origin, var_56bd1bef) >= (self.ai.escort.var_5a529222 * self.ai.escort.var_5a529222))
 	{
 		return 1;
 	}
 	var_56bd1bef = self function_14457965();
-	if(isdefined(var_56bd1bef) && isdefined(self.ai.escort.var_e48a6ca) && gettime() > self.ai.escort.var_e48a6ca + randomintrange(3000, 4000))
+	if(isdefined(var_56bd1bef) && isdefined(self.ai.escort.var_e48a6ca) && gettime() > (self.ai.escort.var_e48a6ca + randomintrange(3000, 4000)))
 	{
 		if(isdefined(self.script_owner) && isdefined(self.script_owner.angles))
 		{
@@ -492,9 +492,9 @@ function function_11d6df2c()
 	}
 	if(isdefined(self.ai.escort.var_8d8186ad) && isdefined(self.ai.escort.var_e48a6ca) && !self haspath())
 	{
-		if(isdefined(var_56bd1bef) && gettime() > self.ai.escort.var_e48a6ca + randomintrange(10000, 12000))
+		if(isdefined(var_56bd1bef) && gettime() > (self.ai.escort.var_e48a6ca + randomintrange(10000, 12000)))
 		{
-			if(distancesquared(self.ai.escort.var_8d8186ad, var_56bd1bef) <= 350 * 350)
+			if(distancesquared(self.ai.escort.var_8d8186ad, var_56bd1bef) <= (350 * 350))
 			{
 				self.ai.var_82cafa78 = 1;
 				return 1;

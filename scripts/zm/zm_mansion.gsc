@@ -670,7 +670,7 @@ function function_5a39ced2(str_type)
 				if(isdefined(player.var_ab7f1fb))
 				{
 					/#
-						player.var_ab7f1fb settext("" + level.var_8442091f + "");
+						player.var_ab7f1fb settext(("" + level.var_8442091f) + "");
 					#/
 				}
 			}
@@ -683,7 +683,7 @@ function function_5a39ced2(str_type)
 				if(isdefined(player.var_ab7f1fb))
 				{
 					/#
-						player.var_ab7f1fb settext("" + level.var_6930d2fd + "");
+						player.var_ab7f1fb settext(("" + level.var_6930d2fd) + "");
 					#/
 				}
 			}
@@ -751,7 +751,7 @@ function function_ea36bce3(str_weapon)
 			if(isdefined(player.var_ab7f1fb))
 			{
 				/#
-					player.var_ab7f1fb settext("" + level.var_6930d2fd + "");
+					player.var_ab7f1fb settext(("" + level.var_6930d2fd) + "");
 				#/
 			}
 		}
@@ -1430,7 +1430,7 @@ function function_2d164b86()
 	var_c712b3e9 setmodel(#"hash_57d5802b9383f9c7");
 	var_c712b3e9 clientfield::set("" + #"hash_65180cdab951d111", 3);
 	var_8a281f69 = getvehiclenode("power_on_projectile_path_1", "targetname");
-	v_pos = var_8a281f69.origin + vectorscale((0, 0, -1), 16);
+	v_pos = var_8a281f69.origin + (vectorscale((0, 0, -1), 16));
 	var_c712b3e9 moveto(v_pos, 1.5, 1, 0.5);
 	var_c712b3e9 waittill(#"movedone");
 	if(isalive(var_d11a4648))
@@ -1858,7 +1858,7 @@ function function_af65fe93(var_79bf62e6)
 		return;
 	}
 	str_loc = var_79bf62e6.stub.script_string;
-	s_loc = struct::get(str_loc + "_end_" + namespace_c05f06c7::get_player_index(self));
+	s_loc = struct::get((str_loc + "_end_") + namespace_c05f06c7::get_player_index(self));
 	self util::create_streamer_hint(s_loc.origin, s_loc.angles, 1);
 	self util::delay("fasttravel_over", "disconnect", &util::clear_streamer_hint);
 }

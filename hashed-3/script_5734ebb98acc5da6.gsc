@@ -425,17 +425,17 @@ event function_3981d015(eventstruct)
 							{
 								case "nixie_tube_1":
 								{
-									player.var_75910156 = player.var_75910156 + 1 % 10;
+									player.var_75910156 = (player.var_75910156 + 1) % 10;
 									break;
 								}
 								case "nixie_tube_2":
 								{
-									player.var_ea3eeab0 = player.var_ea3eeab0 + 1 % 10;
+									player.var_ea3eeab0 = (player.var_ea3eeab0 + 1) % 10;
 									break;
 								}
 								case "nixie_tube_3":
 								{
-									player.var_dc054e3d = player.var_dc054e3d + 1 % 10;
+									player.var_dc054e3d = (player.var_dc054e3d + 1) % 10;
 									break;
 								}
 							}
@@ -510,7 +510,7 @@ function function_c1cc29be(var_64c09f7f, dynent)
 			var_64c09f7f function_172e72fa();
 			if(var_954ac27a)
 			{
-				var_d46a1171 = "" + var_8171dd3a + var_8dfff656 + var_44e1e41b;
+				var_d46a1171 = (("" + var_8171dd3a) + var_8dfff656) + var_44e1e41b;
 				var_64c09f7f thread function_a5d20d9b(var_d46a1171);
 				if(var_d46a1171 == "115")
 				{

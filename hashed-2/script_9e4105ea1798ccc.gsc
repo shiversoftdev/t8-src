@@ -242,7 +242,7 @@ function damage(n_damage, mod_type, e_attacker)
 		var_2a0d4230 = self get(var_b12ac727);
 		if(var_2a0d4230 > var_ee47fd1b)
 		{
-			var_34ada56f = var_2a0d4230 - var_ee47fd1b - var_c5aebd9f;
+			var_34ada56f = var_2a0d4230 - (var_ee47fd1b - var_c5aebd9f);
 			self.var_9555ebfb[var_b12ac727] = var_34ada56f;
 			var_c5aebd9f = var_c5aebd9f + var_ee47fd1b;
 			n_index++;

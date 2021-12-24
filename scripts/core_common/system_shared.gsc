@@ -17,7 +17,7 @@ function register(str_name, func_preinit, func_postinit, reqs)
 	if(isdefined(level.system_funcs) && isdefined(level.system_funcs[str_name]))
 	{
 		/#
-			assert(level.system_funcs[str_name].ignore, "" + function_9e72a96(str_name) + "");
+			assert(level.system_funcs[str_name].ignore, ("" + function_9e72a96(str_name)) + "");
 		#/
 		return;
 	}
@@ -81,7 +81,7 @@ function function_5095b2c6(func)
 			foreach(req in func.reqs)
 			{
 				/#
-					assert(isdefined(req), "" + req + "");
+					assert(isdefined(req), ("" + req) + "");
 				#/
 				thread exec_post_system(level.system_funcs[req]);
 			}
@@ -89,7 +89,7 @@ function function_5095b2c6(func)
 		else
 		{
 			/#
-				assert(isdefined(level.system_funcs[func.reqs]), "" + (function_7a600918(func.reqs) ? function_9e72a96(func.reqs) : func.reqs) + "");
+				assert(isdefined(level.system_funcs[func.reqs]), ("" + (function_7a600918(func.reqs) ? function_9e72a96(func.reqs) : func.reqs)) + "");
 			#/
 			thread exec_post_system(level.system_funcs[func.reqs]);
 		}
@@ -160,7 +160,7 @@ function function_8dfa23e0(func)
 			foreach(req in func.reqs)
 			{
 				/#
-					assert(isdefined(req), "" + req + "");
+					assert(isdefined(req), ("" + req) + "");
 				#/
 				thread exec_pre_system(level.system_funcs[req]);
 			}
@@ -168,7 +168,7 @@ function function_8dfa23e0(func)
 		else
 		{
 			/#
-				assert(isdefined(level.system_funcs[func.reqs]), "" + (function_7a600918(func.reqs) ? function_9e72a96(func.reqs) : func.reqs) + "");
+				assert(isdefined(level.system_funcs[func.reqs]), ("" + (function_7a600918(func.reqs) ? function_9e72a96(func.reqs) : func.reqs)) + "");
 			#/
 			thread exec_pre_system(level.system_funcs[func.reqs]);
 		}

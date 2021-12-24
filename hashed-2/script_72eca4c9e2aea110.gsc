@@ -197,7 +197,7 @@ function function_e93a8e82(v_pos, v_angles)
 		v_drop = namespace_509a75d1::function_6d41bab8(v_pos, 360);
 		if(isdefined(v_drop))
 		{
-			v_ground = groundtrace(v_drop + vectorscale((0, 0, 1), 64) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((0, 0, 1), 64) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+			v_ground = groundtrace((v_drop + vectorscale((0, 0, 1), 64)) + vectorscale((0, 0, 1), 8), (v_drop + vectorscale((0, 0, 1), 64)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 			v_ground = v_ground + vectorscale((0, 0, 1), 36);
 			var_5ab22b80 = level.var_1f17f9bb[0];
 			if(isdefined(var_5ab22b80))
@@ -397,7 +397,7 @@ function function_e58f823f()
 	while(true)
 	{
 		e_target = self.favoriteenemy;
-		if(isdefined(e_target) && distancesquared(e_target.origin, self.origin) <= 64 * 64)
+		if(isdefined(e_target) && distancesquared(e_target.origin, self.origin) <= (64 * 64))
 		{
 			self thread function_87f8b232();
 			break;

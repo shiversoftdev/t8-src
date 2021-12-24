@@ -528,7 +528,7 @@ function function_3170d645(projectile, trophy)
 			{
 				continue;
 			}
-			var_2e36557f = var_2e36557f | useobj.userate && (!player util::isenemyteam(useobj.claimteam) || useobj.interactteam === #"enemy");
+			var_2e36557f = var_2e36557f | (useobj.userate && (!player util::isenemyteam(useobj.claimteam) || useobj.interactteam === #"enemy"));
 			if(var_2e36557f)
 			{
 				break;
@@ -549,7 +549,7 @@ function function_3170d645(projectile, trophy)
 			{
 				continue;
 			}
-			var_2e36557f = var_2e36557f | useobj.userate && (!player util::isenemyteam(useobj.claimteam) || useobj.interactteam === #"enemy");
+			var_2e36557f = var_2e36557f | (useobj.userate && (!player util::isenemyteam(useobj.claimteam) || useobj.interactteam === #"enemy"));
 			if(var_2e36557f)
 			{
 				break;
@@ -569,7 +569,7 @@ function function_3170d645(projectile, trophy)
 			{
 				continue;
 			}
-			var_2e36557f = var_2e36557f | useobj.userate && (!player util::isenemyteam(useobj.claimteam) || useobj.interactteam === #"enemy");
+			var_2e36557f = var_2e36557f | (useobj.userate && (!player util::isenemyteam(useobj.claimteam) || useobj.interactteam === #"enemy"));
 			if(var_2e36557f)
 			{
 				break;

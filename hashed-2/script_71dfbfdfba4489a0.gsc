@@ -241,7 +241,7 @@ function drawdebugenttext(text, ent, color, channel)
 				ent.debuganimscripttime = gettime();
 			}
 			indentlevel = vectorscale(vectorscale((0, 0, -1), 10), ent.debuganimscriptlevel);
-			print3d(self.origin + vectorscale((0, 0, 1), 70) + indentlevel, text, color);
+			print3d((self.origin + vectorscale((0, 0, 1), 70)) + indentlevel, text, color);
 			ent.debuganimscriptlevel++;
 		}
 		else
@@ -329,7 +329,7 @@ function debugaddstateinfo(statename, extrainfo)
 					{
 						self.debuginfo.states[i].extrainfo = "";
 					}
-					self.debuginfo.states[i].extrainfo = self.debuginfo.states[i].extrainfo + extrainfo + "";
+					self.debuginfo.states[i].extrainfo = self.debuginfo.states[i].extrainfo + (extrainfo + "");
 					break;
 				}
 			}
@@ -344,7 +344,7 @@ function debugaddstateinfo(statename, extrainfo)
 			{
 				self.debuginfo.states[lastindex].extrainfo = "";
 			}
-			self.debuginfo.states[lastindex].extrainfo = self.debuginfo.states[lastindex].extrainfo + extrainfo + "";
+			self.debuginfo.states[lastindex].extrainfo = self.debuginfo.states[lastindex].extrainfo + (extrainfo + "");
 		}
 	#/
 }
@@ -539,19 +539,19 @@ function debugdrawweightedpoint(entity, point, weight, lowestvalue, highestvalue
 	/#
 		deltavalue = highestvalue - lowestvalue;
 		halfdeltavalue = deltavalue / 2;
-		midvalue = lowestvalue + deltavalue / 2;
+		midvalue = lowestvalue + (deltavalue / 2);
 		if(halfdeltavalue == 0)
 		{
 			halfdeltavalue = 1;
 		}
 		if(weight <= midvalue)
 		{
-			redcolor = 1 - abs(weight - lowestvalue / halfdeltavalue);
+			redcolor = 1 - (abs((weight - lowestvalue) / halfdeltavalue));
 			recordcircle(point, 2, (redcolor, 0, 0), "", entity);
 		}
 		else
 		{
-			greencolor = 1 - abs(highestvalue - weight / halfdeltavalue);
+			greencolor = 1 - (abs((highestvalue - weight) / halfdeltavalue));
 			recordcircle(point, 2, (0, greencolor, 0), "", entity);
 		}
 	#/

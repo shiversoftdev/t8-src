@@ -263,7 +263,7 @@ function function_5758997a(t_damage)
 	{
 		self dodamage(25, self.origin, undefined, t_damage);
 	}
-	else if(!self hasperk(#"specialty_armorvest") || self.health - 100 < 1)
+	else if(!self hasperk(#"specialty_armorvest") || (self.health - 100) < 1)
 	{
 		radiusdamage(self.origin, 10, self.health + 100, self.health + 100, t_damage);
 	}
@@ -521,7 +521,7 @@ function player_fan_trap_damage()
 	{
 		self dodamage(25, self.origin);
 	}
-	else if(!self hasperk(#"specialty_armorvest") || self.health - 100 < 1)
+	else if(!self hasperk(#"specialty_armorvest") || (self.health - 100) < 1)
 	{
 		radiusdamage(self.origin, 10, self.health + 100, self.health + 100);
 	}
@@ -1088,7 +1088,7 @@ function function_7e74aa5(t_damage)
 	{
 		self dodamage(5, self.origin, undefined, t_damage);
 	}
-	else if(!self hasperk(#"specialty_armorvest") || self.health - 100 < 1)
+	else if(!self hasperk(#"specialty_armorvest") || (self.health - 100) < 1)
 	{
 		radiusdamage(self.origin, 10, self.health + 100, self.health + 100, t_damage);
 	}
@@ -1144,7 +1144,7 @@ function function_1f7e661f(t_damage)
 		var_e72c9959 linkto(t_damage.var_db919ceb, "tag_weapon_3");
 		self thread function_864365ef(t_damage, var_e72c9959);
 		a_e_players = util::get_array_of_closest(self.origin, getplayers());
-		if(isdefined(a_e_players[0]) && distance2dsquared(a_e_players[0].origin, self.origin) < 400 * 400)
+		if(isdefined(a_e_players[0]) && distance2dsquared(a_e_players[0].origin, self.origin) < (400 * 400))
 		{
 			a_e_players[0] zm_audio::create_and_play_dialog(#"hash_2c3c478eed0f3b99", #"hook", undefined, 1);
 		}
@@ -1177,7 +1177,7 @@ function function_1f7e661f(t_damage)
 			a_trace = physicstraceex(self.origin + vectorscale((0, 0, 1), 32), self.origin + v_away_from_source, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
 			self setplayercollision(0);
 			self startragdoll();
-			self launchragdoll(150 * anglestoup(self.angles) + (v_away_from_source[0], v_away_from_source[1], 0));
+			self launchragdoll((150 * anglestoup(self.angles)) + (v_away_from_source[0], v_away_from_source[1], 0));
 		}
 		level notify(#"hash_148b3ce521088846", {#e_player:t_damage.activated_by_player});
 		self dodamage(self.health + 1000, self.origin, undefined, t_damage);

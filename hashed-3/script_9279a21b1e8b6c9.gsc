@@ -110,7 +110,7 @@ function function_a20b914d(var_c164cd96, circle_radius)
 {
 	angles = (0, randomint(360), 0);
 	direction = anglestoforward(angles);
-	spawn_origin = var_c164cd96 - direction * circle_radius;
+	spawn_origin = var_c164cd96 - (direction * circle_radius);
 	return spawn_origin;
 }
 
@@ -228,9 +228,9 @@ private function function_521bff14(center, goal, var_e294ac7d)
 		delta = var_3d4c4e94 - center;
 		length = length(delta);
 		direction = vectornormalize(delta);
-		new_point = center + direction * length * var_e294ac7d;
+		new_point = center + (direction * (length * var_e294ac7d));
 		/#
-			var_ced865d2 = center + direction * length;
+			var_ced865d2 = center + (direction * length);
 			thread namespace_67838d10::debug_line(center, new_point, (1, 0, 0), level.var_30813b9c.debug_duration);
 			thread namespace_67838d10::debug_line(new_point, var_ced865d2, (0, 1, 1), level.var_30813b9c.debug_duration);
 			thread namespace_67838d10::debug_line(var_ced865d2, goal, (1, 0, 1), level.var_30813b9c.debug_duration);
@@ -273,7 +273,7 @@ function function_8ea9be1c()
 private function function_beba57b9(height)
 {
 	var_e8a39fb = function_cf96c89c();
-	goal = rotatepoint((1, 0, 0), (0, randomint(360), 0)) * var_e8a39fb * 2;
+	goal = (rotatepoint((1, 0, 0), (0, randomint(360), 0)) * var_e8a39fb) * 2;
 	goal = (goal[0], goal[1], height);
 	self function_a57c34b7(goal, 0, 0);
 }
@@ -316,10 +316,10 @@ private function function_14f79b33(center, radius, height, var_e294ac7d)
 		var_9c068ab1 = vectornormalize(level.var_30813b9c.vehicle.origin - var_c164cd96);
 		var_c40f2e06 = vectortoangles(var_9c068ab1);
 		var_1288d4ef = var_c40f2e06[1];
-		var_c5a2c1c9 = var_5d59bc67 / circle_radius * 57.29578;
-		new_yaw = var_1288d4ef + time_step * var_c5a2c1c9;
+		var_c5a2c1c9 = (var_5d59bc67 / circle_radius) * 57.29578;
+		new_yaw = var_1288d4ef + (time_step * var_c5a2c1c9);
 		new_angles = (0, new_yaw, 0);
-		goal = var_c164cd96 + anglestoforward(new_angles) * circle_radius;
+		goal = var_c164cd96 + (anglestoforward(new_angles) * circle_radius);
 		goal = function_521bff14(var_c164cd96, goal, var_e294ac7d);
 		/#
 			thread namespace_67838d10::debug_line(level.var_30813b9c.vehicle.origin, goal, (0, 1, 0), level.var_30813b9c.debug_duration);
@@ -347,8 +347,8 @@ private function function_4f356be(start, end, offset, var_3a5f8906)
 	remainingdist = int(distance) % 5000;
 	for(i = 1; i <= var_27dfb385; i++)
 	{
-		self pathvariableoffset((offset, offset, offset) * var_27dfb385 - i + 1, var_3a5f8906);
-		self namespace_67838d10::function_85635daf(start, distance, i * 5000 / distance);
+		self pathvariableoffset((offset, offset, offset) * ((var_27dfb385 - i) + 1), var_3a5f8906);
+		self namespace_67838d10::function_85635daf(start, distance, (i * 5000) / distance);
 	}
 	if(remainingdist > 0)
 	{
@@ -714,7 +714,7 @@ function function_3c4884f1(var_819e1b79)
 	if(isdefined(targetorigin))
 	{
 		fwd = anglestoforward(targetangles);
-		spawnorigin = targetorigin - fwd * 1000 + vectorscale((0, 0, 1), 500);
+		spawnorigin = (targetorigin - (fwd * 1000)) + vectorscale((0, 0, 1), 500);
 		self setorigin(spawnorigin);
 		self namespace_67838d10::start_freefall(fwd * 1000, 0);
 	}
@@ -818,7 +818,7 @@ function function_fec68e5c()
 		player namespace_67838d10::function_b9a53f50();
 	}
 	level.insertion flagsys::set(#"hash_5a3e17fbc33cdc86");
-	level.insertion flagsys::wait_till_timeout(1 + 2.5 + 0.5, #"hash_3dc9cb68998d9dfd");
+	level.insertion flagsys::wait_till_timeout((1 + 2.5) + 0.5, #"hash_3dc9cb68998d9dfd");
 	level.var_30813b9c.vehicle namespace_67838d10::function_bc16f3b4(level.insertion);
 	/#
 		assert(10 > 0);
@@ -871,8 +871,8 @@ function function_5425f45d()
 		if(isdefined(portal) && isdefined(portal.var_8c9cad0b))
 		{
 			angle = (isdefined(portal.var_8c9cad0b) ? portal.var_8c9cad0b : 0);
-			x_pos = center[0] + radius * cos(angle);
-			y_pos = center[1] + radius * sin(angle);
+			x_pos = center[0] + (radius * cos(angle));
+			y_pos = center[1] + (radius * sin(angle));
 			height = 20000 - height_diff;
 			var_636e904a = math::clamp(height, 12000, 20000);
 			if(level.var_52b56362 == var_d89a84b0)
@@ -976,7 +976,7 @@ function function_9536aa3d()
 		foreach(lucky in var_269add6e)
 		{
 			spawn_point = rotatepoint((radius, 0, 0), (0, randomint(360), 0));
-			lucky setorigin(center + spawn_point + vectorscale((0, 0, 1), 20000));
+			lucky setorigin((center + spawn_point) + vectorscale((0, 0, 1), 20000));
 			lucky function_2ffa8aaf(1, (0, 0, 0), 0);
 		}
 	#/

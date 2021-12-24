@@ -200,7 +200,7 @@ function waiting_for_next_dog_spawn(count, max)
 	}
 	if(isdefined(count) && isdefined(max))
 	{
-		wait(max(default_wait - count / max, 0.05));
+		wait(max(default_wait - (count / max), 0.05));
 	}
 	else
 	{
@@ -869,7 +869,7 @@ function dog_behind_audio()
 		players = getplayers();
 		for(i = 0; i < players.size; i++)
 		{
-			dogangle = angleclamp180(vectortoangles(self.origin - players[i].origin)[1] - players[i].angles[1]);
+			dogangle = angleclamp180((vectortoangles(self.origin - players[i].origin)[1]) - players[i].angles[1]);
 			if(isalive(players[i]) && !isdefined(players[i].revivetrigger))
 			{
 				if(abs(dogangle) > 90 && distance2d(self.origin, players[i].origin) > 100)

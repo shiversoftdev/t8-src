@@ -369,7 +369,7 @@ function function_e8ad1d81(position, owner, normal, velocity, killcament, weapon
 	if(normal[2] < 0.1 && !isdefined(var_e76400c0))
 	{
 		black = vectorscale((1, 1, 1), 0.1);
-		trace = hitpos(startpos, startpos + normal * -1 * 70 + (0, 0, -1) * 70, black);
+		trace = hitpos(startpos, (startpos + ((normal * -1) * 70)) + ((0, 0, -1) * 70), black);
 		traceposition = trace[#"position"];
 		if(trace[#"fraction"] < 0.9)
 		{
@@ -392,7 +392,7 @@ function function_e8ad1d81(position, owner, normal, velocity, killcament, weapon
 */
 function function_523961e2(startpos, normal, var_4997e17c, fxindex, fxcount, defaultdistance, rotation)
 {
-	currentangle = 360 / fxcount * fxindex;
+	currentangle = (360 / fxcount) * fxindex;
 	var_7ee25402 = rotatepointaroundaxis(var_4997e17c * defaultdistance, normal, currentangle + rotation);
 	return startpos + var_7ee25402;
 }
@@ -440,7 +440,7 @@ function function_31f342a2(origin, var_9c7e3678)
 	}
 	foreach(molotov in level.var_a88ac760)
 	{
-		if(abs(molotov.origin[2] - origin[2] > 20))
+		if(abs((molotov.origin[2] - origin[2]) > 20))
 		{
 			continue;
 		}
@@ -482,13 +482,13 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 	locations[#"steam"] = [];
 	fxcount = var_4dd46f8a.var_b650dc43;
 	var_33ad9452 = (isdefined(var_4dd46f8a.var_bc24d9d3) ? var_4dd46f8a.var_bc24d9d3 : 0);
-	fxcount = int(math::clamp(fxcount * multiplier + 6, 6, var_4dd46f8a.var_b650dc43));
+	fxcount = int(math::clamp((fxcount * multiplier) + 6, 6, var_4dd46f8a.var_b650dc43));
 	if(multiplier < 0.04)
 	{
 		fxcount = 0;
 	}
 	function_31cc6bd9();
-	if(function_31f342a2(startpos, var_4dd46f8a.var_6193a41b * 1.5 * var_4dd46f8a.var_6193a41b * 1.5) && fxcount > 10)
+	if(function_31f342a2(startpos, (var_4dd46f8a.var_6193a41b * 1.5) * (var_4dd46f8a.var_6193a41b * 1.5)) && fxcount > 10)
 	{
 		fxcount = 7;
 	}
@@ -519,7 +519,7 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		}
 		if(!hitsomething)
 		{
-			var_e5d1793d = hitpos(traceposition, traceposition - normal * defaultdropdistance, locations[#"color"][count]);
+			var_e5d1793d = hitpos(traceposition, traceposition - (normal * defaultdropdistance), locations[#"color"][count]);
 			if(var_e5d1793d[#"fraction"] != 1)
 			{
 				function_1493c734(var_e5d1793d[#"position"], 10, (0, 0, 1), 0.6, 200);
@@ -541,16 +541,16 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		randangle = randomint(360);
 		var_c4b09917 = randomfloatrange(-25, 25);
 		var_7ee25402 = rotatepointaroundaxis(var_4997e17c, normal, randangle);
-		var_995eb37a = int(min(var_33ad9452 * multiplier * trace[#"fraction"] + 1, var_33ad9452));
-		for(var_ecef2fde = 0; var_ecef2fde < var_995eb37a && count % 2 == 0; var_ecef2fde++)
+		var_995eb37a = int(min(((var_33ad9452 * multiplier) * trace[#"fraction"]) + 1, var_33ad9452));
+		for(var_ecef2fde = 0; var_ecef2fde < var_995eb37a && (count % 2) == 0; var_ecef2fde++)
 		{
-			fraction = var_ecef2fde + 1 / var_995eb37a + 1;
-			offsetpoint = startpos + traceposition - startpos * fraction + var_7ee25402 * var_c4b09917;
-			var_9417df90 = hitpos(offsetpoint, offsetpoint - normal * defaultdropdistance, locations[#"color"][count]);
+			fraction = (var_ecef2fde + 1) / (var_995eb37a + 1);
+			offsetpoint = (startpos + ((traceposition - startpos) * fraction)) + (var_7ee25402 * var_c4b09917);
+			var_9417df90 = hitpos(offsetpoint, offsetpoint - (normal * defaultdropdistance), locations[#"color"][count]);
 			if(var_9417df90[#"fraction"] != 1)
 			{
 				function_1493c734(var_9417df90[#"position"], 10, (0, 0, 1), 0.6, 200);
-				locindex = count + fxcount * var_ecef2fde + 1;
+				locindex = count + (fxcount * (var_ecef2fde + 1));
 				locations[#"loc"][locindex] = var_9417df90[#"position"];
 				var_c84f4998 = function_330c2616(var_9417df90[#"position"]);
 				if(function_a66ba8cc(var_c84f4998))
@@ -568,7 +568,7 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 	var_3cbce009 = getweapon("molotov_fire_tall");
 	var_4a1b9411 = getweapon("molotov_fire_small");
 	var_7bf146f2 = getweapon("molotov_steam");
-	var_6b23e1c9 = impactpos + normal * 1.5;
+	var_6b23e1c9 = impactpos + (normal * 1.5);
 	forward = (1, 0, 0);
 	if(abs(vectordot(forward, normal)) > 0.999)
 	{
@@ -597,7 +597,7 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 	var_bf264593 = level.var_a88ac760.size;
 	level.var_a88ac760[var_bf264593] = {};
 	var_4b424bc1 = level.var_a88ac760[var_bf264593];
-	var_4b424bc1.var_46ee5246 = int(gettime() + var_4dd46f8a.var_b79d64a9 * 1000);
+	var_4b424bc1.var_46ee5246 = int(gettime() + (var_4dd46f8a.var_b79d64a9 * 1000));
 	var_4b424bc1.origin = startpos;
 	thread damageeffectarea(owner, startpos, killcament, normal, var_aecaaa11, var_4dd46f8a, multiplier, var_e76400c0, wallnormal, var_693f108f, var_4b424bc1.var_46ee5246);
 	thread function_9464e4ad(owner, startpos, killcament, normal, var_aecaaa11, var_4dd46f8a, multiplier, var_e76400c0, wallnormal, var_693f108f, var_4b424bc1.var_46ee5246);
@@ -690,7 +690,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 	trigger_radius_height = height * 2;
 	if(isdefined(var_e76400c0) && isdefined(wallnormal))
 	{
-		var_21f4217c = var_e76400c0 + vectorscale(wallnormal, 12) - (0, 0, var_cbaaea69);
+		var_21f4217c = (var_e76400c0 + vectorscale(wallnormal, 12)) - (0, 0, var_cbaaea69);
 		var_289a74bc = spawn("trigger_radius", var_21f4217c, 0, 12, var_cbaaea69);
 		/#
 			if(getdvarint(#"scr_draw_triggers", 0))
@@ -737,7 +737,7 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 			if(var_2d3611fa > 0 && burntime < gettime())
 			{
 				scoreevents::processscoreevent(#"hash_1343f5418bd52c6c", owner, undefined, weapon, var_2d3611fa);
-				burntime = gettime() + int(var_4dd46f8a.var_5c06ec56 * 1000);
+				burntime = gettime() + (int(var_4dd46f8a.var_5c06ec56 * 1000));
 			}
 			if(isdefined(level.playgadgetsuccess) && var_d0603aba)
 			{
@@ -829,7 +829,7 @@ function function_9464e4ad(owner, position, killcament, normal, weapon, var_4dd4
 	trigger_radius_height = height * 2;
 	if(isdefined(var_e76400c0) && isdefined(wallnormal))
 	{
-		var_21f4217c = var_e76400c0 + vectorscale(wallnormal, 12) - (0, 0, var_cbaaea69);
+		var_21f4217c = (var_e76400c0 + vectorscale(wallnormal, 12)) - (0, 0, var_cbaaea69);
 		var_289a74bc = spawn("trigger_radius", var_21f4217c, 0, 12, var_cbaaea69);
 	}
 	if(radius >= 0.04)

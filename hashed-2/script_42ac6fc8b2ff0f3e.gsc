@@ -413,7 +413,7 @@ function player_damage_shield(idamage, bheld, fromcode = 0, smod = "MOD_UNKNOWN"
 	}
 	shieldhealth = damagemax;
 	var_4d0cca6e = self function_d24e0d61();
-	shielddamage = idamage * level.var_7bcfc873 * var_4d0cca6e;
+	shielddamage = (idamage * level.var_7bcfc873) * var_4d0cca6e;
 	shielddamage = int(max(shielddamage, 1));
 	if(fromcode)
 	{
@@ -471,7 +471,7 @@ function function_4aa5e0c7(inflictor, attacker, damage, flags, meansofdeath, wea
 {
 	if(weapon.isriotshield && meansofdeath != "MOD_MELEE" && meansofdeath != "MOD_IMPACT" && meansofdeath != "MOD_ELECTROCUTED")
 	{
-		var_754eb193 = damage + damage * 0.2 * math::clamp(level.round_number - 10, 0, 20);
+		var_754eb193 = damage + (damage * 0.2) * (math::clamp(level.round_number - 10, 0, 20));
 		return var_754eb193;
 	}
 	return -1;
@@ -718,14 +718,14 @@ function riotshield_get_enemies_in_range(riotshield_knockdown_range, riotshield_
 						break;
 					}
 					level.riotshield_fling_enemies[level.riotshield_fling_enemies.size] = e_target;
-					dist_mult = fling_range_squared - test_range_squared / fling_range_squared;
+					dist_mult = (fling_range_squared - test_range_squared) / fling_range_squared;
 					fling_vec = vectornormalize(test_origin - view_pos);
 					if(5000 < test_range_squared)
 					{
-						fling_vec = fling_vec + vectornormalize(test_origin - radial_origin);
+						fling_vec = fling_vec + (vectornormalize(test_origin - radial_origin));
 					}
 					fling_vec = (fling_vec[0], fling_vec[1], fling_force_v * abs(fling_vec[2]));
-					fling_vec = vectorscale(fling_vec, fling_force + fling_force * dist_mult);
+					fling_vec = vectorscale(fling_vec, fling_force + (fling_force * dist_mult));
 					level.riotshield_fling_vecs[level.riotshield_fling_vecs.size] = fling_vec;
 				}
 				else if(var_606a8462 && test_range_squared < knockdown_range_squared)

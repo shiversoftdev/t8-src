@@ -161,8 +161,8 @@ function function_c0101095(weapon, forward, var_62e5b78)
 	var_c346c56f = player function_a95ab787();
 	var_6b469265 = 31;
 	var_87c01c60 = vectorscale(forward, var_6b469265);
-	trace_start = player.origin + (0, 0, var_c346c56f + 5) + var_87c01c60;
-	trace_end = trace_start + vectorscale((0, 0, -1), 10);
+	trace_start = (player.origin + (0, 0, var_c346c56f + 5)) + var_87c01c60;
+	trace_end = trace_start + (vectorscale((0, 0, -1), 10));
 	var_4f64fb6b = 3;
 	trace = physicstrace(trace_start, trace_end, (var_4f64fb6b * -1, var_4f64fb6b * -1, 0), (var_4f64fb6b, var_4f64fb6b, 1), player, 1);
 	if(trace[#"fraction"] < 1)
@@ -352,7 +352,7 @@ function function_e870d33d()
 			var_94e17956 = 0;
 			player thread function_18a9a4e4(settings);
 			ads_fraction = player playerads();
-			var_4308b3d8 = gettime() + 1 - ads_fraction * current_weapon.var_e5db3b95;
+			var_4308b3d8 = gettime() + ((1 - ads_fraction) * current_weapon.var_e5db3b95);
 			while(player playerads() < 1)
 			{
 				if(player playerads() == 0)
@@ -903,7 +903,7 @@ function has_lockon(target)
 {
 	player = self;
 	clientnum = player getentitynumber();
-	return isdefined(target.locked_on) && target.locked_on & 1 << clientnum;
+	return isdefined(target.locked_on) && target.locked_on & (1 << clientnum);
 }
 
 /*

@@ -251,6 +251,7 @@ function function_cf58d5fe()
 	self endon(#"disconnect");
 	foreach(var_fb8c33cc in level.var_7a736cd5)
 	{
+		var_d0bea7b6 = GetNextArrayKey(var_bdc2793c, var_8697c897);
 		while(!self flag::exists(var_fb8c33cc))
 		{
 			wait(1);

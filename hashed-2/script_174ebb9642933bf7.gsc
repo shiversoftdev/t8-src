@@ -157,7 +157,7 @@ function function_59257d57()
 	}
 	if(zm_utility::is_trials())
 	{
-		return level.var_f4f794bf[level.players.size - 1] * 2;
+		return (level.var_f4f794bf[level.players.size - 1]) * 2;
 	}
 	return level.var_f4f794bf[level.players.size - 1];
 }

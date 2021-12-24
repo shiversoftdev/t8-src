@@ -647,7 +647,7 @@ function function_1da54a84(var_841324bd)
 				if(isdefined(entity.var_5a8f690))
 				{
 					org = entity.origin + vectorscale((0, 0, 1), 60);
-					print3d(org, "" + entity.var_5a8f690 + "" + var_2f8d622d + "", (1, 0.5, 0), 1, 0.75);
+					print3d(org, ((("" + entity.var_5a8f690) + "") + var_2f8d622d) + "", (1, 0.5, 0), 1, 0.75);
 				}
 			}
 			axis = getaiteamarray(#"axis");
@@ -672,7 +672,7 @@ function function_1da54a84(var_841324bd)
 				if(isdefined(entity.var_5a8f690))
 				{
 					org = entity.origin + vectorscale((0, 0, 1), 70);
-					print3d(org, "" + entity.var_5a8f690 + "" + var_2f8d622d + "", (1, 0.5, 0), 1, 1);
+					print3d(org, ((("" + entity.var_5a8f690) + "") + var_2f8d622d) + "", (1, 0.5, 0), 1, 1);
 				}
 				if(isdefined(entity.var_9a79d89d))
 				{
@@ -1334,7 +1334,7 @@ function function_6c89913a(var_daa4b90a = 1)
 	self endon(#"death", #"disconnect", #"joined_team", #"joined_spectators", #"hash_795f82c293077362");
 	self.var_2925fedc = self.origin + vectorscale((1, 0, 0), 10);
 	wait(var_daa4b90a);
-	self.var_2925fedc = self.origin + vectorscale((-1, 0, 0), 10);
+	self.var_2925fedc = self.origin + (vectorscale((-1, 0, 0), 10));
 	wait(var_daa4b90a);
 	self.var_2925fedc = self.origin + vectorscale((0, 0, 1), 10);
 }
@@ -1512,7 +1512,7 @@ function function_4b111722()
 		if(isdefined(self.navmeshpoint))
 		{
 			forward = anglestoforward(self getangles());
-			forwardpos = self.origin + forward * searchradius;
+			forwardpos = self.origin + (forward * searchradius);
 			cylinder = ai::t_cylinder(self.origin, searchradius, searchradius);
 			points = tacticalquery(#"stratcom_tacquery_wander", self.navmeshpoint, cylinder, forwardpos, self);
 			if(points.size > 0)
@@ -1595,7 +1595,7 @@ function function_7bb67fd()
 		{
 			self.var_e4cd1c19 = undefined;
 		}
-		if(isdefined(self.var_e4cd1c19) && gettime() > self.var_e4cd1c19 + 3000)
+		if(isdefined(self.var_e4cd1c19) && gettime() > (self.var_e4cd1c19 + 3000))
 		{
 			if(isdefined(self.prevstate))
 			{
@@ -1755,7 +1755,7 @@ function function_ae20926a()
 			while(n_dist > 800)
 			{
 				n_time = gettime() / 1000;
-				if(!isdefined(self.var_5fc84f68) || n_time - self.var_5fc84f68 > 15)
+				if(!isdefined(self.var_5fc84f68) || (n_time - self.var_5fc84f68) > 15)
 				{
 					level thread function_4afb85fd();
 					self.var_5fc84f68 = n_time;
@@ -2011,8 +2011,8 @@ function function_82569431(einflictor, attacker, idamage, smeansofdeath, weapon,
 function function_7e8fcca2()
 {
 System.ArgumentException: Expecting While Loop At FirstArrayKey
-   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1493
-   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1297
+   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1494
+   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1298
    at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 206
 /*
 No Output

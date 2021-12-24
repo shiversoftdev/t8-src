@@ -85,7 +85,7 @@ function __init__()
 private function function_344f8c02()
 {
 	/#
-		adddebugcommand("" + util::function_53bbf9d2() + "");
+		adddebugcommand(("" + util::function_53bbf9d2()) + "");
 		level thread function_60c9a9e1();
 	#/
 }
@@ -126,7 +126,7 @@ private function function_60c9a9e1()
 private function function_3b2b6383(origin, angles, normal, var_a6762160, var_ba40b4c1)
 {
 	angles = function_c1fa62a2(angles, normal);
-	angles = combineangles(angles, (0, angleclamp180(origin[0] + origin[1] + origin[2]), 0));
+	angles = combineangles(angles, (0, angleclamp180((origin[0] + origin[1]) + origin[2]), 0));
 	if(isdefined(var_a6762160))
 	{
 		if(var_ba40b4c1 && (isdefined(var_a6762160.var_32ceba33) && var_a6762160.var_32ceba33))
@@ -380,9 +380,9 @@ private function function_23b6897(player, position)
 			currentdistance = distances[var_709013a9];
 			for(check = var_44a167ba[var_709013a9]; check < var_ea03e490[var_709013a9]; check++)
 			{
-				var_7e8fc0d7 = (check % 2 == 1 ? int(ceil(check / -2)) : int(ceil(check / 2)));
-				angle = theta + var_e20a427[var_709013a9] * var_7e8fc0d7;
-				checkpoint = currentdistance * (cos(angle), sin(angle), 0) + centerpoint + var_891dc751;
+				var_7e8fc0d7 = ((check % 2) == 1 ? int(ceil(check / -2)) : int(ceil(check / 2)));
+				angle = theta + (var_e20a427[var_709013a9] * var_7e8fc0d7);
+				checkpoint = ((currentdistance * (cos(angle), sin(angle), 0)) + centerpoint) + var_891dc751;
 				/#
 					debug_sphere(checkpoint, 2, (0, 1, 1));
 				#/
@@ -542,7 +542,7 @@ private function function_a938fba7(player, position, angles, var_a6762160, var_7
 		vehicle = player getvehicleoccupied();
 		if(vehicle getoccupantseat(player) == 0)
 		{
-			zoffset = zoffset + abs(player.origin[2] - vehicle.origin[2]);
+			zoffset = zoffset + (abs(player.origin[2] - vehicle.origin[2]));
 		}
 	}
 	origin = function_23b6897(player, position);
@@ -646,7 +646,7 @@ private function function_a938fba7(player, position, angles, var_a6762160, var_7
 		#/
 		if(isplayer(player))
 		{
-			physicstrace = physicstraceex(self.origin, self.origin + vectorscale((0, 0, -1), 5), self.mins, self.maxs, ignoreent, 1);
+			physicstrace = physicstraceex(self.origin, self.origin + (vectorscale((0, 0, -1), 5)), self.mins, self.maxs, ignoreent, 1);
 			if(physicstrace[#"fraction"] < 1)
 			{
 				self.origin = player.origin + vectorscale((0, 0, 1), 18);
@@ -655,8 +655,7 @@ private function function_a938fba7(player, position, angles, var_a6762160, var_7
 				#/
 			}
 		}
-		~self;
-		self setcontents(self setcontents(0) & 32768 | 67108864 | 8388608 | 33554432);
+		self setcontents(self setcontents(0) & (~(((32768 | 67108864) | 8388608) | 33554432)));
 		self physicslaunch();
 		self thread function_10ececeb();
 		return 1;
@@ -688,7 +687,7 @@ function function_10ececeb(var_e280bfe2 = 1, tracedistance = 24, originheightoff
 	var_6b8fe84d = undefined;
 	while(true)
 	{
-		origin = self.origin + anglestoup(self.angles) * originheightoffset;
+		origin = self.origin + (anglestoup(self.angles) * originheightoffset);
 		var_708a2754 = physicstrace(origin + (0, 0, 1), origin - (0, 0, tracedistance), min, max, self, 32);
 		parentent = var_708a2754[#"entity"];
 		if(var_708a2754[#"hash_7f9ee3a239b86eea"])
@@ -1008,7 +1007,7 @@ function function_504d49aa(player)
 	}
 	var_4961f577 useanimtree("generic");
 	var_4961f577 notsolid();
-	targetname = player getentitynumber() + "_death_stash_" + randomint(2147483647);
+	targetname = (player getentitynumber() + "_death_stash_") + randomint(2147483647);
 	var_4961f577.targetname = targetname;
 	var_4961f577.var_bad13452 = 0;
 	var_4961f577.var_a76e4941 = 1;
@@ -1142,8 +1141,8 @@ function function_504d49aa(player)
 	}
 	degree = 0;
 	var_758f910 = var_d9a91a6.size;
-	var_557c3e3e = int(360 / var_758f910 * 2);
-	even = var_d9a91a6.size % 2 == 0;
+	var_557c3e3e = int((360 / var_758f910) * 2);
+	even = (var_d9a91a6.size % 2) == 0;
 	for(index = 0; index < var_d9a91a6.size; index++)
 	{
 		if(var_d9a91a6[index] == -1)
@@ -1388,7 +1387,7 @@ function function_4da960f6(origin, radius, time)
 	var_c36bd68a = arraysortclosest(level.var_ace9fb52, origin, 24, 0, radius);
 	var_f4b807cb = arraycombine(var_6665e24, var_c36bd68a, 1, 0);
 	starttime = gettime();
-	while(float(gettime() - starttime) / 1000 < time)
+	while((float(gettime() - starttime)) / 1000 < time)
 	{
 		foreach(item in var_f4b807cb)
 		{
@@ -1441,7 +1440,7 @@ function debug_sphere(origin, radius, color)
 			return;
 		}
 		sec = getdvarint(#"hash_6c3e4a7cf7546b8f", 10);
-		var_f04d2832 = int(1 / float(function_60d95f53()) / 1000);
+		var_f04d2832 = int(1 / (float(function_60d95f53()) / 1000));
 		sphere(origin, radius, color, 1, 0, 10, var_f04d2832 * sec);
 		recordsphere(origin, radius, color, "");
 	#/
@@ -1464,7 +1463,7 @@ function debug_line(start, end, color)
 			return;
 		}
 		sec = getdvarint(#"hash_6c3e4a7cf7546b8f", 10);
-		var_f04d2832 = int(1 / float(function_60d95f53()) / 1000);
+		var_f04d2832 = int(1 / (float(function_60d95f53()) / 1000));
 		line(start, end, color, 1, 0, var_f04d2832 * sec);
 		recordline(start, end, color, "");
 	#/

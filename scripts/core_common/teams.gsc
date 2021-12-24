@@ -117,7 +117,7 @@ function function_959bac94()
 		if(self function_6d86768e(team))
 		{
 			/#
-				println("" + "" + self.name + "" + team);
+				println(((("" + "") + self.name) + "") + team);
 			#/
 			/#
 				function_d28f6fa0(team);
@@ -156,7 +156,7 @@ private function function_ba459d03(team)
 			{
 				voip = voip + "";
 			}
-			println("" + "" + self.name + "" + var_54e8d52e + "" + voip);
+			println(((((("" + "") + self.name) + "") + var_54e8d52e) + "") + voip);
 		}
 	#/
 }

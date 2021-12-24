@@ -237,7 +237,7 @@ private function function_4521ac7e(var_f2a06582, n_lvl)
 		do
 		{
 			waitframe(1);
-			var_43b42a60 = var_43b42a60 - float(function_60d95f53()) / 1000;
+			var_43b42a60 = var_43b42a60 - (float(function_60d95f53()) / 1000);
 			if(var_43b42a60 <= 0)
 			{
 				self notify(#"hash_7d855302d88c6701", {#weapon:var_f2a06582});
@@ -550,7 +550,7 @@ function function_6dfe361b(player)
 function function_4e055c08(d, n)
 {
 	perp = 2 * vectordot(d, n);
-	var_50ffa80c = d - perp * n;
+	var_50ffa80c = d - (perp * n);
 	return var_50ffa80c;
 }
 
@@ -595,11 +595,11 @@ function function_be8ae52f(var_f2a06582)
 		v_forward = self getweaponforwarddir();
 		if(isdefined(level.var_1f1de1ef) && level.var_1f1de1ef)
 		{
-			a_trace = bullettrace(v_position, v_position + v_forward * 20000, 1, self);
+			a_trace = bullettrace(v_position, v_position + (v_forward * 20000), 1, self);
 		}
 		else
 		{
-			a_trace = beamtrace(v_position, v_position + v_forward * 20000, 1, self);
+			a_trace = beamtrace(v_position, v_position + (v_forward * 20000), 1, self);
 		}
 		var_1c218ece = a_trace[#"position"];
 		/#
@@ -626,7 +626,7 @@ function function_be8ae52f(var_f2a06582)
 					case "heavy":
 					case "miniboss":
 					{
-						if(isalive(e_last_target) & !(isdefined(e_last_target.var_25cb9682) && e_last_target.var_25cb9682))
+						if(isalive(e_last_target) & (!(isdefined(e_last_target.var_25cb9682) && e_last_target.var_25cb9682)))
 						{
 							if(!isdefined(e_last_target.var_1b6dab30))
 							{
@@ -736,7 +736,7 @@ private function function_b67b2aff(e_target, n_damage, v_target_pos, w_hero, b_l
 	{
 		n_random_x = randomfloatrange(-3, 3);
 		n_random_y = randomfloatrange(-3, 3);
-		v_fling = 200 * vectornormalize(e_target.origin - v_target_pos + (n_random_x, n_random_y, 100));
+		v_fling = 200 * (vectornormalize((e_target.origin - v_target_pos) + (n_random_x, n_random_y, 100)));
 		e_target zm_utility::function_ffc279(v_fling, self, undefined, w_hero);
 	}
 }
@@ -1116,7 +1116,7 @@ function function_75e6e51c(n_time = 5, e_attacker)
 	{
 		return;
 	}
-	n_damage = ceil(self.maxhealth / n_time * 2 / 0.5);
+	n_damage = ceil(self.maxhealth / ((n_time * 2) / 0.5));
 	self.var_61435d9 = 1;
 	if(n_time == 5)
 	{
@@ -1307,8 +1307,8 @@ function function_b603ab34(var_a23636f4)
 	{
 		v_forward = anglestoforward(self.angles);
 		v_spawn_pos = self.origin + vectorscale((0, 0, 1), 32);
-		a_trace = physicstraceex(v_spawn_pos, v_spawn_pos + v_forward * 24, vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
-		v_spawn_pos = v_spawn_pos + v_forward * a_trace[#"fraction"] * 24;
+		a_trace = physicstraceex(v_spawn_pos, v_spawn_pos + (v_forward * 24), vectorscale((-1, -1, -1), 16), vectorscale((1, 1, 1), 16), self);
+		v_spawn_pos = v_spawn_pos + (v_forward * (a_trace[#"fraction"] * 24));
 		var_4eaa1f4c = util::ground_position(v_spawn_pos, 1000, 12);
 	}
 	else
@@ -1464,7 +1464,7 @@ function beacon_smash(player)
 				case "heavy":
 				case "miniboss":
 				{
-					if(isalive(zombie) & !(isdefined(zombie.var_25cb9682) && zombie.var_25cb9682))
+					if(isalive(zombie) & (!(isdefined(zombie.var_25cb9682) && zombie.var_25cb9682)))
 					{
 						if(!isdefined(zombie.var_1b6dab30))
 						{
@@ -1590,7 +1590,7 @@ function beacon_loop(var_a23636f4, var_4eaa1f4c)
 			if(!namespace_6b49f66b::is_active(1))
 			{
 				n_frame = self function_15c2525e(var_4eaa1f4c, 0.25);
-				var_adaf2ccb = math::clamp(0.25 - n_frame * 0.05, 0.05, 0.25);
+				var_adaf2ccb = math::clamp(0.25 - (n_frame * 0.05), 0.05, 0.25);
 			}
 		}
 		else if(1)
@@ -1674,7 +1674,7 @@ function beacon_check(e_player, var_a7e57ef9, n_loop_time)
 			case "heavy":
 			case "miniboss":
 			{
-				n_damage = self.maxhealth * 0.08 * n_loop_time;
+				n_damage = (self.maxhealth * 0.08) * n_loop_time;
 				break;
 			}
 			case "boss":
@@ -1690,7 +1690,7 @@ function beacon_check(e_player, var_a7e57ef9, n_loop_time)
 			default:
 			{
 				n_max_health = (isdefined(self.maxhealth) ? self.maxhealth : level.zombie_health);
-				n_damage = ceil(n_max_health / 10 / n_loop_time);
+				n_damage = ceil(n_max_health / (10 / n_loop_time));
 				break;
 			}
 		}

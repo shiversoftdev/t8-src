@@ -294,7 +294,7 @@ function function_c24cc26a()
 			{
 				self killstreaks::play_pilot_dialog_on_owner("arrive", "straferun", self.killstreak_id);
 			}
-			else if(self.numstrafes == level.straferunmaxstrafes - 1)
+			else if(self.numstrafes == (level.straferunmaxstrafes - 1))
 			{
 				self killstreaks::play_pilot_dialog_on_owner("waveStartFinal", "straferun", self.killstreakid);
 			}
@@ -375,7 +375,7 @@ function watchdamage()
 			continue;
 		}
 		/#
-			self.damage_debug = damage + "" + weapon.name + "";
+			self.damage_debug = ((damage + "") + weapon.name) + "";
 		#/
 		if(!isdefined(weapon) || weapons::getbaseweapon(weapon) != level.var_9e188c0b)
 		{
@@ -626,7 +626,7 @@ function startstrafe()
 		forwardnoz = vectornormalize((forward[0], forward[1], 0));
 		right = vectorcross(forwardnoz, (0, 0, 1));
 		perfectattackstartvector = gunorigin + vectorscale(forwardnoz, self.straferungunlookahead);
-		attackstartvector = perfectattackstartvector + vectorscale(right, randomfloatrange(0 - self.straferungunradius, self.straferungunradius));
+		attackstartvector = perfectattackstartvector + (vectorscale(right, randomfloatrange(0 - self.straferungunradius, self.straferungunradius)));
 		trace = bullettrace(attackstartvector, (attackstartvector[0], attackstartvector[1], -500), 0, self, 0);
 		self turretsettarget(0, trace[#"position"]);
 		self fireweapon();
@@ -636,7 +636,7 @@ function startstrafe()
 			{
 				time = 300;
 				airsupport::debug_line(attackstartvector, trace[#"position"] - vectorscale((0, 0, 1), 20), (1, 0, 0), time, 0);
-				if(count % 30 == 0)
+				if((count % 30) == 0)
 				{
 					trace = bullettrace(perfectattackstartvector, (perfectattackstartvector[0], perfectattackstartvector[1], 100000), 0, self, 0, 1);
 					airsupport::debug_line(trace[#"position"] + vectorscale((0, 0, 1), 20), trace[#"position"] - vectorscale((0, 0, 1), 20), (0, 0, 1), time, 0);
@@ -682,7 +682,7 @@ function firerockets()
 		rockettag = level.straferunrockettags[rocketindex % level.straferunrockettags.size];
 		targets = getvalidtargets();
 		rocketorigin = self gettagorigin(rockettag);
-		targetorigin = rocketorigin + forward * 10000;
+		targetorigin = rocketorigin + (forward * 10000);
 		if(targets.size > 0)
 		{
 			selectedtarget = undefined;
@@ -846,7 +846,7 @@ function leavemap()
 function explode()
 {
 	self endon(#"delete");
-	forward = self.origin + vectorscale((0, 0, 1), 100) - self.origin;
+	forward = (self.origin + vectorscale((0, 0, 1), 100)) - self.origin;
 	playfx(level.straferunexplodefx, self.origin, forward);
 	self playsound(level.straferunexplodesound);
 	if(isdefined(self.killcament))
@@ -876,9 +876,9 @@ function explode()
 */
 function cantargetentity(entity)
 {
-	heli_centroid = self.origin + vectorscale((0, 0, -1), 160);
+	heli_centroid = self.origin + (vectorscale((0, 0, -1), 160));
 	heli_forward_norm = anglestoforward(self.angles);
-	heli_turret_point = heli_centroid + 144 * heli_forward_norm;
+	heli_turret_point = heli_centroid + (144 * heli_forward_norm);
 	visible_amount = entity sightconetrace(heli_turret_point, self);
 	if(visible_amount < level.heli_target_recognition)
 	{
@@ -922,7 +922,7 @@ function cantargetplayer(player)
 	{
 		return 0;
 	}
-	if(isdefined(player.spawntime) && float(gettime() - player.spawntime) / 1000 <= level.heli_target_spawnprotection)
+	if(isdefined(player.spawntime) && ((float(gettime() - player.spawntime)) / 1000) <= level.heli_target_spawnprotection)
 	{
 		return 0;
 	}
@@ -1043,7 +1043,7 @@ function deadrecontargetorigin(rocket_start, target)
 	target_delta = target.origin - rocket_start;
 	target_dist = length(target_delta);
 	time_to_target = target_dist / missile_speed;
-	return target.origin + target_velocity * time_to_target;
+	return target.origin + (target_velocity * time_to_target);
 }
 
 /*
@@ -1075,7 +1075,7 @@ function shellshockplayers(origin)
 		{
 			continue;
 		}
-		if(distancesquared(player.origin, origin) <= level.straferunshellshockradius * level.straferunshellshockradius)
+		if(distancesquared(player.origin, origin) <= (level.straferunshellshockradius * level.straferunshellshockradius))
 		{
 			player thread straferunshellshock(self);
 		}

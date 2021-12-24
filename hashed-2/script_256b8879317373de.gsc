@@ -169,7 +169,7 @@ function last_valid_position(update_rate)
 			continue;
 		}
 		var_fab0ffd6 = self getpathfindingradius();
-		if(distance2dsquared(self.origin, self.last_valid_position) < var_fab0ffd6 * var_fab0ffd6 && self.origin[2] - self.last_valid_position[2] * self.origin[2] - self.last_valid_position[2] < 16 * 16)
+		if(distance2dsquared(self.origin, self.last_valid_position) < (var_fab0ffd6 * var_fab0ffd6) && (self.origin[2] - self.last_valid_position[2]) * (self.origin[2] - self.last_valid_position[2]) < (16 * 16))
 		{
 			wait(update_rate);
 			continue;
@@ -184,7 +184,7 @@ function last_valid_position(update_rate)
 					continue;
 				}
 			}
-			ground_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+			ground_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 			if(!isdefined(ground_pos))
 			{
 				wait(update_rate);
@@ -201,7 +201,7 @@ function last_valid_position(update_rate)
 		{
 			self.last_valid_position = self.origin;
 		}
-		else if(!ispointonnavmesh(self.origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(self.origin, self.last_valid_position) < 32 * 32 && self.origin[2] - self.last_valid_position[2] * self.origin[2] - self.last_valid_position[2] < 32 * 32)
+		else if(!ispointonnavmesh(self.origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(self.origin, self.last_valid_position) < (32 * 32) && (self.origin[2] - self.last_valid_position[2]) * (self.origin[2] - self.last_valid_position[2]) < (32 * 32))
 		{
 			wait(update_rate);
 			continue;
@@ -610,7 +610,7 @@ function is_spawn_protected()
 	{
 		level.spawnprotectiontimems = int((isdefined(level.spawnprotectiontime) ? level.spawnprotectiontime : 0) * 1000);
 	}
-	return gettime() - (isdefined(self.spawntime) ? self.spawntime : 0) <= level.spawnprotectiontimems;
+	return (gettime() - (isdefined(self.spawntime) ? self.spawntime : 0)) <= level.spawnprotectiontimems;
 }
 
 /*
@@ -755,7 +755,7 @@ function function_9080887a(var_cf05ebb7)
 		var_f7d37aa4 = var_f7d37aa4 + modifier;
 	}
 	var_9fc0715e = (isdefined(var_cf05ebb7) ? var_cf05ebb7 : self.spawnhealth);
-	self.var_66cb03ad = int(var_9fc0715e + var_f7d37aa4 + (isdefined(level.var_90bb9821) ? level.var_90bb9821 : 0));
+	self.var_66cb03ad = int((var_9fc0715e + var_f7d37aa4) + (isdefined(level.var_90bb9821) ? level.var_90bb9821 : 0));
 	if(self.var_66cb03ad < 1)
 	{
 		self.var_66cb03ad = 1;
@@ -1086,7 +1086,7 @@ function figure_out_attacker(eattacker)
 				if(!isdefined(driver))
 				{
 					currenttime = gettime();
-					if(currenttime - eattacker.var_a816f2cd <= int(level.var_6ed50229 * 1000))
+					if((currenttime - eattacker.var_a816f2cd) <= (int(level.var_6ed50229 * 1000)))
 					{
 						eattacker = eattacker.var_735382e;
 					}

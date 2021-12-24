@@ -94,15 +94,15 @@ function perks_register_clientfield()
 	}
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".itemIndex", 1, 5, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".state", 1, 2, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".progress", 1, 5, "float", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".chargeCount", 1, 3, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".timerActive", 1, 1, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".bleedoutOrderIndex", 1, 2, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".bleedoutActive", 1, 1, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".specialEffectActive", 1, 1, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.perkVapor." + i + ".modifierActive", 6000, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".itemIndex", 1, 5, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".state", 1, 2, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".progress", 1, 5, "float", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".chargeCount", 1, 3, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".timerActive", 1, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".bleedoutOrderIndex", 1, 2, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".bleedoutActive", 1, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".specialEffectActive", 1, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.perkVapor." + i) + ".modifierActive", 6000, 1, "int", undefined, 0, 0);
 	}
 	clientfield::register("clientuimodel", "hudItems.perkVapor.bleedoutProgress", 9000, 8, "float", undefined, 0, 0);
 	for(i = 0; i < 6; i++)
@@ -112,12 +112,12 @@ function perks_register_clientfield()
 		{
 			n_version = 8000;
 		}
-		clientfield::register("clientuimodel", "hudItems.extraPerkVapor." + i + ".itemIndex", n_version, 5, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.extraPerkVapor." + i + ".state", n_version, 2, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.extraPerkVapor." + i + ".progress", n_version, 5, "float", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.extraPerkVapor." + i + ".chargeCount", n_version, 3, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.extraPerkVapor." + i + ".timerActive", n_version, 1, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "hudItems.extraPerkVapor." + i + ".specialEffectActive", n_version, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.extraPerkVapor." + i) + ".itemIndex", n_version, 5, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.extraPerkVapor." + i) + ".state", n_version, 2, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.extraPerkVapor." + i) + ".progress", n_version, 5, "float", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.extraPerkVapor." + i) + ".chargeCount", n_version, 3, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.extraPerkVapor." + i) + ".timerActive", n_version, 1, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("hudItems.extraPerkVapor." + i) + ".specialEffectActive", n_version, 1, "int", undefined, 0, 0);
 	}
 	clientfield::register("scriptmover", "" + #"hash_cf74c35ecc5a49", 1, 1, "int", &function_bb184fed, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_35fe26fc5cb223b3", 1, 3, "int", &_train_sd_bombexplode, 0, 1);
@@ -401,7 +401,7 @@ function vending_machine_flicker_light(fx_light, duration)
 */
 function play_perk_fx_on_client(client_num, fx_light, duration)
 {
-	fxobj = spawn(client_num, self.origin + vectorscale((0, 0, -1), 50), "script_model");
+	fxobj = spawn(client_num, self.origin + (vectorscale((0, 0, -1), 50)), "script_model");
 	fxobj setmodel(#"tag_origin");
 	util::playfxontag(client_num, level._effect[fx_light], fxobj, "tag_origin");
 	wait(duration);
@@ -703,7 +703,7 @@ function function_bde5bc78(localclientnum, var_fe0b737a, newval, oldval)
 {
 	level endon(#"demo_jump");
 	n_start_time = gettime();
-	n_end_time = n_start_time + int(0.5 * 1000);
+	n_end_time = n_start_time + (int(0.5 * 1000));
 	if(!function_be3ae9c5(newval))
 	{
 		self setscale(1);
@@ -767,7 +767,7 @@ function function_bde5bc78(localclientnum, var_fe0b737a, newval, oldval)
 		v_forward = anglestoforward(self.angles) * 5;
 		v_fx_origin = self.origin + (v_forward[0], v_forward[1], 3);
 		playfx(localclientnum, level._effect[#"hash_57c8c9eff08ddf44"], v_fx_origin);
-		self moveto(self.origin - anglestoforward(self.angles) * 2, 0.5);
+		self moveto(self.origin - (anglestoforward(self.angles) * 2), 0.5);
 		while(isdefined(self))
 		{
 			n_time = gettime();
@@ -808,7 +808,7 @@ function function_5b123b68(localclientnum, b_show, b_use_offset = 0)
 		v_origin = self gettagorigin("fx_tag_base_emblem");
 		if(b_use_offset && isdefined(self.var_7ad76c54))
 		{
-			v_origin = v_origin - anglestoforward(v_angles) * self.var_7ad76c54;
+			v_origin = v_origin - (anglestoforward(v_angles) * self.var_7ad76c54);
 		}
 		self.var_d67a4862 = playfx(localclientnum, self.var_be82764e, v_origin, anglestoforward(v_angles));
 	}

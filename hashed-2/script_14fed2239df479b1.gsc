@@ -94,14 +94,14 @@ function function_452827de(damage)
 function callback_playermigrated()
 {
 	/#
-		println("" + self.name + "" + gettime());
+		println((("" + self.name) + "") + gettime());
 	#/
 	if(isdefined(self.connected) && self.connected)
 	{
 		self globallogic_ui::updateobjectivetext();
 	}
 	level.hostmigrationreturnedplayercount++;
-	if(level.hostmigrationreturnedplayercount >= level.players.size * 2 / 3)
+	if(level.hostmigrationreturnedplayercount >= ((level.players.size * 2) / 3))
 	{
 		/#
 			println("");

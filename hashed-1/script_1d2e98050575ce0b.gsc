@@ -214,8 +214,8 @@ function sndonoverride_eye_()
 	{
 		wait(rate);
 		cur_time = cur_time + rate;
-		percent = min(1, 1 - player.health / start_health);
-		value = var_9c4a70ee + percent * 1 - var_9c4a70ee;
+		percent = min(1, 1 - (player.health / start_health));
+		value = var_9c4a70ee + (percent * (1 - var_9c4a70ee));
 		value = math::clamp(value, 0, 0.99);
 		if(isdefined(player.var_e9791ff9))
 		{
@@ -442,8 +442,8 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 	radius = min_radius;
 	half_height = min_height;
 	var_ccd505f8 = duration / dt;
-	var_345ed991 = max_radius - min_radius / var_ccd505f8;
-	var_a9e00cb3 = max_height - min_height / var_ccd505f8;
+	var_345ed991 = (max_radius - min_radius) / var_ccd505f8;
+	var_a9e00cb3 = (max_height - min_height) / var_ccd505f8;
 	player_radius = 10;
 	var_1d93ec08 = int(level.var_6712d3ab.var_533b6b6e * 1000);
 	while(true)
@@ -469,7 +469,7 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 		}
 		var_7ba94ed3 = 0;
 		var_5e39ac54 = 0;
-		if(!isdefined(player.var_5350f794) || gettime() - player.var_5350f794 >= var_1d93ec08)
+		if(!isdefined(player.var_5350f794) || (gettime() - player.var_5350f794) >= var_1d93ec08)
 		{
 			var_5e39ac54 = 1;
 		}
@@ -493,7 +493,7 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 				continue;
 			}
 			dist = distance2d(player.var_ab42e44e, var_a3ca7cb2.origin);
-			var_a698a6df = dist < radius && var_a3ca7cb2.origin[2] < player.var_ab42e44e[2] + half_height && var_a3ca7cb2.origin[2] > player.var_ab42e44e[2] - half_height;
+			var_a698a6df = dist < radius && var_a3ca7cb2.origin[2] < (player.var_ab42e44e[2] + half_height) && var_a3ca7cb2.origin[2] > (player.var_ab42e44e[2] - half_height);
 			if(var_a698a6df)
 			{
 				if(var_a3ca7cb2.archetype === #"mp_dog" && util::function_fbce7263(var_a3ca7cb2.team, player.team))
@@ -532,8 +532,8 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 				var_73d38846 = 1;
 				if(dist < level.var_6712d3ab.var_e914cf2b)
 				{
-					t = 1 - dist / level.var_6712d3ab.var_e914cf2b;
-					var_73d38846 = 1 - t + level.var_6712d3ab.var_c3e28ba8 * t;
+					t = 1 - (dist / level.var_6712d3ab.var_e914cf2b);
+					var_73d38846 = (1 - t) + (level.var_6712d3ab.var_c3e28ba8 * t);
 				}
 				if(level.hardcoremode)
 				{
@@ -556,7 +556,7 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 				var_a3ca7cb2 thread status_effect::status_effect_apply(var_adf90433, weapon, player, 0);
 				if(isdefined(level.var_ac6052e9))
 				{
-					if((isdefined(var_a3ca7cb2.var_a267ce8) ? var_a3ca7cb2.var_a267ce8 : 0) + int([[level.var_ac6052e9]]("radiationDamageCooldown", 200) * 1000) < gettime())
+					if((isdefined(var_a3ca7cb2.var_a267ce8) ? var_a3ca7cb2.var_a267ce8 : 0) + (int([[level.var_ac6052e9]]("radiationDamageCooldown", 200) * 1000)) < gettime())
 					{
 						function_7e96addd("exertRadiationSelfLoop", var_a3ca7cb2);
 						var_a3ca7cb2.var_a267ce8 = gettime();
@@ -584,7 +584,7 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 				if(veh.archetype === "mini_ai_quadtank" || veh.archetype === "rcbomb")
 				{
 					dist = distance2d(player.var_ab42e44e, veh.origin);
-					var_a698a6df = dist < radius && veh.origin[2] < player.var_ab42e44e[2] + half_height && veh.origin[2] > player.var_ab42e44e[2] - half_height;
+					var_a698a6df = dist < radius && veh.origin[2] < (player.var_ab42e44e[2] + half_height) && veh.origin[2] > (player.var_ab42e44e[2] - half_height);
 					if(isdefined(var_a698a6df) && var_a698a6df)
 					{
 						if(veh.archetype === "rcbomb")

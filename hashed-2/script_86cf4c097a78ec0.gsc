@@ -178,7 +178,7 @@ function timeout_beep(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 	self endon(#"death", #"exit_vehicle", #"timeout_beep");
 	interval = 1;
 	time = gettime();
-	var_ff8d278a = time + 30000 - 4000;
+	var_ff8d278a = (time + 30000) - 4000;
 	while(true)
 	{
 		var_91e09a3a = 1;

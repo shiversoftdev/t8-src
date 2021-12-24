@@ -32,11 +32,11 @@ private function function_8240e8b4()
 {
 	if(function_605bb988())
 	{
-		if(level.time >= self.tracking.breadcrumbs[self.tracking.current_crumb].time + self.tracking.time_step)
+		if(level.time >= (self.tracking.breadcrumbs[self.tracking.current_crumb].time + self.tracking.time_step))
 		{
 			return;
 		}
-		self.tracking.current_crumb = self.tracking.current_crumb + 1 % 20;
+		self.tracking.current_crumb = (self.tracking.current_crumb + 1) % 20;
 		self.tracking.breadcrumbs[self.tracking.current_crumb] = {#time:level.time, #point:self.origin};
 	}
 }
@@ -52,7 +52,7 @@ private function function_8240e8b4()
 */
 function function_b8d4946e(window)
 {
-	self.tracking = {#time_step:int(window * 1000) / 20, #window:window, #speed:0, #velocity:(0, 0, 0), #hash_712fc53e:0, #current_crumb:0, #breadcrumbs:[]};
+	self.tracking = {#time_step:(int(window * 1000)) / 20, #window:window, #speed:0, #velocity:(0, 0, 0), #hash_712fc53e:0, #current_crumb:0, #breadcrumbs:[]};
 	crumb = {#time:level.time, #point:self.origin};
 	if(!isdefined(self.tracking.breadcrumbs))
 	{
@@ -133,15 +133,15 @@ function get_velocity()
 			crumb_index = crumb_index + breadcrumb_count;
 		}
 		crumb = self.tracking.breadcrumbs[crumb_index];
-		travel = travel + last_point - crumb.point;
-		total_time = total_time + last_time - crumb.time;
+		travel = travel + (last_point - crumb.point);
+		total_time = total_time + (last_time - crumb.time);
 		last_point = crumb.point;
 		last_time = crumb.time;
 	}
 	if(total_time > 0)
 	{
-		self.tracking.velocity = travel / float(total_time) / 1000;
-		self.tracking.speed = length(travel) / float(total_time) / 1000;
+		self.tracking.velocity = travel / (float(total_time) / 1000);
+		self.tracking.speed = length(travel) / (float(total_time) / 1000);
 	}
 	self.tracking.var_712fc53e = level.time;
 	return self.tracking.velocity;

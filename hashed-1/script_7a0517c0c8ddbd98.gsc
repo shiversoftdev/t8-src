@@ -197,7 +197,7 @@ function function_29c22852(entity)
 	{
 		return 0;
 	}
-	yawtoenemy = angleclamp180(entity.angles[1] - vectortoangles(entity.enemy.origin - entity.origin)[1]);
+	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.enemy.origin - entity.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
 		return 0;
@@ -225,7 +225,7 @@ function function_29c22852(entity)
 private function function_33b29495(entity)
 {
 	var_711090a2 = 0;
-	var_b77044e1 = lerpfloat(0.2, 0.8, math::clamp(level.round_number - 1 / 30, 0, 1));
+	var_b77044e1 = lerpfloat(0.2, 0.8, math::clamp((level.round_number - 1) / 30, 0, 1));
 	if(randomfloat(1) <= var_b77044e1)
 	{
 		var_711090a2 = 1;

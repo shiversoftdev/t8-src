@@ -291,7 +291,7 @@ function player_track_ammo_count()
 		}
 		else
 		{
-			var_89557197 = min(5, floor(weapon.clipsize + weapon.maxammo / 2));
+			var_89557197 = min(5, floor((weapon.clipsize + weapon.maxammo) / 2));
 			if(ammocount > var_89557197 || self laststand::player_is_in_laststand())
 			{
 				ammooutcount = 0;
@@ -353,7 +353,7 @@ function spawn_vo()
 */
 function spawn_vo_player(index, num)
 {
-	sound = "plr_" + index + "_vox_" + num + "play";
+	sound = ((("plr_" + index) + "_vox_") + num) + "play";
 	self playsoundwithnotify(sound, "sound_done");
 	self waittill(#"sound_done");
 }
@@ -463,7 +463,7 @@ function callback_playerdamage(einflictor, eattacker, idamage, idflags, smeansof
 		startedinlaststand = self laststand::player_is_in_laststand();
 	}
 	/#
-		println("" + idamage + "");
+		println(("" + idamage) + "");
 	#/
 	if(isdefined(eattacker) && isplayer(eattacker) && eattacker.sessionteam == self.sessionteam && !eattacker hasperk(#"specialty_playeriszombie") && (!(isdefined(self.is_zombie) && self.is_zombie)))
 	{
@@ -529,11 +529,11 @@ function callback_playerdamage(einflictor, eattacker, idamage, idflags, smeansof
 	/#
 		if(isdefined(eattacker))
 		{
-			record3dtext("" + idamage + "" + self.health + "" + eattacker getentitynumber(), self.origin, (1, 0, 0), "", self);
+			record3dtext((((("" + idamage) + "") + self.health) + "") + eattacker getentitynumber(), self.origin, (1, 0, 0), "", self);
 		}
 		else
 		{
-			record3dtext("" + idamage + "" + self.health + "", self.origin, (1, 0, 0), "", self);
+			record3dtext(((("" + idamage) + "") + self.health) + "", self.origin, (1, 0, 0), "", self);
 		}
 	#/
 	if(idamage > 0)
@@ -1108,7 +1108,7 @@ function player_out_of_playable_area_monitor()
 				self playlocalsound(#"zmb_player_outofbounds");
 				if(isdefined(self.maxhealth) && self.maxhealth > 0)
 				{
-					n_damage = self.maxhealth / 3 + 1;
+					n_damage = (self.maxhealth / 3) + 1;
 				}
 				else
 				{
@@ -1379,7 +1379,7 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 	/#
 		if(isai(eattacker) && self.ignoreme)
 		{
-			println("" + function_9e72a96(eattacker.archetype) + "" + smeansofdeath);
+			println((("" + function_9e72a96(eattacker.archetype)) + "") + smeansofdeath);
 		}
 		if(isdefined(self.bgb_in_plain_sight_active) && self.bgb_in_plain_sight_active)
 		{
@@ -1390,7 +1390,7 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 			}
 			else if(isdefined(eattacker))
 			{
-				str = str + "" + eattacker getentitynumber();
+				str = (str + "") + eattacker getentitynumber();
 			}
 			else
 			{
@@ -1399,7 +1399,7 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 			println(str);
 			println("" + (self.ignoreme ? "" : ""));
 			println("" + smeansofdeath);
-			println("" + idamage + "");
+			println(("" + idamage) + "");
 		}
 	#/
 	if(!isdefined(einflictor) || !isdefined(eattacker))
@@ -1470,7 +1470,7 @@ function player_revive_monitor()
 			}
 			else if(points > 2500)
 			{
-				points = 2500 + points - 2500 * 0.5;
+				points = 2500 + ((points - 2500) * 0.5);
 			}
 			/#
 				println("" + points);
@@ -2804,7 +2804,7 @@ function slowdown(str_type, var_a47cf2b2)
 	self notify(#"hash_31eac0065ba118f5");
 	self endon_callback(&function_fe7a7d5b, #"hash_31eac0065ba118f5", #"death", #"hash_28af7943f07d93e2");
 	/#
-		assert(isdefined(level.var_f27112f9[str_type]), "" + str_type + "");
+		assert(isdefined(level.var_f27112f9[str_type]), ("" + str_type) + "");
 	#/
 	if(!isdefined(self.a_n_slowdown_timeouts))
 	{

@@ -227,10 +227,10 @@ private function function_70dbf9d1(player)
 	player playsound(#"hash_334d4a903f12856f");
 	v_start = player geteye();
 	v_forward = player getweaponforwarddir();
-	v_end = v_start + v_forward * 32;
+	v_end = v_start + (v_forward * 32);
 	s_trace = groundtrace(v_start, v_end, 0, player);
 	v_start = s_trace[#"position"] + vectorscale((0, 0, 1), 5);
-	v_end = v_start + vectorscale((0, 0, -1), 200);
+	v_end = v_start + (vectorscale((0, 0, -1), 200));
 	s_trace = groundtrace(v_start, v_end, 0, player);
 	n_offset = v_end[2] + 96;
 	v_drop = zm_utility::function_b0eeaada(s_trace[#"position"]);
@@ -536,7 +536,7 @@ function function_1b29b59e(var_3e3892a7, weapon = level.weaponnone)
 		n_random_x = randomfloatrange(-3, 3);
 		n_random_y = randomfloatrange(-3, 3);
 		var_61906722 = randomfloatrange(5, 20);
-		v_ragdoll = vectornormalize(e_target.origin - self.origin + (n_random_x, n_random_y, var_61906722));
+		v_ragdoll = vectornormalize((e_target.origin - self.origin) + (n_random_x, n_random_y, var_61906722));
 		if(isdefined(e_target.var_5554df1))
 		{
 			self thread [[e_target.var_5554df1]](e_target, weapon, var_3e3892a7, v_ragdoll);
@@ -572,13 +572,13 @@ function function_f352c6b2(weapon)
 	{
 		var_d571151f = (0, 0, 0);
 	}
-	e_ball_fx = util::spawn_model(#"tag_origin", var_d0407533 + anglestoforward(var_d571151f) * 60, var_d571151f);
+	e_ball_fx = util::spawn_model(#"tag_origin", var_d0407533 + (anglestoforward(var_d571151f) * 60), var_d571151f);
 	e_ball_fx.str_weapon = weapon;
 	e_ball_fx.n_range = 250;
 	e_ball_fx.n_damage_per_sec = 1000;
 	e_ball_fx clientfield::set("" + #"lightning_miss_fx", 1);
 	e_ball_fx playloopsound(#"hash_15299b453cf5dd24", 0.5);
-	v_end = var_d0407533 + anglestoforward(var_d571151f) * 600;
+	v_end = var_d0407533 + (anglestoforward(var_d571151f) * 600);
 	trace = bullettrace(var_d0407533, v_end, 0, self);
 	if(trace[#"fraction"] != 1)
 	{
@@ -592,7 +592,7 @@ function function_f352c6b2(weapon)
 	{
 		self thread function_f911e261();
 	}
-	staff_lightning_ball_speed = 600 / 8 * 5;
+	staff_lightning_ball_speed = (600 / 8) * 5;
 	n_dist = distance(e_ball_fx.origin, v_end);
 	n_max_movetime_s = 600 / staff_lightning_ball_speed;
 	n_movetime_s = n_dist / staff_lightning_ball_speed;
@@ -628,7 +628,7 @@ function function_f911e261()
 {
 	var_2ed6f142 = self getweaponmuzzlepoint();
 	v_forward = self getweaponforwarddir();
-	v_end = var_2ed6f142 + v_forward * 10000;
+	v_end = var_2ed6f142 + (v_forward * 10000);
 	a_trace = bullettrace(var_2ed6f142, v_end, 0, self);
 	level notify(#"hero_weapon_hit", {#v_position:a_trace[#"position"], #hash_80e17549:self.currentweapon, #e_entity:a_trace[#"entity"], #player:self});
 }

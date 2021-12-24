@@ -101,7 +101,7 @@ function __init__()
 		clientfield::function_a8bbc967("vehicle.invalidLanding", 1, 1, "int", 0);
 		for(i = 0; i < 3; i++)
 		{
-			clientfield::function_a8bbc967("vehicle.bindingCooldown" + i + ".cooldown", 1, 5, "float", 0);
+			clientfield::function_a8bbc967(("vehicle.bindingCooldown" + i) + ".cooldown", 1, 5, "float", 0);
 		}
 	}
 	clientfield::register("toplayer", "toggle_dnidamagefx", 1, 1, "int");
@@ -1755,7 +1755,7 @@ function script_resume_speed(msg, rate)
 	}
 	self notify(#"hash_7542a4bb12b44682");
 	/#
-		self thread debug_resume(msg + "" + type);
+		self thread debug_resume((msg + "") + type);
 	#/
 }
 
@@ -1778,7 +1778,7 @@ function debug_resume(msg)
 		self endon(#"death");
 		number = self.resumemsgs.size;
 		self.resumemsgs[number] = msg;
-		self thread print_resume_speed(gettime() + int(3 * 1000));
+		self thread print_resume_speed(gettime() + (int(3 * 1000)));
 		wait(3);
 		newarray = [];
 		for(i = 0; i < self.resumemsgs.size; i++)
@@ -1937,7 +1937,7 @@ function is_node_script_origin(pathnode)
 function node_trigger_process()
 {
 	processtrigger = 0;
-	if(isdefined(self.spawnflags) && self.spawnflags & 1 == 1)
+	if(isdefined(self.spawnflags) && (self.spawnflags & 1) == 1)
 	{
 		if(isdefined(self.script_crashtype))
 		{
@@ -2553,7 +2553,7 @@ function land()
 	self sethoverparams(0, 0, 10);
 	self cleargoalyaw();
 	self settargetyaw((0, self.angles[1], 0)[1]);
-	self set_goal_pos(groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + vectorscale((0, 0, -1), 100000), 0, self)[#"position"], 1);
+	self set_goal_pos(groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"], 1);
 	self waittill(#"goal");
 }
 
@@ -2750,7 +2750,7 @@ function simple_spawn(name_or_spawners, b_supress_assert = 0)
 	{
 		a_spawners = getvehiclespawnerarray(name_or_spawners, "targetname");
 		/#
-			assert(a_spawners.size || b_supress_assert, "" + name_or_spawners + "");
+			assert(a_spawners.size || b_supress_assert, ("" + name_or_spawners) + "");
 		#/
 	}
 	else if(!isdefined(name_or_spawners))
@@ -2792,7 +2792,7 @@ function simple_spawn_single(name, b_supress_assert = 0)
 {
 	vehicle_array = simple_spawn(name, b_supress_assert);
 	/#
-		assert(b_supress_assert || vehicle_array.size == 1, "" + name + "" + vehicle_array.size + "");
+		assert(b_supress_assert || vehicle_array.size == 1, ((("" + name) + "") + vehicle_array.size) + "");
 	#/
 	if(vehicle_array.size > 0)
 	{
@@ -2813,7 +2813,7 @@ function simple_spawn_single_and_drive(name)
 {
 	vehiclearray = simple_spawn(name);
 	/#
-		assert(vehiclearray.size == 1, "" + name + "" + vehiclearray.size + "");
+		assert(vehiclearray.size == 1, ((("" + name) + "") + vehiclearray.size) + "");
 	#/
 	vehiclearray[0] thread go_path();
 	return vehiclearray[0];
@@ -2885,8 +2885,8 @@ function impact_fx(fxname, surfacetypes)
 		trace = bullettrace(body, body - (0, 0, 2 * self.radius), 0, self);
 		if(trace[#"fraction"] < 1 && !isdefined(trace[#"entity"]) && (!isdefined(surfacetypes) || array::contains(surfacetypes, trace[#"surfacetype"])))
 		{
-			pos = 0.5 * self.origin + trace[#"position"];
-			up = 0.5 * trace[#"normal"] + anglestoup(self.angles);
+			pos = 0.5 * (self.origin + trace[#"position"]);
+			up = 0.5 * (trace[#"normal"] + anglestoup(self.angles));
 			forward = anglestoforward(self.angles);
 			playfx(fxname, pos, up, forward);
 		}
@@ -2914,7 +2914,7 @@ function maingun_fx()
 		self waittill(#"weapon_fired");
 		playfxontag(level.vehicle_deckdust[self.model], self, "tag_engine_exhaust");
 		barrel_origin = self gettagorigin("tag_flash");
-		ground = physicstrace(barrel_origin, barrel_origin + vectorscale((0, 0, -1), 128));
+		ground = physicstrace(barrel_origin, barrel_origin + (vectorscale((0, 0, -1), 128)));
 		physicsexplosionsphere(ground, 192, 100, 1);
 	}
 }
@@ -3196,7 +3196,7 @@ function should_update_damage_fx_level(currenthealth, damage, maxhealth)
 		return 0;
 	}
 	currentratio = math::clamp(float(currenthealth) / float(maxhealth), 0, 1);
-	afterdamageratio = math::clamp(float(currenthealth - damage) / float(maxhealth), 0, 1);
+	afterdamageratio = math::clamp((float(currenthealth - damage)) / float(maxhealth), 0, 1);
 	currentlevel = undefined;
 	afterdamagelevel = undefined;
 	switch((isdefined(settings.damagestate_numstates) ? settings.damagestate_numstates : 0))
@@ -3680,7 +3680,7 @@ function add_main_callback(vehicletype, main)
 	/#
 		if(isdefined(level.vehicle_main_callback[vehicletype]))
 		{
-			println("" + vehicletype + "");
+			println(("" + vehicletype) + "");
 		}
 	#/
 	level.vehicle_main_callback[vehicletype] = main;
@@ -4374,8 +4374,7 @@ function get_closest_attacker_with_missile_locked_on_to_me(monitored_entity)
 					closest_attacker = attacker;
 					closest_attacker_dot = attacker_dot;
 				}
-				~closest_attacker_dot;
-				remaining_locked_on_flags = remaining_locked_on_flags & client_flag;
+				remaining_locked_on_flags = remaining_locked_on_flags & (~client_flag);
 			}
 		}
 	}
@@ -4600,7 +4599,7 @@ function vehicle_spawner_tool()
 				dynamic_spawn_dummy_model = sys::spawn("", (0, 0, 0));
 				while(getdvarint(#"debug_vehicle_spawn", 0) > 0)
 				{
-					origin = player.origin + anglestoforward(player getplayerangles()) * 270;
+					origin = player.origin + (anglestoforward(player getplayerangles()) * 270);
 					origin = origin + vectorscale((0, 0, 1), 40);
 					if(player usebuttonpressed())
 					{
@@ -4714,11 +4713,11 @@ function show_node_debug_info()
 		self.n_debug_display_count = 0;
 		if(is_unload_node())
 		{
-			print_debug_info("" + self.script_unload + "");
+			print_debug_info(("" + self.script_unload) + "");
 		}
 		if(isdefined(self.script_notify))
 		{
-			print_debug_info("" + self.script_notify + "");
+			print_debug_info(("" + self.script_notify) + "");
 		}
 		if(isdefined(self.script_delete) && self.script_delete)
 		{
@@ -4958,9 +4957,9 @@ private function function_831cd622(e_player)
 	v_movement = e_player getnormalizedmovement();
 	if(self.archetype === #"hash_5cb98c18fee01b3a")
 	{
-		var_d526c0e4 = self.origin + anglestoright(self.angles) * 115;
-		var_c1af71a1 = self.origin + anglestoright(self.angles) * -125;
-		var_b44997b4 = self.origin + anglestoforward(self.angles) * -110;
+		var_d526c0e4 = self.origin + (anglestoright(self.angles) * 115);
+		var_c1af71a1 = self.origin + (anglestoright(self.angles) * -125);
+		var_b44997b4 = self.origin + (anglestoforward(self.angles) * -110);
 		if(v_movement[1] < 0 && ispointonnavmesh(var_c1af71a1) && bullettracepassed(self.origin + vectorscale((0, 0, 1), 75), var_c1af71a1 + vectorscale((0, 0, 1), 5), 1, self))
 		{
 			s_info.var_664b49b8 = "left";
@@ -4981,8 +4980,8 @@ private function function_831cd622(e_player)
 	}
 	else if(self.archetype === #"quad")
 	{
-		var_d526c0e4 = self.origin + anglestoright(self.angles) * 85;
-		var_c1af71a1 = self.origin + anglestoright(self.angles) * -85;
+		var_d526c0e4 = self.origin + (anglestoright(self.angles) * 85);
+		var_c1af71a1 = self.origin + (anglestoright(self.angles) * -85);
 		if(v_movement[1] < 0 && ispointonnavmesh(var_c1af71a1))
 		{
 			s_info.var_664b49b8 = "left";
@@ -5282,8 +5281,8 @@ function function_a29610b6(x, k)
 	{
 		k = 1;
 	}
-	numerator = x - x * k;
-	denominator = k - abs(x) * 2 * k + 1;
+	numerator = x - (x * k);
+	denominator = (k - ((abs(x) * 2) * k)) + 1;
 	result = numerator / denominator;
 	return result;
 }
@@ -5312,7 +5311,7 @@ function update_flare_ability(player, var_55716d54, active_time = 5, cooldown_ti
 	{
 		self flag::set("flares_available");
 	}
-	player clientfield::set_player_uimodel("vehicle.bindingCooldown" + var_55716d54 + ".cooldown", 1);
+	player clientfield::set_player_uimodel(("vehicle.bindingCooldown" + var_55716d54) + ".cooldown", 1);
 	while(isdefined(player.vh_vehicle) && player function_e01d381a())
 	{
 		waitframe(1);
@@ -5329,7 +5328,7 @@ function update_flare_ability(player, var_55716d54, active_time = 5, cooldown_ti
 			self.var_40d7d1f2 = 1;
 			player playsoundtoplayer(#"hash_35af2f72517d10ab", player);
 			self fire_flares(player, var_f69e2d1, active_time);
-			player clientfield::set_player_uimodel("vehicle.bindingCooldown" + var_55716d54 + ".cooldown", 0);
+			player clientfield::set_player_uimodel(("vehicle.bindingCooldown" + var_55716d54) + ".cooldown", 0);
 			wait(var_bca5c6c1);
 			self.var_40d7d1f2 = 0;
 			level thread function_1bb979ca(flarecooldown, player, var_55716d54);
@@ -5352,7 +5351,7 @@ function update_flare_ability(player, var_55716d54, active_time = 5, cooldown_ti
 function function_8aab5d53(player, var_55716d54)
 {
 	self endon(#"death");
-	player clientfield::set_player_uimodel("vehicle.bindingCooldown" + var_55716d54 + ".cooldown", 0);
+	player clientfield::set_player_uimodel(("vehicle.bindingCooldown" + var_55716d54) + ".cooldown", 0);
 	while(isdefined(player) && isdefined(player.vh_vehicle))
 	{
 		var_42775dfe = 0;
@@ -5369,7 +5368,7 @@ function function_8aab5d53(player, var_55716d54)
 				var_42775dfe = var_93237569 / var_759ec838;
 			}
 		}
-		player clientfield::set_player_uimodel("vehicle.bindingCooldown" + var_55716d54 + ".cooldown", var_42775dfe);
+		player clientfield::set_player_uimodel(("vehicle.bindingCooldown" + var_55716d54) + ".cooldown", var_42775dfe);
 		wait(0.05);
 	}
 }
@@ -5396,14 +5395,14 @@ private function function_1eab63e3(flare_lifetime = 3)
 		{
 			lifetimes = array(lifetimes);
 		}
-		lifetimes[lifetimes.size] = flare_lifetime - var_b2814b11 * 0.3;
+		lifetimes[lifetimes.size] = flare_lifetime - (var_b2814b11 * 0.3);
 	}
 	lifetimes = array::randomize(lifetimes);
 	foreach(key, value in lifetimes)
 	{
 		if(value == flare_lifetime)
 		{
-			lifetimes[key] = lifetimes[key] + key * 0.15;
+			lifetimes[key] = lifetimes[key] + (key * 0.15);
 		}
 	}
 	return lifetimes;
@@ -5448,7 +5447,7 @@ function fire_flares(player, var_f69e2d1 = undefined, flare_lifetime = undefined
 		}
 		flare = util::spawn_model(model, start_origin, var_ac3aef54);
 		flare clientfield::set("play_flare_fx", 1);
-		flare_lifetime = max(var_f9a2afb9[var_558d81a6] - var_558d81a6 * 0.15, 0.5);
+		flare_lifetime = max(var_f9a2afb9[var_558d81a6] - (var_558d81a6 * 0.15), 0.5);
 		flare thread move_flare(self, vectorscale((0, 0, -1), 200), 0.5, 0.25, flare_lifetime, var_f69e2d1);
 		flare thread function_9ff1a886(self);
 		wait(0.15);
@@ -5472,16 +5471,16 @@ function function_e863c9af(owner, var_8fbb46cd, var_abfdfad5)
 		var_538c5a93 = vectornormalize((ownerforward[0], ownerforward[1], 0));
 		velocity = var_538c5a93 * 1000;
 		var_43fa4fb6 = vectornormalize((var_8fbb46cd[0], var_8fbb46cd[1], 0));
-		velocity = velocity + function_7786cb5e(var_43fa4fb6, owner getvelocity()) * 1.2;
+		velocity = velocity + (function_7786cb5e(var_43fa4fb6, owner getvelocity()) * 1.2);
 	}
 	else
 	{
 		ownerforward = vectornormalize(ownerforward);
 		velocity = ownerforward * 1000;
 		var_8fbb46cd = vectornormalize(var_8fbb46cd);
-		velocity = velocity + owner getvelocity() * 1.2;
+		velocity = velocity + (owner getvelocity() * 1.2);
 	}
-	velocity = velocity + (0, 0, 1) * 275;
+	velocity = velocity + ((0, 0, 1) * 275);
 	return velocity;
 }
 
@@ -5500,7 +5499,7 @@ function function_7786cb5e(var_95d2171d, vector)
 	dot = vectordot(var_95d2171d, vector2d);
 	if(dot < 0)
 	{
-		vector2d = vector2d - var_95d2171d * dot;
+		vector2d = vector2d - (var_95d2171d * dot);
 	}
 	return vector2d;
 }
@@ -5518,8 +5517,8 @@ function move_flare(owner, gravity, var_2434a7ac, var_2d0d8b66, max_time, var_f6
 {
 	self endon(#"death");
 	start_time = gettime();
-	var_6de53efa = start_time + var_2434a7ac * 1000;
-	end_time = start_time + max_time * 1000;
+	var_6de53efa = start_time + (var_2434a7ac * 1000);
+	end_time = start_time + (max_time * 1000);
 	if(isdefined(var_f69e2d1))
 	{
 		var_4626a28f = owner gettagangles(var_f69e2d1);
@@ -5536,7 +5535,7 @@ function move_flare(owner, gravity, var_2434a7ac, var_2d0d8b66, max_time, var_f6
 	{
 		if(gettime() > var_6de53efa)
 		{
-			newvelocity = velocity * 1 - gettime() - var_6de53efa / 1000 / max_time - var_2434a7ac;
+			newvelocity = velocity * (1 - ((gettime() - var_6de53efa) / 1000) / (max_time - var_2434a7ac));
 		}
 		else
 		{
@@ -5546,14 +5545,14 @@ function move_flare(owner, gravity, var_2434a7ac, var_2d0d8b66, max_time, var_f6
 			velocity = lerpvector(velocity, var_40a3c87d, 0.5);
 			newvelocity = velocity;
 		}
-		newvelocity = newvelocity + gravity * gettime() - start_time / 1000;
-		movetopos = self.origin + newvelocity * var_2d0d8b66;
+		newvelocity = newvelocity + (gravity * ((gettime() - start_time) / 1000));
+		movetopos = self.origin + (newvelocity * var_2d0d8b66);
 		traceresult = bullettrace(self.origin, movetopos, 0, owner, 0, 0, self);
 		if(traceresult[#"fraction"] < 1)
 		{
 			if(traceresult[#"fraction"] > 0)
 			{
-				movetopos = traceresult[#"position"] + traceresult[#"normal"] * 0.1;
+				movetopos = traceresult[#"position"] + (traceresult[#"normal"] * 0.1);
 				var_2d0d8b66 = var_2d0d8b66 * traceresult[#"fraction"];
 				self moveto(movetopos, var_2d0d8b66);
 				self waittill(#"movedone");
@@ -5565,7 +5564,7 @@ function move_flare(owner, gravity, var_2434a7ac, var_2d0d8b66, max_time, var_f6
 	}
 	if(gettime() < end_time)
 	{
-		wait(end_time - gettime() / 1000);
+		wait((end_time - gettime()) / 1000);
 	}
 	self delete();
 }
@@ -5685,7 +5684,7 @@ function function_1bb979ca(n_cooldown_time, e_player, var_a18a512)
 	while(var_e41dced6 <= var_d969828b)
 	{
 		var_50d0d640 = mapfloat(0, var_d969828b, 0, 1, var_e41dced6);
-		e_player clientfield::set_player_uimodel("vehicle.bindingCooldown" + var_a18a512 + ".cooldown", var_50d0d640);
+		e_player clientfield::set_player_uimodel(("vehicle.bindingCooldown" + var_a18a512) + ".cooldown", var_50d0d640);
 		var_e41dced6++;
 		wait(0.05);
 	}
@@ -5714,7 +5713,7 @@ function function_78cfd053()
 			var_8ac0fa8[n] = var_c56865cf;
 			continue;
 		}
-		var_8ac0fa8[n] = var_c56865cf - var_70fdf0cb * n;
+		var_8ac0fa8[n] = var_c56865cf - (var_70fdf0cb * n);
 	}
 	var_8ac0fa8[var_8ac0fa8.size] = 0;
 	while(true)

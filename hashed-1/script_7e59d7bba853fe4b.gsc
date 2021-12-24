@@ -354,10 +354,10 @@ function function_8d44707e(var_7112190, var_fc65696c)
 	n_max = self ai::function_9139c839().maxhealth;
 	var_cc83a31d = self ai::function_9139c839().var_250a1683;
 	var_1be13a31 = self ai::function_9139c839().var_854eebd;
-	n_health = n_min + var_cc83a31d * (isdefined(var_fc65696c) ? var_fc65696c : level.round_number);
+	n_health = n_min + (var_cc83a31d * (isdefined(var_fc65696c) ? var_fc65696c : level.round_number));
 	if(isdefined(var_1be13a31) && var_7112190 && level.players.size > 1)
 	{
-		n_health = n_health + n_health * level.players.size - 1 * var_1be13a31;
+		n_health = n_health + ((n_health * (level.players.size - 1)) * var_1be13a31);
 	}
 	return int(math::clamp(n_health, n_min, n_max));
 }
@@ -597,16 +597,16 @@ function function_8de1b5b9(entity)
 	if(isinarray(level.zombie_targets, entity))
 	{
 		/#
-			iprintlnbold("" + entity getentitynumber() + "");
+			iprintlnbold(("" + entity getentitynumber()) + "");
 		#/
 		return 0;
 	}
 	function_1eaaceab(level.zombie_targets);
 	arrayremovevalue(level.zombie_targets, undefined);
-	if(level.zombie_targets.size + 4 >= 16)
+	if((level.zombie_targets.size + 4) >= 16)
 	{
 		/#
-			iprintlnbold("" + entity getentitynumber() + "");
+			iprintlnbold(("" + entity getentitynumber()) + "");
 		#/
 		return 0;
 	}
@@ -654,7 +654,7 @@ function function_901eccf2(entity)
 	if(!isinarray(level.zombie_targets, entity))
 	{
 		/#
-			iprintlnbold("" + entity getentitynumber() + "");
+			iprintlnbold(("" + entity getentitynumber()) + "");
 		#/
 		return 0;
 	}

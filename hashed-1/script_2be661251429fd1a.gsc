@@ -482,7 +482,7 @@ function function_bcb5ef11(var_b594a2cd)
 		return undefined;
 	}
 	pathenemyfightdist = self.bot.tacbundle.pathenemyfightdist;
-	if(!self ai::get_behavior_attribute("ignorepathenemyfightdist") && isdefined(self.enemy) && isdefined(pathenemyfightdist) && pathenemyfightdist > 0 && distance2dsquared(self.origin, self.enemy.origin) < pathenemyfightdist * pathenemyfightdist)
+	if(!self ai::get_behavior_attribute("ignorepathenemyfightdist") && isdefined(self.enemy) && isdefined(pathenemyfightdist) && pathenemyfightdist > 0 && distance2dsquared(self.origin, self.enemy.origin) < (pathenemyfightdist * pathenemyfightdist))
 	{
 		/#
 			if(!isdefined(var_b594a2cd.debug))
@@ -506,7 +506,7 @@ function function_bcb5ef11(var_b594a2cd)
 		{
 			var_b594a2cd.debug = array(var_b594a2cd.debug);
 		}
-		var_b594a2cd.debug[var_b594a2cd.debug.size] = "" + self.health + "" + self.maxhealth;
+		var_b594a2cd.debug[var_b594a2cd.debug.size] = (("" + self.health) + "") + self.maxhealth;
 	#/
 	healthratio = self.health / self.maxhealth;
 	if(healthratio > self.bot.tacbundle.var_ac1c818f)
@@ -946,7 +946,7 @@ function function_554a6177(var_b594a2cd)
 	}
 	eye = self geteye();
 	vectotarget = vectornormalize(target - eye);
-	traceend = eye + vectotarget * 2000;
+	traceend = eye + (vectotarget * 2000);
 	trace = bullettrace(eye, traceend, 0, self);
 	if(trace[#"fraction"] >= 1)
 	{
@@ -1313,7 +1313,7 @@ function function_17a8721f(var_b594a2cd)
 	}
 	eye = self geteye();
 	forwarddir = anglestoforward(self getplayerangles());
-	traceend = eye + forwarddir * 1000;
+	traceend = eye + (forwarddir * 1000);
 	trace = bullettrace(eye, traceend, 0, self);
 	if(trace[#"fraction"] >= 1)
 	{
@@ -1443,7 +1443,7 @@ function function_7fa22be8(var_b594a2cd)
 			var_7f6f772c[var_7f6f772c.size] = player;
 		}
 	}
-	var_92330a71 = var_7f6f772c.size / 1 * var_660b71a5.size;
+	var_92330a71 = var_7f6f772c.size / (1 * var_660b71a5.size);
 	if(var_92330a71 < 0.66)
 	{
 		/#
@@ -1663,7 +1663,7 @@ function function_d2f7890(var_b594a2cd)
 	self bot_action::function_8a2b82ad(var_b594a2cd);
 	self bot_action::aim_at_target(var_b594a2cd);
 	self waittill(#"hash_347a612b61067eb3");
-	while(self botgetlookdot() < 0.99 || self istraversing() || gettime() - var_c7b51a54 < 1000)
+	while(self botgetlookdot() < 0.99 || self istraversing() || (gettime() - var_c7b51a54) < 1000)
 	{
 		self waittill(#"hash_347a612b61067eb3");
 		self bot_action::function_8a2b82ad(var_b594a2cd);
@@ -1908,7 +1908,7 @@ function function_d2107b(var_b594a2cd)
 	{
 		return undefined;
 	}
-	if(isdefined(self.var_3f8901ac) && gettime() - self.var_3f8901ac < 5000)
+	if(isdefined(self.var_3f8901ac) && (gettime() - self.var_3f8901ac) < 5000)
 	{
 		/#
 			if(!isdefined(var_b594a2cd.debug))
@@ -1949,7 +1949,7 @@ function function_d2107b(var_b594a2cd)
 	{
 		if(function_96c81b85(var_7607a546, point.origin))
 		{
-			var_4102ab31 = vectornormalize(point.origin - self.origin * (1, 1, 0));
+			var_4102ab31 = vectornormalize((point.origin - self.origin) * (1, 1, 0));
 			dot = vectordot(var_4102ab31, var_ff975a6);
 			if(dot > 0.707)
 			{
@@ -2196,7 +2196,7 @@ function function_883edf75(var_b594a2cd)
 	}
 	wait(0.5);
 	starttime = gettime();
-	while(self getcurrentweapon() == scorestreakweapon && gettime() - starttime < 1000)
+	while(self getcurrentweapon() == scorestreakweapon && (gettime() - starttime) < 1000)
 	{
 		self bottapbutton(0);
 		self waittill(#"hash_347a612b61067eb3");
@@ -2223,7 +2223,7 @@ function function_27f291e1(var_b594a2cd)
 	scorestreakweapon = var_b594a2cd.weapon;
 	self bot_action::function_11c3d810(scorestreakweapon);
 	starttime = gettime();
-	while(!isdefined(self.rocket) && gettime() - starttime < 4000)
+	while(!isdefined(self.rocket) && (gettime() - starttime) < 4000)
 	{
 		self waittill(#"hash_347a612b61067eb3");
 	}

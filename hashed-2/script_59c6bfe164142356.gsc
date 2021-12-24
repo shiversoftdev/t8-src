@@ -524,8 +524,7 @@ function function_8b6ddd71(grenadeent, smokeweapon)
 				}
 				if(!isdefined(trig))
 				{
-					~trig;
-					player clientfield::set("insmoke", curval & mask);
+					player clientfield::set("insmoke", curval & (~mask));
 				}
 			}
 		}

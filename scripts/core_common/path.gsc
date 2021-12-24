@@ -20,8 +20,8 @@ private function function_a760f3bf(path, var_bc114662, point_color, line_color, 
 		{
 			if(isdefined(path[i + 1]))
 			{
-				direction = vectornormalize(path[i + 1] - path[i]);
-				radius = distance(path[i], path[i + 1]) / 2;
+				direction = vectornormalize((path[i + 1]) - path[i]);
+				radius = (distance(path[i], path[i + 1])) / 2;
 				center = path[i] + vectorscale(direction, radius);
 				[[var_bc114662]](path[i], path[i + 1], center, radius, point_color, line_color, var_80bf7c44);
 			}

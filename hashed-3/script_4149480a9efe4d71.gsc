@@ -649,7 +649,7 @@ private function function_7f53281f()
 private function function_62878c3d()
 {
 	var_a6fa1406 = getent("graphic_03_mover", "targetname");
-	t_damage = spawn("trigger_damage", var_a6fa1406.origin + vectorscale((0, 0, -1), 10), 0, 64, 64);
+	t_damage = spawn("trigger_damage", var_a6fa1406.origin + (vectorscale((0, 0, -1), 10)), 0, 64, 64);
 	v_end_pos = (-432, 9110, 1397);
 	v_end_angles = (38, 90, 0);
 	while(true)
@@ -765,7 +765,7 @@ function function_bdd1bac8(var_a1a0c2e3)
 	{
 		var_f67ecd64 waittill(#"hash_2afc3e42ad78d30e");
 		n_time = gettime();
-		if(isdefined(var_f67ecd64) && !isdefined(var_f67ecd64.var_1e4fbc72) && n_time - var_f67ecd64.n_start_time > 1000)
+		if(isdefined(var_f67ecd64) && !isdefined(var_f67ecd64.var_1e4fbc72) && (n_time - var_f67ecd64.n_start_time) > 1000)
 		{
 			var_f67ecd64.var_1e4fbc72 = 1;
 			var_f67ecd64 setmodel(#"hash_2ac3e09056fba532");
@@ -929,7 +929,7 @@ function function_21d4e9e9(var_a276c861)
 	#/
 	if(!var_a276c861)
 	{
-		var_b09af3eb = "" + #"hash_574005386f679cf6" + "_";
+		var_b09af3eb = ("" + #"hash_574005386f679cf6") + "_";
 		level waittill(var_b09af3eb + "completed", var_b09af3eb + "skipped_over", var_b09af3eb + "ended_early");
 	}
 }
@@ -1174,7 +1174,7 @@ function function_14154e6a(var_a276c861)
 	}
 	if(!var_a276c861)
 	{
-		var_b09af3eb = "" + #"hash_574004386f679b43" + "_";
+		var_b09af3eb = ("" + #"hash_574004386f679b43") + "_";
 		level waittill(var_b09af3eb + "completed", var_b09af3eb + "skipped_over", var_b09af3eb + "ended_early");
 	}
 }
@@ -1407,7 +1407,7 @@ function function_bd0aa04e(var_a276c861)
 {
 	if(!var_a276c861)
 	{
-		var_b09af3eb = "" + #"hash_574003386f679990" + "_";
+		var_b09af3eb = ("" + #"hash_574003386f679990") + "_";
 		level waittill(var_b09af3eb + "completed", var_b09af3eb + "skipped_over", var_b09af3eb + "ended_early");
 	}
 }
@@ -2068,7 +2068,7 @@ function function_71e9c5c6(var_a276c861)
 	level.var_99b181da = var_99b181da;
 	level.var_bdd8273d = var_bdd8273d;
 	callback::on_ai_killed(&function_22927328);
-	var_b09af3eb = "" + #"hash_4ece05a6bb055afc" + "_";
+	var_b09af3eb = ("" + #"hash_4ece05a6bb055afc") + "_";
 	level waittill(var_b09af3eb + "completed", var_b09af3eb + "skipped_over", var_b09af3eb + "ended_early", #"hash_731f4115fe0cbef");
 }
 

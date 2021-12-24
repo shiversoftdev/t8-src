@@ -336,7 +336,7 @@ private function function_902ef0de(var_38280f2f, delta)
 	if(old_progress < target_value && target_value <= new_progress)
 	{
 		var_9d12108c = (isdefined(self.timeplayed[self.team]) ? self.timeplayed[self.team] : 0);
-		self.pers[#"contracts"][var_38280f2f].var_be5bf249 = self stats::function_441050ca(#"time_played_total") - self.pers[#"hash_5651f00c6c1790a4"] + var_9d12108c;
+		self.pers[#"contracts"][var_38280f2f].var_be5bf249 = (self stats::function_441050ca(#"time_played_total") - self.pers[#"hash_5651f00c6c1790a4"]) + var_9d12108c;
 		if(isdefined(level.var_90031a39[var_38280f2f]))
 		{
 			self luinotifyevent(#"hash_1739c4bd5baf83bc", 1, level.var_90031a39[var_38280f2f]);
@@ -345,7 +345,7 @@ private function function_902ef0de(var_38280f2f, delta)
 	/#
 		if(getdvarint(#"scr_contract_debug", 0) > 0)
 		{
-			iprintln(function_9e72a96(var_38280f2f) + "" + new_progress + "" + target_value);
+			iprintln((((function_9e72a96(var_38280f2f) + "") + new_progress) + "") + target_value);
 			if(old_progress < target_value && target_value <= new_progress)
 			{
 				iprintln(function_9e72a96(var_38280f2f) + "");
@@ -427,11 +427,11 @@ function contract_win(winner)
 	var_15b1abd9 = winner stats::function_441050ca(#"hash_a06075423336d9c");
 	if(var_15b1abd9 > 0)
 	{
-		if(var_15b1abd9 % 4 == 0)
+		if((var_15b1abd9 % 4) == 0)
 		{
 			winner function_9defb976(#"hash_40186850547832f7");
 		}
-		if(var_15b1abd9 % 2 == 0)
+		if((var_15b1abd9 % 2) == 0)
 		{
 			winner function_9defb976(#"hash_4a14b348f01ad76d");
 		}

@@ -192,13 +192,13 @@ function function_416eaaa2(var_deaf10fb, var_ef230d21)
 		}
 		if(isdefined(var_ef230d21))
 		{
-			self.var_821c9bf3 = self.var_821c9bf3 + var_ef230d21 * n_scalar;
-			self.var_41183060 = self.var_41183060 + var_ef230d21 * n_scalar;
+			self.var_821c9bf3 = self.var_821c9bf3 + (var_ef230d21 * n_scalar);
+			self.var_41183060 = self.var_41183060 + (var_ef230d21 * n_scalar);
 		}
 		else
 		{
-			self.var_821c9bf3 = self.var_821c9bf3 + 1 * n_scalar;
-			self.var_41183060 = self.var_41183060 + 1 * n_scalar;
+			self.var_821c9bf3 = self.var_821c9bf3 + (1 * n_scalar);
+			self.var_41183060 = self.var_41183060 + (1 * n_scalar);
 		}
 	}
 	if(isdefined(level.var_697a556f) && level.var_697a556f && var_deaf10fb > 0 && !self gadgetisactive(level.var_a53a05b5))
@@ -208,7 +208,7 @@ function function_416eaaa2(var_deaf10fb, var_ef230d21)
 		{
 			var_deaf10fb = 0.15 * var_deaf10fb;
 		}
-		current_power = current_power + level.var_a1feaa28 * 100 / var_deaf10fb;
+		current_power = current_power + (level.var_a1feaa28 * (100 / var_deaf10fb));
 		if(current_power > 100)
 		{
 			current_power = 100;
@@ -253,7 +253,7 @@ function function_29f19e9a(var_deaf10fb, n_points)
 		{
 			var_f032086a = var_f032086a + -0.2;
 		}
-		n_points = n_points + n_points * var_f032086a;
+		n_points = n_points + (n_points * var_f032086a);
 		n_points = max(1, n_points);
 		if(current_power == 0)
 		{
@@ -263,7 +263,7 @@ function function_29f19e9a(var_deaf10fb, n_points)
 		{
 			var_d526977b = current_power / 100;
 			self.var_da2f5f0b = var_deaf10fb * var_d526977b;
-			self.var_da2f5f0b = self.var_da2f5f0b + level.var_a1feaa28 * n_points;
+			self.var_da2f5f0b = self.var_da2f5f0b + (level.var_a1feaa28 * n_points);
 		}
 		self thread function_56d2c5d0(n_points);
 		var_d526977b = self.var_da2f5f0b / var_deaf10fb;
@@ -721,7 +721,7 @@ function function_9a100883(weapon_level, enabled)
 		wait(1);
 	}
 	self waittill_timeout(2, #"weapon_change_complete");
-	self playsound("zmb_weapon_upgrade_to_lvl_" + weapon_level + 1);
+	self playsound("zmb_weapon_upgrade_to_lvl_" + (weapon_level + 1));
 	self function_45b7d6c1(weapon_level);
 	self function_2264d131(level.hero_weapon[self.var_b708af7b][weapon_level], enabled, 1);
 	self.var_da2f5f0b = 0;
@@ -789,12 +789,12 @@ function function_6bba3829(e_player, ai_enemy)
 	else if(e_player.var_41183060 >= var_c4937b1a)
 	{
 		e_player function_416eaaa2(var_9e2d281a, var_ef230d21);
-		e_player.var_c9279111 = e_player.var_821c9bf3 / var_75f1042 - var_c4937b1a;
+		e_player.var_c9279111 = e_player.var_821c9bf3 / (var_75f1042 - var_c4937b1a);
 	}
 	else if(e_player.var_41183060 >= var_4c37bfce)
 	{
 		e_player function_416eaaa2(var_7b0b50c2, var_ef230d21);
-		e_player.var_c9279111 = e_player.var_821c9bf3 / var_c4937b1a - var_4c37bfce;
+		e_player.var_c9279111 = e_player.var_821c9bf3 / (var_c4937b1a - var_4c37bfce);
 	}
 	else
 	{
@@ -908,11 +908,11 @@ function function_3fe4a02e(e_player, n_points, str_event)
 	}
 	if(e_player.var_ec334996 >= var_43877f76)
 	{
-		e_player.var_1bcf6a9e = e_player.var_dc37311e / var_e058d658 - var_43877f76;
+		e_player.var_1bcf6a9e = e_player.var_dc37311e / (var_e058d658 - var_43877f76);
 	}
 	else if(e_player.var_ec334996 >= var_8fcb23d5)
 	{
-		e_player.var_1bcf6a9e = e_player.var_dc37311e / var_43877f76 - var_8fcb23d5;
+		e_player.var_1bcf6a9e = e_player.var_dc37311e / (var_43877f76 - var_8fcb23d5);
 	}
 	else
 	{
@@ -1236,7 +1236,7 @@ function function_c2dea172(player, w_hero)
 	{
 		self.marked_for_death = 1;
 		self zm_cleanup::function_23621259();
-		v_fling = self.origin - player.origin * 1.5 + (0, 0, 1) * 64;
+		v_fling = ((self.origin - player.origin) * 1.5) + ((0, 0, 1) * 64);
 		self zm_utility::function_ffc279(v_fling, player, undefined, w_hero);
 	}
 	else

@@ -76,7 +76,7 @@ function function_c7c05a13()
 				item = var_21249230.var_ffb8d676[i];
 				if(isdefined(item.var_846fa8e))
 				{
-					clientfield = "ObjProgInfo.NonlinearObjProgRingItemInfos." + i + 1 + ".earned";
+					clientfield = ("ObjProgInfo.NonlinearObjProgRingItemInfos." + (i + 1)) + ".earned";
 					function_cb96f01d(item.var_846fa8e, clientfield, 1, var_21249230.var_f3d39d90);
 				}
 			}
@@ -93,7 +93,7 @@ function function_c7c05a13()
 			item = var_21249230.var_207c2ef6[i];
 			if(isdefined(item.clientfield))
 			{
-				clientfield = "PaPItems." + i + 1 + ".stage";
+				clientfield = ("PaPItems." + (i + 1)) + ".stage";
 				function_cb96f01d(item.clientfield, clientfield, 2, item.var_7db3435c);
 			}
 		}
@@ -115,12 +115,12 @@ function function_c7c05a13()
 				component = phase.components[c];
 				if(isdefined(component.clientfield))
 				{
-					var_2641997d = "WonderWeaponItems." + index + ".stage";
+					var_2641997d = ("WonderWeaponItems." + index) + ".stage";
 					function_cb96f01d(component.clientfield, var_2641997d, 3, component.var_7db3435c);
 				}
 				if(isdefined(component.var_9f618001))
 				{
-					var_9f618001 = "WonderWeaponItems." + index + ".numAcquired";
+					var_9f618001 = ("WonderWeaponItems." + index) + ".numAcquired";
 					function_cb96f01d(component.var_9f618001, var_9f618001, 2, component.var_7db3435c);
 				}
 				index++;
@@ -133,7 +133,7 @@ function function_c7c05a13()
 		{
 			if(isdefined(var_21249230.shieldpieces[p].clientfield))
 			{
-				clientfield = "ShieldPieces." + p + 1 + ".stage";
+				clientfield = ("ShieldPieces." + (p + 1)) + ".stage";
 				function_cb96f01d(var_21249230.shieldpieces[p].clientfield, clientfield, 1, var_21249230.shieldpieces[p].var_7db3435c);
 			}
 		}
@@ -145,10 +145,10 @@ function function_c7c05a13()
 			quest = var_21249230.quests[q];
 			if(isdefined(quest.var_a0ebe517))
 			{
-				var_e7e5896d = "QuestPhaseInfos." + q + 1 + ".phase";
+				var_e7e5896d = ("QuestPhaseInfos." + (q + 1)) + ".phase";
 				function_cb96f01d(var_21249230.quests[q].var_a0ebe517, var_e7e5896d, 2, var_21249230.quests[q].var_7db3435c);
 			}
-			var_d4cb13fd = "Quest" + q + 1;
+			var_d4cb13fd = "Quest" + (q + 1);
 			index = 1;
 			for(p = 0; p < quest.phases.size; p++)
 			{
@@ -157,7 +157,7 @@ function function_c7c05a13()
 				{
 					if(isdefined(phase.items[i].clientfield))
 					{
-						var_2641997d = var_d4cb13fd + "." + index + ".stage";
+						var_2641997d = ((var_d4cb13fd + ".") + index) + ".stage";
 						function_cb96f01d(phase.items[i].clientfield, var_2641997d, 2, phase.items[i].var_7db3435c);
 					}
 					index++;

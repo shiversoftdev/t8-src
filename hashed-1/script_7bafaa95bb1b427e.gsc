@@ -420,7 +420,7 @@ function update_last_held_weapon_timings(newtime)
 {
 	if(isdefined(self.currentweapon) && isdefined(self.currentweaponstarttime))
 	{
-		totaltime = int(float(newtime - self.currentweaponstarttime) / 1000);
+		totaltime = int((float(newtime - self.currentweaponstarttime)) / 1000);
 		if(totaltime > 0)
 		{
 			weaponpickedup = 0;
@@ -454,7 +454,7 @@ function update_timings(newtime)
 	{
 		return;
 	}
-	totaltime = int(float(newtime - self.staticweaponsstarttime) / 1000);
+	totaltime = int((float(newtime - self.staticweaponsstarttime)) / 1000);
 	if(totaltime < 0)
 	{
 		return;
@@ -502,7 +502,7 @@ function update_timings(newtime)
 		{
 			for(numspecialties = 0; numspecialties < level.maxspecialties; numspecialties++)
 			{
-				perk = self getloadoutitem(self.class_num, "specialty" + numspecialties + 1);
+				perk = self getloadoutitem(self.class_num, "specialty" + (numspecialties + 1));
 				if(perk != 0)
 				{
 					perksindexarray[perk] = 1;
@@ -586,7 +586,7 @@ function drop_for_death(attacker, sweapon, smeansofdeath, var_1940b58e = 1)
 		/#
 			if(getdvarint(#"scr_dropdebug", 0) == 1)
 			{
-				println("" + weapon.name + "");
+				println(("" + weapon.name) + "");
 			}
 		#/
 		return;
@@ -722,13 +722,13 @@ function function_d2c66128(origin, angles)
 	var_9b882d22 = self function_ee839fac();
 	if(isdefined(var_9b882d22))
 	{
-		var_fbe2cce0 = distancesquared(origin, var_9b882d22.origin) < maxdist * maxdist;
+		var_fbe2cce0 = distancesquared(origin, var_9b882d22.origin) < (maxdist * maxdist);
 	}
 	if(var_fbe2cce0)
 	{
 		objstate = 0;
 		neardist = util::function_4c1656d5();
-		if(neardist < maxdist && distancesquared(origin, var_9b882d22.origin) > neardist * neardist)
+		if(neardist < maxdist && distancesquared(origin, var_9b882d22.origin) > (neardist * neardist))
 		{
 			objstate = 1;
 		}
@@ -819,7 +819,7 @@ function watch_pickup()
 	/#
 		if(getdvarint(#"scr_dropdebug", 0) == 1)
 		{
-			println("" + weapon.name + "" + isdefined(self.ownersattacker));
+			println((("" + weapon.name) + "") + isdefined(self.ownersattacker));
 		}
 	#/
 	/#
@@ -1169,7 +1169,7 @@ function drop_all_to_ground(origin, radius)
 	{
 		if(distancesquared(origin, weapons[i].origin) < radius * radius)
 		{
-			trace = bullettrace(weapons[i].origin, weapons[i].origin + vectorscale((0, 0, -1), 2000), 0, weapons[i]);
+			trace = bullettrace(weapons[i].origin, weapons[i].origin + (vectorscale((0, 0, -1), 2000)), 0, weapons[i]);
 			weapons[i].origin = trace[#"position"];
 		}
 	}
@@ -1561,7 +1561,7 @@ function function_5ed178fd(owner)
 	{
 		waitframe(1);
 		forward = anglestoforward(owner.angles);
-		pos = owner.origin - forward * 20;
+		pos = owner.origin - (forward * 20);
 		if(!function_3238d10d(pos))
 		{
 			owner.killcament delete();
@@ -1596,7 +1596,7 @@ function check_stuck_to_player(deleteonteamchange, awardscoreevent, weapon)
 	if(isdefined(killcament))
 	{
 		forward = anglestoforward(self.angles);
-		pos = self.origin - forward * 200;
+		pos = self.origin - (forward * 200);
 		if(isdefined(player))
 		{
 			dir = player.origin - pos;
@@ -1763,11 +1763,11 @@ function turn_grenade_into_a_dud(weapon, isthrowngrenade, player)
 			}
 			if(isthrowngrenade)
 			{
-				player iprintlnbold(#"hash_10012bedb9f60e99", " " + timeleft + " ", #"hash_79a58948c3b976f5");
+				player iprintlnbold(#"hash_10012bedb9f60e99", (" " + timeleft) + " ", #"hash_79a58948c3b976f5");
 			}
 			else
 			{
-				player iprintlnbold(#"hash_255050263c8cd26d", " " + timeleft + " ", #"hash_79a58948c3b976f5");
+				player iprintlnbold(#"hash_255050263c8cd26d", (" " + timeleft) + " ", #"hash_79a58948c3b976f5");
 			}
 			self makegrenadedud();
 		}
@@ -1858,7 +1858,7 @@ function get_damageable_ents(pos, radius, dolos, startradius)
 		}
 		playerpos = players[i].origin + vectorscale((0, 0, 1), 32);
 		distsq = distancesquared(pos, playerpos);
-		if(distsq < radius * radius && (!dolos || damage_trace_passed(pos, playerpos, startradius, undefined)))
+		if(distsq < (radius * radius) && (!dolos || damage_trace_passed(pos, playerpos, startradius, undefined)))
 		{
 			newent = spawnstruct();
 			newent.isplayer = 1;
@@ -1875,7 +1875,7 @@ function get_damageable_ents(pos, radius, dolos, startradius)
 	{
 		entpos = grenades[i].origin;
 		distsq = distancesquared(pos, entpos);
-		if(distsq < radius * radius && (!dolos || damage_trace_passed(pos, entpos, startradius, grenades[i])))
+		if(distsq < (radius * radius) && (!dolos || damage_trace_passed(pos, entpos, startradius, grenades[i])))
 		{
 			newent = spawnstruct();
 			newent.isplayer = 0;
@@ -1892,7 +1892,7 @@ function get_damageable_ents(pos, radius, dolos, startradius)
 	{
 		entpos = destructibles[i].origin;
 		distsq = distancesquared(pos, entpos);
-		if(distsq < radius * radius && (!dolos || damage_trace_passed(pos, entpos, startradius, destructibles[i])))
+		if(distsq < (radius * radius) && (!dolos || damage_trace_passed(pos, entpos, startradius, destructibles[i])))
 		{
 			newent = spawnstruct();
 			newent.isplayer = 0;
@@ -1909,7 +1909,7 @@ function get_damageable_ents(pos, radius, dolos, startradius)
 	{
 		entpos = destructables[i].origin;
 		distsq = distancesquared(pos, entpos);
-		if(distsq < radius * radius && (!dolos || damage_trace_passed(pos, entpos, startradius, destructables[i])))
+		if(distsq < (radius * radius) && (!dolos || damage_trace_passed(pos, entpos, startradius, destructables[i])))
 		{
 			newent = spawnstruct();
 			newent.isplayer = 0;
@@ -2536,7 +2536,7 @@ function ninebang_doninebang(attacker, weapon, cooktime)
 {
 	level endon(#"game_ended");
 	maxstages = weapon.var_98333ae;
-	cookstages = min(floor(cooktime / weapon.cookoffholdtime * maxstages), maxstages);
+	cookstages = min(floor((cooktime / weapon.cookoffholdtime) * maxstages), maxstages);
 	intervaltime = float(weapon.var_1c0e3cb7) / 1000;
 	var_9729fdb9 = float(weapon.var_4941de5) / 1000;
 	cookstages = cookstages * 3;
@@ -2556,7 +2556,7 @@ function ninebang_doninebang(attacker, weapon, cooktime)
 			break;
 		}
 		attacker magicgrenadeplayer(weapon.grenadeweapon, self.origin, (0, 0, 0));
-		if(i + 1 % 3 == 0)
+		if(((i + 1) % 3) == 0)
 		{
 			wait(var_9729fdb9);
 			continue;
@@ -2597,7 +2597,7 @@ function track_multi_detonation(ownerent, weapon, cooktime)
 		fusetime = randomfloatrange(weapon.var_cb3d0f65, weapon.var_cd539cb2);
 		speed = function_21a3a673(weapon.var_95d8fabf, weapon.var_c264efc6);
 		vel = dir * speed;
-		var_561c6e7c = waitresult.position + dir * 5;
+		var_561c6e7c = waitresult.position + (dir * 5);
 		if(weapon === getweapon(#"hash_117b6097e272dd1f"))
 		{
 			var_d097c411 = getweapon(#"cymbal_monkey");
@@ -2626,13 +2626,13 @@ function multi_detonation_get_cluster_launch_dir(weapon, index, multival, normal
 {
 	pitch = randomfloatrange(weapon.var_367c47fc, weapon.var_7872b3a);
 	var_a978e158 = randomfloatrange(weapon.var_ccebc40 * -1, weapon.var_ccebc40);
-	yaw = -180 + 360 / multival * index + var_a978e158;
+	yaw = -180 + ((360 / multival) * index) + var_a978e158;
 	angles = (pitch * -1, yaw, 0);
 	dir = anglestoforward(angles);
 	c = vectorcross(normal, dir);
 	f = vectorcross(c, normal);
 	theta = 90 - pitch;
-	dir = normal * cos(theta) + f * sin(theta);
+	dir = (normal * cos(theta)) + (f * sin(theta));
 	dir = vectornormalize(dir);
 	return dir;
 }

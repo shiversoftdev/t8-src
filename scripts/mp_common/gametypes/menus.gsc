@@ -267,7 +267,7 @@ function function_2d1eb0ec(intpayload)
 		level.var_4a38c46e = getscriptbundlelist(#"hash_1499732db058e6fb");
 	}
 	var_a4d879fa = intpayload % 100;
-	var_f4cd8d56 = int(intpayload / 100) % 10;
+	var_f4cd8d56 = (int(intpayload / 100)) % 10;
 	var_5f6c1c04 = int(intpayload / 1000);
 	callout = getscriptbundle(level.var_4a38c46e[var_a4d879fa]);
 	var_e7a0076b = callout.title;
@@ -313,7 +313,7 @@ function function_2d1eb0ec(intpayload)
 		}
 		if(self.var_1e13a12 >= var_23c35f9c)
 		{
-			self.calloutspamtimeout = time + int((isdefined(level.var_ac6052e9) ? [[level.var_ac6052e9]]("calloutSpamTimeout", 0) : 0) * 1000);
+			self.calloutspamtimeout = time + (int((isdefined(level.var_ac6052e9) ? [[level.var_ac6052e9]]("calloutSpamTimeout", 0) : 0) * 1000));
 		}
 		weapon = self getcurrentweapon();
 		var_2cf49821 = isdefined(weapon) && weapon.var_2cf49821;
@@ -339,7 +339,7 @@ function function_2d1eb0ec(intpayload)
 		{
 			self thread [[level.var_17d1b660]](callout, var_e7a0076b != callout.title);
 		}
-		self.lastcallouttime = time + int((isdefined(level.var_ac6052e9) ? [[level.var_ac6052e9]]("calloutSpamTimeWindow", 0) : 0) * 1000);
+		self.lastcallouttime = time + (int((isdefined(level.var_ac6052e9) ? [[level.var_ac6052e9]]("calloutSpamTimeWindow", 0) : 0) * 1000));
 	}
 }
 

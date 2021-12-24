@@ -522,7 +522,7 @@ function function_dc380897()
 		}
 	#/
 	self.var_b6d21cc2 = 1;
-	pos = var_deb6871b.origin + anglestoforward(var_deb6871b.angles) * 14 + vectorscale((0, 0, 1), 4);
+	pos = (var_deb6871b.origin + (anglestoforward(var_deb6871b.angles) * 14)) + vectorscale((0, 0, 1), 4);
 	self.e_fire = spawn("script_model", pos);
 	self.e_fire.angles = var_deb6871b.angles + vectorscale((0, 1, 0), 90);
 	self.e_fire setmodel("tag_origin");

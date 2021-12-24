@@ -596,7 +596,7 @@ function function_85324f75(var_8657f7ff = 0)
 		trigger_midpoint = self.origin + (0, 0, 72);
 		foreach(player in level.players)
 		{
-			if(isalive(player) && distancesquared(player.origin, self.origin) <= 128 * 128 && (abs(player.origin[2] - trigger_midpoint[2]) <= 36 || abs(player geteye()[2] - trigger_midpoint[2]) <= 36))
+			if(isalive(player) && distancesquared(player.origin, self.origin) <= (128 * 128) && ((abs(player.origin[2] - trigger_midpoint[2])) <= 36 || (abs(player geteye()[2] - trigger_midpoint[2])) <= 36))
 			{
 				if(!var_8657f7ff)
 				{

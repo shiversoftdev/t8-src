@@ -493,7 +493,7 @@ function player_zombie_kill_vox(params)
 */
 function function_dd19aefa(death)
 {
-	var_bff0cf99 = death + "_" + self zm_vo::function_82f9bc9f();
+	var_bff0cf99 = (death + "_") + self zm_vo::function_82f9bc9f();
 	if(!function_63f85f39(#"kill", var_bff0cf99))
 	{
 		return;
@@ -553,7 +553,7 @@ function function_d412c3a8(impact, mod, weapon, zombie, instakill, dist, player)
 	{
 		if(dist < close_dist)
 		{
-			if(player.health < player.maxhealth && isdefined(player.lastdamagetime) && gettime() - player.lastdamagetime < 1500)
+			if(player.health < player.maxhealth && isdefined(player.lastdamagetime) && (gettime() - player.lastdamagetime) < 1500)
 			{
 				return "revenge";
 			}
@@ -1127,7 +1127,7 @@ function function_d2429d4f(str_weapon)
 function timer_actual(kills, time)
 {
 	self endon(#"disconnect", #"death");
-	timer = gettime() + time * 1000;
+	timer = gettime() + (time * 1000);
 	while(gettime() < timer)
 	{
 		if(self.killcounter > kills)
@@ -1434,7 +1434,7 @@ private function function_bf1b121a(timeout, n_range, var_618a04)
 		}
 		waitframe(5);
 	}
-	while(!(__timeout__ >= 0 && __timeout__ - float(gettime() - var_a51f2d59) / 1000 <= 0));
+	while(!(__timeout__ >= 0 && (__timeout__ - ((float(gettime() - var_a51f2d59)) / 1000)) <= 0));
 }
 
 /*
@@ -1488,7 +1488,7 @@ function create_and_play_dialog(category, subcategory, force_variant, b_wait_if_
 			/#
 				if(getdvarint(#"debug_audio", 0))
 				{
-					println("" + category + "" + subcategory + "");
+					println(((("" + category) + "") + subcategory) + "");
 				}
 			#/
 		}
@@ -1510,7 +1510,7 @@ function create_and_play_dialog(category, subcategory, force_variant, b_wait_if_
 		/#
 			if(getdvarint(#"debug_audio", 0))
 			{
-				println("" + category + "" + subcategory + "");
+				println(((("" + category) + "") + subcategory) + "");
 			}
 		#/
 		return 0;
@@ -1527,6 +1527,7 @@ function create_and_play_dialog(category, subcategory, force_variant, b_wait_if_
 		{
 			self endon(var_d0acc84f);
 		}
+		loc_00003B90:
 		var_215d4efb = (b_wait_if_busy == 2 ? 1 : 0);
 		while(!function_65e5c19a(self.var_8dd99641, var_215d4efb))
 		{
@@ -1957,7 +1958,7 @@ function do_player_or_npc_playvox(sound_to_play, var_8dd99641 = 0, category, sub
 	{
 		self clientfield::set_to_player("isspeaking", 1);
 	}
-	var_cf98fdd8 = float(gettime() - (isdefined(self.last_vo_played_time) ? self.last_vo_played_time : 0)) / 1000;
+	var_cf98fdd8 = (float(gettime() - (isdefined(self.last_vo_played_time) ? self.last_vo_played_time : 0))) / 1000;
 	if(var_cf98fdd8 < 1)
 	{
 		wait(2 - var_cf98fdd8);
@@ -2171,7 +2172,7 @@ function isvoxoncooldown(player, category, subcategory)
 	{
 		player.voxtimer[category][subcategory] = 0;
 	}
-	if(level.time - player.voxtimer[category][subcategory] <= int(level.sndplayervox[category][subcategory].cooldown * 1000))
+	if((level.time - player.voxtimer[category][subcategory]) <= (int(level.sndplayervox[category][subcategory].cooldown * 1000)))
 	{
 		return 1;
 	}
@@ -2189,7 +2190,7 @@ function isvoxoncooldown(player, category, subcategory)
 */
 function function_1b438b7b()
 {
-	if(isdefined(level.voxtimer) && level.time - level.voxtimer <= int(5 * 1000))
+	if(isdefined(level.voxtimer) && (level.time - level.voxtimer) <= (int(5 * 1000)))
 	{
 		return 1;
 	}
@@ -2251,7 +2252,7 @@ function function_654ec86b()
 	{
 		foreach(subcategory, vox in a_category)
 		{
-			var_a1effcd = get_number_variants(vox.suffix + "_" + prefix);
+			var_a1effcd = get_number_variants((vox.suffix + "_") + prefix);
 			self.sound_dialog[vox.suffix] = [];
 			self.sound_dialog_available[vox.suffix] = [];
 			for(i = 0; i < var_a1effcd; i++)
@@ -2338,7 +2339,7 @@ function zmbvoxgetlinevariant(prefix, suffix, var_651f2941, force_variant)
 		/#
 			if(getdvarint(#"debug_audio", 0) > 0)
 			{
-				println("" + suffix + "" + prefix);
+				println((("" + suffix) + "") + prefix);
 			}
 		#/
 		return undefined;
@@ -2359,7 +2360,7 @@ function zmbvoxgetlinevariant(prefix, suffix, var_651f2941, force_variant)
 		/#
 			if(getdvarint(#"debug_audio", 0) > 0)
 			{
-				println("" + suffix + "" + prefix);
+				println((("" + suffix) + "") + prefix);
 			}
 		#/
 		return undefined;
@@ -2367,7 +2368,7 @@ function zmbvoxgetlinevariant(prefix, suffix, var_651f2941, force_variant)
 	variation = array::random(self.sound_dialog_available[suffix]);
 	arrayremovevalue(self.sound_dialog_available[suffix], variation);
 	self.var_fbbeefe6 = variation;
-	return suffix + "_" + prefix + "_" + variation;
+	return (((suffix + "_") + prefix) + "_") + variation;
 }
 
 /*
@@ -2546,7 +2547,7 @@ function playstate(state)
 	{
 		music::setmusicstate(mustoplay);
 	}
-	aliasname = "mus_" + mustoplay + "_intro";
+	aliasname = ("mus_" + mustoplay) + "_intro";
 	playbacktime = (isdefined(soundgetplaybacktime(aliasname)) ? soundgetplaybacktime(aliasname) : 1000);
 	var_6f451dc0 = gettime() + playbacktime;
 	while(gettime() < var_6f451dc0)
@@ -3212,11 +3213,11 @@ function sndannouncerplayvox(type, player, str_sound, var_e08a84d6, b_wait_if_bu
 		{
 			if(isdefined(var_e08a84d6))
 			{
-				str_sound = suffix + "_" + prefix + "_" + var_e08a84d6;
+				str_sound = (((suffix + "_") + prefix) + "_") + var_e08a84d6;
 			}
 			else
 			{
-				str_sound = array::random(get_valid_lines(suffix + "_" + prefix));
+				str_sound = array::random(get_valid_lines((suffix + "_") + prefix));
 			}
 		}
 	}
@@ -3262,7 +3263,7 @@ function sndannouncerplayvox(type, player, str_sound, var_e08a84d6, b_wait_if_bu
 				{
 					if(!soundexists(str_sound))
 					{
-						var_2dbe34fe = "" + "" + function_9e72a96(str_sound) + "";
+						var_2dbe34fe = ("" + "") + function_9e72a96(str_sound) + "";
 						iprintlnbold(var_2dbe34fe);
 						println(var_2dbe34fe);
 					}
@@ -3768,7 +3769,7 @@ function zmbaivox_playvox(zombie, type, override, priority, delayambientvox = 0)
 		self.delayambientvox = 1;
 		self thread zmbaivox_ambientdelay();
 	}
-	alias = "zmb_vocals_" + zombie.voiceprefix + "_" + type;
+	alias = (("zmb_vocals_" + zombie.voiceprefix) + "_") + type;
 	if(sndisnetworksafe())
 	{
 		if(isdefined(override) && override)
@@ -4158,7 +4159,7 @@ function get_number_variants(aliasprefix)
 {
 	for(i = 0; i < 20; i++)
 	{
-		if(!soundexists(aliasprefix + "_" + i))
+		if(!soundexists((aliasprefix + "_") + i))
 		{
 			return i;
 		}
@@ -4184,7 +4185,7 @@ function get_valid_lines(aliasprefix)
 	var_a5e8d5c7 = [];
 	for(i = 0; i < 20; i++)
 	{
-		str_alias = aliasprefix + "_" + i;
+		str_alias = (aliasprefix + "_") + i;
 		if(soundexists(str_alias))
 		{
 			if(!isdefined(var_a5e8d5c7))

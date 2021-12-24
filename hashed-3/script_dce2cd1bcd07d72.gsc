@@ -143,7 +143,7 @@ function nuke_loop()
 		var_a4cd10ea = [];
 		foreach(loc in a_locations)
 		{
-			if(loc.targetname === str_zone + "_spawns")
+			if(loc.targetname === (str_zone + "_spawns"))
 			{
 				if(!isdefined(var_a4cd10ea))
 				{

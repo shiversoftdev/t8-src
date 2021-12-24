@@ -636,8 +636,8 @@ function function_7d761e79(player)
 			thread function_31a89cb0(player, 1);
 			while(var_7a496fd5 > 0)
 			{
-				var_7a496fd5 = var_7a496fd5 - float(function_60d95f53()) / 1000;
-				var_33d5f97d = var_33d5f97d - float(function_60d95f53()) / 1000;
+				var_7a496fd5 = var_7a496fd5 - (float(function_60d95f53()) / 1000);
+				var_33d5f97d = var_33d5f97d - (float(function_60d95f53()) / 1000);
 				b_result = function_762978f8(player, var_ec50a0d3, var_966ea21d);
 				if(b_result)
 				{
@@ -646,7 +646,7 @@ function function_7d761e79(player)
 					while(var_7a496fd5 > 0)
 					{
 						waitframe(1);
-						var_7a496fd5 = var_7a496fd5 - float(function_60d95f53()) / 1000;
+						var_7a496fd5 = var_7a496fd5 - (float(function_60d95f53()) / 1000);
 					}
 					function_a27af0ae(player);
 					var_a3cc5416 = 1;
@@ -660,7 +660,7 @@ function function_7d761e79(player)
 				thread function_d0cf938(player, 1);
 				while(var_33d5f97d > 0)
 				{
-					var_33d5f97d = var_33d5f97d - float(function_60d95f53()) / 1000;
+					var_33d5f97d = var_33d5f97d - (float(function_60d95f53()) / 1000);
 					b_result = function_762978f8(player, var_ec50a0d3, var_966ea21d);
 					if(b_result)
 					{
@@ -669,7 +669,7 @@ function function_7d761e79(player)
 						while(var_33d5f97d > 0)
 						{
 							waitframe(1);
-							var_33d5f97d = var_33d5f97d - float(function_60d95f53()) / 1000;
+							var_33d5f97d = var_33d5f97d - (float(function_60d95f53()) / 1000);
 						}
 						function_ef1eb90b(player);
 						var_a3cc5416 = 1;
@@ -704,7 +704,7 @@ function function_7d761e79(player)
 			if(isdefined(self.var_55b4f21e.var_f251a00e))
 			{
 				/#
-					assert(isassetloaded("", self.var_55b4f21e.var_f251a00e), "" + self.var_55b4f21e.var_f251a00e + "");
+					assert(isassetloaded("", self.var_55b4f21e.var_f251a00e), ("" + self.var_55b4f21e.var_f251a00e) + "");
 				#/
 				var_208325df = player gestures::function_b204f6e3(self.var_55b4f21e.var_f251a00e, undefined, 0, 0);
 			}
@@ -786,16 +786,16 @@ function function_7d761e79(player)
 			b_movement = 1;
 			n_anim_length = getanimlength(self._str_current_anim);
 			var_5df5e79a = abs(n_movement);
-			n_update_time = float(function_60d95f53()) / 1000 / n_anim_length;
+			n_update_time = (float(function_60d95f53()) / 1000) / n_anim_length;
 			var_ea474464 = math::clamp(var_5df5e79a, 1, 1);
 			if(csceneobject::function_a808aac7())
 			{
-				var_a3cc5416 = var_a3cc5416 - n_update_time * var_ea474464;
+				var_a3cc5416 = var_a3cc5416 - (n_update_time * var_ea474464);
 				var_f667af2f = 1 - var_a3cc5416;
 			}
 			else
 			{
-				var_a3cc5416 = var_a3cc5416 + n_update_time * var_ea474464;
+				var_a3cc5416 = var_a3cc5416 + (n_update_time * var_ea474464);
 				var_f667af2f = var_a3cc5416;
 			}
 			var_f667af2f = math::clamp(var_f667af2f, 0, 1);
@@ -824,7 +824,7 @@ function function_7d761e79(player)
 						thread [[ o_obj ]]->_play_anim(o_obj.var_efc540b6, 1, 0, var_f667af2f);
 					}
 					waitframe(1);
-					var_a3cc5416 = var_a3cc5416 + n_update_time * var_ea474464;
+					var_a3cc5416 = var_a3cc5416 + (n_update_time * var_ea474464);
 					var_f667af2f = var_a3cc5416;
 				}
 				var_b97b91e4 = undefined;
@@ -1678,7 +1678,7 @@ function play_camera(animation, n_start_time = 0)
 	/#
 		if(getdvarint(#"debug_scene", 0) > 0)
 		{
-			csceneobject::log(toupper(self._s.type) + "" + self._str_camera + "");
+			csceneobject::log(((toupper(self._s.type) + "") + self._str_camera) + "");
 		}
 	#/
 	flagsys::clear(#"camera_playing");
@@ -2190,7 +2190,7 @@ function _play_anim(animation, n_rate, n_blend, n_time)
 	/#
 		if(getdvarint(#"debug_scene", 0) > 0)
 		{
-			csceneobject::log(toupper(self._s.type) + "" + self._str_current_anim + "");
+			csceneobject::log(((toupper(self._s.type) + "") + self._str_current_anim) + "");
 		}
 	#/
 	thread [[ self._o_scene ]]->_call_shot_funcs("players_done");
@@ -2250,10 +2250,10 @@ function _play_shared_player_anim_for_player(player)
 		}
 	}
 	csceneplayer::_prepare_player(player);
-	n_time_passed = float(gettime() - self.player_start_time) / 1000;
+	n_time_passed = (float(gettime() - self.player_start_time)) / 1000;
 	n_start_time = self.player_time_frac * self.player_animation_length;
-	n_time_left = self.player_animation_length - n_time_passed - n_start_time;
-	n_time_frac = 1 - n_time_left / self.player_animation_length;
+	n_time_left = (self.player_animation_length - n_time_passed) - n_start_time;
+	n_time_frac = 1 - (n_time_left / self.player_animation_length);
 	if(isdefined(self._e) && player != self._e)
 	{
 		player dontinterpolate();
@@ -2282,7 +2282,7 @@ function _play_shared_player_anim_for_player(player)
 			}
 			if(getdvarint(#"debug_scene", 0) > 0)
 			{
-				printtoprightln("" + self._s.name + "" + self.player_animation);
+				printtoprightln((("" + self._s.name) + "") + self.player_animation);
 			}
 		#/
 		player_num = player getentitynumber();
@@ -2320,7 +2320,7 @@ function _play_shared_player_anim_for_player(player)
 		/#
 			if(getdvarint(#"debug_scene", 0) > 0)
 			{
-				printtoprightln("" + self._s.name + "" + self.player_animation);
+				printtoprightln((("" + self._s.name) + "") + self.player_animation);
 			}
 		#/
 	}

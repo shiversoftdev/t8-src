@@ -41,7 +41,7 @@ function lookatposition(looktargetpos, lookduration, lookspeed, eyesonly, interr
 	if(!isdefined(interruptothers) || interruptothers == "interrupt others" || gettime() > self.a.lookendtime)
 	{
 		self.a.looktargetpos = looktargetpos;
-		self.a.lookendtime = gettime() + lookduration * 1000;
+		self.a.lookendtime = gettime() + (lookduration * 1000);
 		if(lookspeed == "casual")
 		{
 			self.a.looktargetspeed = 800;
@@ -587,7 +587,7 @@ function donotetracksforeverproc(notetracksfunc, flagname, killstring, customfun
 			if(timetaken < 0.05)
 			{
 				/#
-					println(gettime() + "" + flagname + "" + returnednote + "");
+					println(((((gettime() + "") + flagname) + "") + returnednote) + "");
 				#/
 				wait(0.05 - timetaken);
 			}
@@ -745,7 +745,7 @@ function movetooriginovertime(origin, time)
 	if(distancesquared(self.origin, origin) > 256 && !self maymovetopoint(origin))
 	{
 		/#
-			println("" + origin + "");
+			println(("" + origin) + "");
 		#/
 		return;
 	}
@@ -818,8 +818,8 @@ function incranimaimweight()
 	if(self.a.aimweight_t < self.a.aimweight_transframes)
 	{
 		self.a.aimweight_t++;
-		t = 1 * self.a.aimweight_t / self.a.aimweight_transframes;
-		self.a.aimweight = self.a.aimweight_start * 1 - t + self.a.aimweight_end * t;
+		t = (1 * self.a.aimweight_t) / self.a.aimweight_transframes;
+		self.a.aimweight = (self.a.aimweight_start * (1 - t)) + (self.a.aimweight_end * t);
 	}
 }
 

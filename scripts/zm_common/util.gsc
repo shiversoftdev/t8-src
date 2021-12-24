@@ -525,7 +525,7 @@ function getotherteamsmask(skip_team)
 function getfx(fx)
 {
 	/#
-		assert(isdefined(level._effect[fx]), "" + fx + "");
+		assert(isdefined(level._effect[fx]), ("" + fx) + "");
 	#/
 	return level._effect[fx];
 }
@@ -874,7 +874,7 @@ function get_array_of_closest(org, array, excluders = [], max = array.size, maxd
 		change = 0;
 		for(i = 0; i < dist.size - 1; i++)
 		{
-			if(dist[i] <= dist[i + 1])
+			if(dist[i] <= (dist[i + 1]))
 			{
 				continue;
 			}

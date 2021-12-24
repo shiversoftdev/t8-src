@@ -333,7 +333,7 @@ function function_72e84e64()
 	level thread function_836b3d02();
 	level thread function_e60bbaf4();
 	level thread function_807d5645();
-	n_bomb_timer = int(gettime() + 1000 + int(420 * 1000));
+	n_bomb_timer = int((gettime() + 1000) + (int(420 * 1000)));
 	setmatchflag("bomb_timer_a", 1);
 	setbombtimer("A", n_bomb_timer);
 	while(true)
@@ -583,7 +583,7 @@ function function_e268297c(var_1639ae86)
 	self.var_4c7240f1 = 1;
 	self.var_b1fd680c = 1;
 	v_dir = anglestoforward(var_1639ae86.var_57f1bd45.angles);
-	var_6c9efff0 = var_1639ae86.var_57f1bd45.origin + v_dir * 150;
+	var_6c9efff0 = var_1639ae86.var_57f1bd45.origin + (v_dir * 150);
 	self.var_9a79d89d = var_6c9efff0;
 	v_dir = v_dir * -1;
 	v_angles = vectortoangles(v_dir);
@@ -615,7 +615,7 @@ function function_e268297c(var_1639ae86)
 		{
 			n_time = gettime() / 1000;
 			dt = n_time - n_start_time;
-			level.var_db674473 = 1 - dt / 40;
+			level.var_db674473 = 1 - (dt / 40);
 			if(!(isdefined(var_e47f9e94) && var_e47f9e94) && dt > 20)
 			{
 				level thread function_3a3bc266();

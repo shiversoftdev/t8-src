@@ -394,7 +394,7 @@ function function_d7cd849c(var_cb0f3959, team)
 		level.var_934fb97.var_d741a6a4[var_cb0f3959] = 0;
 	}
 	var_ad7969ca = level.var_934fb97.var_d741a6a4[var_cb0f3959];
-	if(var_ad7969ca != 0 && gettime() < int(5 * 1000) + var_ad7969ca)
+	if(var_ad7969ca != 0 && gettime() < ((int(5 * 1000)) + var_ad7969ca))
 	{
 		return;
 	}
@@ -783,7 +783,7 @@ private function function_5761966a(supplypod)
 	objective_setvisibletoplayer(supplypod.var_134eefb9, player);
 	while(isdefined(supplypod.var_7b7607df[player.clientid]) && supplypod.var_7b7607df[player.clientid] > gettime())
 	{
-		timeremaining = float(supplypod.var_7b7607df[player.clientid] - gettime()) / 1000;
+		timeremaining = (float(supplypod.var_7b7607df[player.clientid] - gettime())) / 1000;
 		if(timeremaining > 0)
 		{
 			wait(timeremaining);
@@ -804,7 +804,7 @@ private function function_5761966a(supplypod)
 */
 private function function_3c4843e3(supplypod, timetoadd)
 {
-	supplypod.var_7b7607df[self.clientid] = gettime() + int(timetoadd * 1000);
+	supplypod.var_7b7607df[self.clientid] = gettime() + (int(timetoadd * 1000));
 }
 
 /*
@@ -1039,7 +1039,7 @@ function function_9abdee8c(object)
 	var_40989bda = supplypod.origin + upangle;
 	usetrigger = spawn("trigger_radius_use", var_40989bda, 0, triggerradius, triggerheight);
 	usetrigger setcursorhint("HINT_INTERACTIVE_PROMPT");
-	usetrigger function_49462027(1, 1 | 4096 | 2 | 8388608 | 2048);
+	usetrigger function_49462027(1, (((1 | 4096) | 2) | 8388608) | 2048);
 	supplypod.gameobject = gameobjects::create_use_object(player getteam(), usetrigger, [], undefined, level.var_934fb97.bundle.var_9333131b, 1, 1);
 	supplypod.gameobject gameobjects::set_visible_team(#"friendly");
 	supplypod.gameobject gameobjects::allow_use(#"friendly");
@@ -1155,7 +1155,7 @@ private function function_a1434496(team, player, result)
 		if(!(isdefined(level.var_934fb97.bundle.var_18ede0bb) ? level.var_934fb97.bundle.var_18ede0bb : 0))
 		{
 			duration = (isdefined(level.var_934fb97.bundle.var_84471829) ? level.var_934fb97.bundle.var_84471829 : 30);
-			player.var_17d74a5c = gettime() + int(duration * 1000);
+			player.var_17d74a5c = gettime() + (int(duration * 1000));
 			player thread function_18f999b5(duration);
 		}
 		else

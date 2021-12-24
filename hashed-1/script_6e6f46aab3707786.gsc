@@ -336,7 +336,7 @@ function function_5f724c2e(e_grenade)
 	if(isdefined(var_dd83e2c2))
 	{
 		v_ground = undefined;
-		v_trace = groundtrace(var_dd83e2c2 + vectorscale((0, 0, 1), 200), var_dd83e2c2 + vectorscale((0, 0, -1), 2000), 0, self, 1)[#"position"];
+		v_trace = groundtrace(var_dd83e2c2 + vectorscale((0, 0, 1), 200), var_dd83e2c2 + (vectorscale((0, 0, -1), 2000)), 0, self, 1)[#"position"];
 		v_on_navmesh = zm_utility::function_b0eeaada(v_trace);
 		if(isdefined(v_on_navmesh))
 		{
@@ -447,7 +447,7 @@ function function_b603ab34(e_player, var_10d4f67d)
 		level thread [[level.var_338bae81]](e_player);
 	}
 	v_forward = anglestoforward(e_player.angles);
-	v_pos = e_player.origin + v_forward * 30;
+	v_pos = e_player.origin + (v_forward * 30);
 	v_pos = util::ground_position(v_pos + vectorscale((0, 0, 1), 30), 1000, 12);
 	mdl_temp = util::spawn_model(#"hash_30b0badbca0a10de", v_pos + (0, 0, -5), (0, 0, 0));
 	waitframe(1);
@@ -731,7 +731,7 @@ function function_32b5113(ai_zombie)
 		/#
 			if(isdefined(ai_zombie.archetype))
 			{
-				println("" + ai_zombie.archetype + "");
+				println(("" + ai_zombie.archetype) + "");
 			}
 		#/
 		return 0;

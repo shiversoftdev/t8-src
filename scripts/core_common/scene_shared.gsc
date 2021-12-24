@@ -826,7 +826,7 @@ function __main__()
 		s_scenedef = getscriptbundle(s_instance.scriptbundlename);
 		/#
 			/#
-				assert(isdefined(s_scenedef), "" + function_9e72a96(s_instance.scriptbundlename) + "");
+				assert(isdefined(s_scenedef), ("" + function_9e72a96(s_instance.scriptbundlename)) + "");
 			#/
 		#/
 		if(s_scenedef.vmtype === "client")
@@ -985,31 +985,31 @@ function function_d4c74ab3()
 		{
 			if(isdefined(trig.targetname))
 			{
-				str_trig_name = "" + trig.targetname + "";
+				str_trig_name = ("" + trig.targetname) + "";
 			}
 			else
 			{
-				str_trig_name = "" + trig getentitynumber() + "";
+				str_trig_name = ("" + trig getentitynumber()) + "";
 			}
 			if(isdefined(trig.scriptgroup_initscenes))
 			{
 				a_instances = struct::get_array(trig.scriptgroup_initscenes, "");
 				/#
-					assert(a_instances.size, "" + str_trig_name + "" + trig.scriptgroup_initscenes);
+					assert(a_instances.size, (("" + str_trig_name) + "") + trig.scriptgroup_initscenes);
 				#/
 			}
 			if(isdefined(trig.scriptgroup_playscenes))
 			{
 				a_instances = struct::get_array(trig.scriptgroup_playscenes, "");
 				/#
-					assert(a_instances.size, "" + str_trig_name + "" + trig.scriptgroup_playscenes);
+					assert(a_instances.size, (("" + str_trig_name) + "") + trig.scriptgroup_playscenes);
 				#/
 			}
 			if(isdefined(trig.scriptgroup_stopscenes))
 			{
 				a_instances = struct::get_array(trig.scriptgroup_stopscenes, "");
 				/#
-					assert(a_instances.size, "" + str_trig_name + "" + trig.scriptgroup_stopscenes);
+					assert(a_instances.size, (("" + str_trig_name) + "") + trig.scriptgroup_stopscenes);
 				#/
 			}
 		}
@@ -1068,12 +1068,12 @@ function run_instances()
 			s_instance struct::delete();
 			continue;
 		}
-		if(isdefined(s_instance.spawnflags) && s_instance.spawnflags & 2 == 2)
+		if(isdefined(s_instance.spawnflags) && (s_instance.spawnflags & 2) == 2)
 		{
 			s_instance thread play();
 			continue;
 		}
-		if(isdefined(s_instance.spawnflags) && s_instance.spawnflags & 1 == 1)
+		if(isdefined(s_instance.spawnflags) && (s_instance.spawnflags & 1) == 1)
 		{
 			s_instance thread init();
 		}
@@ -1161,7 +1161,7 @@ function add_scene_func(str_scenedef, func, var_e21c4c4c = "play", vararg)
 {
 	/#
 		/#
-			assert(isdefined(getscriptbundle(str_scenedef)), "" + function_9e72a96(str_scenedef) + "");
+			assert(isdefined(getscriptbundle(str_scenedef)), ("" + function_9e72a96(str_scenedef)) + "");
 		#/
 	#/
 	if(!isdefined(level.scene_funcs))
@@ -1201,7 +1201,7 @@ function function_d8a83a50(str_scenedef, func, var_e21c4c4c = "play", vararg)
 {
 	/#
 		/#
-			assert(isdefined(getscriptbundle(str_scenedef)), "" + function_9e72a96(str_scenedef) + "");
+			assert(isdefined(getscriptbundle(str_scenedef)), ("" + function_9e72a96(str_scenedef)) + "");
 		#/
 	#/
 	if(!isdefined(level.var_4247a0d6))
@@ -1241,7 +1241,7 @@ function remove_scene_func(str_scenedef, func, var_e21c4c4c = "play")
 {
 	/#
 		/#
-			assert(isdefined(getscriptbundle(str_scenedef)), "" + str_scenedef + "");
+			assert(isdefined(getscriptbundle(str_scenedef)), ("" + str_scenedef) + "");
 		#/
 	#/
 	if(!isdefined(level.scene_funcs))
@@ -1313,7 +1313,7 @@ function get_scenedef(str_scenedef)
 	s_scriptbundle = getscriptbundle(str_scenedef);
 	/#
 		/#
-			assert(isdefined(s_scriptbundle) && isdefined(s_scriptbundle.objects), "" + function_9e72a96(str_scenedef) + "");
+			assert(isdefined(s_scriptbundle) && isdefined(s_scriptbundle.objects), ("" + function_9e72a96(str_scenedef)) + "");
 		#/
 	#/
 	s_scriptbundle = fixup_scenedef(s_scriptbundle);
@@ -1618,10 +1618,10 @@ function _init_instance(str_scenedef = self.scriptbundlename, a_ents, b_test_run
 	}
 	/#
 		/#
-			assert(isdefined(str_scenedef), "" + (isdefined(self.origin) ? self.origin : "") + "");
+			assert(isdefined(str_scenedef), ("" + (isdefined(self.origin) ? self.origin : "")) + "");
 		#/
 		/#
-			assert(isdefined(s_bundle), "" + (isdefined(self.origin) ? self.origin : "") + "" + str_scenedef + "");
+			assert(isdefined(s_bundle), ((("" + (isdefined(self.origin) ? self.origin : "")) + "") + str_scenedef) + "");
 		#/
 	#/
 	if(!(isdefined(self.var_146935c1) && self.var_146935c1))
@@ -1658,11 +1658,11 @@ function function_6f382548(struct, str_scene_name)
 		/#
 			if(struct.type === "")
 			{
-				str_debug = "" + function_9e72a96(str_scene_name) + "";
+				str_debug = ("" + function_9e72a96(str_scene_name)) + "";
 			}
 			else
 			{
-				str_debug = "" + function_9e72a96(struct.name) + "" + str_scene_name + "";
+				str_debug = ((("" + function_9e72a96(struct.name)) + "") + str_scene_name) + "";
 			}
 			println(str_debug);
 		#/
@@ -2216,7 +2216,7 @@ function _play_instance(s_tracker, str_scenedef = self.scriptbundlename, a_ents,
 		var_8b21886e = function_d1abba8b(str_scenedef, str_mode, n_time);
 		str_shot = var_8b21886e.var_ef711d04;
 		var_dd2b75b = var_8b21886e.var_3486c904;
-		str_mode = str_mode + ":" + var_dd2b75b;
+		str_mode = str_mode + (":" + var_dd2b75b);
 	}
 	if(str_mode === "init")
 	{
@@ -2260,7 +2260,7 @@ function _play_instance(s_tracker, str_scenedef = self.scriptbundlename, a_ents,
 				}
 				b_play = 0;
 				/#
-					println("" + str_scenedef + "");
+					println(("" + str_scenedef) + "");
 				#/
 			}
 		}
@@ -2430,8 +2430,8 @@ function update_debug_state(str_scene, str_state)
 {
 	if(!strendswith(self.last_scene_state_instance[str_scene], str_state))
 	{
-		level.last_scene_state[str_scene] = level.last_scene_state[str_scene] + "," + str_state;
-		self.last_scene_state_instance[str_scene] = self.last_scene_state_instance[str_scene] + "," + str_state;
+		level.last_scene_state[str_scene] = level.last_scene_state[str_scene] + ("," + str_state);
+		self.last_scene_state_instance[str_scene] = self.last_scene_state_instance[str_scene] + ("," + str_state);
 	}
 }
 
@@ -2452,7 +2452,7 @@ function _get_scene_instances(str_value, str_key = "targetname", str_scenedef, b
 		a_instances = struct::get_array(str_value, str_key);
 		/#
 			/#
-				assert(a_instances.size, "" + str_key + "" + str_value + "");
+				assert(a_instances.size, ((("" + str_key) + "") + str_value) + "");
 			#/
 		#/
 	}
@@ -2562,7 +2562,7 @@ function function_1eab8670(obj, str_shot)
 				{
 					if(isdefined(s_entry.cameraswitcher))
 					{
-						var_5a162d58 = var_5a162d58 + float(getcamanimtime(s_entry.cameraswitcher)) / 1000;
+						var_5a162d58 = var_5a162d58 + (float(getcamanimtime(s_entry.cameraswitcher)) / 1000);
 						continue;
 					}
 					if(isdefined(s_entry.("anim")))
@@ -2609,7 +2609,7 @@ function function_dde5f483(str_scenedef, n_elapsed_time)
 		if(n_elapsed_time >= var_219aac3f && n_elapsed_time < var_68790830)
 		{
 			var_8b21886e.var_ef711d04 = str_shot;
-			var_8b21886e.var_3486c904 = n_elapsed_time - var_219aac3f / var_958bccd3;
+			var_8b21886e.var_3486c904 = (n_elapsed_time - var_219aac3f) / var_958bccd3;
 			return var_8b21886e;
 		}
 		var_7a2504a = var_7a2504a + var_958bccd3;
@@ -2717,7 +2717,7 @@ function stop(arg1, arg2, arg3)
 				a_instances = struct::get_array(str_value, str_key);
 				/#
 					/#
-						assert(a_instances.size, "" + str_key + "" + str_value + "");
+						assert(a_instances.size, ((("" + str_key) + "") + str_value) + "");
 					#/
 				#/
 				str_value = undefined;
@@ -3267,7 +3267,7 @@ function updateigcviewtime(b_in_igc)
 			{
 				player.totaligcviewtime = 0;
 			}
-			player.totaligcviewtime = player.totaligcviewtime + int(float(igcviewtimesec) / 1000);
+			player.totaligcviewtime = player.totaligcviewtime + (int(float(igcviewtimesec) / 1000));
 		}
 	}
 }
@@ -3287,13 +3287,12 @@ function set_igc_active(b_in_igc, str_scene_name)
 	n_players_in_igc_field = level clientfield::get("in_igc");
 	if(b_in_igc)
 	{
-		n_players_in_igc_field = n_players_in_igc_field | 1 << n_ent_num;
+		n_players_in_igc_field = n_players_in_igc_field | (1 << n_ent_num);
 		self notify(#"hash_57d4f53c12705eac", {#str_scene:str_scene_name});
 	}
 	else
 	{
-		~n_players_in_igc_field;
-		n_players_in_igc_field = n_players_in_igc_field & 1 << n_ent_num;
+		n_players_in_igc_field = n_players_in_igc_field & (~(1 << n_ent_num));
 		self notify(#"hash_684b272680aa2ed", {#str_scene:str_scene_name});
 	}
 	updateigcviewtime(b_in_igc);
@@ -3315,7 +3314,7 @@ function is_igc_active()
 {
 	n_players_in_igc = level clientfield::get("in_igc");
 	n_entnum = self getentitynumber();
-	return n_players_in_igc & 1 << n_entnum;
+	return n_players_in_igc & (1 << n_entnum);
 }
 
 /*
@@ -3351,7 +3350,7 @@ function get_scene_shot(str_scene)
 		}
 	}
 	/#
-		assert("" + str_scene + "");
+		assert(("" + str_scene) + "");
 	#/
 }
 
@@ -3574,7 +3573,7 @@ function function_a4ad0308(o_scene)
 					}
 				}
 			}
-			else if(isdefined(self.scene_skip_start_time) && gettime() - self.scene_skip_start_time > var_d60120)
+			else if(isdefined(self.scene_skip_start_time) && (gettime() - self.scene_skip_start_time) > var_d60120)
 			{
 				if(self ishost())
 				{
@@ -3866,7 +3865,7 @@ function _wait_for_ordered_notify(id, group_obj, group_name, str_note)
 			group_obj.pending_notifies = undefined;
 			level.scene_ordered_notetracks[group_name] = undefined;
 		}
-		else if(isdefined(group_obj.pending_notifies) && group_obj.current_count + group_obj.pending_notifies.size == group_obj.count)
+		else if(isdefined(group_obj.pending_notifies) && (group_obj.current_count + group_obj.pending_notifies.size) == group_obj.count)
 		{
 			self thread _fire_ordered_notitifes(group_obj, group_name);
 		}
@@ -3882,7 +3881,7 @@ function _wait_for_ordered_notify(id, group_obj, group_name, str_note)
 	{
 	}
 	arrayinsert(group_obj.pending_notifies, notetrack, i);
-	if(group_obj.current_count + group_obj.pending_notifies.size == group_obj.count)
+	if((group_obj.current_count + group_obj.pending_notifies.size) == group_obj.count)
 	{
 		self thread _fire_ordered_notitifes(group_obj, group_name);
 	}
@@ -4016,7 +4015,7 @@ function _get_existing_ent(val, key, b_ignore_spawners = 0, str_scene)
 			str_scene = "";
 		}
 		/#
-			assert(a_ents.size <= 1, "" + function_9e72a96(val) + "" + function_9e72a96(str_scene) + "");
+			assert(a_ents.size <= 1, (("" + function_9e72a96(val)) + "") + function_9e72a96(str_scene) + "");
 		#/
 	#/
 	return a_ents[0];
@@ -4191,8 +4190,8 @@ function _destroy_warning_on_screen()
 */
 function wait_server_time(n_time, n_start_time = 0)
 {
-	n_len = n_time - n_time * n_start_time;
-	n_len = n_len / float(function_60d95f53()) / 1000;
+	n_len = n_time - (n_time * n_start_time);
+	n_len = n_len / (float(function_60d95f53()) / 1000);
 	n_len_int = int(n_len);
 	if(n_len_int != n_len)
 	{

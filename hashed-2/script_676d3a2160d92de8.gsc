@@ -573,13 +573,13 @@ private function function_e3ad524a()
 	var_afbf7a56 = level.var_30d2c56e[#"chakram"][#"travel_time"][self.var_72d6f15d];
 	v_start = self geteye();
 	v_forward = self getweaponforwarddir();
-	v_end = v_start + v_forward * var_e68de849;
+	v_end = v_start + (v_forward * var_e68de849);
 	a_trace = bullettrace(v_start, v_end, 0, self);
 	if(distancesquared(v_start, v_end) > distancesquared(v_start, a_trace[#"position"]))
 	{
 		v_end = a_trace[#"position"];
 		n_dist = distance(v_start, v_end);
-		var_c5eb6fda = n_dist * var_afbf7a56 / var_e68de849;
+		var_c5eb6fda = (n_dist * var_afbf7a56) / var_e68de849;
 		if(var_c5eb6fda <= 0)
 		{
 			return 0;
@@ -635,9 +635,9 @@ private function function_e3ad524a()
 					level notify(#"hero_weapon_hit", {#v_position:a_trace[#"position"], #hash_80e17549:self.currentweapon, #e_entity:a_trace[#"entity"], #player:self});
 				}
 				v_start = v_end;
-				v_forward = v_forward - 2 * a_trace[#"normal"] * vectordot(v_forward, a_trace[#"normal"]);
+				v_forward = v_forward - (2 * a_trace[#"normal"]) * vectordot(v_forward, a_trace[#"normal"]);
 				n_dist = var_e68de849 - n_dist;
-				v_end = v_start + v_forward * n_dist;
+				v_end = v_start + (v_forward * n_dist);
 				a_trace = bullettrace(v_start, v_end, 0, self);
 				if(distancesquared(v_start, v_end) != distancesquared(v_start, a_trace[#"position"]))
 				{
@@ -649,7 +649,7 @@ private function function_e3ad524a()
 				{
 					var_5b08cfa = undefined;
 				}
-				var_c5eb6fda = n_dist * var_afbf7a56 / var_e68de849;
+				var_c5eb6fda = (n_dist * var_afbf7a56) / var_e68de849;
 				if(var_c5eb6fda <= 0)
 				{
 					return 0;
@@ -784,7 +784,7 @@ private function function_3adb0798(e_target, n_kills)
 			{
 				var_2f067119 = e_target.origin;
 			}
-			v_target = var_2f067119 + anglestoforward(e_target.angles) * 24;
+			v_target = var_2f067119 + (anglestoforward(e_target.angles) * 24);
 			while(isdefined(n_kills) && n_kills < var_fc51fa3d)
 			{
 				s_trace = bullettrace(self.var_89e9a4ce.origin, v_target, 1, self.var_89e9a4ce);
@@ -806,7 +806,7 @@ private function function_3adb0798(e_target, n_kills)
 		if(distancesquared(self.var_89e9a4ce.origin, v_target) > 2304)
 		{
 			var_81b38250 = distance(self.var_89e9a4ce.origin, v_target);
-			n_travel_time = var_81b38250 * var_ece935b3 / var_e68de849;
+			n_travel_time = (var_81b38250 * var_ece935b3) / var_e68de849;
 			self.var_89e9a4ce moveto(v_target, n_travel_time);
 		}
 		else if(isplayer(e_target))

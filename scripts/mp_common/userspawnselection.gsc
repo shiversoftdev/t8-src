@@ -719,7 +719,7 @@ function watchforselectiontimeout()
 	self.spawnselect_start_time = gettime();
 	while(true)
 	{
-		if(level.spawnselect_timelimit_ms - gettime() - self.spawnselect_start_time <= 0)
+		if((level.spawnselect_timelimit_ms - (gettime() - self.spawnselect_start_time)) <= 0)
 		{
 			self luinotifyevent(#"force_spawn_selection");
 			return;
@@ -827,25 +827,25 @@ private function function_259770ba(e_player)
 	{
 		/#
 			println("");
-			println("" + spawbeaconid + "");
-			println("" + e_player.team + "");
+			println(("" + spawbeaconid) + "");
+			println(("" + e_player.team) + "");
 			for(index = 0; index < level.spawnselect.vox_plr_1_revive_down_2.size; index++)
 			{
 				if(!isdefined(level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid]))
 				{
 					continue;
 				}
-				println("" + index + "");
-				println("" + level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].objectiveid + "");
-				println("" + level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].team + "");
+				println(("" + index) + "");
+				println(("" + level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].objectiveid) + "");
+				println(("" + level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].team) + "");
 				if(isdefined(level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].owner.playername))
 				{
-					println("" + level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].owner.playername + "");
+					println(("" + level.spawnselect.vox_plr_1_revive_down_2[spawbeaconid].owner.playername) + "");
 				}
 				println("");
 			}
-			println("" + level.numgametypereservedobjectives + "");
-			println("" + level.releasedobjectives.size + "");
+			println(("" + level.numgametypereservedobjectives) + "");
+			println(("" + level.releasedobjectives.size) + "");
 			println("");
 			foreach(objid in level.releasedobjectives)
 			{
@@ -882,7 +882,7 @@ private function function_259770ba(e_player)
 */
 private function getclientfieldprefix(id)
 {
-	return "spawngroupStatus." + id + ".";
+	return ("spawngroupStatus." + id) + ".";
 }
 
 /*

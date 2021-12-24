@@ -721,7 +721,7 @@ function function_fd08eb25()
 			foreach(team, _ in level.teams)
 			{
 				setmatchflag("bomb_timer_a", 1);
-				setbombtimer("A", gettime() + 1000 + int(level.var_2576eaeb * 1000));
+				setbombtimer("A", (gettime() + 1000) + (int(level.var_2576eaeb * 1000)));
 				if(var_696c0ca5 >= 0)
 				{
 					globallogic_audio::leader_dialog("hubOffline", team);
@@ -744,7 +744,7 @@ function function_fd08eb25()
 			level.var_1940f14e show();
 		}
 		setmatchflag("bomb_timer_a", 1);
-		setbombtimer("A", gettime() + 1000 + int(level.cleandepositonlinetime * 1000));
+		setbombtimer("A", (gettime() + 1000) + (int(level.cleandepositonlinetime * 1000)));
 		foreach(team, _ in level.teams)
 		{
 			if(level.var_2576eaeb > 0)
@@ -792,7 +792,7 @@ function function_e3e1cf54(var_696c0ca5 = -1)
 	{
 		case 0:
 		{
-			return var_696c0ca5 + 1 % level.cleandeposithubs.size;
+			return (var_696c0ca5 + 1) % level.cleandeposithubs.size;
 		}
 		case 1:
 		{
@@ -910,7 +910,7 @@ function function_c857e45f()
 		time = gettime();
 		foreach(player in level.players)
 		{
-			if(isdefined(player.var_916cc864) && isdefined(player.var_91be2350) && player.var_91be2350 && time - player.var_916cc864 > int(float(function_60d95f53()) / 1000 + 0.25 + 0.1 * 1000))
+			if(isdefined(player.var_916cc864) && isdefined(player.var_91be2350) && player.var_91be2350 && (time - player.var_916cc864) > (int((((float(function_60d95f53()) / 1000) + 0.25) + 0.1) * 1000)))
 			{
 				enemyteam = util::getotherteam(player.team);
 				level thread popups::displayteammessagetoteam(#"hash_7025b86816895e07", player, player.team, player.var_91be2350, undefined, 1);
@@ -925,7 +925,7 @@ function function_c857e45f()
 				}
 				player.var_91be2350 = 0;
 			}
-			if(isdefined(player.var_66521d81) && player.var_66521d81 < gettime() - 1500)
+			if(isdefined(player.var_66521d81) && player.var_66521d81 < (gettime() - 1500))
 			{
 				if(player.var_3e52c359 >= 5)
 				{
@@ -1025,7 +1025,7 @@ function function_1237ad98(player)
 	{
 		return 1;
 	}
-	return player.var_916cc864 + int(0.25 * 1000) < gettime();
+	return (player.var_916cc864 + (int(0.25 * 1000))) < gettime();
 }
 
 /*
@@ -1142,7 +1142,7 @@ function function_bbcf6af(attacker, yawangle)
 	/#
 		dropcount = dropcount + getdvarint(#"hash_28135ad78580b035", 0);
 	#/
-	var_8a33c2ea = 360 / dropcount + 1;
+	var_8a33c2ea = 360 / (dropcount + 1);
 	for(i = 0; i < dropcount; i++)
 	{
 		taco = function_b25ab1e7();

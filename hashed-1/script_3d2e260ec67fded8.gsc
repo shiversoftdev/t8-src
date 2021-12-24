@@ -179,7 +179,7 @@ private function _calculateadjustedpathsegments(params)
 		{
 			direction = params.adjustedpath[1] - params.adjustedpath[0];
 			direction = vectornormalize(direction);
-			fallback = params.adjustedpath[0] - direction * 256;
+			fallback = params.adjustedpath[0] - (direction * 256);
 			fallback = getclosestpointonnavmesh(fallback, 256);
 			if(isdefined(fallback))
 			{
@@ -228,7 +228,7 @@ private function function_66f80bb1(bots)
 	{
 		if(isdefined(bot) && bot isinvehicle())
 		{
-			return 256 / 2 * 2.5;
+			return (256 / 2) * 2.5;
 		}
 	}
 	return 256 / 2;
@@ -249,7 +249,7 @@ private function function_e1b14108(bots)
 	{
 		if(isdefined(bot) && bot isinvehicle())
 		{
-			return 256 * 1.5 * 2.5;
+			return (256 * 1.5) * 2.5;
 		}
 	}
 	return 256 * 1.5;
@@ -270,10 +270,10 @@ private function function_8ff43349(bots)
 	{
 		if(isdefined(bot) && bot isinvehicle())
 		{
-			return 256 / 2 * 6 * 2.5;
+			return ((256 / 2) * 6) * 2.5;
 		}
 	}
-	return 256 / 2 * 6;
+	return (256 / 2) * 6;
 }
 
 /*
@@ -303,7 +303,7 @@ private function _debugadjustedpath(params)
 		{
 			start = params.adjustedpath[index - 1];
 			end = params.adjustedpath[index];
-			center = start + end - start * 0.5;
+			center = start + ((end - start) * 0.5);
 			/#
 				recordline(start, end, (1, 0.5, 0), "");
 				recordcircle(center, function_48bd5e74(params.bots), (1, 0, 0), "");
@@ -319,9 +319,9 @@ private function _debugadjustedpath(params)
 			}
 		}
 		currentpathsegment = params.adjustedpathsegment;
-		if(isdefined(currentpathsegment) && isarray(params.adjustedpath) && currentpathsegment < params.adjustedpath.size - 2)
+		if(isdefined(currentpathsegment) && isarray(params.adjustedpath) && currentpathsegment < (params.adjustedpath.size - 2))
 		{
-			currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+			currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 			/#
 				recordsphere(currentcenter, 10, (0, 1, 0));
 			#/
@@ -357,14 +357,14 @@ private function _evaluateadjustedpath(params)
 	outerradius = function_8ff43349(params.bots);
 	if(currentpathsegment > 0)
 	{
-		previouscenter = params.adjustedpath[currentpathsegment - 1] + params.adjustedpath[currentpathsegment] / 2;
+		previouscenter = ((params.adjustedpath[currentpathsegment - 1]) + params.adjustedpath[currentpathsegment]) / 2;
 		previouspointdanger = _evaluatepointdanger(bot, previouscenter, innerradius, outerradius);
 	}
-	currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+	currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 	currentpointdanger = _evaluatepointdanger(bot, currentcenter, innerradius, outerradius);
 	if(currentpathsegment < params.adjustedpath.size - 2)
 	{
-		nextcenter = params.adjustedpath[currentpathsegment + 1] + params.adjustedpath[currentpathsegment + 2] / 2;
+		nextcenter = (params.adjustedpath[currentpathsegment + 1]) + (params.adjustedpath[currentpathsegment + 2]) / 2;
 		nextpointdanger = _evaluatepointdanger(bot, nextcenter, innerradius, outerradius);
 	}
 	injured = 0;
@@ -382,7 +382,7 @@ private function _evaluateadjustedpath(params)
 	{
 		if(strategiccommandutility::isvalidbot(bot))
 		{
-			if(distance2dsquared(bot.origin, currentcenter) <= var_4fbb80f1 * var_4fbb80f1)
+			if(distance2dsquared(bot.origin, currentcenter) <= (var_4fbb80f1 * var_4fbb80f1))
 			{
 				reachedcurrent = 1;
 				break;
@@ -462,7 +462,7 @@ private function _isinjured(bot)
 		tacstate = bot bot::function_d473f7de();
 		if(isdefined(tacstate))
 		{
-			return bot.health / bot.maxhealth <= (isdefined(tacstate.var_ac1c818f) ? tacstate.var_ac1c818f : 0);
+			return (bot.health / bot.maxhealth) <= (isdefined(tacstate.var_ac1c818f) ? tacstate.var_ac1c818f : 0);
 		}
 	}
 	return 0;
@@ -920,7 +920,7 @@ private function strategyclearareatogoldenpathupdate(planner, params)
 		params.adjustedpathsegment = 1;
 		params.adjustedpathsegment = int(max(min(params.adjustedpathsegment, params.adjustedpath.size - 2), 0));
 		currentpathsegment = params.adjustedpathsegment;
-		currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+		currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 	}
 	var_ba6c6b41 = function_48bd5e74(params.bots);
 	foreach(bot in params.bots)
@@ -1037,7 +1037,7 @@ private function strategyclearareatoattackobjectupdate(planner, params)
 		_evaluateadjustedpath(params);
 		params.adjustedpathsegment = int(max(min(params.adjustedpathsegment, params.adjustedpath.size - 2), 0));
 		currentpathsegment = params.adjustedpathsegment;
-		currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+		currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 	}
 	var_ba6c6b41 = function_48bd5e74(params.bots);
 	foreach(bot in params.bots)
@@ -1046,7 +1046,7 @@ private function strategyclearareatoattackobjectupdate(planner, params)
 		{
 			continue;
 		}
-		if(currentpathsegment >= params.adjustedpath.size - 2)
+		if(currentpathsegment >= (params.adjustedpath.size - 2))
 		{
 			if(!isdefined(params.order) || params.order == "order_attack")
 			{
@@ -1122,7 +1122,7 @@ private function strategyclearareatodefendobjectupdate(planner, params)
 		_evaluateadjustedpath(params);
 		params.adjustedpathsegment = int(max(min(params.adjustedpathsegment, params.adjustedpath.size - 2), 0));
 		currentpathsegment = params.adjustedpathsegment;
-		currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+		currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 	}
 	var_ba6c6b41 = function_48bd5e74(params.bots);
 	foreach(bot in params.bots)
@@ -1130,7 +1130,7 @@ private function strategyclearareatodefendobjectupdate(planner, params)
 		if(strategiccommandutility::isvalidbot(bot))
 		{
 			_cleargameobject(bot);
-			if(currentpathsegment >= params.adjustedpath.size - 2)
+			if(currentpathsegment >= (params.adjustedpath.size - 2))
 			{
 				_setgoalpoint(bot, params.object.origin);
 				bot.goalradius = 512;
@@ -1177,7 +1177,7 @@ private function strategyclearareatoescortupdate(planner, params)
 		_evaluateadjustedpath(params);
 		params.adjustedpathsegment = int(max(min(params.adjustedpathsegment, params.adjustedpath.size - 2), 0));
 		currentpathsegment = params.adjustedpathsegment;
-		currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+		currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 	}
 	var_ba6c6b41 = function_48bd5e74(params.bots);
 	foreach(bot in params.bots)
@@ -1185,7 +1185,7 @@ private function strategyclearareatoescortupdate(planner, params)
 		if(strategiccommandutility::isvalidbot(bot))
 		{
 			_cleargameobject(bot);
-			if(currentpathsegment >= params.adjustedpath.size - 2)
+			if(currentpathsegment >= (params.adjustedpath.size - 2))
 			{
 				if(!bot isingoal(escort.origin))
 				{
@@ -1226,7 +1226,7 @@ private function strategyclearareatoobjectiveupdate(planner, params)
 		_evaluateadjustedpath(params);
 		params.adjustedpathsegment = int(max(min(params.adjustedpathsegment, params.adjustedpath.size - 2), 0));
 		currentpathsegment = params.adjustedpathsegment;
-		currentcenter = params.adjustedpath[currentpathsegment] + params.adjustedpath[currentpathsegment + 1] / 2;
+		currentcenter = (params.adjustedpath[currentpathsegment] + (params.adjustedpath[currentpathsegment + 1])) / 2;
 	}
 	var_ba6c6b41 = function_48bd5e74(params.bots);
 	foreach(bot in params.bots)
@@ -1234,7 +1234,7 @@ private function strategyclearareatoobjectiveupdate(planner, params)
 		if(strategiccommandutility::isvalidbot(bot))
 		{
 			_cleargameobject(bot);
-			if(currentpathsegment >= params.adjustedpath.size - 2)
+			if(currentpathsegment >= (params.adjustedpath.size - 2))
 			{
 				trigger = params.objective[#"__unsafe__"][#"trigger"];
 				if(isdefined(trigger))
@@ -1362,7 +1362,7 @@ private function strategyhasforcegoal(planner, constants)
 private function function_790fb743(planner, constants)
 {
 	/#
-		assert(isstring(constants[#"key"]) || function_7a600918(constants[#"key"]), "" + "" + "");
+		assert(isstring(constants[#"key"]) || function_7a600918(constants[#"key"]), ("" + "") + "");
 	#/
 	attribute = planner::getblackboardattribute(planner, constants[#"key"]);
 	if(isdefined(attribute) && isarray(attribute))
@@ -1384,7 +1384,7 @@ private function function_790fb743(planner, constants)
 private function function_f6ec02a4(planner, constants)
 {
 	/#
-		assert(isfloat(constants[#"percent"]), "" + "" + "");
+		assert(isfloat(constants[#"percent"]), ("" + "") + "");
 	#/
 	foreach(botinfo in planner::getblackboardattribute(planner, "doppelbots"))
 	{
@@ -1427,7 +1427,7 @@ private function function_f6ec02a4(planner, constants)
 private function strategyhasbelowxammounsafe(planner, constants)
 {
 	/#
-		assert(isfloat(constants[#"percent"]), "" + "" + "");
+		assert(isfloat(constants[#"percent"]), ("" + "") + "");
 	#/
 	foreach(botinfo in planner::getblackboardattribute(planner, "doppelbots"))
 	{
@@ -1645,7 +1645,7 @@ private function strategyrushammocacheinit(planner, params)
 private function function_a0f209b7(planner, constants)
 {
 	/#
-		assert(isfloat(constants[#"percent"]), "" + "" + "");
+		assert(isfloat(constants[#"percent"]), ("" + "") + "");
 	#/
 	foreach(botinfo in planner::getblackboardattribute(planner, "doppelbots"))
 	{
@@ -1834,7 +1834,7 @@ private function function_4c91e90d(planner, params)
 private function strategyrushammocacheparam(planner, constants)
 {
 	/#
-		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), "" + "" + "");
+		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
 	#/
 	params = spawnstruct();
 	params.bots = [];
@@ -2098,7 +2098,7 @@ private function function_5ac5aed(planner, params)
 				if(isdefined(groundent) && groundent ismovingplatform())
 				{
 					var_201e45bb = (randomfloatrange(groundent.mins[0], groundent.maxs[0]), randomfloatrange(groundent.mins[1], groundent.maxs[1]), 0);
-					var_d0354e07 = groundent.origin + var_201e45bb * (1, 1, 0);
+					var_d0354e07 = (groundent.origin + var_201e45bb) * (1, 1, 0);
 					var_2c574437 = var_d0354e07 + (0, 0, params.escort.origin[2] + 16);
 					targetpoint = getclosestpointonnavmesh(var_2c574437, 64, 16);
 					if(isdefined(targetpoint))
@@ -2422,14 +2422,14 @@ private function strategywanderupdate(planner, params)
 			{
 				bot._wander_update_time = 0;
 			}
-			if(bot._wander_update_time + 3000 < gettime() || bot isingoal(bot.origin))
+			if((bot._wander_update_time + 3000) < gettime() || bot isingoal(bot.origin))
 			{
 				searchradius = 1024;
 				navmeshpoint = getclosestpointonnavmesh(bot.origin, 200);
 				if(isdefined(navmeshpoint))
 				{
 					forward = anglestoforward(bot getangles());
-					forwardpos = bot.origin + forward * searchradius;
+					forwardpos = bot.origin + (forward * searchradius);
 					cylinder = ai::t_cylinder(bot.origin, searchradius, searchradius);
 					points = tacticalquery(#"stratcom_tacquery_wander", navmeshpoint, cylinder, forwardpos, bot);
 					if(points.size > 0)

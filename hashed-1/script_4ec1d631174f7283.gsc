@@ -142,7 +142,7 @@ function function_1c989dc4()
 		eddie.pushable = 0;
 		var_e625df22 = anglestoforward(samantha.angles);
 		samantha_right = vectorcross((0, 0, 1), var_e625df22) * -1;
-		eddie forceteleport(samantha.origin + samantha_right * 25, samantha.angles);
+		eddie forceteleport(samantha.origin + (samantha_right * 25), samantha.angles);
 	}
 }
 
@@ -191,7 +191,7 @@ private function function_dca53f1f(player_index)
 	if(isdefined(level.var_8a8728c6))
 	{
 		samantha = level.var_8a8728c6[0];
-		var_b8e7e5da = (-100, -12.5, 0) + vectorscale((-1, 0, 0), 5) * player_index;
+		var_b8e7e5da = (-100, -12.5, 0) + ((vectorscale((-1, 0, 0), 5)) * player_index);
 		var_9a149315 = samantha.origin + rotatepointaroundaxis(var_b8e7e5da, (0, 0, 1), samantha.angles[1]);
 	}
 	return var_9a149315;
@@ -231,7 +231,7 @@ function function_303ab700()
 					player setplayerangles(samantha.angles);
 					waitframe(1);
 					/#
-						println("" + player.name + "");
+						println(("" + player.name) + "");
 					#/
 					function_8e56bb21(player, player.var_fa2d1151, var_16a2c824, samantha.angles);
 					wait(1);
@@ -287,7 +287,7 @@ function function_ddbe2dbb(distance)
 	foreach(npc in level.var_8a8728c6)
 	{
 		var_a04c5e3b = anglestoforward(npc.angles);
-		npc.var_9a149315 = npc.origin + anglestoforward(npc.angles) * distance;
+		npc.var_9a149315 = npc.origin + (anglestoforward(npc.angles) * distance);
 		npc setgoal(npc.var_9a149315);
 	}
 }
@@ -344,7 +344,7 @@ private function function_2165e851()
 				if(var_2e35e6c1)
 				{
 					var_a04c5e3b = anglestoforward(npc.angles);
-					npc.var_9a149315 = npc.origin + anglestoforward(npc.angles) * 100;
+					npc.var_9a149315 = npc.origin + (anglestoforward(npc.angles) * 100);
 					npc setgoal(npc.var_9a149315);
 					continue;
 				}

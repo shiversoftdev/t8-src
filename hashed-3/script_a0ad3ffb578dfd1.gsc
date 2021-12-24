@@ -551,7 +551,7 @@ function function_21a979f7()
 		{
 			self.angles = self.angles + vectorscale((1, 0, 0), 360);
 		}
-		self rotatepitch(self.angles[0] + 180 * -1, 2);
+		self rotatepitch((self.angles[0] + 180) * -1, 2);
 		self waittill(#"rotatedone");
 	}
 }

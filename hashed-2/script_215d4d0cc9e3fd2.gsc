@@ -326,7 +326,7 @@ function function_aa4daa54(var_b594a2cd)
 	}
 	meleerange = var_b594a2cd.weapon.var_bfbec33f;
 	enemyradius = self.enemy getpathfindingradius();
-	if(distance2dsquared(self.origin, self.enemy.origin) > meleerange + enemyradius * meleerange + enemyradius)
+	if(distance2dsquared(self.origin, self.enemy.origin) > (meleerange + enemyradius) * (meleerange + enemyradius))
 	{
 		/#
 			if(!isdefined(var_b594a2cd.debug))
@@ -515,7 +515,7 @@ private function function_f59547eb(trigger)
 	var_e61f062b = self getpathfindingradius();
 	maxs = (trigger.maxs[0], trigger.maxs[1], 0);
 	var_12f8c7ca = length(maxs);
-	return distance2dsquared(self.origin, trigger.origin) <= 120 + var_12f8c7ca + var_e61f062b * 120 + var_12f8c7ca + var_e61f062b;
+	return distance2dsquared(self.origin, trigger.origin) <= ((120 + var_12f8c7ca) + var_e61f062b) * ((120 + var_12f8c7ca) + var_e61f062b);
 }
 
 /*
@@ -903,7 +903,7 @@ function function_296516b4(var_b594a2cd)
 		return;
 	}
 	pathenemyfightdist = self.bot.tacbundle.pathenemyfightdist;
-	if(!self ai::get_behavior_attribute("ignorepathenemyfightdist") && isdefined(self.enemy) && isdefined(pathenemyfightdist) && pathenemyfightdist > 0 && distance2dsquared(self.origin, self.enemy.origin) < pathenemyfightdist * pathenemyfightdist)
+	if(!self ai::get_behavior_attribute("ignorepathenemyfightdist") && isdefined(self.enemy) && isdefined(pathenemyfightdist) && pathenemyfightdist > 0 && distance2dsquared(self.origin, self.enemy.origin) < (pathenemyfightdist * pathenemyfightdist))
 	{
 		/#
 			if(!isdefined(var_b594a2cd.debug))

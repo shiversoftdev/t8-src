@@ -57,7 +57,7 @@ function devgui_debug_key_value()
 		adddebugcommand("");
 		foreach(str_key in a_keys)
 		{
-			adddebugcommand("" + str_key + "" + str_key + "");
+			adddebugcommand(((("" + str_key) + "") + str_key) + "");
 		}
 		while(!flag::exists(""))
 		{
@@ -118,10 +118,10 @@ function debug_draw_tuning_sphere()
 				{
 					n_sphere_radius = getdvarfloat(#"debug_measure_sphere_radius", 0);
 					circle(players[0].origin, n_sphere_radius, (1, 0, 0), 0, 1, 16);
-					n_text_scale = sqrt(n_sphere_radius * 2.5) / 2;
+					n_text_scale = (sqrt(n_sphere_radius * 2.5)) / 2;
 					vforward = anglestoforward(players[0].angles);
-					v_text_position = players[0].origin + vforward * n_sphere_radius;
-					sides = int(10 * 1 + int(n_text_scale) % 100);
+					v_text_position = players[0].origin + (vforward * n_sphere_radius);
+					sides = int(10 * (1 + (int(n_text_scale) % 100)));
 					sphere(v_text_position, n_text_scale, (1, 0, 0), 1, 1, sides, 16);
 					print3d(v_text_position + vectorscale((0, 0, 1), 20), n_sphere_radius, (1, 0, 0), 1, n_text_scale / 14, 16);
 				}

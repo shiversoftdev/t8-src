@@ -288,8 +288,8 @@ private function function_697a9b7f(entity, minrange, maxrange)
 	{
 		maxrange = 1000;
 	}
-	withinrange = distancesquared(entity.origin, entity.favoriteenemy.origin) <= maxrange * maxrange;
-	withinrange = withinrange && distancesquared(entity.origin, entity.favoriteenemy.origin) >= minrange * minrange;
+	withinrange = distancesquared(entity.origin, entity.favoriteenemy.origin) <= (maxrange * maxrange);
+	withinrange = withinrange && distancesquared(entity.origin, entity.favoriteenemy.origin) >= (minrange * minrange);
 	return withinrange;
 }
 
@@ -386,7 +386,7 @@ function function_7fe60e9e(entity)
 	if(distancesquared(targetpos, entity.origin) > 250 * 250)
 	{
 		velocity = entity.favoriteenemy getvelocity();
-		targetpos = targetpos + velocity * 0.5;
+		targetpos = targetpos + (velocity * 0.5);
 		var_a76a363d = math::randomsign() * randomint(var_ad804014);
 		var_9b241db1 = math::randomsign() * randomint(var_ad804014);
 		targetpos = targetpos + (var_a76a363d, var_9b241db1, 0);
@@ -397,7 +397,7 @@ function function_7fe60e9e(entity)
 			dot = vectordot(-1 * var_7ee6937e, velocity / speed);
 			if(dot >= 0.8)
 			{
-				targetpos = targetpos + var_7ee6937e * dot * speed * 0.5;
+				targetpos = targetpos + (((var_7ee6937e * dot) * speed) * 0.5);
 			}
 		}
 	}
@@ -754,7 +754,7 @@ private function function_d82de95f(entity)
 		forward_angles = anglestoforward(entity.angles);
 		if(isdefined(blast_origin) && isdefined(forward_angles))
 		{
-			end_pos = blast_origin + forward_angles * 1200;
+			end_pos = blast_origin + (forward_angles * 1200);
 			test_origin = entity.locked_enemy getcentroid();
 			radial_origin = pointonsegmentnearesttopoint(blast_origin, end_pos, test_origin);
 			var_caf24228 = distancesquared(test_origin, radial_origin);
@@ -825,8 +825,8 @@ private function function_564b9cf5(entity)
 private function function_2301c0a7(entity, asmstatename)
 {
 	entity.track_enemy = 1;
-	entity.var_1ec6ea5d = gettime() + int(entity ai::function_9139c839().var_3422adfd * 1000);
-	entity.var_292d3a3b = gettime() + int(entity ai::function_9139c839().var_5d9f2696 * 1000);
+	entity.var_1ec6ea5d = gettime() + (int(entity ai::function_9139c839().var_3422adfd * 1000));
+	entity.var_292d3a3b = gettime() + (int(entity ai::function_9139c839().var_5d9f2696 * 1000));
 	entity clientfield::set("gegenees_shield_guard_effect", 1);
 	/#
 		entity.var_89b5e1e = 0;
@@ -1223,8 +1223,8 @@ private function function_376a5549(enemy)
 	forward = anglestoforward(self.angles);
 	velocity = enemy getvelocity();
 	var_886d7387 = 500;
-	var_886d7387 = 200 + randomint(var_886d7387 - 200);
-	enemy setvelocity(velocity + forward * var_886d7387);
+	var_886d7387 = 200 + (randomint(var_886d7387 - 200));
+	enemy setvelocity(velocity + (forward * var_886d7387));
 }
 
 /*
@@ -1366,7 +1366,7 @@ private function function_ca5688e3(inflictor, attacker, damage, idflags, meansof
 	{
 		if(isdefined(var_dd54fdb1.var_8223b0cf) && var_dd54fdb1.var_8223b0cf > 0)
 		{
-			adjusted_damage = int(damage * var_786d7e06.damage_scale * var_dd54fdb1.var_8223b0cf);
+			adjusted_damage = int((damage * var_786d7e06.damage_scale) * var_dd54fdb1.var_8223b0cf);
 		}
 		if(var_88e794fb)
 		{

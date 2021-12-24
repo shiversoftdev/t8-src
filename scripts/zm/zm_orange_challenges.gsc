@@ -2645,7 +2645,7 @@ function function_b0d64cce(v_pos, v_angles)
 			#/
 			v_drop = v_pos;
 		}
-		v_ground = groundtrace(v_drop + vectorscale((0, 0, 1), 64) + vectorscale((0, 0, 1), 8), v_drop + vectorscale((0, 0, 1), 64) + vectorscale((0, 0, -1), 100000), 0, self)[#"position"];
+		v_ground = groundtrace((v_drop + vectorscale((0, 0, 1), 64)) + vectorscale((0, 0, 1), 8), (v_drop + vectorscale((0, 0, 1), 64)) + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
 		v_ground = v_ground + vectorscale((0, 0, 1), 36);
 		var_68101467 = util::spawn_model("p8_zm_esc_warden_organs_brain", v_ground);
 		waitframe(1);

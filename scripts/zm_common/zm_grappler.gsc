@@ -273,7 +273,7 @@ function function_a60cb756(var_b4666218, var_e9f8c8f3)
 	{
 		return;
 	}
-	if(var_b4666218 != isdefined(self.var_564dec14) && self.var_564dec14)
+	if(var_b4666218 != (isdefined(self.var_564dec14) && self.var_564dec14))
 	{
 		if(isdefined(var_b4666218) && var_b4666218)
 		{

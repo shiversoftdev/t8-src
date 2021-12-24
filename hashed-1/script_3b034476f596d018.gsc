@@ -134,7 +134,7 @@ function status_effects_devgui_player_disconnect()
 		{
 			return;
 		}
-		remove_cmd_with_root = "" + level.status_effects_devgui_base + self.playername + "";
+		remove_cmd_with_root = (("" + level.status_effects_devgui_base) + self.playername) + "";
 		util::add_queued_debug_command(remove_cmd_with_root);
 	#/
 }
@@ -182,7 +182,7 @@ function status_effects_devgui_player_connect()
 function function_2a302935(root, pname, index)
 {
 	/#
-		add_cmd_with_root = "" + root + pname + "";
+		add_cmd_with_root = (("" + root) + pname) + "";
 		pid = "" + index;
 		status_effects_devgui_add_player_command(add_cmd_with_root, pid, "", "", undefined);
 	#/
@@ -200,7 +200,7 @@ function function_2a302935(root, pname, index)
 function status_effects_devgui_add_player_status_effects(root, pname, index)
 {
 	/#
-		add_cmd_with_root = "" + root + pname + "";
+		add_cmd_with_root = (("" + root) + pname) + "";
 		pid = "" + index;
 		if(isdefined(level.var_233471d2))
 		{
@@ -231,7 +231,7 @@ function status_effects_devgui_add_player_status_effects(root, pname, index)
 function status_effects_devgui_add_player_grenades(root, pname, index)
 {
 	/#
-		add_cmd_with_root = "" + root + pname + "";
+		add_cmd_with_root = (("" + root) + pname) + "";
 		pid = "" + index;
 		if(isdefined(level.var_233471d2))
 		{
@@ -267,7 +267,7 @@ function status_effects_devgui_add_player_command(root, pid, cmdname, cmddvar, a
 		{
 			argdvar = "";
 		}
-		adddebugcommand(root + cmdname + "" + "" + "" + pid + "" + "" + "" + cmddvar + "" + "" + "" + argdvar + "");
+		adddebugcommand((((((((((((((root + cmdname) + "") + "") + "") + pid) + "") + "") + "") + cmddvar) + "") + "") + "") + argdvar) + "");
 	#/
 }
 

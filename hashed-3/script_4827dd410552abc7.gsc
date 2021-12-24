@@ -350,7 +350,7 @@ function damagetarget(dir)
 						rotation = -1;
 					}
 				}
-				self rotateyaw(self.angles[2] + 180 * rotation, 0.3);
+				self rotateyaw(self.angles[2] + (180 * rotation), 0.3);
 				self playsound("amb_target_twirl");
 				self waittill(#"rotatedone");
 				break;

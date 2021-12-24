@@ -216,7 +216,7 @@ function include_weapon(weapon_name, display_in_box, cost, ammo_cost, upgraded =
 	if(!isdefined(weapon.worldmodel))
 	{
 		/#
-			thread util::error("" + function_9e72a96(weapon_name) + "");
+			thread util::error(("" + function_9e72a96(weapon_name)) + "");
 		#/
 		return;
 	}

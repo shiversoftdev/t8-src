@@ -490,7 +490,7 @@ function function_33bab9aa()
 					var_61525c00.target_value = 8;
 					var_61525c00.var_59cb904f = 0;
 					player function_5e1c4d33(var_61525c00);
-					iprintln("" + var_f029d0d7 + "" + player.name + "");
+					iprintln(((("" + var_f029d0d7) + "") + player.name) + "");
 				}
 			}
 			setdvar(#"hash_4e7103a8bd2b97f6", "");
@@ -706,7 +706,7 @@ function function_78083139()
 			{
 				var_9d12108c = player.timeplayed[player.team];
 			}
-			var_5463bb33 = time_played_total - player.pers[#"hash_5651f00c6c1790a4"] + var_9d12108c;
+			var_5463bb33 = (time_played_total - player.pers[#"hash_5651f00c6c1790a4"]) + var_9d12108c;
 			if(!isdefined(var_ad6e6421))
 			{
 				var_ad6e6421 = var_5463bb33;
@@ -738,7 +738,7 @@ function function_78083139()
 			if(getdvarint(#"scr_contract_debug", 0) > 0)
 			{
 				var_7b6acdb1 = (var_9224acc ? "" : "");
-				iprintln("" + function_9e72a96(var_38280f2f) + "" + delta + "" + var_4b67585c + "" + var_2de8a050 + var_7b6acdb1);
+				iprintln(((((((("" + function_9e72a96(var_38280f2f)) + "") + delta) + "") + var_4b67585c) + "") + var_2de8a050) + var_7b6acdb1);
 			}
 		#/
 		flags = player function_507247e8(var_9224acc);

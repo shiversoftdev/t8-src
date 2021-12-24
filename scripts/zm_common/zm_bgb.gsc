@@ -275,7 +275,7 @@ private function function_174e1d8e()
 		if(!isdefined(var_ddcb67f4) || !isdefined(var_5415dfb9))
 		{
 			/#
-				println("" + v.name + "");
+				println(("" + v.name) + "");
 			#/
 			continue;
 		}
@@ -348,13 +348,13 @@ private function setup_devgui()
 		foreach(key in keys)
 		{
 			name = function_9e72a96(level.bgb[key].name);
-			adddebugcommand(bgb_devgui_base + name + "" + "" + "" + name + "");
+			adddebugcommand((((((bgb_devgui_base + name) + "") + "") + "") + name) + "");
 		}
-		adddebugcommand(bgb_devgui_base + "" + "" + "" + "" + "");
+		adddebugcommand(((((bgb_devgui_base + "") + "") + "") + "") + "");
 		for(i = 0; i < 4; i++)
 		{
 			playernum = i + 1;
-			adddebugcommand(bgb_devgui_base + "" + playernum + "" + "" + "" + i + "");
+			adddebugcommand(((((((bgb_devgui_base + "") + playernum) + "") + "") + "") + i) + "");
 		}
 		level thread bgb_devgui_think();
 	#/
@@ -480,7 +480,7 @@ private function bgb_set_debug_text(name, activations_remaining)
 		}
 		if(isdefined(activations_remaining))
 		{
-			self.bgb_debug_text settext("" + short_name + "" + activations_remaining + "");
+			self.bgb_debug_text settext(((("" + short_name) + "") + activations_remaining) + "");
 		}
 		else
 		{
@@ -507,10 +507,10 @@ private function bgb_set_debug_text(name, activations_remaining)
 function function_188002fa(bgb)
 {
 	/#
-		printtoprightln(function_9e72a96(bgb) + "" + self.var_ed782493[bgb].var_c2a984f0, (1, 1, 1));
-		printtoprightln(function_9e72a96(bgb) + "" + self.var_ed782493[bgb].var_a286cbfb, (1, 1, 1));
+		printtoprightln((function_9e72a96(bgb) + "") + self.var_ed782493[bgb].var_c2a984f0, (1, 1, 1));
+		printtoprightln((function_9e72a96(bgb) + "") + self.var_ed782493[bgb].var_a286cbfb, (1, 1, 1));
 		n_available = self.var_ed782493[bgb].var_c2a984f0 - self.var_ed782493[bgb].var_a286cbfb;
-		printtoprightln(function_9e72a96(bgb) + "" + n_available, (1, 1, 1));
+		printtoprightln((function_9e72a96(bgb) + "") + n_available, (1, 1, 1));
 	#/
 }
 
@@ -967,7 +967,7 @@ private function bgb_limit_monitor()
 		default:
 		{
 			/#
-				assert(0, "" + self.bgb + "" + level.bgb[self.bgb].limit_type + "");
+				assert(0, ((("" + self.bgb) + "") + level.bgb[self.bgb].limit_type) + "");
 			#/
 		}
 	}
@@ -1280,12 +1280,12 @@ function function_b95235f7(name)
 */
 private function calc_remaining_duration_lerp(start_time, end_time)
 {
-	if(0 >= end_time - start_time)
+	if(0 >= (end_time - start_time))
 	{
 		return 0;
 	}
 	now = gettime();
-	frac = float(end_time - now) / float(end_time - start_time);
+	frac = (float(end_time - now)) / (float(end_time - start_time));
 	return math::clamp(frac, 0, 1);
 }
 
@@ -1334,7 +1334,7 @@ private function function_ea2d1b42(percent, var_5f12e334 = 0)
 {
 	self notify(#"hash_6ae783a3051b411b");
 	var_f205d85d = self clientfield::get_player_uimodel("zmhud.bgb_timer");
-	if(percent < var_f205d85d && 0.1 <= var_f205d85d - percent)
+	if(percent < var_f205d85d && 0.1 <= (var_f205d85d - percent))
 	{
 		self thread function_af43111c(var_f205d85d, percent, var_5f12e334);
 	}
@@ -1402,7 +1402,7 @@ function run_timer(max)
 		}
 		else if(!(isdefined(self.var_4b0fb2fb) && self.var_4b0fb2fb))
 		{
-			current = current - float(function_60d95f53()) / 1000;
+			current = current - (float(function_60d95f53()) / 1000);
 		}
 	}
 	self notify(#"hash_347d2afccb8337ab");
@@ -1440,56 +1440,56 @@ function register(name, limit_type, limit, enable_func, disable_func, validation
 		assert(isdefined(name), "");
 	#/
 	/#
-		assert(#"none" != name, "" + #"none" + "");
+		assert(#"none" != name, ("" + #"none") + "");
 	#/
 	/#
-		assert(!isdefined(level.bgb[name]), "" + name + "");
+		assert(!isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(limit_type), "" + name + "");
+		assert(isdefined(limit_type), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(limit), "" + name + "");
+		assert(isdefined(limit), ("" + name) + "");
 	#/
 	/#
-		assert(!isdefined(enable_func) || isfunctionptr(enable_func), "" + name + "");
+		assert(!isdefined(enable_func) || isfunctionptr(enable_func), ("" + name) + "");
 	#/
 	/#
-		assert(!isdefined(disable_func) || isfunctionptr(disable_func), "" + name + "");
+		assert(!isdefined(disable_func) || isfunctionptr(disable_func), ("" + name) + "");
 	#/
 	switch(limit_type)
 	{
 		case "activated":
 		{
 			/#
-				assert(!isdefined(validation_func) || isfunctionptr(validation_func), "" + name + "" + limit_type + "");
+				assert(!isdefined(validation_func) || isfunctionptr(validation_func), ((("" + name) + "") + limit_type) + "");
 			#/
 			/#
-				assert(isdefined(activation_func), "" + name + "" + limit_type + "");
+				assert(isdefined(activation_func), ((("" + name) + "") + limit_type) + "");
 			#/
 			/#
-				assert(isfunctionptr(activation_func), "" + name + "" + limit_type + "");
+				assert(isfunctionptr(activation_func), ((("" + name) + "") + limit_type) + "");
 			#/
 		}
 		case "time":
 		case "rounds":
 		{
 			/#
-				assert(isint(limit), "" + name + "" + limit + "" + limit_type + "");
+				assert(isint(limit), ((((("" + name) + "") + limit) + "") + limit_type) + "");
 			#/
 			break;
 		}
 		case "event":
 		{
 			/#
-				assert(isfunctionptr(limit), "" + name + "" + limit_type + "");
+				assert(isfunctionptr(limit), ((("" + name) + "") + limit_type) + "");
 			#/
 			break;
 		}
 		default:
 		{
 			/#
-				assert(0, "" + name + "" + limit_type + "");
+				assert(0, ((("" + name) + "") + limit_type) + "");
 			#/
 		}
 	}
@@ -1520,7 +1520,7 @@ function register(name, limit_type, limit, enable_func, disable_func, validation
 function function_430970f6(name, var_ebb91cb6)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_ebb91cb6 = var_ebb91cb6;
 }
@@ -1537,7 +1537,7 @@ function function_430970f6(name, var_ebb91cb6)
 function function_cc303f91(name, var_49cdead9)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_49cdead9 = var_49cdead9;
 }
@@ -1554,7 +1554,7 @@ function function_cc303f91(name, var_49cdead9)
 function function_95296005(name, var_52fd36a5)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_52fd36a5 = var_52fd36a5;
 }
@@ -1571,7 +1571,7 @@ function function_95296005(name, var_52fd36a5)
 function register_lost_perk_override(name, lost_perk_override_func, lost_perk_override_func_always_run)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].lost_perk_override_func = lost_perk_override_func;
 	level.bgb[name].lost_perk_override_func_always_run = lost_perk_override_func_always_run;
@@ -1589,7 +1589,7 @@ function register_lost_perk_override(name, lost_perk_override_func, lost_perk_ov
 function function_c2721e81(name, var_279de8cd, var_52314e8c)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_279de8cd = var_279de8cd;
 	level.bgb[name].var_52314e8c = var_52314e8c;
@@ -1607,7 +1607,7 @@ function function_c2721e81(name, var_279de8cd, var_52314e8c)
 function function_72469efe(name, var_50206ca3)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_50206ca3 = var_50206ca3;
 }
@@ -1624,7 +1624,7 @@ function function_72469efe(name, var_50206ca3)
 function function_8a5d8cfb(name, var_f1f46d6b)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_f1f46d6b = var_f1f46d6b;
 }
@@ -1641,7 +1641,7 @@ function function_8a5d8cfb(name, var_f1f46d6b)
 function function_be42abb0(name, var_f8d9ac8c)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_f8d9ac8c = var_f8d9ac8c;
 }
@@ -1658,7 +1658,7 @@ function function_be42abb0(name, var_f8d9ac8c)
 function function_afe7b8e7(name)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_5a047886 = 1;
 }
@@ -1675,7 +1675,7 @@ function function_afe7b8e7(name)
 function function_e1f37ce7(name)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	level.bgb[name].var_4a9b0cdc = 1;
 }
@@ -1692,10 +1692,10 @@ function function_e1f37ce7(name)
 function function_1fee6b3(name, n_rank)
 {
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(n_rank), "" + name + "");
+		assert(isdefined(n_rank), ("" + name) + "");
 	#/
 	level.bgb[name].var_a1750d43 = n_rank;
 }
@@ -1717,7 +1717,7 @@ function give(name)
 		return;
 	}
 	/#
-		assert(isdefined(level.bgb[name]), "" + name + "");
+		assert(isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	self notify(#"bgb_update", {#hash_826ddd38:self.bgb, #hash_3aee8e4:name});
 	self notify("bgb_update_give_" + name);
@@ -1857,7 +1857,7 @@ function is_team_enabled(bgb_name)
 */
 function function_2bbfb816()
 {
-	var_aa2142ad = self.origin + vectorscale(anglestoforward((0, self getplayerangles()[1], 0)), 60) + vectorscale((0, 0, 1), 5);
+	var_aa2142ad = (self.origin + vectorscale(anglestoforward((0, self getplayerangles()[1], 0)), 60)) + vectorscale((0, 0, 1), 5);
 	self zm_stats::increment_challenge_stat(#"gum_gobbler_powerups");
 	return var_aa2142ad;
 }
@@ -1912,7 +1912,7 @@ function function_9d8118f5(v_origin)
 		var_116b3a00 = 0;
 	}
 	v_close = getclosestpointonnavmesh(v_origin, 128, 24);
-	if(var_116b3a00 && (!isdefined(v_close) || v_close[2] - v_origin[2] > 40 / 4) && !self isplayerswimming())
+	if(var_116b3a00 && (!isdefined(v_close) || (v_close[2] - v_origin[2]) > (40 / 4)) && !self isplayerswimming())
 	{
 		var_116b3a00 = 0;
 	}

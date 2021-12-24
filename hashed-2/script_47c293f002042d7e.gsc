@@ -150,7 +150,7 @@ function function_eb218e8d()
 		if(self.origin[2] <= n_elev)
 		{
 			setdynentenabled(self, 0);
-			if(self.script_int == 8 && distance2dsquared(self.origin, struct::get("corner_target", "script_noteworthy").origin) <= 30 * 30)
+			if(self.script_int == 8 && distance2dsquared(self.origin, struct::get("corner_target", "script_noteworthy").origin) <= (30 * 30))
 			{
 				getlocalplayers()[0] serverfield::set("billiard_ball_sunk_sf", 10);
 			}
@@ -183,9 +183,9 @@ private function function_c7673785()
 			{
 				v_color = (function_8a8a409b(self) ? (0, 1, 0) : (1, 0, 0));
 				print3d(self.origin + (0, 0, self.script_int), "" + self.script_int, v_color, undefined, 0.5);
-				line(self.origin, self.origin + anglestoforward(self.angles) * 15, (1, 0, 0));
-				line(self.origin, self.origin + anglestoright(self.angles) * 15, (0, 1, 0));
-				line(self.origin, self.origin + anglestoup(self.angles) * 15, (0, 0, 1));
+				line(self.origin, self.origin + (anglestoforward(self.angles) * 15), (1, 0, 0));
+				line(self.origin, self.origin + (anglestoright(self.angles) * 15), (0, 1, 0));
+				line(self.origin, self.origin + (anglestoup(self.angles) * 15), (0, 0, 1));
 			}
 			waitframe(1);
 		}

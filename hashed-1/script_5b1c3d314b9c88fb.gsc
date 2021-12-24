@@ -107,7 +107,7 @@ function function_b4f41a02()
 		{
 			if(function_e949cfd7(type))
 			{
-				util::function_345e5b9a("" + function_9e72a96(type) + "" + function_9e72a96(type) + "");
+				util::function_345e5b9a((("" + function_9e72a96(type)) + "") + function_9e72a96(type) + "");
 			}
 		}
 		util::function_345e5b9a("");
@@ -180,11 +180,11 @@ function debug_ai()
 						org = entity.origin + vectorscale((0, 0, 1), 90);
 						if(getdvarint(#"recorder_enablerec", 0))
 						{
-							record3dtext((isdefined(level.var_b4702614[entity.aistate]) ? level.var_b4702614[entity.aistate] : "") + "" + entity.health, entity.origin, (1, 0.5, 0), "", entity);
+							record3dtext(((isdefined(level.var_b4702614[entity.aistate]) ? level.var_b4702614[entity.aistate] : "") + "") + entity.health, entity.origin, (1, 0.5, 0), "", entity);
 						}
 						else
 						{
-							print3d(org, (isdefined(level.var_b4702614[entity.aistate]) ? level.var_b4702614[entity.aistate] : "") + "" + entity.health, (1, 0.5, 0), 1, 0.2);
+							print3d(org, ((isdefined(level.var_b4702614[entity.aistate]) ? level.var_b4702614[entity.aistate] : "") + "") + entity.health, (1, 0.5, 0), 1, 0.2);
 						}
 					}
 					var_2f8d622d = 0;
@@ -197,11 +197,11 @@ function debug_ai()
 						org = entity.origin + vectorscale((0, 0, 1), 85);
 						if(getdvarint(#"recorder_enablerec", 0))
 						{
-							record3dtext("" + entity.var_5a8f690 + "" + var_2f8d622d + "", entity.origin, (1, 0.5, 0), "", entity);
+							record3dtext(((("" + entity.var_5a8f690) + "") + var_2f8d622d) + "", entity.origin, (1, 0.5, 0), "", entity);
 						}
 						else
 						{
-							print3d(org, "" + entity.var_5a8f690 + "" + var_2f8d622d + "", (1, 0.5, 0), 1, 0.2);
+							print3d(org, ((("" + entity.var_5a8f690) + "") + var_2f8d622d) + "", (1, 0.5, 0), 1, 0.2);
 						}
 					}
 					if(isdefined(entity.allowoffnavmesh))
@@ -261,11 +261,11 @@ function debug_ai()
 						org = entity.origin + vectorscale((0, 0, 1), 70);
 						if(getdvarint(#"recorder_enablerec", 0))
 						{
-							record3dtext("" + entity.surfacetype + "" + entity.var_db912cfe, entity.origin, (1, 0.5, 0), "", entity);
+							record3dtext((("" + entity.surfacetype) + "") + entity.var_db912cfe, entity.origin, (1, 0.5, 0), "", entity);
 						}
 						else
 						{
-							print3d(org, "" + entity.surfacetype + "" + entity.var_db912cfe, (1, 0.5, 0), 1, 0.2);
+							print3d(org, (("" + entity.surfacetype) + "") + entity.var_db912cfe, (1, 0.5, 0), 1, 0.2);
 						}
 					}
 					if(isdefined(entity.var_1e9a96f7))
@@ -273,11 +273,11 @@ function debug_ai()
 						org = entity.origin + vectorscale((0, 0, 1), 200);
 						if(getdvarint(#"recorder_enablerec", 0))
 						{
-							record3dtext("" + entity.var_1e9a96f7 + "" + entity.var_1e9a96f7 + "", entity.origin, (1, 0.5, 0), "", entity);
+							record3dtext(((("" + entity.var_1e9a96f7) + "") + entity.var_1e9a96f7) + "", entity.origin, (1, 0.5, 0), "", entity);
 						}
 						else
 						{
-							print3d(org, "" + entity.var_1e9a96f7 + "" + entity.var_1e9a96f7 + "", (1, 0.5, 0), 1, 2);
+							print3d(org, ((("" + entity.var_1e9a96f7) + "") + entity.var_1e9a96f7) + "", (1, 0.5, 0), 1, 2);
 						}
 					}
 					if(isdefined(entity.movetime) && getdvarint(#"hash_1aebd3ffed21a22a", 0))
@@ -285,11 +285,11 @@ function debug_ai()
 						org = entity.origin + vectorscale((0, 0, 1), 90);
 						if(getdvarint(#"recorder_enablerec", 0))
 						{
-							record3dtext("" + gettime() - entity.movetime, entity.origin, (1, 0.5, 0), "", entity);
+							record3dtext("" + (gettime() - entity.movetime), entity.origin, (1, 0.5, 0), "", entity);
 						}
 						else
 						{
-							print3d(org, "" + gettime() - entity.movetime, (1, 0.5, 0), 1, 0.2);
+							print3d(org, "" + (gettime() - entity.movetime), (1, 0.5, 0), 1, 0.2);
 						}
 					}
 					if(isdefined(entity.idletime) && getdvarint(#"hash_1aebd3ffed21a22a", 0))
@@ -297,11 +297,11 @@ function debug_ai()
 						org = entity.origin + vectorscale((0, 0, 1), 95);
 						if(getdvarint(#"recorder_enablerec", 0))
 						{
-							record3dtext("" + gettime() - entity.idletime, entity.origin, (1, 0.5, 0), "", entity);
+							record3dtext("" + (gettime() - entity.idletime), entity.origin, (1, 0.5, 0), "", entity);
 						}
 						else
 						{
-							print3d(org, "" + gettime() - entity.idletime, (1, 0.5, 0), 1, 0.2);
+							print3d(org, "" + (gettime() - entity.idletime), (1, 0.5, 0), 1, 0.2);
 						}
 					}
 					if(isdefined(entity.attackable) && getdvarint(#"hash_6e5b3c35cb223a9d", 0))
@@ -838,9 +838,9 @@ function fake_physicslaunch(target_pos, power)
 	if(dist > 0.01)
 	{
 		time = dist / power;
-		drop = -0.5 * level.var_31286808 * time * time;
+		drop = -0.5 * level.var_31286808 * (time * time);
 		delta = target_pos - self.origin;
-		velocity = (delta[0] / time, delta[1] / time, delta[2] - drop / time);
+		velocity = (delta[0] / time, delta[1] / time, (delta[2] - drop) / time);
 		self movegravity(velocity, time);
 	}
 	return time;
@@ -986,7 +986,7 @@ function function_e1cd5954(v_origin, min_radius, max_radius)
 	{
 		var_9bd6c1ae = v_origin;
 	}
-	trace = bullettrace(var_9bd6c1ae + vectorscale((0, 0, 1), 40), var_9bd6c1ae + vectorscale((0, 0, -1), 150), 0, undefined);
+	trace = bullettrace(var_9bd6c1ae + vectorscale((0, 0, 1), 40), var_9bd6c1ae + (vectorscale((0, 0, -1), 150)), 0, undefined);
 	if(trace[#"fraction"] < 1)
 	{
 		var_9bd6c1ae = trace[#"position"];
@@ -1487,18 +1487,18 @@ function function_bdb2b85b(entity, origin, angles, radius, num_spots, var_7a2632
 	for(i = 0; i < num_spots; i++)
 	{
 		t = mapfloat(0, num_spots, 0, 360, i);
-		x = radius * cos(t + angles[1]);
-		y = radius * sin(t + angles[1]);
+		x = radius * (cos(t + angles[1]));
+		y = radius * (sin(t + angles[1]));
 		pos = (x, y, 0) + origin;
 		if(!bullettracepassed(origin + vectorscale((0, 0, 1), 5), pos + vectorscale((0, 0, 1), 5), 0, entity))
 		{
-			if(i % 2 == 1)
+			if((i % 2) == 1)
 			{
 				waitframe(1);
 			}
 			continue;
 		}
-		var_e07c7e8 = physicstrace(pos + vectorscale((0, 0, 1), 10), pos + vectorscale((0, 0, -1), 10), mins, maxs, self, 1);
+		var_e07c7e8 = physicstrace(pos + vectorscale((0, 0, 1), 10), pos + (vectorscale((0, 0, -1), 10)), mins, maxs, self, 1);
 		var_c060661b = var_e07c7e8[#"position"];
 		var_3e98a413 = getclosestpointonnavmesh(var_c060661b, 64, 15);
 		if(isdefined(var_3e98a413))
@@ -1525,7 +1525,7 @@ function function_bdb2b85b(entity, origin, angles, radius, num_spots, var_7a2632
 			#/
 			slots[slots.size] = {#hash_acdc8d71:var_acdc8d71, #hash_bb075e37:0, #origin:var_c060661b};
 		}
-		if(i % 2 == 1)
+		if((i % 2) == 1)
 		{
 			waitframe(1);
 		}
@@ -1545,7 +1545,7 @@ function function_bdb2b85b(entity, origin, angles, radius, num_spots, var_7a2632
 function function_16e2f075(params)
 {
 	self.var_cd7665dd = gettime();
-	if(isdefined(self.var_1b5e8136) && gettime() - self.var_1b5e8136 > 1000)
+	if(isdefined(self.var_1b5e8136) && (gettime() - self.var_1b5e8136) > 1000)
 	{
 		return;
 	}

@@ -137,11 +137,11 @@ function function_25a55bd2()
 	{
 		level waittill(#"start_of_round");
 		/#
-			if(level.round_number % 2 == 1 && level.round_number > 4 && level.round_number - var_d18535e8 >= 1)
+			if((level.round_number % 2) == 1 && level.round_number > 4 && (level.round_number - var_d18535e8) >= 1)
 			{
 				var_d18535e8 = level.round_number + 1;
 			}
-			else if(level.round_number % 2 == 0 && level.round_number > 4 && level.round_number - var_d18535e8 >= 2)
+			else if((level.round_number % 2) == 0 && level.round_number > 4 && (level.round_number - var_d18535e8) >= 2)
 			{
 				var_d18535e8 = level.round_number;
 			}

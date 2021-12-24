@@ -476,10 +476,10 @@ function get_locomotion_target(behaviortreeentity)
 		spacing_value = ai::get_behavior_attribute("spacing_value");
 		to_enemy = behaviortreeentity.favoriteenemy.origin - behaviortreeentity.origin;
 		perp = vectornormalize((to_enemy[1] * -1, to_enemy[0], 0));
-		offset = perp * spacing_horz_dist * spacing_value;
+		offset = (perp * spacing_horz_dist) * spacing_value;
 		spacing_dist = math::clamp(length(to_enemy), spacing_near_dist, spacing_far_dist);
-		lerp_amount = math::clamp(spacing_dist - spacing_near_dist / spacing_far_dist - spacing_near_dist, 0, 1);
-		desired_point = last_valid_position + offset * lerp_amount;
+		lerp_amount = math::clamp((spacing_dist - spacing_near_dist) / (spacing_far_dist - spacing_near_dist), 0, 1);
+		desired_point = last_valid_position + (offset * lerp_amount);
 		desired_point = getclosestpointonnavmesh(desired_point, spacing_horz_dist * 1.2, 16);
 		if(isdefined(desired_point))
 		{
@@ -553,7 +553,7 @@ function tigertargetservice(behaviortreeentity)
 		if(isdefined(locomotion_target))
 		{
 			repathdist = 16;
-			if(!isdefined(behaviortreeentity.lasttargetposition) || distancesquared(behaviortreeentity.lasttargetposition, locomotion_target) > repathdist * repathdist || !behaviortreeentity haspath())
+			if(!isdefined(behaviortreeentity.lasttargetposition) || distancesquared(behaviortreeentity.lasttargetposition, locomotion_target) > (repathdist * repathdist) || !behaviortreeentity haspath())
 			{
 				var_994bab50 = getclosestpointonnavmesh(locomotion_target, 128, 54);
 				if(isdefined(var_994bab50))
@@ -590,7 +590,7 @@ function function_8de56915(melee_range)
 	{
 		return 0;
 	}
-	yawtoenemy = angleclamp180(self.angles[1] - vectortoangles(self.favoriteenemy.origin - self.origin)[1]);
+	yawtoenemy = angleclamp180(self.angles[1] - (vectortoangles(self.favoriteenemy.origin - self.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
 		return 0;
@@ -670,12 +670,12 @@ function function_36b5df8c(behaviortreeentity)
 	{
 		return 0;
 	}
-	offset = behaviortreeentity.favoriteenemy.origin - vectornormalize(behaviortreeentity.favoriteenemy.origin - behaviortreeentity.origin) * 36;
+	offset = behaviortreeentity.favoriteenemy.origin - ((vectornormalize(behaviortreeentity.favoriteenemy.origin - behaviortreeentity.origin)) * 36);
 	if(enemydistsq < 256 * 256)
 	{
 		if(behaviortreeentity maymovetopoint(offset, 1, 1))
 		{
-			yawtoenemy = angleclamp180(behaviortreeentity.angles[1] - vectortoangles(behaviortreeentity.favoriteenemy.origin - behaviortreeentity.origin)[1]);
+			yawtoenemy = angleclamp180(behaviortreeentity.angles[1] - (vectortoangles(behaviortreeentity.favoriteenemy.origin - behaviortreeentity.origin)[1]));
 			if(abs(yawtoenemy) <= 80)
 			{
 				return 1;
@@ -1130,25 +1130,25 @@ function function_2e8439bf(entity, mocompanim, mocompanimblendouttime, mocompani
 			}
 		}
 		var_83fd29ee = vectornormalize(predictedenemypos - entity.origin);
-		var_1efb2395 = predictedenemypos - var_83fd29ee * entity getpathfindingradius();
+		var_1efb2395 = predictedenemypos - (var_83fd29ee * entity getpathfindingradius());
 		self.var_cd8354e0.var_736d2cce = var_1efb2395;
 		var_776ddabf = distancesquared(self.var_cd8354e0.var_cb28f380, self.var_cd8354e0.var_736d2cce);
 		var_65cbfb52 = distancesquared(self.var_cd8354e0.var_9bfa8497, self.var_cd8354e0.var_736d2cce);
-		if(var_776ddabf <= 35 * 35)
+		if(var_776ddabf <= (35 * 35))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
 			#/
 			self.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_65cbfb52 <= 200 * 200)
+		else if(var_65cbfb52 <= (200 * 200))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
 			#/
 			self.var_cd8354e0.var_425c4c8b = 0;
 		}
-		else if(var_65cbfb52 >= 400 * 400)
+		else if(var_65cbfb52 >= (400 * 400))
 		{
 			/#
 				record3dtext("", entity.origin + vectorscale((0, 0, 1), 60), (1, 0, 0), "");
@@ -1168,7 +1168,7 @@ function function_2e8439bf(entity, mocompanim, mocompanimblendouttime, mocompani
 			isvisible = bullettracepassed(entity.origin, entity.enemy.origin, 0, self);
 			var_425c4c8b = isvisible && var_7948b2f3;
 			/#
-				reasons = "" + isvisible + "" + var_6738a702 + "" + var_175919d1;
+				reasons = (((("" + isvisible) + "") + var_6738a702) + "") + var_175919d1;
 				if(var_425c4c8b)
 				{
 					record3dtext(reasons, entity.origin + vectorscale((0, 0, 1), 60), (0, 1, 0), "");
@@ -1210,9 +1210,9 @@ function function_2e8439bf(entity, mocompanim, mocompanimblendouttime, mocompani
 			recordsphere(self.var_cd8354e0.var_cb28f380, 3, (0, 1, 0), "");
 			recordsphere(self.var_cd8354e0.var_736d2cce, 3, (0, 0, 1), "");
 		#/
-		adjustedorigin = entity.origin + entity.var_cd8354e0.var_10b8b6d1 * self.var_cd8354e0.var_8b9a15a6;
+		adjustedorigin = entity.origin + (entity.var_cd8354e0.var_10b8b6d1 * self.var_cd8354e0.var_8b9a15a6);
 	}
-	if(isdefined(entity.favoriteenemy) && distancesquared(entity.favoriteenemy.origin, entity.origin) <= 64 * 64 && function_1b7345aa(entity, entity.favoriteenemy))
+	if(isdefined(entity.favoriteenemy) && distancesquared(entity.favoriteenemy.origin, entity.origin) <= (64 * 64) && function_1b7345aa(entity, entity.favoriteenemy))
 	{
 		entity animmode("angle deltas");
 		return;
@@ -1281,7 +1281,7 @@ function function_345c8845(entity, mocompanim, mocompanimblendouttime, mocompani
 	}
 	if(isdefined(entity.favoriteenemy))
 	{
-		if(distancesquared(entity.favoriteenemy.origin, entity.origin) <= 64 * 64 && function_1b7345aa(entity, entity.favoriteenemy))
+		if(distancesquared(entity.favoriteenemy.origin, entity.origin) <= (64 * 64) && function_1b7345aa(entity, entity.favoriteenemy))
 		{
 			entity animmode("angle deltas");
 		}
@@ -1345,7 +1345,7 @@ function function_dc8e2d7d(entity, mocompanim, mocompanimblendouttime, mocompani
 		to_enemy = entity.favoriteenemy.origin - entity.origin;
 		angles_to_enemy = vectortoangles(to_enemy);
 		entity orientmode("face angle", angles_to_enemy);
-		if(distancesquared(entity.favoriteenemy.origin, entity.origin) <= 64 * 64 && function_1b7345aa(entity, entity.favoriteenemy))
+		if(distancesquared(entity.favoriteenemy.origin, entity.origin) <= (64 * 64) && function_1b7345aa(entity, entity.favoriteenemy))
 		{
 			entity animmode("angle deltas");
 		}
@@ -1554,7 +1554,7 @@ function function_b708cfe7()
 		predictedpos = self lastknownpos(self.favoriteenemy);
 		if(isdefined(predictedpos))
 		{
-			turnyaw = absangleclamp360(self.angles[1] - vectortoangles(predictedpos - self.origin)[1]);
+			turnyaw = absangleclamp360(self.angles[1] - (vectortoangles(predictedpos - self.origin)[1]));
 			return turnyaw;
 		}
 	}

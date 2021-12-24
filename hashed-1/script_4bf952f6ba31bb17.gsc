@@ -27,10 +27,10 @@ autoexec function initanimationmocomps()
 event runanimationmocomp(eventstruct)
 {
 	/#
-		assert(eventstruct.status >= 0 && eventstruct.status <= 2, "" + eventstruct.status + "");
+		assert(eventstruct.status >= 0 && eventstruct.status <= 2, ("" + eventstruct.status) + "");
 	#/
 	/#
-		assert(isdefined(level._animationmocomps[eventstruct.name]), "" + eventstruct.name + "");
+		assert(isdefined(level._animationmocomps[eventstruct.name]), ("" + eventstruct.name) + "");
 	#/
 	if(eventstruct.status == 0)
 	{
@@ -64,7 +64,7 @@ function registeranimationmocomp(mocompname, startfuncptr, updatefuncptr, termin
 		assert(isstring(mocompname), "");
 	#/
 	/#
-		assert(!isdefined(level._animationmocomps[mocompname]), "" + mocompname + "");
+		assert(!isdefined(level._animationmocomps[mocompname]), ("" + mocompname) + "");
 	#/
 	level._animationmocomps[mocompname] = array();
 	/#

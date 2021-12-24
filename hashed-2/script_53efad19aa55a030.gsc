@@ -123,7 +123,7 @@ private function function_89769800(params, unitrigger, b_start, var_c060d2c8)
 	{
 		torigin = unitrigger zm_unitrigger::unitrigger_origin();
 		porigin = self geteye();
-		radius_sq = 2.25 * unitrigger.radius * unitrigger.radius;
+		radius_sq = (2.25 * unitrigger.radius) * unitrigger.radius;
 		if(distance2dsquared(torigin, porigin) > radius_sq)
 		{
 			return 0;
@@ -176,9 +176,9 @@ private function function_a82534d(params, unitrigger, var_c060d2c8)
 private function player_progress_bar_update(start_time, use_time)
 {
 	self endon(#"entering_last_stand", #"death", #"hash_17d245ea00b65b48");
-	while(isdefined(self) && gettime() - start_time < use_time)
+	while(isdefined(self) && (gettime() - start_time) < use_time)
 	{
-		progress = gettime() - start_time / use_time;
+		progress = (gettime() - start_time) / use_time;
 		if(progress < 0)
 		{
 			progress = 0;
@@ -286,7 +286,7 @@ private function function_f8b39299(player, params, var_c060d2c8)
 			player switchtoweapon(build_weapon);
 		}
 		player thread player_progress_bar(var_46bb2c21, use_time);
-		while(isdefined(self) && player function_a82534d(params, self, var_c060d2c8) && gettime() - self.var_46bb2c21 < self.use_time)
+		while(isdefined(self) && player function_a82534d(params, self, var_c060d2c8) && (gettime() - self.var_46bb2c21) < self.use_time)
 		{
 			b_waited = 1;
 			waitframe(1);
@@ -320,7 +320,7 @@ private function function_f8b39299(player, params, var_c060d2c8)
 		}
 	}
 	result = "progress_failed";
-	if(isdefined(self) && player function_a82534d(params, self, var_c060d2c8) && (self.use_time <= 0 || gettime() - self.var_46bb2c21 >= self.use_time))
+	if(isdefined(self) && player function_a82534d(params, self, var_c060d2c8) && (self.use_time <= 0 || (gettime() - self.var_46bb2c21) >= self.use_time))
 	{
 		if(isdefined(params.var_ac28bd17))
 		{

@@ -169,7 +169,7 @@ function death_suicide_crash(params)
 	self endon(#"death");
 	goaldir = anglestoforward(self.angles);
 	goaldist = randomfloatrange(300, 400);
-	goalpos = self.origin + goaldir * goaldist;
+	goalpos = self.origin + (goaldir * goaldist);
 	self setmaxspeedscale(880 / self getmaxspeed(1));
 	self setmaxaccelerationscale(50 / self getdefaultacceleration());
 	self setspeed(self.settings.defaultmovespeed);
@@ -343,7 +343,7 @@ function state_stationary_update(params)
 			distsqr = distancesquared(self.enemy.origin, self.origin);
 			if(util::timesince(starttime) > mintime)
 			{
-				if(transformwhenenemyclose && distsqr < 200 * 200)
+				if(transformwhenenemyclose && distsqr < (200 * 200))
 				{
 					break;
 				}
@@ -358,7 +358,7 @@ function state_stationary_update(params)
 				{
 					break;
 				}
-				if(distsqr < self.settings.engagementdistmax * 3 * self.settings.engagementdistmax * 3)
+				if(distsqr < (self.settings.engagementdistmax * 3) * (self.settings.engagementdistmax * 3))
 				{
 					self turretsettarget(0, self.enemy, vectorscale((0, 0, -1), 5));
 					self turretsettarget(1, self.enemy, vectorscale((0, 0, -1), 5));
@@ -490,7 +490,7 @@ function turretfireupdate()
 				continue;
 			}
 		}
-		if(isalive(self) && isdefined(self.enemy) && self cansee(self.enemy) && distancesquared(self.enemy.origin, self.origin) < self.settings.engagementdistmax * 3 * self.settings.engagementdistmax * 3)
+		if(isalive(self) && isdefined(self.enemy) && self cansee(self.enemy) && distancesquared(self.enemy.origin, self.origin) < (self.settings.engagementdistmax * 3) * (self.settings.engagementdistmax * 3))
 		{
 			self turretsettarget(var_6d08d874, self.enemy);
 			self vehlookat(self.enemy);
@@ -562,7 +562,7 @@ function state_combat_update(params)
 		if(isdefined(self.enemy) && util::iscooldownready("cobra_up") && self.lock_evading == 0)
 		{
 			var_7e7717c8 = distancesquared(self.enemy.origin, self.origin);
-			if(var_7e7717c8 > 200 * 200 && var_7e7717c8 < self.settings.engagementdistmax * 2 * self.settings.engagementdistmax * 2)
+			if(var_7e7717c8 > (200 * 200) && var_7e7717c8 < (self.settings.engagementdistmax * 2) * (self.settings.engagementdistmax * 2))
 			{
 				if(function_64609aab(self, self.enemy) === 1)
 				{
@@ -854,7 +854,7 @@ function getnextmoveposition_wander()
 		return self.goalpos;
 	}
 	querymultiplier = 1.5;
-	queryresult = positionquery_source_navigation(self.origin, 80, 500 * querymultiplier, 250, 3 * self.radius * querymultiplier, self, self.radius * querymultiplier);
+	queryresult = positionquery_source_navigation(self.origin, 80, 500 * querymultiplier, 250, (3 * self.radius) * querymultiplier, self, self.radius * querymultiplier);
 	if(queryresult.data.size == 0)
 	{
 		queryresult = positionquery_source_navigation(self.origin, 36, 120, 240, self.radius, self);
@@ -872,7 +872,7 @@ function getnextmoveposition_wander()
 		{
 			point.score = point.score - 500;
 		}
-		point.score = point.score + randomscore + disttooriginscore;
+		point.score = point.score + (randomscore + disttooriginscore);
 		if(point.score > best_score)
 		{
 			best_score = point.score;
@@ -885,7 +885,7 @@ function getnextmoveposition_wander()
 	if(!isdefined(best_point))
 	{
 		/#
-			self.debug_ai_movement_type = "" + queryresult.data.size + "";
+			self.debug_ai_movement_type = ("" + queryresult.data.size) + "";
 		#/
 		/#
 			self.debug_ai_move_to_point = undefined;
@@ -988,13 +988,12 @@ function getnextmoveposition_evasive(client_flags)
 						point.score = point.score + -101;
 					}
 				}
-				~point;
-				remaining_flags_to_process = remaining_flags_to_process & client_flag;
+				remaining_flags_to_process = remaining_flags_to_process & (~client_flag);
 				remaining_lock_threats_to_evaluate--;
 			}
 		}
 	}
-	positionquery_filter_directness(queryresult, self.origin, self.origin + anglestoforward(self.angles) * 360);
+	positionquery_filter_directness(queryresult, self.origin, self.origin + (anglestoforward(self.angles) * 360));
 	foreach(point in queryresult.data)
 	{
 		if(point.directness > 0.5)
@@ -1032,7 +1031,7 @@ function getnextmoveposition_evasive(client_flags)
 	if(!isdefined(best_point))
 	{
 		/#
-			self.debug_ai_movement_type = "" + queryresult.data.size + "";
+			self.debug_ai_movement_type = ("" + queryresult.data.size) + "";
 		#/
 		/#
 			self.debug_ai_move_to_point = undefined;
@@ -1068,8 +1067,8 @@ function getnextmoveposition_tactical(enemy)
 		return self.goalpos;
 	}
 	selfdisttotarget = distance2d(self.origin, enemy.origin);
-	gooddist = 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax;
-	tooclosedist = 0.4 * self.settings.engagementdistmin + self.settings.engagementdistmax;
+	gooddist = 0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
+	tooclosedist = 0.4 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
 	closedist = 1.2 * gooddist;
 	fardist = 3 * gooddist;
 	querymultiplier = mapfloat(closedist, fardist, 1, 3, selfdisttotarget);
@@ -1084,7 +1083,7 @@ function getnextmoveposition_tactical(enemy)
 	}
 	prefereddistawayfromorigin = 300;
 	randomness = 30;
-	queryresult = positionquery_source_navigation(self.origin, 80, 500 * querymultiplier, 250, 2 * self.radius * querymultiplier, self, 1 * self.radius * querymultiplier);
+	queryresult = positionquery_source_navigation(self.origin, 80, 500 * querymultiplier, 250, (2 * self.radius) * querymultiplier, self, (1 * self.radius) * querymultiplier);
 	positionquery_filter_directness(queryresult, self.origin, enemy.origin);
 	positionquery_filter_distancetogoal(queryresult, self);
 	vehicle_ai::positionquery_filter_outofgoalanchor(queryresult);
@@ -1203,7 +1202,7 @@ function getnextmoveposition_tactical(enemy)
 	if(!isdefined(best_point))
 	{
 		/#
-			self.debug_ai_movement_type = "" + queryresult.data.size + "";
+			self.debug_ai_movement_type = ("" + queryresult.data.size) + "";
 		#/
 		/#
 			self.debug_ai_move_to_point = undefined;
@@ -1283,7 +1282,7 @@ function path_update_interrupt()
 		}
 		if(isdefined(self.enemy))
 		{
-			if(self cansee(self.enemy) && distance2dsquared(self.origin, self.enemy.origin) < 0.4 * self.settings.engagementdistmin + self.settings.engagementdistmax * 0.4 * self.settings.engagementdistmin + self.settings.engagementdistmax)
+			if(self cansee(self.enemy) && distance2dsquared(self.origin, self.enemy.origin) < (0.4 * (self.settings.engagementdistmin + self.settings.engagementdistmax)) * (0.4 * (self.settings.engagementdistmin + self.settings.engagementdistmax)))
 			{
 				self notify(#"near_goal");
 			}

@@ -274,7 +274,7 @@ function slide_explosion(n_slot)
 		var_e9571d8b = self.var_e9571d8b;
 		if(isdefined(var_e9571d8b))
 		{
-			var_fd11502e = var_fd11502e + var_e9571d8b * 6;
+			var_fd11502e = var_fd11502e + (var_e9571d8b * 6);
 			var_fd11502e = int(var_fd11502e);
 		}
 		var_1574e1cf = [];
@@ -342,7 +342,7 @@ function slide_explosion(n_slot)
 							n_kill_count++;
 							var_708c0444++;
 							ai.var_fc11268c = 1;
-							v_fling = vectornormalize(ai.origin - self.origin) * 150;
+							v_fling = (vectornormalize(ai.origin - self.origin)) * 150;
 							v_fling = (v_fling[0], v_fling[1], 75);
 							ai zm_utility::function_ffc279(v_fling, self, var_fd11502e);
 						}

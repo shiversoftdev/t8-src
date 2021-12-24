@@ -649,7 +649,7 @@ function updatelastheldweapontimingszm(newtime)
 	if(isdefined(self.currentweapon) && isdefined(self.currenttime))
 	{
 		curweapon = self.currentweapon;
-		totaltime = int(newtime - self.currenttime / 1000);
+		totaltime = int((newtime - self.currenttime) / 1000);
 		if(totaltime > 0)
 		{
 			self stats::function_e24eec31(curweapon, #"timeused", totaltime);
@@ -677,7 +677,7 @@ function updateweapontimingszm(newtime)
 	{
 		return;
 	}
-	totaltime = int(newtime - self.staticweaponsstarttime / 1000);
+	totaltime = int((newtime - self.staticweaponsstarttime) / 1000);
 	if(totaltime < 0)
 	{
 		return;
@@ -1320,7 +1320,7 @@ function random_attachment(weapon, exclude)
 	{
 		while(true)
 		{
-			idx = randomint(attachments.size - lo) + lo;
+			idx = (randomint(attachments.size - lo)) + lo;
 			if(!isdefined(exclude) || attachments[idx] != exclude)
 			{
 				return attachments[idx];
@@ -2093,11 +2093,11 @@ function ammo_give(weapon, b_purchased = 1)
 				{
 					if(weapon == getweapon(#"hash_6a0c4101e88a4707"))
 					{
-						n_ammo_max = n_ammo_max * 2 - var_98f6dae8;
+						n_ammo_max = (n_ammo_max * 2) - var_98f6dae8;
 					}
 					var_b8624c26 = var_b8624c26 + var_4052eae0;
 				}
-				var_6ec34556 = isdefined(weapon.iscliponly) && (weapon.iscliponly ? var_98f6dae8 : n_ammo_max + var_98f6dae8 + var_4052eae0);
+				var_6ec34556 = isdefined(weapon.iscliponly) && (weapon.iscliponly ? var_98f6dae8 : (n_ammo_max + var_98f6dae8) + var_4052eae0);
 				if(var_b8624c26 >= var_6ec34556)
 				{
 					var_cd9d17e0 = 0;
@@ -2354,7 +2354,7 @@ function weapondata_give(weapondata)
 	weapon_give(weapon, 1);
 	if(weapon != level.weaponnone)
 	{
-		if(weapondata[#"clip"] + weapondata[#"stock"] <= weapon.clipsize)
+		if((weapondata[#"clip"] + weapondata[#"stock"]) <= weapon.clipsize)
 		{
 			self setweaponammoclip(weapon, weapon.clipsize);
 			self setweaponammostock(weapon, 0);
@@ -2466,7 +2466,7 @@ function weapondata_take(weapondata)
 		if(isinarray(var_15e41636, alt_weapon))
 		{
 			/#
-				println("" + function_9e72a96(alt_weapon.name) + "");
+				println(("" + function_9e72a96(alt_weapon.name)) + "");
 			#/
 			break;
 		}

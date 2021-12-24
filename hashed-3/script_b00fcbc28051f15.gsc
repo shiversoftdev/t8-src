@@ -416,7 +416,7 @@ private function function_b952c1b(ai_zombie)
 		if(isalive(self))
 		{
 			n_current_time = gettime();
-			n_total_time = n_current_time - n_start_time / 1000;
+			n_total_time = (n_current_time - n_start_time) / 1000;
 			n_move_time = self function_f40aa0ef(var_88f24b00, n_total_time);
 			if(n_move_time == 0)
 			{
@@ -447,7 +447,7 @@ private function function_b952c1b(ai_zombie)
 */
 private function function_7eae6d92(var_88f24b00)
 {
-	n_pos = self.origin + vectorscale((0, 0, 1), 46) + anglestoright(self.angles) * 24 + anglestoforward(self.angles) * 70;
+	n_pos = (self.origin + vectorscale((0, 0, 1), 46)) + (anglestoright(self.angles) * 24) + (anglestoforward(self.angles) * 70);
 	return n_pos;
 }
 
@@ -499,7 +499,7 @@ function function_f40aa0ef(var_88f24b00, n_total_time)
 		var_e89ec7fd = 0.05;
 	}
 	var_a6693654 = n_total_time * 0.25;
-	var_5100df85 = 1200 + 1200 * var_a6693654;
+	var_5100df85 = 1200 + (1200 * var_a6693654);
 	n_dist = distance(var_88f24b00.origin, self geteye());
 	n_move_time = n_dist / var_5100df85;
 	n_move_time = (n_move_time > var_e89ec7fd ? n_move_time : var_e89ec7fd);
@@ -822,7 +822,7 @@ function function_750abd36()
 			dist_mult = 1;
 			fling_vec = vectornormalize(v_zombie_origin - var_2ed6f142);
 			fling_vec = (fling_vec[0], fling_vec[1], abs(fling_vec[2]));
-			fling_vec = vectorscale(fling_vec, 50 + 50 * dist_mult);
+			fling_vec = vectorscale(fling_vec, 50 + (50 * dist_mult));
 			level.var_8cd4a995[level.var_8cd4a995.size] = fling_vec;
 			continue;
 		}
@@ -849,18 +849,18 @@ function function_750abd36()
 		{
 			continue;
 		}
-		a_zombies[i].var_45233b = 1.1 * sqrt(var_a155935) / 1200;
+		a_zombies[i].var_45233b = (1.1 * sqrt(var_a155935)) / 1200;
 		if(var_a155935 < n_fling_range_sq)
 		{
 			level.var_2f7aae6c[level.var_2f7aae6c.size] = a_zombies[i];
-			dist_mult = n_fling_range_sq - var_a155935 / n_fling_range_sq;
+			dist_mult = (n_fling_range_sq - var_a155935) / n_fling_range_sq;
 			fling_vec = vectornormalize(v_zombie_origin - var_2ed6f142);
 			if(5000 < var_a155935)
 			{
-				fling_vec = fling_vec + vectornormalize(v_zombie_origin - radial_origin);
+				fling_vec = fling_vec + (vectornormalize(v_zombie_origin - radial_origin));
 			}
 			fling_vec = (fling_vec[0], fling_vec[1], abs(fling_vec[2]));
-			fling_vec = vectorscale(fling_vec, 50 + 50 * dist_mult);
+			fling_vec = vectorscale(fling_vec, 50 + (50 * dist_mult));
 			level.var_8cd4a995[level.var_8cd4a995.size] = fling_vec;
 			continue;
 		}
@@ -1137,7 +1137,7 @@ function function_d1a7390b(var_f2a06582)
 		var_24bae834 = 0;
 		v_position = self getweaponmuzzlepoint();
 		v_forward = self getweaponforwarddir();
-		a_trace = beamtrace(v_position, v_position + v_forward * 416, 1, self);
+		a_trace = beamtrace(v_position, v_position + (v_forward * 416), 1, self);
 		if(isdefined(a_trace[#"position"]))
 		{
 			n_dist_sq = distancesquared(self.origin, a_trace[#"position"]);
@@ -1195,7 +1195,7 @@ function function_d1a7390b(var_f2a06582)
 									if(isdefined(e_last_target.var_9a51bdab))
 									{
 										n_current_time = gettime();
-										n_total_time = float(n_current_time - e_last_target.var_9a51bdab) / 1000;
+										n_total_time = (float(n_current_time - e_last_target.var_9a51bdab)) / 1000;
 										if(n_total_time < 2)
 										{
 											break;
@@ -1297,7 +1297,7 @@ private function function_81947c70()
 	else if(level.round_number < 16)
 	{
 		var_4e32983f = 1.3 / 16;
-		var_15239c92 = level.round_number - 1 * var_4e32983f + 2;
+		var_15239c92 = ((level.round_number - 1) * var_4e32983f) + 2;
 		var_f71f411b = var_15239c92 / 0.1;
 	}
 	else
@@ -1389,7 +1389,7 @@ function function_35d74d73(e_attacker)
 	}
 	while(e_attacker.var_f1b20bef === self && isalive(self))
 	{
-		if(self.health <= self.maxhealth * 0.5 && (!(isdefined(self.is_floating) && self.is_floating)))
+		if(self.health <= (self.maxhealth * 0.5) && (!(isdefined(self.is_floating) && self.is_floating)))
 		{
 			self thread scene::play(#"hash_39dbc8cee7057640", self);
 			self.is_floating = 1;
@@ -1584,7 +1584,7 @@ function function_804309c(var_4c6ec31d = 0)
 		}
 		else if(self.var_9fd623ed >= 3)
 		{
-			if(self getweaponammoclip(level.var_d7e67022) !== int(self.var_9fd623ed / 3))
+			if(self getweaponammoclip(level.var_d7e67022) !== (int(self.var_9fd623ed / 3)))
 			{
 				self setweaponammoclip(level.var_637136f3, int(self.var_9fd623ed / 3));
 				self setweaponammoclip(level.var_58e17ce3, int(self.var_9fd623ed / 3));
@@ -1605,7 +1605,7 @@ function function_804309c(var_4c6ec31d = 0)
 		}
 		else if(self.var_9fd623ed >= 3)
 		{
-			if(self getweaponammoclip(level.var_d7e67022) !== int(self.var_9fd623ed / 3))
+			if(self getweaponammoclip(level.var_d7e67022) !== (int(self.var_9fd623ed / 3)))
 			{
 				self setweaponammoclip(level.var_d7e67022, int(self.var_9fd623ed / 3));
 				self setweaponammoclip(level.var_4e845c84, int(self.var_9fd623ed / 3));

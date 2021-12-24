@@ -173,7 +173,7 @@ function get_trigger_look_target()
 		if(a_targets.size > 0)
 		{
 			/#
-				assert(a_targets.size == 1, "" + self.origin + "");
+				assert(a_targets.size == 1, ("" + self.origin) + "");
 			#/
 			e_target = a_targets[0];
 		}
@@ -400,11 +400,11 @@ function friendly_respawn_trigger(trigger)
 	trigger endon(#"death");
 	spawners = getentarray(trigger.target, "targetname");
 	/#
-		assert(spawners.size == 1, "" + trigger.target + "");
+		assert(spawners.size == 1, ("" + trigger.target) + "");
 	#/
 	spawner = spawners[0];
 	/#
-		assert(!isdefined(spawner.script_forcecolor), "" + spawner.origin + "");
+		assert(!isdefined(spawner.script_forcecolor), ("" + spawner.origin) + "");
 	#/
 	spawners = undefined;
 	spawner endon(#"death");
@@ -556,7 +556,7 @@ function trigger_once(s_info)
 	{
 		/#
 			println("");
-			println("" + self getentitynumber() + "" + self.origin);
+			println((("" + self getentitynumber()) + "") + self.origin);
 			println("");
 		#/
 		self delete();
@@ -633,7 +633,7 @@ function wait_till(str_name, str_key = "targetname", e_entity, b_assert = 1)
 	{
 		triggers = getentarray(str_name, str_key);
 		/#
-			assert(!b_assert || triggers.size > 0, "" + str_name + "" + str_key);
+			assert(!b_assert || triggers.size > 0, (("" + str_name) + "") + str_key);
 		#/
 		if(triggers.size > 0)
 		{
@@ -788,7 +788,7 @@ function use(str_name, str_key = "targetname", ent = getplayers()[0], b_assert =
 			if(b_assert)
 			{
 				/#
-					assertmsg("" + str_name + "" + str_key);
+					assertmsg((("" + str_name) + "") + str_key);
 				#/
 			}
 			return;
@@ -913,7 +913,7 @@ function update_based_on_flags()
 */
 function is_look_trigger()
 {
-	return isdefined(self.spawnflags) && self.spawnflags & 256 == 256 && !is_trigger_of_type("trigger_damage") && !is_trigger_of_type("trigger_damage_new");
+	return isdefined(self.spawnflags) && (self.spawnflags & 256) == 256 && !is_trigger_of_type("trigger_damage") && !is_trigger_of_type("trigger_damage_new");
 }
 
 /*
@@ -927,7 +927,7 @@ function is_look_trigger()
 */
 function is_trigger_once()
 {
-	return isdefined(self.spawnflags) && self.spawnflags & 1024 == 1024 || is_trigger_of_type("trigger_once", "trigger_once_new");
+	return isdefined(self.spawnflags) && (self.spawnflags & 1024) == 1024 || is_trigger_of_type("trigger_once", "trigger_once_new");
 }
 
 /*

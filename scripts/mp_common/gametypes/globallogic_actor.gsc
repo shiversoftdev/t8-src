@@ -256,7 +256,7 @@ function callback_actordamage(einflictor, eattacker, idamage, idflags, smeansofd
 	/#
 		if(getdvarint(#"g_debugdamage", 0))
 		{
-			println("" + self getentitynumber() + "" + self.health + "" + eattacker.clientid + "" + isplayer(einflictor) + "" + idamage + "" + shitloc);
+			println(((((((((("" + self getentitynumber()) + "") + self.health) + "") + eattacker.clientid) + "") + isplayer(einflictor) + "") + idamage) + "") + shitloc);
 		}
 	#/
 	if(1)

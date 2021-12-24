@@ -157,7 +157,7 @@ private function tacticalwalkscanterminate(entity)
 */
 private function shouldtacticalwalkscan(entity)
 {
-	if(isdefined(entity.lasttacticalscantime) && entity.lasttacticalscantime + 2000 > gettime())
+	if(isdefined(entity.lasttacticalscantime) && (entity.lasttacticalscantime + 2000) > gettime())
 	{
 		return 0;
 	}
@@ -216,7 +216,7 @@ private function continuetacticalwalkscan(entity)
 	{
 		animlength = getanimlength(animation);
 		animtime = entity getanimtime(animation) * animlength;
-		normalizedtime = animtime + 0.2 / animlength;
+		normalizedtime = (animtime + 0.2) / animlength;
 		return normalizedtime < 1;
 	}
 	return 0;
@@ -233,7 +233,7 @@ private function continuetacticalwalkscan(entity)
 */
 private function shouldtacticalwalkpain(entity)
 {
-	if(!isdefined(entity.startpaintime) || entity.startpaintime + 3000 < gettime() && randomfloat(1) > 0.25)
+	if(!isdefined(entity.startpaintime) || (entity.startpaintime + 3000) < gettime() && randomfloat(1) > 0.25)
 	{
 		return bsmlocomotionhasvalidpaininterrupt(entity);
 	}
@@ -266,7 +266,7 @@ private function begintacticalwalkpain(entity)
 */
 private function shouldcontinuetacticalwalkpain(entity)
 {
-	return entity.startpaintime + 100 >= gettime();
+	return (entity.startpaintime + 100) >= gettime();
 }
 
 /*
@@ -923,16 +923,16 @@ private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 				forwarddir = anglestoforward(angle);
 				rightdir = anglestoright(angle);
 				animlength = getanimlength(arrivalanim);
-				movedelta = getmovedelta(arrivalanim, 0, animlength - 0.2 / animlength);
+				movedelta = getmovedelta(arrivalanim, 0, (animlength - 0.2) / animlength);
 				premovedelta = getmovedelta(arrivalanim, 0, splittime);
 				postmovedelta = movedelta - premovedelta;
 				forward = vectorscale(forwarddir, postmovedelta[0]);
 				right = vectorscale(rightdir, postmovedelta[1]);
-				coverenterpos = nodeoffsetposition - forward + right;
+				coverenterpos = (nodeoffsetposition - forward) + right;
 				postenterpos = coverenterpos;
 				forward = vectorscale(forwarddir, premovedelta[0]);
 				right = vectorscale(rightdir, premovedelta[1]);
-				coverenterpos = coverenterpos - forward + right;
+				coverenterpos = (coverenterpos - forward) + right;
 				/#
 					recordline(postenterpos, nodeoffsetposition, (1, 0.5, 0), "", behaviortreeentity);
 					recordline(coverenterpos, postenterpos, (1, 0.5, 0), "", behaviortreeentity);
@@ -953,7 +953,7 @@ private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 				movedeltaarray = getmovedelta(arrivalanim);
 				forward = vectorscale(forwarddir, movedeltaarray[0]);
 				right = vectorscale(rightdir, movedeltaarray[1]);
-				coverenterpos = nodeoffsetposition - forward + right;
+				coverenterpos = (nodeoffsetposition - forward) + right;
 				if(!behaviortreeentity maymovefrompointtopoint(coverenterpos, nodeoffsetposition, 1, 1))
 				{
 					return 0;
@@ -989,13 +989,13 @@ private function checkcoverarrivalconditions(coverenterpos, coverpos)
 {
 	distsqtonode = distancesquared(self.origin, coverpos);
 	distsqfromnodetoenterpos = distancesquared(coverpos, coverenterpos);
-	awayfromenterpos = distsqtonode >= distsqfromnodetoenterpos + 150;
+	awayfromenterpos = distsqtonode >= (distsqfromnodetoenterpos + 150);
 	if(!awayfromenterpos)
 	{
 		return 0;
 	}
-	trace = groundtrace(coverenterpos + vectorscale((0, 0, 1), 72), coverenterpos + vectorscale((0, 0, -1), 72), 0, 0, 0);
-	if(isdefined(trace[#"position"]) && abs(trace[#"position"][2] - coverpos[2]) > 30)
+	trace = groundtrace(coverenterpos + vectorscale((0, 0, 1), 72), coverenterpos + (vectorscale((0, 0, -1), 72)), 0, 0, 0);
+	if(isdefined(trace[#"position"]) && (abs(trace[#"position"][2] - coverpos[2])) > 30)
 	{
 		/#
 			if(getdvarint(#"ai_debugarrivals", 0))
@@ -1003,7 +1003,7 @@ private function checkcoverarrivalconditions(coverenterpos, coverpos)
 				recordcircle(coverenterpos, 1, (1, 0, 0), "");
 				record3dtext("", coverenterpos, (1, 0, 0), "", undefined, 0.4);
 				recordcircle(trace[#"position"], 1, (1, 0, 0), "");
-				record3dtext("" + int(abs(trace[#"position"][2] - coverpos[2])), trace[#"position"] + vectorscale((0, 0, 1), 5), (1, 0, 0), "", undefined, 0.4);
+				record3dtext("" + (int(abs(trace[#"position"][2] - coverpos[2]))), trace[#"position"] + vectorscale((0, 0, 1), 5), (1, 0, 0), "", undefined, 0.4);
 				record3dtext("" + 30, trace[#"position"], (1, 0, 0), "", undefined, 0.4);
 				recordline(coverenterpos, trace[#"position"], (1, 0, 0), "");
 			}
@@ -1062,6 +1062,6 @@ private function deltarotate(delta, yaw)
 {
 	cosine = cos(yaw);
 	sine = sin(yaw);
-	return (delta[0] * cosine - delta[1] * sine, delta[1] * cosine + delta[0] * sine, 0);
+	return ((delta[0] * cosine) - (delta[1] * sine), (delta[1] * cosine) + (delta[0] * sine), 0);
 }
 

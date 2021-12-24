@@ -148,7 +148,7 @@ function function_fe65f5a6(var_b7358df3, e_player, n_timeout = 1)
 		{
 			break;
 		}
-		n_timer = n_timer + float(function_60d95f53()) / 1000;
+		n_timer = n_timer + (float(function_60d95f53()) / 1000);
 		waitframe(1);
 	}
 	self thread namespace_9ff9f642::slowdown(#"hash_40e5fe122d652dc4", 0.75);

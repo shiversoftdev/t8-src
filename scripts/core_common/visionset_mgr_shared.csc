@@ -352,7 +352,7 @@ function finalize_clientfields()
 function finalize_type_clientfields()
 {
 	/#
-		println("" + self.type + "");
+		println(("" + self.type) + "");
 	#/
 	if(1 >= self.info.size)
 	{
@@ -369,7 +369,7 @@ function finalize_type_clientfields()
 			self.cf_lerp_bit_count = self.info[self.sorted_name_keys[i]].lerp_bit_count;
 		}
 		/#
-			println("" + self.info[self.sorted_name_keys[i]].name + "" + self.info[self.sorted_name_keys[i]].version + "" + self.info[self.sorted_name_keys[i]].lerp_step_count + "");
+			println(((((("" + self.info[self.sorted_name_keys[i]].name) + "") + self.info[self.sorted_name_keys[i]].version) + "") + self.info[self.sorted_name_keys[i]].lerp_step_count) + "");
 		#/
 	}
 	clientfield::register("toplayer", self.cf_slot_name, self.highest_version, self.cf_slot_bit_count, "int", self.cf_slot_cb, 0, 1);
@@ -399,7 +399,7 @@ function validate_info(type, name, version)
 		}
 	}
 	/#
-		assert(i < keys.size, "" + type + "");
+		assert(i < keys.size, ("" + type) + "");
 	#/
 	if(version > level.vsmgr[type].server_version)
 	{

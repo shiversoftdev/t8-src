@@ -175,7 +175,7 @@ private function function_78910888(player)
 {
 	angles = player getplayerangles();
 	forward = anglestoforward(angles);
-	result = player.origin + vectorscale((0, 0, 1), 30) + forward * 100;
+	result = (player.origin + vectorscale((0, 0, 1), 30)) + (forward * 100);
 	return result;
 }
 

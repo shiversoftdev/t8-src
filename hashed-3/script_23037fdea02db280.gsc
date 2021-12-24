@@ -323,7 +323,7 @@ function ragdoll_impact_watch(localclientnum)
 		}
 		v_vel = self.origin - v_prev_origin;
 		n_speed = length(v_vel);
-		if(n_speed < n_prev_speed * 0.5 && n_speed <= n_gib_speed && !b_first_loop)
+		if(n_speed < (n_prev_speed * 0.5) && n_speed <= n_gib_speed && !b_first_loop)
 		{
 			if(self.origin[2] > self.v_start_pos[2] + 128)
 			{

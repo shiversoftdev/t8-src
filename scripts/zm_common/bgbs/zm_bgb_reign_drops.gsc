@@ -127,7 +127,7 @@ function function_7f3b4877()
 	{
 		wait(0.5);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 		if(n_total_time >= 28)
 		{
 			break;
@@ -149,13 +149,13 @@ function function_dfc73f65(n_position)
 {
 	v_powerup = self bgb::function_2bbfb816();
 	v_up = vectorscale((0, 0, 1), 5);
-	var_85660237 = v_powerup + anglestoforward(self.angles) * 60 + v_up;
-	var_97efa74a = var_85660237 + anglestoforward(self.angles) * 60 + v_up;
+	var_85660237 = (v_powerup + (anglestoforward(self.angles) * 60)) + v_up;
+	var_97efa74a = (var_85660237 + (anglestoforward(self.angles) * 60)) + v_up;
 	switch(n_position)
 	{
 		case 1:
 		{
-			v_origin = v_powerup + anglestoright(self.angles) * -60 + v_up;
+			v_origin = (v_powerup + (anglestoright(self.angles) * -60)) + v_up;
 			break;
 		}
 		case 2:
@@ -165,12 +165,12 @@ function function_dfc73f65(n_position)
 		}
 		case 3:
 		{
-			v_origin = v_powerup + anglestoright(self.angles) * 60 + v_up;
+			v_origin = (v_powerup + (anglestoright(self.angles) * 60)) + v_up;
 			break;
 		}
 		case 4:
 		{
-			v_origin = var_85660237 + anglestoright(self.angles) * -60 + v_up;
+			v_origin = (var_85660237 + (anglestoright(self.angles) * -60)) + v_up;
 			break;
 		}
 		case 5:
@@ -180,12 +180,12 @@ function function_dfc73f65(n_position)
 		}
 		case 6:
 		{
-			v_origin = var_85660237 + anglestoright(self.angles) * 60 + v_up;
+			v_origin = (var_85660237 + (anglestoright(self.angles) * 60)) + v_up;
 			break;
 		}
 		case 7:
 		{
-			v_origin = var_97efa74a + anglestoright(self.angles) * -60 + v_up;
+			v_origin = (var_97efa74a + (anglestoright(self.angles) * -60)) + v_up;
 			break;
 		}
 		case 8:
@@ -195,7 +195,7 @@ function function_dfc73f65(n_position)
 		}
 		case 9:
 		{
-			v_origin = var_97efa74a + anglestoright(self.angles) * 60 + v_up;
+			v_origin = (var_97efa74a + (anglestoright(self.angles) * 60)) + v_up;
 			break;
 		}
 		default:

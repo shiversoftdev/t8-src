@@ -221,7 +221,7 @@ function function_55c50f15()
 		{
 			continue;
 		}
-		if(distancesquared(tripwire.origin, self.origin) >= 100 && distancesquared(tripwire.origin, self.origin) <= level.var_c72e8c51.var_831055cb * level.var_c72e8c51.var_831055cb)
+		if(distancesquared(tripwire.origin, self.origin) >= 100 && distancesquared(tripwire.origin, self.origin) <= (level.var_c72e8c51.var_831055cb * level.var_c72e8c51.var_831055cb))
 		{
 			pos = self gettagorigin("tag_fx");
 			var_ccfd8635 = tripwire gettagorigin("tag_fx");

@@ -84,7 +84,7 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, va
 		{
 			level.debug_ents_by_origin = [];
 		}
-		str_origin = "" + floor(self.origin[0] / 10) * 10 + "" + floor(self.origin[1] / 10) * 10 + "" + floor(self.origin[2] / 10) * 10;
+		str_origin = ((("" + ((floor(self.origin[0] / 10)) * 10)) + "") + ((floor(self.origin[1] / 10)) * 10) + "") + ((floor(self.origin[2] / 10)) * 10);
 		if(!isdefined(level.debug_ents_by_origin[str_origin]))
 		{
 			level.debug_ents_by_origin[str_origin] = [];
@@ -106,13 +106,13 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, va
 			var_7b160393 = self getanimtime(animation) * var_13edeb1f;
 			var_958054e5 = getanimlength(animation);
 			var_f667af2f = self getanimtime(animation) * var_958054e5;
-			str_extra_info = str_extra_info + "" + var_f667af2f + "" + var_958054e5 + "" + var_7b160393 + "" + var_13edeb1f + "";
+			str_extra_info = str_extra_info + (((((((("" + var_f667af2f) + "") + var_958054e5) + "") + var_7b160393) + "") + var_13edeb1f) + "");
 			if(isarray(var_f4b34dc1) && var_f4b34dc1.size)
 			{
 				var_1c56a327 = "";
 				foreach(var_21c1ba1, str_anim in var_f4b34dc1)
 				{
-					var_1c56a327 = var_1c56a327 + "" + var_21c1ba1 + "" + str_anim;
+					var_1c56a327 = var_1c56a327 + ((("" + var_21c1ba1) + "") + str_anim);
 				}
 			}
 			s_pos = _get_align_pos(v_origin_or_ent, v_angles_or_tag);
@@ -158,15 +158,15 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, va
 			maso_they_don_t_see_us_ye_ = self.origin - (0, 0, 15 * n_same_origin_index);
 			if(1)
 			{
-				print3d(maso_they_don_t_see_us_ye_, self getentnum() + get_ent_type() + "" + str_name, color, 0.8, 0.3);
-				print3d(maso_they_don_t_see_us_ye_ - vectorscale((0, 0, 1), 5), "" + (isanimlooping(animation) ? "" : "") + function_9e72a96(animation), color, 0.8, 0.3);
+				print3d(maso_they_don_t_see_us_ye_, ((self getentnum() + get_ent_type()) + "") + str_name, color, 0.8, 0.3);
+				print3d(maso_they_don_t_see_us_ye_ - vectorscale((0, 0, 1), 5), ("" + (isanimlooping(animation) ? "" : "")) + function_9e72a96(animation), color, 0.8, 0.3);
 				print3d(maso_they_don_t_see_us_ye_ - vectorscale((0, 0, 1), 11), str_extra_info, color, 0.8, 0.3);
 				if(isdefined(var_1c56a327))
 				{
 					print3d(maso_they_don_t_see_us_ye_ - vectorscale((0, 0, 1), 13), var_1c56a327, color, 0.8, 0.15);
 				}
 			}
-			record3dtext(self getentnum() + get_ent_type() + "" + str_name, maso_they_don_t_see_us_ye_, color, "");
+			record3dtext(((self getentnum() + get_ent_type()) + "") + str_name, maso_they_don_t_see_us_ye_, color, "");
 			record3dtext("" + animation, maso_they_don_t_see_us_ye_ - vectorscale((0, 0, 1), 5), color, "");
 			record3dtext(str_extra_info, maso_they_don_t_see_us_ye_ - vectorscale((0, 0, 1), 7), color, "");
 			render_tag("", "", !1);
@@ -201,7 +201,7 @@ function get_ent_type()
 		{
 			return "";
 		}
-		return "" + self.classname + "";
+		return ("" + self.classname) + "";
 	#/
 }
 
@@ -290,7 +290,7 @@ function anim_origin_render(org, angles, line_length, str_label, b_recorder_only
 		if(isdefined(org) && isdefined(angles))
 		{
 			originendpoint = org + vectorscale(anglestoforward(angles), line_length);
-			originrightpoint = org + vectorscale(anglestoright(angles), -1 * line_length);
+			originrightpoint = org + (vectorscale(anglestoright(angles), -1 * line_length));
 			originuppoint = org + vectorscale(anglestoup(angles), line_length);
 			if(!b_recorder_only)
 			{

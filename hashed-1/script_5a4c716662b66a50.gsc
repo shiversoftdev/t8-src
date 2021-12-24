@@ -225,8 +225,8 @@ private function function_1e5c0d3b()
 					{
 						if(getdvarint(#"hash_11ad6a9695943217", 0))
 						{
-							iprintlnbold("" + self.script_noteworthy + "");
-							println("" + self.script_noteworthy + "");
+							iprintlnbold(("" + self.script_noteworthy) + "");
+							println(("" + self.script_noteworthy) + "");
 						}
 					}
 				#/

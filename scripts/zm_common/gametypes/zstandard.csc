@@ -30,10 +30,10 @@ event main(eventstruct)
 	level._zombie_gamemodemain = &onstartgametype;
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".playerIsDowned", 1, 1, "int", undefined, 0, 0);
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".multiplier_count", 1, 12, "int", undefined, 0, 0);
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".multiplier_blink", 1, 1, "int", undefined, 0, 0);
-		clientfield::register("worlduimodel", "PlayerList.client" + i + ".self_revives", 1, 8, "int", undefined, 0, 0);
+		clientfield::register("worlduimodel", ("PlayerList.client" + i) + ".playerIsDowned", 1, 1, "int", undefined, 0, 0);
+		clientfield::register("worlduimodel", ("PlayerList.client" + i) + ".multiplier_count", 1, 12, "int", undefined, 0, 0);
+		clientfield::register("worlduimodel", ("PlayerList.client" + i) + ".multiplier_blink", 1, 1, "int", undefined, 0, 0);
+		clientfield::register("worlduimodel", ("PlayerList.client" + i) + ".self_revives", 1, 8, "int", undefined, 0, 0);
 	}
 }
 

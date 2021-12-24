@@ -69,7 +69,7 @@ function default_onforfeit(team)
 			assert(isdefined(team), "");
 		#/
 		/#
-			assert(0, "" + team + "");
+			assert(0, ("" + team) + "");
 		#/
 		winner = "tie";
 	}
@@ -77,7 +77,7 @@ function default_onforfeit(team)
 	/#
 		if(isplayer(winner))
 		{
-			print("" + winner getxuid() + "" + winner.name + "");
+			print(((("" + winner getxuid()) + "") + winner.name) + "");
 		}
 		else
 		{
@@ -311,7 +311,7 @@ function default_onspawnintermission()
 	{
 		self spawn(spawnpoint.origin, spawnpoint.angles);
 	}
-	util::error("" + spawnpointname + "");
+	util::error(("" + spawnpointname) + "");
 }
 
 /*

@@ -486,7 +486,7 @@ function onallplayersready()
 			}
 		}
 		/#
-			println("" + getnumconnectedplayers() + "" + getnumexpectedplayers(1));
+			println((("" + getnumconnectedplayers()) + "") + getnumexpectedplayers(1));
 		#/
 		waitframe(1);
 	}
@@ -990,7 +990,7 @@ function init_levelvars()
 */
 private function function_b10f6843()
 {
-	n_starting = level.round_number - namespace_59ff1d6c::function_901b751c(#"startround") + 1 * 500;
+	n_starting = ((level.round_number - namespace_59ff1d6c::function_901b751c(#"startround")) + 1) * 500;
 	return (isdefined(level.player_starting_points) ? level.player_starting_points : n_starting);
 }
 
@@ -1116,7 +1116,7 @@ function init_player_levelvars()
 		{
 			points = 3000;
 		}
-		points = zombie_utility::set_zombie_var("zombie_score_start_" + i + 1 + "p", points, 0, column);
+		points = zombie_utility::set_zombie_var(("zombie_score_start_" + (i + 1)) + "p", points, 0, column);
 	}
 }
 
@@ -1543,7 +1543,7 @@ function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath,
 	/#
 		if(getdvarint(#"scr_perkdebug", 0))
 		{
-			println("" + final_damage / old_damage + "" + old_damage + "" + final_damage);
+			println((((("" + (final_damage / old_damage)) + "") + old_damage) + "") + final_damage);
 		}
 	#/
 	if(isdefined(self.in_water) && self.in_water)
@@ -1755,7 +1755,7 @@ function actor_damage_override_wrapper(inflictor, attacker, damage, flags, means
 		return 0;
 	}
 	damage_override = self actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
-	willbekilled = self.health - damage_override <= 0;
+	willbekilled = (self.health - damage_override) <= 0;
 	if(isdefined(level.zombie_damage_override_callbacks))
 	{
 		foreach(func_override in level.zombie_damage_override_callbacks)
@@ -2116,7 +2116,7 @@ function end_game()
 		level.n_gameplay_start_time = gettime();
 	}
 	level clientfield::set("gameplay_started", 0);
-	level clientfield::set("game_end_time", int(gettime() - level.n_gameplay_start_time + 500 / 1000));
+	level clientfield::set("game_end_time", int(((gettime() - level.n_gameplay_start_time) + 500) / 1000));
 	level clientfield::set("zesn", 1);
 	if(isdefined(level.var_ea32773))
 	{
@@ -2198,7 +2198,7 @@ function end_game()
 		for(i = 0; i < players.size; i++)
 		{
 			level.var_7c7c6c35 zm_game_over::open(players[i]);
-			level.var_7c7c6c35 zm_game_over::set_rounds(players[i], level.round_number - namespace_59ff1d6c::function_901b751c(#"startround") + var_5c965b78);
+			level.var_7c7c6c35 zm_game_over::set_rounds(players[i], (level.round_number - namespace_59ff1d6c::function_901b751c(#"startround")) + var_5c965b78);
 		}
 	}
 	else if("ztrials" == util::function_5df4294())
@@ -2416,12 +2416,12 @@ function to_mins(seconds)
 	if(seconds > 59)
 	{
 		minutes = int(seconds / 60);
-		seconds = int(seconds * 1000) % 60000;
+		seconds = (int(seconds * 1000)) % 60000;
 		seconds = seconds * 0.001;
 		if(minutes > 59)
 		{
 			hours = int(minutes / 60);
-			minutes = int(minutes * 1000) % 60000;
+			minutes = (int(minutes * 1000)) % 60000;
 			minutes = minutes * 0.001;
 		}
 	}
@@ -2438,7 +2438,7 @@ function to_mins(seconds)
 	{
 		seconds = "0" + seconds;
 	}
-	combined = "" + hours + ":" + minutes + ":" + seconds;
+	combined = (((("" + hours) + ":") + minutes) + ":") + seconds;
 	return combined;
 }
 
@@ -2804,7 +2804,7 @@ function precache_zombie_leaderboards()
 	}
 	mapname = util::function_53bbf9d2();
 	expectedplayernum = getnumexpectedplayers();
-	mapleaderboard = "LB_ZM_MAP_" + getsubstr(mapname, 3, mapname.size) + "_" + expectedplayernum + "PLAYER";
+	mapleaderboard = ((("LB_ZM_MAP_" + getsubstr(mapname, 3, mapname.size)) + "_") + expectedplayernum) + "PLAYER";
 	precacheleaderboards(globalleaderboards + mapleaderboard);
 }
 
@@ -2956,7 +2956,7 @@ function printhashids()
 		outputstring = outputstring + "";
 		foreach(powerup in level.zombie_powerups)
 		{
-			outputstring = outputstring + powerup.powerup_name + "" + powerup.var_33c87f51 + "";
+			outputstring = outputstring + (((powerup.powerup_name + "") + powerup.var_33c87f51) + "");
 		}
 		outputstring = outputstring + "";
 		if(isdefined(level.aat_in_use) && level.aat_in_use)
@@ -2967,7 +2967,7 @@ function printhashids()
 				{
 					continue;
 				}
-				outputstring = outputstring + aat.name + "" + aat.var_33c87f51 + "";
+				outputstring = outputstring + (((aat.name + "") + aat.var_33c87f51) + "");
 			}
 		}
 		outputstring = outputstring + "";
@@ -2977,7 +2977,7 @@ function printhashids()
 			{
 				continue;
 			}
-			outputstring = outputstring + function_9e72a96(perk.alias) + "" + perk.alias + "";
+			outputstring = outputstring + (((function_9e72a96(perk.alias) + "") + perk.alias) + "");
 		}
 		outputstring = outputstring + "";
 		println(outputstring);

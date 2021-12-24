@@ -562,11 +562,11 @@ function ai_puppeteer_render_point(point, normal, forward, color)
 		surface_vector = vectorcross(forward, normal);
 		surface_vector = vectornormalize(surface_vector);
 		line(point, point + vectorscale(surface_vector, 5), color, 1, 1);
-		line(point, point + vectorscale(surface_vector, -5), color, 1, 1);
+		line(point, point + (vectorscale(surface_vector, -5)), color, 1, 1);
 		surface_vector = vectorcross(normal, surface_vector);
 		surface_vector = vectornormalize(surface_vector);
 		line(point, point + vectorscale(surface_vector, 5), color, 1, 1);
-		line(point, point + vectorscale(surface_vector, -5), color, 1, 1);
+		line(point, point + (vectorscale(surface_vector, -5)), color, 1, 1);
 	#/
 }
 
@@ -607,7 +607,7 @@ function ai_puppeteer_render_ai(ai, color)
 			if(isusingnavvolume(ai))
 			{
 				circle(ai.goalpos + (0, 0, ai.goalheight / 2), ai.goalradius, color, 0, 1);
-				circle(ai.goalpos + (0, 0, ai.goalheight * -1 / 2), ai.goalradius, color, 0, 1);
+				circle(ai.goalpos + (0, 0, (ai.goalheight * -1) / 2), ai.goalradius, color, 0, 1);
 			}
 			else
 			{

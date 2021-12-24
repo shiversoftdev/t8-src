@@ -437,11 +437,11 @@ function do_vision_world_pulse_lerp_helper(currenttime, elapsedtime, localclient
 	pulseduration = level.var_2e3031be.gadget_pulse_duration;
 	if(elapsedtime < pulseduration * 0.1)
 	{
-		irisamount = elapsedtime / pulseduration * 0.1;
+		irisamount = elapsedtime / (pulseduration * 0.1);
 	}
 	else if(elapsedtime < pulseduration * 0.6)
 	{
-		irisamount = 1 - elapsedtime / pulseduration * 0.5;
+		irisamount = 1 - (elapsedtime / (pulseduration * 0.5));
 	}
 	else
 	{
@@ -540,8 +540,8 @@ function do_vision_local_pulse()
 System.InvalidOperationException: Stack empty.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at System.Collections.Generic.Stack`1.Pop()
-   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2526
-   at Cerberus.Logic.Decompiler.FindForLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1618
+   at Cerberus.Logic.Decompiler.ProcessInstruction(ScriptOp operation, DecompilerBlock block) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 2544
+   at Cerberus.Logic.Decompiler.FindForLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1619
    at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 207
 /*
 No Output
@@ -726,7 +726,7 @@ function function_9e2a452e(localclientnum, robname)
 			}
 			else if(elapsedtime < var_6f9f5fef)
 			{
-				alpha = 1 - elapsedtime - var_42a54adc / var_6f9f5fef - var_42a54adc;
+				alpha = 1 - (elapsedtime - var_42a54adc) / (var_6f9f5fef - var_42a54adc);
 			}
 			else if(elapsedtime < fadeout_duration)
 			{

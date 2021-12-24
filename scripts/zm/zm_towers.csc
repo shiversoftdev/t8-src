@@ -1573,7 +1573,7 @@ function function_21a2fea4(localclientnum, var_a0d24aa6)
 	foreach(s_struct in a_structs)
 	{
 		var_1f2066a = s_struct.script_string;
-		playsound(localclientnum, "mus_crowd_" + var_1f2066a + var_ffc05b22 + var_5babe62d, s_struct.origin);
+		playsound(localclientnum, (("mus_crowd_" + var_1f2066a) + var_ffc05b22) + var_5babe62d, s_struct.origin);
 		waitframe(1);
 	}
 }
@@ -1642,14 +1642,14 @@ function function_ba9941c(localclientnum, newval)
 		foreach(s_struct in a_structs)
 		{
 			var_1f2066a = s_struct.script_string;
-			playsound(localclientnum, "mus_crowd_" + var_1f2066a + "_special_start", s_struct.origin);
+			playsound(localclientnum, ("mus_crowd_" + var_1f2066a) + "_special_start", s_struct.origin);
 			waitframe(1);
 		}
 		wait(6.3);
 		foreach(s_struct in a_structs)
 		{
 			var_1f2066a = s_struct.script_string;
-			audio::playloopat("mus_crowd_" + var_1f2066a + "_special_loop", s_struct.origin);
+			audio::playloopat(("mus_crowd_" + var_1f2066a) + "_special_loop", s_struct.origin);
 			waitframe(1);
 		}
 		if(isdefined(level.var_a46ee0d5) && level.var_a46ee0d5)
@@ -1671,9 +1671,9 @@ function function_ba9941c(localclientnum, newval)
 			var_1f2066a = s_struct.script_string;
 			if(newval == 15)
 			{
-				playsound(localclientnum, "mus_crowd_" + var_1f2066a + "_special_end", s_struct.origin);
+				playsound(localclientnum, ("mus_crowd_" + var_1f2066a) + "_special_end", s_struct.origin);
 			}
-			audio::stoploopat("mus_crowd_" + var_1f2066a + "_special_loop", s_struct.origin);
+			audio::stoploopat(("mus_crowd_" + var_1f2066a) + "_special_loop", s_struct.origin);
 			waitframe(1);
 		}
 		if(isdefined(level.var_a46ee0d5) && level.var_a46ee0d5)
@@ -1703,14 +1703,14 @@ function function_f68a332e(localclientnum, var_12ae4a7b)
 		foreach(s_struct in a_structs)
 		{
 			var_1f2066a = s_struct.script_string;
-			playsound(localclientnum, "mus_crowd_" + var_1f2066a + "_boss_start", s_struct.origin);
+			playsound(localclientnum, ("mus_crowd_" + var_1f2066a) + "_boss_start", s_struct.origin);
 			waitframe(1);
 		}
 		wait(4.8);
 		foreach(s_struct in a_structs)
 		{
 			var_1f2066a = s_struct.script_string;
-			audio::playloopat("mus_crowd_" + var_1f2066a + "_boss_loop", s_struct.origin);
+			audio::playloopat(("mus_crowd_" + var_1f2066a) + "_boss_loop", s_struct.origin);
 			waitframe(1);
 		}
 	}
@@ -1719,14 +1719,14 @@ function function_f68a332e(localclientnum, var_12ae4a7b)
 		foreach(s_struct in a_structs)
 		{
 			var_1f2066a = s_struct.script_string;
-			playsound(localclientnum, "mus_crowd_" + var_1f2066a + "_boss_end", s_struct.origin);
+			playsound(localclientnum, ("mus_crowd_" + var_1f2066a) + "_boss_end", s_struct.origin);
 			waitframe(1);
 		}
 		wait(1);
 		foreach(s_struct in a_structs)
 		{
 			var_1f2066a = s_struct.script_string;
-			audio::stoploopat("mus_crowd_" + var_1f2066a + "_boss_loop", s_struct.origin);
+			audio::stoploopat(("mus_crowd_" + var_1f2066a) + "_boss_loop", s_struct.origin);
 			waitframe(1);
 		}
 	}
@@ -3035,7 +3035,7 @@ function function_a8fa1dc3(b_show)
 		self function_bf9d3071(#"hash_16b8b568a95931e7");
 	}
 	n_start_time = gettime();
-	n_end_time = n_start_time + int(0.5 * 1000);
+	n_end_time = n_start_time + (int(0.5 * 1000));
 	var_f86b693b = 0;
 	var_c4c52c72 = 1;
 	b_stream = 1;
@@ -3172,14 +3172,14 @@ function function_9290b227()
 		/#
 			if(getdvarint(#"debug_audio", 0) > 0)
 			{
-				println("" + loopers.size + "");
+				println(("" + loopers.size) + "");
 			}
 		#/
 		for(i = 0; i < loopers.size; i++)
 		{
 			loopers[i] thread soundloopthink();
 			delay = delay + 1;
-			if(delay % 20 == 0)
+			if((delay % 20) == 0)
 			{
 				waitframe(1);
 			}

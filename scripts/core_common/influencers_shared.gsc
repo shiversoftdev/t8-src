@@ -583,7 +583,7 @@ function create_turret_influencer(name)
 	{
 		return;
 	}
-	projected_point = turret.origin + vectorscale(anglestoforward(turret.angles), preset[#"radius"] * 0.7);
+	projected_point = turret.origin + (vectorscale(anglestoforward(turret.angles), preset[#"radius"] * 0.7));
 	return create_enemy_influencer(name, turret.origin, turret.team);
 }
 

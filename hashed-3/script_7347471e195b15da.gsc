@@ -156,7 +156,7 @@ function function_1c0720fc(params)
 	{
 		return;
 	}
-	diff = player.var_66cb03ad - max(player.maxhealth, player.health - params.idamage);
+	diff = player.var_66cb03ad - (max(player.maxhealth, player.health - params.idamage));
 	if(diff >= 25)
 	{
 		var_852b4a29 = int(diff / 25);
@@ -281,9 +281,9 @@ function function_e68d45e7(weapon, var_e2959480, var_7b8559d4)
 	player = self;
 	if(player == var_e2959480)
 	{
-		maxhealth = player.var_66cb03ad + var_7b8559d4 * 25;
+		maxhealth = player.var_66cb03ad + (var_7b8559d4 * 25);
 		var_c993fb53 = min(level.var_c34a20f5.var_9131fe6b, maxhealth);
-		diff = int(max(maxhealth - var_c993fb53, 0) / 25);
+		diff = int((max(maxhealth - var_c993fb53, 0)) / 25);
 		var_7b8559d4 = var_7b8559d4 - diff;
 	}
 	if(var_7b8559d4 <= 0)

@@ -188,7 +188,7 @@ private function function_989d336d(localclientnum)
 			var_ba6de045 = self.var_d9167e48 === 1;
 			if(var_ba6de045)
 			{
-				var_1e429b84 = var_8e5bb835 - playerhealth >= 1 / basehealth - 0.0001;
+				var_1e429b84 = (var_8e5bb835 - playerhealth) >= ((1 / basehealth) - 0.0001);
 				if(var_1e429b84 && playerhealth > var_d081e441)
 				{
 					self thread splatter(localclientnum);
@@ -332,7 +332,7 @@ private function splatter(localclientnum)
 		if(elapsedtime > 0)
 		{
 			fadeduration = math::clamp(getdvarint(#"hash_34e60a4256fbc184", 5000), 10, 88000);
-			splatter_opacity = splatter_opacity - elapsedtime / fadeduration;
+			splatter_opacity = splatter_opacity - (elapsedtime / fadeduration);
 			splatter_opacity = math::clamp(splatter_opacity, 0, 1);
 			lasttime = now;
 		}
@@ -353,7 +353,7 @@ private function splatter(localclientnum)
 		if(elapsedtime > 0)
 		{
 			fadeduration = math::clamp(getdvarint(#"hash_34e60d4256fbc69d", 500), 10, 88000);
-			splatter_opacity = splatter_opacity - elapsedtime / fadeduration;
+			splatter_opacity = splatter_opacity - (elapsedtime / fadeduration);
 			splatter_opacity = math::clamp(splatter_opacity, 0, 1);
 			lasttime = now;
 		}

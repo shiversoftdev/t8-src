@@ -144,7 +144,7 @@ function init_spawnable_weapon_upgrade()
 	match_string = level.scr_zm_ui_gametype;
 	if("" != location)
 	{
-		match_string = match_string + "_" + location;
+		match_string = (match_string + "_") + location;
 	}
 	match_string_plus_space = " " + match_string;
 	for(i = 0; i < spawnable_weapon_spawns.size; i++)
@@ -177,7 +177,7 @@ function init_spawnable_weapon_upgrade()
 	tempmodel = spawn("script_model", (0, 0, 0));
 	for(i = 0; i < spawn_list.size; i++)
 	{
-		clientfieldname = spawn_list[i].zombie_weapon_upgrade + "_" + spawn_list[i].origin;
+		clientfieldname = (spawn_list[i].zombie_weapon_upgrade + "_") + spawn_list[i].origin;
 		numbits = 2;
 		if(isdefined(level._wallbuy_override_num_bits))
 		{
@@ -219,7 +219,7 @@ function init_spawnable_weapon_upgrade()
 			var_b0e9dcba = bounds[2];
 		}
 		unitrigger_stub = zm_unitrigger::function_9267812e(var_f8d30499, var_887e6ebe, var_b0e9dcba);
-		zm_unitrigger::function_47625e58(unitrigger_stub, spawn_list[i].origin - anglestoright(spawn_list[i].angles) * var_887e6ebe * 0.2, spawn_list[i].angles);
+		zm_unitrigger::function_47625e58(unitrigger_stub, spawn_list[i].origin - (anglestoright(spawn_list[i].angles) * (var_887e6ebe * 0.2)), spawn_list[i].angles);
 		zm_unitrigger::function_c4a5fdf5(unitrigger_stub, 1);
 		if(isdefined(spawn_list[i].require_look_from) && spawn_list[i].require_look_from)
 		{
@@ -388,7 +388,7 @@ function add_dynamic_wallbuy(weapon, wallbuy, pristine)
 	unitrigger_stub.script_length = bounds[0] * 0.25;
 	unitrigger_stub.script_width = bounds[1];
 	unitrigger_stub.script_height = bounds[2];
-	unitrigger_stub.origin = unitrigger_stub.origin - anglestoright(unitrigger_stub.angles) * unitrigger_stub.script_length * 0.4;
+	unitrigger_stub.origin = unitrigger_stub.origin - (anglestoright(unitrigger_stub.angles) * (unitrigger_stub.script_length * 0.4));
 	unitrigger_stub.target = spawned_wallbuy.target;
 	unitrigger_stub.targetname = "weapon_upgrade";
 	unitrigger_stub.cursor_hint = "HINT_NOICON";
@@ -1266,7 +1266,7 @@ function weapon_show(player)
 		yaw = weapon_yaw + 90;
 	}
 	self.og_origin = self.origin;
-	self.origin = self.origin + anglestoforward((0, yaw, 0)) * 8;
+	self.origin = self.origin + (anglestoforward((0, yaw, 0)) * 8);
 	waitframe(1);
 	self show();
 	zm_utility::play_sound_at_pos("weapon_show", self.origin, self);

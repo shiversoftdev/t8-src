@@ -77,7 +77,7 @@ function function_4827d817(weapon)
 	}
 	clipammo = self getweaponammoclip(weapon);
 	stockammo = self getweaponammostock(weapon);
-	currentammo = float(clipammo + stockammo) / weapon.clipsize;
+	currentammo = (float(clipammo + stockammo)) / weapon.clipsize;
 	if(weapon.statname == #"smg_capacity_t8" && weaponhasattachment(weapon, "uber"))
 	{
 		self setweaponammostock(weapon, weapon.clipsize);
@@ -91,7 +91,7 @@ function function_4827d817(weapon)
 	{
 		currentammo = maxammo;
 	}
-	self setweaponammostock(weapon, int(currentammo * weapon.clipsize) - clipammo);
+	self setweaponammostock(weapon, (int(currentammo * weapon.clipsize)) - clipammo);
 	return 1;
 }
 

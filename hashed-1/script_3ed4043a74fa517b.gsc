@@ -533,7 +533,7 @@ function player_throw_cymbal_monkey(e_grenade, num_attractors, max_attract_dist,
 */
 private function function_ab9a9770()
 {
-	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + vectorscale((0, 0, -1), 100), 0, self);
+	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(s_trace[#"entity"]))
 	{
 		entity = s_trace[#"entity"];
@@ -909,7 +909,7 @@ function is_on_navmesh(e_player)
 		if(!(isdefined(var_3fb36683) && var_3fb36683))
 		{
 			v_dir = vectornormalize(e_origin - self.origin);
-			v_pos = self.origin + v_dir * 24;
+			v_pos = self.origin + (v_dir * 24);
 			v_valid_point = getclosestpointonnavmesh(v_pos, 150, 12);
 			if(isdefined(v_valid_point))
 			{

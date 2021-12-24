@@ -133,7 +133,7 @@ function buildandvalidatefacialanimationlist(localclientnum)
 	foreach(deathanim in deathanims)
 	{
 		/#
-			assert(!isanimlooping(localclientnum, deathanim), "" + deathanim + "");
+			assert(!isanimlooping(localclientnum, deathanim), ("" + deathanim) + "");
 		#/
 	}
 }
@@ -323,7 +323,7 @@ private function secondaryfacialanimationthink(localclientnum)
 			{
 				animtoplay = animoverride;
 				/#
-					assert(nextfacestate != "" || !isanimlooping(localclientnum, animtoplay), "" + animtoplay + "");
+					assert(nextfacestate != "" || !isanimlooping(localclientnum, animtoplay), ("" + animtoplay) + "");
 				#/
 			}
 			applynewfaceanim(localclientnum, animtoplay, clearoncompletion);

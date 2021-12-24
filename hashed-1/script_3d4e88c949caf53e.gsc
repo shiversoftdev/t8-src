@@ -40,11 +40,11 @@ function __init__()
 	clientfield::register("clientuimodel", "zmhud.bgb_carousel.global_cooldown", 1, 5, "float", undefined, 0, 0);
 	for(i = 0; i < 4; i++)
 	{
-		clientfield::register("clientuimodel", "zmhud.bgb_carousel." + i + ".state", 1, 2, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "zmhud.bgb_carousel." + i + ".gum_idx", 1, 7, "int", undefined, 0, 0);
-		clientfield::register("clientuimodel", "zmhud.bgb_carousel." + i + ".cooldown_perc", 1, 5, "float", undefined, 0, 0);
-		clientfield::register("clientuimodel", "zmhud.bgb_carousel." + i + ".lockdown", 1, 1, "float", undefined, 0, 0);
-		clientfield::register("clientuimodel", "zmhud.bgb_carousel." + i + ".unavailable", 1, 1, "float", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("zmhud.bgb_carousel." + i) + ".state", 1, 2, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("zmhud.bgb_carousel." + i) + ".gum_idx", 1, 7, "int", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("zmhud.bgb_carousel." + i) + ".cooldown_perc", 1, 5, "float", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("zmhud.bgb_carousel." + i) + ".lockdown", 1, 1, "float", undefined, 0, 0);
+		clientfield::register("clientuimodel", ("zmhud.bgb_carousel." + i) + ".unavailable", 1, 1, "float", undefined, 0, 0);
 	}
 }
 

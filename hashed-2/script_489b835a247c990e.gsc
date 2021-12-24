@@ -309,7 +309,7 @@ private function locomotionshouldlooponstairs(behaviortreeentity)
 			}
 		}
 	}
-	if(stepssofar >= numtotalsteps - numoutsteps)
+	if(stepssofar >= (numtotalsteps - numoutsteps))
 	{
 		behaviortreeentity setstairsexittransform();
 		return 0;
@@ -858,8 +858,8 @@ private function tacticalwalkactionstart(behaviortreeentity)
 private function validjukedirection(entity, entitynavmeshposition, forwardoffset, lateraloffset)
 {
 	jukenavmeshthreshold = 6;
-	forwardposition = entity.origin + lateraloffset + forwardoffset;
-	backwardposition = entity.origin + lateraloffset - forwardoffset;
+	forwardposition = (entity.origin + lateraloffset) + forwardoffset;
+	backwardposition = (entity.origin + lateraloffset) - forwardoffset;
 	forwardpositionvalid = ispointonnavmesh(forwardposition, entity) && tracepassedonnavmesh(entity.origin, forwardposition);
 	backwardpositionvalid = ispointonnavmesh(backwardposition, entity) && tracepassedonnavmesh(entity.origin, backwardposition);
 	if(!isdefined(entity.ignorebackwardposition))

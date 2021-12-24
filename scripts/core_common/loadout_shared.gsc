@@ -112,11 +112,11 @@ function cac_modified_vehicle_damage(victim, attacker, damage, meansofdeath, wea
 	final_damage = damage;
 	if(attacker hasperk(#"specialty_bulletdamage") && isprimarydamage(meansofdeath))
 	{
-		final_damage = damage * 100 + level.cac_bulletdamage_data / 100;
+		final_damage = (damage * (100 + level.cac_bulletdamage_data)) / 100;
 		/#
 			if(getdvarint(#"scr_perkdebug", 0))
 			{
-				println("" + attacker.name + "");
+				println(("" + attacker.name) + "");
 			}
 		#/
 	}
@@ -127,7 +127,7 @@ function cac_modified_vehicle_damage(victim, attacker, damage, meansofdeath, wea
 	/#
 		if(getdvarint(#"scr_perkdebug", 0))
 		{
-			println("" + final_damage / old_damage + "" + old_damage + "" + final_damage);
+			println((((("" + (final_damage / old_damage)) + "") + old_damage) + "") + final_damage);
 		}
 	#/
 	return int(final_damage);

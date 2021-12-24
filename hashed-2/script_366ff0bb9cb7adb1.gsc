@@ -925,7 +925,7 @@ function function_cf70f2fe(startstruct, resuming = 0)
 			if(!self flag::exists(var_4de004b7.script_ent_flag_set))
 			{
 				/#
-					assertmsg("" + var_4de004b7.script_ent_flag_set + "");
+					assertmsg(("" + var_4de004b7.script_ent_flag_set) + "");
 				#/
 			}
 			self flag::set(var_4de004b7.script_ent_flag_set);
@@ -935,7 +935,7 @@ function function_cf70f2fe(startstruct, resuming = 0)
 			if(!self flag::exists(var_4de004b7.script_ent_flag_clear))
 			{
 				/#
-					assertmsg("" + var_4de004b7.script_ent_flag_clear + "");
+					assertmsg(("" + var_4de004b7.script_ent_flag_clear) + "");
 				#/
 			}
 			self flag::clear(var_4de004b7.script_ent_flag_clear);

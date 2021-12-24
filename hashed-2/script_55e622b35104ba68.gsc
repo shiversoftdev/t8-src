@@ -104,7 +104,7 @@ function function_1e4302d0(value, index)
 	/#
 		assert(index < 2);
 	#/
-	newvalue = value << 1 | index & 1;
+	newvalue = (value << 1) | (index & 1);
 	return newvalue;
 }
 
@@ -219,10 +219,10 @@ function function_d53a8c5b(insertion, fly_over_point, var_59526dd5, offset)
 	var_872f085f = (0, var_59526dd5, 0);
 	direction = anglestoforward(var_872f085f);
 	direction = vectornormalize(direction);
-	var_7c712437 = fly_over_point + anglestoright(var_872f085f) * offset;
-	var_1d83d08d = {#end:var_7c712437 + direction * 150000, #start:var_7c712437 + direction * 150000};
+	var_7c712437 = fly_over_point + (anglestoright(var_872f085f) * offset);
+	var_1d83d08d = {#end:var_7c712437 + (direction * 150000), #start:var_7c712437 + (direction * 150000)};
 	result = function_3ca86964(var_1d83d08d);
-	midpoint = result.start + result.end / 2;
+	midpoint = (result.start + result.end) / 2;
 	var_1d83d08d.start = function_fd3c1bcc(midpoint, var_1d83d08d.start, result.start);
 	var_1d83d08d.end = function_fd3c1bcc(midpoint, var_1d83d08d.end, result.end);
 	fly_path(insertion, var_1d83d08d, var_7c712437, var_59526dd5);
@@ -257,7 +257,7 @@ private function function_9ddb4115(var_1d83d08d)
 		var_164fe5c9 = distance2dsquared(var_ddab8e6c, initcircle.origin);
 		while(var_164fe5c9 > initcircle.radius * initcircle.radius)
 		{
-			var_ddab8e6c = var_ddab8e6c + var_dd00b78e * 1000;
+			var_ddab8e6c = var_ddab8e6c + (var_dd00b78e * 1000);
 			var_c820832 = distance2dsquared(var_ddab8e6c, initcircle.origin);
 			if(var_c820832 > var_164fe5c9)
 			{
@@ -271,7 +271,7 @@ private function function_9ddb4115(var_1d83d08d)
 		var_164fe5c9 = distance2dsquared(var_1b8e09d2, initcircle.origin);
 		while(var_164fe5c9 > initcircle.radius * initcircle.radius)
 		{
-			var_1b8e09d2 = var_1b8e09d2 + var_6d773f9e * 1000;
+			var_1b8e09d2 = var_1b8e09d2 + (var_6d773f9e * 1000);
 			var_c820832 = distance2dsquared(var_1b8e09d2, initcircle.origin);
 			if(var_c820832 > var_164fe5c9)
 			{
@@ -308,18 +308,18 @@ function fly_path(insertion, var_1d83d08d, fly_over_point, var_59526dd5)
 	var_309554a1 = function_ea1ad421(insertion, var_1d83d08d.start, var_1d83d08d.end);
 	var_7dea5d79 = (isdefined(getgametypesetting(#"hash_3c96c4ddb442526d")) ? getgametypesetting(#"hash_3c96c4ddb442526d") : 5000);
 	var_c7ac9056 = (isdefined(getgametypesetting(#"hash_3e8ed24e99b27614")) ? getgametypesetting(#"hash_3e8ed24e99b27614") : 15000);
-	var_4c8131f2 = var_72a7a8ee + var_7dea5d79 * direction;
-	var_e0079ca5 = var_309554a1 - var_c7ac9056 * direction;
+	var_4c8131f2 = var_72a7a8ee + (var_7dea5d79 * direction);
+	var_e0079ca5 = var_309554a1 - (var_c7ac9056 * direction);
 	var_5d59bc67 = 2640;
 	var_16de3dbd = 10 * var_5d59bc67;
-	startpoint = var_4c8131f2 - var_16de3dbd * direction;
-	endpoint = var_e0079ca5 + 100000 * direction;
+	startpoint = var_4c8131f2 - (var_16de3dbd * direction);
+	endpoint = var_e0079ca5 + (100000 * direction);
 	/#
 		if(getdvarint(#"hash_64f65224ca092b2d", 0) == 1)
 		{
 			offset = vectorscale((0, 0, 1), 300);
-			debug_sphere(var_1d83d08d.start + 2 * offset, 45, (0, 1, 1));
-			debug_sphere(var_1d83d08d.end + 2 * offset, 45, (1, 1, 0));
+			debug_sphere(var_1d83d08d.start + (2 * offset), 45, (0, 1, 1));
+			debug_sphere(var_1d83d08d.end + (2 * offset), 45, (1, 1, 0));
 			debug_sphere(fly_over_point, 75, (1, 1, 1));
 			debug_sphere(var_72a7a8ee, 75, (1, 0, 1));
 			debug_sphere(var_309554a1, 75, (0, 1, 0));
@@ -334,7 +334,7 @@ function fly_path(insertion, var_1d83d08d, fly_over_point, var_59526dd5)
 	var_f69b665b = distance(startpoint, var_e0079ca5);
 	insertion thread function_e04b0ea8(insertion, startpoint, var_872f085f, var_742f9da2, var_f69b665b);
 	currentvalue = level clientfield::get("infiltration_compass");
-	newvalue = 1 << insertion.index | currentvalue;
+	newvalue = (1 << insertion.index) | currentvalue;
 	level clientfield::set("infiltration_compass", newvalue);
 	insertion.start_point = startpoint;
 	insertion.end_point = endpoint;
@@ -429,7 +429,7 @@ function function_20cba65e(player)
 	platoon = function_22448d6c(player.team);
 	for(index = 0; index < level.insertions.size; index++)
 	{
-		if(isdefined(var_9257bec[platoon]) && var_9257bec[platoon] == index % platoons.size - 1)
+		if(isdefined(var_9257bec[platoon]) && var_9257bec[platoon] == (index % (platoons.size - 1)))
 		{
 			return index;
 		}
@@ -482,7 +482,7 @@ function function_f31cf3bb(point, direction, step, depth, var_94a1d56d = 10)
 		{
 			return var_23685c5;
 		}
-		new_point = var_23685c5 + direction * step;
+		new_point = var_23685c5 + (direction * step);
 		touching = oob::chr_party(new_point);
 		/#
 		#/
@@ -513,7 +513,7 @@ function function_bb2c2f4d(point, direction, step, depth)
 		{
 			return undefined;
 		}
-		new_point = var_6b1f4b9c - direction * step;
+		new_point = var_6b1f4b9c - (direction * step);
 		touching = oob::chr_party(new_point);
 		/#
 			debug_sphere(new_point - vectorscale((0, 0, 1), 300), 45, (touching ? (1, 0, 0) : (0, 1, 0)));
@@ -801,7 +801,7 @@ function function_82c73974(insertion)
 	insertion flagsys::set(#"hash_122f326d72f4c884");
 	level function_e59d879f(insertion, function_d9dfa25(), 1);
 	function_dd34168c(insertion, #"hash_5a3e17fbc33cdc86");
-	insertion flagsys::wait_till_timeout(2 + 5 + 0.5, #"hash_3dc9cb68998d9dfd");
+	insertion flagsys::wait_till_timeout((2 + 5) + 0.5, #"hash_3dc9cb68998d9dfd");
 	function_dd34168c(insertion, #"hash_605a9ce4fc2912ae");
 }
 
@@ -888,7 +888,7 @@ function function_35742117(insertion)
 		level callback::callback(#"hash_74b19f5972b0ee52", {#player:player});
 	}
 	function_dd34168c(insertion, #"hash_605a9ce4fc2912ae");
-	wait(5 + 5 / 3);
+	wait(5 + (5 / 3));
 	function_a5fd9aa8(insertion);
 	foreach(player in insertion.players)
 	{
@@ -1079,8 +1079,8 @@ function function_57d4a011(insertion)
 			angle = 0;
 			foreach(var_9fac9726 in level.var_fc14f773)
 			{
-				x_pos = center[0] + radius * cos(angle);
-				y_pos = center[1] + radius * sin(angle);
+				x_pos = center[0] + (radius * cos(angle));
+				y_pos = center[1] + (radius * sin(angle));
 				var_636e904a = 20000;
 				var_9fac9726.origin = (x_pos, y_pos, var_636e904a);
 				var_9fac9726.var_8c9cad0b = angle;
@@ -1535,7 +1535,7 @@ function function_ca5b6591(insertion, startorigin, endorigin, var_872f085f)
 		}
 		var_f945990b = plane.origin + vectorscale((0, 0, 1), 250);
 		var_21e6b5ae = anglestoforward(var_872f085f);
-		targetpos = var_f945990b + var_21e6b5ae * 150 * 17.6 * 4;
+		targetpos = var_f945990b + (((var_21e6b5ae * 150) * 17.6) * 4);
 		insertion.cameraent[index] moveto(targetpos, 4, 1, 0);
 		insertion.cameraent[index] rotateto((var_872f085f[0] + 15, var_872f085f[1], var_872f085f[2]), 4, 1, 1);
 	}
@@ -1621,7 +1621,7 @@ function function_77132caf()
 		radius = level.deathcircle.radius * 0.85;
 	}
 	spawn_point = rotatepoint((radius, 0, 0), (0, randomint(360), 0));
-	self setorigin(center + spawn_point + vectorscale((0, 0, 1), 30000));
+	self setorigin((center + spawn_point) + vectorscale((0, 0, 1), 30000));
 	self start_freefall((0, 0, 0), 0);
 }
 
@@ -1794,7 +1794,7 @@ function function_7d880672(original_origin, var_9f8395cb, var_6a19d5de)
 			velocity = function_ba904ee2(direction * 2640);
 			self function_2ffa8aaf(1, velocity, 1);
 		}
-		if(var_6a19d5de % 2 == 0)
+		if((var_6a19d5de % 2) == 0)
 		{
 			while(true)
 			{
@@ -2051,10 +2051,10 @@ function function_e04b0ea8(insertion, start_point, var_872f085f, var_37362e08, v
 		assert(isstruct(insertion));
 	#/
 	direction = anglestoforward(var_872f085f);
-	insertion.var_b686c9d = spawn("script_model", start_point + direction * var_37362e08);
+	insertion.var_b686c9d = spawn("script_model", start_point + (direction * var_37362e08));
 	insertion.var_b686c9d.targetname = "insertion_jump";
 	insertion.var_b686c9d.angles = var_872f085f;
-	insertion.var_d908905e = spawn("script_model", start_point + direction * var_f69b665b);
+	insertion.var_d908905e = spawn("script_model", start_point + (direction * var_f69b665b));
 	insertion.var_d908905e.targetname = "insertion_force";
 	insertion.var_d908905e.angles = var_872f085f;
 	waitframe(1);
@@ -2347,8 +2347,8 @@ function function_ea6a4f96(startorigin, endorigin, var_872f085f, offsetvec, var_
 		remainingdist = int(distance) % 5000;
 		for(i = 1; i <= var_27dfb385; i++)
 		{
-			self pathvariableoffset(offsetvec * var_27dfb385 - i + 1, var_35c96bb3);
-			self function_85635daf(startorigin, distance, i * 5000 / distance);
+			self pathvariableoffset(offsetvec * ((var_27dfb385 - i) + 1), var_35c96bb3);
+			self function_85635daf(startorigin, distance, (i * 5000) / distance);
 		}
 		if(remainingdist > 0)
 		{
@@ -2430,13 +2430,13 @@ function function_6671872c()
 	map_center = (map_center[0], map_center[1], 0);
 	var_b97cc2ac = math::clamp(getdvarfloat(#"hash_730281ef3488a206", 0.6), 0, 1);
 	var_40f8484d = math::clamp(getdvarfloat(#"hash_e3bea7572da5785", 0.3), 0, var_b97cc2ac);
-	x = abs(var_6024133d[0].origin[0] - var_6024133d[1].origin[0]) * 0.5;
-	y = abs(var_6024133d[0].origin[1] - var_6024133d[1].origin[1]) * 0.5;
-	var_5017ad06 = (x * var_b97cc2ac - var_40f8484d, y * var_b97cc2ac - var_40f8484d, 0);
+	x = (abs(var_6024133d[0].origin[0] - var_6024133d[1].origin[0])) * 0.5;
+	y = (abs(var_6024133d[0].origin[1] - var_6024133d[1].origin[1])) * 0.5;
+	var_5017ad06 = (x * (var_b97cc2ac - var_40f8484d), y * (var_b97cc2ac - var_40f8484d), 0);
 	random_point = (randomfloatrange(var_5017ad06[0] * -1, var_5017ad06[0]), randomfloatrange(var_5017ad06[1] * -1, var_5017ad06[1]), 0);
 	if(var_40f8484d > 0)
 	{
-		random_point = (random_point[0] + math::sign(random_point[0]) * x * var_40f8484d, random_point[1] + math::sign(random_point[1]) * y * var_40f8484d, 0);
+		random_point = (random_point[0] + (math::sign(random_point[0]) * (x * var_40f8484d)), random_point[1] + (math::sign(random_point[1]) * (y * var_40f8484d)), 0);
 	}
 	fly_over_point = map_center + random_point;
 	height = function_e3f18577();
@@ -2552,12 +2552,12 @@ private function function_afdad0c8(insertion, plane, startpoint, endpoint, var_6
 		assert(total_distance > var_671fc488);
 	#/
 	/#
-		assert(var_671fc488 - var_5e24c814 > 0);
+		assert((var_671fc488 - var_5e24c814) > 0);
 	#/
 	/#
-		assert(total_distance > var_671fc488 - var_5e24c814);
+		assert(total_distance > (var_671fc488 - var_5e24c814));
 	#/
-	var_f26cf241 = var_671fc488 - var_5e24c814 / total_distance;
+	var_f26cf241 = (var_671fc488 - var_5e24c814) / total_distance;
 	var_1da12059 = var_671fc488 / total_distance;
 	/#
 		level thread function_63793dbe();
@@ -2612,8 +2612,7 @@ private function function_afdad0c8(insertion, plane, startpoint, endpoint, var_6
 	}
 	wait(5);
 	currentvalue = level clientfield::get("infiltration_compass");
-	~insertion;
-	newvalue = 1 << insertion.index & currentvalue;
+	newvalue = (~(1 << insertion.index)) & currentvalue;
 	level clientfield::set("infiltration_compass", newvalue);
 }
 
@@ -2640,12 +2639,12 @@ private function function_6da3daa0(insertion, plane, startpoint, endpoint, var_6
 		assert(total_distance > var_6a694ed8);
 	#/
 	/#
-		assert(var_6a694ed8 - var_7cd0d619 > 0);
+		assert((var_6a694ed8 - var_7cd0d619) > 0);
 	#/
 	/#
-		assert(total_distance > var_6a694ed8 - var_7cd0d619);
+		assert(total_distance > (var_6a694ed8 - var_7cd0d619));
 	#/
-	var_309de265 = var_6a694ed8 - var_7cd0d619 / total_distance;
+	var_309de265 = (var_6a694ed8 - var_7cd0d619) / total_distance;
 	var_ed08031a = var_6a694ed8 / total_distance;
 	plane function_85635daf(startpoint, total_distance, var_309de265);
 	/#
@@ -2915,8 +2914,8 @@ function function_910065da(aircraft)
 	self notify(#"player_jumped");
 	lateraloffset = (0, 0, 0);
 	forward = anglestoforward(self.angles);
-	origin = self.origin + forward * 512 - (0, 0, 542);
-	origin = (origin[0] + randomfloatrange(-300, 300), origin[1] + randomfloatrange(-300, 300), origin[2] + randomfloatrange(-300, 300));
+	origin = (self.origin + (forward * 512)) - (0, 0, 542);
+	origin = (origin[0] + (randomfloatrange(-300, 300)), origin[1] + (randomfloatrange(-300, 300)), origin[2] + (randomfloatrange(-300, 300)));
 	self unlink();
 	self setorigin(origin);
 	velocity = function_ba904ee2(aircraft getvelocity());
@@ -3369,7 +3368,7 @@ private function debug_sphere(origin, radius, color, alpha, time)
 			{
 				color = (1, 1, 1);
 			}
-			sides = int(10 * 1 + int(radius / 100));
+			sides = int(10 * (1 + (int(radius / 100))));
 			sphere(origin, radius, color, alpha, 1, sides, time);
 		}
 	#/
@@ -3422,15 +3421,15 @@ private function function_943c98fb(insertion)
 			assert(isstruct(insertion));
 		#/
 		mapname = util::function_53bbf9d2();
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		waitframe(1);
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		waitframe(1);
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		waitframe(1);
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		waitframe(1);
-		adddebugcommand("" + mapname + "");
+		adddebugcommand(("" + mapname) + "");
 		while(true)
 		{
 			waitframe(1);

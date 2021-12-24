@@ -508,10 +508,10 @@ function gondola_doors_move(str_side, n_state)
 */
 function gondola_gate_moves(n_state, n_side_modifier, var_d134f0d1, var_b82242be, var_8bd1eeb0, var_b0f06f50)
 {
-	var_d134f0d1 moveto(var_d134f0d1.origin + (22.5 * n_side_modifier * n_state, 0, 0), 0.5, 0.05, 0.05);
-	var_b82242be moveto(var_b82242be.origin + (22.5 * n_side_modifier * n_state * -1, 0, 0), 0.5, 0.05, 0.05);
-	var_8bd1eeb0 moveto(var_8bd1eeb0.origin + (22.5 * n_side_modifier * n_state, 0, 0), 0.5, 0.05, 0.05);
-	var_b0f06f50 moveto(var_b0f06f50.origin + (22.5 * n_side_modifier * n_state * -1, 0, 0), 0.5, 0.05, 0.05);
+	var_d134f0d1 moveto(var_d134f0d1.origin + ((22.5 * n_side_modifier) * n_state, 0, 0), 0.5, 0.05, 0.05);
+	var_b82242be moveto(var_b82242be.origin + (((22.5 * n_side_modifier) * n_state) * -1, 0, 0), 0.5, 0.05, 0.05);
+	var_8bd1eeb0 moveto(var_8bd1eeb0.origin + ((22.5 * n_side_modifier) * n_state, 0, 0), 0.5, 0.05, 0.05);
+	var_b0f06f50 moveto(var_b0f06f50.origin + (((22.5 * n_side_modifier) * n_state) * -1, 0, 0), 0.5, 0.05, 0.05);
 	var_b82242be waittill(#"movedone");
 }
 
@@ -526,14 +526,14 @@ function gondola_gate_moves(n_state, n_side_modifier, var_d134f0d1, var_b82242be
 */
 function gondola_gate_and_door_moves(n_state, n_side_modifier, var_d134f0d1, mdl_door_left, var_b82242be, mdl_door_right, var_8bd1eeb0, var_b3c73561, var_b0f06f50, var_1c80ffe2)
 {
-	mdl_door_left moveto(mdl_door_left.origin + (24 * n_side_modifier * n_state, 0, 0), 0.5, 0.05, 0.05);
-	var_d134f0d1 moveto(var_d134f0d1.origin + (24 * n_side_modifier * n_state, 0, 0), 0.5, 0.05, 0.05);
-	mdl_door_right moveto(mdl_door_right.origin + (24 * n_side_modifier * n_state * -1, 0, 0), 0.5, 0.05, 0.05);
-	var_b82242be moveto(var_b82242be.origin + (24 * n_side_modifier * n_state * -1, 0, 0), 0.5, 0.05, 0.05);
-	var_b3c73561 moveto(var_b3c73561.origin + (24 * n_side_modifier * n_state, 0, 0), 0.5, 0.05, 0.05);
-	var_8bd1eeb0 moveto(var_8bd1eeb0.origin + (24 * n_side_modifier * n_state, 0, 0), 0.5, 0.05, 0.05);
-	var_1c80ffe2 moveto(var_1c80ffe2.origin + (24 * n_side_modifier * n_state * -1, 0, 0), 0.5, 0.05, 0.05);
-	var_b0f06f50 moveto(var_b0f06f50.origin + (24 * n_side_modifier * n_state * -1, 0, 0), 0.5, 0.05, 0.05);
+	mdl_door_left moveto(mdl_door_left.origin + ((24 * n_side_modifier) * n_state, 0, 0), 0.5, 0.05, 0.05);
+	var_d134f0d1 moveto(var_d134f0d1.origin + ((24 * n_side_modifier) * n_state, 0, 0), 0.5, 0.05, 0.05);
+	mdl_door_right moveto(mdl_door_right.origin + (((24 * n_side_modifier) * n_state) * -1, 0, 0), 0.5, 0.05, 0.05);
+	var_b82242be moveto(var_b82242be.origin + (((24 * n_side_modifier) * n_state) * -1, 0, 0), 0.5, 0.05, 0.05);
+	var_b3c73561 moveto(var_b3c73561.origin + ((24 * n_side_modifier) * n_state, 0, 0), 0.5, 0.05, 0.05);
+	var_8bd1eeb0 moveto(var_8bd1eeb0.origin + ((24 * n_side_modifier) * n_state, 0, 0), 0.5, 0.05, 0.05);
+	var_1c80ffe2 moveto(var_1c80ffe2.origin + (((24 * n_side_modifier) * n_state) * -1, 0, 0), 0.5, 0.05, 0.05);
+	var_b0f06f50 moveto(var_b0f06f50.origin + (((24 * n_side_modifier) * n_state) * -1, 0, 0), 0.5, 0.05, 0.05);
 	var_b82242be waittill(#"movedone");
 }
 

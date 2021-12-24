@@ -147,7 +147,7 @@ function function_99d6f707()
 	if(level.var_1594a906.size > 0)
 	{
 		function_22bf8bd4(level.var_1594a906[0]);
-		level flag::set("power_on" + level.var_1594a906[0] + 1);
+		level flag::set("power_on" + (level.var_1594a906[0] + 1));
 		arrayremoveindex(level.var_1594a906, 0);
 	}
 }

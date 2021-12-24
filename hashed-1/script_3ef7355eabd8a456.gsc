@@ -502,7 +502,7 @@ function function_9f206255()
 	v_forward = anglestoforward(var_453ce50f.angles);
 	wait(0.5);
 	var_453ce50f playsound("evt_ee_punchcard_insert");
-	var_453ce50f moveto(var_453ce50f.origin + v_forward * -14, 3);
+	var_453ce50f moveto(var_453ce50f.origin + (v_forward * -14), 3);
 	wait(1);
 	level flag::set(#"card_inserted");
 	var_453ce50f waittill(#"movedone");

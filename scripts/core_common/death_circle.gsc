@@ -152,7 +152,7 @@ function function_114f128a(var_12be3b68)
 function function_3e8742fe(var_3b9f4abf, var_66b35636 = 0, var_3b4ad673 = 0, radius = 0, damage = 0, var_c71fc4f4 = 0, var_edd69b13 = 0, var_fdd51794 = 0, var_227b1773 = 0, var_42682706 = 0, var_83c673f5 = 0, var_55ad5e4 = 0, var_c3bf31b = 0, var_18fa918d = 0)
 {
 	/#
-		assert(radius <= 150000, "" + "" + radius + "" + 150000);
+		assert(radius <= 150000, ((("" + "") + radius) + "") + 150000);
 	#/
 	var_55ad5e4 = int(var_55ad5e4 * 1000);
 	var_c3bf31b = int(var_c3bf31b * 1000);
@@ -247,8 +247,8 @@ private function function_9bae34b3(var_b0b91d4, var_8e3c3c5b, oobtriggers)
 		origin = function_3e47f08b(var_8e3c3c5b);
 		if(!isdefined(origin))
 		{
-			x = var_b0b91d4.origin[0] + randomfloatrange(maxdist * -1, maxdist);
-			y = var_b0b91d4.origin[1] + randomfloatrange(maxdist * -1, maxdist);
+			x = var_b0b91d4.origin[0] + (randomfloatrange(maxdist * -1, maxdist));
+			y = var_b0b91d4.origin[1] + (randomfloatrange(maxdist * -1, maxdist));
 			origin = (x, y, 0);
 		}
 		distsq = distance2dsquared(var_b0b91d4.origin, origin);
@@ -256,7 +256,7 @@ private function function_9bae34b3(var_b0b91d4, var_8e3c3c5b, oobtriggers)
 		{
 			continue;
 		}
-		trace = groundtrace(origin + vectorscale((0, 0, 1), 10000), origin + vectorscale((0, 0, -1), 10000), 0, undefined);
+		trace = groundtrace(origin + vectorscale((0, 0, 1), 10000), origin + (vectorscale((0, 0, -1), 10000)), 0, undefined);
 		if(trace[#"fraction"] >= 1 || trace[#"surfacetype"] == "water" || trace[#"surfacetype"] == "watershallow")
 		{
 			continue;
@@ -330,8 +330,8 @@ private function function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtrigger
 		}
 		attempts++;
 		circle.attempts++;
-		x = var_7aec140c.origin[0] + randomfloatrange(var_897ef629 * -1, var_897ef629);
-		y = var_7aec140c.origin[1] + randomfloatrange(var_897ef629 * -1, var_897ef629);
+		x = var_7aec140c.origin[0] + (randomfloatrange(var_897ef629 * -1, var_897ef629));
+		y = var_7aec140c.origin[1] + (randomfloatrange(var_897ef629 * -1, var_897ef629));
 		origin = (x, y, 0);
 		var_175e94e8 = distance2dsquared(var_b0b91d4.origin, origin);
 		if(var_175e94e8 > sqinterfaceattributes)
@@ -518,7 +518,7 @@ function start()
 	var_edd69b13 = function_76c22343(initcircle.var_227b1773, initcircle.var_edd69b13, initcircle.var_42682706);
 	initcircle.var_23216f37 = var_edd69b13;
 	level flagsys::wait_till(#"hash_5a3e17fbc33cdc86");
-	level.var_56baa802 = gettime() + int(var_edd69b13 + level.var_a425ed89 * 1000);
+	level.var_56baa802 = gettime() + (int((var_edd69b13 + level.var_a425ed89) * 1000));
 	level clientfield::set_world_uimodel("hudItems.warzone.collapse", level.var_56baa802);
 	wait(level.var_a425ed89);
 	level.deathcircle = spawn("script_model", initcircle.origin);
@@ -547,7 +547,7 @@ function start()
 	level.var_78442886 = -1;
 	for(i = 0; i < level.var_fb91af8.size; i++)
 	{
-		if(i + 1 == level.var_fb91af8.size)
+		if((i + 1) == level.var_fb91af8.size)
 		{
 			level callback::callback(#"hash_7119d854cd41a4fd");
 		}
@@ -564,7 +564,7 @@ function start()
 			if(isdefined(getgametypesetting(#"hash_21ab1ca7e18bddcd")) && getgametypesetting(#"hash_21ab1ca7e18bddcd"))
 			{
 				var_87f4757a = (isdefined(getgametypesetting(#"hash_3e62d9528eca0a13")) ? getgametypesetting(#"hash_3e62d9528eca0a13") : 0);
-				if(1 && level.var_fb91af8.size > var_87f4757a && i + 1 < var_87f4757a)
+				if(1 && level.var_fb91af8.size > var_87f4757a && (i + 1) < var_87f4757a)
 				{
 					var_7791d394 = level.var_fb91af8[var_87f4757a];
 				}
@@ -604,7 +604,7 @@ function start()
 		if(var_edd69b13 > 0)
 		{
 			setmatchflag("bomb_timer_a", 1);
-			setbombtimer("A", gettime() + 1000 + int(var_edd69b13 * 1000));
+			setbombtimer("A", (gettime() + 1000) + (int(var_edd69b13 * 1000)));
 			level clientfield::set_world_uimodel("hudItems.warzone.collapseProgress", 0);
 			waitframe(1);
 			function_55bf22ef();
@@ -624,7 +624,7 @@ function start()
 			var_edd69b13 = function_76c22343(var_7aec140c.var_227b1773, var_7aec140c.var_edd69b13, var_7aec140c.var_42682706);
 			var_7aec140c.var_23216f37 = var_edd69b13;
 			level clientfield::set_world_uimodel("hudItems.warzone.collapseProgress", 0);
-			level thread function_ccac34f8(1, gettime() + int(var_fdd51794 + var_edd69b13 * 1000));
+			level thread function_ccac34f8(1, gettime() + (int((var_fdd51794 + var_edd69b13) * 1000)));
 		}
 		else
 		{
@@ -653,7 +653,7 @@ function start()
 		if(var_904b645e > 0)
 		{
 			setmatchflag("bomb_timer_a", 1);
-			setbombtimer("A", gettime() + 1000 + int(var_904b645e * 1000));
+			setbombtimer("A", (gettime() + 1000) + (int(var_904b645e * 1000)));
 			function_55bf22ef();
 			wait(var_904b645e);
 			setmatchflag("bomb_timer_a", 0);
@@ -774,11 +774,11 @@ private function function_9229c3b3(var_fdd51794, var_85ba7700, neworigin)
 	}
 	level.deathcircle.scaling = 1;
 	time = gettime();
-	endtime = time + int(var_fdd51794 * 1000);
+	endtime = time + (int(var_fdd51794 * 1000));
 	level clientfield::set_world_uimodel("hudItems.warzone.collapseProgress", 0);
 	self moveto(neworigin, var_fdd51794);
 	var_76c954d6 = var_85ba7700 - self.radius;
-	frames = var_fdd51794 / float(function_60d95f53()) / 1000;
+	frames = var_fdd51794 / (float(function_60d95f53()) / 1000);
 	var_cbc2cea3 = var_76c954d6 / frames;
 	progress = 0;
 	var_6e09d4b7 = 1 / frames;
@@ -882,7 +882,7 @@ private function function_dc15ad60()
 	{
 		waitframe(1);
 	}
-	var_f4d9a132 = gettime() + int(level.deathcircle.var_c71fc4f4 * 1000);
+	var_f4d9a132 = gettime() + (int(level.deathcircle.var_c71fc4f4 * 1000));
 	var_1a1c0d86 = 0;
 	while(isdefined(level.deathcircle))
 	{
@@ -893,7 +893,7 @@ private function function_dc15ad60()
 		time = gettime();
 		foreach(i, player in getplayers())
 		{
-			if(isdefined(level.deathcircle.scaling) && level.deathcircle.scaling && i % 5 == var_1a1c0d86)
+			if(isdefined(level.deathcircle.scaling) && level.deathcircle.scaling && (i % 5) == var_1a1c0d86)
 			{
 				player function_ba02cfb5();
 			}
@@ -918,11 +918,11 @@ private function function_dc15ad60()
 				{
 					player.var_6cd69660 = 0;
 				}
-				if(player.var_6cd69660 == 0 && time + level.deathcircle.var_55ad5e4 < player.var_b8328141)
+				if(player.var_6cd69660 == 0 && (time + level.deathcircle.var_55ad5e4) < player.var_b8328141)
 				{
 					player.var_b8328141 = time + level.deathcircle.var_55ad5e4;
 				}
-				else if(player.var_6cd69660 != 0 && time + level.deathcircle.var_c3bf31b < player.var_b8328141)
+				else if(player.var_6cd69660 != 0 && (time + level.deathcircle.var_c3bf31b) < player.var_b8328141)
 				{
 					player.var_b8328141 = time + level.deathcircle.var_c3bf31b;
 				}
@@ -974,9 +974,9 @@ private function function_dc15ad60()
 		}
 		if(dodamage)
 		{
-			var_f4d9a132 = gettime() + int(level.deathcircle.var_c71fc4f4 * 1000);
+			var_f4d9a132 = gettime() + (int(level.deathcircle.var_c71fc4f4 * 1000));
 		}
-		var_1a1c0d86 = var_1a1c0d86 + 1 % 5;
+		var_1a1c0d86 = (var_1a1c0d86 + 1) % 5;
 		waitframe(1);
 	}
 }
@@ -1028,7 +1028,7 @@ function function_ba02cfb5()
 	nextpoint = nextcenter;
 	if(isdefined(var_7aec140c))
 	{
-		nextpoint = nextcenter + dir * var_7aec140c.radius;
+		nextpoint = nextcenter + (dir * var_7aec140c.radius);
 	}
 	prevpoint = function_936b3f09(nextcenter, dir, var_46fc3d6e);
 	totaldist = distance2d(prevpoint, nextpoint);
@@ -1092,10 +1092,10 @@ function function_936b3f09(p, d, circle)
 {
 	m = p - circle.origin;
 	b = vectordot(m, d);
-	c = vectordot(m, m) - circle.radius * circle.radius;
-	var_f43bd65b = b * b - c;
-	t = b * -1 + sqrt(var_f43bd65b);
-	return p + t * d;
+	c = vectordot(m, m) - (circle.radius * circle.radius);
+	var_f43bd65b = (b * b) - c;
+	t = (b * -1) + sqrt(var_f43bd65b);
+	return p + (t * d);
 }
 
 /*
@@ -1183,7 +1183,7 @@ function function_49443399()
 	time = 0;
 	for(i = 0; i < level.var_fb91af8.size - 1; i++)
 	{
-		time = time + level.var_fb91af8[i].var_fdd51794 + level.var_fb91af8[i].var_edd69b13;
+		time = time + (level.var_fb91af8[i].var_fdd51794 + level.var_fb91af8[i].var_edd69b13);
 	}
 	return time;
 }
@@ -1385,7 +1385,7 @@ private function debug_loop()
 					host = util::gethostplayer();
 					if(isdefined(host))
 					{
-						trace = groundtrace(host.origin, host.origin + vectorscale((0, 0, -1), 10000), 0, undefined);
+						trace = groundtrace(host.origin, host.origin + (vectorscale((0, 0, -1), 10000)), 0, undefined);
 						var_95341914 = (0, 1, 0);
 						if(trace[#"fraction"] < 1)
 						{
@@ -1567,7 +1567,7 @@ private function simulate(var_1baf9723)
 				}
 				var_f3ca456b[var_f3ca456b.size] = circle;
 			}
-			if(var_f3ca456b.size + level.var_fb91af8.size >= var_9a165bb5)
+			if((var_f3ca456b.size + level.var_fb91af8.size) >= var_9a165bb5)
 			{
 				var_de130ab9 = {#hash_91393a2d:var_1baf9723};
 				function_92d1707f(#"hash_3a9b483e717d26be", #"info", var_de130ab9, #"circles", var_f3ca456b);
@@ -1600,7 +1600,7 @@ private function draw_circle(circle, index, var_36b41a8, color, groundtrace)
 		origin = circle.origin;
 		if(groundtrace)
 		{
-			trace = groundtrace(origin + vectorscale((0, 0, 1), 10000), origin + vectorscale((0, 0, -1), 10000), 0, undefined);
+			trace = groundtrace(origin + vectorscale((0, 0, 1), 10000), origin + (vectorscale((0, 0, -1), 10000)), 0, undefined);
 			origin = trace[#"position"];
 		}
 		printoffset = (0, 0, -15 * var_36b41a8);
@@ -1616,10 +1616,10 @@ private function draw_circle(circle, index, var_36b41a8, color, groundtrace)
 		print3d(var_a42bf85, "" + (isdefined(circle.var_227b1773) ? circle.var_227b1773 : ""), (1, 1, 1), 1, var_36b41a8);
 		var_a42bf85 = var_a42bf85 + printoffset;
 		loc_00005614:
-		print3d(var_a42bf85, "" + (isdefined(circle.var_edd69b13) ? circle.var_edd69b13 : "") + "" + (isdefined(circle.var_42682706) ? circle.var_42682706 : "") + "", (1, 1, 1), 1, var_36b41a8);
+		print3d(var_a42bf85, (("" + (isdefined(circle.var_edd69b13) ? circle.var_edd69b13 : "")) + "") + (isdefined(circle.var_42682706) ? circle.var_42682706 : "") + "", (1, 1, 1), 1, var_36b41a8);
 		var_a42bf85 = var_a42bf85 + printoffset;
 		loc_000056AC:
-		print3d(var_a42bf85, "" + (isdefined(circle.var_fdd51794) ? circle.var_fdd51794 : "") + "" + (isdefined(circle.var_83c673f5) ? circle.var_83c673f5 : "") + "", (1, 1, 1), 1, var_36b41a8);
+		print3d(var_a42bf85, (("" + (isdefined(circle.var_fdd51794) ? circle.var_fdd51794 : "")) + "") + (isdefined(circle.var_83c673f5) ? circle.var_83c673f5 : "") + "", (1, 1, 1), 1, var_36b41a8);
 		var_a42bf85 = var_a42bf85 + printoffset;
 		print3d(var_a42bf85, "" + (isdefined(circle.attempts) ? circle.attempts : ""), (1, 1, 1), 1, var_36b41a8);
 		var_a42bf85 = var_a42bf85 + printoffset;
@@ -1674,7 +1674,7 @@ function circle_color(circleindex, maxindex)
 		{
 			return colorscale[0];
 		}
-		var_30de3274 = circleindex * colorscale.size / maxindex;
+		var_30de3274 = (circleindex * colorscale.size) / maxindex;
 		var_30de3274 = var_30de3274 - 1;
 		colorindex = int(var_30de3274);
 		colorfrac = var_30de3274 - colorindex;

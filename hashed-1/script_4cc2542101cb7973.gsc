@@ -1624,7 +1624,7 @@ function function_d8c3721f(var_6e6ec518, var_21841d64)
 */
 private function function_750df71a()
 {
-	var_a812a69b = self.origin + anglestoforward(self getplayerangles()) * 16;
+	var_a812a69b = self.origin + (anglestoforward(self getplayerangles()) * 16);
 	v_pos = getclosestpointonnavmesh(var_a812a69b, 128, 16);
 	/#
 		assert(isdefined(v_pos), "" + var_a812a69b);
@@ -1760,7 +1760,7 @@ private function function_1bf68b9d(v_position, v_angles)
 	{
 		return;
 	}
-	var_785626e7 = v_position + anglestoforward(v_angles) * 48 + vectorscale((0, 0, 1), 8);
+	var_785626e7 = (v_position + (anglestoforward(v_angles) * 48)) + vectorscale((0, 0, 1), 8);
 	mdl_fx = util::spawn_model("tag_origin", var_785626e7, v_angles);
 	if(isdefined(mdl_fx))
 	{
@@ -2841,7 +2841,7 @@ private function function_5526beaa()
 	while(n_total_time < 12)
 	{
 		self playrumbleonentity("damage_light");
-		if(n_total_time >= 12 * 0.61)
+		if(n_total_time >= (12 * 0.61))
 		{
 			n_time_increment = n_time_increment + 0.5;
 		}
@@ -2857,7 +2857,7 @@ private function function_5526beaa()
 		self setmovespeedscale(n_move_speed);
 		wait(n_time_increment);
 		n_current_time = gettime();
-		n_total_time = n_current_time - n_start_time / 1000;
+		n_total_time = (n_current_time - n_start_time) / 1000;
 	}
 	self setmovespeedscale(1);
 }
@@ -4137,7 +4137,7 @@ private function function_67646b91()
 	var_176b3d5e = 3;
 	if(util::get_active_players().size > 1)
 	{
-		var_176b3d5e = 3 + util::get_active_players().size - 1;
+		var_176b3d5e = (3 + util::get_active_players().size) - 1;
 	}
 	level waittill(#"s_p_s_4_c_d_s");
 	while(true)
@@ -4282,7 +4282,7 @@ private function function_8562a40f()
 	{
 		foreach(e_player in util::get_players())
 		{
-			if(distance2dsquared(e_player.origin, var_17188289.origin) <= var_17188289.radius * var_17188289.radius)
+			if(distance2dsquared(e_player.origin, var_17188289.origin) <= (var_17188289.radius * var_17188289.radius))
 			{
 				var_b21b4155 = 1;
 				break;
@@ -4309,7 +4309,7 @@ private function function_8562a40f()
 	level thread scene::play("s_p_s_4_b_g_p_s", "play");
 	level waittill(#"hash_52c62df546998ab2");
 	level.var_7a548c75 playsound(#"hash_6cd665a68de4367e");
-	level.var_7a548c75.mdl_origin moveto(level.var_7a548c75.mdl_origin.origin + vectornormalize(anglestoforward(level.var_7a548c75.mdl_origin.angles)) * 48, 1);
+	level.var_7a548c75.mdl_origin moveto(level.var_7a548c75.mdl_origin.origin + (vectornormalize(anglestoforward(level.var_7a548c75.mdl_origin.angles)) * 48), 1);
 	level.var_7a548c75.mdl_origin scene::play(#"p8_fxanim_aml_seagull_body1_ghost_bundle", "dissolve", level.var_7a548c75);
 	level.var_7a548c75.mdl_origin clientfield::set("" + #"hash_592c96b2803d9fd5", 1);
 	level.var_7a548c75 ghost();
@@ -5220,7 +5220,7 @@ function function_fd915ab5()
 		s_portal = struct::get(#"hash_4f3ae1de39c4b3e3");
 		for(i = 1; i <= util::get_active_players().size; i++)
 		{
-			v_facing = s_portal.origin - util::get_active_players()[i - 1].origin;
+			v_facing = s_portal.origin - (util::get_active_players()[i - 1].origin);
 			v_angle = vectortoangles(v_facing);
 			s_teleport = struct::get(#"c29_teleport_" + i);
 			util::get_active_players()[i - 1] setorigin(s_teleport.origin);
@@ -5280,7 +5280,7 @@ function function_6b40f92e()
 			if(i >= 10)
 			{
 				n_old_health = level.var_69ff31e1;
-				level.var_69ff31e1 = level.var_69ff31e1 + int(level.var_69ff31e1 * level.zombie_vars[#"zombie_health_increase_multiplier"]);
+				level.var_69ff31e1 = level.var_69ff31e1 + (int(level.var_69ff31e1 * level.zombie_vars[#"zombie_health_increase_multiplier"]));
 				if(level.var_69ff31e1 < n_old_health)
 				{
 					level.var_69ff31e1 = n_old_health;
@@ -5517,7 +5517,7 @@ function function_37d4f9(var_f6d24584, n_brutus = 0, var_b8fc6ea2 = 0, var_49770
 				var_357aadcd = spawn("trigger_radius_new", s_location.origin + (31, 0, 61), 0, 16);
 				var_357aadcd thread give_player_shield(var_e9e88745);
 			}
-			var_7d81025 = zm_powerups::specific_powerup_drop("full_ammo", s_location.origin + vectorscale((-1, 0, 0), 31));
+			var_7d81025 = zm_powerups::specific_powerup_drop("full_ammo", s_location.origin + (vectorscale((-1, 0, 0), 31)));
 		}
 	}
 }
@@ -5825,7 +5825,7 @@ function function_f1eda79e()
 		var_3ded86ce = zombie_utility::spawn_zombie(var_b932e751);
 		waitframe(1);
 	}
-	var_3ded86ce.health = int(ceil(2961 / 4 - util::get_active_players().size - 1));
+	var_3ded86ce.health = int(ceil(2961 / (4 - (util::get_active_players().size - 1))));
 	var_3ded86ce.b_ignore_cleanup = 1;
 	var_3ded86ce thread namespace_961cf978::brutus_spawn(undefined, undefined, undefined, undefined, "zone_west_side_exterior_upper_03");
 	var_3ded86ce.var_ece4a895 = &function_bba62242;
@@ -5866,7 +5866,7 @@ function function_81771803()
 		{
 			var_c3ba3c34 = randomint(10);
 			self playsoundtoteam(#"hash_3e6efe7a558dc61d" + var_c3ba3c34, util::get_active_players()[0].team);
-			wait(soundgetplaybacktime(#"hash_3e6efe7a558dc61d" + var_c3ba3c34) * 0.001);
+			wait((soundgetplaybacktime(#"hash_3e6efe7a558dc61d" + var_c3ba3c34)) * 0.001);
 		}
 	}
 }
@@ -6256,7 +6256,7 @@ function function_9a1e357b(n_multiplier = 1)
 {
 	n_wait = 0.9;
 	n_wait = n_wait * n_multiplier;
-	n_wait = n_wait - util::get_active_players().size - 1 * 0.2;
+	n_wait = n_wait - ((util::get_active_players().size - 1) * 0.2);
 	if(n_wait < 0.2)
 	{
 		n_wait = 0.2;
@@ -6287,7 +6287,7 @@ function function_30febada()
 		var_18f25434 = randomintrange(1, 5);
 	}
 	var_31ad8eb4 = struct::get("sbrutus_attack_" + var_18f25434);
-	var_14ed46ec = util::spawn_model(#"p8_fxp_cylinder_shield", var_31ad8eb4.origin + vectorscale((0, 0, -1), 61), var_31ad8eb4.angles);
+	var_14ed46ec = util::spawn_model(#"p8_fxp_cylinder_shield", var_31ad8eb4.origin + (vectorscale((0, 0, -1), 61)), var_31ad8eb4.angles);
 	level.var_7fe331bf = 0;
 	level.var_f493ed9d = 0;
 	level.var_e22ef7ff = 0;
@@ -6534,7 +6534,7 @@ function function_2aa1c625(var_896fa160, var_1f61bd3e)
 	var_3758c43e = [];
 	for(i = 1; i <= 3; i++)
 	{
-		s_orb = struct::get(var_896fa160 + "_" + i);
+		s_orb = struct::get((var_896fa160 + "_") + i);
 		var_b7eee573 = util::spawn_model(#"hash_6d68fe0dc773635f", s_orb.origin, s_orb.angles);
 		var_b7eee573 setcandamage(1);
 		var_b7eee573.health = 1116 * util::get_active_players().size;
@@ -6618,7 +6618,7 @@ function function_2ffe7896(var_386e5658, s_info)
 			{
 				n_damage = 0;
 			}
-			n_health_after_damage = self.health - n_damage * 2;
+			n_health_after_damage = self.health - (n_damage * 2);
 			if(n_health_after_damage <= 0)
 			{
 				self notify(#"delete_me");

@@ -354,7 +354,7 @@ private function function_2d90a835(localclientnum, radius)
 	{
 		players = getentitiesinradius(localclientnum, self.origin, radius, 1);
 		local_player = function_5c10bd79(localclientnum);
-		if(distancesquared(local_player.origin, self.origin) < radius * radius && !array::contains(players, local_player))
+		if(distancesquared(local_player.origin, self.origin) < (radius * radius) && !array::contains(players, local_player))
 		{
 			players[players.size] = local_player;
 		}
@@ -472,7 +472,7 @@ private function function_9ace0fb6(localclientnum)
 			info.state = 1;
 			info.var_a7e1d732 = time;
 		}
-		else if(isdefined(info.var_a7e1d732) && time - info.var_a7e1d732 < int(bundle.var_fb7c1412 * 1000))
+		else if(isdefined(info.var_a7e1d732) && (time - info.var_a7e1d732) < (int(bundle.var_fb7c1412 * 1000)))
 		{
 			info.state = 1;
 			info.var_a7e1d732 = time;
@@ -621,7 +621,7 @@ private function function_d53feb8c(localclientnum, targets)
 			var_4759b4d3 = project3dto2d(localclientnum, target.origin);
 			var_20a99afd = project3dto2d(localclientnum, target.origin + vectorscale((0, 0, 1), 60));
 			screen_height = distance2d(var_4759b4d3, var_20a99afd);
-			var_fcd926d5 = var_59d4144b * screen_height / 60;
+			var_fcd926d5 = (var_59d4144b * screen_height) / 60;
 			var_fcd926d5 = math::clamp(var_fcd926d5, var_e7c561e2, var_98977cea);
 			setuimodelvalue(self.var_d32addbf[ti], var_fcd926d5);
 			var_d7caaee9 = 1;
@@ -884,7 +884,7 @@ function function_3759fcf(localclientnum, var_c5e2f09a)
 */
 function function_2e07be71(localclientnum)
 {
-	var_fa108926 = localclientnum + "_" + self getentitynumber();
+	var_fa108926 = (localclientnum + "_") + self getentitynumber();
 	self notify("4decd014c80f6da7" + var_fa108926);
 	self endon("4decd014c80f6da7" + var_fa108926);
 	/#
@@ -956,7 +956,7 @@ private function function_8487fabe(localclientnum)
 		{
 			var_27781be7 = level.var_eba5e1cc[#"crouch"];
 		}
-		toplayer = vectornormalize(player.origin + var_27781be7 - self.origin);
+		toplayer = vectornormalize((player.origin + var_27781be7) - self.origin);
 		in_sight = 0;
 		var_131803ce = vectordot(toplayer, forward) >= bundle.tag_fov;
 		if(var_131803ce)
@@ -985,7 +985,7 @@ private function function_8487fabe(localclientnum)
 				}
 				if(isdefined(self.var_5f360c48[player getentitynumber()]))
 				{
-					valid_target = var_4d392c1d == 0 || now - self.var_5f360c48[player getentitynumber()] < var_4d392c1d;
+					valid_target = var_4d392c1d == 0 || (now - self.var_5f360c48[player getentitynumber()]) < var_4d392c1d;
 				}
 			}
 			else if(bundle.var_4917731f === 1)
@@ -995,7 +995,7 @@ private function function_8487fabe(localclientnum)
 			}
 			if(isdefined(self.var_c55be3a2[player getentitynumber()]))
 			{
-				valid_target = var_d691d922 == 0 || now - self.var_c55be3a2[player getentitynumber()] < var_d691d922;
+				valid_target = var_d691d922 == 0 || (now - self.var_c55be3a2[player getentitynumber()]) < var_d691d922;
 			}
 		}
 		else

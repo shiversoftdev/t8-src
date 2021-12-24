@@ -222,7 +222,7 @@ function get_impact_vol_from_speed()
 	curspeed = self getspeed();
 	maxspeed = self getmaxspeed();
 	volume = audio::scale_speed(0, maxspeed, 0, 1, curspeed);
-	volume = volume * volume * volume;
+	volume = (volume * volume) * volume;
 	return volume;
 }
 

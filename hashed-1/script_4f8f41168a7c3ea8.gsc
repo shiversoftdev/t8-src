@@ -361,7 +361,7 @@ private function function_f9a794dc(localclientnum)
 	while(isdefined(self) && self.var_23c215c > 0)
 	{
 		n_current_time = gettime();
-		var_4eb46607 = n_current_time - self.var_d9ebae63 / 1000;
+		var_4eb46607 = (n_current_time - self.var_d9ebae63) / 1000;
 		self.var_d9ebae63 = n_current_time;
 		if(self.var_fa938ed8)
 		{
@@ -613,7 +613,7 @@ function function_bbfe3432(localclientnum)
 {
 	self endon(#"hash_4236253d10aeec5e");
 	var_be5f61d5 = 0.5;
-	while(var_be5f61d5 >= 5E-07 && isdefined(self))
+	while(var_be5f61d5 >= (5E-07) && isdefined(self))
 	{
 		self function_78233d29(#"hash_68ee9247aaae4517", "", "Alpha", var_be5f61d5);
 		self function_78233d29(#"hash_68ee9247aaae4517", "", "Brightness", var_be5f61d5);

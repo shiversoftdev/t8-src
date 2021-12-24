@@ -101,7 +101,7 @@ function function_6c223039()
 	self.settings = struct::get_script_bundle("vehiclecustomsettings", self.scriptbundlesettings);
 	self.goalradius = 999999;
 	self.goalheight = 512;
-	self.var_ec0d66ce = 0.5 * self.settings.engagementdistmin + self.settings.engagementdistmax;
+	self.var_ec0d66ce = 0.5 * (self.settings.engagementdistmin + self.settings.engagementdistmax);
 	self.var_ff6d7c88 = self.var_ec0d66ce * self.var_ec0d66ce;
 	self thread vehicle_ai::nudge_collision();
 	var_134ac8f9 = int(namespace_e0710ee6::function_8d44707e(0));
@@ -278,7 +278,7 @@ private function function_776e45e5()
 				break;
 			}
 		}
-		if(gettime() - self.spawn_time > 10000 && !var_3ada9d08 && (!(isdefined(self.var_894194a9) && self.var_894194a9)))
+		if((gettime() - self.spawn_time) > 10000 && !var_3ada9d08 && (!(isdefined(self.var_894194a9) && self.var_894194a9)))
 		{
 			self.var_d880e556 = 1;
 			if(!level flag::get("special_round"))
@@ -427,7 +427,7 @@ function function_607df9c6(ai)
 	}
 	ai.var_e21c1964 = 1;
 	var_cd1cfeed = ai animmappingsearch(#"hash_605e435c80f0d33b");
-	pos = physicstrace(ai.origin, ai.origin + vectorscale((0, 0, -1), 10000), vectorscale((-1, -1, -1), 2), vectorscale((1, 1, 1), 2), ai, 1);
+	pos = physicstrace(ai.origin, ai.origin + (vectorscale((0, 0, -1), 10000)), vectorscale((-1, -1, -1), 2), vectorscale((1, 1, 1), 2), ai, 1);
 	pos = pos[#"position"];
 	if(isdefined(level.var_84b2907f))
 	{
@@ -482,7 +482,7 @@ private function function_1b029905()
 */
 function function_1fff2d()
 {
-	pos = physicstrace(self.origin, self.origin + vectorscale((0, 0, -1), 10000), vectorscale((-1, -1, -1), 2), vectorscale((1, 1, 1), 2), self, 1);
+	pos = physicstrace(self.origin, self.origin + (vectorscale((0, 0, -1), 10000)), vectorscale((-1, -1, -1), 2), vectorscale((1, 1, 1), 2), self, 1);
 	if(isdefined(pos) && isdefined(pos[#"position"]) && !isdefined(pos[#"entity"]))
 	{
 		pos = pos[#"position"];
@@ -493,7 +493,7 @@ function function_1fff2d()
 		var_491fd46e = getclosestpointonnavmesh(pos, 256, 30);
 		if(isdefined(var_491fd46e))
 		{
-			pos = physicstrace(var_491fd46e + vectorscale((0, 0, 1), 70), var_491fd46e + vectorscale((0, 0, -1), 70), vectorscale((-1, -1, -1), 2), vectorscale((1, 1, 1), 2), self, 1);
+			pos = physicstrace(var_491fd46e + vectorscale((0, 0, 1), 70), var_491fd46e + (vectorscale((0, 0, -1), 70)), vectorscale((-1, -1, -1), 2), vectorscale((1, 1, 1), 2), self, 1);
 			pos = pos[#"position"];
 			/#
 				recordline(pos, var_491fd46e, (0, 0, 1), "");

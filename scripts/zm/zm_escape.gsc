@@ -1559,7 +1559,7 @@ function function_2b57b5d6()
 					#/
 				}
 				/#
-					assert(var_5aa20049, "" + i + "" + var_70e1deb9.script_noteworthy);
+					assert(var_5aa20049, (("" + i) + "") + var_70e1deb9.script_noteworthy);
 				#/
 			}
 		}
@@ -1586,13 +1586,13 @@ function function_4a3c0c1c(var_3a1b23c2)
 			{
 				var_ff9196cc = 0;
 				/#
-					assert(0, "" + var_3a1b23c2 + "" + s_point.origin + "");
+					assert(0, ((("" + var_3a1b23c2) + "") + s_point.origin) + "");
 				#/
 			}
 		}
 		if(var_ff9196cc)
 		{
-			iprintlnbold("" + var_3a1b23c2 + "");
+			iprintlnbold(("" + var_3a1b23c2) + "");
 		}
 	#/
 }

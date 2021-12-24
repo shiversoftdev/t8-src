@@ -179,7 +179,7 @@ function annihilate_effect_cb(localclientnum, oldval, newval, bnewent, binitials
 		{
 			where = self.origin;
 		}
-		where = where + vectorscale((0, 0, -1), 40);
+		where = where + (vectorscale((0, 0, -1), 40));
 		character_index = self getcharacterbodytype();
 		fields = getcharacterfields(character_index, currentsessionmode());
 		if(isdefined(fields) && isdefined(fields.fullbodyexplosion) && fields.fullbodyexplosion !== "")

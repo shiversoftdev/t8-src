@@ -204,7 +204,7 @@ private function function_ef53914c()
 	}
 	if(isdefined(attacker.inventory) && isdefined(attacker.inventory.items))
 	{
-		foreach(slot in array(16 + 1, 16 + 1 + 6 + 1))
+		foreach(slot in array(16 + 1, ((16 + 1) + 6) + 1))
 		{
 			attacker give_max_ammo(slot);
 		}

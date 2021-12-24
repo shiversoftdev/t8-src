@@ -150,7 +150,7 @@ function function_b23e4b45()
 		var_921106a1 = getclosestpointonnavmesh(self.origin, 250, 30);
 		if(isdefined(var_921106a1))
 		{
-			results = groundtrace(var_921106a1 + vectorscale((0, 0, 1), 70), var_921106a1 + vectorscale((0, 0, -1), 70), 0, self);
+			results = groundtrace(var_921106a1 + vectorscale((0, 0, 1), 70), var_921106a1 + (vectorscale((0, 0, -1), 70)), 0, self);
 			if(isdefined(results) && isdefined(results[#"position"]))
 			{
 				var_921106a1 = results[#"position"];
@@ -283,7 +283,7 @@ function function_d3a9800e()
 */
 private function function_d39f1cf2()
 {
-	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + vectorscale((0, 0, -1), 100), 0, self);
+	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(trace[#"entity"]))
 	{
 		entity = trace[#"entity"];
@@ -384,7 +384,7 @@ function function_24465583(params)
 */
 function function_d017dfc()
 {
-	time = self.var_e962dfaf + gettime() - self.var_3a0564e;
+	time = self.var_e962dfaf + (gettime() - self.var_3a0564e);
 	return time;
 }
 
@@ -644,7 +644,7 @@ function function_fb89ba8a(params)
 	self thread function_13ade03e();
 	starttime = gettime();
 	var_b2c9484f = int(self.settings.var_e0c78652 * 1000);
-	while(starttime + var_b2c9484f > gettime() && !isdefined(self.var_290ed3ab) || (isdefined(self.var_290ed3ab) && self.var_290ed3ab > gettime()) || (isdefined(self.var_e19bcce0) && self.var_e19bcce0))
+	while((starttime + var_b2c9484f) > gettime() && !isdefined(self.var_290ed3ab) || (isdefined(self.var_290ed3ab) && self.var_290ed3ab > gettime()) || (isdefined(self.var_e19bcce0) && self.var_e19bcce0))
 	{
 		if(isdefined(self.var_c43010fc))
 		{
@@ -717,7 +717,7 @@ function function_64f7393f(params)
 */
 function function_c82edc1a()
 {
-	time = self.var_1dab821a + gettime() - self.var_fc1d25b1;
+	time = self.var_1dab821a + (gettime() - self.var_fc1d25b1);
 	return time;
 }
 
@@ -920,7 +920,7 @@ function function_3e16dec3(params)
 				[[ level.var_477515d3 ]]->waitinqueue(self);
 			}
 			forward = anglestoforward(self.angles);
-			forwardpos = self.origin + forward * 500;
+			forwardpos = self.origin + (forward * 500);
 			var_68860686 = ai::t_cylinder(self.origin, 200, 60);
 			tacpoints = tacticalquery("mp_seeker_seek_no_enemy", self.origin, self, var_68860686, forwardpos);
 			tacpoints = damage_armor_activati_(self, tacpoints);
@@ -992,7 +992,7 @@ function function_3e16dec3(params)
 */
 function function_ab9a9770(target)
 {
-	results = groundtrace(target.origin + vectorscale((0, 0, 1), 70), target.origin + vectorscale((0, 0, -1), 100), 0, target);
+	results = groundtrace(target.origin + vectorscale((0, 0, 1), 70), target.origin + (vectorscale((0, 0, -1), 100)), 0, target);
 	if(isdefined(results) && isdefined(results[#"entity"]) && results[#"entity"] ismovingplatform())
 	{
 		return 1;
@@ -1273,7 +1273,7 @@ function function_d55a99f2(var_4700521d = 500, var_53050fec = 1, var_30336a7c = 
 	newpos = getclosestpointonnavmesh(self.origin, var_4700521d, self getpathfindingradius() * 1.2);
 	if(isdefined(newpos))
 	{
-		trace = groundtrace(newpos + vectorscale((0, 0, 1), 70), newpos + vectorscale((0, 0, -1), 70), 0, undefined);
+		trace = groundtrace(newpos + vectorscale((0, 0, 1), 70), newpos + (vectorscale((0, 0, -1), 70)), 0, undefined);
 		if(isdefined(trace[#"position"]))
 		{
 			newpos = trace[#"position"];

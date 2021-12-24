@@ -154,7 +154,7 @@ private function function_174e1d8e()
 		if(!isdefined(var_ddcb67f4) || !isdefined(var_5415dfb9))
 		{
 			/#
-				println("" + v.name + "");
+				println(("" + v.name) + "");
 			#/
 			continue;
 		}
@@ -173,7 +173,7 @@ private function function_174e1d8e()
 		}
 		v.camo_index = var_5415dfb9.var_daefc551;
 		v.var_8ab4a32e = "tag_gumball_" + v.limit_type;
-		v.var_c0362ae9 = "tag_gumball_" + v.limit_type + "_" + level.var_afb8293c[v.rarity];
+		v.var_c0362ae9 = (("tag_gumball_" + v.limit_type) + "_") + level.var_afb8293c[v.rarity];
 		level.var_7d2735b9[v.item_index] = v.name;
 	}
 }
@@ -193,13 +193,13 @@ function register(name, limit_type)
 		assert(isdefined(name), "");
 	#/
 	/#
-		assert(#"none" != name, "" + #"none" + "");
+		assert(#"none" != name, ("" + #"none") + "");
 	#/
 	/#
-		assert(!isdefined(level.bgb[name]), "" + name + "");
+		assert(!isdefined(level.bgb[name]), ("" + name) + "");
 	#/
 	/#
-		assert(isdefined(limit_type), "" + name + "");
+		assert(isdefined(limit_type), ("" + name) + "");
 	#/
 	level.bgb[name] = spawnstruct();
 	level.bgb[name].name = name;

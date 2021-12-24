@@ -130,7 +130,7 @@ function slow_raps(trigger)
 			self setspeedimmediate(trigger.script_int, 200, 200);
 		}
 	}
-	else if(isdefined(self._override_raps_combat_speed) && self._override_raps_combat_speed < 0.5 * self.settings.defaultmovespeed)
+	else if(isdefined(self._override_raps_combat_speed) && self._override_raps_combat_speed < (0.5 * self.settings.defaultmovespeed))
 	{
 		self setspeed(self._override_raps_combat_speed);
 	}

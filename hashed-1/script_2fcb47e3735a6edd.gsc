@@ -422,7 +422,7 @@ function function_e3921120(b_show, var_35c3faab = 0)
 		var_611e46b7 = undefined;
 		foreach(var_143bf55a in level.var_9f657597)
 		{
-			if(var_143bf55a.script_noteworthy == self.script_noteworthy + "_debris")
+			if(var_143bf55a.script_noteworthy == (self.script_noteworthy + "_debris"))
 			{
 				var_611e46b7 = var_143bf55a;
 				break;
@@ -528,7 +528,7 @@ function function_4d7320f5(var_5ba3fe65)
 function function_1556161f()
 {
 	level endon(#"hash_5266a594b96823e2");
-	if(!isdefined(level.var_f6f7a368) || level.var_f6f7a368 >= level.var_4d8e32c8.size - 1)
+	if(!isdefined(level.var_f6f7a368) || level.var_f6f7a368 >= (level.var_4d8e32c8.size - 1))
 	{
 		level.var_f6f7a368 = 0;
 	}

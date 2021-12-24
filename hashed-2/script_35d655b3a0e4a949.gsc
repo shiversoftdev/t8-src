@@ -200,22 +200,22 @@ private function aoe_fx(local_client_num, clientfield_name, aoe_fx_info)
 	pitch_vals[0] = 90;
 	pitch_vals[3] = 0;
 	pitch_vals[6] = -90;
-	trace = bullettrace(center, center + (0, 0, -1) * aoe_fx_info.explosion_radius, 0, self);
+	trace = bullettrace(center, center + ((0, 0, -1) * aoe_fx_info.explosion_radius), 0, self);
 	if(trace[#"fraction"] < 1)
 	{
-		pitch_vals[1] = 90 - atan(150 / trace[#"fraction"] * aoe_fx_info.explosion_radius);
-		pitch_vals[2] = 90 - atan(300 / trace[#"fraction"] * aoe_fx_info.explosion_radius);
+		pitch_vals[1] = 90 - (atan(150 / (trace[#"fraction"] * aoe_fx_info.explosion_radius)));
+		pitch_vals[2] = 90 - (atan(300 / (trace[#"fraction"] * aoe_fx_info.explosion_radius)));
 	}
 	else
 	{
 		pitch_vals[1] = 60;
 		pitch_vals[2] = 30;
 	}
-	trace = bullettrace(center, center + (0, 0, 1) * aoe_fx_info.explosion_radius, 0, self);
+	trace = bullettrace(center, center + ((0, 0, 1) * aoe_fx_info.explosion_radius), 0, self);
 	if(trace[#"fraction"] < 1)
 	{
-		pitch_vals[5] = -90 + atan(150 / trace[#"fraction"] * aoe_fx_info.explosion_radius);
-		pitch_vals[4] = -90 + atan(300 / trace[#"fraction"] * aoe_fx_info.explosion_radius);
+		pitch_vals[5] = -90 + (atan(150 / (trace[#"fraction"] * aoe_fx_info.explosion_radius)));
+		pitch_vals[4] = -90 + (atan(300 / (trace[#"fraction"] * aoe_fx_info.explosion_radius)));
 	}
 	else
 	{
@@ -265,15 +265,15 @@ private function do_aoe_fx(local_client_num, center, yaw_count, pitch, clientfie
 		randomoffsetyaw = randomint(30) - 15;
 		angles = (pitch + randomoffsetpitch, currentyaw + randomoffsetyaw, 0);
 		tracedir = anglestoforward(angles);
-		currentyaw = currentyaw + 360 / yaw_count;
-		fx_position = center + tracedir * aoe_fx_info.explosion_radius;
+		currentyaw = currentyaw + (360 / yaw_count);
+		fx_position = center + (tracedir * aoe_fx_info.explosion_radius);
 		trace = bullettrace(center, fx_position, 0, self);
 		sphere_size = 5;
 		angles = (0, randomint(360), 0);
 		forward = anglestoforward(angles);
 		if(trace[#"fraction"] < 1)
 		{
-			fx_position = center + tracedir * aoe_fx_info.explosion_radius * trace[#"fraction"];
+			fx_position = center + ((tracedir * aoe_fx_info.explosion_radius) * trace[#"fraction"]);
 			/#
 				if(debug_aoe_traces)
 				{
@@ -301,7 +301,7 @@ private function do_aoe_fx(local_client_num, center, yaw_count, pitch, clientfie
 					sphere(fx_position, sphere_size, (1, 0, 1), 1, 1, 8, 300);
 				}
 			#/
-			if(lengthsquared(vectorcross(forward, tracedir * -1)) == 0)
+			if((lengthsquared(vectorcross(forward, tracedir * -1))) == 0)
 			{
 				forward = vectorcross(right, forward);
 			}

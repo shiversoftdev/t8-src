@@ -852,7 +852,7 @@ function debug_print(str_line)
 	/#
 		if(getdvarint(#"zombie_debug", 0) > 0)
 		{
-			println("" + self.entity_num + "" + str_line);
+			println((("" + self.entity_num) + "") + str_line);
 		}
 	#/
 }

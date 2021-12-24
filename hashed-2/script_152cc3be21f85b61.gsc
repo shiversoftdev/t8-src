@@ -201,7 +201,7 @@ function function_e1cd5954(v_origin)
 {
 	self notify("58ed1cc25dba79a1");
 	self endon("58ed1cc25dba79a1");
-	trace = bullettrace(v_origin + vectorscale((0, 0, 1), 40), v_origin + vectorscale((0, 0, -1), 150), 0, undefined);
+	trace = bullettrace(v_origin + vectorscale((0, 0, 1), 40), v_origin + (vectorscale((0, 0, -1), 150)), 0, undefined);
 	if(trace[#"fraction"] < 1)
 	{
 		v_origin = trace[#"position"];
@@ -509,7 +509,7 @@ function function_b828bd39(player, dynent)
 		dynent.var_3fa8a746 = 1;
 		player playrumbleonentity("fishing_rumble");
 		self thread fishing_buoy_splash();
-		new_pos = self.origin + vectorscale((0, 0, -1), 5);
+		new_pos = self.origin + (vectorscale((0, 0, -1), 5));
 		self moveto(new_pos, 0.5);
 		self waittill(#"movedone");
 		new_pos = self.origin + vectorscale((0, 0, 1), 5);

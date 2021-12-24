@@ -298,7 +298,7 @@ function function_bf106bdf()
 	nd_start = getvehiclenode("portal_wisp_start", "targetname");
 	vh_wisp setspeed(20);
 	vh_wisp vehicle::get_on_and_go_path(nd_start);
-	var_68e87752 = util::spawn_model("p8_zm_ora_elemental_vessel", vh_wisp.origin + vectorscale((0, 0, -1), 10));
+	var_68e87752 = util::spawn_model("p8_zm_ora_elemental_vessel", vh_wisp.origin + (vectorscale((0, 0, -1), 10)));
 	var_68e87752 thread namespace_bfc8ee03::rotate_forever(vectorscale((0, 1, 0), 45));
 	var_68e87752 namespace_2e9c09b3::function_f1827cc6(&function_f140d71a, zm_utility::function_d6046228(#"hash_50d83a4f11ad9d8", #"hash_51d8e27e625c6bd4"), undefined, 128);
 }

@@ -86,11 +86,11 @@ function function_c49fc862(team)
 		teamid = "team" + level.teamindex[team];
 		if(isdefined(level.var_61952d8b[team]) && level.var_61952d8b[team])
 		{
-			clientfield::set_world_uimodel("hudItems." + teamid + ".livesCount", level.playerlives[team]);
+			clientfield::set_world_uimodel(("hudItems." + teamid) + ".livesCount", level.playerlives[team]);
 		}
 		else
 		{
-			clientfield::set_world_uimodel("hudItems." + teamid + ".livesCount", game.lives[team]);
+			clientfield::set_world_uimodel(("hudItems." + teamid) + ".livesCount", game.lives[team]);
 		}
 	}
 }
