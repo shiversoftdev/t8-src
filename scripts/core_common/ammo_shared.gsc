@@ -17,13 +17,11 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	if(!isdefined(level.ai_ammo_throttle))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.ai_ammo_throttle = object;
+		level.ai_ammo_throttle = new throttle();
 		[[ level.ai_ammo_throttle ]]->initialize(1, 0.1);
 	}
 }
@@ -98,17 +96,23 @@ function ammo_pouch_think()
 				maxammo = weapon.maxammo;
 			}
 		}
-		else if(weapon == player.grenadetypeprimary && isdefined(player.grenadetypeprimarycount) && player.grenadetypeprimarycount > 0)
+		else
 		{
-			maxammo = player.grenadetypeprimarycount;
-		}
-		else if(weapon == player.grenadetypesecondary && isdefined(player.grenadetypesecondarycount) && player.grenadetypesecondarycount > 0)
-		{
-			maxammo = player.grenadetypesecondarycount;
-		}
-		else if(weapon.isheavyweapon && (isdefined(level.overrideammodropheavyweapon) && level.overrideammodropheavyweapon))
-		{
-			maxammo = weapon.maxammo;
+			if(weapon == player.grenadetypeprimary && isdefined(player.grenadetypeprimarycount) && player.grenadetypeprimarycount > 0)
+			{
+				maxammo = player.grenadetypeprimarycount;
+			}
+			else
+			{
+				if(weapon == player.grenadetypesecondary && isdefined(player.grenadetypesecondarycount) && player.grenadetypesecondarycount > 0)
+				{
+					maxammo = player.grenadetypesecondarycount;
+				}
+				else if(weapon.isheavyweapon && (isdefined(level.overrideammodropheavyweapon) && level.overrideammodropheavyweapon))
+				{
+					maxammo = weapon.maxammo;
+				}
+			}
 		}
 		if(isdefined(level.customloadoutscavenge))
 		{

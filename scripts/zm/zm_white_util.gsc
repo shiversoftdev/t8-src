@@ -97,9 +97,9 @@ function function_e08cd7b(category, subcategory)
 {
 	if(level flag::get("mee_round"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -377,11 +377,11 @@ function function_6f635c39(str)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_20681be5()
+function private function_20681be5()
 {
 	if(self.b_open == 0)
 	{
-		return 0;
+		return false;
 	}
 	destpos = self.origin - (0, 0, self.var_3de056e7);
 	self moveto(destpos, 0.5, 0.05, 0.05);
@@ -394,7 +394,7 @@ private function function_20681be5()
 		level.zones[hash(self.var_d42d6fdf)].adjacent_zones[hash(self.var_61e10b48)].is_connected = 0;
 	}
 	self.b_open = 0;
-	return 1;
+	return true;
 }
 
 /*
@@ -427,11 +427,11 @@ function function_364cd8c0(str)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_46ed91c6()
+function private function_46ed91c6()
 {
 	if(self.b_open == 1)
 	{
-		return 0;
+		return false;
 	}
 	destpos = self.origin + (0, 0, self.var_3de056e7);
 	self moveto(destpos, 0.5, 0.05, 0.05);
@@ -444,7 +444,7 @@ private function function_46ed91c6()
 		level.zones[hash(self.var_d42d6fdf)].adjacent_zones[hash(self.var_61e10b48)].is_connected = 1;
 	}
 	self.b_open = 1;
-	return 1;
+	return true;
 }
 
 /*
@@ -658,7 +658,7 @@ function function_f214f97e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_ai_spawned()
+function private on_ai_spawned()
 {
 	if(self.archetype === #"zombie")
 	{
@@ -675,7 +675,7 @@ private function on_ai_spawned()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ae18909c()
+function private function_ae18909c()
 {
 	b_success = 0;
 	if(level flag::get(#"hash_595f26b382ef7867"))
@@ -784,9 +784,9 @@ function function_358da2a7(e_player)
 		{
 			self sethintstring(zm_utility::function_d6046228(#"hash_314a7588b45256eb", #"hash_6831cfd35264e1"), w_give.displayname);
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

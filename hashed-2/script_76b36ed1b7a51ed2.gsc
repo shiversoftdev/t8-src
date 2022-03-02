@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_23b05089013ba630", &__init__, undefined, undefined);
 }
@@ -30,7 +30,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	clientfield::function_78175813("clientuimodel", "string", "hudItems.zmFeatureDescription", 1, undefined, 0, 0);
 	zm_inventory::function_c7c05a13();

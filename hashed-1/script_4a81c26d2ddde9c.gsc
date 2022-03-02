@@ -43,14 +43,14 @@ function usekillstreakplanemortar(hardpointtype)
 {
 	if(self killstreakrules::iskillstreakallowed(hardpointtype, self.team) == 0)
 	{
-		return 0;
+		return false;
 	}
 	result = self selectplanemortarlocation(hardpointtype);
 	if(!isdefined(result) || !result)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -212,7 +212,7 @@ function useplanemortar(positions, killstreak_id)
 	self killstreaks::play_pilot_dialog("arrive", "planemortar", undefined, self.planemortarpilotindex);
 	self thread planemortar_watchforendnotify(team, killstreak_id);
 	self thread doplanemortar(positions, team, killstreak_id);
-	return 1;
+	return true;
 }
 
 /*

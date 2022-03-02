@@ -46,7 +46,7 @@ event main(eventstruct)
 	Parameters: 1
 	Flags: Private
 */
-private function finalize_clientfields(localclientnum)
+function private finalize_clientfields(localclientnum)
 {
 	clientfield::register("toplayer", "zm_trials_timer", 1, getminbitcountfornum(540), "int", &function_bb753058, 0, 1);
 	clientfield::register("worlduimodel", "ZMHudGlobal.trials.gameStartTime", 1, 31, "int", undefined, 0, 0);
@@ -87,7 +87,7 @@ function onstartgametype()
 	Parameters: 1
 	Flags: Private
 */
-private function on_localplayer_connect(localclientnum)
+function private on_localplayer_connect(localclientnum)
 {
 	timer_model = function_c8b7588d(localclientnum);
 	setuimodelvalue(timer_model, 0);
@@ -102,7 +102,7 @@ private function on_localplayer_connect(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function function_c8b7588d(localclientnum)
+function private function_c8b7588d(localclientnum)
 {
 	controller_model = getuimodelforcontroller(localclientnum);
 	return createuimodel(controller_model, "ZMHud.trialsTimer");
@@ -117,7 +117,7 @@ private function function_c8b7588d(localclientnum)
 	Parameters: 7
 	Flags: Private
 */
-private function function_bb753058(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_bb753058(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(!function_65b9eb0f(localclientnum))
 	{

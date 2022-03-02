@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6953696819bf1875", &__init__, undefined, #"bgb");
 }
@@ -127,9 +127,9 @@ function validation()
 	a_ai_targets = function_880a86b2();
 	if(a_ai_targets.size)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -169,13 +169,16 @@ function function_22a84404(player)
 					self.variant_type = 7;
 				}
 			}
-			else if(self.zombie_arms_position == "up")
-			{
-				self.variant_type = 7;
-			}
 			else
 			{
-				self.variant_type = 8;
+				if(self.zombie_arms_position == "up")
+				{
+					self.variant_type = 7;
+				}
+				else
+				{
+					self.variant_type = 8;
+				}
 			}
 		}
 		if(isplayer(player))

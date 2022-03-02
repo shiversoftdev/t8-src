@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_14819f0ef5a24379", &__init__, undefined, undefined);
 }

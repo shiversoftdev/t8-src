@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_505f91cbac42ed30", &__init__, &__main__, undefined);
 }
@@ -105,45 +105,45 @@ function function_d1112480(e_player)
 	if(e_player zm_utility::is_drinking())
 	{
 		self sethintstring("");
-		return 0;
+		return false;
 	}
 	if(level.s_apd_trap.var_6b64b967 === 1)
 	{
 		self sethintstring(#"hash_39d080503c6a8d96");
-		return 1;
+		return true;
 	}
 	if(isdefined(self.stub.related_parent.power_flag) && !level flag::get(self.stub.related_parent.power_flag))
 	{
 		self sethintstring(#"hash_71158766520dc432");
-		return 1;
+		return true;
 	}
 	if(level flag::get(#"hash_1478cafcd626c361") && !level flag::get(#"circuit_step_complete"))
 	{
 		self sethintstring(#"hash_71158766520dc432");
-		return 1;
+		return true;
 	}
 	if(level.s_apd_trap.var_41ee2ddc === 0)
 	{
 		self sethintstring(#"hash_21db2780833a8bfd");
-		return 1;
+		return true;
 	}
 	if(util::function_5df4294() == "zstandard")
 	{
 		if(function_8b1a219a())
 		{
 			self sethintstring(#"hash_61d85c966dd9e83f");
-			return 1;
+			return true;
 		}
 		self sethintstring(#"hash_24a438482954901");
-		return 1;
+		return true;
 	}
 	if(function_8b1a219a())
 	{
 		self sethintstring(#"hash_6e8ef1b690e98e51", 1000);
-		return 1;
+		return true;
 	}
 	self sethintstring(#"hash_23c1c09e94181fdb", 1000);
-	return 1;
+	return true;
 }
 
 /*
@@ -288,7 +288,7 @@ function apd_trap_activate(e_player)
 */
 function function_25ede6c7(s_trap)
 {
-	self endon_callback(&function_171226f4, #"death");
+	self endoncallback(&function_171226f4, #"death");
 	self.var_410faa5f = util::spawn_model("tag_origin", s_trap.origin);
 	fx = playfxontag(level._effect[#"tesla_bolt"], self.var_410faa5f, "tag_origin");
 	playsoundatposition(#"hash_286b88c1d2e99649", s_trap.origin);

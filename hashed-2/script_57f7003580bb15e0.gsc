@@ -18,7 +18,7 @@
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function register_status_effect(var_df1e8764)
+function private register_status_effect(var_df1e8764)
 {
 	if(!isdefined(level._status_effects))
 	{
@@ -83,7 +83,7 @@ function register_status_effect_callback_apply(status_effect, apply_func)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b24f18a1()
+function private function_b24f18a1()
 {
 	if(isdefined(self.owner))
 	{
@@ -176,7 +176,7 @@ function function_e2bff3ce(var_df1e8764, weapon, var_84171a6c)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_91a9db75(var_d9ad36fc, var_67e2281d, var_3cf2d21)
+function private function_91a9db75(var_d9ad36fc, var_67e2281d, var_3cf2d21)
 {
 	if(!isdefined(self.var_121392a1))
 	{
@@ -361,7 +361,7 @@ function status_effect_apply(var_756fda07, weapon, var_84171a6c, var_80e47495, v
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_35d7925d(effect)
+function private function_35d7925d(effect)
 {
 	effect endon(#"hash_13d72ca5a7cfd2bd");
 	self endon(#"death");
@@ -388,7 +388,7 @@ private function function_35d7925d(effect)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_47cad1aa(var_756fda07, var_80e47495)
+function private function_47cad1aa(var_756fda07, var_80e47495)
 {
 	var_18d16a6b = var_756fda07.var_18d16a6b;
 	var_67e2281d = var_756fda07.var_67e2281d;
@@ -416,7 +416,7 @@ private function function_47cad1aa(var_756fda07, var_80e47495)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_89ae38c1(sename)
+function private function_89ae38c1(sename)
 {
 	if(isplayer(self))
 	{
@@ -433,7 +433,7 @@ private function function_89ae38c1(sename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_52969ffe(var_756fda07)
+function private function_52969ffe(var_756fda07)
 {
 	player = self;
 	if(isdefined(var_756fda07.var_3edb6e25) && var_756fda07.var_3edb6e25 && isplayer(player))
@@ -452,7 +452,7 @@ private function function_52969ffe(var_756fda07)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_14fdd7e2(var_756fda07)
+function private function_14fdd7e2(var_756fda07)
 {
 	player = self;
 	if(isdefined(var_756fda07.var_3edb6e25) && var_756fda07.var_3edb6e25 && isplayer(player))
@@ -471,7 +471,7 @@ private function function_14fdd7e2(var_756fda07)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6bf7c434(var_df1e8764)
+function private function_6bf7c434(var_df1e8764)
 {
 	if(isdefined(self.var_b5207a36))
 	{
@@ -507,7 +507,7 @@ private function function_6bf7c434(var_df1e8764)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function wait_for_end()
+function private wait_for_end()
 {
 	if(0 && self.var_67e2281d == 6)
 	{
@@ -582,7 +582,7 @@ function function_6519f95f()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3d6c76ee(var_756fda07)
+function private function_3d6c76ee(var_756fda07)
 {
 	endtime = self.endtime;
 	if(isdefined(var_756fda07.var_b86e9a5e))
@@ -621,7 +621,7 @@ function status_effect_get_duration(var_eeb47fb8)
 	{
 		self.var_121392a1 = [];
 	}
-	return (isdefined(self.var_121392a1[var_eeb47fb8]) ? self.var_121392a1[var_eeb47fb8].duration : 0);
+	return true;
 }
 
 /*
@@ -639,7 +639,7 @@ function function_2ba2756c(var_eeb47fb8)
 	{
 		self.var_121392a1 = [];
 	}
-	return (isdefined(self.var_121392a1[var_eeb47fb8]) ? self.var_121392a1[var_eeb47fb8].endtime : 0);
+	return true;
 }
 
 /*
@@ -687,10 +687,10 @@ function function_4617032e(var_df1e8764)
 	{
 		if(effect.var_67e2281d == var_df1e8764)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -702,7 +702,7 @@ function function_4617032e(var_df1e8764)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_40293e80(var_df1e8764)
+function private function_40293e80(var_df1e8764)
 {
 	if(var_df1e8764 == 3)
 	{
@@ -720,7 +720,7 @@ private function function_40293e80(var_df1e8764)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_cc42cac2(var_756fda07, var_b0144580, var_ab5b905e, var_84171a6c, var_f8f8abaa, weapon)
+function private function_cc42cac2(var_756fda07, var_b0144580, var_ab5b905e, var_84171a6c, var_f8f8abaa, weapon)
 {
 	var_67e2281d = var_756fda07.var_67e2281d;
 	resistance = self function_a6613b51(var_756fda07);
@@ -782,7 +782,7 @@ private function function_cc42cac2(var_756fda07, var_b0144580, var_ab5b905e, var
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_57f33b96(var_756fda07, var_b0144580, var_ab5b905e, var_84171a6c, var_f8f8abaa, weapon)
+function private function_57f33b96(var_756fda07, var_b0144580, var_ab5b905e, var_84171a6c, var_f8f8abaa, weapon)
 {
 	var_67e2281d = var_756fda07.var_67e2281d;
 	resistance = self function_a6613b51(var_756fda07);
@@ -855,7 +855,7 @@ private function function_57f33b96(var_756fda07, var_b0144580, var_ab5b905e, var
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5d973c5f()
+function private function_5d973c5f()
 {
 	self thread function_72886b31();
 	self thread function_150a8541();
@@ -969,7 +969,7 @@ function function_37683813()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a6613b51(var_756fda07)
+function private function_a6613b51(var_756fda07)
 {
 	effect = self;
 	var_67e2281d = var_756fda07.var_67e2281d;
@@ -994,7 +994,7 @@ private function function_a6613b51(var_756fda07)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f9ca1b6a(var_756fda07)
+function private function_f9ca1b6a(var_756fda07)
 {
 	effect = self;
 	resistance = effect function_a6613b51(var_756fda07);
@@ -1011,7 +1011,7 @@ private function function_f9ca1b6a(var_756fda07)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7d17822(var_df1e8764)
+function private function_7d17822(var_df1e8764)
 {
 	return var_df1e8764 < 9;
 }
@@ -1057,7 +1057,7 @@ function function_86c0eb67(status_effect, var_3bc85d80)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4aac137f(var_19201a97, var_d9ad36fc)
+function private function_4aac137f(var_19201a97, var_d9ad36fc)
 {
 	gametime = level.time;
 	endtime = function_2ba2756c(var_d9ad36fc);

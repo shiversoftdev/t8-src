@@ -524,10 +524,10 @@ function function_d72aa67e(str_list, str_name)
 		{
 			if(tok == str_name)
 			{
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -684,7 +684,7 @@ function function_e8f0335f()
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_f9b68fd7(eventstruct)
+event private function_f9b68fd7(eventstruct)
 {
 	/#
 		if(!getdvarint(#"hash_69592e1b2d05fb21", 0))
@@ -929,10 +929,10 @@ function function_1221d304()
 		{
 			if(self.vehicletype == str_type)
 			{
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -1176,13 +1176,16 @@ function devgui_handle_player_command(playercallback, pcb_param_1, pcb_param_2)
 				{
 					player thread [[playercallback]](pcb_param_1, pcb_param_2);
 				}
-				else if(isdefined(pcb_param_1))
-				{
-					player thread [[playercallback]](pcb_param_1);
-				}
 				else
 				{
-					player thread [[playercallback]]();
+					if(isdefined(pcb_param_1))
+					{
+						player thread [[playercallback]](pcb_param_1);
+					}
+					else
+					{
+						player thread [[playercallback]]();
+					}
 				}
 			}
 		}
@@ -1203,7 +1206,7 @@ function devgui_handle_player_command(playercallback, pcb_param_1, pcb_param_2)
 	Parameters: 0
 	Flags: Private
 */
-private function function_1880c93d()
+function private function_1880c93d()
 {
 	/#
 		/#

@@ -34,7 +34,7 @@ function init()
 	Parameters: 0
 	Flags: Private
 */
-private function function_3552f301()
+function private function_3552f301()
 {
 	/#
 		namespace_b9fd696c::function_6af32608();
@@ -50,7 +50,7 @@ private function function_3552f301()
 	Parameters: 0
 	Flags: Private
 */
-private function function_2639784()
+function private function_2639784()
 {
 	/#
 		if(!level flag::get(""))
@@ -71,7 +71,7 @@ private function function_2639784()
 	Parameters: 0
 	Flags: Private
 */
-private function function_3db5079()
+function private function_3db5079()
 {
 	/#
 		if(!level flag::get(#"hash_40856b65dff0f6eb"))
@@ -97,7 +97,7 @@ private function function_3db5079()
 	Parameters: 0
 	Flags: Private
 */
-private function devgui()
+function private devgui()
 {
 	/#
 		adddebugcommand("");

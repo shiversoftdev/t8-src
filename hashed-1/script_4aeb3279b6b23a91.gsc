@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2ef1591c234e8773", &__init__, undefined, undefined);
 }
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_d1de6a85(enemy_type, var_1f950d4d, var_81dcf087, var_d631185a, var_fe1bdf31)
+function private function_d1de6a85(enemy_type, var_1f950d4d, var_81dcf087, var_d631185a, var_fe1bdf31)
 {
 	level.var_1c7412f9 = enemy_type;
 	switch(getplayers().size)
@@ -86,7 +86,7 @@ private function function_d1de6a85(enemy_type, var_1f950d4d, var_81dcf087, var_d
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_c3287616::function_9bf14a10(level.var_1c7412f9, &function_a7c00976);
 	namespace_c3287616::function_510039c1(&function_51ec9e09);

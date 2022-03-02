@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_280fe2667ed2d300", &__init__, undefined, #"hash_c70352f852fda84");
 }
@@ -29,7 +29,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!isdefined(getgametypesetting(#"useitemspawns")) || getgametypesetting(#"useitemspawns") == 0)
 	{
@@ -48,7 +48,7 @@ private function __init__()
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_2d47ee1e(var_6ed927a6, var_caba78c2, waittime, var_ef5e1b44, var_d6388d1 = 0, vehicletype = undefined)
+function private function_2d47ee1e(var_6ed927a6, var_caba78c2, waittime, var_ef5e1b44, var_d6388d1 = 0, vehicletype = undefined)
 {
 	if(isdefined(var_d6388d1) && var_d6388d1 && !isdefined(vehicletype))
 	{
@@ -199,7 +199,6 @@ function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
 		var_b7d663a9 = 0;
 		foreach(replacement in replacements)
 		{
-			var_b1229237 = GetNextArrayKey(var_a4b2a635, var_29604996);
 			while(var_b7d663a9 < var_64f52ca3.size && replacement.count > 0)
 			{
 				var_efecc884 = var_64f52ca3[var_b7d663a9];

@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"flagsys", &__init__, undefined, undefined);
 }
@@ -509,8 +509,8 @@ function script_flag_wait()
 	if(isdefined(self.script_flag_wait))
 	{
 		self wait_till(self.script_flag_wait);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

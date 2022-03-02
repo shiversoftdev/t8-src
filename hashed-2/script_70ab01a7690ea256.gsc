@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2c983afcd92a9970", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1de6a85(localclientnum, a_params)
+function private function_d1de6a85(localclientnum, a_params)
 {
 	level.var_4ecf5754 = (isdefined(a_params[0]) ? a_params[0] : #"hash_65cfe78dc61dd3af");
 	switch(level.var_4ecf5754)
@@ -83,7 +83,7 @@ private function function_d1de6a85(localclientnum, a_params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(localclientnum)
+function private function_9e7b3f4d(localclientnum)
 {
 	switch(level.var_4ecf5754)
 	{
@@ -138,9 +138,9 @@ function is_active(var_4ecf5754 = #"hash_65cfe78dc61dd3af")
 	s_challenge = zm_trial::function_a36e8c38(#"hash_6c768f3c15d55377");
 	if(isdefined(s_challenge) && level.var_4ecf5754 === var_4ecf5754)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -152,7 +152,7 @@ function is_active(var_4ecf5754 = #"hash_65cfe78dc61dd3af")
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_1e14a14e(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_1e14a14e(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{

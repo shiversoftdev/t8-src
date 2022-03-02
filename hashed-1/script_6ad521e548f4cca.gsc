@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_c29a54995a18e5c", &__init__, undefined, undefined);
 }
@@ -60,18 +60,21 @@ function function_3ade2b96(localclientnum, oldval, newval, bnewent, binitialsnap
 			setuimodelvalue(createuimodel(getuimodelforcontroller(localclientnum), "hudItems.playerIsShocked"), 1);
 		}
 	}
-	else if(newval == 2)
-	{
-		if(self function_21c0fa55() && function_d17ae3cc(localclientnum))
-		{
-			camfx = playfxoncamera(localclientnum, "player/fx8_plyr_pstfx_paralyze_screen");
-			self thread function_a6451cfe(localclientnum, camfx);
-		}
-	}
 	else
 	{
-		self.var_3ade2b96 = 0;
-		self notify(#"hash_43f06be9944cddc1");
+		if(newval == 2)
+		{
+			if(self function_21c0fa55() && function_d17ae3cc(localclientnum))
+			{
+				camfx = playfxoncamera(localclientnum, "player/fx8_plyr_pstfx_paralyze_screen");
+				self thread function_a6451cfe(localclientnum, camfx);
+			}
+		}
+		else
+		{
+			self.var_3ade2b96 = 0;
+			self notify(#"hash_43f06be9944cddc1");
+		}
 	}
 }
 
@@ -170,7 +173,7 @@ function function_a6451cfe(localclientnum, camfx)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function spawned(localclientnum)
+function private spawned(localclientnum)
 {
 	self function_811196d1(1);
 	self seeker_mine::spawned(localclientnum);

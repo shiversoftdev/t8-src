@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"wasp", &__init__, undefined, undefined);
 }
@@ -288,7 +288,7 @@ function state_emped_update(params)
 		if(isdefined(goalpoint) && sighttracepassed(self.origin + originoffset, goalpoint, 0, self))
 		{
 			self function_a57c34b7(goalpoint, 0, 0);
-			self waittill_timeout(0.3, #"near_goal", #"goal");
+			self waittilltimeout(0.3, #"near_goal", #"goal");
 			if(isdefined(self.enemy) && isalive(self))
 			{
 				self vehlookat(self.enemy);
@@ -303,7 +303,7 @@ function state_emped_update(params)
 			}
 			if(foundgoal)
 			{
-				self waittill_timeout(1, #"near_goal", #"goal");
+				self waittilltimeout(1, #"near_goal", #"goal");
 			}
 			else
 			{
@@ -367,17 +367,23 @@ function fall_and_bounce(killonimpact_speed, killonimpact_time, var_666e0401 = 0
 		{
 			self kill();
 		}
-		else if(lengthsquared(impact_vel) > (killonimpact_speed * killonimpact_speed) || (util::timesince(fallstart) > killonimpact_time && lengthsquared(impact_vel) > (killonimpact_speed * 0.8) * (killonimpact_speed * 0.8)))
-		{
-			self kill();
-		}
-		else if(!isdefined(self.position_before_fall))
-		{
-			self kill();
-		}
 		else
 		{
-			fallstart = gettime();
+			if(lengthsquared(impact_vel) > (killonimpact_speed * killonimpact_speed) || (util::timesince(fallstart) > killonimpact_time && lengthsquared(impact_vel) > (killonimpact_speed * 0.8) * (killonimpact_speed * 0.8)))
+			{
+				self kill();
+			}
+			else
+			{
+				if(!isdefined(self.position_before_fall))
+				{
+					self kill();
+				}
+				else
+				{
+					fallstart = gettime();
+				}
+			}
 		}
 		oldvelocity = self.velocity;
 		vel_hitdir = vectorprojection(impact_vel, normal) * -1;
@@ -580,21 +586,21 @@ function state_guard_can_enter(from_state, to_state, connection)
 {
 	if(self.enable_guard !== 1 || !isdefined(self.owner))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.enemy) || !self seerecently(self.enemy, 3))
 	{
-		return 1;
+		return true;
 	}
 	if(distancesquared(self.owner.origin, self.enemy.origin) > (1200 * 1200) && distancesquared(self.origin, self.enemy.origin) > (300 * 300))
 	{
-		return 1;
+		return true;
 	}
 	if(!ispointinnavvolume(self.origin, "navvolume_small"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -833,23 +839,29 @@ function state_guard_update(params)
 					{
 						self setspeed(self.settings.defaultmovespeed * 2);
 					}
-					else if(distancetogoalsq < 100 * 100)
-					{
-						self setspeed(self.settings.defaultmovespeed * 0.3);
-					}
 					else
 					{
-						self setspeed(self.settings.defaultmovespeed);
+						if(distancetogoalsq < 100 * 100)
+						{
+							self setspeed(self.settings.defaultmovespeed * 0.3);
+						}
+						else
+						{
+							self setspeed(self.settings.defaultmovespeed);
+						}
 					}
 					timenotatgoal = gettime();
 				}
-				else if(util::timesince(timenotatgoal) > 4)
+				else
 				{
-					pointindex = randomint(self._guard_points.size);
-					timenotatgoal = gettime();
+					if(util::timesince(timenotatgoal) > 4)
+					{
+						pointindex = randomint(self._guard_points.size);
+						timenotatgoal = gettime();
+					}
+					wait(0.2);
+					continue;
 				}
-				wait(0.2);
-				continue;
 				if(self function_a57c34b7(self.current_pathto_pos, 1, usepathfinding))
 				{
 					self playsound(#"veh_wasp_direction");
@@ -981,13 +993,16 @@ function turretfireupdate()
 					wait(randomfloatrange(3, 5));
 				}
 			}
-			else if(isdefined(self.enemy) && isai(self.enemy))
-			{
-				wait(randomfloatrange(2, 2.5));
-			}
 			else
 			{
-				wait(randomfloatrange(0.5, 1.5));
+				if(isdefined(self.enemy) && isai(self.enemy))
+				{
+					wait(randomfloatrange(2, 2.5));
+				}
+				else
+				{
+					wait(randomfloatrange(0.5, 1.5));
+				}
 			}
 		}
 		else
@@ -1384,15 +1399,18 @@ function state_combat_update(params)
 					usepathfinding = 0;
 				}
 			}
-			else if(isdefined(self.enemy))
-			{
-				self.current_pathto_pos = getnextmoveposition_tactical();
-				usepathfinding = 1;
-			}
 			else
 			{
-				self.current_pathto_pos = getnextmoveposition_wander();
-				usepathfinding = 1;
+				if(isdefined(self.enemy))
+				{
+					self.current_pathto_pos = getnextmoveposition_tactical();
+					usepathfinding = 1;
+				}
+				else
+				{
+					self.current_pathto_pos = getnextmoveposition_wander();
+					usepathfinding = 1;
+				}
 			}
 		}
 		if(isdefined(self.current_pathto_pos))
@@ -1508,68 +1526,71 @@ function getnextmoveposition_tactical()
 		query_position = self.leader.current_pathto_pos;
 		queryresult = positionquery_source_navigation(query_position, 0, 140, 100, 35, self, 25);
 	}
-	else if(isalive(self.owner) && self.enable_guard === 1)
+	else
 	{
-		ownerorigin = self getclosestpointonnavvolume(self.owner.origin + vectorscale((0, 0, 1), 40), 50);
-		if(isdefined(ownerorigin))
+		if(isalive(self.owner) && self.enable_guard === 1)
 		{
-			queryresult = positionquery_source_navigation(ownerorigin, 0, 500 * min(querymultiplier, 1.5), 130, 3 * self.radius, self);
-			if(isdefined(queryresult) && isdefined(queryresult.data))
+			ownerorigin = self getclosestpointonnavvolume(self.owner.origin + vectorscale((0, 0, 1), 40), 50);
+			if(isdefined(ownerorigin))
 			{
-				positionquery_filter_sight(queryresult, self.owner geteye(), (0, 0, 0), self, 5, self, "visowner");
-				positionquery_filter_sight(queryresult, self.enemy geteye(), (0, 0, 0), self, 5, self, "visenemy");
-				foreach(point in queryresult.data)
+				queryresult = positionquery_source_navigation(ownerorigin, 0, 500 * min(querymultiplier, 1.5), 130, 3 * self.radius, self);
+				if(isdefined(queryresult) && isdefined(queryresult.data))
 				{
-					if(point.visowner === 1)
+					positionquery_filter_sight(queryresult, self.owner geteye(), (0, 0, 0), self, 5, self, "visowner");
+					positionquery_filter_sight(queryresult, self.enemy geteye(), (0, 0, 0), self, 5, self, "visenemy");
+					foreach(point in queryresult.data)
 					{
-						/#
-							if(!isdefined(point._scoredebug))
-							{
-								point._scoredebug = [];
-							}
-							if(!isdefined(point._scoredebug[#"visowner"]))
-							{
-								point._scoredebug[#"visowner"] = spawnstruct();
-							}
-							point._scoredebug[#"visowner"].score = 300;
-							point._scoredebug[#"visowner"].scorename = "";
-						#/
-						point.score = point.score + 300;
-					}
-					if(point.visenemy === 1)
-					{
-						/#
-							if(!isdefined(point._scoredebug))
-							{
-								point._scoredebug = [];
-							}
-							if(!isdefined(point._scoredebug[#"visenemy"]))
-							{
-								point._scoredebug[#"visenemy"] = spawnstruct();
-							}
-							point._scoredebug[#"visenemy"].score = 300;
-							point._scoredebug[#"visenemy"].scorename = "";
-						#/
-						point.score = point.score + 300;
+						if(point.visowner === 1)
+						{
+							/#
+								if(!isdefined(point._scoredebug))
+								{
+									point._scoredebug = [];
+								}
+								if(!isdefined(point._scoredebug[#"visowner"]))
+								{
+									point._scoredebug[#"visowner"] = spawnstruct();
+								}
+								point._scoredebug[#"visowner"].score = 300;
+								point._scoredebug[#"visowner"].scorename = "";
+							#/
+							point.score = point.score + 300;
+						}
+						if(point.visenemy === 1)
+						{
+							/#
+								if(!isdefined(point._scoredebug))
+								{
+									point._scoredebug = [];
+								}
+								if(!isdefined(point._scoredebug[#"visenemy"]))
+								{
+									point._scoredebug[#"visenemy"] = spawnstruct();
+								}
+								point._scoredebug[#"visenemy"].score = 300;
+								point._scoredebug[#"visenemy"].scorename = "";
+							#/
+							point.score = point.score + 300;
+						}
 					}
 				}
 			}
 		}
-	}
-	else
-	{
-		queryresult = positionquery_source_navigation(self.origin, 0, 500 * min(querymultiplier, 2), 130, (3 * self.radius) * querymultiplier, self, (2.2 * self.radius) * querymultiplier);
-		team_mates = getaiteamarray(self.team);
-		avoid_radius = 140;
-		foreach(guy in team_mates)
+		else
 		{
-			if(isdefined(guy.archetype) && guy.archetype == "wasp")
+			queryresult = positionquery_source_navigation(self.origin, 0, 500 * min(querymultiplier, 2), 130, (3 * self.radius) * querymultiplier, self, (2.2 * self.radius) * querymultiplier);
+			team_mates = getaiteamarray(self.team);
+			avoid_radius = 140;
+			foreach(guy in team_mates)
 			{
-				if(isdefined(guy.followers) && guy.followers.size > 0 && guy != self)
+				if(isdefined(guy.archetype) && guy.archetype == "wasp")
 				{
-					if(isdefined(guy.current_pathto_pos))
+					if(isdefined(guy.followers) && guy.followers.size > 0 && guy != self)
 					{
-						avoid_locations[avoid_locations.size] = guy.current_pathto_pos;
+						if(isdefined(guy.current_pathto_pos))
+						{
+							avoid_locations[avoid_locations.size] = guy.current_pathto_pos;
+						}
 					}
 				}
 			}
@@ -1727,9 +1748,9 @@ function drone_allowfriendlyfiredamage(einflictor, eattacker, smeansofdeath, wea
 {
 	if(isdefined(eattacker) && isdefined(eattacker.archetype) && isdefined(smeansofdeath) && eattacker.archetype == #"wasp" && smeansofdeath == "MOD_EXPLOSIVE")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1828,7 +1849,7 @@ function wasp_tower_init(str_tower_targetnames, n_spawn_count)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _wasp_tower_init(wasp_tower, n_spawn_count)
+function private _wasp_tower_init(wasp_tower, n_spawn_count)
 {
 	if(!isspawner(wasp_tower) || wasp_tower.script_noteworthy !== "all_wasp_towers")
 	{
@@ -1856,7 +1877,7 @@ private function _wasp_tower_init(wasp_tower, n_spawn_count)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function wasp_tower_spawn(sp_wasp, n_spawn_count)
+function private wasp_tower_spawn(sp_wasp, n_spawn_count)
 {
 	a_wasps = [];
 	for(i = 0; i < sp_wasp.script_wasp_tower_spawn_count; i++)
@@ -1910,7 +1931,7 @@ function wasp_tower_launch(str_tower_targetnames, n_spawn_count)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _wasp_tower_launch(wasp_tower)
+function private _wasp_tower_launch(wasp_tower)
 {
 	wasp_tower playsound(#"veh_wasp_tower_flaps");
 	foreach(s_fxanim in wasp_tower.a_fxanims)
@@ -1919,13 +1940,16 @@ private function _wasp_tower_launch(wasp_tower)
 		{
 			n_delay = randomfloatrange(wasp_tower.script_wasp_tower_launch_delay_min, wasp_tower.script_wasp_tower_launch_delay_max);
 		}
-		else if(isdefined(wasp_tower.script_wasp_tower_launch_delay_min))
-		{
-			n_delay = wasp_tower.script_wasp_tower_launch_delay_min;
-		}
 		else
 		{
-			n_delay = randomfloatrange(0, 1);
+			if(isdefined(wasp_tower.script_wasp_tower_launch_delay_min))
+			{
+				n_delay = wasp_tower.script_wasp_tower_launch_delay_min;
+			}
+			else
+			{
+				n_delay = randomfloatrange(0, 1);
+			}
 		}
 		wait(n_delay);
 		a_wasps = wasp_tower_spawn(wasp_tower, wasp_tower.var_ea0f728d);
@@ -1970,7 +1994,7 @@ function function_bbe2568c(a_ents)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function wasp_tower_wakeup()
+function private wasp_tower_wakeup()
 {
 	self endon(#"death");
 	self notify(#"wasp_launched_from_tower");

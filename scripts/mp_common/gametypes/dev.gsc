@@ -36,7 +36,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	/#
 		system::register(#"dev", &__init__, undefined, #"spawning_shared");
@@ -353,16 +353,19 @@ function function_30d59c86(team, target, players)
 					players[i] setorigin(spawn_origin);
 					goal = spawn_origin;
 				}
-				else if(nodes.size > 0)
-				{
-					node = array::random(nodes);
-					players[i] setorigin(node.origin);
-					goal = node;
-				}
 				else
 				{
-					players[i] setorigin(origin);
-					goal = origin;
+					if(nodes.size > 0)
+					{
+						node = array::random(nodes);
+						players[i] setorigin(node.origin);
+						goal = node;
+					}
+					else
+					{
+						players[i] setorigin(origin);
+						goal = origin;
+					}
 				}
 				if(isdefined(goal) && isbot(players[i]))
 				{
@@ -482,344 +485,407 @@ function updatedevsettings()
 			{
 				warpalltohost();
 			}
-			else if(playerwarp_string == "")
+			else
 			{
-				warpalltohost(playerwarp_string);
-			}
-			else if(playerwarp_string == "")
-			{
-				warpalltohost(playerwarp_string);
-			}
-			else if(playerwarp_string == "")
-			{
-				function_9758857b();
-			}
-			else if(strstartswith(playerwarp_string, ""))
-			{
-				name = getsubstr(playerwarp_string, 8);
-				warpalltoplayer(playerwarp_string, name);
-			}
-			else if(strstartswith(playerwarp_string, ""))
-			{
-				name = getsubstr(playerwarp_string, 11);
-				warpalltoplayer(playerwarp_string, name);
-			}
-			else if(strstartswith(playerwarp_string, ""))
-			{
-				name = getsubstr(playerwarp_string, 4);
-				warpalltoplayer(undefined, name);
-			}
-			else if(playerwarp_string == "")
-			{
-				players = getplayers();
-				setdvar(#"scr_playerwarp", "");
-				if(!isdefined(level.devgui_start_spawn_index))
+				if(playerwarp_string == "")
 				{
-					level.devgui_start_spawn_index = 0;
-				}
-				player = util::gethostplayer();
-				spawns = level.spawn_start[player.pers[#"team"]];
-				if(!isdefined(spawns) || spawns.size <= 0)
-				{
-					return;
-				}
-				for(i = 0; i < players.size; i++)
-				{
-					players[i] setorigin(spawns[level.devgui_start_spawn_index].origin);
-					players[i] setplayerangles(spawns[level.devgui_start_spawn_index].angles);
-				}
-				level.devgui_start_spawn_index++;
-				if(level.devgui_start_spawn_index >= spawns.size)
-				{
-					level.devgui_start_spawn_index = 0;
-				}
-			}
-			else if(playerwarp_string == "")
-			{
-				players = getplayers();
-				setdvar(#"scr_playerwarp", "");
-				if(!isdefined(level.devgui_start_spawn_index))
-				{
-					level.devgui_start_spawn_index = 0;
-				}
-				player = util::gethostplayer();
-				spawns = level.spawn_start[player.pers[#"team"]];
-				if(!isdefined(spawns) || spawns.size <= 0)
-				{
-					return;
-				}
-				for(i = 0; i < players.size; i++)
-				{
-					players[i] setorigin(spawns[level.devgui_start_spawn_index].origin);
-					players[i] setplayerangles(spawns[level.devgui_start_spawn_index].angles);
-				}
-				level.devgui_start_spawn_index--;
-				if(level.devgui_start_spawn_index < 0)
-				{
-					level.devgui_start_spawn_index = spawns.size - 1;
-				}
-			}
-			else if(playerwarp_string == "")
-			{
-				players = getplayers();
-				setdvar(#"scr_playerwarp", "");
-				if(!isdefined(level.devgui_spawn_index))
-				{
-					level.devgui_spawn_index = 0;
-				}
-				spawns = (isdefined(level.var_3da2623a) ? level.var_3da2623a : level.spawnpoints);
-				spawns = arraycombine(spawns, level.dem_spawns, 1, 0);
-				if(!isdefined(spawns) || spawns.size <= 0)
-				{
-					return;
-				}
-				for(i = 0; i < players.size; i++)
-				{
-					players[i] setorigin(spawns[level.devgui_spawn_index].origin);
-					players[i] setplayerangles(spawns[level.devgui_spawn_index].angles);
-				}
-				level.devgui_spawn_index++;
-				if(level.devgui_spawn_index >= spawns.size)
-				{
-					level.devgui_spawn_index = 0;
-				}
-			}
-			else if(playerwarp_string == "")
-			{
-				players = getplayers();
-				setdvar(#"scr_playerwarp", "");
-				if(!isdefined(level.devgui_spawn_index))
-				{
-					level.devgui_spawn_index = 0;
-				}
-				spawns = (isdefined(level.var_3da2623a) ? level.var_3da2623a : level.spawnpoints);
-				spawns = arraycombine(spawns, level.dem_spawns, 1, 0);
-				if(!isdefined(spawns) || spawns.size <= 0)
-				{
-					return;
-				}
-				for(i = 0; i < players.size; i++)
-				{
-					players[i] setorigin(spawns[level.devgui_spawn_index].origin);
-					players[i] setplayerangles(spawns[level.devgui_spawn_index].angles);
-				}
-				level.devgui_spawn_index--;
-				if(level.devgui_spawn_index < 0)
-				{
-					level.devgui_spawn_index = spawns.size - 1;
-				}
-			}
-			else if(getdvarstring(#"scr_devgui_spawn") != "")
-			{
-				player = util::gethostplayer();
-				if(!isdefined(player.devgui_spawn_active))
-				{
-					player.devgui_spawn_active = 0;
-				}
-				if(!player.devgui_spawn_active)
-				{
-					iprintln("");
-					iprintln("");
-					player.devgui_spawn_active = 1;
-					player thread devgui_spawn_think();
+					warpalltohost(playerwarp_string);
 				}
 				else
 				{
-					player notify(#"devgui_spawn_think");
-					player.devgui_spawn_active = 0;
-					player setactionslot(3, "");
-				}
-				setdvar(#"scr_devgui_spawn", "");
-			}
-			else if(getdvarstring(#"hash_c9f8ff06a656024") != "")
-			{
-				player = util::gethostplayer();
-				if(!isdefined(player.var_31922da4))
-				{
-					player.var_31922da4 = 0;
-				}
-				if(!player.var_31922da4)
-				{
-					iprintln("");
-					iprintln("");
-					player.var_31922da4 = 1;
-					player thread function_48a6b85();
-				}
-				else
-				{
-					player notify(#"hash_47f3d9a9e91670d1");
-					player.var_31922da4 = 0;
-					player setactionslot(3, "");
-				}
-				setdvar(#"hash_c9f8ff06a656024", "");
-			}
-			else if(getdvarstring(#"scr_player_ammo") != "")
-			{
-				players = getplayers();
-				if(!isdefined(level.devgui_unlimited_ammo))
-				{
-					level.devgui_unlimited_ammo = 1;
-				}
-				else
-				{
-					level.devgui_unlimited_ammo = !level.devgui_unlimited_ammo;
-				}
-				if(level.devgui_unlimited_ammo)
-				{
-					iprintln("");
-				}
-				else
-				{
-					iprintln("");
-				}
-				for(i = 0; i < players.size; i++)
-				{
-					if(level.devgui_unlimited_ammo)
+					if(playerwarp_string == "")
 					{
-						players[i] thread devgui_unlimited_ammo();
-						continue;
-					}
-					players[i] notify(#"devgui_unlimited_ammo");
-				}
-				setdvar(#"scr_player_ammo", "");
-			}
-			else if(getdvarstring(#"scr_player_momentum") != "")
-			{
-				if(!isdefined(level.devgui_unlimited_momentum))
-				{
-					level.devgui_unlimited_momentum = 1;
-				}
-				else
-				{
-					level.devgui_unlimited_momentum = !level.devgui_unlimited_momentum;
-				}
-				if(level.devgui_unlimited_momentum)
-				{
-					iprintln("");
-					level thread devgui_unlimited_momentum();
-				}
-				else
-				{
-					iprintln("");
-					level notify(#"devgui_unlimited_momentum");
-				}
-				setdvar(#"scr_player_momentum", "");
-			}
-			else if(getdvarstring(#"scr_give_player_score") != "")
-			{
-				level thread devgui_increase_momentum(getdvarint(#"scr_give_player_score", 0));
-				setdvar(#"scr_give_player_score", "");
-			}
-			else if(getdvarstring(#"hash_7d7add0fb8d419c8") != "")
-			{
-				level thread function_e88bdbcf();
-				setdvar(#"hash_7d7add0fb8d419c8", "");
-			}
-			else if(getdvarstring(#"scr_player_zero_ammo") != "")
-			{
-				players = getplayers();
-				for(i = 0; i < players.size; i++)
-				{
-					player = players[i];
-					weapons = player getweaponslist();
-					arrayremovevalue(weapons, level.weaponbasemelee);
-					for(j = 0; j < weapons.size; j++)
-					{
-						if(weapons[j] == level.weaponnone)
-						{
-							continue;
-						}
-						player setweaponammostock(weapons[j], 0);
-						player setweaponammoclip(weapons[j], 0);
-					}
-				}
-				setdvar(#"scr_player_zero_ammo", "");
-			}
-			else if(getdvarstring(#"scr_emp_jammed") != "")
-			{
-				players = getplayers();
-				for(i = 0; i < players.size; i++)
-				{
-					player = players[i];
-					player setempjammed(getdvarint(#"scr_emp_jammed", 0));
-				}
-				setdvar(#"scr_emp_jammed", "");
-			}
-			else if(getdvarstring(#"scr_round_pause") != "")
-			{
-				if(!level.timerstopped)
-				{
-					iprintln("");
-					globallogic_utils::pausetimer();
-				}
-				else
-				{
-					iprintln("");
-					globallogic_utils::resumetimer();
-				}
-				setdvar(#"scr_round_pause", "");
-			}
-			else if(getdvarstring(#"scr_round_end") != "")
-			{
-				level globallogic::forceend();
-				setdvar(#"scr_round_end", "");
-			}
-			else if(getdvarint(#"scr_health_debug", 0))
-			{
-				players = getplayers();
-				host = util::gethostplayer();
-				if(!isdefined(host.devgui_health_debug))
-				{
-					host.devgui_health_debug = 0;
-				}
-				if(host.devgui_health_debug)
-				{
-					host.devgui_health_debug = 0;
-					for(i = 0; i < players.size; i++)
-					{
-						players[i] notify(#"devgui_health_debug");
-						if(isdefined(players[i].debug_health_bar))
-						{
-							players[i].debug_health_bar destroy();
-							players[i].debug_health_text destroy();
-							players[i].debug_health_bar = undefined;
-							players[i].debug_health_text = undefined;
-						}
-					}
-				}
-				else
-				{
-					host.devgui_health_debug = 1;
-					for(i = 0; i < players.size; i++)
-					{
-						players[i] thread devgui_health_debug();
-					}
-				}
-				setdvar(#"scr_health_debug", 0);
-			}
-			else if(getdvarstring(#"scr_show_hq_spawns") != "")
-			{
-				if(!isdefined(level.devgui_show_hq))
-				{
-					level.devgui_show_hq = 0;
-				}
-				if(level.gametype == "" && isdefined(level.radios))
-				{
-					if(!level.devgui_show_hq)
-					{
-						for(i = 0; i < level.radios.size; i++)
-						{
-							color = (1, 0, 0);
-							level namespace_af53555a::showonespawnpoint(level.radios[i], color, "", 32, "");
-						}
+						warpalltohost(playerwarp_string);
 					}
 					else
 					{
-						level notify(#"hide_hq_points");
+						if(playerwarp_string == "")
+						{
+							function_9758857b();
+						}
+						else
+						{
+							if(strstartswith(playerwarp_string, ""))
+							{
+								name = getsubstr(playerwarp_string, 8);
+								warpalltoplayer(playerwarp_string, name);
+							}
+							else
+							{
+								if(strstartswith(playerwarp_string, ""))
+								{
+									name = getsubstr(playerwarp_string, 11);
+									warpalltoplayer(playerwarp_string, name);
+								}
+								else
+								{
+									if(strstartswith(playerwarp_string, ""))
+									{
+										name = getsubstr(playerwarp_string, 4);
+										warpalltoplayer(undefined, name);
+									}
+									else
+									{
+										if(playerwarp_string == "")
+										{
+											players = getplayers();
+											setdvar(#"scr_playerwarp", "");
+											if(!isdefined(level.devgui_start_spawn_index))
+											{
+												level.devgui_start_spawn_index = 0;
+											}
+											player = util::gethostplayer();
+											spawns = level.spawn_start[player.pers[#"team"]];
+											if(!isdefined(spawns) || spawns.size <= 0)
+											{
+												return;
+											}
+											for(i = 0; i < players.size; i++)
+											{
+												players[i] setorigin(spawns[level.devgui_start_spawn_index].origin);
+												players[i] setplayerangles(spawns[level.devgui_start_spawn_index].angles);
+											}
+											level.devgui_start_spawn_index++;
+											if(level.devgui_start_spawn_index >= spawns.size)
+											{
+												level.devgui_start_spawn_index = 0;
+											}
+										}
+										else
+										{
+											if(playerwarp_string == "")
+											{
+												players = getplayers();
+												setdvar(#"scr_playerwarp", "");
+												if(!isdefined(level.devgui_start_spawn_index))
+												{
+													level.devgui_start_spawn_index = 0;
+												}
+												player = util::gethostplayer();
+												spawns = level.spawn_start[player.pers[#"team"]];
+												if(!isdefined(spawns) || spawns.size <= 0)
+												{
+													return;
+												}
+												for(i = 0; i < players.size; i++)
+												{
+													players[i] setorigin(spawns[level.devgui_start_spawn_index].origin);
+													players[i] setplayerangles(spawns[level.devgui_start_spawn_index].angles);
+												}
+												level.devgui_start_spawn_index--;
+												if(level.devgui_start_spawn_index < 0)
+												{
+													level.devgui_start_spawn_index = spawns.size - 1;
+												}
+											}
+											else
+											{
+												if(playerwarp_string == "")
+												{
+													players = getplayers();
+													setdvar(#"scr_playerwarp", "");
+													if(!isdefined(level.devgui_spawn_index))
+													{
+														level.devgui_spawn_index = 0;
+													}
+													spawns = (isdefined(level.var_3da2623a) ? level.var_3da2623a : level.spawnpoints);
+													spawns = arraycombine(spawns, level.dem_spawns, 1, 0);
+													if(!isdefined(spawns) || spawns.size <= 0)
+													{
+														return;
+													}
+													for(i = 0; i < players.size; i++)
+													{
+														players[i] setorigin(spawns[level.devgui_spawn_index].origin);
+														players[i] setplayerangles(spawns[level.devgui_spawn_index].angles);
+													}
+													level.devgui_spawn_index++;
+													if(level.devgui_spawn_index >= spawns.size)
+													{
+														level.devgui_spawn_index = 0;
+													}
+												}
+												else
+												{
+													if(playerwarp_string == "")
+													{
+														players = getplayers();
+														setdvar(#"scr_playerwarp", "");
+														if(!isdefined(level.devgui_spawn_index))
+														{
+															level.devgui_spawn_index = 0;
+														}
+														spawns = (isdefined(level.var_3da2623a) ? level.var_3da2623a : level.spawnpoints);
+														spawns = arraycombine(spawns, level.dem_spawns, 1, 0);
+														if(!isdefined(spawns) || spawns.size <= 0)
+														{
+															return;
+														}
+														for(i = 0; i < players.size; i++)
+														{
+															players[i] setorigin(spawns[level.devgui_spawn_index].origin);
+															players[i] setplayerangles(spawns[level.devgui_spawn_index].angles);
+														}
+														level.devgui_spawn_index--;
+														if(level.devgui_spawn_index < 0)
+														{
+															level.devgui_spawn_index = spawns.size - 1;
+														}
+													}
+													else
+													{
+														if(getdvarstring(#"scr_devgui_spawn") != "")
+														{
+															player = util::gethostplayer();
+															if(!isdefined(player.devgui_spawn_active))
+															{
+																player.devgui_spawn_active = 0;
+															}
+															if(!player.devgui_spawn_active)
+															{
+																iprintln("");
+																iprintln("");
+																player.devgui_spawn_active = 1;
+																player thread devgui_spawn_think();
+															}
+															else
+															{
+																player notify(#"devgui_spawn_think");
+																player.devgui_spawn_active = 0;
+																player setactionslot(3, "");
+															}
+															setdvar(#"scr_devgui_spawn", "");
+														}
+														else
+														{
+															if(getdvarstring(#"hash_c9f8ff06a656024") != "")
+															{
+																player = util::gethostplayer();
+																if(!isdefined(player.var_31922da4))
+																{
+																	player.var_31922da4 = 0;
+																}
+																if(!player.var_31922da4)
+																{
+																	iprintln("");
+																	iprintln("");
+																	player.var_31922da4 = 1;
+																	player thread function_48a6b85();
+																}
+																else
+																{
+																	player notify(#"hash_47f3d9a9e91670d1");
+																	player.var_31922da4 = 0;
+																	player setactionslot(3, "");
+																}
+																setdvar(#"hash_c9f8ff06a656024", "");
+															}
+															else
+															{
+																if(getdvarstring(#"scr_player_ammo") != "")
+																{
+																	players = getplayers();
+																	if(!isdefined(level.devgui_unlimited_ammo))
+																	{
+																		level.devgui_unlimited_ammo = 1;
+																	}
+																	else
+																	{
+																		level.devgui_unlimited_ammo = !level.devgui_unlimited_ammo;
+																	}
+																	if(level.devgui_unlimited_ammo)
+																	{
+																		iprintln("");
+																	}
+																	else
+																	{
+																		iprintln("");
+																	}
+																	for(i = 0; i < players.size; i++)
+																	{
+																		if(level.devgui_unlimited_ammo)
+																		{
+																			players[i] thread devgui_unlimited_ammo();
+																			continue;
+																		}
+																		players[i] notify(#"devgui_unlimited_ammo");
+																	}
+																	setdvar(#"scr_player_ammo", "");
+																}
+																else
+																{
+																	if(getdvarstring(#"scr_player_momentum") != "")
+																	{
+																		if(!isdefined(level.devgui_unlimited_momentum))
+																		{
+																			level.devgui_unlimited_momentum = 1;
+																		}
+																		else
+																		{
+																			level.devgui_unlimited_momentum = !level.devgui_unlimited_momentum;
+																		}
+																		if(level.devgui_unlimited_momentum)
+																		{
+																			iprintln("");
+																			level thread devgui_unlimited_momentum();
+																		}
+																		else
+																		{
+																			iprintln("");
+																			level notify(#"devgui_unlimited_momentum");
+																		}
+																		setdvar(#"scr_player_momentum", "");
+																	}
+																	else
+																	{
+																		if(getdvarstring(#"scr_give_player_score") != "")
+																		{
+																			level thread devgui_increase_momentum(getdvarint(#"scr_give_player_score", 0));
+																			setdvar(#"scr_give_player_score", "");
+																		}
+																		else
+																		{
+																			if(getdvarstring(#"hash_7d7add0fb8d419c8") != "")
+																			{
+																				level thread function_e88bdbcf();
+																				setdvar(#"hash_7d7add0fb8d419c8", "");
+																			}
+																			else
+																			{
+																				if(getdvarstring(#"scr_player_zero_ammo") != "")
+																				{
+																					players = getplayers();
+																					for(i = 0; i < players.size; i++)
+																					{
+																						player = players[i];
+																						weapons = player getweaponslist();
+																						arrayremovevalue(weapons, level.weaponbasemelee);
+																						for(j = 0; j < weapons.size; j++)
+																						{
+																							if(weapons[j] == level.weaponnone)
+																							{
+																								continue;
+																							}
+																							player setweaponammostock(weapons[j], 0);
+																							player setweaponammoclip(weapons[j], 0);
+																						}
+																					}
+																					setdvar(#"scr_player_zero_ammo", "");
+																				}
+																				else
+																				{
+																					if(getdvarstring(#"scr_emp_jammed") != "")
+																					{
+																						players = getplayers();
+																						for(i = 0; i < players.size; i++)
+																						{
+																							player = players[i];
+																							player setempjammed(getdvarint(#"scr_emp_jammed", 0));
+																						}
+																						setdvar(#"scr_emp_jammed", "");
+																					}
+																					else
+																					{
+																						if(getdvarstring(#"scr_round_pause") != "")
+																						{
+																							if(!level.timerstopped)
+																							{
+																								iprintln("");
+																								globallogic_utils::pausetimer();
+																							}
+																							else
+																							{
+																								iprintln("");
+																								globallogic_utils::resumetimer();
+																							}
+																							setdvar(#"scr_round_pause", "");
+																						}
+																						else
+																						{
+																							if(getdvarstring(#"scr_round_end") != "")
+																							{
+																								level globallogic::forceend();
+																								setdvar(#"scr_round_end", "");
+																							}
+																							else
+																							{
+																								if(getdvarint(#"scr_health_debug", 0))
+																								{
+																									players = getplayers();
+																									host = util::gethostplayer();
+																									if(!isdefined(host.devgui_health_debug))
+																									{
+																										host.devgui_health_debug = 0;
+																									}
+																									if(host.devgui_health_debug)
+																									{
+																										host.devgui_health_debug = 0;
+																										for(i = 0; i < players.size; i++)
+																										{
+																											players[i] notify(#"devgui_health_debug");
+																											if(isdefined(players[i].debug_health_bar))
+																											{
+																												players[i].debug_health_bar destroy();
+																												players[i].debug_health_text destroy();
+																												players[i].debug_health_bar = undefined;
+																												players[i].debug_health_text = undefined;
+																											}
+																										}
+																									}
+																									else
+																									{
+																										host.devgui_health_debug = 1;
+																										for(i = 0; i < players.size; i++)
+																										{
+																											players[i] thread devgui_health_debug();
+																										}
+																									}
+																									setdvar(#"scr_health_debug", 0);
+																								}
+																								else if(getdvarstring(#"scr_show_hq_spawns") != "")
+																								{
+																									if(!isdefined(level.devgui_show_hq))
+																									{
+																										level.devgui_show_hq = 0;
+																									}
+																									if(level.gametype == "" && isdefined(level.radios))
+																									{
+																										if(!level.devgui_show_hq)
+																										{
+																											for(i = 0; i < level.radios.size; i++)
+																											{
+																												color = (1, 0, 0);
+																												level namespace_af53555a::showonespawnpoint(level.radios[i], color, "", 32, "");
+																											}
+																										}
+																										else
+																										{
+																											level notify(#"hide_hq_points");
+																										}
+																										level.devgui_show_hq = !level.devgui_show_hq;
+																									}
+																									setdvar(#"scr_show_hq_spawns", "");
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
 					}
-					level.devgui_show_hq = !level.devgui_show_hq;
 				}
-				setdvar(#"scr_show_hq_spawns", "");
 			}
 			if(getdvarint(#"r_streamdumpdistance", 0) == 3)
 			{
@@ -967,17 +1033,23 @@ function updatedevsettings()
 			{
 				player dodamage(1, player.origin + forward);
 			}
-			else if(event == "")
+			else
 			{
-				player dodamage(1, player.origin - forward);
-			}
-			else if(event == "")
-			{
-				player dodamage(1, player.origin - right);
-			}
-			else if(event == "")
-			{
-				player dodamage(1, player.origin + right);
+				if(event == "")
+				{
+					player dodamage(1, player.origin - forward);
+				}
+				else
+				{
+					if(event == "")
+					{
+						player dodamage(1, player.origin - right);
+					}
+					else if(event == "")
+					{
+						player dodamage(1, player.origin + right);
+					}
+				}
 			}
 			setdvar(#"scr_forceevent", "");
 		}
@@ -1675,17 +1747,23 @@ function testscriptruntimeerror()
 		{
 			testscriptruntimeerrorassert();
 		}
-		else if(myerror == "")
-		{
-			testscriptruntimeassertmsgassert();
-		}
-		else if(myerror == "")
-		{
-			testscriptruntimeerrormsgassert();
-		}
 		else
 		{
-			testscriptruntimeerror1();
+			if(myerror == "")
+			{
+				testscriptruntimeassertmsgassert();
+			}
+			else
+			{
+				if(myerror == "")
+				{
+					testscriptruntimeerrormsgassert();
+				}
+				else
+				{
+					testscriptruntimeerror1();
+				}
+			}
 		}
 		thread testscriptruntimeerror();
 	#/
@@ -1958,9 +2036,9 @@ function dvar_turned_on(val)
 	/#
 		if(val <= 0)
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	#/
 }
 
@@ -2276,15 +2354,18 @@ function debug_realtime_engage_dist()
 							hudobj_changecolor(hudobjarray, level.yellow);
 						}
 					}
-					else if(tracedist < engagedistmin)
+					else
 					{
-						hudobj_changecolor(hudobjarray, level.red);
-						hudobjarray engagedist_hud_changetext("", tracedist);
-					}
-					else if(tracedist > engagedistmax)
-					{
-						hudobj_changecolor(hudobjarray, level.red);
-						hudobjarray engagedist_hud_changetext("", tracedist);
+						if(tracedist < engagedistmin)
+						{
+							hudobj_changecolor(hudobjarray, level.red);
+							hudobjarray engagedist_hud_changetext("", tracedist);
+						}
+						else if(tracedist > engagedistmax)
+						{
+							hudobj_changecolor(hudobjarray, level.red);
+							hudobjarray engagedist_hud_changetext("", tracedist);
+						}
 					}
 				}
 			}
@@ -2341,39 +2422,48 @@ function engagedist_hud_changetext(engagedisttype, units)
 			self[2] settext("");
 			self[3].alpha = 0;
 		}
-		else if(engagedisttype == "")
+		else
 		{
-			self[1] setvalue(units);
-			self[2] settext("");
-			self[3].alpha = 0;
-		}
-		else if(engagedisttype == "")
-		{
-			amountunder = level.weaponengagedistvalues.engagedistmin - units;
-			self[1] setvalue(units);
-			self[3] setvalue(amountunder);
-			self[3].alpha = 1;
-			if(level.lastdisttype != engagedisttype)
+			if(engagedisttype == "")
 			{
+				self[1] setvalue(units);
 				self[2] settext("");
+				self[3].alpha = 0;
 			}
-		}
-		else if(engagedisttype == "")
-		{
-			amountover = units - level.weaponengagedistvalues.engagedistmax;
-			self[1] setvalue(units);
-			self[3] setvalue(amountover);
-			self[3].alpha = 1;
-			if(level.lastdisttype != engagedisttype)
+			else
 			{
-				self[2] settext("");
+				if(engagedisttype == "")
+				{
+					amountunder = level.weaponengagedistvalues.engagedistmin - units;
+					self[1] setvalue(units);
+					self[3] setvalue(amountunder);
+					self[3].alpha = 1;
+					if(level.lastdisttype != engagedisttype)
+					{
+						self[2] settext("");
+					}
+				}
+				else
+				{
+					if(engagedisttype == "")
+					{
+						amountover = units - level.weaponengagedistvalues.engagedistmax;
+						self[1] setvalue(units);
+						self[3] setvalue(amountover);
+						self[3].alpha = 1;
+						if(level.lastdisttype != engagedisttype)
+						{
+							self[2] settext("");
+						}
+					}
+					else if(engagedisttype == "")
+					{
+						self[1] setvalue(units);
+						self[2] settext("");
+						self[3].alpha = 0;
+					}
+				}
 			}
-		}
-		else if(engagedisttype == "")
-		{
-			self[1] setvalue(units);
-			self[2] settext("");
-			self[3].alpha = 0;
 		}
 		level.lastdisttype = engagedisttype;
 	#/

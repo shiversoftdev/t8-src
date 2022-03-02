@@ -90,23 +90,23 @@ function function_4d58e688(e_poi)
 {
 	if(isdefined(level.elevator1.var_a231af57) && e_poi[1] istouching(level.var_83225f64[0]) && !self istouching(level.var_83225f64[0]))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.elevator2.var_a231af57) && e_poi[1] istouching(level.var_83225f64[1]) && !self istouching(level.var_83225f64[1]))
 	{
-		return 0;
+		return false;
 	}
 	var_271de3da = namespace_47276bad::function_35babccd(e_poi[1]);
 	var_b2818507 = namespace_47276bad::function_35babccd(self);
 	if(!isdefined(var_271de3da))
 	{
-		return 0;
+		return false;
 	}
 	if(var_b2818507 != var_271de3da)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -122,23 +122,23 @@ function function_6c7d76d(e_player)
 {
 	if(isdefined(level.elevator1.var_a231af57) && e_player istouching(level.var_83225f64[0]) && !self istouching(level.var_83225f64[0]))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.elevator2.var_a231af57) && e_player istouching(level.var_83225f64[1]) && !self istouching(level.var_83225f64[1]))
 	{
-		return 0;
+		return false;
 	}
 	var_5949c6af = namespace_47276bad::function_35babccd(e_player);
 	var_b2818507 = namespace_47276bad::function_35babccd(self);
 	if(!isdefined(var_5949c6af))
 	{
-		return 0;
+		return false;
 	}
 	if(var_b2818507 != var_5949c6af && (var_b2818507 == 4 || var_5949c6af == 4 || !level flag::get(#"hash_53a41180dac96fff")))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -150,7 +150,7 @@ function function_6c7d76d(e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1969a102()
+function private function_1969a102()
 {
 	target = self.favoriteenemy;
 	if(!isdefined(self.var_3f667178))
@@ -173,7 +173,7 @@ private function function_1969a102()
 					target.hunted_by--;
 					self thread function_29aabbb3();
 				}
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -181,7 +181,7 @@ private function function_1969a102()
 	{
 		self notify(#"hash_2016cf7b5d5069a7");
 	}
-	return 0;
+	return false;
 }
 
 /*

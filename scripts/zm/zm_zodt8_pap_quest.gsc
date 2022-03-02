@@ -400,23 +400,32 @@ function function_afab6169(e_player)
 	{
 		self.hint_string = #"";
 	}
-	else if(isdefined(self.stub.b_used) && self.stub.b_used)
-	{
-		self.hint_string = #"";
-	}
-	else if(level flag::get("pap_quest_complete"))
-	{
-		self.hint_string = #"";
-	}
-	else if(function_8b1a219a())
-	{
-		self.hint_string = #"hash_36ba40b9e876f572";
-	}
 	else
 	{
-		self.hint_string = #"hash_15494c7927282ad6";
+		if(isdefined(self.stub.b_used) && self.stub.b_used)
+		{
+			self.hint_string = #"";
+		}
+		else
+		{
+			if(level flag::get("pap_quest_complete"))
+			{
+				self.hint_string = #"";
+			}
+			else
+			{
+				if(function_8b1a219a())
+				{
+					self.hint_string = #"hash_36ba40b9e876f572";
+				}
+				else
+				{
+					self.hint_string = #"hash_15494c7927282ad6";
+				}
+				b_result = 1;
+			}
+		}
 	}
-	b_result = 1;
 	return b_result;
 }
 
@@ -750,50 +759,62 @@ function function_a48b2870()
 					var_81731c8e = 5;
 				}
 			}
-			else if(isdefined(var_e636ead7) && var_e636ead7)
+			else
 			{
-				var_81731c8e = 6;
-				if(isdefined(var_6a69b27) && var_6a69b27)
+				if(isdefined(var_e636ead7) && var_e636ead7)
 				{
-					var_81731c8e = 7;
+					var_81731c8e = 6;
+					if(isdefined(var_6a69b27) && var_6a69b27)
+					{
+						var_81731c8e = 7;
+					}
+				}
+				else if(isdefined(var_6a69b27) && var_6a69b27)
+				{
+					var_81731c8e = 8;
 				}
 			}
-			else if(isdefined(var_6a69b27) && var_6a69b27)
-			{
-				var_81731c8e = 8;
-			}
-		}
-		else if(isdefined(var_2380391d) && var_2380391d)
-		{
-			var_81731c8e = 9;
-			if(isdefined(var_e636ead7) && var_e636ead7)
-			{
-				var_81731c8e = 10;
-				if(isdefined(var_6a69b27) && var_6a69b27)
-				{
-					var_81731c8e = 11;
-				}
-			}
-			else if(isdefined(var_6a69b27) && var_6a69b27)
-			{
-				var_81731c8e = 12;
-			}
-		}
-		else if(isdefined(var_e636ead7) && var_e636ead7)
-		{
-			var_81731c8e = 13;
-			if(isdefined(var_6a69b27) && var_6a69b27)
-			{
-				var_81731c8e = 14;
-			}
-		}
-		else if(isdefined(var_6a69b27) && var_6a69b27)
-		{
-			var_81731c8e = 15;
 		}
 		else
 		{
-			var_81731c8e = 1;
+			if(isdefined(var_2380391d) && var_2380391d)
+			{
+				var_81731c8e = 9;
+				if(isdefined(var_e636ead7) && var_e636ead7)
+				{
+					var_81731c8e = 10;
+					if(isdefined(var_6a69b27) && var_6a69b27)
+					{
+						var_81731c8e = 11;
+					}
+				}
+				else if(isdefined(var_6a69b27) && var_6a69b27)
+				{
+					var_81731c8e = 12;
+				}
+			}
+			else
+			{
+				if(isdefined(var_e636ead7) && var_e636ead7)
+				{
+					var_81731c8e = 13;
+					if(isdefined(var_6a69b27) && var_6a69b27)
+					{
+						var_81731c8e = 14;
+					}
+				}
+				else
+				{
+					if(isdefined(var_6a69b27) && var_6a69b27)
+					{
+						var_81731c8e = 15;
+					}
+					else
+					{
+						var_81731c8e = 1;
+					}
+				}
+			}
 		}
 	}
 	else if(isdefined(level.pap_machine) && (!(isdefined(level.var_a5340531) && level.var_a5340531)) && (!(isdefined(level.var_a8626e72) && level.var_a8626e72)))

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_immolation_liquidation", &__init__, undefined, #"bgb");
 }
@@ -64,8 +64,8 @@ function function_1efaba5e()
 {
 	if(zombie_utility::function_d2dfacfd(#"zombie_powerup_fire_sale_on") === 1 || (isdefined(level.disable_firesale_drop) && level.disable_firesale_drop) || !self bgb::function_9d8118f5())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

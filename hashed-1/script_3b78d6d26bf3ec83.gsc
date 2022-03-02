@@ -38,7 +38,7 @@ function init_shared()
 	Parameters: 0
 	Flags: Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	clientfield::register("scriptmover", "isJammed", 9000, 1, "int", &function_43a5b68a, 0, 0);
 	clientfield::register("missile", "isJammed", 9000, 1, "int", &function_43a5b68a, 0, 0);

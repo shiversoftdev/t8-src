@@ -28,7 +28,7 @@ function init()
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_bb753058(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_bb753058(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(!function_65b9eb0f(localclientnum))
 	{
@@ -60,7 +60,7 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c8b7588d(localclientnum)
+function private function_c8b7588d(localclientnum)
 {
 	controller_model = getuimodelforcontroller(localclientnum);
 	return createuimodel(controller_model, "ZMHud.zmRedChallengeTimer");

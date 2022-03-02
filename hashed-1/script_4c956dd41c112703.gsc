@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2a6a60ff4e0bd9d1", &__init__, &__main__, undefined);
 }
@@ -543,7 +543,7 @@ function function_11862a9b(e_player)
 	{
 		self sethintstring(#"hash_17a473c2067a81f1", 3000);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -709,7 +709,7 @@ function function_e4459089()
 */
 function function_26edbcdc(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
-	return 0;
+	return false;
 }
 
 /*

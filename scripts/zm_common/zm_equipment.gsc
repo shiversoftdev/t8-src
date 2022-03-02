@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_equipment", &__init__, &__main__, undefined);
 }
@@ -663,15 +663,18 @@ function slot_watcher(equipment)
 		{
 			self [[level.a_func_equipment_slot_watcher_override[equipment.name]]](equipment, curr_weapon, prev_weapon, notify_strings);
 		}
-		else if(curr_weapon == equipment && !self.current_equipment_active[equipment])
+		else
 		{
-			self notify(notify_strings.activate);
-			self.current_equipment_active[equipment] = 1;
-		}
-		else if(curr_weapon != equipment && self.current_equipment_active[equipment])
-		{
-			self notify(notify_strings.deactivate);
-			self.current_equipment_active[equipment] = 0;
+			if(curr_weapon == equipment && !self.current_equipment_active[equipment])
+			{
+				self notify(notify_strings.activate);
+				self.current_equipment_active[equipment] = 1;
+			}
+			else if(curr_weapon != equipment && self.current_equipment_active[equipment])
+			{
+				self notify(notify_strings.deactivate);
+				self.current_equipment_active[equipment] = 0;
+			}
 		}
 	}
 }
@@ -693,11 +696,11 @@ function is_limited(equipment)
 		{
 			if(level._limited_equipment[i] == equipment)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -717,14 +720,14 @@ function limited_in_use(equipment)
 		current_equipment = players[i] get_player_equipment();
 		if(isdefined(current_equipment) && current_equipment == equipment)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(isdefined(level.dropped_equipment) && isdefined(level.dropped_equipment[equipment]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -913,7 +916,7 @@ function show_hint_text(text, show_for_time = 3.2, font_scale = 1.25, ypos = 220
 	self notify("1caf49f0db5051c");
 	self endon("1caf49f0db5051c");
 	self endon(#"disconnect");
-	level endon_callback(&function_57fbff5c, #"end_game");
+	level endoncallback(&function_57fbff5c, #"end_game");
 	if(!level.zm_hint_text zm_hint_text::is_open(self))
 	{
 		level.zm_hint_text zm_hint_text::open(self);
@@ -921,11 +924,11 @@ function show_hint_text(text, show_for_time = 3.2, font_scale = 1.25, ypos = 220
 	level.zm_hint_text zm_hint_text::function_d5ea17f0(self, text);
 	level.zm_hint_text zm_hint_text::set_state(self, #"visible");
 	time = undefined;
-	time = self waittill_timeout(show_for_time, #"hide_equipment_hint_text", #"death", #"disconnect");
+	time = self waittilltimeout(show_for_time, #"hide_equipment_hint_text", #"death", #"disconnect");
 	if(isdefined(time) && isdefined(self) && level.zm_hint_text zm_hint_text::is_open(self))
 	{
 		level.zm_hint_text zm_hint_text::set_state(self, #"defaultstate");
-		self waittill_timeout(1, #"hide_equipment_hint_text");
+		self waittilltimeout(1, #"hide_equipment_hint_text");
 	}
 	if(isdefined(self) && level.zm_hint_text zm_hint_text::is_open(self))
 	{
@@ -1091,16 +1094,16 @@ function has_deployed_equipment(weapon)
 {
 	if(!isdefined(weapon) || !isdefined(self.deployed_equipment) || self.deployed_equipment.size < 1)
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < self.deployed_equipment.size; i++)
 	{
 		if(self.deployed_equipment[i] == weapon)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

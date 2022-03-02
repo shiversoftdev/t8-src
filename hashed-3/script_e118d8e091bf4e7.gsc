@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3e908e1bf3ee5f53", &__init__, undefined, undefined);
 }
@@ -62,7 +62,7 @@ function __init__()
 	Parameters: 13
 	Flags: Linked, Private
 */
-private function function_cef412a7(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, damagefromunderneath, modelindex, partname)
+function private function_cef412a7(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, damagefromunderneath, modelindex, partname)
 {
 	/#
 		if(isdefined(level.var_85a39c96) && level.var_85a39c96)
@@ -167,7 +167,7 @@ function function_8e13b81e()
 	Parameters: 1
 	Flags: Private
 */
-private function function_8f5f431c(entity)
+function private function_8f5f431c(entity)
 {
 }
 
@@ -253,7 +253,7 @@ function archetypezombiedogblackboardinit()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function archetypezombiedogonanimscriptedcallback(entity)
+function private archetypezombiedogonanimscriptedcallback(entity)
 {
 	entity.__blackboard = undefined;
 	entity archetypezombiedogblackboardinit();
@@ -268,7 +268,7 @@ private function archetypezombiedogonanimscriptedcallback(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bfd55b1a()
+function private function_bfd55b1a()
 {
 	self endon(#"death");
 	self ghost();
@@ -312,7 +312,7 @@ private function function_bfd55b1a()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ae78134(params)
+function private function_ae78134(params)
 {
 	if(self ishidden())
 	{
@@ -334,7 +334,7 @@ private function function_ae78134(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_69c3e2ac()
+function private function_69c3e2ac()
 {
 	self.hasseenfavoriteenemy = isdefined(self.enemy_override) || isdefined(self.favoriteenemy);
 }
@@ -348,9 +348,9 @@ private function function_69c3e2ac()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_30a35f51()
+function private function_30a35f51()
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -469,21 +469,21 @@ function use_low_attack()
 {
 	if(!isdefined(self.enemy) || !isplayer(self.enemy))
 	{
-		return 0;
+		return false;
 	}
 	height_diff = self.enemy.origin[2] - self.origin[2];
 	low_enough = 30;
 	if(height_diff < low_enough && self.enemy getstance() == "prone")
 	{
-		return 1;
+		return true;
 	}
 	melee_origin = (self.origin[0], self.origin[1], self.origin[2] + 65);
 	enemy_origin = (self.enemy.origin[0], self.enemy.origin[1], self.enemy.origin[2] + 32);
 	if(!bullettracepassed(melee_origin, enemy_origin, 0, self))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -594,7 +594,7 @@ function function_a5103696(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1980a07a(behaviortreeentity)
+function private function_1980a07a(behaviortreeentity)
 {
 	behaviortreeentity endon(#"death");
 	behaviortreeentity function_bfd55b1a();
@@ -612,7 +612,7 @@ private function function_1980a07a(behaviortreeentity)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_90dbd41(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private function_90dbd41(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity clientfield::increment("dog_spawn_fx");
 	entity ghost();
@@ -628,7 +628,7 @@ private function function_90dbd41(entity, mocompanim, mocompanimblendouttime, mo
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_2fa3612a(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private function_2fa3612a(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 }
 
@@ -641,7 +641,7 @@ private function function_2fa3612a(entity, mocompanim, mocompanimblendouttime, m
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_1f51eea3(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private function_1f51eea3(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity dontinterpolate();
 	entity forceteleport(entity.traverseendnode.origin, entity.traverseendnode.angles, 0);

@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_29467933d0da473b", &__init__, undefined, undefined);
 }
@@ -96,20 +96,23 @@ function dog_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname
 		array::add(self.var_93471229, util::playfxontag(localclientnum, level._effect[#"hash_63f497890003547"], self, "j_neck"));
 		array::add(self.var_93471229, util::playfxontag(localclientnum, level._effect[#"hash_55d6ab2c7eecbad4"], self, "tag_eye"));
 	}
-	else if(isdefined(self.var_a9305c6e))
+	else
 	{
-		self stoploopsound(self.var_a9305c6e);
-	}
-	self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, zm::get_eyeball_off_luminance(), self zm::get_eyeball_color());
-	self zm::deletezombieeyes(localclientnum);
-	if(isdefined(self.var_93471229))
-	{
-		foreach(fxhandle in self.var_93471229)
+		if(isdefined(self.var_a9305c6e))
 		{
-			deletefx(localclientnum, fxhandle);
+			self stoploopsound(self.var_a9305c6e);
 		}
+		self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, zm::get_eyeball_off_luminance(), self zm::get_eyeball_color());
+		self zm::deletezombieeyes(localclientnum);
+		if(isdefined(self.var_93471229))
+		{
+			foreach(fxhandle in self.var_93471229)
+			{
+				deletefx(localclientnum, fxhandle);
+			}
+		}
+		util::playfxontag(localclientnum, level._effect[#"dog_gib"], self, "j_spine2");
 	}
-	util::playfxontag(localclientnum, level._effect[#"dog_gib"], self, "j_spine2");
 }
 
 /*
@@ -158,7 +161,7 @@ function dog_round_fog_bank(localclientnum, oldval, newval, bnewent, binitialsna
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_33593a44(localclientnum, var_312d65d1, var_68f7ce2e, n_time = 3)
+function private function_33593a44(localclientnum, var_312d65d1, var_68f7ce2e, n_time = 3)
 {
 	self notify("3fd20b4701c90c8f");
 	self endon("3fd20b4701c90c8f");

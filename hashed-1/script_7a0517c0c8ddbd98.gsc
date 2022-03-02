@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_26aeac851e7602d1", &__init__, &__main__, undefined);
 }
@@ -132,7 +132,7 @@ function function_1d34f2b6()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1dc9be26()
+function private function_1dc9be26()
 {
 	self thread function_488c1ac2();
 }
@@ -146,16 +146,16 @@ private function function_1dc9be26()
 	Parameters: 1
 	Flags: Private
 */
-private function function_edb72673(origin)
+function private function_edb72673(origin)
 {
 	goal_pos = getclosestpointonnavmesh(origin, 200, 24);
 	if(isdefined(goal_pos))
 	{
 		self function_a57c34b7(goal_pos);
-		return 1;
+		return true;
 	}
 	self function_a57c34b7(self.origin);
-	return 0;
+	return false;
 }
 
 /*
@@ -171,19 +171,19 @@ function function_29c22852(entity)
 {
 	if(!isdefined(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.marked_for_death))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.ignoremelee) && entity.ignoremelee)
 	{
-		return 0;
+		return false;
 	}
 	if(abs(entity.origin[2] - entity.enemy.origin[2]) > 64)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.meleeweapon) && entity.meleeweapon !== level.weaponnone)
 	{
@@ -191,26 +191,26 @@ function function_29c22852(entity)
 	}
 	if(!isdefined(meleedistsq))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(entity.origin, entity.enemy.origin) > meleedistsq)
 	{
-		return 0;
+		return false;
 	}
 	yawtoenemy = angleclamp180(entity.angles[1] - (vectortoangles(entity.enemy.origin - entity.origin)[1]));
 	if(abs(yawtoenemy) > 60)
 	{
-		return 0;
+		return false;
 	}
 	if(!entity cansee(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(!tracepassedonnavmesh(entity.origin, (isdefined(entity.enemy.enemy.last_valid_position) ? entity.enemy.last_valid_position : entity.enemy.origin), entity getpathfindingradius()))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -222,7 +222,7 @@ function function_29c22852(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33b29495(entity)
+function private function_33b29495(entity)
 {
 	var_711090a2 = 0;
 	var_b77044e1 = lerpfloat(0.2, 0.8, math::clamp((level.round_number - 1) / 30, 0, 1));
@@ -242,7 +242,7 @@ private function function_33b29495(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_27a1a846(entity)
+function private function_27a1a846(entity)
 {
 	var_62d41d8f = 0;
 	if(isdefined(self.killed_enemy_player) && self.killed_enemy_player)
@@ -262,7 +262,7 @@ private function function_27a1a846(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_99ac548f(entity)
+function private function_99ac548f(entity)
 {
 	var_75aa8513 = 0;
 	if(isdefined(entity.enemy) && zm_utility::is_player_valid(entity.enemy))
@@ -285,10 +285,10 @@ private function function_99ac548f(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_488c1ac2()
+function private function_488c1ac2()
 {
 	self endon(#"death");
-	self waittill_timeout(1, #"spawn_complete");
+	self waittilltimeout(1, #"spawn_complete");
 	zm_net::network_safe_play_fx_on_tag("quad_trail", 2, self._effect[#"nova_crawler_aura_fx"], self, "j_spine4");
 }
 
@@ -301,7 +301,7 @@ private function function_488c1ac2()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d79b3357(entity, origin)
+function private function_d79b3357(entity, origin)
 {
 	playsoundatposition(#"zmb_quad_explo", origin);
 	entity clientfield::set("nova_crawler_burst_clientfield", 1);
@@ -341,7 +341,7 @@ private function function_d79b3357(entity, origin)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4632879c(entity)
+function private function_4632879c(entity)
 {
 	effectarea = spawn("trigger_radius", entity.origin, 0, 125, 100);
 	gas_time = 0;
@@ -378,7 +378,7 @@ private function function_4632879c(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_272fa9b5(entity)
+function private function_272fa9b5(entity)
 {
 	if(isdefined(self.can_explode) && self.can_explode)
 	{
@@ -412,14 +412,17 @@ function function_c5b157a6(einflictor, attacker, idamage, smeansofdeath, weapon,
 	{
 		gibserverutils::annihilate(self);
 	}
-	else if(smeansofdeath == "MOD_PISTOL_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET")
-	{
-		self.can_explode = 1;
-	}
 	else
 	{
-		self.can_explode = 0;
+		if(smeansofdeath == "MOD_PISTOL_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET")
+		{
+			self.can_explode = 1;
+		}
+		else
+		{
+			self.can_explode = 0;
+		}
+		zm_spawner::zombie_death_animscript(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime);
 	}
-	zm_spawner::zombie_death_animscript(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime);
 }
 

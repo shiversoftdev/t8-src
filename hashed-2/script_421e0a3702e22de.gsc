@@ -129,7 +129,7 @@ function function_b9e15919(b_crouch = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b85344d1()
+function private function_b85344d1()
 {
 	var_de23a374 = array("lighthouse_level_1", "lighthouse_level_2", "lighthouse_level_3");
 	while(true)
@@ -189,7 +189,7 @@ private function function_b85344d1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_57c115a8()
+function private function_57c115a8()
 {
 	level endon(#"hash_7b1d7041d240c3da");
 	self endon(#"death");
@@ -234,7 +234,7 @@ private function function_57c115a8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e81ee0e3()
+function private function_e81ee0e3()
 {
 	for(i = 0; i < self.var_f75b1f16.size; i++)
 	{
@@ -256,7 +256,7 @@ private function function_e81ee0e3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_17440011()
+function private function_17440011()
 {
 	for(i = 0; i < self.var_f75b1f16.size; i++)
 	{
@@ -443,7 +443,7 @@ function function_d9161909(index)
 	Parameters: 0
 	Flags: Private
 */
-private function function_12d23d57()
+function private function_12d23d57()
 {
 	while(true)
 	{
@@ -472,7 +472,7 @@ private function function_12d23d57()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_39614d4b()
+function private function_39614d4b()
 {
 	arrayremovevalue(self.var_f75b1f16, self.var_df3d62aa);
 	s_info = level.pablo_npc.var_cb3ed98f[level.pablo_npc.var_df3d62aa];
@@ -523,7 +523,7 @@ private function function_39614d4b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9f77ef2(s_info)
+function private function_9f77ef2(s_info)
 {
 	level endon(#"end_game");
 	var_d2d60dc4 = 0;
@@ -551,7 +551,7 @@ private function function_9f77ef2(s_info)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1dc9b29a()
+function private function_1dc9b29a()
 {
 	level endon(#"hash_7b1d7041d240c3da");
 	self endon(#"death");
@@ -567,25 +567,31 @@ private function function_1dc9b29a()
 				level function_e44c7c0c(s_info.var_fcab5f41, 0);
 				level flag::set(#"hash_6e81da82129193f6");
 			}
-			else if(s_info.var_fcab5f41 === #"vox_soap_stones_get")
+			else
 			{
-				level function_e44c7c0c("vox_vessel_pablo", 0);
-				if(level.var_98138d6b > 1)
+				if(s_info.var_fcab5f41 === #"vox_soap_stones_get")
 				{
-					level.var_1c53964e namespace_509a75d1::function_6a0d675d("vox_vessel_pablo", 0, 0, 1);
-					level function_e44c7c0c("vox_soap_stones_get", 0);
+					level function_e44c7c0c("vox_vessel_pablo", 0);
+					if(level.var_98138d6b > 1)
+					{
+						level.var_1c53964e namespace_509a75d1::function_6a0d675d("vox_vessel_pablo", 0, 0, 1);
+						level function_e44c7c0c("vox_soap_stones_get", 0);
+					}
 				}
-			}
-			else if(s_info.var_fcab5f41 == #"hash_1856b015429225fa")
-			{
-				level thread function_e44c7c0c(s_info.var_fcab5f41, 0);
-				wait(0.5);
-				self.var_cb3ed98f[10].var_fcab5f41 = #"";
-			}
-			else if(s_info.var_fcab5f41 === #"hash_38aad0b1eae4093a" && !level flag::get(#"hash_59d5ba61f4b8f405") && !level flag::get(#"hash_6a7b24db9087b2eb"))
-			{
-				level flag::set(#"hash_6a7b24db9087b2eb");
-				level thread function_e44c7c0c(s_info.var_fcab5f41, s_info.var_44dd0e20);
+				else
+				{
+					if(s_info.var_fcab5f41 == #"hash_1856b015429225fa")
+					{
+						level thread function_e44c7c0c(s_info.var_fcab5f41, 0);
+						wait(0.5);
+						self.var_cb3ed98f[10].var_fcab5f41 = #"";
+					}
+					else if(s_info.var_fcab5f41 === #"hash_38aad0b1eae4093a" && !level flag::get(#"hash_59d5ba61f4b8f405") && !level flag::get(#"hash_6a7b24db9087b2eb"))
+					{
+						level flag::set(#"hash_6a7b24db9087b2eb");
+						level thread function_e44c7c0c(s_info.var_fcab5f41, s_info.var_44dd0e20);
+					}
+				}
 			}
 			if(s_info.var_fcab5f41 !== #"hash_38aad0b1eae4093a")
 			{
@@ -708,9 +714,9 @@ function function_6248ba90(e_player)
 	if(var_832ffcd4)
 	{
 		self sethintstring(zm_utility::function_d6046228(s_info.str_hint, s_info.var_306b9dd6));
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -722,7 +728,7 @@ function function_6248ba90(e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d7e79438()
+function private function_d7e79438()
 {
 	self endon(#"death");
 	level.pablo_npc endon(#"hash_ed7147b69728896");
@@ -750,7 +756,7 @@ private function function_d7e79438()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_30a02731()
+function private function_30a02731()
 {
 	self endon(#"death");
 	playsoundatposition(#"hash_512bec1d554e89f1", self.origin);

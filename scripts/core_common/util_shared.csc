@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"util_shared", &__init__, undefined, undefined);
 }
@@ -466,7 +466,7 @@ function function_e532f5da(n_timeout, ent1, string1, ent2, string2, ent3, string
 	{
 		ent5 endon(string5);
 	}
-	ent1 waittill_timeout(n_timeout, string1);
+	ent1 waittilltimeout(n_timeout, string1);
 }
 
 /*
@@ -761,29 +761,44 @@ function single_thread(entity, func, arg1, arg2, arg3, arg4, arg5, arg6)
 	{
 		entity thread [[func]](arg1, arg2, arg3, arg4, arg5, arg6);
 	}
-	else if(isdefined(arg5))
-	{
-		entity thread [[func]](arg1, arg2, arg3, arg4, arg5);
-	}
-	else if(isdefined(arg4))
-	{
-		entity thread [[func]](arg1, arg2, arg3, arg4);
-	}
-	else if(isdefined(arg3))
-	{
-		entity thread [[func]](arg1, arg2, arg3);
-	}
-	else if(isdefined(arg2))
-	{
-		entity thread [[func]](arg1, arg2);
-	}
-	else if(isdefined(arg1))
-	{
-		entity thread [[func]](arg1);
-	}
 	else
 	{
-		entity thread [[func]]();
+		if(isdefined(arg5))
+		{
+			entity thread [[func]](arg1, arg2, arg3, arg4, arg5);
+		}
+		else
+		{
+			if(isdefined(arg4))
+			{
+				entity thread [[func]](arg1, arg2, arg3, arg4);
+			}
+			else
+			{
+				if(isdefined(arg3))
+				{
+					entity thread [[func]](arg1, arg2, arg3);
+				}
+				else
+				{
+					if(isdefined(arg2))
+					{
+						entity thread [[func]](arg1, arg2);
+					}
+					else
+					{
+						if(isdefined(arg1))
+						{
+							entity thread [[func]](arg1);
+						}
+						else
+						{
+							entity thread [[func]]();
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1179,11 +1194,11 @@ function is_valid_type_for_callback(type)
 		case "vehicle":
 		case "plane":
 		{
-			return 1;
+			return true;
 		}
 		default:
 		{
-			return 0;
+			return false;
 		}
 	}
 }
@@ -1420,17 +1435,17 @@ function function_fbce7263(team_a, team_b)
 {
 	if(team_a === team_b)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(team_a) || !isdefined(team_b))
 	{
-		return 1;
+		return true;
 	}
 	if(function_b37afded(team_a, team_b))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1463,24 +1478,24 @@ function isenemyplayer(player)
 	#/
 	if(!isplayer(player))
 	{
-		return 0;
+		return false;
 	}
 	if(player.team != "free")
 	{
 		if(player.team === self.team)
 		{
-			return 0;
+			return false;
 		}
 		if(function_b37afded(player.team, self.team))
 		{
-			return 0;
+			return false;
 		}
 	}
 	else if(player == self)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1497,25 +1512,25 @@ function function_50ed1561(localclientnum)
 	function_89a98f85();
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!self function_21c0fa55())
 	{
-		return 0;
+		return false;
 	}
 	if(function_65b9eb0f(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(localclientnum !== self getlocalclientnumber())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.localplayers[localclientnum]) && self getentitynumber() != level.localplayers[localclientnum] getentitynumber())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1531,13 +1546,13 @@ function is_player_view_linked_to_entity(localclientnum)
 {
 	if(function_fd3d58c7(localclientnum))
 	{
-		return 1;
+		return true;
 	}
 	if(function_e75c64a4(localclientnum))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1788,9 +1803,9 @@ function is_gib_restricted_build()
 {
 	if(!(ismaturecontentenabled() && isshowgibsenabled()))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1907,17 +1922,17 @@ function ent_already_in_trigger(trig)
 {
 	if(!isdefined(self._triggers))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self._triggers[trig getentitynumber()]))
 	{
-		return 0;
+		return false;
 	}
 	if(!self._triggers[trig getentitynumber()])
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2148,7 +2163,7 @@ function releaseobjid(localclientnum, objid)
 */
 function is_safehouse(str_next_map = function_53bbf9d2())
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -2179,20 +2194,23 @@ function button_held_think(which_button)
 					self._holding_button[which_button] = 0;
 				}
 			}
-			else if(self [[level._button_funcs[which_button]]]())
+			else
 			{
-				if(time_started == 0)
+				if(self [[level._button_funcs[which_button]]]())
 				{
-					time_started = gettime();
+					if(time_started == 0)
+					{
+						time_started = gettime();
+					}
+					if(gettime() - time_started > 250)
+					{
+						self._holding_button[which_button] = 1;
+					}
 				}
-				if(gettime() - time_started > 250)
+				else if(time_started != 0)
 				{
-					self._holding_button[which_button] = 1;
+					time_started = 0;
 				}
-			}
-			else if(time_started != 0)
-			{
-				time_started = 0;
 			}
 			waitframe(1);
 		}
@@ -2610,11 +2628,11 @@ function function_35aed314(teama, teamb)
 	teamb = get_team_mapping(teamb);
 	if(!isdefined(teama) || !isdefined(teamb))
 	{
-		return 0;
+		return false;
 	}
 	if(teama == teamb)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_766875b1))
 	{
@@ -2622,26 +2640,26 @@ function function_35aed314(teama, teamb)
 		{
 			if(#"any" == level.var_766875b1[teama])
 			{
-				return 1;
+				return true;
 			}
 			if(teamb == level.var_766875b1[teama])
 			{
-				return 1;
+				return true;
 			}
 		}
 		if(isdefined(level.var_766875b1[teamb]))
 		{
 			if(#"any" == level.var_766875b1[teamb])
 			{
-				return 1;
+				return true;
 			}
 			if(teama == level.var_766875b1[teamb])
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2747,7 +2765,7 @@ function function_8570168d()
 	/#
 		if(getdvar(#"hash_49e94b7aefac4f49", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(sessionmodeismultiplayergame())
@@ -2755,10 +2773,10 @@ function function_8570168d()
 		mode = function_bea73b01();
 		if(mode == 4)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2775,9 +2793,9 @@ function function_bca268b3()
 	mode = function_bea73b01();
 	if(mode == 3)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2900,25 +2918,37 @@ function function_48e57e36(var_1f1d12d8)
 			{
 				number = 10;
 			}
-			else if(var_1f1d12d8[i] == "b")
+			else
 			{
-				number = 11;
-			}
-			else if(var_1f1d12d8[i] == "c")
-			{
-				number = 12;
-			}
-			else if(var_1f1d12d8[i] == "d")
-			{
-				number = 13;
-			}
-			else if(var_1f1d12d8[i] == "e")
-			{
-				number = 14;
-			}
-			else if(var_1f1d12d8[i] == "f")
-			{
-				number = 15;
+				if(var_1f1d12d8[i] == "b")
+				{
+					number = 11;
+				}
+				else
+				{
+					if(var_1f1d12d8[i] == "c")
+					{
+						number = 12;
+					}
+					else
+					{
+						if(var_1f1d12d8[i] == "d")
+						{
+							number = 13;
+						}
+						else
+						{
+							if(var_1f1d12d8[i] == "e")
+							{
+								number = 14;
+							}
+							else if(var_1f1d12d8[i] == "f")
+							{
+								number = 15;
+							}
+						}
+					}
+				}
 			}
 			decimal = decimal + (number * base);
 			base = base * 16;

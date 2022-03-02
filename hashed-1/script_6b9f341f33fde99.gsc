@@ -40,7 +40,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"drone_squadron", &__init__, undefined, #"killstreaks");
 }
@@ -216,23 +216,23 @@ function function_d52c51c6(killstreaktype)
 			iprintlnbold("");
 		#/
 		self iprintlnbold(#"hash_62ced7a8acdaa034");
-		return 0;
+		return false;
 	}
 	if(player isplayerswimming())
 	{
 		self iprintlnbold(#"hash_425241374bdd61f0");
-		return 0;
+		return false;
 	}
 	spawnpos = calcspawnorigin(player.origin, player.angles);
 	if(!isdefined(spawnpos))
 	{
 		self iprintlnbold(#"hash_425241374bdd61f0");
-		return 0;
+		return false;
 	}
 	killstreak_id = player killstreakrules::killstreakstart("drone_squadron", player.team, 0, 1);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	player stats::function_e24eec31(getweapon(#"drone_squadron"), #"used", 1);
 	drone_squadron = spawnvehicle("veh_drone_squadron_mp", spawnpos.origin, spawnpos.angles, "dynamic_spawn_ai");
@@ -325,7 +325,7 @@ function function_d52c51c6(killstreaktype)
 	{
 		drone callback::function_d8abfc3d(#"on_vehicle_killed", &function_c94a0c4d);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -358,7 +358,7 @@ function function_1c601b99()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_576084fa(drone, var_dbd1a594)
+function private function_576084fa(drone, var_dbd1a594)
 {
 	drone.team = var_dbd1a594.team;
 	drone setteam(var_dbd1a594.team);
@@ -798,7 +798,7 @@ function function_f9ec0116(drone, leavenode)
 	drone.ignoreall = 1;
 	drone setneargoalnotifydist(40);
 	drone function_a57c34b7(leavenode.origin, 1, 1);
-	drone waittill_timeout(8, #"near_goal");
+	drone waittilltimeout(8, #"near_goal");
 	drone kill();
 }
 
@@ -958,15 +958,18 @@ function function_c7284de2()
 			function_d43ba50b(player, undefined);
 			function_410e488d(var_3f13f165, undefined);
 		}
-		else if(!isalive(player.var_bfbfc356))
+		else
 		{
-			function_d43ba50b(player, undefined);
-			function_410e488d(var_3f13f165, undefined);
-		}
-		else if(!function_74ceb0a5(var_3f13f165))
-		{
-			function_d43ba50b(player, undefined);
-			function_410e488d(var_3f13f165, undefined);
+			if(!isalive(player.var_bfbfc356))
+			{
+				function_d43ba50b(player, undefined);
+				function_410e488d(var_3f13f165, undefined);
+			}
+			else if(!function_74ceb0a5(var_3f13f165))
+			{
+				function_d43ba50b(player, undefined);
+				function_410e488d(var_3f13f165, undefined);
+			}
 		}
 		if(isdefined(player.var_49c8cc7f) && !isalive(player.var_49c8cc7f))
 		{
@@ -1010,7 +1013,7 @@ function function_c7284de2()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_410e488d(var_3f13f165, target)
+function private function_410e488d(var_3f13f165, target)
 {
 	foreach(drone in var_3f13f165.wing_drone)
 	{
@@ -1030,7 +1033,7 @@ private function function_410e488d(var_3f13f165, target)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_74ceb0a5(var_3f13f165)
+function private function_74ceb0a5(var_3f13f165)
 {
 	var_c479f7cf = var_3f13f165.wing_drone.size;
 	validcount = 0;
@@ -1043,9 +1046,9 @@ private function function_74ceb0a5(var_3f13f165)
 	}
 	if(validcount >= var_c479f7cf)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1057,7 +1060,7 @@ private function function_74ceb0a5(var_3f13f165)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_47a6b2ec(player)
+function private function_47a6b2ec(player)
 {
 	player.var_99033e70 = gameobjects::get_next_obj_id();
 	objective_add(player.var_99033e70, "active", undefined, #"hash_19883df3d28a354a");
@@ -1075,7 +1078,7 @@ private function function_47a6b2ec(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_bef71297(player, target)
+function private function_bef71297(player, target)
 {
 	/#
 		assert(isdefined(player.var_99033e70));
@@ -1103,7 +1106,7 @@ private function function_bef71297(player, target)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d0eb04e9(player)
+function private function_d0eb04e9(player)
 {
 	player.var_ce69b6d1 = gameobjects::get_next_obj_id();
 	objective_add(player.var_ce69b6d1, "active", undefined, #"hash_247ae058537c8726");
@@ -1121,7 +1124,7 @@ private function function_d0eb04e9(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d43ba50b(player, target)
+function private function_d43ba50b(player, target)
 {
 	/#
 		assert(isdefined(player.var_ce69b6d1));
@@ -1149,7 +1152,7 @@ private function function_d43ba50b(player, target)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_35909ca6(player)
+function private function_35909ca6(player)
 {
 	if(isdefined(player.var_ce69b6d1))
 	{
@@ -1177,7 +1180,7 @@ private function function_35909ca6(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a9737855(params)
+function private function_a9737855(params)
 {
 	player = self;
 	if(isdefined(player.var_e80d9471) && player.var_e80d9471)

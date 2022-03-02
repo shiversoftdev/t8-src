@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"blight_father", &function_a27b7fcf);
@@ -32,7 +32,7 @@ autoexec function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a27b7fcf()
+function private function_a27b7fcf()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -48,7 +48,7 @@ private function function_a27b7fcf()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_aefef9ae(entity)
+function private function_aefef9ae(entity)
 {
 	entity.__blackboard = undefined;
 	entity function_a27b7fcf();
@@ -70,7 +70,7 @@ private function function_aefef9ae(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 }
 
@@ -112,7 +112,7 @@ function function_e286179f(spawner, location)
 	Parameters: 1
 	Flags: Private
 */
-private function function_ac921de9(entity)
+function private function_ac921de9(entity)
 {
 	entity melee();
 }

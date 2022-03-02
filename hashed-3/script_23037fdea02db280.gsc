@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_weap_gravityspikes", &__init__, undefined, undefined);
 }
@@ -250,7 +250,7 @@ function gravity_trap_location(localclientnum, oldval, newval, bnewent, binitial
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function gravity_trap_rumble(localclientnum)
+function private gravity_trap_rumble(localclientnum)
 {
 	self endon(#"vortex_stop", #"death");
 	while(isdefined(self))
@@ -403,20 +403,23 @@ function sparky_zombie_fx_cb(localclientnum, oldval, newval, bnewent, binitialsn
 			setfxignorepause(localclientnum, self.var_499b8f7, 1);
 		}
 	}
-	else if(isdefined(self.var_16dc5d7c))
+	else
 	{
-		deletefx(localclientnum, self.var_16dc5d7c, 1);
-		self.var_16dc5d7c = undefined;
-	}
-	if(isdefined(self.var_499b8f7))
-	{
-		deletefx(localclientnum, self.var_499b8f7, 1);
-		self.var_499b8f7 = undefined;
-	}
-	if(isdefined(self.sparky_loop_snd))
-	{
-		self stoploopsound(self.sparky_loop_snd);
-		self.sparky_loop_snd = undefined;
+		if(isdefined(self.var_16dc5d7c))
+		{
+			deletefx(localclientnum, self.var_16dc5d7c, 1);
+			self.var_16dc5d7c = undefined;
+		}
+		if(isdefined(self.var_499b8f7))
+		{
+			deletefx(localclientnum, self.var_499b8f7, 1);
+			self.var_499b8f7 = undefined;
+		}
+		if(isdefined(self.sparky_loop_snd))
+		{
+			self stoploopsound(self.sparky_loop_snd);
+			self.sparky_loop_snd = undefined;
+		}
 	}
 }
 
@@ -439,11 +442,14 @@ function sparky_zombie_trail_fx_cb(localclientnum, oldval, newval, bnewent, bini
 			setfxignorepause(localclientnum, self.n_trail_fx, 1);
 		}
 	}
-	else if(isdefined(self.n_trail_fx))
+	else
 	{
-		deletefx(localclientnum, self.n_trail_fx, 1);
+		if(isdefined(self.n_trail_fx))
+		{
+			deletefx(localclientnum, self.n_trail_fx, 1);
+		}
+		self.n_trail_fx = undefined;
 	}
-	self.n_trail_fx = undefined;
 }
 
 /*
@@ -544,7 +550,7 @@ function gravity_shock_wave_fx(localclientnum, oldval, newval, bnewent, binitial
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue && !namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{
@@ -574,7 +580,7 @@ function gravity_aoe_impact_fx(localclientnum, oldval, newval, bnewent, binitial
 		self playsound(localclientnum, #"wpn_dg4_electrocution_impact");
 		self.var_747bc8da = self playloopsound(#"wpn_dg4_electrocution_loop");
 	}
-	self waittill_timeout(0.5, #"death");
+	self waittilltimeout(0.5, #"death");
 	if(!isdefined(self))
 	{
 		return;

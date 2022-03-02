@@ -398,15 +398,18 @@ function function_610d3790(einflictor, victim, idamage, weapon)
 			victim recordkillmodifier("defending");
 			scoreevents::processscoreevent(#"killed_defender", attacker, victim, weapon);
 		}
-		else if(isdefined(attacker.pers[#"defends"]))
+		else
 		{
-			attacker.pers[#"defends"]++;
-			attacker.defends = attacker.pers[#"defends"];
+			if(isdefined(attacker.pers[#"defends"]))
+			{
+				attacker.pers[#"defends"]++;
+				attacker.defends = attacker.pers[#"defends"];
+			}
+			attacker medals::defenseglobalcount();
+			attacker thread challenges::killedbaseoffender(currentobjective, weapon, einflictor);
+			victim recordkillmodifier("assaulting");
+			scoreevents::processscoreevent(#"killed_attacker", attacker, victim, weapon);
 		}
-		attacker medals::defenseglobalcount();
-		attacker thread challenges::killedbaseoffender(currentobjective, weapon, einflictor);
-		victim recordkillmodifier("assaulting");
-		scoreevents::processscoreevent(#"killed_attacker", attacker, victim, weapon);
 	}
 	if(isplayer(attacker) && attacker.pers[#"team"] != victim.pers[#"team"] && isdefined(victim.isbombcarrier) && victim.isbombcarrier == 1)
 	{
@@ -441,9 +444,9 @@ function function_a800815(victim, attacker)
 {
 	if(victim.isplanting === 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -508,21 +511,24 @@ function ondeadevent(team)
 			globallogic::function_a3e3bd39(game.defenders, 6);
 		}
 	}
-	else if(team == game.attackers)
+	else
 	{
-		enemyteam = util::get_enemy_team(team);
-		challenges::last_man_defeat_3_enemies(enemyteam);
-		if(level.bombplanted)
+		if(team == game.attackers)
 		{
-			return;
+			enemyteam = util::get_enemy_team(team);
+			challenges::last_man_defeat_3_enemies(enemyteam);
+			if(level.bombplanted)
+			{
+				return;
+			}
+			globallogic::function_a3e3bd39(game.defenders, 6);
 		}
-		globallogic::function_a3e3bd39(game.defenders, 6);
-	}
-	else if(team == game.defenders)
-	{
-		enemyteam = util::get_enemy_team(team);
-		challenges::last_man_defeat_3_enemies(enemyteam);
-		globallogic::function_a3e3bd39(game.attackers, 6);
+		else if(team == game.defenders)
+		{
+			enemyteam = util::get_enemy_team(team);
+			challenges::last_man_defeat_3_enemies(enemyteam);
+			globallogic::function_a3e3bd39(game.attackers, 6);
+		}
 	}
 }
 
@@ -1230,14 +1236,14 @@ function bombplanted(destroyedobj, player)
 	else
 	{
 		/#
-			for(index = 0; index < level.players.size; index++)
-			{
-				if(isdefined(level.players[index].carryicon))
-				{
-					level.players[index].carryicon hud::destroyelem();
-				}
-			}
+			level.players[index].carryicon hud::destroyelem();
 		#/
+		for(index = 0; index < level.players.size; index++)
+		{
+			if(isdefined(level.players[index].carryicon))
+			{
+			}
+		}
 		trace = bullettrace(player.origin + vectorscale((0, 0, 1), 20), player.origin - vectorscale((0, 0, 1), 2000), 0, player);
 		tempangle = randomfloat(360);
 		forward = (cos(tempangle), sin(tempangle), 0);
@@ -1397,7 +1403,7 @@ function bombdefused(defusedobject, player)
 	Parameters: 0
 	Flags: Private
 */
-private function set_ui_team()
+function private set_ui_team()
 {
 	wait(0.05);
 	if(game.attackers == #"allies")
@@ -1424,24 +1430,24 @@ function sd_iskillboosting()
 	roundsplayed = util::getroundsplayed();
 	if(level.playerkillsmax == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(game.totalkills > level.totalkillsmax * (roundsplayed + 1))
 	{
-		return 1;
+		return true;
 	}
 	if(self.kills > level.playerkillsmax * (roundsplayed + 1))
 	{
-		return 1;
+		return true;
 	}
 	if(level.teambased && (self.team == #"allies" || self.team == #"axis"))
 	{
 		if(game.totalkillsteam[self.team] > level.playerkillsmax * (roundsplayed + 1))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

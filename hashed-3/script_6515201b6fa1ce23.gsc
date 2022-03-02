@@ -109,7 +109,7 @@ function spawned(type)
 		{
 			player iprintlnbold(bundle.var_502a0e23);
 		}
-		return 0;
+		return false;
 	}
 	if(!player killstreakrules::iskillstreakallowed(type, player.team))
 	{
@@ -117,7 +117,7 @@ function spawned(type)
 		{
 			player [[level.var_228e8cd6]](bundle.var_1ab696c6);
 		}
-		return 0;
+		return false;
 	}
 	player tracking::track(2);
 	dog = spawn_dog(bundle, player);
@@ -127,13 +127,13 @@ function spawned(type)
 		{
 			player [[level.var_228e8cd6]](bundle.var_1ab696c6);
 		}
-		return 0;
+		return false;
 	}
 	dog killstreak_bundles::spawned(bundle);
 	dog influencers::create_entity_enemy_influencer("dog", player.team);
 	ability_player::function_c22f319e(bundle.var_1ab696c6);
 	dog clientfield::set("enemyvehicle", 1);
-	return 1;
+	return true;
 }
 
 /*
@@ -152,10 +152,10 @@ function function_a38d2d73(tacpoint)
 	{
 		if(distancesquared(tacpoint.origin, player.origin) <= (150 * 150))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -174,10 +174,10 @@ function function_4670789f(tacpoint)
 	{
 		if(function_96c81b85(tacpoint, player.origin))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -189,7 +189,7 @@ function function_4670789f(tacpoint)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9cb166cd(tacpoints)
+function private function_9cb166cd(tacpoints)
 {
 	/#
 		assert(isdefined(tacpoints) && tacpoints.size);
@@ -214,7 +214,7 @@ private function function_9cb166cd(tacpoints)
 	Parameters: 1
 	Flags: Private
 */
-private function function_fb11cc0f(owner)
+function private function_fb11cc0f(owner)
 {
 	cylinder = ai::t_cylinder(owner.origin, 800, 150);
 	angles = owner getplayerangles();
@@ -389,29 +389,29 @@ function function_8296c0eb(owner)
 {
 	if(!isdefined(owner))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(owner))
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(owner))
 	{
-		return 0;
+		return false;
 	}
 	if(owner.sessionstate == "spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(owner.sessionstate == "intermission")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.intermission) && level.intermission)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -535,7 +535,7 @@ function function_441cdbb6()
 	Parameters: 1
 	Flags: Private
 */
-private function function_e74b21de(owner)
+function private function_e74b21de(owner)
 {
 	if(isdefined(owner) && distancesquared(owner.origin, self.origin) < (256 * 256))
 	{
@@ -658,7 +658,7 @@ function function_2f6f43cf(dog, weapon)
 	Parameters: 1
 	Flags: Private
 */
-private function function_d86da2e8(params)
+function private function_d86da2e8(params)
 {
 	if(!isdefined(self) || !isdefined(params))
 	{

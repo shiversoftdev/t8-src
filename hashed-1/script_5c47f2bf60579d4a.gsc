@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_62481f126a275788", &function_f0f91440, undefined, undefined);
 }
@@ -65,7 +65,7 @@ function function_f0f91440()
 */
 function function_3eedf19c(damage_percent)
 {
-	return 0;
+	return false;
 }
 
 /*

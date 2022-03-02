@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_cleanup", &__init__, &__main__, undefined);
 }
@@ -76,7 +76,7 @@ function force_check_now()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function cleanup_main()
+function private cleanup_main()
 {
 	level endon(#"end_game");
 	n_next_eval = 0;
@@ -190,20 +190,23 @@ function do_cleanup_check(n_override_cleanup_dist)
 		{
 			n_cleanup_dist_sq = n_override_cleanup_dist;
 		}
-		else if(isdefined(e_closest_player) && player_ahead_of_me(e_closest_player))
+		else
 		{
-			if(self.zombie_move_speed === "walk")
+			if(isdefined(e_closest_player) && player_ahead_of_me(e_closest_player))
 			{
-				n_cleanup_dist_sq = (isdefined(level.registertheater_fxanim_kill_trigger_centerterminatetraverse) ? level.registertheater_fxanim_kill_trigger_centerterminatetraverse : 250000);
+				if(self.zombie_move_speed === "walk")
+				{
+					n_cleanup_dist_sq = (isdefined(level.registertheater_fxanim_kill_trigger_centerterminatetraverse) ? level.registertheater_fxanim_kill_trigger_centerterminatetraverse : 250000);
+				}
+				else
+				{
+					n_cleanup_dist_sq = (isdefined(level.var_18d20774) ? level.var_18d20774 : 189225);
+				}
 			}
 			else
 			{
-				n_cleanup_dist_sq = (isdefined(level.var_18d20774) ? level.var_18d20774 : 189225);
+				n_cleanup_dist_sq = (isdefined(level.registertheater_fxanim_kill_trigger_centerterminatetraverse) ? level.registertheater_fxanim_kill_trigger_centerterminatetraverse : 250000);
 			}
-		}
-		else
-		{
-			n_cleanup_dist_sq = (isdefined(level.registertheater_fxanim_kill_trigger_centerterminatetraverse) ? level.registertheater_fxanim_kill_trigger_centerterminatetraverse : 250000);
 		}
 		if(n_dist_sq_min >= n_cleanup_dist_sq)
 		{
@@ -221,7 +224,7 @@ function do_cleanup_check(n_override_cleanup_dist)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_96f7787d()
+function private function_96f7787d()
 {
 	self.var_61c270 = 1;
 	self delete_zombie_noone_looking();
@@ -240,7 +243,7 @@ private function function_96f7787d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function delete_zombie_noone_looking()
+function private delete_zombie_noone_looking()
 {
 	if(isdefined(self.in_the_ground) && self.in_the_ground)
 	{
@@ -295,7 +298,7 @@ function function_cdf5a512(str_archetype, var_7e1eca2)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function override_cleanup()
+function private override_cleanup()
 {
 	if(!isdefined(level.var_55a99841))
 	{
@@ -344,7 +347,7 @@ function function_39553a7c(str_archetype, func)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8327a85d(var_3a145c54)
+function private function_8327a85d(var_3a145c54)
 {
 	if(isdefined(level.var_f51ae00f) && isdefined(level.var_f51ae00f[self.archetype]))
 	{
@@ -395,7 +398,7 @@ function cleanup_zombie()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function player_can_see_me(player)
+function private player_can_see_me(player)
 {
 	return !player function_80d68e4d(self, 0.766, 1);
 }
@@ -409,7 +412,7 @@ private function player_can_see_me(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function player_ahead_of_me(player)
+function private player_ahead_of_me(player)
 {
 	v_player_angles = player getplayerangles();
 	v_player_forward = anglestoforward(v_player_angles);
@@ -417,9 +420,9 @@ private function player_ahead_of_me(player)
 	n_dot = vectordot(v_player_forward, v_dir);
 	if(n_dot < 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -495,7 +498,7 @@ function get_adjacencies_to_zone(str_zone)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_wait_locations_in_zones(a_zones)
+function private get_wait_locations_in_zones(a_zones)
 {
 	a_wait_locations = [];
 	foreach(zone in a_zones)
@@ -523,7 +526,7 @@ private function get_wait_locations_in_zones(a_zones)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_farthest_wait_location(a_wait_locations)
+function private get_farthest_wait_location(a_wait_locations)
 {
 	if(!isdefined(a_wait_locations) || a_wait_locations.size == 0)
 	{
@@ -542,7 +545,7 @@ private function get_farthest_wait_location(a_wait_locations)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_wait_locations_in_zone(zone)
+function private get_wait_locations_in_zone(zone)
 {
 	if(isdefined(level.zones[zone].a_loc_types[#"wait_location"]))
 	{
@@ -640,13 +643,16 @@ function function_c6ad3003(b_timeout = 0)
 		{
 			continue;
 		}
-		else if(b_timeout && (isdefined(ai_enemy.var_126d7bef) && ai_enemy.var_126d7bef))
+		else
 		{
-			continue;
-		}
-		else if(!b_timeout && (isdefined(ai_enemy.b_ignore_cleanup) && ai_enemy.b_ignore_cleanup))
-		{
-			continue;
+			if(b_timeout && (isdefined(ai_enemy.var_126d7bef) && ai_enemy.var_126d7bef))
+			{
+				continue;
+			}
+			else if(!b_timeout && (isdefined(ai_enemy.b_ignore_cleanup) && ai_enemy.b_ignore_cleanup))
+			{
+				continue;
+			}
 		}
 		if(!ai_enemy.allowdeath)
 		{

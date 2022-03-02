@@ -96,7 +96,7 @@ function function_43084f6c(player)
 		{
 			if(var_f53fe24c function_d210981e(player.origin))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -111,11 +111,11 @@ function function_43084f6c(player)
 			}
 			if(enemy function_d210981e(player.origin))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -131,13 +131,13 @@ function function_2c77961d(player)
 {
 	if(!isdefined(level.var_f791a4f2.var_75492b09[player.clientid]))
 	{
-		return 0;
+		return false;
 	}
 	if(gettime() > level.var_f791a4f2.var_75492b09[player.clientid].expiretime)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -153,21 +153,21 @@ function function_796e0334(player)
 {
 	if(1 && globallogic_player::function_eddea888(player))
 	{
-		return 1;
+		return true;
 	}
 	if(1 && globallogic_player::function_43084f6c(player))
 	{
-		return 1;
+		return true;
 	}
 	if(1 && function_2c77961d(player))
 	{
-		return 1;
+		return true;
 	}
 	if(1 && globallogic_player::function_ce33e204(player))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -40,7 +40,7 @@ function init()
 	Parameters: 1
 	Flags: Private
 */
-private function jump_to(str_dest)
+function private jump_to(str_dest)
 {
 	/#
 		s_dest = struct::get(str_dest);
@@ -58,7 +58,7 @@ private function jump_to(str_dest)
 	Parameters: 0
 	Flags: Private
 */
-private function devgui()
+function private devgui()
 {
 	/#
 		adddebugcommand("");

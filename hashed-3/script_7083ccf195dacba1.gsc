@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5f63e9d9cd6b7fef", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	callback::function_78ccee50(&function_78ccee50);
 	callback::function_33f0ddd3(&function_33f0ddd3);
@@ -73,7 +73,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::function_deba137d(&function_78ccee50);
 	callback::function_824d206(&function_33f0ddd3);
@@ -95,7 +95,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{
@@ -123,7 +123,7 @@ private function function_33f0ddd3(s_event)
 	Parameters: 1
 	Flags: Private
 */
-private function function_78ccee50(params)
+function private function_78ccee50(params)
 {
 	self notify("3a8478a97b3babfa");
 	self endon("3a8478a97b3babfa");
@@ -152,7 +152,7 @@ private function function_78ccee50(params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_29ee24dd(weapon)
+function private function_29ee24dd(weapon)
 {
 	self endon(#"disconnect");
 	self function_28602a03(weapon, 1, 1);

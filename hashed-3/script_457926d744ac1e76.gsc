@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5fc0100b44dd1dac", &__init__, undefined, undefined);
 }
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_ed49e96e, var_ea5e88ac, str_return, var_c728f1dd, var_aed178c2)
+function private function_d1de6a85(var_ed49e96e, var_ea5e88ac, str_return, var_c728f1dd, var_aed178c2)
 {
 	callback::add_callback(#"hash_137b937fd26992be", &function_ff66b979);
 	level flag::set(#"infinite_round_spawning");
@@ -80,7 +80,7 @@ private function function_d1de6a85(var_ed49e96e, var_ea5e88ac, str_return, var_c
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_callback(#"hash_137b937fd26992be", &function_ff66b979);
 	arrayremovevalue(level.var_2bb6b2ba, undefined);
@@ -103,7 +103,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_452ec7b3()
+function private function_452ec7b3()
 {
 	level endon(#"end_of_round");
 	wait(12);
@@ -269,7 +269,7 @@ private function function_452ec7b3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_492f4c79()
+function private function_492f4c79()
 {
 	level endon(#"hash_7646638df88a3656", #"hash_29877ed061231191");
 	zm_utility::function_75fd65f9(self.var_f7f308cd, 1);
@@ -284,7 +284,7 @@ private function function_492f4c79()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function start_timer(n_timeout, str_return)
+function private start_timer(n_timeout, str_return)
 {
 	if(!level.var_f995ece6 zm_trial_timer::is_open(self))
 	{
@@ -305,7 +305,7 @@ private function start_timer(n_timeout, str_return)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function stop_timer()
+function private stop_timer()
 {
 	if(level.var_f995ece6 zm_trial_timer::is_open(self))
 	{
@@ -323,7 +323,7 @@ private function stop_timer()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2191cc5d()
+function private function_2191cc5d()
 {
 	zone = self zm_zonemgr::get_player_zone();
 	/#
@@ -341,7 +341,7 @@ private function function_2191cc5d()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function zone_watcher(challenge, var_2d5ebf67, var_530e040f, timeout)
+function private zone_watcher(challenge, var_2d5ebf67, var_530e040f, timeout)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656", #"hash_29877ed061231191", #"host_migration_begin");
@@ -360,14 +360,17 @@ private function zone_watcher(challenge, var_2d5ebf67, var_530e040f, timeout)
 			self zm_utility::function_ba39d198(challenge.var_df62490a, 0);
 			var_60fa6139 = level.time + 0;
 		}
-		else if(level.time > var_60fa6139)
+		else
 		{
-			self stop_timer();
-		}
-		else if(!level.var_f995ece6 zm_trial_timer::is_open(self))
-		{
-			self thread start_timer(0, var_530e040f);
-			self zm_utility::function_ba39d198(challenge.var_df62490a, 1);
+			if(level.time > var_60fa6139)
+			{
+				self stop_timer();
+			}
+			else if(!level.var_f995ece6 zm_trial_timer::is_open(self))
+			{
+				self thread start_timer(0, var_530e040f);
+				self zm_utility::function_ba39d198(challenge.var_df62490a, 1);
+			}
 		}
 		if(isdefined(self.var_4cb0b91f) && self.var_4cb0b91f && !var_a5096cb5 && isalive(self) && !self laststand::player_is_in_laststand() && (!(isdefined(level.intermission) && level.intermission)))
 		{
@@ -390,7 +393,7 @@ private function zone_watcher(challenge, var_2d5ebf67, var_530e040f, timeout)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function damage_watcher()
+function private damage_watcher()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656", #"hash_29877ed061231191", #"host_migration_begin");
@@ -477,7 +480,7 @@ function function_c30f9a6e(v_start_pos, n_radius = 500)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ff66b979()
+function private function_ff66b979()
 {
 	level endon(#"end_of_round");
 	foreach(player in getplayers())

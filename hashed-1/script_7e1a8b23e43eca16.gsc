@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register("zm_aat_frostbite", &__init__, undefined, #"aat");
 }
@@ -89,21 +89,21 @@ function result(death, attacker, mod, weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a2e05e6(e_attacker)
+function private function_a2e05e6(e_attacker)
 {
 	n_current_time = float(gettime()) / 1000;
 	if(isplayer(e_attacker))
 	{
 		if(!isdefined(e_attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"]))
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(e_attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"]) && n_current_time >= (e_attacker.aat_cooldown_start[#"zm_aat_frostbite_explosion"] + 30))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

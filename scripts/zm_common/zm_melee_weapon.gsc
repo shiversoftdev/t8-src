@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"melee_weapon", &__init__, &__main__, undefined);
 }
@@ -42,7 +42,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!isdefined(level._melee_weapons))
 	{
@@ -59,7 +59,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 }
 
@@ -296,13 +296,13 @@ function player_can_see_weapon_prompt()
 {
 	if(isdefined(level._allow_melee_weapon_switching) && level._allow_melee_weapon_switching)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self zm_loadout::get_player_melee_weapon()) && self hasweapon(self zm_loadout::get_player_melee_weapon()))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -322,27 +322,61 @@ function function_e5bf8f08(player)
 	{
 		if(!self [[level.func_override_wallbuy_prompt]](player, player_has_weapon))
 		{
-			return 0;
+			return false;
 		}
 	}
-	else if(namespace_497ab7da::is_active())
+	else
 	{
-		return 0;
-	}
-	if(!player_has_weapon && !player zm_utility::is_drinking())
-	{
-		self.stub.cursor_hint = "HINT_WEAPON";
-		cost = zm_weapons::get_weapon_cost(weapon);
-		if(player bgb::is_enabled(#"hash_4a6b297c85fafec1"))
+		if(namespace_497ab7da::is_active())
 		{
-			if(function_8b1a219a())
+			return false;
+		}
+		if(!player_has_weapon && !player zm_utility::is_drinking())
+		{
+			self.stub.cursor_hint = "HINT_WEAPON";
+			cost = zm_weapons::get_weapon_cost(weapon);
+			if(player bgb::is_enabled(#"hash_4a6b297c85fafec1"))
 			{
-				self.stub.hint_string = #"hash_7a24a147b8f09767";
+				if(function_8b1a219a())
+				{
+					self.stub.hint_string = #"hash_7a24a147b8f09767";
+				}
+				else
+				{
+					self.stub.hint_string = #"hash_791fe9da17cf7059";
+				}
+				if(self.stub.var_8d306e51)
+				{
+					self sethintstringforplayer(player, self.stub.hint_string);
+				}
+				else
+				{
+					self sethintstring(self.stub.hint_string);
+				}
 			}
 			else
 			{
-				self.stub.hint_string = #"hash_791fe9da17cf7059";
+				if(function_8b1a219a())
+				{
+					self.stub.hint_string = #"hash_2791ecebb85142c4";
+				}
+				else
+				{
+					self.stub.hint_string = #"hash_60606b68e93a29c8";
+				}
+				if(self.stub.var_8d306e51)
+				{
+					self sethintstringforplayer(player, self.stub.hint_string);
+				}
+				else
+				{
+					self sethintstring(self.stub.hint_string);
+				}
 			}
+		}
+		else
+		{
+			self.stub.hint_string = "";
 			if(self.stub.var_8d306e51)
 			{
 				self sethintstringforplayer(player, self.stub.hint_string);
@@ -351,41 +385,13 @@ function function_e5bf8f08(player)
 			{
 				self sethintstring(self.stub.hint_string);
 			}
+			return false;
 		}
-		else if(function_8b1a219a())
-		{
-			self.stub.hint_string = #"hash_2791ecebb85142c4";
-		}
-		else
-		{
-			self.stub.hint_string = #"hash_60606b68e93a29c8";
-		}
-		if(self.stub.var_8d306e51)
-		{
-			self sethintstringforplayer(player, self.stub.hint_string);
-		}
-		else
-		{
-			self sethintstring(self.stub.hint_string);
-		}
-	}
-	else
-	{
-		self.stub.hint_string = "";
-		if(self.stub.var_8d306e51)
-		{
-			self sethintstringforplayer(player, self.stub.hint_string);
-		}
-		else
-		{
-			self sethintstring(self.stub.hint_string);
-		}
-		return 0;
 	}
 	self.stub.cursor_hint = "HINT_WEAPON";
 	self.stub.cursor_hint_weapon = weapon;
 	self setcursorhint(self.stub.cursor_hint, self.stub.cursor_hint_weapon);
-	return 1;
+	return true;
 }
 
 /*

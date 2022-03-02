@@ -380,7 +380,7 @@ function function_d075d6e9()
 */
 function function_2438d55e(s_spawn_loc)
 {
-	self endon_callback(&bat_death, #"death");
+	self endoncallback(&bat_death, #"death");
 	if(isdefined(s_spawn_loc))
 	{
 		if(isdefined(s_spawn_loc.target))
@@ -709,10 +709,10 @@ function function_e91102ad()
 	{
 		if(player util::is_player_looking_at(self.origin + vectorscale((0, 0, 1), 64)))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -733,10 +733,10 @@ function function_1a27cc15()
 		var_91dfe7f4 = e_entity zm_utility::get_current_zone();
 		if(var_91dfe7f4 === var_bdf9e3c2)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -783,7 +783,15 @@ function function_84c5200d(entity)
 		#/
 		entity thread function_d1371239(var_a9e4d1ee);
 	}
-	iprintlnbold("");
+	else
+	{
+		/#
+			iprintlnbold("");
+		#/
+		if(var_a9e4d1ee == 0)
+		{
+		}
+	}
 }
 
 /*

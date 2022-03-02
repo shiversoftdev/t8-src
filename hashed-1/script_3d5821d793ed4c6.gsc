@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3370c2289a4cfc20", &__init__, undefined, undefined);
 }
@@ -34,7 +34,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	createuimodel(getglobaluimodel(), "ZMHudGlobal.trials.roundNumber");
 	createuimodel(getglobaluimodel(), "ZMHudGlobal.trials.roundSuccess");
@@ -71,7 +71,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_localplayer_connect(localclientnum)
+function private on_localplayer_connect(localclientnum)
 {
 	timer_model = function_c8b7588d(localclientnum);
 	setuimodelvalue(timer_model, 0);
@@ -86,7 +86,7 @@ private function on_localplayer_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function finalize_clientfields(localclientnum)
+function private finalize_clientfields(localclientnum)
 {
 	clientfield::register("world", "ZMHudGlobal.trials.trialIndex", 1, getminbitcountfornum(15), "int", &function_741dae5b, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_6536ca4fb2858a9f", 16000, 1, "int", &function_ff287922, 0, 0);
@@ -129,7 +129,7 @@ private function finalize_clientfields(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_ff287922(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_ff287922(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -150,7 +150,7 @@ private function function_ff287922(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_741dae5b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_741dae5b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	level.var_6d87ac05 = zm_trial::function_ce2fdd3b(newval);
 }
@@ -164,7 +164,7 @@ private function function_741dae5b(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_88806df3(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_88806df3(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	var_ef0a371f = newval - 1;
 	if(isdefined(level.var_6d87ac05) && isdefined(level.var_6d87ac05.rounds[var_ef0a371f]))
@@ -190,7 +190,7 @@ private function function_88806df3(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_686840b2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_686840b2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	level.var_a2859227 = newval;
 	function_d59810a5();
@@ -210,7 +210,7 @@ private function function_686840b2(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_b9a5a377(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_b9a5a377(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	level.var_411ba6f4 = newval;
 	function_d59810a5();
@@ -225,7 +225,7 @@ private function function_b9a5a377(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_bb753058(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_bb753058(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(!function_65b9eb0f(localclientnum))
 	{
@@ -244,7 +244,7 @@ private function function_bb753058(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_4b6a4a84(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_4b6a4a84(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self function_97444b02(localclientnum);
 }
@@ -258,7 +258,7 @@ private function function_4b6a4a84(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c3febfe1(local_client_num)
+function private function_c3febfe1(local_client_num)
 {
 	if(isdefined(level.var_1420e3f6))
 	{
@@ -282,7 +282,7 @@ private function function_c3febfe1(local_client_num)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f036a6da(local_client_num)
+function private function_f036a6da(local_client_num)
 {
 	if(isdefined(level.var_1420e3f6))
 	{
@@ -307,7 +307,7 @@ private function function_f036a6da(local_client_num)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d59810a5()
+function private function_d59810a5()
 {
 	/#
 		assert(isdefined(level.var_a2859227));
@@ -337,7 +337,7 @@ private function function_d59810a5()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c8b7588d(localclientnum)
+function private function_c8b7588d(localclientnum)
 {
 	controller_model = getuimodelforcontroller(localclientnum);
 	return createuimodel(controller_model, "ZMHud.trialsTimer");

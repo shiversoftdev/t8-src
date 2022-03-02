@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7f418a238d76b74f", &__init__, undefined, undefined);
 }
@@ -62,7 +62,7 @@ function __init__()
 	Parameters: 7
 	Flags: Private
 */
-private function function_7d5fa1ae(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_7d5fa1ae(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self))
@@ -85,7 +85,7 @@ private function function_7d5fa1ae(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_c6aa29ea(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_c6aa29ea(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -107,7 +107,7 @@ private function function_c6aa29ea(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_caf74103(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_caf74103(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -129,7 +129,7 @@ private function function_caf74103(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_bc64a2a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_bc64a2a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -151,7 +151,7 @@ private function function_bc64a2a(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Private
 */
-private function function_c4fff539(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_c4fff539(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -173,7 +173,7 @@ private function function_c4fff539(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_de0a50df(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_de0a50df(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -195,7 +195,7 @@ private function function_de0a50df(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_67ad42f3(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_67ad42f3(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_12f12714214cc841"], self, "tag_sac_fx_le");
 }
@@ -209,7 +209,7 @@ private function function_67ad42f3(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_f102952d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_f102952d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_12f12714214cc841"], self, "tag_sac_fx_ri");
 }
@@ -223,7 +223,7 @@ private function function_f102952d(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_192c82f8(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_192c82f8(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
@@ -249,7 +249,7 @@ private function function_192c82f8(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_e47c2324(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_e47c2324(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -270,7 +270,7 @@ private function function_e47c2324(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Private
 */
-private function function_f02b0934(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_f02b0934(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	position = self.origin;
 	angles = self.angles;
@@ -291,7 +291,7 @@ private function function_f02b0934(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Private
 */
-private function function_7d5e27f4(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_7d5e27f4(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	function_36e4ebd4(localclientnum, "damage_heavy");
 }
@@ -305,7 +305,7 @@ private function function_7d5e27f4(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Private
 */
-private function function_75be2854(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_75be2854(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -349,13 +349,16 @@ function function_958ba8d1(localclientnum, pos, surface, notetrack, bone)
 	{
 		function_36e4ebd4(localclientnum, "anim_med");
 	}
-	else if(n_scale <= 0.2 && n_scale > 0.1)
-	{
-		function_36e4ebd4(localclientnum, "damage_light");
-	}
 	else
 	{
-		function_36e4ebd4(localclientnum, "damage_light");
+		if(n_scale <= 0.2 && n_scale > 0.1)
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
+		else
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
 	}
 }
 

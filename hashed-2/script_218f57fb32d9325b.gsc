@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function registerbehaviorscriptfunctions()
+function autoexec registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&shouldreturntocovercondition));
@@ -135,31 +135,31 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 	}
 	if(isdefined(level.aidisablegrenadethrows) && level.aidisablegrenadethrows)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(!issentient(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(isvehicle(entity.enemy) && isairborne(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.grenadeammo) && entity.grenadeammo <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(ai::hasaiattribute(entity, "useGrenades") && !ai::getaiattribute(entity, "useGrenades"))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(entity.enemy) && entity.enemy laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	entityangles = entity.angles;
 	if(isdefined(entity.node) && (entity.node.type == #"hash_63cbb4767da2a801" || entity.node.type == #"hash_2a7b1ca393696762" || entity.node.type == #"hash_7a0e62fbbe3989d4" || (entity.node.type == #"hash_581529fff05853f0" || entity.node.type == #"hash_1bb444d857814e92") || (entity.node.type == #"hash_6d8019ab9d39bf96" || entity.node.type == #"hash_280d1247a6abdbae" || entity.node.type == #"hash_171465527444ed14")) && entity isatcovernodestrict())
@@ -172,7 +172,7 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 	entityforward = vectornormalize((entityforward[0], entityforward[1], 0));
 	if(vectordot(toenemy, entityforward) < 0.5)
 	{
-		return 0;
+		return false;
 	}
 	if(!throwifpossible)
 	{
@@ -184,7 +184,7 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 			{
 				if(distancesquared(entity.enemy.origin, player.origin) <= 640000)
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
@@ -194,7 +194,7 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 			{
 				if(isdefined(player) && player laststand::player_is_in_laststand() && distancesquared(entity.enemy.origin, player.origin) <= 640000)
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
@@ -203,7 +203,7 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 		{
 			if(grenadethrowinfo.data.grenadethrowerteam === entity.team)
 			{
-				return 0;
+				return false;
 			}
 		}
 		grenadethrowinfos = blackboard::getblackboardevents("human_grenade_throw");
@@ -213,15 +213,15 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 			{
 				if(grenadethrowinfo.data.grenadethrower == entity)
 				{
-					return 0;
+					return false;
 				}
 				if(isdefined(grenadethrowinfo.data.grenadethrownat) && grenadethrowinfo.data.grenadethrownat == entity.enemy)
 				{
-					return 0;
+					return false;
 				}
 				if(isdefined(grenadethrowinfo.data.grenadethrownposition) && isdefined(entity.grenadethrowposition) && distancesquared(grenadethrowinfo.data.grenadethrownposition, entity.grenadethrowposition) <= 1440000)
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
@@ -229,15 +229,15 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 	throw_dist = distance2dsquared(entity.origin, entity lastknownpos(entity.enemy));
 	if(throw_dist < (500 * 500) || throw_dist > (1250 * 1250))
 	{
-		return 0;
+		return false;
 	}
 	arm_offset = temp_get_arm_offset(entity, entity lastknownpos(entity.enemy));
 	throw_vel = entity canthrowgrenadepos(arm_offset, entity lastknownpos(entity.enemy));
 	if(!isdefined(throw_vel))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -249,7 +249,7 @@ function shouldthrowgrenadeatcovercondition(entity, throwifpossible = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function sensenearbyplayers(entity)
+function private sensenearbyplayers(entity)
 {
 	players = getplayers();
 	foreach(player in players)
@@ -276,7 +276,7 @@ private function sensenearbyplayers(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function coverpreparetothrowgrenade(entity)
+function private coverpreparetothrowgrenade(entity)
 {
 	aiutility::keepclaimednodeandchoosecoverdirection(entity);
 	if(isdefined(entity.enemy))
@@ -303,7 +303,7 @@ private function coverpreparetothrowgrenade(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function covercleanuptothrowgrenade(entity)
+function private covercleanuptothrowgrenade(entity)
 {
 	aiutility::resetcoverparameters(entity);
 	if(entity.preparegrenadeammo == entity.grenadeammo)
@@ -338,7 +338,7 @@ private function covercleanuptothrowgrenade(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function canchangestanceatcovercondition(entity)
+function private canchangestanceatcovercondition(entity)
 {
 	switch(entity getblackboardattribute("_stance"))
 	{
@@ -363,13 +363,13 @@ private function canchangestanceatcovercondition(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldreturntosuppressedcover(entity)
+function private shouldreturntosuppressedcover(entity)
 {
 	if(!entity isatgoal())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -381,7 +381,7 @@ private function shouldreturntosuppressedcover(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldreturntocovercondition(entity)
+function private shouldreturntocovercondition(entity)
 {
 	if(entity asmistransitionrunning())
 	{
@@ -430,29 +430,29 @@ private function shouldreturntocovercondition(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldadjusttocover(entity)
+function private shouldadjusttocover(entity)
 {
 	if(!isdefined(entity.node))
 	{
-		return 0;
+		return false;
 	}
 	highestsupportedstance = aiutility::gethighestnodestance(entity.node);
 	currentstance = entity getblackboardattribute("_stance");
 	if(currentstance == "crouch" && highestsupportedstance == "crouch")
 	{
-		return 0;
+		return false;
 	}
 	covermode = entity getblackboardattribute("_cover_mode");
 	previouscovermode = entity getblackboardattribute("_previous_cover_mode");
 	if(covermode != "cover_alert" && previouscovermode != "cover_alert" && !entity.keepclaimednode)
 	{
-		return 1;
+		return true;
 	}
 	if(!aiutility::isstanceallowedatnode(currentstance, entity.node))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -464,7 +464,7 @@ private function shouldadjusttocover(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldvantageatcovercondition(entity)
+function private shouldvantageatcovercondition(entity)
 {
 	if(!isdefined(entity.node) || !isdefined(entity.node.type) || !isdefined(entity.enemy) || !isdefined(entity.enemy.origin))
 	{
@@ -490,9 +490,9 @@ private function shouldvantageatcovercondition(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function supportsvantagecovercondition(entity)
+function private supportsvantagecovercondition(entity)
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -504,7 +504,7 @@ private function supportsvantagecovercondition(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function covervantageinitialize(entity, asmstatename)
+function private covervantageinitialize(entity, asmstatename)
 {
 	aiutility::keepclaimnode(entity);
 	entity setblackboardattribute("_cover_mode", "cover_vantage");
@@ -519,7 +519,7 @@ private function covervantageinitialize(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function coverblindfireshootactionstart(entity, asmstatename)
+function private coverblindfireshootactionstart(entity, asmstatename)
 {
 	aiutility::keepclaimnode(entity);
 	entity setblackboardattribute("_cover_mode", "cover_blind");
@@ -535,7 +535,7 @@ private function coverblindfireshootactionstart(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function preparetochangestancetostand(entity, asmstatename)
+function private preparetochangestancetostand(entity, asmstatename)
 {
 	aiutility::cleanupcovermode(entity);
 	entity setblackboardattribute("_desired_stance", "stand");
@@ -550,7 +550,7 @@ private function preparetochangestancetostand(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function cleanupchangestancetostand(entity, asmstatename)
+function private cleanupchangestancetostand(entity, asmstatename)
 {
 	aiutility::releaseclaimnode(entity);
 	entity.newenemyreaction = 0;
@@ -565,7 +565,7 @@ private function cleanupchangestancetostand(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function preparetochangestancetocrouch(entity, asmstatename)
+function private preparetochangestancetocrouch(entity, asmstatename)
 {
 	aiutility::cleanupcovermode(entity);
 	entity setblackboardattribute("_desired_stance", "crouch");
@@ -580,7 +580,7 @@ private function preparetochangestancetocrouch(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function cleanupchangestancetocrouch(entity, asmstatename)
+function private cleanupchangestancetocrouch(entity, asmstatename)
 {
 	aiutility::releaseclaimnode(entity);
 	entity.newenemyreaction = 0;
@@ -595,7 +595,7 @@ private function cleanupchangestancetocrouch(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function prepareforadjusttocover(entity, asmstatename)
+function private prepareforadjusttocover(entity, asmstatename)
 {
 	aiutility::keepclaimnode(entity);
 	highestsupportedstance = aiutility::gethighestnodestance(entity.node);
@@ -611,7 +611,7 @@ private function prepareforadjusttocover(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function coverchangestanceactionstart(entity, asmstatename)
+function private coverchangestanceactionstart(entity, asmstatename)
 {
 	entity setblackboardattribute("_cover_mode", "cover_alert");
 	aiutility::keepclaimnode(entity);
@@ -664,59 +664,71 @@ function temp_get_arm_offset(entity, throwposition)
 				arm_offset = (-45, 0, 40);
 			}
 		}
-		else if(entity.node.type == #"hash_2a7b1ca393696762")
+		else
 		{
-			if(stance == "crouch")
+			if(entity.node.type == #"hash_2a7b1ca393696762")
 			{
-				arm_offset = (46, 12, 26);
-			}
-			else
-			{
-				arm_offset = (34, -21, 50);
-			}
-		}
-		else if(entity.node.type == #"hash_581529fff05853f0" || entity.node.type == #"hash_1bb444d857814e92")
-		{
-			arm_offset = (10, 7, 77);
-		}
-		else if(entity.node.type == #"hash_6d8019ab9d39bf96" || entity.node.type == #"hash_280d1247a6abdbae" || entity.node.type == #"hash_171465527444ed14")
-		{
-			arm_offset = (19, 5, 60);
-		}
-		else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
-		{
-			leftoffset = undefined;
-			rightoffset = undefined;
-			if(stance == "crouch")
-			{
-				leftoffset = (-20, 0, 35);
-				rightoffset = (34, 6, 50);
-			}
-			else
-			{
-				leftoffset = (-24, 0, 76);
-				rightoffset = (24, 0, 76);
-			}
-			if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024)
-			{
-				arm_offset = rightoffset;
-			}
-			else if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 2048) == 2048)
-			{
-				arm_offset = leftoffset;
-			}
-			else
-			{
-				yawtoenemyposition = angleclamp180((vectortoangles(throwposition - entity.node.origin)[1]) - entity.node.angles[1]);
-				aimlimitsfordirectionright = entity getaimlimitsfromentry("pillar_right_lean");
-				legalrightdirectionyaw = yawtoenemyposition >= (aimlimitsfordirectionright[#"aim_right"] - 10) && yawtoenemyposition <= 0;
-				if(legalrightdirectionyaw)
+				if(stance == "crouch")
 				{
-					arm_offset = rightoffset;
+					arm_offset = (46, 12, 26);
 				}
 				else
 				{
-					arm_offset = leftoffset;
+					arm_offset = (34, -21, 50);
+				}
+			}
+			else
+			{
+				if(entity.node.type == #"hash_581529fff05853f0" || entity.node.type == #"hash_1bb444d857814e92")
+				{
+					arm_offset = (10, 7, 77);
+				}
+				else
+				{
+					if(entity.node.type == #"hash_6d8019ab9d39bf96" || entity.node.type == #"hash_280d1247a6abdbae" || entity.node.type == #"hash_171465527444ed14")
+					{
+						arm_offset = (19, 5, 60);
+					}
+					else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+					{
+						leftoffset = undefined;
+						rightoffset = undefined;
+						if(stance == "crouch")
+						{
+							leftoffset = (-20, 0, 35);
+							rightoffset = (34, 6, 50);
+						}
+						else
+						{
+							leftoffset = (-24, 0, 76);
+							rightoffset = (24, 0, 76);
+						}
+						if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024)
+						{
+							arm_offset = rightoffset;
+						}
+						else
+						{
+							if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 2048) == 2048)
+							{
+								arm_offset = leftoffset;
+							}
+							else
+							{
+								yawtoenemyposition = angleclamp180((vectortoangles(throwposition - entity.node.origin)[1]) - entity.node.angles[1]);
+								aimlimitsfordirectionright = entity getaimlimitsfromentry("pillar_right_lean");
+								legalrightdirectionyaw = yawtoenemyposition >= (aimlimitsfordirectionright[#"aim_right"] - 10) && yawtoenemyposition <= 0;
+								if(legalrightdirectionyaw)
+								{
+									arm_offset = rightoffset;
+								}
+								else
+								{
+									arm_offset = leftoffset;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -733,7 +745,7 @@ function temp_get_arm_offset(entity, throwposition)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f120d301(entity)
+function private function_f120d301(entity)
 {
 	return ai::hasaiattribute(entity, "useGrenadeLauncher") && ai::getaiattribute(entity, "useGrenadeLauncher");
 }
@@ -747,7 +759,7 @@ private function function_f120d301(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ae382dda(entity)
+function private function_ae382dda(entity)
 {
 	return ai::hasaiattribute(entity, "useLightningGun") && ai::getaiattribute(entity, "useLightningGun");
 }
@@ -761,7 +773,7 @@ private function function_ae382dda(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e17114c2(entity)
+function private function_e17114c2(entity)
 {
 	return ai::hasaiattribute(entity, "useAnnihilator") && ai::getaiattribute(entity, "useAnnihilator");
 }
@@ -775,7 +787,7 @@ private function function_e17114c2(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b1b24a11(entity)
+function private function_b1b24a11(entity)
 {
 	entity.blockingpain = 1;
 	entity ai::gun_switchto("hero_pineapplegun", "right");
@@ -790,7 +802,7 @@ private function function_b1b24a11(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_60315632(entity)
+function private function_60315632(entity)
 {
 	entity.blockingpain = 1;
 	entity ai::gun_switchto("hero_lightninggun", "right");
@@ -805,7 +817,7 @@ private function function_60315632(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2221fee7(entity)
+function private function_2221fee7(entity)
 {
 	entity.blockingpain = 1;
 	entity ai::gun_switchto("hero_annihilator", "right");

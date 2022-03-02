@@ -103,14 +103,17 @@ function function_272aa016(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.sfx_id = self playloopsound(#"hash_5760b615b9b749d2");
 		}
 	}
-	else if(isdefined(self.fx_id))
+	else
 	{
-		stopfx(localclientnum, self.fx_id);
-	}
-	if(isdefined(self.sfx_id))
-	{
-		self stoploopsound(self.sfx_id);
-		self.sfx_id = undefined;
+		if(isdefined(self.fx_id))
+		{
+			stopfx(localclientnum, self.fx_id);
+		}
+		if(isdefined(self.sfx_id))
+		{
+			self stoploopsound(self.sfx_id);
+			self.sfx_id = undefined;
+		}
 	}
 }
 
@@ -127,7 +130,7 @@ function function_a27b945a(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(!isdefined(level.s_boss_battle.var_4475b443))
 	{
-		return 0;
+		return false;
 	}
 	str_tag = "tag_origin";
 	level beam::launch(level.s_boss_battle.var_4475b443, str_tag, self, "j_spine4", "beam8_zm_red_peg_lightning_strike", 1);
@@ -205,7 +208,7 @@ function function_37d1ee2e(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e9aa9e80(localclientnum)
+function private function_e9aa9e80(localclientnum)
 {
 	self endon(#"death", #"hash_5531647ca0352039");
 	while(!isdefined(level.var_76234ae5[localclientnum]))
@@ -252,7 +255,7 @@ private function function_e9aa9e80(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_954b9602(localclientnum)
+function private function_954b9602(localclientnum)
 {
 	self waittill(#"death", #"hash_5531647ca0352039");
 	if(isdefined(self.fx_arc))
@@ -288,17 +291,20 @@ function function_5091797(localclientnum, oldval, newval, bnewent, binitialsnap,
 			self.var_6450813b = self playloopsound(#"hash_117558f0dda6471f");
 		}
 	}
-	else if(isdefined(self.var_cc9c5baa))
+	else
 	{
-		stopfx(localclientnum, self.var_cc9c5baa);
+		if(isdefined(self.var_cc9c5baa))
+		{
+			stopfx(localclientnum, self.var_cc9c5baa);
+		}
+		if(isdefined(self.var_6450813b))
+		{
+			self playsound(localclientnum, #"hash_ae4b548c1d4a748");
+			self stoploopsound(self.var_6450813b);
+			self.var_6450813b = undefined;
+		}
+		util::playfxontag(localclientnum, level._effect[#"hash_b784dd4d224f7e"], self, str_fx_tag);
 	}
-	if(isdefined(self.var_6450813b))
-	{
-		self playsound(localclientnum, #"hash_ae4b548c1d4a748");
-		self stoploopsound(self.var_6450813b);
-		self.var_6450813b = undefined;
-	}
-	util::playfxontag(localclientnum, level._effect[#"hash_b784dd4d224f7e"], self, str_fx_tag);
 }
 
 /*

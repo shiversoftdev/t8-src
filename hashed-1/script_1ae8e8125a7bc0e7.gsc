@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7f404914b14e9019", &__init__, undefined, undefined);
 }
@@ -302,7 +302,7 @@ function function_9defb976(var_38280f2f, delta = 1)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_902ef0de(var_38280f2f, delta)
+function private function_902ef0de(var_38280f2f, delta)
 {
 	/#
 		if(getdvarint(#"scr_contract_debug_multiplier", 0) > 0)

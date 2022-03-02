@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hawk", &__init__, undefined, undefined);
 }
@@ -122,7 +122,7 @@ event function_e011eea6(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a2270a7e(vehicle)
+function private function_a2270a7e(vehicle)
 {
 	self notify("5137fb3aeff763b1");
 	self endon("5137fb3aeff763b1");
@@ -166,7 +166,7 @@ private function function_a2270a7e(vehicle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_vehicle_killed(params)
+function private on_vehicle_killed(params)
 {
 	self endon(#"death", #"free_vehicle");
 	if(!isdefined(self.scriptvehicletype) || self.scriptvehicletype != "hawk")

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_53a5a75770adb550", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 7
 	Flags: Private
 */
-private function function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var_dd2fad64, var_873a1b70, var_957937ee, var_9c56c5a9)
+function private function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var_dd2fad64, var_873a1b70, var_957937ee, var_9c56c5a9)
 {
 	switch(getplayers().size)
 	{
@@ -127,7 +127,7 @@ private function function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_ai_killed(&on_ai_killed);
 	if(!round_reset)
@@ -169,7 +169,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function on_ai_killed(params)
+function private on_ai_killed(params)
 {
 	w_root = zm_weapons::function_386dacbc(params.weapon);
 	b_valid_weapon = 0;

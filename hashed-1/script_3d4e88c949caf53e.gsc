@@ -6,25 +6,25 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\load.csc;
 
-#namespace namespace_7d0afffb;
+#namespace bgb_pack;
 
 /*
 	Name: function_89f2df9
-	Namespace: namespace_7d0afffb
+	Namespace: bgb_pack
 	Checksum: 0x10419B8E
 	Offset: 0x138
 	Size: 0x44
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
-	system::register(#"hash_32ae8c790d76cf14", &__init__, &__main__, undefined);
+	system::register(#"bgb_pack", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_7d0afffb
+	Namespace: bgb_pack
 	Checksum: 0xB0CB3680
 	Offset: 0x188
 	Size: 0x1C6
@@ -50,14 +50,14 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_7d0afffb
+	Namespace: bgb_pack
 	Checksum: 0xEE02267F
 	Offset: 0x358
 	Size: 0x26
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	if(!(isdefined(level.bgb_in_use) && level.bgb_in_use))
 	{

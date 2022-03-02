@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_c25f006b5e1726d", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(kill_count)
+function private function_d1de6a85(kill_count)
 {
 	self.kill_count = zm_trial::function_5769f26a(kill_count);
 	foreach(player in getplayers())
@@ -74,7 +74,7 @@ private function function_d1de6a85(kill_count)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -115,7 +115,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function function_7f62f098(challenge)
+function private function_7f62f098(challenge)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -144,7 +144,7 @@ private function function_7f62f098(challenge)
 	Parameters: 1
 	Flags: Private
 */
-private function function_69c5df45(challenge)
+function private function_69c5df45(challenge)
 {
 	level endon(#"hash_7646638df88a3656");
 	while(true)
@@ -186,7 +186,7 @@ private function function_69c5df45(challenge)
 	Parameters: 1
 	Flags: Private
 */
-private function function_138aec8e(attacker)
+function private function_138aec8e(attacker)
 {
 	if(isdefined(self.nuked) && self.nuked)
 	{

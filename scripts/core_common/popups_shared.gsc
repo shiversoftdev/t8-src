@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"popups", &__init__, undefined, undefined);
 }
@@ -581,37 +581,49 @@ function notif_devgui_challenges_think()
 			{
 				type = 0;
 			}
-			else if(type == "")
-			{
-				itemindex = 4;
-				type = 3;
-			}
-			else if(type == "")
-			{
-				itemindex = 1;
-				type = 4;
-			}
-			else if(type == "")
-			{
-				type = 2;
-			}
-			else if(type == "")
-			{
-				type = 5;
-			}
 			else
 			{
-				itemindex = getdvarint(#"hash_1a10d0fbf3a34f63", 0);
-				if(itemindex == 0)
+				if(type == "")
 				{
-					currentweaponname = player.currentweapon.name;
-					itemindex = getitemindexfromref(currentweaponname);
-					if(itemindex == 0)
+					itemindex = 4;
+					type = 3;
+				}
+				else
+				{
+					if(type == "")
 					{
-						itemindex = 225;
+						itemindex = 1;
+						type = 4;
+					}
+					else
+					{
+						if(type == "")
+						{
+							type = 2;
+						}
+						else
+						{
+							if(type == "")
+							{
+								type = 5;
+							}
+							else
+							{
+								itemindex = getdvarint(#"hash_1a10d0fbf3a34f63", 0);
+								if(itemindex == 0)
+								{
+									currentweaponname = player.currentweapon.name;
+									itemindex = getitemindexfromref(currentweaponname);
+									if(itemindex == 0)
+									{
+										itemindex = 225;
+									}
+								}
+								type = 1;
+							}
+						}
 					}
 				}
-				type = 1;
 			}
 			xpreward = int(tablelookupcolumnforrow(tablename, row, 6));
 			challengeid = int(tablelookupcolumnforrow(tablename, row, 0));
@@ -798,9 +810,9 @@ function shoulddisplayteammessages()
 {
 	if(level.hardcoremode == 1 || level.splitscreen == 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

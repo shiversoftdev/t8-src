@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4b3ed0fe5b1cda21", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	str_targetname = "trials_shoot_from_water";
 	callback::function_33f0ddd3(&function_33f0ddd3);
@@ -69,7 +69,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
 	level zm_trial::function_25ee130(0);
@@ -90,7 +90,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_9e0e99e1()
+function private function_9e0e99e1()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -150,7 +150,7 @@ private function function_9e0e99e1()
 	Parameters: 1
 	Flags: Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon" || s_event.event === "give_weapon_alt" || s_event.event == "give_weapon_dual")
 	{

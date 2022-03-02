@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_72db755dcbd0602c", &__init__, undefined, undefined);
 }
@@ -111,16 +111,19 @@ function function_f420a36b(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_e3d27e69 = self playloopsound(#"hash_d377c202c27be3f");
 		}
 	}
-	else if(isdefined(self.var_a6da95e6))
+	else
 	{
-		deletefx(localclientnum, self.var_a6da95e6, 0);
-		self.var_a6da95e6 = undefined;
-	}
-	if(isdefined(self.var_e3d27e69))
-	{
-		self playsound(localclientnum, #"hash_5aa45eab2ab681e8");
-		self stoploopsound(self.var_e3d27e69);
-		self.var_e3d27e69 = undefined;
+		if(isdefined(self.var_a6da95e6))
+		{
+			deletefx(localclientnum, self.var_a6da95e6, 0);
+			self.var_a6da95e6 = undefined;
+		}
+		if(isdefined(self.var_e3d27e69))
+		{
+			self playsound(localclientnum, #"hash_5aa45eab2ab681e8");
+			self stoploopsound(self.var_e3d27e69);
+			self.var_e3d27e69 = undefined;
+		}
 	}
 }
 

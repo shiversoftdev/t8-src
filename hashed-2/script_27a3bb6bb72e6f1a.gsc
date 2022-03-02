@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2b52a9f53a5e4b45", &__init__, &__main__, undefined);
 }
@@ -123,7 +123,7 @@ function function_611fe553()
 */
 function function_25a55bd2()
 {
-	level endon_callback(&function_faf783b2, #"game_ended");
+	level endoncallback(&function_faf783b2, #"game_ended");
 	if(zm_utility::is_standard())
 	{
 		level waittill(#"hash_2ff6268271a25ffa");

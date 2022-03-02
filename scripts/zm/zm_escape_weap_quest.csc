@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_35f86e4c2035f69f", &__init__, undefined, undefined);
 }
@@ -77,25 +77,28 @@ function function_e4a48a64(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_dd081ca4 = self playloopsound(#"hash_f80ff339436a985");
 		}
 	}
-	else if(isdefined(self.var_8eb4e749))
+	else
 	{
-		stopfx(localclientnum, self.var_8eb4e749);
-		self.var_8eb4e749 = undefined;
-	}
-	self playsound(localclientnum, #"hash_4435f84f2c7dd54f");
-	if(isdefined(self.var_dd081ca4))
-	{
-		self stoploopsound(self.var_dd081ca4);
-	}
-	self.var_8eb4e749 = util::playfxontag(localclientnum, level._effect[#"hell_portal_close"], self, "tag_origin");
-	wait(0.5);
-	if(isdefined(self))
-	{
-		if(isdefined(self.var_78ef40db))
+		if(isdefined(self.var_8eb4e749))
 		{
-			stopfx(localclientnum, self.var_78ef40db);
+			stopfx(localclientnum, self.var_8eb4e749);
+			self.var_8eb4e749 = undefined;
 		}
-		self.var_78ef40db = util::playfxontag(localclientnum, level._effect[#"soul_charged"], self, "tag_origin");
+		self playsound(localclientnum, #"hash_4435f84f2c7dd54f");
+		if(isdefined(self.var_dd081ca4))
+		{
+			self stoploopsound(self.var_dd081ca4);
+		}
+		self.var_8eb4e749 = util::playfxontag(localclientnum, level._effect[#"hell_portal_close"], self, "tag_origin");
+		wait(0.5);
+		if(isdefined(self))
+		{
+			if(isdefined(self.var_78ef40db))
+			{
+				stopfx(localclientnum, self.var_78ef40db);
+			}
+			self.var_78ef40db = util::playfxontag(localclientnum, level._effect[#"soul_charged"], self, "tag_origin");
+		}
 	}
 }
 

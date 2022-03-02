@@ -21,13 +21,16 @@ function spawn_player_clone(player, origin = player.origin, forceweapon, forcemo
 	{
 		weapon = forceweapon;
 	}
-	else if(primaryweapons.size)
-	{
-		weapon = primaryweapons[0];
-	}
 	else
 	{
-		weapon = player getcurrentweapon();
+		if(primaryweapons.size)
+		{
+			weapon = primaryweapons[0];
+		}
+		else
+		{
+			weapon = player getcurrentweapon();
+		}
 	}
 	weaponmodel = weapon.worldmodel;
 	spawner = getent("fake_player_spawner", "targetname");
@@ -46,67 +49,70 @@ function spawn_player_clone(player, origin = player.origin, forceweapon, forcemo
 	{
 		clone setmodel(forcemodel);
 	}
-	else if(player function_390cb543())
-	{
-		var_1749f1e8 = player function_92ea4100();
-		if(isdefined(var_1749f1e8))
-		{
-			clone setmodel(var_1749f1e8);
-		}
-		headmodel = player function_44a7328f();
-		if(isdefined(headmodel))
-		{
-			if(isdefined(clone.head))
-			{
-				clone detach(clone.head);
-			}
-			clone attach(headmodel);
-		}
-		if(isdefined(clone.legs))
-		{
-			clone detach(clone.legs);
-		}
-		if(isdefined(clone.torso))
-		{
-			clone detach(clone.torso);
-		}
-	}
 	else
 	{
-		var_41206ae3 = player function_5d23af5b();
-		if(isdefined(var_41206ae3))
+		if(player function_390cb543())
 		{
-			clone setmodel(var_41206ae3);
-		}
-		headmodel = player function_44a7328f();
-		if(isdefined(headmodel))
-		{
-			if(isdefined(clone.head))
+			var_1749f1e8 = player function_92ea4100();
+			if(isdefined(var_1749f1e8))
 			{
-				clone detach(clone.head);
+				clone setmodel(var_1749f1e8);
 			}
-			clone attach(headmodel);
-		}
-		var_b4d88433 = player function_cde23658();
-		if(isdefined(var_b4d88433))
-		{
+			headmodel = player function_44a7328f();
+			if(isdefined(headmodel))
+			{
+				if(isdefined(clone.head))
+				{
+					clone detach(clone.head);
+				}
+				clone attach(headmodel);
+			}
 			if(isdefined(clone.legs))
 			{
 				clone detach(clone.legs);
 			}
-			clone attach(var_b4d88433);
-		}
-		var_1749f1e8 = player function_92ea4100();
-		if(isdefined(var_1749f1e8))
-		{
 			if(isdefined(clone.torso))
 			{
 				clone detach(clone.torso);
 			}
-			clone attach(var_1749f1e8);
 		}
+		else
+		{
+			var_41206ae3 = player function_5d23af5b();
+			if(isdefined(var_41206ae3))
+			{
+				clone setmodel(var_41206ae3);
+			}
+			headmodel = player function_44a7328f();
+			if(isdefined(headmodel))
+			{
+				if(isdefined(clone.head))
+				{
+					clone detach(clone.head);
+				}
+				clone attach(headmodel);
+			}
+			var_b4d88433 = player function_cde23658();
+			if(isdefined(var_b4d88433))
+			{
+				if(isdefined(clone.legs))
+				{
+					clone detach(clone.legs);
+				}
+				clone attach(var_b4d88433);
+			}
+			var_1749f1e8 = player function_92ea4100();
+			if(isdefined(var_1749f1e8))
+			{
+				if(isdefined(clone.torso))
+				{
+					clone detach(clone.torso);
+				}
+				clone attach(var_1749f1e8);
+			}
+		}
+		clone setbodyrenderoptionspacked(player getcharacterbodyrenderoptions());
 	}
-	clone setbodyrenderoptionspacked(player getcharacterbodyrenderoptions());
 	if(weaponmodel != "" && weaponmodel != "none")
 	{
 		clone attach(weaponmodel, "tag_weapon_right");

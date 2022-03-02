@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5bea4c43846046ef", &__init__, undefined, undefined);
 }
@@ -74,7 +74,7 @@ function function_fefefe2a()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4467066e(params)
+function private function_4467066e(params)
 {
 	var_ec8e239d = 0;
 	if(isstruct(self.inventory) && isarray(self.inventory.items))
@@ -101,7 +101,7 @@ private function function_4467066e(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f82142f8(var_b0e2f18c)
+function private function_f82142f8(var_b0e2f18c)
 {
 	self notify(#"hash_2e4cc87f4b3a6396");
 	self endon(#"death", #"hash_2e4cc87f4b3a6396");
@@ -149,7 +149,7 @@ private function function_f82142f8(var_b0e2f18c)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9299d039()
+function private function_9299d039()
 {
 	if(isdefined(self.var_fcb62e3f))
 	{
@@ -166,7 +166,7 @@ private function function_9299d039()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1edd6e9e(var_b0e2f18c)
+function private function_1edd6e9e(var_b0e2f18c)
 {
 	var_91de0487 = 0;
 	if(var_b0e2f18c && isalive(self))
@@ -184,7 +184,7 @@ private function function_1edd6e9e(var_b0e2f18c)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ef53914c()
+function private function_ef53914c()
 {
 	params = self.laststandparams;
 	if(!isdefined(params))
@@ -220,7 +220,7 @@ private function function_ef53914c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function give_max_ammo(weaponslot)
+function private give_max_ammo(weaponslot)
 {
 	item = self.inventory.items[weaponslot];
 	if(!isdefined(item))
@@ -257,7 +257,7 @@ private function give_max_ammo(weaponslot)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_124f7ba3()
+function private function_124f7ba3()
 {
 	self endon(#"disconnect");
 	self clientfield::set_to_player("spectrebladebonus", 1);
@@ -274,7 +274,7 @@ private function function_124f7ba3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_de83cc91(params)
+function private function_de83cc91(params)
 {
 	attacker = params.eattacker;
 	weapon = params.weapon;

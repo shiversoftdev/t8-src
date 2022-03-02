@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_54c6c44493a304a7", &__init__, undefined, undefined);
 }
@@ -279,7 +279,7 @@ function g_stop_player_too_many_weapons_monitor(name)
 {
 	if(!isdefined(name))
 	{
-		return 0;
+		return false;
 	}
 	func = level.var_4381b72a[name];
 	if(!isdefined(func))
@@ -287,13 +287,13 @@ function g_stop_player_too_many_weapons_monitor(name)
 		/#
 			self botprinterror("" + function_9e72a96(name));
 		#/
-		return 0;
+		return false;
 	}
 	/#
 		self bot::record_text("" + function_9e72a96(name), (1, 1, 0), "");
 	#/
 	self [[func]]();
-	return 1;
+	return true;
 }
 
 /*

@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_76cd7d750456ec41", &__init__, undefined, undefined);
 }
@@ -32,7 +32,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_9738468f()
+function autoexec function_9738468f()
 {
 	level.var_5805dc3b = (isdefined(getgametypesetting(#"hash_5f842714fa80e5a9")) ? getgametypesetting(#"hash_5f842714fa80e5a9") : 0);
 }
@@ -60,7 +60,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_4776caf4(eventstruct)
+event private function_4776caf4(eventstruct)
 {
 	if(level.inprematchperiod || !level.var_5805dc3b)
 	{

@@ -90,7 +90,7 @@ function function_2a94055d(id)
 	Parameters: 1
 	Flags: Private
 */
-private function function_88cb5e47(params)
+function private function_88cb5e47(params)
 {
 	if(self.is_exploding !== 1 && isdefined(params.eattacker) && params.eattacker.classname === "worldspawn")
 	{

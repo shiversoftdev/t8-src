@@ -19,7 +19,7 @@
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cdaddee(team)
+function private function_cdaddee(team)
 {
 	planner = plannerutility::createplannerfromasset("mp_control_commander.ai_htn");
 	return planner;

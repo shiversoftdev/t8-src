@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"bgb", &__init__, &__main__, undefined);
 }
@@ -38,10 +38,10 @@ function __init__()
 	{
 		return;
 	}
-	level.var_d5e0e60b = getweapon(#"zombie_bgb_grab");
+	level.weaponbgbgrab = getweapon(#"zombie_bgb_grab");
 	callback::on_localclient_connect(&on_player_connect);
 	level.bgb = [];
-	level.var_7d0afffb = [];
+	level.bgb_pack = [];
 	clientfield::register("clientuimodel", "zmhud.bgb_current", 1, 8, "int", &function_d9afd5ee, 0, 0);
 	clientfield::register("clientuimodel", "zmhud.bgb_display", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "zmhud.bgb_timer", 1, 8, "float", undefined, 0, 0);
@@ -61,14 +61,14 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	if(!(isdefined(level.bgb_in_use) && level.bgb_in_use))
 	{
 		return;
 	}
 	force_stream();
-	function_174e1d8e();
+	bgb_finalize();
 }
 
 /*
@@ -99,17 +99,17 @@ function force_stream()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_player_connect(localclientnum)
+function private on_player_connect(localclientnum)
 {
 	if(!(isdefined(level.bgb_in_use) && level.bgb_in_use))
 	{
 		return;
 	}
-	self thread function_c2e519e0(localclientnum);
+	self thread bgb_player_init(localclientnum);
 }
 
 /*
-	Name: function_c2e519e0
+	Name: bgb_player_init
 	Namespace: bgb
 	Checksum: 0xCFB7BB83
 	Offset: 0x6C8
@@ -117,17 +117,17 @@ private function on_player_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c2e519e0(localclientnum)
+function private bgb_player_init(localclientnum)
 {
-	if(isdefined(level.var_7d0afffb[localclientnum]))
+	if(isdefined(level.bgb_pack[localclientnum]))
 	{
 		return;
 	}
-	level.var_7d0afffb[localclientnum] = getbubblegumpack(localclientnum);
+	level.bgb_pack[localclientnum] = getbubblegumpack(localclientnum);
 }
 
 /*
-	Name: function_174e1d8e
+	Name: bgb_finalize
 	Namespace: bgb
 	Checksum: 0x25F2D12
 	Offset: 0x720
@@ -135,7 +135,7 @@ private function function_c2e519e0(localclientnum)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_174e1d8e()
+function private bgb_finalize()
 {
 	level.var_afb8293c = [];
 	level.var_afb8293c[0] = "base";
@@ -145,7 +145,7 @@ private function function_174e1d8e()
 	level.var_afb8293c[5] = "swirl";
 	level.var_afb8293c[4] = "swirl";
 	level.var_afb8293c[6] = "swirl";
-	level.var_7d2735b9 = [];
+	level.bgb_item_index_to_name = [];
 	foreach(v in level.bgb)
 	{
 		v.item_index = getitemindexfromref(v.name);
@@ -172,9 +172,9 @@ private function function_174e1d8e()
 			v.consumable = 1;
 		}
 		v.camo_index = var_5415dfb9.var_daefc551;
-		v.var_8ab4a32e = "tag_gumball_" + v.limit_type;
+		v.flying_gumball_tag = "tag_gumball_" + v.limit_type;
 		v.var_c0362ae9 = (("tag_gumball_" + v.limit_type) + "_") + level.var_afb8293c[v.rarity];
-		level.var_7d2735b9[v.item_index] = v.name;
+		level.bgb_item_index_to_name[v.item_index] = v.name;
 	}
 }
 
@@ -215,7 +215,7 @@ function register(name, limit_type)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5e7b3f16(localclientnum, time)
+function private function_5e7b3f16(localclientnum, time)
 {
 	self endon(#"death");
 	if(isdemoplaying())
@@ -270,9 +270,9 @@ private function function_5e7b3f16(localclientnum, time)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d9afd5ee(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_d9afd5ee(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self.bgb = level.var_7d2735b9[newval];
+	self.bgb = level.bgb_item_index_to_name[newval];
 	self thread function_5e7b3f16(localclientnum, 3);
 }
 
@@ -285,7 +285,7 @@ private function function_d9afd5ee(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f4763ffe(localclientnum, fx)
+function private function_f4763ffe(localclientnum, fx)
 {
 	if(isdefined(self.var_629940ea))
 	{
@@ -306,7 +306,7 @@ private function function_f4763ffe(localclientnum, fx)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function bgb_blow_bubble(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private bgb_blow_bubble(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	function_f4763ffe(localclientnum, level._effect[#"bgb_blow_bubble"]);
 	self thread function_5e7b3f16(localclientnum, 0.5);

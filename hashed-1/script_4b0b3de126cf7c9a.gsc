@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7587f8ddd6b0d47a", &__init__, undefined, undefined);
 }
@@ -219,7 +219,7 @@ function function_35ae342e(e_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d0ea0364(var_5198244f)
+function private function_d0ea0364(var_5198244f)
 {
 	self notify("picked_up_pap_" + var_5198244f.name);
 	self endon("picked_up_pap_" + var_5198244f.name);

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_57deab0f67e4368c", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_519131bc = 1)
+function private function_d1de6a85(var_519131bc = 1)
 {
 	callback::function_b3c9adb7(&function_b3c9adb7);
 	if(function_7a600918(var_519131bc))
@@ -74,7 +74,7 @@ private function function_d1de6a85(var_519131bc = 1)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -113,7 +113,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_1685cc9b()
+function private function_1685cc9b()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -145,7 +145,7 @@ private function function_1685cc9b()
 	Parameters: 1
 	Flags: Private
 */
-private function function_b3c9adb7(weapon)
+function private function_b3c9adb7(weapon)
 {
 	self.var_8f30dd57++;
 	self notify(#"hash_b0cc77b1ab98c08", {#weapon:weapon});

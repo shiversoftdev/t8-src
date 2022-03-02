@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6aaf245219c6f125", &__init__, undefined, undefined);
 }
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_e84d35d1)
+function private function_d1de6a85(var_e84d35d1)
 {
 	var_e9433d0 = struct::get_array(var_e84d35d1);
 	/#
@@ -85,7 +85,7 @@ private function function_d1de6a85(var_e84d35d1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -136,15 +136,18 @@ function function_68b149a2(var_64e17761)
 			}
 			wait(1);
 		}
-		else if(self.var_86278a02 === 0)
+		else
 		{
-			self.var_86278a02 = 1;
-			self allowsprint(1);
-			self allowslide(1);
-			self thread function_d2dd1f2b();
-			self clientfield::set_to_player("" + #"hash_13f1aaee7ebf9986", 0);
+			if(self.var_86278a02 === 0)
+			{
+				self.var_86278a02 = 1;
+				self allowsprint(1);
+				self allowslide(1);
+				self thread function_d2dd1f2b();
+				self clientfield::set_to_player("" + #"hash_13f1aaee7ebf9986", 0);
+			}
+			wait(1);
 		}
-		wait(1);
 		waitframe(1);
 	}
 }
@@ -205,7 +208,7 @@ function function_7d81b8c1()
 */
 function function_202ee8fa()
 {
-	self endon_callback(&namespace_18db89ed::function_c64292f, #"death");
+	self endoncallback(&namespace_18db89ed::function_c64292f, #"death");
 	self.var_7dc2d507 = 1;
 	self notify(#"player_frozen");
 	self namespace_18db89ed::function_bad6907c();

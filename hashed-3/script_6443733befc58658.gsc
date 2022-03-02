@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4fb1e186fac435f4", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_localclient_connect(localclientnum)
+function private on_localclient_connect(localclientnum)
 {
 	if(isdefined(getgametypesetting(#"hash_2992e3d39d55b312")) && getgametypesetting(#"hash_2992e3d39d55b312"))
 	{
@@ -65,7 +65,7 @@ private function on_localclient_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_53d906fd(localclientnum)
+function private function_53d906fd(localclientnum)
 {
 	level endon(#"game_ended");
 	while(true)

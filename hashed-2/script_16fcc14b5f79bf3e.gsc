@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3db89e7dfe4633b0", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	level namespace_6747c550::function_7df6bb60(#"hash_566a6ec283e2360a", 5);
 	if(!(isdefined(level.var_4e4909a6) && level.var_4e4909a6))
@@ -67,7 +67,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(!round_reset)
 	{

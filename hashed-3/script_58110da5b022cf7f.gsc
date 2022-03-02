@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_39376ab9d627e38a", &__init__, undefined, #"bgb");
 }
@@ -88,7 +88,7 @@ function validation()
 	{
 		if(player util::is_spectating())
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(player.var_bdeb0f02) && player.var_bdeb0f02)
 		{
@@ -97,13 +97,13 @@ function validation()
 		}
 		if(isdefined(level.var_a538e6dc) && self [[level.var_a538e6dc]](player, 1, 1))
 		{
-			return 1;
+			return true;
 		}
 		if(self zm_laststand::can_revive(player, 1, 1))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 

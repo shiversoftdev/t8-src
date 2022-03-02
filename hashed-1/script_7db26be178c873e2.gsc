@@ -114,7 +114,7 @@ function monitor_smoke(local_client_num)
 	while(isdefined(var_d3f60df1))
 	{
 		waitresult = undefined;
-		waitresult = var_d3f60df1 waittill_timeout(0.25, #"death");
+		waitresult = var_d3f60df1 waittilltimeout(0.25, #"death");
 		players = getplayers(local_client_num);
 		foreach(player in players)
 		{
@@ -222,23 +222,23 @@ function function_62ec0142(local_client_num, bundle)
 	var_85098191 = function_5778f82(local_client_num, #"hash_410c46b5ff702c96");
 	if(!var_85098191)
 	{
-		return 0;
+		return false;
 	}
 	if(util::is_player_view_linked_to_entity(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	if(!self function_83973173())
 	{
-		return 0;
+		return false;
 	}
 	if(function_7bf0773f(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(self.insmoke) && self.insmoke & 2))
 	{
-		return 0;
+		return false;
 	}
 	localplayer = function_5c10bd79(local_client_num);
 	if(self == localplayer)
@@ -247,7 +247,7 @@ function function_62ec0142(local_client_num, bundle)
 		blade = getweapon(#"sig_blade");
 		if(!isthirdperson(local_client_num) || curweapon != blade)
 		{
-			return 0;
+			return false;
 		}
 	}
 	weapon = getweapon("eq_smoke");
@@ -259,10 +259,10 @@ function function_62ec0142(local_client_num, bundle)
 		#/
 		if(!(isdefined(var_ed9e87ac.var_563d4859) ? var_ed9e87ac.var_563d4859 : 0))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -279,23 +279,23 @@ function function_28db726(local_client_num, bundle)
 	var_85098191 = function_5778f82(local_client_num, #"hash_410c46b5ff702c96");
 	if(!var_85098191)
 	{
-		return 0;
+		return false;
 	}
 	if(util::is_player_view_linked_to_entity(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	if(self function_83973173())
 	{
-		return 0;
+		return false;
 	}
 	if(function_7bf0773f(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(self.insmoke) && self.insmoke & 1))
 	{
-		return 0;
+		return false;
 	}
 	weapon = getweapon("eq_smoke");
 	if(isdefined(weapon.var_4dd46f8a))
@@ -306,10 +306,10 @@ function function_28db726(local_client_num, bundle)
 		#/
 		if((isdefined(var_ed9e87ac.var_ae2b2941) ? var_ed9e87ac.var_ae2b2941 : 0) && self function_6c32d092(local_client_num, #"talent_coldblooded"))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

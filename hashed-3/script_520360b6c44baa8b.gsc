@@ -86,12 +86,15 @@ function function_e8d94580(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self function_bf9d3071("rob_tricannon_classified_zombie_ice");
 	}
-	else if(!self zm_utility::function_f8796df3(localclientnum))
+	else
 	{
-		self thread function_6180e679(localclientnum);
+		if(!self zm_utility::function_f8796df3(localclientnum))
+		{
+			self thread function_6180e679(localclientnum);
+		}
+		self function_5d482e78("rob_tricannon_classified_zombie_ice");
+		self notify(#"hash_5ab24a026f132ea4");
 	}
-	self function_5d482e78("rob_tricannon_classified_zombie_ice");
-	self notify(#"hash_5ab24a026f132ea4");
 }
 
 /*
@@ -202,13 +205,16 @@ function function_3c820626(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self thread function_1a2f062a(localclientnum);
 	}
-	else if(newval === 2)
-	{
-		self thread function_7c64a377(localclientnum);
-	}
 	else
 	{
-		self thread function_17e6f9f3(localclientnum);
+		if(newval === 2)
+		{
+			self thread function_7c64a377(localclientnum);
+		}
+		else
+		{
+			self thread function_17e6f9f3(localclientnum);
+		}
 	}
 }
 
@@ -405,7 +411,7 @@ function function_6b5ed7f9(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_88fdd1ff()
 {
-	self endon_callback(&function_2473f73e, #"death");
+	self endoncallback(&function_2473f73e, #"death");
 	self endon(#"death", #"disconnect");
 	self.var_2591ed7c = spawn(0, self.origin + vectorscale((0, 0, 1), 1000), "script_origin");
 	self.var_2591ed7c.var_2e95bcd3 = self.var_2591ed7c playloopsound(#"hash_58b77ae9e2d258e1");

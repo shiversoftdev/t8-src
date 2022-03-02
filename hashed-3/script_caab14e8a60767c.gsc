@@ -22,7 +22,7 @@
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_685505ce(inputarray)
+function private function_685505ce(inputarray)
 {
 	targetstring = "";
 	if(!isdefined(inputarray))
@@ -157,13 +157,16 @@ function function_96d38b95(result)
 		killcount = player.kills;
 		hitcount = player.shotshit;
 	}
-	else if(isdefined(player.startkills))
+	else
 	{
-		killcount = totalkills - player.startkills;
-	}
-	if(isdefined(player.starthits))
-	{
-		hitcount = totalhits - player.starthits;
+		if(isdefined(player.startkills))
+		{
+			killcount = totalkills - player.startkills;
+		}
+		if(isdefined(player.starthits))
+		{
+			hitcount = totalhits - player.starthits;
+		}
 	}
 	bestscore = "0";
 	if(isdefined(player.pers[#"lasthighestscore"]) && player.score > player.pers[#"lasthighestscore"])

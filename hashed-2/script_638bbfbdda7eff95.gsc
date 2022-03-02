@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	archetypecivilian::registerbehaviorscriptfunctions();
 	civilianinterface::registercivilianinterfaceattributes();
@@ -127,7 +127,7 @@ function registerbehaviorscriptfunctions()
 	Parameters: 0
 	Flags: Private
 */
-private function function_686ab596()
+function private function_686ab596()
 {
 	wait(5);
 	while(true)
@@ -178,7 +178,7 @@ private function function_686ab596()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function civilianblackboardinit()
+function private civilianblackboardinit()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -211,7 +211,7 @@ function function_49d80e54(civilian, attribute, oldvalue, value)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function civilianinit()
+function private civilianinit()
 {
 	entity = self;
 	locomotiontypes = array("alt1", "alt2", "alt3");
@@ -231,7 +231,7 @@ private function civilianinit()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianonanimscriptedcallback(entity)
+function private civilianonanimscriptedcallback(entity)
 {
 	entity.__blackboard = undefined;
 	entity civilianblackboardinit();
@@ -246,17 +246,17 @@ private function civilianonanimscriptedcallback(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ebea502e(entity)
+function private function_ebea502e(entity)
 {
 	if(entity asmistransitionrunning() || entity getbehaviortreestatus() != 5 || entity asmissubstatepending() || entity asmistransdecrunning())
 	{
-		return 1;
+		return true;
 	}
 	if(entity getpathmode() == "dont move")
 	{
-		return 0;
+		return false;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -268,19 +268,19 @@ private function function_ebea502e(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function rioterchoosepositionservice(entity)
+function private rioterchoosepositionservice(entity)
 {
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") != "riot")
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(function_ebea502e(entity))
 	{
-		return 0;
+		return false;
 	}
 	var_1f2328d0 = entity function_4794d6a3();
 	forcedgoal = isdefined(var_1f2328d0.goalforced) && var_1f2328d0.goalforced;
@@ -292,7 +292,7 @@ private function rioterchoosepositionservice(entity)
 	var_1ebff8de = itsbeenawhile || !isatscriptgoal || isinbadplace;
 	if(!var_1ebff8de)
 	{
-		return 0;
+		return false;
 	}
 	if(forcedgoal)
 	{
@@ -301,7 +301,7 @@ private function rioterchoosepositionservice(entity)
 		#/
 		entity function_a57c34b7(var_1f2328d0.goalpos);
 		aiutility::setnextfindbestcovertime(entity, undefined);
-		return 1;
+		return true;
 	}
 	center = entity.origin;
 	if(isdefined(entity.goalpos))
@@ -335,9 +335,9 @@ private function rioterchoosepositionservice(entity)
 	{
 		entity function_a57c34b7(pickedpoint.origin);
 		aiutility::setnextfindbestcovertime(entity, undefined);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -349,19 +349,19 @@ private function rioterchoosepositionservice(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianpanicescapechooseposition(entity)
+function private civilianpanicescapechooseposition(entity)
 {
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "riot")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.ai.escaping) && entity.ai.escaping)
 	{
-		return 0;
+		return false;
 	}
 	if(!ai::getaiattribute(entity, "auto_escape"))
 	{
-		return 0;
+		return false;
 	}
 	escape_nodes = getnodearray("civ_escape", "targetname");
 	if(escape_nodes.size)
@@ -381,27 +381,27 @@ private function civilianpanicescapechooseposition(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianwanderservice(entity)
+function private civilianwanderservice(entity)
 {
 	if(isentity(entity getblackboardattribute("follow")))
 	{
-		return 0;
+		return false;
 	}
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "riot")
 	{
-		return 0;
+		return false;
 	}
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "panic" && ai::getaiattribute(entity, "auto_escape"))
 	{
-		return 0;
+		return false;
 	}
 	if(!ai::getaiattribute(entity, "auto_wander"))
 	{
-		return 0;
+		return false;
 	}
 	if(function_ebea502e(entity))
 	{
-		return 0;
+		return false;
 	}
 	var_1f2328d0 = entity function_4794d6a3();
 	forcedgoal = isdefined(var_1f2328d0.goalforced) && var_1f2328d0.goalforced;
@@ -410,7 +410,7 @@ private function civilianwanderservice(entity)
 	var_1ebff8de = itsbeenawhile || !isatscriptgoal;
 	if(!var_1ebff8de)
 	{
-		return 0;
+		return false;
 	}
 	if(forcedgoal)
 	{
@@ -419,7 +419,7 @@ private function civilianwanderservice(entity)
 		#/
 		entity function_a57c34b7(var_1f2328d0.goalpos);
 		aiutility::setnextfindbestcovertime(entity, undefined);
-		return 1;
+		return true;
 	}
 	cylinder = ai::t_cylinder(entity.goalpos, entity.goalradius, entity.goalheight);
 	pixbeginevent("civilian_wander_tacquery");
@@ -448,9 +448,9 @@ private function civilianwanderservice(entity)
 	{
 		entity function_a57c34b7(pickedpoint.origin);
 		aiutility::setnextfindbestcovertime(entity, undefined);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -462,21 +462,21 @@ private function civilianwanderservice(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianfollowservice(entity)
+function private civilianfollowservice(entity)
 {
 	var_e590f9ad = 300 * 300;
 	followent = entity getblackboardattribute("follow");
 	if(!isentity(followent))
 	{
-		return 0;
+		return false;
 	}
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "panic" && ai::getaiattribute(entity, "auto_escape"))
 	{
-		return 0;
+		return false;
 	}
 	if(function_ebea502e(entity))
 	{
-		return 0;
+		return false;
 	}
 	var_1f2328d0 = entity function_4794d6a3();
 	distsq = (isdefined(entity.overridegoalpos) ? distancesquared(entity.overridegoalpos, followent.origin) : -1);
@@ -486,7 +486,7 @@ private function civilianfollowservice(entity)
 	var_1ebff8de = itsbeenawhile || !isatscriptgoal || distsq < 0 || distsq > var_e590f9ad;
 	if(!var_1ebff8de)
 	{
-		return 0;
+		return false;
 	}
 	pixbeginevent("civilian_follow_tacquery");
 	aiprofile_beginentry("civilian_follow_tacquery");
@@ -521,9 +521,9 @@ private function civilianfollowservice(entity)
 	{
 		entity function_a57c34b7(pickedpoint.origin);
 		aiutility::setnextfindbestcovertime(entity, undefined);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -535,7 +535,7 @@ private function civilianfollowservice(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function civilianmoveactioninitialize(entity, asmstatename)
+function private civilianmoveactioninitialize(entity, asmstatename)
 {
 	entity setblackboardattribute("_desired_stance", "stand");
 	animationstatenetworkutility::requeststate(entity, asmstatename);
@@ -551,7 +551,7 @@ private function civilianmoveactioninitialize(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function civilianmoveactionfinalize(entity, asmstatename)
+function private civilianmoveactionfinalize(entity, asmstatename)
 {
 	if(entity getblackboardattribute("_stance") != "stand")
 	{
@@ -569,7 +569,7 @@ private function civilianmoveactionfinalize(entity, asmstatename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianispanicked(entity)
+function private civilianispanicked(entity)
 {
 	return entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "panic";
 }
@@ -583,7 +583,7 @@ private function civilianispanicked(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e27d2a1b()
+function private function_e27d2a1b()
 {
 	return ai::getaiattribute(self, #"hash_78e762abc4fbf1de");
 }
@@ -597,13 +597,13 @@ private function function_e27d2a1b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianarrivalallowed(entity)
+function private civilianarrivalallowed(entity)
 {
 	if(ai::getaiattribute(entity, "disablearrivals"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -615,13 +615,13 @@ private function civilianarrivalallowed(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianareturnsallowed(entity)
+function private civilianareturnsallowed(entity)
 {
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "calm")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -637,9 +637,9 @@ function civilianisrioter(entity)
 {
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") == "riot")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -655,19 +655,19 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 {
 	if(!isdefined(behaviortreeentity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(!issentient(behaviortreeentity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(isvehicle(behaviortreeentity.enemy) && behaviortreeentity.enemy.vehicleclass === "helicopter")
 	{
-		return 0;
+		return false;
 	}
 	if(!ai::getaiattribute(behaviortreeentity, "useGrenades"))
 	{
-		return 0;
+		return false;
 	}
 	entityangles = behaviortreeentity.angles;
 	toenemy = behaviortreeentity.enemy.origin - behaviortreeentity.origin;
@@ -676,7 +676,7 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 	entityforward = vectornormalize((entityforward[0], entityforward[1], 0));
 	if(vectordot(toenemy, entityforward) < 0.5)
 	{
-		return 0;
+		return false;
 	}
 	if(!throwifpossible)
 	{
@@ -684,7 +684,7 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 		{
 			if(player laststand::player_is_in_laststand() && distancesquared(behaviortreeentity.enemy.origin, player.origin) <= 640000)
 			{
-				return 0;
+				return false;
 			}
 		}
 		grenadethrowinfos = blackboard::getblackboardevents("team_grenade_throw");
@@ -692,7 +692,7 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 		{
 			if(grenadethrowinfo.data.grenadethrowerteam === behaviortreeentity.team)
 			{
-				return 0;
+				return false;
 			}
 		}
 		grenadethrowinfos = blackboard::getblackboardevents("riot_grenade_throw");
@@ -702,15 +702,15 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 			{
 				if(grenadethrowinfo.data.grenadethrower == behaviortreeentity)
 				{
-					return 0;
+					return false;
 				}
 				if(isdefined(grenadethrowinfo.data.grenadethrownat) && grenadethrowinfo.data.grenadethrownat == behaviortreeentity.enemy)
 				{
-					return 0;
+					return false;
 				}
 				if(isdefined(grenadethrowinfo.data.grenadethrownposition) && isdefined(behaviortreeentity.grenadethrowposition) && distancesquared(grenadethrowinfo.data.grenadethrownposition, behaviortreeentity.grenadethrowposition) <= 1440000)
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
@@ -718,15 +718,15 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 	throw_dist = distance2dsquared(behaviortreeentity.origin, behaviortreeentity lastknownpos(behaviortreeentity.enemy));
 	if(throw_dist < (300 * 300) || throw_dist > (1250 * 1250))
 	{
-		return 0;
+		return false;
 	}
 	arm_offset = archetype_human_cover::temp_get_arm_offset(behaviortreeentity, behaviortreeentity lastknownpos(behaviortreeentity.enemy));
 	throw_vel = behaviortreeentity canthrowgrenadepos(arm_offset, behaviortreeentity lastknownpos(behaviortreeentity.enemy));
 	if(!isdefined(throw_vel))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -738,7 +738,7 @@ function civiliancanthrowmolotovgrenade(behaviortreeentity, throwifpossible = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civilianpreparetothrowgrenade(behaviortreeentity)
+function private civilianpreparetothrowgrenade(behaviortreeentity)
 {
 	aiutility::keepclaimnode(behaviortreeentity);
 	if(isdefined(behaviortreeentity.enemy))
@@ -765,7 +765,7 @@ private function civilianpreparetothrowgrenade(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function civiliancleanuptothrowgrenade(behaviortreeentity)
+function private civiliancleanuptothrowgrenade(behaviortreeentity)
 {
 	aiutility::releaseclaimnode(behaviortreeentity);
 	if(behaviortreeentity.preparegrenadeammo == behaviortreeentity.grenadeammo)
@@ -800,11 +800,11 @@ private function civiliancleanuptothrowgrenade(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function rioterreaquireservice(entity)
+function private rioterreaquireservice(entity)
 {
 	if(entity getblackboardattribute(#"hash_78e762abc4fbf1de") != "riot")
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(entity.reacquire_state))
 	{
@@ -813,23 +813,23 @@ private function rioterreaquireservice(entity)
 	if(!isdefined(entity.enemy))
 	{
 		entity.reacquire_state = 0;
-		return 0;
+		return false;
 	}
 	if(entity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(entity seerecently(entity.enemy, 3))
 	{
 		entity.reacquire_state = 0;
-		return 0;
+		return false;
 	}
 	dirtoenemy = vectornormalize(entity.enemy.origin - entity.origin);
 	forward = anglestoforward(entity.angles);
 	if(vectordot(dirtoenemy, forward) < 0.5)
 	{
 		entity.reacquire_state = 0;
-		return 0;
+		return false;
 	}
 	switch(entity.reacquire_state)
 	{
@@ -854,7 +854,7 @@ private function rioterreaquireservice(entity)
 			if(entity.reacquire_state > 15)
 			{
 				entity.reacquire_state = 0;
-				return 0;
+				return false;
 			}
 			break;
 		}
@@ -863,9 +863,9 @@ private function rioterreaquireservice(entity)
 	{
 		entity function_a57c34b7(reacquirepos);
 		entity.reacquire_state = 0;
-		return 1;
+		return true;
 	}
 	entity.reacquire_state++;
-	return 0;
+	return false;
 }
 

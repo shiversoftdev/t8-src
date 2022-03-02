@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_37398b26e502cdde", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_49106f6b)
+function private function_d1de6a85(var_49106f6b)
 {
 	level.var_60aa7ebf = zm_trial::function_5769f26a(var_49106f6b);
 	foreach(player in getplayers())
@@ -71,7 +71,7 @@ private function function_d1de6a85(var_49106f6b)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(!round_reset)
 	{
@@ -128,7 +128,7 @@ function is_active()
 	Parameters: 1
 	Flags: Private
 */
-private function on_ai_killed(params)
+function private on_ai_killed(params)
 {
 	if(isplayer(params.eattacker))
 	{
@@ -150,13 +150,16 @@ private function on_ai_killed(params)
 	{
 		w_root = getweapon(#"mini_turret");
 	}
-	else if(zm_utility::function_850e7499(params.weapon, 1))
-	{
-		w_root = getweapon(#"hash_c78156ba6aeda14");
-	}
 	else
 	{
-		w_root = zm_weapons::function_93cd8e76(params.weapon, 1);
+		if(zm_utility::function_850e7499(params.weapon, 1))
+		{
+			w_root = getweapon(#"hash_c78156ba6aeda14");
+		}
+		else
+		{
+			w_root = zm_weapons::function_93cd8e76(params.weapon, 1);
+		}
 	}
 	if(isdefined(level.var_a601d6a6))
 	{

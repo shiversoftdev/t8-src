@@ -4,6 +4,39 @@
 #using scripts\core_common\math_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
+class class_d5e9830e 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_d5e9830e
+		Checksum: 0xAB692833
+		Offset: 0x1260
+		Size: 0x1E
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.tags = [];
+		self.var_8c17f0f4 = 0;
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_d5e9830e
+		Checksum: 0x80F724D1
+		Offset: 0x1288
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+}
+
 #namespace archetype_damage_effects;
 
 /*
@@ -15,7 +48,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	registerclientfields();
 	loadeffects();
@@ -78,7 +111,7 @@ function loadeffects()
 	level.var_60a09d68[#"human"][#"fire_j_elbow_ri_loop"] = #"fire/fx_fire_ai_human_arm_right_loop";
 	level.var_60a09d68[#"human"][#"fire_j_shoulder_le_loop"] = #"fire/fx_fire_ai_human_arm_left_loop";
 	level.var_60a09d68[#"human"][#"fire_j_shoulder_ri_loop"] = #"fire/fx_fire_ai_human_arm_right_loop";
-	level.var_60a09d68[#"human"][#"hash_14e78b09283ae5f3"] = #"fire/fx_fire_ai_human_torso_loop";
+	level.var_60a09d68[#"human"][#"fire_j_spine4_loop"] = #"fire/fx_fire_ai_human_torso_loop";
 	level.var_60a09d68[#"human"][#"fire_j_hip_le_loop"] = #"fire/fx_fire_ai_human_hip_left_loop";
 	level.var_60a09d68[#"human"][#"fire_j_hip_ri_loop"] = #"fire/fx_fire_ai_human_hip_right_loop";
 	level.var_60a09d68[#"human"][#"fire_j_head_loop"] = #"fire/fx_fire_ai_human_head_loop";
@@ -88,7 +121,7 @@ function loadeffects()
 	level.var_60a09d68[#"human"][#"fire_j_elbow_ri_os"] = #"fire/fx_fire_ai_human_arm_right_os";
 	level.var_60a09d68[#"human"][#"fire_j_shoulder_le_os"] = #"fire/fx_fire_ai_human_arm_left_os";
 	level.var_60a09d68[#"human"][#"fire_j_shoulder_ri_os"] = #"fire/fx_fire_ai_human_arm_right_os";
-	level.var_60a09d68[#"human"][#"hash_141642c960efc59f"] = #"fire/fx_fire_ai_human_torso_os";
+	level.var_60a09d68[#"human"][#"fire_j_spine4_os"] = #"fire/fx_fire_ai_human_torso_os";
 	level.var_60a09d68[#"human"][#"fire_j_hip_le_os"] = #"fire/fx_fire_ai_human_hip_left_os";
 	level.var_60a09d68[#"human"][#"fire_j_hip_ri_os"] = #"fire/fx_fire_ai_human_hip_right_os";
 	level.var_60a09d68[#"human"][#"fire_j_head_os"] = #"fire/fx_fire_ai_human_head_os";
@@ -115,7 +148,7 @@ function loadeffects()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _burntag(localclientnum, tag, postfix, prefix)
+function private _burntag(localclientnum, tag, postfix, prefix)
 {
 	if(isdefined(self) && self hasdobj(localclientnum))
 	{
@@ -141,7 +174,7 @@ private function _burntag(localclientnum, tag, postfix, prefix)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _burnstage(localclientnum, tagarray, shouldwait, prefix)
+function private _burnstage(localclientnum, tagarray, shouldwait, prefix)
 {
 	if(!isdefined(self))
 	{
@@ -175,54 +208,6 @@ private function _burnstage(localclientnum, tagarray, shouldwait, prefix)
 	}
 }
 
-#namespace namespace_d5e9830e;
-
-/*
-	Name: __constructor
-	Namespace: namespace_d5e9830e
-	Checksum: 0xAB692833
-	Offset: 0x1260
-	Size: 0x1E
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.tags = [];
-	self.var_8c17f0f4 = 0;
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_d5e9830e
-	Checksum: 0x80F724D1
-	Offset: 0x1288
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace archetype_damage_effects;
-
-/*
-	Name: function_d5e9830e
-	Namespace: archetype_damage_effects
-	Checksum: 0x53D4B9F2
-	Offset: 0x1298
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_d5e9830e()
-{
-	classes.var_d5e9830e[0] = spawnstruct();
-	classes.var_d5e9830e[0].__vtable[913321084] = &namespace_d5e9830e::__destructor;
-	classes.var_d5e9830e[0].__vtable[674154906] = &namespace_d5e9830e::__constructor;
-}
-
 /*
 	Name: _burnbody
 	Namespace: archetype_damage_effects
@@ -232,7 +217,7 @@ private autoexec function function_d5e9830e()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _burnbody(localclientnum, prefix)
+function private _burnbody(localclientnum, prefix)
 {
 	self endon(#"death");
 	timer = 10;
@@ -249,41 +234,29 @@ private function _burnbody(localclientnum, prefix)
 	var_cdc643c6 = [];
 	if(self.archetype == "mp_dog")
 	{
-		object = new var_d5e9830e();
-		[[ object ]]->__constructor();
-		var_58b4042a = object;
+		var_58b4042a = new class_d5e9830e();
 		var_58b4042a.tags = array("tag_thigh_str_drvr_le", "tag_thigh_stretch_le", "tag_thigh_str_drvr_ri", "tag_thigh_stretch_ri", "tag_shldr_str_drvr_le", "tag_shoulder_stretch_le", "tag_shldr_str_drvr_ri", "tag_shoulder_stretch_ri");
 		array::add(var_cdc643c6, var_58b4042a);
 	}
 	else
 	{
-		object = new var_d5e9830e();
-		[[ object ]]->__constructor();
-		var_58b4042a = object;
+		var_58b4042a = new class_d5e9830e();
 		var_58b4042a.tags = array("j_elbow_le" + bonemodifier, "j_elbow_ri" + bonemodifier, "null");
 		var_58b4042a.var_8c17f0f4 = 0.2;
 		array::add(var_cdc643c6, var_58b4042a);
-		object = new var_d5e9830e();
-		[[ object ]]->__constructor();
-		var_4d8772cf = object;
+		var_4d8772cf = new class_d5e9830e();
 		var_4d8772cf.tags = array("j_shoulder_le" + bonemodifier, "j_shoulder_ri" + bonemodifier, "null");
 		var_4d8772cf.var_8c17f0f4 = 0.4;
 		array::add(var_cdc643c6, var_4d8772cf);
-		object = new var_d5e9830e();
-		[[ object ]]->__constructor();
-		var_86127c87 = object;
+		var_86127c87 = new class_d5e9830e();
 		var_86127c87.tags = array("j_spine4", "null");
 		var_86127c87.var_8c17f0f4 = 0.6;
 		array::add(var_cdc643c6, var_86127c87);
-		object = new var_d5e9830e();
-		[[ object ]]->__constructor();
-		var_c65d82a4 = object;
+		var_c65d82a4 = new class_d5e9830e();
 		var_c65d82a4.tags = array("j_hip_le", "j_hip_ri", "j_head", "null");
 		var_c65d82a4.var_8c17f0f4 = 0.8;
 		array::add(var_cdc643c6, var_c65d82a4);
-		object = new var_d5e9830e();
-		[[ object ]]->__constructor();
-		var_9e543e79 = object;
+		var_9e543e79 = new class_d5e9830e();
 		var_9e543e79.tags = array("j_knee_le", "j_knee_ri", "null");
 		var_9e543e79.var_8c17f0f4 = 1;
 		array::add(var_cdc643c6, var_9e543e79);
@@ -313,7 +286,7 @@ private function _burnbody(localclientnum, prefix)
 */
 function sndstopburnloop(timer)
 {
-	self waittill_timeout(timer, #"death", #"stopburningsounds");
+	self waittilltimeout(timer, #"death", #"stopburningsounds");
 	if(isdefined(self))
 	{
 		if(isdefined(self.burn_loop_sound_handle))
@@ -332,7 +305,7 @@ function sndstopburnloop(timer)
 	Parameters: 1
 	Flags: Private
 */
-private function _burncorpse(localclientnum)
+function private _burncorpse(localclientnum)
 {
 	self endon(#"death");
 	timer = 10;

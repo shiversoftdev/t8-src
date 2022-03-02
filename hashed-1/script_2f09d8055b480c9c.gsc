@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_19637d14ae86b4ec", &__init__, undefined, undefined);
 }
@@ -75,9 +75,7 @@ function __init__()
 	level.var_30d2c56e[#"sword_pistol"][#"hash_634b06c9d5064145"] = 160;
 	if(!isdefined(level.var_396cf513))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_396cf513 = object;
+		level.var_396cf513 = new throttle();
 		[[ level.var_396cf513 ]]->initialize(3, 0.1);
 	}
 	callback::on_connect(&function_eca0c19d);
@@ -117,7 +115,7 @@ function on_disconnect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eca0c19d()
+function private function_eca0c19d()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -140,35 +138,38 @@ private function function_eca0c19d()
 			self thread function_6fe1307b(wpn_cur);
 			self thread function_65c52c4c(wpn_cur);
 		}
-		else if(wpn_cur == level.hero_weapon[#"sword_pistol"][1])
+		else
 		{
-			self thread swordpistol_rumble(1);
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"sword_pistol"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_6514f206d5d2c57f");
+				self thread swordpistol_rumble(1);
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_6514f206d5d2c57f");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_211bb263a0e77c99");
+				}
+				self thread function_6fe1307b(wpn_cur);
+				self thread function_65c52c4c(wpn_cur);
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"sword_pistol"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_211bb263a0e77c99");
+				self thread swordpistol_rumble(1);
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_2303e09b25647ced");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_289f1ec940a22d13");
+				}
+				self thread function_6fe1307b(wpn_cur);
+				self thread function_65c52c4c(wpn_cur);
+				self thread function_be6cef79(wpn_cur);
+				self thread function_68ff89f7(wpn_cur);
 			}
-			self thread function_6fe1307b(wpn_cur);
-			self thread function_65c52c4c(wpn_cur);
-		}
-		else if(wpn_cur == level.hero_weapon[#"sword_pistol"][2])
-		{
-			self thread swordpistol_rumble(1);
-			if(!self gamepadusedlast())
-			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_2303e09b25647ced");
-			}
-			else
-			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_289f1ec940a22d13");
-			}
-			self thread function_6fe1307b(wpn_cur);
-			self thread function_65c52c4c(wpn_cur);
-			self thread function_be6cef79(wpn_cur);
-			self thread function_68ff89f7(wpn_cur);
 		}
 	}
 }
@@ -182,7 +183,7 @@ private function function_eca0c19d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6fe1307b(weapon)
+function private function_6fe1307b(weapon)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	while(true)
@@ -212,7 +213,7 @@ private function function_6fe1307b(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function blood_death_fx(var_14ef0a6c)
+function private blood_death_fx(var_14ef0a6c)
 {
 	if(self.archetype === #"zombie")
 	{
@@ -460,7 +461,7 @@ function function_65c52c4c(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_698ddbd9(weapon)
+function private function_698ddbd9(weapon)
 {
 	level.var_30d2c56e[#"sword_pistol"][#"hash_5fe5ad9db12d4c99"] = 32;
 	level.var_30d2c56e[#"sword_pistol"][#"hash_579056d441d637d"] = 800;
@@ -834,7 +835,7 @@ function function_5ff8ad0b(weapon, var_fb504c3b)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_be6cef79(weapon)
+function private function_be6cef79(weapon)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	self.var_61950f95 = undefined;
@@ -861,7 +862,7 @@ private function function_be6cef79(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e47a52e0(weapon)
+function private function_e47a52e0(weapon)
 {
 	self endon(#"disconnect");
 	var_d52bf5d8 = level.var_30d2c56e[#"sword_pistol"][#"hash_48e41904bfc0f47c"];
@@ -967,7 +968,7 @@ private function function_e47a52e0(weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5c924730()
+function private function_5c924730()
 {
 	v_source = self getorigin();
 	var_b2dd8c4f = level.var_30d2c56e[#"sword_pistol"][#"hash_75b11282a283d609"];
@@ -1058,7 +1059,7 @@ private function function_5c924730()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e29f395c(e_zombie, weapon)
+function private function_e29f395c(e_zombie, weapon)
 {
 	if(!isdefined(e_zombie.var_6f84b820))
 	{
@@ -1095,7 +1096,7 @@ private function function_e29f395c(e_zombie, weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_72070f02(player, weapon)
+function private function_72070f02(player, weapon)
 {
 	self thread function_3295542a(player, weapon);
 	var_2290928d = level.var_30d2c56e[#"sword_pistol"][#"hash_c2f67d595789176"];
@@ -1202,7 +1203,7 @@ function function_571d2d19(player, weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3295542a(player, weapon)
+function private function_3295542a(player, weapon)
 {
 	var_344157ae = self getcentroid();
 	self clientfield::set("" + #"hash_2bb63677db4333d4", 1);
@@ -1323,7 +1324,7 @@ function swordpistol_rumble(var_b2e05bae)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_68ff89f7(var_2b1f344f)
+function private function_68ff89f7(var_2b1f344f)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	s_result = undefined;

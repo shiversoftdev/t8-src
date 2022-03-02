@@ -156,7 +156,7 @@ function function_6e60e5b8()
 		level waittill(#"end_of_round");
 		if((level.round_number - var_980ea73) >= 5)
 		{
-			return 1;
+			return true;
 		}
 	}
 }

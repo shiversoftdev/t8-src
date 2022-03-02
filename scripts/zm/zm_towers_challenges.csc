@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_towers_challenges", &__init__, &__main__, undefined);
 }
@@ -63,14 +63,17 @@ function function_a45824f(localclientnum, oldval, newval, bnewent, binitialsnap,
 	{
 		forcestreamxmodel(#"wpn_t8_pistol_standard_world");
 	}
-	else if(newval == 2)
-	{
-		forcestreamxmodel(#"hash_31af613fbbe465cf");
-	}
 	else
 	{
-		stopforcestreamingxmodel(#"wpn_t8_pistol_standard_world");
-		stopforcestreamingxmodel(#"hash_31af613fbbe465cf");
+		if(newval == 2)
+		{
+			forcestreamxmodel(#"hash_31af613fbbe465cf");
+		}
+		else
+		{
+			stopforcestreamingxmodel(#"wpn_t8_pistol_standard_world");
+			stopforcestreamingxmodel(#"hash_31af613fbbe465cf");
+		}
 	}
 }
 

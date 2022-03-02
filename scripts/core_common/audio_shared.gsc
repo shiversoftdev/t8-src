@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"audio", &__init__, undefined, undefined);
 }
@@ -398,13 +398,16 @@ function function_30d4f8c4(attacker, smeansofdeath, weapon)
 			{
 				str_alias = #"hash_5cd2899685b79029";
 			}
-			else if(weapon.rootweapon.name == "sig_blade")
-			{
-				str_alias = #"hash_6494570483effef0";
-			}
 			else
 			{
-				str_alias = #"hash_3fa09e466fc19e30";
+				if(weapon.rootweapon.name == "sig_blade")
+				{
+					str_alias = #"hash_6494570483effef0";
+				}
+				else
+				{
+					str_alias = #"hash_3fa09e466fc19e30";
+				}
 			}
 			break;
 		}

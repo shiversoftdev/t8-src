@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	level.var_d8caca76 = function_a3975ce9();
 	level.var_3f501cff = function_a04d222e() - 500;
@@ -56,7 +56,7 @@ function function_2eb2c17c(origin, item)
 			var_45127074 = isdefined(var_b0fbfe59[#"entity"]) && distance2dsquared(var_b0fbfe59[#"entity"].origin, item.origin) <= (12 * 12);
 			if(!var_acdfe076 && !var_45127074)
 			{
-				return 0;
+				return false;
 			}
 		}
 		else
@@ -64,12 +64,12 @@ function function_2eb2c17c(origin, item)
 			var_5408bd2a = physicstraceex(origin, var_8e2d9611, (0, 0, 0), (0, 0, 0), self, 1);
 			if(var_5408bd2a[#"fraction"] >= 1)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -184,17 +184,23 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 	{
 		var_9b882d22 = var_ba6bb2bd;
 	}
-	else if(isdefined(var_490fd61a) && (!isdefined(var_431e5926) || !var_404fbede))
+	else
 	{
-		var_9b882d22 = var_490fd61a;
-	}
-	else if(isdefined(var_431e5926))
-	{
-		var_9b882d22 = var_431e5926;
-	}
-	else if(isdefined(var_1530699e))
-	{
-		var_9b882d22 = var_1530699e;
+		if(isdefined(var_490fd61a) && (!isdefined(var_431e5926) || !var_404fbede))
+		{
+			var_9b882d22 = var_490fd61a;
+		}
+		else
+		{
+			if(isdefined(var_431e5926))
+			{
+				var_9b882d22 = var_431e5926;
+			}
+			else if(isdefined(var_1530699e))
+			{
+				var_9b882d22 = var_1530699e;
+			}
+		}
 	}
 	if(isdefined(var_9b882d22))
 	{
@@ -483,24 +489,24 @@ function can_pick_up(item, servertime = undefined)
 {
 	if(!isdefined(item) || !isdefined(item.var_a6762160))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(servertime))
 	{
 		if(item.var_8e092725 > 0 && item.var_8e092725 <= servertime)
 		{
-			return 0;
+			return false;
 		}
 	}
 	else if(item.var_8e092725 > 0 && item.var_8e092725 != -1)
 	{
-		return 0;
+		return false;
 	}
 	if(!isstruct(item) && item getitemindex() == 32767)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -669,13 +675,13 @@ function function_7363384a(name)
 	bundle = getscriptbundle(name);
 	if(!isdefined(bundle))
 	{
-		return 0;
+		return false;
 	}
 	if(bundle.type != #"hash_10587321f369e7f3")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -51,7 +51,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"globallogic_spawn", &__init__, undefined, undefined);
 }
@@ -366,10 +366,10 @@ function function_d3d4ff67(spawn)
 		supportedspawntype = var_a24ffdcc.type;
 		if(function_82ca1565(spawn, supportedspawntype))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -465,7 +465,7 @@ function function_d400d613(targetname, var_37c5ce49)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_68312709()
+function private function_68312709()
 {
 	spawnstoadd = [];
 	startspawns = [];
@@ -731,14 +731,14 @@ function allteamshaveexisted()
 	{
 		if(!teams::function_9dd75dad(team))
 		{
-			return 0;
+			return false;
 		}
 		if(level.everexisted[team] > gettime() + 1000)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -756,11 +756,11 @@ function function_38527849()
 	{
 		if(level.numlives && !self.pers[#"lives"])
 		{
-			return 0;
+			return false;
 		}
 		if(!level.numlives && level.numteamlives && game.lives[self.team] <= 0)
 		{
-			return 0;
+			return false;
 		}
 		if(level.teambased)
 		{
@@ -774,11 +774,11 @@ function function_38527849()
 		{
 			if(!level.ingraceperiod && !self.hasspawned)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -934,13 +934,16 @@ function playmatchstartaudio(team)
 				self globallogic_audio::leader_dialog_on_player(level.leaderdialog.starthcgamedialog);
 			}
 		}
-		else if(globallogic_utils::function_308e3379())
-		{
-			self globallogic_audio::leader_dialog_on_player(level.leaderdialog.var_f6fda321);
-		}
 		else
 		{
-			self globallogic_audio::leader_dialog_on_player(level.leaderdialog.startgamedialog);
+			if(globallogic_utils::function_308e3379())
+			{
+				self globallogic_audio::leader_dialog_on_player(level.leaderdialog.var_f6fda321);
+			}
+			else
+			{
+				self globallogic_audio::leader_dialog_on_player(level.leaderdialog.startgamedialog);
+			}
 		}
 		self.pers[#"playedgamemode"] = 1;
 	}
@@ -1619,20 +1622,20 @@ function allteamsnearscorelimit()
 {
 	if(!level.teambased)
 	{
-		return 0;
+		return false;
 	}
 	if(level.scorelimit <= 1)
 	{
-		return 0;
+		return false;
 	}
 	foreach(team, _ in level.teams)
 	{
 		if(!game.stat[#"teamscores"][team] >= (level.scorelimit - 1))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1648,21 +1651,21 @@ function shouldshowrespawnmessage()
 {
 	if(util::waslastround())
 	{
-		return 0;
+		return false;
 	}
 	if(util::isoneround())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.livesdonotreset) && level.livesdonotreset)
 	{
-		return 0;
+		return false;
 	}
 	if(allteamsnearscorelimit())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

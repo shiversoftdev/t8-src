@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3a7ac32272007c6d", &__init__, undefined, undefined);
 }
@@ -294,11 +294,14 @@ function function_323c6715()
 						{
 							score = (player.pers[#"cur_kill_streak"] > player.pers[#"best_kill_streak"] ? player.pers[#"cur_kill_streak"] : player.pers[#"best_kill_streak"]);
 						}
-						else if(!isdefined(player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype]))
+						else
 						{
-							player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype] = 0;
+							if(!isdefined(player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype]))
+							{
+								player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype] = 0;
+							}
+							score = (player.pers[#"cur_kill_streak"] > player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype] ? player.pers[#"cur_kill_streak"] : player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype]);
 						}
-						score = (player.pers[#"cur_kill_streak"] > player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype] ? player.pers[#"cur_kill_streak"] : player.pers[#"hash_33112f192fb3c234"][var_9b4eeccc][stat.stattype]);
 						break;
 					}
 					case "highestmultikill":
@@ -366,7 +369,7 @@ function function_323c6715()
 	Parameters: 3
 	Flags: Private
 */
-private function function_cd851b02(stat, var_9b4eeccc, ddl)
+function private function_cd851b02(stat, var_9b4eeccc, ddl)
 {
 	if(!isdefined(stat.var_82670522))
 	{
@@ -393,7 +396,7 @@ private function function_cd851b02(stat, var_9b4eeccc, ddl)
 	Parameters: 3
 	Flags: Private
 */
-private function function_d0c02a50(stat, var_aa1fbd8c, ddl)
+function private function_d0c02a50(stat, var_aa1fbd8c, ddl)
 {
 	if(!isdefined(self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.var_82670522]))
 	{
@@ -413,7 +416,7 @@ private function function_d0c02a50(stat, var_aa1fbd8c, ddl)
 	Parameters: 3
 	Flags: Private
 */
-private function function_1fa30a47(stat, currentscore, var_9b4eeccc)
+function private function_1fa30a47(stat, currentscore, var_9b4eeccc)
 {
 	if(isdefined(stat.var_233a23b6) && stat.var_233a23b6)
 	{
@@ -436,7 +439,7 @@ private function function_1fa30a47(stat, currentscore, var_9b4eeccc)
 	Parameters: 3
 	Flags: Private
 */
-private function function_b535c32e(stat, score, var_aa1fbd8c)
+function private function_b535c32e(stat, score, var_aa1fbd8c)
 {
 	if(!isdefined(self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype]))
 	{
@@ -455,7 +458,7 @@ private function function_b535c32e(stat, score, var_aa1fbd8c)
 	Parameters: 3
 	Flags: Private
 */
-private function function_be94d98b(stat, score, var_aa1fbd8c)
+function private function_be94d98b(stat, score, var_aa1fbd8c)
 {
 	if(!isdefined(self.pers[#"hash_33112f192fb3c234"][var_aa1fbd8c][stat.stattype]))
 	{

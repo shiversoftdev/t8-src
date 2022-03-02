@@ -245,20 +245,26 @@ function playtickingsound(gametype_tick_sound)
 			time = time - 1;
 			wait(1);
 		}
-		else if(time > 4)
-		{
-			time = time - 0.5;
-			wait(0.5);
-		}
-		else if(time > 1)
-		{
-			time = time - 0.4;
-			wait(0.4);
-		}
 		else
 		{
-			time = time - 0.3;
-			wait(0.3);
+			if(time > 4)
+			{
+				time = time - 0.5;
+				wait(0.5);
+			}
+			else
+			{
+				if(time > 1)
+				{
+					time = time - 0.4;
+					wait(0.4);
+				}
+				else
+				{
+					time = time - 0.3;
+					wait(0.3);
+				}
+			}
 		}
 		hostmigration::waittillhostmigrationdone();
 	}
@@ -508,17 +514,17 @@ function isheadshot(weapon, shitloc, smeansofdeath, einflictor)
 {
 	if(shitloc != "head" && shitloc != "helmet")
 	{
-		return 0;
+		return false;
 	}
 	switch(smeansofdeath)
 	{
 		case "mod_impact":
 		case "mod_melee":
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -609,10 +615,10 @@ function isexcluded(entity, entitylist)
 	{
 		if(entity == entitylist[index])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

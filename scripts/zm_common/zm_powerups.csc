@@ -287,7 +287,7 @@ function function_9f7265fd(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d6070ac5(localclientnum)
+function private function_d6070ac5(localclientnum)
 {
 	if(isdefined(self.n_powerup_fx))
 	{
@@ -310,7 +310,7 @@ private function function_d6070ac5(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function play_powerup_fx(localclientnum, str_fx, var_6df65756 = 0)
+function private play_powerup_fx(localclientnum, str_fx, var_6df65756 = 0)
 {
 	if(self.model !== #"tag_origin")
 	{

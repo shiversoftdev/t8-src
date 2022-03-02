@@ -58,7 +58,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7385ea584dca4997", &__init__, &__main__, undefined);
 }
@@ -117,7 +117,7 @@ function function_cc3e52ff()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f093c843(entity)
+function private function_f093c843(entity)
 {
 	entity.__blackboard = undefined;
 	entity function_cc3e52ff();
@@ -132,7 +132,7 @@ private function function_f093c843(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fe6a9772()
+function private function_fe6a9772()
 {
 	self setblackboardattribute("_locomotion_speed", "locomotion_speed_walk");
 	if(!isdefined(self.zombie_arms_position))

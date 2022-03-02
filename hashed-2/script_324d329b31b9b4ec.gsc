@@ -126,7 +126,7 @@ function function_6f798989(var_a27f7ab4)
 function previs(localclientnum, invalid)
 {
 	self notify(#"hash_72e5eda620e4157");
-	self endon_callback(&function_6f798989, #"death", #"weapon_change", #"hash_72e5eda620e4157");
+	self endoncallback(&function_6f798989, #"death", #"weapon_change", #"hash_72e5eda620e4157");
 	level.var_9c4cdb79[localclientnum] show();
 	function_3e8d9b27(!invalid, localclientnum);
 	while(true)

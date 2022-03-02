@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4d20bdb63281c38", &__init__, undefined, #"hash_1906a0df69010a5");
 }
@@ -115,7 +115,7 @@ function on_player_killed()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_15d026c0()
+function private function_15d026c0()
 {
 	self playsoundtoplayer(#"hash_3e5c00ae62aa9c91", self);
 }
@@ -129,7 +129,7 @@ private function function_15d026c0()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b00fd65d()
+function private function_b00fd65d()
 {
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 4);
 	var_49170438 = globallogic::totalalivecount();

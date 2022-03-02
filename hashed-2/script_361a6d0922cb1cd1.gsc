@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"status_effect_dot", &__init__, undefined, undefined);
 }
@@ -102,7 +102,7 @@ function function_1d474ba9(var_756fda07, weapon, var_84171a6c)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c13d20c4()
+function private function_c13d20c4()
 {
 	self notify(#"hash_516e8022bc912ad7");
 	self endon(#"hash_516e8022bc912ad7", #"hash_13d72ca5a7cfd2bd");
@@ -146,7 +146,7 @@ function function_1fe7552b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3b694684(count)
+function private function_3b694684(count)
 {
 	if(!isplayer(self.owner))
 	{
@@ -177,7 +177,7 @@ private function function_3b694684(count)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5236325e(var_84171a6c, killcament)
+function private function_5236325e(var_84171a6c, killcament)
 {
 	self endon(#"hash_13d72ca5a7cfd2bd");
 	var_6307def9 = 0;
@@ -228,7 +228,7 @@ private function function_5236325e(var_84171a6c, killcament)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ae0405e2(var_84171a6c)
+function private function_ae0405e2(var_84171a6c)
 {
 	if(self.var_82e80202 == self.var_8df76e2f)
 	{
@@ -262,7 +262,7 @@ private function function_ae0405e2(var_84171a6c)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_37c39554(var_84171a6c)
+function private function_37c39554(var_84171a6c)
 {
 	if(!isdefined(self.owner))
 	{
@@ -302,7 +302,7 @@ private function function_37c39554(var_84171a6c)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1d5bd9af()
+function private function_1d5bd9af()
 {
 	if(!self.var_7b465aaa)
 	{

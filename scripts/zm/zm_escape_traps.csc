@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_74eeacf89752d785", &__init__, undefined, undefined);
 }
@@ -225,7 +225,7 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 */
 function function_17956e93(localclientnum)
 {
-	self endon_callback(&function_502136a5, #"death");
+	self endoncallback(&function_502136a5, #"death");
 	self waittill(#"player_acid_trap_post_fx_complete");
 	if(isdefined(self))
 	{

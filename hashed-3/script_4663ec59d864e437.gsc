@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"gadget_health_regen", &__init__, undefined, undefined);
 }
@@ -341,7 +341,7 @@ function enable_healing_after_wait(slot, weapon, wait_time, var_5818bd22, player
 	self notify(#"healing_preamble");
 	self.heal.var_a1cac2f1 = gettime() + var_5818bd22;
 	waitresult = undefined;
-	waitresult = self waittill_timeout(wait_time, #"death", #"disconnect", #"healing_disabled", #"healing_preamble");
+	waitresult = self waittilltimeout(wait_time, #"death", #"disconnect", #"healing_disabled", #"healing_preamble");
 	if(waitresult._notify != "timeout")
 	{
 		return;
@@ -562,7 +562,7 @@ function function_aba28004()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_18e0320b()
+function private function_18e0320b()
 {
 	if(self is_healing())
 	{
@@ -579,17 +579,17 @@ private function function_18e0320b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dafd9cd(attacker)
+function private function_dafd9cd(attacker)
 {
 	if(gettime() < self.heal.var_a1cac2f1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.deathcircle) && level.deathcircle === attacker)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2e2ae8534f387ccf", &namespace_ed876ec::__init__, undefined, undefined);
 }
@@ -37,7 +37,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	plannerutility::registerplannerapi(#"hash_711b9eb06d45dbbb", &function_e5a77501);
 	plannerutility::registerplanneraction(#"hash_7590574799136eaf", &function_ac1b59c, &function_73f656f5, &function_29e16403, &function_a023ae49);
@@ -62,7 +62,7 @@ private function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_37d90686(bot, path)
+function private function_37d90686(bot, path)
 {
 	var_3eecdd31 = 0;
 	if(isdefined(path) && isdefined(path.pathpoints) && path.pathpoints.size > 0)
@@ -114,7 +114,7 @@ private function function_37d90686(bot, path)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3e6c9e50(weapon)
+function private function_3e6c9e50(weapon)
 {
 	if(isdefined(weapon.firetype) && weapon.firetype == #"hash_74e162e14a20482b")
 	{
@@ -144,7 +144,7 @@ private function function_3e6c9e50(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_48d6c189(weapon)
+function private function_48d6c189(weapon)
 {
 	var_f8e2456f = (weapon.clipsize * weapon.firetime) + weapon.reloadtime;
 	if(isdefined(weapon.firetype) && weapon.firetype == #"hash_74e162e14a20482b")
@@ -170,7 +170,7 @@ private function function_48d6c189(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5af8e31c(weapon)
+function private function_5af8e31c(weapon)
 {
 	return weapon.maxdamage;
 }
@@ -184,7 +184,7 @@ private function function_5af8e31c(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1b0a9309(bot)
+function private function_1b0a9309(bot)
 {
 	currentweapon = bot getcurrentweapon();
 	ammo = bot getammocount(currentweapon);
@@ -200,7 +200,7 @@ private function function_1b0a9309(bot)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_8cfcffa3(bot, weapon, ammo = undefined)
+function private function_8cfcffa3(bot, weapon, ammo = undefined)
 {
 	/#
 		assert(isbot(bot));
@@ -227,16 +227,16 @@ private function function_8cfcffa3(bot, weapon, ammo = undefined)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _paramshasbots(params)
+function private _paramshasbots(params)
 {
 	foreach(bot in params.bots)
 	{
 		if(strategiccommandutility::isvalidbot(bot))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -248,7 +248,7 @@ private function _paramshasbots(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_98118579(planner)
+function private function_98118579(planner)
 {
 	params = spawnstruct();
 	params.bots = [];
@@ -287,7 +287,7 @@ private function function_98118579(planner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5cc53671(bot)
+function private function_5cc53671(bot)
 {
 	if(isdefined(bot) && isbot(bot))
 	{
@@ -306,7 +306,7 @@ private function function_5cc53671(bot)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d6d5e252(bot, altar)
+function private function_d6d5e252(bot, altar)
 {
 	/#
 		assert(isbot(bot));
@@ -327,7 +327,7 @@ private function function_d6d5e252(bot, altar)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a023ae49(planner, params)
+function private function_a023ae49(planner, params)
 {
 	foreach(bot in params.bots)
 	{
@@ -344,7 +344,7 @@ private function function_a023ae49(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_66cc90a(planner, params)
+function private function_66cc90a(planner, params)
 {
 	if(!isdefined(params.altar) || !_paramshasbots(params))
 	{
@@ -373,7 +373,7 @@ private function function_66cc90a(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e0bf989(planner, params)
+function private function_e0bf989(planner, params)
 {
 	if(!isdefined(params.altar) || !_paramshasbots(params))
 	{
@@ -397,7 +397,7 @@ private function function_e0bf989(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_14c67eb3(planner, constants)
+function private function_14c67eb3(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -501,7 +501,7 @@ private function function_14c67eb3(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e442b780(planner, params)
+function private function_e442b780(planner, params)
 {
 	if(!isdefined(params.blocker) || !_paramshasbots(params))
 	{
@@ -530,7 +530,7 @@ private function function_e442b780(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2af9b775(planner, constants)
+function private function_2af9b775(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -633,7 +633,7 @@ private function function_2af9b775(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8015e63c(planner, params)
+function private function_8015e63c(planner, params)
 {
 	if(!isdefined(params.blocker) || !_paramshasbots(params))
 	{
@@ -656,7 +656,7 @@ private function function_8015e63c(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_73f656f5(planner, params)
+function private function_73f656f5(planner, params)
 {
 	if(!isdefined(params.chest) || !_paramshasbots(params))
 	{
@@ -685,7 +685,7 @@ private function function_73f656f5(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e057582f(planner, constants)
+function private function_e057582f(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -834,7 +834,7 @@ function function_ac1b59c(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_29e16403(planner, params)
+function private function_29e16403(planner, params)
 {
 	if(!isdefined(params.chest) || !_paramshasbots(params))
 	{
@@ -857,7 +857,7 @@ private function function_29e16403(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4f6a626d(planner, constants)
+function private function_4f6a626d(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -944,7 +944,7 @@ private function function_4f6a626d(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_58d72c81(planner, params)
+function private function_58d72c81(planner, params)
 {
 	if(!isdefined(params.powerup) || !_paramshasbots(params))
 	{
@@ -977,7 +977,7 @@ private function function_58d72c81(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6e8fe489(planner, params)
+function private function_6e8fe489(planner, params)
 {
 	if(!isdefined(params.powerup) || !_paramshasbots(params))
 	{
@@ -1002,7 +1002,7 @@ private function function_6e8fe489(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_557051df(planner, constants)
+function private function_557051df(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -1064,7 +1064,7 @@ private function function_557051df(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_967b74c1(planner, params)
+function private function_967b74c1(planner, params)
 {
 	if(!isdefined(params.var_ed8f7cef) || !_paramshasbots(params))
 	{
@@ -1097,7 +1097,7 @@ private function function_967b74c1(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_20f747ae(planner, params)
+function private function_20f747ae(planner, params)
 {
 	if(!isdefined(params.var_ed8f7cef) || !_paramshasbots(params))
 	{
@@ -1120,7 +1120,7 @@ private function function_20f747ae(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6fe73720(planner, params)
+function private function_6fe73720(planner, params)
 {
 	if(!isdefined(params.wallbuy) || !_paramshasbots(params))
 	{
@@ -1149,7 +1149,7 @@ private function function_6fe73720(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_393b9c76(planner, constants)
+function private function_393b9c76(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -1261,7 +1261,7 @@ private function function_393b9c76(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ec7dcff9(planner, params)
+function private function_ec7dcff9(planner, params)
 {
 	if(!isdefined(params.wallbuy) || !_paramshasbots(params))
 	{
@@ -1279,7 +1279,7 @@ private function function_ec7dcff9(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e5a77501(planner, constants)
+function private function_e5a77501(planner, constants)
 {
 	foreach(botinfo in planner::getblackboardattribute(planner, "doppelbots"))
 	{
@@ -1290,10 +1290,10 @@ private function function_e5a77501(planner, constants)
 		}
 		if(bot getcurrentweapon().isgadget)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1305,7 +1305,7 @@ private function function_e5a77501(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8e40731d(planner, params)
+function private function_8e40731d(planner, params)
 {
 	foreach(bot in params.bots)
 	{
@@ -1316,7 +1316,7 @@ private function function_8e40731d(planner, params)
 			bot.goalheight = 100;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1328,7 +1328,7 @@ private function function_8e40731d(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8030d0d2(planner, params)
+function private function_8030d0d2(planner, params)
 {
 	if(!_paramshasbots(params))
 	{

@@ -598,7 +598,7 @@ function function_d2dd1f2b()
 */
 function water_player_freeze()
 {
-	self endon_callback(&function_c64292f, #"death");
+	self endoncallback(&function_c64292f, #"death");
 	self.var_7dc2d507 = 1;
 	self notify(#"player_frozen");
 	self namespace_565e073b::function_3931c78();
@@ -675,7 +675,7 @@ function function_c64292f(str_notify)
 */
 function function_bad6907c()
 {
-	self endon_callback(&function_26234f4c, #"disconnect");
+	self endoncallback(&function_26234f4c, #"disconnect");
 	if(self isusingoffhand())
 	{
 		self forceoffhandend();
@@ -719,7 +719,7 @@ function function_bad6907c()
 	self thread function_67981637();
 	self bgb::suspend_weapon_cycling();
 	self disableweaponcycling();
-	self namespace_7d0afffb::function_ac9cb612(1);
+	self bgb_pack::function_ac9cb612(1);
 	self.var_be3224e6 = 1;
 	if(isdefined(level.var_526d919))
 	{
@@ -769,7 +769,7 @@ function function_67981637()
 */
 function function_46c3bbf7()
 {
-	self endon_callback(&function_26234f4c, #"disconnect");
+	self endoncallback(&function_26234f4c, #"disconnect");
 	if(zm_utility::is_trials())
 	{
 		self namespace_78baa66c::function_b4bd25ef();
@@ -787,7 +787,7 @@ function function_46c3bbf7()
 			}
 		}
 	}
-	self namespace_7d0afffb::function_ac9cb612(0);
+	self bgb_pack::function_ac9cb612(0);
 	self.var_be3224e6 = 0;
 	self bgb::resume_weapon_cycling();
 	self enableweaponcycling();
@@ -961,7 +961,7 @@ function function_e8485ac0()
 */
 function function_34e1762b()
 {
-	self endon_callback(&function_f0339fd, #"death");
+	self endoncallback(&function_f0339fd, #"death");
 	self.var_7dc2d507 = 1;
 	self notify(#"player_frozen");
 	self function_e22d95bc();
@@ -1027,7 +1027,7 @@ function function_f0339fd(str_notify)
 */
 function function_e22d95bc()
 {
-	self endon_callback(&function_26234f4c, #"disconnect");
+	self endoncallback(&function_26234f4c, #"disconnect");
 	self val::set(#"fasttravel", "freezecontrols", 1);
 	self val::set(#"fasttravel", "ignoreme", 1);
 	if(!self laststand::player_is_in_laststand())
@@ -1064,7 +1064,7 @@ function function_e22d95bc()
 */
 function function_d793c8ff()
 {
-	self endon_callback(&function_d92c3acf, #"disconnect");
+	self endoncallback(&function_d92c3acf, #"disconnect");
 	self val::set(#"fasttravel", "freezecontrols", 0);
 	self val::set(#"fasttravel", "takedamage", 1);
 	self val::set(#"fasttravel", "ignoreme", 0);

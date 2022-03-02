@@ -152,7 +152,7 @@ function function_b117d867()
 	scene::init("p8_fxanim_zm_towers_center_platform_rails_bundle");
 	level flag::wait_till("begin_spawning");
 	t_trigger = getent("t_raise_center_platform_rails", "targetname");
-	t_trigger waittill_timeout(6, #"trigger");
+	t_trigger waittilltimeout(6, #"trigger");
 	scene::play("p8_fxanim_zm_towers_center_platform_rails_bundle");
 	t_trigger delete();
 }

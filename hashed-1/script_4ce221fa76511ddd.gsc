@@ -37,7 +37,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_c0e025ae129c375", &__init__, &__main__, undefined);
 }
@@ -64,9 +64,7 @@ function __init__()
 	level flag::init(#"hash_6f483dda6f8ab19d");
 	if(!isdefined(level.var_7aa02c24))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_7aa02c24 = object;
+		level.var_7aa02c24 = new throttle();
 		[[ level.var_7aa02c24 ]]->initialize(2, 0.1);
 	}
 }
@@ -126,7 +124,7 @@ function function_670dda89()
 		fx_points[i] thread zm_trap_electric::trap_audio(self);
 	}
 	self thread zm_traps::trap_damage();
-	self waittill_timeout(self._trap_duration, #"trap_deactivate");
+	self waittilltimeout(self._trap_duration, #"trap_deactivate");
 	self notify(#"trap_done");
 	level exploder::stop_exploder("fxexp_ele_trap_activate");
 	level flag::clear(#"hash_6f483dda6f8ab19d");
@@ -221,55 +219,61 @@ function function_836dec7(e_trap)
 	{
 		e_trap notify(#"trap_deactivate");
 	}
-	else if(isdefined(self.var_3e60a85e) && self.var_3e60a85e)
+	else
 	{
-		return;
-	}
-	self.var_3e60a85e = 1;
-	if(isdefined(e_trap.activated_by_player) && isplayer(e_trap.activated_by_player))
-	{
-		e_trap.activated_by_player zm_stats::increment_challenge_stat(#"zombie_hunter_kill_trap");
-		e_trap.activated_by_player contracts::function_5b88297d(#"hash_1f11b620a6de486b");
-		if(isdefined(e_trap.activated_by_player.zapped_zombies))
+		if(isdefined(self.var_3e60a85e) && self.var_3e60a85e)
 		{
-			e_trap.activated_by_player.zapped_zombies++;
-			e_trap.activated_by_player notify(#"zombie_zapped");
+			return;
 		}
-	}
-	self fx::play("werewolfer_impact", self.origin, self.angles, "death");
-	playsoundatposition(#"wpn_zmb_electrap_zap", self.origin);
-	if(self.archetype === #"werewolf")
-	{
-		self thread zm_traps::electroctute_death_fx();
-		self thread zm_traps::play_elec_vocals();
-		self function_a3059f6(e_trap);
-	}
-	else if(self.archetype === #"zombie")
-	{
-		refs[0] = "guts";
-		refs[1] = "right_arm";
-		refs[2] = "left_arm";
-		refs[3] = "right_leg";
-		refs[4] = "left_leg";
-		refs[5] = "no_legs";
-		refs[6] = "head";
-		self.a.gib_ref = refs[randomint(refs.size)];
-		if(randomint(100) > 50)
+		self.var_3e60a85e = 1;
+		if(isdefined(e_trap.activated_by_player) && isplayer(e_trap.activated_by_player))
+		{
+			e_trap.activated_by_player zm_stats::increment_challenge_stat(#"zombie_hunter_kill_trap");
+			e_trap.activated_by_player contracts::function_5b88297d(#"hash_1f11b620a6de486b");
+			if(isdefined(e_trap.activated_by_player.zapped_zombies))
+			{
+				e_trap.activated_by_player.zapped_zombies++;
+				e_trap.activated_by_player notify(#"zombie_zapped");
+			}
+		}
+		self fx::play("werewolfer_impact", self.origin, self.angles, "death");
+		playsoundatposition(#"wpn_zmb_electrap_zap", self.origin);
+		if(self.archetype === #"werewolf")
 		{
 			self thread zm_traps::electroctute_death_fx();
 			self thread zm_traps::play_elec_vocals();
+			self function_a3059f6(e_trap);
 		}
-		function_6eac4ca1(self, "electrocute");
-		self notify(#"bhtn_action_notify", {#action:"electrocute"});
-		wait(randomfloat(1.25));
-		self function_a3059f6(e_trap);
+		else
+		{
+			if(self.archetype === #"zombie")
+			{
+				refs[0] = "guts";
+				refs[1] = "right_arm";
+				refs[2] = "left_arm";
+				refs[3] = "right_leg";
+				refs[4] = "left_leg";
+				refs[5] = "no_legs";
+				refs[6] = "head";
+				self.a.gib_ref = refs[randomint(refs.size)];
+				if(randomint(100) > 50)
+				{
+					self thread zm_traps::electroctute_death_fx();
+					self thread zm_traps::play_elec_vocals();
+				}
+				function_6eac4ca1(self, "electrocute");
+				self notify(#"bhtn_action_notify", {#action:"electrocute"});
+				wait(randomfloat(1.25));
+				self function_a3059f6(e_trap);
+			}
+			else
+			{
+				self function_a3059f6(e_trap);
+			}
+		}
+		wait(2);
+		self.var_3e60a85e = undefined;
 	}
-	else
-	{
-		self function_a3059f6(e_trap);
-	}
-	wait(2);
-	self.var_3e60a85e = undefined;
 }
 
 /*
@@ -289,23 +293,26 @@ function function_a3059f6(e_trap)
 	{
 		self [[self.fire_damage_func]](e_trap);
 	}
-	else if(self.archetype === #"werewolf")
-	{
-		n_damage = self.health + 100;
-	}
 	else
 	{
-		n_damage = 20000;
-	}
-	if(self.health < n_damage)
-	{
-		level notify(#"trap_kill", {#e_trap:e_trap, #victim:self});
-		if(self.archetype === #"werewolf" && isdefined(e_trap.activated_by_player))
+		if(self.archetype === #"werewolf")
 		{
-			e_trap.activated_by_player notify(#"hash_510f9114e7a6300c");
+			n_damage = self.health + 100;
 		}
+		else
+		{
+			n_damage = 20000;
+		}
+		if(self.health < n_damage)
+		{
+			level notify(#"trap_kill", {#e_trap:e_trap, #victim:self});
+			if(self.archetype === #"werewolf" && isdefined(e_trap.activated_by_player))
+			{
+				e_trap.activated_by_player notify(#"hash_510f9114e7a6300c");
+			}
+		}
+		self dodamage(n_damage, e_trap.origin, undefined, e_trap, undefined, "MOD_ELECTROCUTED", 0, undefined);
 	}
-	self dodamage(n_damage, e_trap.origin, undefined, e_trap, undefined, "MOD_ELECTROCUTED", 0, undefined);
 }
 
 /*

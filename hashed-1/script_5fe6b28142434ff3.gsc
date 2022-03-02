@@ -88,10 +88,10 @@ function function_269676a2()
 	{
 		if(self zm_weapons::has_weapon_or_upgrade(var_780f21bf))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -176,42 +176,51 @@ function function_ab06746b(e_player)
 {
 	if(self.stub.related_parent.b_in_use === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(level.var_7629d4e2 === 1)
 	{
-		return 0;
+		return false;
 	}
 	var_2c09b688 = e_player namespace_9cf755b::function_c7274071();
 	if(namespace_9cf755b::function_c654e39a(var_2c09b688))
 	{
 		self sethintstring(#"hash_253d93e1249b135c");
 	}
-	else if(e_player.var_382b64f2 !== 1)
-	{
-		self sethintstring(#"hash_38c5e4e71fc96473");
-	}
-	else if(!isdefined(e_player.var_f7694097))
-	{
-		self sethintstring(#"hash_385e1ce240650791");
-	}
 	else
 	{
-		str_weapon_name = level.var_57f4595b[e_player.var_f7694097].displayname;
-		if(e_player.currentweapon.isheroweapon === 1 || e_player.currentweapon.name === #"hash_603fdd2e4ae5b2b0")
+		if(e_player.var_382b64f2 !== 1)
 		{
-			self sethintstring("");
-		}
-		else if(isdefined(var_2c09b688))
-		{
-			self sethintstring(zm_utility::function_d6046228(#"hash_172253c9314825fc", #"hash_71016e43b6fe0570"), str_weapon_name, var_2c09b688.displayname);
+			self sethintstring(#"hash_38c5e4e71fc96473");
 		}
 		else
 		{
-			self sethintstring(zm_utility::function_d6046228(#"hash_314a7588b45256eb", #"hash_6831cfd35264e1"), str_weapon_name);
+			if(!isdefined(e_player.var_f7694097))
+			{
+				self sethintstring(#"hash_385e1ce240650791");
+			}
+			else
+			{
+				str_weapon_name = level.var_57f4595b[e_player.var_f7694097].displayname;
+				if(e_player.currentweapon.isheroweapon === 1 || e_player.currentweapon.name === #"hash_603fdd2e4ae5b2b0")
+				{
+					self sethintstring("");
+				}
+				else
+				{
+					if(isdefined(var_2c09b688))
+					{
+						self sethintstring(zm_utility::function_d6046228(#"hash_172253c9314825fc", #"hash_71016e43b6fe0570"), str_weapon_name, var_2c09b688.displayname);
+					}
+					else
+					{
+						self sethintstring(zm_utility::function_d6046228(#"hash_314a7588b45256eb", #"hash_6831cfd35264e1"), str_weapon_name);
+					}
+				}
+			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

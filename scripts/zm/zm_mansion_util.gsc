@@ -88,7 +88,7 @@ function function_ab834b07(player)
 	{
 		self sethintstring(self.stub.hint_string);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -335,21 +335,21 @@ function is_valid()
 {
 	if(self zm_utility::in_revive_trigger())
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_utility::is_drinking())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_564dec14) && self.var_564dec14)
 	{
-		return 0;
+		return false;
 	}
 	if(!zm_utility::is_player_valid(self))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -460,7 +460,7 @@ function waittill_player_nearby(e_player, var_5a365909 = 0)
 */
 function function_6a523c8c(v_wobble = (0, 0, 1))
 {
-	self endon_callback(&function_43ac0bb7, #"death", #"stop_wobble", #"hash_7e05ecbcf6c25592");
+	self endoncallback(&function_43ac0bb7, #"death", #"stop_wobble", #"hash_7e05ecbcf6c25592");
 	if(!isdefined(self.v_start_origin))
 	{
 		self.v_start_origin = self.origin;
@@ -648,7 +648,7 @@ function function_e7d4e4f0()
 	{
 		return;
 	}
-	self endon_callback(&function_3cfa50, #"hash_50b4cc0a4e4185b7");
+	self endoncallback(&function_3cfa50, #"hash_50b4cc0a4e4185b7");
 	self util::delay_notify(120, #"hash_50b4cc0a4e4185b7");
 	self.var_817342a7 = util::spawn_model("c_t8_zmb_dlc1_werewolf_chaos_drop", self.origin, self.angles);
 	if(!isdefined(level.var_98cb7c84))
@@ -719,7 +719,7 @@ function function_f3d694d6(player)
 	{
 		self sethintstringforplayer(player, "");
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -756,7 +756,7 @@ function function_4aea06b0(b_disable = 1)
 */
 function return_false(player)
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -867,10 +867,10 @@ function function_98ca58fc(e_trigger)
 	{
 		if(player istouching(e_trigger) && !player laststand::player_is_in_laststand())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1058,9 +1058,9 @@ function is_shield(w_current)
 {
 	if(isdefined(w_current) && (isdefined(w_current.isriotshield) && w_current.isriotshield))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1242,10 +1242,10 @@ function any_player_looking_at(v_origin, n_dot, b_do_trace, e_ignore)
 	{
 		if(e_player util::is_player_looking_at(v_origin, n_dot, b_do_trace, e_player))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

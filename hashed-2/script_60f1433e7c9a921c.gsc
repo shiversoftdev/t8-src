@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_432f3eb0cc2e347f", &namespace_e2d53d54::__init__, undefined, undefined);
 }
@@ -39,7 +39,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	plannercommanderutility::registerdaemonapi("daemonControlZones", &function_c5bf12a5);
 	plannercommanderutility::registerdaemonapi("daemonDomFlags", &function_88ab5a6e);
@@ -90,7 +90,7 @@ private function __init__()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _calculatepositionquerypath(queryresult, position, entity)
+function private _calculatepositionquerypath(queryresult, position, entity)
 {
 	path = undefined;
 	longestpath = 0;
@@ -128,7 +128,7 @@ private function _calculatepositionquerypath(queryresult, position, entity)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_c0e398c4(bots, var_26b45a5e, var_ed673d9e, claimed = undefined)
+function private function_c0e398c4(bots, var_26b45a5e, var_ed673d9e, claimed = undefined)
 {
 	/#
 		assert(isarray(bots));
@@ -214,7 +214,7 @@ private function function_c0e398c4(bots, var_26b45a5e, var_ed673d9e, claimed = u
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3ea6bf0b(gameobject, var_1766c557)
+function private function_3ea6bf0b(gameobject, var_1766c557)
 {
 	teamkeys = getarraykeys(gameobject.numtouching);
 	for(i = 0; i < gameobject.numtouching.size; i++)
@@ -226,10 +226,10 @@ private function function_3ea6bf0b(gameobject, var_1766c557)
 		}
 		if(gameobject.numtouching[team] > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -241,7 +241,7 @@ private function function_3ea6bf0b(gameobject, var_1766c557)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c5bf12a5(commander)
+function private function_c5bf12a5(commander)
 {
 	if(!isdefined(level.zones))
 	{
@@ -294,7 +294,7 @@ private function function_c5bf12a5(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_88ab5a6e(commander)
+function private function_88ab5a6e(commander)
 {
 	if(!isdefined(level.domflags))
 	{
@@ -353,7 +353,7 @@ private function function_88ab5a6e(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_337c2c5d(commander)
+function private function_337c2c5d(commander)
 {
 	if(!isdefined(level.zone))
 	{
@@ -389,7 +389,7 @@ private function function_337c2c5d(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4364713f(commander)
+function private function_4364713f(commander)
 {
 	if(!isdefined(level.sdbomb))
 	{
@@ -425,7 +425,7 @@ private function function_4364713f(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c111c0aa(commander)
+function private function_c111c0aa(commander)
 {
 	if(!isdefined(level.bombzones) || !isarray(level.bombzones) || level.bombzones.size <= 0)
 	{
@@ -483,7 +483,7 @@ private function function_c111c0aa(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7e03c94a(commander)
+function private function_7e03c94a(commander)
 {
 	if(!isdefined(level.defuseobject))
 	{
@@ -519,7 +519,7 @@ private function function_7e03c94a(commander)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
+function private _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
 		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), ("" + "") + "");
@@ -540,7 +540,7 @@ private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e319475e(commander, squad, constants)
+function private function_e319475e(commander, squad, constants)
 {
 	bots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	if(!isdefined(bots))
@@ -571,7 +571,7 @@ private function function_e319475e(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_f478ac94(commander, squad, constants)
+function private function_f478ac94(commander, squad, constants)
 {
 	var_1b956c5a = plannersquadutility::getblackboardattribute(squad, "mp_controlZones");
 	if(isdefined(var_1b956c5a) && var_1b956c5a.size > 0)
@@ -598,7 +598,7 @@ private function function_f478ac94(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_78126acd(commander, squad, constants)
+function private function_78126acd(commander, squad, constants)
 {
 	domflags = plannersquadutility::getblackboardattribute(squad, "mp_domFlags");
 	var_f3ff0f9c = plannersquadutility::getblackboardattribute(squad, "team");
@@ -626,7 +626,7 @@ private function function_78126acd(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_8ee25278(commander, squad, constants)
+function private function_8ee25278(commander, squad, constants)
 {
 	order = plannersquadutility::getblackboardattribute(squad, "order");
 	if(order === "order_wander")
@@ -654,7 +654,7 @@ private function function_8ee25278(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_eb0a4e86(commander, squad, constants)
+function private function_eb0a4e86(commander, squad, constants)
 {
 	kothzone = plannersquadutility::getblackboardattribute(squad, "mp_kothZone");
 	if(isdefined(kothzone) && kothzone.size > 0)
@@ -678,7 +678,7 @@ private function function_eb0a4e86(commander, squad, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2f04f764(planner, constants)
+function private function_2f04f764(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	commanderteam = planner::getblackboardattribute(planner, #"team");
@@ -695,10 +695,10 @@ private function function_2f04f764(planner, constants)
 		}
 		if(function_3ea6bf0b(zone.gameobject, commanderteam))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -710,7 +710,7 @@ private function function_2f04f764(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_34c0ebaf(planner, constants)
+function private function_34c0ebaf(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -729,7 +729,7 @@ private function function_34c0ebaf(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_68a32d83(planner, constants)
+function private function_68a32d83(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -748,7 +748,7 @@ private function function_68a32d83(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_380f4233(planner, constants)
+function private function_380f4233(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -767,7 +767,7 @@ private function function_380f4233(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4792217e(planner, constants)
+function private function_4792217e(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -786,7 +786,7 @@ private function function_4792217e(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_97e7d0d8(planner, constants)
+function private function_97e7d0d8(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -805,7 +805,7 @@ private function function_97e7d0d8(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_493ead90(planner, constants)
+function private function_493ead90(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -817,10 +817,10 @@ private function function_493ead90(planner, constants)
 		bot = bots[0][#"__unsafe__"][#"bot"];
 		if(isdefined(bot.isbombcarrier) && bot.isbombcarrier || (isdefined(level.multibomb) && level.multibomb))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -832,7 +832,7 @@ private function function_493ead90(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_cd5b7cc9(planner, constants)
+function private function_cd5b7cc9(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -851,7 +851,7 @@ private function function_cd5b7cc9(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_efa74ce4(planner, constants)
+function private function_efa74ce4(planner, constants)
 {
 	return namespace_cb7fdaf1::function_9fe18733() > 0;
 }
@@ -865,7 +865,7 @@ private function function_efa74ce4(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b35625c2(planner, constants)
+function private function_b35625c2(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -887,7 +887,7 @@ private function function_b35625c2(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a207b2e4(planner, constants)
+function private function_a207b2e4(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	commanderteam = planner::getblackboardattribute(planner, #"team");
@@ -955,7 +955,7 @@ private function function_a207b2e4(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9d8a9994(planner, constants)
+function private function_9d8a9994(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1037,7 +1037,7 @@ private function function_9d8a9994(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_913bffb1(planner, constants)
+function private function_913bffb1(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1059,7 +1059,7 @@ private function function_913bffb1(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_edf25221(planner, constants)
+function private function_edf25221(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1137,7 +1137,7 @@ private function function_edf25221(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_90af2101(planner, constants)
+function private function_90af2101(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1159,7 +1159,7 @@ private function function_90af2101(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_bca7d900(planner, constants)
+function private function_bca7d900(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1183,7 +1183,7 @@ private function function_bca7d900(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1cce4bb6(planner, constants)
+function private function_1cce4bb6(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1217,7 +1217,7 @@ private function function_1cce4bb6(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f192ef84(planner, constants)
+function private function_f192ef84(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1241,7 +1241,7 @@ private function function_f192ef84(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7a576970(planner, constants)
+function private function_7a576970(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1266,7 +1266,7 @@ private function function_7a576970(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_53600d78(planner, constants)
+function private function_53600d78(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1308,7 +1308,7 @@ private function function_53600d78(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7a9a7a24(planner, constants)
+function private function_7a9a7a24(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1334,7 +1334,7 @@ private function function_7a9a7a24(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b032f16b(planner, constants)
+function private function_b032f16b(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1359,7 +1359,7 @@ private function function_b032f16b(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9c7e3773(planner, constants)
+function private function_9c7e3773(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1380,7 +1380,7 @@ private function function_9c7e3773(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_39cd5957(planner, constants)
+function private function_39cd5957(planner, constants)
 {
 	commanderteam = planner::getblackboardattribute(planner, #"team");
 	return commanderteam == game.attackers;
@@ -1395,7 +1395,7 @@ private function function_39cd5957(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_97659d05(planner, constants)
+function private function_97659d05(planner, constants)
 {
 	commanderteam = planner::getblackboardattribute(planner, #"team");
 	return commanderteam == game.defenders;
@@ -1410,7 +1410,7 @@ private function function_97659d05(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9e016913(planner, constants)
+function private function_9e016913(planner, constants)
 {
 	return isdefined(level.bombplanted) && level.bombplanted;
 }

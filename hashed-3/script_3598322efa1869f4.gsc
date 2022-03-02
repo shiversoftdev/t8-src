@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"ray_gun", &__init__, undefined, undefined);
 }
@@ -109,6 +109,6 @@ function is_ray_gun(w_weapon)
 */
 function function_215146f5(damage_percent)
 {
-	return 0;
+	return false;
 }
 

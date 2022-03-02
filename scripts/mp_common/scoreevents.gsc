@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"scoreevents", &__init__, undefined, undefined);
 }
@@ -130,7 +130,7 @@ function on_player_spawned()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f77ced93(params)
+function private function_f77ced93(params)
 {
 	if(!isdefined(params.weapon) || !isweapon(params.weapon) || !isdefined(params.last_weapon) || !isweapon(params.last_weapon) || !isdefined(self) || !isplayer(self))
 	{
@@ -821,33 +821,36 @@ function scoreeventplayerkill(data, time)
 			attacker contracts::function_a54e2068(#"hash_61c7d530de491c8d");
 			util::function_5a68c330(22, attacker.team, attacker getentitynumber());
 		}
-		else if(isdefined(attacker.lastkilledby))
+		else
 		{
-			if(attacker.lastkilledby == victim)
+			if(isdefined(attacker.lastkilledby))
 			{
-				level.globalpaybacks++;
-				processscoreevent(#"revenge_kill", attacker, victim, weapon);
-				attacker stats::function_e24eec31(weapon, #"revenge_kill", 1);
-				attacker activecamo::function_896ac347(weapon, #"revenge", 1);
-				attacker activecamo::function_896ac347(weapon, #"hash_39ab7cda18fd5c74", 1);
-				victim recordkillmodifier("revenge");
-				attacker.lastkilledby = undefined;
+				if(attacker.lastkilledby == victim)
+				{
+					level.globalpaybacks++;
+					processscoreevent(#"revenge_kill", attacker, victim, weapon);
+					attacker stats::function_e24eec31(weapon, #"revenge_kill", 1);
+					attacker activecamo::function_896ac347(weapon, #"revenge", 1);
+					attacker activecamo::function_896ac347(weapon, #"hash_39ab7cda18fd5c74", 1);
+					victim recordkillmodifier("revenge");
+					attacker.lastkilledby = undefined;
+				}
 			}
-		}
-		if(victim killstreaks::is_an_a_killstreak())
-		{
-			level.globalbuzzkills++;
-			processscoreevent(#"stop_enemy_killstreak", attacker, victim, weapon);
-			attacker activecamo::function_896ac347(weapon, #"buzzkill", 1);
-			attacker activecamo::function_896ac347(weapon, #"hash_39ab7cda18fd5c74", 1);
-			victim recordkillmodifier("buzzkill");
-		}
-		if(isdefined(victim.lastmansd) && victim.lastmansd == 1)
-		{
-			processscoreevent(#"final_kill_elimination", attacker, victim, weapon);
-			if(isdefined(attacker.lastmansd) && attacker.lastmansd == 1)
+			if(victim killstreaks::is_an_a_killstreak())
 			{
-				processscoreevent(#"elimination_and_last_player_alive", attacker, victim, weapon);
+				level.globalbuzzkills++;
+				processscoreevent(#"stop_enemy_killstreak", attacker, victim, weapon);
+				attacker activecamo::function_896ac347(weapon, #"buzzkill", 1);
+				attacker activecamo::function_896ac347(weapon, #"hash_39ab7cda18fd5c74", 1);
+				victim recordkillmodifier("buzzkill");
+			}
+			if(isdefined(victim.lastmansd) && victim.lastmansd == 1)
+			{
+				processscoreevent(#"final_kill_elimination", attacker, victim, weapon);
+				if(isdefined(attacker.lastmansd) && attacker.lastmansd == 1)
+				{
+					processscoreevent(#"elimination_and_last_player_alive", attacker, victim, weapon);
+				}
 			}
 		}
 		if(is_weapon_valid(meansofdeath, weapon, weaponclass, killstreak))
@@ -986,10 +989,7 @@ function scoreeventplayerkill(data, time)
 		{
 			var_21877ec1 = 1;
 		}
-		else if(meansofdeath == "MOD_HEAD_SHOT" && (isdefined(victim.armor) ? victim.armor : 0) > 0)
-		{
-			var_21877ec1 = 1;
-		}
+		var_21877ec1 = 1;
 		if(isdefined(var_21877ec1) && var_21877ec1)
 		{
 			processscoreevent(#"hash_50328eac1e8cfdcb", attacker, victim, weapon);
@@ -1490,32 +1490,44 @@ function is_weapon_valid(meansofdeath, weapon, weaponclass, killstreak)
 	{
 		valid_weapon = 0;
 	}
-	else if(get_distance_for_weapon(weapon, weaponclass) == 0)
-	{
-		valid_weapon = 0;
-	}
-	else if(meansofdeath == "MOD_PISTOL_BULLET" || meansofdeath == "MOD_RIFLE_BULLET")
-	{
-		valid_weapon = 1;
-	}
-	else if(meansofdeath == "MOD_HEAD_SHOT")
-	{
-		valid_weapon = 1;
-	}
-	else if(weapon.rootweapon.name == "hatchet" && meansofdeath == "MOD_IMPACT")
-	{
-		valid_weapon = 1;
-	}
 	else
 	{
-		baseweapon = challenges::getbaseweapon(weapon);
-		if(baseweapon == level.weaponspecialcrossbow || weapon.isballisticknife || baseweapon == level.var_9e188c0b && meansofdeath == "MOD_IMPACT")
+		if(get_distance_for_weapon(weapon, weaponclass) == 0)
 		{
-			valid_weapon = 1;
+			valid_weapon = 0;
 		}
-		else if(baseweapon.forcedamagehitlocation || baseweapon == level.weaponshotgunenergy && meansofdeath == "MOD_PROJECTILE")
+		else
 		{
-			valid_weapon = 1;
+			if(meansofdeath == "MOD_PISTOL_BULLET" || meansofdeath == "MOD_RIFLE_BULLET")
+			{
+				valid_weapon = 1;
+			}
+			else
+			{
+				if(meansofdeath == "MOD_HEAD_SHOT")
+				{
+					valid_weapon = 1;
+				}
+				else
+				{
+					if(weapon.rootweapon.name == "hatchet" && meansofdeath == "MOD_IMPACT")
+					{
+						valid_weapon = 1;
+					}
+					else
+					{
+						baseweapon = challenges::getbaseweapon(weapon);
+						if(baseweapon == level.weaponspecialcrossbow || weapon.isballisticknife || baseweapon == level.var_9e188c0b && meansofdeath == "MOD_IMPACT")
+						{
+							valid_weapon = 1;
+						}
+						else if(baseweapon.forcedamagehitlocation || baseweapon == level.weaponshotgunenergy && meansofdeath == "MOD_PROJECTILE")
+						{
+							valid_weapon = 1;
+						}
+					}
+				}
+			}
 		}
 	}
 	return valid_weapon;
@@ -2201,17 +2213,20 @@ function specialiststatabilityusage(usagesinglegame, multitrackperlife)
 			self challenges::processspecialistchallenge("multikill_ability");
 		}
 	}
-	else if(!isdefined(self.specialiststatabilityusage))
+	else
 	{
+		if(!isdefined(self.specialiststatabilityusage))
+		{
+			self.specialiststatabilityusage = 0;
+		}
+		self.specialiststatabilityusage++;
+		self function_179829ab(4);
+		if(self.specialiststatabilityusage >= 2)
+		{
+			self challenges::processspecialistchallenge("multikill_ability");
+		}
 		self.specialiststatabilityusage = 0;
 	}
-	self.specialiststatabilityusage++;
-	self function_179829ab(4);
-	if(self.specialiststatabilityusage >= 2)
-	{
-		self challenges::processspecialistchallenge("multikill_ability");
-	}
-	self.specialiststatabilityusage = 0;
 }
 
 /*
@@ -2335,7 +2350,7 @@ function function_43ee1b3d(attacker, victim, attackerweapon)
 	}
 	if(isdefined(attackerweapon) && isdefined(level.iskillstreakweapon) && [[level.iskillstreakweapon]](attackerweapon))
 	{
-		return 0;
+		return false;
 	}
 	foreach(smartcover in level.var_5101157d.var_f115c746)
 	{

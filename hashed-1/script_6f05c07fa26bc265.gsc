@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_593f78558bdfdbb5", &__init__, undefined, #"hash_e08ecdac50a87f4");
 }
@@ -223,7 +223,7 @@ function function_4ac25840(var_d32e67b4)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_587e512e()
+function private function_587e512e()
 {
 	self playsoundtoplayer(#"hash_1c4290ca92541819", self);
 	self playsound(#"hash_8489803fbb0e650");
@@ -245,7 +245,7 @@ private function function_587e512e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c816ea5b()
+function private function_c816ea5b()
 {
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 1);
 	switch(maxteamplayers)

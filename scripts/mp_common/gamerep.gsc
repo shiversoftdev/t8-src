@@ -44,9 +44,9 @@ function isgamerepinitialized()
 {
 	if(!isdefined(game.gamerepinitialized) || !game.gamerepinitialized)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -62,13 +62,13 @@ function isgamerepenabled()
 {
 	if(bot::is_bot_ranked_match())
 	{
-		return 0;
+		return false;
 	}
 	if(!level.rankedmatch)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -352,25 +352,25 @@ function isgamerepparamvalid(paramname)
 	gametype = level.gametype;
 	if(!isdefined(game.gamerep))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(game.gamerep[#"gamelimit"]))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(game.gamerep[#"gamelimit"][gametype]))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(game.gamerep[#"gamelimit"][gametype][paramname]))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(game.gamerep[#"gamelimit"][gametype][paramname]) && !isdefined(game.gamerep[#"gamelimit"][#"default"][paramname]))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -386,9 +386,9 @@ function isgamerepparamignoredforreporting(paramname)
 {
 	if(isdefined(game.gamerep[#"ignoreparams"][paramname]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

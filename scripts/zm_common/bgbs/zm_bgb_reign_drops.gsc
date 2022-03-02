@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_reign_drops", &__init__, undefined, #"bgb");
 }
@@ -51,9 +51,9 @@ function validation()
 {
 	if(level.active_powerups.size >= 9 || !self bgb::function_9d8118f5())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -147,7 +147,7 @@ function function_7f3b4877()
 */
 function function_dfc73f65(n_position)
 {
-	v_powerup = self bgb::function_2bbfb816();
+	v_powerup = self bgb::get_player_dropped_powerup_origin();
 	v_up = vectorscale((0, 0, 1), 5);
 	var_85660237 = (v_powerup + (anglestoforward(self.angles) * 60)) + v_up;
 	var_97efa74a = (var_85660237 + (anglestoforward(self.angles) * 60)) + v_up;

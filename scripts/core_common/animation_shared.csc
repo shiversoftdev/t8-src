@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"animation", &__init__, undefined, undefined);
 }
@@ -108,27 +108,30 @@ function _play(animation, v_origin_or_ent, v_angles_or_tag, n_rate = 1, n_blend_
 	{
 		self animscripted("_anim_notify_", v_origin_or_ent, v_angles_or_tag, animation, n_blend_in, n_rate, n_start_time);
 	}
-	else if(isstring(v_angles_or_tag))
-	{
-		/#
-			assert(isdefined(v_origin_or_ent.model), ((("" + animation) + "") + v_angles_or_tag) + "");
-		#/
-		v_pos = v_origin_or_ent gettagorigin(v_angles_or_tag);
-		v_ang = v_origin_or_ent gettagangles(v_angles_or_tag);
-		self.origin = v_pos;
-		self.angles = v_ang;
-		b_link = 1;
-		self animscripted("_anim_notify_", self.origin, self.angles, animation, n_blend_in, n_rate, n_start_time);
-	}
 	else
 	{
-		v_angles = (isdefined(v_origin_or_ent.angles) ? v_origin_or_ent.angles : (0, 0, 0));
-		v_origin = (isdefined(v_origin_or_ent.origin) ? v_origin_or_ent.origin : (0, 0, 0));
-		self animscripted("_anim_notify_", v_origin, v_angles, animation, n_blend_in, n_rate, n_start_time);
-	}
-	if(n_start_time > 0)
-	{
-		self setanimtimebyname(animation, n_start_time, 1);
+		if(isstring(v_angles_or_tag))
+		{
+			/#
+				assert(isdefined(v_origin_or_ent.model), ((("" + animation) + "") + v_angles_or_tag) + "");
+			#/
+			v_pos = v_origin_or_ent gettagorigin(v_angles_or_tag);
+			v_ang = v_origin_or_ent gettagangles(v_angles_or_tag);
+			self.origin = v_pos;
+			self.angles = v_ang;
+			b_link = 1;
+			self animscripted("_anim_notify_", self.origin, self.angles, animation, n_blend_in, n_rate, n_start_time);
+		}
+		else
+		{
+			v_angles = (isdefined(v_origin_or_ent.angles) ? v_origin_or_ent.angles : (0, 0, 0));
+			v_origin = (isdefined(v_origin_or_ent.origin) ? v_origin_or_ent.origin : (0, 0, 0));
+			self animscripted("_anim_notify_", v_origin, v_angles, animation, n_blend_in, n_rate, n_start_time);
+		}
+		if(n_start_time > 0)
+		{
+			self setanimtimebyname(animation, n_start_time, 1);
+		}
 	}
 	if(!b_link)
 	{
@@ -162,10 +165,10 @@ function _play(animation, v_origin_or_ent, v_angles_or_tag, n_rate = 1, n_blend_
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function waittill_end()
+function private waittill_end()
 {
 	level endon(#"demo_jump");
-	self waittill_match({#notetrack:"end"}, #"_anim_notify_");
+	self waittillmatch({#notetrack:"end"}, #"_anim_notify_");
 }
 
 /*

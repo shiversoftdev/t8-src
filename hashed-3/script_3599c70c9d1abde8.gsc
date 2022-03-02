@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6e8654cf5bb63c35", &__init__, undefined, undefined);
 }
@@ -145,7 +145,7 @@ function function_3f3f0d8(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_39053880(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_39053880(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -162,7 +162,7 @@ private function function_39053880(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_f4b140ab(localclientnum, pos, surface, notetrack, bone)
+function private function_f4b140ab(localclientnum, pos, surface, notetrack, bone)
 {
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(pos, e_player.origin);
@@ -178,13 +178,16 @@ private function function_f4b140ab(localclientnum, pos, surface, notetrack, bone
 	{
 		function_36e4ebd4(localclientnum, "anim_med");
 	}
-	else if(n_scale <= 0.2 && n_scale > 0.1)
-	{
-		function_36e4ebd4(localclientnum, "damage_light");
-	}
 	else
 	{
-		function_36e4ebd4(localclientnum, "damage_light");
+		if(n_scale <= 0.2 && n_scale > 0.1)
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
+		else
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
 	}
 }
 
@@ -197,7 +200,7 @@ private function function_f4b140ab(localclientnum, pos, surface, notetrack, bone
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_e980911c(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_e980911c(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(self.origin, e_player.origin);

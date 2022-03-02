@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"arena", &__init__, undefined, undefined);
 }
@@ -199,13 +199,16 @@ function match_end()
 			{
 				player arenaendmatch(0);
 			}
-			else if(match::function_a2b53e17(player))
-			{
-				player arenaendmatch(1);
-			}
 			else
 			{
-				player arenaendmatch(-1);
+				if(match::function_a2b53e17(player))
+				{
+					player arenaendmatch(1);
+				}
+				else
+				{
+					player arenaendmatch(-1);
+				}
 			}
 			if(isdefined(player.pers[#"hash_1b5251cc167039c8"]))
 			{
@@ -217,13 +220,16 @@ function match_end()
 	{
 		function_a357a2b8(0);
 	}
-	else if(game.outcome.team == #"allies")
-	{
-		function_a357a2b8(1);
-	}
 	else
 	{
-		function_a357a2b8(-1);
+		if(game.outcome.team == #"allies")
+		{
+			function_a357a2b8(1);
+		}
+		else
+		{
+			function_a357a2b8(-1);
+		}
 	}
 }
 
@@ -238,7 +244,7 @@ function match_end()
 */
 function function_51203700()
 {
-	return 0;
+	return false;
 }
 
 /*

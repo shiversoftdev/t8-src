@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7c9607fd2f57a1c7", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_59803fa8)
+function private function_d1de6a85(var_59803fa8)
 {
 	callback::on_ai_damage(&on_ai_damage);
 	level.var_3c453815 = zm_trial::function_5769f26a(var_59803fa8);
@@ -89,7 +89,7 @@ private function function_d1de6a85(var_59803fa8)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_ai_damage(&on_ai_damage);
 	callback::function_824d206(&function_33f0ddd3);
@@ -130,7 +130,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_ai_damage(params)
+function private on_ai_damage(params)
 {
 	if(isplayer(params.eattacker) && params.weapon != level.weaponbasemelee && (isdefined(params.weapon.isbulletweapon) && params.weapon.isbulletweapon || (isdefined(params.weapon.isprojectileweapon) && params.weapon.isprojectileweapon) || (isdefined(params.weapon.isburstfire) && params.weapon.isburstfire)))
 	{
@@ -147,7 +147,7 @@ private function on_ai_damage(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_78ccee50(params)
+function private function_78ccee50(params)
 {
 	if(!isdefined(params.weapon))
 	{
@@ -218,7 +218,7 @@ function is_active()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{
@@ -247,7 +247,7 @@ event function_f8ea644(eventstruct)
 	if(is_active() && isdefined(eventstruct.projectile))
 	{
 		var_be17187b = undefined;
-		var_be17187b = eventstruct.projectile waittill_timeout(2, #"death", #"explode", #"projectile_impact_explode", #"stationary", #"grenade_stuck");
+		var_be17187b = eventstruct.projectile waittilltimeout(2, #"death", #"explode", #"projectile_impact_explode", #"stationary", #"grenade_stuck");
 		self function_b33ed7bd();
 	}
 }

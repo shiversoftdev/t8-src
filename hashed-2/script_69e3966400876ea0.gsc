@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_ce997e4989de9ae", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_a84ac7c8)
+function private function_d1de6a85(var_a84ac7c8)
 {
 	self.var_a84ac7c8 = var_a84ac7c8;
 	namespace_2ea65b04::function_57d79cac();
@@ -67,7 +67,7 @@ private function function_d1de6a85(var_a84ac7c8)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	self notify(#"hash_16943eddd89aa5b8");
@@ -89,7 +89,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8cd2421c()
+function private function_8cd2421c()
 {
 	namespace_b22c99a5::function_2976fa44(4);
 	namespace_b22c99a5::function_dace284(0);
@@ -109,7 +109,7 @@ private function function_8cd2421c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_199e5524(str_flag)
+function private function_199e5524(str_flag)
 {
 	self endon(#"hash_16943eddd89aa5b8");
 	level flag::wait_till(str_flag);

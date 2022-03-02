@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_261b71c31eed2733", &__init__, &__main__, undefined);
 }
@@ -209,7 +209,7 @@ function function_9af564c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f34169e8()
+function private function_f34169e8()
 {
 	level endon(#"end_game");
 	s_escape_plan_vo_react = struct::get("s_map_react_vo_rich_lab");
@@ -251,7 +251,7 @@ function function_65a374eb()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f1da2bd5()
+function private function_f1da2bd5()
 {
 	var_44e6a82b = struct::get_array("s_pods_react");
 	foreach(s_pod in var_44e6a82b)
@@ -282,9 +282,9 @@ function function_480ec8c(player)
 	if(!(isdefined(player.var_b5fbfab4) && player.var_b5fbfab4))
 	{
 		self sethintstring(#"");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -328,7 +328,7 @@ function function_4f89089b()
 */
 function function_963edada()
 {
-	level endon_callback(&function_19af3d1b, #"hash_59cfca3c898df56d", #"hash_732657441f7793dc", #"end_game");
+	level endoncallback(&function_19af3d1b, #"hash_59cfca3c898df56d", #"hash_732657441f7793dc", #"end_game");
 	var_d98d7f94 = getent("t_cell_block_vista_vo", "targetname");
 	while(isdefined(var_d98d7f94))
 	{
@@ -370,7 +370,7 @@ function function_19af3d1b(str_notify)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bdc25d1b()
+function private function_bdc25d1b()
 {
 	var_73707aab = getent("power_house_power_switch", "script_noteworthy");
 	var_73707aab endon(#"death");
@@ -407,7 +407,7 @@ function function_350029c6()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_35491a0e()
+function private function_35491a0e()
 {
 	s_catwalk_lava_exp = struct::get("s_catwalk_lava_exp");
 	s_catwalk_lava_exp.var_ef66d35a = s_catwalk_lava_exp zm_unitrigger::create(&function_58813027, s_catwalk_lava_exp.radius, &function_f118f554, 0, 0);
@@ -458,7 +458,7 @@ function function_f118f554()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5860fce9()
+function private function_5860fce9()
 {
 	self endon(#"disconnect");
 	wait(10);
@@ -486,7 +486,7 @@ private function function_5860fce9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_49189399()
+function private function_49189399()
 {
 	var_e5bf9843 = getent("t_reached_cellbock_vo", "targetname");
 	var_e5bf9843 endon(#"death");
@@ -554,7 +554,7 @@ function function_22101968()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3deb7fb0()
+function private function_3deb7fb0()
 {
 	s_escape_plan_vo_react = struct::get("s_escape_plan_vo_react");
 	s_escape_plan_vo_react zm_unitrigger::create(undefined, 64, &function_db185b3, 1);
@@ -590,7 +590,7 @@ function function_db185b3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a78a3261()
+function private function_a78a3261()
 {
 	for(var_12d0accd = 0; var_12d0accd < 3; var_12d0accd++)
 	{

@@ -160,11 +160,11 @@ function shouldaddrankxp(player)
 {
 	if(level.gametype == "fr")
 	{
-		return 0;
+		return false;
 	}
 	if(level.gametype == "zclassic" && (isdefined(level.var_5164a0ca) && level.var_5164a0ca))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_4f654f3a) && level.var_4f654f3a)
 	{
@@ -176,17 +176,17 @@ function shouldaddrankxp(player)
 			}
 			println("" + playername);
 		#/
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.rankcap) || level.rankcap == 0)
 	{
-		return 1;
+		return true;
 	}
 	if(player.pers[#"plevel"] > 0 || player.pers[#"rank"] > level.rankcap)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -240,9 +240,9 @@ function isregisteredevent(type)
 {
 	if(isdefined(level.scoreinfo[type]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -325,13 +325,16 @@ function getscoreeventtablename(gametype)
 	{
 		prefix = #"hash_3bebadbc9db1102b";
 	}
-	else if(sessionmodeiszombiesgame())
+	else
 	{
-		prefix = #"hash_5f114025234e912f";
-	}
-	else if(function_f99d2668())
-	{
-		prefix = #"hash_2bedaa060f1bcc0f";
+		if(sessionmodeiszombiesgame())
+		{
+			prefix = #"hash_5f114025234e912f";
+		}
+		else if(function_f99d2668())
+		{
+			prefix = #"hash_2bedaa060f1bcc0f";
+		}
 	}
 	gametype = function_ea13f55(gametype, "_hc", "");
 	gametype = function_ea13f55(gametype, "_cwl", "");

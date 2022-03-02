@@ -28,18 +28,18 @@ function is_winner(outcome, var_512330f1)
 	{
 		if(outcome.players.size && outcome.players[0] == var_512330f1)
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(outcome.team) && outcome.team == var_512330f1.team)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(isdefined(outcome.team) && outcome.team == var_512330f1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -293,20 +293,26 @@ function playtickingsound(gametype_tick_sound)
 			time = time - 1;
 			wait(1);
 		}
-		else if(time > 4)
-		{
-			time = time - 0.5;
-			wait(0.5);
-		}
-		else if(time > 1)
-		{
-			time = time - 0.4;
-			wait(0.4);
-		}
 		else
 		{
-			time = time - 0.3;
-			wait(0.3);
+			if(time > 4)
+			{
+				time = time - 0.5;
+				wait(0.5);
+			}
+			else
+			{
+				if(time > 1)
+				{
+					time = time - 0.4;
+					wait(0.4);
+				}
+				else
+				{
+					time = time - 0.3;
+					wait(0.3);
+				}
+			}
 		}
 		hostmigration::waittillhostmigrationdone();
 	}
@@ -663,21 +669,21 @@ function isheadshot(weapon, shitloc, smeansofdeath, einflictor)
 {
 	if(shitloc != "head" && shitloc != "helmet")
 	{
-		return 0;
+		return false;
 	}
 	switch(smeansofdeath)
 	{
 		case "mod_melee_assassinate":
 		case "mod_melee":
 		{
-			return 0;
+			return false;
 		}
 		case "mod_impact":
 		{
 			baseweapon = weapons::getbaseweapon(weapon);
 			if(!weapon.isballisticknife && baseweapon != level.weaponspecialcrossbow && baseweapon != level.var_9e188c0b)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
@@ -685,10 +691,10 @@ function isheadshot(weapon, shitloc, smeansofdeath, einflictor)
 	{
 		if(!isdefined(einflictor) || !isdefined(einflictor.controlled) || einflictor.controlled == 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -887,9 +893,9 @@ function print_map_errors()
 			util::error("");
 		#/
 		callback::abort_level();
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

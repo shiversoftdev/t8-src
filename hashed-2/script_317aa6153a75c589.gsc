@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function registerdefaultanimationmocomps()
+function autoexec registerdefaultanimationmocomps()
 {
 	animationstatenetwork::registeranimationmocomp("adjust_to_cover", &mocompadjusttocoverinit, &mocompadjusttocoverupdate, &mocompadjusttocoverterminate);
 	animationstatenetwork::registeranimationmocomp("locomotion_explosion_death", &mocomplocoexplosioninit, undefined, undefined);
@@ -38,7 +38,7 @@ autoexec function registerdefaultanimationmocomps()
 	Parameters: 6
 	Flags: Private
 */
-private function drawtraversal(traversal, entity, animation, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private drawtraversal(traversal, entity, animation, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	if(getdvarint(#"ai_debugvolumetool", 0) <= 1)
 	{
@@ -106,7 +106,7 @@ private function drawtraversal(traversal, entity, animation, mocompanimblendoutt
 	Parameters: 6
 	Flags: Private
 */
-private function drawtraversalsection(section, entity, animation, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private drawtraversalsection(section, entity, animation, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	if(getdvarint(#"ai_debugvolumetool", 0) <= 1)
 	{
@@ -146,7 +146,12 @@ private function drawtraversalsection(section, entity, animation, mocompanimblen
 				recordline(currentposition, nextposition, (0, 1, 0), "", entity);
 			#/
 		}
-		recordline(currentposition, nextposition, (1, 0.5, 0), "", entity);
+		else
+		{
+			/#
+				recordline(currentposition, nextposition, (1, 0.5, 0), "", entity);
+			#/
+		}
 		currentposition = nextposition;
 		segmenttime = segmenttime + (float(function_60d95f53()) / 1000);
 	}
@@ -161,7 +166,7 @@ private function drawtraversalsection(section, entity, animation, mocompanimblen
 	Parameters: 9
 	Flags: Linked, Private
 */
-private function calculatetraveralsection(entity, traversal, animation, starttime, endtime, startposition, endposition, startangles, timescale = 1)
+function private calculatetraveralsection(entity, traversal, animation, starttime, endtime, startposition, endposition, startangles, timescale = 1)
 {
 	/#
 		assert(endtime >= starttime);
@@ -647,7 +652,7 @@ function mocomptraversalproceduralpivotterminate(entity, mocompanim, mocompanimb
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function initadjusttocoverparams()
+function autoexec initadjusttocoverparams()
 {
 	_addadjusttocover("human", "cover_any", "stance_any", 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.9, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8);
 	_addadjusttocover("human", "cover_stand", "stance_any", 0.4, 0.8, 0.6, 0.4, 0.6, 0.3, 0.3, 0.6, 0.9, 0.6, 0.3, 0.4, 0.7, 0.6, 0.6, 0.6);
@@ -670,7 +675,7 @@ autoexec function initadjusttocoverparams()
 	Parameters: 19
 	Flags: Linked, Private
 */
-private function _addadjusttocover(archetype, node, stance, rot2, rot32, rot3, rot36, rot6, rot69, rot9, rot98, rot8, rot87, rot7, rot47, rot4, rot14, rot1, rot21)
+function private _addadjusttocover(archetype, node, stance, rot2, rot32, rot3, rot36, rot6, rot69, rot9, rot98, rot8, rot87, rot7, rot47, rot4, rot14, rot1, rot21)
 {
 	if(!isdefined(level.adjusttocover))
 	{
@@ -713,7 +718,7 @@ private function _addadjusttocover(archetype, node, stance, rot2, rot32, rot3, r
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _getadjusttocoverrotation(archetype, node, stance, angletonode)
+function private _getadjusttocoverrotation(archetype, node, stance, angletonode)
 {
 	/#
 		assert(isarray(level.adjusttocover[archetype]));
@@ -740,69 +745,114 @@ private function _getadjusttocoverrotation(archetype, node, stance, angletonode)
 	{
 		direction = 2;
 	}
-	else if(angletonode < 33.75)
-	{
-		direction = 32;
-	}
-	else if(angletonode < 56.25)
-	{
-		direction = 3;
-	}
-	else if(angletonode < 78.75)
-	{
-		direction = 63;
-	}
-	else if(angletonode < 101.25)
-	{
-		direction = 6;
-	}
-	else if(angletonode < 123.75)
-	{
-		direction = 96;
-	}
-	else if(angletonode < 146.25)
-	{
-		direction = 9;
-	}
-	else if(angletonode < 168.75)
-	{
-		direction = 89;
-	}
-	else if(angletonode < 191.25)
-	{
-		direction = 8;
-	}
-	else if(angletonode < 213.75)
-	{
-		direction = 78;
-	}
-	else if(angletonode < 236.25)
-	{
-		direction = 7;
-	}
-	else if(angletonode < 258.75)
-	{
-		direction = 47;
-	}
-	else if(angletonode < 281.25)
-	{
-		direction = 4;
-	}
-	else if(angletonode < 303.75)
-	{
-		direction = 14;
-	}
-	else if(angletonode < 326.25)
-	{
-		direction = 1;
-	}
-	else if(angletonode < 348.75)
-	{
-		direction = 21;
-	}
 	else
 	{
-		direction = 2;
+		if(angletonode < 33.75)
+		{
+			direction = 32;
+		}
+		else
+		{
+			if(angletonode < 56.25)
+			{
+				direction = 3;
+			}
+			else
+			{
+				if(angletonode < 78.75)
+				{
+					direction = 63;
+				}
+				else
+				{
+					if(angletonode < 101.25)
+					{
+						direction = 6;
+					}
+					else
+					{
+						if(angletonode < 123.75)
+						{
+							direction = 96;
+						}
+						else
+						{
+							if(angletonode < 146.25)
+							{
+								direction = 9;
+							}
+							else
+							{
+								if(angletonode < 168.75)
+								{
+									direction = 89;
+								}
+								else
+								{
+									if(angletonode < 191.25)
+									{
+										direction = 8;
+									}
+									else
+									{
+										if(angletonode < 213.75)
+										{
+											direction = 78;
+										}
+										else
+										{
+											if(angletonode < 236.25)
+											{
+												direction = 7;
+											}
+											else
+											{
+												if(angletonode < 258.75)
+												{
+													direction = 47;
+												}
+												else
+												{
+													if(angletonode < 281.25)
+													{
+														direction = 4;
+													}
+													else
+													{
+														if(angletonode < 303.75)
+														{
+															direction = 14;
+														}
+														else
+														{
+															if(angletonode < 326.25)
+															{
+																direction = 1;
+															}
+															else
+															{
+																if(angletonode < 348.75)
+																{
+																	direction = 21;
+																}
+																else
+																{
+																	direction = 2;
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	/#
 		assert(isdefined(level.adjusttocover[archetype][node][stance][direction]));
@@ -824,7 +874,7 @@ private function _getadjusttocoverrotation(archetype, node, stance, angletonode)
 	Parameters: 1
 	Flags: Private
 */
-private function debuglocoexplosion(entity)
+function private debuglocoexplosion(entity)
 {
 	entity endon(#"death");
 	/#
@@ -851,7 +901,7 @@ private function debuglocoexplosion(entity)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompflankstandinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompflankstandinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity animmode("nogravity", 0);
 	entity orientmode("face angle", entity.angles[1]);
@@ -872,7 +922,7 @@ private function mocompflankstandinit(entity, mocompanim, mocompanimblendouttime
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocomplocoexplosioninit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocomplocoexplosioninit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity animmode("nogravity", 0);
 	entity orientmode("face angle", entity.angles[1]);
@@ -893,7 +943,7 @@ private function mocomplocoexplosioninit(entity, mocompanim, mocompanimblendoutt
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompadjusttocoverinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompadjusttocoverinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity orientmode("face angle", entity.angles[1]);
 	entity animmode("angle deltas", 0);
@@ -925,7 +975,7 @@ private function mocompadjusttocoverinit(entity, mocompanim, mocompanimblendoutt
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompadjusttocoverupdate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompadjusttocoverupdate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	if(!isdefined(entity.adjustnode))
 	{
@@ -965,7 +1015,7 @@ private function mocompadjusttocoverupdate(entity, mocompanim, mocompanimblendou
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompadjusttocoverterminate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompadjusttocoverterminate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity.blockingpain = 0;
 	entity.mocompanglestarttime = undefined;
@@ -995,7 +1045,7 @@ private function mocompadjusttocoverterminate(entity, mocompanim, mocompanimblen
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_82b9d7b7(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private function_82b9d7b7(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity orientmode("face angle", entity.angles[1]);
 	entity animmode("normal");
@@ -1104,7 +1154,7 @@ function function_4b95cde(entity, mocompanim, mocompanimblendouttime, mocompanim
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompignorepainfaceenemyinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompignorepainfaceenemyinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity.blockingpain = 1;
 	if(isdefined(entity.enemy))
@@ -1127,7 +1177,7 @@ private function mocompignorepainfaceenemyinit(entity, mocompanim, mocompanimble
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompignorepainfaceenemyupdate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompignorepainfaceenemyupdate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	if(isdefined(entity.enemy) && entity getanimtime(mocompanim) < 0.5)
 	{
@@ -1148,7 +1198,7 @@ private function mocompignorepainfaceenemyupdate(entity, mocompanim, mocompanimb
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function mocompignorepainfaceenemyterminate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompignorepainfaceenemyterminate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity.blockingpain = 0;
 }

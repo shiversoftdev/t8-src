@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"burnplayer", &__init__, undefined, undefined);
 }
@@ -236,7 +236,7 @@ function burn_on_postfx()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _burntag(localclientnum, tag, postfix)
+function private _burntag(localclientnum, tag, postfix)
 {
 	if(isdefined(self) && self hasdobj(localclientnum))
 	{
@@ -257,7 +257,7 @@ private function _burntag(localclientnum, tag, postfix)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _burntagson(localclientnum, tags, var_71742e03)
+function private _burntagson(localclientnum, tags, var_71742e03)
 {
 	if(!isdefined(self))
 	{
@@ -295,7 +295,7 @@ private function _burntagson(localclientnum, tags, var_71742e03)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _burnbody(localclientnum, var_71742e03 = 0)
+function private _burnbody(localclientnum, var_71742e03 = 0)
 {
 	self endon(#"death");
 	self thread _burntagson(localclientnum, level.burntags, var_71742e03);
@@ -310,7 +310,7 @@ private function _burnbody(localclientnum, var_71742e03 = 0)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _burntagswatchend(localclientnum, fxarray, burnsound)
+function private _burntagswatchend(localclientnum, fxarray, burnsound)
 {
 	self waittill(#"burn_off", #"death");
 	if(isdefined(self) && isdefined(burnsound))
@@ -335,7 +335,7 @@ private function _burntagswatchend(localclientnum, fxarray, burnsound)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _burntagswatchclear(localclientnum, fxarray, burnsound)
+function private _burntagswatchclear(localclientnum, fxarray, burnsound)
 {
 	self endon(#"burn_off");
 	self waittill(#"death");

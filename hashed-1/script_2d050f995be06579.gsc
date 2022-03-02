@@ -63,7 +63,7 @@ function function_ce66ebf2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function doradarsweep(var_bc40925b)
+function private doradarsweep(var_bc40925b)
 {
 	if(isdefined(var_bc40925b) && globallogic_utils::gettimeremaining() > 10)
 	{

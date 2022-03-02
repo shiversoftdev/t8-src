@@ -47,7 +47,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5ecf1967e7cb0189", &__init__, &__main__, undefined);
 }
@@ -130,7 +130,7 @@ function function_aad04bcc()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a6dba7fd(entity)
+function private function_a6dba7fd(entity)
 {
 	entity.__blackboard = undefined;
 	entity function_aad04bcc();
@@ -241,11 +241,11 @@ function registerbehaviorscriptfunctions()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d4f5b993(entity, eventname)
+function private function_d4f5b993(entity, eventname)
 {
 	if(!isdefined(entity.favoriteenemy))
 	{
-		return 0;
+		return false;
 	}
 	var_b3a11ca1 = blackboard::getblackboardevents(eventname);
 	if(isdefined(var_b3a11ca1) && var_b3a11ca1.size)
@@ -254,11 +254,11 @@ private function function_d4f5b993(entity, eventname)
 		{
 			if(var_8d7c592b.data.favoriteenemy === entity.favoriteenemy)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -270,7 +270,7 @@ private function function_d4f5b993(entity, eventname)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_697a9b7f(entity, minrange, maxrange)
+function private function_697a9b7f(entity, minrange, maxrange)
 {
 	if(!isdefined(entity.favoriteenemy))
 	{
@@ -302,7 +302,7 @@ private function function_697a9b7f(entity, minrange, maxrange)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_180db9a7(entity)
+function private function_180db9a7(entity)
 {
 	if(!isdefined(entity.favoriteenemy))
 	{
@@ -325,7 +325,7 @@ private function function_180db9a7(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4b8e0aab(entity)
+function private function_4b8e0aab(entity)
 {
 	if(!isdefined(entity.favoriteenemy))
 	{
@@ -357,9 +357,9 @@ function function_7f34a57c(entity)
 {
 	if(function_697a9b7f(entity) && function_4b8e0aab(entity) && function_d4f5b993(entity, "geg_spear_attack"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -435,7 +435,7 @@ function function_7fe60e9e(entity)
 	Parameters: 1
 	Flags: Private
 */
-private function function_61d12301(projectile)
+function private function_61d12301(projectile)
 {
 	projectile endon(#"death");
 	result = undefined;
@@ -452,7 +452,7 @@ private function function_61d12301(projectile)
 	Parameters: 1
 	Flags: Private
 */
-private function watch_for_death(projectile)
+function private watch_for_death(projectile)
 {
 	projectile waittill(#"death");
 	waittillframeend();
@@ -468,7 +468,7 @@ private function watch_for_death(projectile)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a1fce938()
+function private function_a1fce938()
 {
 	foreach(var_b12a43cc in level.var_8c5f46f1)
 	{
@@ -490,7 +490,7 @@ private function function_a1fce938()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7e633e59()
+function private function_7e633e59()
 {
 	zombies = getaiteamarray(level.zombie_team);
 	var_86bf21bc = self.origin;
@@ -522,7 +522,7 @@ private function function_7e633e59()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7d162bd0(projectile, entity)
+function private function_7d162bd0(projectile, entity)
 {
 	projectile endon(#"spear_death");
 	result = undefined;
@@ -562,7 +562,7 @@ private function function_7d162bd0(projectile, entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4d6e95b6(entity)
+function private function_4d6e95b6(entity)
 {
 	entity function_d06af584();
 }
@@ -576,7 +576,7 @@ private function function_4d6e95b6(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_43104218(entity)
+function private function_43104218(entity)
 {
 	destructserverutils::function_9885f550(entity, "left_hand", "tag_weapon_left");
 	destructserverutils::function_9885f550(entity, "right_hand", "tag_weapon_right");
@@ -592,7 +592,7 @@ private function function_43104218(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e0b648bb(entity)
+function private function_e0b648bb(entity)
 {
 	if(isdefined(entity.var_d7e69143) && entity.var_d7e69143)
 	{
@@ -602,11 +602,11 @@ private function function_e0b648bb(entity)
 			melee_dist_sq = zombiebehavior::function_997f1224(entity);
 			if(dist_sq < melee_dist_sq)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -618,13 +618,13 @@ private function function_e0b648bb(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d344063a(entity)
+function private function_d344063a(entity)
 {
 	if(isdefined(entity.var_d64b7af0) && entity.var_d64b7af0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -636,7 +636,7 @@ private function function_d344063a(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_47fdaf31(entity)
+function private function_47fdaf31(entity)
 {
 	entity.var_d64b7af0 = 0;
 }
@@ -650,7 +650,7 @@ private function function_47fdaf31(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ebf730ee(entity)
+function private function_ebf730ee(entity)
 {
 	entity function_d06af584();
 	zm_behavior::function_bdedea72(entity);
@@ -665,7 +665,7 @@ private function function_ebf730ee(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3839537e(entity)
+function private function_3839537e(entity)
 {
 	if(!isdefined(entity.zombie_poi))
 	{
@@ -688,12 +688,12 @@ private function function_3839537e(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_75db4aba(entity)
+function private function_75db4aba(entity)
 {
 	/#
 		if(isdefined(entity.var_89b5e1e) && entity.var_89b5e1e)
 		{
-			return 1;
+			return true;
 		}
 	#/
 	var_98c55679 = 0;
@@ -707,13 +707,13 @@ private function function_75db4aba(entity)
 	}
 	if(!var_98c55679)
 	{
-		return 0;
+		return false;
 	}
 	if(function_697a9b7f(entity, 300, 1200) && function_180db9a7(entity) && function_d4f5b993(entity, "geg_shield_attack"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -725,7 +725,7 @@ private function function_75db4aba(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3133f922(entity)
+function private function_3133f922(entity)
 {
 	entity.var_7b0667d9 = 1;
 	entity.locked_enemy = entity.favoriteenemy;
@@ -740,7 +740,7 @@ private function function_3133f922(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d82de95f(entity)
+function private function_d82de95f(entity)
 {
 	var_d7c9d429 = spawnstruct();
 	var_d7c9d429.favoriteenemy = entity.locked_enemy;
@@ -784,7 +784,7 @@ private function function_d82de95f(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_60164697()
+function private function_60164697()
 {
 	self endon(#"death", #"disconnect");
 	time = gettime() + 2000;
@@ -808,7 +808,7 @@ private function function_60164697()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_564b9cf5(entity)
+function private function_564b9cf5(entity)
 {
 	entity.var_7b0667d9 = 0;
 }
@@ -822,7 +822,7 @@ private function function_564b9cf5(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2301c0a7(entity, asmstatename)
+function private function_2301c0a7(entity, asmstatename)
 {
 	entity.track_enemy = 1;
 	entity.var_1ec6ea5d = gettime() + (int(entity ai::function_9139c839().var_3422adfd * 1000));
@@ -844,7 +844,7 @@ private function function_2301c0a7(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c2155e05(entity, asmstatename)
+function private function_c2155e05(entity, asmstatename)
 {
 	if(isdefined(entity.track_enemy) && entity.track_enemy)
 	{
@@ -875,7 +875,7 @@ private function function_c2155e05(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_15502a5(entity, asmstatename)
+function private function_15502a5(entity, asmstatename)
 {
 	entity clientfield::set("gegenees_shield_guard_effect", 0);
 	return 4;
@@ -890,7 +890,7 @@ private function function_15502a5(entity, asmstatename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7505908b(entity)
+function private function_7505908b(entity)
 {
 	entity.var_7b0667d9 = 1;
 	entity clientfield::set("gegenees_spear_tip_tell_effect", 1);
@@ -907,7 +907,7 @@ private function function_7505908b(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9175e656(entity)
+function private function_9175e656(entity)
 {
 	if(isdefined(entity.tell_fx) && entity.tell_fx)
 	{
@@ -928,7 +928,7 @@ private function function_9175e656(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c81af561(entity)
+function private function_c81af561(entity)
 {
 	entity.var_7b0667d9 = 0;
 }
@@ -942,7 +942,7 @@ private function function_c81af561(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function gegeneestargetservice(entity)
+function private gegeneestargetservice(entity)
 {
 	if(isdefined(entity.ignoreall) && entity.ignoreall)
 	{
@@ -1022,7 +1022,7 @@ private function gegeneestargetservice(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d5d3aa77(entity)
+function private function_d5d3aa77(entity)
 {
 	enemy = entity.favoriteenemy;
 	if(isdefined(enemy) && isalive(enemy))
@@ -1048,7 +1048,7 @@ private function function_d5d3aa77(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4334cc3b(entity)
+function private function_4334cc3b(entity)
 {
 	if(self.var_c63e2811 > gettime())
 	{
@@ -1069,7 +1069,7 @@ private function function_4334cc3b(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a953d80d(entity)
+function private function_a953d80d(entity)
 {
 	enemies = getaiarchetypearray(#"zombie");
 	enemies = arraycombine(enemies, getaiarchetypearray(#"catalyst"), 0, 0);
@@ -1090,19 +1090,19 @@ private function function_a953d80d(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3d752709(enemy, target)
+function private function_3d752709(enemy, target)
 {
 	if(isdefined(enemy.knockdown) && enemy.knockdown)
 	{
-		return 0;
+		return false;
 	}
 	if(gibserverutils::isgibbed(enemy, 384))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(enemy.origin, target.origin) > self ai::function_9139c839().var_ef908ac8 * self ai::function_9139c839().var_ef908ac8)
 	{
-		return 0;
+		return false;
 	}
 	var_f2fb414f = anglestoforward(target.angles);
 	var_9349139f = enemy.origin - target.origin;
@@ -1113,9 +1113,9 @@ private function function_3d752709(enemy, target)
 	var_34e02165 = vectordot(var_c2ee8451, var_3e3c8075);
 	if(var_34e02165 < 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1188,7 +1188,7 @@ function function_64c4573(entity, mocompanim, mocompanimblendouttime, mocompanim
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c3c86ec1(entity)
+function private function_c3c86ec1(entity)
 {
 	hitent = entity melee();
 	/#
@@ -1218,7 +1218,7 @@ private function function_c3c86ec1(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_376a5549(enemy)
+function private function_376a5549(enemy)
 {
 	forward = anglestoforward(self.angles);
 	velocity = enemy getvelocity();
@@ -1236,7 +1236,7 @@ private function function_376a5549(enemy)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function supplypodtank()
+function private supplypodtank()
 {
 	self.var_126d7bef = 1;
 	self.ignore_nuke = 1;
@@ -1275,7 +1275,7 @@ private function supplypodtank()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3f8833df()
+function private function_3f8833df()
 {
 	self attach("c_t8_zmb_dlc2_gegenees_shield", "tag_weapon_left");
 	self attach("c_t8_zmb_dlc2_gegenees_sword", "tag_weapon_right");
@@ -1340,7 +1340,7 @@ function function_d06af584()
 	Parameters: 12
 	Flags: Linked, Private
 */
-private function function_ca5688e3(inflictor, attacker, damage, idflags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private function_ca5688e3(inflictor, attacker, damage, idflags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	if(isdefined(boneindex))
 	{
@@ -1446,7 +1446,7 @@ private function function_ca5688e3(inflictor, attacker, damage, idflags, meansof
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a231dd3b(s_params)
+function private function_a231dd3b(s_params)
 {
 	if(self.archetype != #"gegenees")
 	{
@@ -1519,7 +1519,7 @@ function function_9a05389e()
 	Parameters: 0
 	Flags: Private
 */
-private function function_c03e8d05()
+function private function_c03e8d05()
 {
 	/#
 		adddebugcommand("");

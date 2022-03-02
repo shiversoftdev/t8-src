@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	/#
 		system::register(#"devgui", &__init__, undefined, #"load");
@@ -185,13 +185,16 @@ function devgui_vehicle_spawn_think()
 				{
 					add_vehicle_at_eye_trace("");
 				}
-				else if(val == 2)
+				else
 				{
-					add_vehicle_at_eye_trace("");
-				}
-				else if(val == 3)
-				{
-					add_vehicle_at_eye_trace("");
+					if(val == 2)
+					{
+						add_vehicle_at_eye_trace("");
+					}
+					else if(val == 3)
+					{
+						add_vehicle_at_eye_trace("");
+					}
 				}
 				setdvar(#"scr_spawnvehicle", 0);
 			}
@@ -900,13 +903,16 @@ function devgui_handle_player_command(playercallback, pcb_param_1, pcb_param_2)
 				{
 					player thread [[playercallback]](pcb_param_1, pcb_param_2);
 				}
-				else if(isdefined(pcb_param_1))
-				{
-					player thread [[playercallback]](pcb_param_1);
-				}
 				else
 				{
-					player thread [[playercallback]]();
+					if(isdefined(pcb_param_1))
+					{
+						player thread [[playercallback]](pcb_param_1);
+					}
+					else
+					{
+						player thread [[playercallback]]();
+					}
 				}
 			}
 		}
@@ -1463,7 +1469,7 @@ function function_354e12a4()
 	Parameters: 0
 	Flags: Private
 */
-private function function_57edec18()
+function private function_57edec18()
 {
 	/#
 		util::function_e2e9d901("", "");

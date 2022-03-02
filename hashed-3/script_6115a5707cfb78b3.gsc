@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6e77e2b9be911a71", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	namespace_b22c99a5::function_8036c103();
 	foreach(player in getplayers())
@@ -68,7 +68,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -86,12 +86,12 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_83fa47e8()
+function private function_83fa47e8()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
-	self namespace_7d0afffb::function_59004002(#"hash_16f5a81348e35487", 1);
-	self namespace_7d0afffb::function_59004002(#"zm_bgb_perkaholic", 1);
+	self bgb_pack::function_59004002(#"hash_16f5a81348e35487", 1);
+	self bgb_pack::function_59004002(#"zm_bgb_perkaholic", 1);
 	wait(8);
 	if(isdefined(self.var_2a62e678))
 	{
@@ -142,7 +142,7 @@ private function function_83fa47e8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_50b92441()
+function private function_50b92441()
 {
 	self endon(#"disconnect");
 	for(n_slot = 0; n_slot <= 4; n_slot++)
@@ -170,8 +170,8 @@ private function function_50b92441()
 	}
 	self.var_5046ea5e = undefined;
 	self.var_cdc2b986 = undefined;
-	self namespace_7d0afffb::function_59004002(#"hash_16f5a81348e35487", 0);
-	self namespace_7d0afffb::function_59004002(#"zm_bgb_perkaholic", 0);
+	self bgb_pack::function_59004002(#"hash_16f5a81348e35487", 0);
+	self bgb_pack::function_59004002(#"zm_bgb_perkaholic", 0);
 }
 
 /*
@@ -198,7 +198,7 @@ function is_active()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3a95c571()
+function private function_3a95c571()
 {
 	if(isinarray(self.var_67ba1237, #"specialty_additionalprimaryweapon") && isdefined(self.var_cdc2b986) && !self hasweapon(self.var_5046ea5e.additional_primary_weapon))
 	{

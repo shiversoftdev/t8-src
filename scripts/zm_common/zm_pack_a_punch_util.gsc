@@ -194,14 +194,14 @@ function update_hint_string(player)
 					{
 						self sethintstring(#"hash_51194149fb39a693");
 					}
-					return 1;
+					return true;
 				}
-				return 0;
+				return false;
 			}
-			return 0;
+			return false;
 		}
 		self sethintstring(#"hash_5b77a8f33d352c37");
-		return 1;
+		return true;
 	}
 	w_current = player getcurrentweapon();
 	b_weapon_supports_aat = zm_weapons::weapon_supports_aat(w_current);
@@ -212,23 +212,23 @@ function update_hint_string(player)
 			if(!namespace_59ff1d6c::function_901b751c(#"hash_57a5c7a9dcf94d61") || !b_weapon_supports_aat)
 			{
 				self sethintstringforplayer(player, #"hash_fea06394ae21371");
-				return 1;
+				return true;
 			}
 			if(isdefined(player.var_486c9d59) && player.var_486c9d59)
 			{
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	}
 	if(namespace_497ab7da::is_active())
 	{
 		self sethintstring(#"hash_55d25caf8f7bbb2f");
-		return 1;
+		return true;
 	}
 	if(namespace_83dc3729::is_active())
 	{
-		return 0;
+		return false;
 	}
 	var_cbf27833 = zm_weapons::is_weapon_upgraded(w_current);
 	current_cost = pap_machine function_aaf2d8(player, w_current, b_weapon_supports_aat, var_cbf27833);
@@ -236,9 +236,9 @@ function update_hint_string(player)
 	{
 		if(isdefined(player.var_486c9d59) && player.var_486c9d59)
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
 	if(var_cbf27833 && b_weapon_supports_aat)
 	{
@@ -255,77 +255,98 @@ function update_hint_string(player)
 					self sethintstring(#"hash_11c1749ce5b09c1f");
 				}
 			}
-			else if(function_8b1a219a())
-			{
-				self sethintstring(#"hash_4614bd9a185769d4");
-			}
 			else
-			{
-				self sethintstring(#"hash_3dfc1041d71fc05e");
-			}
-		}
-		else if(isdefined(pap_machine.var_b64e889a) && pap_machine.var_b64e889a)
-		{
-			if(player function_7352d8cc(w_current))
 			{
 				if(function_8b1a219a())
 				{
-					self sethintstring(#"hash_23e352cd04548513", current_cost);
+					self sethintstring(#"hash_4614bd9a185769d4");
 				}
 				else
 				{
-					self sethintstring(#"hash_6cd48e5ddab079ed", current_cost);
+					self sethintstring(#"hash_3dfc1041d71fc05e");
 				}
 			}
-			else if(function_8b1a219a())
-			{
-				self sethintstring(#"hash_6942dfa9737b6ac8", current_cost);
-			}
-			else
-			{
-				self sethintstring(#"hash_117f528808767024", current_cost);
-			}
-		}
-		else if(player function_7352d8cc(w_current))
-		{
-			if(function_8b1a219a())
-			{
-				self sethintstring(#"hash_7f57747f6802bc18", current_cost);
-			}
-			else
-			{
-				self sethintstring(#"hash_673794817f9c09b4", current_cost);
-			}
-		}
-		else if(function_8b1a219a())
-		{
-			self sethintstring(#"hash_4ded27bb7bc35a8d", current_cost);
 		}
 		else
 		{
-			self sethintstring(#"hash_4c9d507af46126af", current_cost);
+			if(isdefined(pap_machine.var_b64e889a) && pap_machine.var_b64e889a)
+			{
+				if(player function_7352d8cc(w_current))
+				{
+					if(function_8b1a219a())
+					{
+						self sethintstring(#"hash_23e352cd04548513", current_cost);
+					}
+					else
+					{
+						self sethintstring(#"hash_6cd48e5ddab079ed", current_cost);
+					}
+				}
+				else
+				{
+					if(function_8b1a219a())
+					{
+						self sethintstring(#"hash_6942dfa9737b6ac8", current_cost);
+					}
+					else
+					{
+						self sethintstring(#"hash_117f528808767024", current_cost);
+					}
+				}
+			}
+			else
+			{
+				if(player function_7352d8cc(w_current))
+				{
+					if(function_8b1a219a())
+					{
+						self sethintstring(#"hash_7f57747f6802bc18", current_cost);
+					}
+					else
+					{
+						self sethintstring(#"hash_673794817f9c09b4", current_cost);
+					}
+				}
+				else
+				{
+					if(function_8b1a219a())
+					{
+						self sethintstring(#"hash_4ded27bb7bc35a8d", current_cost);
+					}
+					else
+					{
+						self sethintstring(#"hash_4c9d507af46126af", current_cost);
+					}
+				}
+			}
 		}
-	}
-	else if(isdefined(level.var_e4e8d300) && level.var_e4e8d300)
-	{
-		if(function_8b1a219a())
-		{
-			self sethintstring(#"hash_12517f2f23bd1966");
-		}
-		else
-		{
-			self sethintstring(#"hash_6c8cfa12133d4a58");
-		}
-	}
-	else if(function_8b1a219a())
-	{
-		self sethintstring(#"hash_4b18cdd522ca58f7", current_cost);
 	}
 	else
 	{
-		self sethintstring(#"hash_a49abfa7ed04929", current_cost);
+		if(isdefined(level.var_e4e8d300) && level.var_e4e8d300)
+		{
+			if(function_8b1a219a())
+			{
+				self sethintstring(#"hash_12517f2f23bd1966");
+			}
+			else
+			{
+				self sethintstring(#"hash_6c8cfa12133d4a58");
+			}
+		}
+		else
+		{
+			if(function_8b1a219a())
+			{
+				self sethintstring(#"hash_4b18cdd522ca58f7", current_cost);
+			}
+			else
+			{
+				self sethintstring(#"hash_a49abfa7ed04929", current_cost);
+			}
+		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -433,33 +454,33 @@ function function_873e8824(inflictor, attacker, damage, flags, meansofdeath, wea
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function can_pack_weapon(weapon, pap_machine)
+function private can_pack_weapon(weapon, pap_machine)
 {
 	if(weapon.isriotshield)
 	{
-		return 0;
+		return false;
 	}
 	if(!pap_machine flag::get("pap_waiting_for_user"))
 	{
-		return 1;
+		return true;
 	}
 	if(!(isdefined(level.b_allow_idgun_pap) && level.b_allow_idgun_pap) && isdefined(level.idgun_weapons))
 	{
 		if(isinarray(level.idgun_weapons, weapon))
 		{
-			return 0;
+			return false;
 		}
 	}
 	weapon = self zm_weapons::get_nonalternate_weapon(weapon);
 	if(!zm_weapons::is_weapon_or_base_included(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(!self zm_weapons::can_upgrade_weapon(weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -471,26 +492,26 @@ private function can_pack_weapon(weapon, pap_machine)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function player_use_can_pack_now(pap_machine)
+function private player_use_can_pack_now(pap_machine)
 {
 	if(self laststand::player_is_in_laststand() || (isdefined(self.intermission) && self.intermission) || self isthrowinggrenade())
 	{
-		return 0;
+		return false;
 	}
 	if(!self zm_magicbox::can_buy_weapon(0) || self bgb::is_enabled(#"zm_bgb_disorderly_combat"))
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_equipment::hacker_active())
 	{
-		return 0;
+		return false;
 	}
 	current_weapon = self getcurrentweapon();
 	if(!self can_pack_weapon(current_weapon, pap_machine) && !zm_weapons::weapon_supports_aat(current_weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -512,24 +533,27 @@ function repack_weapon(weapon, n_repacks)
 	{
 		self.var_2843d3cc = array(self.var_2843d3cc);
 	}
-	var_c0bd8719 = weapon;
+	w_original = weapon;
 	weapon = zm_weapons::function_93cd8e76(weapon);
 	if(isdefined(n_repacks))
 	{
 		n_repacks = math::clamp(n_repacks, 0, 4);
 		self.var_2843d3cc[weapon] = n_repacks;
 	}
-	else if(!isdefined(self.var_2843d3cc[weapon]))
+	else
 	{
-		self.var_2843d3cc[weapon] = 0;
-	}
-	if(self.var_2843d3cc[weapon] < 4)
-	{
-		self.var_2843d3cc[weapon]++;
+		if(!isdefined(self.var_2843d3cc[weapon]))
+		{
+			self.var_2843d3cc[weapon] = 0;
+		}
+		if(self.var_2843d3cc[weapon] < 4)
+		{
+			self.var_2843d3cc[weapon]++;
+		}
 	}
 	if(self.var_2843d3cc[weapon] == 4)
 	{
-		self activecamo::function_896ac347(var_c0bd8719, #"hash_300fdf15a515feda", 1);
+		self activecamo::function_896ac347(w_original, #"hash_300fdf15a515feda", 1);
 	}
 }
 
@@ -544,7 +568,7 @@ function repack_weapon(weapon, n_repacks)
 */
 function function_c01d9f22(weapon)
 {
-	var_c0bd8719 = weapon;
+	w_original = weapon;
 	weapon = zm_weapons::function_93cd8e76(weapon);
 	if(isdefined(self.var_2843d3cc) && isdefined(self.var_2843d3cc[weapon]))
 	{
@@ -567,9 +591,9 @@ function function_b81da3fd(weapon)
 	weapon = zm_weapons::function_93cd8e76(weapon);
 	if(isdefined(self.var_2843d3cc) && isdefined(self.var_2843d3cc[weapon]) && self.var_2843d3cc[weapon] > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -586,9 +610,9 @@ function function_7352d8cc(weapon)
 	weapon = zm_weapons::function_93cd8e76(weapon);
 	if(isdefined(self.var_2843d3cc) && isdefined(self.var_2843d3cc[weapon]) && self.var_2843d3cc[weapon] == 4)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -639,7 +663,7 @@ function function_6d45375a(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "take_weapon" && isdefined(s_event.weapon))
 	{

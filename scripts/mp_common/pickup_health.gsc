@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"pickup_health", &__init__, undefined, #"weapons");
 }
@@ -33,7 +33,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Private
 */
-private function __init__()
+function private __init__()
 {
 	callback::on_connect(&onconnect);
 	callback::on_spawned(&function_590c4630);
@@ -88,9 +88,9 @@ function function_dd4bf8ac(num)
 	{
 		self.pers[#"pickup_health"] = self.pers[#"pickup_health"] + num;
 		self function_2bcfabea();
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -102,7 +102,7 @@ function function_dd4bf8ac(num)
 	Parameters: 0
 	Flags: Private
 */
-private function onconnect()
+function private onconnect()
 {
 	if(!isdefined(self.pers[#"pickup_health"]))
 	{
@@ -119,7 +119,7 @@ private function onconnect()
 	Parameters: 0
 	Flags: Private
 */
-private function function_590c4630()
+function private function_590c4630()
 {
 	self function_3fbb0e22();
 }
@@ -148,7 +148,7 @@ function function_3fbb0e22()
 	Parameters: 2
 	Flags: Private
 */
-private function function_368c92b1(slot, weapon)
+function private function_368c92b1(slot, weapon)
 {
 	self.pers[#"pickup_health"]--;
 }
@@ -162,7 +162,7 @@ private function function_368c92b1(slot, weapon)
 	Parameters: 2
 	Flags: Private
 */
-private function function_6dd64ede(slot, weapon)
+function private function_6dd64ede(slot, weapon)
 {
 	self gadgetdeactivate(self.gadget_health_regen_slot, self.gadget_health_regen_weapon);
 	thread function_a01a8a21();
@@ -177,7 +177,7 @@ private function function_6dd64ede(slot, weapon)
 	Parameters: 0
 	Flags: Private
 */
-private function function_a01a8a21()
+function private function_a01a8a21()
 {
 	wait(0.5);
 	self function_2bcfabea();
@@ -192,7 +192,7 @@ private function function_a01a8a21()
 	Parameters: 1
 	Flags: Private
 */
-private function function_5bb13b48(player)
+function private function_5bb13b48(player)
 {
 	if(isdefined(player) && isplayer(player))
 	{
@@ -234,7 +234,7 @@ private function function_5bb13b48(player)
 	Parameters: 1
 	Flags: Private
 */
-private function function_7a80944d(player)
+function private function_7a80944d(player)
 {
 	level endon(#"game_ended");
 	self endon(#"death");
@@ -257,7 +257,7 @@ private function function_7a80944d(player)
 	Parameters: 0
 	Flags: Private
 */
-private function function_2bcfabea()
+function private function_2bcfabea()
 {
 	if(!isdefined(self) || !isdefined(self.pers[#"pickup_health"]))
 	{

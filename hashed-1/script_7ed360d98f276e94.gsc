@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_18e1088f472208bf", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var_dd2fad64)
+function private function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var_dd2fad64)
 {
 	switch(getplayers().size)
 	{
@@ -102,7 +102,7 @@ private function function_d1de6a85(var_8a72a00b, var_49d8a02c, var_325ff213, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_ai_killed(&on_ai_killed);
 	if(!round_reset)
@@ -150,7 +150,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_ai_killed(params)
+function private on_ai_killed(params)
 {
 	if(isplayer(params.eattacker))
 	{
@@ -211,7 +211,7 @@ function function_ccbbe9c4(n_obj_id)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_8b87e57c(var_9eb4b9f8, grace_period, var_690d3062)
+function private function_8b87e57c(var_9eb4b9f8, grace_period, var_690d3062)
 {
 	level endon(#"end_of_round", #"host_migration_begin", #"hash_7646638df88a3656", #"end_game");
 	self endon(#"hash_6170578b35e8c5d7");

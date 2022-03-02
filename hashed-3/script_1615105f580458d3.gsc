@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_39775c4aaea6051b", &__init__, &__main__, undefined);
 }
@@ -101,7 +101,7 @@ function tomahawk_on_player_connect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function watch_for_tomahawk_throw()
+function private watch_for_tomahawk_throw()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -146,7 +146,7 @@ private function watch_for_tomahawk_throw()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_932e24b(w_weapon)
+function private function_932e24b(w_weapon)
 {
 	self endon(#"disconnect", #"hash_3d73720d4588203c");
 	self waittill(#"hash_1a7714f0d7e25f27");
@@ -175,7 +175,7 @@ private function function_932e24b(w_weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function watch_for_tomahawk_charge()
+function private watch_for_tomahawk_charge()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -206,7 +206,7 @@ private function watch_for_tomahawk_charge()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function play_charge_fx(w_grenade)
+function private play_charge_fx(w_grenade)
 {
 	self endon(#"death", #"disconnect", #"grenade_fire", #"grenade_throw_cancelled");
 	waittillframeend();
@@ -249,7 +249,7 @@ private function play_charge_fx(w_grenade)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9310fcc0(w_grenade)
+function private function_9310fcc0(w_grenade)
 {
 	self endon(#"death", #"disconnect", #"grenade_fire", #"grenade_throw_cancelled");
 	self thread tomahawk_rumble(3);
@@ -270,7 +270,7 @@ private function function_9310fcc0(w_grenade)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_grenade_charge_power(player)
+function private get_grenade_charge_power(player)
 {
 	player endon(#"disconnect");
 	if(!isdefined(self))
@@ -313,7 +313,7 @@ private function get_grenade_charge_power(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function tomahawk_thrown(e_grenade)
+function private tomahawk_thrown(e_grenade)
 {
 	self endon(#"disconnect");
 	grenade_owner = undefined;
@@ -447,7 +447,7 @@ private function tomahawk_thrown(e_grenade)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function check_for_time_out(e_grenade)
+function private check_for_time_out(e_grenade)
 {
 	self endon(#"disconnect");
 	e_grenade endon(#"death");
@@ -464,7 +464,7 @@ private function check_for_time_out(e_grenade)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function tomahawk_ricochet_attack(var_65f2e452, e_grenade, var_bc201c9e, e_ignore)
+function private tomahawk_ricochet_attack(var_65f2e452, e_grenade, var_bc201c9e, e_ignore)
 {
 	self endon(#"disconnect");
 	var_6e6ec518 = tomahawk_spawn(e_grenade.origin, var_bc201c9e);
@@ -573,7 +573,7 @@ private function tomahawk_ricochet_attack(var_65f2e452, e_grenade, var_bc201c9e,
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d81951f5(var_6e6ec518, var_65f2e452)
+function private function_d81951f5(var_6e6ec518, var_65f2e452)
 {
 	var_f500f73e = [];
 	a_ai_zombies = util::get_array_of_closest(self.origin, getaiteamarray(level.zombie_team), undefined, undefined, 900);
@@ -613,7 +613,7 @@ private function function_d81951f5(var_6e6ec518, var_65f2e452)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e865484a(var_6e6ec518, a_ai_zombie, var_65f2e452)
+function private function_e865484a(var_6e6ec518, a_ai_zombie, var_65f2e452)
 {
 	self endon(#"disconnect");
 	while(true)
@@ -657,7 +657,7 @@ private function function_e865484a(var_6e6ec518, a_ai_zombie, var_65f2e452)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_c7ddedb2(var_6e6ec518, ai_zombie, var_bfed4a7 = 0.25)
+function private function_c7ddedb2(var_6e6ec518, ai_zombie, var_bfed4a7 = 0.25)
 {
 	self endon(#"disconnect");
 	if(isalive(ai_zombie) && (!(isdefined(ai_zombie.hit_by_tomahawk) && ai_zombie.hit_by_tomahawk)))
@@ -720,15 +720,18 @@ function tomahawk_return_player(var_6e6ec518, var_65f2e452, n_move_speed = 1600)
 				var_65f2e452++;
 				wait(0.1);
 			}
-			else if(!isdefined(n_total_time))
+			else
 			{
-				n_start_time = gettime();
-				n_total_time = 0;
+				if(!isdefined(n_total_time))
+				{
+					n_start_time = gettime();
+					n_total_time = 0;
+				}
+				wait(0.1);
+				n_current_time = gettime();
+				n_total_time = (n_current_time - n_start_time) / 1000;
+				var_e65ebf4 = self function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time);
 			}
-			wait(0.1);
-			n_current_time = gettime();
-			n_total_time = (n_current_time - n_start_time) / 1000;
-			var_e65ebf4 = self function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time);
 			n_dist_sq = distance2dsquared(var_6e6ec518.origin, self geteye());
 		}
 		if(isdefined(var_6e6ec518.a_has_powerup))
@@ -746,7 +749,7 @@ function tomahawk_return_player(var_6e6ec518, var_65f2e452, n_move_speed = 1600)
 	self thread tomahawk_rumble(1);
 	self playsound("wpn_tomahawk_return");
 	self notify(#"hash_1a7714f0d7e25f27");
-	self waittill_timeout(8, #"hash_3d73720d4588203c");
+	self waittilltimeout(8, #"hash_3d73720d4588203c");
 	self playsoundtoplayer(#"hash_5651c152f44645d1", self);
 	self givemaxammo(getweapon(self.var_4f8fb07f));
 	a_zombies = getaispeciesarray(level.zombie_team, "all");
@@ -767,7 +770,7 @@ function tomahawk_return_player(var_6e6ec518, var_65f2e452, n_move_speed = 1600)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time)
+function private function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time)
 {
 	if(n_total_time < 0.05)
 	{
@@ -795,7 +798,7 @@ private function function_e2c00ed6(var_6e6ec518, n_move_speed, n_total_time)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_723cb8bd(var_6e6ec518)
+function private function_723cb8bd(var_6e6ec518)
 {
 	self endon(#"disconnect");
 	var_6e6ec518 endon(#"death");
@@ -855,7 +858,7 @@ function tomahawk_spawn(grenade_origin, charged)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function tomahawk_spin()
+function private tomahawk_spin()
 {
 	self endon(#"death");
 	while(isdefined(self))
@@ -874,7 +877,7 @@ private function tomahawk_spin()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function calculate_tomahawk_damage(var_79cffd1e, n_tomahawk_power, tomahawk)
+function private calculate_tomahawk_damage(var_79cffd1e, n_tomahawk_power, tomahawk)
 {
 	if(n_tomahawk_power > 2)
 	{
@@ -920,7 +923,7 @@ function function_c34db78(einflictor, eattacker, idamage, flags, meansofdeath, w
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function tomahawk_rumble(var_b2e05bae)
+function private tomahawk_rumble(var_b2e05bae)
 {
 	if(var_b2e05bae)
 	{

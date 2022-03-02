@@ -174,7 +174,7 @@ function function_5a73ee80()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1e5c0d3b()
+function private function_1e5c0d3b()
 {
 	level endon(#"end_game");
 	while(!level flag::get(#"hash_117279bc435c1c9"))
@@ -250,7 +250,7 @@ private function function_1e5c0d3b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function lavapit_breach_(object)
+function private lavapit_breach_(object)
 {
 	v_origin = object.origin;
 	if(isdefined(object.var_eb397f67))
@@ -264,9 +264,9 @@ private function lavapit_breach_(object)
 	var_35b81369 = vectordot(v_cross, anglestoup(v_angles));
 	if(var_35b81369 >= 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

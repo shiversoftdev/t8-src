@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"molotov", &init_shared, undefined, undefined);
 }
@@ -436,7 +436,7 @@ function function_31f342a2(origin, var_9c7e3678)
 {
 	if(!isdefined(level.var_a88ac760))
 	{
-		return 0;
+		return false;
 	}
 	foreach(molotov in level.var_a88ac760)
 	{
@@ -446,10 +446,10 @@ function function_31f342a2(origin, var_9c7e3678)
 		}
 		if(distance2dsquared(molotov.origin, origin) < var_9c7e3678)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -616,13 +616,16 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		{
 			fireweapon = var_4a1b9411;
 		}
-		else if(isdefined(locations[#"steam"][var_7ee5c69b]))
-		{
-			fireweapon = var_7bf146f2;
-		}
 		else
 		{
-			fireweapon = (isdefined(locations[#"hash_33059ac06a23beca"][var_7ee5c69b]) ? var_3cbce009 : var_aecaaa11);
+			if(isdefined(locations[#"steam"][var_7ee5c69b]))
+			{
+				fireweapon = var_7bf146f2;
+			}
+			else
+			{
+				fireweapon = (isdefined(locations[#"hash_33059ac06a23beca"][var_7ee5c69b]) ? var_3cbce009 : var_aecaaa11);
+			}
 		}
 		level thread function_42b9fdbe(fireweapon, locations[#"loc"][var_7ee5c69b], locations[#"normal"][var_7ee5c69b], int(var_4dd46f8a.var_b79d64a9), team);
 	}
@@ -939,17 +942,20 @@ function getpotentialtargets(owner, var_4dd46f8a)
 				}
 			}
 		}
-		else if(!isdefined(self))
+		else
 		{
-			continue;
-		}
-		if(!isdefined(self.team))
-		{
-			continue;
-		}
-		if(!util::function_fbce7263(target.team, self.team))
-		{
-			continue;
+			if(!isdefined(self))
+			{
+				continue;
+			}
+			if(!isdefined(self.team))
+			{
+				continue;
+			}
+			if(!util::function_fbce7263(target.team, self.team))
+			{
+				continue;
+			}
 		}
 		potential_targets[potential_targets.size] = target;
 	}
@@ -1232,16 +1238,16 @@ function candofiredamage(killcament, victim, resetfiretime)
 {
 	if(isplayer(victim) && victim depthofplayerinwater() >= 1)
 	{
-		return 0;
+		return false;
 	}
 	entnum = victim getentitynumber();
 	if(!isdefined(level.var_e8a6b3ee[entnum]))
 	{
 		level.var_e8a6b3ee[entnum] = 1;
 		level thread resetfiredamage(entnum, resetfiretime);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

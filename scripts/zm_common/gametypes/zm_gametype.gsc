@@ -46,7 +46,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_gametype", &__init__, undefined, undefined);
 }
@@ -243,7 +243,7 @@ function do_game_mode_shellshock()
 */
 function canplayersuicide()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -602,13 +602,16 @@ function onroundendgame(roundwinner)
 	{
 		winner = "tie";
 	}
-	else if(game.stat[#"roundswon"][#"axis"] > game.stat[#"roundswon"][#"allies"])
-	{
-		winner = #"axis";
-	}
 	else
 	{
-		winner = #"allies";
+		if(game.stat[#"roundswon"][#"axis"] > game.stat[#"roundswon"][#"allies"])
+		{
+			winner = #"axis";
+		}
+		else
+		{
+			winner = #"allies";
+		}
 	}
 	return winner;
 }
@@ -1071,7 +1074,7 @@ function initialblackend()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_788fb510(value)
+function private function_788fb510(value)
 {
 	if(!isdefined(value))
 	{

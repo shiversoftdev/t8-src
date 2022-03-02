@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1729d37a410e5bd1", &__init__, undefined, undefined);
 }
@@ -61,18 +61,21 @@ function function_87bfd935(localclientnum, oldval, newval, bnewent, binitialsnap
 		self thread function_8847b8aa(localclientnum);
 		self.var_2be01485 = level._effect[#"hash_5dfe974bf370a5f4"];
 	}
-	else if(isdefined(self.var_cd4ce49e))
+	else
 	{
-		stopfx(localclientnum, self.var_cd4ce49e);
-		self.var_cd4ce49e = undefined;
-	}
-	if(isdefined(self.var_803e161e))
-	{
-		foreach(n_fx_id in self.var_803e161e)
+		if(isdefined(self.var_cd4ce49e))
 		{
-			stopfx(localclientnum, n_fx_id);
+			stopfx(localclientnum, self.var_cd4ce49e);
+			self.var_cd4ce49e = undefined;
 		}
-		self.var_803e161e = undefined;
+		if(isdefined(self.var_803e161e))
+		{
+			foreach(n_fx_id in self.var_803e161e)
+			{
+				stopfx(localclientnum, n_fx_id);
+			}
+			self.var_803e161e = undefined;
+		}
 	}
 }
 
@@ -100,18 +103,21 @@ function function_f144789c(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self.var_71a7fc1c = util::playfxontag(localclientnum, "zm_weapons/fx8_equip_mltv_fire_human_torso_loop_zm", self, str_tag);
 	}
-	else if(isdefined(self.var_71a7fc1c))
+	else
 	{
-		stopfx(localclientnum, self.var_71a7fc1c);
-		self.var_71a7fc1c = undefined;
-	}
-	if(isdefined(self.var_803e161e))
-	{
-		foreach(n_fx_id in self.var_803e161e)
+		if(isdefined(self.var_71a7fc1c))
 		{
-			stopfx(localclientnum, n_fx_id);
+			stopfx(localclientnum, self.var_71a7fc1c);
+			self.var_71a7fc1c = undefined;
 		}
-		self.var_803e161e = undefined;
+		if(isdefined(self.var_803e161e))
+		{
+			foreach(n_fx_id in self.var_803e161e)
+			{
+				stopfx(localclientnum, n_fx_id);
+			}
+			self.var_803e161e = undefined;
+		}
 	}
 }
 
@@ -124,7 +130,7 @@ function function_f144789c(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8847b8aa(localclientnum)
+function private function_8847b8aa(localclientnum)
 {
 	self endon(#"death", #"hash_395dfda1274cd506");
 	wait(1);

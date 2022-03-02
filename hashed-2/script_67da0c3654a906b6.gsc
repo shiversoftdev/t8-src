@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_442b60ca31422a3c", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 3
 	Flags: Private
 */
-private function function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
+function private function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 {
 	var_a7c52900 = zm_trial::function_5769f26a(var_a7c52900);
 	level.var_1c8f9eba = var_c8a36f90;
@@ -87,7 +87,7 @@ private function function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_1c8f9eba = undefined;
 }
@@ -116,7 +116,7 @@ function is_active()
 	Parameters: 2
 	Flags: Private
 */
-private function movement_watcher(var_93fc795f, var_98de1f93)
+function private movement_watcher(var_93fc795f, var_98de1f93)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -150,7 +150,7 @@ private function movement_watcher(var_93fc795f, var_98de1f93)
 	Parameters: 2
 	Flags: Private
 */
-private function function_6b13a114(var_93fc795f, var_a7c52900)
+function private function_6b13a114(var_93fc795f, var_a7c52900)
 {
 	self playsoundtoplayer(#"hash_6df374d848ba6a60", self);
 	if(var_93fc795f === "health")
@@ -172,11 +172,11 @@ private function function_6b13a114(var_93fc795f, var_a7c52900)
 	Parameters: 0
 	Flags: Private
 */
-private function function_26f124d8()
+function private function_26f124d8()
 {
 	if(!isdefined(level.var_1c8f9eba))
 	{
-		return 1;
+		return true;
 	}
 	switch(level.var_1c8f9eba)
 	{
@@ -185,42 +185,42 @@ private function function_26f124d8()
 			var_389b3ef1 = self playerads();
 			if(self adsbuttonpressed() && var_389b3ef1 > 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "jump":
 		{
 			if(self zm_utility::is_jumping())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "slide":
 		{
 			if(self issliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "crouch":
 		{
 			if(self getstance() === "crouch")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "hash_7ea198622e307b9":
 		case "prone":
 		{
 			if(self getstance() === "prone")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "movement":
 		default:
@@ -228,12 +228,12 @@ private function function_26f124d8()
 			v_velocity = self getvelocity();
 			if(length(v_velocity) != 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -245,7 +245,7 @@ private function function_26f124d8()
 	Parameters: 3
 	Flags: Private
 */
-private function function_9c988cd8(var_93fc795f, var_98de1f93, var_e898f976 = 0)
+function private function_9c988cd8(var_93fc795f, var_98de1f93, var_e898f976 = 0)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");

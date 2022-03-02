@@ -36,7 +36,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"clean", &__init__, undefined, undefined);
 }
@@ -1060,65 +1060,74 @@ function function_95cbd646(player)
 				scoreevents::processscoreevent("shamrock_friendly_collect", player);
 			}
 		}
-		else if(self.victim === player)
-		{
-			scoreevents::processscoreevent("clean_own_collect", player);
-		}
 		else
 		{
-			scoreevents::processscoreevent("clean_friendly_collect", player);
+			if(self.victim === player)
+			{
+				scoreevents::processscoreevent("clean_own_collect", player);
+			}
+			else
+			{
+				scoreevents::processscoreevent("clean_friendly_collect", player);
+			}
 		}
 		player.var_66521d81 = gettime();
 		player.var_3e52c359++;
 	}
-	else if(player.carriedtacos >= 10)
+	else
 	{
-		time = gettime();
-		if(time - player.var_129c990c > 500)
+		if(player.carriedtacos >= 10)
 		{
-			player playlocalsound("mpl_fracture_enemy_pickup_nope");
-			if(!isdefined(player.var_49f1d9cc))
+			time = gettime();
+			if(time - player.var_129c990c > 500)
 			{
-				player.var_49f1d9cc = 0;
+				player playlocalsound("mpl_fracture_enemy_pickup_nope");
+				if(!isdefined(player.var_49f1d9cc))
+				{
+					player.var_49f1d9cc = 0;
+				}
+				player clientfield::set_player_uimodel("hudItems.cleanCarryFull", player.var_49f1d9cc);
+				player.var_49f1d9cc = (player.var_49f1d9cc ? 1 : 0);
 			}
-			player clientfield::set_player_uimodel("hudItems.cleanCarryFull", player.var_49f1d9cc);
-			player.var_49f1d9cc = (player.var_49f1d9cc ? 1 : 0);
+			player.var_129c990c = time;
+			return;
 		}
-		player.var_129c990c = time;
-		return;
-	}
-	player.carriedtacos++;
-	player clientfield::set_player_uimodel("hudItems.cleanCarryCount", player.carriedtacos);
-	player function_fccce038();
-	if(player.carriedtacos < 4)
-	{
-		player playsound("mpl_fracture_enemy_pickup_s");
-	}
-	else if(player.carriedtacos < 7)
-	{
-		player playsound("mpl_fracture_enemy_pickup_m");
-	}
-	else
-	{
-		player playsound("mpl_fracture_enemy_pickup_l");
-	}
-	if(isdefined(level.var_c5e28dc5) && level.var_c5e28dc5)
-	{
-		scoreevents::processscoreevent("shamrock_enemy_collect", player);
-	}
-	else
-	{
-		scoreevents::processscoreevent("clean_enemy_collect", player);
-	}
-	if(self.attackerteam == player.team && isdefined(self.attacker) && self.attacker != player)
-	{
-		if(isdefined(level.var_c5e28dc5) && level.var_c5e28dc5)
+		player.carriedtacos++;
+		player clientfield::set_player_uimodel("hudItems.cleanCarryCount", player.carriedtacos);
+		player function_fccce038();
+		if(player.carriedtacos < 4)
 		{
-			scoreevents::processscoreevent("shamrock_assist_collect", self.attacker);
+			player playsound("mpl_fracture_enemy_pickup_s");
 		}
 		else
 		{
-			scoreevents::processscoreevent("clean_assist_collect", self.attacker);
+			if(player.carriedtacos < 7)
+			{
+				player playsound("mpl_fracture_enemy_pickup_m");
+			}
+			else
+			{
+				player playsound("mpl_fracture_enemy_pickup_l");
+			}
+		}
+		if(isdefined(level.var_c5e28dc5) && level.var_c5e28dc5)
+		{
+			scoreevents::processscoreevent("shamrock_enemy_collect", player);
+		}
+		else
+		{
+			scoreevents::processscoreevent("clean_enemy_collect", player);
+		}
+		if(self.attackerteam == player.team && isdefined(self.attacker) && self.attacker != player)
+		{
+			if(isdefined(level.var_c5e28dc5) && level.var_c5e28dc5)
+			{
+				scoreevents::processscoreevent("shamrock_assist_collect", self.attacker);
+			}
+			else
+			{
+				scoreevents::processscoreevent("clean_assist_collect", self.attacker);
+			}
 		}
 	}
 	self registermp_multi_kill_medals_interface();

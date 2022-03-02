@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_20bcc20891aa8bdd", &__init__, undefined, undefined);
 }
@@ -329,7 +329,7 @@ function function_469495ed(e_player)
 	{
 		self sethintstring(#"hash_71158766520dc432");
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -628,24 +628,30 @@ function function_2b049ee1(e_player)
 		{
 			self sethintstring(#"hash_1ee18bf56df7a29b");
 		}
-		else if(function_8b1a219a())
-		{
-			self sethintstring(#"hash_400e202a91b7d4a4");
-		}
 		else
 		{
-			self sethintstring(#"hash_7f8e7919cffd4568");
+			if(function_8b1a219a())
+			{
+				self sethintstring(#"hash_400e202a91b7d4a4");
+			}
+			else
+			{
+				self sethintstring(#"hash_7f8e7919cffd4568");
+			}
 		}
-	}
-	else if(function_8b1a219a())
-	{
-		self sethintstring(#"hash_4230a57b5ddc96b2");
 	}
 	else
 	{
-		self sethintstring(#"hash_67ddc0f0c16c1216");
+		if(function_8b1a219a())
+		{
+			self sethintstring(#"hash_4230a57b5ddc96b2");
+		}
+		else
+		{
+			self sethintstring(#"hash_67ddc0f0c16c1216");
+		}
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4b85d514cef1a6fc", &__init__, undefined, undefined);
 }
@@ -99,7 +99,7 @@ function __init__()
 */
 function function_feb3e91d()
 {
-	return (isdefined(getgametypesetting(#"hash_5c7133ffaac1ffc8")) ? getgametypesetting(#"hash_5c7133ffaac1ffc8") : 0);
+	return true;
 }
 
 /*
@@ -499,10 +499,10 @@ function function_5de626dc(var_a1258c6b)
 			self thread function_263a2944(prompt, var_a1258c6b);
 			self thread function_c025efba(prompt, var_a1258c6b);
 			self thread function_60cc4433(prompt);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -672,11 +672,11 @@ function function_ed72859e()
 			}
 			if(isalive(player) && !player laststand::player_is_in_laststand())
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1007,7 +1007,7 @@ function laststand_clean_up_on_interrupt(playerbeingrevived)
 */
 function laststand_bleedout_damage()
 {
-	self endon_callback(&function_99fa3916, #"player_revived", #"death", #"bled_out");
+	self endoncallback(&function_99fa3916, #"player_revived", #"death", #"bled_out");
 	self val::set(#"laststand", #"takedamage", 0);
 	wait(level.var_5c13c13f);
 	self val::reset(#"laststand", #"takedamage");
@@ -1060,7 +1060,7 @@ function laststand_bleedout_damage()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_99fa3916(notifyhash)
+function private function_99fa3916(notifyhash)
 {
 	self val::reset(#"laststand", #"takedamage");
 }
@@ -1290,25 +1290,31 @@ function bleed_out(var_40d90c02)
 			{
 				attacker function_c7d3aeec(#"hash_5e8aeab034e87107", 1);
 			}
-			else if(attacker util::function_4ded36e3(var_620529b4))
-			{
-				attacker function_c7d3aeec(#"hash_145aa173d16d98e5", 1);
-				function_f887b191(self, attacker, 0, 2);
-			}
 			else
 			{
-				attacker function_c7d3aeec(#"hash_3de53e8cc577b633", 1);
-				function_f887b191(self, attacker, 0, 3);
+				if(attacker util::function_4ded36e3(var_620529b4))
+				{
+					attacker function_c7d3aeec(#"hash_145aa173d16d98e5", 1);
+					function_f887b191(self, attacker, 0, 2);
+				}
+				else
+				{
+					attacker function_c7d3aeec(#"hash_3de53e8cc577b633", 1);
+					function_f887b191(self, attacker, 0, 3);
+				}
 			}
 		}
 	}
-	else if(self util::isenemyplayer(var_620529b4))
-	{
-		obituary(self, var_620529b4, level.weaponnone, "MOD_BLED_OUT");
-	}
 	else
 	{
-		obituary(self, undefined, level.weaponnone, "MOD_BLED_OUT");
+		if(self util::isenemyplayer(var_620529b4))
+		{
+			obituary(self, var_620529b4, level.weaponnone, "MOD_BLED_OUT");
+		}
+		else
+		{
+			obituary(self, undefined, level.weaponnone, "MOD_BLED_OUT");
+		}
 	}
 	self function_2907ce7a();
 	self suicide(var_830efbc6);
@@ -1478,19 +1484,19 @@ function function_356caede(team)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.alivecount) || !isdefined(level.alivecount[team]))
 	{
-		return 0;
+		return false;
 	}
 	if(level.alivecount[team] == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	players = getplayers(team, self.revivetrigger.origin, self.revivetrigger.radius);
 	height = getdvarint(#"hash_48068f92d21e2a64", 15);
@@ -1532,7 +1538,7 @@ function function_356caede(team)
 		self function_fab0e07e(var_f7cfe7ee);
 		if(!isdefined(var_f7cfe7ee))
 		{
-			return 0;
+			return false;
 		}
 		if(!isdefined(self) || !isalive(self) || !isalive(var_f7cfe7ee))
 		{
@@ -1541,7 +1547,7 @@ function function_356caede(team)
 			{
 				self clientfield::set_player_uimodel("hudItems.beingFinished", 0);
 			}
-			return 0;
+			return false;
 		}
 		var_f7cfe7ee disableweaponcycling();
 		var_f7cfe7ee disableusability();
@@ -1567,7 +1573,7 @@ function function_356caede(team)
 					self setorigin(kill_origin);
 					self dodamage(self.var_969fabf4, self.origin, var_f7cfe7ee, undefined, "none", "MOD_MELEE_ASSASSINATE", 8192);
 					self function_2907ce7a();
-					return 1;
+					return true;
 				}
 				self clientfield::set_player_uimodel("hudItems.beingFinished", 0);
 				self function_516a3bef(1);
@@ -1576,7 +1582,7 @@ function function_356caede(team)
 			var_f7cfe7ee function_7c685040();
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1678,15 +1684,15 @@ function function_55f6978f(team)
 {
 	if(!isdefined(team))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	players = getplayers(team, self.revivetrigger.origin, self.revivetrigger.radius);
 	foreach(player in players)
@@ -1725,11 +1731,11 @@ function function_55f6978f(team)
 			{
 				self thread revive_success(reviver);
 				self function_2907ce7a();
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1767,44 +1773,44 @@ function can_revive(revivee, ignore_touch_checks = 0, height = undefined)
 {
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	if(!ignore_touch_checks)
 	{
 		if(!self istouching(revivee.revivetrigger))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(!self laststand::is_facing(revivee, 0.8))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(height))
 	{
 		delta = revivee.origin[2] - self.origin[2];
 		if(delta > height || delta < (height * -1))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(distancesquared(revivee.origin, self.origin) > 140 * 140)
 	{
-		return 0;
+		return false;
 	}
 	if(!sighttracepassed(self.origin + vectorscale((0, 0, 1), 50), revivee.origin + vectorscale((0, 0, 1), 30), 0, undefined))
 	{
-		return 0;
+		return false;
 	}
 	if(!bullettracepassed(self.origin + vectorscale((0, 0, 1), 50), revivee.origin + vectorscale((0, 0, 1), 30), 0, undefined))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2041,9 +2047,9 @@ function function_1c8cab15(var_b4bb7319)
 	}
 	if(isdefined(var_b4bb7319) && var_b4bb7319 flagsys::get(#"hash_40e3b09bdbcdac81"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

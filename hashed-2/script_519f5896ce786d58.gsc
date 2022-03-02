@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5303b5bf03fb20bc", &__init__, &__main__, undefined);
 }
@@ -212,18 +212,18 @@ function function_7706457d(e_player)
 			{
 				str_prompt = zm_utility::function_d6046228(#"hash_170f427c6f774cc6", #"hash_182213d7353c3062");
 				self sethintstringforplayer(e_player, str_prompt);
-				return 1;
+				return true;
 			}
 		}
 		if(zombie_utility::is_player_valid(e_player) && e_player function_8b4cc6ae(level.var_44cff72.origin, 50, 0))
 		{
 			str_prompt = zm_utility::function_d6046228(#"hash_74088228890cabc3", #"hash_4428bea407adb029");
 			self sethintstringforplayer(e_player, str_prompt);
-			return 1;
+			return true;
 		}
 	}
 	self sethintstringforplayer(e_player, "");
-	return 1;
+	return true;
 }
 
 /*
@@ -297,9 +297,9 @@ function function_8b4cc6ae(origin, arc_angle_degrees = 90, do_trace, e_ignore)
 	dot = cos(arc_angle_degrees * 0.5);
 	if(self util::is_player_looking_at(origin, dot, do_trace, e_ignore))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -370,14 +370,14 @@ function function_9ffdf1be(e_player)
 {
 	if(!zm_utility::can_use(e_player, 1))
 	{
-		return 0;
+		return false;
 	}
 	if(e_player zm_weapons::has_weapon_or_upgrade(level.var_f086136b) || e_player zm_weapons::has_weapon_or_upgrade(level.var_6fe89212) || e_player zm_weapons::has_weapon_or_upgrade(level.var_7b9ca97a))
 	{
-		return 0;
+		return false;
 	}
 	self sethintstring(#"hash_660652361297f2ab");
-	return 1;
+	return true;
 }
 
 /*

@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"gadget_tripwire", &__init__, undefined, undefined);
 }
@@ -47,13 +47,16 @@ function __init__()
 	{
 		level.var_c72e8c51 = getscriptbundle("tripwire_custom_settings_comp");
 	}
-	else if(isdefined(level.var_c27600b0.var_4dd46f8a))
-	{
-		level.var_c72e8c51 = getscriptbundle(level.var_c27600b0.var_4dd46f8a);
-	}
 	else
 	{
-		level.var_c72e8c51 = getscriptbundle("tripwire_custom_settings");
+		if(isdefined(level.var_c27600b0.var_4dd46f8a))
+		{
+			level.var_c72e8c51 = getscriptbundle(level.var_c27600b0.var_4dd46f8a);
+		}
+		else
+		{
+			level.var_c72e8c51 = getscriptbundle("tripwire_custom_settings");
+		}
 	}
 	if(!isdefined(level.tripwires))
 	{
@@ -418,9 +421,9 @@ function function_a4b3da97(trace)
 {
 	if(trace[#"fraction"] < 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -484,17 +487,17 @@ function function_55e95173(hitent)
 {
 	if(function_f99d2668())
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(hitent))
 	{
-		return 0;
+		return false;
 	}
 	if(util::function_fbce7263(self.team, hitent.team))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -510,19 +513,19 @@ function function_430b5b99(entity, var_7ffaab28)
 {
 	if(function_f99d2668() && (isdefined(self.var_c2f0f6da) && self.var_c2f0f6da) && !isdefined(entity))
 	{
-		return 1;
+		return true;
 	}
 	if(!isdefined(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(!util::function_fbce7263(entity.team, var_7ffaab28.team))
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(entity) && !isvehicle(entity) && !isai(entity) && !entity ismovingplatform() && (!(isdefined(entity.var_4f564337) && entity.var_4f564337)))
 	{
-		return 0;
+		return false;
 	}
 	if(isvehicle(entity))
 	{
@@ -531,7 +534,7 @@ function function_430b5b99(entity, var_7ffaab28)
 			owner = entity getvehicleowner();
 			if(!isdefined(owner))
 			{
-				return 0;
+				return false;
 			}
 		}
 		else
@@ -540,18 +543,18 @@ function function_430b5b99(entity, var_7ffaab28)
 		}
 		if(isplayer(owner) && !util::function_fbce7263(owner.team, var_7ffaab28.team))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isplayer(entity) && entity hasperk(#"hash_11ba78d175e4720a"))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(entity) && entity isjuking())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -567,21 +570,21 @@ function function_5b8dea90(player)
 {
 	if(!player isgrappling())
 	{
-		return 0;
+		return false;
 	}
 	if(!util::function_fbce7263(player.team, self.team))
 	{
-		return 0;
+		return false;
 	}
 	if(player hasperk(#"hash_11ba78d175e4720a"))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(player.origin, player.prev_origin) == 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -641,7 +644,7 @@ function function_d334c3fa(endpoint)
 */
 function function_15de8daf()
 {
-	self endon_callback(&function_84101bb5, #"death");
+	self endoncallback(&function_84101bb5, #"death");
 	self.var_d33355ff = [];
 	while(true)
 	{
@@ -730,7 +733,7 @@ function function_15de8daf()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_84101bb5(notifyhash)
+function private function_84101bb5(notifyhash)
 {
 	beamfx = self.var_886bd8dc;
 	killcament = self.killcament;
@@ -857,13 +860,16 @@ function function_9e546fb3(attacker, weapon, target, var_2f6adbe3, var_83b1839e)
 				}
 				self radiusdamage(self.origin + (self.hitnormal * 5), var_f4df6811 * 0.75, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
 			}
-			else if(!isdefined(var_2f6adbe3))
-			{
-				self radiusdamage(self.origin + (self.hitnormal * 5), var_f4df6811 / 2, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
-			}
 			else
 			{
-				self cylinderdamage(explosiondir * var_f4df6811, self.origin, var_15d2965b, var_36684ed2, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
+				if(!isdefined(var_2f6adbe3))
+				{
+					self radiusdamage(self.origin + (self.hitnormal * 5), var_f4df6811 / 2, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
+				}
+				else
+				{
+					self cylinderdamage(explosiondir * var_f4df6811, self.origin, var_15d2965b, var_36684ed2, maxdamage, mindamage, self.owner, "MOD_EXPLOSIVE", self.weapon);
+				}
 			}
 		}
 	}

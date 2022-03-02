@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_21c01f94fd6221c5", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(n_timer)
+function private function_d1de6a85(n_timer)
 {
 	level.var_d39baced = level.zombie_total_set_func;
 	level.zombie_total_set_func = &function_60845be6;
@@ -76,7 +76,7 @@ private function function_d1de6a85(n_timer)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.zombie_total_set_func = level.var_d39baced;
 	namespace_b22c99a5::function_f3dbeda7();
@@ -123,7 +123,7 @@ function function_60845be6()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d34c075e(ents)
+function private function_d34c075e(ents)
 {
 	ents = array::remove_undefined(ents, 0);
 	unique = [];
@@ -146,7 +146,7 @@ private function function_d34c075e(ents)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a4cfa984(door_ents, var_8c55197a)
+function private function_a4cfa984(door_ents, var_8c55197a)
 {
 	var_8b730c3e = [];
 	foreach(door_ent in door_ents)
@@ -171,7 +171,7 @@ private function function_a4cfa984(door_ents, var_8c55197a)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b2fa4678()
+function private function_b2fa4678()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -207,7 +207,7 @@ private function function_b2fa4678()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e04dd27a(n_timer)
+function private function_e04dd27a(n_timer)
 {
 	level endon(#"hash_7646638df88a3656");
 	wait(12);
@@ -215,7 +215,7 @@ private function function_e04dd27a(n_timer)
 	{
 		player namespace_b22c99a5::function_128378c9(n_timer, 1, #"hash_c2b77be4cf5b142");
 	}
-	level waittill_timeout(n_timer + 1, #"hash_6ba2e2da302282");
+	level waittilltimeout(n_timer + 1, #"hash_6ba2e2da302282");
 	foreach(player in getplayers())
 	{
 		player namespace_b22c99a5::function_885fb2c8();

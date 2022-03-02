@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init_shared()
+function autoexec init_shared()
 {
 	if(isdefined(level.var_2868525a))
 	{
@@ -38,7 +38,7 @@ autoexec function init_shared()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3f70d4b7()
+function private function_3f70d4b7()
 {
 }
 
@@ -51,7 +51,7 @@ private function function_3f70d4b7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d30d1f3()
+function private function_d30d1f3()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -67,7 +67,7 @@ private function function_d30d1f3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_236d6de(entity)
+function private function_236d6de(entity)
 {
 	entity.__blackboard = undefined;
 	entity function_d30d1f3();

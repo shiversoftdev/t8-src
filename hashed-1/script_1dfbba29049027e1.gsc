@@ -223,11 +223,11 @@ function function_9a8ab327()
 	{
 		if(isdefined(level.e_gondola) && isdefined(level.e_gondola.t_ride) && self istouching(level.e_gondola.t_ride))
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -243,17 +243,17 @@ function zombie_alcatraz_player_intersection_tracker_override(other_player)
 {
 	if(isdefined(self.afterlife_revived) && self.afterlife_revived || (isdefined(other_player.afterlife_revived) && other_player.afterlife_revived))
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self.is_on_gondola) && self.is_on_gondola && (isdefined(level.e_gondola.is_moving) && level.e_gondola.is_moving))
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(other_player.is_on_gondola) && other_player.is_on_gondola && (isdefined(level.e_gondola.is_moving) && level.e_gondola.is_moving))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -472,25 +472,28 @@ function gondola_doors_move(str_side, n_state)
 			}
 		}
 	}
-	else if(n_side_modifier == 1)
-	{
-		var_cd3296d7 = getnode("nd_on_top_r", "targetname");
-		if(isdefined(var_cd3296d7))
-		{
-			unlinktraversal(var_cd3296d7);
-		}
-	}
 	else
 	{
-		var_fd05c6f4 = getnode("nd_on_bottom_r", "targetname");
-		if(isdefined(var_fd05c6f4))
+		if(n_side_modifier == 1)
 		{
-			unlinktraversal(var_fd05c6f4);
+			var_cd3296d7 = getnode("nd_on_top_r", "targetname");
+			if(isdefined(var_cd3296d7))
+			{
+				unlinktraversal(var_cd3296d7);
+			}
 		}
+		else
+		{
+			var_fd05c6f4 = getnode("nd_on_bottom_r", "targetname");
+			if(isdefined(var_fd05c6f4))
+			{
+				unlinktraversal(var_fd05c6f4);
+			}
+		}
+		mdl_door_left playsound(#"hash_ac1fa6f62462ed8");
+		gondola_gate_and_door_moves(n_state, n_side_modifier, var_d134f0d1, mdl_door_left, var_b82242be, mdl_door_right, var_8bd1eeb0, var_b3c73561, var_b0f06f50, var_1c80ffe2);
+		gondola_gate_moves(n_state, n_side_modifier, var_d134f0d1, var_b82242be, var_8bd1eeb0, var_b0f06f50);
 	}
-	mdl_door_left playsound(#"hash_ac1fa6f62462ed8");
-	gondola_gate_and_door_moves(n_state, n_side_modifier, var_d134f0d1, mdl_door_left, var_b82242be, mdl_door_right, var_8bd1eeb0, var_b3c73561, var_b0f06f50, var_1c80ffe2);
-	gondola_gate_moves(n_state, n_side_modifier, var_d134f0d1, var_b82242be, var_8bd1eeb0, var_b0f06f50);
 	foreach(mdl_model in a_doors_and_gates)
 	{
 		mdl_model linkto(self);
@@ -1085,9 +1088,9 @@ function function_dc269d0d(a_zombies, e_gondola)
 	a_zombies = util::get_array_of_closest(e_gondola.origin, a_zombies, undefined, 1, 256);
 	if(a_zombies.size > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1233,7 +1236,7 @@ function player_escaped_gondola_failsafe()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_da48c149(s_pos)
+function private function_da48c149(s_pos)
 {
 	var_75c89236 = 0;
 	self dontinterpolate();
@@ -1280,7 +1283,7 @@ function gondola_cooldown()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_de1be51e()
+function private function_de1be51e()
 {
 	var_55a82bb2 = struct::get("gondola_wires");
 	var_55a82bb2 thread scene::play("Shot 2");

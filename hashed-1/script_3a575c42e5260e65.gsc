@@ -557,9 +557,9 @@ function function_6d2ddf57(e_player)
 {
 	if(isdefined(level.var_733d6b98) && e_player == level.var_733d6b98)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -717,17 +717,23 @@ function function_b4b483e7()
 			{
 				iprintlnbold("");
 			}
-			else if(level.var_74f3565a >= 15)
-			{
-				iprintlnbold("");
-			}
-			else if(level.var_74f3565a >= 7.5)
-			{
-				iprintlnbold("");
-			}
 			else
 			{
-				iprintlnbold("");
+				if(level.var_74f3565a >= 15)
+				{
+					iprintlnbold("");
+				}
+				else
+				{
+					if(level.var_74f3565a >= 7.5)
+					{
+						iprintlnbold("");
+					}
+					else
+					{
+						iprintlnbold("");
+					}
+				}
 			}
 		#/
 		wait(2.5);
@@ -762,17 +768,23 @@ function function_17567d83()
 		{
 			n_wait_time = 0.3;
 		}
-		else if(level.var_74f3565a >= 15)
-		{
-			n_wait_time = 0.6;
-		}
-		else if(level.var_74f3565a >= 7.5)
-		{
-			n_wait_time = 1;
-		}
 		else
 		{
-			n_wait_time = 1.5;
+			if(level.var_74f3565a >= 15)
+			{
+				n_wait_time = 0.6;
+			}
+			else
+			{
+				if(level.var_74f3565a >= 7.5)
+				{
+					n_wait_time = 1;
+				}
+				else
+				{
+					n_wait_time = 1.5;
+				}
+			}
 		}
 		wait(n_wait_time);
 	}

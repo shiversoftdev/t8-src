@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bot_action", &__init__, &__main__, undefined);
 }
@@ -510,7 +510,7 @@ function function_99428ae2(var_b594a2cd)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f59547eb(trigger)
+function private function_f59547eb(trigger)
 {
 	var_e61f062b = self getpathfindingradius();
 	maxs = (trigger.maxs[0], trigger.maxs[1], 0);
@@ -712,27 +712,39 @@ function zombie_scan_for_threats(var_b594a2cd)
 			self bot_action::function_8a2b82ad(var_b594a2cd);
 			self bot_action::function_e69a1e2e(var_b594a2cd);
 		}
-		else if(var_fdfb592e)
-		{
-			self bot_action::function_8a2b82ad(var_b594a2cd);
-			self bot_action::aim_at_target(var_b594a2cd);
-		}
-		else if(!var_fdfb592e && self bot_action::function_ee402bf6(var_b594a2cd) && self seerecently(var_b594a2cd.target, 4000))
-		{
-			self bot_action::function_8a2b82ad(var_b594a2cd);
-			self bot_action::function_e69a1e2e(var_b594a2cd);
-		}
-		else if(self bot_action::function_4fbd6cf1())
-		{
-			self bot_action::function_3b98ad10();
-		}
-		else if(self haspath())
-		{
-			self bot_action::look_along_path();
-		}
 		else
 		{
-			self bot_action::function_c17972fc();
+			if(var_fdfb592e)
+			{
+				self bot_action::function_8a2b82ad(var_b594a2cd);
+				self bot_action::aim_at_target(var_b594a2cd);
+			}
+			else
+			{
+				if(!var_fdfb592e && self bot_action::function_ee402bf6(var_b594a2cd) && self seerecently(var_b594a2cd.target, 4000))
+				{
+					self bot_action::function_8a2b82ad(var_b594a2cd);
+					self bot_action::function_e69a1e2e(var_b594a2cd);
+				}
+				else
+				{
+					if(self bot_action::function_4fbd6cf1())
+					{
+						self bot_action::function_3b98ad10();
+					}
+					else
+					{
+						if(self haspath())
+						{
+							self bot_action::look_along_path();
+						}
+						else
+						{
+							self bot_action::function_c17972fc();
+						}
+					}
+				}
+			}
 		}
 		self waittill(#"hash_347a612b61067eb3");
 		var_fdfb592e = self bot_action::is_target_visible(var_b594a2cd);
@@ -763,27 +775,36 @@ function zombie_reload_weapon(var_b594a2cd)
 			self bot_action::function_8a2b82ad(var_b594a2cd);
 			self bot_action::function_e69a1e2e(var_b594a2cd);
 		}
-		else if(self bot_action::function_bb2a8f1b(var_b594a2cd) && self bot_action::function_3094610b(self.bot.tacbundle.var_82aa37d8))
+		else
 		{
-			if(self bot_action::function_ca71ffdb())
+			if(self bot_action::function_bb2a8f1b(var_b594a2cd) && self bot_action::function_3094610b(self.bot.tacbundle.var_82aa37d8))
 			{
-				self bot_action::function_d273d4e7();
+				if(self bot_action::function_ca71ffdb())
+				{
+					self bot_action::function_d273d4e7();
+				}
+				else
+				{
+					self bot_action::function_c17972fc();
+				}
 			}
 			else
 			{
-				self bot_action::function_c17972fc();
+				if(self bot_action::function_4fbd6cf1())
+				{
+					self bot_action::function_3b98ad10();
+				}
+				else
+				{
+					if(self haspath())
+					{
+						self bot_action::look_along_path();
+						return;
+					}
+					self bot_action::function_c17972fc();
+				}
 			}
 		}
-		else if(self bot_action::function_4fbd6cf1())
-		{
-			self bot_action::function_3b98ad10();
-		}
-		else if(self haspath())
-		{
-			self bot_action::look_along_path();
-			return;
-		}
-		self bot_action::function_c17972fc();
 		self waittill(#"hash_347a612b61067eb3");
 	}
 }

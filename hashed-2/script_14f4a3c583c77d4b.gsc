@@ -37,7 +37,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_loadout", &__init__, undefined, undefined);
 }
@@ -164,21 +164,30 @@ function function_ad4c1664(weapon)
 	{
 		self function_6519eea8("melee_weapon", level.weaponnone);
 	}
-	else if(function_59b0ef71("hero_weapon", weapon))
+	else
 	{
-		self function_6519eea8("hero_weapon", level.weaponnone);
-	}
-	else if(function_59b0ef71("lethal_grenade", weapon))
-	{
-		self function_6519eea8("lethal_grenade", level.weaponnone);
-	}
-	else if(function_59b0ef71("tactical_grenade", weapon))
-	{
-		self function_6519eea8("tactical_grenade", level.weaponnone);
-	}
-	else if(function_59b0ef71("placeable_mine", weapon))
-	{
-		self function_6519eea8("placeable_mine", level.weaponnone);
+		if(function_59b0ef71("hero_weapon", weapon))
+		{
+			self function_6519eea8("hero_weapon", level.weaponnone);
+		}
+		else
+		{
+			if(function_59b0ef71("lethal_grenade", weapon))
+			{
+				self function_6519eea8("lethal_grenade", level.weaponnone);
+			}
+			else
+			{
+				if(function_59b0ef71("tactical_grenade", weapon))
+				{
+					self function_6519eea8("tactical_grenade", level.weaponnone);
+				}
+				else if(function_59b0ef71("placeable_mine", weapon))
+				{
+					self function_6519eea8("placeable_mine", level.weaponnone);
+				}
+			}
+		}
 	}
 	if(!is_offhand_weapon(weapon) && primaryweapons.size < 1)
 	{
@@ -231,21 +240,30 @@ function function_54cb37a4(weapon)
 			self zm_melee_weapon::give_fallback_weapon();
 		}
 	}
-	else if(function_59b0ef71("hero_weapon", weapon))
+	else
 	{
-		self function_6519eea8("hero_weapon", weapon);
-	}
-	else if(function_59b0ef71("lethal_grenade", weapon))
-	{
-		self function_6519eea8("lethal_grenade", weapon);
-	}
-	else if(function_59b0ef71("tactical_grenade", weapon))
-	{
-		self function_6519eea8("tactical_grenade", weapon);
-	}
-	else if(function_59b0ef71("placeable_mine", weapon))
-	{
-		self function_6519eea8("placeable_mine", weapon);
+		if(function_59b0ef71("hero_weapon", weapon))
+		{
+			self function_6519eea8("hero_weapon", weapon);
+		}
+		else
+		{
+			if(function_59b0ef71("lethal_grenade", weapon))
+			{
+				self function_6519eea8("lethal_grenade", weapon);
+			}
+			else
+			{
+				if(function_59b0ef71("tactical_grenade", weapon))
+				{
+					self function_6519eea8("tactical_grenade", weapon);
+				}
+				else if(function_59b0ef71("placeable_mine", weapon))
+				{
+					self function_6519eea8("placeable_mine", weapon);
+				}
+			}
+		}
 	}
 	if(!is_offhand_weapon(weapon) && !function_2ff6913(weapon) && weapon != self zm_melee_weapon::determine_fallback_weapon())
 	{

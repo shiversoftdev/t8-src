@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_993ee8bedbddc19", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	zm::register_actor_damage_callback(&height_check);
 	callback::on_ai_spawned(&on_ai_spawned);
@@ -83,7 +83,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_ai_spawned(&on_ai_spawned);
 	level.var_8c018a0e = undefined;
@@ -132,7 +132,7 @@ function is_active()
 	Parameters: 12
 	Flags: Private
 */
-private function height_check(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
+function private height_check(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
 	if(isdefined(attacker.origin) && isdefined(self.origin) && attacker.origin[2] > (self.origin[2] + 40))
 	{
@@ -150,7 +150,7 @@ private function height_check(inflictor, attacker, damage, flags, meansofdeath, 
 	Parameters: 0
 	Flags: Private
 */
-private function on_ai_spawned()
+function private on_ai_spawned()
 {
 	self.ignore_nuke = 1;
 	self.no_gib = 1;
@@ -165,7 +165,7 @@ private function on_ai_spawned()
 	Parameters: 1
 	Flags: Private
 */
-private function function_33f0ddd3(eventstruct)
+function private function_33f0ddd3(eventstruct)
 {
 	self function_6a8979c9();
 }
@@ -179,7 +179,7 @@ private function function_33f0ddd3(eventstruct)
 	Parameters: 0
 	Flags: Private
 */
-private function function_6a8979c9()
+function private function_6a8979c9()
 {
 	/#
 		assert(isdefined(level.var_3e2ac3b6));

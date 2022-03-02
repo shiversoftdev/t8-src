@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_attackables", &__init__, &__main__, undefined);
 }
@@ -129,10 +129,10 @@ function get_attackable_slot(entity)
 		{
 			slot.entity = entity;
 			entity.attackable_slot = slot;
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -144,7 +144,7 @@ function get_attackable_slot(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function clear_slots()
+function private clear_slots()
 {
 	foreach(slot in self.slot)
 	{

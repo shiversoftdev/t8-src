@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"mini_turret", &__init__, undefined, #"zm_weapons");
 }
@@ -70,9 +70,9 @@ function function_2994c93(v_origin, v_angles, player)
 {
 	if(zm_utility::check_point_in_playable_area(v_origin) && zm_utility::check_point_in_enabled_zone(v_origin, 1) && ispointonnavmesh(v_origin))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -454,7 +454,7 @@ function ondeath(einflictor, eattacker, idamage, smeansofdeath, weapon, vdir, sh
 	{
 		turretvehicle ghost();
 		turretvehicle notsolid();
-		turretvehicle waittill_timeout(2, #"remote_weapon_end", #"death");
+		turretvehicle waittilltimeout(2, #"remote_weapon_end", #"death");
 	}
 	if(isdefined(turretvehicle))
 	{
@@ -649,7 +649,7 @@ function turretscanning()
 					{
 						pause_time = (0.34 < 0.34 ? randomfloatrange(0.34, 0.34) : 0.34);
 						waitresult = undefined;
-						waitresult = veh.turret_target waittill_timeout(pause_time, #"death", #"disconnect");
+						waitresult = veh.turret_target waittilltimeout(pause_time, #"death", #"disconnect");
 						var_afae28e0 = waitresult._notify === "death";
 					}
 				}
@@ -699,27 +699,36 @@ function turretscanning()
 				veh.scanpos = "left";
 			}
 		}
-		else if(veh.scanpos === "left")
-		{
-			veh turretsettargetangles(0, (-20, 180, 0));
-			veh.scanpos = "left2";
-		}
-		else if(veh.scanpos === "left2")
-		{
-			veh turretsettargetangles(0, (-20, 360, 0));
-			veh.scanpos = "right";
-		}
-		else if(veh.scanpos === "right")
-		{
-			veh turretsettargetangles(0, (-20, -180, 0));
-			veh.scanpos = "right2";
-		}
 		else
 		{
-			veh turretsettargetangles(0, (-20, -360, 0));
-			veh.scanpos = "left";
+			if(veh.scanpos === "left")
+			{
+				veh turretsettargetangles(0, (-20, 180, 0));
+				veh.scanpos = "left2";
+			}
+			else
+			{
+				if(veh.scanpos === "left2")
+				{
+					veh turretsettargetangles(0, (-20, 360, 0));
+					veh.scanpos = "right";
+				}
+				else
+				{
+					if(veh.scanpos === "right")
+					{
+						veh turretsettargetangles(0, (-20, -180, 0));
+						veh.scanpos = "right2";
+					}
+					else
+					{
+						veh turretsettargetangles(0, (-20, -360, 0));
+						veh.scanpos = "left";
+					}
+				}
+			}
 		}
-		veh waittill_timeout(3.5, #"enemy");
+		veh waittilltimeout(3.5, #"enemy");
 	}
 }
 

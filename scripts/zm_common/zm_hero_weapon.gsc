@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_hero_weapons", &__init__, undefined, #"gadget_hero_weapon");
 }
@@ -543,22 +543,28 @@ function function_2264d131(weapon, enabled, var_b94ec3d9 = 0)
 		if(isdefined(level.var_373ced84) && level.var_373ced84)
 		{
 		}
-		else if(enabled)
-		{
-			self gadgetpowerset(level.var_a53a05b5, 100);
-			self gadgetcharging(level.var_a53a05b5, 0);
-			self function_76505465(level.var_a53a05b5, 0);
-		}
-		else if(isdefined(var_b94ec3d9) && var_b94ec3d9)
-		{
-			level thread function_3fe4a02e(self, 1);
-		}
 		else
 		{
-			self gadgetpowerset(level.var_a53a05b5, 0);
+			if(enabled)
+			{
+				self gadgetpowerset(level.var_a53a05b5, 100);
+				self gadgetcharging(level.var_a53a05b5, 0);
+				self function_76505465(level.var_a53a05b5, 0);
+			}
+			else
+			{
+				if(isdefined(var_b94ec3d9) && var_b94ec3d9)
+				{
+					level thread function_3fe4a02e(self, 1);
+				}
+				else
+				{
+					self gadgetpowerset(level.var_a53a05b5, 0);
+				}
+				self gadgetcharging(level.var_a53a05b5, 0);
+				self function_76505465(level.var_a53a05b5, 0);
+			}
 		}
-		self gadgetcharging(level.var_a53a05b5, 0);
-		self function_76505465(level.var_a53a05b5, 0);
 		function_1297aefe(weapon);
 	}
 	else if(enabled && (!(isdefined(level.var_373ced84) && level.var_373ced84)))
@@ -720,7 +726,7 @@ function function_9a100883(weapon_level, enabled)
 	{
 		wait(1);
 	}
-	self waittill_timeout(2, #"weapon_change_complete");
+	self waittilltimeout(2, #"weapon_change_complete");
 	self playsound("zmb_weapon_upgrade_to_lvl_" + (weapon_level + 1));
 	self function_45b7d6c1(weapon_level);
 	self function_2264d131(level.hero_weapon[self.var_b708af7b][weapon_level], enabled, 1);
@@ -786,20 +792,26 @@ function function_6bba3829(e_player, ai_enemy)
 	{
 		e_player function_416eaaa2(var_ad6f4a1, var_ef230d21);
 	}
-	else if(e_player.var_41183060 >= var_c4937b1a)
-	{
-		e_player function_416eaaa2(var_9e2d281a, var_ef230d21);
-		e_player.var_c9279111 = e_player.var_821c9bf3 / (var_75f1042 - var_c4937b1a);
-	}
-	else if(e_player.var_41183060 >= var_4c37bfce)
-	{
-		e_player function_416eaaa2(var_7b0b50c2, var_ef230d21);
-		e_player.var_c9279111 = e_player.var_821c9bf3 / (var_c4937b1a - var_4c37bfce);
-	}
 	else
 	{
-		e_player function_416eaaa2(0, var_ef230d21);
-		e_player.var_c9279111 = e_player.var_821c9bf3 / var_4c37bfce;
+		if(e_player.var_41183060 >= var_c4937b1a)
+		{
+			e_player function_416eaaa2(var_9e2d281a, var_ef230d21);
+			e_player.var_c9279111 = e_player.var_821c9bf3 / (var_75f1042 - var_c4937b1a);
+		}
+		else
+		{
+			if(e_player.var_41183060 >= var_4c37bfce)
+			{
+				e_player function_416eaaa2(var_7b0b50c2, var_ef230d21);
+				e_player.var_c9279111 = e_player.var_821c9bf3 / (var_c4937b1a - var_4c37bfce);
+			}
+			else
+			{
+				e_player function_416eaaa2(0, var_ef230d21);
+				e_player.var_c9279111 = e_player.var_821c9bf3 / var_4c37bfce;
+			}
+		}
 	}
 	if(!isdefined(e_player.var_c09adff0))
 	{
@@ -910,13 +922,16 @@ function function_3fe4a02e(e_player, n_points, str_event)
 	{
 		e_player.var_1bcf6a9e = e_player.var_dc37311e / (var_e058d658 - var_43877f76);
 	}
-	else if(e_player.var_ec334996 >= var_8fcb23d5)
-	{
-		e_player.var_1bcf6a9e = e_player.var_dc37311e / (var_43877f76 - var_8fcb23d5);
-	}
 	else
 	{
-		e_player.var_1bcf6a9e = e_player.var_dc37311e / var_8fcb23d5;
+		if(e_player.var_ec334996 >= var_8fcb23d5)
+		{
+			e_player.var_1bcf6a9e = e_player.var_dc37311e / (var_43877f76 - var_8fcb23d5);
+		}
+		else
+		{
+			e_player.var_1bcf6a9e = e_player.var_dc37311e / var_8fcb23d5;
+		}
 	}
 	var_cf7a6381 = e_player.var_9f176816;
 	e_player function_29f19e9a(var_cf7a6381, n_points);
@@ -1142,12 +1157,12 @@ function function_ac9f4b22()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a1004d47()
+function private function_a1004d47()
 {
 	self endon(#"death");
 	self.var_1f23fe79 = 1;
 	self function_29e4516d();
-	self waittill_timeout(2, #"weapon_change_complete");
+	self waittilltimeout(2, #"weapon_change_complete");
 	self notify(#"hash_3eaa776332738598");
 	self.var_1f23fe79 = undefined;
 }
@@ -1184,7 +1199,7 @@ function function_29e4516d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9f3a3d48()
+function private function_9f3a3d48()
 {
 	return namespace_6b49f66b::is_active(1) || namespace_fc5170d1::is_active();
 }
@@ -1232,16 +1247,19 @@ function function_c2dea172(player, w_hero)
 		self.var_2f68be48 = 1;
 		self dodamage(self.health + 100, player.origin, player, player, "torso_lower", "MOD_IMPACT", 0, w_hero);
 	}
-	else if(isdefined(self.var_2f68be48) && self.var_2f68be48)
-	{
-		self.marked_for_death = 1;
-		self zm_cleanup::function_23621259();
-		v_fling = ((self.origin - player.origin) * 1.5) + ((0, 0, 1) * 64);
-		self zm_utility::function_ffc279(v_fling, player, undefined, w_hero);
-	}
 	else
 	{
-		self thread function_acee2761();
+		if(isdefined(self.var_2f68be48) && self.var_2f68be48)
+		{
+			self.marked_for_death = 1;
+			self zm_cleanup::function_23621259();
+			v_fling = ((self.origin - player.origin) * 1.5) + ((0, 0, 1) * 64);
+			self zm_utility::function_ffc279(v_fling, player, undefined, w_hero);
+		}
+		else
+		{
+			self thread function_acee2761();
+		}
 	}
 }
 
@@ -1343,7 +1361,7 @@ function function_4e984e83(w_hero, var_cd2d38a0 = 0.35, var_7ebb048f = 0.15)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c49bf808(var_14d0b7ab)
+function private function_c49bf808(var_14d0b7ab)
 {
 	switch(level.players.size)
 	{

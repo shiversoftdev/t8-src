@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_78bf0dc450091c57", &__init__, &__main__, #"archetype_avogadro");
 }
@@ -80,7 +80,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f34df3c()
+function private function_f34df3c()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -127,7 +127,7 @@ private function function_f34df3c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c41e67c()
+function private function_c41e67c()
 {
 	if(math::cointoss())
 	{
@@ -164,7 +164,7 @@ function function_5ff730c7()
 	Parameters: 1
 	Flags: Private
 */
-private function function_745e91e8(entity)
+function private function_745e91e8(entity)
 {
 	entity.fovcosine = 0.5;
 	entity.maxsightdistsqrd = 900 * 900;
@@ -181,7 +181,7 @@ private function function_745e91e8(entity)
 */
 function function_d44ccb0a()
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -200,7 +200,7 @@ function function_905d3c1a(entity)
 	timeout = getanimlength("ai_t8_zm_avogadro_arrival");
 	new_origin = (entity.origin[0], entity.origin[1], entity.origin[2] - delta[2]);
 	entity animscripted("avogadro_arrival_finished", new_origin, (0, entity.angles[1], 0), "ai_t8_zm_avogadro_arrival", "normal", "root", 1, 0);
-	entity waittill_timeout(timeout, #"hash_10eac2bbf85bab17");
+	entity waittilltimeout(timeout, #"hash_10eac2bbf85bab17");
 }
 
 /*
@@ -235,7 +235,7 @@ function function_ad2f1327(entity)
 	timeout = getanimlength("ai_t8_zm_avogadro_exit");
 	entity animscripted("avogadro_exit_finished", self.origin, self.angles, "ai_t8_zm_avogadro_exit", "normal", "root", 1, 0);
 	waitresult = undefined;
-	waitresult = entity waittill_timeout(timeout, #"hash_7f362d7c2b78b3ae");
+	waitresult = entity waittilltimeout(timeout, #"hash_7f362d7c2b78b3ae");
 	entity ghost();
 	entity notsolid();
 	entity val::set(#"hash_5dc24322003886a3", "ignoreall", 1);

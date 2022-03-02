@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	level._customactorcbfunc = &ai::spawned_callback;
 }
@@ -156,9 +156,9 @@ function shouldregisterclientfieldforarchetype(archetype)
 {
 	if(isdefined(level.clientfieldaicheck) && level.clientfieldaicheck && !isarchetypeloaded(archetype))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

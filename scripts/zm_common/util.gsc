@@ -128,22 +128,25 @@ function playsoundonplayers(sound, team)
 			level.players[0] playlocalsound(sound);
 		}
 	}
-	else if(isdefined(team))
-	{
-		for(i = 0; i < level.players.size; i++)
-		{
-			player = level.players[i];
-			if(isdefined(player.pers[#"team"]) && player.pers[#"team"] == team)
-			{
-				player playlocalsound(sound);
-			}
-		}
-	}
 	else
 	{
-		for(i = 0; i < level.players.size; i++)
+		if(isdefined(team))
 		{
-			level.players[i] playlocalsound(sound);
+			for(i = 0; i < level.players.size; i++)
+			{
+				player = level.players[i];
+				if(isdefined(player.pers[#"team"]) && player.pers[#"team"] == team)
+				{
+					player playlocalsound(sound);
+				}
+			}
+		}
+		else
+		{
+			for(i = 0; i < level.players.size; i++)
+			{
+				level.players[i] playlocalsound(sound);
+			}
 		}
 	}
 }
@@ -780,9 +783,9 @@ function ispressbuild()
 	buildtype = getdvarstring(#"buildtype");
 	if(isdefined(buildtype) && buildtype == "press")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

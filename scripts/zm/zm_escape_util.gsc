@@ -38,7 +38,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_631d069a919a5f07", &__init__, &__main__, undefined);
 }
@@ -194,9 +194,9 @@ function function_f79f494e()
 	var_1ce4fa50 = zombie_utility::get_current_zombie_count();
 	if(var_1ce4fa50 >= level.zombie_ai_limit)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -546,9 +546,9 @@ function function_3477b4e6(a_bad_zones)
 	str_zone = self zm_zonemgr::get_player_zone();
 	if(isinarray(a_bad_zones, str_zone))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -648,7 +648,7 @@ function function_dde2edd8()
 		self notify(#"hash_7e1d78666f0be68b", {#e_player:s_info.e_player});
 		if(isdefined(self.var_8e350723) && self.var_8e350723)
 		{
-			self waittill_timeout(10, #"turn_off");
+			self waittilltimeout(10, #"turn_off");
 		}
 		else
 		{
@@ -705,11 +705,11 @@ function function_34b291c3(e_player)
 	var_1ddd5d18 = array("zone_cafeteria_end", "zone_cafeteria", "zone_cellblock_east", "zone_cellblock_entrance", "zone_start", "zone_library", "zone_cellblock_west", "zone_broadway_floor_2", "zone_cellblock_west_barber", "zone_cellblock_west_warden");
 	if(level flag::get("gondola_doors_moving") || level flag::get("gondola_in_motion") && e_player namespace_efb8c7fe::function_9a8ab327() && !self namespace_efb8c7fe::function_9a8ab327())
 	{
-		return 0;
+		return false;
 	}
 	if(level flag::get("gondola_doors_moving") || level flag::get("gondola_in_motion") && !e_player namespace_efb8c7fe::function_9a8ab327() && self namespace_efb8c7fe::function_9a8ab327())
 	{
-		return 0;
+		return false;
 	}
 	if(isalive(level.var_7b71cdb7) && (isdefined(level.var_7b71cdb7.b_is_visible) && level.var_7b71cdb7.b_is_visible))
 	{
@@ -720,23 +720,23 @@ function function_34b291c3(e_player)
 			{
 				if(e_player === level.var_7b71cdb7)
 				{
-					return 1;
+					return true;
 				}
-				return 0;
+				return false;
 			}
 			if(self.archetype === #"zombie_dog" || self.archetype === #"brutus")
 			{
 				if(e_player === level.var_7b71cdb7)
 				{
-					return 0;
+					return false;
 				}
-				return 1;
+				return true;
 			}
-			return 1;
+			return true;
 		}
-		return 1;
+		return true;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -956,13 +956,13 @@ function function_8b5765c6()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ba62dc81()
+function private function_ba62dc81()
 {
 	if(isdefined(level.e_gondola) && isdefined(level.e_gondola.t_ride) && self istouching(level.e_gondola.t_ride))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1061,7 +1061,7 @@ function function_67710e66(b_enable = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5d3c7c04()
+function private function_5d3c7c04()
 {
 	while(true)
 	{

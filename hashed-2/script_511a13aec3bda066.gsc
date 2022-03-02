@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"spork", &__init__, &__main__, undefined);
 }
@@ -28,7 +28,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	zm_melee_weapon::init(#"hash_32a584f5a65c70d1", #"hash_7ad424f2b3d0ebb6", 1000, "spork", undefined, "spork", undefined);
 }
@@ -42,7 +42,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 }
 

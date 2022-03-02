@@ -32,7 +32,7 @@ function init()
 	Parameters: 5
 	Flags: Private
 */
-private function function_1b378f6d(var_5a529222, var_edc20efd, var_d73e0c6e, var_544ae93d, var_db083d2c)
+function private function_1b378f6d(var_5a529222, var_edc20efd, var_d73e0c6e, var_544ae93d, var_db083d2c)
 {
 	/#
 		assert(isdefined(self.ai));
@@ -114,9 +114,9 @@ function function_7e09d4ab()
 {
 	if(self.ai.escort.state == 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -132,9 +132,9 @@ function function_c6c4dd36()
 {
 	if(self.ai.escort.state == 1 || self.ai.escort.state == 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -146,7 +146,7 @@ function function_c6c4dd36()
 	Parameters: 3
 	Flags: Private
 */
-private function function_2be96ed8(current_point, var_673e28d2, points)
+function private function_2be96ed8(current_point, var_673e28d2, points)
 {
 	new_points = [];
 	var_a85cb855 = 10000;
@@ -194,7 +194,7 @@ function function_cd106dcf(left, right)
 	Parameters: 1
 	Flags: Private
 */
-private function function_2d44c54f(points)
+function private function_2d44c54f(points)
 {
 	if(points.size < 5)
 	{
@@ -289,13 +289,13 @@ function function_d15dd929(origin)
 	result = function_9cc082d2(origin + vectorscale((0, 0, 1), 100), 200);
 	if(isdefined(result) && isdefined(result[#"hash_556255be476284b3"]) && result[#"hash_556255be476284b3"] & 2)
 	{
-		return 0;
+		return false;
 	}
 	if(!ispointonnavmesh(origin, 16, 1))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -402,7 +402,12 @@ function function_b6f15bda()
 				#/
 				tacpoints = tacticalquery(self.ai.escort.var_db083d2c, cylinder, self, var_8f3583cf, var_84e7232, var_56bd1bef);
 			}
-			recordsphere(var_84e7232, 8, (1, 0, 0), "");
+			else
+			{
+				/#
+					recordsphere(var_84e7232, 8, (1, 0, 0), "");
+				#/
+			}
 		}
 	}
 	if(!isdefined(tacpoints) || tacpoints.size == 0)
@@ -445,9 +450,9 @@ function function_81832658()
 	var_1f2328d0 = self function_4794d6a3();
 	if(!isdefined(var_1f2328d0.var_9e404264) || var_1f2328d0.var_9e404264)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -466,18 +471,18 @@ function function_11d6df2c()
 	if(isdefined(self.ai.var_b1248bd1) && self.ai.var_b1248bd1)
 	{
 		self.ai.var_b1248bd1 = 0;
-		return 1;
+		return true;
 	}
 	if(isdefined(self.ai.escort.var_8d8186ad))
 	{
 		if(distancesquared(self.ai.escort.var_8d8186ad, var_56bd1bef) >= (self.ai.escort.var_5a529222 * self.ai.escort.var_5a529222))
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(distancesquared(self.origin, var_56bd1bef) >= (self.ai.escort.var_5a529222 * self.ai.escort.var_5a529222))
 	{
-		return 1;
+		return true;
 	}
 	var_56bd1bef = self function_14457965();
 	if(isdefined(var_56bd1bef) && isdefined(self.ai.escort.var_e48a6ca) && gettime() > (self.ai.escort.var_e48a6ca + randomintrange(3000, 4000)))
@@ -486,7 +491,7 @@ function function_11d6df2c()
 		{
 			if(!util::within_fov(var_56bd1bef, self.script_owner.angles, self.origin, cos(50)))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -497,11 +502,11 @@ function function_11d6df2c()
 			if(distancesquared(self.ai.escort.var_8d8186ad, var_56bd1bef) <= (350 * 350))
 			{
 				self.ai.var_82cafa78 = 1;
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

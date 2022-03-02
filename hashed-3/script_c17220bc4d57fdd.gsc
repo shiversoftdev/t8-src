@@ -93,7 +93,7 @@ function function_3088962c()
 			self clientfield::set_to_player("" + #"hash_6a4f537da00ae3f9", 0);
 			self namespace_c05f06c7::function_268efa09(0);
 			s_notify = undefined;
-			s_notify = self waittill_timeout(1.2, #"weapon_change_complete");
+			s_notify = self waittilltimeout(1.2, #"weapon_change_complete");
 		}
 		else
 		{
@@ -359,7 +359,7 @@ function function_252cf612(player)
 		var_3ce66e88 = zm_weapons::get_base_weapon(var_12680c28);
 		if(!isdefined(level.zombie_weapons[var_3ce66e88]))
 		{
-			return 0;
+			return false;
 		}
 		if(player zm_utility::function_aa45670f(var_12680c28, 0))
 		{
@@ -367,46 +367,55 @@ function function_252cf612(player)
 			{
 				self sethintstring(#"hash_4731c9534a6055b");
 			}
-			else if(isdefined(self.stub.var_6646a22) && self.stub.var_6646a22)
-			{
-				str_prompt = zm_utility::function_d6046228(#"hash_5d4b4dfdc53fd671", #"hash_7bd012fd92e7aaf");
-				self sethintstring(str_prompt, 0);
-			}
 			else
 			{
-				n_cost = function_8051ebe7(player, var_12680c28, 1);
-				str_prompt = zm_utility::function_d6046228(#"hash_5d4b4dfdc53fd671", #"hash_7bd012fd92e7aaf");
-				self sethintstring(str_prompt, n_cost);
+				if(isdefined(self.stub.var_6646a22) && self.stub.var_6646a22)
+				{
+					str_prompt = zm_utility::function_d6046228(#"hash_5d4b4dfdc53fd671", #"hash_7bd012fd92e7aaf");
+					self sethintstring(str_prompt, 0);
+				}
+				else
+				{
+					n_cost = function_8051ebe7(player, var_12680c28, 1);
+					str_prompt = zm_utility::function_d6046228(#"hash_5d4b4dfdc53fd671", #"hash_7bd012fd92e7aaf");
+					self sethintstring(str_prompt, n_cost);
+				}
 			}
-		}
-		else if(!player flag::get(#"hash_56504ef435e17076"))
-		{
-			str_prompt = zm_utility::function_d6046228(#"hash_558dab41980bd79b", #"hash_7bc5748f7802e011");
-			self sethintstring(str_prompt);
-		}
-		else if(isdefined(self.stub.var_6646a22) && self.stub.var_6646a22)
-		{
-			str_prompt = zm_utility::function_d6046228(#"hash_558dab41980bd79b", #"hash_7bc5748f7802e011");
-			self sethintstring(str_prompt);
 		}
 		else
 		{
-			n_cost = function_8051ebe7(player, var_12680c28, 1);
-			if(isdefined(n_cost))
+			if(!player flag::get(#"hash_56504ef435e17076"))
 			{
-				self sethintstring(#"hash_9c2f7742abf6acb", n_cost);
+				str_prompt = zm_utility::function_d6046228(#"hash_558dab41980bd79b", #"hash_7bc5748f7802e011");
+				self sethintstring(str_prompt);
 			}
 			else
 			{
-				/#
-					iprintln(("" + function_9e72a96(var_12680c28.name)) + "");
-				#/
-				return 0;
+				if(isdefined(self.stub.var_6646a22) && self.stub.var_6646a22)
+				{
+					str_prompt = zm_utility::function_d6046228(#"hash_558dab41980bd79b", #"hash_7bc5748f7802e011");
+					self sethintstring(str_prompt);
+				}
+				else
+				{
+					n_cost = function_8051ebe7(player, var_12680c28, 1);
+					if(isdefined(n_cost))
+					{
+						self sethintstring(#"hash_9c2f7742abf6acb", n_cost);
+					}
+					else
+					{
+						/#
+							iprintln(("" + function_9e72a96(var_12680c28.name)) + "");
+						#/
+						return false;
+					}
+				}
 			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -458,14 +467,14 @@ function function_dad1960c()
 		else
 		{
 			/#
-				foreach(e_player in level.players)
-				{
-					if(isdefined(e_player.var_3e7d47da))
-					{
-						e_player.var_3e7d47da destroy();
-					}
-				}
+				e_player.var_3e7d47da destroy();
 			#/
+			foreach(e_player in level.players)
+			{
+				if(isdefined(e_player.var_3e7d47da))
+				{
+				}
+			}
 			if(!level.var_c9fce264)
 			{
 				player thread zm_vo::function_a2bd5a0c(#"hash_400e358c3529b05f", 1);
@@ -491,11 +500,11 @@ function function_ec89dca9()
 	w_current = self getcurrentweapon();
 	if(!isdefined(w_current))
 	{
-		return 1;
+		return true;
 	}
 	if(zm_loadout::is_hero_weapon(w_current) || zm_equipment::is_equipment(w_current) || (isdefined(w_current.isriotshield) && w_current.isriotshield) || zm_weapons::is_wonder_weapon(w_current) || w_current == level.weaponnone)
 	{
-		return 1;
+		return true;
 	}
 	if(self hasperk(#"specialty_extraammo"))
 	{
@@ -507,9 +516,9 @@ function function_ec89dca9()
 	}
 	if(self getweaponammoclip(w_current) == self function_f09c133d(w_current) && self getweaponammostock(w_current) == n_ammo_max && self zm_utility::function_aa45670f(w_current, 0))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

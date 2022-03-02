@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_efc308ec898ff43", &__init__, undefined, undefined);
 }
@@ -67,7 +67,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_localplayer_spawned(localclientnum)
+function private on_localplayer_spawned(localclientnum)
 {
 	if(self function_21c0fa55())
 	{
@@ -88,7 +88,7 @@ private function on_localplayer_spawned(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_12d038ac(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_12d038ac(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -113,7 +113,7 @@ private function function_12d038ac(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_54e9d3c4(localclientnum)
+function private function_54e9d3c4(localclientnum)
 {
 	self notify("34f17bedff89ee31");
 	self endon("34f17bedff89ee31");
@@ -162,19 +162,19 @@ function function_3ec2efae(localclientnum)
 	vehicle = getplayervehicle(self);
 	if(!isdefined(vehicle) || !vehicle isvehicle())
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(vehicle.owner))
 	{
-		return 0;
+		return false;
 	}
 	if(util::function_fbce7263(vehicle.owner.team, self.team))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(vehicle.scriptbundlesettings))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(vehicle.settings))
 	{
@@ -185,10 +185,10 @@ function function_3ec2efae(localclientnum)
 		var_1861e0b1 = vehicle clientfield::get("toggle_horn_sound");
 		if(isdefined(var_1861e0b1) && var_1861e0b1)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -214,7 +214,7 @@ function function_ba36f5d(localclientnum, val)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_79500af5(localclientnum, data)
+function private function_79500af5(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -229,7 +229,7 @@ private function function_79500af5(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fb9c790a(localclientnum, data)
+function private function_fb9c790a(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -244,7 +244,7 @@ private function function_fb9c790a(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_bd3b5229(localclientnum, data)
+function private function_bd3b5229(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -270,7 +270,7 @@ private function function_bd3b5229(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_500291c4(localclientnum, data)
+function private function_500291c4(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -285,7 +285,7 @@ private function function_500291c4(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8278ed00(localclientnum, data)
+function private function_8278ed00(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -300,7 +300,7 @@ private function function_8278ed00(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6b617752(localclientnum, data)
+function private function_6b617752(localclientnum, data)
 {
 	self.var_917cf8e3 = &function_b0d51c9;
 	self.var_1a6ef836 = 0;
@@ -316,7 +316,7 @@ private function function_6b617752(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_cc0af45d(localclientnum, data)
+function private function_cc0af45d(localclientnum, data)
 {
 	self.var_917cf8e3 = &function_b0d51c9;
 	self.var_1a6ef836 = 0;
@@ -332,7 +332,7 @@ private function function_cc0af45d(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a01726dd(localclientnum, data)
+function private function_a01726dd(localclientnum, data)
 {
 	self.var_41860110 = &function_74272495;
 	self.var_c6a9216 = &function_8411122e;
@@ -359,7 +359,7 @@ private function function_a01726dd(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_cb575bc3(localclientnum, data)
+function private function_cb575bc3(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -385,7 +385,7 @@ private function function_cb575bc3(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c0f1d81b(localclientnum, data)
+function private function_c0f1d81b(localclientnum, data)
 {
 	self function_3f24c5a(1);
 	self.var_ba36f5d = &function_ba36f5d;
@@ -400,7 +400,7 @@ private function function_c0f1d81b(localclientnum, data)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8411122e(localclientnum, owner)
+function private function_8411122e(localclientnum, owner)
 {
 	surfaces = [];
 	if(isdefined(self.trace))
@@ -433,7 +433,7 @@ private function function_8411122e(localclientnum, owner)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b0d51c9(localclientnum, owner)
+function private function_b0d51c9(localclientnum, owner)
 {
 	curtime = gettime();
 	if(curtime < self.var_1a6ef836)
@@ -468,9 +468,9 @@ private function function_b0d51c9(localclientnum, owner)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_74272495(localclientnum, owner)
+function private function_74272495(localclientnum, owner)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -482,7 +482,7 @@ private function function_74272495(localclientnum, owner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_69fda304(localclientnum)
+function private function_69fda304(localclientnum)
 {
 	self endon(#"death");
 	while(true)
@@ -508,7 +508,7 @@ private function function_69fda304(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function heli_exit(localclientnum)
+function private heli_exit(localclientnum)
 {
 	self endon(#"death");
 	self endon(#"disconnect");
@@ -525,7 +525,7 @@ private function heli_exit(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1731820(localclientnum)
+function private function_d1731820(localclientnum)
 {
 	if(isdefined(self) && isdefined(self.var_a9757792))
 	{
@@ -543,7 +543,7 @@ private function function_d1731820(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ff8d2820(localclientnum, rumble)
+function private function_ff8d2820(localclientnum, rumble)
 {
 	if(!isdefined(self))
 	{
@@ -570,7 +570,7 @@ private function function_ff8d2820(localclientnum, rumble)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_732976d8(localclientnum, vehicle)
+function private function_732976d8(localclientnum, vehicle)
 {
 	self notify("45998e3f5e44c183");
 	self endon("45998e3f5e44c183");
@@ -619,7 +619,7 @@ private function function_732976d8(localclientnum, vehicle)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function field_do_deathfx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private field_do_deathfx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -636,7 +636,7 @@ private function field_do_deathfx(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_de69d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_de69d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -653,7 +653,7 @@ private function function_de69d(localclientnum, oldval, newval, bnewent, binitia
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_b4806ee(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_b4806ee(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(!isdefined(self.settings) && isdefined(self.scriptbundlesettings))
 	{
@@ -682,7 +682,7 @@ private function function_b4806ee(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_a998aede(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_a998aede(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -707,7 +707,7 @@ private function function_a998aede(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8fd2e04f(localclientnum)
+function private function_8fd2e04f(localclientnum)
 {
 	while(true)
 	{

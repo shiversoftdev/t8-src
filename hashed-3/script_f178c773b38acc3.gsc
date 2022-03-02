@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"gravity_spikes", &__init__, undefined, undefined);
 }
@@ -219,6 +219,11 @@ function do_gravity_spike_fx_circle(localclientnum, owner, center, radius, count
 				playfx(localclientnum, fx, trace[#"position"], normal, forward);
 				playsound(0, "wpn_gravity_spikes_earth_crack", trace[#"position"]);
 			}
+		}
+		else
+		{
+			/#
+			#/
 		}
 		waitframe(1);
 	}

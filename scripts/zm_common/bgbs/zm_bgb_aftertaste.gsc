@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_aftertaste", &__init__, undefined, #"bgb");
 }
@@ -53,9 +53,9 @@ function lost_perk_override(perk, var_a83ac70f = undefined, var_6c1b825d = undef
 	if(isdefined(var_a83ac70f) && isdefined(var_6c1b825d) && var_a83ac70f == var_6c1b825d)
 	{
 		var_a83ac70f zm_stats::increment_challenge_stat(#"hash_19d6a97f1553f96f");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -71,7 +71,7 @@ function event()
 {
 	self endon(#"disconnect", #"bled_out", #"bgb_update");
 	self thread bgb::run_timer(300);
-	self waittill_timeout(300, #"player_revived");
+	self waittilltimeout(300, #"player_revived");
 	self bgb::do_one_shot_use(1);
 }
 

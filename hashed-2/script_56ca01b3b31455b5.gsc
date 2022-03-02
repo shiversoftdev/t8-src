@@ -81,11 +81,11 @@ function function_43cda488()
 		{
 			if(player gadget_combat_efficiency_enabled())
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -463,13 +463,16 @@ function gadget_reset(gadgetweapon, changedclass, roundbased, firstround, var_7d
 		{
 			self gadgetpowerset(slot, self.pers[#"held_gadgets_power"][gadgetweapon]);
 		}
-		else if(isdefined(self.pers[#"held_gadgets_power"]) && isdefined(self.pers[#"thiefweapon"]) && isdefined(self.pers[#"held_gadgets_power"][self.pers[#"thiefweapon"]]))
+		else
 		{
-			self gadgetpowerset(slot, self.pers[#"held_gadgets_power"][self.pers[#"thiefweapon"]]);
-		}
-		else if(isdefined(self.pers[#"held_gadgets_power"]) && isdefined(self.pers[#"rouletteweapon"]) && isdefined(self.pers[#"held_gadgets_power"][self.pers[#"rouletteweapon"]]))
-		{
-			self gadgetpowerset(slot, self.pers[#"held_gadgets_power"][self.pers[#"rouletteweapon"]]);
+			if(isdefined(self.pers[#"held_gadgets_power"]) && isdefined(self.pers[#"thiefweapon"]) && isdefined(self.pers[#"held_gadgets_power"][self.pers[#"thiefweapon"]]))
+			{
+				self gadgetpowerset(slot, self.pers[#"held_gadgets_power"][self.pers[#"thiefweapon"]]);
+			}
+			else if(isdefined(self.pers[#"held_gadgets_power"]) && isdefined(self.pers[#"rouletteweapon"]) && isdefined(self.pers[#"held_gadgets_power"][self.pers[#"rouletteweapon"]]))
+			{
+				self gadgetpowerset(slot, self.pers[#"held_gadgets_power"][self.pers[#"rouletteweapon"]]);
+			}
 		}
 		if(isdefined(self.pers[#"hash_7a954c017d693f69"]) && isdefined(self.pers[#"hash_7a954c017d693f69"][gadgetweapon]))
 		{
@@ -550,10 +553,10 @@ function gadget_is_active(gadgettype)
 	{
 		if(self util::gadget_is_in_use(slot))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -570,9 +573,9 @@ function gadget_has_type(gadgettype)
 	slot = self gadget_slot_for_type(gadgettype);
 	if(slot >= 0 && slot < 3)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -671,12 +674,12 @@ function aoe_trace_entity(entity, origin, trace_z_offset)
 	entitypoint = entity.origin + (0, 0, trace_z_offset);
 	if(!bullettracepassed(origin, entitypoint, 1, self, undefined, 0, 1))
 	{
-		return 0;
+		return false;
 	}
 	/#
 		thread util::draw_debug_line(origin, entitypoint, 1);
 	#/
-	return 1;
+	return true;
 }
 
 /*
@@ -692,8 +695,8 @@ function is_hero_weapon(gadgetweapon)
 {
 	if(gadgetweapon.isheavyweapon || gadgetweapon.var_b76e0a09 && gadgetweapon.gadget_type == 11)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

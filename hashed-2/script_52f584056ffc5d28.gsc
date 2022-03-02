@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_19637d14ae86b4ec", &__init__, undefined, undefined);
 }
@@ -131,9 +131,12 @@ function function_ee968813(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.fx_trail = util::playfxontag(localclientnum, level._effect[#"hash_4d733389a8e35a7c"], self, "tag_origin");
 	}
-	else if(isdefined(self.fx_trail))
+	else
 	{
-		stopfx(localclientnum, self.fx_trail);
+		if(isdefined(self.fx_trail))
+		{
+			stopfx(localclientnum, self.fx_trail);
+		}
 	}
 }
 
@@ -172,17 +175,20 @@ function function_61659b2f(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_6450813b = self playloopsound(#"hash_117558f0dda6471f");
 		}
 	}
-	else if(isdefined(self.var_cc9c5baa))
+	else
 	{
-		stopfx(localclientnum, self.var_cc9c5baa);
+		if(isdefined(self.var_cc9c5baa))
+		{
+			stopfx(localclientnum, self.var_cc9c5baa);
+		}
+		if(isdefined(self.var_6450813b))
+		{
+			self playsound(localclientnum, #"hash_ae4b548c1d4a748");
+			self stoploopsound(self.var_6450813b);
+			self.var_6450813b = undefined;
+		}
+		util::playfxontag(localclientnum, level._effect[#"hash_b784dd4d224f7e"], self, "j_spine4");
 	}
-	if(isdefined(self.var_6450813b))
-	{
-		self playsound(localclientnum, #"hash_ae4b548c1d4a748");
-		self stoploopsound(self.var_6450813b);
-		self.var_6450813b = undefined;
-	}
-	util::playfxontag(localclientnum, level._effect[#"hash_b784dd4d224f7e"], self, "j_spine4");
 }
 
 /*

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_388ce832b10c2f83", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	weapon_names = array(#"hero_chakram_lv1", #"hero_chakram_lv2", #"hero_chakram_lv3", #"hash_68705e3b85992a56", #"hash_68705d3b859928a3", #"hash_68705c3b859926f0", #"hero_hammer_lv1", #"hero_hammer_lv2", #"hero_hammer_lv3", #"hash_6627879099b8a337", #"hash_6627889099b8a4ea", #"hash_6627899099b8a69d", #"hash_50f35e4cfb775e02", #"hash_50f35d4cfb775c4f", #"hash_50f35c4cfb775a9c", #"hero_sword_pistol_lv1", #"hero_sword_pistol_lv2", #"hero_sword_pistol_lv3", #"hash_65e48a2e69e81a5e", #"hash_65e4892e69e818ab", #"hash_65e4882e69e816f8");
 	level.var_3e2ac3b6 = [];
@@ -78,7 +78,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -121,7 +121,7 @@ function is_active()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(eventstruct)
+function private function_33f0ddd3(eventstruct)
 {
 	self function_6a8979c9();
 }
@@ -135,7 +135,7 @@ private function function_33f0ddd3(eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6a8979c9()
+function private function_6a8979c9()
 {
 	/#
 		assert(isdefined(level.var_3e2ac3b6));

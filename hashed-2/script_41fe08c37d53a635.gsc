@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"destructible_character", &__init__, undefined, undefined);
 }
@@ -86,7 +86,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _getdestructibledef(entity)
+function private _getdestructibledef(entity)
 {
 	return level.destructiblecharacterdefs[entity.destructibledef];
 }
@@ -134,7 +134,7 @@ function function_f865501b(entity, destruct_state, spawn_gibs)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _setdestructed(entity, destructflag)
+function private _setdestructed(entity, destructflag)
 {
 	entity._destruct_state = function_b9568365(entity) | destructflag;
 	entity clientfield::set("destructible_character_state", entity._destruct_state);

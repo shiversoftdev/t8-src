@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"planner_squad_utility", &plannersquadutility::__init__, undefined, undefined);
 }
@@ -35,7 +35,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	plannerutility::registerplannerapi(#"hash_5414bc90f9b0a9a4", &function_790fb743);
 	plannerutility::registerplannerapi(#"hash_4a94655debb4ee2f", &function_f6ec02a4);
@@ -81,7 +81,7 @@ private function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _assigngameobject(bot, gameobject)
+function private _assigngameobject(bot, gameobject)
 {
 	if(isdefined(bot) && isalive(bot) && isdefined(gameobject) && bot bot::function_343d7ef4())
 	{
@@ -90,13 +90,16 @@ private function _assigngameobject(bot, gameobject)
 		{
 			bot setgoal(gameobject.e_object);
 		}
-		else if(isdefined(gameobject.trigger))
-		{
-			_setgoalpoint(bot, gameobject.trigger.origin);
-		}
 		else
 		{
-			_setgoalpoint(bot, gameobject.origin);
+			if(isdefined(gameobject.trigger))
+			{
+				_setgoalpoint(bot, gameobject.trigger.origin);
+			}
+			else
+			{
+				_setgoalpoint(bot, gameobject.origin);
+			}
 		}
 		if(gameobject.type == "use" || gameobject.type == "useObject" || gameobject.type == "carryObject")
 		{
@@ -117,7 +120,7 @@ private function _assigngameobject(bot, gameobject)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _cleargameobject(bot)
+function private _cleargameobject(bot)
 {
 	if(strategiccommandutility::isvalidbot(bot))
 	{
@@ -137,7 +140,7 @@ private function _cleargameobject(bot)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _calculateadjustedpathsegments(params)
+function private _calculateadjustedpathsegments(params)
 {
 	params.adjustedpath = [];
 	params.adjustedpathsegment = 0;
@@ -201,7 +204,7 @@ private function _calculateadjustedpathsegments(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_48bd5e74(bots)
+function private function_48bd5e74(bots)
 {
 	foreach(bot in bots)
 	{
@@ -222,7 +225,7 @@ private function function_48bd5e74(bots)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_66f80bb1(bots)
+function private function_66f80bb1(bots)
 {
 	foreach(bot in bots)
 	{
@@ -243,7 +246,7 @@ private function function_66f80bb1(bots)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e1b14108(bots)
+function private function_e1b14108(bots)
 {
 	foreach(bot in bots)
 	{
@@ -264,7 +267,7 @@ private function function_e1b14108(bots)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8ff43349(bots)
+function private function_8ff43349(bots)
 {
 	foreach(bot in bots)
 	{
@@ -285,7 +288,7 @@ private function function_8ff43349(bots)
 	Parameters: 1
 	Flags: Private
 */
-private function _debugadjustedpath(params)
+function private _debugadjustedpath(params)
 {
 	if(getdvarint(#"ai_debugsquadareas", 0))
 	{
@@ -338,7 +341,7 @@ private function _debugadjustedpath(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _evaluateadjustedpath(params)
+function private _evaluateadjustedpath(params)
 {
 	if(params.adjustedpath.size <= 0)
 	{
@@ -398,31 +401,34 @@ private function _evaluateadjustedpath(params)
 				params.adjustedpathsegment--;
 			}
 		}
-		else if(currentpointdanger.outer <= 50 && currentpointdanger.inner <= 15)
+		else
 		{
-			if(isdefined(nextpointdanger) && nextpointdanger.inner <= 15)
+			if(currentpointdanger.outer <= 50 && currentpointdanger.inner <= 15)
 			{
-				params.adjustedpathsegment++;
-			}
-		}
-		if(currentpathsegment == params.adjustedpathsegment)
-		{
-			foreach(bot in params.bots)
-			{
-				if(strategiccommandutility::isvalidbot(bot) && isalive(bot) && !bot haspath() && (!isdefined(bot.enemy) || !bot cansee(bot.enemy)))
+				if(isdefined(nextpointdanger) && nextpointdanger.inner <= 15)
 				{
 					params.adjustedpathsegment++;
-					break;
 				}
 			}
-		}
-		if(currentpathsegment == params.adjustedpathsegment)
-		{
-			if(currentpointdanger.inner > 15)
+			if(currentpathsegment == params.adjustedpathsegment)
 			{
-				if(isdefined(previouspointdanger) && previouspointdanger.inner < currentpointdanger.inner && previouspointdanger.outer > 15)
+				foreach(bot in params.bots)
 				{
-					params.adjustedpathsegment--;
+					if(strategiccommandutility::isvalidbot(bot) && isalive(bot) && !bot haspath() && (!isdefined(bot.enemy) || !bot cansee(bot.enemy)))
+					{
+						params.adjustedpathsegment++;
+						break;
+					}
+				}
+			}
+			if(currentpathsegment == params.adjustedpathsegment)
+			{
+				if(currentpointdanger.inner > 15)
+				{
+					if(isdefined(previouspointdanger) && previouspointdanger.inner < currentpointdanger.inner && previouspointdanger.outer > 15)
+					{
+						params.adjustedpathsegment--;
+					}
 				}
 			}
 		}
@@ -438,7 +444,7 @@ private function _evaluateadjustedpath(params)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _evaluatepointdanger(bot, center, inner, outer)
+function private _evaluatepointdanger(bot, center, inner, outer)
 {
 	pointdanger = spawnstruct();
 	pointdanger.inner = tacticalinfluencergetthreatscore(center, inner, bot.team);
@@ -455,7 +461,7 @@ private function _evaluatepointdanger(bot, center, inner, outer)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _isinjured(bot)
+function private _isinjured(bot)
 {
 	if(strategiccommandutility::isvalidbot(bot) && isdefined(bot.health) && isdefined(bot.maxhealth))
 	{
@@ -477,16 +483,16 @@ private function _isinjured(bot)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _paramshasbots(params)
+function private _paramshasbots(params)
 {
 	foreach(bot in params.bots)
 	{
 		if(strategiccommandutility::isvalidbot(bot))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -498,7 +504,7 @@ private function _paramshasbots(params)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _setgoalpoint(bot, point, likelyenemyposition)
+function private _setgoalpoint(bot, point, likelyenemyposition)
 {
 	if(isdefined(bot) && isalive(bot) && isvec(point) && bot bot::function_343d7ef4())
 	{
@@ -540,7 +546,7 @@ private function _setgoalpoint(bot, point, likelyenemyposition)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_a1574a8d(bot, trigger, likelyenemyposition)
+function private function_a1574a8d(bot, trigger, likelyenemyposition)
 {
 	if(isdefined(bot) && isdefined(trigger) && bot bot::function_343d7ef4())
 	{
@@ -573,7 +579,7 @@ private function function_a1574a8d(bot, trigger, likelyenemyposition)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d065f4fd(adjustedpath, currentpathsegment, var_769cf7b7)
+function private function_d065f4fd(adjustedpath, currentpathsegment, var_769cf7b7)
 {
 	for(i = var_769cf7b7; i >= 0; i--)
 	{
@@ -595,7 +601,7 @@ private function function_d065f4fd(adjustedpath, currentpathsegment, var_769cf7b
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategybotgoalparam(planner, constants)
+function private strategybotgoalparam(planner, constants)
 {
 	params = spawnstruct();
 	bots = [];
@@ -617,7 +623,7 @@ private function strategybotgoalparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategybotobjectparam(planner, constants)
+function private strategybotobjectparam(planner, constants)
 {
 	params = spawnstruct();
 	objects = planner::getblackboardattribute(planner, "gameobjects");
@@ -705,7 +711,7 @@ function strategybotparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareaobjectiveparam(planner, constants)
+function private strategyclearareaobjectiveparam(planner, constants)
 {
 	params = strategyrushobjectiveparam(planner, constants);
 	params.adjustedpath = [];
@@ -721,7 +727,7 @@ private function strategyclearareaobjectiveparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareaobjectparam(planner, constants)
+function private strategyclearareaobjectparam(planner, constants)
 {
 	params = strategybotobjectparam(planner, constants);
 	params.adjustedpath = [];
@@ -737,7 +743,7 @@ private function strategyclearareaobjectparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoescortinit(planner, params)
+function private strategyclearareatoescortinit(planner, params)
 {
 	_calculateadjustedpathsegments(params);
 	if(!isdefined(params.escort) || !_paramshasbots(params))
@@ -756,7 +762,7 @@ private function strategyclearareatoescortinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoescortparam(planner, constants)
+function private strategyclearareatoescortparam(planner, constants)
 {
 	params = strategyrushescortparam(planner, constants);
 	params.adjustedpath = [];
@@ -772,7 +778,7 @@ private function strategyclearareatoescortparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatogoldenpathinit(planner, params)
+function private strategyclearareatogoldenpathinit(planner, params)
 {
 	_calculateadjustedpathsegments(params);
 	if(!_paramshasbots(params))
@@ -794,7 +800,7 @@ private function strategyclearareatogoldenpathinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatogoldenpathparam(planner, constants)
+function private strategyclearareatogoldenpathparam(planner, constants)
 {
 	params = spawnstruct();
 	target = planner::getblackboardattribute(planner, "target");
@@ -862,7 +868,7 @@ private function strategyclearareatogoldenpathparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_903aeb1c(planner, params)
+function private function_903aeb1c(planner, params)
 {
 	/#
 		_debugadjustedpath(params);
@@ -899,7 +905,7 @@ private function function_903aeb1c(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatogoldenpathupdate(planner, params)
+function private strategyclearareatogoldenpathupdate(planner, params)
 {
 	/#
 		_debugadjustedpath(params);
@@ -944,7 +950,7 @@ private function strategyclearareatogoldenpathupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoobjectinit(planner, params)
+function private strategyclearareatoobjectinit(planner, params)
 {
 	_calculateadjustedpathsegments(params);
 	if(!isdefined(params.object) && !isdefined(params.component) && !isdefined(params.bundle))
@@ -967,7 +973,7 @@ private function strategyclearareatoobjectinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoobjectiveinit(planner, params)
+function private strategyclearareatoobjectiveinit(planner, params)
 {
 	_calculateadjustedpathsegments(params);
 	if(!isdefined(params.objective) || !_paramshasbots(params))
@@ -986,7 +992,7 @@ private function strategyclearareatoobjectiveinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoattackobjectupdate(planner, params)
+function private strategyclearareatoattackobjectupdate(planner, params)
 {
 	/#
 		_debugadjustedpath(params);
@@ -1005,24 +1011,27 @@ private function strategyclearareatoattackobjectupdate(planner, params)
 	{
 		trigger = params.object.trigger;
 	}
-	else if(isdefined(params.component))
+	else
 	{
-		foreach(bot in params.bots)
+		if(isdefined(params.component))
 		{
-			if(!isdefined(bot))
+			foreach(bot in params.bots)
 			{
-				continue;
+				if(!isdefined(bot))
+				{
+					continue;
+				}
+				trigger = strategiccommandutility::function_5c2c9542(bot, params.component);
 			}
-			trigger = strategiccommandutility::function_5c2c9542(bot, params.component);
 		}
-	}
-	else if(isdefined(params.bundle))
-	{
-		switch(params.bundle.m_str_type)
+		else if(isdefined(params.bundle))
 		{
-			case "escortbiped":
+			switch(params.bundle.m_str_type)
 			{
-				entity = params.bundle.var_27726d51;
+				case "escortbiped":
+				{
+					entity = params.bundle.var_27726d51;
+				}
 			}
 		}
 	}
@@ -1054,28 +1063,37 @@ private function strategyclearareatoattackobjectupdate(planner, params)
 				{
 					_assigngameobject(bot, params.object);
 				}
-				else if(isdefined(trigger))
-				{
-					function_a1574a8d(bot, trigger, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
-				}
 				else
 				{
-					_setgoalpoint(bot, entity.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+					if(isdefined(trigger))
+					{
+						function_a1574a8d(bot, trigger, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+					}
+					else
+					{
+						_setgoalpoint(bot, entity.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+					}
 				}
-			}
-			else if(isdefined(params.object))
-			{
-				_setgoalpoint(bot, params.object.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
-			}
-			else if(isdefined(trigger))
-			{
-				_setgoalpoint(bot, trigger.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
 			}
 			else
 			{
-				_setgoalpoint(bot, entity.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+				if(isdefined(params.object))
+				{
+					_setgoalpoint(bot, params.object.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+				}
+				else
+				{
+					if(isdefined(trigger))
+					{
+						_setgoalpoint(bot, trigger.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+					}
+					else
+					{
+						_setgoalpoint(bot, entity.origin, function_d065f4fd(params.adjustedpath, currentpathsegment, 3));
+					}
+				}
+				bot.goalradius = 512;
 			}
-			bot.goalradius = 512;
 			continue;
 		}
 		_cleargameobject(bot);
@@ -1106,7 +1124,7 @@ private function strategyclearareatoattackobjectupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatodefendobjectupdate(planner, params)
+function private strategyclearareatodefendobjectupdate(planner, params)
 {
 	/#
 		_debugadjustedpath(params);
@@ -1156,7 +1174,7 @@ private function strategyclearareatodefendobjectupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoescortupdate(planner, params)
+function private strategyclearareatoescortupdate(planner, params)
 {
 	/#
 		_debugadjustedpath(params);
@@ -1210,7 +1228,7 @@ private function strategyclearareatoescortupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyclearareatoobjectiveupdate(planner, params)
+function private strategyclearareatoobjectiveupdate(planner, params)
 {
 	/#
 		_debugadjustedpath(params);
@@ -1272,7 +1290,7 @@ private function strategyclearareatoobjectiveupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasattackobject(planner, constants)
+function private strategyhasattackobject(planner, constants)
 {
 	team = planner::getblackboardattribute(planner, "team");
 	objects = planner::getblackboardattribute(planner, "gameobjects");
@@ -1282,11 +1300,11 @@ private function strategyhasattackobject(planner, constants)
 		{
 			if(object[#"team"] == team || object[#"team"] == #"any" || object[#"team"] == "free")
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1298,27 +1316,27 @@ private function strategyhasattackobject(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasescort(planner, constants)
+function private strategyhasescort(planner, constants)
 {
 	escorts = planner::getblackboardattribute(planner, "escorts");
 	if(!isarray(escorts) || escorts.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	var_3ba94a7e = constants[#"key"];
 	if(!isstring(var_3ba94a7e) && !function_7a600918(var_3ba94a7e) || var_3ba94a7e == "")
 	{
-		return 1;
+		return true;
 	}
 	for(i = 0; i < escorts.size; i++)
 	{
 		escort = escorts[i][#"__unsafe__"][var_3ba94a7e];
 		if(isdefined(escort))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1330,7 +1348,7 @@ private function strategyhasescort(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasescortpoi(planner, constants)
+function private strategyhasescortpoi(planner, constants)
 {
 	escortpoi = planner::getblackboardattribute(planner, "escort_poi");
 	return isarray(escortpoi) && escortpoi.size > 0;
@@ -1345,7 +1363,7 @@ private function strategyhasescortpoi(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasforcegoal(planner, constants)
+function private strategyhasforcegoal(planner, constants)
 {
 	return isdefined(planner::getblackboardattribute(planner, "force_goal"));
 }
@@ -1359,7 +1377,7 @@ private function strategyhasforcegoal(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_790fb743(planner, constants)
+function private function_790fb743(planner, constants)
 {
 	/#
 		assert(isstring(constants[#"key"]) || function_7a600918(constants[#"key"]), ("" + "") + "");
@@ -1381,7 +1399,7 @@ private function function_790fb743(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f6ec02a4(planner, constants)
+function private function_f6ec02a4(planner, constants)
 {
 	/#
 		assert(isfloat(constants[#"percent"]), ("" + "") + "");
@@ -1405,14 +1423,14 @@ private function function_f6ec02a4(planner, constants)
 					ammofraction = currentammo / maxammo;
 					if(ammofraction >= constants[#"percent"])
 					{
-						return 0;
+						return false;
 					}
 				}
 			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1424,7 +1442,7 @@ private function function_f6ec02a4(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasbelowxammounsafe(planner, constants)
+function private strategyhasbelowxammounsafe(planner, constants)
 {
 	/#
 		assert(isfloat(constants[#"percent"]), ("" + "") + "");
@@ -1448,13 +1466,13 @@ private function strategyhasbelowxammounsafe(planner, constants)
 					ammofraction = currentammo / maxammo;
 					if(ammofraction < constants[#"percent"])
 					{
-						return 1;
+						return true;
 					}
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1466,7 +1484,7 @@ private function strategyhasbelowxammounsafe(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasblackboardvalue(planner, constants)
+function private strategyhasblackboardvalue(planner, constants)
 {
 	/#
 		assert(isarray(constants));
@@ -1487,7 +1505,7 @@ private function strategyhasblackboardvalue(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasdefendobject(planner, constants)
+function private strategyhasdefendobject(planner, constants)
 {
 	team = planner::getblackboardattribute(planner, "team");
 	objects = planner::getblackboardattribute(planner, "gameobjects");
@@ -1497,11 +1515,11 @@ private function strategyhasdefendobject(planner, constants)
 		{
 			if(object[#"team"] != team && object[#"team"] != #"any" && object[#"team"] != "free")
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1513,7 +1531,7 @@ private function strategyhasdefendobject(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasobjective(planner, constants)
+function private strategyhasobjective(planner, constants)
 {
 	team = planner::getblackboardattribute(planner, "team");
 	objects = planner::getblackboardattribute(planner, "objectives");
@@ -1523,11 +1541,11 @@ private function strategyhasobjective(planner, constants)
 		{
 			if(objective_state(object[#"id"]) == "active")
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1539,7 +1557,7 @@ private function strategyhasobjective(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b384b9b6(planner, constants)
+function private function_b384b9b6(planner, constants)
 {
 	order = planner::getblackboardattribute(planner, "order");
 	return order === constants[#"order"];
@@ -1554,7 +1572,7 @@ private function function_b384b9b6(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2083115a(planner, constants)
+function private function_2083115a(planner, constants)
 {
 	team = planner::getblackboardattribute(planner, "team");
 	target = planner::getblackboardattribute(planner, "target");
@@ -1564,31 +1582,31 @@ private function function_2083115a(planner, constants)
 		{
 			case "gameobject":
 			{
-				return 1;
+				return true;
 			}
 			case "goto":
 			{
-				return 1;
+				return true;
 			}
 			case "destroy":
 			{
-				return 1;
+				return true;
 			}
 			case "defend":
 			{
-				return 1;
+				return true;
 			}
 			case "capturearea":
 			{
-				return 1;
+				return true;
 			}
 			case "escortbiped":
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1600,7 +1618,7 @@ private function function_2083115a(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhaspathableammocache(planner, constants)
+function private strategyhaspathableammocache(planner, constants)
 {
 	ammocaches = planner::getblackboardattribute(planner, "pathable_ammo_caches");
 	return isdefined(ammocaches) && ammocaches.size > 0;
@@ -1615,7 +1633,7 @@ private function strategyhaspathableammocache(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushammocacheinit(planner, params)
+function private strategyrushammocacheinit(planner, params)
 {
 	if(!isdefined(params.ammo) || !_paramshasbots(params))
 	{
@@ -1642,7 +1660,7 @@ private function strategyrushammocacheinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a0f209b7(planner, constants)
+function private function_a0f209b7(planner, constants)
 {
 	/#
 		assert(isfloat(constants[#"percent"]), ("" + "") + "");
@@ -1664,12 +1682,12 @@ private function function_a0f209b7(planner, constants)
 				ammofraction = currentammo / maxammo;
 				if(ammofraction < constants[#"percent"])
 				{
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1681,7 +1699,7 @@ private function function_a0f209b7(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b3ede444(planner, params)
+function private function_b3ede444(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1699,7 +1717,7 @@ private function function_b3ede444(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_942e45dc(planner, params)
+function private function_942e45dc(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1783,7 +1801,7 @@ private function function_942e45dc(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6ed940fb(planner, params)
+function private function_6ed940fb(planner, params)
 {
 	foreach(bot in params.bots)
 	{
@@ -1793,7 +1811,7 @@ private function function_6ed940fb(planner, params)
 			bot.goalradius = 256;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1805,7 +1823,7 @@ private function function_6ed940fb(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4c91e90d(planner, params)
+function private function_4c91e90d(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1831,7 +1849,7 @@ private function function_4c91e90d(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushammocacheparam(planner, constants)
+function private strategyrushammocacheparam(planner, constants)
 {
 	/#
 		assert(isint(constants[#"distance"]) || isfloat(constants[#"distance"]), ("" + "") + "");
@@ -1914,7 +1932,7 @@ private function strategyrushammocacheparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushammocacheupdate(planner, params)
+function private strategyrushammocacheupdate(planner, params)
 {
 	if(!isdefined(params.ammo) || !_paramshasbots(params))
 	{
@@ -1945,7 +1963,7 @@ private function strategyrushammocacheupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushattackobjectinit(planner, params)
+function private strategyrushattackobjectinit(planner, params)
 {
 	if(!isdefined(params.object) || !_paramshasbots(params))
 	{
@@ -1972,7 +1990,7 @@ private function strategyrushattackobjectinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushattackobjectupdate(planner, params)
+function private strategyrushattackobjectupdate(planner, params)
 {
 	if(!isdefined(params.object) || !_paramshasbots(params))
 	{
@@ -1994,7 +2012,7 @@ private function strategyrushattackobjectupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushdefendobjectinit(planner, params)
+function private strategyrushdefendobjectinit(planner, params)
 {
 	if(!isdefined(params.object) || !_paramshasbots(params))
 	{
@@ -2021,7 +2039,7 @@ private function strategyrushdefendobjectinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushdefendobjectupdate(planner, params)
+function private strategyrushdefendobjectupdate(planner, params)
 {
 	if(!isdefined(params.object) || !_paramshasbots(params))
 	{
@@ -2043,7 +2061,7 @@ private function strategyrushdefendobjectupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushescortparam(planner, constants)
+function private strategyrushescortparam(planner, constants)
 {
 	params = spawnstruct();
 	escorts = planner::getblackboardattribute(planner, "escorts");
@@ -2080,7 +2098,7 @@ private function strategyrushescortparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5ac5aed(planner, params)
+function private function_5ac5aed(planner, params)
 {
 	if(!isdefined(params.escort) || !_paramshasbots(params))
 	{
@@ -2128,7 +2146,7 @@ private function function_5ac5aed(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a856fc9d(planner, params)
+function private function_a856fc9d(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -2158,7 +2176,7 @@ private function function_a856fc9d(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushforcegoalinit(planner, params)
+function private strategyrushforcegoalinit(planner, params)
 {
 	if(!isdefined(params.goal) || !_paramshasbots(params))
 	{
@@ -2184,7 +2202,7 @@ private function strategyrushforcegoalinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushforcegoalupdate(planner, params)
+function private strategyrushforcegoalupdate(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -2206,7 +2224,7 @@ private function strategyrushforcegoalupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushobjectiveinit(planner, params)
+function private strategyrushobjectiveinit(planner, params)
 {
 	if(!isdefined(params.objective) || !_paramshasbots(params))
 	{
@@ -2237,7 +2255,7 @@ private function strategyrushobjectiveinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushobjectiveparam(planner, constants)
+function private strategyrushobjectiveparam(planner, constants)
 {
 	params = spawnstruct();
 	objectives = planner::getblackboardattribute(planner, "objectives");
@@ -2292,7 +2310,7 @@ private function strategyrushobjectiveparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyrushobjectiveupdate(planner, params)
+function private strategyrushobjectiveupdate(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -2314,7 +2332,7 @@ private function strategyrushobjectiveupdate(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e96dd96b(planner, constants)
+function private function_e96dd96b(planner, constants)
 {
 	/#
 		assert(isarray(constants));
@@ -2338,13 +2356,13 @@ private function function_e96dd96b(planner, constants)
 				{
 					if(var_3d879b56.(var_681a8d61) == focus)
 					{
-						return 1;
+						return true;
 					}
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2356,7 +2374,7 @@ private function function_e96dd96b(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_50c7bd5a(planner, constants)
+function private function_50c7bd5a(planner, constants)
 {
 	/#
 		assert(isarray(constants));
@@ -2386,7 +2404,7 @@ private function function_50c7bd5a(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategywanderinit(planner, params)
+function private strategywanderinit(planner, params)
 {
 	foreach(bot in params.bots)
 	{
@@ -2396,7 +2414,7 @@ private function strategywanderinit(planner, params)
 			bot.goalradius = 128;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2408,7 +2426,7 @@ private function strategywanderinit(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategywanderupdate(planner, params)
+function private strategywanderupdate(planner, params)
 {
 	if(!_paramshasbots(params))
 	{

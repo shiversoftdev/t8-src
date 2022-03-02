@@ -107,9 +107,9 @@ function function_95a892a(attacker, victim, var_3d1ed4bd, attackerweapon, meanso
 {
 	if(!isdefined(var_3d1ed4bd) || !isdefined(attackerweapon) || var_3d1ed4bd == attackerweapon)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -222,9 +222,9 @@ function function_7cc07921(ent)
 {
 	if(distancesquared(self.origin, ent.origin) <= (level.var_a5ff950.var_9c0267f2 * level.var_a5ff950.var_9c0267f2))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -259,7 +259,7 @@ function function_5fff8c45(watcher, hitent)
 	self endon(#"death", #"hacked", #"kill_target_detection");
 	if(isdefined(hitent))
 	{
-		hitent endon_callback(&function_a6beb598, #"hash_16c7de1837351e82");
+		hitent endoncallback(&function_a6beb598, #"hash_16c7de1837351e82");
 		hitent.var_56c34a84 = self;
 	}
 	damagearea = weaponobjects::proximityweaponobject_createdamagearea(watcher);
@@ -317,10 +317,10 @@ function function_33020ed7(ent)
 	{
 		if(self.var_8d84345[i] == ent)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -336,9 +336,9 @@ function function_c23ed15d(ent, var_3ee2edfa)
 {
 	if(isdefined(ent.var_21f48975) && (ent.var_21f48975 + var_3ee2edfa) + (int((isdefined(level.var_a5ff950.var_80cecde8) ? level.var_a5ff950.var_80cecde8 : 0) * 1000)) > gettime())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -570,17 +570,23 @@ function function_e0141557(ent, var_51415470)
 	{
 		damage = 10000;
 	}
-	else if(isdefined(ent.var_dda9b735) && (isdefined(ent.var_dda9b735.isshocked) && ent.var_dda9b735.isshocked))
+	else
 	{
-		damage = 10000;
-	}
-	else if(isplayer && ent isplayerswimming())
-	{
-		damage = 10000;
-	}
-	else if(isplayer || isbot(ent) && (ent isremotecontrolling() || ent.currentweapon.statname == #"recon_car"))
-	{
-		damage = 10000;
+		if(isdefined(ent.var_dda9b735) && (isdefined(ent.var_dda9b735.isshocked) && ent.var_dda9b735.isshocked))
+		{
+			damage = 10000;
+		}
+		else
+		{
+			if(isplayer && ent isplayerswimming())
+			{
+				damage = 10000;
+			}
+			else if(isplayer || isbot(ent) && (ent isremotecontrolling() || ent.currentweapon.statname == #"recon_car"))
+			{
+				damage = 10000;
+			}
+		}
 	}
 	damagescalar = (isplayer ? ent function_6e30f4a3() : 1);
 	return damage * damagescalar;

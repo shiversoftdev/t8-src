@@ -8,6 +8,72 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\zm_common\zm.gsc;
 
+class class_8d574d24 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_8d574d24
+		Checksum: 0xB9AE6375
+		Offset: 0x1C8
+		Size: 0x2A
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.spawntime = gettime();
+		self.state = 0;
+		self.var_be1913ae = gettime() + 100;
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_8d574d24
+		Checksum: 0x80F724D1
+		Offset: 0x200
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16
+	*/
+	destructor()
+	{
+	}
+
+}
+
+class class_698343df 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_698343df
+		Checksum: 0xC9DDEA3
+		Offset: 0x2A0
+		Size: 0xE
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.var_9a08bb02 = [];
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_698343df
+		Checksum: 0x80F724D1
+		Offset: 0x2B8
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16
+	*/
+	destructor()
+	{
+	}
+
+}
+
 #namespace zm_aoe;
 
 /*
@@ -19,105 +85,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_aoe", &__init__, &__main__, undefined);
-}
-
-#namespace namespace_8d574d24;
-
-/*
-	Name: __constructor
-	Namespace: namespace_8d574d24
-	Checksum: 0xB9AE6375
-	Offset: 0x1C8
-	Size: 0x2A
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.spawntime = gettime();
-	self.state = 0;
-	self.var_be1913ae = gettime() + 100;
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_8d574d24
-	Checksum: 0x80F724D1
-	Offset: 0x200
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16
-*/
-function __destructor()
-{
-}
-
-#namespace zm_aoe;
-
-/*
-	Name: function_8d574d24
-	Namespace: zm_aoe
-	Checksum: 0x37EA2DDB
-	Offset: 0x210
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_8d574d24()
-{
-	classes.var_8d574d24[0] = spawnstruct();
-	classes.var_8d574d24[0].__vtable[913321084] = &namespace_8d574d24::__destructor;
-	classes.var_8d574d24[0].__vtable[674154906] = &namespace_8d574d24::__constructor;
-}
-
-#namespace namespace_698343df;
-
-/*
-	Name: __constructor
-	Namespace: namespace_698343df
-	Checksum: 0xC9DDEA3
-	Offset: 0x2A0
-	Size: 0xE
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.var_9a08bb02 = [];
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_698343df
-	Checksum: 0x80F724D1
-	Offset: 0x2B8
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16
-*/
-function __destructor()
-{
-}
-
-#namespace zm_aoe;
-
-/*
-	Name: function_698343df
-	Namespace: zm_aoe
-	Checksum: 0x18106E7C
-	Offset: 0x2C8
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_698343df()
-{
-	classes.var_698343df[0] = spawnstruct();
-	classes.var_698343df[0].__vtable[913321084] = &namespace_698343df::__destructor;
-	classes.var_698343df[0].__vtable[674154906] = &namespace_698343df::__constructor;
 }
 
 /*
@@ -144,7 +114,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	function_15dea507(1, "zm_aoe_spear", 15, 60000, 2000, 5, 15, 40, 80);
 	function_15dea507(2, "zm_aoe_spear_small", 15, 60000, 2000, 5, 15, 20, 80);
@@ -164,7 +134,7 @@ private function __main__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e969e75(type)
+function private function_e969e75(type)
 {
 	/#
 		assert(isdefined(level.var_400ae143));
@@ -196,9 +166,7 @@ function function_15dea507(var_2fb5df20, type, var_3a11a165, lifetime, var_f2cd3
 	/#
 		assert(!isinarray(arraykeys, hash(type)));
 	#/
-	object = new var_698343df();
-	[[ object ]]->__constructor();
-	var_508aaded = object;
+	var_508aaded = new class_698343df();
 	level.var_400ae143[type] = var_508aaded;
 	/#
 		assert(damagemin <= damagemax, "");
@@ -240,9 +208,7 @@ function function_371b4147(var_2fb5df20, type, position, userdata)
 	/#
 		assert(var_46f1b5eb.var_9a08bb02.size < var_46f1b5eb.var_3a11a165);
 	#/
-	object = new var_8d574d24();
-	[[ object ]]->__constructor();
-	aoe = object;
+	aoe = new class_8d574d24();
 	aoe.position = position;
 	aoe.endtime = gettime() + var_46f1b5eb.lifetime;
 	aoe.entity = spawn("script_model", position);
@@ -264,7 +230,7 @@ function function_371b4147(var_2fb5df20, type, position, userdata)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_668a9b2d(aoe, type)
+function private function_668a9b2d(aoe, type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	/#
@@ -285,7 +251,7 @@ private function function_668a9b2d(aoe, type)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_87bbe4fc(type)
+function private function_87bbe4fc(type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	/#
@@ -314,7 +280,7 @@ private function function_87bbe4fc(type)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fa03204a(aoe, type)
+function private function_fa03204a(aoe, type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	/#
@@ -340,7 +306,7 @@ private function function_fa03204a(aoe, type)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4f0db8cf(entity)
+function private function_4f0db8cf(entity)
 {
 	waitframe(2);
 	entity delete();
@@ -355,7 +321,7 @@ private function function_4f0db8cf(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2c33d107(type)
+function private function_2c33d107(type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	var_528d5f55 = function_87bbe4fc(type);
@@ -372,7 +338,7 @@ private function function_2c33d107(type)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ccf8f659(aoe, forceend = 0)
+function private function_ccf8f659(aoe, forceend = 0)
 {
 	var_46f1b5eb = function_e969e75(aoe.type);
 	/#
@@ -394,22 +360,28 @@ private function function_ccf8f659(aoe, forceend = 0)
 		aoe.state = 1;
 		aoe.var_be1913ae = gettime() + 100;
 	}
-	else if(aoe.state == 1)
+	else
 	{
-		aoe.entity clientfield::set("aoe_state", 2);
-		aoe.state = 2;
-		aoe.var_be1913ae = aoe.endtime;
-	}
-	else if(aoe.state == 2)
-	{
-		aoe.entity clientfield::set("aoe_state", 3);
-		aoe.state = 3;
-		aoe.var_be1913ae = gettime() + var_46f1b5eb.var_f2cd3aad;
-	}
-	else if(aoe.state == 3)
-	{
-		aoe.entity clientfield::set("aoe_state", 4);
-		aoe.state = 4;
+		if(aoe.state == 1)
+		{
+			aoe.entity clientfield::set("aoe_state", 2);
+			aoe.state = 2;
+			aoe.var_be1913ae = aoe.endtime;
+		}
+		else
+		{
+			if(aoe.state == 2)
+			{
+				aoe.entity clientfield::set("aoe_state", 3);
+				aoe.state = 3;
+				aoe.var_be1913ae = gettime() + var_46f1b5eb.var_f2cd3aad;
+			}
+			else if(aoe.state == 3)
+			{
+				aoe.entity clientfield::set("aoe_state", 4);
+				aoe.state = 4;
+			}
+		}
 	}
 }
 
@@ -447,7 +419,7 @@ function function_3690781e()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e5950b1e(type)
+function private function_e5950b1e(type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	/#
@@ -477,7 +449,7 @@ private function function_e5950b1e(type)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bea2e288(type)
+function private function_bea2e288(type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	/#
@@ -522,7 +494,7 @@ private function function_bea2e288(type)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_60bb02f3(type)
+function private function_60bb02f3(type)
 {
 	var_46f1b5eb = function_e969e75(type);
 	/#
@@ -550,7 +522,7 @@ private function function_60bb02f3(type)
 	Parameters: 1
 	Flags: Private
 */
-private function function_e39c0be4(var_46f1b5eb)
+function private function_e39c0be4(var_46f1b5eb)
 {
 	/#
 		var_46f1b5eb endon(#"hash_343e166e4aa4288e");

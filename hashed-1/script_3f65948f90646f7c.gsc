@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"item_drop", &__init__, undefined, #"item_world");
 }
@@ -49,16 +49,12 @@ function __init__()
 	clientfield::register("scriptmover", "dynamic_stash_type", 1, 2, "int");
 	if(!isdefined(level.var_98d0ae2b))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_98d0ae2b = object;
+		level.var_98d0ae2b = new throttle();
 		[[ level.var_98d0ae2b ]]->initialize(2, 0.05);
 	}
 	if(!isdefined(level.var_19011fa7))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_19011fa7 = object;
+		level.var_19011fa7 = new throttle();
 		[[ level.var_19011fa7 ]]->initialize(2, 0.05);
 	}
 	level.disableweapondrop = 1;
@@ -82,7 +78,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_344f8c02()
+function private function_344f8c02()
 {
 	/#
 		adddebugcommand(("" + util::function_53bbf9d2()) + "");
@@ -99,7 +95,7 @@ private function function_344f8c02()
 	Parameters: 0
 	Flags: Private
 */
-private function function_60c9a9e1()
+function private function_60c9a9e1()
 {
 	/#
 		while(true)
@@ -123,7 +119,7 @@ private function function_60c9a9e1()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_3b2b6383(origin, angles, normal, var_a6762160, var_ba40b4c1)
+function private function_3b2b6383(origin, angles, normal, var_a6762160, var_ba40b4c1)
 {
 	angles = function_c1fa62a2(angles, normal);
 	angles = combineangles(angles, (0, angleclamp180((origin[0] + origin[1]) + origin[2]), 0));
@@ -154,7 +150,7 @@ private function function_3b2b6383(origin, angles, normal, var_a6762160, var_ba4
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_feb1473(var_a6762160, var_ba40b4c1)
+function private function_feb1473(var_a6762160, var_ba40b4c1)
 {
 	origin = (0, 0, 0);
 	if(isdefined(var_a6762160))
@@ -184,7 +180,7 @@ private function function_feb1473(var_a6762160, var_ba40b4c1)
 	Parameters: 0
 	Flags: Private
 */
-private function function_a3675ae5()
+function private function_a3675ae5()
 {
 	return (randomintrange(-10, 10), randomintrange(-180, 180), randomintrange(-10, 10));
 }
@@ -198,7 +194,7 @@ private function function_a3675ae5()
 	Parameters: 1
 	Flags: Private
 */
-private function function_32b2794(degree)
+function private function_32b2794(degree)
 {
 	distance = randomintrange(48, 60);
 	return (cos(degree) * distance, sin(degree) * distance, randomintrange(24, 36));
@@ -213,7 +209,7 @@ private function function_32b2794(degree)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_44a6883c(var_d9a91a6, var_fc79d82, var_c46cdc46, var_413559c8, var_4a5c0085 = 1, var_fee0423a = 0)
+function private function_44a6883c(var_d9a91a6, var_fc79d82, var_c46cdc46, var_413559c8, var_4a5c0085 = 1, var_fee0423a = 0)
 {
 	var_f55ea9e5 = var_d9a91a6.size;
 	for(index = 0; index < var_f55ea9e5; index++)
@@ -334,7 +330,7 @@ private function function_44a6883c(var_d9a91a6, var_fc79d82, var_c46cdc46, var_4
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_23b6897(player, position)
+function private function_23b6897(player, position)
 {
 	if(isplayer(player))
 	{
@@ -475,7 +471,7 @@ private function function_23b6897(player, position)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2734eea3(player)
+function private function_2734eea3(player)
 {
 	if(!isplayer(player))
 	{
@@ -502,7 +498,7 @@ private function function_2734eea3(player)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_a938fba7(player, position, angles, var_a6762160, var_74e79ee3 = 0, var_ba40b4c1 = 1)
+function private function_a938fba7(player, position, angles, var_a6762160, var_74e79ee3 = 0, var_ba40b4c1 = 1)
 {
 	/#
 		assert(isentity(self));
@@ -658,12 +654,12 @@ private function function_a938fba7(player, position, angles, var_a6762160, var_7
 		self setcontents(self setcontents(0) & (~(((32768 | 67108864) | 8388608) | 33554432)));
 		self physicslaunch();
 		self thread function_10ececeb();
-		return 1;
+		return true;
 	}
 	/#
 		debug_sphere(self.origin, 1, (1, 1, 0));
 	#/
-	return 0;
+	return false;
 }
 
 /*
@@ -694,70 +690,73 @@ function function_10ececeb(var_e280bfe2 = 1, tracedistance = 24, originheightoff
 		{
 			self physicslaunch();
 		}
-		else if(!isdefined(parentent))
+		else
 		{
-			if(isdefined(self.var_7b500c20))
+			if(!isdefined(parentent))
 			{
-				foreach(item in self.var_7b500c20)
+				if(isdefined(self.var_7b500c20))
 				{
-					if(isdefined(item))
+					foreach(item in self.var_7b500c20)
 					{
-						[[ level.var_19011fa7 ]]->waitinqueue(self);
 						if(isdefined(item))
 						{
-							item unlink();
+							[[ level.var_19011fa7 ]]->waitinqueue(self);
+							if(isdefined(item))
+							{
+								item unlink();
+							}
 						}
 					}
+					self.var_7b500c20 = undefined;
 				}
-				self.var_7b500c20 = undefined;
-			}
-			return;
-		}
-		if(!isdefined(parentent.iscorpse) && isdefined(parentent) && parentent.model != "" && !isplayer(parentent))
-		{
-			var_fe7058af = 0;
-			if(!var_e280bfe2)
-			{
-				var_fe7058af = 1;
-			}
-			if(!var_fe7058af && parentent.classname == "script_vehicle")
-			{
-				foreach(vehicle in array(#"player_atv", #"helicopter_light", "recon_wz", "hawk"))
-				{
-					if(isdefined(parentent.scriptvehicletype) && vehicle == parentent.scriptvehicletype)
-					{
-						var_fe7058af = 1;
-						break;
-					}
-				}
-				if(!var_fe7058af && isdefined(parentent.var_7b500c20))
-				{
-					arrayremovevalue(parentent.var_7b500c20, undefined, 0);
-					var_fe7058af = parentent.var_7b500c20.size >= 10;
-				}
-			}
-			if(!var_fe7058af && self !== parentent)
-			{
-				self linkto(parentent);
-				if(!isdefined(parentent.var_7b500c20))
-				{
-					parentent.var_7b500c20 = [];
-				}
-				else if(!isarray(parentent.var_7b500c20))
-				{
-					parentent.var_7b500c20 = array(parentent.var_7b500c20);
-				}
-				parentent.var_7b500c20[parentent.var_7b500c20.size] = self;
 				return;
 			}
-			if(!isdefined(var_21f31454))
+			if(!isdefined(parentent.iscorpse) && isdefined(parentent) && parentent.model != "" && !isplayer(parentent))
 			{
-				var_21f31454 = parentent;
-				var_326ad23d = parentent.origin;
-				var_ba3b53da = parentent.angles;
+				var_fe7058af = 0;
+				if(!var_e280bfe2)
+				{
+					var_fe7058af = 1;
+				}
+				if(!var_fe7058af && parentent.classname == "script_vehicle")
+				{
+					foreach(vehicle in array(#"player_atv", #"helicopter_light", "recon_wz", "hawk"))
+					{
+						if(isdefined(parentent.scriptvehicletype) && vehicle == parentent.scriptvehicletype)
+						{
+							var_fe7058af = 1;
+							break;
+						}
+					}
+					if(!var_fe7058af && isdefined(parentent.var_7b500c20))
+					{
+						arrayremovevalue(parentent.var_7b500c20, undefined, 0);
+						var_fe7058af = parentent.var_7b500c20.size >= 10;
+					}
+				}
+				if(!var_fe7058af && self !== parentent)
+				{
+					self linkto(parentent);
+					if(!isdefined(parentent.var_7b500c20))
+					{
+						parentent.var_7b500c20 = [];
+					}
+					else if(!isarray(parentent.var_7b500c20))
+					{
+						parentent.var_7b500c20 = array(parentent.var_7b500c20);
+					}
+					parentent.var_7b500c20[parentent.var_7b500c20.size] = self;
+					return;
+				}
+				if(!isdefined(var_21f31454))
+				{
+					var_21f31454 = parentent;
+					var_326ad23d = parentent.origin;
+					var_ba3b53da = parentent.angles;
+				}
+				var_9caaeb74 = parentent.origin;
+				var_6b8fe84d = parentent.angles;
 			}
-			var_9caaeb74 = parentent.origin;
-			var_6b8fe84d = parentent.angles;
 		}
 		[[ level.var_19011fa7 ]]->waitinqueue(self);
 		if(isdefined(var_21f31454) && isdefined(parentent) && var_21f31454 === parentent && distancesquared(var_326ad23d, var_9caaeb74) <= 2 && distancesquared(var_ba3b53da, var_6b8fe84d) <= 2)
@@ -997,13 +996,16 @@ function function_504d49aa(player)
 	{
 		var_4961f577 setmodel("p8_fxanim_wz_win_death_stash_mod");
 	}
-	else if(isdefined(level.var_7b65cb7) && level.var_7b65cb7)
-	{
-		var_4961f577 setmodel("p8_fxanim_wz_spd_death_stash_mod");
-	}
 	else
 	{
-		var_4961f577 setmodel("p8_fxanim_wz_death_stash_mod");
+		if(isdefined(level.var_7b65cb7) && level.var_7b65cb7)
+		{
+			var_4961f577 setmodel("p8_fxanim_wz_spd_death_stash_mod");
+		}
+		else
+		{
+			var_4961f577 setmodel("p8_fxanim_wz_death_stash_mod");
+		}
 	}
 	var_4961f577 useanimtree("generic");
 	var_4961f577 notsolid();
@@ -1235,7 +1237,12 @@ function drop_item(weapon = undefined, count = 0, amount = 0, var_d8138db2, posi
 			{
 				item = function_4ba8fde(item.var_a6762160.baseweapon);
 			}
-			assert(0, "");
+			else
+			{
+				/#
+					assert(0, "");
+				#/
+			}
 		}
 		item.attachments = originalattachments;
 	}
@@ -1302,18 +1309,24 @@ function drop_item(weapon = undefined, count = 0, amount = 0, var_d8138db2, posi
 	{
 		dropitem setmodel(dropitem.var_a6762160.var_77d2cbb5);
 	}
-	else if(isdefined(dropitem.var_a6762160.model))
-	{
-		dropitem setmodel(dropitem.var_a6762160.model);
-	}
-	else if(isdefined(weapon))
-	{
-		dropitem setmodel(weapon.worldmodel);
-	}
 	else
 	{
-		dropitem delete();
-		return;
+		if(isdefined(dropitem.var_a6762160.model))
+		{
+			dropitem setmodel(dropitem.var_a6762160.model);
+		}
+		else
+		{
+			if(isdefined(weapon))
+			{
+				dropitem setmodel(weapon.worldmodel);
+			}
+			else
+			{
+				dropitem delete();
+				return;
+			}
+		}
 	}
 	if(!namespace_a0d533d1::function_70b12595(dropitem))
 	{

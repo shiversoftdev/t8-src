@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_746f7956b9307f72", &__init__, undefined, undefined);
 }
@@ -96,9 +96,7 @@ function __init__()
 	level.var_5d31a5ef[level.var_5d31a5ef.size] = "minigun";
 	if(!isdefined(level.var_893eb73f))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_893eb73f = object;
+		level.var_893eb73f = new throttle();
 		[[ level.var_893eb73f ]]->initialize(3, 0.1);
 	}
 	callback::on_connect(&function_1d807685);
@@ -117,7 +115,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1d807685()
+function private function_1d807685()
 {
 	self endon(#"disconnect");
 	/#
@@ -153,34 +151,37 @@ private function function_1d807685()
 				self zm_hero_weapon::show_hint(wpn_cur, #"hash_52e079a39f348e1b");
 			}
 		}
-		else if(wpn_cur == level.hero_weapon[#"chakram"][1])
+		else
 		{
-			self thread chakram_rumble(1);
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"chakram"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_327e81e6ede21cd5");
+				self thread chakram_rumble(1);
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_327e81e6ede21cd5");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_52e079a39f348e1b");
+				}
+				self thread function_d5e67082(wpn_cur);
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"chakram"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_52e079a39f348e1b");
+				self thread chakram_rumble(1);
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_3c4637f13f09707");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_34a417201bd40701");
+				}
+				self thread function_d5e67082(wpn_cur);
+				self thread function_b475223e(wpn_cur);
+				self thread function_f9b883ea();
+				self thread function_68ff89f7(wpn_cur);
 			}
-			self thread function_d5e67082(wpn_cur);
-		}
-		else if(wpn_cur == level.hero_weapon[#"chakram"][2])
-		{
-			self thread chakram_rumble(1);
-			if(!self gamepadusedlast())
-			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_3c4637f13f09707");
-			}
-			else
-			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_34a417201bd40701");
-			}
-			self thread function_d5e67082(wpn_cur);
-			self thread function_b475223e(wpn_cur);
-			self thread function_f9b883ea();
-			self thread function_68ff89f7(wpn_cur);
 		}
 	}
 }
@@ -194,11 +195,11 @@ private function function_1d807685()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7bef3ea0(w_hero)
+function private function_7bef3ea0(w_hero)
 {
 	self endon(#"death");
 	s_result = undefined;
-	s_result = self waittill_timeout(5, #"hash_5d6141fda69070db", #"hash_33f0ae42d16f878f");
+	s_result = self waittilltimeout(5, #"hash_5d6141fda69070db", #"hash_33f0ae42d16f878f");
 	if(s_result._notify !== #"hash_5d6141fda69070db")
 	{
 		self notify(#"hash_5d6141fda69070db");
@@ -219,7 +220,7 @@ private function function_7bef3ea0(w_hero)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c965a5a9(weapon)
+function private function_c965a5a9(weapon)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	while(true)
@@ -249,7 +250,7 @@ private function function_c965a5a9(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function blood_death_fx(var_14ef0a6c)
+function private blood_death_fx(var_14ef0a6c)
 {
 	if(self.archetype === #"zombie")
 	{
@@ -475,7 +476,7 @@ function function_cec4ebbd(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_20644ac2(weapon)
+function private function_20644ac2(weapon)
 {
 	self setweaponammoclip(weapon.dualwieldweapon, 1);
 }
@@ -489,7 +490,7 @@ private function function_20644ac2(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dc7f8e67(player)
+function private function_dc7f8e67(player)
 {
 	player endon(#"death", #"hash_5d6141fda69070db");
 	player.var_30cbff55 = 1;
@@ -564,7 +565,7 @@ private function function_dc7f8e67(player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e3ad524a()
+function private function_e3ad524a()
 {
 	self endon(#"death", #"hash_5d6141fda69070db");
 	self.var_89e9a4ce endon(#"death");
@@ -674,7 +675,7 @@ private function function_e3ad524a()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_46f125d(v_start, var_4d1ea1ad, v_forward)
+function private function_46f125d(v_start, var_4d1ea1ad, v_forward)
 {
 	self endon(#"death");
 	var_b9e95436 = zm_hero_weapon::function_7c3681f7();
@@ -759,7 +760,7 @@ private function function_46f125d(v_start, var_4d1ea1ad, v_forward)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3adb0798(e_target, n_kills)
+function private function_3adb0798(e_target, n_kills)
 {
 	self endon(#"death", #"hash_5d6141fda69070db");
 	self.var_89e9a4ce endon(#"death");
@@ -775,7 +776,7 @@ private function function_3adb0798(e_target, n_kills)
 	{
 		if(!isdefined(e_target))
 		{
-			return 0;
+			return false;
 		}
 		if(isplayer(e_target))
 		{
@@ -809,20 +810,23 @@ private function function_3adb0798(e_target, n_kills)
 			n_travel_time = (var_81b38250 * var_ece935b3) / var_e68de849;
 			self.var_89e9a4ce moveto(v_target, n_travel_time);
 		}
-		else if(isplayer(e_target))
+		else
 		{
-			self playsound(#"hash_2c86fd203e33ce7c");
-			self.var_89e9a4ce.origin = self gettagorigin("tag_weapon_left");
-			var_1fcff345 = array::remove_undefined(self.var_89e9a4ce.var_fee68611);
-			foreach(var_7d81025 in var_1fcff345)
+			if(isplayer(e_target))
 			{
-				var_7d81025 unlink();
-				var_7d81025.origin = self.origin;
+				self playsound(#"hash_2c86fd203e33ce7c");
+				self.var_89e9a4ce.origin = self gettagorigin("tag_weapon_left");
+				var_1fcff345 = array::remove_undefined(self.var_89e9a4ce.var_fee68611);
+				foreach(var_7d81025 in var_1fcff345)
+				{
+					var_7d81025 unlink();
+					var_7d81025.origin = self.origin;
+				}
+				return false;
 			}
-			return 0;
+			self thread function_96835348(e_target);
+			return true;
 		}
-		self thread function_96835348(e_target);
-		return 1;
 		wait(0.1);
 	}
 }
@@ -836,7 +840,7 @@ private function function_3adb0798(e_target, n_kills)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_545dcea4(e_target)
+function private function_545dcea4(e_target)
 {
 	self endon(#"death", #"hash_5d6141fda69070db");
 	self.var_89e9a4ce endon(#"death");
@@ -857,7 +861,7 @@ private function function_545dcea4(e_target)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_96835348(e_target)
+function private function_96835348(e_target)
 {
 	if(isalive(e_target))
 	{
@@ -917,11 +921,14 @@ private function function_96835348(e_target)
 				n_damage = 1000;
 			}
 		}
-		else if(!(isdefined(e_target.var_f7f67d2c) && e_target.var_f7f67d2c))
+		else
 		{
-			e_target thread function_20d19d65(0.5);
+			if(!(isdefined(e_target.var_f7f67d2c) && e_target.var_f7f67d2c))
+			{
+				e_target thread function_20d19d65(0.5);
+			}
+			n_damage = 1000;
 		}
-		n_damage = 1000;
 		if(isactor(e_target))
 		{
 			e_target thread zm_hero_weapon::function_acee2761();
@@ -945,7 +952,7 @@ private function function_96835348(e_target)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_20d19d65(n_time)
+function private function_20d19d65(n_time)
 {
 	self endon(#"death");
 	self.var_f7f67d2c = 1;
@@ -962,7 +969,7 @@ private function function_20d19d65(n_time)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8d4b8171(v_position, v_normal)
+function private function_8d4b8171(v_position, v_normal)
 {
 	mdl_fx = util::spawn_model("tag_origin", v_position, v_normal);
 	mdl_fx endon(#"death");
@@ -980,7 +987,7 @@ private function function_8d4b8171(v_position, v_normal)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d5e67082(weapon)
+function private function_d5e67082(weapon)
 {
 	self endon(#"disconnect");
 	self clientfield::increment_to_player("" + #"hash_7287b37a40c4ae6f", 1);
@@ -995,10 +1002,10 @@ private function function_d5e67082(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b475223e(weapon)
+function private function_b475223e(weapon)
 {
 	self endon(#"disconnect", #"weapon_change", #"bled_out", #"entering_last_stand");
-	level endon_callback(&function_7d1739b8, #"round_reset");
+	level endoncallback(&function_7d1739b8, #"round_reset");
 	while(self getcurrentweapon() == weapon)
 	{
 		self waittill(#"weapon_melee");
@@ -1022,7 +1029,7 @@ private function function_b475223e(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7d1739b8(var_201c5b1f)
+function private function_7d1739b8(var_201c5b1f)
 {
 	/#
 		assert(var_201c5b1f == #"round_reset");
@@ -1042,7 +1049,7 @@ private function function_7d1739b8(var_201c5b1f)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f9b883ea()
+function private function_f9b883ea()
 {
 	self endon(#"disconnect");
 	self notify("beb94ee3d73772a");
@@ -1063,7 +1070,7 @@ private function function_f9b883ea()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_892bdee2()
+function private function_892bdee2()
 {
 	self.var_a70d2cfe = undefined;
 	if(self clientfield::get("" + #"hash_9d9fb6cf3d5d3a6"))
@@ -1081,7 +1088,7 @@ private function function_892bdee2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_481a494b(var_5f94a2e7)
+function private function_481a494b(var_5f94a2e7)
 {
 	self endon(#"weapon_melee", #"weapon_change", #"disconnect", #"bled_out", #"entering_last_stand");
 	self.var_a70d2cfe = 1;
@@ -1203,7 +1210,7 @@ function chakram_rumble(var_b2e05bae)
 function function_68ff89f7(var_648cbd6d)
 {
 	self endon(#"disconnect", #"weapon_change", #"bled_out", #"entering_last_stand");
-	level endon_callback(&function_7d1739b8, #"round_reset");
+	level endoncallback(&function_7d1739b8, #"round_reset");
 	s_result = undefined;
 	s_result = self waittill(#"weapon_melee");
 	if(s_result.weapon === var_648cbd6d)

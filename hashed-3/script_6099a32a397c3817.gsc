@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"spknifeork", &__init__, &__main__, undefined);
 }
@@ -31,7 +31,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	zm_melee_weapon::init(#"spknifeork", #"hash_682a394b34139cf4", 1000, "spknifeork", undefined, "spknifeork", undefined);
 	zm::function_84d343d(#"spknifeork", &function_958c4578);
@@ -46,7 +46,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	callback::on_connect(&function_3b1ba6c7);
 }
@@ -74,7 +74,7 @@ function function_3b1ba6c7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c6b2d4d8(s_event)
+function private function_c6b2d4d8(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

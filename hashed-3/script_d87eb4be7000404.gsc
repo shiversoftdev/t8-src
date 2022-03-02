@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2281c92f7b8c6d9d", &__init__, &__main__, undefined);
 }
@@ -92,7 +92,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d8a99ae2()
+function private function_d8a99ae2()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -109,7 +109,7 @@ private function function_d8a99ae2()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_487069e4()
+function private function_487069e4()
 {
 	self endon(#"death");
 	wait(1);
@@ -125,7 +125,7 @@ private function function_487069e4()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_b6824ff0(entity, player, duration, color)
+function private function_b6824ff0(entity, player, duration, color)
 {
 	/#
 		enabled = getdvarint(#"hash_46b9af6724aa7968", 0);
@@ -146,7 +146,7 @@ private function function_b6824ff0(entity, player, duration, color)
 	Parameters: 4
 	Flags: Private
 */
-private function function_e5ffb77c(start, end, duration, color)
+function private function_e5ffb77c(start, end, duration, color)
 {
 	/#
 		current_time = duration * 20;
@@ -171,7 +171,7 @@ private function function_e5ffb77c(start, end, duration, color)
 	Parameters: 1
 	Flags: Private
 */
-private function function_78910888(player)
+function private function_78910888(player)
 {
 	angles = player getplayerangles();
 	forward = anglestoforward(angles);
@@ -188,7 +188,7 @@ private function function_78910888(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ad034041(entity)
+function private function_ad034041(entity)
 {
 	players = getplayers();
 	var_de85d14d = [];
@@ -210,17 +210,20 @@ private function function_ad034041(entity)
 		}
 		entity setgoal(entity.origin);
 	}
-	else if(isdefined(entity.is_inert) && entity.is_inert)
-	{
-		entity namespace_9ff9f642::unfreeze();
-	}
-	if(isdefined(entity.var_72411ccf))
-	{
-		entity [[entity.var_72411ccf]](entity);
-	}
 	else
 	{
-		entity zm_behavior::zombiefindflesh(entity);
+		if(isdefined(entity.is_inert) && entity.is_inert)
+		{
+			entity namespace_9ff9f642::unfreeze();
+		}
+		if(isdefined(entity.var_72411ccf))
+		{
+			entity [[entity.var_72411ccf]](entity);
+		}
+		else
+		{
+			entity zm_behavior::zombiefindflesh(entity);
+		}
 	}
 }
 
@@ -233,7 +236,7 @@ private function function_ad034041(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f5d43a20(entity)
+function private function_f5d43a20(entity)
 {
 	result = zombiebehavior::zombieshouldmeleecondition(entity);
 	if(result && isdefined(entity.enemy) && entity.enemy cansee(entity))

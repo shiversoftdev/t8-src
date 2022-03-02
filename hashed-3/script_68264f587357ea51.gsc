@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"item_world", &__init__, undefined, undefined);
 }
@@ -38,7 +38,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(getgametypesetting(#"useitemspawns") == 0)
 	{
@@ -103,7 +103,7 @@ private function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3d7c12a6(localclientnum, var_1bcc6d7e)
+function private function_3d7c12a6(localclientnum, var_1bcc6d7e)
 {
 	var_ab111430 = [];
 	for(i = 1; i <= var_1bcc6d7e; i++)
@@ -126,7 +126,7 @@ private function function_3d7c12a6(localclientnum, var_1bcc6d7e)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_37175e73(var_fee74908)
+function private function_37175e73(var_fee74908)
 {
 	level endon(#"game_ended");
 	if(var_fee74908.size <= 0)
@@ -161,7 +161,7 @@ private function function_37175e73(var_fee74908)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_952d97dc(localclientnum)
+function private function_952d97dc(localclientnum)
 {
 	data = spawnstruct();
 	data.var_ab111430 = function_3d7c12a6(localclientnum, level.var_c49f422c);
@@ -192,7 +192,7 @@ private function function_952d97dc(localclientnum)
 	Parameters: 0
 	Flags: Private
 */
-private function function_cdd9b388()
+function private function_cdd9b388()
 {
 	/#
 		self notify("");
@@ -226,7 +226,7 @@ private function function_cdd9b388()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3ee12d25(localclientnum, model)
+function private function_3ee12d25(localclientnum, model)
 {
 	if(!isdefined(model))
 	{
@@ -271,7 +271,7 @@ function function_2990e5f(localclientnum, model)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_48b8fc19(localclientnum)
+function private function_48b8fc19(localclientnum)
 {
 	var_7d8899cd = function_d634ed59();
 	for(index = 0; index < var_7d8899cd; index++)
@@ -326,7 +326,7 @@ private function function_48b8fc19(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_c17fe536(localclientnum, var_8040e225, var_bd027dd9)
+function private function_c17fe536(localclientnum, var_8040e225, var_bd027dd9)
 {
 	model = function_839d4c20(localclientnum, var_8040e225, var_bd027dd9);
 	if(!isdefined(model) && isdefined(var_bd027dd9) && namespace_ad5a0cd6::function_2c7fc531(var_bd027dd9))
@@ -362,7 +362,7 @@ private function function_c17fe536(localclientnum, var_8040e225, var_bd027dd9)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_839d4c20(localclientnum, var_8040e225, var_bd027dd9)
+function private function_839d4c20(localclientnum, var_8040e225, var_bd027dd9)
 {
 	if(!isdefined(var_bd027dd9))
 	{
@@ -388,7 +388,7 @@ private function function_839d4c20(localclientnum, var_8040e225, var_bd027dd9)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_61f5d33a(localclientnum, var_8040e225, var_bd027dd9)
+function private function_61f5d33a(localclientnum, var_8040e225, var_bd027dd9)
 {
 	model = function_839d4c20(localclientnum, var_8040e225, var_bd027dd9);
 	if(!isdefined(model) && namespace_ad5a0cd6::function_2c7fc531(var_bd027dd9))
@@ -411,19 +411,19 @@ private function function_61f5d33a(localclientnum, var_8040e225, var_bd027dd9)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_237888bb(localclientnum)
+function private function_237888bb(localclientnum)
 {
 	/#
 		if(getdvarint(#"hash_1a8554bdb48b95b9", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(self hasperk(localclientnum, #"hash_5321e235b64bb84d"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -435,7 +435,7 @@ private function function_237888bb(localclientnum)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_78bf134c(localclientnum, var_8040e225, var_bd027dd9, model, var_a6762160)
+function private function_78bf134c(localclientnum, var_8040e225, var_bd027dd9, model, var_a6762160)
 {
 	if(!isdefined(model))
 	{
@@ -489,25 +489,28 @@ private function function_78bf134c(localclientnum, var_8040e225, var_bd027dd9, m
 			var_8ad7f92f = #"hash_52f7937d76fafca0";
 		}
 	}
-	else if(model.targetname === #"hash_6111cfdbe7da9cd1")
+	else
 	{
-		var_8ad7f92f = #"hash_71bb09e5b3013952";
-	}
-	if(isdefined(model.var_bad13452))
-	{
-		if(model.var_bad13452 == 2)
+		if(model.targetname === #"hash_6111cfdbe7da9cd1")
 		{
-			function_3ee12d25(localclientnum, model);
-			return;
+			var_8ad7f92f = #"hash_71bb09e5b3013952";
 		}
-	}
-	else if(!isdefined(model.type))
-	{
-		state = function_ffdbe8c2(model);
-		if(state == 2)
+		if(isdefined(model.var_bad13452))
 		{
-			function_3ee12d25(localclientnum, model);
-			return;
+			if(model.var_bad13452 == 2)
+			{
+				function_3ee12d25(localclientnum, model);
+				return;
+			}
+		}
+		else if(!isdefined(model.type))
+		{
+			state = function_ffdbe8c2(model);
+			if(state == 2)
+			{
+				function_3ee12d25(localclientnum, model);
+				return;
+			}
 		}
 	}
 	if(isdefined(player) && isdefined(var_8ad7f92f) && player function_237888bb(localclientnum))
@@ -575,7 +578,7 @@ private function function_78bf134c(localclientnum, var_8040e225, var_bd027dd9, m
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_3bd99d2f(localclientnum, var_8040e225, vehicle, clear = 0)
+function private function_3bd99d2f(localclientnum, var_8040e225, vehicle, clear = 0)
 {
 	if(!isdefined(vehicle))
 	{
@@ -603,7 +606,7 @@ private function function_3bd99d2f(localclientnum, var_8040e225, vehicle, clear 
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d889880b(localclientnum, draworigin)
+function private function_d889880b(localclientnum, draworigin)
 {
 	self endon(#"shutdown");
 	var_8040e225 = function_a7e98a1a(localclientnum);
@@ -845,7 +848,7 @@ private function function_d889880b(localclientnum, draworigin)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_78a9fd5f(point)
+function private function_78a9fd5f(point)
 {
 	if(!isdefined(level.var_8c615e33))
 	{
@@ -866,13 +869,16 @@ private function function_78a9fd5f(point)
 		{
 			level.var_8c615e33[point.var_a6762160.name] = point.var_a6762160.model;
 		}
-		else if(isdefined(point.var_a6762160.weapon) && point.var_a6762160.weapon !== level.weaponnone)
-		{
-			level.var_8c615e33[point.var_a6762160.name] = point.var_a6762160.weapon.worldmodel;
-		}
 		else
 		{
-			level.var_8c615e33[point.var_a6762160.name] = "tag_origin";
+			if(isdefined(point.var_a6762160.weapon) && point.var_a6762160.weapon !== level.weaponnone)
+			{
+				level.var_8c615e33[point.var_a6762160.name] = point.var_a6762160.weapon.worldmodel;
+			}
+			else
+			{
+				level.var_8c615e33[point.var_a6762160.name] = "tag_origin";
+			}
 		}
 	}
 	return level.var_8c615e33[point.var_a6762160.name];
@@ -887,7 +893,7 @@ private function function_78a9fd5f(point)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8cf40a8c(localclientnum)
+function private function_8cf40a8c(localclientnum)
 {
 	return getcamposbylocalclientnum(localclientnum);
 }
@@ -901,7 +907,7 @@ private function function_8cf40a8c(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e4552fe(var_fee74908)
+function private function_9e4552fe(var_fee74908)
 {
 	level thread function_37175e73(var_fee74908);
 }
@@ -915,7 +921,7 @@ private function function_9e4552fe(var_fee74908)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_9160538(localclientnum, eventtype, eventdata, var_c5a66313, var_567004a8)
+function private function_9160538(localclientnum, eventtype, eventdata, var_c5a66313, var_567004a8)
 {
 	waitframe(1);
 	reset = isdefined(level flagsys::get(#"hash_38a387462f3a9ad")) && level flagsys::get(#"hash_38a387462f3a9ad");
@@ -1132,7 +1138,7 @@ private function function_9160538(localclientnum, eventtype, eventdata, var_c5a6
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_60386766(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_60386766(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	level flagsys::wait_till(#"hash_51daecff754729dc");
 	foreach(var_b7c28bcc in level.var_5862f2ce)
@@ -1150,7 +1156,7 @@ private function function_60386766(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_4e9220ab(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_4e9220ab(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -1235,7 +1241,7 @@ private function function_4e9220ab(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e2e7ee77(localclientnum)
+function private function_e2e7ee77(localclientnum)
 {
 	self function_198ac8a(localclientnum);
 	self function_e1f6ddbf(localclientnum);
@@ -1250,7 +1256,7 @@ private function function_e2e7ee77(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_198ac8a(localclientnum)
+function private function_198ac8a(localclientnum)
 {
 	setting = function_ab88dbd2(localclientnum, #"warzoneinstantpickups");
 	if(isdefined(setting))
@@ -1268,7 +1274,7 @@ private function function_198ac8a(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e1f6ddbf(localclientnum)
+function private function_e1f6ddbf(localclientnum)
 {
 	setting = function_ab88dbd2(localclientnum, #"warzoneprioritypickups");
 	if(isdefined(setting))
@@ -1286,7 +1292,7 @@ private function function_e1f6ddbf(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_86c5661a(localclientnum)
+function private function_86c5661a(localclientnum)
 {
 	function_952d97dc(localclientnum);
 	self function_e2e7ee77(localclientnum);
@@ -1301,7 +1307,7 @@ private function function_86c5661a(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1877f414(localclientnum)
+function private function_1877f414(localclientnum)
 {
 	/#
 		self thread function_cdd9b388();
@@ -1323,7 +1329,7 @@ private function function_1877f414(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_192b39cd(localclientnum)
+function private function_192b39cd(localclientnum)
 {
 	if(self function_da43934d())
 	{
@@ -1346,7 +1352,7 @@ private function function_192b39cd(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_cfebeacb(localclientnum, item)
+function private function_cfebeacb(localclientnum, item)
 {
 	if(isdefined(item) && isdefined(item.var_a6762160.weapon) && !isdefined(item.var_a6762160.model) && isdefined(item.var_a6762160.weapon.worldmodel))
 	{
@@ -1376,11 +1382,11 @@ private function function_cfebeacb(localclientnum, item)
 		{
 			self activecamo::function_6efb762c(localclientnum, var_e827f698, weaponoptions);
 		}
-		return 1;
+		return true;
 	}
 	self detachall();
 	self useweaponmodel(level.weaponnone, "tag_origin");
-	return 0;
+	return false;
 }
 
 /*
@@ -1392,7 +1398,7 @@ private function function_cfebeacb(localclientnum, item)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_e082e650(localclientnum, item, newmodel, scale)
+function private function_e082e650(localclientnum, item, newmodel, scale)
 {
 	if(newmodel === self.model)
 	{
@@ -1422,37 +1428,37 @@ private function function_e082e650(localclientnum, item, newmodel, scale)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_96fa1c6d(localclientnum)
+function private function_96fa1c6d(localclientnum)
 {
 	var_8040e225 = function_a7e98a1a(localclientnum);
 	if(isdefined(var_8040e225.drawing) && var_8040e225.drawing)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(var_8040e225.var_844c8166))
 	{
-		return 1;
+		return true;
 	}
 	if(function_1cbf351b(localclientnum))
 	{
-		return 1;
+		return true;
 	}
 	servertime = getservertime(localclientnum);
 	if(servertime < var_8040e225.var_79b15dd1)
 	{
-		return 1;
+		return true;
 	}
 	var_605384fe = function_8cf40a8c(localclientnum);
 	var_48f611aa = distancesquared(var_8040e225.var_844c8166, var_605384fe);
 	if(var_48f611aa >= (72 * 72))
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self.var_5f6ea063) && self.var_5f6ea063 || (isdefined(self.var_506495f9) && self.var_506495f9))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1464,14 +1470,14 @@ private function function_96fa1c6d(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c7e5c26(localclientnum)
+function private function_c7e5c26(localclientnum)
 {
 	var_8040e225 = function_a7e98a1a(localclientnum);
 	if(isdefined(var_8040e225.var_a4ad122e) && var_8040e225.var_a4ad122e)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1483,15 +1489,15 @@ private function function_c7e5c26(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_34418003(localclientnum, eyepos, angles)
+function private function_34418003(localclientnum, eyepos, angles)
 {
 	var_8040e225 = function_a7e98a1a(localclientnum);
 	if(isdefined(var_8040e225.var_ff9e7e43) && var_8040e225.var_ff9e7e43)
 	{
 		var_8040e225.var_ff9e7e43 = 0;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1503,7 +1509,7 @@ private function function_34418003(localclientnum, eyepos, angles)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_5cbe24ea(dest, source, order)
+function private function_5cbe24ea(dest, source, order)
 {
 	items = [];
 	foreach(item in source)
@@ -1557,7 +1563,7 @@ private function function_5cbe24ea(dest, source, order)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_43d3ebe1(items)
+function private function_43d3ebe1(items)
 {
 	/#
 		assert(isplayer(self));
@@ -1734,7 +1740,7 @@ private function function_43d3ebe1(items)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_b21002cb(localclientnum, objid, obj, objstate)
+function private function_b21002cb(localclientnum, objid, obj, objstate)
 {
 	if(obj.type === "scriptmover" || obj.type === "missile")
 	{
@@ -1758,7 +1764,7 @@ private function function_b21002cb(localclientnum, objid, obj, objstate)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_c3f5f99b(localclientnum, objid, obj)
+function private function_c3f5f99b(localclientnum, objid, obj)
 {
 	objective_setstate(localclientnum, objid, "invisible");
 	objective_setgamemodeflags(localclientnum, objid, 0);
@@ -1785,7 +1791,7 @@ private function function_c3f5f99b(localclientnum, objid, obj)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b0af857f(localclientnum)
+function private function_b0af857f(localclientnum)
 {
 	self endon(#"death");
 	var_8040e225 = function_a7e98a1a(localclientnum);
@@ -1896,7 +1902,7 @@ private function function_b0af857f(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_802915bc(localclientnum)
+function private function_802915bc(localclientnum)
 {
 	if(!isdefined(level.var_62c91473) || !isdefined(level.var_62c91473[localclientnum]))
 	{
@@ -1922,16 +1928,19 @@ private function function_802915bc(localclientnum)
 		}
 		setuimodelvalue(level.var_62c91473[localclientnum], hinttext);
 	}
-	else if(!isdefined(self.var_9b882d22) || distance2dsquared(self.var_9b882d22.origin, eyepos) > (128 * 128))
-	{
-		angles = getlocalclientangles(localclientnum);
-		vehicle = namespace_ad5a0cd6::function_6af455de(localclientnum, eyepos, angles);
-		hintstring = namespace_ad5a0cd6::function_c62ad9a7(vehicle);
-		setuimodelvalue(level.var_62c91473[localclientnum], hintstring);
-	}
 	else
 	{
-		setuimodelvalue(level.var_62c91473[localclientnum], #"");
+		if(!isdefined(self.var_9b882d22) || distance2dsquared(self.var_9b882d22.origin, eyepos) > (128 * 128))
+		{
+			angles = getlocalclientangles(localclientnum);
+			vehicle = namespace_ad5a0cd6::function_6af455de(localclientnum, eyepos, angles);
+			hintstring = namespace_ad5a0cd6::function_c62ad9a7(vehicle);
+			setuimodelvalue(level.var_62c91473[localclientnum], hintstring);
+		}
+		else
+		{
+			setuimodelvalue(level.var_62c91473[localclientnum], #"");
+		}
 	}
 }
 
@@ -1944,7 +1953,7 @@ private function function_802915bc(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_eb396946(localclientnum)
+function private function_eb396946(localclientnum)
 {
 	if(isdefined(self))
 	{
@@ -2052,7 +2061,7 @@ private function function_eb396946(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_48ec057f(localclientnum)
+function private function_48ec057f(localclientnum)
 {
 	var_8040e225 = function_a7e98a1a(localclientnum);
 	if(!isdefined(var_8040e225))
@@ -2098,7 +2107,7 @@ private function function_48ec057f(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6d4050ed(localclientnum)
+function private function_6d4050ed(localclientnum)
 {
 	self endon(#"shutdown");
 	self notify("787a164bb0bf6bcf");
@@ -2135,7 +2144,7 @@ private function function_6d4050ed(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_48ca0bbb(localclientnum)
+function private function_48ca0bbb(localclientnum)
 {
 	var_da43934d = self function_da43934d();
 	if(var_da43934d)
@@ -2151,70 +2160,79 @@ private function function_48ca0bbb(localclientnum)
 			{
 				var_77055f15 = 64;
 			}
-			else if(namespace_b376ff3f::function_a243ddd6(localclientnum, var_a6762160))
-			{
-				var_77055f15 = 1;
-				if(var_a6762160.itemtype == #"attachment")
-				{
-					var_77055f15 = 1;
-					if(namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
-					{
-						var_77055f15 = var_77055f15 | 32;
-					}
-				}
-				else if(var_a6762160.itemtype == #"weapon")
-				{
-					var_a4250c2b = self namespace_b376ff3f::function_d768ea30(localclientnum);
-					if(namespace_a0d533d1::function_4bd83c04(self.var_9b882d22) && self namespace_b376ff3f::function_850588f4(localclientnum, var_a4250c2b))
-					{
-						var_77055f15 = var_77055f15 | 512;
-					}
-				}
-			}
-			else if(var_a6762160.itemtype == #"weapon")
-			{
-				var_77055f15 = 2;
-				var_a4250c2b = self namespace_b376ff3f::function_d768ea30(localclientnum);
-				if(namespace_a0d533d1::function_4bd83c04(self.var_9b882d22) && self namespace_b376ff3f::function_850588f4(localclientnum, var_a4250c2b))
-				{
-					var_77055f15 = var_77055f15 | 512;
-				}
-			}
 			else
 			{
-				var_fa3df96 = self namespace_b376ff3f::function_78ed4455(localclientnum, var_a6762160);
-				if(isdefined(var_fa3df96))
+				if(namespace_b376ff3f::function_a243ddd6(localclientnum, var_a6762160))
 				{
-					var_77055f15 = 2;
+					var_77055f15 = 1;
 					if(var_a6762160.itemtype == #"attachment")
 					{
-						var_fa3df96 = undefined;
+						var_77055f15 = 1;
 						if(namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
 						{
 							var_77055f15 = var_77055f15 | 32;
 						}
 					}
-				}
-				else if(!namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
-				{
-					if(var_a6762160.itemtype == #"resource" && namespace_ad5a0cd6::function_41f06d9d(var_a6762160))
+					else if(var_a6762160.itemtype == #"weapon")
 					{
-						var_77055f15 = 128;
+						var_a4250c2b = self namespace_b376ff3f::function_d768ea30(localclientnum);
+						if(namespace_a0d533d1::function_4bd83c04(self.var_9b882d22) && self namespace_b376ff3f::function_850588f4(localclientnum, var_a4250c2b))
+						{
+							var_77055f15 = var_77055f15 | 512;
+						}
+					}
+				}
+				else
+				{
+					if(var_a6762160.itemtype == #"weapon")
+					{
+						var_77055f15 = 2;
+						var_a4250c2b = self namespace_b376ff3f::function_d768ea30(localclientnum);
+						if(namespace_a0d533d1::function_4bd83c04(self.var_9b882d22) && self namespace_b376ff3f::function_850588f4(localclientnum, var_a4250c2b))
+						{
+							var_77055f15 = var_77055f15 | 512;
+						}
 					}
 					else
 					{
-						var_77055f15 = 4;
-					}
-					if(var_a6762160.itemtype == #"equipment" || var_a6762160.itemtype == #"health")
-					{
-						var_77055f15 = var_77055f15 | 1024;
-					}
-				}
-				else if(var_a6762160.itemtype == #"equipment" || var_a6762160.itemtype == #"health")
-				{
-					if(namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
-					{
-						var_77055f15 = var_77055f15 | 256;
+						var_fa3df96 = self namespace_b376ff3f::function_78ed4455(localclientnum, var_a6762160);
+						if(isdefined(var_fa3df96))
+						{
+							var_77055f15 = 2;
+							if(var_a6762160.itemtype == #"attachment")
+							{
+								var_fa3df96 = undefined;
+								if(namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
+								{
+									var_77055f15 = var_77055f15 | 32;
+								}
+							}
+						}
+						else
+						{
+							if(!namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
+							{
+								if(var_a6762160.itemtype == #"resource" && namespace_ad5a0cd6::function_41f06d9d(var_a6762160))
+								{
+									var_77055f15 = 128;
+								}
+								else
+								{
+									var_77055f15 = 4;
+								}
+								if(var_a6762160.itemtype == #"equipment" || var_a6762160.itemtype == #"health")
+								{
+									var_77055f15 = var_77055f15 | 1024;
+								}
+							}
+							else if(var_a6762160.itemtype == #"equipment" || var_a6762160.itemtype == #"health")
+							{
+								if(namespace_b376ff3f::function_ad4c6116(localclientnum, var_a6762160))
+								{
+									var_77055f15 = var_77055f15 | 256;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -2253,15 +2271,18 @@ private function function_48ca0bbb(localclientnum)
 					function_b21002cb(localclientnum, level.var_d9beffb9, self.var_9b882d22, objstate);
 					function_c3f5f99b(localclientnum, level.var_383edf80);
 				}
-				else if(!(isdefined(self.var_9b882d22.var_dae3e8db) && self.var_9b882d22.var_dae3e8db))
-				{
-					function_b21002cb(localclientnum, level.var_d9beffb9, self.var_9b882d22, objstate);
-				}
 				else
 				{
-					function_c3f5f99b(localclientnum, level.var_d9beffb9, self.var_9b882d22);
+					if(!(isdefined(self.var_9b882d22.var_dae3e8db) && self.var_9b882d22.var_dae3e8db))
+					{
+						function_b21002cb(localclientnum, level.var_d9beffb9, self.var_9b882d22, objstate);
+					}
+					else
+					{
+						function_c3f5f99b(localclientnum, level.var_d9beffb9, self.var_9b882d22);
+					}
+					function_c3f5f99b(localclientnum, level.var_383edf80, self.var_9b882d22);
 				}
-				function_c3f5f99b(localclientnum, level.var_383edf80, self.var_9b882d22);
 			}
 		}
 		else
@@ -2286,7 +2307,7 @@ private function function_48ca0bbb(localclientnum)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_94db1536(localclientnum, origin, angles, maxdist = undefined)
+function private function_94db1536(localclientnum, origin, angles, maxdist = undefined)
 {
 	/#
 		assert(isplayer(self));
@@ -2312,7 +2333,7 @@ private function function_94db1536(localclientnum, origin, angles, maxdist = und
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c5b6693a()
+function private function_c5b6693a()
 {
 	item = spawnstruct();
 	item.amount = 0;
@@ -2333,7 +2354,7 @@ private function function_c5b6693a()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_7c84312d(localclientnum, origin, angles)
+function private function_7c84312d(localclientnum, origin, angles)
 {
 	/#
 		assert(isplayer(self));
@@ -2371,7 +2392,7 @@ private function function_7c84312d(localclientnum, origin, angles)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_83e328e1(var_78ddf4e2, var_ea9f2d5b)
+function private function_83e328e1(var_78ddf4e2, var_ea9f2d5b)
 {
 	if(!isdefined(var_78ddf4e2))
 	{
@@ -2435,7 +2456,7 @@ private function function_83e328e1(var_78ddf4e2, var_ea9f2d5b)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_1b42632a(localclientnum, var_8040e225, var_2ccf7a1c)
+function private function_1b42632a(localclientnum, var_8040e225, var_2ccf7a1c)
 {
 	var_f0a9e97d = undefined;
 	var_e7349b30 = undefined;
@@ -2981,9 +3002,9 @@ function function_1b11e73c()
 	level flagsys::wait_till(#"hash_51daecff754729dc");
 	if(reset != (isdefined(level flagsys::get(#"hash_38a387462f3a9ad")) && level flagsys::get(#"hash_38a387462f3a9ad")))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

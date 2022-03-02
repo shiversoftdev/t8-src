@@ -278,28 +278,31 @@ function setpoint(point, relativepoint, xoffset, yoffset, movetime)
 			offsetx = 0;
 			xfactor = 0;
 		}
-		else if(relativex == "" || element.alignx == "")
-		{
-			offsetx = int(element.width / 2);
-			if(relativex == "" || element.alignx == "")
-			{
-				xfactor = -1;
-			}
-			else
-			{
-				xfactor = 1;
-			}
-		}
 		else
 		{
-			offsetx = element.width;
-			if(relativex == "")
+			if(relativex == "" || element.alignx == "")
 			{
-				xfactor = -1;
+				offsetx = int(element.width / 2);
+				if(relativex == "" || element.alignx == "")
+				{
+					xfactor = -1;
+				}
+				else
+				{
+					xfactor = 1;
+				}
 			}
 			else
 			{
-				xfactor = 1;
+				offsetx = element.width;
+				if(relativex == "")
+				{
+					xfactor = -1;
+				}
+				else
+				{
+					xfactor = 1;
+				}
 			}
 		}
 		self.x = element.x + (offsetx * xfactor);
@@ -308,28 +311,31 @@ function setpoint(point, relativepoint, xoffset, yoffset, movetime)
 			offsety = 0;
 			yfactor = 0;
 		}
-		else if(relativey == "" || element.aligny == "")
-		{
-			offsety = int(element.height / 2);
-			if(relativey == "" || element.aligny == "")
-			{
-				yfactor = -1;
-			}
-			else
-			{
-				yfactor = 1;
-			}
-		}
 		else
 		{
-			offsety = element.height;
-			if(relativey == "")
+			if(relativey == "" || element.aligny == "")
 			{
-				yfactor = -1;
+				offsety = int(element.height / 2);
+				if(relativey == "" || element.aligny == "")
+				{
+					yfactor = -1;
+				}
+				else
+				{
+					yfactor = 1;
+				}
 			}
 			else
 			{
-				yfactor = 1;
+				offsety = element.height;
+				if(relativey == "")
+				{
+					yfactor = -1;
+				}
+				else
+				{
+					yfactor = 1;
+				}
 			}
 		}
 		self.y = element.y + (offsety * yfactor);
@@ -370,13 +376,16 @@ function setpointbar(point, relativepoint, xoffset, yoffset)
 		{
 			self.bar.x = self.x;
 		}
-		else if(self.alignx == "")
-		{
-			self.bar.x = self.x - self.width;
-		}
 		else
 		{
-			self.bar.x = self.x - (int(self.width / 2));
+			if(self.alignx == "")
+			{
+				self.bar.x = self.x - self.width;
+			}
+			else
+			{
+				self.bar.x = self.x - (int(self.width / 2));
+			}
 		}
 		if(self.aligny == "")
 		{

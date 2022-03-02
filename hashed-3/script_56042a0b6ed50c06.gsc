@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5e9a42a4b5b16b36", &__init__, undefined, #"hash_360b09ee0f5cbefb");
 }
@@ -257,7 +257,7 @@ function function_4ac25840(var_d32e67b4)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c816ea5b()
+function private function_c816ea5b()
 {
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 1);
 	switch(maxteamplayers)
@@ -291,7 +291,7 @@ private function function_c816ea5b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_895b40e4()
+function private function_895b40e4()
 {
 	self playsoundtoplayer(#"hash_1c5c27cafefddb2f", self);
 }

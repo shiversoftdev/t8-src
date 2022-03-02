@@ -72,7 +72,7 @@ function setupcallbacks()
 	Parameters: 0
 	Flags: Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	clientfield::register("scriptmover", "isJammed", 9000, 1, "int");
 	clientfield::register("missile", "isJammed", 9000, 1, "int");
@@ -91,7 +91,7 @@ private function registerclientfields()
 	Parameters: 1
 	Flags: Private
 */
-private function function_1a50ce7b(watcher)
+function private function_1a50ce7b(watcher)
 {
 	watcher.ownergetsassist = 1;
 	watcher.ignoredirection = 1;
@@ -267,7 +267,7 @@ function onplayerspawned()
 	Parameters: 2
 	Flags: Private
 */
-private function function_7d81a4ff(watcher, player)
+function private function_7d81a4ff(watcher, player)
 {
 	if(!isdefined(self.var_88d76fba))
 	{
@@ -300,7 +300,7 @@ private function function_7d81a4ff(watcher, player)
 	Parameters: 2
 	Flags: Private
 */
-private function function_2572e9cc(var_dbd1a594, var_fb5e3b16)
+function private function_2572e9cc(var_dbd1a594, var_fb5e3b16)
 {
 	scoreevents::processscoreevent(var_fb5e3b16, var_dbd1a594, undefined, level.var_578f7c6d.weapon);
 }
@@ -314,7 +314,7 @@ private function function_2572e9cc(var_dbd1a594, var_fb5e3b16)
 	Parameters: 3
 	Flags: Private
 */
-private function function_87c540c0(jammer, origin, var_dbd1a594)
+function private function_87c540c0(jammer, origin, var_dbd1a594)
 {
 	entities = getentitiesinradius(origin, level.var_578f7c6d.weapon.explosionradius);
 	var_545dd758 = 0;
@@ -356,31 +356,31 @@ private function function_87c540c0(jammer, origin, var_dbd1a594)
 	Parameters: 3
 	Flags: Private
 */
-private function function_e27c41b4(jammer, entity, var_dbd1a594)
+function private function_e27c41b4(jammer, entity, var_dbd1a594)
 {
 	entity endon(#"death");
 	if(!isdefined(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(isalive(entity) && isvehicle(entity) && isdefined(level.is_staircase_up))
 	{
 		function_1c430dad(entity, 1);
 		function_58f8bf08(jammer, var_dbd1a594, undefined);
 		entity thread [[level.is_staircase_up]](var_dbd1a594, jammer);
-		return 1;
+		return true;
 	}
 	if(isalive(entity) && isactor(entity))
 	{
 		function_1c430dad(entity, 1);
 		function_58f8bf08(jammer, var_dbd1a594, undefined);
 		entity callback::callback(#"hash_7140c3848cbefaa1", {#jammer:jammer, #hash_dbd1a594:var_dbd1a594});
-		return 1;
+		return true;
 	}
 	weapon = (isdefined(entity.identifier_weapon) ? entity.identifier_weapon : entity.weapon);
 	if(!isdefined(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_578f7c6d.var_1728e736[weapon.name]))
 	{
@@ -388,10 +388,10 @@ private function function_e27c41b4(jammer, entity, var_dbd1a594)
 		function_58f8bf08(jammer, var_dbd1a594, undefined);
 		function_2e6238c0(weapon, entity.owner);
 		thread [[level.var_578f7c6d.var_1728e736[weapon.name]]](entity, var_dbd1a594);
-		return 1;
+		return true;
 	}
 	thread function_ca8a005e(jammer, entity, var_dbd1a594);
-	return 1;
+	return true;
 }
 
 /*
@@ -403,7 +403,7 @@ private function function_e27c41b4(jammer, entity, var_dbd1a594)
 	Parameters: 3
 	Flags: Private
 */
-private function function_b8c5ab9c(jammer, player, var_dbd1a594)
+function private function_b8c5ab9c(jammer, player, var_dbd1a594)
 {
 	player notify(#"hash_4f2e183cc0ec68bd");
 	player endon(#"death", #"hash_4f2e183cc0ec68bd");
@@ -430,7 +430,7 @@ private function function_b8c5ab9c(jammer, player, var_dbd1a594)
 	Parameters: 3
 	Flags: Private
 */
-private function function_ca8a005e(jammer, gadget, var_dbd1a594)
+function private function_ca8a005e(jammer, gadget, var_dbd1a594)
 {
 	gadget endon(#"death");
 	if(!isdefined(gadget.weapon))
@@ -517,7 +517,7 @@ function function_1c430dad(entity, isjammed)
 	Parameters: 1
 	Flags: Private
 */
-private function function_d88f3e48(entity)
+function private function_d88f3e48(entity)
 {
 	if(!isdefined(entity))
 	{
@@ -607,33 +607,33 @@ function function_b2e496fa(watcher)
 	Parameters: 2
 	Flags: Private
 */
-private function function_b16c8865(entity, var_dbd1a594)
+function private function_b16c8865(entity, var_dbd1a594)
 {
 	if(self == entity)
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(entity) && (!isdefined(entity.model) || entity.model == #""))
 	{
-		return 0;
+		return false;
 	}
 	if(isactor(entity) && (!(isdefined(entity.var_8f61d7f4) && entity.var_8f61d7f4)))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.team) && !util::function_fbce7263(entity.team, var_dbd1a594.team))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(entity) && entity function_6c32d092(#"talent_resistance"))
 	{
-		return 0;
+		return false;
 	}
 	if((isdefined(entity.var_24d0abd1) ? entity.var_24d0abd1 : 0))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -645,7 +645,7 @@ private function function_b16c8865(entity, var_dbd1a594)
 	Parameters: 1
 	Flags: Private
 */
-private function function_7b151daa(player)
+function private function_7b151daa(player)
 {
 	return isdefined(player.isjammed) && player.isjammed;
 }
@@ -681,11 +681,11 @@ function function_5f86757d()
 	Parameters: 1
 	Flags: Private
 */
-private function function_3a3a2ea9(jammer)
+function private function_3a3a2ea9(jammer)
 {
 	jammer endon(#"death");
 	waitresult = undefined;
-	waitresult = jammer waittill_timeout(2, #"hash_754a0aedf9f00e8d");
+	waitresult = jammer waittilltimeout(2, #"hash_754a0aedf9f00e8d");
 	if(!isdefined(jammer))
 	{
 		return;
@@ -703,7 +703,7 @@ private function function_3a3a2ea9(jammer)
 	Parameters: 3
 	Flags: Private
 */
-private function function_58f8bf08(jammer, var_dbd1a594, victim)
+function private function_58f8bf08(jammer, var_dbd1a594, victim)
 {
 	if(damagefeedback::dodamagefeedback(level.var_578f7c6d.weapon, var_dbd1a594))
 	{

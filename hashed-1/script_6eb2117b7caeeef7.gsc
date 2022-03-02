@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register("ultimate_turret_wz", &__init__, undefined, undefined);
 }
@@ -55,7 +55,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_955a779c(params)
+function private function_955a779c(params)
 {
 	self endon(#"death", #"disconnect", #"begin_grenade_tracking", #"grenade_throw_cancelled");
 	var_d0931295 = function_b02e4a26(self);
@@ -154,7 +154,7 @@ function function_6c288c45(spawnorigin, spawnangles)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b02e4a26(player)
+function private function_b02e4a26(player)
 {
 	var_b43e8dc2 = player function_287dcf4b(35, 115, 0, 0, level.var_7048dda4);
 	if(!var_b43e8dc2.isvalid)
@@ -366,19 +366,19 @@ function is_valid_target(potential_target, var_db0d39fa)
 	{
 		if(isplayer(potential_target) && (isdefined(potential_target.laststand) && potential_target.laststand))
 		{
-			return 0;
+			return false;
 		}
 		if(issentient(potential_target) && potential_target.var_d600e174 === 1)
 		{
-			return 0;
+			return false;
 		}
 		if(!isdefined(potential_target.team) || !util::function_fbce7263(potential_target.team, var_db0d39fa))
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -397,7 +397,6 @@ function function_fefefcc4()
 	turretvehicle endon(#"death", #"hash_6f331ac7d2a40217", #"end_turret_scanning");
 	wait(0.8);
 	bundle = get_killstreak_bundle();
-	loc_000014E0:
 	var_beeadda8 = (isdefined(bundle.var_5fa88c50) ? bundle.var_5fa88c50 : 300);
 	while(true)
 	{
@@ -464,9 +463,9 @@ function function_9d86d74c(enemy)
 	target_offset = shoot_at_pos - fire_origin;
 	if(lengthsquared(target_offset) < (22 * 22) && vectordot(var_6551f24e, target_offset) < 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -638,7 +637,7 @@ function turretscanning()
 					{
 						pause_time = (min_pause_time < max_pause_time ? randomfloatrange(min_pause_time, max_pause_time) : min_pause_time);
 						waitresult = undefined;
-						waitresult = turretvehicle.turret_target waittill_timeout(pause_time, #"death", #"disconnect");
+						waitresult = turretvehicle.turret_target waittilltimeout(pause_time, #"death", #"disconnect");
 						var_afae28e0 = waitresult._notify === "death";
 					}
 				}
@@ -692,28 +691,37 @@ function turretscanning()
 				turretvehicle.scanpos = "left";
 			}
 		}
-		else if(turretvehicle.scanpos === "left")
-		{
-			turretvehicle turretsettargetangles(0, (-10, 180, 0));
-			turretvehicle.scanpos = "left2";
-		}
-		else if(turretvehicle.scanpos === "left2")
-		{
-			turretvehicle turretsettargetangles(0, (-10, 360, 0));
-			turretvehicle.scanpos = "right";
-		}
-		else if(turretvehicle.scanpos === "right")
-		{
-			turretvehicle turretsettargetangles(0, (-10, -180, 0));
-			turretvehicle.scanpos = "right2";
-		}
 		else
 		{
-			turretvehicle turretsettargetangles(0, (-10, -360, 0));
-			turretvehicle.scanpos = "left";
+			if(turretvehicle.scanpos === "left")
+			{
+				turretvehicle turretsettargetangles(0, (-10, 180, 0));
+				turretvehicle.scanpos = "left2";
+			}
+			else
+			{
+				if(turretvehicle.scanpos === "left2")
+				{
+					turretvehicle turretsettargetangles(0, (-10, 360, 0));
+					turretvehicle.scanpos = "right";
+				}
+				else
+				{
+					if(turretvehicle.scanpos === "right")
+					{
+						turretvehicle turretsettargetangles(0, (-10, -180, 0));
+						turretvehicle.scanpos = "right2";
+					}
+					else
+					{
+						turretvehicle turretsettargetangles(0, (-10, -360, 0));
+						turretvehicle.scanpos = "left";
+					}
+				}
+			}
 		}
 		waitresult = undefined;
-		waitresult = turretvehicle waittill_timeout(3.5, #"enemy");
+		waitresult = turretvehicle waittilltimeout(3.5, #"enemy");
 		if(waitresult._notify == #"enemy" && isdefined(turretvehicle.enemy))
 		{
 			if(turretvehicle.var_aac73d6c && !isdefined(turretvehicle.enemylastseentime))

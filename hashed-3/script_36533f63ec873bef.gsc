@@ -244,13 +244,16 @@ function lightninggun_find_arc_targets(eattacker, arc_source, arc_source_origin,
 			{
 				tagorigin = enemy gettagorigin("j_spineupper");
 			}
-			else if(enemy.archetype === "mp_dog")
-			{
-				tagorigin = enemy gettagorigin("j_neck1");
-			}
 			else
 			{
-				tagorigin = enemy.origin;
+				if(enemy.archetype === "mp_dog")
+				{
+					tagorigin = enemy gettagorigin("j_neck1");
+				}
+				else
+				{
+					tagorigin = enemy.origin;
+				}
 			}
 			level thread lightninggun_arc(delay, eattacker, arc_source, arc_source_origin, arc_source_pos, enemy, tagorigin, distancesq);
 			delay = delay + 0.05;
@@ -324,13 +327,16 @@ function lightninggun_damage_response(eattacker, einflictor, weapon, meansofdeat
 	{
 		arc_source_pos = self gettagorigin("j_spineupper");
 	}
-	else if(self.archetype === "mp_dog")
-	{
-		arc_source_pos = self gettagorigin("j_neck1");
-	}
 	else
 	{
-		arc_source_pos = self.origin;
+		if(self.archetype === "mp_dog")
+		{
+			arc_source_pos = self gettagorigin("j_neck1");
+		}
+		else
+		{
+			arc_source_pos = self.origin;
+		}
 	}
 	delta = arc_source_pos - bolt_source_pos;
 	angles = (0, 0, 0);

@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"weapon_customization_icon", &__init__, undefined, undefined);
 }
@@ -177,7 +177,7 @@ function setup_wc_extracam_settings(localclientnum, extracam_data_struct)
 	}
 	else
 	{
-		level waittill_timeout(5, "paintshop_ready_" + extracam_data_struct.jobindex);
+		level waittilltimeout(5, "paintshop_ready_" + extracam_data_struct.jobindex);
 	}
 	setextracamrenderready(extracam_data_struct.jobindex);
 	extracam_data_struct.jobindex = undefined;

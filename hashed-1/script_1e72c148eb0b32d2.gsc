@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_nuke", &__init__, undefined, undefined);
 }
@@ -189,7 +189,7 @@ function nuke_flash(team)
 */
 function nuke_delay_spawning(n_spawn_delay)
 {
-	level endon_callback(&function_406d206b, #"disable_nuke_delay_spawning");
+	level endoncallback(&function_406d206b, #"disable_nuke_delay_spawning");
 	if(isdefined(level.disable_nuke_delay_spawning) && level.disable_nuke_delay_spawning)
 	{
 		return;

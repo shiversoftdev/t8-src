@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_26aeac851e7602d1", &__init__, undefined, undefined);
 }
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1d34f2b6(localclientnum)
+function private function_1d34f2b6(localclientnum)
 {
 	if(!isdefined(self._effect))
 	{
@@ -124,12 +124,12 @@ function function_f8947dfe(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4b3c6d28()
+function private function_4b3c6d28()
 {
 	self notify("4d967cb582990a00");
 	self endon("4d967cb582990a00");
 	level endon(#"game_ended");
-	self endon_callback(&function_fa939efb, #"death");
+	self endoncallback(&function_fa939efb, #"death");
 	self thread postfx::playpostfxbundle(#"hash_78fa24e9920e1e07");
 	while(isalive(self))
 	{

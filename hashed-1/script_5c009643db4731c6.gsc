@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"shrapnel", undefined, &__postload_init__, undefined);
 }
@@ -57,7 +57,7 @@ function __postload_init__()
 	Parameters: 1
 	Flags: Private
 */
-private function localplayer_spawned(localclientnum)
+function private localplayer_spawned(localclientnum)
 {
 	if(!self function_21c0fa55())
 	{
@@ -82,7 +82,7 @@ private function localplayer_spawned(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function function_8f0cb320(localclientnum)
+function private function_8f0cb320(localclientnum)
 {
 	self waittill(#"death");
 	self function_816d735d(localclientnum);
@@ -98,7 +98,7 @@ private function function_8f0cb320(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function enable_shrapnel(localclientnum)
+function private enable_shrapnel(localclientnum)
 {
 	self.var_d6b8c684 = 1;
 	if(!isdefined(self.var_f08b8b9))
@@ -119,7 +119,7 @@ private function enable_shrapnel(localclientnum)
 	Parameters: 2
 	Flags: Private
 */
-private function get_mat_id(localclientnum, filter_name)
+function private get_mat_id(localclientnum, filter_name)
 {
 	mat_id = filter::mapped_material_id(filter_name);
 	if(!isdefined(mat_id))
@@ -139,7 +139,7 @@ private function get_mat_id(localclientnum, filter_name)
 	Parameters: 1
 	Flags: Private
 */
-private function function_816d735d(localclientnum)
+function private function_816d735d(localclientnum)
 {
 	if(isdefined(self))
 	{
@@ -157,7 +157,7 @@ private function function_816d735d(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function function_989d336d(localclientnum)
+function private function_989d336d(localclientnum)
 {
 	self endon(#"disconnect");
 	self endon(#"death");
@@ -227,9 +227,9 @@ private function function_989d336d(localclientnum)
 	Parameters: 0
 	Flags: Private
 */
-private function function_a6fe4166()
+function private function_a6fe4166()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -275,7 +275,7 @@ function function_bf9b3d6(playerhealth, basehealth)
 	Parameters: 4
 	Flags: Private
 */
-private function function_4e9cfc19(localclientnum, playerhealth, priorplayerhealth, basehealth = 100)
+function private function_4e9cfc19(localclientnum, playerhealth, priorplayerhealth, basehealth = 100)
 {
 	if(!isdefined(self.var_996ceac2))
 	{
@@ -311,7 +311,7 @@ private function function_4e9cfc19(localclientnum, playerhealth, priorplayerheal
 	Parameters: 1
 	Flags: Private
 */
-private function splatter(localclientnum)
+function private splatter(localclientnum)
 {
 	self notify(#"hash_343f00346af5b101");
 	self endon(#"hash_343f00346af5b101");
@@ -372,7 +372,7 @@ private function splatter(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function start_splatter(localclientnum)
+function private start_splatter(localclientnum)
 {
 	filter::map_material_helper_by_localclientnum(localclientnum, "generic_explosion_overlay_00");
 	setfilterpassmaterial(localclientnum, 6, 0, filter::mapped_material_id("generic_explosion_overlay_00"));
@@ -389,7 +389,7 @@ private function start_splatter(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function end_splatter(localclientnum)
+function private end_splatter(localclientnum)
 {
 	setfilterpassenabled(localclientnum, 6, 0, 0);
 }
@@ -403,7 +403,7 @@ private function end_splatter(localclientnum)
 	Parameters: 1
 	Flags: Private
 */
-private function wait_game_ended(localclientnum)
+function private wait_game_ended(localclientnum)
 {
 	if(!isdefined(level.var_b6a1586d))
 	{

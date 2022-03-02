@@ -37,7 +37,7 @@ function function_d8383812(id, version, script_noteworthy, speed, soul_fx, var_2
 	Parameters: 7
 	Flags: Private
 */
-private function function_305e672f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function private function_305e672f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	def = level.var_e4336230[fieldname];
 	if(!isdefined(def))

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_65b58f40e5cccbce", &__init__, undefined, undefined);
 }
@@ -84,11 +84,11 @@ function function_ff38b7b(params, tacbundle)
 {
 	if(!isarray(level.dogtags) || level.dogtags.size == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(self bot::has_visible_enemy())
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.var_6679b27c))
 	{
@@ -97,17 +97,23 @@ function function_ff38b7b(params, tacbundle)
 		{
 			level.var_6679b27c = 202500;
 		}
-		else if(difficulty == 1)
+		else
 		{
-			level.var_6679b27c = 360000;
-		}
-		else if(difficulty == 2)
-		{
-			level.var_6679b27c = 640000;
-		}
-		else if(difficulty == 3)
-		{
-			level.var_6679b27c = 1000000;
+			if(difficulty == 1)
+			{
+				level.var_6679b27c = 360000;
+			}
+			else
+			{
+				if(difficulty == 2)
+				{
+					level.var_6679b27c = 640000;
+				}
+				else if(difficulty == 3)
+				{
+					level.var_6679b27c = 1000000;
+				}
+			}
 		}
 	}
 	var_ff07f341 = [];
@@ -166,8 +172,8 @@ function function_ff38b7b(params, tacbundle)
 	{
 		self namespace_b20b4885::set_position(var_117c149c);
 		self.bot.var_2ee077ff = gettime() + 500;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

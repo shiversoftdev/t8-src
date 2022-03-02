@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_trial", &__init__, undefined, undefined);
 }
@@ -44,7 +44,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!function_b47f6aba())
 	{
@@ -79,7 +79,7 @@ function function_e80e07db(v_prev_origin)
 {
 	if(distancesquared(self.origin, v_prev_origin) > 576)
 	{
-		return 0;
+		return false;
 	}
 	var_860fbf2a = self zm_utility::get_current_zone();
 	if(isarray(level.active_zone_names) && isdefined(var_860fbf2a) && zm_utility::check_point_in_playable_area(self.origin))
@@ -88,11 +88,11 @@ function function_e80e07db(v_prev_origin)
 		{
 			if(var_860fbf2a == str_zone)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -162,13 +162,13 @@ function function_48736df9(var_38f795c7)
 				{
 					if(s_challenge.name === var_38f795c7 && var_33c64592.round === level.round_number)
 					{
-						return 1;
+						return true;
 					}
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -575,7 +575,7 @@ function function_5769f26a(var_c00ecbf1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function reset_round()
+function private reset_round()
 {
 	level.custom_spawnplayer = undefined;
 	wait(3);
@@ -648,7 +648,7 @@ function function_ae725d63(n_delay = 8)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f93fbae5()
+function private function_f93fbae5()
 {
 	foreach(player in getplayers())
 	{
@@ -659,7 +659,7 @@ private function function_f93fbae5()
 		if(player laststand::player_is_in_laststand())
 		{
 			player thread zm_laststand::auto_revive(player);
-			player waittill_timeout(4, #"disconnect", #"hash_9b426cce825928d");
+			player waittilltimeout(4, #"disconnect", #"hash_9b426cce825928d");
 		}
 		if(isdefined(player))
 		{
@@ -679,7 +679,7 @@ private function function_f93fbae5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b4d58bfd()
+function private function_b4d58bfd()
 {
 	foreach(player in getplayers())
 	{
@@ -704,7 +704,7 @@ private function function_b4d58bfd()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_47ed291b()
+function private function_47ed291b()
 {
 	foreach(player in getplayers())
 	{
@@ -724,7 +724,7 @@ private function function_47ed291b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_10801ad3()
+function private function_10801ad3()
 {
 	foreach(player in getplayers())
 	{
@@ -760,7 +760,7 @@ private function function_10801ad3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_23baf070(loadout)
+function private function_23baf070(loadout)
 {
 	primary_weapons = self getweaponslistprimaries();
 	foreach(primary_weapon in primary_weapons)
@@ -788,7 +788,7 @@ private function function_23baf070(loadout)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bcd35efc()
+function private function_bcd35efc()
 {
 	foreach(player in getplayers())
 	{
@@ -840,7 +840,7 @@ private function function_bcd35efc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4dbf2663()
+function private function_4dbf2663()
 {
 	var_3b363b7a = getgametypesetting(#"zmtrialsvariant");
 	if(isdefined(var_3b363b7a) && var_3b363b7a > 0)
@@ -910,7 +910,7 @@ private function function_4dbf2663()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_17b04fd7()
+function private function_17b04fd7()
 {
 	end_time = gettime() + 10000;
 	while(gettime() < end_time)

@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"ability_player", &__init__, undefined, undefined);
 }
@@ -167,16 +167,16 @@ function is_using_any_gadget()
 {
 	if(!isplayer(self))
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < 3; i++)
 	{
 		if(self util::gadget_is_in_use(i))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -308,30 +308,33 @@ function function_f2250880(weapon, var_4dd90b81 = 0)
 		slot = self gadgetgetslot(weapon);
 		self function_95218c27(slot, var_4dd90b81);
 	}
-	else if(!isdefined(self.var_8912d8d9))
+	else
 	{
-		self.var_8912d8d9 = [];
-		self.var_41ea5be4 = [];
+		if(!isdefined(self.var_8912d8d9))
+		{
+			self.var_8912d8d9 = [];
+			self.var_41ea5be4 = [];
+		}
+		if(!isdefined(self.var_8912d8d9))
+		{
+			self.var_8912d8d9 = [];
+		}
+		else if(!isarray(self.var_8912d8d9))
+		{
+			self.var_8912d8d9 = array(self.var_8912d8d9);
+		}
+		self.var_8912d8d9[self.var_8912d8d9.size] = weapon;
+		if(!isdefined(self.var_41ea5be4))
+		{
+			self.var_41ea5be4 = [];
+		}
+		else if(!isarray(self.var_41ea5be4))
+		{
+			self.var_41ea5be4 = array(self.var_41ea5be4);
+		}
+		self.var_41ea5be4[self.var_41ea5be4.size] = var_4dd90b81;
+		callback::function_d8abfc3d(#"on_player_spawned", &function_9c46835d);
 	}
-	if(!isdefined(self.var_8912d8d9))
-	{
-		self.var_8912d8d9 = [];
-	}
-	else if(!isarray(self.var_8912d8d9))
-	{
-		self.var_8912d8d9 = array(self.var_8912d8d9);
-	}
-	self.var_8912d8d9[self.var_8912d8d9.size] = weapon;
-	if(!isdefined(self.var_41ea5be4))
-	{
-		self.var_41ea5be4 = [];
-	}
-	else if(!isarray(self.var_41ea5be4))
-	{
-		self.var_41ea5be4 = array(self.var_41ea5be4);
-	}
-	self.var_41ea5be4[self.var_41ea5be4.size] = var_4dd90b81;
-	callback::function_d8abfc3d(#"on_player_spawned", &function_9c46835d);
 }
 
 /*
@@ -2272,13 +2275,16 @@ function function_4f50aea3(weapon_name)
 		{
 			self [[level.var_124446e[weapon_name]]](self, 2);
 		}
-		else if(isdefined(level.var_124446e))
-		{
-			self [[level.var_124446e]](weapon_name, 2);
-		}
 		else
 		{
-			self abilities_devgui_give(weapon_name, 2);
+			if(isdefined(level.var_124446e))
+			{
+				self [[level.var_124446e]](weapon_name, 2);
+			}
+			else
+			{
+				self abilities_devgui_give(weapon_name, 2);
+			}
 		}
 	#/
 }
@@ -2590,27 +2596,30 @@ function function_b4f43681(var_a5c8eb94)
 			}
 			while(!self player_role::is_valid(index));
 		}
-		else if(var_a5c8eb94 == "")
-		{
-			startindex = self player_role::get();
-			index = startindex;
-			do
-			{
-				index = index - 1;
-				if(index == startindex)
-				{
-					return;
-				}
-				if(index == 0)
-				{
-					index = getplayerroletemplatecount(currentsessionmode());
-				}
-			}
-			while(!self player_role::is_valid(index));
-		}
 		else
 		{
-			index = int(var_a5c8eb94);
+			if(var_a5c8eb94 == "")
+			{
+				startindex = self player_role::get();
+				index = startindex;
+				do
+				{
+					index = index - 1;
+					if(index == startindex)
+					{
+						return;
+					}
+					if(index == 0)
+					{
+						index = getplayerroletemplatecount(currentsessionmode());
+					}
+				}
+				while(!self player_role::is_valid(index));
+			}
+			else
+			{
+				index = int(var_a5c8eb94);
+			}
 		}
 		self function_c9b950e3();
 		self function_c2d9d3e1();

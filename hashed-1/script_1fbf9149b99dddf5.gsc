@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_204cd04ef56b01e6", &__init__, undefined, undefined);
 }
@@ -170,21 +170,24 @@ function on_ai_killed(s_params)
 						var_7d81025.var_c2bcd604 = 5;
 					}
 				}
-				else if(roll >= 66)
-				{
-					var_7d81025 = zm_powerups::specific_powerup_drop("wolf_bonus_ammo", self.origin, undefined, 0.1, e_attacker.player_owner, 0, 1);
-					if(isdefined(var_7d81025))
-					{
-						var_7d81025 setscale(0.3);
-					}
-				}
 				else
 				{
-					var_7d81025 = zm_powerups::specific_powerup_drop("wolf_bonus_points", self.origin, undefined, 0.1, e_attacker.player_owner, 0, 1);
-					if(isdefined(var_7d81025))
+					if(roll >= 66)
 					{
-						var_7d81025 setscale(0.3);
-						var_7d81025.var_258c5fbc = 10;
+						var_7d81025 = zm_powerups::specific_powerup_drop("wolf_bonus_ammo", self.origin, undefined, 0.1, e_attacker.player_owner, 0, 1);
+						if(isdefined(var_7d81025))
+						{
+							var_7d81025 setscale(0.3);
+						}
+					}
+					else
+					{
+						var_7d81025 = zm_powerups::specific_powerup_drop("wolf_bonus_points", self.origin, undefined, 0.1, e_attacker.player_owner, 0, 1);
+						if(isdefined(var_7d81025))
+						{
+							var_7d81025 setscale(0.3);
+							var_7d81025.var_258c5fbc = 10;
+						}
 					}
 				}
 			}

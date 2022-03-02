@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_perk_widows_wine", &__init__, undefined, undefined);
 }
@@ -123,14 +123,17 @@ function function_fd02d096(localclientnum, oldval, newval, bnewent, binitialsnap
 			}
 		}
 	}
-	else if(isdefined(self.var_ba239a31))
+	else
 	{
-		stopfx(localclientnum, self.var_ba239a31);
-		self.var_ba239a31 = undefined;
-	}
-	if(isdefined(self.sndwidowswine))
-	{
-		self stoploopsound(self.sndwidowswine, 1);
+		if(isdefined(self.var_ba239a31))
+		{
+			stopfx(localclientnum, self.var_ba239a31);
+			self.var_ba239a31 = undefined;
+		}
+		if(isdefined(self.sndwidowswine))
+		{
+			self stoploopsound(self.sndwidowswine, 1);
+		}
 	}
 }
 

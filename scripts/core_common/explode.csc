@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"explode", &__init__, undefined, undefined);
 }
@@ -254,13 +254,16 @@ function watchforexplosion(localclientnum)
 							udot = -1;
 						}
 					}
-					else if(rdot > 0)
-					{
-						rdot = 1;
-					}
 					else
 					{
-						rdot = -1;
+						if(rdot > 0)
+						{
+							rdot = 1;
+						}
+						else
+						{
+							rdot = -1;
+						}
 					}
 					self thread dothedirty(localclientnum, rdot, udot, 1 - (explosiondistance / 600), 2000, 500);
 				}

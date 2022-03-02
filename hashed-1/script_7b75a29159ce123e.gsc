@@ -23,7 +23,7 @@ function init()
 	callback::on_ai_killed(&function_8addaa01);
 	callback::on_laststand(&on_player_last_stand);
 	callback::on_ai_killed(&function_60f79e9c);
-	level.var_49f54c9e = 0;
+	level.n_electric_trap_kills = 0;
 	callback::on_ai_killed(&function_7fe4eb1d);
 	callback::function_74872db6(&function_60193f7d);
 	callback::function_74872db6(&function_dab4588);
@@ -109,11 +109,11 @@ function function_7fe4eb1d(s_params)
 	{
 		return;
 	}
-	level.var_49f54c9e++;
+	level.n_electric_trap_kills++;
 	/#
-		iprintln("" + level.var_49f54c9e);
+		iprintln("" + level.n_electric_trap_kills);
 	#/
-	if(level.var_49f54c9e > 114)
+	if(level.n_electric_trap_kills > 114)
 	{
 		/#
 			iprintlnbold("" + "");
@@ -307,10 +307,10 @@ function function_1cc0b38a()
 	{
 		if(zm_utility::is_player_valid(e_player, 0, 1) && !e_player istouching(level.var_83225f64[0]))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

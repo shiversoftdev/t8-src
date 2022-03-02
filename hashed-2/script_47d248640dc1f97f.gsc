@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"counteruav", &__init__, undefined, #"killstreaks");
 }
@@ -509,17 +509,17 @@ function activatecounteruav()
 {
 	if(self killstreakrules::iskillstreakallowed("counteruav", self.team) == 0)
 	{
-		return 0;
+		return false;
 	}
 	killstreak_id = self killstreakrules::killstreakstart("counteruav", self.team);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	counteruav = spawncounteruav(self, killstreak_id);
 	if(!isdefined(counteruav))
 	{
-		return 0;
+		return false;
 	}
 	counteruav clientfield::set("enemyvehicle", 1);
 	counteruav.killstreak_id = killstreak_id;
@@ -534,7 +534,7 @@ function activatecounteruav()
 	counteruav killstreaks::play_pilot_dialog_on_owner("arrive", "counteruav", killstreak_id);
 	counteruav thread killstreaks::player_killstreak_threat_tracking("counteruav");
 	self stats::function_e24eec31(getweapon("counteruav"), #"used", 1);
-	return 1;
+	return true;
 }
 
 /*
@@ -895,7 +895,7 @@ function enemycounteruavactive()
 			}
 			if(teamhasactivecounteruav(team))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -906,11 +906,11 @@ function enemycounteruavactive()
 		{
 			if(player hasactivecounteruav())
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

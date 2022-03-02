@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_258dcc370de6f9c5", &__init__, undefined, undefined);
 }
@@ -213,7 +213,7 @@ function function_15e6e9ae(vehicle)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_521bff14(center, goal, var_e294ac7d)
+function private function_521bff14(center, goal, var_e294ac7d)
 {
 	direction = goal - center;
 	steps = int(length(direction) / 5000);
@@ -270,7 +270,7 @@ function function_8ea9be1c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_beba57b9(height)
+function private function_beba57b9(height)
 {
 	var_e8a39fb = function_cf96c89c();
 	goal = (rotatepoint((1, 0, 0), (0, randomint(360), 0)) * var_e8a39fb) * 2;
@@ -287,7 +287,7 @@ private function function_beba57b9(height)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_14f79b33(center, radius, height, var_e294ac7d)
+function private function_14f79b33(center, radius, height, var_e294ac7d)
 {
 	self endon(#"death");
 	var_5d59bc67 = 1760;
@@ -338,7 +338,7 @@ private function function_14f79b33(center, radius, height, var_e294ac7d)
 	Parameters: 4
 	Flags: Private
 */
-private function function_4f356be(start, end, offset, var_3a5f8906)
+function private function_4f356be(start, end, offset, var_3a5f8906)
 {
 	self endon(#"death");
 	self function_a57c34b7(end, 0, 0);
@@ -451,7 +451,7 @@ function function_b2df2693()
 	Parameters: 0
 	Flags: Private
 */
-private function function_c3ab4925()
+function private function_c3ab4925()
 {
 	self.var_97b0977 = 0;
 	self setactionslot(3, "");
@@ -475,7 +475,7 @@ private function function_c3ab4925()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_564e0871()
+function private function_564e0871()
 {
 	self.var_97b0977 = 0;
 	self setactionslot(3, "");
@@ -499,7 +499,7 @@ private function function_564e0871()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_acdf637e()
+function private function_acdf637e()
 {
 	if((isdefined(getgametypesetting(#"hash_4149d5d65eb07138")) ? getgametypesetting(#"hash_4149d5d65eb07138") : 0) || (isdefined(getgametypesetting(#"hash_24918193d72a5866")) ? getgametypesetting(#"hash_24918193d72a5866") : 0))
 	{
@@ -519,7 +519,7 @@ private function function_acdf637e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c62b5591()
+function private function_c62b5591()
 {
 	if(isdefined(level.var_30813b9c) && isdefined(level.var_30813b9c.cameraent))
 	{
@@ -539,7 +539,7 @@ private function function_c62b5591()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_402101af()
+function private function_402101af()
 {
 	if(isdefined(level.var_30813b9c) && isdefined(level.var_30813b9c.cameraent))
 	{
@@ -575,7 +575,7 @@ function function_eb815c5()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6198f712(eventstruct)
+function private function_6198f712(eventstruct)
 {
 	if(isdefined(eventstruct.player))
 	{
@@ -890,11 +890,11 @@ function function_5425f45d()
 				angles = vectortoangles(target);
 				portal.angles = angles;
 			}
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -906,7 +906,7 @@ function function_5425f45d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_a6eac3b7()
+function private function_a6eac3b7()
 {
 	/#
 		while(true)
@@ -991,7 +991,7 @@ function function_9536aa3d()
 	Parameters: 1
 	Flags: Private
 */
-private function function_c833e81f(killer)
+function private function_c833e81f(killer)
 {
 	/#
 		self endon(#"disconnect");

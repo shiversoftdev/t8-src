@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_77812dea54caab85", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_c8a36f90)
+function private function_d1de6a85(var_c8a36f90)
 {
 	level.var_2bd4c60 = (isdefined(var_c8a36f90) ? var_c8a36f90 : "movement");
 	foreach(player in getplayers())
@@ -69,7 +69,7 @@ private function function_d1de6a85(var_c8a36f90)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_2bd4c60 = undefined;
 	foreach(player in getplayers())
@@ -87,7 +87,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_1633056a()
+function private function_1633056a()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -114,7 +114,7 @@ private function function_1633056a()
 	Parameters: 0
 	Flags: Private
 */
-private function function_26f124d8()
+function private function_26f124d8()
 {
 	switch(level.var_2bd4c60)
 	{
@@ -122,49 +122,49 @@ private function function_26f124d8()
 		{
 			if(self playerads() == 1)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "jump":
 		{
 			if(self zm_utility::is_jumping())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "slide":
 		{
 			if(self issliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "hash_6c6c8f6b349b8751":
 		{
 			if(self zm_utility::is_jumping() || self issliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "crouch":
 		{
 			if(self getstance() === "crouch")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "prone":
 		{
 			if(self getstance() === "prone")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "movement":
 		default:
@@ -172,11 +172,11 @@ private function function_26f124d8()
 			v_velocity = self getvelocity();
 			if(length(v_velocity) != 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
-	return 0;
+	return false;
 }
 

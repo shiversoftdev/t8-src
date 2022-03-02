@@ -7,6 +7,37 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\load.csc;
 
+class class_698343df 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_698343df
+		Checksum: 0x80F724D1
+		Offset: 0x1B0
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 8, 128
+	*/
+	constructor()
+	{
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_698343df
+		Checksum: 0x80F724D1
+		Offset: 0x1C0
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+}
+
 #namespace zm_aoe;
 
 /*
@@ -18,55 +49,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_aoe", &__init__, &__main__, undefined);
-}
-
-#namespace namespace_698343df;
-
-/*
-	Name: __constructor
-	Namespace: namespace_698343df
-	Checksum: 0x80F724D1
-	Offset: 0x1B0
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 8, 128
-*/
-function __constructor()
-{
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_698343df
-	Checksum: 0x80F724D1
-	Offset: 0x1C0
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace zm_aoe;
-
-/*
-	Name: function_698343df
-	Namespace: zm_aoe
-	Checksum: 0xD20C2082
-	Offset: 0x1D0
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_698343df()
-{
-	classes.var_698343df[0] = spawnstruct();
-	classes.var_698343df[0].__vtable[913321084] = &namespace_698343df::__destructor;
-	classes.var_698343df[0].__vtable[674154906] = &namespace_698343df::__constructor;
 }
 
 /*
@@ -93,7 +78,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	function_15dea507(1, "zm_aoe_spear", "zm_aoe_spear");
 	function_15dea507(2, "zm_aoe_spear_small", "zm_aoe_spear_small");
@@ -113,7 +98,7 @@ private function __main__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e969e75(var_2fb5df20)
+function private function_e969e75(var_2fb5df20)
 {
 	/#
 		assert(isdefined(level.var_400ae143));
@@ -162,9 +147,7 @@ function function_15dea507(var_2fb5df20, type, var_5ff737c1)
 	/#
 		assert(!isinarray(arraykeys, hash(type)));
 	#/
-	object = new var_698343df();
-	[[ object ]]->__constructor();
-	var_46f1b5eb = object;
+	var_46f1b5eb = new class_698343df();
 	level.var_400ae143[type] = var_46f1b5eb;
 	var_46f1b5eb.startfx = var_6ec6e01.start_effect;
 	var_46f1b5eb.var_d2da0b88 = var_6ec6e01.end_effect;
@@ -190,7 +173,7 @@ function function_15dea507(var_2fb5df20, type, var_5ff737c1)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_dcc24343(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_dcc24343(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
 	if(!isdefined(self.var_2fb5df20))
@@ -227,41 +210,44 @@ private function function_dcc24343(localclientnum, oldval, newval, bnewent, bini
 			}
 		}
 	}
-	else if(newval == 2)
+	else
 	{
-		if(isdefined(var_46f1b5eb.loopfx))
+		if(newval == 2)
 		{
-			self.var_40907d55 = playfx(localclientnum, var_46f1b5eb.loopfx, self.origin, (0, 0, 1));
-		}
-		if(isdefined(var_46f1b5eb.loopsound))
-		{
-			self.var_e0952422 = self playloopsound(var_46f1b5eb.loopsound);
-		}
-	}
-	else if(newval == 3 || newval == 4)
-	{
-		if(isdefined(self.var_40907d55))
-		{
-			stopfx(localclientnum, self.var_40907d55);
-		}
-		if(isdefined(self.var_e0952422))
-		{
-			self stoploopsound(self.var_e0952422);
-			self.var_e0952422 = undefined;
-		}
-		if(isdefined(var_46f1b5eb.var_d2da0b88))
-		{
-			playfx(localclientnum, var_46f1b5eb.var_d2da0b88, self.origin, (0, 0, 1));
-		}
-		if(isdefined(var_46f1b5eb.var_7404e5a0))
-		{
-			playsound(localclientnum, var_46f1b5eb.var_7404e5a0, self.origin);
-		}
-		if(isdefined(var_46f1b5eb.effectradius) && distsq <= (var_46f1b5eb.effectradius * var_46f1b5eb.effectradius))
-		{
-			if(isdefined(var_46f1b5eb.var_fbd0f7e5))
+			if(isdefined(var_46f1b5eb.loopfx))
 			{
-				function_36e4ebd4(localclientnum, var_46f1b5eb.var_d791c45);
+				self.var_40907d55 = playfx(localclientnum, var_46f1b5eb.loopfx, self.origin, (0, 0, 1));
+			}
+			if(isdefined(var_46f1b5eb.loopsound))
+			{
+				self.var_e0952422 = self playloopsound(var_46f1b5eb.loopsound);
+			}
+		}
+		else if(newval == 3 || newval == 4)
+		{
+			if(isdefined(self.var_40907d55))
+			{
+				stopfx(localclientnum, self.var_40907d55);
+			}
+			if(isdefined(self.var_e0952422))
+			{
+				self stoploopsound(self.var_e0952422);
+				self.var_e0952422 = undefined;
+			}
+			if(isdefined(var_46f1b5eb.var_d2da0b88))
+			{
+				playfx(localclientnum, var_46f1b5eb.var_d2da0b88, self.origin, (0, 0, 1));
+			}
+			if(isdefined(var_46f1b5eb.var_7404e5a0))
+			{
+				playsound(localclientnum, var_46f1b5eb.var_7404e5a0, self.origin);
+			}
+			if(isdefined(var_46f1b5eb.effectradius) && distsq <= (var_46f1b5eb.effectradius * var_46f1b5eb.effectradius))
+			{
+				if(isdefined(var_46f1b5eb.var_fbd0f7e5))
+				{
+					function_36e4ebd4(localclientnum, var_46f1b5eb.var_d791c45);
+				}
 			}
 		}
 	}
@@ -276,7 +262,7 @@ private function function_dcc24343(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_6bcf2a61(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_6bcf2a61(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self.var_2fb5df20 = newval;
 }

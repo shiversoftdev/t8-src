@@ -316,13 +316,16 @@ function function_ca35fa36()
 	{
 		level thread zm_utility::open_door(array("door_to_cellar"));
 	}
-	else if(var_33efe293 == #"library")
-	{
-		level thread zm_utility::open_door(array("door_to_library_floor", "door_to_library"));
-	}
 	else
 	{
-		level thread zm_utility::open_door(array("door_to_dining_room_lower", "debris_to_dining_room_upper"));
+		if(var_33efe293 == #"library")
+		{
+			level thread zm_utility::open_door(array("door_to_library_floor", "door_to_library"));
+		}
+		else
+		{
+			level thread zm_utility::open_door(array("door_to_dining_room_lower", "debris_to_dining_room_upper"));
+		}
 	}
 	wait(5);
 	zm_utility::function_11101458(var_33efe293);

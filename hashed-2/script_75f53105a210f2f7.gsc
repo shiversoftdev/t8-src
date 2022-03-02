@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5e733914ebbc17f7", &__init__, undefined, undefined);
 }
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	foreach(player in getplayers())
 	{
@@ -64,7 +64,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -81,7 +81,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function on_player_damage(params)
+function private on_player_damage(params)
 {
 	if(isai(params.eattacker) || isai(params.einflictor) && (params.idamage > 0 || (isdefined(self.armor) && self.armor > 0)))
 	{

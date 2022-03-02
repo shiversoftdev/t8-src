@@ -558,7 +558,7 @@ function on_end_game(params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_a1fb023a(var_e5cf3cc9)
+function private function_a1fb023a(var_e5cf3cc9)
 {
 	e_player = namespace_73e1c3e3::get_player();
 	if(isdefined(e_player))
@@ -577,7 +577,7 @@ private function function_a1fb023a(var_e5cf3cc9)
 	Parameters: 1
 	Flags: Private
 */
-private function function_95e72b33(moviefile)
+function private function_95e72b33(moviefile)
 {
 	self notify(#"hash_76ffabe3ed35bd68");
 	self val::set(#"hash_61f16f3175b9a96f", "freezecontrols", 1);

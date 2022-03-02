@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"tweakables", &__init__, undefined, undefined);
 }
@@ -477,13 +477,16 @@ function registertweakable(category, name, dvar, value)
 			value = getdvarstring(dvar);
 		}
 	}
-	else if(getdvarstring(dvar) == "")
-	{
-		setdvar(dvar, value);
-	}
 	else
 	{
-		value = getdvarint(dvar, 0);
+		if(getdvarstring(dvar) == "")
+		{
+			setdvar(dvar, value);
+		}
+		else
+		{
+			value = getdvarint(dvar, 0);
+		}
 	}
 	switch(category)
 	{

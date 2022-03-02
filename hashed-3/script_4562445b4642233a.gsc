@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3b839a6472377a68", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	level thread function_b7bc0616();
 }
@@ -64,7 +64,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	if(!round_reset && !level flag::get(#"hash_4207012c64662b4d"))
@@ -83,7 +83,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b7bc0616()
+function private function_b7bc0616()
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	namespace_b22c99a5::function_7d32b7d0(0);
@@ -103,7 +103,7 @@ private function function_b7bc0616()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f5ad51bd()
+function private function_f5ad51bd()
 {
 	foreach(player in getplayers())
 	{
@@ -112,7 +112,7 @@ private function function_f5ad51bd()
 			player.var_30ee603f = 1;
 			player.var_4b0fb2fb = 1;
 		}
-		player namespace_7d0afffb::function_59004002(#"zm_bgb_newtonian_negation", 1);
+		player bgb_pack::function_59004002(#"zm_bgb_newtonian_negation", 1);
 	}
 	level.var_6bbb45f9 = 1;
 	zm_bgb_newtonian_negation::function_8622e664(0);
@@ -127,7 +127,7 @@ private function function_f5ad51bd()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function enable_newtonian_negation()
+function private enable_newtonian_negation()
 {
 	foreach(player in getplayers())
 	{
@@ -137,7 +137,7 @@ private function enable_newtonian_negation()
 			player.var_30ee603f = undefined;
 			player.var_4b0fb2fb = undefined;
 		}
-		player namespace_7d0afffb::function_59004002(#"zm_bgb_newtonian_negation", 0);
+		player bgb_pack::function_59004002(#"zm_bgb_newtonian_negation", 0);
 	}
 	level.var_6bbb45f9 = undefined;
 }

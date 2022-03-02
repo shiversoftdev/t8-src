@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_d287d6d0be9f28c", &__init__, undefined, undefined);
 }
@@ -79,15 +79,18 @@ function function_9a20c93e(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_2a145797 = self playloopsound(#"zmb_sq_souls_lp");
 		}
 	}
-	else if(isdefined(self.var_c9d177e8))
+	else
 	{
-		killfx(localclientnum, self.var_c9d177e8);
-		self.var_c9d177e8 = undefined;
-	}
-	if(isdefined(self.var_2a145797))
-	{
-		self stoploopsound(self.var_2a145797);
-		self.var_2a145797 = undefined;
+		if(isdefined(self.var_c9d177e8))
+		{
+			killfx(localclientnum, self.var_c9d177e8);
+			self.var_c9d177e8 = undefined;
+		}
+		if(isdefined(self.var_2a145797))
+		{
+			self stoploopsound(self.var_2a145797);
+			self.var_2a145797 = undefined;
+		}
 	}
 }
 

@@ -489,17 +489,23 @@ function function_63c3fd24(var_314c1b5a)
 			{
 				self.var_68c35930 playloopsound(#"hash_3d52d57aceee74ce");
 			}
-			else if(self.var_68c35930.script_int == 7)
-			{
-				self.var_68c35930 playloopsound(#"hash_5b492b8c8a8bb4d8");
-			}
-			else if(self.var_68c35930.script_int == 8)
-			{
-				self.var_68c35930 playloopsound(#"hash_704a9f09fe3a48c2");
-			}
 			else
 			{
-				self.var_68c35930 playloopsound(#"hash_2367dae4a69a4294");
+				if(self.var_68c35930.script_int == 7)
+				{
+					self.var_68c35930 playloopsound(#"hash_5b492b8c8a8bb4d8");
+				}
+				else
+				{
+					if(self.var_68c35930.script_int == 8)
+					{
+						self.var_68c35930 playloopsound(#"hash_704a9f09fe3a48c2");
+					}
+					else
+					{
+						self.var_68c35930 playloopsound(#"hash_2367dae4a69a4294");
+					}
+				}
 			}
 			wait(1);
 			self.var_68c35930 zm_vo::function_cf1e151c(var_314c1b5a[self.var_68c35930.script_int]);

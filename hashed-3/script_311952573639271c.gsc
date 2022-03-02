@@ -844,7 +844,7 @@ function function_9be06570()
 			}
 			var_a3b04877 hide();
 			s_result = undefined;
-			s_result = level.var_33918b88 waittill_timeout(3.5, #"hash_e66663be8ba322f", #"disconnect");
+			s_result = level.var_33918b88 waittilltimeout(3.5, #"hash_e66663be8ba322f", #"disconnect");
 			var_a3b04877 show();
 			if(s_result._notify === #"hash_e66663be8ba322f" && isalive(level.var_33918b88))
 			{
@@ -2129,7 +2129,7 @@ function function_f7038e44()
 	self val::set(#"hash_67fc98bb601e0da0", "takedamage", 0);
 	self ghost();
 	self playerlinktodelta(level.var_438aa88, "tag_driver", 1);
-	level waittill_timeout(60, #"hash_4c84b8326097daf6");
+	level waittilltimeout(60, #"hash_4c84b8326097daf6");
 }
 
 /*
@@ -2589,9 +2589,9 @@ function function_75caa23f(e_player)
 {
 	if(!zm_utility::can_use(e_player) || isdefined(e_player.var_a4bb6a54))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2645,7 +2645,7 @@ function function_acfd770e()
 function function_7ae29395()
 {
 	level endon(#"end_game");
-	self endon_callback(&function_a65045b6, #"death");
+	self endoncallback(&function_a65045b6, #"death");
 	v_offset = vectorscale((0, 0, -1), 8);
 	self.trigger = spawn("trigger_damage", self.origin + v_offset, 0, 2.5, 24.5);
 	while(true)
@@ -3457,7 +3457,7 @@ function function_ff05eb5()
 	{
 		self waittill(#"hash_2624818b23ab83dc");
 	}
-	self endon_callback(&function_ff05eb5, #"hash_44c21ffb9cd24f2f");
+	self endoncallback(&function_ff05eb5, #"hash_44c21ffb9cd24f2f");
 	while(true)
 	{
 		waitresult = undefined;
@@ -3535,7 +3535,7 @@ function function_fd46b17e(str_notify)
 	{
 		wait(0.1);
 	}
-	level endon_callback(&function_fd46b17e, #"moving_chest_now");
+	level endoncallback(&function_fd46b17e, #"moving_chest_now");
 	var_52a1ab19 = level.chests[level.chest_index].zbarrier;
 	var_45fd85a3 = vectornormalize(anglestoright(var_52a1ab19.angles)) * -28;
 	if(!isdefined(level.var_4eecfa09))
@@ -3589,7 +3589,7 @@ function function_8baed388()
 	level.custom_magic_box_timer_til_despawn = &function_281b6803;
 	level.customrandomweaponweights = &function_d684005e;
 	self.owner.zombie_cost = 10;
-	level waittill_timeout(30, #"moving_chest_now");
+	level waittilltimeout(30, #"moving_chest_now");
 	while(isdefined(self.owner.weapon_out) && self.owner.weapon_out)
 	{
 		waitframe(1);

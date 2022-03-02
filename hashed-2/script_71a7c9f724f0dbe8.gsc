@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_703ccb93c469794", &__init__, undefined, #"hash_2e41e4e9f22f6589");
 }
@@ -90,7 +90,7 @@ function on_localclient_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6a0a79cf(localclientnum)
+function private function_6a0a79cf(localclientnum)
 {
 	var_d5823792 = 0;
 	var_b9d612e8 = 0;

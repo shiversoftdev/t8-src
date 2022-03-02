@@ -75,7 +75,7 @@ function function_daed27e8(event, params)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function mpl_heatwave_fx(ent, event, params)
+function private mpl_heatwave_fx(ent, event, params)
 {
 	if(isdefined(ent) && isdefined(ent._callbacks) && isdefined(ent._callbacks[event]))
 	{
@@ -157,7 +157,7 @@ function function_d8abfc3d(event, func, obj, a_params)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_2b653c00(ent, event, func, obj, a_params)
+function private function_2b653c00(ent, event, func, obj, a_params)
 {
 	if(!isdefined(ent))
 	{
@@ -205,7 +205,7 @@ private function function_2b653c00(ent, event, func, obj, a_params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_862146b3(event, func)
+function private function_862146b3(event, func)
 {
 	return string(event) + string(func);
 }
@@ -264,7 +264,7 @@ function function_52ac9652(event, func, obj, instant)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_3f5f097e(ent, event, func, obj, instant)
+function private function_3f5f097e(ent, event, func, obj, instant)
 {
 	if(!isdefined(ent._callbacks))
 	{
@@ -1645,15 +1645,15 @@ function callback_weapon_damage(eattacker, einflictor, weapon, meansofdeath, dam
 		if(isdefined(level.weapon_damage_callback_array[weapon]))
 		{
 			self thread [[level.weapon_damage_callback_array[weapon]]](eattacker, einflictor, weapon, meansofdeath, damage);
-			return 1;
+			return true;
 		}
 		if(isdefined(level.weapon_damage_callback_array[weapon.rootweapon]))
 		{
 			self thread [[level.weapon_damage_callback_array[weapon.rootweapon]]](eattacker, einflictor, weapon, meansofdeath, damage);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1690,15 +1690,15 @@ function function_f19add2(weapon)
 		if(isdefined(level.var_129c2069[weapon]))
 		{
 			self thread [[level.var_129c2069[weapon]]](weapon);
-			return 1;
+			return true;
 		}
 		if(isdefined(level.var_129c2069[weapon.rootweapon]))
 		{
 			self thread [[level.var_129c2069[weapon.rootweapon]]](weapon);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2194,7 +2194,7 @@ event codecallback_vehicleradiusdamage(eventstruct)
 function finishcustomtraversallistener()
 {
 	self endon(#"death");
-	self waittill_match({#notetrack:"end"}, #"custom_traversal_anim_finished");
+	self waittillmatch({#notetrack:"end"}, #"custom_traversal_anim_finished");
 	self finishtraversal();
 	self unlink();
 	self.usegoalanimweight = 0;

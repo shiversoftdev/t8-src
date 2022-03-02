@@ -438,6 +438,11 @@ function delete(str_flag)
 	{
 		self.flag[str_flag] = undefined;
 	}
-	println("" + str_flag);
+	else
+	{
+		/#
+			println("" + str_flag);
+		#/
+	}
 }
 

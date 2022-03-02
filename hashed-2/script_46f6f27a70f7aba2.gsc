@@ -165,13 +165,16 @@ function function_4902305f(x, var_ff3acc90, var_d545f8ef, var_e7049c6c)
 	{
 		self flowgraph::kick(array(undefined, 1, 0, 0), 1);
 	}
-	else if(isdefined(var_d545f8ef) && var_d545f8ef)
+	else
 	{
-		self flowgraph::kick(array(undefined, 0, 1, 0), 1);
-	}
-	else if(isdefined(var_e7049c6c) && var_e7049c6c)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 1), 1);
+		if(isdefined(var_d545f8ef) && var_d545f8ef)
+		{
+			self flowgraph::kick(array(undefined, 0, 1, 0), 1);
+		}
+		else if(isdefined(var_e7049c6c) && var_e7049c6c)
+		{
+			self flowgraph::kick(array(undefined, 0, 0, 1), 1);
+		}
 	}
 }
 
@@ -190,17 +193,23 @@ function function_3b225c4(x, var_ff3acc90, var_d545f8ef, var_e7049c6c, var_f4aeb
 	{
 		self flowgraph::kick(array(undefined, 1, 0, 0, 0), 1);
 	}
-	else if(isdefined(var_d545f8ef) && var_d545f8ef)
+	else
 	{
-		self flowgraph::kick(array(undefined, 0, 1, 0, 0), 1);
-	}
-	else if(isdefined(var_e7049c6c) && var_e7049c6c)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 1, 0), 1);
-	}
-	else if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 1), 1);
+		if(isdefined(var_d545f8ef) && var_d545f8ef)
+		{
+			self flowgraph::kick(array(undefined, 0, 1, 0, 0), 1);
+		}
+		else
+		{
+			if(isdefined(var_e7049c6c) && var_e7049c6c)
+			{
+				self flowgraph::kick(array(undefined, 0, 0, 1, 0), 1);
+			}
+			else if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
+			{
+				self flowgraph::kick(array(undefined, 0, 0, 0, 1), 1);
+			}
+		}
 	}
 }
 
@@ -219,21 +228,30 @@ function function_f82f0ebe(x, var_ff3acc90, var_d545f8ef, var_e7049c6c, var_f4ae
 	{
 		self flowgraph::kick(array(undefined, 1, 0, 0, 0, 0), 1);
 	}
-	else if(isdefined(var_d545f8ef) && var_d545f8ef)
+	else
 	{
-		self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_e7049c6c) && var_e7049c6c)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0), 1);
-	}
-	else if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0), 1);
-	}
-	else if(isdefined(var_fe28cab4) && var_fe28cab4)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1), 1);
+		if(isdefined(var_d545f8ef) && var_d545f8ef)
+		{
+			self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0), 1);
+		}
+		else
+		{
+			if(isdefined(var_e7049c6c) && var_e7049c6c)
+			{
+				self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0), 1);
+			}
+			else
+			{
+				if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
+				{
+					self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0), 1);
+				}
+				else if(isdefined(var_fe28cab4) && var_fe28cab4)
+				{
+					self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1), 1);
+				}
+			}
+		}
 	}
 }
 
@@ -252,25 +270,37 @@ function function_3f431ce5(x, var_ff3acc90, var_d545f8ef, var_e7049c6c, var_f4ae
 	{
 		self flowgraph::kick(array(undefined, 1, 0, 0, 0, 0, 0), 1);
 	}
-	else if(isdefined(var_d545f8ef) && var_d545f8ef)
+	else
 	{
-		self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_e7049c6c) && var_e7049c6c)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0, 0), 1);
-	}
-	else if(isdefined(var_fe28cab4) && var_fe28cab4)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1, 0), 1);
-	}
-	else if(isdefined(var_fdb6e19) && var_fdb6e19)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 1), 1);
+		if(isdefined(var_d545f8ef) && var_d545f8ef)
+		{
+			self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0, 0), 1);
+		}
+		else
+		{
+			if(isdefined(var_e7049c6c) && var_e7049c6c)
+			{
+				self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0, 0), 1);
+			}
+			else
+			{
+				if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
+				{
+					self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0, 0), 1);
+				}
+				else
+				{
+					if(isdefined(var_fe28cab4) && var_fe28cab4)
+					{
+						self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1, 0), 1);
+					}
+					else if(isdefined(var_fdb6e19) && var_fdb6e19)
+					{
+						self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 1), 1);
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -289,29 +319,44 @@ function function_2d817962(x, var_ff3acc90, var_d545f8ef, var_e7049c6c, var_f4ae
 	{
 		self flowgraph::kick(array(undefined, 1, 0, 0, 0, 0, 0, 0), 1);
 	}
-	else if(isdefined(var_d545f8ef) && var_d545f8ef)
+	else
 	{
-		self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_e7049c6c) && var_e7049c6c)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_fe28cab4) && var_fe28cab4)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1, 0, 0), 1);
-	}
-	else if(isdefined(var_fdb6e19) && var_fdb6e19)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 1, 0), 1);
-	}
-	else if(isdefined(var_198e8183) && var_198e8183)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 0, 1), 1);
+		if(isdefined(var_d545f8ef) && var_d545f8ef)
+		{
+			self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0, 0, 0), 1);
+		}
+		else
+		{
+			if(isdefined(var_e7049c6c) && var_e7049c6c)
+			{
+				self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0, 0, 0), 1);
+			}
+			else
+			{
+				if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
+				{
+					self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0, 0, 0), 1);
+				}
+				else
+				{
+					if(isdefined(var_fe28cab4) && var_fe28cab4)
+					{
+						self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1, 0, 0), 1);
+					}
+					else
+					{
+						if(isdefined(var_fdb6e19) && var_fdb6e19)
+						{
+							self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 1, 0), 1);
+						}
+						else if(isdefined(var_198e8183) && var_198e8183)
+						{
+							self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 0, 1), 1);
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -330,33 +375,51 @@ function function_c8fcb052(x, var_ff3acc90, var_d545f8ef, var_e7049c6c, var_f4ae
 	{
 		self flowgraph::kick(array(undefined, 1, 0, 0, 0, 0, 0, 0, 0), 1);
 	}
-	else if(isdefined(var_d545f8ef) && var_d545f8ef)
+	else
 	{
-		self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_e7049c6c) && var_e7049c6c)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_fe28cab4) && var_fe28cab4)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1, 0, 0, 0), 1);
-	}
-	else if(isdefined(var_fdb6e19) && var_fdb6e19)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 1, 0, 0), 1);
-	}
-	else if(isdefined(var_198e8183) && var_198e8183)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 0, 1, 0), 1);
-	}
-	else if(isdefined(var_2b5c251e) && var_2b5c251e)
-	{
-		self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 0, 0, 1), 1);
+		if(isdefined(var_d545f8ef) && var_d545f8ef)
+		{
+			self flowgraph::kick(array(undefined, 0, 1, 0, 0, 0, 0, 0, 0), 1);
+		}
+		else
+		{
+			if(isdefined(var_e7049c6c) && var_e7049c6c)
+			{
+				self flowgraph::kick(array(undefined, 0, 0, 1, 0, 0, 0, 0, 0), 1);
+			}
+			else
+			{
+				if(isdefined(var_f4aeb7c0) && var_f4aeb7c0)
+				{
+					self flowgraph::kick(array(undefined, 0, 0, 0, 1, 0, 0, 0, 0), 1);
+				}
+				else
+				{
+					if(isdefined(var_fe28cab4) && var_fe28cab4)
+					{
+						self flowgraph::kick(array(undefined, 0, 0, 0, 0, 1, 0, 0, 0), 1);
+					}
+					else
+					{
+						if(isdefined(var_fdb6e19) && var_fdb6e19)
+						{
+							self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 1, 0, 0), 1);
+						}
+						else
+						{
+							if(isdefined(var_198e8183) && var_198e8183)
+							{
+								self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 0, 1, 0), 1);
+							}
+							else if(isdefined(var_2b5c251e) && var_2b5c251e)
+							{
+								self flowgraph::kick(array(undefined, 0, 0, 0, 0, 0, 0, 0, 1), 1);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -564,7 +627,7 @@ function sequence8(x)
 function onflowgraphrun()
 {
 	self.owner waittill(#"flowgraph_run");
-	return 1;
+	return true;
 }
 
 /*
@@ -579,7 +642,7 @@ function onflowgraphrun()
 function waitfunc(x, f_seconds)
 {
 	wait(f_seconds);
-	return 1;
+	return true;
 }
 
 /*
@@ -593,7 +656,7 @@ function waitfunc(x, f_seconds)
 */
 function createthread(x)
 {
-	return 1;
+	return true;
 }
 
 #namespace flowgraph_random;
@@ -740,7 +803,7 @@ function function_35dc468d(str_field)
 function function_f9d5c4b0(x, str_field, var_b8003601)
 {
 	level.(str_field) = var_b8003601;
-	return 1;
+	return true;
 }
 
 #namespace namespace_22752a75;

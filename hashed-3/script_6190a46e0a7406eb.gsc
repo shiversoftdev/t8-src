@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_604502ae18a3644f", &__init__, &__main__, undefined);
 }
@@ -185,11 +185,11 @@ function tomahawk_the_macguffin(e_grenade, n_grenade_charge_power)
 {
 	if(!isdefined(level.sq_bg_macguffins) || level.sq_bg_macguffins.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(e_grenade))
 	{
-		return 0;
+		return false;
 	}
 	foreach(var_a2a0a44e in level.sq_bg_macguffins)
 	{
@@ -208,10 +208,10 @@ function tomahawk_the_macguffin(e_grenade, n_grenade_charge_power)
 			var_a2a0a44e clientfield::set("" + #"hash_3c8cd47650fbb324", 2);
 			self thread namespace_268fc37c::tomahawk_return_player(var_6e6ec518, undefined, 800);
 			self thread give_player_macguffin_upon_receipt(var_6e6ec518, var_a2a0a44e);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -355,7 +355,7 @@ function give_sq_bg_reward(var_dd7441ab)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d61275a7()
+function private function_d61275a7()
 {
 	self clientfield::set("" + #"hash_f03061885875815", 0);
 	self ghost();

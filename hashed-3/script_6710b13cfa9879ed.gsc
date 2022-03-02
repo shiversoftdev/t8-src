@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init()
+function autoexec init()
 {
 	ai::add_archetype_spawn_function(#"elephant", &function_4c731a08);
 	clientfield::register("actor", "towers_boss_melee_effect", 1, 1, "counter", &function_4d07056d, 0, 0);
@@ -38,7 +38,7 @@ autoexec function init()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4c731a08(localclientnum)
+function private function_4c731a08(localclientnum)
 {
 	self function_bf9d3071("rob_zm_eyes_red");
 }
@@ -58,13 +58,16 @@ function function_624041b1(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.var_d62cdc72 = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_eye_glow", self, "tag_eye");
 	}
-	else if(newval == 2)
+	else
 	{
-		self.var_d62cdc72 = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_eye_glow_alt", self, "tag_eye");
-	}
-	else if(isdefined(self.var_d62cdc72))
-	{
-		stopfx(localclientnum, self.var_d62cdc72);
+		if(newval == 2)
+		{
+			self.var_d62cdc72 = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_eye_glow_alt", self, "tag_eye");
+		}
+		else if(isdefined(self.var_d62cdc72))
+		{
+			stopfx(localclientnum, self.var_d62cdc72);
+		}
 	}
 }
 

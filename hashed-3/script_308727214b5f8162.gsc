@@ -262,11 +262,11 @@ function isinremotenodeploy()
 		{
 			if(self istouching(zone))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -386,7 +386,7 @@ function startqrdrone(lifeid, streakname, origin, angles)
 			self notify(#"qrdrone_unlock");
 			self killstreaks::clear_using_remote();
 		}
-		return 0;
+		return false;
 	}
 	team = self.team;
 	killstreak_id = self killstreakrules::killstreakstart("qrdrone", team, 0, 1);
@@ -395,7 +395,7 @@ function startqrdrone(lifeid, streakname, origin, angles)
 		self notify(#"qrdrone_unlock");
 		self val::reset(#"startqrdrone", "freezecontrols");
 		self killstreaks::clear_using_remote();
-		return 0;
+		return false;
 	}
 	self notify(#"qrdrone_unlock");
 	qrdrone = createqrdrone(lifeid, self, streakname, origin, angles, killstreak_id);
@@ -405,12 +405,12 @@ function startqrdrone(lifeid, streakname, origin, angles)
 		self thread qrdrone_ride(lifeid, qrdrone, streakname);
 		qrdrone waittill(#"end_remote");
 		killstreakrules::killstreakstop("qrdrone", team, killstreak_id);
-		return 1;
+		return true;
 	}
 	self iprintlnbold(#"mp_too_many_vehicles");
 	self killstreaks::clear_using_remote();
 	killstreakrules::killstreakstop("qrdrone", team, killstreak_id);
-	return 0;
+	return false;
 }
 
 /*
@@ -651,9 +651,9 @@ function enemy_locking()
 {
 	if(isdefined(self.locking_on) && self.locking_on)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -669,9 +669,9 @@ function enemy_locked()
 {
 	if(isdefined(self.locked_on) && self.locked_on)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1288,10 +1288,10 @@ function qrdrone_in_range()
 	{
 		if(self isinsideheightlock())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1862,13 +1862,16 @@ function flash_signal_failure(drone)
 		{
 			wait(0.6);
 		}
-		else if(i < 6)
-		{
-			wait(0.5);
-		}
 		else
 		{
-			wait(0.3);
+			if(i < 6)
+			{
+				wait(0.5);
+			}
+			else
+			{
+				wait(0.3);
+			}
 		}
 		i++;
 	}

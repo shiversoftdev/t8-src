@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init()
+function autoexec init()
 {
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"skeleton", &function_f31535d8);
@@ -45,7 +45,7 @@ autoexec function init()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f31535d8()
+function private function_f31535d8()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -61,7 +61,7 @@ private function function_f31535d8()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function archetypeskeletononanimscriptedcallback(entity)
+function private archetypeskeletononanimscriptedcallback(entity)
 {
 	self.__blackboard = undefined;
 	self function_f31535d8();
@@ -76,7 +76,7 @@ private function archetypeskeletononanimscriptedcallback(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&function_7ef4937e));
@@ -106,7 +106,7 @@ private function registerbehaviorscriptfunctions()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a1acece9()
+function private function_a1acece9()
 {
 	self.ignorepathenemyfightdist = 1;
 	self.cant_move_cb = &zombiebehavior::function_79fe956f;
@@ -121,19 +121,25 @@ private function function_a1acece9()
 		self attach(#"c_t8_zmb_dlc2_skeleton_sword", "tag_weapon_right");
 		self attach(#"c_t8_zmb_dlc2_skeleton_shield", "tag_weapon_left");
 	}
-	else if(self.var_9fde8624 == #"hash_1520c8987a671df0")
+	else
 	{
-		self attach(#"c_t8_zmb_dlc2_skeleton_helmet", "j_head");
-		self attach(#"c_t8_zmb_dlc2_skeleton_spear", "tag_weapon_right");
-	}
-	else if(self.var_9fde8624 == #"hash_342763a42d8fbca")
-	{
-		self attach(#"c_t8_zmb_dlc2_skeleton_sword", "tag_weapon_right");
-		self attach(#"c_t8_zmb_dlc2_skeleton_shield", "tag_weapon_left");
-	}
-	else if(self.var_9fde8624 == #"skeleton_spear")
-	{
-		self attach(#"c_t8_zmb_dlc2_skeleton_spear", "tag_weapon_right");
+		if(self.var_9fde8624 == #"hash_1520c8987a671df0")
+		{
+			self attach(#"c_t8_zmb_dlc2_skeleton_helmet", "j_head");
+			self attach(#"c_t8_zmb_dlc2_skeleton_spear", "tag_weapon_right");
+		}
+		else
+		{
+			if(self.var_9fde8624 == #"hash_342763a42d8fbca")
+			{
+				self attach(#"c_t8_zmb_dlc2_skeleton_sword", "tag_weapon_right");
+				self attach(#"c_t8_zmb_dlc2_skeleton_shield", "tag_weapon_left");
+			}
+			else if(self.var_9fde8624 == #"skeleton_spear")
+			{
+				self attach(#"c_t8_zmb_dlc2_skeleton_spear", "tag_weapon_right");
+			}
+		}
 	}
 	aiutility::addaioverridedamagecallback(self, &function_abab78a7);
 	self callback::on_ai_killed(&function_4ac532fd);
@@ -148,7 +154,7 @@ private function function_a1acece9()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_10f99a8b(params)
+function private function_10f99a8b(params)
 {
 	if(isdefined(level.var_cc1828c) && isdefined(level.var_cc1828c[self.zombie_move_speed]))
 	{
@@ -169,7 +175,7 @@ private function function_10f99a8b(params)
 	Parameters: 12
 	Flags: Linked, Private
 */
-private function function_abab78a7(inflictor, attacker, damage, idflags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private function_abab78a7(inflictor, attacker, damage, idflags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	if(isdefined(boneindex))
 	{
@@ -195,7 +201,7 @@ private function function_abab78a7(inflictor, attacker, damage, idflags, meansof
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4ac532fd(s_params)
+function private function_4ac532fd(s_params)
 {
 	if(!(isdefined(self.fake_death) && self.fake_death))
 	{
@@ -213,7 +219,7 @@ private function function_4ac532fd(s_params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function skeletondeathaction(entity)
+function private skeletondeathaction(entity)
 {
 	entity ghost();
 }
@@ -227,45 +233,45 @@ private function skeletondeathaction(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_233f80e1(entity)
+function private function_233f80e1(entity)
 {
 	if(entity asmistransitionrunning() || entity asmistransdecrunning())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.enemy))
 	{
 		if(!entity haspath())
 		{
-			return 0;
+			return false;
 		}
 		if(!btapi_shouldchargemelee(entity))
 		{
-			return 0;
+			return false;
 		}
 		if(!function_dd3f5fa7(entity))
 		{
-			return 0;
+			return false;
 		}
 		if(!isplayer(entity.enemy))
 		{
-			return 0;
+			return false;
 		}
 		if(abs(entity.origin[2] - entity.enemy.origin[2]) > 64)
 		{
-			return 0;
+			return false;
 		}
 		if(!entity cansee(entity.enemy))
 		{
-			return 0;
+			return false;
 		}
 		if(!tracepassedonnavmesh(entity.origin, entity.enemy.origin, entity getpathfindingradius()))
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -277,17 +283,17 @@ private function function_233f80e1(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dd3f5fa7(entity)
+function private function_dd3f5fa7(entity)
 {
 	/#
 		if(getdvarint(#"hash_3e2ac8f3fd8af68a", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(!isdefined(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	var_2d00dddb = blackboard::getblackboardevents("skeleton_run_melee");
 	if(isdefined(var_2d00dddb) && var_2d00dddb.size)
@@ -296,11 +302,11 @@ private function function_dd3f5fa7(entity)
 		{
 			if(var_5d4c61c9.data.enemy === entity.enemy)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -312,7 +318,7 @@ private function function_dd3f5fa7(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9eb31dff(entity)
+function private function_9eb31dff(entity)
 {
 	var_5d4c61c9 = {#enemy:entity.enemy};
 	blackboard::addblackboardevent("skeleton_run_melee", var_5d4c61c9, randomintrange(5000, 7000));
@@ -350,7 +356,7 @@ function function_bcb3a1a1()
 	Parameters: 2
 	Flags: Private
 */
-private function function_7a007bbf(skeleton, entity)
+function private function_7a007bbf(skeleton, entity)
 {
 	forward = anglestoforward(skeleton.angles);
 	to_enemy = vectornormalize(entity.origin - skeleton.origin);
@@ -474,11 +480,11 @@ function function_9f7eb359(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7ef4937e(entity)
+function private function_7ef4937e(entity)
 {
 	if(!isdefined(self.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_charging) && self.is_charging)
 	{
@@ -486,11 +492,11 @@ private function function_7ef4937e(entity)
 		{
 			function_9f7eb359(entity);
 		}
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_a9bb453f) && gettime() < self.var_a9bb453f)
 	{
-		return 0;
+		return false;
 	}
 	var_b2bf2e3c = blackboard::getblackboardevents("skeleton_speed_update");
 	if(isdefined(var_b2bf2e3c) && var_b2bf2e3c.size)
@@ -499,23 +505,23 @@ private function function_7ef4937e(entity)
 		{
 			if(var_b7eca892.data.enemy === entity.enemy)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
 	if(isdefined(level.var_64800a5a) && ![[level.var_64800a5a]](self))
 	{
-		return 0;
+		return false;
 	}
 	if(distance2dsquared(self.enemy.origin, entity.origin) < 400 * 400)
 	{
 		if(!util::within_fov(entity.enemy.origin, entity.enemy.angles, self.origin, cos(90)))
 		{
-			return 0;
+			return false;
 		}
 		function_a94fc02e(entity);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

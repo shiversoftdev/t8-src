@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"drown", &__init__, undefined, undefined);
 }
@@ -218,24 +218,24 @@ function watch_player_drowning()
 				}
 			}
 		}
-		else if(isdefined(level.var_ee30f81d) && (isdefined(self.wasunderwater) && self.wasunderwater))
+		else
 		{
-			if(self.drownstage > 0)
+			if(isdefined(level.var_ee30f81d) && (isdefined(self.wasunderwater) && self.wasunderwater))
 			{
-				thread [[level.var_ee30f81d]](self, 1);
-			}
-			else if(gettime() > (isdefined(self.var_cdefe788) ? self.var_cdefe788 : 0) + underwaterbreathtime)
-			{
+				if(self.drownstage > 0)
+				{
+					thread [[level.var_ee30f81d]](self, 1);
+				}
 				thread [[level.var_ee30f81d]](self, 0);
 			}
+			self.drownstage = 0;
+			self clientfield::set_to_player("drown_stage", 0);
+			self.lastwaterdamagetime = self getlastoutwatertime();
+			self deactivate_player_health_visionset();
+			var_c1e8fa5d = 4000;
+			self.wasunderwater = 0;
+			return;
 		}
-		self.drownstage = 0;
-		self clientfield::set_to_player("drown_stage", 0);
-		self.lastwaterdamagetime = self getlastoutwatertime();
-		self deactivate_player_health_visionset();
-		var_c1e8fa5d = 4000;
-		self.wasunderwater = 0;
-		return;
 	}
 }
 

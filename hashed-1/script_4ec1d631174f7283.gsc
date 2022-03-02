@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_56850a719f90825a", &__init__, &__main__, undefined);
 }
@@ -72,7 +72,7 @@ function __main__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_4d231aa()
+function private function_4d231aa()
 {
 	self endon(#"death");
 	while(true)
@@ -95,7 +95,7 @@ private function function_4d231aa()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e5ba4473()
+function private function_e5ba4473()
 {
 	self.goalradius = 15;
 	self.pushable = 0;
@@ -105,18 +105,21 @@ private function function_e5ba4473()
 	{
 		self.is_pablo = 1;
 	}
-	else if(!isdefined(level.var_8a8728c6))
-	{
-		level.var_8a8728c6 = [];
-	}
-	level.var_8a8728c6[level.var_8a8728c6.size] = self;
-	if(self.aitype == "spawner_zm_samantha")
-	{
-		self setblackboardattribute("_stance", "stand");
-	}
 	else
 	{
-		self setblackboardattribute("_stance", "crouch");
+		if(!isdefined(level.var_8a8728c6))
+		{
+			level.var_8a8728c6 = [];
+		}
+		level.var_8a8728c6[level.var_8a8728c6.size] = self;
+		if(self.aitype == "spawner_zm_samantha")
+		{
+			self setblackboardattribute("_stance", "stand");
+		}
+		else
+		{
+			self setblackboardattribute("_stance", "crouch");
+		}
 	}
 	/#
 		self thread function_b7f08e2d();
@@ -155,7 +158,7 @@ function function_1c989dc4()
 	Parameters: 0
 	Flags: Private
 */
-private function function_b7f08e2d()
+function private function_b7f08e2d()
 {
 	self endon(#"death");
 	while(true)
@@ -185,7 +188,7 @@ private function function_b7f08e2d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dca53f1f(player_index)
+function private function_dca53f1f(player_index)
 {
 	var_9a149315 = (0, 0, 0);
 	if(isdefined(level.var_8a8728c6))
@@ -301,7 +304,7 @@ function function_ddbe2dbb(distance)
 	Parameters: 0
 	Flags: Private
 */
-private function function_ae4d6b1b()
+function private function_ae4d6b1b()
 {
 	players = getplayers();
 	foreach(player in players)
@@ -320,7 +323,7 @@ private function function_ae4d6b1b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2165e851()
+function private function_2165e851()
 {
 	level endon(#"end_game");
 	while(true)
@@ -373,7 +376,7 @@ private function function_2165e851()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b4b7cd20(entity)
+function private function_b4b7cd20(entity)
 {
 	result = 0;
 	if(isdefined(entity.is_pablo) && entity.is_pablo)

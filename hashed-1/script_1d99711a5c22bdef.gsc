@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_794b9e68193e343a", &__init__, undefined, undefined);
 }
@@ -89,7 +89,7 @@ function on_entity_shutdown(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_268e0945(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_268e0945(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{
@@ -107,7 +107,7 @@ private function function_268e0945(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_8178b190(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_8178b190(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(!isdefined(self.currentfx))
 	{
@@ -189,7 +189,7 @@ private function function_8178b190(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_6942a7f6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_6942a7f6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(!isdefined(self.currentfx))
 	{
@@ -310,7 +310,7 @@ function stoker_death_explosion(localclientnum, oldvalue, newvalue, bnewent, bin
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d58cd2d5(localclientnum)
+function private function_d58cd2d5(localclientnum)
 {
 	if(!isdefined(self))
 	{
@@ -386,9 +386,9 @@ private function function_d58cd2d5(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a88c80a3(model)
+function private function_a88c80a3(model)
 {
-	self waittill_timeout(10, #"death", #"unlock_model");
+	self waittilltimeout(10, #"death", #"unlock_model");
 	util::unlock_model(model);
 }
 

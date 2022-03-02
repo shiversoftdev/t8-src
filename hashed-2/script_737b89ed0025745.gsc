@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2d64f78469a542e9", &__init__, undefined, undefined);
 }
@@ -177,17 +177,17 @@ function function_4d9b2d83(players, lookup)
 {
 	if(!self isonground())
 	{
-		return 0;
+		return false;
 	}
 	assetname = self getmpdialogname();
 	if(!isdefined(assetname))
 	{
-		return 0;
+		return false;
 	}
 	var_1518f1fb = lookup[assetname];
 	if(!isdefined(var_1518f1fb) || var_1518f1fb.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	foreach(player in players)
 	{
@@ -204,10 +204,10 @@ function function_4d9b2d83(players, lookup)
 		if(isdefined(var_a9f3e2d4))
 		{
 			self function_18aba49d(1, undefined, player);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

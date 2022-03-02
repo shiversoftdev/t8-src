@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	function_acd44e5f();
 }

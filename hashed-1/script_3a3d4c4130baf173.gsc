@@ -171,14 +171,17 @@ function function_1c2930c7(localclientnum)
 			player function_bf191832(0, (0, 0, 0), (0, 0, 0));
 			continue;
 		}
-		else if(isdefined(var_b43e8dc2) && var_ccfe777)
+		else
 		{
-			var_ccfe777 = 0;
-		}
-		else if(!isdefined(var_b43e8dc2))
-		{
-			player function_bf191832(0, (0, 0, 0), (0, 0, 0));
-			continue;
+			if(isdefined(var_b43e8dc2) && var_ccfe777)
+			{
+				var_ccfe777 = 0;
+			}
+			else if(!isdefined(var_b43e8dc2))
+			{
+				player function_bf191832(0, (0, 0, 0), (0, 0, 0));
+				continue;
+			}
 		}
 		if((isdefined(level.var_87226c31.bundle.var_8fa9aac4) ? level.var_87226c31.bundle.var_8fa9aac4 : 0))
 		{

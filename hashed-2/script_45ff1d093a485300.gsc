@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function registerdefaultnotetrackhandlerfunctions()
+function autoexec registerdefaultnotetrackhandlerfunctions()
 {
 	registernotetrackhandlerfunction("fire", &notetrackfirebullet);
 	registernotetrackhandlerfunction("gib_disable", &notetrackgibdisable);
@@ -61,7 +61,7 @@ autoexec function registerdefaultnotetrackhandlerfunctions()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackanimmovementstop(entity)
+function private notetrackanimmovementstop(entity)
 {
 	if(entity haspath())
 	{
@@ -78,7 +78,7 @@ private function notetrackanimmovementstop(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackstaircasestep1(entity)
+function private notetrackstaircasestep1(entity)
 {
 	numsteps = entity getblackboardattribute("_staircase_num_steps");
 	numsteps++;
@@ -94,7 +94,7 @@ private function notetrackstaircasestep1(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackstaircasestep2(entity)
+function private notetrackstaircasestep2(entity)
 {
 	numsteps = entity getblackboardattribute("_staircase_num_steps");
 	numsteps = numsteps + 2;
@@ -110,7 +110,7 @@ private function notetrackstaircasestep2(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackdropguninternal(entity)
+function private notetrackdropguninternal(entity)
 {
 	if(!isdefined(entity.weapon) || entity.weapon === level.weaponnone)
 	{
@@ -138,7 +138,7 @@ private function notetrackdropguninternal(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackattachknife(entity)
+function private notetrackattachknife(entity)
 {
 	if(!(isdefined(entity._ai_melee_attachedknife) && entity._ai_melee_attachedknife))
 	{
@@ -156,7 +156,7 @@ private function notetrackattachknife(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackdetachknife(entity)
+function private notetrackdetachknife(entity)
 {
 	if(isdefined(entity._ai_melee_attachedknife) && entity._ai_melee_attachedknife)
 	{
@@ -174,7 +174,7 @@ private function notetrackdetachknife(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackhideweapon(entity)
+function private notetrackhideweapon(entity)
 {
 	entity ai::gun_remove();
 }
@@ -188,7 +188,7 @@ private function notetrackhideweapon(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackshowweapon(entity)
+function private notetrackshowweapon(entity)
 {
 	entity ai::gun_recall();
 }
@@ -202,7 +202,7 @@ private function notetrackshowweapon(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackhideai(entity)
+function private notetrackhideai(entity)
 {
 	entity hide();
 }
@@ -216,7 +216,7 @@ private function notetrackhideai(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackshowai(entity)
+function private notetrackshowai(entity)
 {
 	entity show();
 }
@@ -230,7 +230,7 @@ private function notetrackshowai(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackstartragdoll(entity)
+function private notetrackstartragdoll(entity)
 {
 	if(isactor(entity) && entity isinscriptedstate())
 	{
@@ -288,7 +288,7 @@ function notetrackstartragdollnodeath(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackfirebullet(animationentity)
+function private notetrackfirebullet(animationentity)
 {
 	if(isactor(animationentity) && animationentity isinscriptedstate())
 	{
@@ -320,7 +320,7 @@ private function notetrackfirebullet(animationentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackdropgun(animationentity)
+function private notetrackdropgun(animationentity)
 {
 	notetrackdropguninternal(animationentity);
 }
@@ -334,7 +334,7 @@ private function notetrackdropgun(animationentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackdropshield(animationentity)
+function private notetrackdropshield(animationentity)
 {
 	aiutility::dropriotshield(animationentity);
 }
@@ -348,7 +348,7 @@ private function notetrackdropshield(animationentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackgrenadethrow(animationentity)
+function private notetrackgrenadethrow(animationentity)
 {
 	if(archetype_human_cover::shouldthrowgrenadeatcovercondition(animationentity, 1))
 	{
@@ -374,7 +374,7 @@ private function notetrackgrenadethrow(animationentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackmeleeunsync(animationentity)
+function private notetrackmeleeunsync(animationentity)
 {
 	if(isdefined(animationentity) && isdefined(animationentity.enemy))
 	{
@@ -394,7 +394,7 @@ private function notetrackmeleeunsync(animationentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function notetrackgibdisable(animationentity)
+function private notetrackgibdisable(animationentity)
 {
 	if(animationentity ai::has_behavior_attribute("can_gib"))
 	{

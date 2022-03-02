@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"load", &__init__, undefined, undefined);
 }
@@ -85,14 +85,17 @@ function __init__()
 		level.game_mode_suffix = "_cp";
 		defaultaspectratio = 1.777778;
 	}
-	else if(sessionmodeiszombiesgame())
-	{
-		level.game_mode_suffix = "_zm";
-	}
 	else
 	{
-		level.game_mode_suffix = "_mp";
-		defaultaspectratio = 1.777778;
+		if(sessionmodeiszombiesgame())
+		{
+			level.game_mode_suffix = "_zm";
+		}
+		else
+		{
+			level.game_mode_suffix = "_mp";
+			defaultaspectratio = 1.777778;
+		}
 	}
 	level.script = util::function_53bbf9d2();
 	level.clientscripts = getdvarstring(#"cg_usingclientscripts") != "";
@@ -181,13 +184,16 @@ function level_notify_listener()
 				{
 					level notify(toks[0], {#param2:toks[2], #param1:toks[1]});
 				}
-				else if(toks.size == 2)
-				{
-					level notify(toks[0], {#param1:toks[1]});
-				}
 				else
 				{
-					level notify(toks[0]);
+					if(toks.size == 2)
+					{
+						level notify(toks[0], {#param1:toks[1]});
+					}
+					else
+					{
+						level notify(toks[0]);
+					}
 				}
 				setdvar(#"level_notify", "");
 			}
@@ -718,13 +724,16 @@ function shock_onpain()
 		{
 			continue;
 		}
-		else if(mod == "MOD_GRENADE_SPLASH" || mod == "MOD_GRENADE" || mod == "MOD_EXPLOSIVE" || mod == "MOD_PROJECTILE_SPLASH")
+		else
 		{
-			self shock_onexplosion(damage);
-		}
-		else if(getdvarstring(#"blurpain") == "on")
-		{
-			self shellshock(#"pain", 0.5);
+			if(mod == "MOD_GRENADE_SPLASH" || mod == "MOD_GRENADE" || mod == "MOD_EXPLOSIVE" || mod == "MOD_PROJECTILE_SPLASH")
+			{
+				self shock_onexplosion(damage);
+			}
+			else if(getdvarstring(#"blurpain") == "on")
+			{
+				self shellshock(#"pain", 0.5);
+			}
 		}
 	}
 }
@@ -747,17 +756,23 @@ function shock_onexplosion(damage)
 	{
 		time = 4;
 	}
-	else if(scaled_damage >= 50)
+	else
 	{
-		time = 3;
-	}
-	else if(scaled_damage >= 25)
-	{
-		time = 2;
-	}
-	else if(scaled_damage > 10)
-	{
-		time = 1;
+		if(scaled_damage >= 50)
+		{
+			time = 3;
+		}
+		else
+		{
+			if(scaled_damage >= 25)
+			{
+				time = 2;
+			}
+			else if(scaled_damage > 10)
+			{
+				time = 1;
+			}
+		}
 	}
 }
 

@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"colors", &__init__, &__main__, undefined);
 }
@@ -1563,9 +1563,9 @@ function reached_node_but_could_not_claim_it(node)
 		ai[i] notify(#"eject_from_my_node");
 		wait(1);
 		self notify(#"eject_from_my_node");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1604,10 +1604,10 @@ function colorislegit(color)
 	{
 		if(color == level.colorlist[i])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

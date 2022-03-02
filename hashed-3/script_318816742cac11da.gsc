@@ -158,16 +158,19 @@ function portal_map_gas_indicators_init(localclientnum, oldval, newval, bnewent,
 			}
 		}
 	}
-	else if(!isdefined(level.var_8f14a19))
+	else
 	{
-		level.var_8f14a19 = getentarray(localclientnum, "portal_map", "targetname");
-	}
-	foreach(var_35f97c42 in level.var_8f14a19)
-	{
-		for(i = 0; i < 6; i++)
+		if(!isdefined(level.var_8f14a19))
 		{
-			var_35f97c42 util::waittill_dobj(localclientnum);
-			var_35f97c42 showpart(localclientnum, level.var_bc3b16f3[i] + "_clear");
+			level.var_8f14a19 = getentarray(localclientnum, "portal_map", "targetname");
+		}
+		foreach(var_35f97c42 in level.var_8f14a19)
+		{
+			for(i = 0; i < 6; i++)
+			{
+				var_35f97c42 util::waittill_dobj(localclientnum);
+				var_35f97c42 showpart(localclientnum, level.var_bc3b16f3[i] + "_clear");
+			}
 		}
 	}
 }

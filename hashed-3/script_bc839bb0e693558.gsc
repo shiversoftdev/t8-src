@@ -79,16 +79,16 @@ function is_weapon_or_variant_same_as_gadget(weapon, gadget)
 {
 	if(weapon == gadget)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(level.var_d0b212bd))
 	{
 		if(level.var_d0b212bd[weapon] === gadget)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

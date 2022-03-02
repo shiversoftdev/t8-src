@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_fire_sale", &__init__, undefined, undefined);
 }
@@ -87,7 +87,7 @@ function function_3ceac0e1(var_7d81025, player)
 	player thread zm_powerups::function_5091b029("fire_sale");
 	player zombie_utility::function_826f5e98(#"zombie_powerup_fire_sale_on", 1);
 	player zombie_utility::function_826f5e98(#"zombie_powerup_fire_sale_time", 30);
-	level waittill_timeout(30, #"end_game");
+	level waittilltimeout(30, #"end_game");
 	player zombie_utility::function_826f5e98(#"zombie_powerup_fire_sale_on", 0);
 }
 
@@ -172,11 +172,11 @@ function firesale_chest_is_leaving()
 		{
 			if(level.chests[i].zbarrier.state === "leaving" || level.chests[i].zbarrier.state === "open" || level.chests[i].zbarrier.state === "close" || level.chests[i].zbarrier.state === "closing")
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -252,7 +252,7 @@ function apply_fire_sale_to_chest()
 	level endon(#"fire_sale_off");
 	if(self.zbarrier.state == "leaving")
 	{
-		self.zbarrier waittill_timeout(10, #"left");
+		self.zbarrier waittilltimeout(10, #"left");
 	}
 	wait(0.1);
 	self thread zm_magicbox::show_chest();
@@ -315,9 +315,9 @@ function func_should_drop_fire_sale()
 {
 	if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 0 || zombie_utility::function_d2dfacfd(#"zombie_powerup_fire_sale_on") == 1 || level.chest_moves < 1 || (isdefined(level.disable_firesale_drop) && level.disable_firesale_drop))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

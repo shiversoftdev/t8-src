@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hud_message", &__init__, undefined, undefined);
 }
@@ -160,7 +160,7 @@ function clearlowermessage()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fa47c5af()
+function private function_fa47c5af()
 {
 	self endon(#"hash_6ceeeb477ece797b", #"disconnect");
 	wait(1);
@@ -183,9 +183,9 @@ function isintop(players, topn)
 	{
 		if(isdefined(players[i]) && self == players[i])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 

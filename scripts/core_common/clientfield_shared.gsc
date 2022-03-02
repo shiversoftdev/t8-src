@@ -260,7 +260,7 @@ function increment(str_field_name, n_increment_count)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _increment(str_field_name, n_increment_count = 1)
+function private _increment(str_field_name, n_increment_count = 1)
 {
 	if(self != level)
 	{

@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_707dc47b03316f1d", &__init__, undefined, undefined);
 }
@@ -100,7 +100,7 @@ function __init__()
 */
 function function_feb3e91d()
 {
-	return (isdefined(getgametypesetting(#"hash_5c7133ffaac1ffc8")) ? getgametypesetting(#"hash_5c7133ffaac1ffc8") : 0);
+	return true;
 }
 
 /*
@@ -734,7 +734,7 @@ function laststand_disable_player_weapons()
 	self switchtoweaponimmediate(level.laststandweapon, 1);
 	self disableweaponcycling();
 	self disableoffhandweapons();
-	self waittill_timeout(1, #"weapon_change_complete");
+	self waittilltimeout(1, #"weapon_change_complete");
 	self weapons::detach_all_weapons();
 }
 
@@ -873,7 +873,7 @@ function laststand_bleedout(bleedouttime, var_969fabf4)
 				self clientfield::set_player_uimodel("hudItems.laststand.progress", self.var_2d19ce3c);
 				var_9da219f5 = time + 1000;
 			}
-			self waittill_timeout((float(var_9da219f5 - time)) / 1000, #"hash_5b5b14bba3930da1");
+			self waittilltimeout((float(var_9da219f5 - time)) / 1000, #"hash_5b5b14bba3930da1");
 		}
 		while(self.var_969fabf4 > 0 && isdefined(self.revivetrigger) && isdefined(self.revivetrigger.beingrevived) && self.revivetrigger.beingrevived == 1)
 		{
@@ -1163,19 +1163,19 @@ function function_356caede(team)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.alivecount) || !isdefined(level.alivecount[team]))
 	{
-		return 0;
+		return false;
 	}
 	if(level.alivecount[team] == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	players = getplayers(team, self.revivetrigger.origin, self.revivetrigger.radius);
 	height = getdvarint(#"hash_48068f92d21e2a64", 15);
@@ -1211,12 +1211,12 @@ function function_356caede(team)
 		self function_fab0e07e(var_f7cfe7ee);
 		if(!isdefined(var_f7cfe7ee))
 		{
-			return 0;
+			return false;
 		}
 		if(!isdefined(self) || !isalive(self) || !isalive(var_f7cfe7ee))
 		{
 			var_f7cfe7ee function_b16f016a();
-			return 0;
+			return false;
 		}
 		var_f7cfe7ee disableweaponcycling();
 		var_f7cfe7ee disableusability();
@@ -1240,7 +1240,7 @@ function function_356caede(team)
 					self setorigin(kill_origin);
 					self dodamage(self.var_969fabf4, self.origin, var_f7cfe7ee, undefined, "none", "MOD_MELEE_ASSASSINATE", 8192);
 					self function_2907ce7a();
-					return 1;
+					return true;
 				}
 				self function_516a3bef(1);
 				self function_7c685040();
@@ -1248,7 +1248,7 @@ function function_356caede(team)
 			var_f7cfe7ee function_7c685040();
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1381,9 +1381,9 @@ function function_1c8cab15(var_b4bb7319)
 	}
 	if(isdefined(var_b4bb7319) && var_b4bb7319 flagsys::get(#"hash_40e3b09bdbcdac81"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1425,23 +1425,23 @@ function can_revive(revivee, ignore_touch_checks = 0, height = undefined)
 {
 	if(!isdefined(revivee.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive) && ![[level.can_revive]](revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_game_module) && ![[level.can_revive_game_module]](revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.revive_trigger_should_ignore_sight_checks))
 	{
@@ -1455,7 +1455,7 @@ function can_revive(revivee, ignore_touch_checks = 0, height = undefined)
 	{
 		if(!self istouching(revivee.revivetrigger))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(height))
@@ -1463,26 +1463,26 @@ function can_revive(revivee, ignore_touch_checks = 0, height = undefined)
 		delta = revivee.origin[2] - self.origin[2];
 		if(delta > height || delta < (height * -1))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(!self laststand::is_facing(revivee, 0.8))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(revivee.origin, self.origin) > 140 * 140)
 	{
-		return 0;
+		return false;
 	}
 	if(!sighttracepassed(self.origin + vectorscale((0, 0, 1), 50), revivee.origin + vectorscale((0, 0, 1), 30), 0, undefined))
 	{
-		return 0;
+		return false;
 	}
 	if(!bullettracepassed(self.origin + vectorscale((0, 0, 1), 50), revivee.origin + vectorscale((0, 0, 1), 30), 0, undefined))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

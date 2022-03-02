@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_61a4cd8ae6b0d4c7", &__init__, undefined, undefined);
 }
@@ -216,7 +216,7 @@ function function_c710099c(event, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2fa8afa4(queue, item)
+function private function_2fa8afa4(queue, item)
 {
 	for(i = 0; i < queue.size; i++)
 	{
@@ -237,7 +237,7 @@ private function function_2fa8afa4(queue, item)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_accf7a2e(queue)
+function private function_accf7a2e(queue)
 {
 	level endon(#"game_ended");
 	while(true)

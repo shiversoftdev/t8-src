@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"spawnlogic", &__init__, undefined, undefined);
 }
@@ -834,13 +834,16 @@ function readspawndata(desiredid, relativepos)
 					data.minweight = spawnpoint.weight;
 					data.maxweight = spawnpoint.weight;
 				}
-				else if(spawnpoint.weight < data.minweight)
+				else
 				{
-					data.minweight = spawnpoint.weight;
-				}
-				if(spawnpoint.weight > data.maxweight)
-				{
-					data.maxweight = spawnpoint.weight;
+					if(spawnpoint.weight < data.minweight)
+					{
+						data.minweight = spawnpoint.weight;
+					}
+					if(spawnpoint.weight > data.maxweight)
+					{
+						data.maxweight = spawnpoint.weight;
+					}
 				}
 				argnum = 4;
 				numdata = int(fgetarg(file, 3));
@@ -925,36 +928,42 @@ function readspawndata(desiredid, relativepos)
 						break;
 					}
 				}
-				else if(relativepos == "")
+				else
 				{
-					if(data.id == oldspawndata.id)
+					if(relativepos == "")
 					{
-						level.curspawndata = prev;
-						break;
+						if(data.id == oldspawndata.id)
+						{
+							level.curspawndata = prev;
+							break;
+						}
 					}
-				}
-				else if(relativepos == "")
-				{
-					if(lookingfornextthisplayer)
+					else
 					{
-						level.curspawndata = data;
-						break;
-					}
-					else if(data.id == oldspawndata.id)
-					{
-						lookingfornextthisplayer = 1;
-					}
-				}
-				else if(relativepos == "")
-				{
-					if(lookingfornext)
-					{
-						level.curspawndata = data;
-						break;
-					}
-					else if(data.id == oldspawndata.id)
-					{
-						lookingfornext = 1;
+						if(relativepos == "")
+						{
+							if(lookingfornextthisplayer)
+							{
+								level.curspawndata = data;
+								break;
+							}
+							else if(data.id == oldspawndata.id)
+							{
+								lookingfornextthisplayer = 1;
+							}
+						}
+						else if(relativepos == "")
+						{
+							if(lookingfornext)
+							{
+								level.curspawndata = data;
+								break;
+							}
+							else if(data.id == oldspawndata.id)
+							{
+								lookingfornext = 1;
+							}
+						}
 					}
 				}
 			}
@@ -1455,11 +1464,14 @@ function getspawnpoint_turned(spawnpoints, idealdist, baddist, idealdistteam, ba
 					}
 					distfromideal = abs(dist - idealdistteam);
 				}
-				else if(dist < baddist)
+				else
 				{
-					nearbybadamount = nearbybadamount + ((baddist - dist) / baddist);
+					if(dist < baddist)
+					{
+						nearbybadamount = nearbybadamount + ((baddist - dist) / baddist);
+					}
+					distfromideal = abs(dist - idealdist);
 				}
-				distfromideal = abs(dist - idealdist);
 				totaldistfromideal = totaldistfromideal + distfromideal;
 			}
 			avgdistfromideal = totaldistfromideal / aliveplayers.size;
@@ -2439,7 +2451,7 @@ function lastminutesighttraces(spawnpoint)
 {
 	if(!isdefined(spawnpoint.nearbyplayers))
 	{
-		return 0;
+		return false;
 	}
 	closest = undefined;
 	closestdistsq = undefined;
@@ -2486,17 +2498,17 @@ function lastminutesighttraces(spawnpoint)
 	{
 		if(bullettracepassed(closest.origin + vectorscale((0, 0, 1), 50), spawnpoint.sighttracepoint, 0, undefined))
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(isdefined(secondclosest))
 	{
 		if(bullettracepassed(secondclosest.origin + vectorscale((0, 0, 1), 50), spawnpoint.sighttracepoint, 0, undefined))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

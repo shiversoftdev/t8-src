@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"rewindobjects", &__init__, undefined, undefined);
 }
@@ -336,10 +336,10 @@ function servertimedmoveto(localclientnum, startpoint, endpoint, starttime, dura
 			self.origin = jumppoint;
 		}
 		self moveto(endpoint, movetime, 0, 0);
-		return 1;
+		return true;
 	}
 	self.origin = endpoint;
-	return 0;
+	return false;
 }
 
 /*
@@ -370,10 +370,10 @@ function servertimedrotateto(localclientnum, angles, starttime, duration, timein
 	{
 		rotatetime = duration - timeelapsed;
 		self rotateto(angles, rotatetime, timein, timeout);
-		return 1;
+		return true;
 	}
 	self.angles = angles;
-	return 0;
+	return false;
 }
 
 /*

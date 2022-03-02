@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	callback::on_spawned(&on_player_spawned);
 	callback::function_98a0917d(&function_98a0917d);
@@ -82,13 +82,16 @@ function spectate_player_watcher()
 				}
 				self.watchingactiveclient = 1;
 			}
-			else if(self.watchingactiveclient)
+			else
 			{
-				[[level.onspawnspectator]]();
-				self val::set(#"spectate", "freezecontrols", 1);
-				self val::set(#"spectate", "disablegadgets", 1);
+				if(self.watchingactiveclient)
+				{
+					[[level.onspawnspectator]]();
+					self val::set(#"spectate", "freezecontrols", 1);
+					self val::set(#"spectate", "disablegadgets", 1);
+				}
+				self.watchingactiveclient = 0;
 			}
-			self.watchingactiveclient = 0;
 			wait(0.5);
 		}
 	}
@@ -255,17 +258,20 @@ function last_valid_position()
 		{
 			self.last_valid_position = origin;
 		}
-		else if(!ispointonnavmesh(origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(origin, self.last_valid_position) < (32 * 32))
-		{
-			wait(0.1);
-			continue;
-		}
 		else
 		{
-			position = getclosestpointonnavmesh(origin, 100, var_fab0ffd6);
-			if(isdefined(position))
+			if(!ispointonnavmesh(origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(origin, self.last_valid_position) < (32 * 32))
 			{
-				self.last_valid_position = position;
+				wait(0.1);
+				continue;
+			}
+			else
+			{
+				position = getclosestpointonnavmesh(origin, 100, var_fab0ffd6);
+				if(isdefined(position))
+				{
+					self.last_valid_position = position;
+				}
 			}
 		}
 		wait(0.1);

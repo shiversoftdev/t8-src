@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6eed28033e443596", &__init__, undefined, undefined);
 }
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	level thread function_afe4a356();
 }
@@ -83,7 +83,7 @@ function function_afe4a356()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level clientfield::set_world_uimodel("ZMHudGlobal.trials.hudDeactivated", 0);
 	level.var_dc60105c = undefined;

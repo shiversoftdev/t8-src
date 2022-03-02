@@ -455,7 +455,7 @@ function wait_till_match(array, str_notify, str_match, n_timeout)
 function _waitlogic_match(s_tracker, str_notify, str_match)
 {
 	self endon(#"death");
-	self waittill_match(str_match, str_notify);
+	self waittillmatch(str_match, str_notify);
 	update_waitlogic_tracker(s_tracker);
 }
 
@@ -917,7 +917,7 @@ function replace(array, value, replacement)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_80fe1cb6(a, b)
+function private function_80fe1cb6(a, b)
 {
 	return a === b;
 }
@@ -1305,10 +1305,10 @@ function is_touching(a_ents, e_volume)
 	{
 		if(!e_ent istouching(e_volume))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

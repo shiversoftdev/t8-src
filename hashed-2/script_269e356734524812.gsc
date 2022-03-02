@@ -283,28 +283,28 @@ function function_5650f4ee(var_7a594c78, var_55a94d2c, var_9fd9c93b, var_b854354
 	/#
 		if(var_55a94d2c == "")
 		{
-			return 1;
+			return true;
 		}
 		if(var_55a94d2c == "" && !var_b8543545)
 		{
-			return 0;
+			return false;
 		}
 		if(var_b8543545 && var_55a94d2c != "")
 		{
-			return 0;
+			return false;
 		}
 		if(var_55a94d2c == "" && var_7a594c78 != #"any")
 		{
 			if(var_7a594c78 == #"neutral" && isdefined(var_9fd9c93b))
 			{
-				return 0;
+				return false;
 			}
 			if(!(isdefined(var_9fd9c93b) && var_9fd9c93b == var_7a594c78))
 			{
-				return 0;
+				return false;
 			}
 		}
-		return 1;
+		return true;
 	#/
 }
 

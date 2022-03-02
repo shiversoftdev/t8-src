@@ -10,7 +10,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	_initializeblackboard();
 }
@@ -24,7 +24,7 @@ autoexec function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function _initializeblackboard()
+function private _initializeblackboard()
 {
 	level.__ai_blackboard = [];
 	level thread _updateevents();
@@ -39,7 +39,7 @@ private function _initializeblackboard()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function _updateevents()
+function private _updateevents()
 {
 	waittime = 1 * (float(function_60d95f53()) / 1000);
 	updatemillis = int(waittime * 1000);

@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2a62a00449e2e702", &__init__, undefined, undefined);
 }
@@ -236,11 +236,11 @@ function function_7374e868(weapon)
 	if(var_cd9d17e0)
 	{
 		self give_clip_of_ammo(weapon);
-		return 1;
+		return true;
 	}
 	if(!var_cd9d17e0)
 	{
-		return 0;
+		return false;
 	}
 }
 
@@ -302,7 +302,7 @@ function give_clip_of_ammo(w_weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7f7c1226(weapon)
+function private function_7f7c1226(weapon)
 {
 	waittillframeend();
 	if(weaponhasattachment(weapon, "uber") && weapon.statname == #"smg_capacity_t8" || (isdefined(weapon.isriotshield) && weapon.isriotshield))

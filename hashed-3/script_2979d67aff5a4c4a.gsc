@@ -151,13 +151,16 @@ function init_pack_a_punch()
 		{
 			exploder::exploder("lgtexp_pap_powerhouse_on");
 		}
-		else if(var_5e879929.script_string === "roof")
-		{
-			exploder::exploder("lgtexp_pap_rooftops_on");
-		}
 		else
 		{
-			exploder::exploder("lgtexp_pap_b64_on");
+			if(var_5e879929.script_string === "roof")
+			{
+				exploder::exploder("lgtexp_pap_rooftops_on");
+			}
+			else
+			{
+				exploder::exploder("lgtexp_pap_b64_on");
+			}
 		}
 		var_5e879929 zm_pack_a_punch::function_bb629351(1);
 		pap_quest::function_dc8a02bf(0, var_5e879929.script_string);

@@ -52,14 +52,17 @@ function function_d531af7d(client_num, state)
 			screen_to_display = level.magic_box_tv_on;
 		}
 	}
-	else if(state == "f")
-	{
-		screen_to_display = level._pentagon_fire_sale;
-	}
 	else
 	{
-		array_number = int(state);
-		screen_to_display = level.open_chest_location[array_number];
+		if(state == "f")
+		{
+			screen_to_display = level._pentagon_fire_sale;
+		}
+		else
+		{
+			array_number = int(state);
+			screen_to_display = level.open_chest_location[array_number];
+		}
 	}
 	stop_notify = "stop_tv_swap";
 	for(i = 0; i < level.var_c1947c95[client_num].size; i++)

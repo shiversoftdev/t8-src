@@ -198,25 +198,25 @@ function function_c9ef365d(placement)
 {
 	if(!isdefined(placement))
 	{
-		return 0;
+		return false;
 	}
 	if(!self isonground())
 	{
-		return 0;
+		return false;
 	}
 	if(self util::isusingremote())
 	{
-		return 0;
+		return false;
 	}
 	if(killstreaks::is_interacting_with_object())
 	{
-		return 0;
+		return false;
 	}
 	if(self oob::istouchinganyoobtrigger())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -236,21 +236,21 @@ function function_79942f1f(type)
 	player = self;
 	if(!player killstreakrules::iskillstreakallowed(type, player.team))
 	{
-		return 0;
+		return false;
 	}
 	if(player usebuttonpressed())
 	{
-		return 0;
+		return false;
 	}
 	bundle = level.killstreaks[type].script_bundle;
 	if(isdefined(bundle.var_1ab696c6) && (isdefined(bundle.var_1ab696c6.deployable) && bundle.var_1ab696c6.deployable) && !deployable::function_b3d993e9(bundle.var_1ab696c6, 1))
 	{
-		return 0;
+		return false;
 	}
 	killstreak_id = player killstreakrules::killstreakstart(type, player.team, 0, 1);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	vehicle = spawnvehicle(bundle.ksvehicle, player.var_b8878ba9, player.var_ddc03e10, type);
 	vehicle deployable::function_dd266e08(player);
@@ -283,11 +283,11 @@ function function_79942f1f(type)
 			vehicle notify(#"remote_weapon_shutdown");
 			vehicle function_1f46c433();
 		}
-		return 0;
+		return false;
 	}
 	if(!isdefined(vehicle))
 	{
-		return 0;
+		return false;
 	}
 	vehicle setvisibletoall();
 	vehicle.activatingkillstreak = 0;
@@ -295,7 +295,7 @@ function function_79942f1f(type)
 	ability_player::function_c22f319e(bundle.var_1ab696c6);
 	vehicle thread watch_game_ended();
 	vehicle waittill(#"death");
-	return 1;
+	return true;
 }
 
 /*
@@ -833,13 +833,13 @@ function function_e9da8b7d(einflictor, eattacker, smeansofdeath, weapon)
 {
 	if(isdefined(eattacker) && eattacker == self.owner)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(einflictor) && einflictor islinkedto(self))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1009,14 +1009,14 @@ function function_b4682bd6(origin, angles)
 	absmaxs = liftedorigin + maxs;
 	if(boundswouldtelefrag(absmins, absmaxs))
 	{
-		return 0;
+		return false;
 	}
 	startheight = function_e94c2667();
 	mask = (1 | 2) | 4;
 	trace = physicstrace(liftedorigin, origin + (0, 0, 1), mins, maxs, self, mask);
 	if(trace[#"fraction"] < 1)
 	{
-		return 0;
+		return false;
 	}
 	size = 2.5;
 	height = size * 2;
@@ -1025,8 +1025,8 @@ function function_b4682bd6(origin, angles)
 	sweeptrace = physicstrace(self.origin + (0, 0, startheight), liftedorigin, mins, maxs, self, mask);
 	if(sweeptrace[#"fraction"] < 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

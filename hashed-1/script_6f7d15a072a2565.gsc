@@ -27,7 +27,7 @@ function init_shared()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	if(function_f99d2668())
 	{

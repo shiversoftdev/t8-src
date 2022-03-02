@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_perk_electric_cherry", &__init__, undefined, undefined);
 }
@@ -162,15 +162,18 @@ function tesla_death_fx_callback(localclientnum, oldval, newval, bnewent, biniti
 			setfxignorepause(localclientnum, self.n_death_fx, 1);
 		}
 	}
-	else if(isdefined(self.n_death_fx))
+	else
 	{
-		deletefx(localclientnum, self.n_death_fx, 1);
-		self.n_death_fx = undefined;
-	}
-	if(isdefined(self.var_16e53a57))
-	{
-		self stoploopsound(self.var_16e53a57);
-		self.var_16e53a57 = undefined;
+		if(isdefined(self.n_death_fx))
+		{
+			deletefx(localclientnum, self.n_death_fx, 1);
+			self.n_death_fx = undefined;
+		}
+		if(isdefined(self.var_16e53a57))
+		{
+			self stoploopsound(self.var_16e53a57);
+			self.var_16e53a57 = undefined;
+		}
 	}
 }
 
@@ -217,20 +220,23 @@ function tesla_shock_eyes_fx_callback(localclientnum, oldval, newval, bnewent, b
 			setfxignorepause(localclientnum, self.n_shock_fx, 1);
 		}
 	}
-	else if(isdefined(self.n_shock_eyes_fx))
+	else
 	{
-		deletefx(localclientnum, self.n_shock_eyes_fx, 1);
-		self.n_shock_eyes_fx = undefined;
-	}
-	if(isdefined(self.n_shock_fx))
-	{
-		deletefx(localclientnum, self.n_shock_fx, 1);
-		self.n_shock_fx = undefined;
-	}
-	if(isdefined(self.var_16e53a57))
-	{
-		self stoploopsound(self.var_16e53a57);
-		self.var_16e53a57 = undefined;
+		if(isdefined(self.n_shock_eyes_fx))
+		{
+			deletefx(localclientnum, self.n_shock_eyes_fx, 1);
+			self.n_shock_eyes_fx = undefined;
+		}
+		if(isdefined(self.n_shock_fx))
+		{
+			deletefx(localclientnum, self.n_shock_fx, 1);
+			self.n_shock_fx = undefined;
+		}
+		if(isdefined(self.var_16e53a57))
+		{
+			self stoploopsound(self.var_16e53a57);
+			self.var_16e53a57 = undefined;
+		}
 	}
 }
 

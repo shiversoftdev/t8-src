@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_18932d2054c58cd0", &__init__, undefined, "bgb");
 }
@@ -84,12 +84,12 @@ function validation()
 	n_power = self gadgetpowerget(n_slot);
 	if(var_ac6ee9a0 == getweapon(#"tomahawk_t8") || var_ac6ee9a0 == getweapon(#"tomahawk_t8_upgraded") && self function_36dfc05f(n_slot))
 	{
-		return 0;
+		return false;
 	}
 	if(n_stock_size < n_clip_size || n_power < 100)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

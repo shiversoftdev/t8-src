@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_56a68c2250d5f4e3", &__init__, undefined, undefined);
 }
@@ -147,24 +147,30 @@ function function_db9b47b5(localclientnum, oldval, newval, bnewent, binitialsnap
 		self.var_2d6d5baa = util::playfxontag(localclientnum, level._effect[#"light_red"], self, "tag_eye_rt");
 		self.var_ab585fc = util::playfxontag(localclientnum, level._effect[#"light_red"], self, "tag_eye_lt");
 	}
-	else if(newval == 2)
+	else
 	{
-		self.var_a25a09ff = util::playfxontag(localclientnum, level._effect[#"hash_20080a107a8533e"], self, "tag_origin");
-	}
-	else if(isdefined(self.var_2d6d5baa))
-	{
-		killfx(localclientnum, self.var_2d6d5baa);
-		self.var_2d6d5baa = undefined;
-	}
-	if(isdefined(self.var_ab585fc))
-	{
-		killfx(localclientnum, self.var_ab585fc);
-		self.var_ab585fc = undefined;
-	}
-	if(isdefined(self.var_a25a09ff))
-	{
-		stopfx(localclientnum, self.var_a25a09ff);
-		self.var_a25a09ff = undefined;
+		if(newval == 2)
+		{
+			self.var_a25a09ff = util::playfxontag(localclientnum, level._effect[#"hash_20080a107a8533e"], self, "tag_origin");
+		}
+		else
+		{
+			if(isdefined(self.var_2d6d5baa))
+			{
+				killfx(localclientnum, self.var_2d6d5baa);
+				self.var_2d6d5baa = undefined;
+			}
+			if(isdefined(self.var_ab585fc))
+			{
+				killfx(localclientnum, self.var_ab585fc);
+				self.var_ab585fc = undefined;
+			}
+			if(isdefined(self.var_a25a09ff))
+			{
+				stopfx(localclientnum, self.var_a25a09ff);
+				self.var_a25a09ff = undefined;
+			}
+		}
 	}
 }
 

@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_75440eb9162352b6", &__init__, undefined, undefined);
 }
@@ -110,7 +110,7 @@ function on_localclient_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a4c14f8c(value)
+function private function_a4c14f8c(value)
 {
 	return value & 1;
 }
@@ -124,7 +124,7 @@ private function function_a4c14f8c(value)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ff16ec5f(value)
+function private function_ff16ec5f(value)
 {
 	return (~value) & 1;
 }
@@ -138,7 +138,7 @@ private function function_ff16ec5f(value)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_76a4b21e(value)
+function private function_76a4b21e(value)
 {
 	return value >> 1;
 }
@@ -152,7 +152,7 @@ private function function_76a4b21e(value)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6c4ae982(localclientnum)
+function private function_6c4ae982(localclientnum)
 {
 	var_d5823792 = 0;
 	var_b9d612e8 = 0;
@@ -219,15 +219,18 @@ function function_ed1567cc(localclientnum, oldval, newval, bnewent, binitialsnap
 		self playsound(0, #"hash_329be5a324e42ee1");
 		level notify(#"hash_5975d5f569535c41");
 	}
-	else if(1)
-	{
-		self function_d309e55a("tag_cargo_ramp_control_animate", 0);
-		self function_d309e55a("tag_door_left_control_animate", 0);
-		self function_d309e55a("tag_door_right_control_animate", 0);
-	}
 	else
 	{
-		self function_d309e55a("tag_ramp_control_animate", 0);
+		if(1)
+		{
+			self function_d309e55a("tag_cargo_ramp_control_animate", 0);
+			self function_d309e55a("tag_door_left_control_animate", 0);
+			self function_d309e55a("tag_door_right_control_animate", 0);
+		}
+		else
+		{
+			self function_d309e55a("tag_ramp_control_animate", 0);
+		}
 	}
 }
 
@@ -301,7 +304,7 @@ function function_ea3cc318(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8c515e6(player)
+function private function_8c515e6(player)
 {
 	self notify("23c1f5278d3016e8");
 	self endon("23c1f5278d3016e8");
@@ -335,16 +338,19 @@ function function_a67b1f40(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		player camerasetupdatecallback();
 	}
-	else if(newval == 1)
+	else
 	{
-		self camerasetupdatecallback(&function_cbe63de1);
-		self thread function_8c515e6(player);
-		player function_ec94346();
-	}
-	else if(newval == 2)
-	{
-		self camerasetupdatecallback(&function_c8ea4bcc);
-		self thread function_8c515e6(player);
+		if(newval == 1)
+		{
+			self camerasetupdatecallback(&function_cbe63de1);
+			self thread function_8c515e6(player);
+			player function_ec94346();
+		}
+		else if(newval == 2)
+		{
+			self camerasetupdatecallback(&function_c8ea4bcc);
+			self thread function_8c515e6(player);
+		}
 	}
 }
 
@@ -370,16 +376,19 @@ function function_7bac6764(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		player camerasetupdatecallback();
 	}
-	else if(value == 1)
+	else
 	{
-		self camerasetupdatecallback(&function_cbe63de1);
-		self thread function_8c515e6(player);
-		player function_ec94346();
-	}
-	else if(value == 2)
-	{
-		self camerasetupdatecallback(&function_c8ea4bcc);
-		self thread function_8c515e6(player);
+		if(value == 1)
+		{
+			self camerasetupdatecallback(&function_cbe63de1);
+			self thread function_8c515e6(player);
+			player function_ec94346();
+		}
+		else if(value == 2)
+		{
+			self camerasetupdatecallback(&function_c8ea4bcc);
+			self thread function_8c515e6(player);
+		}
 	}
 }
 
@@ -783,7 +792,7 @@ function inside_infiltration_vehicle(localclientnum, oldval, newval, bnewent, bi
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_c9851cb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_c9851cb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -804,7 +813,7 @@ private function function_c9851cb(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_9767bbd8(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_9767bbd8(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	playfx(localclientnum, #"hash_3697b0b0d7cd6874", self.origin);
 }
@@ -818,7 +827,7 @@ private function function_9767bbd8(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_c0c7c219(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_c0c7c219(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -830,10 +839,13 @@ private function function_c0c7c219(localclientnum, oldval, newval, bnewent, bini
 		}
 		self.var_227361c6 = playfx(localclientnum, #"hash_28b5c6ccaabb4afe", self.origin);
 	}
-	else if(isdefined(self.var_227361c6))
+	else
 	{
-		stopfx(localclientnum, self.var_227361c6);
+		if(isdefined(self.var_227361c6))
+		{
+			stopfx(localclientnum, self.var_227361c6);
+		}
+		self.var_227361c6 = playfx(localclientnum, #"hash_45086f1ffcabbf47", self.origin);
 	}
-	self.var_227361c6 = playfx(localclientnum, #"hash_45086f1ffcabbf47", self.origin);
 }
 

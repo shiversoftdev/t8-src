@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"vehicle", &__init__, undefined, undefined);
 }
@@ -77,7 +77,7 @@ function player_is_driver()
 {
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	vehicle = self getvehicleoccupied();
 	if(isdefined(vehicle))
@@ -85,10 +85,10 @@ function player_is_driver()
 		seat = vehicle getoccupantseat(self);
 		if(isdefined(seat) && seat == 0)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

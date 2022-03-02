@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"globallogic_ui", &__init__, undefined, undefined);
 }
@@ -152,10 +152,10 @@ function teamplayercountsequal(playercounts)
 		}
 		if(count != playercounts[team])
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -200,78 +200,81 @@ function menuautoassign(comingfrommenu)
 	{
 		assignment = #"allies";
 	}
-	else if(level.teambased)
+	else
 	{
-		if(getdvarint(#"party_autoteams", 0) == 1)
+		if(level.teambased)
 		{
-			if(level.allow_teamchange && (self.hasspawned || comingfrommenu))
+			if(getdvarint(#"party_autoteams", 0) == 1)
 			{
-				assignment = "";
-			}
-			else
-			{
-				team = getassignedteam(self);
-				switch(team)
+				if(level.allow_teamchange && (self.hasspawned || comingfrommenu))
 				{
-					case 1:
+					assignment = "";
+				}
+				else
+				{
+					team = getassignedteam(self);
+					switch(team)
 					{
-						assignment = teamkeys[1];
-						break;
-					}
-					case 2:
-					{
-						assignment = teamkeys[0];
-						break;
-					}
-					case 3:
-					{
-						assignment = teamkeys[2];
-						break;
-					}
-					case 4:
-					{
-						if(!isdefined(level.forceautoassign) || !level.forceautoassign)
+						case 1:
 						{
-							return;
+							assignment = teamkeys[1];
+							break;
 						}
-					}
-					default:
-					{
-						assignment = "";
-						if(isdefined(level.teams[team]))
+						case 2:
 						{
-							assignment = team;
+							assignment = teamkeys[0];
+							break;
 						}
-						else if(team == "spectator" && !level.forceautoassign)
+						case 3:
 						{
-							return;
+							assignment = teamkeys[2];
+							break;
+						}
+						case 4:
+						{
+							if(!isdefined(level.forceautoassign) || !level.forceautoassign)
+							{
+								return;
+							}
+						}
+						default:
+						{
+							assignment = "";
+							if(isdefined(level.teams[team]))
+							{
+								assignment = team;
+							}
+							else if(team == "spectator" && !level.forceautoassign)
+							{
+								return;
+							}
 						}
 					}
 				}
 			}
-		}
-		if(assignment == "" || getdvarint(#"party_autoteams", 0) == 0)
-		{
-			assignment = #"allies";
-		}
-		if(assignment == self.pers[#"team"] && (self.sessionstate == "playing" || self.sessionstate == "dead"))
-		{
-			self beginclasschoice();
-			return;
-		}
-	}
-	else if(getdvarint(#"party_autoteams", 0) == 1)
-	{
-		if(!level.allow_teamchange || (!self.hasspawned && !comingfrommenu))
-		{
-			team = getassignedteam(self);
-			if(isdefined(level.teams[team]))
+			if(assignment == "" || getdvarint(#"party_autoteams", 0) == 0)
 			{
-				assignment = team;
+				assignment = #"allies";
 			}
-			else if(team == "spectator" && !level.forceautoassign)
+			if(assignment == self.pers[#"team"] && (self.sessionstate == "playing" || self.sessionstate == "dead"))
 			{
+				self beginclasschoice();
 				return;
+			}
+		}
+		else if(getdvarint(#"party_autoteams", 0) == 1)
+		{
+			if(!level.allow_teamchange || (!self.hasspawned && !comingfrommenu))
+			{
+				team = getassignedteam(self);
+				if(isdefined(level.teams[team]))
+				{
+					assignment = team;
+				}
+				else if(team == "spectator" && !level.forceautoassign)
+				{
+					return;
+				}
 			}
 		}
 	}
@@ -324,10 +327,10 @@ function teamscoresequal()
 		}
 		if(score != getteamscore(team))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

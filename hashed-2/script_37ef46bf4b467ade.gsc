@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_62481f126a275788", &function_f0f91440, undefined, undefined);
 }
@@ -431,7 +431,7 @@ function function_91bb8595(var_32a420b0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3ab6779c(localclientnum, var_44146a38)
+function private function_3ab6779c(localclientnum, var_44146a38)
 {
 	if(util::is_mature())
 	{
@@ -452,7 +452,7 @@ private function function_3ab6779c(localclientnum, var_44146a38)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3386e437(gibflag)
+function private function_3386e437(gibflag)
 {
 	gib_model = undefined;
 	if(isdefined(self.archetype) && self.archetype == #"nova_crawler")
@@ -527,7 +527,7 @@ private function function_3386e437(gibflag)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_c4fded40(localclientnum, tag_name, gibflag, var_44146a38)
+function private function_c4fded40(localclientnum, tag_name, gibflag, var_44146a38)
 {
 	var_32a420b0 = self gettagorigin(tag_name);
 	if(!self gibclientutils::isgibbed(localclientnum, self, gibflag) && isdefined(var_32a420b0))

@@ -132,7 +132,7 @@ function supplydrop_ai_tank_state(localclientnum, oldval, newval, bnewent, binit
 */
 function updatemarkerthread(localclientnum)
 {
-	self endon_callback(&function_724944f0, #"death");
+	self endoncallback(&function_724944f0, #"death");
 	player = self;
 	killstreakcorebundle = struct::get_script_bundle("killstreak", "killstreak_core");
 	while(isdefined(player.markerobj))
@@ -277,13 +277,16 @@ function marker_state_changed(localclientnum, oldval, newval, bnewent, binitials
 	{
 		player.markerfx = killstreakcorebundle.fxvalidlocation;
 	}
-	else if(newval == 2)
-	{
-		player.markerfx = killstreakcorebundle.fxinvalidlocation;
-	}
 	else
 	{
-		player.markerfx = undefined;
+		if(newval == 2)
+		{
+			player.markerfx = killstreakcorebundle.fxinvalidlocation;
+		}
+		else
+		{
+			player.markerfx = undefined;
+		}
 	}
 	if(isdefined(player.markerobj) && !player.markerobj hasdobj(localclientnum))
 	{

@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"wave_spawn", &__init__, undefined, undefined);
 }
@@ -75,7 +75,7 @@ function function_301b775b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a27362d0(params)
+function private function_a27362d0(params)
 {
 	if(level.var_52b56362 >= (level.var_fb91af8.size - 2))
 	{
@@ -187,7 +187,7 @@ function function_a7ed6d54(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_14a68e0b()
+function private function_14a68e0b()
 {
 	if(isdefined(level.var_1766510) && level.var_1766510)
 	{

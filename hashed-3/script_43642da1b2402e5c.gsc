@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1f1fd12b1b87ef2c", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	level.var_375482b5 = 1;
 	callback::on_ai_killed(&on_ai_killed);
@@ -78,7 +78,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_375482b5 = undefined;
 	callback::remove_on_ai_killed(&on_ai_killed);
@@ -97,7 +97,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function refill_ammo()
+function private refill_ammo()
 {
 	self notify("416a437667c7c600");
 	self endon("416a437667c7c600");
@@ -133,7 +133,7 @@ private function refill_ammo()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_963b8c82()
+function private function_963b8c82()
 {
 	foreach(weapon in zm_loadout::function_5a5a742a("tactical_grenade"))
 	{
@@ -158,7 +158,7 @@ private function function_963b8c82()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{
@@ -195,7 +195,7 @@ private function function_33f0ddd3(s_event)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_29ee24dd()
+function private function_29ee24dd()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -248,7 +248,7 @@ function is_active()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_ai_killed(params)
+function private on_ai_killed(params)
 {
 	if(isplayer(params.eattacker) && params.smeansofdeath === "MOD_MELEE")
 	{
@@ -265,7 +265,7 @@ private function on_ai_killed(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_af55104(var_f2c84b6b)
+function private function_af55104(var_f2c84b6b)
 {
 	self notify("70d94e798e24bb1e");
 	self endon("70d94e798e24bb1e");

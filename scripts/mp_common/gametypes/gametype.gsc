@@ -91,7 +91,7 @@ function on_round_switch()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_788fb510(value)
+function private function_788fb510(value)
 {
 	if(!isdefined(value))
 	{

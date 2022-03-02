@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"bot", &__init__, undefined, undefined);
 }
@@ -68,7 +68,7 @@ function __init__()
 */
 function is_bot_ranked_match()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -98,13 +98,16 @@ function add_bot(team, name = undefined, clanabbrev = undefined)
 	{
 		bot.botteam = team;
 	}
-	else if(isdefined(team) && team == #"spectator")
-	{
-		bot.botteam = #"spectator";
-	}
 	else
 	{
-		bot.botteam = "autoassign";
+		if(isdefined(team) && team == #"spectator")
+		{
+			bot.botteam = #"spectator";
+		}
+		else
+		{
+			bot.botteam = "autoassign";
+		}
 	}
 	return bot;
 }
@@ -544,13 +547,16 @@ function on_player_spawned()
 	{
 		self bot_chain::function_34a84039();
 	}
-	else if(ai::getaiattribute(self, "control") === "autonomous" && isdefined(self.bot.var_bd883a25))
-	{
-		self setgoal(self.bot.var_bd883a25, self.bot.var_4e3a654);
-	}
 	else
 	{
-		self setgoal(self.origin);
+		if(ai::getaiattribute(self, "control") === "autonomous" && isdefined(self.bot.var_bd883a25))
+		{
+			self setgoal(self.bot.var_bd883a25, self.bot.var_4e3a654);
+		}
+		else
+		{
+			self setgoal(self.origin);
+		}
 	}
 	self function_acc4267f();
 	if(isdefined(level.onbotspawned))
@@ -789,18 +795,24 @@ function function_23c46f6e()
 			self function_6c280dfe();
 		}
 	}
-	else if(self function_914feddd())
+	else
 	{
-	}
-	else if(self function_43a720c7())
-	{
-	}
-	else if(self function_6b107944())
-	{
-		/#
-			self botprinterror("");
-		#/
-		self function_6c280dfe();
+		if(self function_914feddd())
+		{
+		}
+		else
+		{
+			if(self function_43a720c7())
+			{
+			}
+			else if(self function_6b107944())
+			{
+				/#
+					self botprinterror("");
+				#/
+				self function_6c280dfe();
+			}
+		}
 	}
 }
 
@@ -917,12 +929,15 @@ function update_swim()
 			self.bot.resurfacetime = gettime() + (int((self.playerrole.swimtime - 1) * 1000));
 		}
 	}
-	else if(isdefined(self.bot.resurfacetime) && (gettime() - self.bot.resurfacetime) < (int(2 * 1000)))
+	else
 	{
-		self bottapbutton(67);
-		return;
+		if(isdefined(self.bot.resurfacetime) && (gettime() - self.bot.resurfacetime) < (int(2 * 1000)))
+		{
+			self bottapbutton(67);
+			return;
+		}
+		self.bot.resurfacetime = undefined;
 	}
-	self.bot.resurfacetime = undefined;
 	if(self botundermanualcontrol())
 	{
 		return;
@@ -1361,7 +1376,7 @@ function in_combat()
 {
 	if(!isdefined(self.enemy))
 	{
-		return 0;
+		return false;
 	}
 	switch(self.combatstate)
 	{
@@ -1369,10 +1384,10 @@ function in_combat()
 		case "combat_state_in_combat":
 		case "combat_state_has_visible_enemy":
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1441,21 +1456,21 @@ function function_343d7ef4()
 {
 	if(!isbot(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self isinvehicle())
 	{
 		vehicle = self getvehicleoccupied();
 		if(isdefined(vehicle.goalforced) && vehicle.goalforced || (isdefined(vehicle.ignoreall) && vehicle.ignoreall))
 		{
-			return 0;
+			return false;
 		}
 	}
 	else if(self.ignoreall)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1618,14 +1633,14 @@ function function_e0aceb0c(tacbundle, dvarstr)
 		/#
 			self record_text("", (1, 0, 0), dvarstr);
 		#/
-		return 0;
+		return false;
 	}
 	if(self isreloading())
 	{
 		/#
 			self record_text("", (1, 0, 0), dvarstr);
 		#/
-		return 0;
+		return false;
 	}
 	weapon = self getcurrentweapon();
 	if(weapon != level.weaponnone && self getweaponammoclip(weapon) <= 0)
@@ -1633,9 +1648,9 @@ function function_e0aceb0c(tacbundle, dvarstr)
 		/#
 			self record_text("", (1, 0, 0), dvarstr);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1684,9 +1699,9 @@ function function_e2c892a5(lefthand = 0)
 	if(function_a7106162(lefthand))
 	{
 		function_b78e1ebf(lefthand);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2723,17 +2738,23 @@ function function_d45e8714()
 		{
 			desc = "";
 		}
-		else if(self function_914feddd())
+		else
 		{
-			desc = "";
-		}
-		else if(self function_e8a17817())
-		{
-			desc = "";
-		}
-		else if(self function_ca9fb875())
-		{
-			desc = "";
+			if(self function_914feddd())
+			{
+				desc = "";
+			}
+			else
+			{
+				if(self function_e8a17817())
+				{
+					desc = "";
+				}
+				else if(self function_ca9fb875())
+				{
+					desc = "";
+				}
+			}
 		}
 		if(isdefined(var_dda174e9))
 		{
@@ -3093,7 +3114,7 @@ function remove_best_bot(players)
 	bots = filter_bots(players);
 	if(!bots.size)
 	{
-		return 0;
+		return false;
 	}
 	bestbots = [];
 	foreach(bot in bots)
@@ -3115,6 +3136,6 @@ function remove_best_bot(players)
 	{
 		remove_bot(bots[randomint(bots.size)]);
 	}
-	return 1;
+	return true;
 }
 

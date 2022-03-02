@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"seeker_mine", &__init__, undefined, undefined);
 }
@@ -50,9 +50,7 @@ function __init__()
 	clientfield::register("vehicle", "seeker_mine_light_fx", 1, 1, "int");
 	if(!isdefined(level.var_477515d3))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_477515d3 = object;
+		level.var_477515d3 = new throttle();
 		[[ level.var_477515d3 ]]->initialize(1, 0.1);
 	}
 	/#
@@ -96,9 +94,9 @@ function is_in_water(location)
 	inwater = depth > var_8a7edebd;
 	if(inwater)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -143,7 +141,12 @@ function function_b23e4b45()
 			recordsphere(self.origin, 3, (1, 0, 0), "");
 		#/
 	}
-	recordsphere(self.origin, 3, (0, 1, 0), "");
+	else
+	{
+		/#
+			recordsphere(self.origin, 3, (0, 1, 0), "");
+		#/
+	}
 	if(!ispointonnavmesh)
 	{
 		newpos = undefined;
@@ -281,7 +284,7 @@ function function_d3a9800e()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d39f1cf2()
+function private function_d39f1cf2()
 {
 	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(trace[#"entity"]))
@@ -289,10 +292,10 @@ private function function_d39f1cf2()
 		entity = trace[#"entity"];
 		if(entity ismovingplatform())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -304,14 +307,14 @@ private function function_d39f1cf2()
 	Parameters: 0
 	Flags: Private
 */
-private function function_23d1cec2()
+function private function_23d1cec2()
 {
 	result = function_9cc082d2(self.origin + vectorscale((0, 0, 1), 100), 400);
 	if(isdefined(result))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -443,7 +446,7 @@ function waittill_pathing_done(maxtime = 15)
 {
 	self endon(#"death", #"change_state");
 	result = undefined;
-	result = self waittill_timeout(maxtime, #"near_goal", #"hash_f6b2d6a37e22523", #"switch_enemy");
+	result = self waittilltimeout(maxtime, #"near_goal", #"hash_f6b2d6a37e22523", #"switch_enemy");
 }
 
 /*
@@ -466,11 +469,11 @@ function function_33d3892a()
 			path = generatenavmeshpath(self.origin, targetpos, self, undefined, undefined, var_80a2ada4);
 			if(isdefined(path) && path.status === "succeeded")
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -486,7 +489,7 @@ function chase_enemy()
 {
 	if(isdefined(self.favoriteenemy) && function_9ba314a1(self.favoriteenemy))
 	{
-		return 0;
+		return false;
 	}
 	targetpos = function_3acf1c61();
 	if(isdefined(targetpos))
@@ -494,10 +497,10 @@ function chase_enemy()
 		if(self function_a57c34b7(targetpos, 0, 1))
 		{
 			self.current_pathto_pos = targetpos;
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -730,7 +733,7 @@ function function_c82edc1a()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d00f14e3()
+function private function_d00f14e3()
 {
 	self endon(#"death");
 	self.ai.var_b0f9c1a3 = gettime();
@@ -750,17 +753,17 @@ private function function_d00f14e3()
 	Parameters: 0
 	Flags: Private
 */
-private function function_112a6b52()
+function private function_112a6b52()
 {
 	if(!isdefined(self.ai.var_b0f9c1a3))
 	{
-		return 0;
+		return false;
 	}
 	if(gettime() <= self.ai.var_b0f9c1a3)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -772,7 +775,7 @@ private function function_112a6b52()
 	Parameters: 0
 	Flags: Private
 */
-private function function_2651fb42()
+function private function_2651fb42()
 {
 	self endon(#"death");
 	while(true)
@@ -799,7 +802,7 @@ private function function_2651fb42()
 	Parameters: 0
 	Flags: Private
 */
-private function function_82e5be34()
+function private function_82e5be34()
 {
 	self endon(#"death");
 	self endon(#"change_state");
@@ -832,13 +835,13 @@ function function_d15dd929(radius, origin)
 	result = function_9cc082d2(origin + vectorscale((0, 0, 1), 100), 200);
 	if(isdefined(result) && isdefined(result[#"hash_556255be476284b3"]) && result[#"hash_556255be476284b3"] & 2)
 	{
-		return 0;
+		return false;
 	}
 	if(!ispointonnavmesh(origin, radius, 1))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -944,34 +947,37 @@ function function_3e16dec3(params)
 					}
 				}
 			}
-			else if(isdefined(level.var_6cfbe5a))
+			else
 			{
-				[[ level.var_6cfbe5a ]]->waitinqueue(self);
-			}
-			newpos = getclosestpointonnavmesh(self.origin, 1000, 10);
-			if(isdefined(newpos))
-			{
-				var_68860686 = ai::t_cylinder(self.origin, 400, 60);
-				cylinder = ai::t_cylinder(self.origin, 1500, 150);
-				tacpoints = tacticalquery("mp_seeker_seek_no_enemy_fallback", newpos, self, var_68860686, cylinder);
-				tacpoints = damage_armor_activati_(self, tacpoints);
-				if(isdefined(tacpoints) && tacpoints.size != 0)
+				if(isdefined(level.var_6cfbe5a))
 				{
-					/#
-						record3dtext("", self.origin - vectorscale((0, 0, 1), 20), (1, 0, 0));
-					#/
-					newpos = tacpoints[0].origin;
-					newpos = getclosestpointonnavmesh(newpos, 500, self getpathfindingradius() * 1.2);
-					if(isdefined(newpos))
+					[[ level.var_6cfbe5a ]]->waitinqueue(self);
+				}
+				newpos = getclosestpointonnavmesh(self.origin, 1000, 10);
+				if(isdefined(newpos))
+				{
+					var_68860686 = ai::t_cylinder(self.origin, 400, 60);
+					cylinder = ai::t_cylinder(self.origin, 1500, 150);
+					tacpoints = tacticalquery("mp_seeker_seek_no_enemy_fallback", newpos, self, var_68860686, cylinder);
+					tacpoints = damage_armor_activati_(self, tacpoints);
+					if(isdefined(tacpoints) && tacpoints.size != 0)
 					{
-						if(self function_a57c34b7(newpos, 0, 1))
+						/#
+							record3dtext("", self.origin - vectorscale((0, 0, 1), 20), (1, 0, 0));
+						#/
+						newpos = tacpoints[0].origin;
+						newpos = getclosestpointonnavmesh(newpos, 500, self getpathfindingradius() * 1.2);
+						if(isdefined(newpos))
 						{
-							self waittill_pathing_done(2);
-						}
-						else
-						{
-							self function_a57c34b7(newpos, 0, 0);
-							self waittill_pathing_done(2);
+							if(self function_a57c34b7(newpos, 0, 1))
+							{
+								self waittill_pathing_done(2);
+							}
+							else
+							{
+								self function_a57c34b7(newpos, 0, 0);
+								self waittill_pathing_done(2);
+							}
 						}
 					}
 				}
@@ -995,9 +1001,9 @@ function function_ab9a9770(target)
 	results = groundtrace(target.origin + vectorscale((0, 0, 1), 70), target.origin + (vectorscale((0, 0, -1), 100)), 0, target);
 	if(isdefined(results) && isdefined(results[#"entity"]) && results[#"entity"] ismovingplatform())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1015,82 +1021,82 @@ function function_9ba314a1(target)
 	{
 		if(!isalive(target))
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(target.var_4233f7e5) && target.var_4233f7e5)
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(target.var_bb257569) && gettime() < target.var_bb257569)
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(target.currentweapon))
 		{
 			shield = getweapon(#"sig_buckler_dw");
 			if(isdefined(shield) && target.currentweapon == shield)
 			{
-				return 1;
+				return true;
 			}
 			shield = getweapon(#"hash_17f9f60ce4ea5074");
 			if(isdefined(shield) && target.currentweapon == shield)
 			{
-				return 1;
+				return true;
 			}
 			shield = getweapon(#"hash_24840aebcc206215");
 			if(isdefined(shield) && target.currentweapon == shield)
 			{
-				return 1;
+				return true;
 			}
 		}
 		if(function_ab9a9770(target))
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(target.isplanting) && target.isplanting || (isdefined(target.isdefusing) && target.isdefusing) || target oob::isoutofbounds())
 		{
-			return 1;
+			return true;
 		}
 		if(target laststand::player_is_in_laststand())
 		{
-			return 1;
+			return true;
 		}
 		if(target isremotecontrolling() || isdefined(target.holding_placeable))
 		{
-			return 1;
+			return true;
 		}
 		if(target isinvehicle())
 		{
-			return 1;
+			return true;
 		}
 		if(target player::is_spawn_protected())
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(target.var_beee9523) && target.var_beee9523)
 		{
-			return 1;
+			return true;
 		}
 		if(target isgrappling())
 		{
-			return 1;
+			return true;
 		}
 		if(target depthinwater() >= 30 || target isplayerswimming())
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(target.var_dda9b735) && (isdefined(target.var_dda9b735.isshocked) && target.var_dda9b735.isshocked))
 		{
-			return 1;
+			return true;
 		}
 		if(target hasperk(#"specialty_nottargetedbyraps") && !isdefined(level.var_91a1cd89))
 		{
 			var_87c0ec9c = distancesquared(target.origin, self.origin);
 			if(var_87c0ec9c <= 15625)
 			{
-				return 0;
+				return false;
 			}
-			return 1;
+			return true;
 		}
 	}
 	target_pos_onnavmesh = undefined;
@@ -1099,10 +1105,10 @@ function function_9ba314a1(target)
 		target_pos_onnavmesh = getclosestpointonnavmesh(target.origin, self.settings.var_c694bbbf * 1.5, self getpathfindingradius() * 1.2, 4194287);
 		if(!isdefined(target_pos_onnavmesh))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1265,7 +1271,7 @@ function function_d55a99f2(var_4700521d = 500, var_53050fec = 1, var_30336a7c = 
 {
 	if(var_53050fec && function_23d1cec2())
 	{
-		return 1;
+		return true;
 	}
 	/#
 		record3dtext("", self.origin - vectorscale((0, 0, 1), 20), (1, 0, 0));
@@ -1279,7 +1285,7 @@ function function_d55a99f2(var_4700521d = 500, var_53050fec = 1, var_30336a7c = 
 			newpos = trace[#"position"];
 			if(var_30336a7c && !sighttracepassed(self.origin, newpos, 0, self))
 			{
-				return 0;
+				return false;
 			}
 			/#
 				record3dtext("", self.origin - vectorscale((0, 0, 1), 20), (0, 0, 1));
@@ -1289,9 +1295,9 @@ function function_d55a99f2(var_4700521d = 500, var_53050fec = 1, var_30336a7c = 
 			#/
 		}
 		self.origin = newpos;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

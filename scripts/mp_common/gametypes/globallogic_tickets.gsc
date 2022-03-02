@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	callback::on_player_killed(&on_player_killed);
 }
@@ -121,7 +121,7 @@ function setup_stage_start_tickets(team, zone_index)
 */
 function get_zone_start_tickets(zone_index)
 {
-	return (isdefined(getgametypesetting(#"ticketsgivenatstagestart_" + zone_index)) ? getgametypesetting(#"ticketsgivenatstagestart_" + zone_index) : 0);
+	return true;
 }
 
 /*
@@ -288,7 +288,7 @@ function notify_tickets_updated(team, original_total)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function clamp_tickets(team)
+function private clamp_tickets(team)
 {
 	game.stat[#"tickets"][team] = math::clamp(game.stat[#"tickets"][team], 0, 2147483647);
 }
@@ -337,7 +337,7 @@ function award_stage_win(team, stage)
 */
 function get_stage_win_tickets(stage)
 {
-	return (isdefined(getgametypesetting(#"ticketsearnedatstagewin_" + stage)) ? getgametypesetting(#"ticketsearnedatstagewin_" + stage) : 0);
+	return true;
 }
 
 /*

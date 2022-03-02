@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_21e6bbd00961a975", &__init__, undefined, undefined);
 }
@@ -59,7 +59,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	str_targetname = "trials_lighthouse_beam";
 	level setup_lighthouse();
@@ -80,7 +80,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level notify(#"hash_2b53ed06a97eb26c");
 	level.var_ab11c23d function_f223e16f(round_reset);
@@ -104,7 +104,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function setup_lighthouse()
+function private setup_lighthouse()
 {
 	level notify(#"hash_661044fd7c7faa55");
 	if(level.var_7d8bf93f zm_pack_a_punch::is_on())
@@ -208,7 +208,7 @@ function function_dbad2f5a()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b502c51(nd_start)
+function private function_b502c51(nd_start)
 {
 	self endon(#"death", #"hash_2b53ed06a97eb26c");
 	while(true)
@@ -265,7 +265,7 @@ function function_f223e16f(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1e902f3b()
+function private function_1e902f3b()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -306,9 +306,9 @@ function function_91f0d131()
 	n_distance = distancesquared(level.var_ab11c23d.vh_target.origin, self.origin);
 	if(n_distance < 30000)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -320,7 +320,7 @@ function function_91f0d131()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

@@ -106,14 +106,17 @@ function update_sound(local_client_num, bnewent, newval, oldval)
 			self thread sndproxalert_entcleanup(local_client_num, self._proximity_alarm_snd_ent);
 		}
 	}
-	else if(newval == 1)
+	else
 	{
-	}
-	else if(newval == 0 && isdefined(oldval) && oldval != newval)
-	{
-		if(isdefined(self._proximity_alarm_snd_ent))
+		if(newval == 1)
 		{
-			self._proximity_alarm_snd_ent stopallloopsounds(0.5);
+		}
+		else if(newval == 0 && isdefined(oldval) && oldval != newval)
+		{
+			if(isdefined(self._proximity_alarm_snd_ent))
+			{
+				self._proximity_alarm_snd_ent stopallloopsounds(0.5);
+			}
 		}
 	}
 }
@@ -195,13 +198,13 @@ function function_f89c4b81()
 {
 	if(isdefined(self.weapon) && self.weapon.statname == #"ac130")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.weapon) && self.weapon.statname == #"tr_flechette_t8")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -236,22 +239,22 @@ function function_6a5648dc(local_client_num, bundle)
 {
 	if(!self function_4e0ca360() || self.team === #"free")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.vision_pulse[local_client_num]) && level.vision_pulse[local_client_num])
 	{
-		return 0;
+		return false;
 	}
 	player = function_5c10bd79(local_client_num);
 	if(self == player)
 	{
-		return 0;
+		return false;
 	}
 	if(player.var_33b61b6f === 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -267,30 +270,33 @@ function function_232f3acf(local_client_num, bundle)
 {
 	if(self function_4e0ca360() && self.team !== #"free")
 	{
-		return 0;
+		return false;
 	}
 	if(self.var_6abc296 === 1)
 	{
-		return 1;
+		return true;
 	}
 	type = self.type;
 	if(type == "missile" || type == "scriptmover" && self clientfield::get("enemyequip") === 0)
 	{
-		return 0;
+		return false;
 	}
 	if(function_f99d2668())
 	{
 		if(function_5778f82(local_client_num, #"specialty_showenemyequipment") && (isdefined(self.var_f19b4afd) && self.var_f19b4afd))
 		{
-			return 1;
+			return true;
 		}
 	}
-	else if(function_5778f82(local_client_num, #"specialty_showenemyequipment"))
+	else
 	{
-		return 1;
+		if(function_5778f82(local_client_num, #"specialty_showenemyequipment"))
+		{
+			return true;
+		}
+		bundle.var_1a5b7293 = 1;
 	}
-	bundle.var_1a5b7293 = 1;
-	return 0;
+	return false;
 }
 
 /*

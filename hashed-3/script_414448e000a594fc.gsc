@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_695cd3bbff366240", &__init__, undefined, undefined);
 }
@@ -76,7 +76,7 @@ function function_3675de8b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_955a779c(params)
+function private function_955a779c(params)
 {
 	self endon(#"death", #"disconnect", #"begin_grenade_tracking", #"grenade_throw_cancelled");
 	if(!isdefined(params.item) || !isdefined(params.item.var_a6762160) || !isdefined(params.item.var_a6762160.weapon) || params.item.var_a6762160.weapon.name != #"eq_hawk")
@@ -110,7 +110,7 @@ function function_6ada73f(spawnpos)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_900bb4f5(params)
+function private function_900bb4f5(params)
 {
 	if(isdefined(self))
 	{
@@ -363,29 +363,29 @@ function function_d89c1628(vehicle)
 {
 	if(!(isdefined(vehicle.var_d733e01c) && vehicle.var_d733e01c))
 	{
-		return 0;
+		return false;
 	}
 	if(self isremotecontrolling() || self util::isusingremote())
 	{
-		return 0;
+		return false;
 	}
 	if(self.hawk.var_a3b23d12)
 	{
-		return 0;
+		return false;
 	}
 	if(!self fragbuttonpressed())
 	{
-		return 0;
+		return false;
 	}
 	if(self function_15049d95())
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -397,7 +397,7 @@ function function_d89c1628(vehicle)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1eddba48()
+function private function_1eddba48()
 {
 	if(!isdefined(self) || !isdefined(self.hawk) || !isdefined(self.hawk.vehicle) || self.hawk.vehicle.var_55dded30 !== self)
 	{

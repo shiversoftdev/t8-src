@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_45a212c0()
+function autoexec function_45a212c0()
 {
 	var_a12b4736 = &namespace_b0722f43::function_96ff7b88;
 	var_d2223309 = &namespace_b0722f43::function_261ab7f5;

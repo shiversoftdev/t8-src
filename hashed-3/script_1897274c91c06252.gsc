@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_37a1eb5ecb8d6c9f", &__init__, undefined, #"hash_26aeac851e7602d1");
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_582a3075(localclientnum)
+function private function_582a3075(localclientnum)
 {
 	if(!isdefined(self._effect))
 	{
@@ -80,7 +80,7 @@ private function function_582a3075(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_be621cc7(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_be621cc7(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newval === 1)
 	{
@@ -102,7 +102,7 @@ private function function_be621cc7(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_18c564d0(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_18c564d0(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(isdefined(self._effect) && isdefined(self._effect[#"nova_crawler_phase_teleport_end_fx"]))
 	{
@@ -119,7 +119,7 @@ private function function_18c564d0(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_c9ef107f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_c9ef107f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	fx_location = self gettagorigin("j_mainroot");
 	if(isdefined(fx_location))

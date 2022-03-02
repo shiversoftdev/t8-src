@@ -368,13 +368,16 @@ function function_ca35fa36()
 			var_420e4589 = array("door_danu_basement_to_danu_ra_tunnel", "door_zeus_tunnel_to_flooded_crypt");
 		}
 	}
-	else if(var_f79ff5ec == #"pit")
-	{
-		var_420e4589 = array("door_ra_basement_to_danu_ra_tunnel", "door_ra_tunnel_to_body_pit");
-	}
 	else
 	{
-		var_420e4589 = array("door_ra_basement_to_danu_ra_tunnel", "door_zeus_tunnel_to_flooded_crypt");
+		if(var_f79ff5ec == #"pit")
+		{
+			var_420e4589 = array("door_ra_basement_to_danu_ra_tunnel", "door_ra_tunnel_to_body_pit");
+		}
+		else
+		{
+			var_420e4589 = array("door_ra_basement_to_danu_ra_tunnel", "door_zeus_tunnel_to_flooded_crypt");
+		}
 	}
 	level zm_utility::open_door(var_420e4589, undefined, 8, 1);
 	util::delay(4, undefined, &zm_utility::function_11101458, var_f79ff5ec);

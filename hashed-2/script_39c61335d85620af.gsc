@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"planner_commander", &plannercommander::__init__, undefined, undefined);
 }
@@ -37,7 +37,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 }
 
@@ -50,14 +50,12 @@ autoexec function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	commanderinterface::registercommanderinterfaceattributes();
 	if(!isdefined(level.strategic_command_throttle))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.strategic_command_throttle = object;
+		level.strategic_command_throttle = new throttle();
 		[[ level.strategic_command_throttle ]]->initialize(1, float(function_60d95f53()) / 1000);
 	}
 }
@@ -71,7 +69,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function _cancelstrategize(commander)
+function private _cancelstrategize(commander)
 {
 	commander.cancel = 1;
 	planner::cancel(commander.planner);
@@ -86,7 +84,7 @@ private function _cancelstrategize(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _cloneblackboard(commander)
+function private _cloneblackboard(commander)
 {
 	pixbeginevent(#"commandercloneblackboard");
 	aiprofile_beginentry("commanderCloneBlackboard");
@@ -114,7 +112,7 @@ private function _cloneblackboard(commander)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b1c3f0bd(commander, blackboard)
+function private function_b1c3f0bd(commander, blackboard)
 {
 	pixbeginevent(#"commanderconstructtargetlist");
 	aiprofile_beginentry("commanderConstructTargetList");
@@ -146,7 +144,7 @@ private function function_b1c3f0bd(commander, blackboard)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_12b9fafb(commander, blackboard)
+function private function_12b9fafb(commander, blackboard)
 {
 	pixbeginevent(#"commanderconstructtargetlist");
 	aiprofile_beginentry("commanderConstructTargetList");
@@ -246,7 +244,7 @@ private function function_12b9fafb(commander, blackboard)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _createsquads(commander)
+function private _createsquads(commander)
 {
 	newsquadcount = planner::subblackboardcount(commander.planner);
 	for(index = 1; index <= newsquadcount; index++)
@@ -270,7 +268,7 @@ private function _createsquads(commander)
 	Parameters: 1
 	Flags: Private
 */
-private function _debugcommander(commander)
+function private _debugcommander(commander)
 {
 	if(!isdefined(level.__plannercommanderdebug))
 	{
@@ -389,7 +387,7 @@ private function _debugcommander(commander)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9962ffd8(commander)
+function private function_9962ffd8(commander)
 {
 	team = blackboard::getstructblackboardattribute(commander, #"team");
 	pause = 1;
@@ -422,7 +420,7 @@ private function function_9962ffd8(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _disbandallsquads(commander)
+function private _disbandallsquads(commander)
 {
 	for(index = 0; index < commander.squads.size; index++)
 	{
@@ -440,7 +438,7 @@ private function _disbandallsquads(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _disbandsquads(commander)
+function private _disbandsquads(commander)
 {
 	pixbeginevent(#"commanderdisbandsquads");
 	aiprofile_beginentry("commanderDisbandSquads");
@@ -479,7 +477,7 @@ private function _disbandsquads(commander)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _evaluatefitness(commander, squad)
+function private _evaluatefitness(commander, squad)
 {
 	/#
 		assert(isstruct(squad));
@@ -531,7 +529,7 @@ private function _evaluatefitness(commander, squad)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _evaluatesquads(commander)
+function private _evaluatesquads(commander)
 {
 	pixbeginevent(#"commanderevaluatesquads");
 	aiprofile_beginentry("commanderEvaluateSquads");
@@ -568,7 +566,7 @@ private function _evaluatesquads(commander)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _initializeblackboard(commander, team)
+function private _initializeblackboard(commander, team)
 {
 	blackboard::createblackboardforentity(commander);
 	blackboard::registerblackboardattribute(commander, #"doppelbots", array(), undefined);
@@ -618,7 +616,7 @@ private function _initializeblackboard(commander, team)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _initializedaemonfunctions(functype)
+function private _initializedaemonfunctions(functype)
 {
 	if(!isdefined(level._daemonscriptfunctions))
 	{
@@ -639,7 +637,7 @@ private function _initializedaemonfunctions(functype)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _initializedaemons(commander)
+function private _initializedaemons(commander)
 {
 	/#
 		assert(!isdefined(commander.daemons), "");
@@ -657,7 +655,7 @@ private function _initializedaemons(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _initializesquads(commander)
+function private _initializesquads(commander)
 {
 	commander.squads = [];
 }
@@ -671,7 +669,7 @@ private function _initializesquads(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _initializeutilityfunctions(functype)
+function private _initializeutilityfunctions(functype)
 {
 	if(!isdefined(level._squadutilityscriptfunctions))
 	{
@@ -692,7 +690,7 @@ private function _initializeutilityfunctions(functype)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f9d38682(commander)
+function private function_f9d38682(commander)
 {
 	pixbeginevent(#"commanderorphanbotcount");
 	aiprofile_beginentry("commanderOrphanBotCount");
@@ -766,7 +764,7 @@ private function function_f9d38682(commander)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _plan(commander, blackboard)
+function private _plan(commander, blackboard)
 {
 	planstarttime = gettime();
 	var_80d439bc = [];
@@ -797,7 +795,7 @@ private function _plan(commander, blackboard)
 	Parameters: 2
 	Flags: Private
 */
-private function _reclaimescortparameters(commander, blackboard)
+function private _reclaimescortparameters(commander, blackboard)
 {
 	pixbeginevent(#"commanderreclaimescortparameters");
 	aiprofile_beginentry("commanderReclaimEscortParameters");
@@ -874,7 +872,7 @@ private function _reclaimescortparameters(commander, blackboard)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ac4ff936(commander, blackboard)
+function private function_ac4ff936(commander, blackboard)
 {
 	pixbeginevent(#"commanderreclaimtargets");
 	aiprofile_beginentry("commanderReclaimTargets");
@@ -947,7 +945,7 @@ private function function_ac4ff936(commander, blackboard)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_60f42acc(commander)
+function private function_60f42acc(commander)
 {
 	pixbeginevent(#"commanderreclaimsquads");
 	aiprofile_beginentry("commanderReclaimSquads");
@@ -1072,7 +1070,7 @@ private function function_60f42acc(commander)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d8b8afde(commander, blackboard)
+function private function_d8b8afde(commander, blackboard)
 {
 	pixbeginevent(#"commandersorttargetlist");
 	aiprofile_beginentry("commanderSortTargetList");
@@ -1122,7 +1120,7 @@ private function function_d8b8afde(commander, blackboard)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _strategize(commander)
+function private _strategize(commander)
 {
 	/#
 		assert(isdefined(commander));
@@ -1180,7 +1178,7 @@ private function _strategize(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _updateblackboarddaemons(commander)
+function private _updateblackboarddaemons(commander)
 {
 	/#
 		assert(isdefined(commander));
@@ -1223,7 +1221,7 @@ private function _updateblackboarddaemons(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _updateplanner(commander)
+function private _updateplanner(commander)
 {
 	/#
 		assert(isdefined(commander));

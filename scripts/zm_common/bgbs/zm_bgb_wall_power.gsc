@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_wall_power", &__init__, undefined, #"bgb");
 }
@@ -69,8 +69,8 @@ function validation()
 {
 	if(!namespace_59ff1d6c::function_901b751c(#"hash_51a2cf319e12d9ae"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

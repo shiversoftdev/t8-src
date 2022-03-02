@@ -96,9 +96,9 @@ function function_6d86768e(team)
 	team_players = getplayers(team);
 	if(team_players.size > 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -137,7 +137,7 @@ function function_959bac94()
 	Parameters: 1
 	Flags: Private
 */
-private function function_ba459d03(team)
+function private function_ba459d03(team)
 {
 	/#
 		if(isdefined(level.var_ba13fb7a) && level.var_ba13fb7a)

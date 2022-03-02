@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6e3eb3affb730b9a", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	level zm_trial::function_2b3a3307(1);
 	/#
@@ -82,7 +82,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level zm_trial::function_2b3a3307(0);
 	if(!round_reset)
@@ -134,7 +134,7 @@ function lose_perk(perk)
 {
 	if(!is_active())
 	{
-		return 0;
+		return false;
 	}
 	slot = self zm_perks::function_c1efcc57(perk);
 	if(slot != -1 && isdefined(self.var_7864a0f6) && (isdefined(self.var_7864a0f6.var_149ec45c[slot]) && self.var_7864a0f6.var_149ec45c[slot]) && !self zm_perks::function_e56d8ef4(perk))
@@ -150,9 +150,9 @@ function lose_perk(perk)
 			self.var_7864a0f6.var_6fdc9c9c = array(self.var_7864a0f6.var_6fdc9c9c);
 		}
 		self.var_7864a0f6.var_6fdc9c9c[self.var_7864a0f6.var_6fdc9c9c.size] = slot;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -204,7 +204,7 @@ function function_551412f6()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f0b698a7()
+function private function_f0b698a7()
 {
 	self player::generate_weapon_data();
 	self.var_4a17c2cb = self._generated_weapons;
@@ -221,7 +221,7 @@ private function function_f0b698a7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_85611c27()
+function private function_85611c27()
 {
 	if(isdefined(self.var_7864a0f6.additional_primary_weapon))
 	{
@@ -246,7 +246,7 @@ private function function_85611c27()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2c0ae6d1()
+function private function_2c0ae6d1()
 {
 	/#
 		assert(isdefined(self.var_4a17c2cb));

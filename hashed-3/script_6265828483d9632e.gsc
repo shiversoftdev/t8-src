@@ -127,7 +127,7 @@ function function_d7cf7d18(location, killstreak_id)
 	self thread watchforkillstreakend(team, spawn_influencer, killstreak_id);
 	yaw = location.yaw;
 	self thread function_496d0824(location.origin, location.yaw, team, killstreak_id);
-	return 1;
+	return true;
 }
 
 /*

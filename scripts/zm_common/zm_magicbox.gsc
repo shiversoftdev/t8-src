@@ -46,7 +46,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_magicbox", &__init__, &__main__, undefined);
 }
@@ -196,49 +196,55 @@ function init_starting_chest_location(start_chest_name)
 			level.chests[level.chest_index] thread zm_audio::function_ef9ba49c(#"box", 0, -1, 500, array("left", "trigger"));
 		}
 	}
-	else if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 3)
-	{
-		for(i = 0; i < level.chests.size; i++)
-		{
-			level.chests[i] function_2db086bf();
-			level.chests[i].no_fly_away = 1;
-			level.chests[i] thread show_chest();
-		}
-	}
-	else if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 1)
-	{
-		level.chest_index = -1;
-		for(i = 0; i < level.chests.size; i++)
-		{
-			level.chests[i] hide_chest();
-		}
-	}
 	else
 	{
-		for(i = 0; i < level.chests.size; i++)
+		if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 3)
 		{
-			if(isdefined(level.random_pandora_box_start) && level.random_pandora_box_start == 1)
+			for(i = 0; i < level.chests.size; i++)
 			{
-				if(start_chest_found || (isdefined(level.chests[i].start_exclude) && level.chests[i].start_exclude == 1))
+				level.chests[i] function_2db086bf();
+				level.chests[i].no_fly_away = 1;
+				level.chests[i] thread show_chest();
+			}
+		}
+		else
+		{
+			if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 1)
+			{
+				level.chest_index = -1;
+				for(i = 0; i < level.chests.size; i++)
 				{
 					level.chests[i] hide_chest();
 				}
-				else
+			}
+			else
+			{
+				for(i = 0; i < level.chests.size; i++)
 				{
+					if(isdefined(level.random_pandora_box_start) && level.random_pandora_box_start == 1)
+					{
+						if(start_chest_found || (isdefined(level.chests[i].start_exclude) && level.chests[i].start_exclude == 1))
+						{
+							level.chests[i] hide_chest();
+						}
+						else
+						{
+							level.chest_index = i;
+							level.chests[i] thread function_2db086bf();
+							start_chest_found = 1;
+						}
+						continue;
+					}
+					if(start_chest_found || !isdefined(level.chests[i].script_noteworthy) || !issubstr(level.chests[i].script_noteworthy, start_chest_name))
+					{
+						level.chests[i] hide_chest();
+						continue;
+					}
 					level.chest_index = i;
 					level.chests[i] thread function_2db086bf();
 					start_chest_found = 1;
 				}
-				continue;
 			}
-			if(start_chest_found || !isdefined(level.chests[i].script_noteworthy) || !issubstr(level.chests[i].script_noteworthy, start_chest_name))
-			{
-				level.chests[i] hide_chest();
-				continue;
-			}
-			level.chest_index = i;
-			level.chests[i] thread function_2db086bf();
-			start_chest_found = 1;
 		}
 	}
 	if(!isdefined(level.pandora_show_func))
@@ -353,15 +359,15 @@ function boxstub_update_prompt(player)
 {
 	if(isdefined(self.stub.var_dd0d4460) && self.stub.var_dd0d4460)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.stub.trigger_target.is_locked) && self.stub.trigger_target.is_locked)
 	{
-		return 0;
+		return false;
 	}
 	if(!self trigger_visible_to_player(player))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.func_magicbox_update_prompt_use_override))
 	{
@@ -369,9 +375,9 @@ function boxstub_update_prompt(player)
 		{
 			if(zm_utility::is_standard())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
 	self.hint_parm1 = undefined;
@@ -402,35 +408,41 @@ function boxstub_update_prompt(player)
 				}
 			}
 		}
-		else if(function_8b1a219a())
-		{
-			self.hint_string = #"hash_62a71d8ac2e7af43";
-		}
 		else
-		{
-			self.hint_string = #"hash_6a4c5538a960189d";
-		}
-		if(!(isdefined(self.stub.trigger_target.var_1f9dff37) && self.stub.trigger_target.var_1f9dff37) && (!(isdefined(self.stub.trigger_target.var_481aa649) && self.stub.trigger_target.var_481aa649)) && (isdefined(self.stub.trigger_target.var_c2f3a87c) && self.stub.trigger_target.var_c2f3a87c))
 		{
 			if(function_8b1a219a())
 			{
-				self.hint_string = #"hash_6b94377deeed6d0e";
+				self.hint_string = #"hash_62a71d8ac2e7af43";
 			}
 			else
 			{
-				self.hint_string = #"hash_4a972ee1265d60a";
+				self.hint_string = #"hash_6a4c5538a960189d";
+			}
+			if(!(isdefined(self.stub.trigger_target.var_1f9dff37) && self.stub.trigger_target.var_1f9dff37) && (!(isdefined(self.stub.trigger_target.var_481aa649) && self.stub.trigger_target.var_481aa649)) && (isdefined(self.stub.trigger_target.var_c2f3a87c) && self.stub.trigger_target.var_c2f3a87c))
+			{
+				if(function_8b1a219a())
+				{
+					self.hint_string = #"hash_6b94377deeed6d0e";
+				}
+				else
+				{
+					self.hint_string = #"hash_4a972ee1265d60a";
+				}
 			}
 		}
 	}
-	else if(namespace_497ab7da::is_active())
+	else
 	{
-		self sethintstring(#"hash_55d25caf8f7bbb2f");
-		return 1;
+		if(namespace_497ab7da::is_active())
+		{
+			self sethintstring(#"hash_55d25caf8f7bbb2f");
+			return true;
+		}
+		self setcursorhint("HINT_NOICON");
+		self.hint_parm1 = self.stub.trigger_target.zombie_cost;
+		self.hint_string = zm_utility::get_hint_string(self, "default_treasure_chest");
 	}
-	self setcursorhint("HINT_NOICON");
-	self.hint_parm1 = self.stub.trigger_target.zombie_cost;
-	self.hint_string = zm_utility::get_hint_string(self, "default_treasure_chest");
-	return 1;
+	return true;
 }
 
 /*
@@ -481,7 +493,7 @@ function trigger_visible_to_player(player)
 	{
 		if(player zm_weapons::has_weapon_or_upgrade(var_5f6b2789.zbarrier.weapon))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(level.var_2f57e2d2))
@@ -493,10 +505,10 @@ function trigger_visible_to_player(player)
 	}
 	if(!visible)
 	{
-		return 0;
+		return false;
 	}
 	self setvisibletoplayer(player);
-	return 1;
+	return true;
 }
 
 /*
@@ -578,7 +590,7 @@ function show_chest()
 		return;
 	}
 	self.zbarrier set_magic_box_zbarrier_state("arriving");
-	self.zbarrier waittill_timeout(5, #"arrived");
+	self.zbarrier waittilltimeout(5, #"arrived");
 	/#
 		assert(isdefined(level.pandora_show_func), "");
 	#/
@@ -646,7 +658,7 @@ function hide_chest(doboxleave)
 			if(self.zbarrier.state == "leaving")
 			{
 				s_result = undefined;
-				s_result = self.zbarrier waittill_timeout(10, #"left", #"zbarrier_state_change");
+				s_result = self.zbarrier waittilltimeout(10, #"left", #"zbarrier_state_change");
 				if(s_result._notify !== "left")
 				{
 					self.zbarrier notify(#"hash_44a4a0cd8c49d1ab");
@@ -684,7 +696,7 @@ function hide_chest(doboxleave)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c9c4c0f6()
+function private function_c9c4c0f6()
 {
 	wait(0.5);
 	self clientfield::increment("magicbox_leave_fx");
@@ -861,32 +873,38 @@ function treasure_chest_think()
 			self.chest_user = user;
 			break;
 		}
-		else if(zm_utility::is_player_valid(user) && user zm_score::can_player_purchase(self.zombie_cost))
+		else
 		{
-			user zm_score::minus_to_player_score(self.zombie_cost);
-			if(user bgb::is_enabled(#"zm_bgb_shopping_free"))
+			if(zm_utility::is_player_valid(user) && user zm_score::can_player_purchase(self.zombie_cost))
 			{
-				user_cost = 0;
+				user zm_score::minus_to_player_score(self.zombie_cost);
+				if(user bgb::is_enabled(#"zm_bgb_shopping_free"))
+				{
+					user_cost = 0;
+				}
+				else
+				{
+					user_cost = self.zombie_cost;
+				}
+				self.chest_user = user;
+				break;
 			}
 			else
 			{
-				user_cost = self.zombie_cost;
+				if(isdefined(reduced_cost) && user zm_score::can_player_purchase(reduced_cost))
+				{
+					user zm_score::minus_to_player_score(reduced_cost);
+					user_cost = reduced_cost;
+					self.chest_user = user;
+					break;
+				}
+				else if(!user zm_score::can_player_purchase(self.zombie_cost))
+				{
+					zm_utility::play_sound_at_pos("no_purchase", self.origin);
+					user zm_audio::create_and_play_dialog(#"general", #"outofmoney");
+					continue;
+				}
 			}
-			self.chest_user = user;
-			break;
-		}
-		else if(isdefined(reduced_cost) && user zm_score::can_player_purchase(reduced_cost))
-		{
-			user zm_score::minus_to_player_score(reduced_cost);
-			user_cost = reduced_cost;
-			self.chest_user = user;
-			break;
-		}
-		else if(!user zm_score::can_player_purchase(self.zombie_cost))
-		{
-			zm_utility::play_sound_at_pos("no_purchase", self.origin);
-			user zm_audio::create_and_play_dialog(#"general", #"outofmoney");
-			continue;
 		}
 		waitframe(1);
 	}
@@ -975,100 +993,73 @@ function treasure_chest_think()
 	{
 		self thread treasure_chest_move(self.chest_user);
 	}
-	else if(!(isdefined(self.unbearable_respin) && self.unbearable_respin) && (!(isdefined(self.var_afba7c1f) && self.var_afba7c1f)))
+	else
 	{
-		if(isdefined(user))
+		if(!(isdefined(self.unbearable_respin) && self.unbearable_respin) && (!(isdefined(self.var_afba7c1f) && self.var_afba7c1f)))
 		{
-			self.grab_weapon_hint = 1;
-			self.grab_weapon = self.zbarrier.weapon;
-			self.chest_user = user;
-			bb::function_ab9bb12c(user, self, user_cost, self.grab_weapon, 0, "_magicbox", "_offered");
-			weaponidx = undefined;
-			if(isdefined(self.grab_weapon))
+			if(isdefined(user))
 			{
-				weaponidx = matchrecordgetweaponindex(self.grab_weapon);
-			}
-			if(isdefined(weaponidx))
-			{
-				user recordmapevent(10, gettime(), user.origin, level.round_number, weaponidx);
-			}
-			thread zm_unitrigger::register_static_unitrigger(self.unitrigger_stub, &magicbox_unitrigger_think);
-			if(!(isdefined(self.zbarrier.weapon.isheroweapon) && self.zbarrier.weapon.isheroweapon) && zm_utility::get_number_of_valid_players() > 1 && (!(isdefined(self.var_1f9dff37) && self.var_1f9dff37)))
-			{
-				self thread function_e4dcca48();
-			}
-		}
-		if(isdefined(self.zbarrier) && (!(isdefined(self.zbarrier.var_7672d70d) && self.zbarrier.var_7672d70d)))
-		{
-			self thread treasure_chest_timeout(user);
-		}
-	}
-	while(!(isdefined(self.var_7672d70d) && self.var_7672d70d) && (!(isdefined(self.var_afba7c1f) && self.var_afba7c1f)))
-	{
-		waitresult = undefined;
-		waitresult = self waittill(#"trigger");
-		grabber = waitresult.activator;
-		self.weapon_out = undefined;
-		if(isdefined(level.magic_box_grab_by_anyone) && level.magic_box_grab_by_anyone || (isdefined(self.var_481aa649) && self.var_481aa649))
-		{
-			if(isplayer(grabber))
-			{
-				user = grabber;
-			}
-		}
-		if(isdefined(user))
-		{
-			wpn_current = user getcurrentweapon();
-			if(grabber != level && grabber zm_utility::is_drinking() || (grabber == user && wpn_current == level.weaponnone) || (grabber == user && wpn_current.isriotshield))
-			{
-				wait(0.1);
-				continue;
-			}
-			if(grabber != level && isdefined(self.box_rerespun) && self.box_rerespun)
-			{
-				user = grabber;
-			}
-		}
-		if(grabber == user || grabber == level)
-		{
-			self.box_rerespun = undefined;
-			current_weapon = level.weaponnone;
-			if(zm_utility::is_player_valid(user))
-			{
-				current_weapon = user getcurrentweapon();
-			}
-			if(grabber == user && zm_utility::is_player_valid(user) && !user zm_utility::is_drinking() && !zm_loadout::is_placeable_mine(current_weapon) && !zm_equipment::is_equipment(current_weapon) && !user zm_utility::is_player_revive_tool(current_weapon) && !current_weapon.isheroweapon && !current_weapon.isgadget)
-			{
-				bb::function_ab9bb12c(user, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_grabbed");
+				self.grab_weapon_hint = 1;
+				self.grab_weapon = self.zbarrier.weapon;
+				self.chest_user = user;
+				bb::logpurchaseevent(user, self, user_cost, self.grab_weapon, 0, "_magicbox", "_offered");
 				weaponidx = undefined;
-				if(isdefined(self.zbarrier) && isdefined(self.zbarrier.weapon))
+				if(isdefined(self.grab_weapon))
 				{
-					weaponidx = matchrecordgetweaponindex(self.zbarrier.weapon);
+					weaponidx = matchrecordgetweaponindex(self.grab_weapon);
 				}
 				if(isdefined(weaponidx))
 				{
-					user recordmapevent(11, gettime(), user.origin, level.round_number, weaponidx);
+					user recordmapevent(10, gettime(), user.origin, level.round_number, weaponidx);
 				}
-				self notify(#"user_grabbed_weapon");
-				user notify(#"user_grabbed_weapon");
-				user thread treasure_chest_give_weapon(self.zbarrier.weapon, self.var_75c86f89, self.zbarrier);
-				demo::bookmark(#"zm_player_grabbed_magicbox", gettime(), user);
-				potm::bookmark(#"zm_player_grabbed_magicbox", gettime(), user);
-				user zm_stats::increment_client_stat("grabbed_from_magicbox");
-				user zm_stats::increment_player_stat("grabbed_from_magicbox");
-				user zm_stats::function_8f10788e("boas_grabbed_from_magicbox");
-				if(isdefined(level.var_bb6907a4))
+				thread zm_unitrigger::register_static_unitrigger(self.unitrigger_stub, &magicbox_unitrigger_think);
+				if(!(isdefined(self.zbarrier.weapon.isheroweapon) && self.zbarrier.weapon.isheroweapon) && zm_utility::get_number_of_valid_players() > 1 && (!(isdefined(self.var_1f9dff37) && self.var_1f9dff37)))
 				{
-					self [[level.var_bb6907a4]](user);
+					self thread function_e4dcca48();
 				}
-				break;
 			}
-			else if(grabber == level)
+			if(isdefined(self.zbarrier) && (!(isdefined(self.zbarrier.var_7672d70d) && self.zbarrier.var_7672d70d)))
 			{
-				self.timedout = 1;
-				if(isdefined(user))
+				self thread treasure_chest_timeout(user);
+			}
+		}
+		while(!(isdefined(self.var_7672d70d) && self.var_7672d70d) && (!(isdefined(self.var_afba7c1f) && self.var_afba7c1f)))
+		{
+			waitresult = undefined;
+			waitresult = self waittill(#"trigger");
+			grabber = waitresult.activator;
+			self.weapon_out = undefined;
+			if(isdefined(level.magic_box_grab_by_anyone) && level.magic_box_grab_by_anyone || (isdefined(self.var_481aa649) && self.var_481aa649))
+			{
+				if(isplayer(grabber))
 				{
-					bb::function_ab9bb12c(user, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_returned");
+					user = grabber;
+				}
+			}
+			if(isdefined(user))
+			{
+				wpn_current = user getcurrentweapon();
+				if(grabber != level && grabber zm_utility::is_drinking() || (grabber == user && wpn_current == level.weaponnone) || (grabber == user && wpn_current.isriotshield))
+				{
+					wait(0.1);
+					continue;
+				}
+				if(grabber != level && isdefined(self.box_rerespun) && self.box_rerespun)
+				{
+					user = grabber;
+				}
+			}
+			if(grabber == user || grabber == level)
+			{
+				self.box_rerespun = undefined;
+				current_weapon = level.weaponnone;
+				if(zm_utility::is_player_valid(user))
+				{
+					current_weapon = user getcurrentweapon();
+				}
+				if(grabber == user && zm_utility::is_player_valid(user) && !user zm_utility::is_drinking() && !zm_loadout::is_placeable_mine(current_weapon) && !zm_equipment::is_equipment(current_weapon) && !user zm_utility::is_player_revive_tool(current_weapon) && !current_weapon.isheroweapon && !current_weapon.isgadget)
+				{
+					bb::logpurchaseevent(user, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_grabbed");
 					weaponidx = undefined;
 					if(isdefined(self.zbarrier) && isdefined(self.zbarrier.weapon))
 					{
@@ -1076,39 +1067,69 @@ function treasure_chest_think()
 					}
 					if(isdefined(weaponidx))
 					{
-						user recordmapevent(12, gettime(), user.origin, level.round_number, weaponidx);
+						user recordmapevent(11, gettime(), user.origin, level.round_number, weaponidx);
 					}
+					self notify(#"user_grabbed_weapon");
+					user notify(#"user_grabbed_weapon");
+					user thread treasure_chest_give_weapon(self.zbarrier.weapon, self.var_75c86f89, self.zbarrier);
+					demo::bookmark(#"zm_player_grabbed_magicbox", gettime(), user);
+					potm::bookmark(#"zm_player_grabbed_magicbox", gettime(), user);
+					user zm_stats::increment_client_stat("grabbed_from_magicbox");
+					user zm_stats::increment_player_stat("grabbed_from_magicbox");
+					user zm_stats::function_8f10788e("boas_grabbed_from_magicbox");
+					if(isdefined(level.var_bb6907a4))
+					{
+						self [[level.var_bb6907a4]](user);
+					}
+					break;
 				}
-				break;
+				else if(grabber == level)
+				{
+					self.timedout = 1;
+					if(isdefined(user))
+					{
+						bb::logpurchaseevent(user, self, user_cost, self.zbarrier.weapon, 0, "_magicbox", "_returned");
+						weaponidx = undefined;
+						if(isdefined(self.zbarrier) && isdefined(self.zbarrier.weapon))
+						{
+							weaponidx = matchrecordgetweaponindex(self.zbarrier.weapon);
+						}
+						if(isdefined(weaponidx))
+						{
+							user recordmapevent(12, gettime(), user.origin, level.round_number, weaponidx);
+						}
+					}
+					break;
+				}
 			}
+			waitframe(1);
 		}
-		waitframe(1);
-	}
-	self.grab_weapon_hint = 0;
-	self.zbarrier notify(#"weapon_grabbed");
-	if(!(isdefined(self._box_opened_by_fire_sale) && self._box_opened_by_fire_sale))
-	{
-		level.chest_accessed = level.chest_accessed + 1;
-	}
-	thread zm_unitrigger::unregister_unitrigger(self.unitrigger_stub);
-	if(isdefined(self.chest_lid))
-	{
-		self.chest_lid thread treasure_chest_lid_close(self.timedout);
-	}
-	if(isdefined(self.zbarrier))
-	{
-		self.zbarrier set_magic_box_zbarrier_state("close");
-		zm_utility::play_sound_at_pos("close_chest", self.origin);
-		self.zbarrier waittill(#"closed");
-		wait(1);
-	}
-	else
-	{
-		wait(3);
-	}
-	if(isdefined(zombie_utility::function_d2dfacfd(#"zombie_powerup_fire_sale_on")) && zombie_utility::function_d2dfacfd(#"zombie_powerup_fire_sale_on") && self [[level._zombiemode_check_firesale_loc_valid_func]]() || namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 3 || namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 1 || self == level.chests[level.chest_index])
-	{
-		thread zm_unitrigger::register_static_unitrigger(self.unitrigger_stub, &magicbox_unitrigger_think);
+		self.grab_weapon_hint = 0;
+		self.zbarrier notify(#"weapon_grabbed");
+		if(!(isdefined(self._box_opened_by_fire_sale) && self._box_opened_by_fire_sale))
+		{
+			level.chest_accessed = level.chest_accessed + 1;
+		}
+		thread zm_unitrigger::unregister_unitrigger(self.unitrigger_stub);
+		if(isdefined(self.chest_lid))
+		{
+			self.chest_lid thread treasure_chest_lid_close(self.timedout);
+		}
+		if(isdefined(self.zbarrier))
+		{
+			self.zbarrier set_magic_box_zbarrier_state("close");
+			zm_utility::play_sound_at_pos("close_chest", self.origin);
+			self.zbarrier waittill(#"closed");
+			wait(1);
+		}
+		else
+		{
+			wait(3);
+		}
+		if(isdefined(zombie_utility::function_d2dfacfd(#"zombie_powerup_fire_sale_on")) && zombie_utility::function_d2dfacfd(#"zombie_powerup_fire_sale_on") && self [[level._zombiemode_check_firesale_loc_valid_func]]() || namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 3 || namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 1 || self == level.chests[level.chest_index])
+		{
+			thread zm_unitrigger::register_static_unitrigger(self.unitrigger_stub, &magicbox_unitrigger_think);
+		}
 	}
 	self._box_open = 0;
 	self._box_opened_by_fire_sale = 0;
@@ -1245,45 +1266,45 @@ function can_buy_weapon(var_5429ee1f = 1)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(var_5429ee1f && namespace_59ff1d6c::function_901b751c(#"hash_543954c3281a530f"))
 	{
 		if((isdefined(level.var_40f4f72d) ? level.var_40f4f72d : 0) >= namespace_59ff1d6c::function_901b751c(#"hash_543954c3281a530f"))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(self zm_utility::is_drinking())
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_equipment::hacker_active())
 	{
-		return 0;
+		return false;
 	}
 	current_weapon = self getcurrentweapon();
 	if(zm_loadout::is_placeable_mine(current_weapon) || zm_equipment::is_equipment_that_blocks_purchase(current_weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_utility::in_revive_trigger())
 	{
-		return 0;
+		return false;
 	}
 	if(current_weapon == level.weaponnone)
 	{
-		return 0;
+		return false;
 	}
 	if(current_weapon.isheroweapon || current_weapon.isgadget || current_weapon.isriotshield)
 	{
-		return 0;
+		return false;
 	}
 	if(!self zm_laststand::laststand_has_players_weapons_returned())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1716,29 +1737,44 @@ function function_4aa1f177(player)
 			{
 				var_1b439d59 = array(7);
 			}
-			else if(var_bf43f78f > 74)
-			{
-				var_1b439d59 = array(6);
-			}
-			else if(var_bf43f78f > 57)
-			{
-				var_1b439d59 = array(5);
-			}
-			else if(var_bf43f78f > 33)
-			{
-				var_1b439d59 = array(4);
-			}
-			else if(var_bf43f78f > 18)
-			{
-				var_1b439d59 = array(3);
-			}
-			else if(var_bf43f78f > 8)
-			{
-				var_1b439d59 = array(1, 2);
-			}
 			else
 			{
-				var_1b439d59 = array(0);
+				if(var_bf43f78f > 74)
+				{
+					var_1b439d59 = array(6);
+				}
+				else
+				{
+					if(var_bf43f78f > 57)
+					{
+						var_1b439d59 = array(5);
+					}
+					else
+					{
+						if(var_bf43f78f > 33)
+						{
+							var_1b439d59 = array(4);
+						}
+						else
+						{
+							if(var_bf43f78f > 18)
+							{
+								var_1b439d59 = array(3);
+							}
+							else
+							{
+								if(var_bf43f78f > 8)
+								{
+									var_1b439d59 = array(1, 2);
+								}
+								else
+								{
+									var_1b439d59 = array(0);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 		else
@@ -1833,28 +1869,31 @@ function decide_hide_show_hint(endon_notify, second_endon_notify, onlyplayer, ca
 				self setvisibletoplayer(self.chest_user);
 			}
 		}
-		else if(isdefined(onlyplayer))
+		else
 		{
-			if(onlyplayer can_buy_weapon(var_5429ee1f) && (!isdefined(can_buy_weapon_extra_check_func) || onlyplayer [[can_buy_weapon_extra_check_func]](self.weapon)) && !onlyplayer bgb::is_enabled(#"zm_bgb_disorderly_combat"))
+			if(isdefined(onlyplayer))
 			{
-				self setinvisibletoplayer(onlyplayer, 0);
+				if(onlyplayer can_buy_weapon(var_5429ee1f) && (!isdefined(can_buy_weapon_extra_check_func) || onlyplayer [[can_buy_weapon_extra_check_func]](self.weapon)) && !onlyplayer bgb::is_enabled(#"zm_bgb_disorderly_combat"))
+				{
+					self setinvisibletoplayer(onlyplayer, 0);
+				}
+				else
+				{
+					self setinvisibletoplayer(onlyplayer, 1);
+				}
 			}
 			else
 			{
-				self setinvisibletoplayer(onlyplayer, 1);
-			}
-		}
-		else
-		{
-			players = getplayers();
-			for(i = 0; i < players.size; i++)
-			{
-				if(players[i] can_buy_weapon(var_5429ee1f) && (!isdefined(can_buy_weapon_extra_check_func) || players[i] [[can_buy_weapon_extra_check_func]](self.weapon)) && !players[i] bgb::is_enabled(#"zm_bgb_disorderly_combat"))
+				players = getplayers();
+				for(i = 0; i < players.size; i++)
 				{
-					self setinvisibletoplayer(players[i], 0);
-					continue;
+					if(players[i] can_buy_weapon(var_5429ee1f) && (!isdefined(can_buy_weapon_extra_check_func) || players[i] [[can_buy_weapon_extra_check_func]](self.weapon)) && !players[i] bgb::is_enabled(#"zm_bgb_disorderly_combat"))
+					{
+						self setinvisibletoplayer(players[i], 0);
+						continue;
+					}
+					self setinvisibletoplayer(players[i], 1);
 				}
-				self setinvisibletoplayer(players[i], 1);
 			}
 		}
 		if(use_choke)
@@ -1953,7 +1992,7 @@ function treasure_chest_should_move(chest, player)
 		{
 			if(level.chest_accessed >= 3 || (isdefined(level.var_bb641599) && level.var_bb641599))
 			{
-				return 1;
+				return true;
 			}
 		}
 		if(!isdefined(level.chest_min_move_usage))
@@ -2042,10 +2081,10 @@ function treasure_chest_should_move(chest, player)
 		}
 		if(chance_of_joker > random)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2090,29 +2129,32 @@ function treasure_chest_weapon_locking(player, weapon, onoff)
 		{
 			self.locked_model = spawn_joker_weapon_model(player, level.chest_joker_model, self.origin, (0, 0, 0));
 		}
-		else if(isdefined(player))
-		{
-			self.locked_model = zm_utility::spawn_buildkit_weapon_model(player, weapon, undefined, self.origin, (0, 0, 0));
-			if(!isdefined(player.var_ca56e806))
-			{
-				player.var_ca56e806 = [];
-			}
-			else if(!isarray(player.var_ca56e806))
-			{
-				player.var_ca56e806 = array(player.var_ca56e806);
-			}
-			if(!isinarray(player.var_ca56e806, weapon))
-			{
-				player.var_ca56e806[player.var_ca56e806.size] = weapon;
-			}
-			if(player.var_ca56e806.size > 8)
-			{
-				arrayremoveindex(player.var_ca56e806, 0);
-			}
-		}
 		else
 		{
-			self.locked_model = util::spawn_model(weapon.worldmodel, self.origin, (0, 0, 0));
+			if(isdefined(player))
+			{
+				self.locked_model = zm_utility::spawn_buildkit_weapon_model(player, weapon, undefined, self.origin, (0, 0, 0));
+				if(!isdefined(player.var_ca56e806))
+				{
+					player.var_ca56e806 = [];
+				}
+				else if(!isarray(player.var_ca56e806))
+				{
+					player.var_ca56e806 = array(player.var_ca56e806);
+				}
+				if(!isinarray(player.var_ca56e806, weapon))
+				{
+					player.var_ca56e806[player.var_ca56e806.size] = weapon;
+				}
+				if(player.var_ca56e806.size > 8)
+				{
+					arrayremoveindex(player.var_ca56e806, 0);
+				}
+			}
+			else
+			{
+				self.locked_model = util::spawn_model(weapon.worldmodel, self.origin, (0, 0, 0));
+			}
 		}
 		self.locked_model ghost();
 		self.locked_model clientfield::set("force_stream", 1);
@@ -2330,81 +2372,87 @@ function treasure_chest_weapon_spawn(chest, player, respin)
 		{
 			self thread [[level.chest_joker_custom_movement]]();
 		}
-		else if(isdefined(self.weapon_model))
+		else
 		{
-			v_origin = self.weapon_model.origin;
-			self.weapon_model delete();
+			if(isdefined(self.weapon_model))
+			{
+				v_origin = self.weapon_model.origin;
+				self.weapon_model delete();
+			}
+			self.weapon_model = spawn("script_model", v_origin);
+			self.weapon_model setmodel(level.chest_joker_model);
+			self.weapon_model.angles = self.angles + vectorscale((0, 1, 0), 180);
+			wait(0.5);
+			level notify(#"weapon_fly_away_start");
+			wait(2);
+			if(isdefined(self.weapon_model))
+			{
+				v_fly_away = self.origin + (anglestoup(self.angles) * 500);
+				self.weapon_model moveto(v_fly_away, 4, 3);
+			}
+			if(isdefined(self.weapon_model_dw))
+			{
+				v_fly_away = self.origin + (anglestoup(self.angles) * 500);
+				self.weapon_model_dw moveto(v_fly_away, 4, 3);
+			}
+			if(isdefined(self.weapon_model))
+			{
+				self.weapon_model waittill(#"movedone");
+				self.weapon_model delete();
+			}
+			if(isdefined(self.weapon_model_dw))
+			{
+				self.weapon_model_dw delete();
+				self.weapon_model_dw = undefined;
+			}
+			self notify(#"box_moving");
+			level notify(#"weapon_fly_away_end");
 		}
-		self.weapon_model = spawn("script_model", v_origin);
-		self.weapon_model setmodel(level.chest_joker_model);
-		self.weapon_model.angles = self.angles + vectorscale((0, 1, 0), 180);
-		wait(0.5);
-		level notify(#"weapon_fly_away_start");
-		wait(2);
-		if(isdefined(self.weapon_model))
-		{
-			v_fly_away = self.origin + (anglestoup(self.angles) * 500);
-			self.weapon_model moveto(v_fly_away, 4, 3);
-		}
-		if(isdefined(self.weapon_model_dw))
-		{
-			v_fly_away = self.origin + (anglestoup(self.angles) * 500);
-			self.weapon_model_dw moveto(v_fly_away, 4, 3);
-		}
-		if(isdefined(self.weapon_model))
-		{
-			self.weapon_model waittill(#"movedone");
-			self.weapon_model delete();
-		}
-		if(isdefined(self.weapon_model_dw))
-		{
-			self.weapon_model_dw delete();
-			self.weapon_model_dw = undefined;
-		}
-		self notify(#"box_moving");
-		level notify(#"weapon_fly_away_end");
-	}
-	else if(!isdefined(respin))
-	{
-		if(isdefined(chest.box_hacks[#"respin"]))
-		{
-			self [[chest.box_hacks[#"respin"]]](chest, player);
-		}
-	}
-	else if(isdefined(chest.box_hacks[#"respin_respin"]))
-	{
-		self [[chest.box_hacks[#"respin_respin"]]](chest, player);
-	}
-	if(isdefined(level.custom_magic_box_timer_til_despawn))
-	{
-		self.weapon_model thread [[level.custom_magic_box_timer_til_despawn]](self);
 	}
 	else
 	{
-		self.weapon_model thread timer_til_despawn(v_float);
-	}
-	if(isdefined(self.weapon_model_dw))
-	{
+		if(!isdefined(respin))
+		{
+			if(isdefined(chest.box_hacks[#"respin"]))
+			{
+				self [[chest.box_hacks[#"respin"]]](chest, player);
+			}
+		}
+		else if(isdefined(chest.box_hacks[#"respin_respin"]))
+		{
+			self [[chest.box_hacks[#"respin_respin"]]](chest, player);
+		}
 		if(isdefined(level.custom_magic_box_timer_til_despawn))
 		{
-			self.weapon_model_dw thread [[level.custom_magic_box_timer_til_despawn]](self);
+			self.weapon_model thread [[level.custom_magic_box_timer_til_despawn]](self);
 		}
 		else
 		{
-			self.weapon_model_dw thread timer_til_despawn(v_float);
-		}
-	}
-	self waittill(#"weapon_grabbed");
-	self thread zm_vo::function_57b8cd17();
-	if(!chest.timedout)
-	{
-		if(isdefined(self.weapon_model))
-		{
-			self.weapon_model delete();
+			self.weapon_model thread timer_til_despawn(v_float);
 		}
 		if(isdefined(self.weapon_model_dw))
 		{
-			self.weapon_model_dw delete();
+			if(isdefined(level.custom_magic_box_timer_til_despawn))
+			{
+				self.weapon_model_dw thread [[level.custom_magic_box_timer_til_despawn]](self);
+			}
+			else
+			{
+				self.weapon_model_dw thread timer_til_despawn(v_float);
+			}
+		}
+		self waittill(#"weapon_grabbed");
+		self thread zm_vo::function_57b8cd17();
+		if(!chest.timedout)
+		{
+			if(isdefined(self.weapon_model))
+			{
+				self.weapon_model delete();
+			}
+			if(isdefined(self.weapon_model_dw))
+			{
+				self.weapon_model_dw delete();
+			}
 		}
 	}
 	chest treasure_chest_weapon_locking(player, preferred_weapon, 0);
@@ -2478,34 +2526,49 @@ function chest_get_max_usage()
 		{
 			max_usage = 3;
 		}
-		else if(players.size == 2)
-		{
-			max_usage = 4;
-		}
-		else if(players.size == 3)
-		{
-			max_usage = 5;
-		}
 		else
 		{
-			max_usage = 6;
+			if(players.size == 2)
+			{
+				max_usage = 4;
+			}
+			else
+			{
+				if(players.size == 3)
+				{
+					max_usage = 5;
+				}
+				else
+				{
+					max_usage = 6;
+				}
+			}
 		}
-	}
-	else if(players.size == 1)
-	{
-		max_usage = 4;
-	}
-	else if(players.size == 2)
-	{
-		max_usage = 4;
-	}
-	else if(players.size == 3)
-	{
-		max_usage = 5;
 	}
 	else
 	{
-		max_usage = 7;
+		if(players.size == 1)
+		{
+			max_usage = 4;
+		}
+		else
+		{
+			if(players.size == 2)
+			{
+				max_usage = 4;
+			}
+			else
+			{
+				if(players.size == 3)
+				{
+					max_usage = 5;
+				}
+				else
+				{
+					max_usage = 7;
+				}
+			}
+		}
 	}
 	return max_usage;
 }
@@ -2589,84 +2652,102 @@ function treasure_chest_give_weapon(weapon, var_75c86f89, var_545bb17f)
 			str_vo_line = #"hash_34540a6bb099133e";
 		}
 	}
-	else if(weapon.name == #"music_box")
-	{
-		str_vo_line = #"music_box";
-	}
-	else if(zm_weapons::is_wonder_weapon(weapon))
-	{
-		str_vo_line = #"wonder";
-		if(isplayer(var_75c86f89) && var_75c86f89 != self)
-		{
-			var_75c86f89 zm_utility::giveachievement_wrapper("zm_trophy_straw_purchase");
-		}
-	}
-	else if(weapon === getweapon(#"hash_10f614b278daaebc") || weapon === getweapon(#"cymbal_monkey"))
-	{
-		str_vo_line = #"hash_10f614b278daaebc";
-	}
-	else if(weapon === getweapon(#"special_ballisticknife_t8_dw"))
-	{
-		if(zm_audio::function_63f85f39(#"magicbox", #"ballistic"))
-		{
-			str_vo_line = #"ballistic";
-		}
-	}
-	else if(weapon === getweapon(#"special_crossbow_t8"))
-	{
-		if(zm_audio::function_63f85f39(#"magicbox", #"hash_36b817536004725"))
-		{
-			str_vo_line = #"hash_36b817536004725";
-		}
-	}
 	else
 	{
-		switch(weapon.weapclass)
+		if(weapon.name == #"music_box")
 		{
-			case "mg":
+			str_vo_line = #"music_box";
+		}
+		else
+		{
+			if(zm_weapons::is_wonder_weapon(weapon))
 			{
-				str_vo_line = #"lmg";
-				break;
-			}
-			case "spread":
-			{
-				str_vo_line = #"shotgun";
-				break;
-			}
-			case "pistol":
-			{
-				str_vo_line = #"pistol";
-				break;
-			}
-			case "rocketlauncher":
-			{
-				str_vo_line = #"launcher";
-				break;
-			}
-			case "smg":
-			{
-				str_vo_line = #"smg";
-				break;
-			}
-			case "rifle":
-			{
-				if(weapon.issniperweapon)
+				str_vo_line = #"wonder";
+				if(isplayer(var_75c86f89) && var_75c86f89 != self)
 				{
-					str_vo_line = #"sniper";
+					var_75c86f89 zm_utility::giveachievement_wrapper("zm_trophy_straw_purchase");
 				}
-				else if(zm_weapons::function_eb0b9fc3(weapon))
+			}
+			else
+			{
+				if(weapon === getweapon(#"hash_10f614b278daaebc") || weapon === getweapon(#"cymbal_monkey"))
 				{
-					str_vo_line = #"tactical";
+					str_vo_line = #"hash_10f614b278daaebc";
 				}
 				else
 				{
-					str_vo_line = #"ar";
+					if(weapon === getweapon(#"special_ballisticknife_t8_dw"))
+					{
+						if(zm_audio::function_63f85f39(#"magicbox", #"ballistic"))
+						{
+							str_vo_line = #"ballistic";
+						}
+					}
+					else
+					{
+						if(weapon === getweapon(#"special_crossbow_t8"))
+						{
+							if(zm_audio::function_63f85f39(#"magicbox", #"hash_36b817536004725"))
+							{
+								str_vo_line = #"hash_36b817536004725";
+							}
+						}
+						else
+						{
+							switch(weapon.weapclass)
+							{
+								case "mg":
+								{
+									str_vo_line = #"lmg";
+									break;
+								}
+								case "spread":
+								{
+									str_vo_line = #"shotgun";
+									break;
+								}
+								case "pistol":
+								{
+									str_vo_line = #"pistol";
+									break;
+								}
+								case "rocketlauncher":
+								{
+									str_vo_line = #"launcher";
+									break;
+								}
+								case "smg":
+								{
+									str_vo_line = #"smg";
+									break;
+								}
+								case "rifle":
+								{
+									if(weapon.issniperweapon)
+									{
+										str_vo_line = #"sniper";
+									}
+									else
+									{
+										if(zm_weapons::function_eb0b9fc3(weapon))
+										{
+											str_vo_line = #"tactical";
+										}
+										else
+										{
+											str_vo_line = #"ar";
+										}
+									}
+									break;
+								}
+								default:
+								{
+									break;
+								}
+							}
+						}
+					}
 				}
-				break;
-			}
-			default:
-			{
-				break;
 			}
 		}
 	}
@@ -2689,14 +2770,17 @@ function treasure_chest_give_weapon(weapon, var_75c86f89, var_545bb17f)
 	{
 		self give_hero_weapon(weapon);
 	}
-	else if(zm_loadout::is_offhand_weapon(weapon))
-	{
-		self function_830b7ecd(weapon);
-	}
 	else
 	{
-		self.var_966bfd1b = 1;
-		w_give = self zm_weapons::weapon_give(weapon);
+		if(zm_loadout::is_offhand_weapon(weapon))
+		{
+			self function_830b7ecd(weapon);
+		}
+		else
+		{
+			self.var_966bfd1b = 1;
+			w_give = self zm_weapons::weapon_give(weapon);
+		}
 	}
 	self contracts::function_5b88297d(#"hash_4489902e9dbb55aa", 1, #"zstandard");
 	self callback::callback(#"hash_7d40e25056b9275c", weapon);
@@ -2711,7 +2795,7 @@ function treasure_chest_give_weapon(weapon, var_75c86f89, var_545bb17f)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e62595c2(var_545bb17f)
+function private function_e62595c2(var_545bb17f)
 {
 	var_545bb17f zm_vo::function_57b8cd17();
 	b_said = zm_vo::function_8e0f4696((#"hash_6364370b57ccf050" + zm_vo::function_82f9bc9f()) + "_homu");
@@ -3002,13 +3086,13 @@ function is_chest_active()
 	curr_state = self.zbarrier get_magic_box_zbarrier_state();
 	if(level flag::get("moving_chest_now"))
 	{
-		return 0;
+		return false;
 	}
 	if(curr_state == "open" || curr_state == "close")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

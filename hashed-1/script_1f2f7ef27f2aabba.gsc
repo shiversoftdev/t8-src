@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_59488c07ab1c65ad", &__init__, undefined, undefined);
 }
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_start_gametype()
+function private on_start_gametype()
 {
 	level callback::add_callback(#"hash_d8880c680eac47a", &function_a929f627);
 }
@@ -211,7 +211,7 @@ function count_players()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ef7959f0()
+function private function_ef7959f0()
 {
 	playercounts = self count_players();
 	count = 9999;
@@ -330,9 +330,9 @@ function is_all_dead(platoon)
 	{
 		if(!teams::is_all_dead(team))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 

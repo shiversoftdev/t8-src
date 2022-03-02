@@ -167,7 +167,12 @@ function function_94cd396e(powerup_override, powerup_team, powerup_location, pow
 	{
 		self.powerup_player = powerup_player;
 	}
-	assert(!(isdefined(struct.player_specific) && struct.player_specific), "");
+	else
+	{
+		/#
+			assert(!(isdefined(struct.player_specific) && struct.player_specific), "");
+		#/
+	}
 	self.powerup_name = struct.powerup_name;
 	self.hint = struct.hint;
 	self.only_affects_grabber = struct.only_affects_grabber;

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_in_plain_sight", &__init__, undefined, #"bgb");
 }
@@ -59,11 +59,11 @@ function __init__()
 */
 function validation()
 {
-	if(self bgb::function_ff7c0158() || (isdefined(self.var_800f306a) && self.var_800f306a))
+	if(self bgb::get_active() || (isdefined(self.var_800f306a) && self.var_800f306a))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -84,7 +84,7 @@ function activation()
 	self thread bgb::run_timer(10);
 	self clientfield::set_to_player("" + #"hash_321b58d22755af74", 1);
 	ret = undefined;
-	ret = self waittill_timeout(9.5, #"bgb_about_to_take_on_bled_out", #"end_game", #"bgb_update", #"disconnect", #"hash_57d4f53c12705eac");
+	ret = self waittilltimeout(9.5, #"bgb_about_to_take_on_bled_out", #"end_game", #"bgb_update", #"disconnect", #"hash_57d4f53c12705eac");
 	self playsound(#"zmb_bgb_plainsight_end");
 	self clientfield::set_to_player("" + #"hash_321b58d22755af74", 0);
 	self val::reset(#"hash_69d303dd5e34b7b7", "ignoreme");

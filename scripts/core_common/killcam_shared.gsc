@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"killcam", &__init__, undefined, undefined);
 }
@@ -293,14 +293,14 @@ function start_deathcam()
 		self.archivetime = 0;
 		self.psoffsettime = 0;
 		self.spectatekillcam = 0;
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_e5681505) && self.var_e5681505)
 	{
-		return 0;
+		return false;
 	}
 	self thread deathcam(self);
-	return 1;
+	return true;
 }
 
 /*
@@ -513,10 +513,10 @@ function are_any_players_watching()
 		player = players[index];
 		if(isdefined(player.killcam))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1213,9 +1213,9 @@ function is_entity_weapon(weapon)
 {
 	if(weapon.statname == #"planemortar")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1236,13 +1236,16 @@ function calc_time(weapon, entitystarttime, predelay, maxtime)
 		{
 			camtime = (((float(gettime() - entitystarttime)) / 1000) - predelay) - 0.1;
 		}
-		else if(weapon.isgrenadeweapon)
-		{
-			camtime = level.var_a95350da;
-		}
 		else
 		{
-			camtime = level.killcamtime;
+			if(weapon.isgrenadeweapon)
+			{
+				camtime = level.var_a95350da;
+			}
+			else
+			{
+				camtime = level.killcamtime;
+			}
 		}
 	}
 	else

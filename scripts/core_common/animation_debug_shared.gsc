@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_c3c9d0e5()
+function autoexec function_c3c9d0e5()
 {
 	/#
 		setdvar(#"anim_debug", 0);
@@ -147,13 +147,16 @@ function anim_info_render_thread(animation, v_origin_or_ent, v_angles_or_tag, va
 			{
 				str_name = self.anim_debug_name;
 			}
-			else if(isdefined(self.animname))
+			else
 			{
-				str_name = self.animname;
-			}
-			else if(isdefined(self.targetname))
-			{
-				str_name = self.targetname;
+				if(isdefined(self.animname))
+				{
+					str_name = self.animname;
+				}
+				else if(isdefined(self.targetname))
+				{
+					str_name = self.targetname;
+				}
 			}
 			maso_they_don_t_see_us_ye_ = self.origin - (0, 0, 15 * n_same_origin_index);
 			if(1)

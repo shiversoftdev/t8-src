@@ -222,23 +222,23 @@ function function_29c3aabf(e_player)
 		if(function_8b1a219a())
 		{
 			self sethintstring(#"hash_1c728bc5a555de5b");
-			return 1;
+			return true;
 		}
 		self sethintstring(#"hash_3d93f7957f6855e5");
-		return 1;
+		return true;
 	}
 	if(level.var_1537d233 <= 0)
 	{
 		self sethintstring(#"hash_63c5fccb2c10781b");
-		return 1;
+		return true;
 	}
 	if(function_8b1a219a())
 	{
 		self sethintstring(#"hash_2e2afc1b8f8fa0eb");
-		return 1;
+		return true;
 	}
 	self sethintstring(#"hash_46db6b04cc24e375");
-	return 1;
+	return true;
 }
 
 /*
@@ -504,14 +504,14 @@ function function_e82679f8(e_player)
 	if(level flag::get(#"hash_9cfd45106ac760d") && s_zipline_use.str_location !== "lighthouse_to_facility")
 	{
 		self sethintstring(#"hash_2940c8be9ff1b294");
-		return 1;
+		return true;
 	}
 	if(s_zipline_use.str_location === "aft_to_beach")
 	{
 		if(!level flag::get(#"hash_7def3e555eba842c"))
 		{
 			self sethintstring(#"hash_376f1740578b8a2e");
-			return 1;
+			return true;
 		}
 	}
 	else if(s_zipline_use.str_location === "lighthouse_to_fore")
@@ -519,7 +519,7 @@ function function_e82679f8(e_player)
 		if(!level flag::get(#"hash_e29d662bb90e4bc"))
 		{
 			self sethintstring(#"hash_376f1740578b8a2e");
-			return 1;
+			return true;
 		}
 	}
 	if(s_zipline_use.str_location === "station_to_sun_deck" || s_zipline_use.str_location === "dock" || s_zipline_use.str_location === "fore" || s_zipline_use.str_location === "lighthouse_to_facility")
@@ -527,32 +527,32 @@ function function_e82679f8(e_player)
 		if(!level flag::get(#"hash_7d9f8ec3cb9af87e"))
 		{
 			self sethintstring(#"hash_57d47aca62536932");
-			return 1;
+			return true;
 		}
 	}
 	if(!s_zipline_use.var_58f28f90)
 	{
 		self sethintstring(#"hash_3d7f4136a3c462c8");
-		return 1;
+		return true;
 	}
 	if(isdefined(e_player.var_7b2ac934) && e_player.var_7b2ac934)
 	{
 		self sethintstring(#"hash_44fe179e1e8f80ad");
-		return 1;
+		return true;
 	}
 	if(e_player.var_bf8dfaf4 || (level flag::get("fasttravel_disabled") && !isinarray(level.var_4a04c327, s_zipline_use.str_location)) || e_player util::is_ads() || e_player.var_7dc2d507 === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(function_8b1a219a())
 	{
 		zone = namespace_17555f14::function_ab7f70b9(undefined, s_zipline_use.str_destination);
 		self sethintstring(#"hash_1c90be4081261de3", zone);
-		return 1;
+		return true;
 	}
 	zone = namespace_17555f14::function_ab7f70b9(undefined, s_zipline_use.str_destination);
 	self sethintstring(#"hash_498ce6b1275c33fd", zone);
-	return 1;
+	return true;
 }
 
 /*
@@ -831,7 +831,7 @@ function function_fc9707f4(vnd_start, s_zipline_use)
 	self.var_e75517b1 = 1;
 	self bgb::suspend_weapon_cycling();
 	self disableweaponcycling();
-	self namespace_7d0afffb::function_ac9cb612(1);
+	self bgb_pack::function_ac9cb612(1);
 	self.var_be3224e6 = 1;
 	self clientfield::set_to_player("hide_player_legs", 1);
 	self allowsprint(0);
@@ -872,7 +872,7 @@ function function_fc9707f4(vnd_start, s_zipline_use)
 	Parameters: 0
 	Flags: Private
 */
-private function function_85a2c43b()
+function private function_85a2c43b()
 {
 	self.var_b20b0960 endon(#"death");
 	while(true)
@@ -953,7 +953,7 @@ function function_994538a5(s_zipline_use)
 	self.var_bf8dfaf4 = 0;
 	self.var_f22c83f5 = 0;
 	self.var_e75517b1 = 0;
-	self namespace_7d0afffb::function_ac9cb612(0);
+	self bgb_pack::function_ac9cb612(0);
 	self.var_be3224e6 = 0;
 	self bgb::resume_weapon_cycling();
 	self enableweaponcycling();

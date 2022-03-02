@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"snowball", &__init__, undefined, undefined);
 }
@@ -116,7 +116,7 @@ function function_20263b9e(s_params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6e2124f7()
+function private function_6e2124f7()
 {
 	self endon(#"disconnect");
 	clientfield::set_to_player("" + #"hash_78aa1dc141a3e27", 1);
@@ -133,7 +133,7 @@ private function function_6e2124f7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2291fc03()
+function private function_2291fc03()
 {
 	self endon(#"disconnect");
 	clientfield::set_to_player("" + #"hash_2fafddfa9f85b8aa", 1);

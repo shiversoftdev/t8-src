@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5c0d913682a01d67", &__init__, undefined, undefined);
 }
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_44c4c23d, var_bd332e71)
+function private function_d1de6a85(var_44c4c23d, var_bd332e71)
 {
 	self.var_ea033f4a = [];
 	n_interval = zm_trial::function_5769f26a(var_44c4c23d);
@@ -184,13 +184,13 @@ function take_player_weapons(n_interval, e_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_873de196(weapon)
+function private function_873de196(weapon)
 {
 	if(weapon.ischargeshot && (!isdefined(weapon.var_3d85028) || weapon.var_3d85028 == level.weaponnone))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -202,7 +202,7 @@ private function function_873de196(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level zm_trial::function_44200d07(0);
 	callback::remove_on_spawned(&on_player_spawned);
@@ -248,7 +248,7 @@ function on_player_spawned()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function return_weapon(var_8ac27ae7)
+function private return_weapon(var_8ac27ae7)
 {
 	level endon(#"end_game");
 	self endon(#"disconnect");
@@ -283,7 +283,7 @@ private function return_weapon(var_8ac27ae7)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_413cffae(n_interval, e_player)
+function private function_413cffae(n_interval, e_player)
 {
 	e_player notify(#"hash_14795fd12c6dae32");
 	level endon(#"hash_7646638df88a3656");

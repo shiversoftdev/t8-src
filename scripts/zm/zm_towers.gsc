@@ -69,7 +69,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function opt_in()
+function autoexec opt_in()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
@@ -276,7 +276,7 @@ event main(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b2b69ce5(b_game_ended)
+function private function_b2b69ce5(b_game_ended)
 {
 	if(!b_game_ended)
 	{
@@ -317,7 +317,7 @@ function function_7722c6f0(var_404e4288, var_8dd554ee)
 	{
 		zm_transform::function_d2374144(var_6095c0b6.ai_spawned, #"blight_father");
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -339,7 +339,7 @@ function function_389e7c22(var_404e4288, var_8dd554ee)
 	{
 		ai = namespace_acd9c698::function_bb067153();
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -365,7 +365,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 	{
 		ai = namespace_3fe4d0d7::round_spawn();
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -607,13 +607,16 @@ function door_price_reduction_for_solo()
 		{
 			self thread [[level.var_d0b54199]](self, self.zombie_cost);
 		}
-		else if(self.targetname == "zombie_door")
-		{
-			self zm_utility::set_hint_string(self, "default_buy_door", self.zombie_cost);
-		}
 		else
 		{
-			self zm_utility::set_hint_string(self, "default_buy_debris", self.zombie_cost);
+			if(self.targetname == "zombie_door")
+			{
+				self zm_utility::set_hint_string(self, "default_buy_door", self.zombie_cost);
+			}
+			else
+			{
+				self zm_utility::set_hint_string(self, "default_buy_debris", self.zombie_cost);
+			}
 		}
 	}
 }
@@ -649,7 +652,7 @@ function offhand_weapon_give_override(str_weapon)
 		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
 		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -975,7 +978,7 @@ function function_dccf4bb9(mdl_gate)
 */
 function function_6f26118c(mdl_gate)
 {
-	self endon_callback(&function_f493ba80, #"death");
+	self endoncallback(&function_f493ba80, #"death");
 	vol_gate = getent(mdl_gate.target, "targetname");
 	while(!self istouching(vol_gate))
 	{
@@ -1062,12 +1065,12 @@ function custom_pandora_show_func(anchor, anchortarget, pieces)
 {
 	if(!isdefined(self.pandora_light))
 	{
-		self thread function_73602c6f();
+		self thread custom_pandora_fx_func();
 	}
 }
 
 /*
-	Name: function_73602c6f
+	Name: custom_pandora_fx_func
 	Namespace: zm_towers
 	Checksum: 0x654C8B52
 	Offset: 0x5020
@@ -1075,7 +1078,7 @@ function custom_pandora_show_func(anchor, anchortarget, pieces)
 	Parameters: 0
 	Flags: Linked
 */
-function function_73602c6f()
+function custom_pandora_fx_func()
 {
 	self endon(#"death");
 	self.pandora_light = spawn("script_model", self.zbarrier.origin);
@@ -1514,7 +1517,7 @@ function function_8d6c5e6e(cmd)
 			case "play_end_igc":
 			{
 				level thread function_ddb8acde();
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_4c5e426034ea40ef":
@@ -1623,13 +1626,13 @@ function function_8d6c5e6e(cmd)
 			case "hash_50d92ca3c6c7c2a8":
 			{
 				level thread function_4110a06f();
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_3ce58f31f72a510f":
 			{
 				level thread function_9dc8cf3();
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_213c0ea9d797b6ea":
@@ -1640,80 +1643,80 @@ function function_8d6c5e6e(cmd)
 					player flag::set(#"hash_1e11ea0627c40424");
 					player flag::set(#"hash_15ea02b45ed633fa");
 				}
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_237913b2f4a85a44":
 			{
 				level thread zm_towers_challenges::function_a83b406a();
-				return 1;
+				return true;
 				break;
 			}
 			case "lore_room":
 			{
 				level thread function_5b2f92b3();
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_27bc74ddac87b156":
 			{
 				level thread namespace_2ea65b04::function_438a415(#"danu");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_3bb09c753859632b":
 			{
 				level thread namespace_2ea65b04::function_438a415(#"ra");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_40f87ec1dffc67d0":
 			{
 				level thread namespace_2ea65b04::function_438a415(#"odin");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_2ca290409187993b":
 			{
 				level thread namespace_2ea65b04::function_438a415(#"zeus");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_68370bceab1f118":
 			{
 				level thread namespace_2ea65b04::function_438a415(#"all");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_2d60025acca3891":
 			{
 				level thread namespace_2ea65b04::function_883e88be("");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_31ebe5f3e866cec9":
 			{
 				level thread namespace_2ea65b04::function_883e88be("");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_42709656cacf1035":
 			{
 				level thread namespace_2ea65b04::function_883e88be("");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_6aecfc20f8d3ae0d":
 			{
 				level flag::set(#"hash_3551c4ab09311644");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_5220b8897cc03896":
 			{
 				level flag::set(#"hash_392f20a71becaec7");
 				level flag::set(#"hash_3551c4ab09311644");
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_12584bff43cd127a":
@@ -1721,7 +1724,7 @@ function function_8d6c5e6e(cmd)
 				level flag::set(#"hash_17425b597c04b9c3");
 				level flag::set(#"hash_392f20a71becaec7");
 				level flag::set(#"hash_3551c4ab09311644");
-				return 1;
+				return true;
 				break;
 			}
 		}
@@ -1800,7 +1803,7 @@ function function_9dc8cf3()
 	Parameters: 1
 	Flags: Private
 */
-private function function_51855e65(round_number)
+function private function_51855e65(round_number)
 {
 	/#
 		var_efac84b3 = array(0, 500, 1000, 1000, 1400, 4000, 5000, 5500, 5500, 5500, 8000, 8000, 8000, 8000, 9000, 9000, 9000, 9500, 9500, 9500, 9500, 11000, 11000, 11000, 11000, 13000, 13000, 13000, 13000, 14000);

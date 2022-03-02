@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"serversettings", &__init__, undefined, undefined);
 }
@@ -74,21 +74,30 @@ function main()
 	{
 		setdvar(#"scr_mapsize", 64);
 	}
-	else if(getdvarfloat(#"scr_mapsize", 0) >= 64)
-	{
-		setdvar(#"scr_mapsize", 64);
-	}
-	else if(getdvarfloat(#"scr_mapsize", 0) >= 32)
-	{
-		setdvar(#"scr_mapsize", 32);
-	}
-	else if(getdvarfloat(#"scr_mapsize", 0) >= 16)
-	{
-		setdvar(#"scr_mapsize", 16);
-	}
 	else
 	{
-		setdvar(#"scr_mapsize", 8);
+		if(getdvarfloat(#"scr_mapsize", 0) >= 64)
+		{
+			setdvar(#"scr_mapsize", 64);
+		}
+		else
+		{
+			if(getdvarfloat(#"scr_mapsize", 0) >= 32)
+			{
+				setdvar(#"scr_mapsize", 32);
+			}
+			else
+			{
+				if(getdvarfloat(#"scr_mapsize", 0) >= 16)
+				{
+					setdvar(#"scr_mapsize", 16);
+				}
+				else
+				{
+					setdvar(#"scr_mapsize", 8);
+				}
+			}
+		}
 	}
 	for(;;)
 	{

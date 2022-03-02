@@ -350,7 +350,7 @@ function function_b4bd25ef()
 			break;
 		}
 	}
-	self namespace_7d0afffb::function_ac9cb612(0);
+	self bgb_pack::function_ac9cb612(0);
 	self.var_be3224e6 = 0;
 	self bgb::resume_weapon_cycling();
 	self enableoffhandweapons();
@@ -540,7 +540,7 @@ function function_8532d13f()
 	Parameters: 10
 	Flags: Private
 */
-private function function_dcebc908(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
+function private function_dcebc908(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
 {
 	if(isdefined(eattacker) && (isdefined(eattacker.var_e1cad99d) && eattacker.var_e1cad99d))
 	{

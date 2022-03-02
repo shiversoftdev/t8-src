@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"status_effect_blind", &__init__, undefined, undefined);
 }
@@ -94,7 +94,7 @@ function blind_apply(var_756fda07, weapon, var_84171a6c)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8a261309()
+function private function_8a261309()
 {
 	if(isdefined(self.owner) && isdefined(self.owner.lastflashedby) && isdefined(self.owner.lastflashedby.var_a467e27f))
 	{

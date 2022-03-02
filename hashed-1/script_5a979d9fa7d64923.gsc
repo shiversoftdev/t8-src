@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7f773699ffe5f857", &__init__, undefined, undefined);
 }
@@ -74,9 +74,7 @@ function __init__()
 	level.n_zombies_lifted_for_ragdoll = 0;
 	if(!isdefined(level.var_f2f67d17))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_f2f67d17 = object;
+		level.var_f2f67d17 = new throttle();
 		[[ level.var_f2f67d17 ]]->initialize(5, 0.1);
 	}
 }
@@ -94,21 +92,21 @@ function function_b1dc801b(weapon, var_e7c11b0c = 1)
 {
 	if(!isdefined(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon == level.hero_weapon[#"flamethrower"][2])
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"flamethrower"][1] && var_e7c11b0c < 3)
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"flamethrower"][0] && var_e7c11b0c < 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -120,7 +118,7 @@ function function_b1dc801b(weapon, var_e7c11b0c = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f5430720()
+function private function_f5430720()
 {
 	self endon(#"disconnect");
 	self thread function_82f451d4();
@@ -147,25 +145,28 @@ private function function_f5430720()
 		{
 			zm_hero_weapon::show_hint(wpn_cur, #"hash_258f60f733c7a181");
 		}
-		else if(wpn_cur == level.hero_weapon[#"flamethrower"][1])
+		else
 		{
-			zm_hero_weapon::show_hint(wpn_cur, #"hash_4c83bb6fd69bf1ea");
-			self thread function_16f31337(wpn_cur);
-			self thread function_478a4910(wpn_cur);
-		}
-		else if(wpn_cur == level.hero_weapon[#"flamethrower"][2])
-		{
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"flamethrower"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_1a1e29920a655055");
+				zm_hero_weapon::show_hint(wpn_cur, #"hash_4c83bb6fd69bf1ea");
+				self thread function_16f31337(wpn_cur);
+				self thread function_478a4910(wpn_cur);
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"flamethrower"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_43cbc37ab728289b");
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_1a1e29920a655055");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_43cbc37ab728289b");
+				}
+				self thread function_16f31337(wpn_cur);
+				self thread function_29bbc43a(wpn_cur);
+				self thread function_68ff89f7(wpn_cur);
 			}
-			self thread function_16f31337(wpn_cur);
-			self thread function_29bbc43a(wpn_cur);
-			self thread function_68ff89f7(wpn_cur);
 		}
 	}
 }
@@ -179,7 +180,7 @@ private function function_f5430720()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_82f451d4()
+function private function_82f451d4()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -264,7 +265,7 @@ function function_f63feeb6(einflictor, eattacker, idamage, flags, meansofdeath, 
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d8ee4d6a(eattacker)
+function private function_d8ee4d6a(eattacker)
 {
 	self endon(#"death");
 	self.var_95468c43 = 1;
@@ -273,20 +274,23 @@ private function function_d8ee4d6a(eattacker)
 		self thread namespace_9ff9f642::slowdown(#"hash_6ff4731de876ab68");
 		wait(1);
 	}
-	else if(self.var_6f84b820 == #"boss")
+	else
 	{
-		wait(1);
-	}
-	else if(self.var_6f84b820 == #"basic" || self.var_6f84b820 == #"enhanced")
-	{
-		if(self zombie_utility::function_33da7a07() !== "walk")
+		if(self.var_6f84b820 == #"boss")
 		{
-			self thread function_c95fe16();
+			wait(1);
 		}
-		while(isdefined(self.is_on_fire) && self.is_on_fire)
+		else if(self.var_6f84b820 == #"basic" || self.var_6f84b820 == #"enhanced")
 		{
-			self thread namespace_9ff9f642::slowdown(#"hash_6a420a16118789e1");
-			wait(3);
+			if(self zombie_utility::function_33da7a07() !== "walk")
+			{
+				self thread function_c95fe16();
+			}
+			while(isdefined(self.is_on_fire) && self.is_on_fire)
+			{
+				self thread namespace_9ff9f642::slowdown(#"hash_6a420a16118789e1");
+				wait(3);
+			}
 		}
 	}
 	self.var_95468c43 = undefined;
@@ -301,7 +305,7 @@ private function function_d8ee4d6a(eattacker)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c95fe16()
+function private function_c95fe16()
 {
 	self endon(#"death");
 	self zombie_utility::set_zombie_run_cycle_override_value("walk");
@@ -321,7 +325,7 @@ private function function_c95fe16()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d8e7e308(v_position)
+function private function_d8e7e308(v_position)
 {
 	self endon(#"death");
 	if(self.var_6f84b820 !== #"basic" || self.var_6f84b820 !== #"enhanced" || (isdefined(self.knockdown) && self.knockdown))
@@ -368,7 +372,7 @@ function function_58bc825e(var_1c041bd9)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_aa93af91(var_1c041bd9)
+function private function_aa93af91(var_1c041bd9)
 {
 	a_e_targets = zm_hero_weapon::function_7c3681f7();
 	var_560ef51 = [];
@@ -406,7 +410,7 @@ private function function_aa93af91(var_1c041bd9)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e296efef(var_1c041bd9, e_player)
+function private function_e296efef(var_1c041bd9, e_player)
 {
 	self endon(#"death");
 	[[ level.var_f2f67d17 ]]->waitinqueue(self);
@@ -591,52 +595,55 @@ function function_ea906434(e_player, var_1c041bd9)
 		[[ level.var_f2f67d17 ]]->waitinqueue(self);
 		self dodamage(self.maxhealth * 0.2, e_player.origin, e_player, e_player, "torso_lower", "MOD_IMPACT", 0, var_1c041bd9);
 	}
-	else if(self.var_6f84b820 == #"basic" || self.var_6f84b820 == #"enhanced")
+	else
 	{
-		[[ level.var_f2f67d17 ]]->waitinqueue(self);
-		n_dist = distance2d(self.origin, e_player.origin);
-		if(n_dist <= 64)
+		if(self.var_6f84b820 == #"basic" || self.var_6f84b820 == #"enhanced")
 		{
+			[[ level.var_f2f67d17 ]]->waitinqueue(self);
+			n_dist = distance2d(self.origin, e_player.origin);
+			if(n_dist <= 64)
+			{
+				if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
+				{
+					self.no_gib = 1;
+				}
+				if(!(isdefined(self.no_gib) && self.no_gib))
+				{
+					gibserverutils::annihilate(self);
+					self playsound(#"zmb_zombie_head_gib");
+				}
+				self dodamage(self.health + 100, e_player.origin, e_player, e_player, "torso_lower", "MOD_IMPACT", 0, var_1c041bd9);
+				return;
+			}
+			if(math::cointoss())
+			{
+				if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
+				{
+					self.no_gib = 1;
+				}
+				if(!(isdefined(self.no_gib) && self.no_gib))
+				{
+					self playsound(#"zmb_zombie_head_gib");
+					self zombie_utility::gib_random_parts();
+				}
+			}
 			if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
 			{
-				self.no_gib = 1;
+				self dodamage(self.health + 100, e_player.origin, e_player, e_player, "torso_lower", "MOD_IMPACT", 0, var_1c041bd9);
+				return;
 			}
-			if(!(isdefined(self.no_gib) && self.no_gib))
-			{
-				gibserverutils::annihilate(self);
-				self playsound(#"zmb_zombie_head_gib");
-			}
+			v_dir = self.origin - e_player.origin;
+			var_eb0d0f20 = 75 * vectornormalize(v_dir);
+			var_eb0d0f20 = (var_eb0d0f20[0], var_eb0d0f20[1], 20);
+			self startragdoll();
+			self launchragdoll(var_eb0d0f20);
 			self dodamage(self.health + 100, e_player.origin, e_player, e_player, "torso_lower", "MOD_IMPACT", 0, var_1c041bd9);
-			return;
 		}
-		if(math::cointoss())
+		else if(self.var_6f84b820 == #"popcorn")
 		{
-			if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
-			{
-				self.no_gib = 1;
-			}
-			if(!(isdefined(self.no_gib) && self.no_gib))
-			{
-				self playsound(#"zmb_zombie_head_gib");
-				self zombie_utility::gib_random_parts();
-			}
+			[[ level.var_f2f67d17 ]]->waitinqueue(self);
+			self dodamage(self.health + 100, e_player.origin, e_player, e_player, undefined, "MOD_IMPACT", 0, var_1c041bd9);
 		}
-		if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
-		{
-			self dodamage(self.health + 100, e_player.origin, e_player, e_player, "torso_lower", "MOD_IMPACT", 0, var_1c041bd9);
-			return;
-		}
-		v_dir = self.origin - e_player.origin;
-		var_eb0d0f20 = 75 * vectornormalize(v_dir);
-		var_eb0d0f20 = (var_eb0d0f20[0], var_eb0d0f20[1], 20);
-		self startragdoll();
-		self launchragdoll(var_eb0d0f20);
-		self dodamage(self.health + 100, e_player.origin, e_player, e_player, "torso_lower", "MOD_IMPACT", 0, var_1c041bd9);
-	}
-	else if(self.var_6f84b820 == #"popcorn")
-	{
-		[[ level.var_f2f67d17 ]]->waitinqueue(self);
-		self dodamage(self.health + 100, e_player.origin, e_player, e_player, undefined, "MOD_IMPACT", 0, var_1c041bd9);
 	}
 }
 
@@ -794,24 +801,30 @@ function function_6c891578(var_a993e05e, var_a85d39a2)
 				v_target_pos = ai_zombie.origin;
 				arrayremovevalue(var_a85d39a2, ai_zombie);
 			}
-			else if(isdefined(bullettracepassed(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self)) && bullettracepassed(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self))
-			{
-				v_target_pos = var_2ddb51af + (var_a993e05e * var_94a175c3);
-			}
 			else
 			{
-				v_target_pos = bullettrace(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self)[#"position"];
+				if(isdefined(bullettracepassed(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self)) && bullettracepassed(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self))
+				{
+					v_target_pos = var_2ddb51af + (var_a993e05e * var_94a175c3);
+				}
+				else
+				{
+					v_target_pos = bullettrace(var_2ddb51af, var_2ddb51af + (var_a993e05e * var_94a175c3), 0, self)[#"position"];
+				}
 			}
-		}
-		else if(var_a85d39a2.size)
-		{
-			ai_zombie = array::random(var_a85d39a2);
-			v_target_pos = ai_zombie.origin;
-			arrayremovevalue(var_a85d39a2, ai_zombie);
 		}
 		else
 		{
-			v_target_pos = self function_5adaf171(var_2ddb51af);
+			if(var_a85d39a2.size)
+			{
+				ai_zombie = array::random(var_a85d39a2);
+				v_target_pos = ai_zombie.origin;
+				arrayremovevalue(var_a85d39a2, ai_zombie);
+			}
+			else
+			{
+				v_target_pos = self function_5adaf171(var_2ddb51af);
+			}
 		}
 		var_6fba13f1 = getclosestpointonnavmesh(v_target_pos, 512, 16);
 		if(isdefined(var_6fba13f1))
@@ -969,7 +982,7 @@ function function_103fae4e(t_damage)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_height, n_lift_speed)
+function private function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_height, n_lift_speed)
 {
 	var_1c041bd9 = e_player.var_fd05e363;
 	self.var_d9e7a08a = 1;
@@ -979,101 +992,110 @@ private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_h
 		self.no_powerups = 1;
 		self dodamage(self.health + 100, v_origin, e_player, e_player, undefined, "MOD_BURNED", 0, var_1c041bd9);
 	}
-	else if(self.var_6f84b820 == #"miniboss" || self.var_6f84b820 == #"boss" || self.var_6f84b820 == #"heavy")
+	else
 	{
-		self endon(#"death");
-		[[ level.var_f2f67d17 ]]->waitinqueue(self);
-		if(var_ab287846 function_58942bba(self) && self.var_6f84b820 == #"miniboss")
+		if(self.var_6f84b820 == #"miniboss" || self.var_6f84b820 == #"boss" || self.var_6f84b820 == #"heavy")
 		{
-			var_ab287846 thread scene::init(#"p8_zm_flame_tornado_miniboss_scene", self);
-			self dodamage(self.maxhealth * 0.18, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
-			self.var_42d5176d = 1;
-			self val::set(#"hash_77bfbbee3d2c15d", "ignoreall", 1);
-			v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 100), self.origin + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
-			if(!isdefined(v_pos))
+			self endon(#"death");
+			[[ level.var_f2f67d17 ]]->waitinqueue(self);
+			if(var_ab287846 function_58942bba(self) && self.var_6f84b820 == #"miniboss")
 			{
-				v_pos = self.origin;
+				var_ab287846 thread scene::init(#"p8_zm_flame_tornado_miniboss_scene", self);
+				self dodamage(self.maxhealth * 0.18, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
+				self.var_42d5176d = 1;
+				self val::set(#"hash_77bfbbee3d2c15d", "ignoreall", 1);
+				v_pos = groundtrace(self.origin + vectorscale((0, 0, 1), 100), self.origin + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
+				if(!isdefined(v_pos))
+				{
+					v_pos = self.origin;
+				}
+				self.var_68f4c9de = util::spawn_model("tag_origin", v_pos, self.angles);
+				self.var_68f4c9de thread scene::init(#"p8_zm_flame_tornado_miniboss_scene", self);
+				self thread function_e6f0a2c7(var_ab287846);
+				var_ab287846 waittill(#"death", #"hash_751e0293eed9a1cf", #"hash_124840b260697eb9");
+				if(isdefined(self) && isdefined(self.var_68f4c9de))
+				{
+					self.var_68f4c9de scene::play(#"p8_zm_flame_tornado_miniboss_scene", self);
+				}
+				if(isdefined(self) && isdefined(self.var_68f4c9de))
+				{
+					self.var_42d5176d = undefined;
+					self val::reset(#"hash_77bfbbee3d2c15d", "ignoreall");
+					self.var_d9e7a08a = undefined;
+					self.var_68f4c9de delete();
+				}
 			}
-			self.var_68f4c9de = util::spawn_model("tag_origin", v_pos, self.angles);
-			self.var_68f4c9de thread scene::init(#"p8_zm_flame_tornado_miniboss_scene", self);
-			self thread function_e6f0a2c7(var_ab287846);
-			var_ab287846 waittill(#"death", #"hash_751e0293eed9a1cf", #"hash_124840b260697eb9");
-			if(isdefined(self) && isdefined(self.var_68f4c9de))
+			else
 			{
-				self.var_68f4c9de scene::play(#"p8_zm_flame_tornado_miniboss_scene", self);
+				if(self.var_6f84b820 == #"heavy")
+				{
+					self zombie_utility::setup_zombie_knockdown(e_player);
+					self dodamage(self.maxhealth * 0.2, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
+					wait(1);
+					self.var_d9e7a08a = undefined;
+				}
+				else
+				{
+					self thread function_d8ee4d6a(e_player);
+					self dodamage(self.maxhealth * 0.16, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
+					wait(1);
+					self.var_d9e7a08a = undefined;
+				}
 			}
-			if(isdefined(self) && isdefined(self.var_68f4c9de))
-			{
-				self.var_42d5176d = undefined;
-				self val::reset(#"hash_77bfbbee3d2c15d", "ignoreall");
-				self.var_d9e7a08a = undefined;
-				self.var_68f4c9de delete();
-			}
-		}
-		else if(self.var_6f84b820 == #"heavy")
-		{
-			self zombie_utility::setup_zombie_knockdown(e_player);
-			self dodamage(self.maxhealth * 0.2, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
-			wait(1);
-			self.var_d9e7a08a = undefined;
 		}
 		else
 		{
-			self thread function_d8ee4d6a(e_player);
-			self dodamage(self.maxhealth * 0.16, v_origin, e_player, e_player, "none", "MOD_BURNED", 0, var_1c041bd9);
-			wait(1);
-			self.var_d9e7a08a = undefined;
-		}
-	}
-	else
-	{
-		self endon(#"death");
-		[[ level.var_f2f67d17 ]]->waitinqueue(self);
-		if(level.n_zombies_lifted_for_ragdoll < 9)
-		{
-			self thread track_lifted_for_ragdoll_count();
-			self setplayercollision(0);
-			self zm_spawner::zombie_flame_damage("MOD_BURNED", e_player);
-			if(isdefined(var_ab287846) && var_ab287846 function_58942bba(self))
+			self endon(#"death");
+			[[ level.var_f2f67d17 ]]->waitinqueue(self);
+			if(level.n_zombies_lifted_for_ragdoll < 9)
 			{
-				var_ab287846 thread scene::play(#"hash_12dad71980d51ac8", self);
-				var_ab287846 thread function_943cd1e3(e_player, self);
-				var_c74251a4 = scene::function_8582657c(#"hash_12dad71980d51ac8", "Shot 1");
-				n_time = randomfloatrange(2, var_c74251a4);
-				e_player waittill_timeout(n_time, #"hash_20d02a4b6d08596d", #"hash_2ca901b5ada4f20f", #"hash_751e0293eed9a1cf");
-				if(!isdefined(self))
+				self thread track_lifted_for_ragdoll_count();
+				self setplayercollision(0);
+				self zm_spawner::zombie_flame_damage("MOD_BURNED", e_player);
+				if(isdefined(var_ab287846) && var_ab287846 function_58942bba(self))
 				{
+					var_ab287846 thread scene::play(#"hash_12dad71980d51ac8", self);
+					var_ab287846 thread function_943cd1e3(e_player, self);
+					var_c74251a4 = scene::function_8582657c(#"hash_12dad71980d51ac8", "Shot 1");
+					n_time = randomfloatrange(2, var_c74251a4);
+					e_player waittilltimeout(n_time, #"hash_20d02a4b6d08596d", #"hash_2ca901b5ada4f20f", #"hash_751e0293eed9a1cf");
+					if(!isdefined(self))
+					{
+						return;
+					}
+					self thread scene::stop(#"hash_12dad71980d51ac8");
+				}
+				if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
+				{
+					self dodamage(self.health + 100, v_origin, e_player, e_player, "torso_lower", "MOD_BURNED", 0, var_1c041bd9);
 					return;
 				}
-				self thread scene::stop(#"hash_12dad71980d51ac8");
+				self playsound(#"zmb_zombie_head_gib");
+				self zombie_utility::gib_random_parts();
+				v_away_from_source = vectornormalize(self.origin - v_origin);
+				v_away_from_source = v_away_from_source * n_push_away;
+				v_away_from_source = (v_away_from_source[0], v_away_from_source[1], n_lift_height);
+				if(!(isdefined(level.ignore_gravityspikes_ragdoll) && level.ignore_gravityspikes_ragdoll))
+				{
+					self startragdoll();
+					self launchragdoll((100 * anglestoup(self.angles)) + (v_away_from_source[0], v_away_from_source[1], 0));
+				}
+				self clientfield::set("ragdoll_impact_watch", 1);
 			}
-			if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
+			else
 			{
-				self dodamage(self.health + 100, v_origin, e_player, e_player, "torso_lower", "MOD_BURNED", 0, var_1c041bd9);
-				return;
+				if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
+				{
+					self.no_gib = 1;
+				}
+				if(!(isdefined(self.no_gib) && self.no_gib))
+				{
+					gibserverutils::annihilate(self);
+					self playsound(#"zmb_zombie_head_gib");
+				}
 			}
-			self playsound(#"zmb_zombie_head_gib");
-			self zombie_utility::gib_random_parts();
-			v_away_from_source = vectornormalize(self.origin - v_origin);
-			v_away_from_source = v_away_from_source * n_push_away;
-			v_away_from_source = (v_away_from_source[0], v_away_from_source[1], n_lift_height);
-			if(!(isdefined(level.ignore_gravityspikes_ragdoll) && level.ignore_gravityspikes_ragdoll))
-			{
-				self startragdoll();
-				self launchragdoll((100 * anglestoup(self.angles)) + (v_away_from_source[0], v_away_from_source[1], 0));
-			}
-			self clientfield::set("ragdoll_impact_watch", 1);
+			self dodamage(self.health + 100, v_origin, e_player, e_player, "torso_lower", "MOD_BURNED", 0, var_1c041bd9);
 		}
-		else if(isdefined(level.no_gib_in_wolf_area) && (isdefined(self [[level.no_gib_in_wolf_area]]()) && self [[level.no_gib_in_wolf_area]]()))
-		{
-			self.no_gib = 1;
-		}
-		if(!(isdefined(self.no_gib) && self.no_gib))
-		{
-			gibserverutils::annihilate(self);
-			self playsound(#"zmb_zombie_head_gib");
-		}
-		self dodamage(self.health + 100, v_origin, e_player, e_player, "torso_lower", "MOD_BURNED", 0, var_1c041bd9);
 	}
 }
 
@@ -1086,7 +1108,7 @@ private function function_72601dd2(e_player, var_ab287846, n_push_away, n_lift_h
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e6f0a2c7(var_ab287846)
+function private function_e6f0a2c7(var_ab287846)
 {
 	if(!isdefined(var_ab287846) || !isdefined(var_ab287846.t_damage))
 	{
@@ -1110,7 +1132,7 @@ private function function_e6f0a2c7(var_ab287846)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function track_lifted_for_ragdoll_count()
+function private track_lifted_for_ragdoll_count()
 {
 	level.n_zombies_lifted_for_ragdoll++;
 	self waittill(#"death");
@@ -1126,7 +1148,7 @@ private function track_lifted_for_ragdoll_count()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_943cd1e3(e_player, ai_zombie)
+function private function_943cd1e3(e_player, ai_zombie)
 {
 	while(isdefined(self) && isalive(ai_zombie))
 	{
@@ -1148,34 +1170,34 @@ private function function_943cd1e3(e_player, ai_zombie)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_58942bba(e_ignore)
+function private function_58942bba(e_ignore)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	v_start_pos = self.origin + vectorscale((0, 0, 1), 16);
 	if(!bullettracepassed(self.origin + vectorscale((0, 0, 1), 5), self.origin + (0, 0, 128), 0, e_ignore))
 	{
-		return 0;
+		return false;
 	}
 	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoforward(self.angles) * 50), 0, e_ignore))
 	{
-		return 0;
+		return false;
 	}
 	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoforward(self.angles) * (50 * -1)), 0, e_ignore))
 	{
-		return 0;
+		return false;
 	}
 	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoright(self.angles) * 50), 0, e_ignore))
 	{
-		return 0;
+		return false;
 	}
 	if(!bullettracepassed(v_start_pos, v_start_pos + (anglestoright(self.angles) * (50 * -1)), 0, e_ignore))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

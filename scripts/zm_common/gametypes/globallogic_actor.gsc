@@ -23,7 +23,7 @@
 function callback_actorspawned(spawner)
 {
 	self thread spawner::spawn_think(spawner);
-	bb::function_d85a26a1(self, spawner);
+	bb::logaispawn(self, spawner);
 }
 
 /*

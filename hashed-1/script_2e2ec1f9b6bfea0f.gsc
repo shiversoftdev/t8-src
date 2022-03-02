@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_432d2ed90d4221b9", &__init__, undefined, #"hash_d23efe71e585b90");
 }
@@ -154,7 +154,7 @@ function function_4ac25840(var_d32e67b4)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c816ea5b()
+function private function_c816ea5b()
 {
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 1);
 	switch(maxteamplayers)

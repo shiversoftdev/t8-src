@@ -57,8 +57,8 @@ function function_4989fd7e()
 	var_40762d8a = getent("t_catwalk_door_open", "targetname");
 	var_40762d8a sethintstring(#"hash_71158766520dc432");
 	level.var_2ea46461 = getent("mdl_ca_l", "targetname");
-	var_10ef531 = getentarray("door_model_west_side_exterior_to_catwalk", "targetname");
-	foreach(e_door in var_10ef531)
+	a_e_door = getentarray("door_model_west_side_exterior_to_catwalk", "targetname");
+	foreach(e_door in a_e_door)
 	{
 		if(e_door.classname == "script_model")
 		{
@@ -458,7 +458,7 @@ function function_17ccf041()
 		if(isplayer(var_f9b5a331))
 		{
 			s_notify = undefined;
-			s_notify = var_f9b5a331 waittill_timeout(n_check_time, #"damage", #"death");
+			s_notify = var_f9b5a331 waittilltimeout(n_check_time, #"damage", #"death");
 			if(s_notify._notify === "death")
 			{
 				waitframe(1);
@@ -745,13 +745,16 @@ function play_brutus_scene_done(a_ents)
 		{
 			namespace_961cf978::attempt_brutus_spawn(1, "zone_catwalk_04");
 		}
-		else if(level.zones[#"zone_catwalk_03"].is_active)
-		{
-			namespace_961cf978::attempt_brutus_spawn(1, "zone_catwalk_03");
-		}
 		else
 		{
-			namespace_961cf978::attempt_brutus_spawn(1);
+			if(level.zones[#"zone_catwalk_03"].is_active)
+			{
+				namespace_961cf978::attempt_brutus_spawn(1, "zone_catwalk_03");
+			}
+			else
+			{
+				namespace_961cf978::attempt_brutus_spawn(1);
+			}
 		}
 		level.var_43bca751 = undefined;
 	}
@@ -836,7 +839,7 @@ function function_993f4add()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5404a36b()
+function private function_5404a36b()
 {
 	self endon(#"death");
 	self waittill(#"hash_64dded563a93f9c0");
@@ -926,9 +929,9 @@ function function_e11ac4f5()
 function function_82a43802(var_65500f70)
 {
 	var_e9b059c7 = [];
-	foreach(var_70e1deb9 in var_65500f70)
+	foreach(s_respawn_point in var_65500f70)
 	{
-		if(var_70e1deb9.script_noteworthy == "zone_model_industries" || var_70e1deb9.script_noteworthy == "zone_model_industries_upper" || var_70e1deb9.script_noteworthy == "zone_west_side_exterior_upper" || var_70e1deb9.script_noteworthy == "zone_west_side_exterior_upper_02" || var_70e1deb9.script_noteworthy == "zone_west_side_exterior_lower" || var_70e1deb9.script_noteworthy == "zone_west_side_exterior_tunnel" || var_70e1deb9.script_noteworthy == "zone_powerhouse" || var_70e1deb9.script_noteworthy == "zone_new_industries")
+		if(s_respawn_point.script_noteworthy == "zone_model_industries" || s_respawn_point.script_noteworthy == "zone_model_industries_upper" || s_respawn_point.script_noteworthy == "zone_west_side_exterior_upper" || s_respawn_point.script_noteworthy == "zone_west_side_exterior_upper_02" || s_respawn_point.script_noteworthy == "zone_west_side_exterior_lower" || s_respawn_point.script_noteworthy == "zone_west_side_exterior_tunnel" || s_respawn_point.script_noteworthy == "zone_powerhouse" || s_respawn_point.script_noteworthy == "zone_new_industries")
 		{
 			if(!isdefined(var_e9b059c7))
 			{
@@ -938,7 +941,7 @@ function function_82a43802(var_65500f70)
 			{
 				var_e9b059c7 = array(var_e9b059c7);
 			}
-			var_e9b059c7[var_e9b059c7.size] = var_70e1deb9;
+			var_e9b059c7[var_e9b059c7.size] = s_respawn_point;
 		}
 	}
 	return var_e9b059c7;

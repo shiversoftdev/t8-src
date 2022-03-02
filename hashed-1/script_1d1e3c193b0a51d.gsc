@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2f326252a6b5175", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(var_c8a36f90, var_16e6b8ea)
+function private function_d1de6a85(var_c8a36f90, var_16e6b8ea)
 {
 	level.var_a96e21f8 = (isdefined(var_c8a36f90) ? var_c8a36f90 : "movement");
 	var_16e6b8ea = zm_trial::function_5769f26a(var_16e6b8ea);
@@ -70,7 +70,7 @@ private function function_d1de6a85(var_c8a36f90, var_16e6b8ea)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_a96e21f8 = undefined;
 }
@@ -84,7 +84,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function function_1633056a(var_16e6b8ea = 10)
+function private function_1633056a(var_16e6b8ea = 10)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -109,7 +109,7 @@ private function function_1633056a(var_16e6b8ea = 10)
 	Parameters: 0
 	Flags: Private
 */
-private function function_c81cdba2()
+function private function_c81cdba2()
 {
 	switch(level.var_a96e21f8)
 	{
@@ -118,41 +118,41 @@ private function function_c81cdba2()
 			var_389b3ef1 = self playerads();
 			if(self adsbuttonpressed() && var_389b3ef1 > 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "jump":
 		{
 			if(self zm_utility::is_jumping())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "slide":
 		{
 			if(self issliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "crouch":
 		{
 			if(self getstance() === "crouch")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "sprint":
 		{
 			if(self issprinting())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "movement":
 		default:
@@ -160,11 +160,11 @@ private function function_c81cdba2()
 			v_velocity = self getvelocity();
 			if(length(v_velocity) != 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
-	return 0;
+	return false;
 }
 

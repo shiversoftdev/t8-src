@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2813a2fd40c93f23", &__init__, &__main__, undefined);
 }
@@ -398,25 +398,25 @@ function slide_explosion(n_slot)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2772480a()
+function private function_2772480a()
 {
 	if(namespace_6b49f66b::is_active())
 	{
-		return 0;
+		return false;
 	}
 	if(namespace_fcd611c3::is_active() && level.var_e91491fb !== #"slide")
 	{
-		return 0;
+		return false;
 	}
 	if(namespace_b28d86fd::is_active())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_8c018a0e) && level.var_8c018a0e)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

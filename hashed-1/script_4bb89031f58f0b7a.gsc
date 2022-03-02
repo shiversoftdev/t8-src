@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_36b936ddd622fccf", &__init__, undefined, undefined);
 }
@@ -30,7 +30,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	clientfield::register("scriptmover", "" + #"hash_26686fdfe90ecd97", 16000, 1, "int", &function_d83c0144, 0, 0);
 	clientfield::register("actor", "" + #"hash_3a6a3e4ef0a1a999", 16000, 1, "counter", &function_9e6319c8, 0, 0);
@@ -47,7 +47,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function skeletonspawnsetup(localclientnum)
+function private skeletonspawnsetup(localclientnum)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self))
@@ -65,7 +65,7 @@ private function skeletonspawnsetup(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3b8e5273(localclientnum)
+function private function_3b8e5273(localclientnum)
 {
 	if(self.var_9fde8624 === #"hash_342763a42d8fbca" || self.var_9fde8624 === #"hash_fd7b9665529dd42")
 	{
@@ -89,7 +89,7 @@ private function function_3b8e5273(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d83c0144(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_d83c0144(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::waittill_dobj(localclientnum);
 	if(!isdefined(self))
@@ -125,7 +125,7 @@ private function function_d83c0144(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_9e6319c8(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_9e6319c8(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::waittill_dobj(localclientnum);
 	if(newval == 1)

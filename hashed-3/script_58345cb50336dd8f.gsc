@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_53e2d15cdf3290ad", &__init__, undefined, undefined);
 }
@@ -73,7 +73,7 @@ function registersamanthas_bundle()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_aa232314(oldval, newval)
+function private function_aa232314(oldval, newval)
 {
 	if(oldval != newval)
 	{
@@ -144,7 +144,7 @@ private function function_aa232314(oldval, newval)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function onplayerspawned()
+function private onplayerspawned()
 {
 	self.var_dc148218 = 0;
 }

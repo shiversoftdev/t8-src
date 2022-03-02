@@ -61,13 +61,16 @@ function default_onforfeit(params)
 	{
 		round::function_d1e740f6(level.players[0]);
 	}
-	else if(platoons::function_382a49e0() && params.var_b2ee6c67.size)
+	else
 	{
-		round::function_35702443(params.var_b2ee6c67[0]);
-	}
-	if(params.var_6eb69269.size)
-	{
-		round::function_d1e740f6(params.var_6eb69269[0]);
+		if(platoons::function_382a49e0() && params.var_b2ee6c67.size)
+		{
+			round::function_35702443(params.var_b2ee6c67[0]);
+		}
+		if(params.var_6eb69269.size)
+		{
+			round::function_d1e740f6(params.var_6eb69269[0]);
+		}
 	}
 	level.forcedend = 1;
 	round::set_flag("force_end");
@@ -121,17 +124,23 @@ function function_dcf41142(params)
 	{
 		round::function_af2e264f(params.var_dfa2cc2c[0]);
 	}
-	else if(platoons::function_382a49e0() && params.platoons_alive.size)
-	{
-		round::function_35702443(params.platoons_alive[0]);
-	}
-	else if(params.teams_alive.size && isdefined(level.teams[params.teams_alive[0]]))
-	{
-		round::function_af2e264f(params.teams_alive[0]);
-	}
 	else
 	{
-		round::set_flag("tie");
+		if(platoons::function_382a49e0() && params.platoons_alive.size)
+		{
+			round::function_35702443(params.platoons_alive[0]);
+		}
+		else
+		{
+			if(params.teams_alive.size && isdefined(level.teams[params.teams_alive[0]]))
+			{
+				round::function_af2e264f(params.teams_alive[0]);
+			}
+			else
+			{
+				round::set_flag("tie");
+			}
+		}
 	}
 	thread globallogic::end_round(6);
 }
@@ -242,11 +251,11 @@ function default_onscorelimit()
 {
 	if(!level.endgameonscorelimit)
 	{
-		return 0;
+		return false;
 	}
 	round::function_870759fb();
 	thread globallogic::end_round(3);
-	return 1;
+	return true;
 }
 
 /*
@@ -263,7 +272,7 @@ function default_onroundscorelimit()
 	round::function_870759fb();
 	param1 = 4;
 	thread globallogic::end_round(param1);
-	return 1;
+	return true;
 }
 
 /*
@@ -310,7 +319,12 @@ function default_onspawnintermission(endgame)
 	{
 		self spawn(spawnpoint.origin, spawnpoint.angles);
 	}
-	util::error("");
+	else
+	{
+		/#
+			util::error("");
+		#/
+	}
 }
 
 /*

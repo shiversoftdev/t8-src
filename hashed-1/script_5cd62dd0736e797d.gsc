@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"wz_ai", &__init__, undefined, undefined);
 }
@@ -29,7 +29,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	clientfield::register("vehicle", "enable_on_radar", 1, 1, "int");
 	clientfield::register("actor", "enable_on_radar", 1, 1, "int");

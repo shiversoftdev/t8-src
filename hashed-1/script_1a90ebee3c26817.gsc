@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"straferun", &__init__, undefined, #"killstreaks");
 }
@@ -132,12 +132,12 @@ function usekillstreakstraferun(hardpointtype)
 		/#
 			println("");
 		#/
-		return 0;
+		return false;
 	}
 	killstreak_id = self killstreakrules::killstreakstart("straferun", self.team, 0, 1);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	plane = spawnvehicle(level.straferunvehicle, startnode.origin, (0, 0, 0), "straferun");
 	plane.attackers = [];
@@ -192,7 +192,7 @@ function usekillstreakstraferun(hardpointtype)
 	plane thread function_c24cc26a();
 	util::function_5a68c330(21, self.team, self getentitynumber(), level.killstreaks[#"straferun"].uiname);
 	aiutility::addaioverridedamagecallback(plane, &function_16abaea4);
-	return 1;
+	return true;
 }
 
 /*
@@ -294,13 +294,16 @@ function function_c24cc26a()
 			{
 				self killstreaks::play_pilot_dialog_on_owner("arrive", "straferun", self.killstreak_id);
 			}
-			else if(self.numstrafes == (level.straferunmaxstrafes - 1))
-			{
-				self killstreaks::play_pilot_dialog_on_owner("waveStartFinal", "straferun", self.killstreakid);
-			}
 			else
 			{
-				self killstreaks::play_pilot_dialog_on_owner("waveStart", "straferun", self.killstreakid);
+				if(self.numstrafes == (level.straferunmaxstrafes - 1))
+				{
+					self killstreaks::play_pilot_dialog_on_owner("waveStartFinal", "straferun", self.killstreakid);
+				}
+				else
+				{
+					self killstreaks::play_pilot_dialog_on_owner("waveStart", "straferun", self.killstreakid);
+				}
 			}
 		}
 		self.var_90110858 = 1;
@@ -751,21 +754,30 @@ function stopstrafe()
 	{
 		bdadialog = "killNone";
 	}
-	else if(owner.straferunbda == 1)
+	else
 	{
-		bdadialog = "kill1";
-	}
-	else if(owner.straferunbda == 2)
-	{
-		bdadialog = "kill2";
-	}
-	else if(owner.straferunbda == 3)
-	{
-		bdadialog = "kill3";
-	}
-	else if(owner.straferunbda > 3)
-	{
-		bdadialog = "killMultiple";
+		if(owner.straferunbda == 1)
+		{
+			bdadialog = "kill1";
+		}
+		else
+		{
+			if(owner.straferunbda == 2)
+			{
+				bdadialog = "kill2";
+			}
+			else
+			{
+				if(owner.straferunbda == 3)
+				{
+					bdadialog = "kill3";
+				}
+				else if(owner.straferunbda > 3)
+				{
+					bdadialog = "killMultiple";
+				}
+			}
+		}
 	}
 	if(isdefined(bdadialog) && (!(isdefined(self.leavenexttime) && self.leavenexttime)))
 	{
@@ -790,17 +802,17 @@ function shouldleavemap()
 {
 	if(isdefined(self.leavenexttime) && self.leavenexttime)
 	{
-		return 1;
+		return true;
 	}
 	if(self.numstrafes >= level.straferunmaxstrafes)
 	{
-		return 1;
+		return true;
 	}
 	if(self.owner.straferunkills >= level.straferunkillsbeforeexit)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -882,9 +894,9 @@ function cantargetentity(entity)
 	visible_amount = entity sightconetrace(heli_turret_point, self);
 	if(visible_amount < level.heli_target_recognition)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -989,9 +1001,9 @@ function targetinfrontofplane(target)
 	dot = vectordot(forward_dir, target_delta);
 	if(dot < 0.5)
 	{
-		return 1;
+		return true;
 	}
-	return 1;
+	return true;
 }
 
 /*

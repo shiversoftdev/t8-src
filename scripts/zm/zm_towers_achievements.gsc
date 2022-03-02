@@ -418,7 +418,7 @@ function function_cbdb5e70()
 	Parameters: 1
 	Flags: Private
 */
-private function function_53b04cab(var_378e29b9)
+function private function_53b04cab(var_378e29b9)
 {
 	/#
 		if(!isdefined(var_378e29b9))

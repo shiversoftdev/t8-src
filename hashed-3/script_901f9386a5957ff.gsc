@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"gadget_combat_efficiency", &__init__, undefined, undefined);
 }
@@ -153,17 +153,17 @@ function function_db4ccff2(attacker, victim, weapon, attackerweapon, meansofdeat
 {
 	if(!isdefined(attacker) || !isdefined(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(attacker.playerrole) && isdefined(attacker.playerrole.var_ec20b2a))
 	{
 		var_266391e6 = getweapon(attacker.playerrole.var_ec20b2a);
 		if(attacker ability_util::function_43cda488() && weapon == var_266391e6)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

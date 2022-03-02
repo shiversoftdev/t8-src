@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_power", &__init__, &__main__, undefined);
 }
@@ -772,11 +772,11 @@ function has_local_power(origin)
 		{
 			if(distancesquared(localpower.origin, origin) < localpower.radius * localpower.radius)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1004,13 +1004,13 @@ function door_range(delta, origin, radius)
 {
 	if(delta < 0)
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(self.target.origin, origin) < radius * radius)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1127,15 +1127,15 @@ function zombie_range(delta, origin, radius)
 {
 	if(delta > 0)
 	{
-		return 0;
+		return false;
 	}
 	self.zombies = array::get_all_closest(origin, zombie_utility::get_round_enemy_array(), undefined, undefined, radius);
 	if(!isdefined(self.zombies))
 	{
-		return 0;
+		return false;
 	}
 	self.power = 1;
-	return 1;
+	return true;
 }
 
 /*
@@ -1214,10 +1214,10 @@ function perk_range(delta, origin, radius)
 		}
 		if(distancesquared(perkorigin, origin) < radius * radius)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

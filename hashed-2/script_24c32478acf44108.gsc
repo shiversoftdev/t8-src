@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_308dff40d53a7287", &__init__, undefined, undefined);
 }
@@ -104,20 +104,23 @@ function burn(str_type, e_attacker, weapon, var_477abb8f)
 	{
 		self.var_88421cc2[str_type] = {#hash_477abb8f:var_477abb8f, #weapon:weapon, #e_owner:e_attacker, #n_time_remaining:s_burn.n_duration};
 	}
-	else if(self.var_88421cc2[str_type].n_time_remaining < s_burn.n_duration)
+	else
 	{
-		self.var_88421cc2[str_type].n_time_remaining = s_burn.n_duration;
-	}
-	if(isdefined(var_477abb8f))
-	{
-		if(!isdefined(self.var_88421cc2[str_type].var_477abb8f) || self.var_88421cc2[str_type].var_477abb8f != var_477abb8f)
+		if(self.var_88421cc2[str_type].n_time_remaining < s_burn.n_duration)
 		{
-			self.var_88421cc2[str_type].var_477abb8f = var_477abb8f;
+			self.var_88421cc2[str_type].n_time_remaining = s_burn.n_duration;
 		}
-	}
-	else if(isdefined(self.var_88421cc2[str_type].var_477abb8f))
-	{
-		self.var_88421cc2[str_type].var_477abb8f = undefined;
+		if(isdefined(var_477abb8f))
+		{
+			if(!isdefined(self.var_88421cc2[str_type].var_477abb8f) || self.var_88421cc2[str_type].var_477abb8f != var_477abb8f)
+			{
+				self.var_88421cc2[str_type].var_477abb8f = var_477abb8f;
+			}
+		}
+		else if(isdefined(self.var_88421cc2[str_type].var_477abb8f))
+		{
+			self.var_88421cc2[str_type].var_477abb8f = undefined;
+		}
 	}
 	if(var_cfb3f538)
 	{
@@ -134,10 +137,10 @@ function burn(str_type, e_attacker, weapon, var_477abb8f)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8aefaae3(s_burn)
+function private function_8aefaae3(s_burn)
 {
 	level endon(#"end_game");
-	self endon_callback(&function_fc2a294, #"death");
+	self endoncallback(&function_fc2a294, #"death");
 	if(isdefined(self.archetype))
 	{
 		if(isdefined(s_burn.var_f472bfc))
@@ -240,7 +243,7 @@ function function_5e9ef773()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fc2a294(var_c34665fc)
+function private function_fc2a294(var_c34665fc)
 {
 	if(isdefined(self.archetype))
 	{
@@ -329,7 +332,7 @@ function unfreeze()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bf97ba95()
+function private function_bf97ba95()
 {
 	self notify(#"hash_55e2fa9139b08b3e");
 	self endon(#"hash_55e2fa9139b08b3e");
@@ -357,11 +360,11 @@ function function_865a83f8(zombie, target, predictedpos, var_95342913)
 {
 	if(isdefined(zombie.knockdown) && zombie.knockdown || (isdefined(zombie.pushed) && zombie.pushed))
 	{
-		return 0;
+		return false;
 	}
 	if(gibserverutils::isgibbed(zombie, 384))
 	{
-		return 0;
+		return false;
 	}
 	checkpos = zombie.origin;
 	if(!isactor(target))
@@ -373,7 +376,7 @@ function function_865a83f8(zombie, target, predictedpos, var_95342913)
 	distsq = distancesquared(predictedpos, checkpos);
 	if(distsq > var_caa95837)
 	{
-		return 0;
+		return false;
 	}
 	origin = target.origin;
 	var_f2fb414f = anglestoforward(target.angles);
@@ -385,9 +388,9 @@ function function_865a83f8(zombie, target, predictedpos, var_95342913)
 	var_34e02165 = vectordot(var_c2ee8451, var_3e3c8075);
 	if(var_34e02165 < 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -441,7 +444,7 @@ function slowdown(str_type, var_a47cf2b2)
 	}
 	self notify(#"starting_slowdown_ai");
 	level endon(#"end_game");
-	self endon_callback(&function_fe7a7d5b, #"starting_slowdown_ai", #"death");
+	self endoncallback(&function_fe7a7d5b, #"starting_slowdown_ai", #"death");
 	if(!isdefined(level.var_981dd9cf) || !isdefined(level.var_981dd9cf[#"slow"]) || !isdefined(level.var_981dd9cf[#"slow"][str_type]))
 	{
 		/#
@@ -498,7 +501,7 @@ function slowdown(str_type, var_a47cf2b2)
 			else
 			{
 				n_duration = var_e489fea - n_time;
-				self waittill_timeout(float(n_duration) / 1000, #"hash_62a477d53a6bbad");
+				self waittilltimeout(float(n_duration) / 1000, #"hash_62a477d53a6bbad");
 			}
 			if(var_e489fea < gettime() && var_dc1625a7.n_duration != -1)
 			{
@@ -520,7 +523,7 @@ function slowdown(str_type, var_a47cf2b2)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e01e1ea1()
+function private function_e01e1ea1()
 {
 	n_time = gettime();
 	foreach(str_index, n_slowdown_timeout in self.a_n_slowdown_timeouts)
@@ -574,7 +577,7 @@ function function_520f4da5(str_type)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fe7a7d5b(str_notify)
+function private function_fe7a7d5b(str_notify)
 {
 	if(isalive(self) && hasasm(self))
 	{

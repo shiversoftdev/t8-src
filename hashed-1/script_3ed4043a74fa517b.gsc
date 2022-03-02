@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7ec9595768b1ec91", &__init__, &__main__, #"zm_weapons");
 }
@@ -531,7 +531,7 @@ function player_throw_cymbal_monkey(e_grenade, num_attractors, max_attract_dist,
 	Parameters: 0
 	Flags: Private
 */
-private function function_ab9a9770()
+function private function_ab9a9770()
 {
 	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(s_trace[#"entity"]))
@@ -539,10 +539,10 @@ private function function_ab9a9770()
 		entity = s_trace[#"entity"];
 		if(entity ismovingplatform())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -570,11 +570,11 @@ function function_2f2478f2()
 			if(zm_utility::check_point_in_enabled_zone(point.origin) && bullettracepassed(point.origin + vectorscale((0, 0, 1), 20), v_orig + vectorscale((0, 0, 1), 20), 0, self, undefined, 0, 0))
 			{
 				self.origin = point.origin;
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -900,7 +900,7 @@ function is_on_navmesh(e_player)
 	if(ispointonnavmesh(self.origin, 60) == 1)
 	{
 		self.var_45eaa114 = 1;
-		return 1;
+		return true;
 	}
 	v_valid_point = getclosestpointonnavmesh(self.origin, 150, 12);
 	if(isdefined(v_valid_point))
@@ -930,9 +930,9 @@ function is_on_navmesh(e_player)
 			self.var_bdd70f6a clientfield::set("" + #"hash_60a7e5b79e8064a5", 1);
 		}
 		self.var_45eaa114 = 1;
-		return 1;
+		return true;
 	}
 	self.var_45eaa114 = 0;
-	return 0;
+	return false;
 }
 

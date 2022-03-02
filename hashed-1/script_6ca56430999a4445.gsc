@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_177ea318753f5418", &__init__, undefined, #"bgb");
 }
@@ -36,10 +36,10 @@ function __init__()
 		return;
 	}
 	bgb::register(#"hash_177ea318753f5418", "activated", 1, undefined, undefined, &validation, &activation);
-	namespace_7d0afffb::function_9d4db403(#"hash_177ea318753f5418", 5);
-	namespace_7d0afffb::function_430d063b(#"hash_177ea318753f5418");
-	namespace_7d0afffb::function_a1194b9a(#"hash_177ea318753f5418");
-	namespace_7d0afffb::function_4de6c08a(#"hash_177ea318753f5418");
+	bgb_pack::function_9d4db403(#"hash_177ea318753f5418", 5);
+	bgb_pack::function_430d063b(#"hash_177ea318753f5418");
+	bgb_pack::function_a1194b9a(#"hash_177ea318753f5418");
+	bgb_pack::function_4de6c08a(#"hash_177ea318753f5418");
 }
 
 /*
@@ -70,8 +70,8 @@ function validation()
 {
 	if(self zm_score::can_player_purchase(500) && self bgb::function_9d8118f5())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

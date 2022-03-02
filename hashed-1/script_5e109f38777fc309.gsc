@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_69bcbdf2d5bc14d5", &__init__, undefined, undefined);
 }
@@ -107,28 +107,34 @@ function magma_gat_blob_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_9c114e48 = self playloopsound(#"hash_46b64953a23cf81");
 		}
 	}
-	else if(newval == 2)
+	else
 	{
-		if(isdefined(self.var_91180673))
+		if(newval == 2)
 		{
-			stopfx(localclientnum, self.var_91180673);
+			if(isdefined(self.var_91180673))
+			{
+				stopfx(localclientnum, self.var_91180673);
+			}
+			self.var_91180673 = util::playfxontag(localclientnum, level._effect[#"hash_1ac90f7b38a61c4f"], self, "tag_origin");
+			if(!isdefined(self.var_9c114e48))
+			{
+				self playsound(localclientnum, #"hash_3f496991d8b9c581");
+				self.var_9c114e48 = self playloopsound(#"hash_46b64953a23cf81");
+			}
 		}
-		self.var_91180673 = util::playfxontag(localclientnum, level._effect[#"hash_1ac90f7b38a61c4f"], self, "tag_origin");
-		if(!isdefined(self.var_9c114e48))
+		else
 		{
-			self playsound(localclientnum, #"hash_3f496991d8b9c581");
-			self.var_9c114e48 = self playloopsound(#"hash_46b64953a23cf81");
+			if(isdefined(self.var_91180673))
+			{
+				stopfx(localclientnum, self.var_91180673);
+				self.var_91180673 = undefined;
+			}
+			if(isdefined(self.var_9c114e48))
+			{
+				self stoploopsound(self.var_9c114e48);
+				self.var_9c114e48 = undefined;
+			}
 		}
-	}
-	else if(isdefined(self.var_91180673))
-	{
-		stopfx(localclientnum, self.var_91180673);
-		self.var_91180673 = undefined;
-	}
-	if(isdefined(self.var_9c114e48))
-	{
-		self stoploopsound(self.var_9c114e48);
-		self.var_9c114e48 = undefined;
 	}
 }
 
@@ -285,7 +291,7 @@ function positional_zombie_fire_fx(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6af9874(localclientnum, newval)
+function private function_6af9874(localclientnum, newval)
 {
 	self endon(#"death", #"hash_78e383e31572444d");
 	n_spread = 0;

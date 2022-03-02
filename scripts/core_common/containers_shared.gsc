@@ -5,67 +5,54 @@
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 
-#namespace ccontainer;
-
-/*
-	Name: __constructor
-	Namespace: ccontainer
-	Checksum: 0x80F724D1
-	Offset: 0x180
-	Size: 0x4
-	Parameters: 0
-	Flags: 8
-*/
-function __constructor()
+class ccontainer 
 {
-}
+	var m_e_container;
 
-/*
-	Name: __destructor
-	Namespace: ccontainer
-	Checksum: 0x80F724D1
-	Offset: 0x190
-	Size: 0x4
-	Parameters: 0
-	Flags: 16
-*/
-function __destructor()
-{
-}
+	/*
+		Name: constructor
+		Namespace: ccontainer
+		Checksum: 0x80F724D1
+		Offset: 0x180
+		Size: 0x4
+		Parameters: 0
+		Flags: 8
+	*/
+	constructor()
+	{
+	}
 
-/*
-	Name: init_xmodel
-	Namespace: ccontainer
-	Checksum: 0x44ECFC2
-	Offset: 0x1A0
-	Size: 0x5A
-	Parameters: 3
-	Flags: None
-*/
-function init_xmodel(str_xmodel = "script_origin", v_origin, v_angles)
-{
-	self.m_e_container = util::spawn_model(str_xmodel, v_origin, v_angles);
-	return self.m_e_container;
+	/*
+		Name: destructor
+		Namespace: ccontainer
+		Checksum: 0x80F724D1
+		Offset: 0x190
+		Size: 0x4
+		Parameters: 0
+		Flags: 16
+	*/
+	destructor()
+	{
+	}
+
+	/*
+		Name: init_xmodel
+		Namespace: ccontainer
+		Checksum: 0x44ECFC2
+		Offset: 0x1A0
+		Size: 0x5A
+		Parameters: 3
+		Flags: None
+	*/
+	function init_xmodel(str_xmodel = "script_origin", v_origin, v_angles)
+	{
+		self.m_e_container = util::spawn_model(str_xmodel, v_origin, v_angles);
+		return m_e_container;
+	}
+
 }
 
 #namespace containers;
-
-/*
-	Name: ccontainer
-	Namespace: containers
-	Checksum: 0x767F80A7
-	Offset: 0x208
-	Size: 0xB6
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function ccontainer()
-{
-	classes.ccontainer[0] = spawnstruct();
-	classes.ccontainer[0].__vtable[867014925] = &ccontainer::init_xmodel;
-	classes.ccontainer[0].__vtable[913321084] = &ccontainer::__destructor;
-	classes.ccontainer[0].__vtable[674154906] = &ccontainer::__constructor;
-}
 
 /*
 	Name: function_89f2df9
@@ -76,7 +63,7 @@ private autoexec function ccontainer()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"containers", &__init__, undefined, undefined);
 }
@@ -133,9 +120,7 @@ function init()
 */
 function setup_container_scriptbundle(s_bundle, s_container_instance)
 {
-	object = new ccontainer();
-	[[ object ]]->__constructor();
-	c_container = object;
+	c_container = new ccontainer();
 	c_container.m_s_container_bundle = s_bundle;
 	c_container.m_s_fxanim_bundle = struct::get_script_bundle("scene", s_bundle.theeffectbundle);
 	c_container.m_s_container_instance = s_container_instance;

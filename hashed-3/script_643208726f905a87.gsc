@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"swat", &__init__, undefined, undefined);
 }
@@ -43,7 +43,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&function_e3151f98));
@@ -109,13 +109,13 @@ function function_8acd749d(entity, mocompanim, mocompanimblendouttime, mocompani
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e3151f98(entity)
+function private function_e3151f98(entity)
 {
 	if(entity.var_9fde8624 === #"hash_65b3e15ded9326be")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -127,7 +127,7 @@ private function function_e3151f98(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e5f59cf0(entity)
+function private function_e5f59cf0(entity)
 {
 	entity unlink();
 }
@@ -141,16 +141,16 @@ private function function_e5f59cf0(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3c677dcd(entity)
+function private function_3c677dcd(entity)
 {
 	if(isdefined(entity.enemy))
 	{
 		if(util::within_fov(entity.origin, entity.angles, entity.enemy.origin, cos(90)))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -162,9 +162,9 @@ private function function_3c677dcd(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_994477c0(entity)
+function private function_994477c0(entity)
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -176,8 +176,8 @@ private function function_994477c0(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fb9f1f3b(entity)
+function private function_fb9f1f3b(entity)
 {
-	return 0;
+	return false;
 }
 

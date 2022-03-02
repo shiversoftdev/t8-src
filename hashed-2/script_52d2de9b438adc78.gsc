@@ -109,7 +109,7 @@ function function_f625256f(killstreak_id, context)
 			if(notifystring._notify != trigger_event)
 			{
 				cleanup(context, player);
-				return 0;
+				return false;
 			}
 		}
 		if(isdefined(player.markerposition))
@@ -121,9 +121,9 @@ function function_f625256f(killstreak_id, context)
 	if(var_9eb4725b == level.weaponnone)
 	{
 		cleanup(context, player);
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -373,16 +373,19 @@ function function_ef6c4a46(killstreak_id, trigger_event, supplydropweapon, conte
 						player playsoundtoplayer(context.validlocationsound, player);
 					}
 				}
-				else if(var_9fdd755d)
+				else
 				{
-					if(isdefined(level.killstreakcorebundle.ksinvalidlocationsound))
+					if(var_9fdd755d)
 					{
-						player playsoundtoplayer(level.killstreakcorebundle.ksinvalidlocationsound, player);
+						if(isdefined(level.killstreakcorebundle.ksinvalidlocationsound))
+						{
+							player playsoundtoplayer(level.killstreakcorebundle.ksinvalidlocationsound, player);
+						}
 					}
-				}
-				else if(isdefined(context.validlocationsound))
-				{
-					player playsoundtoplayer(context.validlocationsound, player);
+					else if(isdefined(context.validlocationsound))
+					{
+						player playsoundtoplayer(context.validlocationsound, player);
+					}
 				}
 				ksbundle = killstreak_bundles::get_bundle(context);
 				if(isdefined(ksbundle))
@@ -505,7 +508,7 @@ function function_d5ca3f62(player)
 		return;
 	}
 	self function_2cbae477();
-	player waittill_timeout(90, #"hash_50b80d70e12fbb51", #"hash_6736343f5a9c98f2", #"hash_d843795c594bf0e", #"disconnect");
+	player waittilltimeout(90, #"hash_50b80d70e12fbb51", #"hash_6736343f5a9c98f2", #"hash_d843795c594bf0e", #"disconnect");
 	if(!isdefined(self))
 	{
 		return;
@@ -523,7 +526,7 @@ function function_d5ca3f62(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2cbae477(var_babebdbc = #"hash_2742656099567e1e", var_76361c1a = "tag_flash")
+function private function_2cbae477(var_babebdbc = #"hash_2742656099567e1e", var_76361c1a = "tag_flash")
 {
 	playfxontag(var_babebdbc, self, var_76361c1a);
 	self playsound(#"hash_6c91edfde8408dad");
@@ -559,11 +562,11 @@ function function_284b1d4c(origin, model, timeout = undefined, var_babebdbc = un
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f61c0c1(timeout)
+function private function_f61c0c1(timeout)
 {
 	if(isdefined(timeout))
 	{
-		self waittill_timeout(timeout, #"death", #"hash_28674b59b141c8d5");
+		self waittilltimeout(timeout, #"death", #"hash_28674b59b141c8d5");
 	}
 	else
 	{

@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_characters", &__init__, undefined, undefined);
 }
@@ -64,7 +64,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function zombie_force_char(n_char)
+function private zombie_force_char(n_char)
 {
 	/#
 		/#
@@ -89,7 +89,7 @@ private function zombie_force_char(n_char)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9436b105(cmd)
+function private function_9436b105(cmd)
 {
 	/#
 		if(issubstr(cmd, ""))
@@ -543,174 +543,228 @@ function function_50b1ae32()
 		self.var_eee02beb = "streak_scar";
 		return;
 	}
-	else if(is_character(array(#"hash_7180c6cf382f6010", #"hash_14e91ceb9a7b3eb6")))
+	else
 	{
-		self.talks_in_danger = 1;
-		level.rich_sq_player = self;
-		self.var_a66c06b6 = "brun";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_brun";
-		self.var_d10fb794 = "surrounded_brun";
-		self.var_eee02beb = "streak_brun";
-		return;
-	}
-	else if(is_character(array(#"hash_f531a8c2df891cc", #"hash_26072a3b34719d22")))
-	{
-		self.var_a66c06b6 = "dieg";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_dieg";
-		self.var_d10fb794 = "surrounded_dieg";
-		self.var_eee02beb = "streak_dieg";
-		return;
-	}
-	else if(is_character(array(#"hash_3e63362aea484e09", #"hash_5a906d7137467771")))
-	{
-		self.var_a66c06b6 = "shaw";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_shaw";
-		self.var_d10fb794 = "surrounded_shaw";
-		self.var_eee02beb = "streak_shaw";
-		return;
-	}
-	else if(is_character(array(#"hash_59f3598ad57dadd8", #"hash_2bcebdf1bef33311", #"hash_5a715cb0a6e071ae")))
-	{
-		self.var_a66c06b6 = "rich";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_rich";
-		self.var_d10fb794 = "surrounded_rich";
-		self.var_eee02beb = "streak_rich";
-		return;
-	}
-	else if(is_character(array(#"hash_1aa57ef704f24fa5", #"hash_36bc80636f0fdac4")))
-	{
-		self.talks_in_danger = 1;
-		level.rich_sq_player = self;
-		self.var_a66c06b6 = "demp";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_demp";
-		self.var_d10fb794 = "surrounded_demp";
-		self.var_eee02beb = "streak_demp";
-		return;
-	}
-	else if(is_character(array(#"hash_22e6f7e13c3a99ef", #"hash_46b92e1337b43236")))
-	{
-		self.var_a66c06b6 = "niko";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_niko";
-		self.var_d10fb794 = "surrounded_niko";
-		self.var_eee02beb = "streak_niko";
-		return;
-	}
-	else if(is_character(array(#"hash_305f156156d37e34", #"hash_6df0037e3f390b15")))
-	{
-		self.var_a66c06b6 = "take";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_take";
-		self.var_d10fb794 = "surrounded_take";
-		self.var_eee02beb = "streak_take";
-		return;
-	}
-	else if(is_character(array(#"hash_73d71ff1e886bbe9")))
-	{
-		self.var_a66c06b6 = "uric";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_uric";
-		self.var_d10fb794 = "surrounded_uric";
-		self.var_eee02beb = "streak_uric";
-		return;
-	}
-	else if(is_character(array(#"hash_4cb4663e341a940")))
-	{
-		self.talks_in_danger = 1;
-		level.rich_sq_player = self;
-		self.var_a66c06b6 = "udem";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_udem";
-		self.var_d10fb794 = "surrounded_udem";
-		self.var_eee02beb = "streak_udem";
-		return;
-	}
-	else if(is_character(array(#"hash_78aa6812c38263ba")))
-	{
-		self.var_a66c06b6 = "unik";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_unik";
-		self.var_d10fb794 = "surrounded_unik";
-		self.var_eee02beb = "streak_unik";
-		return;
-	}
-	else if(is_character(array(#"hash_1fd4157dcafc6e45")))
-	{
-		self.var_a66c06b6 = "utak";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_utak";
-		self.var_d10fb794 = "surrounded_utak";
-		self.var_eee02beb = "streak_utak";
-		return;
-	}
-	else if(is_character(array(#"hash_3c0932fa55ee6e5b")))
-	{
-		self.var_a66c06b6 = "brig";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_brig";
-		self.var_d10fb794 = "surrounded_brig";
-		self.var_eee02beb = "streak_brig";
-	}
-	else if(is_character(array(#"hash_5ebf024e1559c04a")))
-	{
-		self.var_a66c06b6 = "butl";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_butl";
-		self.var_d10fb794 = "surrounded_butl";
-		self.var_eee02beb = "streak_butl";
-	}
-	else if(is_character(array(#"hash_4e8f51ec275a4a38")))
-	{
-		self.var_a66c06b6 = "guns";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_guns";
-		self.var_d10fb794 = "surrounded_guns";
-		self.var_eee02beb = "streak_guns";
-	}
-	else if(is_character(array(#"hash_515977e191d13967")))
-	{
-		self.var_a66c06b6 = "psyc";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_psyc";
-		self.var_d10fb794 = "surrounded_psyc";
-		self.var_eee02beb = "streak_psyc";
-	}
-	else if(is_character(array(#"hash_8d5bc4a77c74f69")))
-	{
-		self.var_a66c06b6 = "russ";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_russ";
-		self.var_d10fb794 = "surrounded_russ";
-		self.var_eee02beb = "streak_russ";
-	}
-	else if(is_character(array(#"hash_291943ac9ed00ebc")))
-	{
-		self.var_a66c06b6 = "mist";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_mist";
-		self.var_d10fb794 = "surrounded_mist";
-		self.var_eee02beb = "streak_mist";
-	}
-	else if(is_character(array(#"hash_7ba62675ab75df69")))
-	{
-		self.var_a66c06b6 = "marl";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_marl";
-		self.var_d10fb794 = "surrounded_marl";
-		self.var_eee02beb = "streak_marl";
-	}
-	else if(is_character(array(#"hash_447b3c77b73aa2a9")))
-	{
-		self.var_a66c06b6 = "stuh";
-		self.var_ff5f8752 = "self";
-		self.var_c107ed3 = "support_stuh";
-		self.var_d10fb794 = "surrounded_stuh";
-		self.var_eee02beb = "streak_stuh";
+		if(is_character(array(#"hash_7180c6cf382f6010", #"hash_14e91ceb9a7b3eb6")))
+		{
+			self.talks_in_danger = 1;
+			level.rich_sq_player = self;
+			self.var_a66c06b6 = "brun";
+			self.var_ff5f8752 = "self";
+			self.var_c107ed3 = "support_brun";
+			self.var_d10fb794 = "surrounded_brun";
+			self.var_eee02beb = "streak_brun";
+			return;
+		}
+		else
+		{
+			if(is_character(array(#"hash_f531a8c2df891cc", #"hash_26072a3b34719d22")))
+			{
+				self.var_a66c06b6 = "dieg";
+				self.var_ff5f8752 = "self";
+				self.var_c107ed3 = "support_dieg";
+				self.var_d10fb794 = "surrounded_dieg";
+				self.var_eee02beb = "streak_dieg";
+				return;
+			}
+			else
+			{
+				if(is_character(array(#"hash_3e63362aea484e09", #"hash_5a906d7137467771")))
+				{
+					self.var_a66c06b6 = "shaw";
+					self.var_ff5f8752 = "self";
+					self.var_c107ed3 = "support_shaw";
+					self.var_d10fb794 = "surrounded_shaw";
+					self.var_eee02beb = "streak_shaw";
+					return;
+				}
+				else
+				{
+					if(is_character(array(#"hash_59f3598ad57dadd8", #"hash_2bcebdf1bef33311", #"hash_5a715cb0a6e071ae")))
+					{
+						self.var_a66c06b6 = "rich";
+						self.var_ff5f8752 = "self";
+						self.var_c107ed3 = "support_rich";
+						self.var_d10fb794 = "surrounded_rich";
+						self.var_eee02beb = "streak_rich";
+						return;
+					}
+					else
+					{
+						if(is_character(array(#"hash_1aa57ef704f24fa5", #"hash_36bc80636f0fdac4")))
+						{
+							self.talks_in_danger = 1;
+							level.rich_sq_player = self;
+							self.var_a66c06b6 = "demp";
+							self.var_ff5f8752 = "self";
+							self.var_c107ed3 = "support_demp";
+							self.var_d10fb794 = "surrounded_demp";
+							self.var_eee02beb = "streak_demp";
+							return;
+						}
+						else
+						{
+							if(is_character(array(#"hash_22e6f7e13c3a99ef", #"hash_46b92e1337b43236")))
+							{
+								self.var_a66c06b6 = "niko";
+								self.var_ff5f8752 = "self";
+								self.var_c107ed3 = "support_niko";
+								self.var_d10fb794 = "surrounded_niko";
+								self.var_eee02beb = "streak_niko";
+								return;
+							}
+							else
+							{
+								if(is_character(array(#"hash_305f156156d37e34", #"hash_6df0037e3f390b15")))
+								{
+									self.var_a66c06b6 = "take";
+									self.var_ff5f8752 = "self";
+									self.var_c107ed3 = "support_take";
+									self.var_d10fb794 = "surrounded_take";
+									self.var_eee02beb = "streak_take";
+									return;
+								}
+								else
+								{
+									if(is_character(array(#"hash_73d71ff1e886bbe9")))
+									{
+										self.var_a66c06b6 = "uric";
+										self.var_ff5f8752 = "self";
+										self.var_c107ed3 = "support_uric";
+										self.var_d10fb794 = "surrounded_uric";
+										self.var_eee02beb = "streak_uric";
+										return;
+									}
+									else
+									{
+										if(is_character(array(#"hash_4cb4663e341a940")))
+										{
+											self.talks_in_danger = 1;
+											level.rich_sq_player = self;
+											self.var_a66c06b6 = "udem";
+											self.var_ff5f8752 = "self";
+											self.var_c107ed3 = "support_udem";
+											self.var_d10fb794 = "surrounded_udem";
+											self.var_eee02beb = "streak_udem";
+											return;
+										}
+										else
+										{
+											if(is_character(array(#"hash_78aa6812c38263ba")))
+											{
+												self.var_a66c06b6 = "unik";
+												self.var_ff5f8752 = "self";
+												self.var_c107ed3 = "support_unik";
+												self.var_d10fb794 = "surrounded_unik";
+												self.var_eee02beb = "streak_unik";
+												return;
+											}
+											else
+											{
+												if(is_character(array(#"hash_1fd4157dcafc6e45")))
+												{
+													self.var_a66c06b6 = "utak";
+													self.var_ff5f8752 = "self";
+													self.var_c107ed3 = "support_utak";
+													self.var_d10fb794 = "surrounded_utak";
+													self.var_eee02beb = "streak_utak";
+													return;
+												}
+												else
+												{
+													if(is_character(array(#"hash_3c0932fa55ee6e5b")))
+													{
+														self.var_a66c06b6 = "brig";
+														self.var_ff5f8752 = "self";
+														self.var_c107ed3 = "support_brig";
+														self.var_d10fb794 = "surrounded_brig";
+														self.var_eee02beb = "streak_brig";
+													}
+													else
+													{
+														if(is_character(array(#"hash_5ebf024e1559c04a")))
+														{
+															self.var_a66c06b6 = "butl";
+															self.var_ff5f8752 = "self";
+															self.var_c107ed3 = "support_butl";
+															self.var_d10fb794 = "surrounded_butl";
+															self.var_eee02beb = "streak_butl";
+														}
+														else
+														{
+															if(is_character(array(#"hash_4e8f51ec275a4a38")))
+															{
+																self.var_a66c06b6 = "guns";
+																self.var_ff5f8752 = "self";
+																self.var_c107ed3 = "support_guns";
+																self.var_d10fb794 = "surrounded_guns";
+																self.var_eee02beb = "streak_guns";
+															}
+															else
+															{
+																if(is_character(array(#"hash_515977e191d13967")))
+																{
+																	self.var_a66c06b6 = "psyc";
+																	self.var_ff5f8752 = "self";
+																	self.var_c107ed3 = "support_psyc";
+																	self.var_d10fb794 = "surrounded_psyc";
+																	self.var_eee02beb = "streak_psyc";
+																}
+																else
+																{
+																	if(is_character(array(#"hash_8d5bc4a77c74f69")))
+																	{
+																		self.var_a66c06b6 = "russ";
+																		self.var_ff5f8752 = "self";
+																		self.var_c107ed3 = "support_russ";
+																		self.var_d10fb794 = "surrounded_russ";
+																		self.var_eee02beb = "streak_russ";
+																	}
+																	else
+																	{
+																		if(is_character(array(#"hash_291943ac9ed00ebc")))
+																		{
+																			self.var_a66c06b6 = "mist";
+																			self.var_ff5f8752 = "self";
+																			self.var_c107ed3 = "support_mist";
+																			self.var_d10fb794 = "surrounded_mist";
+																			self.var_eee02beb = "streak_mist";
+																		}
+																		else
+																		{
+																			if(is_character(array(#"hash_7ba62675ab75df69")))
+																			{
+																				self.var_a66c06b6 = "marl";
+																				self.var_ff5f8752 = "self";
+																				self.var_c107ed3 = "support_marl";
+																				self.var_d10fb794 = "surrounded_marl";
+																				self.var_eee02beb = "streak_marl";
+																			}
+																			else if(is_character(array(#"hash_447b3c77b73aa2a9")))
+																			{
+																				self.var_a66c06b6 = "stuh";
+																				self.var_ff5f8752 = "self";
+																				self.var_c107ed3 = "support_stuh";
+																				self.var_d10fb794 = "surrounded_stuh";
+																				self.var_eee02beb = "streak_stuh";
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

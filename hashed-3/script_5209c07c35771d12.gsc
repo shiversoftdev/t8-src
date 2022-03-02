@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4ae4c6663b1a8c0c", &__init__, undefined, #"hash_568e72715a5f3355");
 }
@@ -30,7 +30,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	gametype = util::function_5df4294();
 	if(gametype !== #"warzone_hot_pursuit" && gametype !== #"hash_77edb49e5314223" && gametype !== #"hash_753fcf1725358921" && gametype !== #"warzone_heavy_metal_heroes")
@@ -448,7 +448,7 @@ function function_9de0644f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_58190f52()
+function private function_58190f52()
 {
 	gametype = util::function_5df4294();
 	if(gametype == #"warzone_hot_pursuit" || gametype == #"hash_753fcf1725358921")
@@ -460,18 +460,21 @@ private function function_58190f52()
 		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
 		self item_world::function_de2018e3(ammo, self, var_fa3df96);
 	}
-	else if(gametype == #"hash_77edb49e5314223")
+	else
 	{
-		weapon = function_ba18c3e5(#"hash_15f30a19a23c0190");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
-		self item_world::function_de2018e3(weapon, self, var_fa3df96);
-		ammo = function_ba18c3e5(#"hash_3bf6ed4e3a22e9f3");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
-		self item_world::function_de2018e3(ammo, self, var_fa3df96);
-	}
-	else if(gametype == #"hash_135cf8c5c6396f04")
-	{
-		function_f56a5599();
+		if(gametype == #"hash_77edb49e5314223")
+		{
+			weapon = function_ba18c3e5(#"hash_15f30a19a23c0190");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
+			self item_world::function_de2018e3(weapon, self, var_fa3df96);
+			ammo = function_ba18c3e5(#"hash_3bf6ed4e3a22e9f3");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
+			self item_world::function_de2018e3(ammo, self, var_fa3df96);
+		}
+		else if(gametype == #"hash_135cf8c5c6396f04")
+		{
+			function_f56a5599();
+		}
 	}
 }
 
@@ -484,7 +487,7 @@ private function function_58190f52()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6667abef()
+function private function_6667abef()
 {
 	gametype = util::function_5df4294();
 	if(gametype == #"warzone_hot_pursuit" || gametype == #"hash_753fcf1725358921")
@@ -516,37 +519,40 @@ private function function_6667abef()
 		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
 		self item_world::function_de2018e3(health, self, var_fa3df96);
 	}
-	else if(gametype == #"hash_77edb49e5314223")
+	else
 	{
-		weapon = function_ba18c3e5(#"hash_15f30a19a23c0190");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
-		weapon.attachments = [];
-		attachment = function_ba18c3e5(#"hash_513a787ad3a20198");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		attachment = function_ba18c3e5(#"hash_5506836b90ed93a9");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		weapon.amount = self function_f09c133d(namespace_a0d533d1::function_2b83d3ff(weapon));
-		self item_world::function_de2018e3(weapon, self, var_fa3df96);
-		ammo = function_ba18c3e5(#"hash_3bf6ed4e3a22e9f3");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
-		self item_world::function_de2018e3(ammo, self, var_fa3df96);
-		health = function_ba18c3e5(#"hash_80292d121740f6f");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
-		self item_world::function_de2018e3(health, self, var_fa3df96);
-	}
-	else if(gametype == #"hash_135cf8c5c6396f04")
-	{
-		function_f56a5599();
+		if(gametype == #"hash_77edb49e5314223")
+		{
+			weapon = function_ba18c3e5(#"hash_15f30a19a23c0190");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
+			weapon.attachments = [];
+			attachment = function_ba18c3e5(#"hash_513a787ad3a20198");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			attachment = function_ba18c3e5(#"hash_5506836b90ed93a9");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			weapon.amount = self function_f09c133d(namespace_a0d533d1::function_2b83d3ff(weapon));
+			self item_world::function_de2018e3(weapon, self, var_fa3df96);
+			ammo = function_ba18c3e5(#"hash_3bf6ed4e3a22e9f3");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
+			self item_world::function_de2018e3(ammo, self, var_fa3df96);
+			health = function_ba18c3e5(#"hash_80292d121740f6f");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
+			self item_world::function_de2018e3(health, self, var_fa3df96);
+		}
+		else if(gametype == #"hash_135cf8c5c6396f04")
+		{
+			function_f56a5599();
+		}
 	}
 }
 
@@ -559,7 +565,7 @@ private function function_6667abef()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7376c60d()
+function private function_7376c60d()
 {
 	gametype = util::function_5df4294();
 	if(gametype == #"warzone_hot_pursuit" || gametype == #"hash_753fcf1725358921")
@@ -575,22 +581,25 @@ private function function_7376c60d()
 		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
 		self item_world::function_de2018e3(health, self, var_fa3df96);
 	}
-	else if(gametype == #"hash_77edb49e5314223")
+	else
 	{
-		weapon = function_ba18c3e5(#"hash_36978e3a9321b430");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
-		self item_world::function_de2018e3(weapon, self, var_fa3df96);
-		ammo = function_ba18c3e5(#"hash_1f72dec518451f8c");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
-		self item_world::function_de2018e3(ammo, self, var_fa3df96);
-		health = function_ba18c3e5(#"hash_80292d121740f6f");
-		health.count = 2;
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
-		self item_world::function_de2018e3(health, self, var_fa3df96);
-	}
-	else if(gametype == #"hash_135cf8c5c6396f04")
-	{
-		function_f56a5599();
+		if(gametype == #"hash_77edb49e5314223")
+		{
+			weapon = function_ba18c3e5(#"hash_36978e3a9321b430");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
+			self item_world::function_de2018e3(weapon, self, var_fa3df96);
+			ammo = function_ba18c3e5(#"hash_1f72dec518451f8c");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
+			self item_world::function_de2018e3(ammo, self, var_fa3df96);
+			health = function_ba18c3e5(#"hash_80292d121740f6f");
+			health.count = 2;
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
+			self item_world::function_de2018e3(health, self, var_fa3df96);
+		}
+		else if(gametype == #"hash_135cf8c5c6396f04")
+		{
+			function_f56a5599();
+		}
 	}
 }
 
@@ -603,7 +612,7 @@ private function function_7376c60d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1f091d2f()
+function private function_1f091d2f()
 {
 	gametype = util::function_5df4294();
 	if(gametype == #"warzone_hot_pursuit" || gametype == #"hash_753fcf1725358921")
@@ -629,41 +638,44 @@ private function function_1f091d2f()
 		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(var_dd88a936);
 		self item_world::function_de2018e3(var_dd88a936, self, var_fa3df96);
 	}
-	else if(gametype == #"hash_77edb49e5314223")
+	else
 	{
-		weapon = function_ba18c3e5(#"hash_36978e3a9321b430");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
-		weapon.attachments = [];
-		attachment = function_ba18c3e5(#"hash_513a787ad3a20198");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		attachment = function_ba18c3e5(#"hash_5506836b90ed93a9");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		weapon.amount = self function_f09c133d(namespace_a0d533d1::function_2b83d3ff(weapon));
-		self item_world::function_de2018e3(weapon, self, var_fa3df96);
-		ammo = function_ba18c3e5(#"hash_1f72dec518451f8c");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
-		self item_world::function_de2018e3(ammo, self, var_fa3df96);
-		health = function_ba18c3e5(#"hash_80292d121740f6f");
-		health.count = 3;
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
-		self item_world::function_de2018e3(health, self, var_fa3df96);
-		armor = function_ba18c3e5(#"hash_568173e016d45c2a");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(armor);
-		self item_world::function_de2018e3(armor, self, var_fa3df96);
-	}
-	else if(gametype == #"hash_135cf8c5c6396f04")
-	{
-		function_f56a5599();
+		if(gametype == #"hash_77edb49e5314223")
+		{
+			weapon = function_ba18c3e5(#"hash_36978e3a9321b430");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
+			weapon.attachments = [];
+			attachment = function_ba18c3e5(#"hash_513a787ad3a20198");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			attachment = function_ba18c3e5(#"hash_5506836b90ed93a9");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			weapon.amount = self function_f09c133d(namespace_a0d533d1::function_2b83d3ff(weapon));
+			self item_world::function_de2018e3(weapon, self, var_fa3df96);
+			ammo = function_ba18c3e5(#"hash_1f72dec518451f8c");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
+			self item_world::function_de2018e3(ammo, self, var_fa3df96);
+			health = function_ba18c3e5(#"hash_80292d121740f6f");
+			health.count = 3;
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
+			self item_world::function_de2018e3(health, self, var_fa3df96);
+			armor = function_ba18c3e5(#"hash_568173e016d45c2a");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(armor);
+			self item_world::function_de2018e3(armor, self, var_fa3df96);
+		}
+		else if(gametype == #"hash_135cf8c5c6396f04")
+		{
+			function_f56a5599();
+		}
 	}
 }
 
@@ -676,7 +688,7 @@ private function function_1f091d2f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2d31b980()
+function private function_2d31b980()
 {
 	gametype = util::function_5df4294();
 	if(gametype == #"warzone_hot_pursuit" || gametype == #"hash_753fcf1725358921")
@@ -708,52 +720,55 @@ private function function_2d31b980()
 		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(var_dd88a936);
 		self item_world::function_de2018e3(var_dd88a936, self, var_fa3df96);
 	}
-	else if(gametype == #"hash_77edb49e5314223")
+	else
 	{
-		weapon = function_ba18c3e5(#"hash_36978e3a9321b430");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
-		weapon.attachments = [];
-		attachment = function_ba18c3e5(#"hash_66023e3bee6c58a1");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		attachment = function_ba18c3e5(#"hash_a1deb882d59a069");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		attachment = function_ba18c3e5(#"hash_2a10ad247a663aaa");
-		var_e38a0464 = namespace_b376ff3f::function_520b16d6();
-		var_e38a0464.count = 1;
-		var_e38a0464.id = attachment.id;
-		var_e38a0464.var_bd027dd9 = var_e38a0464.id;
-		var_e38a0464.var_a6762160 = attachment.var_a6762160;
-		namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
-		weapon.amount = self function_f09c133d(namespace_a0d533d1::function_2b83d3ff(weapon));
-		self item_world::function_de2018e3(weapon, self, var_fa3df96);
-		ammo = function_ba18c3e5(#"hash_1f72dec518451f8c");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
-		self item_world::function_de2018e3(ammo, self, var_fa3df96);
-		health = function_ba18c3e5(#"hash_80292d121740f6f");
-		health.count = 3;
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
-		self item_world::function_de2018e3(health, self, var_fa3df96);
-		armor = function_ba18c3e5(#"hash_568173e016d45c2a");
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(armor);
-		self item_world::function_de2018e3(armor, self, var_fa3df96);
-		var_dd88a936 = function_ba18c3e5(#"hash_2e33ce38d6cda617");
-		var_dd88a936.count = 5;
-		var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(var_dd88a936);
-		self item_world::function_de2018e3(var_dd88a936, self, var_fa3df96);
-	}
-	else if(gametype == #"hash_135cf8c5c6396f04")
-	{
-		function_f56a5599();
+		if(gametype == #"hash_77edb49e5314223")
+		{
+			weapon = function_ba18c3e5(#"hash_36978e3a9321b430");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);
+			weapon.attachments = [];
+			attachment = function_ba18c3e5(#"hash_66023e3bee6c58a1");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			attachment = function_ba18c3e5(#"hash_a1deb882d59a069");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			attachment = function_ba18c3e5(#"hash_2a10ad247a663aaa");
+			var_e38a0464 = namespace_b376ff3f::function_520b16d6();
+			var_e38a0464.count = 1;
+			var_e38a0464.id = attachment.id;
+			var_e38a0464.var_bd027dd9 = var_e38a0464.id;
+			var_e38a0464.var_a6762160 = attachment.var_a6762160;
+			namespace_a0d533d1::function_9e9c82a6(weapon, attachment);
+			weapon.amount = self function_f09c133d(namespace_a0d533d1::function_2b83d3ff(weapon));
+			self item_world::function_de2018e3(weapon, self, var_fa3df96);
+			ammo = function_ba18c3e5(#"hash_1f72dec518451f8c");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(ammo);
+			self item_world::function_de2018e3(ammo, self, var_fa3df96);
+			health = function_ba18c3e5(#"hash_80292d121740f6f");
+			health.count = 3;
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(health);
+			self item_world::function_de2018e3(health, self, var_fa3df96);
+			armor = function_ba18c3e5(#"hash_568173e016d45c2a");
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(armor);
+			self item_world::function_de2018e3(armor, self, var_fa3df96);
+			var_dd88a936 = function_ba18c3e5(#"hash_2e33ce38d6cda617");
+			var_dd88a936.count = 5;
+			var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(var_dd88a936);
+			self item_world::function_de2018e3(var_dd88a936, self, var_fa3df96);
+		}
+		else if(gametype == #"hash_135cf8c5c6396f04")
+		{
+			function_f56a5599();
+		}
 	}
 }
 
@@ -766,7 +781,7 @@ private function function_2d31b980()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f56a5599()
+function private function_f56a5599()
 {
 	weapon = function_ba18c3e5(#"hash_505c397233e87a32");
 	var_fa3df96 = self namespace_b376ff3f::function_e66dcff5(weapon);

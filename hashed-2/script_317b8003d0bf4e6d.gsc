@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_637836cd1d98abbd", &__init__, undefined, #"item_world");
 }
@@ -33,7 +33,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!isdefined(getgametypesetting(#"useitemspawns")) || getgametypesetting(#"useitemspawns") == 0)
 	{
@@ -59,7 +59,7 @@ private function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_13d7bba(xoffset, yoffset)
+function private function_13d7bba(xoffset, yoffset)
 {
 	/#
 		elem = newdebughudelem();
@@ -83,7 +83,7 @@ private function function_13d7bba(xoffset, yoffset)
 	Parameters: 2
 	Flags: Private
 */
-private function function_11421106(typestring, type)
+function private function_11421106(typestring, type)
 {
 	/#
 		tab = "";
@@ -107,7 +107,7 @@ private function function_11421106(typestring, type)
 	Parameters: 0
 	Flags: Private
 */
-private function function_bebe535()
+function private function_bebe535()
 {
 	/#
 		n_total = 0;
@@ -145,7 +145,7 @@ private function function_bebe535()
 	Parameters: 0
 	Flags: Private
 */
-private function function_2248268e()
+function private function_2248268e()
 {
 	/#
 		vehicles = getvehiclearray();
@@ -168,7 +168,7 @@ private function function_2248268e()
 	Parameters: 0
 	Flags: Private
 */
-private function function_b6ea080()
+function private function_b6ea080()
 {
 	/#
 		self notify("");
@@ -291,7 +291,7 @@ private function function_b6ea080()
 	Parameters: 0
 	Flags: Private
 */
-private function function_938d798a()
+function private function_938d798a()
 {
 	/#
 		str_filename = util::function_53bbf9d2() + "";
@@ -410,7 +410,7 @@ private function function_938d798a()
 	Parameters: 0
 	Flags: Private
 */
-private function function_f9efe895()
+function private function_f9efe895()
 {
 	/#
 		var_7f0b4b6b = [];
@@ -472,7 +472,7 @@ private function function_f9efe895()
 	Parameters: 0
 	Flags: Private
 */
-private function function_f0d72128()
+function private function_f0d72128()
 {
 	/#
 		var_df1e5fef = [];
@@ -576,10 +576,10 @@ function function_78931318(str_button)
 				{
 					waitframe(1);
 				}
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -592,7 +592,7 @@ function function_78931318(str_button)
 	Parameters: 0
 	Flags: Private
 */
-private function function_cdd9b388()
+function private function_cdd9b388()
 {
 	/#
 		while(true)
@@ -691,53 +691,56 @@ private function function_cdd9b388()
 				level.var_67220c03 settext(function_11421106("", ""));
 				level.var_58faba13 settext("" + (isdefined(level.var_f2db6a7f) ? level.var_f2db6a7f : 0));
 			}
-			else if(isdefined(level.var_f0d0335b))
+			else
 			{
-				level.var_f0d0335b destroy();
-			}
-			if(isdefined(level.var_7f7d26cc))
-			{
-				level.var_7f7d26cc destroy();
-			}
-			if(isdefined(level.var_6deb23ed))
-			{
-				level.var_6deb23ed destroy();
-			}
-			if(isdefined(level.var_5c6c77b3))
-			{
-				level.var_5c6c77b3 destroy();
-			}
-			if(isdefined(level.var_5471e557))
-			{
-				level.var_5471e557 destroy();
-			}
-			if(isdefined(level.var_544a823a))
-			{
-				level.var_544a823a destroy();
-			}
-			if(isdefined(level.var_eaa15f28))
-			{
-				level.var_eaa15f28 destroy();
-			}
-			if(isdefined(level.var_6fc93583))
-			{
-				level.var_6fc93583 destroy();
-			}
-			if(isdefined(level.var_f2a04fda))
-			{
-				level.var_f2a04fda destroy();
-			}
-			if(isdefined(level.var_721a3621))
-			{
-				level.var_721a3621 destroy();
-			}
-			if(isdefined(level.var_67220c03))
-			{
-				level.var_67220c03 destroy();
-			}
-			if(isdefined(level.var_58faba13))
-			{
-				level.var_58faba13 destroy();
+				if(isdefined(level.var_f0d0335b))
+				{
+					level.var_f0d0335b destroy();
+				}
+				if(isdefined(level.var_7f7d26cc))
+				{
+					level.var_7f7d26cc destroy();
+				}
+				if(isdefined(level.var_6deb23ed))
+				{
+					level.var_6deb23ed destroy();
+				}
+				if(isdefined(level.var_5c6c77b3))
+				{
+					level.var_5c6c77b3 destroy();
+				}
+				if(isdefined(level.var_5471e557))
+				{
+					level.var_5471e557 destroy();
+				}
+				if(isdefined(level.var_544a823a))
+				{
+					level.var_544a823a destroy();
+				}
+				if(isdefined(level.var_eaa15f28))
+				{
+					level.var_eaa15f28 destroy();
+				}
+				if(isdefined(level.var_6fc93583))
+				{
+					level.var_6fc93583 destroy();
+				}
+				if(isdefined(level.var_f2a04fda))
+				{
+					level.var_f2a04fda destroy();
+				}
+				if(isdefined(level.var_721a3621))
+				{
+					level.var_721a3621 destroy();
+				}
+				if(isdefined(level.var_67220c03))
+				{
+					level.var_67220c03 destroy();
+				}
+				if(isdefined(level.var_58faba13))
+				{
+					level.var_58faba13 destroy();
+				}
 			}
 			if(getdvarint(#"hash_66ec171c69a26bfe", 0) > 0)
 			{
@@ -995,306 +998,327 @@ private function function_cdd9b388()
 						sphere(vehicle.origin, radius, (0, 1, 0), 1, 0, 10, 20);
 					}
 				}
-				else if(itemtype == 14)
-				{
-					vehicles = getvehiclearray();
-					foreach(vehicle in vehicles)
-					{
-						color = vectorscale((1, 1, 1), 0.75);
-						radius = 128;
-						var_84dd2a8b = 4096;
-						if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
-						{
-							radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
-						}
-						if(isdefined(vehicle.scriptvehicletype))
-						{
-							color = (1, 1, 1);
-							switch(vehicle.scriptvehicletype)
-							{
-								case "player_atv":
-								{
-									color = (0, 1, 1);
-									break;
-								}
-								case "cargo_truck_wz":
-								{
-									color = (1, 1, 0);
-									break;
-								}
-								case "tactical_raft_wz":
-								{
-									color = (1, 0.5, 0);
-									break;
-								}
-								case "helicopter_light":
-								{
-									color = (1, 0, 1);
-									break;
-								}
-							}
-							sphere(vehicle.origin, radius, color, 1, 0, 10, 20);
-						}
-					}
-				}
-				else if(itemtype == 12)
-				{
-					var_83f919af = function_91b29d2a(#"hash_77c7d3dc43202775");
-					foreach(point in var_83f919af)
-					{
-						player = level.players[0];
-						if(vectordot(player.origin, point.origin) > 0)
-						{
-							color = (0, 0, 1);
-							radius = 128;
-							var_84dd2a8b = 4096;
-							if(distancesquared(origin, point.origin) < var_84dd2a8b * var_84dd2a8b)
-							{
-								radius = max((distance(origin, point.origin) / var_84dd2a8b) * radius, 1);
-							}
-							var_58e1eac5 = item_world::function_2e3efdda(point.origin, undefined, 100, 1);
-							if(var_58e1eac5.size > 0)
-							{
-								switch(var_58e1eac5[0].targetname)
-								{
-									case "world_dynent_stash_health":
-									{
-										color = (1, 0, 0);
-										break;
-									}
-									case "world_dynent_stash_supply":
-									{
-										color = (0, 1, 0);
-										break;
-									}
-									case "hash_ea6664e89a0bff6":
-									{
-										color = vectorscale((1, 1, 0), 0.5019608);
-										break;
-									}
-								}
-								sphere(point.origin, radius, color, 1, 0, 10, 20);
-								continue;
-							}
-							color = vectorscale((1, 1, 1), 0.75);
-							sphere(point.origin, radius, color, 1, 0, 10, 20);
-						}
-					}
-				}
-				else if(itemtype == 18)
-				{
-					var_c3ff57f0 = getdynentarray("");
-					zombie_apoc_homunculus = getdynent("");
-					if(isdefined(zombie_apoc_homunculus))
-					{
-						if(!isdefined(var_c3ff57f0))
-						{
-							var_c3ff57f0 = [];
-						}
-						else if(!isarray(var_c3ff57f0))
-						{
-							var_c3ff57f0 = array(var_c3ff57f0);
-						}
-						var_c3ff57f0[var_c3ff57f0.size] = zombie_apoc_homunculus;
-					}
-					foreach(var_1176d784 in var_c3ff57f0)
-					{
-						if(function_8a8a409b(var_1176d784))
-						{
-							sphere(var_1176d784.origin, 256, (0, 1, 0), 1, 0, 10, 20);
-						}
-					}
-				}
 				else
 				{
-					var_f4b807cb = item_world::function_2e3efdda(origin, undefined, 4000, 30000, -1, 0);
-					foreach(item in var_f4b807cb)
+					if(itemtype == 14)
 					{
-						if(isdefined(item.var_a6762160) && isdefined(item.var_a6762160.rarity))
+						vehicles = getvehiclearray();
+						foreach(vehicle in vehicles)
 						{
-							switch(item.var_a6762160.rarity)
+							color = vectorscale((1, 1, 1), 0.75);
+							radius = 128;
+							var_84dd2a8b = 4096;
+							if(distancesquared(origin, vehicle.origin) < var_84dd2a8b * var_84dd2a8b)
 							{
-								case "common":
+								radius = max((distance(origin, vehicle.origin) / var_84dd2a8b) * radius, 1);
+							}
+							if(isdefined(vehicle.scriptvehicletype))
+							{
+								color = (1, 1, 1);
+								switch(vehicle.scriptvehicletype)
 								{
-									color = (0, 1, 0);
-									break;
+									case "player_atv":
+									{
+										color = (0, 1, 1);
+										break;
+									}
+									case "cargo_truck_wz":
+									{
+										color = (1, 1, 0);
+										break;
+									}
+									case "tactical_raft_wz":
+									{
+										color = (1, 0.5, 0);
+										break;
+									}
+									case "helicopter_light":
+									{
+										color = (1, 0, 1);
+										break;
+									}
 								}
-								case "rare":
+								sphere(vehicle.origin, radius, color, 1, 0, 10, 20);
+							}
+						}
+					}
+					else
+					{
+						if(itemtype == 12)
+						{
+							var_83f919af = function_91b29d2a(#"hash_77c7d3dc43202775");
+							foreach(point in var_83f919af)
+							{
+								player = level.players[0];
+								if(vectordot(player.origin, point.origin) > 0)
 								{
 									color = (0, 0, 1);
-									break;
-								}
-								case "legendary":
-								{
-									color = (1, 0, 1);
-									break;
-								}
-								case "epic":
-								{
-									color = (1, 0.5, 0);
-									break;
-								}
-								default:
-								{
-									color = (1, 0, 0);
-									break;
+									radius = 128;
+									var_84dd2a8b = 4096;
+									if(distancesquared(origin, point.origin) < var_84dd2a8b * var_84dd2a8b)
+									{
+										radius = max((distance(origin, point.origin) / var_84dd2a8b) * radius, 1);
+									}
+									var_58e1eac5 = item_world::function_2e3efdda(point.origin, undefined, 100, 1);
+									if(var_58e1eac5.size > 0)
+									{
+										switch(var_58e1eac5[0].targetname)
+										{
+											case "world_dynent_stash_health":
+											{
+												color = (1, 0, 0);
+												break;
+											}
+											case "world_dynent_stash_supply":
+											{
+												color = (0, 1, 0);
+												break;
+											}
+											case "hash_ea6664e89a0bff6":
+											{
+												color = vectorscale((1, 1, 0), 0.5019608);
+												break;
+											}
+										}
+										sphere(point.origin, radius, color, 1, 0, 10, 20);
+										continue;
+									}
+									color = vectorscale((1, 1, 1), 0.75);
+									sphere(point.origin, radius, color, 1, 0, 10, 20);
 								}
 							}
 						}
 						else
 						{
-							color = (1, 0, 0);
-						}
-						radius = 64;
-						var_84dd2a8b = 2048;
-						if(distancesquared(origin, item.origin) < var_84dd2a8b * var_84dd2a8b)
-						{
-							radius = max((distance(origin, item.origin) / var_84dd2a8b) * radius, 1);
-						}
-						switch(itemtype)
-						{
-							case 1:
+							if(itemtype == 18)
 							{
-								color = (1, 0, 1);
-								sphere(item.origin, radius, color, 1, 0, 10, 20);
-								if(isdefined(item.targetname))
+								var_c3ff57f0 = getdynentarray("");
+								zombie_apoc_homunculus = getdynent("");
+								if(isdefined(zombie_apoc_homunculus))
 								{
-									print3d(item.origin + vectorscale((0, 0, 1), 32), function_9e72a96(item.targetname), color, 1, 0.3, 20);
+									if(!isdefined(var_c3ff57f0))
+									{
+										var_c3ff57f0 = [];
+									}
+									else if(!isarray(var_c3ff57f0))
+									{
+										var_c3ff57f0 = array(var_c3ff57f0);
+									}
+									var_c3ff57f0[var_c3ff57f0.size] = zombie_apoc_homunculus;
 								}
-								break;
-							}
-							case 2:
-							{
-								if(isdefined(item.var_a6762160))
+								foreach(var_1176d784 in var_c3ff57f0)
 								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
+									if(function_8a8a409b(var_1176d784))
+									{
+										sphere(var_1176d784.origin, 256, (0, 1, 0), 1, 0, 10, 20);
+									}
 								}
 							}
-							case 3:
+							else
 							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"ammo")
+								var_f4b807cb = item_world::function_2e3efdda(origin, undefined, 4000, 30000, -1, 0);
+								foreach(item in var_f4b807cb)
 								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 4:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"weapon")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 5:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"health")
-								{
-									if(item.var_a6762160.name == "")
+									if(isdefined(item.var_a6762160) && isdefined(item.var_a6762160.rarity))
 									{
-										sphere(item.origin, radius, (0, 1, 0), 1, 0, 10, 20);
-									}
-									else if(item.var_a6762160.name == "")
-									{
-										sphere(item.origin, radius, (0, 0, 1), 1, 0, 10, 20);
-									}
-									else if(item.var_a6762160.name == "")
-									{
-										sphere(item.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
-									}
-									else
-									{
-										sphere(item.origin, radius, color, 1, 0, 10, 20);
-									}
-								}
-								break;
-							}
-							case 6:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"armor")
-								{
-									if(item.var_a6762160.name == "")
-									{
-										sphere(item.origin, radius, (0, 1, 0), 1, 0, 10, 20);
-									}
-									else if(item.var_a6762160.name == "")
-									{
-										sphere(item.origin, radius, (0, 0, 1), 1, 0, 10, 20);
-									}
-									else if(item.var_a6762160.name == "")
-									{
-										sphere(item.origin, radius, (1, 1, 0), 1, 0, 10, 20);
+										switch(item.var_a6762160.rarity)
+										{
+											case "common":
+											{
+												color = (0, 1, 0);
+												break;
+											}
+											case "rare":
+											{
+												color = (0, 0, 1);
+												break;
+											}
+											case "legendary":
+											{
+												color = (1, 0, 1);
+												break;
+											}
+											case "epic":
+											{
+												color = (1, 0.5, 0);
+												break;
+											}
+											default:
+											{
+												color = (1, 0, 0);
+												break;
+											}
+										}
 									}
 									else
 									{
-										sphere(item.origin, radius, color, 1, 0, 10, 20);
+										color = (1, 0, 0);
+									}
+									radius = 64;
+									var_84dd2a8b = 2048;
+									if(distancesquared(origin, item.origin) < var_84dd2a8b * var_84dd2a8b)
+									{
+										radius = max((distance(origin, item.origin) / var_84dd2a8b) * radius, 1);
+									}
+									switch(itemtype)
+									{
+										case 1:
+										{
+											color = (1, 0, 1);
+											sphere(item.origin, radius, color, 1, 0, 10, 20);
+											if(isdefined(item.targetname))
+											{
+												print3d(item.origin + vectorscale((0, 0, 1), 32), function_9e72a96(item.targetname), color, 1, 0.3, 20);
+											}
+											break;
+										}
+										case 2:
+										{
+											if(isdefined(item.var_a6762160))
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+										}
+										case 3:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"ammo")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 4:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"weapon")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 5:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"health")
+											{
+												if(item.var_a6762160.name == "")
+												{
+													sphere(item.origin, radius, (0, 1, 0), 1, 0, 10, 20);
+												}
+												else
+												{
+													if(item.var_a6762160.name == "")
+													{
+														sphere(item.origin, radius, (0, 0, 1), 1, 0, 10, 20);
+													}
+													else
+													{
+														if(item.var_a6762160.name == "")
+														{
+															sphere(item.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
+														}
+														else
+														{
+															sphere(item.origin, radius, color, 1, 0, 10, 20);
+														}
+													}
+												}
+											}
+											break;
+										}
+										case 6:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"armor")
+											{
+												if(item.var_a6762160.name == "")
+												{
+													sphere(item.origin, radius, (0, 1, 0), 1, 0, 10, 20);
+												}
+												else
+												{
+													if(item.var_a6762160.name == "")
+													{
+														sphere(item.origin, radius, (0, 0, 1), 1, 0, 10, 20);
+													}
+													else
+													{
+														if(item.var_a6762160.name == "")
+														{
+															sphere(item.origin, radius, (1, 1, 0), 1, 0, 10, 20);
+														}
+														else
+														{
+															sphere(item.origin, radius, color, 1, 0, 10, 20);
+														}
+													}
+												}
+											}
+											break;
+										}
+										case 7:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"equipment")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 8:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"backpack")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 9:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"attachment")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 10:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"generic")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 11:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"killstreak")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 15:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"quest")
+											{
+												sphere(item.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 16:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"cash")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
+										case 17:
+										{
+											if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"resource")
+											{
+												sphere(item.origin, radius, color, 1, 0, 10, 20);
+											}
+											break;
+										}
 									}
 								}
-								break;
-							}
-							case 7:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"equipment")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 8:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"backpack")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 9:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"attachment")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 10:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"generic")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 11:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"killstreak")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 15:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"quest")
-								{
-									sphere(item.origin, radius, (1, 0.5, 0), 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 16:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"cash")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
-							}
-							case 17:
-							{
-								if(isdefined(item.var_a6762160) && item.var_a6762160.itemtype === #"resource")
-								{
-									sphere(item.origin, radius, color, 1, 0, 10, 20);
-								}
-								break;
 							}
 						}
 					}
@@ -1342,7 +1366,7 @@ private function function_cdd9b388()
 	Parameters: 0
 	Flags: Private
 */
-private function function_44b9dd1d()
+function private function_44b9dd1d()
 {
 	/#
 		while(!canadddebugcommand())

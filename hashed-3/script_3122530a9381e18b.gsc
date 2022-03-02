@@ -80,7 +80,7 @@ function function_1c530e2d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_18a1849f(e_player)
+function private function_18a1849f(e_player)
 {
 	if(!isdefined(level.var_9eccff99.e_player))
 	{
@@ -98,7 +98,7 @@ private function function_18a1849f(e_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f6048ee(e_player)
+function private function_f6048ee(e_player)
 {
 	if(isdefined(e_player))
 	{
@@ -113,17 +113,20 @@ private function function_f6048ee(e_player)
 				self sethintstring(#"hash_12346bdab086516e");
 			}
 		}
-		else if(level.var_9eccff99.e_player == e_player)
-		{
-			self sethintstring(#"hash_74fc96e8d58ff646");
-		}
 		else
 		{
-			self sethintstring(#"hash_2054e8fdb6521566");
+			if(level.var_9eccff99.e_player == e_player)
+			{
+				self sethintstring(#"hash_74fc96e8d58ff646");
+			}
+			else
+			{
+				self sethintstring(#"hash_2054e8fdb6521566");
+			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -135,7 +138,7 @@ private function function_f6048ee(e_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5b4f9f76(e_player)
+function private function_5b4f9f76(e_player)
 {
 	var_2fff5cb5 = level.var_9eccff99.e_player === e_player;
 	var_24441d81 = !isdefined(level.var_9eccff99.e_player) && !isdefined(e_player.var_9c20e2c9);
@@ -151,7 +154,7 @@ private function function_5b4f9f76(e_player)
 	Parameters: 1
 	Flags: Private
 */
-private function function_a8e75297(w_weapon)
+function private function_a8e75297(w_weapon)
 {
 	return isdefined(w_weapon) && (w_weapon == level.var_9eccff99.var_10630268 || w_weapon == level.var_9eccff99.var_d58b0729);
 }
@@ -179,7 +182,7 @@ function start_quest()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b60df00d()
+function private function_b60df00d()
 {
 	level thread function_cbeb9a33();
 	if(!isdefined(level.var_9eccff99.s_start))
@@ -212,7 +215,7 @@ private function function_b60df00d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1129876d()
+function private function_1129876d()
 {
 	self endon(#"death");
 	pixbeginevent(#"hash_31bd17db0dd4297d");
@@ -239,7 +242,7 @@ private function function_1129876d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d41d20b1()
+function private function_d41d20b1()
 {
 	v_force = anglestoforward(self.angles);
 	v_force = v_force * 0.2;
@@ -258,7 +261,7 @@ private function function_d41d20b1()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9d66ea6f(var_2e1f34dd, e_player)
+function private function_9d66ea6f(var_2e1f34dd, e_player)
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -308,7 +311,7 @@ function function_130ea633()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_87e09347()
+function private function_87e09347()
 {
 	if(namespace_3e3742fd::function_6cebbce1())
 	{
@@ -336,7 +339,7 @@ private function function_87e09347()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_22b5323d()
+function private function_22b5323d()
 {
 	exploder::exploder("fxexp_quest_raygun_m2_v_stage_3_xtra_hint_" + self.exploder_id);
 	t_damage = spawn("trigger_damage_new", self.origin - vectorscale((0, 0, 1), 12), (1048576 | 2097152) | 8388608, 24, 24);
@@ -355,7 +358,7 @@ private function function_22b5323d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_27766b0b()
+function private function_27766b0b()
 {
 	self endon(#"death");
 	pixbeginevent(#"hash_1d99091c9b9308d1");
@@ -387,7 +390,7 @@ private function function_27766b0b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6d765bb3()
+function private function_6d765bb3()
 {
 	exploder::stop_exploder("fxexp_quest_raygun_m2_v_stage_3_xtra_hint_" + self.exploder_id);
 	exploder::exploder("fxexp_quest_raygun_m2_v_stage_4_complete_" + self.exploder_id);
@@ -442,7 +445,7 @@ function function_f05be4f1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b99d76c0()
+function private function_b99d76c0()
 {
 	s_gen = struct::get("mk2v_gen");
 	s_gen zm_unitrigger::create("", 96);
@@ -461,7 +464,7 @@ private function function_b99d76c0()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_195e54c()
+function private function_195e54c()
 {
 	self endon(#"death", #"stop_think");
 	while(true)
@@ -490,7 +493,7 @@ private function function_195e54c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a66f0de2()
+function private function_a66f0de2()
 {
 	namespace_bd74bbd2::end(#"sc_mk2v");
 	s_unitrigger = level.var_9eccff99.var_fead3ae9 namespace_2e9c09b3::function_f1827cc6(&function_e90f6026, &function_f6048ee, &function_5b4f9f76);
@@ -509,7 +512,7 @@ private function function_a66f0de2()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e90f6026(var_2e1f34dd, e_player)
+function private function_e90f6026(var_2e1f34dd, e_player)
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -590,7 +593,7 @@ function function_17f3e9e2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7015dc35(e_player)
+function private function_7015dc35(e_player)
 {
 	if(isdefined(e_player))
 	{
@@ -602,9 +605,9 @@ private function function_7015dc35(e_player)
 		{
 			self sethintstring(#"hash_2054e8fdb6521566");
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -616,7 +619,7 @@ private function function_7015dc35(e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2ac1278b()
+function private function_2ac1278b()
 {
 	self endon(#"death");
 	while(true)
@@ -667,7 +670,7 @@ function function_bafa7a2b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a36c4a5e()
+function private function_a36c4a5e()
 {
 	level.var_9eccff99.e_player thread function_cba90c3c();
 	level.var_9eccff99.n_step = 4;
@@ -682,7 +685,7 @@ private function function_a36c4a5e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cba90c3c()
+function private function_cba90c3c()
 {
 	self endon(#"death");
 	self waittill(#"hash_13f3f231b45420ef");
@@ -722,7 +725,7 @@ function function_62ac32b9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fa74521f()
+function private function_fa74521f()
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -744,7 +747,7 @@ private function function_fa74521f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_disconnect()
+function private on_disconnect()
 {
 	if(function_18a1849f(self))
 	{
@@ -761,7 +764,7 @@ private function on_disconnect()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ac5deb51(var_e19b7aed = 1)
+function private function_ac5deb51(var_e19b7aed = 1)
 {
 	switch(level.var_9eccff99.n_step)
 	{

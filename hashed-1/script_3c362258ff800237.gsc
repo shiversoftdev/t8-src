@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_trial", &__init__, undefined, undefined);
 }
@@ -150,7 +150,7 @@ function function_a36e8c38(name)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4dbf2663()
+function private function_4dbf2663()
 {
 	var_3b363b7a = getgametypesetting(#"zmtrialsvariant");
 	if(isdefined(var_3b363b7a) && var_3b363b7a > 0)

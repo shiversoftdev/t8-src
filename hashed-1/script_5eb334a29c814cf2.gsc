@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_217942543a3e669b", &__init__, &__main__, undefined);
 }
@@ -62,7 +62,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_10c92445()
+function private function_10c92445()
 {
 	self.ignore_nuke = 1;
 	self.ignore_all_poi = 1;
@@ -84,7 +84,7 @@ private function function_10c92445()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_188e5077(angles)
+function private function_188e5077(angles)
 {
 	self thread animation::play("ai_t8_zm_mannequin_ally_stn_exposed_revive", self, angles, 1);
 }
@@ -169,7 +169,7 @@ function function_f1be5640(inflictor, attacker, damage, flags, meansofdeath, wea
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_80bc397d()
+function private function_80bc397d()
 {
 	var_8f538918 = getaiarchetypearray(#"zod_companion");
 	if(var_8f538918.size == 0 && (level.players.size == 1 || (isdefined(self.var_20f86af4) && self.var_20f86af4)))

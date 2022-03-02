@@ -151,7 +151,7 @@ function onstartgametype()
 	Parameters: 0
 	Flags: Private
 */
-private function function_8277ff43()
+function private function_8277ff43()
 {
 	self endon(#"disconnect");
 	level flag::wait_till("start_zombie_round_logic");
@@ -168,15 +168,15 @@ private function function_8277ff43()
 	Parameters: 1
 	Flags: Private
 */
-private function function_491101ba(player)
+function private function_491101ba(player)
 {
 	if(player hasperk(#"hash_5b141f82a55645a9") && (!(isdefined(player.var_a4630f64) && player.var_a4630f64)))
 	{
-		return 1;
+		return true;
 	}
 	if(level flag::get("round_reset"))
 	{
-		return 1;
+		return true;
 	}
 	var_57807cdc = [];
 	foreach(player in getplayers())
@@ -198,31 +198,37 @@ private function function_491101ba(player)
 	{
 		zm_trial::fail(#"hash_60e5e8df8709ad64", var_57807cdc);
 	}
-	else if(var_57807cdc.size == 1)
+	else
 	{
-		zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
+		if(var_57807cdc.size == 1)
+		{
+			zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
+		}
+		else
+		{
+			if(!isdefined(var_57807cdc))
+			{
+				var_57807cdc = [];
+			}
+			else if(!isarray(var_57807cdc))
+			{
+				var_57807cdc = array(var_57807cdc);
+			}
+			if(!isinarray(var_57807cdc, player))
+			{
+				var_57807cdc[var_57807cdc.size] = player;
+			}
+			zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
+		}
 	}
-	else if(!isdefined(var_57807cdc))
-	{
-		var_57807cdc = [];
-	}
-	else if(!isarray(var_57807cdc))
-	{
-		var_57807cdc = array(var_57807cdc);
-	}
-	if(!isinarray(var_57807cdc, player))
-	{
-		var_57807cdc[var_57807cdc.size] = player;
-	}
-	zm_trial::fail(#"hash_272fae998263208b", var_57807cdc);
 	if(level flag::get("round_reset"))
 	{
-		return 1;
+		return true;
 	}
 	/#
 		assert(level flag::get(#"hash_6acab8bde7078239"));
 	#/
-	return 0;
+	return false;
 }
 
 /*
@@ -234,7 +240,7 @@ private function function_491101ba(player)
 	Parameters: 0
 	Flags: Private
 */
-private function function_61fd0e87()
+function private function_61fd0e87()
 {
 	/#
 		assert(isdefined(level.var_6d87ac05));
@@ -259,7 +265,7 @@ private function function_61fd0e87()
 	Parameters: 2
 	Flags: Private
 */
-private function function_b8839207(e_door, n_cost)
+function private function_b8839207(e_door, n_cost)
 {
 	level flag::wait_till("start_zombie_round_logic");
 	e_door notify(#"hash_42c191c31ed08a4");
@@ -287,7 +293,7 @@ private function function_b8839207(e_door, n_cost)
 	Parameters: 0
 	Flags: Private
 */
-private function complete_current_round()
+function private complete_current_round()
 {
 	/#
 		level.devcheater = 1;
@@ -318,7 +324,7 @@ private function complete_current_round()
 	Parameters: 1
 	Flags: Private
 */
-private function function_1201b5da(medal)
+function private function_1201b5da(medal)
 {
 	/#
 		round = undefined;
@@ -378,7 +384,7 @@ private function function_1201b5da(medal)
 	Parameters: 0
 	Flags: Private
 */
-private function function_9a6b2309()
+function private function_9a6b2309()
 {
 	/#
 		/#

@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5ecf1967e7cb0189", &__init__, undefined, undefined);
 }
@@ -63,7 +63,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_d00809d8(localclientnum, pos, surface, notetrack, bone)
+function private function_d00809d8(localclientnum, pos, surface, notetrack, bone)
 {
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(pos, e_player.origin);
@@ -106,20 +106,23 @@ private function function_d00809d8(localclientnum, pos, surface, notetrack, bone
 			function_36e4ebd4(localclientnum, "anim_med");
 		}
 	}
-	else if(n_scale <= 0.2 && n_scale > 0.1)
+	else
 	{
-		if(is_large)
+		if(n_scale <= 0.2 && n_scale > 0.1)
 		{
-			function_36e4ebd4(localclientnum, "anim_med");
+			if(is_large)
+			{
+				function_36e4ebd4(localclientnum, "anim_med");
+			}
+			else
+			{
+				function_36e4ebd4(localclientnum, "damage_light");
+			}
 		}
 		else
 		{
 			function_36e4ebd4(localclientnum, "damage_light");
 		}
-	}
-	else
-	{
-		function_36e4ebd4(localclientnum, "damage_light");
 	}
 }
 
@@ -132,7 +135,7 @@ private function function_d00809d8(localclientnum, pos, surface, notetrack, bone
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_8745f9df(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_8745f9df(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self.var_cafcaa0a = util::playfxontag(localclientnum, level._effect[#"hash_35b000ce20f352c4"], self, "tag_shield_fx");
 }
@@ -146,7 +149,7 @@ private function function_8745f9df(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_ae96bf9a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_ae96bf9a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -168,7 +171,7 @@ private function function_ae96bf9a(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_33dedae1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_33dedae1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -190,7 +193,7 @@ private function function_33dedae1(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_421757ab(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_421757ab(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -212,7 +215,7 @@ private function function_421757ab(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_2ee4a6b6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_2ee4a6b6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(!isalive(self) || self !== function_5c10bd79(localclientnum))
 	{
@@ -231,7 +234,7 @@ private function function_2ee4a6b6(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_ce49549a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_ce49549a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(self.origin, e_player.origin);
@@ -258,13 +261,16 @@ private function function_ce49549a(localclientnum, oldval, newval, bnewent, bini
 	{
 		function_36e4ebd4(localclientnum, "anim_med");
 	}
-	else if(n_scale <= 0.2 && n_scale > 0.1)
-	{
-		function_36e4ebd4(localclientnum, "damage_light");
-	}
 	else
 	{
-		function_36e4ebd4(localclientnum, "damage_light");
+		if(n_scale <= 0.2 && n_scale > 0.1)
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
+		else
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
 	}
 }
 
@@ -277,7 +283,7 @@ private function function_ce49549a(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d54aae3e(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_d54aae3e(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{

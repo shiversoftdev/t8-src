@@ -251,20 +251,23 @@ function function_922c05f()
 	{
 		level exploder::exploder("fxexp_trap_bath");
 	}
-	else if(level.var_c33299e2 == 4 && !level.var_30ec2c9a || level.var_4a0ddedd)
+	else
 	{
-		level function_2b2e6b4();
-		level exploder::exploder("fxexp_trap_bath_bloody_lvl1");
-		level exploder::exploder("exp_lgt_bath_trap");
-		level exploder::stop_exploder("fxexp_trap_bath");
-		level thread function_3a067395("fxexp_trap_bath_bloody_lvl1");
-	}
-	else if(level.var_c33299e2 == 10 || level.var_30ec2c9a)
-	{
-		level function_2b2e6b4();
-		level exploder::exploder("fxexp_trap_bath_bloody_lvl2");
-		level exploder::stop_exploder("fxexp_trap_bath_bloody_lvl1");
-		level thread function_3a067395("fxexp_trap_bath_bloody_lvl2");
+		if(level.var_c33299e2 == 4 && !level.var_30ec2c9a || level.var_4a0ddedd)
+		{
+			level function_2b2e6b4();
+			level exploder::exploder("fxexp_trap_bath_bloody_lvl1");
+			level exploder::exploder("exp_lgt_bath_trap");
+			level exploder::stop_exploder("fxexp_trap_bath");
+			level thread function_3a067395("fxexp_trap_bath_bloody_lvl1");
+		}
+		else if(level.var_c33299e2 == 10 || level.var_30ec2c9a)
+		{
+			level function_2b2e6b4();
+			level exploder::exploder("fxexp_trap_bath_bloody_lvl2");
+			level exploder::stop_exploder("fxexp_trap_bath_bloody_lvl1");
+			level thread function_3a067395("fxexp_trap_bath_bloody_lvl2");
+		}
 	}
 }
 

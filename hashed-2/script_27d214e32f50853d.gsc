@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7b354b317eaf8341", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_66fe7443, var_ec90b685)
+function private function_d1de6a85(var_66fe7443, var_ec90b685)
 {
 	if(isdefined(var_ec90b685))
 	{
@@ -74,7 +74,7 @@ private function function_d1de6a85(var_66fe7443, var_ec90b685)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(isdefined(self.var_ec90b685) && self.var_ec90b685)
 	{
@@ -121,7 +121,7 @@ function is_active(var_a32bbdd = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8e0401ab(params)
+function private function_8e0401ab(params)
 {
 	if(isdefined(self.nuked) && self.nuked)
 	{

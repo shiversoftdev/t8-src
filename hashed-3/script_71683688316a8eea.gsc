@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_77f93374658c46e4", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 8
 	Flags: Private
 */
-private function function_d1de6a85(n_max_zombies, var_2ec39966, str_zone1, str_zone2, var_588808b1, var_91e2fb66, var_84245fe9, var_a7a5a6ef)
+function private function_d1de6a85(n_max_zombies, var_2ec39966, str_zone1, str_zone2, var_588808b1, var_91e2fb66, var_84245fe9, var_a7a5a6ef)
 {
 	level endon(#"hash_7646638df88a3656");
 	a_str_zones = array(str_zone1, str_zone2, var_588808b1, var_91e2fb66, var_84245fe9, var_a7a5a6ef);
@@ -81,7 +81,7 @@ private function function_d1de6a85(n_max_zombies, var_2ec39966, str_zone1, str_z
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	if(isdefined(self.var_2ec39966))
@@ -100,7 +100,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 2
 	Flags: Private
 */
-private function function_65e6d40c(a_str_zones, n_max_zombies = 0)
+function private function_65e6d40c(a_str_zones, n_max_zombies = 0)
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	level waittill(#"zombie_total_set");

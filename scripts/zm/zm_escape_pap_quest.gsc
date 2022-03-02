@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"pap_quest", &__init__, &__main__, undefined);
 }
@@ -71,7 +71,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_842831cf()
+function private function_842831cf()
 {
 	clientfield::register("world", "" + #"hash_3fcd3bbe36f86e4b", 1, 1, "counter");
 	clientfield::register("scriptmover", "" + #"lightning_near", 1, 1, "counter");
@@ -214,7 +214,7 @@ function function_3357bedc()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_26cff57(a_ents)
+function private function_26cff57(a_ents)
 {
 	a_ents[#"pap"] thread function_59093304("roof", 1);
 	if(!level flag::get(#"pap_quest_completed"))
@@ -239,7 +239,7 @@ private function function_26cff57(a_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f7af87b9(a_ents)
+function private function_f7af87b9(a_ents)
 {
 	a_ents[#"pap"] thread function_59093304("building_64");
 }
@@ -253,7 +253,7 @@ private function function_f7af87b9(a_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cf48a8f2(a_ents)
+function private function_cf48a8f2(a_ents)
 {
 	a_ents[#"pap"] thread function_59093304("power_house");
 }
@@ -267,7 +267,7 @@ private function function_cf48a8f2(a_ents)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_59093304(str_zone, var_e07ad59f = 0)
+function private function_59093304(str_zone, var_e07ad59f = 0)
 {
 	self ghost();
 	self waittill(#"fade_in_start");
@@ -297,7 +297,7 @@ private function function_59093304(str_zone, var_e07ad59f = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_86f1ed70(a_ents)
+function private function_86f1ed70(a_ents)
 {
 	a_ents[#"pap"] thread function_25adf2e0("roof", #"hash_79b5f8e539d36a49");
 	a_ents[#"pap"] clientfield::set("" + #"hash_504d26c38b96651c", 1);
@@ -312,7 +312,7 @@ private function function_86f1ed70(a_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8d3078dc(a_ents)
+function private function_8d3078dc(a_ents)
 {
 	a_ents[#"pap"] thread function_25adf2e0("building_64", #"hash_1fc69d74f13da62e");
 	a_ents[#"pap"] clientfield::set("" + #"hash_504d26c38b96651c", 1);
@@ -327,7 +327,7 @@ private function function_8d3078dc(a_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function registeree_command_heart_(a_ents)
+function private registeree_command_heart_(a_ents)
 {
 	a_ents[#"pap"] thread function_25adf2e0("power_house", #"hash_6d668f3614ed2393");
 	a_ents[#"pap"] clientfield::set("" + #"hash_504d26c38b96651c", 1);
@@ -342,7 +342,7 @@ private function registeree_command_heart_(a_ents)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_25adf2e0(str_zone, var_410775ce)
+function private function_25adf2e0(str_zone, var_410775ce)
 {
 	self ghost();
 	self waittill(#"fade_in_start");
@@ -528,7 +528,7 @@ function function_c0bc0375()
 {
 	if(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 2)
 	{
-		return 0;
+		return false;
 	}
 	self endon(#"hash_168e8f0e18a79cf8");
 	switch(self.script_string)

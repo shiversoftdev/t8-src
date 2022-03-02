@@ -350,21 +350,24 @@ function function_cca9b50e(localclientnum, oldval, newval, bnewent, binitialsnap
 		mdl_fx thread function_7152ba7c(self);
 		mdl_fx thread function_1bad7fac(localclientnum);
 	}
-	else if(isdefined(self.var_bf45a811))
+	else
 	{
-		stopfx(localclientnum, self.var_bf45a811);
-		self.var_bf45a811 = undefined;
-	}
-	if(isdefined(self.var_6ec79371))
-	{
-		self.var_6ec79371 unlink();
-		self.var_6ec79371 delete();
-		self.var_6ec79371 = undefined;
-	}
-	if(isdefined(self.staff_fallen))
-	{
-		stopfx(localclientnum, self.staff_fallen);
-		self.staff_fallen = undefined;
+		if(isdefined(self.var_bf45a811))
+		{
+			stopfx(localclientnum, self.var_bf45a811);
+			self.var_bf45a811 = undefined;
+		}
+		if(isdefined(self.var_6ec79371))
+		{
+			self.var_6ec79371 unlink();
+			self.var_6ec79371 delete();
+			self.var_6ec79371 = undefined;
+		}
+		if(isdefined(self.staff_fallen))
+		{
+			stopfx(localclientnum, self.staff_fallen);
+			self.staff_fallen = undefined;
+		}
 	}
 }
 
@@ -448,14 +451,17 @@ function function_c96c5397(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.n_sfx = self playloopsound(#"hash_6d3093fa5bbbbe2f");
 		}
 	}
-	else if(isdefined(self.n_fx))
+	else
 	{
-		stopfx(localclientnum, self.n_fx);
-		self.n_fx = undefined;
-	}
-	if(isdefined(self.n_sfx))
-	{
-		self stoploopsound(self.n_sfx);
+		if(isdefined(self.n_fx))
+		{
+			stopfx(localclientnum, self.n_fx);
+			self.n_fx = undefined;
+		}
+		if(isdefined(self.n_sfx))
+		{
+			self stoploopsound(self.n_sfx);
+		}
 	}
 }
 
@@ -482,14 +488,17 @@ function function_192be936(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_fc40818b = self playloopsound(#"hash_474d2ea03ea86530");
 		}
 	}
-	else if(isdefined(self.var_576a8cab))
+	else
 	{
-		stopfx(localclientnum, self.var_576a8cab);
-		self.var_576a8cab = undefined;
-	}
-	if(isdefined(self.var_fc40818b))
-	{
-		self stoploopsound(self.var_fc40818b);
+		if(isdefined(self.var_576a8cab))
+		{
+			stopfx(localclientnum, self.var_576a8cab);
+			self.var_576a8cab = undefined;
+		}
+		if(isdefined(self.var_fc40818b))
+		{
+			self stoploopsound(self.var_fc40818b);
+		}
 	}
 }
 

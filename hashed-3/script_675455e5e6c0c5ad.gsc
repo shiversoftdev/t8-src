@@ -58,11 +58,14 @@ function function_c6b07c39(localclientnum, oldval, newval, bnewent, binitialsnap
 		forcestreamxmodel(#"hash_2a475dc4752c8b17");
 		forcestreamxmodel(#"hash_53d213db448a97e1");
 	}
-	else if(isdefined(self.var_3c43a180))
+	else
 	{
-		stopfx(localclientnum, self.var_3c43a180);
+		if(isdefined(self.var_3c43a180))
+		{
+			stopfx(localclientnum, self.var_3c43a180);
+		}
+		stopforcestreamingxmodel(#"hash_2a475dc4752c8b17");
+		stopforcestreamingxmodel(#"hash_53d213db448a97e1");
 	}
-	stopforcestreamingxmodel(#"hash_2a475dc4752c8b17");
-	stopforcestreamingxmodel(#"hash_53d213db448a97e1");
 }
 

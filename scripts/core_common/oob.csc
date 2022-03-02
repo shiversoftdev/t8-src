@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"out_of_bounds", &__init__, undefined, undefined);
 }
@@ -37,14 +37,17 @@ function __init__()
 		level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 3000);
 		level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
 	}
-	else if(function_f99d2668())
-	{
-		level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 10000);
-		level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
-	}
 	else
 	{
-		level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 6000);
+		if(function_f99d2668())
+		{
+			level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 10000);
+			level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
+		}
+		else
+		{
+			level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 6000);
+		}
 	}
 	clientfield::register("toplayer", "out_of_bounds", 1, 5, "int", &onoutofboundschange, 0, 1);
 	clientfield::register("toplayer", "nonplayer_oob_usage", 1, 1, "int", &function_95c61f07, 0, 1);
@@ -181,20 +184,23 @@ function onoutofboundschange(localclientnum, oldval, newval, bnewent, binitialsn
 		}
 		localplayer randomfade(newvalf);
 	}
-	else if(isdefined(level.oob_timekeep_ms) && isdefined(self.oob_start_time))
+	else
 	{
-		self.oob_end_time = getservertime(0, 1);
-		if(!isdefined(self.oob_active_duration))
+		if(isdefined(level.oob_timekeep_ms) && isdefined(self.oob_start_time))
 		{
-			self.oob_active_duration = 0;
+			self.oob_end_time = getservertime(0, 1);
+			if(!isdefined(self.oob_active_duration))
+			{
+				self.oob_active_duration = 0;
+			}
+			self.oob_active_duration = self.oob_active_duration + (self.oob_end_time - self.oob_start_time);
 		}
-		self.oob_active_duration = self.oob_active_duration + (self.oob_end_time - self.oob_start_time);
+		if(isdefined(self.var_f043b10a) && self.var_f043b10a)
+		{
+			self.oob_active_duration = undefined;
+		}
+		stopoutofboundseffects(localclientnum, localplayer);
 	}
-	if(isdefined(self.var_f043b10a) && self.var_f043b10a)
-	{
-		self.oob_active_duration = undefined;
-	}
-	stopoutofboundseffects(localclientnum, localplayer);
 }
 
 /*

@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"draft", &__init__, undefined, undefined);
 }
@@ -294,17 +294,17 @@ function function_904deeb2()
 	player = self;
 	if(player function_2c7b2ff())
 	{
-		return 0;
+		return false;
 	}
 	if(level.draftstage == 0)
 	{
-		return 1;
+		return true;
 	}
 	if(level.draftstage == 3 && !player isready())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -320,12 +320,12 @@ function can_select_character(characterindex)
 {
 	if(!function_904deeb2())
 	{
-		return 0;
+		return false;
 	}
 	maxuniqueroles = getgametypesetting(#"maxuniquerolesperteam", characterindex);
 	if(maxuniqueroles == 0)
 	{
-		return 0;
+		return false;
 	}
 	rolecount = 0;
 	foreach(player in level.players)
@@ -340,11 +340,11 @@ function can_select_character(characterindex)
 			rolecount++;
 			if(rolecount >= maxuniqueroles)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -360,14 +360,14 @@ function select_character(characterindex, forceselection, var_8a239568)
 {
 	if(!player_role::is_valid(characterindex))
 	{
-		return 0;
+		return false;
 	}
 	/#
 		assert(player_role::is_valid(characterindex));
 	#/
 	if(!(isdefined(forceselection) && forceselection) && !can_select_character(characterindex))
 	{
-		return 0;
+		return false;
 	}
 	if(self player_role::set(characterindex))
 	{
@@ -382,14 +382,14 @@ function select_character(characterindex, forceselection, var_8a239568)
 			var_891e514a = {#hash_b53f57e1:var_8a239568, #hash_6fa2fd60:game_time - level.var_9205f2e8, #game_time:game_time, #character_index:characterindex, #xuid:self getxuid()};
 			function_92d1707f(#"hash_3a95edd667fd3e7d", var_891e514a);
 		}
-		return 1;
+		return true;
 	}
 	if(!util::function_8570168d())
 	{
 		self player_role::clear();
 		self util::clientnotify("PositionDraft_Reject");
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -483,9 +483,9 @@ function function_c5394b83(starttime, seconds)
 		/#
 			println("");
 		#/
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -505,7 +505,7 @@ function all_players_connected()
 		/#
 			function_95c03d66((("" + var_5c6783e9) + "") + level.players.size);
 		#/
-		return 0;
+		return false;
 	}
 	foreach(player in level.players)
 	{
@@ -514,10 +514,10 @@ function all_players_connected()
 			/#
 				function_95c03d66(("" + player.name) + "");
 			#/
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -535,10 +535,10 @@ function function_d255fb3e()
 	{
 		if(player function_9b95ed9f())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -555,7 +555,7 @@ function function_21f5a2c1()
 	var_e8cb777 = getgametypesetting(#"draftrequiredclients");
 	if(var_e8cb777 <= 0)
 	{
-		return 1;
+		return true;
 	}
 	foreach(team, _ in level.teams)
 	{
@@ -575,10 +575,10 @@ function function_21f5a2c1()
 			/#
 				function_95c03d66((((("" + var_e8cb777) + "") + team) + "") + teamcount[team]);
 			#/
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1119,58 +1119,88 @@ function set_draft_stage(draftstage)
 		{
 			println("");
 		}
-		else if(draftstage == 1)
+		else
 		{
-			println("");
-		}
-		else if(draftstage == 2)
-		{
-			println("");
-		}
-		else if(draftstage == 3)
-		{
-			println("");
-		}
-		else if(draftstage == 5)
-		{
-			println("");
-		}
-		else if(draftstage == 6)
-		{
-			println("");
-		}
-		else if(draftstage == 7)
-		{
-			println("");
+			if(draftstage == 1)
+			{
+				println("");
+			}
+			else
+			{
+				if(draftstage == 2)
+				{
+					println("");
+				}
+				else
+				{
+					if(draftstage == 3)
+					{
+						println("");
+					}
+					else
+					{
+						if(draftstage == 5)
+						{
+							println("");
+						}
+						else
+						{
+							if(draftstage == 6)
+							{
+								println("");
+							}
+							else if(draftstage == 7)
+							{
+								println("");
+							}
+						}
+					}
+				}
+			}
 		}
 	#/
 	if(draftstage == 1)
 	{
 		draft_initialize();
 	}
-	else if(draftstage == 2)
+	else
 	{
-		wait_for_players();
-	}
-	else if(draftstage == 3)
-	{
-		draft_run();
-	}
-	else if(draftstage == 4)
-	{
-		function_404f08f3();
-	}
-	else if(draftstage == 5)
-	{
-		assign_remaining_players();
-	}
-	else if(draftstage == 6)
-	{
-		game_start();
-	}
-	else if(draftstage == 7)
-	{
-		draft_finalize();
+		if(draftstage == 2)
+		{
+			wait_for_players();
+		}
+		else
+		{
+			if(draftstage == 3)
+			{
+				draft_run();
+			}
+			else
+			{
+				if(draftstage == 4)
+				{
+					function_404f08f3();
+				}
+				else
+				{
+					if(draftstage == 5)
+					{
+						assign_remaining_players();
+					}
+					else
+					{
+						if(draftstage == 6)
+						{
+							game_start();
+						}
+						else if(draftstage == 7)
+						{
+							draft_finalize();
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

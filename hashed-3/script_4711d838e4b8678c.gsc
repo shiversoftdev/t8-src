@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_14545d2d685e6304", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	zm::register_actor_damage_callback(&function_306332df);
 }
@@ -63,7 +63,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(isinarray(level.actor_damage_callbacks, &function_306332df))
 	{
@@ -95,7 +95,7 @@ function is_active()
 	Parameters: 12
 	Flags: Private
 */
-private function function_306332df(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
+function private function_306332df(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
 	if(!isplayer(attacker) && !isplayer(inflictor))
 	{
@@ -125,8 +125,8 @@ function function_23d15bf3(var_f85889ce)
 {
 	if(isplayer(var_f85889ce) && distance2dsquared(var_f85889ce.origin, self.origin) <= 122500)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

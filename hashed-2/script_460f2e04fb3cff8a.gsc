@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_771cd3c1dc16ee32", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(weapon_name)
+function private function_d1de6a85(weapon_name)
 {
 	level.var_153e9058 = 1;
 	level.var_fe2bb2ac = 1;
@@ -82,7 +82,7 @@ private function function_d1de6a85(weapon_name)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_153e9058 = 0;
 	level.var_fe2bb2ac = 0;
@@ -135,7 +135,7 @@ function is_active()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

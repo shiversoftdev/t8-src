@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_transform", &__init__, undefined, undefined);
 }
@@ -452,14 +452,14 @@ function function_5db4f2f5(entity, var_8763d10e)
 {
 	if(!isdefined(entity) || (isdefined(entity.var_69a981e6) && entity.var_69a981e6))
 	{
-		return 0;
+		return false;
 	}
 	entity.var_982f937 = 1;
 	if(isdefined(var_8763d10e) && var_8763d10e && function_331869(entity))
 	{
 		function_1afce5aa(entity);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -499,7 +499,7 @@ function function_a261938f(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_525526be(id)
+function private function_525526be(id)
 {
 	waitresult = undefined;
 	waitresult = self waittill(#"death", #"hash_673ed086cbd65a06", #"hash_610e5a8c0ec1a4b6");
@@ -522,7 +522,7 @@ private function function_525526be(id)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4e679db4(id, def)
+function private function_4e679db4(id, def)
 {
 	if(isdefined(def.spawner))
 	{
@@ -543,7 +543,7 @@ private function function_4e679db4(id, def)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c81eb299(id, def)
+function private function_c81eb299(id, def)
 {
 	if(isdefined(def.spawner))
 	{
@@ -570,7 +570,7 @@ private function function_c81eb299(id, def)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1050ba72(def)
+function private function_1050ba72(def)
 {
 	if(isdefined(def.spawner))
 	{
@@ -591,7 +591,7 @@ private function function_1050ba72(def)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function transform(id, var_c2a69066, var_2cf708f4 = 1)
+function private transform(id, var_c2a69066, var_2cf708f4 = 1)
 {
 	level endon(#"end_game");
 	if(function_abf1dcb4(id))
@@ -773,7 +773,7 @@ private function transform(id, var_c2a69066, var_2cf708f4 = 1)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a51fe6f9(params, var_944250d2)
+function private function_a51fe6f9(params, var_944250d2)
 {
 	if(isdefined(var_944250d2) && isalive(var_944250d2) && var_944250d2.allowdeath && isdefined(params.eattacker) && isplayer(params.eattacker))
 	{
@@ -790,7 +790,7 @@ private function function_a51fe6f9(params, var_944250d2)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c3a1379e()
+function private function_c3a1379e()
 {
 	return !(isdefined(level.var_c9f5947d) && level.var_c9f5947d) && (zombie_utility::get_current_zombie_count() + level.zombie_total) <= 10 && (!(isdefined(level.var_78acec0a) && level.var_78acec0a)) && !level flag::get(#"infinite_round_spawning");
 }
@@ -804,7 +804,7 @@ private function function_c3a1379e()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fad54d94(id, var_167b5341)
+function private function_fad54d94(id, var_167b5341)
 {
 	level endon(#"hash_670ec83e1acfadff", #"game_ended");
 	if(var_167b5341.var_2939a01a.size > 0)
@@ -814,7 +814,7 @@ private function function_fad54d94(id, var_167b5341)
 			if(function_a261938f(zombie) && isdefined(var_167b5341.condition) && zombie [[var_167b5341.condition]]())
 			{
 				zombie thread transform(id);
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -837,7 +837,7 @@ private function function_fad54d94(id, var_167b5341)
 					waitframe(1);
 					level.var_138b37c4 = 0;
 				}
-				return 1;
+				return true;
 			}
 			level.var_138b37c4++;
 			if(level.var_138b37c4 >= 6)
@@ -847,7 +847,7 @@ private function function_fad54d94(id, var_167b5341)
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -859,9 +859,9 @@ private function function_fad54d94(id, var_167b5341)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function update()
+function private update()
 {
-	level endon_callback(&registerelectricity_rq_started_fire_, #"end_game");
+	level endoncallback(&registerelectricity_rq_started_fire_, #"end_game");
 	var_52f926ed = 0;
 	level.var_138b37c4 = 0;
 	var_f38e5f93 = (isdefined(level.var_f38e5f93) ? level.var_f38e5f93 : 1);
@@ -923,7 +923,7 @@ private function update()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function registerelectricity_rq_started_fire_(var_201c5b1f)
+function private registerelectricity_rq_started_fire_(var_201c5b1f)
 {
 	function_e95ec8df();
 	function_fb608075();
@@ -952,7 +952,7 @@ function function_bbaec2fd()
 	Parameters: 0
 	Flags: Private
 */
-private function devgui()
+function private devgui()
 {
 	/#
 		level waittill(#"start_zombie_round_logic");
@@ -1107,7 +1107,7 @@ function function_3f433f41()
 	Parameters: 1
 	Flags: Private
 */
-private function function_3d080ace(var_70d26bfb)
+function private function_3d080ace(var_70d26bfb)
 {
 	/#
 		zombie = function_3f433f41();
@@ -1134,7 +1134,7 @@ private function function_3d080ace(var_70d26bfb)
 	Parameters: 1
 	Flags: Private
 */
-private function function_2f40be20(var_70d26bfb)
+function private function_2f40be20(var_70d26bfb)
 {
 	/#
 		zombie = function_3f433f41();
@@ -1157,7 +1157,7 @@ private function function_2f40be20(var_70d26bfb)
 	Parameters: 1
 	Flags: Private
 */
-private function function_4bad29d9(notifyhash)
+function private function_4bad29d9(notifyhash)
 {
 	/#
 		foreach(var_deb567a8 in level.var_deb567a8)
@@ -1184,7 +1184,7 @@ private function function_4bad29d9(notifyhash)
 	Parameters: 2
 	Flags: Private
 */
-private function create_hudelem(y, x)
+function private create_hudelem(y, x)
 {
 	/#
 		if(!isdefined(x))
@@ -1211,7 +1211,7 @@ private function create_hudelem(y, x)
 	Parameters: 0
 	Flags: Private
 */
-private function setup_status()
+function private setup_status()
 {
 	/#
 		level.var_deb567a8 = array();
@@ -1274,7 +1274,7 @@ private function setup_status()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9aa982db(notifyhash)
+function private function_9aa982db(notifyhash)
 {
 	/#
 		self.var_30acf8aa = undefined;
@@ -1290,11 +1290,11 @@ private function function_9aa982db(notifyhash)
 	Parameters: 2
 	Flags: Private
 */
-private function function_4a065e66(id, color)
+function private function_4a065e66(id, color)
 {
 	/#
-		self endon_callback(&function_9aa982db, #"death", #"hash_6e3d9f8c484e3d01");
-		level endon_callback(&function_9aa982db, #"hash_6e3d9f8c484e3d01");
+		self endoncallback(&function_9aa982db, #"death", #"hash_6e3d9f8c484e3d01");
+		level endoncallback(&function_9aa982db, #"hash_6e3d9f8c484e3d01");
 		self.var_30acf8aa = 1;
 		while(true)
 		{
@@ -1313,11 +1313,11 @@ private function function_4a065e66(id, color)
 	Parameters: 0
 	Flags: Private
 */
-private function show_status()
+function private show_status()
 {
 	/#
 		level notify(#"hash_53f34619e212c4cd");
-		level endon_callback(&function_4bad29d9, #"hash_53f34619e212c4cd");
+		level endoncallback(&function_4bad29d9, #"hash_53f34619e212c4cd");
 		setup_status();
 		while(true)
 		{
@@ -1352,7 +1352,7 @@ private function show_status()
 	Parameters: 0
 	Flags: Private
 */
-private function function_6bcb49b5()
+function private function_6bcb49b5()
 {
 	/#
 		level.var_dfd1a1c0 = !(isdefined(level.var_dfd1a1c0) && level.var_dfd1a1c0);
@@ -1372,7 +1372,7 @@ private function function_6bcb49b5()
 	Parameters: 0
 	Flags: Private
 */
-private function function_dfd1a1c0()
+function private function_dfd1a1c0()
 {
 	/#
 		self notify("");

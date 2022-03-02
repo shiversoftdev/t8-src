@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"callback", &__init__, undefined, undefined);
 }
@@ -179,50 +179,59 @@ function entityspawned(localclientnum)
 			}
 		}
 	}
-	else if(self.type == "vehicle" || self.type == "helicopter" || self.type == "plane")
+	else
 	{
-		if(isdefined(level._customvehiclecbfunc))
+		if(self.type == "vehicle" || self.type == "helicopter" || self.type == "plane")
 		{
-			self thread [[level._customvehiclecbfunc]](localclientnum);
-		}
-		self thread vehicle::field_toggle_exhaustfx_handler(localclientnum, undefined, 0, 1);
-		self thread vehicle::field_toggle_lights_handler(localclientnum, undefined, 0, 1);
-		if(self.type == "plane" || self.type == "helicopter")
-		{
-			self thread vehicle::aircraft_dustkick();
-		}
-		if(self.archetype === #"bat")
-		{
-			if(isdefined(level._customactorcbfunc))
+			if(isdefined(level._customvehiclecbfunc))
 			{
-				self thread [[level._customactorcbfunc]](localclientnum);
+				self thread [[level._customvehiclecbfunc]](localclientnum);
+			}
+			self thread vehicle::field_toggle_exhaustfx_handler(localclientnum, undefined, 0, 1);
+			self thread vehicle::field_toggle_lights_handler(localclientnum, undefined, 0, 1);
+			if(self.type == "plane" || self.type == "helicopter")
+			{
+				self thread vehicle::aircraft_dustkick();
+			}
+			if(self.archetype === #"bat")
+			{
+				if(isdefined(level._customactorcbfunc))
+				{
+					self thread [[level._customactorcbfunc]](localclientnum);
+				}
 			}
 		}
-	}
-	else if(self.type == "actor")
-	{
-		if(isdefined(level._customactorcbfunc))
+		else
 		{
-			self thread [[level._customactorcbfunc]](localclientnum);
-		}
-	}
-	else if(self.type == "scriptmover")
-	{
-		if(isdefined(self.weapon))
-		{
-			if(isdefined(level.var_6b11d5f6))
+			if(self.type == "actor")
 			{
-				self thread [[level.var_6b11d5f6]](localclientnum);
+				if(isdefined(level._customactorcbfunc))
+				{
+					self thread [[level._customactorcbfunc]](localclientnum);
+				}
 			}
-		}
-	}
-	else if(self.type == "NA")
-	{
-		if(isdefined(self.weapon))
-		{
-			if(isdefined(level.var_6b11d5f6))
+			else
 			{
-				self thread [[level.var_6b11d5f6]](localclientnum);
+				if(self.type == "scriptmover")
+				{
+					if(isdefined(self.weapon))
+					{
+						if(isdefined(level.var_6b11d5f6))
+						{
+							self thread [[level.var_6b11d5f6]](localclientnum);
+						}
+					}
+				}
+				else if(self.type == "NA")
+				{
+					if(isdefined(self.weapon))
+					{
+						if(isdefined(level.var_6b11d5f6))
+						{
+							self thread [[level.var_6b11d5f6]](localclientnum);
+						}
+					}
+				}
 			}
 		}
 	}

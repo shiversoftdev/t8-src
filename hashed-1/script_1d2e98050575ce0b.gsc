@@ -504,67 +504,70 @@ function damage_state(var_89775279, weapon, min_radius, max_radius, min_height, 
 					var_ae727111 = var_ae727111 * dt;
 					var_a3ca7cb2 dodamage(var_ae727111, var_a3ca7cb2.origin, player, player, "none", "MOD_BURNED");
 				}
-				else if(!isdefined(var_a3ca7cb2.var_15359864))
+				else
 				{
-					var_a3ca7cb2.var_15359864 = player;
-					if(!isdefined(player.var_57e6a430))
+					if(!isdefined(var_a3ca7cb2.var_15359864))
 					{
-						player.var_57e6a430 = [];
+						var_a3ca7cb2.var_15359864 = player;
+						if(!isdefined(player.var_57e6a430))
+						{
+							player.var_57e6a430 = [];
+						}
+						array::add(player.var_57e6a430, var_a3ca7cb2);
+						player playlocalsound(#"hash_6808d51f3971786e");
+						if(isplayer(var_a3ca7cb2))
+						{
+							var_a3ca7cb2 playlocalsound(#"hash_7890710107740214");
+							function_7e96addd("exertRadiationSelfStart", var_a3ca7cb2);
+						}
 					}
-					array::add(player.var_57e6a430, var_a3ca7cb2);
-					player playlocalsound(#"hash_6808d51f3971786e");
+					if(isplayer(var_a3ca7cb2) && !var_480b4b92 && var_a3ca7cb2 function_4e7b9eed() < 1)
+					{
+						player damagefeedback::update(undefined, undefined, "flakjacket", weapon);
+						var_6f4ece8f = 1;
+					}
+					if(isdefined(var_5e39ac54) && var_5e39ac54 && var_a3ca7cb2.archetype !== #"robot")
+					{
+						var_7ba94ed3++;
+					}
+					var_a3ca7cb2.var_4dcf932b = player;
+					var_73d38846 = 1;
+					if(dist < level.var_6712d3ab.var_e914cf2b)
+					{
+						t = 1 - (dist / level.var_6712d3ab.var_e914cf2b);
+						var_73d38846 = (1 - t) + (level.var_6712d3ab.var_c3e28ba8 * t);
+					}
+					if(level.hardcoremode)
+					{
+						var_73d38846 = var_73d38846 * (isdefined(level.var_6712d3ab.var_78c1e37b) ? level.var_6712d3ab.var_78c1e37b : 0.25);
+					}
 					if(isplayer(var_a3ca7cb2))
 					{
-						var_a3ca7cb2 playlocalsound(#"hash_7890710107740214");
-						function_7e96addd("exertRadiationSelfStart", var_a3ca7cb2);
+						var_73d38846 = var_73d38846 * var_a3ca7cb2 function_4e7b9eed();
 					}
-				}
-				if(isplayer(var_a3ca7cb2) && !var_480b4b92 && var_a3ca7cb2 function_4e7b9eed() < 1)
-				{
-					player damagefeedback::update(undefined, undefined, "flakjacket", weapon);
-					var_6f4ece8f = 1;
-				}
-				if(isdefined(var_5e39ac54) && var_5e39ac54 && var_a3ca7cb2.archetype !== #"robot")
-				{
-					var_7ba94ed3++;
-				}
-				var_a3ca7cb2.var_4dcf932b = player;
-				var_73d38846 = 1;
-				if(dist < level.var_6712d3ab.var_e914cf2b)
-				{
-					t = 1 - (dist / level.var_6712d3ab.var_e914cf2b);
-					var_73d38846 = (1 - t) + (level.var_6712d3ab.var_c3e28ba8 * t);
-				}
-				if(level.hardcoremode)
-				{
-					var_73d38846 = var_73d38846 * (isdefined(level.var_6712d3ab.var_78c1e37b) ? level.var_6712d3ab.var_78c1e37b : 0.25);
-				}
-				if(isplayer(var_a3ca7cb2))
-				{
-					var_73d38846 = var_73d38846 * var_a3ca7cb2 function_4e7b9eed();
-				}
-				var_65939bc3 = var_adf90433.var_9f648d82;
-				var_a2755834 = var_adf90433.var_44ff1a4;
-				var_adf90433.var_9f648d82 = int(var_adf90433.var_9f648d82 * var_73d38846);
-				var_adf90433.var_44ff1a4 = int(var_adf90433.var_44ff1a4 * var_73d38846);
-				if(!isdefined(player.var_b3da9e24))
-				{
-					player.var_b3da9e24 = 0;
-				}
-				player.var_b3da9e24 = player.var_b3da9e24 + var_adf90433.var_9f648d82;
-				var_adf90433.killcament = killcament;
-				var_a3ca7cb2 thread status_effect::status_effect_apply(var_adf90433, weapon, player, 0);
-				if(isdefined(level.var_ac6052e9))
-				{
-					if((isdefined(var_a3ca7cb2.var_a267ce8) ? var_a3ca7cb2.var_a267ce8 : 0) + (int([[level.var_ac6052e9]]("radiationDamageCooldown", 200) * 1000)) < gettime())
+					var_65939bc3 = var_adf90433.var_9f648d82;
+					var_a2755834 = var_adf90433.var_44ff1a4;
+					var_adf90433.var_9f648d82 = int(var_adf90433.var_9f648d82 * var_73d38846);
+					var_adf90433.var_44ff1a4 = int(var_adf90433.var_44ff1a4 * var_73d38846);
+					if(!isdefined(player.var_b3da9e24))
 					{
-						function_7e96addd("exertRadiationSelfLoop", var_a3ca7cb2);
-						var_a3ca7cb2.var_a267ce8 = gettime();
+						player.var_b3da9e24 = 0;
 					}
+					player.var_b3da9e24 = player.var_b3da9e24 + var_adf90433.var_9f648d82;
+					var_adf90433.killcament = killcament;
+					var_a3ca7cb2 thread status_effect::status_effect_apply(var_adf90433, weapon, player, 0);
+					if(isdefined(level.var_ac6052e9))
+					{
+						if((isdefined(var_a3ca7cb2.var_a267ce8) ? var_a3ca7cb2.var_a267ce8 : 0) + (int([[level.var_ac6052e9]]("radiationDamageCooldown", 200) * 1000)) < gettime())
+						{
+							function_7e96addd("exertRadiationSelfLoop", var_a3ca7cb2);
+							var_a3ca7cb2.var_a267ce8 = gettime();
+						}
+					}
+					var_adf90433.var_9f648d82 = var_65939bc3;
+					var_adf90433.var_44ff1a4 = var_a2755834;
+					var_a3ca7cb2.var_ba5b487b = 1;
 				}
-				var_adf90433.var_9f648d82 = var_65939bc3;
-				var_adf90433.var_44ff1a4 = var_a2755834;
-				var_a3ca7cb2.var_ba5b487b = 1;
 				continue;
 			}
 			var_a3ca7cb2 status_effect::function_408158ef(var_adf90433.var_67e2281d, var_adf90433.var_18d16a6b);

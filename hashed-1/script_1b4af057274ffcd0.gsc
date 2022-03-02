@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_44a6f2632e19a5c3", &namespace_526571f4::__init__, undefined, undefined);
 }
@@ -35,7 +35,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	plannercommanderutility::registerutilityapi(#"commanderscoreage", &_monkey_water_corvus_vo_cleared);
 	plannercommanderutility::registerdaemonapi(#"hash_62f9340b8f782bd5", &function_ea95685);
@@ -55,7 +55,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ea95685(commander)
+function private function_ea95685(commander)
 {
 	altars = [];
 	if(isarray(level.var_76a7ad28))
@@ -89,7 +89,7 @@ private function function_ea95685(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_80c4721f(commander)
+function private function_80c4721f(commander)
 {
 	blockers = [];
 	var_521da80d = array("zombie_door", "zombie_airlock_buy", "zombie_debris");
@@ -149,7 +149,7 @@ private function function_80c4721f(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_73588006(commander)
+function private function_73588006(commander)
 {
 	chests = [];
 	if(isarray(level.chests))
@@ -188,7 +188,7 @@ private function function_73588006(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ccdf2c6f(commander)
+function private function_ccdf2c6f(commander)
 {
 	powerups = [];
 	if(isarray(level.active_powerups))
@@ -225,7 +225,7 @@ private function function_ccdf2c6f(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_48fcded4(commander)
+function private function_48fcded4(commander)
 {
 	switches = [];
 	switchents = getentarray("use_elec_switch", "targetname");
@@ -260,7 +260,7 @@ private function function_48fcded4(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_873b1369(commander)
+function private function_873b1369(commander)
 {
 	wallbuys = [];
 	if(isarray(level._spawned_wallbuys))
@@ -306,7 +306,7 @@ private function function_873b1369(commander)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _monkey_water_corvus_vo_cleared(commander, squad, constants)
+function private _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
 		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), ("" + "") + "");

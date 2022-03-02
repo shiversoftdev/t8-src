@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_21620b42b6123816", &__init__, undefined, undefined);
 }
@@ -89,37 +89,58 @@ function function_c9509a9c(params)
 			{
 				self clientfield::set_to_player("player_hit_snowball_direction", 1);
 			}
-			else if(var_4e1c6c81 && var_797a4fe0)
+			else
 			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 2);
-			}
-			else if(var_4e1c6c81 && bright)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 3);
-			}
-			else if(var_cb01806c && var_9ed2938d)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 5);
-			}
-			else if(var_feafe576 && var_9ed2938d)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 4);
-			}
-			else if(var_feafe576 && var_797a4fe0)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 6);
-			}
-			else if(var_feafe576 && bright)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 8);
-			}
-			else if(var_cb01806c && var_797a4fe0)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 9);
-			}
-			else if(var_cb01806c && bright)
-			{
-				self clientfield::set_to_player("player_hit_snowball_direction", 10);
+				if(var_4e1c6c81 && var_797a4fe0)
+				{
+					self clientfield::set_to_player("player_hit_snowball_direction", 2);
+				}
+				else
+				{
+					if(var_4e1c6c81 && bright)
+					{
+						self clientfield::set_to_player("player_hit_snowball_direction", 3);
+					}
+					else
+					{
+						if(var_cb01806c && var_9ed2938d)
+						{
+							self clientfield::set_to_player("player_hit_snowball_direction", 5);
+						}
+						else
+						{
+							if(var_feafe576 && var_9ed2938d)
+							{
+								self clientfield::set_to_player("player_hit_snowball_direction", 4);
+							}
+							else
+							{
+								if(var_feafe576 && var_797a4fe0)
+								{
+									self clientfield::set_to_player("player_hit_snowball_direction", 6);
+								}
+								else
+								{
+									if(var_feafe576 && bright)
+									{
+										self clientfield::set_to_player("player_hit_snowball_direction", 8);
+									}
+									else
+									{
+										if(var_cb01806c && var_797a4fe0)
+										{
+											self clientfield::set_to_player("player_hit_snowball_direction", 9);
+										}
+										else if(var_cb01806c && bright)
+										{
+											self clientfield::set_to_player("player_hit_snowball_direction", 10);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 			self thread function_4df181ef();
 		}
@@ -137,7 +158,7 @@ function function_c9509a9c(params)
 */
 function function_4df181ef()
 {
-	self endon_callback(&function_8407e8ae, #"death", #"game_ended");
+	self endoncallback(&function_8407e8ae, #"death", #"game_ended");
 	self clientfield::set_to_player("player_hit_freezing_snowball", 1);
 	wait(2);
 	self clientfield::set_to_player("player_hit_freezing_snowball", 0);

@@ -86,13 +86,16 @@ function function_9e94a567()
 		{
 			event = 1;
 		}
-		else if(winning_teams[0] == "allies")
+		else
 		{
-			event = 2;
-		}
-		else if(winning_teams[0] == "axis")
-		{
-			event = 3;
+			if(winning_teams[0] == "allies")
+			{
+				event = 2;
+			}
+			else if(winning_teams[0] == "axis")
+			{
+				event = 3;
+			}
 		}
 		foreach(player in level.players)
 		{

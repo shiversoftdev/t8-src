@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_d776b402()
+function autoexec function_d776b402()
 {
 	clientfield::register("clientuimodel", "zmhud.damage_point_shake", 1, 1, "counter", undefined, 0, 0);
 	if(util::function_5df4294() == "zclassic")
@@ -153,13 +153,13 @@ function function_e49dbc72()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_ecc5a0b9(local_client_num, player, damage)
+function private function_ecc5a0b9(local_client_num, player, damage)
 {
 	if(int(damage) == 5)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

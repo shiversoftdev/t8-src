@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_wallbuy", &__init__, &__main__, #"zm");
 }
@@ -174,17 +174,17 @@ function is_wallbuy(w_to_check)
 	{
 		if(s_wallbuy.weapon == w_base)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(isdefined(level._additional_wallbuy_weapons))
 	{
 		if(isinarray(level._additional_wallbuy_weapons, w_base))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -406,14 +406,17 @@ function function_51f5fb94(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_907b36d0 = util::playfxontag(localclientnum, level._effect[#"wallbuy_ambient_fx"], self, "tag_fx_wall_buy");
 		}
 	}
-	else if(isdefined(self.var_907b36d0))
+	else
 	{
-		stopfx(localclientnum, self.var_907b36d0);
-		self.var_907b36d0 = undefined;
-	}
-	if(!isdefined(self.var_e51fbce7))
-	{
-		self.var_e51fbce7 = util::playfxontag(localclientnum, level._effect[#"hash_6928ec90dff78e0c"], self, "tag_fx_wall_buy");
+		if(isdefined(self.var_907b36d0))
+		{
+			stopfx(localclientnum, self.var_907b36d0);
+			self.var_907b36d0 = undefined;
+		}
+		if(!isdefined(self.var_e51fbce7))
+		{
+			self.var_e51fbce7 = util::playfxontag(localclientnum, level._effect[#"hash_6928ec90dff78e0c"], self, "tag_fx_wall_buy");
+		}
 	}
 }
 

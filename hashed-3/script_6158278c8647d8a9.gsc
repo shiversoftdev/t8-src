@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_76b4661cdc0efae0", &__init__, undefined, undefined);
 }
@@ -53,9 +53,7 @@ function __init__()
 	function_aa8c6854(#"self", &function_eeca1b53);
 	if(!isdefined(level.var_d1a4558d))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_d1a4558d = object;
+		level.var_d1a4558d = new throttle();
 		[[ level.var_d1a4558d ]]->initialize(1, float(function_60d95f53()) / 1000);
 	}
 }
@@ -186,11 +184,14 @@ function update(tacbundle)
 		}
 		self function_e027100a();
 	}
-	else if([[ level.var_d1a4558d ]]->wm_ht_posidlestart(self))
+	else
 	{
-		return;
+		if([[ level.var_d1a4558d ]]->wm_ht_posidlestart(self))
+		{
+			return;
+		}
+		self function_7beea81f(tacbundle);
 	}
-	self function_7beea81f(tacbundle);
 	if(isdefined(self.bot.var_2ee077ff))
 	{
 		self.bot.var_18fa994c = self.bot.var_2ee077ff;
@@ -211,7 +212,7 @@ function update(tacbundle)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e027100a()
+function private function_e027100a()
 {
 	self notify(#"hash_2747b8ce1136a8ae");
 	[[ level.var_d1a4558d ]]->function_5ef47bb4(self);
@@ -359,7 +360,12 @@ function function_6ee03a5f(failurecount)
 			self botprintwarning((("" + startpos) + "") + self.origin);
 		#/
 	}
-	self botprinterror("" + startpos);
+	else
+	{
+		/#
+			self botprinterror("" + startpos);
+		#/
+	}
 }
 
 /*
@@ -378,9 +384,9 @@ function function_96f55844()
 	if(isdefined(navmeshpoint))
 	{
 		self setorigin(navmeshpoint);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -403,10 +409,10 @@ function function_e336d9()
 		if(isdefined(navmeshpoint))
 		{
 			self setorigin(navmeshpoint);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -441,9 +447,9 @@ function function_6afa53fe()
 	if(isdefined(var_28054200))
 	{
 		self setorigin(var_28054200);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -466,14 +472,14 @@ function can_teleport()
 		fwd = anglestoforward(player.angles);
 		if(self.team == player.team && (vectordot(fwd, self.origin - player.origin)) > 0)
 		{
-			return 0;
+			return false;
 		}
 		if(player cansee(self))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -582,7 +588,7 @@ function function_aa8c6854(name, func)
 */
 function function_7beea81f(tacbundle)
 {
-	self endon_callback(&function_7f65a721, #"death", #"hash_2747b8ce1136a8ae");
+	self endoncallback(&function_7f65a721, #"death", #"hash_2747b8ce1136a8ae");
 	if(!isdefined(tacbundle.var_dd394d4e))
 	{
 		/#
@@ -909,10 +915,10 @@ function function_7ed3ada6(params, tacbundle)
 	#/
 	if(nodes.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	self function_a57c34b7(nodes[0]);
-	return 1;
+	return true;
 }
 
 /*
@@ -1046,17 +1052,17 @@ function function_ad687b7f(region)
 {
 	if(!isdefined(region))
 	{
-		return 0;
+		return false;
 	}
 	var_8cc7a4e = function_b507a336(region);
 	if(!isdefined(var_8cc7a4e))
 	{
-		return 0;
+		return false;
 	}
 	tacpoints = tacticalquery("stratcom_tacquery_region", region);
 	if(!isdefined(tacpoints) || tacpoints.size == 0)
 	{
-		return 0;
+		return false;
 	}
 	var_f34dd95d = !isdefined(self.var_d494450c) || (gettime() - self.var_d494450c) > 3000;
 	if(var_f34dd95d)
@@ -1068,7 +1074,7 @@ function function_ad687b7f(region)
 			self set_position(var_bd62801f.origin);
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1170,9 +1176,9 @@ function function_b2dbe6b0(trigger, minradius = 0)
 			}
 		#/
 		self set_position(results.data[0].origin);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1192,7 +1198,7 @@ function function_d0cf287b(params, tacbundle)
 		/#
 			self bot::record_text("" + function_9e72a96(params.center), (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	if(isint(center))
 	{
@@ -1212,7 +1218,7 @@ function function_d0cf287b(params, tacbundle)
 			self bot::record_text("" + function_9e72a96(params.center), (1, 0, 0), "");
 			self botprinterror((function_9e72a96(params.name) + "") + params.center);
 		#/
-		return 0;
+		return false;
 	}
 	var_fa686307 = undefined;
 	if(ispathnode(position))
@@ -1225,7 +1231,7 @@ function function_d0cf287b(params, tacbundle)
 		}
 	}
 	self set_position(position, var_fa686307);
-	return 1;
+	return true;
 }
 
 /*
@@ -1250,26 +1256,29 @@ function function_b33e4e67(center, fillpos, enemy, var_470022ca)
 				recordcircle(center.origin + (0, 0, center.halfheight), center.radius, (0, 1, 1), "", self);
 				recordline(center.origin - (0, 0, center.halfheight), center.origin + (0, 0, center.halfheight), (0, 1, 1), "", self);
 			}
-			else if(isstruct(center) && center.type == 2)
+			else
 			{
-				function_af72dbc5(center.center, center.halfsize * -1, center.halfsize, center.angles[0], (0, 1, 1), "", self);
-			}
-			else if(isentity(center))
-			{
-				maxs = center getmaxs();
-				mins = center getmins();
-				if(issubstr(center.classname, ""))
+				if(isstruct(center) && center.type == 2)
 				{
-					radius = max(maxs[0], maxs[1]);
-					top = center.origin + (0, 0, maxs[2]);
-					bottom = center.origin + (0, 0, mins[2]);
-					recordcircle(bottom, radius, (0, 1, 1), "", self);
-					recordcircle(top, radius, (0, 1, 1), "", self);
-					recordline(bottom, top, (0, 1, 1), "", self);
+					function_af72dbc5(center.center, center.halfsize * -1, center.halfsize, center.angles[0], (0, 1, 1), "", self);
 				}
-				else
+				else if(isentity(center))
 				{
-					function_af72dbc5(center.origin, mins, maxs, center.angles[0], (0, 1, 1), "", self);
+					maxs = center getmaxs();
+					mins = center getmins();
+					if(issubstr(center.classname, ""))
+					{
+						radius = max(maxs[0], maxs[1]);
+						top = center.origin + (0, 0, maxs[2]);
+						bottom = center.origin + (0, 0, mins[2]);
+						recordcircle(bottom, radius, (0, 1, 1), "", self);
+						recordcircle(top, radius, (0, 1, 1), "", self);
+						recordline(bottom, top, (0, 1, 1), "", self);
+					}
+					else
+					{
+						function_af72dbc5(center.origin, mins, maxs, center.angles[0], (0, 1, 1), "", self);
+					}
 				}
 			}
 			if(isdefined(enemy))
@@ -1404,28 +1413,28 @@ function function_2ea7762a(tacbundle)
 		/#
 			self bot::record_text("", (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	if(self ai::get_behavior_attribute("ignorepathenemyfightdist"))
 	{
 		/#
 			self bot::record_text("", (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.enemy))
 	{
 		/#
 			self bot::record_text("", (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	if(!self cansee(self.enemy))
 	{
 		/#
 			self bot::record_text("", (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	distsq = tacbundle.pathenemyfightdist * tacbundle.pathenemyfightdist;
 	if(distance2dsquared(self.origin, self.enemy.origin) > distsq)
@@ -1433,12 +1442,12 @@ function function_2ea7762a(tacbundle)
 		/#
 			self bot::record_text("", (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	/#
 		self bot::record_text("", (0, 1, 1), "");
 	#/
-	return 1;
+	return true;
 }
 
 /*

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	clientfield::register("actor", "arch_actor_fire_fx", 1, 2, "int");
 	clientfield::register("actor", "arch_actor_char", 1, 2, "int");
@@ -59,7 +59,7 @@ function onactorkilledcallback(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6fedb40d()
+function private function_6fedb40d()
 {
 	self endon(#"death");
 	if(isdefined(self.var_73c36602) && self.var_73c36602)
@@ -82,7 +82,7 @@ private function function_6fedb40d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6eb1fbde()
+function private function_6eb1fbde()
 {
 	if(self.var_40543c03 === "fire")
 	{

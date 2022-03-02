@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7d30e1a6dcbaf5df", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(n_min_time, n_max_time)
+function private function_d1de6a85(n_min_time, n_max_time)
 {
 	level.var_935c100a = zm_trial::function_5769f26a(n_min_time);
 	level.var_33146b2e = zm_trial::function_5769f26a(n_max_time);
@@ -69,7 +69,7 @@ private function function_d1de6a85(n_min_time, n_max_time)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level notify(#"hash_34f9cf7500b33c6b");
 	foreach(player in getplayers())
@@ -103,7 +103,7 @@ function is_active()
 	Parameters: 0
 	Flags: Private
 */
-private function function_6a04c6e6()
+function private function_6a04c6e6()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_34f9cf7500b33c6b", #"end_game");

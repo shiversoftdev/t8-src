@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_shield_charge", &__init__, undefined, undefined);
 }
@@ -67,7 +67,7 @@ function __init__()
 */
 function func_drop_when_players_own()
 {
-	return 0;
+	return false;
 }
 
 /*

@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"amws", &__init__, undefined, undefined);
 }
@@ -174,7 +174,7 @@ function death_suicide_crash(params)
 	self setmaxaccelerationscale(50 / self getdefaultacceleration());
 	self setspeed(self.settings.defaultmovespeed);
 	self function_a57c34b7(goalpos, 0);
-	self waittill_timeout(3.5, #"near_goal", #"veh_collision");
+	self waittilltimeout(3.5, #"near_goal", #"veh_collision");
 	self setmaxspeedscale(0.1);
 	self setspeed(0.1);
 	self vehicle_ai::clearallmovement();
@@ -453,7 +453,7 @@ function state_combat_enter(params)
 */
 function is_ai_using_minigun()
 {
-	return (isdefined(self.settings.ai_uses_minigun) ? self.settings.ai_uses_minigun : 1);
+	return true;
 }
 
 /*
@@ -592,65 +592,9 @@ function state_combat_update(params)
 		{
 			wait(0.1);
 		}
-		else if(!isdefined(self.enemy))
+		else
 		{
-			should_slow_down_at_goal = 1;
-			if(self.lock_evading)
-			{
-				self.current_pathto_pos = getnextmoveposition_evasive(self.lock_evading);
-				should_slow_down_at_goal = 0;
-			}
-			else
-			{
-				self.current_pathto_pos = getnextmoveposition_wander();
-			}
-			if(isdefined(self.current_pathto_pos))
-			{
-				if(self function_a57c34b7(self.current_pathto_pos, should_slow_down_at_goal, 1))
-				{
-					self thread path_update_interrupt_by_attacker();
-					self thread path_update_interrupt();
-					self vehicle_ai::waittill_pathing_done();
-					self notify(#"amws_end_interrupt_watch");
-				}
-			}
-			if(isdefined(self.var_23eff037) && self.var_23eff037)
-			{
-				self playsound(#"hash_7698127d41537782");
-				self.var_23eff037 = 0;
-			}
-		}
-		else if(isalive(self))
-		{
-			self turretsettarget(0, self.enemy);
-			self vehlookat(self.enemy);
-			if(self cansee(self.enemy))
-			{
-				self.lasttimetargetinsight = gettime();
-				if(!(isdefined(self.var_23eff037) && self.var_23eff037))
-				{
-					self playsound(#"hash_7c4742a949425295");
-					self.var_23eff037 = 1;
-					wait(0.5);
-				}
-			}
-			if(self.shouldgotonewposition == 0)
-			{
-				if(gettime() > lasttimechangeposition + 1000)
-				{
-					self.shouldgotonewposition = 1;
-				}
-				else if(gettime() > self.lasttimetargetinsight + 500)
-				{
-					self.shouldgotonewposition = 1;
-					if(isdefined(self.var_23eff037) && self.var_23eff037)
-					{
-						self playsound(#"hash_7698127d41537782");
-						self.var_23eff037 = 0;
-					}
-				}
-			}
-			if(self.shouldgotonewposition)
+			if(!isdefined(self.enemy))
 			{
 				should_slow_down_at_goal = 1;
 				if(self.lock_evading)
@@ -660,7 +604,7 @@ function state_combat_update(params)
 				}
 				else
 				{
-					self.current_pathto_pos = getnextmoveposition_tactical(self.enemy);
+					self.current_pathto_pos = getnextmoveposition_wander();
 				}
 				if(isdefined(self.current_pathto_pos))
 				{
@@ -671,12 +615,71 @@ function state_combat_update(params)
 						self vehicle_ai::waittill_pathing_done();
 						self notify(#"amws_end_interrupt_watch");
 					}
-					if(isdefined(self.enemy) && util::iscooldownready("rocket", 0.5) && self cansee(self.enemy) && self.gib_rocket !== 1)
+				}
+				if(isdefined(self.var_23eff037) && self.var_23eff037)
+				{
+					self playsound(#"hash_7698127d41537782");
+					self.var_23eff037 = 0;
+				}
+			}
+			else if(isalive(self))
+			{
+				self turretsettarget(0, self.enemy);
+				self vehlookat(self.enemy);
+				if(self cansee(self.enemy))
+				{
+					self.lasttimetargetinsight = gettime();
+					if(!(isdefined(self.var_23eff037) && self.var_23eff037))
 					{
-						self thread aim_and_fire_rocket_launcher(0.4);
+						self playsound(#"hash_7c4742a949425295");
+						self.var_23eff037 = 1;
+						wait(0.5);
 					}
-					lasttimechangeposition = gettime();
-					self.shouldgotonewposition = 0;
+				}
+				if(self.shouldgotonewposition == 0)
+				{
+					if(gettime() > lasttimechangeposition + 1000)
+					{
+						self.shouldgotonewposition = 1;
+					}
+					else if(gettime() > self.lasttimetargetinsight + 500)
+					{
+						self.shouldgotonewposition = 1;
+						if(isdefined(self.var_23eff037) && self.var_23eff037)
+						{
+							self playsound(#"hash_7698127d41537782");
+							self.var_23eff037 = 0;
+						}
+					}
+				}
+				if(self.shouldgotonewposition)
+				{
+					should_slow_down_at_goal = 1;
+					if(self.lock_evading)
+					{
+						self.current_pathto_pos = getnextmoveposition_evasive(self.lock_evading);
+						should_slow_down_at_goal = 0;
+					}
+					else
+					{
+						self.current_pathto_pos = getnextmoveposition_tactical(self.enemy);
+					}
+					if(isdefined(self.current_pathto_pos))
+					{
+						if(self function_a57c34b7(self.current_pathto_pos, should_slow_down_at_goal, 1))
+						{
+							self thread path_update_interrupt_by_attacker();
+							self thread path_update_interrupt();
+							self vehicle_ai::waittill_pathing_done();
+							self notify(#"amws_end_interrupt_watch");
+						}
+						if(isdefined(self.enemy) && util::iscooldownready("rocket", 0.5) && self cansee(self.enemy) && self.gib_rocket !== 1)
+						{
+							self thread aim_and_fire_rocket_launcher(0.4);
+						}
+						lasttimechangeposition = gettime();
+						self.shouldgotonewposition = 0;
+					}
 				}
 			}
 		}
@@ -697,7 +700,7 @@ function function_64609aab(entity, enemy)
 {
 	if(!isdefined(enemy) || !isdefined(entity))
 	{
-		return 0;
+		return false;
 	}
 	var_31e097c5 = entity.origin + vectorscale((0, 0, 1), 30);
 	v_to_enemy = enemy.origin - entity.origin;
@@ -709,9 +712,9 @@ function function_64609aab(entity, enemy)
 	var_1159ae8 = sighttracepassed(var_31e097c5 + var_5d132997, var_3a2b9b1a + var_5d132997, 0, entity, enemy);
 	if(var_ece22384 === 0 && var_1159ae8 !== 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -783,7 +786,7 @@ function waittill_weapon_lock_or_timeout(wait_time)
 		{
 			locking_on_notify = "locking on";
 		}
-		self waittill_timeout(wait_time, #"damage", locking_on_notify, locked_on_notify);
+		self waittilltimeout(wait_time, #"damage", locking_on_notify, locked_on_notify);
 		locked_on_to_me_just_changed = previous_locked_on_to_me != self.locked_on && self.locked_on;
 		locking_on_to_me_just_changed = previous_locking_on_to_me != self.locking_on && self.locking_on;
 		perform_evasion_reaction_wait = reacting_to_locks && locked_on_to_me_just_changed || (reacting_to_locking && locking_on_to_me_just_changed);
@@ -824,7 +827,7 @@ function firerocketlauncher(enemy)
 	if(isdefined(enemy))
 	{
 		self turretsettarget(0, enemy);
-		self waittill_timeout(1, #"turret_on_target");
+		self waittilltimeout(1, #"turret_on_target");
 		self playsound(#"hash_713f03be0cf78d55");
 		wait(1.2);
 		if(self.variant == "armored")

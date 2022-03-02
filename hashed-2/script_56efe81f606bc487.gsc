@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_78b8c19649955958", &__init__, undefined, undefined);
 }
@@ -112,11 +112,11 @@ function function_a3d8f155(params, tacbundle)
 	}
 	if(allies.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	var_6836ac55 = arraygetclosest(self.origin, allies);
 	self namespace_b20b4885::set_position(var_6836ac55.origin);
-	return 1;
+	return true;
 }
 
 /*

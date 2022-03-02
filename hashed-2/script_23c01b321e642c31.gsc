@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_413d188382cb271f", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_2a54eca1, var_b3fc75a6, var_40988d98, var_968ac18f)
+function private function_d1de6a85(var_2a54eca1, var_b3fc75a6, var_40988d98, var_968ac18f)
 {
 	switch(getplayers().size)
 	{
@@ -93,7 +93,7 @@ private function function_d1de6a85(var_2a54eca1, var_b3fc75a6, var_40988d98, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -134,7 +134,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7f62f098(challenge)
+function private function_7f62f098(challenge)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -172,7 +172,7 @@ private function function_7f62f098(challenge)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_138aec8e(attacker)
+function private function_138aec8e(attacker)
 {
 	if(isdefined(self.var_6e2628f7) && self.var_6e2628f7)
 	{

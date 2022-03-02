@@ -47,7 +47,7 @@ function function_4827d817(weapon)
 {
 	if(weapon.maxammo <= 0)
 	{
-		return 0;
+		return false;
 	}
 	package = struct::get_script_bundle("bountyhunterpackage", level.var_a9f35be1[0]);
 	slot = undefined;
@@ -61,7 +61,7 @@ function function_4827d817(weapon)
 	}
 	if(!isdefined(slot))
 	{
-		return 0;
+		return false;
 	}
 	var_f3e0cb57 = self.pers[#"hash_50251e63e4a703b5"].clientfields[slot].val - 1;
 	package = struct::get_script_bundle("bountyhunterpackage", level.var_a9f35be1[var_f3e0cb57]);
@@ -82,17 +82,20 @@ function function_4827d817(weapon)
 	{
 		self setweaponammostock(weapon, weapon.clipsize);
 	}
-	else if(currentammo >= maxammo)
+	else
 	{
-		return 0;
+		if(currentammo >= maxammo)
+		{
+			return false;
+		}
+		currentammo = currentammo + var_e6e3de63;
+		if(currentammo > maxammo)
+		{
+			currentammo = maxammo;
+		}
+		self setweaponammostock(weapon, (int(currentammo * weapon.clipsize)) - clipammo);
 	}
-	currentammo = currentammo + var_e6e3de63;
-	if(currentammo > maxammo)
-	{
-		currentammo = maxammo;
-	}
-	self setweaponammostock(weapon, (int(currentammo * weapon.clipsize)) - clipammo);
-	return 1;
+	return true;
 }
 
 /*
@@ -104,7 +107,7 @@ function function_4827d817(weapon)
 	Parameters: 1
 	Flags: Private
 */
-private function function_5bb13b48(player)
+function private function_5bb13b48(player)
 {
 	if(isdefined(player) && isplayer(player))
 	{
@@ -156,7 +159,7 @@ private function function_5bb13b48(player)
 	Parameters: 1
 	Flags: Private
 */
-private function function_7a80944d(player)
+function private function_7a80944d(player)
 {
 	level endon(#"game_ended");
 	self endon(#"death");

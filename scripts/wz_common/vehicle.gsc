@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_efc308ec898ff43", &__init__, undefined, undefined);
 }
@@ -92,7 +92,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_eaba72c9()
+function private function_eaba72c9()
 {
 	/#
 		self notify("");
@@ -118,7 +118,7 @@ private function function_eaba72c9()
 	Parameters: 0
 	Flags: Private
 */
-private function function_40fc185b()
+function private function_40fc185b()
 {
 	/#
 		level notify(#"hash_724a3976e45a71e2");
@@ -134,7 +134,7 @@ private function function_40fc185b()
 	Parameters: 0
 	Flags: Private
 */
-private function function_44b9dd1d()
+function private function_44b9dd1d()
 {
 	/#
 		while(!canadddebugcommand())
@@ -156,7 +156,7 @@ private function function_44b9dd1d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4c6bcfe2(var_b42f0937 = 0)
+function private function_4c6bcfe2(var_b42f0937 = 0)
 {
 	level.var_cd8f416a[level.var_cd8f416a.size] = self;
 	if(isdefined(self.scriptbundlesettings))
@@ -190,7 +190,7 @@ private function function_4c6bcfe2(var_b42f0937 = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function vehicle_spawned()
+function private vehicle_spawned()
 {
 	self.var_32371376 = level.var_80d8731e;
 	level.var_80d8731e++;
@@ -210,7 +210,7 @@ private function vehicle_spawned()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bc79899e()
+function private function_bc79899e()
 {
 	self vehicle_ai::init_state_machine_for_role("default");
 	self vehicle_ai::add_interrupt_connection("driving", "off", "exit_vehicle", &vehicle_ai::function_6664e3af);
@@ -227,7 +227,7 @@ private function function_bc79899e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7ae07b7()
+function private function_7ae07b7()
 {
 	if(self vehicle_ai::has_state("off"))
 	{
@@ -248,13 +248,13 @@ private function function_7ae07b7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e95a0595()
+function private function_e95a0595()
 {
 	if(self.scriptvehicletype == "helicopter_light" || self.scriptvehicletype == "helicopter_utility")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -266,7 +266,7 @@ private function function_e95a0595()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_25b9a9b(params)
+function private function_25b9a9b(params)
 {
 	params.var_c2e048f9 = 1;
 	if(isdefined(self.emped) && self.emped || (isdefined(self.isjammed) && self.isjammed))
@@ -285,7 +285,7 @@ private function function_25b9a9b(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function turn_on()
+function private turn_on()
 {
 	if(isdefined(self.emped) && self.emped || (isdefined(self.isjammed) && self.isjammed))
 	{
@@ -318,7 +318,7 @@ private function turn_on()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function turn_off()
+function private turn_off()
 {
 	if(isdefined(self.state_machines))
 	{
@@ -362,7 +362,7 @@ private function turn_off()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ed173e0b()
+function private function_ed173e0b()
 {
 	if(isdefined(self.state_machines))
 	{
@@ -441,7 +441,7 @@ function is_staircase_up(var_dbd1a594 = undefined, jammer = undefined)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d69d0773()
+function private function_d69d0773()
 {
 	if(!isdefined(self.var_d6a1af09))
 	{
@@ -450,9 +450,9 @@ private function function_d69d0773()
 	if((gettime() - self.var_d6a1af09) >= 250)
 	{
 		self.var_d6a1af09 = gettime();
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -464,7 +464,7 @@ private function function_d69d0773()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_36aab2f3(params)
+function private function_36aab2f3(params)
 {
 	if(!function_d69d0773())
 	{
@@ -723,7 +723,7 @@ function function_69c9e9a0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7ed26e27(vehicle)
+function private function_7ed26e27(vehicle)
 {
 	vehiclespeed = vehicle getspeedmph();
 	if(vehiclespeed >= getdvarfloat(#"hash_3be3de0273ba927c", 30))
@@ -758,7 +758,7 @@ private function function_7ed26e27(vehicle)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e63726f6()
+function private function_e63726f6()
 {
 	self endon(#"death");
 	while(true)
@@ -1094,7 +1094,7 @@ function on_end_game(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_df786031()
+function private function_df786031()
 {
 	return isdefined(self.locking_on) && self.locking_on > 0;
 }
@@ -1108,7 +1108,7 @@ private function function_df786031()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ea4291d3()
+function private function_ea4291d3()
 {
 	return isdefined(self.locked_on) && self.locked_on > 0;
 }
@@ -1122,7 +1122,7 @@ private function function_ea4291d3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b3caeebc(player)
+function private function_b3caeebc(player)
 {
 	self endon(#"death");
 	player endon(#"exit_vehicle", #"death");
@@ -1134,16 +1134,19 @@ private function function_b3caeebc(player)
 			self playsoundtoplayer(#"hash_445c9fb1793c4259", player);
 			wait(0.25);
 		}
-		else if(self function_df786031())
-		{
-			player clientfield::set_player_uimodel("vehicle.missileLock", 1);
-			self playsoundtoplayer(#"hash_107b6827696673cb", player);
-			wait(0.25);
-		}
 		else
 		{
-			player clientfield::set_player_uimodel("vehicle.missileLock", 0);
-			self waittill(#"hash_594587fd1093c3b3");
+			if(self function_df786031())
+			{
+				player clientfield::set_player_uimodel("vehicle.missileLock", 1);
+				self playsoundtoplayer(#"hash_107b6827696673cb", player);
+				wait(0.25);
+			}
+			else
+			{
+				player clientfield::set_player_uimodel("vehicle.missileLock", 0);
+				self waittill(#"hash_594587fd1093c3b3");
+			}
 		}
 	}
 }
@@ -1191,7 +1194,7 @@ function function_c25f7d1(params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6aa73a2a(missile, vehicle)
+function private function_6aa73a2a(missile, vehicle)
 {
 	self endon(#"death", #"exit_vehicle");
 	missile endon(#"death");
@@ -1453,17 +1456,23 @@ event function_2aa4e6cf(eventstruct)
 			{
 				vehicle vehicle_ai::set_state("landed");
 			}
-			else if(vehicle vehicle_ai::has_state("recovery") && vehicle vehicle_ai::get_current_state() === "spiral")
-			{
-				vehicle vehicle_ai::set_state("recovery");
-			}
-			else if(vehicle vehicle_ai::has_state("driving"))
-			{
-				vehicle vehicle_ai::set_state("driving");
-			}
 			else
 			{
-				vehicle turn_on();
+				if(vehicle vehicle_ai::has_state("recovery") && vehicle vehicle_ai::get_current_state() === "spiral")
+				{
+					vehicle vehicle_ai::set_state("recovery");
+				}
+				else
+				{
+					if(vehicle vehicle_ai::has_state("driving"))
+					{
+						vehicle vehicle_ai::set_state("driving");
+					}
+					else
+					{
+						vehicle turn_on();
+					}
+				}
 			}
 			if(isdefined(vehicle.settings) && (isdefined(vehicle.settings.var_6754976b) && vehicle.settings.var_6754976b))
 			{
@@ -1565,7 +1574,7 @@ event function_22d9386e(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ef44d420(params)
+function private function_ef44d420(params)
 {
 	self vehicle::toggle_lights_group(1, !params.var_d8ceeba3);
 	self vehicle::toggle_lights_group(2, !params.var_d8ceeba3);
@@ -1603,7 +1612,7 @@ private function function_ef44d420(params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_f6bb77f1(params)
+function private function_f6bb77f1(params)
 {
 	driver = self getseatoccupant(0);
 	if(isdefined(driver) && isplayer(driver))
@@ -1628,7 +1637,7 @@ private function function_f6bb77f1(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ffdf490c()
+function private function_ffdf490c()
 {
 	if(!isdefined(self) || self.health < 1)
 	{
@@ -1690,7 +1699,7 @@ function function_5bce3f3a(vehicle, seat_index, var_ddd294e3)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_41cb03eb(seat_index)
+function private function_41cb03eb(seat_index)
 {
 	switch(seat_index)
 	{
@@ -1822,7 +1831,7 @@ function function_6adf512b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_500291c4()
+function private function_500291c4()
 {
 	self disabledriverfiring(1);
 	self disablegunnerfiring(0, 1);
@@ -1842,7 +1851,7 @@ private function function_500291c4()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bd3b5229()
+function private function_bd3b5229()
 {
 	self disabledriverfiring(1);
 	self function_4c6bcfe2();
@@ -1935,7 +1944,7 @@ function function_79f2b4cf(player, eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8278ed00()
+function private function_8278ed00()
 {
 	self disabledriverfiring(1);
 	self setmovingplatformenabled(1, 0);
@@ -1956,7 +1965,7 @@ private function function_8278ed00()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2ec624a6()
+function private function_2ec624a6()
 {
 	self endon(#"death");
 	while(true)
@@ -1980,7 +1989,7 @@ private function function_2ec624a6()
 	Parameters: 0
 	Flags: Private
 */
-private function function_8778ecd1()
+function private function_8778ecd1()
 {
 	self disabledriverfiring(1);
 	self setmovingplatformenabled(1, 0);
@@ -1998,7 +2007,7 @@ private function function_8778ecd1()
 	Parameters: 0
 	Flags: Private
 */
-private function function_5527f9ea()
+function private function_5527f9ea()
 {
 	self disabledriverfiring(1);
 	self function_4c6bcfe2();
@@ -2015,7 +2024,7 @@ private function function_5527f9ea()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_79500af5()
+function private function_79500af5()
 {
 	self setmovingplatformenabled(1, 0);
 	self.var_10206310 = &function_1592c29e;
@@ -2096,7 +2105,7 @@ function function_67e1a636(player, eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fb9c790a()
+function private function_fb9c790a()
 {
 	self setmovingplatformenabled(1, 0);
 	self function_4c6bcfe2();
@@ -2117,7 +2126,7 @@ private function function_fb9c790a()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b0a62896(player, eventstruct)
+function private function_b0a62896(player, eventstruct)
 {
 	self function_da0c353b(player, eventstruct);
 }
@@ -2131,7 +2140,7 @@ private function function_b0a62896(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d949f006(player, eventstruct)
+function private function_d949f006(player, eventstruct)
 {
 	self function_da0c353b(player, eventstruct);
 }
@@ -2145,7 +2154,7 @@ private function function_d949f006(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_da0c353b(player, eventstruct)
+function private function_da0c353b(player, eventstruct)
 {
 	if(!isdefined(player))
 	{
@@ -2183,7 +2192,7 @@ private function function_da0c353b(player, eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_782a6e87()
+function private function_782a6e87()
 {
 	self endon(#"death");
 	oldhealth = self.health;
@@ -2207,7 +2216,7 @@ private function function_782a6e87()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c0f1d81b()
+function private function_c0f1d81b()
 {
 	self function_4c6bcfe2();
 	self setmovingplatformenabled(1, 0);
@@ -2263,7 +2272,7 @@ function function_4366bf50(params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_96f5d31b(player, eventstruct)
+function private function_96f5d31b(player, eventstruct)
 {
 	if(eventstruct.seat_index === 0)
 	{
@@ -2281,7 +2290,7 @@ private function function_96f5d31b(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_cd8db309(player, eventstruct)
+function private function_cd8db309(player, eventstruct)
 {
 	if(eventstruct.seat_index === 0)
 	{
@@ -2298,7 +2307,7 @@ private function function_cd8db309(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b8458486(player, eventstruct)
+function private function_b8458486(player, eventstruct)
 {
 	if(eventstruct.seat_index === 0)
 	{
@@ -2319,7 +2328,7 @@ private function function_b8458486(player, eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2014e301(player)
+function private function_2014e301(player)
 {
 	player endon(#"hash_27646c99772610b4", #"exit_vehicle", #"disconnect", #"death", #"game_ended");
 	self endon(#"death");
@@ -2378,7 +2387,7 @@ function function_eba4498a(player)
 	Parameters: 15
 	Flags: Linked, Private
 */
-private function function_eed77231(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
+function private function_eed77231(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	damage = idamage;
 	if(isdefined(eattacker) && eattacker.scriptvehicletype === "player_tank" && isvehicle(einflictor) && smeansofdeath === "MOD_EXPLOSIVE")
@@ -2397,7 +2406,7 @@ private function function_eed77231(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 15
 	Flags: Linked, Private
 */
-private function function_7daf5af2(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
+function private function_7daf5af2(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	damage = idamage;
 	vehicle = self getvehicleoccupied();
@@ -2422,7 +2431,7 @@ private function function_7daf5af2(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cb575bc3()
+function private function_cb575bc3()
 {
 	self disabledriverfiring(1);
 	self disablegunnerfiring(0, 1);
@@ -2446,7 +2455,7 @@ private function function_cb575bc3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_66eae288(player)
+function private function_66eae288(player)
 {
 	if(isalive(self))
 	{
@@ -2463,7 +2472,7 @@ private function function_66eae288(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9157fb4f(player)
+function private function_9157fb4f(player)
 {
 	if(isalive(self))
 	{
@@ -2480,7 +2489,7 @@ private function function_9157fb4f(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e1f72671(player, eventstruct)
+function private function_e1f72671(player, eventstruct)
 {
 	if(eventstruct.seat_index === 0)
 	{
@@ -2498,7 +2507,7 @@ private function function_e1f72671(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a73c417(player, eventstruct)
+function private function_a73c417(player, eventstruct)
 {
 	if(eventstruct.seat_index === 0)
 	{
@@ -2521,7 +2530,7 @@ private function function_a73c417(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d0a9a026(player, eventstruct)
+function private function_d0a9a026(player, eventstruct)
 {
 	if(eventstruct.seat_index === 0)
 	{
@@ -2539,7 +2548,7 @@ private function function_d0a9a026(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_dde4cb6e(player, eventstruct)
+function private function_dde4cb6e(player, eventstruct)
 {
 	self function_66eae288(player);
 	self function_9157fb4f(player);
@@ -2554,7 +2563,7 @@ private function function_dde4cb6e(player, eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6b617752()
+function private function_6b617752()
 {
 	self function_4c6bcfe2();
 	self disabledriverfiring(1);
@@ -2575,7 +2584,7 @@ private function function_6b617752()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c0c61ba1(player)
+function private function_c0c61ba1(player)
 {
 	if(isalive(self))
 	{
@@ -2593,7 +2602,7 @@ private function function_c0c61ba1(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e81bb047(player)
+function private function_e81bb047(player)
 {
 	player attach("veh_t8_mil_boat_tactical_raft_outboard_motor_attach", "TAG_WEAPON_LEFT");
 	if(isalive(self))
@@ -2611,7 +2620,7 @@ private function function_e81bb047(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6d4de854(player, eventstruct)
+function private function_6d4de854(player, eventstruct)
 {
 	self function_c0c61ba1(player);
 }
@@ -2625,7 +2634,7 @@ private function function_6d4de854(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a5838bb7(player, eventstruct)
+function private function_a5838bb7(player, eventstruct)
 {
 	self function_e81bb047(player);
 	self thread function_e8e41bbb();
@@ -2640,7 +2649,7 @@ private function function_a5838bb7(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a41bd019(player, eventstruct)
+function private function_a41bd019(player, eventstruct)
 {
 	self function_c0c61ba1(player);
 	self function_e81bb047(player);
@@ -2655,7 +2664,7 @@ private function function_a41bd019(player, eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_17949e01()
+function private function_17949e01()
 {
 	self notify("3372ab565790b66e");
 	self endon("3372ab565790b66e");
@@ -2699,7 +2708,7 @@ private function function_17949e01()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function deletemeonnotify(enttowatch, note)
+function private deletemeonnotify(enttowatch, note)
 {
 	self endon(#"death");
 	if(!isdefined(enttowatch))
@@ -2719,7 +2728,7 @@ private function deletemeonnotify(enttowatch, note)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e8e41bbb()
+function private function_e8e41bbb()
 {
 	self notify("356ff15b8c3dad3d");
 	self endon("356ff15b8c3dad3d");
@@ -2793,7 +2802,7 @@ private function function_e8e41bbb()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cc0af45d()
+function private function_cc0af45d()
 {
 	self function_4c6bcfe2();
 	self disabledriverfiring(1);
@@ -2882,7 +2891,7 @@ function function_f2626e5f(player, eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b1d54776()
+function private function_b1d54776()
 {
 	self disabledriverfiring(1);
 	self.death_type = "gibbed";
@@ -2927,7 +2936,7 @@ private function function_b1d54776()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8fb65b2a()
+function private function_8fb65b2a()
 {
 	self.death_type = "gibbed";
 	self.var_18a9fdc = &function_32607cfc;
@@ -2972,7 +2981,7 @@ private function function_8fb65b2a()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_a1fd6110(current_state, to_state, connection, params)
+function private function_a1fd6110(current_state, to_state, connection, params)
 {
 	return !vehicle_ai::function_329f45a4(current_state, to_state, connection, params);
 }
@@ -2986,7 +2995,7 @@ private function function_a1fd6110(current_state, to_state, connection, params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b0dd571a()
+function private function_b0dd571a()
 {
 	self endon(#"death");
 	self waittill(#"enter_vehicle");
@@ -3012,14 +3021,17 @@ private function function_b0dd571a()
 			{
 				wait(0.25);
 			}
-			else if(var_19dbcac7 < 2000)
-			{
-				wait(1);
-			}
 			else
 			{
-				time = math::clamp(int(var_19dbcac7 / 1000), 1, 5);
-				wait(time);
+				if(var_19dbcac7 < 2000)
+				{
+					wait(1);
+				}
+				else
+				{
+					time = math::clamp(int(var_19dbcac7 / 1000), 1, 5);
+					wait(time);
+				}
 			}
 		}
 		else
@@ -3038,7 +3050,7 @@ private function function_b0dd571a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_638d1ade()
+function private function_638d1ade()
 {
 	self endon(#"death", #"hash_41dbbf5434aab9e0");
 	while(true)
@@ -3063,22 +3075,25 @@ private function function_638d1ade()
 					self function_b8c2b27d();
 				}
 			}
-			else if(isdefined(self.origin[2]) && self.origin[2] >= 12000)
+			else
 			{
-				self.var_1ba362d5 = 1;
-				state = self vehicle_ai::get_current_state();
-				if(state === "off" || state === "landed")
+				if(isdefined(self.origin[2]) && self.origin[2] >= 12000)
 				{
-					self function_41a269b3();
+					self.var_1ba362d5 = 1;
+					state = self vehicle_ai::get_current_state();
+					if(state === "off" || state === "landed")
+					{
+						self function_41a269b3();
+					}
+					if(!isdefined(self.var_8382289e))
+					{
+						self function_b8c2b27d();
+					}
 				}
-				if(!isdefined(self.var_8382289e))
+				else if(isdefined(self.var_8382289e) && (!(isdefined(self.var_1ba362d5) && self.var_1ba362d5)))
 				{
-					self function_b8c2b27d();
+					self function_f11207a9();
 				}
-			}
-			else if(isdefined(self.var_8382289e) && (!(isdefined(self.var_1ba362d5) && self.var_1ba362d5)))
-			{
-				self function_f11207a9();
 			}
 			wait(0.1);
 			continue;
@@ -3096,7 +3111,7 @@ private function function_638d1ade()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b8c2b27d()
+function private function_b8c2b27d()
 {
 	self function_56ee2902(1);
 	self clientfield::set("update_malfunction", 1);
@@ -3114,7 +3129,7 @@ private function function_b8c2b27d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f11207a9()
+function private function_f11207a9()
 {
 	self endon(#"death");
 	self.var_8382289e = undefined;
@@ -3131,7 +3146,7 @@ private function function_f11207a9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dae7aaf3()
+function private function_dae7aaf3()
 {
 	self takeplayercontrol();
 	self clientfield::set("update_malfunction", 2);
@@ -3155,7 +3170,7 @@ private function function_dae7aaf3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_260f32b3(exit = 0)
+function private function_260f32b3(exit = 0)
 {
 	self notify(#"hash_5945cb8f37c085c0");
 	if(!(isdefined(self.emped) && self.emped) && (!(isdefined(self.jammed) && self.jammed)))
@@ -3195,7 +3210,7 @@ private function function_260f32b3(exit = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8bb6a990()
+function private function_8bb6a990()
 {
 	self endon(#"death", #"hash_3a531082a005f542", #"hash_3c7ae83e462fe4e2", #"hash_3c9653d2ffd49352", #"hash_41dbbf5434aab9e0");
 	wait(5);
@@ -3219,7 +3234,7 @@ private function function_8bb6a990()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f46dd7b0()
+function private function_f46dd7b0()
 {
 	self notify("7568179a9adfe70f");
 	self endon("7568179a9adfe70f");
@@ -3247,20 +3262,23 @@ private function function_f46dd7b0()
 			{
 				self function_41a269b3();
 			}
-			else if(state === "landed")
-			{
-				params = spawnstruct();
-				params.makeunusable = 1;
-				self vehicle_ai::set_state("off", params);
-			}
 			else
 			{
-				self.var_4e76046a = 1;
-				self.var_d271cf82 = 1;
-				self function_56ee2902(2);
-				params = spawnstruct();
-				params.var_52c5850b = 60;
-				self vehicle_ai::set_state("spiral", params);
+				if(state === "landed")
+				{
+					params = spawnstruct();
+					params.makeunusable = 1;
+					self vehicle_ai::set_state("off", params);
+				}
+				else
+				{
+					self.var_4e76046a = 1;
+					self.var_d271cf82 = 1;
+					self function_56ee2902(2);
+					params = spawnstruct();
+					params.var_52c5850b = 60;
+					self vehicle_ai::set_state("spiral", params);
+				}
 			}
 			self notify(#"hash_41dbbf5434aab9e0");
 			return;
@@ -3320,7 +3338,7 @@ function function_82224f4b(scale)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2418736c()
+function private function_2418736c()
 {
 	groups = 3;
 	if(self vehicle_ai::function_329f45a4())
@@ -3342,7 +3360,7 @@ private function function_2418736c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a98ae5fe()
+function private function_a98ae5fe()
 {
 	self clientfield::set("flickerlights", 3);
 	for(group = 1; group <= 4; group++)
@@ -3360,7 +3378,7 @@ private function function_a98ae5fe()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2ba6be18(player, eventstruct)
+function private function_2ba6be18(player, eventstruct)
 {
 	seatindex = eventstruct.seat_index;
 	if(seatindex === 0)
@@ -3383,7 +3401,7 @@ private function function_2ba6be18(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3af01392(player, eventstruct)
+function private function_3af01392(player, eventstruct)
 {
 	seatindex = eventstruct.seat_index;
 	var_6747c7b8 = eventstruct.var_21911287;
@@ -3406,7 +3424,7 @@ private function function_3af01392(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ff490dad(player, eventstruct)
+function private function_ff490dad(player, eventstruct)
 {
 	seatindex = eventstruct.seat_index;
 	if(seatindex === 0)
@@ -3426,7 +3444,7 @@ private function function_ff490dad(player, eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b985a0f1(player)
+function private function_b985a0f1(player)
 {
 	self notify(#"hash_172a4ff3d058a0cc");
 	self setheliheightcap(1);
@@ -3446,7 +3464,7 @@ private function function_b985a0f1(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2205f6bf(player)
+function private function_2205f6bf(player)
 {
 	state = self vehicle_ai::get_current_state();
 	self notify(#"hash_3c7ae83e462fe4e2");
@@ -3531,7 +3549,7 @@ function function_d7bcab1f(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1b957284(player, eventstruct)
+function private function_1b957284(player, eventstruct)
 {
 	self function_2ba6be18(player, eventstruct);
 	if(eventstruct.seat_index === 1 || eventstruct.seat_index === 2)
@@ -3550,7 +3568,7 @@ private function function_1b957284(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a7401191(player, eventstruct)
+function private function_a7401191(player, eventstruct)
 {
 	self function_ff490dad(player, eventstruct);
 	player function_6adf512b();
@@ -3565,7 +3583,7 @@ private function function_a7401191(player, eventstruct)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e2d16bde(player, eventstruct)
+function private function_e2d16bde(player, eventstruct)
 {
 	self function_3af01392(player, eventstruct);
 	if(eventstruct.seat_index === 1 || eventstruct.seat_index === 2)
@@ -3588,7 +3606,7 @@ private function function_e2d16bde(player, eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ab36338c(player)
+function private function_ab36338c(player)
 {
 	self endon(#"death");
 	player endon(#"exit_vehicle", #"change_seat");
@@ -3612,7 +3630,7 @@ function function_6c8cff7e(normal, origin = self.origin, offset = 0)
 	self endon(#"death", #"hash_7f30c56005fe2b32");
 	if(!isdefined(normal))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_2390d88))
 	{
@@ -3649,7 +3667,7 @@ function function_6c8cff7e(normal, origin = self.origin, offset = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f4d358df()
+function private function_f4d358df()
 {
 	self.var_c1764af8 = 0;
 	self.var_4dab0a63 = 0;
@@ -3666,7 +3684,7 @@ private function function_f4d358df()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d929b41()
+function private function_d929b41()
 {
 	self.var_4dab0a63 = 0;
 	speed = self getspeedmph();
@@ -3677,17 +3695,20 @@ private function function_d929b41()
 		self.var_c1764af8 = 1;
 		self vehicle_ai::set_state("landing");
 	}
-	else if(speed < 80 && var_a01adee8[#"fraction"] < 1)
-	{
-		self.var_c1764af8 = 1;
-		params = spawnstruct();
-		params.var_6249a386 = 1;
-		self vehicle_ai::set_state("spiral", params);
-	}
 	else
 	{
-		self.var_4e76046a = 1;
-		self vehicle_ai::set_state("spiral");
+		if(speed < 80 && var_a01adee8[#"fraction"] < 1)
+		{
+			self.var_c1764af8 = 1;
+			params = spawnstruct();
+			params.var_6249a386 = 1;
+			self vehicle_ai::set_state("spiral", params);
+		}
+		else
+		{
+			self.var_4e76046a = 1;
+			self vehicle_ai::set_state("spiral");
+		}
 	}
 }
 
@@ -3700,7 +3721,7 @@ private function function_d929b41()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3b841f4()
+function private function_3b841f4()
 {
 	var_a01adee8 = physicstrace(self.origin, self.origin - vectorscale((0, 0, 1), 1536), (0, 0, 0), (0, 0, 0), self, 2);
 	if(var_a01adee8[#"fraction"] >= 1)
@@ -3726,7 +3747,7 @@ private function function_3b841f4()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_92270eeb(params)
+function private function_92270eeb(params)
 {
 	self setvehvelocity((0, 0, 0));
 	self setangularvelocity((0, 0, 0));
@@ -3761,7 +3782,7 @@ private function function_92270eeb(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_365e033d(params)
+function private function_365e033d(params)
 {
 	params.var_32a85fa1 = 2;
 	params.var_1751c737 = 1;
@@ -3796,7 +3817,7 @@ private function function_365e033d(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4b5646b1(params)
+function private function_4b5646b1(params)
 {
 	self endon(#"death");
 	if(isdefined(level.vehicle_destructer_cb))
@@ -4212,7 +4233,7 @@ function function_7db28345(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_479389f3()
+function private function_479389f3()
 {
 	height = self.height;
 	/#
@@ -4234,7 +4255,7 @@ private function function_479389f3()
 	{
 		if(!isdefined(origin))
 		{
-			return 0;
+			return false;
 		}
 		var_df47b913[tag] = physicstrace(origin + vectorscale((0, 0, 1), 25), origin - vectorscale((0, 0, 1), 75), (0, 0, 0), (0, 0, 0), self, 2);
 	}
@@ -4243,7 +4264,7 @@ private function function_479389f3()
 	{
 		if(!isdefined(origin))
 		{
-			return 0;
+			return false;
 		}
 		var_dc8469e2[tag] = physicstrace(origin + vectorscale((0, 0, 1), 25), origin - vectorscale((0, 0, 1), 75), (0, 0, 0), (0, 0, 0), self, 2);
 	}
@@ -4290,26 +4311,26 @@ private function function_479389f3()
 	}
 	if(var_683999d6[2] < 0.94)
 	{
-		return 0;
+		return false;
 	}
 	if(var_e10b67f7.size == 0 || var_d3532cfe.size == 0 || (var_d3532cfe.size + var_e10b67f7.size) < 3)
 	{
-		return 0;
+		return false;
 	}
 	if(var_d643c4fc)
 	{
-		return 0;
+		return false;
 	}
 	var_4c962569 = var_4c962569 / ((var_d3532cfe.size + var_e10b67f7.size) + 1);
 	if(var_4c962569 > 20)
 	{
-		return 0;
+		return false;
 	}
 	var_b0e8278f = var_b0e8278f / (var_d3532cfe.size + var_e10b67f7.size);
 	self.helilandingorigin = var_b0e8278f;
 	self.var_6fac6f50 = var_4c962569;
 	self.var_67136cb0 = var_683999d6;
-	return 1;
+	return true;
 }
 
 /*
@@ -4321,7 +4342,7 @@ private function function_479389f3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4885ce1(params)
+function private function_4885ce1(params)
 {
 	if(params.stype === "player")
 	{
@@ -4459,11 +4480,11 @@ function function_2513e40c(vehicle, player, seatindex)
 {
 	if(player infection::is_infected())
 	{
-		return 0;
+		return false;
 	}
 	if(player item_world::function_8e0d14c1(1))
 	{
-		return 0;
+		return false;
 	}
 	if(vehicle.vehicleclass === "boat")
 	{
@@ -4471,11 +4492,11 @@ function function_2513e40c(vehicle, player, seatindex)
 		{
 			if(seatindex === 0)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -4602,18 +4623,24 @@ function function_4e74bed7(params)
 	if(currentstate === "off")
 	{
 	}
-	else if(currentstate === "landed")
-	{
-	}
-	else if(currentstate === "spiral")
-	{
-		self.var_4e76046a = 1;
-	}
 	else
 	{
-		self function_d929b41();
+		if(currentstate === "landed")
+		{
+		}
+		else
+		{
+			if(currentstate === "spiral")
+			{
+				self.var_4e76046a = 1;
+			}
+			else
+			{
+				self function_d929b41();
+			}
+		}
+		self playsound(#"hash_d6643b88d0186ae");
 	}
-	self playsound(#"hash_d6643b88d0186ae");
 	self function_388973e4(1);
 	if(!isdefined(self.abnormal_status))
 	{

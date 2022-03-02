@@ -63,67 +63,67 @@ function function_78c32556(cmd)
 			case "hash_50d92ca3c6c7c2a8":
 			{
 				level thread function_4110a06f();
-				return 1;
+				return true;
 			}
 			case "gear_up":
 			{
 				level thread namespace_74905749::gear_up();
-				return 1;
+				return true;
 			}
 			case "hash_672373a99384fb53":
 			{
 				level thread function_853d8116();
-				return 1;
+				return true;
 			}
 			case "hash_5634a634a8ffec47":
 			{
 				level thread function_1d9dddd0();
-				return 1;
+				return true;
 			}
 			case "move_pap":
 			{
 				level thread function_10dafedb();
-				return 1;
+				return true;
 			}
 			case "hash_74823c0e0a29545b":
 			{
 				give_flare("");
-				return 1;
+				return true;
 			}
 			case "hash_130280144168a5e7":
 			{
 				give_flare("");
-				return 1;
+				return true;
 			}
 			case "hash_2972e55f40fe8050":
 			{
 				give_flare("");
-				return 1;
+				return true;
 			}
 			case "hash_59b568ce3fe548b6":
 			{
 				level thread function_649d5f75();
-				return 1;
+				return true;
 			}
 			case "hash_be17a68845640e4":
 			{
 				level thread function_a368f5ed("");
-				return 1;
+				return true;
 			}
 			case "hash_5c17aed53086a4e8":
 			{
 				level thread function_a368f5ed("");
-				return 1;
+				return true;
 			}
 			case "hash_2474089e18afbc3":
 			{
 				level thread function_a368f5ed("");
-				return 1;
+				return true;
 			}
 			case "hash_515fa2d180024bd3":
 			{
 				level thread function_a368f5ed("");
-				return 1;
+				return true;
 			}
 			case "hash_687e53bfcb79ec3b":
 			{
@@ -241,13 +241,16 @@ function function_1d9dddd0()
 				zm_zodt8::change_water_height_aft(0);
 			}
 		}
-		else if(level.e_clip_water_aft clientfield::get("") != 0)
-		{
-			iprintlnbold("");
-		}
 		else
 		{
-			zm_zodt8::change_water_height_aft(1);
+			if(level.e_clip_water_aft clientfield::get("") != 0)
+			{
+				iprintlnbold("");
+			}
+			else
+			{
+				zm_zodt8::change_water_height_aft(1);
+			}
 		}
 	#/
 }
@@ -275,13 +278,16 @@ function function_853d8116()
 				zm_zodt8::change_water_height_fore(0);
 			}
 		}
-		else if(level.e_clip_water_fore clientfield::get("") != 0)
-		{
-			iprintlnbold("");
-		}
 		else
 		{
-			zm_zodt8::change_water_height_fore(1);
+			if(level.e_clip_water_fore clientfield::get("") != 0)
+			{
+				iprintlnbold("");
+			}
+			else
+			{
+				zm_zodt8::change_water_height_fore(1);
+			}
 		}
 	#/
 }
@@ -391,7 +397,7 @@ function give_flare(str_color)
 	Parameters: 1
 	Flags: Private
 */
-private function function_51855e65(round_number)
+function private function_51855e65(round_number)
 {
 	/#
 		var_efac84b3 = array(0, 500, 1000, 1000, 1400, 4000, 5000, 5500, 5500, 5500, 8000, 8000, 8000, 8000, 9000, 9000, 9000, 9500, 9500, 9500, 9500, 11000, 11000, 11000, 11000, 13000, 13000, 13000, 13000, 14000);

@@ -63,7 +63,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_657c0745e2102243", &__init__, &__main__, undefined);
 }
@@ -137,7 +137,7 @@ function init()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&function_7d874447));
@@ -193,9 +193,9 @@ function nosferatushouldstun(entity)
 {
 	if(zm_behavior::zombieshouldstun(entity) && function_e060c994(entity))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -207,7 +207,7 @@ function nosferatushouldstun(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e060c994(entity)
+function private function_e060c994(entity)
 {
 	var_7a69f7e9 = blackboard::getblackboardevents("nfrtu_stun");
 	if(isdefined(var_7a69f7e9) && var_7a69f7e9.size)
@@ -216,11 +216,11 @@ private function function_e060c994(entity)
 		{
 			if(event.nosferatu === entity)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -249,7 +249,7 @@ function function_7856b311(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_344a0412(entity, asmstatename)
+function private function_344a0412(entity, asmstatename)
 {
 	if(entity ai::is_stunned())
 	{
@@ -270,7 +270,7 @@ private function function_344a0412(entity, asmstatename)
 function function_81c78981(entity)
 {
 	entity clientfield::set("nfrtu_move_dash", 1);
-	return 1;
+	return true;
 }
 
 /*
@@ -285,7 +285,7 @@ function function_81c78981(entity)
 function function_475a698c(entity)
 {
 	entity clientfield::set("nfrtu_move_dash", 0);
-	return 1;
+	return true;
 }
 
 /*
@@ -297,7 +297,7 @@ function function_475a698c(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c12f7b53()
+function private function_c12f7b53()
 {
 	self.zombie_move_speed = "sprint";
 	self setblackboardattribute("_locomotion_speed", "locomotion_speed_sprint");
@@ -346,7 +346,7 @@ private function function_c12f7b53()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8a2cb5ed(params)
+function private function_8a2cb5ed(params)
 {
 	if(self.archetype === #"nosferatu")
 	{
@@ -375,7 +375,7 @@ private function function_8a2cb5ed(params)
 	Parameters: 12
 	Flags: Linked, Private
 */
-private function function_a13721f(inflictor, attacker, damage, idflags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private function_a13721f(inflictor, attacker, damage, idflags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	if(isdefined(attacker) && self === attacker)
 	{
@@ -401,7 +401,7 @@ private function function_a13721f(inflictor, attacker, damage, idflags, meansofd
 	Parameters: 0
 	Flags: Private
 */
-private function function_cd801084()
+function private function_cd801084()
 {
 	self endon(#"death");
 	while(true)
@@ -424,7 +424,7 @@ private function function_cd801084()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2b35beda()
+function private function_2b35beda()
 {
 	self clientfield::increment_to_player("nosferatu_damage_fx");
 }
@@ -438,7 +438,7 @@ private function function_2b35beda()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c59b482e()
+function private function_c59b482e()
 {
 	self.health = self.maxhealth;
 }
@@ -452,7 +452,7 @@ private function function_c59b482e()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c9a2941c(notifyhash)
+function private function_c9a2941c(notifyhash)
 {
 	if(isdefined(self) && isdefined(self.heal))
 	{
@@ -469,11 +469,11 @@ private function function_c9a2941c(notifyhash)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e05b2c36()
+function private function_e05b2c36()
 {
 	self notify("1aeb0156174acfac");
 	self endon("1aeb0156174acfac");
-	self endon_callback(&function_c9a2941c, #"death");
+	self endoncallback(&function_c9a2941c, #"death");
 	self.b_nosferatu_damage_fx = 1;
 	self val::set(#"nosferatu", "health_regen", 0);
 	wait(self.var_cd35302f);
@@ -594,9 +594,9 @@ function round_spawn()
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -614,9 +614,9 @@ function function_a8a8c2fb()
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -639,13 +639,16 @@ function function_74f25f8a(b_force_spawn = 0, var_eb3a8721, b_crimson = 0, round
 	{
 		s_spawn_loc = var_eb3a8721;
 	}
-	else if(isdefined(level.nosferatu_spawn_func))
+	else
 	{
-		s_spawn_loc = [[level.nosferatu_spawn_func]]();
-	}
-	else if(level.zm_loc_types[#"nosferatu_location"].size > 0)
-	{
-		s_spawn_loc = array::random(level.zm_loc_types[#"nosferatu_location"]);
+		if(isdefined(level.nosferatu_spawn_func))
+		{
+			s_spawn_loc = [[level.nosferatu_spawn_func]]();
+		}
+		else if(level.zm_loc_types[#"nosferatu_location"].size > 0)
+		{
+			s_spawn_loc = array::random(level.zm_loc_types[#"nosferatu_location"]);
+		}
 	}
 	if(!isdefined(s_spawn_loc))
 	{
@@ -694,9 +697,9 @@ function function_1c0cad2c()
 	var_72385dbc = function_fc977dee();
 	if(isdefined(level.var_5e45f817) && level.var_5e45f817 || var_e02fe4cb >= var_72385dbc || !level flag::get("spawn_zombies"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -876,18 +879,18 @@ function function_4c71848e()
 		if(a_s_spawn_locs.size < 1)
 		{
 			self.b_ignore_cleanup = 1;
-			return 1;
+			return true;
 		}
 	}
 	else
 	{
 		self.b_ignore_cleanup = 1;
-		return 1;
+		return true;
 	}
 	if(zm_utility::is_standard() && level flag::exists("started_defend_area") && level flag::get("started_defend_area"))
 	{
 		self.b_ignore_cleanup = 1;
-		return 1;
+		return true;
 	}
 	var_31f7011a = arraycopy(getplayers());
 	var_31f7011a = arraysortclosest(var_31f7011a, self.origin);
@@ -914,7 +917,7 @@ function function_4c71848e()
 		}
 	}
 	self namespace_e0710ee6::function_a8dc3363(var_b2aa54a9);
-	return 1;
+	return true;
 }
 
 /*
@@ -926,41 +929,41 @@ function function_4c71848e()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_82785646(entity)
+function private function_82785646(entity)
 {
 	if(isdefined(level.var_5e45f817) && level.var_5e45f817)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.var_9fde8624) || self.var_9fde8624 != #"crimson_nosferatu")
 	{
-		return 0;
+		return false;
 	}
 	if(entity.health / entity.maxhealth > entity ai::function_9139c839().var_23f04a87 / 100)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.var_85480576) && entity.var_85480576)
 	{
-		return 0;
+		return false;
 	}
 	if(entity.var_2e5407fc > gettime())
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(level.var_9dc5ff5d) && level.var_9dc5ff5d) && zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
 	{
-		return 0;
+		return false;
 	}
 	if(!function_c16e1ca1(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(function_21a3a673(0, 100) < entity ai::function_9139c839().var_3b66f582)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -972,22 +975,22 @@ private function function_82785646(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c16e1ca1(entity)
+function private function_c16e1ca1(entity)
 {
 	if(!isdefined(entity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(entity.var_9fde8624 !== #"crimson_nosferatu")
 	{
-		return 0;
+		return false;
 	}
 	var_847b3ac1 = blackboard::getblackboardevents("nfrtu_summon");
 	if(isdefined(var_847b3ac1) && var_847b3ac1.size)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -999,7 +1002,7 @@ private function function_c16e1ca1(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7d874447(entity)
+function private function_7d874447(entity)
 {
 	var_e47d78cb = spawnstruct();
 	blackboard::addblackboardevent("nfrtu_summon", var_e47d78cb, randomintrange(50000, 100000));
@@ -1016,7 +1019,7 @@ private function function_7d874447(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7fef620b(entity)
+function private function_7fef620b(entity)
 {
 	entity.var_2e5407fc = gettime() + (int(entity ai::function_9139c839().var_e61d73b0 * 1000));
 	entity clientfield::set("summon_nfrtu", 0);
@@ -1031,7 +1034,7 @@ private function function_7fef620b(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_76d6482e(entity)
+function private function_76d6482e(entity)
 {
 	if(isdefined(level.zm_loc_types[#"nosferatu_location"]) && level.zm_loc_types[#"nosferatu_location"].size >= 1)
 	{
@@ -1075,7 +1078,15 @@ private function function_76d6482e(entity)
 		#/
 		entity thread function_13b48cdd(var_c9528359, queryresult);
 	}
-	iprintlnbold("");
+	else
+	{
+		/#
+			iprintlnbold("");
+		#/
+		if(var_c9528359 == 0)
+		{
+		}
+	}
 }
 
 /*

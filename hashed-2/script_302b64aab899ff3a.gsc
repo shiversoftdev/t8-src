@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	level._effect[#"zombie_special_day_effect"] = #"hash_7a37324c1988abb5";
 	ai::add_archetype_spawn_function(#"zombie", &zombieclientutils::zombie_override_burn_fx);
@@ -62,7 +62,7 @@ function zombiehandler(localclientnum, oldvalue, newvalue, bnewent, binitialsnap
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _gibcallback(localclientnum, entity, gibflag)
+function private _gibcallback(localclientnum, entity, gibflag)
 {
 	switch(gibflag)
 	{

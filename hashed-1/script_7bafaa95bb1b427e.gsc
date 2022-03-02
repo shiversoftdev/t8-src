@@ -225,11 +225,11 @@ function may_drop(weapon)
 {
 	if(weapon == level.weaponnone)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.laststandpistol) && weapon == level.laststandpistol)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_f425c7f3))
 	{
@@ -237,27 +237,27 @@ function may_drop(weapon)
 		{
 			if(var_22174a13 == weapon)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
 	if(killstreaks::is_killstreak_weapon(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.iscarriedkillstreak)
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.isgameplayweapon)
 	{
-		return 0;
+		return false;
 	}
 	if(!weapon.isprimary)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -296,17 +296,17 @@ function function_2be39078(last_weapon)
 {
 	if(!isdefined(last_weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(!self hasweapon(last_weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(!may_drop(last_weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1219,13 +1219,16 @@ function watch_grenade_cancel()
 		{
 			self waittill(#"weapon_change");
 		}
-		else if(self function_55acff10())
-		{
-			util::wait_network_frame();
-		}
 		else
 		{
-			break;
+			if(self function_55acff10())
+			{
+				util::wait_network_frame();
+			}
+			else
+			{
+				break;
+			}
 		}
 	}
 	self.throwinggrenade = 0;
@@ -1370,15 +1373,18 @@ function begin_grenade_tracking()
 		blackboxeventname = #"cpequipmentuses";
 		eventname = #"hash_4b0d58055ad60c5a";
 	}
-	else if(sessionmodeiszombiesgame())
+	else
 	{
-		blackboxeventname = #"zmequipmentuses";
-		eventname = #"hash_637ce41bcec9842c";
-	}
-	else if(function_f99d2668())
-	{
-		blackboxeventname = #"hash_2915446894b7a6f4";
-		eventname = #"hash_4f877fbf665a36d8";
+		if(sessionmodeiszombiesgame())
+		{
+			blackboxeventname = #"zmequipmentuses";
+			eventname = #"hash_637ce41bcec9842c";
+		}
+		else if(function_f99d2668())
+		{
+			blackboxeventname = #"hash_2915446894b7a6f4";
+			eventname = #"hash_4f877fbf665a36d8";
+		}
 	}
 	function_92d1707f(eventname, blackboxeventname, {#weaponname:weapon.name, #spawnid:getplayerspawnid(self), #gametime:gettime()});
 	cookedtime = gettime() - starttime;
@@ -1556,7 +1562,7 @@ function function_5ed178fd(owner)
 {
 	owner endon(#"death", #"stuck_to_player");
 	self endon(#"death");
-	owner endon_callback(&function_43ec7f33, #"death", #"stuck_to_player");
+	owner endoncallback(&function_43ec7f33, #"death", #"stuck_to_player");
 	while(true)
 	{
 		waitframe(1);
@@ -1992,19 +1998,25 @@ function damage_ent(einflictor, eattacker, idamage, smeansofdeath, weapon, damag
 		self.damageorigin = damagepos;
 		self.entity thread [[level.callbackplayerdamage]](einflictor, eattacker, idamage, 0, smeansofdeath, weapon, damagepos, damagedir, "none", damagepos, 0, 0, undefined);
 	}
-	else if(self.isactor)
-	{
-		self.damageorigin = damagepos;
-		self.entity thread [[level.callbackactordamage]](einflictor, eattacker, idamage, 0, smeansofdeath, weapon, damagepos, damagedir, "none", damagepos, 0, 0, 0, 0, (1, 0, 0));
-	}
-	else if(self.isadestructible)
-	{
-		self.damageorigin = damagepos;
-		self.entity dodamage(idamage, damagepos, eattacker, einflictor, 0, smeansofdeath, 0, weapon);
-	}
 	else
 	{
-		self.entity util::damage_notify_wrapper(idamage, eattacker, (0, 0, 0), (0, 0, 0), "mod_explosive", "", "");
+		if(self.isactor)
+		{
+			self.damageorigin = damagepos;
+			self.entity thread [[level.callbackactordamage]](einflictor, eattacker, idamage, 0, smeansofdeath, weapon, damagepos, damagedir, "none", damagepos, 0, 0, 0, 0, (1, 0, 0));
+		}
+		else
+		{
+			if(self.isadestructible)
+			{
+				self.damageorigin = damagepos;
+				self.entity dodamage(idamage, damagepos, eattacker, einflictor, 0, smeansofdeath, 0, weapon);
+			}
+			else
+			{
+				self.entity util::damage_notify_wrapper(idamage, eattacker, (0, 0, 0), (0, 0, 0), "mod_explosive", "", "");
+			}
+		}
 	}
 }
 
@@ -2303,13 +2315,16 @@ function scavenger_think()
 				maxammo = weapon.maxammo;
 			}
 		}
-		else if(isdefined(player.grenadetypeprimary) && weapon == player.grenadetypeprimary && isdefined(player.grenadetypeprimarycount) && player.grenadetypeprimarycount > 0)
+		else
 		{
-			maxammo = player.grenadetypeprimarycount;
-		}
-		else if(isdefined(player.grenadetypesecondary) && weapon == player.grenadetypesecondary && isdefined(player.grenadetypesecondarycount) && player.grenadetypesecondarycount > 0)
-		{
-			maxammo = player.grenadetypesecondarycount;
+			if(isdefined(player.grenadetypeprimary) && weapon == player.grenadetypeprimary && isdefined(player.grenadetypeprimarycount) && player.grenadetypeprimarycount > 0)
+			{
+				maxammo = player.grenadetypeprimarycount;
+			}
+			else if(isdefined(player.grenadetypesecondary) && weapon == player.grenadetypesecondary && isdefined(player.grenadetypesecondarycount) && player.grenadetypesecondarycount > 0)
+			{
+				maxammo = player.grenadetypesecondarycount;
+			}
 		}
 		if(isdefined(level.customloasdoutscavenge))
 		{
@@ -2402,13 +2417,16 @@ function drop_scavenger_for_death(attacker)
 	{
 		item = self dropscavengeritem(getweapon(#"scavenger_item_hack"));
 	}
-	else if(isplayer(attacker))
-	{
-		item = self dropscavengeritem(getweapon(#"scavenger_item"));
-	}
 	else
 	{
-		return;
+		if(isplayer(attacker))
+		{
+			item = self dropscavengeritem(getweapon(#"scavenger_item"));
+		}
+		else
+		{
+			return;
+		}
 	}
 	item thread scavenger_think();
 }
@@ -2444,17 +2462,17 @@ function should_drop_limited_weapon(weapon, owner)
 	limited_info = owner.limited_info;
 	if(!isdefined(limited_info))
 	{
-		return 1;
+		return true;
 	}
 	if(limited_info.weapon != weapon)
 	{
-		return 1;
+		return true;
 	}
 	if(limited_info.drops <= 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2718,17 +2736,20 @@ function function_356292be(owner, origin, radius)
 				}
 			}
 		}
-		else if(!isdefined(self))
+		else
 		{
-			continue;
-		}
-		if(!isdefined(self.team))
-		{
-			continue;
-		}
-		if(!util::function_fbce7263(target.team, self.team))
-		{
-			continue;
+			if(!isdefined(self))
+			{
+				continue;
+			}
+			if(!isdefined(self.team))
+			{
+				continue;
+			}
+			if(!util::function_fbce7263(target.team, self.team))
+			{
+				continue;
+			}
 		}
 		potential_targets[potential_targets.size] = target;
 	}

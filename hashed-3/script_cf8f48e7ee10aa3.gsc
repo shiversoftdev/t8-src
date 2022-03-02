@@ -4,6 +4,176 @@
 #using scripts\core_common\spawner_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 
+class squad 
+{
+	var squadleader;
+	var squadmembers;
+	var squadbreadcrumb;
+
+	/*
+		Name: constructor
+		Namespace: squad
+		Checksum: 0x9C3729B9
+		Offset: 0x170
+		Size: 0x26
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.squadleader = 0;
+		self.squadmembers = [];
+		self.squadbreadcrumb = [];
+	}
+
+	/*
+		Name: destructor
+		Namespace: squad
+		Checksum: 0x80F724D1
+		Offset: 0x418
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+	/*
+		Name: think
+		Namespace: squad
+		Checksum: 0xFF993B77
+		Offset: 0x388
+		Size: 0x86
+		Parameters: 0
+		Flags: Linked
+	*/
+	function think()
+	{
+		if(isint(squadleader) && squadleader == 0 || !isdefined(squadleader))
+		{
+			if(squadmembers.size > 0)
+			{
+				self.squadleader = squadmembers[0];
+				self.squadbreadcrumb = squadleader.origin;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/*
+		Name: removeaifromsqaud
+		Namespace: squad
+		Checksum: 0x864D5361
+		Offset: 0x320
+		Size: 0x5E
+		Parameters: 1
+		Flags: Linked
+	*/
+	function removeaifromsqaud(ai)
+	{
+		if(isinarray(squadmembers, ai))
+		{
+			arrayremovevalue(squadmembers, ai, 0);
+			if(squadleader === ai)
+			{
+				self.squadleader = undefined;
+			}
+		}
+	}
+
+	/*
+		Name: addaitosquad
+		Namespace: squad
+		Checksum: 0x55856AF
+		Offset: 0x290
+		Size: 0x86
+		Parameters: 1
+		Flags: Linked
+	*/
+	function addaitosquad(ai)
+	{
+		if(!isinarray(squadmembers, ai))
+		{
+			if(ai.archetype == #"robot")
+			{
+				ai ai::set_behavior_attribute("move_mode", "squadmember");
+			}
+			self.squadmembers[squadmembers.size] = ai;
+		}
+	}
+
+	/*
+		Name: getmembers
+		Namespace: squad
+		Checksum: 0xD12A356B
+		Offset: 0x278
+		Size: 0xA
+		Parameters: 0
+		Flags: Linked
+	*/
+	function getmembers()
+	{
+		return squadmembers;
+	}
+
+	/*
+		Name: getleader
+		Namespace: squad
+		Checksum: 0xC47F015
+		Offset: 0x260
+		Size: 0xA
+		Parameters: 0
+		Flags: Linked
+	*/
+	function getleader()
+	{
+		return squadleader;
+	}
+
+	/*
+		Name: getsquadbreadcrumb
+		Namespace: squad
+		Checksum: 0xA64E689E
+		Offset: 0x248
+		Size: 0xA
+		Parameters: 0
+		Flags: Linked
+	*/
+	function getsquadbreadcrumb()
+	{
+		return squadbreadcrumb;
+	}
+
+	/*
+		Name: addsquadbreadcrumbs
+		Namespace: squad
+		Checksum: 0xC64824E6
+		Offset: 0x1A0
+		Size: 0x9E
+		Parameters: 1
+		Flags: Linked
+	*/
+	function addsquadbreadcrumbs(ai)
+	{
+		/#
+			assert(squadleader == ai);
+		#/
+		if(distance2dsquared(squadbreadcrumb, ai.origin) >= 9216)
+		{
+			/#
+				recordcircle(ai.origin, 4, (0, 0, 1), "", ai);
+			#/
+			self.squadbreadcrumb = ai.origin;
+		}
+	}
+
+}
+
 #namespace aisquads;
 
 /*
@@ -15,7 +185,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"ai_squads", &__init__, undefined, undefined);
 }
@@ -36,195 +206,6 @@ function __init__()
 	array::run_all(actorspawnerarray, &spawner::add_spawn_function, &squadmemberthink);
 }
 
-#namespace squad;
-
-/*
-	Name: __constructor
-	Namespace: squad
-	Checksum: 0x9C3729B9
-	Offset: 0x170
-	Size: 0x26
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.squadleader = 0;
-	self.squadmembers = [];
-	self.squadbreadcrumb = [];
-}
-
-/*
-	Name: addsquadbreadcrumbs
-	Namespace: squad
-	Checksum: 0xC64824E6
-	Offset: 0x1A0
-	Size: 0x9E
-	Parameters: 1
-	Flags: Linked
-*/
-function addsquadbreadcrumbs(ai)
-{
-	/#
-		assert(self.squadleader == ai);
-	#/
-	if(distance2dsquared(self.squadbreadcrumb, ai.origin) >= 9216)
-	{
-		/#
-			recordcircle(ai.origin, 4, (0, 0, 1), "", ai);
-		#/
-		self.squadbreadcrumb = ai.origin;
-	}
-}
-
-/*
-	Name: getsquadbreadcrumb
-	Namespace: squad
-	Checksum: 0xA64E689E
-	Offset: 0x248
-	Size: 0xA
-	Parameters: 0
-	Flags: Linked
-*/
-function getsquadbreadcrumb()
-{
-	return self.squadbreadcrumb;
-}
-
-/*
-	Name: getleader
-	Namespace: squad
-	Checksum: 0xC47F015
-	Offset: 0x260
-	Size: 0xA
-	Parameters: 0
-	Flags: Linked
-*/
-function getleader()
-{
-	return self.squadleader;
-}
-
-/*
-	Name: getmembers
-	Namespace: squad
-	Checksum: 0xD12A356B
-	Offset: 0x278
-	Size: 0xA
-	Parameters: 0
-	Flags: Linked
-*/
-function getmembers()
-{
-	return self.squadmembers;
-}
-
-/*
-	Name: addaitosquad
-	Namespace: squad
-	Checksum: 0x55856AF
-	Offset: 0x290
-	Size: 0x86
-	Parameters: 1
-	Flags: Linked
-*/
-function addaitosquad(ai)
-{
-	if(!isinarray(self.squadmembers, ai))
-	{
-		if(ai.archetype == #"robot")
-		{
-			ai ai::set_behavior_attribute("move_mode", "squadmember");
-		}
-		self.squadmembers[self.squadmembers.size] = ai;
-	}
-}
-
-/*
-	Name: removeaifromsqaud
-	Namespace: squad
-	Checksum: 0x864D5361
-	Offset: 0x320
-	Size: 0x5E
-	Parameters: 1
-	Flags: Linked
-*/
-function removeaifromsqaud(ai)
-{
-	if(isinarray(self.squadmembers, ai))
-	{
-		arrayremovevalue(self.squadmembers, ai, 0);
-		if(self.squadleader === ai)
-		{
-			self.squadleader = undefined;
-		}
-	}
-}
-
-/*
-	Name: think
-	Namespace: squad
-	Checksum: 0xFF993B77
-	Offset: 0x388
-	Size: 0x86
-	Parameters: 0
-	Flags: Linked
-*/
-function think()
-{
-	if(isint(self.squadleader) && self.squadleader == 0 || !isdefined(self.squadleader))
-	{
-		if(self.squadmembers.size > 0)
-		{
-			self.squadleader = self.squadmembers[0];
-			self.squadbreadcrumb = self.squadleader.origin;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-	return 1;
-}
-
-/*
-	Name: __destructor
-	Namespace: squad
-	Checksum: 0x80F724D1
-	Offset: 0x418
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace aisquads;
-
-/*
-	Name: squad
-	Namespace: aisquads
-	Checksum: 0xF67D26F3
-	Offset: 0x428
-	Size: 0x1D6
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function squad()
-{
-	classes.squad[0] = spawnstruct();
-	classes.squad[0].__vtable[913321084] = &squad::__destructor;
-	classes.squad[0].__vtable[2036831824] = &squad::think;
-	classes.squad[0].__vtable[2096875884] = &squad::removeaifromsqaud;
-	classes.squad[0].__vtable[433010487] = &squad::addaitosquad;
-	classes.squad[0].__vtable[1186782976] = &squad::getmembers;
-	classes.squad[0].__vtable[184246382] = &squad::getleader;
-	classes.squad[0].__vtable[2060422215] = &squad::getsquadbreadcrumb;
-	classes.squad[0].__vtable[1691788582] = &squad::addsquadbreadcrumbs;
-	classes.squad[0].__vtable[674154906] = &squad::__constructor;
-}
-
 /*
 	Name: createsquad
 	Namespace: aisquads
@@ -234,11 +215,9 @@ private autoexec function squad()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function createsquad(squadname)
+function private createsquad(squadname)
 {
-	object = new squad();
-	[[ object ]]->__constructor();
-	level._squads[squadname] = object;
+	level._squads[squadname] = new squad();
 	return level._squads[squadname];
 }
 
@@ -251,7 +230,7 @@ private function createsquad(squadname)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function removesquad(squadname)
+function private removesquad(squadname)
 {
 	if(isdefined(level._squads) && isdefined(level._squads[squadname]))
 	{
@@ -268,7 +247,7 @@ private function removesquad(squadname)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function getsquad(squadname)
+function private getsquad(squadname)
 {
 	return level._squads[squadname];
 }
@@ -282,7 +261,7 @@ private function getsquad(squadname)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function thinksquad(squadname)
+function private thinksquad(squadname)
 {
 	while(true)
 	{
@@ -307,7 +286,7 @@ private function thinksquad(squadname)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function squadmemberdeath()
+function private squadmemberdeath()
 {
 	self waittill(#"death");
 	if(isdefined(self.squadname) && isdefined(level._squads[self.squadname]))
@@ -325,7 +304,7 @@ private function squadmemberdeath()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function squadmemberthink()
+function private squadmemberthink()
 {
 	self endon(#"death");
 	if(!isdefined(self.script_aisquadname))
@@ -422,16 +401,16 @@ function isfollowingsquadleader(ai)
 {
 	if(ai ai::get_behavior_attribute("move_mode") != "squadmember")
 	{
-		return 0;
+		return false;
 	}
 	squadmember = issquadmember(ai);
 	currentsquadleader = getsquadleader(ai);
 	isaisquadleader = isdefined(currentsquadleader) && currentsquadleader == ai;
 	if(squadmember && !isaisquadleader)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

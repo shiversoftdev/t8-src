@@ -427,7 +427,7 @@ function function_c40f70df(var_21c1ba1)
 		println(("" + var_21c1ba1) + "");
 	#/
 	self bgb::suspend_weapon_cycling();
-	self namespace_7d0afffb::function_ac9cb612(1);
+	self bgb_pack::function_ac9cb612(1);
 	self util::magic_bullet_shield();
 	self allowsprint(0);
 	self allowcrouch(0);

@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	level.var_f726653d = [];
 	level.var_ee46a98d = [];
@@ -33,7 +33,7 @@ autoexec function __init__()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_59c1a869(var_8dd0b014, var_d1c21f6f, var_b06dd57e)
+function private function_59c1a869(var_8dd0b014, var_d1c21f6f, var_b06dd57e)
 {
 	if(!function_bbc0b67f(0))
 	{
@@ -68,7 +68,7 @@ private function function_59c1a869(var_8dd0b014, var_d1c21f6f, var_b06dd57e)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_41015db1(var_8dd0b014, itemname, var_44ed74a7)
+function private function_41015db1(var_8dd0b014, itemname, var_44ed74a7)
 {
 	if(!function_bbc0b67f(0))
 	{
@@ -107,7 +107,7 @@ private function function_41015db1(var_8dd0b014, itemname, var_44ed74a7)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bbc0b67f(prematch = 0)
+function private function_bbc0b67f(prematch = 0)
 {
 	if(prematch)
 	{
@@ -122,9 +122,9 @@ private function function_bbc0b67f(prematch = 0)
 		/#
 			assert(0, "");
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -136,7 +136,7 @@ private function function_bbc0b67f(prematch = 0)
 	Parameters: 1
 	Flags: Private
 */
-private function function_cd5f2152(itemname)
+function private function_cd5f2152(itemname)
 {
 	/#
 		if(itemname == "")
@@ -155,7 +155,7 @@ private function function_cd5f2152(itemname)
 	Parameters: 1
 	Flags: Private
 */
-private function function_d50342ad(var_d1c21f6f)
+function private function_d50342ad(var_d1c21f6f)
 {
 	/#
 		if(var_d1c21f6f == "")

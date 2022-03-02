@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	if(sessionmodeiszombiesgame() && getdvarint(#"splitscreen_playercount", 0) > 2)
 	{
@@ -36,7 +36,7 @@ autoexec function main()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function secondaryanimationsinit(localclientnum)
+function private secondaryanimationsinit(localclientnum)
 {
 	if(!isdefined(level.__facialanimationslist))
 	{
@@ -55,7 +55,7 @@ private function secondaryanimationsinit(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_entity_spawn(localclientnum)
+function private on_entity_spawn(localclientnum)
 {
 	if(self hasdobj(localclientnum))
 	{
@@ -73,7 +73,7 @@ private function on_entity_spawn(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_entity_shutdown(localclientnum)
+function private on_entity_shutdown(localclientnum)
 {
 	if(isdefined(self))
 	{
@@ -147,7 +147,7 @@ function buildandvalidatefacialanimationlist(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function getfacialanimoverride(localclientnum)
+function private getfacialanimoverride(localclientnum)
 {
 	if(sessionmodeiscampaigngame())
 	{
@@ -181,7 +181,7 @@ private function getfacialanimoverride(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_176c97f8(substate)
+function private function_176c97f8(substate)
 {
 	if(!isdefined(substate))
 	{
@@ -199,7 +199,7 @@ private function function_176c97f8(substate)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f5dde44(substate)
+function private function_f5dde44(substate)
 {
 	if(!isdefined(substate))
 	{
@@ -217,7 +217,7 @@ private function function_f5dde44(substate)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function secondaryfacialanimationthink(localclientnum)
+function private secondaryfacialanimationthink(localclientnum)
 {
 	if(!(isdefined(self.archetype) && (self.archetype == #"human" || self.archetype == #"zombie")))
 	{
@@ -262,13 +262,16 @@ private function secondaryfacialanimationthink(localclientnum)
 						forcenewanim = 1;
 					}
 				}
-				else if(self._currentfacestate !== "death")
+				else
 				{
-					self._currentfacestate = "inactive";
-					self clearcurrentfacialanim(localclientnum);
+					if(self._currentfacestate !== "death")
+					{
+						self._currentfacestate = "inactive";
+						self clearcurrentfacialanim(localclientnum);
+					}
+					wait(0.5);
+					continue;
 				}
-				wait(0.5);
-				continue;
 			}
 		}
 		closestplayer = arraygetclosest(self.origin, level.localplayers, getdvarint(#"ai_clientfacialculldist", 2000));
@@ -288,29 +291,44 @@ private function secondaryfacialanimationthink(localclientnum)
 		{
 			nextfacestate = "death";
 		}
-		else if(asmstatus == "asm_status_inactive")
-		{
-			nextfacestate = "animscripted";
-		}
-		else if(function_176c97f8(currentasmstate))
-		{
-			nextfacestate = "pain";
-		}
-		else if(function_f5dde44(currentasmstate))
-		{
-			nextfacestate = "melee";
-		}
-		else if(self asmisshootlayeractive(localclientnum))
-		{
-			nextfacestate = "combat_shoot";
-		}
-		else if(self asmisaimlayeractive(localclientnum))
-		{
-			nextfacestate = "combat_aim";
-		}
 		else
 		{
-			nextfacestate = "combat";
+			if(asmstatus == "asm_status_inactive")
+			{
+				nextfacestate = "animscripted";
+			}
+			else
+			{
+				if(function_176c97f8(currentasmstate))
+				{
+					nextfacestate = "pain";
+				}
+				else
+				{
+					if(function_f5dde44(currentasmstate))
+					{
+						nextfacestate = "melee";
+					}
+					else
+					{
+						if(self asmisshootlayeractive(localclientnum))
+						{
+							nextfacestate = "combat_shoot";
+						}
+						else
+						{
+							if(self asmisaimlayeractive(localclientnum))
+							{
+								nextfacestate = "combat_aim";
+							}
+							else
+							{
+								nextfacestate = "combat";
+							}
+						}
+					}
+				}
+			}
 		}
 		if(currfacestate == "inactive" || currfacestate != nextfacestate || forcenewanim)
 		{
@@ -346,7 +364,7 @@ private function secondaryfacialanimationthink(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function applynewfaceanim(localclientnum, animation, clearoncompletion = 0)
+function private applynewfaceanim(localclientnum, animation, clearoncompletion = 0)
 {
 	clearcurrentfacialanim(localclientnum);
 	if(isdefined(animation))
@@ -373,7 +391,7 @@ private function applynewfaceanim(localclientnum, animation, clearoncompletion =
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function applydeathanim(localclientnum)
+function private applydeathanim(localclientnum)
 {
 	if(getmigrationstatus(localclientnum))
 	{
@@ -417,7 +435,7 @@ private function applydeathanim(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function clearcurrentfacialanim(localclientnum)
+function private clearcurrentfacialanim(localclientnum)
 {
 	if(isdefined(self._currentfaceanim) && self hasdobj(localclientnum) && self hasanimtree())
 	{

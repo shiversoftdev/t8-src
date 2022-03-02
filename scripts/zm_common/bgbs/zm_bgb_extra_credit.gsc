@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_extra_credit", &__init__, undefined, #"bgb");
 }
@@ -49,8 +49,8 @@ function __init__()
 */
 function activation()
 {
-	var_aa2142ad = self bgb::function_2bbfb816();
-	self thread function_22f934e6(var_aa2142ad, 96);
+	powerup_origin = self bgb::get_player_dropped_powerup_origin();
+	self thread function_22f934e6(powerup_origin, 96);
 }
 
 /*

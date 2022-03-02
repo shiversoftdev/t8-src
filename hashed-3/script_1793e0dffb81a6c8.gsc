@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4ef9c479ac8da304", &__init__, undefined, undefined);
 }
@@ -56,7 +56,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(localclientnum, a_params)
+function private function_d1de6a85(localclientnum, a_params)
 {
 }
 
@@ -69,7 +69,7 @@ private function function_d1de6a85(localclientnum, a_params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(localclientnum)
+function private function_9e7b3f4d(localclientnum)
 {
 }
 
@@ -97,7 +97,7 @@ function is_active()
 	Parameters: 7
 	Flags: Private
 */
-private function function_b245db69(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_b245db69(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -121,14 +121,17 @@ private function function_b245db69(localclientnum, oldval, newval, bnewent, bini
 			self.var_3b071bba = util::playfxontag(localclientnum, level._effect[#"hash_1d15a5dad558b1a5"], self.var_18f8b30b, "tag_origin");
 		}
 	}
-	else if(isdefined(self.var_3b071bba))
+	else
 	{
-		deletefx(localclientnum, self.var_3b071bba);
-		self.var_3b071bba = undefined;
-	}
-	if(isdefined(self.var_18f8b30b))
-	{
-		self.var_18f8b30b delete();
+		if(isdefined(self.var_3b071bba))
+		{
+			deletefx(localclientnum, self.var_3b071bba);
+			self.var_3b071bba = undefined;
+		}
+		if(isdefined(self.var_18f8b30b))
+		{
+			self.var_18f8b30b delete();
+		}
 	}
 }
 

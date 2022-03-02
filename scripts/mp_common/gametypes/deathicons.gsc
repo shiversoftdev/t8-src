@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"deathicons", &__init__, undefined, undefined);
 }
@@ -165,8 +165,8 @@ function ragdoll_override(idamage, smeansofdeath, sweapon, shitloc, vdir, vattac
 		{
 			thread add(body, self, self.team);
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

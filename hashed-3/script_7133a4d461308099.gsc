@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"activecamo", &__init__, undefined, undefined);
 }
@@ -214,7 +214,7 @@ function function_b008f9e9(weapon)
 		if(self getcurrentweapon() != weapon)
 		{
 			self switchtoweapon(weapon);
-			self waittill_timeout(2, #"weapon_change");
+			self waittilltimeout(2, #"weapon_change");
 		}
 		foreach(info in level.activecamoinfo)
 		{
@@ -493,16 +493,19 @@ function function_d005b26d(activecamo, var_3a8a1e00, isdeath)
 								stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
 							}
 						}
-						else if(isdefined(stage.info.permanent) && stage.info.permanent && isdefined(stage.info.statname))
+						else
 						{
-							if(var_da075c23 > var_d1a848d9)
+							if(isdefined(stage.info.permanent) && stage.info.permanent && isdefined(stage.info.statname))
+							{
+								if(var_da075c23 > var_d1a848d9)
+								{
+									stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
+								}
+							}
+							else if(var_da075c23 == var_d1a848d9)
 							{
 								stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
 							}
-						}
-						else if(var_da075c23 == var_d1a848d9)
-						{
-							stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
 						}
 					}
 				}
@@ -532,16 +535,19 @@ function function_d005b26d(activecamo, var_3a8a1e00, isdeath)
 								stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
 							}
 						}
-						else if(isdefined(stage.info.permanent) && stage.info.permanent && isdefined(stage.info.statname))
+						else
 						{
-							if(var_da075c23 > var_d1a848d9)
+							if(isdefined(stage.info.permanent) && stage.info.permanent && isdefined(stage.info.statname))
+							{
+								if(var_da075c23 > var_d1a848d9)
+								{
+									stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
+								}
+							}
+							else if(var_da075c23 == var_d1a848d9)
 							{
 								stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
 							}
-						}
-						else if(var_da075c23 == var_d1a848d9)
-						{
-							stage.var_dd54a13b[activecamo.baseweapon].statvalue = stage.info.var_e2dbd42d;
 						}
 					}
 				}
@@ -1230,7 +1236,7 @@ function function_d2f57b97(activecamo, var_d1a848d9)
 	setstage = activecamo.stages[var_d1a848d9];
 	if(!isdefined(setstage))
 	{
-		return 0;
+		return false;
 	}
 	activecamo.var_dd54a13b[activecamo.baseweapon].var_d1a848d9 = var_d1a848d9;
 	self function_a6fc2979(activecamo.weapon, var_d1a848d9);
@@ -1242,7 +1248,7 @@ function function_d2f57b97(activecamo, var_d1a848d9)
 		self debug_print((((("" + activecamo.info.name) + "") + var_d1a848d9) + "") + (isdefined(setstage.info.info.var_19b6044e) ? setstage.info.var_19b6044e : ""));
 	#/
 	self thread function_a80cb651(activecamo, var_d1a848d9);
-	return 1;
+	return true;
 }
 
 /*
@@ -1271,17 +1277,20 @@ function function_a80cb651(activecamo, var_d1a848d9)
 		{
 			stage.var_5bf85ac5 = gettime() + stage.info.var_bf8f1a70;
 			s_result = undefined;
-			s_result = self waittill_timeout(float(stage.info.var_bf8f1a70) / 1000, stage.info.resetnotify);
-		}
-		else if(stage.info.var_bf8f1a70 > 0)
-		{
-			stage.var_5bf85ac5 = gettime() + stage.info.var_bf8f1a70;
-			wait(float(stage.info.var_bf8f1a70) / 1000);
+			s_result = self waittilltimeout(float(stage.info.var_bf8f1a70) / 1000, stage.info.resetnotify);
 		}
 		else
 		{
-			s_result = undefined;
-			s_result = self waittill(stage.info.resetnotify);
+			if(stage.info.var_bf8f1a70 > 0)
+			{
+				stage.var_5bf85ac5 = gettime() + stage.info.var_bf8f1a70;
+				wait(float(stage.info.var_bf8f1a70) / 1000);
+			}
+			else
+			{
+				s_result = undefined;
+				s_result = self waittill(stage.info.resetnotify);
+			}
 		}
 		baseweapon = function_c14cb514(weapon);
 		if(!isdefined(s_result) || !isdefined(s_result.weapon) || baseweapon == s_result.weapon)

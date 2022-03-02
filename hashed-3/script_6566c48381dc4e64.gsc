@@ -13,6 +13,6 @@
 function playsoundaliasatposition(x, snd_name, v_position)
 {
 	playsoundatposition(snd_name, v_position);
-	return 1;
+	return true;
 }
 

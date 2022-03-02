@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1848c770303c538f", &__init__, undefined, undefined);
 }
@@ -57,19 +57,19 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d805557c(weapon)
+function private function_d805557c(weapon)
 {
 	/#
 		assert(weapon != level.weaponnone);
 	#/
 	if(zm_loadout::function_2ff6913(weapon))
 	{
-		return 1;
+		return true;
 	}
 	challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
 	if(challenge.var_e097dc07 === #"melee" && is_ballistic_knife(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.isaltmode)
 	{
@@ -83,7 +83,7 @@ private function function_d805557c(weapon)
 	}
 	if(isdefined(level.var_526d919[str_weapon_name]) || (isdefined(var_19010660) && isdefined(level.var_526d919[var_19010660])))
 	{
-		return 1;
+		return true;
 	}
 	var_876795bf = weapon.attachments;
 	if(isdefined(level.var_4400c4f7) && level.var_4400c4f7)
@@ -94,13 +94,13 @@ private function function_d805557c(weapon)
 			{
 				if(var_96bc131f != "clantag" && var_96bc131f != "killcounter" && var_96bc131f != "custom2")
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -112,13 +112,13 @@ private function function_d805557c(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function is_ballistic_knife(weapon)
+function private is_ballistic_knife(weapon)
 {
 	if(weapon == getweapon(#"special_ballisticknife_t8_dw") || weapon == getweapon(#"hash_3882e337d28ec4df") || weapon == getweapon("special_ballisticknife_t8_dw_dw") || weapon == getweapon("special_ballisticknife_t8_dw_upgraded_dw"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -130,7 +130,7 @@ private function is_ballistic_knife(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function is_melee_allowed(weapon)
+function private is_melee_allowed(weapon)
 {
 	challenge = zm_trial::function_a36e8c38(#"hash_576586e9331e76d2");
 	if(challenge.var_e097dc07 == #"melee")
@@ -168,7 +168,7 @@ private function is_melee_allowed(weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6a8979c9()
+function private function_6a8979c9()
 {
 	/#
 		assert(isdefined(level.var_526d919));
@@ -192,7 +192,7 @@ private function function_6a8979c9()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e14e7b75(weapon)
+function private function_e14e7b75(weapon)
 {
 	var_9caacad5 = !function_d805557c(weapon);
 	var_b3340a9 = !is_melee_allowed(weapon);
@@ -226,7 +226,7 @@ private function function_e14e7b75(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_10c80e10(eventstruct)
+function private function_10c80e10(eventstruct)
 {
 	if(self function_f3fdd8f7())
 	{
@@ -277,7 +277,7 @@ private function function_10c80e10(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(eventstruct)
+function private function_33f0ddd3(eventstruct)
 {
 	self thread function_6a8979c9();
 }
@@ -291,7 +291,7 @@ private function function_33f0ddd3(eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f66032dd()
+function private function_f66032dd()
 {
 	if(isdefined(self._gadgets_player))
 	{
@@ -314,7 +314,7 @@ private function function_f66032dd()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_e097dc07, var_f5300808)
+function private function_d1de6a85(var_e097dc07, var_f5300808)
 {
 	if(isdefined(var_f5300808))
 	{
@@ -600,7 +600,7 @@ private function function_d1de6a85(var_e097dc07, var_f5300808)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(isarray(self.a_n_objective_ids))
 	{
@@ -782,7 +782,7 @@ function function_bb33631e(var_b5d0ea49)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function disable_offhand_weapons()
+function private disable_offhand_weapons()
 {
 	self endon(#"disconnect");
 	var_915fee20 = self offhandweaponsenabled();
@@ -803,7 +803,7 @@ private function disable_offhand_weapons()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e20ebcfd()
+function private function_e20ebcfd()
 {
 	if(self.var_e097dc07 != #"equipment")
 	{
@@ -831,7 +831,7 @@ private function function_e20ebcfd()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f3fdd8f7()
+function private function_f3fdd8f7()
 {
 	/#
 		assert(isdefined(level.var_526d919));
@@ -840,14 +840,14 @@ private function function_f3fdd8f7()
 	{
 		if(self hasweapon(weapon, 1))
 		{
-			return 1;
+			return true;
 		}
 		if(isarray(level.var_5a069e6) && isweapon(level.var_5a069e6[weapon]) && self hasweapon(level.var_5a069e6[weapon], 1))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -859,7 +859,7 @@ private function function_f3fdd8f7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c305f695(challenge)
+function private function_c305f695(challenge)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -904,11 +904,11 @@ function function_5fbf572(weapon, var_2f0cc3aa = 0)
 {
 	if(!zm_utility::is_trials())
 	{
-		return 1;
+		return true;
 	}
 	if(var_2f0cc3aa && is_active(1) && isdefined(weapon) && is_melee_allowed(weapon))
 	{
-		return 1;
+		return true;
 	}
 	if(is_active(1) || namespace_fc5170d1::is_active() || self function_635f9c02(weapon))
 	{
@@ -916,8 +916,8 @@ function function_5fbf572(weapon, var_2f0cc3aa = 0)
 		{
 			self namespace_b22c99a5::function_97444b02();
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

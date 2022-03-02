@@ -38,7 +38,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2336b570f470a29c", &__init__, &__main__, undefined);
 }
@@ -56,9 +56,7 @@ function __init__()
 {
 	if(!isdefined(level.var_db63b33b))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_db63b33b = object;
+		level.var_db63b33b = new throttle();
 		[[ level.var_db63b33b ]]->initialize(2, 0.1);
 	}
 	init_clientfields();
@@ -981,48 +979,51 @@ function function_85d3d607(e_player)
 	{
 		self namespace_509a75d1::function_b2e1326(1);
 	}
-	else if(isdefined(level.var_4f7df1ac) && level.var_4f7df1ac)
-	{
-		self namespace_509a75d1::function_b2e1326(0);
-	}
 	else
 	{
-		switch(level.var_ab11c23d.var_58df9892)
+		if(isdefined(level.var_4f7df1ac) && level.var_4f7df1ac)
 		{
-			case 0:
+			self namespace_509a75d1::function_b2e1326(0);
+		}
+		else
+		{
+			switch(level.var_ab11c23d.var_58df9892)
 			{
-				self namespace_509a75d1::function_b2e1326(0);
-				break;
-			}
-			case 1:
-			{
-				self namespace_509a75d1::function_b2e1326(4);
-				break;
-			}
-			case 2:
-			{
-				if(level flag::get(#"half_price_traps"))
+				case 0:
 				{
-					self namespace_509a75d1::function_b2e1326(2, int(500));
+					self namespace_509a75d1::function_b2e1326(0);
+					break;
 				}
-				else
+				case 1:
 				{
-					self namespace_509a75d1::function_b2e1326(2, 1000);
+					self namespace_509a75d1::function_b2e1326(4);
+					break;
 				}
-				break;
-			}
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			{
-				self namespace_509a75d1::function_b2e1326(3);
-				break;
+				case 2:
+				{
+					if(level flag::get(#"half_price_traps"))
+					{
+						self namespace_509a75d1::function_b2e1326(2, int(500));
+					}
+					else
+					{
+						self namespace_509a75d1::function_b2e1326(2, 1000);
+					}
+					break;
+				}
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+				{
+					self namespace_509a75d1::function_b2e1326(3);
+					break;
+				}
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1278,7 +1279,7 @@ function function_fcbb2307()
 	Parameters: 0
 	Flags: Private
 */
-private function function_f5a342bc()
+function private function_f5a342bc()
 {
 	/#
 		if(!isdefined(level.var_4b3d7dc1))
@@ -1311,7 +1312,7 @@ private function function_f5a342bc()
 	Parameters: 0
 	Flags: Private
 */
-private function devgui()
+function private devgui()
 {
 	/#
 		level.var_10f86d56 = namespace_509a75d1::function_2719d4c0("", "", "");

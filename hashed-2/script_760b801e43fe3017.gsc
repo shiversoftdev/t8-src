@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5ca501b5a8e0f7f9", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_faecf84e, var_142bab9f, var_2b2cdb01, var_85e291cf, var_b3c8256b, var_d42c8aaa)
+function private function_d1de6a85(var_faecf84e, var_142bab9f, var_2b2cdb01, var_85e291cf, var_b3c8256b, var_d42c8aaa)
 {
 	if(isdefined(var_b3c8256b))
 	{
@@ -109,7 +109,7 @@ private function function_d1de6a85(var_faecf84e, var_142bab9f, var_2b2cdb01, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	level.var_894a83d8 = undefined;
@@ -166,7 +166,7 @@ function function_a2c43fea(var_d42c8aaa = 2000)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ba517920(challenge)
+function private function_ba517920(challenge)
 {
 	level endon(#"hash_7646638df88a3656");
 	while(challenge.var_3fd9ed88 < challenge.var_b49b94ed)
@@ -186,7 +186,7 @@ private function function_ba517920(challenge)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_69c5df45(challenge)
+function private function_69c5df45(challenge)
 {
 	level endon(#"hash_7646638df88a3656");
 	while(true)

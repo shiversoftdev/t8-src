@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7ceb08aa364e4596", &__init__, undefined, undefined);
 }
@@ -45,7 +45,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(local_client_num, params)
+function private function_d1de6a85(local_client_num, params)
 {
 	level.var_7db2b064 = &function_ecc5a0b9;
 }
@@ -59,7 +59,7 @@ private function function_d1de6a85(local_client_num, params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(local_client_num)
+function private function_9e7b3f4d(local_client_num)
 {
 	level.var_7db2b064 = undefined;
 }
@@ -88,12 +88,12 @@ function is_active()
 	Parameters: 3
 	Flags: Private
 */
-private function function_ecc5a0b9(local_client_num, player, damage)
+function private function_ecc5a0b9(local_client_num, player, damage)
 {
 	if(int(damage) <= 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

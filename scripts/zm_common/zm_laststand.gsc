@@ -42,7 +42,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_laststand", &__init__, undefined, undefined);
 }
@@ -252,13 +252,16 @@ function playerlaststand(einflictor, attacker, idamage, smeansofdeath, weapon, v
 		{
 			self [[level.var_af29d768]]();
 		}
-		else if(level.players.size == 1 || (isdefined(self.var_20f86af4) && self.var_20f86af4))
-		{
-			self thread wait_and_revive();
-		}
 		else
 		{
-			self thread function_3699b145();
+			if(level.players.size == 1 || (isdefined(self.var_20f86af4) && self.var_20f86af4))
+			{
+				self thread wait_and_revive();
+			}
+			else
+			{
+				self thread function_3699b145();
+			}
 		}
 	}
 	self zm_utility::clear_is_drinking();
@@ -381,19 +384,19 @@ function function_70fcc093()
 					{
 						if(s_path.pathdistance < level.var_e1d82d33)
 						{
-							return 1;
+							return true;
 						}
 					}
 				}
 				else
 				{
-					return 1;
+					return true;
 				}
 				waitframe(1);
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -430,11 +433,11 @@ function function_1a2fa922()
 		{
 			if(zm_utility::is_player_valid(e_player))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -448,7 +451,7 @@ function function_1a2fa922()
 */
 function wait_and_revive()
 {
-	self endon_callback(&function_e0f05bad, #"player_revived", #"death");
+	self endoncallback(&function_e0f05bad, #"player_revived", #"death");
 	level flag::set("wait_and_revive");
 	level.wait_and_revive = 1;
 	if(isdefined(self.waiting_to_revive) && self.waiting_to_revive)
@@ -473,7 +476,7 @@ function wait_and_revive()
 	var_3269dfa3 = getdvarfloat(#"hash_1d447d6b4492bf4f", var_3269dfa3);
 	self thread laststand::revive_hud_show_n_fade(#"hash_45804a37272bc580", var_3269dfa3);
 	var_c564fe97 = undefined;
-	var_c564fe97 = level waittill_timeout(var_3269dfa3, #"end_of_round");
+	var_c564fe97 = level waittilltimeout(var_3269dfa3, #"end_of_round");
 	if(var_c564fe97._notify === "end_of_round")
 	{
 		self thread laststand::revive_hud_show_n_fade(#"hash_45804a37272bc580", 1);
@@ -608,13 +611,16 @@ function laststand_enable_player_weapons(b_bled_out)
 		{
 			self switchtoweapon(self.lastactiveweapon);
 		}
-		else if(self getweaponslistprimaries().size)
-		{
-			self switchtoweapon();
-		}
 		else
 		{
-			zm_weapons::give_fallback_weapon();
+			if(self getweaponslistprimaries().size)
+			{
+				self switchtoweapon();
+			}
+			else
+			{
+				zm_weapons::give_fallback_weapon();
+			}
 		}
 		do
 		{
@@ -644,9 +650,9 @@ function laststand_has_players_weapons_returned()
 {
 	if(isdefined(self.laststandpistol))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -743,15 +749,18 @@ function function_6155752d()
 				{
 					continue;
 				}
-				else if(!isdefined(self.var_d84718d1))
+				else
 				{
-					self.var_d84718d1 = [];
+					if(!isdefined(self.var_d84718d1))
+					{
+						self.var_d84718d1 = [];
+					}
+					else if(!isarray(self.var_d84718d1))
+					{
+						self.var_d84718d1 = array(self.var_d84718d1);
+					}
+					self.var_d84718d1[self.var_d84718d1.size] = s_result.weapon;
 				}
-				else if(!isarray(self.var_d84718d1))
-				{
-					self.var_d84718d1 = array(self.var_d84718d1);
-				}
-				self.var_d84718d1[self.var_d84718d1.size] = s_result.weapon;
 				continue;
 			}
 			default:
@@ -1124,25 +1133,25 @@ function can_suicide()
 {
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!self laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.suicideprompt))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_zombie) && self.is_zombie)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.intermission) && level.intermission)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1415,25 +1424,25 @@ function function_30b9cdd5()
 {
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_c6a6f334) && self.var_c6a6f334)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.var_c2bb0cce))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_zombie) && self.is_zombie)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.intermission) && level.intermission)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1447,7 +1456,7 @@ function function_30b9cdd5()
 */
 function function_73d6c609(n_duration)
 {
-	self endon_callback(&function_a7f11faa, #"player_revived", #"zombified", #"bled_out", #"disconnect");
+	self endoncallback(&function_a7f11faa, #"player_revived", #"zombified", #"bled_out", #"disconnect");
 	level endon(#"end_game");
 	var_722c6f25 = 0;
 	b_success = 0;
@@ -1575,33 +1584,36 @@ function revive_trigger_think(t_secondary)
 				w_reviver = undefined;
 				w_revive_tool = undefined;
 			}
-			else if(!isdefined(self.var_6d772cb) && (!isdefined(e_reviver.s_revive_override_used) || e_reviver.s_revive_override_used.b_use_revive_tool))
-			{
-				w_revive_tool = level.weaponrevivetool;
-				if(isdefined(e_reviver.weaponrevivetool))
-				{
-					w_revive_tool = e_reviver.weaponrevivetool;
-				}
-				w_reviver = e_reviver getcurrentweapon();
-				/#
-					assert(isdefined(w_reviver));
-				#/
-				if(w_reviver == w_revive_tool)
-				{
-					continue;
-				}
-				e_reviver giveweapon(w_revive_tool);
-				e_reviver switchtoweapon(w_revive_tool);
-				e_reviver setweaponammostock(w_revive_tool, 1);
-				e_reviver disableweaponcycling();
-				e_reviver disableoffhandweapons();
-				e_reviver function_432f99ff();
-				e_reviver thread revive_give_back_weapons_when_done(w_reviver, w_revive_tool, self);
-			}
 			else
 			{
-				w_reviver = undefined;
-				w_revive_tool = undefined;
+				if(!isdefined(self.var_6d772cb) && (!isdefined(e_reviver.s_revive_override_used) || e_reviver.s_revive_override_used.b_use_revive_tool))
+				{
+					w_revive_tool = level.weaponrevivetool;
+					if(isdefined(e_reviver.weaponrevivetool))
+					{
+						w_revive_tool = e_reviver.weaponrevivetool;
+					}
+					w_reviver = e_reviver getcurrentweapon();
+					/#
+						assert(isdefined(w_reviver));
+					#/
+					if(w_reviver == w_revive_tool)
+					{
+						continue;
+					}
+					e_reviver giveweapon(w_revive_tool);
+					e_reviver switchtoweapon(w_revive_tool);
+					e_reviver setweaponammostock(w_revive_tool, 1);
+					e_reviver disableweaponcycling();
+					e_reviver disableoffhandweapons();
+					e_reviver function_432f99ff();
+					e_reviver thread revive_give_back_weapons_when_done(w_reviver, w_revive_tool, self);
+				}
+				else
+				{
+					w_reviver = undefined;
+					w_revive_tool = undefined;
+				}
 			}
 			if(isdefined(self.var_a66c06b6) && (!(isdefined(self.var_54cb40e6) && self.var_54cb40e6)))
 			{
@@ -1740,43 +1752,43 @@ function can_revive(e_revivee, ignore_sight_checks = 0, ignore_touch_checks = 0)
 {
 	if(!isdefined(e_revivee.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	if(self.team != e_revivee.team)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_zombie) && self.is_zombie)
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_loadout::has_powerup_weapon())
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(level.var_3ea7f9f4) && level.var_3ea7f9f4) && self zm_loadout::has_hero_weapon())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_use_depthinwater_test) && level.can_revive_use_depthinwater_test && e_revivee depthinwater() > 10)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(level.can_revive) && ![[level.can_revive]](e_revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_game_module) && ![[level.can_revive_game_module]](e_revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(!ignore_sight_checks && isdefined(level.revive_trigger_should_ignore_sight_checks))
 	{
@@ -1790,25 +1802,25 @@ function can_revive(e_revivee, ignore_sight_checks = 0, ignore_touch_checks = 0)
 	{
 		if(!self istouching(e_revivee.revivetrigger))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(!ignore_sight_checks)
 	{
 		if(!self laststand::is_facing(e_revivee))
 		{
-			return 0;
+			return false;
 		}
 		if(!sighttracepassed(self.origin + vectorscale((0, 0, 1), 50), e_revivee.origin + vectorscale((0, 0, 1), 30), 0, undefined))
 		{
-			return 0;
+			return false;
 		}
 		if(!bullettracepassed(self.origin + vectorscale((0, 0, 1), 50), e_revivee.origin + vectorscale((0, 0, 1), 30), 0, undefined))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2039,7 +2051,7 @@ function checkforbleedout(player)
 function auto_revive(reviver, b_track_stats = 1, var_c0ab6a65)
 {
 	level endon(#"end_game");
-	self endon_callback(&function_48ce762a, #"disconnect");
+	self endoncallback(&function_48ce762a, #"disconnect");
 	if(isdefined(self.revivetrigger))
 	{
 		self.revivetrigger.auto_revive = 1;
@@ -2120,7 +2132,7 @@ function revive_success(reviver, b_track_stats = 1, var_c0ab6a65)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_54e3af3c(reviver, b_track_stats, var_c0ab6a65 = 0)
+function private function_54e3af3c(reviver, b_track_stats, var_c0ab6a65 = 0)
 {
 	self reviveplayer();
 	self zm_utility::function_e0448fec();
@@ -2422,11 +2434,11 @@ function can_revive_via_override(e_revivee)
 		{
 			if(self [[self.a_s_revive_overrides[i].func_can_revive]](e_revivee))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2444,14 +2456,14 @@ function is_reviving_via_override(e_revivee)
 	{
 		if(isdefined(e_revivee.var_84280a99) && e_revivee.var_84280a99 !== self)
 		{
-			return 0;
+			return false;
 		}
 		for(i = 0; i < self.a_s_revive_overrides.size; i++)
 		{
 			if(self [[self.a_s_revive_overrides[i].func_is_reviving]](e_revivee))
 			{
 				self.s_revive_override_used = self.a_s_revive_overrides[i];
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -2459,7 +2471,7 @@ function is_reviving_via_override(e_revivee)
 	{
 		self.s_revive_override_used = undefined;
 	}
-	return 0;
+	return false;
 }
 
 /*

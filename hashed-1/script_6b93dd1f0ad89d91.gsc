@@ -45,7 +45,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"supplydrop", &__init__, undefined, #"killstreaks");
 }
@@ -481,14 +481,14 @@ function givecrateweapon(weapon_name)
 	if(currentweapon == weapon || self hasweapon(weapon))
 	{
 		self givemaxammo(weapon);
-		return 1;
+		return true;
 	}
 	if(currentweapon.issupplydropweapon || isdefined(level.grenade_array[currentweapon]) || isdefined(level.inventory_array[currentweapon]))
 	{
 		self takeweapon(self.lastdroppableweapon);
 		self giveweapon(weapon);
 		self switchtoweapon(weapon);
-		return 1;
+		return true;
 	}
 	self stats::function_e24eec31(weapon, #"used", 1);
 	givespecializedcrateweapon(weapon);
@@ -496,7 +496,7 @@ function givecrateweapon(weapon_name)
 	self switchtoweapon(weapon);
 	self waittill(#"weapon_change");
 	self killstreak_weapons::usekillstreakweaponfromcrate(weapon);
-	return 1;
+	return true;
 }
 
 /*
@@ -541,7 +541,7 @@ function usesupplydropmarker(package_contents_id, context)
 			if(notifystring._notify != trigger_event)
 			{
 				cleanup(context, player);
-				return 0;
+				return false;
 			}
 		}
 		if(isdefined(player.markerposition))
@@ -553,9 +553,9 @@ function usesupplydropmarker(package_contents_id, context)
 	if(supplydropweapon == level.weaponnone)
 	{
 		cleanup(context, player);
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -572,9 +572,9 @@ function issupplydropgrenadeallowed(killstreak)
 	if(!self killstreakrules::iskillstreakallowed(killstreak, self.team, 1))
 	{
 		self killstreaks::switch_to_last_non_killstreak_weapon();
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -620,7 +620,7 @@ function function_4c0ed253(location, context)
 	{
 		if(distance2dsquared(droplocation, location) < 3600)
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(context.perform_physics_trace === 1)
@@ -646,7 +646,7 @@ function function_4c0ed253(location, context)
 				{
 					util::drawcylinder(trace[#"position"], context.radius, 8000, 0.01666667, undefined, (1, 0, 0), 0.7);
 				}
-				return 0;
+				return false;
 			}
 		}
 	}
@@ -654,7 +654,7 @@ function function_4c0ed253(location, context)
 	{
 		util::drawcylinder(trace[#"position"], context.radius, 8000, 0.01666667, undefined, (0, 1, 0), 0.7);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -797,7 +797,7 @@ function use_killstreak_death_machine(killstreak)
 {
 	if(!self killstreakrules::iskillstreakallowed(killstreak, self.team, 1))
 	{
-		return 0;
+		return false;
 	}
 	weapon = getweapon(#"minigun");
 	currentweapon = self getcurrentweapon();
@@ -807,7 +807,7 @@ function use_killstreak_death_machine(killstreak)
 		self giveweapon(weapon);
 		self switchtoweapon(weapon);
 		self setblockweaponpickup(weapon, 1);
-		return 1;
+		return true;
 	}
 	level thread popups::displayteammessagetoall(#"hash_3b566d06e5a482e1", self);
 	level weapons::add_limited_weapon(weapon, self, 3);
@@ -815,7 +815,7 @@ function use_killstreak_death_machine(killstreak)
 	self giveweapon(weapon);
 	self switchtoweapon(weapon);
 	self setblockweaponpickup(weapon, 1);
-	return 1;
+	return true;
 }
 
 /*
@@ -831,7 +831,7 @@ function use_killstreak_grim_reaper(killstreak)
 {
 	if(!self killstreakrules::iskillstreakallowed(killstreak, self.team, 1))
 	{
-		return 0;
+		return false;
 	}
 	weapon = getweapon(#"m202_flash");
 	currentweapon = self getcurrentweapon();
@@ -841,14 +841,14 @@ function use_killstreak_grim_reaper(killstreak)
 		self giveweapon(weapon);
 		self switchtoweapon(weapon);
 		self setblockweaponpickup(weapon, 1);
-		return 1;
+		return true;
 	}
 	level weapons::add_limited_weapon(weapon, self, 3);
 	self takeweapon(currentweapon);
 	self giveweapon(weapon);
 	self switchtoweapon(weapon);
 	self setblockweaponpickup(weapon, 1);
-	return 1;
+	return true;
 }
 
 /*
@@ -963,7 +963,7 @@ function function_200081db(owner, context, location)
 	killstreak_id = self killstreakrules::killstreakstart("supply_drop", team, 0, 1);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	bundle = struct::get_script_bundle("killstreak", "killstreak_supply_drop");
 	killstreak = killstreaks::get_killstreak_for_weapon(bundle.var_1ab696c6);
@@ -988,10 +988,10 @@ function function_36573ef(killstreak_id, context, team)
 	self notify(#"supply_drop_marker_done");
 	if(!(isdefined(result) && result))
 	{
-		return 0;
+		return false;
 	}
 	self killstreaks::play_killstreak_start_dialog("supply_drop", team, killstreak_id);
-	return 1;
+	return true;
 }
 
 /*
@@ -1134,20 +1134,26 @@ function supplydropgrenadetimeout(team, killstreak_id, weapon)
 		killstreakrules::killstreakstop("tank_robot", team, killstreak_id);
 		self notify(#"cleanup_marker");
 	}
-	else if(weapon.name == #"inventory_tank_robot")
+	else
 	{
-		killstreakrules::killstreakstop("inventory_tank_robot", team, killstreak_id);
-		self notify(#"cleanup_marker");
-	}
-	else if(weapon.name == #"combat_robot_drop")
-	{
-		killstreakrules::killstreakstop("combat_robot_drop", team, killstreak_id);
-		self notify(#"cleanup_marker");
-	}
-	else if(weapon.name == #"inventory_combat_robot_drop")
-	{
-		killstreakrules::killstreakstop("inventory_combat_robot_drop", team, killstreak_id);
-		self notify(#"cleanup_marker");
+		if(weapon.name == #"inventory_tank_robot")
+		{
+			killstreakrules::killstreakstop("inventory_tank_robot", team, killstreak_id);
+			self notify(#"cleanup_marker");
+		}
+		else
+		{
+			if(weapon.name == #"combat_robot_drop")
+			{
+				killstreakrules::killstreakstop("combat_robot_drop", team, killstreak_id);
+				self notify(#"cleanup_marker");
+			}
+			else if(weapon.name == #"inventory_combat_robot_drop")
+			{
+				killstreakrules::killstreakstop("inventory_combat_robot_drop", team, killstreak_id);
+				self notify(#"cleanup_marker");
+			}
+		}
 	}
 	self delete();
 }
@@ -1243,31 +1249,34 @@ function crateactivate(hacker)
 			self.enemyobjid[self.enemyobjid.size] = crateobjid;
 		}
 	}
-	else if(!self.visibletoall)
+	else
 	{
-		objective_setinvisibletoall(crateobjid);
-		enemycrateobjid = gameobjects::get_next_obj_id();
-		objective_add(enemycrateobjid, "invisible", self.origin);
-		objective_setstate(enemycrateobjid, "active");
+		if(!self.visibletoall)
+		{
+			objective_setinvisibletoall(crateobjid);
+			enemycrateobjid = gameobjects::get_next_obj_id();
+			objective_add(enemycrateobjid, "invisible", self.origin);
+			objective_setstate(enemycrateobjid, "active");
+			if(isplayer(self.owner))
+			{
+				objective_setinvisibletoplayer(enemycrateobjid, self.owner);
+			}
+			self.enemyobjid[self.enemyobjid.size] = enemycrateobjid;
+		}
 		if(isplayer(self.owner))
 		{
-			objective_setinvisibletoplayer(enemycrateobjid, self.owner);
+			objective_setvisibletoplayer(crateobjid, self.owner);
 		}
-		self.enemyobjid[self.enemyobjid.size] = enemycrateobjid;
-	}
-	if(isplayer(self.owner))
-	{
-		objective_setvisibletoplayer(crateobjid, self.owner);
-	}
-	if(isdefined(self.hacker))
-	{
-		objective_setinvisibletoplayer(crateobjid, self.hacker);
-		crateobjid = gameobjects::get_next_obj_id();
-		objective_add(crateobjid, "invisible", self.origin);
-		objective_setstate(crateobjid, "active");
-		objective_setinvisibletoall(crateobjid);
-		objective_setvisibletoplayer(crateobjid, self.hacker);
-		self.hackerobjid = crateobjid;
+		if(isdefined(self.hacker))
+		{
+			objective_setinvisibletoplayer(crateobjid, self.hacker);
+			crateobjid = gameobjects::get_next_obj_id();
+			objective_add(crateobjid, "invisible", self.origin);
+			objective_setstate(crateobjid, "active");
+			objective_setinvisibletoall(crateobjid);
+			objective_setvisibletoplayer(crateobjid, self.hacker);
+			self.hackerobjid = crateobjid;
+		}
 	}
 	if(!self.visibletoall && isdefined(icon))
 	{
@@ -1975,21 +1984,30 @@ function dropcrate(origin, angle, killstreak, owner, team, killcament, killstrea
 	{
 		crate function_1f686c3b(v_target_location);
 	}
-	else if(!getdvarint(#"hash_763d6ee8f054423f", 0) && isdefined(v_target_location))
-	{
-		crate cratecontrolleddrop(killstreak, (v_target_location[0], v_target_location[1], v_target_location[2] + 10));
-	}
-	else if(isdefined(var_83f3c388))
-	{
-		crate cratecontrolleddrop(killstreak, (var_83f3c388[0], var_83f3c388[1], var_83f3c388[2] + 10));
-	}
-	else if(isdefined(owner.markerposition))
-	{
-		crate cratecontrolleddrop(killstreak, (owner.markerposition[0], owner.markerposition[1], owner.markerposition[2] + 10));
-	}
 	else
 	{
-		crate cratecontrolleddrop(killstreak, v_target_location);
+		if(!getdvarint(#"hash_763d6ee8f054423f", 0) && isdefined(v_target_location))
+		{
+			crate cratecontrolleddrop(killstreak, (v_target_location[0], v_target_location[1], v_target_location[2] + 10));
+		}
+		else
+		{
+			if(isdefined(var_83f3c388))
+			{
+				crate cratecontrolleddrop(killstreak, (var_83f3c388[0], var_83f3c388[1], var_83f3c388[2] + 10));
+			}
+			else
+			{
+				if(isdefined(owner.markerposition))
+				{
+					crate cratecontrolleddrop(killstreak, (owner.markerposition[0], owner.markerposition[1], owner.markerposition[2] + 10));
+				}
+				else
+				{
+					crate cratecontrolleddrop(killstreak, v_target_location);
+				}
+			}
+		}
 	}
 	crate thread hacker_tool::registerwithhackertool(level.carepackagehackertoolradius, level.carepackagehackertooltimems);
 	cleanup(context, owner);
@@ -2687,9 +2705,9 @@ function useholdthink(player, usetime)
 	}
 	if(isdefined(result) && result)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2705,41 +2723,41 @@ function continueholdthinkloop(player)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self.curprogress >= self.usetime)
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(player))
 	{
-		return 0;
+		return false;
 	}
 	if(player.throwinggrenade)
 	{
-		return 0;
+		return false;
 	}
 	if(!player usebuttonpressed())
 	{
-		return 0;
+		return false;
 	}
 	if(player meleebuttonpressed())
 	{
-		return 0;
+		return false;
 	}
 	if(player isinvehicle())
 	{
-		return 0;
+		return false;
 	}
 	if(player isweaponviewonlylinked())
 	{
-		return 0;
+		return false;
 	}
 	if(player isremotecontrolling())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2846,15 +2864,18 @@ function personalusebar(object)
 		capturecratestate = 2;
 		self playlocalsound(#"evt_hacker_hacking");
 	}
-	else if(self hasperk(#"specialty_showenemyequipment") && isdefined(object.hacker) && (object.owner == self || (level.teambased && object.owner.team == self.team)))
-	{
-		capturecratestate = 3;
-		self playlocalsound(#"evt_hacker_hacking");
-	}
 	else
 	{
-		capturecratestate = 1;
-		self.is_capturing_own_supply_drop = object.owner === self && (!isdefined(object.originalowner) || object.originalowner == self);
+		if(self hasperk(#"specialty_showenemyequipment") && isdefined(object.hacker) && (object.owner == self || (level.teambased && object.owner.team == self.team)))
+		{
+			capturecratestate = 3;
+			self playlocalsound(#"evt_hacker_hacking");
+		}
+		else
+		{
+			capturecratestate = 1;
+			self.is_capturing_own_supply_drop = object.owner === self && (!isdefined(object.originalowner) || object.originalowner == self);
+		}
 	}
 	lastrate = -1;
 	while(isalive(self) && isdefined(object) && object.inuse && !level.gameended)
@@ -3375,19 +3396,19 @@ function getchopperdroppoint(context)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7d90f954(drop_origin, context)
+function private function_7d90f954(drop_origin, context)
 {
 	if(ispointonnavmesh(drop_origin, context.dist_from_boundary))
 	{
 		/#
 			recordsphere(drop_origin + vectorscale((0, 0, 1), 10), 2, (0, 1, 0), "");
 		#/
-		return 1;
+		return true;
 	}
 	/#
 		recordsphere(drop_origin + vectorscale((0, 0, 1), 10), 2, (1, 0, 0), "");
 	#/
-	return 0;
+	return false;
 }
 
 /*
@@ -3399,19 +3420,19 @@ private function function_7d90f954(drop_origin, context)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_75277c27(tacpoint, context)
+function private function_75277c27(tacpoint, context)
 {
 	if(isdefined(tacpoint.var_eadc2c7d) && tacpoint.var_eadc2c7d >= 4000)
 	{
 		/#
 			recordsphere(tacpoint.origin, 2, (0, 1, 0), "");
 		#/
-		return 1;
+		return true;
 	}
 	/#
 		recordsphere(tacpoint.origin, 2, (1, 0, 0), "");
 	#/
-	return 0;
+	return false;
 }
 
 /*
@@ -3423,7 +3444,7 @@ private function function_75277c27(tacpoint, context)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9153c267(drop_origin, context, drop_height)
+function private function_9153c267(drop_origin, context, drop_height)
 {
 	if(isdefined(level.var_e071ed64) && level.var_e071ed64)
 	{
@@ -3434,14 +3455,14 @@ private function function_9153c267(drop_origin, context, drop_height)
 			/#
 				recordsphere(drop_origin + vectorscale((0, 0, 1), 20), 2, (0, 1, 0), "");
 			#/
-			return 1;
+			return true;
 		}
 		/#
 			recordsphere(drop_origin + vectorscale((0, 0, 1), 20), 2, (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -3453,7 +3474,7 @@ private function function_9153c267(drop_origin, context, drop_height)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_accec5c5(drop_origin, context, drop_height)
+function private function_accec5c5(drop_origin, context, drop_height)
 {
 	mask = 1;
 	radius = 30;
@@ -3464,12 +3485,12 @@ private function function_accec5c5(drop_origin, context, drop_height)
 		/#
 			recordsphere(drop_origin + vectorscale((0, 0, 1), 20), 2, (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	/#
 		recordsphere(drop_origin + vectorscale((0, 0, 1), 20), 2, (0, 1, 0), "");
 	#/
-	return 1;
+	return true;
 }
 
 /*
@@ -3481,7 +3502,7 @@ private function function_accec5c5(drop_origin, context, drop_height)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_fc826e6(tacpoints, context, drop_height)
+function private function_fc826e6(tacpoints, context, drop_height)
 {
 	/#
 		assert(isdefined(tacpoints) && tacpoints.size);
@@ -3709,15 +3730,18 @@ function helidelivercrate(origin, weapon, owner, team, killstreak_id, package_co
 			goal_path_setup_needs_finishing = 1;
 		}
 	}
-	else if(isdefined(context.dropoffset))
-	{
-		goalpath = supplydrophelistartpath_v2_setup(heli_drop_goal, context.dropoffset, 1);
-		supplydrophelistartpath_v2_part2_local(heli_drop_goal, goalpath, context.dropoffset);
-	}
 	else
 	{
-		goalpath = supplydrophelistartpath_v2_setup(heli_drop_goal, (rear_hatch_offset_local, 0, 0), 1);
-		goal_path_setup_needs_finishing = 1;
+		if(isdefined(context.dropoffset))
+		{
+			goalpath = supplydrophelistartpath_v2_setup(heli_drop_goal, context.dropoffset, 1);
+			supplydrophelistartpath_v2_part2_local(heli_drop_goal, goalpath, context.dropoffset);
+		}
+		else
+		{
+			goalpath = supplydrophelistartpath_v2_setup(heli_drop_goal, (rear_hatch_offset_local, 0, 0), 1);
+			goal_path_setup_needs_finishing = 1;
+		}
 	}
 	spawn_angles = vectortoangles((heli_drop_goal[0], heli_drop_goal[1], 0) - (goalpath.start[0], goalpath.start[1], 0));
 	if(isdefined(context.vehiclename))

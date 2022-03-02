@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_67d1c49d4f76fc41", &__init__, &__main__, undefined);
 }
@@ -1732,7 +1732,7 @@ function function_9c943ad6(var_b594a2cd, var_af50df89)
 			}
 			var_b594a2cd.debug[var_b594a2cd.debug.size] = "";
 		#/
-		return 0;
+		return false;
 	}
 	var_87b53013 = var_b594a2cd.action.name;
 	scorestreakweapon = var_b594a2cd.weapon;
@@ -1752,7 +1752,7 @@ function function_9c943ad6(var_b594a2cd, var_af50df89)
 			}
 			var_b594a2cd.debug[var_b594a2cd.debug.size] = "";
 		#/
-		return 0;
+		return false;
 	}
 	if(self killstreakrules::iskillstreakallowed(var_87b53013, self.team) == 0)
 	{
@@ -1767,7 +1767,7 @@ function function_9c943ad6(var_b594a2cd, var_af50df89)
 			}
 			var_b594a2cd.debug[var_b594a2cd.debug.size] = "";
 		#/
-		return 0;
+		return false;
 	}
 	if(var_af50df89 == self bot::has_visible_enemy())
 	{
@@ -1782,9 +1782,9 @@ function function_9c943ad6(var_b594a2cd, var_af50df89)
 			}
 			var_b594a2cd.debug[var_b594a2cd.debug.size] = "";
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

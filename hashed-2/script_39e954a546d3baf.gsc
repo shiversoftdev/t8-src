@@ -165,9 +165,9 @@ function function_e12de7f5(n_round_number)
 {
 	if(isdefined(level.var_26a5066b[n_round_number]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -183,9 +183,9 @@ function function_e37823df()
 {
 	if(getdvarint(#"hash_4d13a1555fce5382", 1) || level flag::exists("doorbuy_key_active"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -205,13 +205,13 @@ function function_5f8f4d1b(e_door)
 		{
 			if(e_door.script_flag === function_e9661a10())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -264,9 +264,9 @@ function function_ea30ebf3()
 {
 	if(isdefined(level.var_44dcd588))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -331,13 +331,13 @@ function function_880bd896()
 {
 	if(isdefined(level.var_9cec6237) && level.var_9cec6237 > 0)
 	{
-		return 1;
+		return true;
 	}
 	if(!isdefined(level.var_9cec6237))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -393,7 +393,7 @@ function function_1409b164()
 */
 function function_f4c60360()
 {
-	return (isdefined(level.flag_count[#"doorbuy_key_active"]) ? level.flag_count[#"doorbuy_key_active"] : 0);
+	return true;
 }
 
 /*
@@ -539,13 +539,16 @@ function function_214563e(var_35200797 = 1, stop_time_travel_on_)
 			self clientfield::set("debrisbuy_ambient_fx", 1);
 		}
 	}
-	else if(stop_time_travel_on_ == "symbol_front" || stop_time_travel_on_ == "symbol_back")
-	{
-		self clientfield::set("doorbuy_ambient_fx", 0);
-	}
 	else
 	{
-		self clientfield::set("debrisbuy_ambient_fx", 0);
+		if(stop_time_travel_on_ == "symbol_front" || stop_time_travel_on_ == "symbol_back")
+		{
+			self clientfield::set("doorbuy_ambient_fx", 0);
+		}
+		else
+		{
+			self clientfield::set("debrisbuy_ambient_fx", 0);
+		}
 	}
 }
 
@@ -923,15 +926,18 @@ function function_40ef77ab(var_573c22c3, b_random = 1)
 	{
 		var_94bc902 = array::random(var_3a1a007d);
 	}
-	else if(!isdefined(level.var_f05f7e16[var_573c22c3].var_39c67257))
+	else
 	{
-		level.var_f05f7e16[var_573c22c3].var_39c67257 = 0;
-	}
-	var_94bc902 = level.var_f05f7e16[var_573c22c3].var_cc0c35ca[level.var_f05f7e16[var_573c22c3].var_39c67257];
-	level.var_f05f7e16[var_573c22c3].var_39c67257++;
-	if(level.var_f05f7e16[var_573c22c3].var_39c67257 >= level.var_f05f7e16[var_573c22c3].var_cc0c35ca.size)
-	{
-		level.var_f05f7e16[var_573c22c3].var_39c67257 = 0;
+		if(!isdefined(level.var_f05f7e16[var_573c22c3].var_39c67257))
+		{
+			level.var_f05f7e16[var_573c22c3].var_39c67257 = 0;
+		}
+		var_94bc902 = level.var_f05f7e16[var_573c22c3].var_cc0c35ca[level.var_f05f7e16[var_573c22c3].var_39c67257];
+		level.var_f05f7e16[var_573c22c3].var_39c67257++;
+		if(level.var_f05f7e16[var_573c22c3].var_39c67257 >= level.var_f05f7e16[var_573c22c3].var_cc0c35ca.size)
+		{
+			level.var_f05f7e16[var_573c22c3].var_39c67257 = 0;
+		}
 	}
 	if(isdefined(var_94bc902))
 	{
@@ -1101,7 +1107,7 @@ function function_76321cf4(b_enable = 1)
 function function_33798535(var_31721422, a_str_zones, var_ed1db1a7, var_6cc77d4e = #"hash_683cf7d37afcc3ae", var_de0f1997 = 45, var_f7c3c527 = 60, var_232e4ebc = 0, var_b96be97f = undefined)
 {
 	level notify(#"hash_54000f24a644ad32");
-	level endon_callback(&function_a5f4503c, #"end_game", #"hash_54000f24a644ad32");
+	level endoncallback(&function_a5f4503c, #"end_game", #"hash_54000f24a644ad32");
 	if(!isdefined(a_str_zones))
 	{
 		a_str_zones = [];
@@ -1618,7 +1624,7 @@ function function_7042bcf9(a_str_zones)
 function player_left_zone(a_str_zones, var_8e2567b1, var_9faecc20)
 {
 	self endon(#"disconnect");
-	level endon_callback(&function_4cf5b2e1, #"end_game", #"hash_7a04a7fb98fa4e4d");
+	level endoncallback(&function_4cf5b2e1, #"end_game", #"hash_7a04a7fb98fa4e4d");
 	while(true)
 	{
 		n_time = (isdefined(var_8e2567b1) ? var_8e2567b1 : 5);
@@ -1638,17 +1644,23 @@ function player_left_zone(a_str_zones, var_8e2567b1, var_9faecc20)
 					self namespace_b22c99a5::start_timer(n_time);
 				}
 			}
-			else if(level.var_f995ece6 zm_trial_timer::is_open(self))
+			else
+			{
+				if(level.var_f995ece6 zm_trial_timer::is_open(self))
+				{
+					level.var_f995ece6 zm_trial_timer::close(self);
+				}
+				self namespace_b22c99a5::stop_timer();
+			}
+		}
+		else
+		{
+			if(level.var_f995ece6 zm_trial_timer::is_open(self))
 			{
 				level.var_f995ece6 zm_trial_timer::close(self);
 			}
 			self namespace_b22c99a5::stop_timer();
 		}
-		else if(level.var_f995ece6 zm_trial_timer::is_open(self))
-		{
-			level.var_f995ece6 zm_trial_timer::close(self);
-		}
-		self namespace_b22c99a5::stop_timer();
 		while(true)
 		{
 			if(self zm_zonemgr::is_player_in_zone(a_str_zones) && self.sessionstate !== "spectator")
@@ -1676,46 +1688,49 @@ function player_left_zone(a_str_zones, var_8e2567b1, var_9faecc20)
 					self dodamage(var_16e6b8ea, self.origin);
 				}
 			}
-			else if(self clientfield::get_to_player("zm_zone_out_of_bounds") == 0)
+			else
 			{
-				self clientfield::set_to_player("zm_zone_out_of_bounds", 1);
-			}
-			switch(n_time)
-			{
-				case 5:
+				if(self clientfield::get_to_player("zm_zone_out_of_bounds") == 0)
 				{
-					n_damage = int(self.maxhealth * (10 / self.maxhealth));
-					break;
+					self clientfield::set_to_player("zm_zone_out_of_bounds", 1);
 				}
-				case 4:
+				switch(n_time)
 				{
-					n_damage = int(self.maxhealth * (20 / self.maxhealth));
-					break;
+					case 5:
+					{
+						n_damage = int(self.maxhealth * (10 / self.maxhealth));
+						break;
+					}
+					case 4:
+					{
+						n_damage = int(self.maxhealth * (20 / self.maxhealth));
+						break;
+					}
+					case 3:
+					{
+						n_damage = int(self.maxhealth * (30 / self.maxhealth));
+						break;
+					}
+					case 2:
+					{
+						n_damage = int(self.maxhealth * (40 / self.maxhealth));
+						break;
+					}
+					case 1:
+					{
+						n_damage = int(self.maxhealth * (45 / self.maxhealth));
+						break;
+					}
+					default:
+					{
+						n_damage = int(self.maxhealth * (150 / self.maxhealth));
+						break;
+					}
 				}
-				case 3:
+				if(!(isdefined(self.var_16735873) && self.var_16735873))
 				{
-					n_damage = int(self.maxhealth * (30 / self.maxhealth));
-					break;
+					self dodamage(n_damage, self.origin);
 				}
-				case 2:
-				{
-					n_damage = int(self.maxhealth * (40 / self.maxhealth));
-					break;
-				}
-				case 1:
-				{
-					n_damage = int(self.maxhealth * (45 / self.maxhealth));
-					break;
-				}
-				default:
-				{
-					n_damage = int(self.maxhealth * (150 / self.maxhealth));
-					break;
-				}
-			}
-			if(!(isdefined(self.var_16735873) && self.var_16735873))
-			{
-				self dodamage(n_damage, self.origin);
 			}
 			if(!isalive(self) || self laststand::player_is_in_laststand())
 			{

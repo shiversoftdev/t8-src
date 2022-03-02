@@ -10,7 +10,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function initanimationmocomps()
+function autoexec initanimationmocomps()
 {
 	level._animationmocomps = [];
 }
@@ -36,13 +36,16 @@ event runanimationmocomp(eventstruct)
 	{
 		eventstruct.status = "asm_mocomp_start";
 	}
-	else if(eventstruct.status == 1)
-	{
-		eventstruct.status = "asm_mocomp_update";
-	}
 	else
 	{
-		eventstruct.status = "asm_mocomp_terminate";
+		if(eventstruct.status == 1)
+		{
+			eventstruct.status = "asm_mocomp_update";
+		}
+		else
+		{
+			eventstruct.status = "asm_mocomp_terminate";
+		}
 	}
 	animationmocompresult = eventstruct.entity [[level._animationmocomps[eventstruct.name][eventstruct.status]]](eventstruct.entity, eventstruct.delta_anim, eventstruct.blend_out_time, "", eventstruct.duration);
 	return animationmocompresult;

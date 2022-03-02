@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7822c558a509de9", &__init__, undefined, "bgb");
 }
@@ -38,7 +38,7 @@ function __init__()
 		return;
 	}
 	bgb::register(#"hash_7822c558a509de9", "time", 120, &enable, &disable, undefined, undefined);
-	bgb::function_430970f6(#"hash_7822c558a509de9", &function_ce76fa9f);
+	bgb::register_actor_damage_override(#"hash_7822c558a509de9", &function_ce76fa9f);
 }
 
 /*

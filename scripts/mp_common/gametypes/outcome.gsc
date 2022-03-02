@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	level.var_9b671c3c[#"tie"] = {#hash_6cab3b8e:1, #flag:"tie"};
 	level.var_9b671c3c[#"overtime"] = {#hash_6cab3b8e:2, #flag:"overtime"};
@@ -60,18 +60,18 @@ function is_winner(outcome, var_512330f1)
 	{
 		if(isdefined(outcome.players) && outcome.players.size && outcome.players[0] == var_512330f1)
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(outcome.team) && outcome.team == var_512330f1.team)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(isdefined(outcome.team) && outcome.team == var_512330f1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

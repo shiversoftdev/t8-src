@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7576c66086ab62aa", &__init__, &__main__, undefined);
 }
@@ -328,13 +328,13 @@ function function_3da195ec(weapon)
 {
 	if(!self function_6a7a1533(5))
 	{
-		return 0;
+		return false;
 	}
 	if(aat::is_exempt_weapon(weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -346,7 +346,7 @@ function function_3da195ec(weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_68992377(var_c5b25bc5, n_cash_back)
+function private function_68992377(var_c5b25bc5, n_cash_back)
 {
 	self endon(#"disconnect");
 	if(self function_6a7a1533(var_c5b25bc5))

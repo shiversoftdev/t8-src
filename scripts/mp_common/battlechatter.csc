@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"battlechatter", &__init__, undefined, undefined);
 }
@@ -257,54 +257,54 @@ function function_d804d2f0(localclientnum, var_70b80ca6, player, allyradiussq)
 {
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(player.origin))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(player))
 	{
-		return 0;
+		return false;
 	}
 	if(player underwater())
 	{
-		return 0;
+		return false;
 	}
 	if(player isdriving(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(function_e75c64a4(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(var_70b80ca6))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(var_70b80ca6.origin))
 	{
-		return 0;
+		return false;
 	}
 	if(player == var_70b80ca6 || player.team != var_70b80ca6.team)
 	{
-		return 0;
+		return false;
 	}
 	if(player function_715f2ffc(var_70b80ca6))
 	{
-		return 0;
+		return false;
 	}
 	if(player hasperk(localclientnum, "specialty_quieter"))
 	{
-		return 0;
+		return false;
 	}
 	distsq = distancesquared(var_70b80ca6.origin, player.origin);
 	if(distsq > allyradiussq)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -723,10 +723,10 @@ function function_506f762f(weapon)
 		case "hash_52aca7c35be649b8":
 		case "gadget_cleanse":
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -785,13 +785,13 @@ function function_5d7ad9a9(hacker, originalowner)
 {
 	if(!isdefined(originalowner) || !isplayer(originalowner) || !originalowner function_21c0fa55())
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(hacker) || !isplayer(hacker) || !isalive(hacker))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1019,13 +1019,16 @@ function function_bf569dab(hacker, originalowner, eventid, weapon)
 	{
 		var_2131493 = playerbundle.var_489ef66b;
 	}
-	else if(eventid === 4)
+	else
 	{
-		var_2131493 = playerbundle.var_5545b3a1;
-	}
-	else if(eventid === 5)
-	{
-		var_2131493 = playerbundle.var_1037850d;
+		if(eventid === 4)
+		{
+			var_2131493 = playerbundle.var_5545b3a1;
+		}
+		else if(eventid === 5)
+		{
+			var_2131493 = playerbundle.var_1037850d;
+		}
 	}
 	if(!isdefined(var_2131493))
 	{

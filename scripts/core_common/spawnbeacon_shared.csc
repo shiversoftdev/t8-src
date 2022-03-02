@@ -42,7 +42,7 @@ function setupclientfields()
 	Parameters: 7
 	Flags: Private
 */
-private function spawnbeacon_placed(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private spawnbeacon_placed(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
 	self util::waittill_dobj(localclientnum);

@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init()
+function autoexec init()
 {
 	if(!isdefined(level.givestartloadout))
 	{
@@ -92,10 +92,10 @@ function allteamshaveexisted()
 	{
 		if(!level.everexisted[team])
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -111,15 +111,15 @@ function mayspawn()
 {
 	if(isdefined(level.playermayspawn) && !self [[level.playermayspawn]]())
 	{
-		return 0;
+		return false;
 	}
 	if(level.inovertime)
 	{
-		return 0;
+		return false;
 	}
 	if(level.playerqueuedrespawn && !isdefined(self.allowqueuespawn) && !level.ingraceperiod && !level.usestartspawns)
 	{
-		return 0;
+		return false;
 	}
 	if(level.numlives)
 	{
@@ -133,17 +133,17 @@ function mayspawn()
 		}
 		if(!self.pers[#"lives"] && gamehasstarted)
 		{
-			return 0;
+			return false;
 		}
 		if(gamehasstarted)
 		{
 			if(!level.ingraceperiod && !self.hasspawned && !isbot(self))
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -640,13 +640,16 @@ function spawnintermission(usedefaultcallback)
 			{
 				self playlocalsound(#"mus_level_up");
 			}
-			else if(self.postgamecontracts)
+			else
 			{
-				self playlocalsound(#"mus_challenge_complete");
-			}
-			else if(self.postgamemilestones)
-			{
-				self playlocalsound(#"mus_contract_complete");
+				if(self.postgamecontracts)
+				{
+					self playlocalsound(#"mus_challenge_complete");
+				}
+				else if(self.postgamemilestones)
+				{
+					self playlocalsound(#"mus_contract_complete");
+				}
 			}
 			self closeingamemenu();
 			waittime = 4;
@@ -755,20 +758,20 @@ function allteamsnearscorelimit()
 {
 	if(!level.teambased)
 	{
-		return 0;
+		return false;
 	}
 	if(level.scorelimit <= 1)
 	{
-		return 0;
+		return false;
 	}
 	foreach(team, _ in level.teams)
 	{
 		if(!game.stat[#"teamscores"][team] >= (level.scorelimit - 1))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -784,21 +787,21 @@ function shouldshowrespawnmessage()
 {
 	if(util::waslastround())
 	{
-		return 0;
+		return false;
 	}
 	if(util::isoneround())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.livesdonotreset) && level.livesdonotreset)
 	{
-		return 0;
+		return false;
 	}
 	if(allteamsnearscorelimit())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

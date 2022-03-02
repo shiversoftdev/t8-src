@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_challenges", &__init__, &__main__, undefined);
 }
@@ -405,21 +405,24 @@ function death_check_for_challenge_updates(e_attacker)
 		e_attacker stats::function_e24eec31(w_damage, #"hash_289883e2f7a6af52", 1);
 		e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_289883e2f7a6af52", #"statvalue", 1);
 	}
-	else if(zm_weapons::is_weapon_upgraded(w_damage))
-	{
-		/#
-			e_attacker debug_print("");
-		#/
-		e_attacker zm_stats::increment_challenge_stat(#"zombie_hunter_kill_packapunch");
-		e_attacker zm_stats::function_c0c6ab19(#"hash_5d3dce1c38a95835");
-		e_attacker contracts::function_5b88297d(#"hash_3178840f53beab88");
-		var_27b9587 = zm_weapons::get_base_weapon(w_damage);
-		e_attacker stats::function_e24eec31(w_damage, #"hash_289883e2f7a6af52", 1);
-		e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_289883e2f7a6af52", #"statvalue", 1);
-	}
 	else
 	{
-		var_27b9587 = zm_weapons::function_386dacbc(w_damage);
+		if(zm_weapons::is_weapon_upgraded(w_damage))
+		{
+			/#
+				e_attacker debug_print("");
+			#/
+			e_attacker zm_stats::increment_challenge_stat(#"zombie_hunter_kill_packapunch");
+			e_attacker zm_stats::function_c0c6ab19(#"hash_5d3dce1c38a95835");
+			e_attacker contracts::function_5b88297d(#"hash_3178840f53beab88");
+			var_27b9587 = zm_weapons::get_base_weapon(w_damage);
+			e_attacker stats::function_e24eec31(w_damage, #"hash_289883e2f7a6af52", 1);
+			e_attacker stats::inc_stat(#"hash_162f9b6a10fa7d66", w_damage.name, #"hash_289883e2f7a6af52", #"statvalue", 1);
+		}
+		else
+		{
+			var_27b9587 = zm_weapons::function_386dacbc(w_damage);
+		}
 	}
 	if(zm_weapons::is_wonder_weapon(w_damage))
 	{
@@ -882,7 +885,7 @@ function on_challenge_complete(params)
 */
 function is_challenge(n_challenge_index)
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -919,7 +922,7 @@ function function_9a9ab6f6(var_1c48b665)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b892d1da()
+function private function_b892d1da()
 {
 	var_684d09cd = array(#"perk_additional_primary_weapon", #"hash_420c7fd6609f0966", #"hash_69fcf7d746edeeaf", #"perk_dead_shot", #"hash_53548db163b3a77e", #"hash_e58ff2df5bfd9b3", #"perk_electric_cherry", #"perk_quick_revive", #"hash_63e46074d37d524b", #"perk_staminup", #"hash_452086e4c25a6fe4", #"hash_2d1dfb82ebcbdb7d", #"perk_widows_wine");
 	foreach(var_9b9f4901 in var_684d09cd)

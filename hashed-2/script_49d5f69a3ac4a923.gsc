@@ -157,7 +157,7 @@ function function_b05ed2fa()
 	self function_d4c687c9();
 	self pathmode("move allowed");
 	self setgoal(self.exit_spawn.origin, 0, 32);
-	self waittill_timeout(10, #"goal");
+	self waittilltimeout(10, #"goal");
 	waittillframeend();
 	self delete();
 }

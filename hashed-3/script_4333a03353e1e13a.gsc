@@ -275,9 +275,9 @@ function function_96dcf25a(e_player)
 	if(!isdefined(e_player.var_2e6aa97d))
 	{
 		self sethintstring("ZM_ORANGE/GRAB_HEAT_PACK_FREE");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -398,9 +398,9 @@ function function_43a1c155(e_player)
 	if(level flag::get("power_on3") && level flag::get("facility_flinger_fixed"))
 	{
 		self sethintstring("ZM_ORANGE/FLINGER_DESINATION_NOT_UNLOCKED");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -502,10 +502,10 @@ function function_385a554d()
 	{
 		if(e_player istouching(self))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -713,28 +713,37 @@ function fling_player(v_flinger)
 {
 	self notify("3b76e3952b019122");
 	self endon("3b76e3952b019122");
-	self endon_callback(&function_22f94688, #"bled_out", #"disconnect");
+	self endoncallback(&function_22f94688, #"bled_out", #"disconnect");
 	self.var_c1d4f4d9 = spawn("script_origin", self.origin);
 	self function_6cbea0ea();
 	if(v_flinger.str_location === "ship")
 	{
 		var_9d84111 = randomintrange(700, 800);
 	}
-	else if(v_flinger.str_location === "facility")
+	else
 	{
-		var_9d84111 = randomintrange(1100, 1150);
-	}
-	else if(v_flinger.str_location === "island")
-	{
-		var_9d84111 = randomintrange(800, 900);
-	}
-	else if(v_flinger.str_location === "island_return")
-	{
-		var_9d84111 = randomintrange(700, 800);
-	}
-	else if(v_flinger.str_location === "hell_start")
-	{
-		var_9d84111 = randomintrange(700, 800);
+		if(v_flinger.str_location === "facility")
+		{
+			var_9d84111 = randomintrange(1100, 1150);
+		}
+		else
+		{
+			if(v_flinger.str_location === "island")
+			{
+				var_9d84111 = randomintrange(800, 900);
+			}
+			else
+			{
+				if(v_flinger.str_location === "island_return")
+				{
+					var_9d84111 = randomintrange(700, 800);
+				}
+				else if(v_flinger.str_location === "hell_start")
+				{
+					var_9d84111 = randomintrange(700, 800);
+				}
+			}
+		}
 	}
 	n_index = zm_fasttravel::get_player_index(self);
 	if(isdefined(self.var_e5340f3e) && self.var_e5340f3e)
@@ -887,7 +896,7 @@ function function_6cbea0ea()
 */
 function function_4a54c378()
 {
-	self endon_callback(&function_9d729023, #"bled_out", #"disconnect");
+	self endoncallback(&function_9d729023, #"bled_out", #"disconnect");
 	self.var_e63ac5c = 0;
 	self.var_f22c83f5 = 0;
 	self.var_e75517b1 = 0;
@@ -984,7 +993,7 @@ function function_8bf0a961(e_player)
 {
 	str_hint = zm_utility::function_d6046228(#"hash_2f95fd18fc037b20", #"hash_7f5464b25d90d8c");
 	self sethintstring(str_hint);
-	return 1;
+	return true;
 }
 
 /*
@@ -1060,7 +1069,7 @@ function function_9b789e22(e_player)
 {
 	str_hint = zm_utility::function_d6046228(#"hash_49ef4d8e3753ac8d", #"hash_b80e393ce68873");
 	self sethintstring(str_hint);
-	return 1;
+	return true;
 }
 
 /*
@@ -1159,13 +1168,16 @@ function fling_ai(v_flinger)
 	{
 		var_83be5b2c = randomintrange(275, 350);
 	}
-	else if(v_flinger.str_location === "facility")
+	else
 	{
-		var_83be5b2c = randomintrange(350, 750);
-	}
-	else if(v_flinger.str_location === "island")
-	{
-		var_83be5b2c = randomintrange(275, 350);
+		if(v_flinger.str_location === "facility")
+		{
+			var_83be5b2c = randomintrange(350, 750);
+		}
+		else if(v_flinger.str_location === "island")
+		{
+			var_83be5b2c = randomintrange(275, 350);
+		}
 	}
 	var_dc0cf615 = var_e4794129 * var_83be5b2c;
 	var_3bbf57d2 = function_42460442();

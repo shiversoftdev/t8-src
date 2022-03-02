@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_535840aa7a1edbf3", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_899c6d17)
+function private function_d1de6a85(var_899c6d17)
 {
 	if(isdefined(var_899c6d17))
 	{
@@ -75,7 +75,7 @@ private function function_d1de6a85(var_899c6d17)
 	Parameters: 1
 	Flags: Private
 */
-private function function_25f2b64(var_899c6d17)
+function private function_25f2b64(var_899c6d17)
 {
 	if(self bgb::is_enabled(#"zm_bgb_shopping_free"))
 	{
@@ -96,7 +96,7 @@ private function function_25f2b64(var_899c6d17)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 }
 

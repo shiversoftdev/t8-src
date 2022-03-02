@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bot", &__init__, undefined, undefined);
 }
@@ -150,7 +150,7 @@ function on_player_spawned()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_70e42260()
+function private function_70e42260()
 {
 	if(isprofilebuild())
 	{
@@ -449,7 +449,7 @@ function function_1f9de69d(var_40b86c4b)
 {
 	if(!isdefined(var_40b86c4b))
 	{
-		return 0;
+		return false;
 	}
 	players = getplayers();
 	foreach(player in players)
@@ -461,10 +461,10 @@ function function_1f9de69d(var_40b86c4b)
 		currentzone = player zm_utility::get_current_zone();
 		if(currentzone === var_40b86c4b)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

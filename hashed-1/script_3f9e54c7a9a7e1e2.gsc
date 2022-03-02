@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"teams", &__init__, undefined, undefined);
 }
@@ -708,13 +708,13 @@ function is_all_dead(team)
 {
 	if(level.playerlives[team])
 	{
-		return 0;
+		return false;
 	}
 	if(level.alivecount[team])
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

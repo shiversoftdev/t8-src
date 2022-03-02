@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6d2716025c669985", &__init__, &__main__, undefined);
 }
@@ -231,16 +231,16 @@ function function_aeb6539c(origin, angles)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dedfe444(entity)
+function private function_dedfe444(entity)
 {
 	if(isdefined(entity.traversestartnode) && isdefined(entity.traversestartnode.script_noteworthy) && entity.traversestartnode.script_noteworthy == "zipline_traversal" && isdefined(entity.traversestartnode.var_e45a0969) && entity shouldstarttraversal())
 	{
 		/#
 			record3dtext("", self.origin, (1, 0, 0), "");
 		#/
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -252,7 +252,7 @@ private function function_dedfe444(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_79554a79(entity)
+function private function_79554a79(entity)
 {
 	entity.vnd_start = getvehiclenode(entity.traversestartnode.var_e45a0969, "targetname");
 }
@@ -266,7 +266,7 @@ private function function_79554a79(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4e6fe1be()
+function private function_4e6fe1be()
 {
 	self endon(#"death");
 	self.var_b20b0960 = spawner::simple_spawn_single(getent("veh_fasttravel", "targetname"));
@@ -281,7 +281,7 @@ private function function_4e6fe1be()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fc646a7e(entity, asmstatename)
+function private function_fc646a7e(entity, asmstatename)
 {
 	animationstatenetworkutility::requeststate(entity, asmstatename);
 	entity.var_bf8dfaf4 = 1;
@@ -299,7 +299,7 @@ private function function_fc646a7e(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d31cb502(entity, asmstatename)
+function private function_d31cb502(entity, asmstatename)
 {
 	result = 5;
 	if(isdefined(entity.var_b20b0960))
@@ -341,7 +341,7 @@ private function function_d31cb502(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1a4b60ca(entity, asmstatename)
+function private function_1a4b60ca(entity, asmstatename)
 {
 	entity unlink();
 	entity.var_bf8dfaf4 = 0;
@@ -362,7 +362,7 @@ private function function_1a4b60ca(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a2185434(entity, asmstatename)
+function private function_a2185434(entity, asmstatename)
 {
 	animationstatenetworkutility::requeststate(entity, asmstatename);
 	return 5;
@@ -377,7 +377,7 @@ private function function_a2185434(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_48ef356e(entity, asmstatename)
+function private function_48ef356e(entity, asmstatename)
 {
 	result = 5;
 	if(entity isonground())
@@ -396,7 +396,7 @@ private function function_48ef356e(entity, asmstatename)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_16f40942()
+function private function_16f40942()
 {
 	result = 0;
 	if(isdefined(self.var_bf8dfaf4) && self.var_bf8dfaf4)
@@ -415,7 +415,7 @@ private function function_16f40942()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e5a996e8(player, zone)
+function private function_e5a996e8(player, zone)
 {
 	result = undefined;
 	if(isdefined(player.last_valid_position))

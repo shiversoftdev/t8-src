@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"platoons", &__init__, undefined, undefined);
 }
@@ -75,7 +75,7 @@ function function_bb1ab64b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_start_gametype()
+function private on_start_gametype()
 {
 	level.platoons = [];
 	for(var_aada11e0 = 1; var_aada11e0 <= level.platoon.count; var_aada11e0++)

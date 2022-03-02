@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"activecamo", &__init__, undefined, undefined);
 }
@@ -819,7 +819,7 @@ function function_374e37a0(localclientnum, weaponmodel, var_3594168e, var_49daa2
 	stage.rob = var_3594168e.rob;
 	if(!isdefined(stage.rob))
 	{
-		return 0;
+		return false;
 	}
 	stage.diffuse2alpha = (isdefined(var_3594168e.diffuse2alpha) ? var_3594168e.diffuse2alpha : 0);
 	stage.var_2eeeee1b = (isdefined(var_3594168e.var_2eeeee1b) ? var_3594168e.var_2eeeee1b : 0);
@@ -851,7 +851,7 @@ function function_374e37a0(localclientnum, weaponmodel, var_3594168e, var_49daa2
 	diffuse3alpha = (isdefined(var_3594168e.diffuse3alpha) ? var_3594168e.diffuse3alpha : 0);
 	weaponmodel function_78233d29(stage.rob, tagname, "Diffuse2 Alpha", diffuse2alpha);
 	weaponmodel function_78233d29(stage.rob, tagname, "Diffuse3 Alpha", diffuse3alpha);
-	return 1;
+	return true;
 }
 
 /*

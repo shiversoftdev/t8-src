@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_d287d6d0be9f28c", &__init__, &__main__, #"zm_loadout");
 }
@@ -439,7 +439,7 @@ function function_55f8e11e(e_box)
 	Parameters: 0
 	Flags: Private
 */
-private function devgui()
+function private devgui()
 {
 	/#
 		adddebugcommand("");

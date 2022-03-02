@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_42f44652a16988d8", &__init__, undefined, undefined);
 }
@@ -63,7 +63,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_a29299fb)
+function private function_d1de6a85(var_a29299fb)
 {
 	if(!(isdefined(level.var_9d606cae) && level.var_9d606cae))
 	{
@@ -92,7 +92,7 @@ private function function_d1de6a85(var_a29299fb)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	/#
 		assert(isdefined(level.var_9d606cae) && level.var_9d606cae);
@@ -178,7 +178,7 @@ function function_8327d26e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6fd56055()
+function private function_6fd56055()
 {
 	/#
 		assert(isdefined(level._spawned_wallbuys));
@@ -227,7 +227,7 @@ private function function_6fd56055()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fa70c8c4()
+function private function_fa70c8c4()
 {
 	/#
 		assert(isdefined(level._spawned_wallbuys));
@@ -276,13 +276,13 @@ private function function_fa70c8c4()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _open_arcs(blocker)
+function private _open_arcs(blocker)
 {
 	if(isdefined(blocker.script_noteworthy) && (blocker.script_noteworthy == "electric_door" || blocker.script_noteworthy == "local_electric_door"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -294,7 +294,7 @@ private function _open_arcs(blocker)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fcf197fa(targetname, show)
+function private function_fcf197fa(targetname, show)
 {
 	blockers = getentarray(targetname, "targetname");
 	if(isdefined(blockers))
@@ -351,7 +351,7 @@ private function function_fcf197fa(targetname, show)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a4284cb4()
+function private function_a4284cb4()
 {
 	function_fcf197fa("zombie_door", 0);
 	function_fcf197fa("zombie_debris", 0);
@@ -366,7 +366,7 @@ private function function_a4284cb4()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c606ef4b()
+function private function_c606ef4b()
 {
 	function_fcf197fa("zombie_door", 1);
 	function_fcf197fa("zombie_debris", 1);
@@ -381,7 +381,7 @@ private function function_c606ef4b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4516d298()
+function private function_4516d298()
 {
 	level endon(#"end_game");
 	while(level flag::get("moving_chest_now"))
@@ -399,7 +399,7 @@ private function function_4516d298()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_610df6d()
+function private function_610df6d()
 {
 	level endon(#"end_game");
 	while(isdefined(self._box_open) && self._box_open)
@@ -417,7 +417,7 @@ private function function_610df6d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_47c81160()
+function private function_47c81160()
 {
 	function_4516d298();
 	if(level.chest_index != -1)
@@ -437,7 +437,7 @@ private function function_47c81160()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d7ee2133()
+function private function_d7ee2133()
 {
 	function_4516d298();
 	if(level.chest_index != -1)
@@ -456,7 +456,7 @@ private function function_d7ee2133()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d5e17413()
+function private function_d5e17413()
 {
 	if(!isdefined(level.var_5bfd847e) || !level flag::exists(level.var_5bfd847e))
 	{
@@ -474,7 +474,7 @@ private function function_d5e17413()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c348adcc()
+function private function_c348adcc()
 {
 	if(!isdefined(level.var_5bfd847e) || !level flag::exists(level.var_5bfd847e))
 	{
@@ -495,7 +495,7 @@ private function function_c348adcc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ffdd5310()
+function private function_ffdd5310()
 {
 	var_ec9e2b1d = getentarray("zombie_trap", "targetname");
 	str_text = #"hash_55d25caf8f7bbb2f";
@@ -515,7 +515,7 @@ private function function_ffdd5310()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c0da518d()
+function private function_c0da518d()
 {
 	var_ec9e2b1d = getentarray("zombie_trap", "targetname");
 	str_text = zm_utility::function_d6046228(#"hash_23c1c09e94181fdb", #"hash_6e8ef1b690e98e51");

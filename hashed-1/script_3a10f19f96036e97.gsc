@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7f773699ffe5f857", &__init__, undefined, undefined);
 }
@@ -69,18 +69,21 @@ function flamethrower_tornado_fx(localclientnum, oldval, newval, bnewent, biniti
 		}
 		self thread function_4e325cd6(localclientnum);
 	}
-	else if(isdefined(self.n_tornado_fx))
+	else
 	{
-		stopfx(localclientnum, self.n_tornado_fx);
-		self.n_tornado_fx = undefined;
+		if(isdefined(self.n_tornado_fx))
+		{
+			stopfx(localclientnum, self.n_tornado_fx);
+			self.n_tornado_fx = undefined;
+		}
+		if(isdefined(self.var_180064c2))
+		{
+			self playsound(localclientnum, #"hash_51812161eb23c96f");
+			self stoploopsound(self.var_180064c2);
+			self.var_180064c2 = undefined;
+		}
+		self notify(#"hash_4a10e61d27734104");
 	}
-	if(isdefined(self.var_180064c2))
-	{
-		self playsound(localclientnum, #"hash_51812161eb23c96f");
-		self stoploopsound(self.var_180064c2);
-		self.var_180064c2 = undefined;
-	}
-	self notify(#"hash_4a10e61d27734104");
 }
 
 /*
@@ -139,7 +142,7 @@ function function_4e325cd6(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue && !namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{

@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_pop_shocks", &__init__, undefined, #"bgb");
 }
@@ -41,8 +41,8 @@ function __init__()
 		return;
 	}
 	bgb::register(#"zm_bgb_pop_shocks", "event", &event, undefined, undefined, undefined);
-	bgb::function_430970f6(#"zm_bgb_pop_shocks", &actor_damage_override);
-	bgb::function_cc303f91(#"zm_bgb_pop_shocks", &vehicle_damage_override);
+	bgb::register_actor_damage_override(#"zm_bgb_pop_shocks", &actor_damage_override);
+	bgb::register_vehicle_damage_override(#"zm_bgb_pop_shocks", &vehicle_damage_override);
 	bgb::function_1fee6b3(#"zm_bgb_pop_shocks", 31);
 }
 
@@ -162,9 +162,9 @@ function electrocute_actor(ai)
 	{
 		self.tesla_enemies_hit = 1;
 	}
-	function_3dfe10bf();
+	create_lightning_params();
 	ai.tesla_death = 0;
-	ai thread function_875f5f59(self);
+	ai thread arc_damage_init(self);
 	switch(ai.var_6f84b820)
 	{
 		case "popcorn":
@@ -178,7 +178,7 @@ function electrocute_actor(ai)
 }
 
 /*
-	Name: function_3dfe10bf
+	Name: create_lightning_params
 	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x16C74E98
 	Offset: 0x758
@@ -186,16 +186,16 @@ function electrocute_actor(ai)
 	Parameters: 0
 	Flags: Linked
 */
-function function_3dfe10bf()
+function create_lightning_params()
 {
-	level.var_4f9d934f = lightning_chain::create_lightning_chain_params(5);
-	level.var_4f9d934f.head_gib_chance = 100;
-	level.var_4f9d934f.network_death_choke = 4;
-	level.var_4f9d934f.should_kill_enemies = 0;
+	level.zm_bgb_pop_shocks_lightning_params = lightning_chain::create_lightning_chain_params(5);
+	level.zm_bgb_pop_shocks_lightning_params.head_gib_chance = 100;
+	level.zm_bgb_pop_shocks_lightning_params.network_death_choke = 4;
+	level.zm_bgb_pop_shocks_lightning_params.should_kill_enemies = 0;
 }
 
 /*
-	Name: function_875f5f59
+	Name: arc_damage_init
 	Namespace: zm_bgb_pop_shocks
 	Checksum: 0xEE100CC6
 	Offset: 0x7C8
@@ -203,14 +203,14 @@ function function_3dfe10bf()
 	Parameters: 1
 	Flags: Linked
 */
-function function_875f5f59(player)
+function arc_damage_init(player)
 {
 	player endon(#"disconnect");
 	if(self ai::is_stunned())
 	{
 		return;
 	}
-	self lightning_chain::arc_damage_ent(player, 1, level.var_4f9d934f);
+	self lightning_chain::arc_damage_ent(player, 1, level.zm_bgb_pop_shocks_lightning_params);
 }
 
 /*

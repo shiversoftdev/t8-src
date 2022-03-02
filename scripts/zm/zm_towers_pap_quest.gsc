@@ -268,7 +268,7 @@ function function_18b39e14()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3effad88(var_5542e979)
+function private function_3effad88(var_5542e979)
 {
 	str_prompt = zm_utility::function_d6046228(#"hash_2a4860e40142bac5", #"hash_7c465ea7da6991fb");
 	switch(var_5542e979)
@@ -1332,20 +1332,26 @@ function function_f3c4aeac()
 		str_flag = #"hash_1eda3c39867cbe53";
 		var_5542e979 = #"danu";
 	}
-	else if(level flag::get(#"hash_d38ff215be3a4fc") && !level flag::get(#"hash_1b7828aafd3f83f4"))
+	else
 	{
-		str_flag = #"hash_1b7828aafd3f83f4";
-		var_5542e979 = #"ra";
-	}
-	else if(level flag::get(#"hash_4142472dec557d03") && !level flag::get(#"hash_15b79db61753c205"))
-	{
-		str_flag = #"hash_15b79db61753c205";
-		var_5542e979 = #"odin";
-	}
-	else if(level flag::get(#"hash_45b6b1ee5d5038b4") && !level flag::get(#"hash_34c1fdccaa5279bc"))
-	{
-		str_flag = #"hash_34c1fdccaa5279bc";
-		var_5542e979 = #"zeus";
+		if(level flag::get(#"hash_d38ff215be3a4fc") && !level flag::get(#"hash_1b7828aafd3f83f4"))
+		{
+			str_flag = #"hash_1b7828aafd3f83f4";
+			var_5542e979 = #"ra";
+		}
+		else
+		{
+			if(level flag::get(#"hash_4142472dec557d03") && !level flag::get(#"hash_15b79db61753c205"))
+			{
+				str_flag = #"hash_15b79db61753c205";
+				var_5542e979 = #"odin";
+			}
+			else if(level flag::get(#"hash_45b6b1ee5d5038b4") && !level flag::get(#"hash_34c1fdccaa5279bc"))
+			{
+				str_flag = #"hash_34c1fdccaa5279bc";
+				var_5542e979 = #"zeus";
+			}
+		}
 	}
 	str_clientfield = function_1191a919(var_5542e979);
 	level namespace_6747c550::function_7df6bb60(str_clientfield, 3);

@@ -122,10 +122,10 @@ function any_team_reach_score(score)
 	{
 		if(game.stat[#"teamscores"][team] >= score)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

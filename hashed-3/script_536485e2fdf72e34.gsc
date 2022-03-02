@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_512e2b902c77dcea", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(perk_count)
+function private function_d1de6a85(perk_count)
 {
 	/#
 		assert(isdefined(level.var_b8be892e));
@@ -69,7 +69,7 @@ private function function_d1de6a85(perk_count)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -115,7 +115,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_c9934172()
+function private function_c9934172()
 {
 	if(self.sessionstate != "spectator")
 	{
@@ -139,7 +139,7 @@ private function function_c9934172()
 	Parameters: 1
 	Flags: Private
 */
-private function function_2a5b280f(challenge)
+function private function_2a5b280f(challenge)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");

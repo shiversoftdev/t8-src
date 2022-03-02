@@ -139,7 +139,7 @@ function function_783891ed()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e6251db(var_c03fe9e3)
+function private function_9e6251db(var_c03fe9e3)
 {
 	if(!isdefined(self.n_hour))
 	{

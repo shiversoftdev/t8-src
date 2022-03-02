@@ -333,7 +333,12 @@ function startfx(localclientnum)
 			self.exhaustrightfxhandle = util::playfxontag(localclientnum, self.exhaustfx, self, "tag_engine_right");
 		}
 	}
-	println("");
+	else
+	{
+		/#
+			println("");
+		#/
+	}
 	if(isdefined(self.vehicletype))
 	{
 		light_fx = undefined;

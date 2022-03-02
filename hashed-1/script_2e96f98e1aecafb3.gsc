@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_29467933d0da473b", &__init__, undefined, undefined);
 }
@@ -89,15 +89,18 @@ function dog_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname
 		array::add(self.var_93471229, util::playfxontag(localclientnum, level._effect[#"dog_eye_glow"], self, "j_eyeball_le"));
 		self mapshaderconstant(localclientnum, 0, "scriptVector2", 0, 1, 1);
 	}
-	else if(isdefined(self.var_93471229))
+	else
 	{
-		foreach(fxhandle in self.var_93471229)
+		if(isdefined(self.var_93471229))
 		{
-			deletefx(localclientnum, fxhandle);
+			foreach(fxhandle in self.var_93471229)
+			{
+				deletefx(localclientnum, fxhandle);
+			}
 		}
+		util::playfxontag(localclientnum, level._effect[#"dog_gib"], self, "j_spine2");
+		physicsexplosionsphere(localclientnum, self.origin, 150, 0, 0.15);
 	}
-	util::playfxontag(localclientnum, level._effect[#"dog_gib"], self, "j_spine2");
-	physicsexplosionsphere(localclientnum, self.origin, 150, 0, 0.15);
 }
 
 /*

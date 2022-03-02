@@ -374,10 +374,10 @@ function function_bad2e505(player)
 				break;
 			}
 		}
-		return 1;
+		return true;
 	}
 	self setinvisibletoplayer(player);
-	return 0;
+	return false;
 }
 
 /*
@@ -589,7 +589,7 @@ function function_74244cfa()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f2f53f97()
+function private function_f2f53f97()
 {
 	if(isdefined(level.var_461a9705) && level.var_461a9705)
 	{
@@ -622,7 +622,7 @@ private function function_f2f53f97()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_25aaae40()
+function private function_25aaae40()
 {
 	level waittill(#"between_round_over");
 	level.var_461a9705 = undefined;
@@ -637,7 +637,7 @@ private function function_25aaae40()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_15aa00e7()
+function private function_15aa00e7()
 {
 	var_43b4f0a = struct::get("nixie_tube_2");
 	playsoundatposition(#"hash_1588095b858588d", var_43b4f0a.origin);
@@ -647,13 +647,16 @@ private function function_15aa00e7()
 		{
 			level.var_19fe84f5 = namespace_961cf978::attempt_brutus_spawn(1, "zone_citadel_stairs");
 		}
-		else if(zm_zonemgr::get_players_in_zone("zone_citadel_basement") > 0)
+		else
 		{
-			level.var_19fe84f5 = namespace_961cf978::attempt_brutus_spawn(1, "zone_citadel_basement");
-		}
-		else if(zm_zonemgr::get_players_in_zone("zone_citadel") > 0)
-		{
-			level.var_19fe84f5 = namespace_961cf978::attempt_brutus_spawn(1, "zone_citadel");
+			if(zm_zonemgr::get_players_in_zone("zone_citadel_basement") > 0)
+			{
+				level.var_19fe84f5 = namespace_961cf978::attempt_brutus_spawn(1, "zone_citadel_basement");
+			}
+			else if(zm_zonemgr::get_players_in_zone("zone_citadel") > 0)
+			{
+				level.var_19fe84f5 = namespace_961cf978::attempt_brutus_spawn(1, "zone_citadel");
+			}
 		}
 	}
 }
@@ -667,7 +670,7 @@ private function function_15aa00e7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f50cec70()
+function private function_f50cec70()
 {
 	if(!isdefined(level.var_988ed695))
 	{

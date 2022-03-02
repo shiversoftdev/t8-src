@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6977117f54c58849", &__init__, undefined, undefined);
 }
@@ -40,7 +40,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	level.var_91a15ec0 = #"world";
 	level.zombie_team = level.var_91a15ec0;
@@ -68,13 +68,16 @@ private function __init__()
 			level.var_9eb9a467 = #"hash_15895bcfe301ee08";
 		}
 	}
-	else if(isdefined(getgametypesetting(#"hash_42471cb0cbc19544")) && getgametypesetting(#"hash_42471cb0cbc19544"))
-	{
-		level.var_9eb9a467 = #"hash_3a93829b52b54c36";
-	}
 	else
 	{
-		level.var_9eb9a467 = #"hash_7da4c1f53ef0f7d7";
+		if(isdefined(getgametypesetting(#"hash_42471cb0cbc19544")) && getgametypesetting(#"hash_42471cb0cbc19544"))
+		{
+			level.var_9eb9a467 = #"hash_3a93829b52b54c36";
+		}
+		else
+		{
+			level.var_9eb9a467 = #"hash_7da4c1f53ef0f7d7";
+		}
 	}
 	level.var_db43cbd7 = #"hash_3165784c9d75971c";
 	level.var_1b7acd6d = #"hash_33bdf9068c8cfb57";
@@ -407,7 +410,7 @@ function function_55625f76(spot_origin, spot_angles, anim_name, var_16dd87ad)
 	Parameters: 0
 	Flags: Private
 */
-private function function_b793bca2()
+function private function_b793bca2()
 {
 	self.allowoffnavmesh = 0;
 }
@@ -431,7 +434,7 @@ function function_c9a1a3bd(spot_origin, spot_angles, anim_name, var_c2a69066)
 	self clientfield::set("zombie_riser_fx", 1);
 	self.is_digging = 1;
 	self animscripted("dig_anim", self.origin, self.angles, anim_name, "normal");
-	self waittill_match({#notetrack:"end"}, #"dig_anim");
+	self waittillmatch({#notetrack:"end"}, #"dig_anim");
 	self ghost();
 	self notsolid();
 	self clientfield::set("zombie_riser_fx", 0);
@@ -600,41 +603,41 @@ function is_player_valid(player)
 {
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(player))
 	{
-		return 0;
+		return false;
 	}
 	if(player.sessionstate == "spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(player.sessionstate == "intermission")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.intermission) && player.intermission)
 	{
-		return 0;
+		return false;
 	}
 	if(player laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	if(player infection::is_infected())
 	{
-		return 0;
+		return false;
 	}
 	if(player.ignoreme || player isnotarget())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1140,16 +1143,19 @@ function function_f311bd4c(var_4dc5382f)
 					var_b25650ab function_d92e3c5a(waitresult.attacker, var_4dc5382f, item_list);
 				}
 			}
-			else if(isdefined(self.var_ef46cd4))
-			{
-				self function_d92e3c5a(waitresult.attacker, var_4dc5382f, self.var_ef46cd4);
-			}
 			else
 			{
-				itemlist = function_9fa1c215(var_4dc5382f);
-				if(isdefined(itemlist))
+				if(isdefined(self.var_ef46cd4))
 				{
-					self function_d92e3c5a(waitresult.attacker, var_4dc5382f, itemlist);
+					self function_d92e3c5a(waitresult.attacker, var_4dc5382f, self.var_ef46cd4);
+				}
+				else
+				{
+					itemlist = function_9fa1c215(var_4dc5382f);
+					if(isdefined(itemlist))
+					{
+						self function_d92e3c5a(waitresult.attacker, var_4dc5382f, itemlist);
+					}
 				}
 			}
 		}
@@ -1378,7 +1384,7 @@ function get_attackable_slot(entity)
 {
 	if(!isdefined(self.var_b79a8ac7))
 	{
-		return 0;
+		return false;
 	}
 	self clear_slots();
 	var_4dbfc246 = [];
@@ -1392,7 +1398,7 @@ function get_attackable_slot(entity)
 	}
 	if(var_34bcb139.size == 0)
 	{
-		return 0;
+		return false;
 	}
 	var_754df93c = entity.origin;
 	var_b2c0d134 = arraygetclosest(var_754df93c, var_34bcb139);
@@ -1403,16 +1409,16 @@ function get_attackable_slot(entity)
 		{
 			var_b2c0d134.entity = entity;
 			entity.var_b238ef38 = {#position:var_acdc8d71, #slot:var_b2c0d134};
-			return 1;
+			return true;
 		}
 	}
 	else
 	{
 		var_b2c0d134.entity = entity;
 		entity.var_b238ef38 = {#position:var_b2c0d134.origin, #slot:var_b2c0d134};
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

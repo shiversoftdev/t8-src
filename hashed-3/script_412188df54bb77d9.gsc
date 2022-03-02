@@ -149,7 +149,7 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 */
 function function_17956e93(localclientnum)
 {
-	self endon_callback(&function_502136a5, #"death");
+	self endoncallback(&function_502136a5, #"death");
 	self waittill(#"player_acid_trap_post_fx_complete");
 	if(isdefined(self))
 	{
@@ -285,7 +285,7 @@ function player_fire_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 */
 function function_33da4ab(localclientnum)
 {
-	self endon_callback(&function_3204a9f, #"death");
+	self endoncallback(&function_3204a9f, #"death");
 	self waittill(#"player_fire_trap_post_fx_complete");
 	if(isdefined(self))
 	{

@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7fb45fd668e2069a", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	if(util::function_53bbf9d2() == "zm_office")
 	{
@@ -83,7 +83,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
 	if(util::function_53bbf9d2() == "zm_office")
@@ -113,7 +113,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_3658663()
+function private function_3658663()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -152,7 +152,7 @@ private function function_3658663()
 	Parameters: 1
 	Flags: Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

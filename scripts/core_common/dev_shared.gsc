@@ -72,13 +72,16 @@ function devgui_test_chart_think()
 				{
 					level.test_chart_model setmodel(#"test_chart_model");
 				}
-				else if(val == 2)
+				else
 				{
-					level.test_chart_model setmodel(#"hash_70a102226734fb49");
-				}
-				else if(val == 3)
-				{
-					level.test_chart_model setmodel(#"hash_70a101226734f996");
+					if(val == 2)
+					{
+						level.test_chart_model setmodel(#"hash_70a102226734fb49");
+					}
+					else if(val == 3)
+					{
+						level.test_chart_model setmodel(#"hash_70a101226734f996");
+					}
 				}
 				direction = player getplayerangles();
 				direction_vec = anglestoforward((0, direction[1], 0));

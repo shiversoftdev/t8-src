@@ -349,7 +349,7 @@ function function_4f6cafea(params)
 */
 function function_f8c70ad7(localclientnum)
 {
-	self endon_callback(&function_e8d2d8c5, #"death");
+	self endoncallback(&function_e8d2d8c5, #"death");
 	self endon(#"disconnect");
 	/#
 		assert(!isdefined(self.var_408847b6));
@@ -380,16 +380,19 @@ function function_f8c70ad7(localclientnum)
 				setsoundvolume(var_408847b6.var_41266084, 0);
 				setsoundvolume(var_408847b6.var_2f3960f5, 0);
 			}
-			else if(var_ebe45f6a <= 7500)
-			{
-				var_f9d98743 = (var_ebe45f6a - 3000) / 4500;
-				setsoundvolume(var_408847b6.var_41266084, var_f9d98743);
-				setsoundvolume(var_408847b6.var_2f3960f5, var_f9d98743);
-			}
 			else
 			{
-				setsoundvolume(var_408847b6.var_41266084, 1);
-				setsoundvolume(var_408847b6.var_2f3960f5, 1);
+				if(var_ebe45f6a <= 7500)
+				{
+					var_f9d98743 = (var_ebe45f6a - 3000) / 4500;
+					setsoundvolume(var_408847b6.var_41266084, var_f9d98743);
+					setsoundvolume(var_408847b6.var_2f3960f5, var_f9d98743);
+				}
+				else
+				{
+					setsoundvolume(var_408847b6.var_41266084, 1);
+					setsoundvolume(var_408847b6.var_2f3960f5, 1);
+				}
 			}
 		}
 		wait(0.25);
@@ -547,7 +550,7 @@ function function_a1b40aa4(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3dadedf8(localclientnum)
+function private function_3dadedf8(localclientnum)
 {
 	while(true)
 	{
@@ -605,7 +608,7 @@ private function function_3dadedf8(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7e3a43c3(localclientnum)
+function private function_7e3a43c3(localclientnum)
 {
 	self notify("2dfbcba8182d1332");
 	self endon("2dfbcba8182d1332");
@@ -634,7 +637,7 @@ private function function_7e3a43c3(localclientnum)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b522ef5c()
+function private function_b522ef5c()
 {
 	var_d106ba82 = struct::get("map_dest_hijacked");
 	if(isdefined(var_d106ba82))

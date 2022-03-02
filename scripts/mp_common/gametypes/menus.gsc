@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"menus", &__init__, undefined, undefined);
 }
@@ -148,17 +148,20 @@ function on_menu_response(params)
 			self globallogic::gamehistoryplayerquit();
 			level thread globallogic::forceend();
 		}
-		else if(!function_8b1a219a())
-		{
-			self closeingamemenu();
-		}
-		if(function_f99d2668())
-		{
-			level notify(#"hash_197c640e2f684a74");
-		}
 		else
 		{
-			self iprintln(#"hash_6e4cedc56165f367");
+			if(!function_8b1a219a())
+			{
+				self closeingamemenu();
+			}
+			if(function_f99d2668())
+			{
+				level notify(#"hash_197c640e2f684a74");
+			}
+			else
+			{
+				self iprintln(#"hash_6e4cedc56165f367");
+			}
 		}
 		return;
 	}
@@ -203,51 +206,66 @@ function on_menu_response(params)
 			}
 		}
 	}
-	else if(menu == game.menu[#"menu_changeclass"] || menu == game.menu[#"menu_changeclass_offline"])
+	else
 	{
-		if(response == "changecharacter" || response == "randomcharacter" || response == "ready" || response == "opendraft" || response == "closedraft")
+		if(menu == game.menu[#"menu_changeclass"] || menu == game.menu[#"menu_changeclass_offline"])
 		{
-			self [[level.draftmenu]](response, intpayload);
-		}
-		else if(response == "change_specialist")
-		{
-			self [[level.var_2a43ad89]](intpayload);
-		}
-		else if(response == "weapon_updated")
-		{
-			if(self.dead !== 1 && self.health != 0)
+			if(response == "changecharacter" || response == "randomcharacter" || response == "ready" || response == "opendraft" || response == "closedraft")
 			{
-				self iprintlnbold(game.strings[#"hash_b71875e85956ea"]);
+				self [[level.draftmenu]](response, intpayload);
+			}
+			else
+			{
+				if(response == "change_specialist")
+				{
+					self [[level.var_2a43ad89]](intpayload);
+				}
+				else
+				{
+					if(response == "weapon_updated")
+					{
+						if(self.dead !== 1 && self.health != 0)
+						{
+							self iprintlnbold(game.strings[#"hash_b71875e85956ea"]);
+						}
+					}
+					else if(response != "cancel")
+					{
+						if(response == "draft")
+						{
+							characterindex = intpayload;
+							draft::select_character(characterindex, 0, 0);
+							return;
+						}
+						self [[level.curclass]](response, undefined, 1);
+					}
+				}
 			}
 		}
-		else if(response != "cancel")
+		else
 		{
-			if(response == "draft")
+			if(menu == "spectate")
 			{
-				characterindex = intpayload;
-				draft::select_character(characterindex, 0, 0);
-				return;
+				player = util::getplayerfromclientnum(intpayload);
+				if(isdefined(player))
+				{
+					self setcurrentspectatorclient(player);
+				}
 			}
-			self [[level.curclass]](response, undefined, 1);
+			else
+			{
+				if(menu == "sprays_and_gestures")
+				{
+					/#
+						iprintlnbold("" + intpayload);
+					#/
+				}
+				else if(menu == "callout_items")
+				{
+					function_2d1eb0ec(intpayload);
+				}
+			}
 		}
-	}
-	else if(menu == "spectate")
-	{
-		player = util::getplayerfromclientnum(intpayload);
-		if(isdefined(player))
-		{
-			self setcurrentspectatorclient(player);
-		}
-	}
-	else if(menu == "sprays_and_gestures")
-	{
-		/#
-			iprintlnbold("" + intpayload);
-		#/
-	}
-	else if(menu == "callout_items")
-	{
-		function_2d1eb0ec(intpayload);
 	}
 }
 

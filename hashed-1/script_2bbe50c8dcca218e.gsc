@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4445e928cf1b07c0", &__init__, undefined, undefined);
 }
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	callback::on_spawned(&function_dc856fd8);
 	foreach(player in getplayers())
@@ -68,7 +68,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_spawned(&function_dc856fd8);
 	foreach(player in getplayers())
@@ -88,7 +88,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dc856fd8()
+function private function_dc856fd8()
 {
 	self notify("374b3a40e7866d07");
 	self endon("374b3a40e7866d07");
@@ -113,7 +113,7 @@ private function function_dc856fd8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_31f500f()
+function private function_31f500f()
 {
 	self endon(#"disconnect", #"allow_sprint");
 	while(true)

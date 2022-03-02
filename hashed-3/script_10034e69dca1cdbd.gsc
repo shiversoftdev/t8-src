@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5993cb43cbe55c17", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(weapon_name)
+function private function_d1de6a85(weapon_name)
 {
 	namespace_b22c99a5::function_7d32b7d0(0);
 	level thread function_83b71e7c();
@@ -63,7 +63,7 @@ private function function_d1de6a85(weapon_name)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	if(!round_reset)
@@ -91,7 +91,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_83b71e7c()
+function private function_83b71e7c()
 {
 	level endon(#"hash_7646638df88a3656");
 	self endon(#"death");

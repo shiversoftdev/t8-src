@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function registerbehaviorscriptfunctions()
+function autoexec registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&prepareformovement));
@@ -140,10 +140,10 @@ autoexec function registerbehaviorscriptfunctions()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function tacticalwalkscanterminate(entity)
+function private tacticalwalkscanterminate(entity)
 {
 	entity.lasttacticalscantime = gettime();
-	return 1;
+	return true;
 }
 
 /*
@@ -155,7 +155,7 @@ private function tacticalwalkscanterminate(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldtacticalwalkscan(entity)
+function private shouldtacticalwalkscan(entity)
 {
 	if(isdefined(entity.lasttacticalscantime) && (entity.lasttacticalscantime + 2000) > gettime())
 	{
@@ -194,7 +194,7 @@ private function shouldtacticalwalkscan(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function continuetacticalwalkscan(entity)
+function private continuetacticalwalkscan(entity)
 {
 	if(!entity haspath())
 	{
@@ -231,7 +231,7 @@ private function continuetacticalwalkscan(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldtacticalwalkpain(entity)
+function private shouldtacticalwalkpain(entity)
 {
 	if(!isdefined(entity.startpaintime) || (entity.startpaintime + 3000) < gettime() && randomfloat(1) > 0.25)
 	{
@@ -249,10 +249,10 @@ private function shouldtacticalwalkpain(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function begintacticalwalkpain(entity)
+function private begintacticalwalkpain(entity)
 {
 	entity.startpaintime = gettime();
-	return 1;
+	return true;
 }
 
 /*
@@ -264,7 +264,7 @@ private function begintacticalwalkpain(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldcontinuetacticalwalkpain(entity)
+function private shouldcontinuetacticalwalkpain(entity)
 {
 	return (entity.startpaintime + 100) >= gettime();
 }
@@ -278,7 +278,7 @@ private function shouldcontinuetacticalwalkpain(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function bsmlocomotionhasvalidpaininterrupt(entity)
+function private bsmlocomotionhasvalidpaininterrupt(entity)
 {
 	return entity hasvalidinterrupt("pain");
 }
@@ -292,20 +292,20 @@ private function bsmlocomotionhasvalidpaininterrupt(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldarriveexposed(behaviortreeentity)
+function private shouldarriveexposed(behaviortreeentity)
 {
 	if(behaviortreeentity ai::get_behavior_attribute("disablearrivals"))
 	{
-		return 0;
+		return false;
 	}
 	if(behaviortreeentity haspath())
 	{
 		if(isdefined(behaviortreeentity.node) && iscovernode(behaviortreeentity.node) && isdefined(behaviortreeentity.pathgoalpos) && distancesquared(behaviortreeentity.pathgoalpos, behaviortreeentity getnodeoffsetposition(behaviortreeentity.node)) < 8)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -317,7 +317,7 @@ private function shouldarriveexposed(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function preparetostopnearenemy(behaviortreeentity)
+function private preparetostopnearenemy(behaviortreeentity)
 {
 	behaviortreeentity clearpath();
 	behaviortreeentity.keepclaimednode = 1;
@@ -332,7 +332,7 @@ private function preparetostopnearenemy(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function preparetomoveawayfromnearbyenemy(behaviortreeentity)
+function private preparetomoveawayfromnearbyenemy(behaviortreeentity)
 {
 	behaviortreeentity clearpath();
 	behaviortreeentity.keepclaimednode = 1;
@@ -347,12 +347,12 @@ private function preparetomoveawayfromnearbyenemy(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldplanarrivalintocover(behaviortreeentity)
+function private shouldplanarrivalintocover(behaviortreeentity)
 {
 	goingtocovernode = isdefined(behaviortreeentity.node) && iscovernode(behaviortreeentity.node);
 	if(!goingtocovernode)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.pathgoalpos))
 	{
@@ -360,7 +360,7 @@ private function shouldplanarrivalintocover(behaviortreeentity)
 		{
 			if(behaviortreeentity.arrivalfinalpos != behaviortreeentity.pathgoalpos)
 			{
-				return 1;
+				return true;
 			}
 			if(behaviortreeentity.ai.replannedcoverarrival === 0 && isdefined(behaviortreeentity.exitpos) && isdefined(behaviortreeentity.predictedexitpos))
 			{
@@ -370,12 +370,12 @@ private function shouldplanarrivalintocover(behaviortreeentity)
 				if(vectordot(exitdir, currentdir) < cos(30))
 				{
 					behaviortreeentity.predictedarrivaldirectionvalid = 0;
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -387,15 +387,15 @@ private function shouldplanarrivalintocover(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldswitchtotacticalwalkfromrun(behaviortreeentity)
+function private shouldswitchtotacticalwalkfromrun(behaviortreeentity)
 {
 	if(!behaviortreeentity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(ai::hasaiattribute(behaviortreeentity, "forceTacticalWalk") && ai::getaiattribute(behaviortreeentity, "forceTacticalWalk"))
 	{
-		return 1;
+		return true;
 	}
 	goalpos = undefined;
 	if(isdefined(behaviortreeentity.arrivalfinalpos))
@@ -411,14 +411,14 @@ private function shouldswitchtotacticalwalkfromrun(behaviortreeentity)
 		pathdist = distancesquared(behaviortreeentity.pathstartpos, goalpos);
 		if(pathdist < 250 * 250)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(!behaviortreeentity shouldfacemotion())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -430,25 +430,25 @@ private function shouldswitchtotacticalwalkfromrun(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function humannoncombatlocomotioncondition(behaviortreeentity)
+function private humannoncombatlocomotioncondition(behaviortreeentity)
 {
 	if(!behaviortreeentity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.accuratefire) && behaviortreeentity.accuratefire)
 	{
-		return 1;
+		return true;
 	}
 	if(behaviortreeentity humanshouldsprint())
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(behaviortreeentity.enemy))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -460,25 +460,25 @@ private function humannoncombatlocomotioncondition(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function humancombatlocomotioncondition(behaviortreeentity)
+function private humancombatlocomotioncondition(behaviortreeentity)
 {
 	if(!behaviortreeentity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.accuratefire) && behaviortreeentity.accuratefire)
 	{
-		return 0;
+		return false;
 	}
 	if(behaviortreeentity humanshouldsprint())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.enemy))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -490,22 +490,22 @@ private function humancombatlocomotioncondition(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function combatlocomotionstart(behaviortreeentity)
+function private combatlocomotionstart(behaviortreeentity)
 {
 	behaviortreeentity setblackboardattribute("_desired_stance", "stand");
 	randomchance = randomint(100);
 	if(randomchance > 50)
 	{
 		behaviortreeentity setblackboardattribute("_run_n_gun_variation", "variation_forward");
-		return 1;
+		return true;
 	}
 	if(randomchance > 25)
 	{
 		behaviortreeentity setblackboardattribute("_run_n_gun_variation", "variation_strafe_1");
-		return 1;
+		return true;
 	}
 	behaviortreeentity setblackboardattribute("_run_n_gun_variation", "variation_strafe_2");
-	return 1;
+	return true;
 }
 
 /*
@@ -517,15 +517,15 @@ private function combatlocomotionstart(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function noncombatlocomotionupdate(behaviortreeentity)
+function private noncombatlocomotionupdate(behaviortreeentity)
 {
 	if(!behaviortreeentity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.enemy) && (!(isdefined(behaviortreeentity.accuratefire) && behaviortreeentity.accuratefire) && !behaviortreeentity humanshouldsprint()))
 	{
-		return 0;
+		return false;
 	}
 	if(!behaviortreeentity asmistransitionrunning())
 	{
@@ -539,7 +539,7 @@ private function noncombatlocomotionupdate(behaviortreeentity)
 	{
 		behaviortreeentity.ai.replannedcoverarrival = undefined;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -551,15 +551,15 @@ private function noncombatlocomotionupdate(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function combatlocomotionupdate(behaviortreeentity)
+function private combatlocomotionupdate(behaviortreeentity)
 {
 	if(!behaviortreeentity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(behaviortreeentity humanshouldsprint())
 	{
-		return 0;
+		return false;
 	}
 	if(!behaviortreeentity asmistransitionrunning())
 	{
@@ -575,9 +575,9 @@ private function combatlocomotionupdate(behaviortreeentity)
 	}
 	if(isdefined(behaviortreeentity.enemy))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -589,10 +589,10 @@ private function combatlocomotionupdate(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function prepareformovement(behaviortreeentity)
+function private prepareformovement(behaviortreeentity)
 {
 	behaviortreeentity setblackboardattribute("_stance", "stand");
-	return 1;
+	return true;
 }
 
 /*
@@ -604,13 +604,13 @@ private function prepareformovement(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isarrivingfour(arrivalangle)
+function private isarrivingfour(arrivalangle)
 {
 	if(arrivalangle >= 45 && arrivalangle <= 120)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -622,13 +622,13 @@ private function isarrivingfour(arrivalangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isarrivingone(arrivalangle)
+function private isarrivingone(arrivalangle)
 {
 	if(arrivalangle >= 120 && arrivalangle <= 165)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -640,13 +640,13 @@ private function isarrivingone(arrivalangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isarrivingtwo(arrivalangle)
+function private isarrivingtwo(arrivalangle)
 {
 	if(arrivalangle >= 165 && arrivalangle <= 195)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -658,13 +658,13 @@ private function isarrivingtwo(arrivalangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isarrivingthree(arrivalangle)
+function private isarrivingthree(arrivalangle)
 {
 	if(arrivalangle >= 195 && arrivalangle <= 240)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -676,13 +676,13 @@ private function isarrivingthree(arrivalangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isarrivingsix(arrivalangle)
+function private isarrivingsix(arrivalangle)
 {
 	if(arrivalangle >= 240 && arrivalangle <= 315)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -694,13 +694,13 @@ private function isarrivingsix(arrivalangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isfacingfour(facingangle)
+function private isfacingfour(facingangle)
 {
 	if(facingangle >= 45 && facingangle <= 135)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -712,13 +712,13 @@ private function isfacingfour(facingangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isfacingeight(facingangle)
+function private isfacingeight(facingangle)
 {
 	if(facingangle >= -45 && facingangle <= 45)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -730,13 +730,13 @@ private function isfacingeight(facingangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isfacingseven(facingangle)
+function private isfacingseven(facingangle)
 {
 	if(facingangle >= 0 && facingangle <= 90)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -748,13 +748,13 @@ private function isfacingseven(facingangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isfacingsix(facingangle)
+function private isfacingsix(facingangle)
 {
 	if(facingangle >= -135 && facingangle <= -45)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -766,13 +766,13 @@ private function isfacingsix(facingangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isfacingnine(facingangle)
+function private isfacingnine(facingangle)
 {
 	if(facingangle >= -90 && facingangle <= 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -784,24 +784,24 @@ private function isfacingnine(facingangle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldtacticalarrivecondition(behaviortreeentity)
+function private shouldtacticalarrivecondition(behaviortreeentity)
 {
 	if(getdvarint(#"enabletacticalarrival", 0) != 1)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(behaviortreeentity.node))
 	{
-		return 0;
+		return false;
 	}
 	if(!behaviortreeentity.node.type == #"hash_63cbb4767da2a801")
 	{
-		return 0;
+		return false;
 	}
 	stance = behaviortreeentity getblackboardattribute("_arrival_stance");
 	if(stance != "stand")
 	{
-		return 0;
+		return false;
 	}
 	arrivaldistance = 35;
 	/#
@@ -814,12 +814,12 @@ private function shouldtacticalarrivecondition(behaviortreeentity)
 	nodeoffsetposition = behaviortreeentity getnodeoffsetposition(behaviortreeentity.node);
 	if(distance(nodeoffsetposition, behaviortreeentity.origin) > arrivaldistance || distance(nodeoffsetposition, behaviortreeentity.origin) < 25)
 	{
-		return 0;
+		return false;
 	}
 	entityangles = vectortoangles(behaviortreeentity.origin - nodeoffsetposition);
 	if(abs(behaviortreeentity.node.angles[1] - entityangles[1]) < 60)
 	{
-		return 0;
+		return false;
 	}
 	tacticalfaceangle = behaviortreeentity getblackboardattribute("_tactical_arrival_facing_yaw");
 	arrivalangle = behaviortreeentity getblackboardattribute("_locomotion_arrival_yaw");
@@ -827,42 +827,54 @@ private function shouldtacticalarrivecondition(behaviortreeentity)
 	{
 		if(!isfacingsix(tacticalfaceangle) && !isfacingeight(tacticalfaceangle) && !isfacingfour(tacticalfaceangle))
 		{
-			return 0;
-		}
-	}
-	else if(isarrivingone(arrivalangle))
-	{
-		if(!isfacingnine(tacticalfaceangle) && !isfacingseven(tacticalfaceangle))
-		{
-			return 0;
-		}
-	}
-	else if(isarrivingtwo(arrivalangle))
-	{
-		if(!isfacingeight(tacticalfaceangle))
-		{
-			return 0;
-		}
-	}
-	else if(isarrivingthree(arrivalangle))
-	{
-		if(!isfacingseven(tacticalfaceangle) && !isfacingnine(tacticalfaceangle))
-		{
-			return 0;
-		}
-	}
-	else if(isarrivingsix(arrivalangle))
-	{
-		if(!isfacingfour(tacticalfaceangle) && !isfacingeight(tacticalfaceangle) && !isfacingsix(tacticalfaceangle))
-		{
-			return 0;
+			return false;
 		}
 	}
 	else
 	{
-		return 0;
+		if(isarrivingone(arrivalangle))
+		{
+			if(!isfacingnine(tacticalfaceangle) && !isfacingseven(tacticalfaceangle))
+			{
+				return false;
+			}
+		}
+		else
+		{
+			if(isarrivingtwo(arrivalangle))
+			{
+				if(!isfacingeight(tacticalfaceangle))
+				{
+					return false;
+				}
+			}
+			else
+			{
+				if(isarrivingthree(arrivalangle))
+				{
+					if(!isfacingseven(tacticalfaceangle) && !isfacingnine(tacticalfaceangle))
+					{
+						return false;
+					}
+				}
+				else
+				{
+					if(isarrivingsix(arrivalangle))
+					{
+						if(!isfacingfour(tacticalfaceangle) && !isfacingeight(tacticalfaceangle) && !isfacingsix(tacticalfaceangle))
+						{
+							return false;
+						}
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -874,7 +886,7 @@ private function shouldtacticalarrivecondition(behaviortreeentity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function humanshouldsprint()
+function private humanshouldsprint()
 {
 	currentlocomovementtype = self getblackboardattribute("_human_locomotion_movement_type");
 	return currentlocomovementtype == "human_locomotion_movement_sprint";
@@ -889,27 +901,27 @@ private function humanshouldsprint()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
+function private planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 {
 	if(behaviortreeentity ai::get_behavior_attribute("disablearrivals"))
 	{
-		return 0;
+		return false;
 	}
 	behaviortreeentity setblackboardattribute("_desired_stance", "stand");
 	if(!isdefined(arrivalanim))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.node) && isdefined(behaviortreeentity.pathgoalpos))
 	{
 		if(!iscovernode(behaviortreeentity.node))
 		{
-			return 0;
+			return false;
 		}
 		nodeoffsetposition = behaviortreeentity getnodeoffsetposition(behaviortreeentity.node);
 		if(nodeoffsetposition != behaviortreeentity.pathgoalpos)
 		{
-			return 0;
+			return false;
 		}
 		if(isdefined(arrivalanim))
 		{
@@ -939,11 +951,11 @@ private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 				#/
 				if(!behaviortreeentity maymovefrompointtopoint(postenterpos, nodeoffsetposition, 1, 0))
 				{
-					return 0;
+					return false;
 				}
 				if(!behaviortreeentity maymovefrompointtopoint(coverenterpos, postenterpos, 1, 0))
 				{
-					return 0;
+					return false;
 				}
 			}
 			else
@@ -956,12 +968,12 @@ private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 				coverenterpos = (nodeoffsetposition - forward) + right;
 				if(!behaviortreeentity maymovefrompointtopoint(coverenterpos, nodeoffsetposition, 1, 1))
 				{
-					return 0;
+					return false;
 				}
 			}
 			if(!checkcoverarrivalconditions(coverenterpos, nodeoffsetposition))
 			{
-				return 0;
+				return false;
 			}
 			if(ispointonnavmesh(coverenterpos, behaviortreeentity))
 			{
@@ -969,11 +981,11 @@ private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 					recordcircle(coverenterpos, 2, (1, 0, 0), "", behaviortreeentity);
 				#/
 				behaviortreeentity function_a57c34b7(coverenterpos, behaviortreeentity.pathgoalpos);
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -985,14 +997,14 @@ private function planhumanarrivalatcover(behaviortreeentity, arrivalanim)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function checkcoverarrivalconditions(coverenterpos, coverpos)
+function private checkcoverarrivalconditions(coverenterpos, coverpos)
 {
 	distsqtonode = distancesquared(self.origin, coverpos);
 	distsqfromnodetoenterpos = distancesquared(coverpos, coverenterpos);
 	awayfromenterpos = distsqtonode >= (distsqfromnodetoenterpos + 150);
 	if(!awayfromenterpos)
 	{
-		return 0;
+		return false;
 	}
 	trace = groundtrace(coverenterpos + vectorscale((0, 0, 1), 72), coverenterpos + (vectorscale((0, 0, -1), 72)), 0, 0, 0);
 	if(isdefined(trace[#"position"]) && (abs(trace[#"position"][2] - coverpos[2])) > 30)
@@ -1008,9 +1020,9 @@ private function checkcoverarrivalconditions(coverenterpos, coverpos)
 				recordline(coverenterpos, trace[#"position"], (1, 0, 0), "");
 			}
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1022,7 +1034,7 @@ private function checkcoverarrivalconditions(coverenterpos, coverpos)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function getarrivalsplittime(arrivalanim, isright)
+function private getarrivalsplittime(arrivalanim, isright)
 {
 	if(!isdefined(level.animarrivalsplittimes))
 	{
@@ -1058,7 +1070,7 @@ private function getarrivalsplittime(arrivalanim, isright)
 	Parameters: 2
 	Flags: Private
 */
-private function deltarotate(delta, yaw)
+function private deltarotate(delta, yaw)
 {
 	cosine = cos(yaw);
 	sine = sin(yaw);

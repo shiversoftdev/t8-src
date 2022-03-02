@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_664a4361aaa4140d", &init_shared, undefined, undefined);
 }
@@ -50,13 +50,16 @@ function init_shared()
 	{
 		level.var_e88e144b = getscriptbundle("sensor_custom_settings_comp");
 	}
-	else if(isdefined(level.var_1f151eb.var_4dd46f8a))
-	{
-		level.var_e88e144b = getscriptbundle(level.var_1f151eb.var_4dd46f8a);
-	}
 	else
 	{
-		level.var_e88e144b = getscriptbundle("sensor_custom_settings");
+		if(isdefined(level.var_1f151eb.var_4dd46f8a))
+		{
+			level.var_e88e144b = getscriptbundle(level.var_1f151eb.var_4dd46f8a);
+		}
+		else
+		{
+			level.var_e88e144b = getscriptbundle("sensor_custom_settings");
+		}
 	}
 	level.var_9911d36f = &function_4db10465;
 	callback::on_finalize_initialization(&function_1c601b99);
@@ -181,7 +184,7 @@ function function_4d8676af(attacker, victim, weapon, attackerweapon, meansofdeat
 {
 	if(!isdefined(attackerweapon) || !isdefined(attacker) || !isdefined(victim) || !isdefined(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(attacker.var_f208fb92))
 	{
@@ -195,11 +198,11 @@ function function_4d8676af(attacker, victim, weapon, attackerweapon, meansofdeat
 					dart.owner [[level.playgadgetsuccess]](getweapon("eq_sensor"), undefined, victim);
 					dart.var_cbca1a8f = 1;
 				}
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -275,7 +278,7 @@ function function_f4970a20(watcher, player)
 	}
 	player.var_f208fb92[player.var_f208fb92.size] = self;
 	waitresult = undefined;
-	waitresult = self waittill_timeout(5, #"stationary");
+	waitresult = self waittilltimeout(5, #"stationary");
 	if(waitresult._notify == #"timeout")
 	{
 		function_4db10465();
@@ -313,7 +316,7 @@ function function_f4970a20(watcher, player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cb672f03()
+function private function_cb672f03()
 {
 	owner = self.owner;
 	waitresult = undefined;

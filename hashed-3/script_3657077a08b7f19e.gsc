@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_48e0e8f7de7eaf3c", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_d1de6a85(enemy_type, var_6b96eb7b, var_46cce0c5, var_6ad4e7c6, var_44445188)
+function private function_d1de6a85(enemy_type, var_6b96eb7b, var_46cce0c5, var_6ad4e7c6, var_44445188)
 {
 	if(getplayers().size > 1)
 	{
@@ -89,7 +89,7 @@ private function function_d1de6a85(enemy_type, var_6b96eb7b, var_46cce0c5, var_6
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_9a0fbcb9 = undefined;
 	level.var_44445188 = undefined;
@@ -110,7 +110,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_ai_killed(params)
+function private on_ai_killed(params)
 {
 	challenge = zm_trial::function_a36e8c38(#"hash_79a710e660651843");
 	/#
@@ -145,7 +145,7 @@ private function on_ai_killed(params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function get_zombie_count_for_round(round_number, player_count)
+function private get_zombie_count_for_round(round_number, player_count)
 {
 	return level.zombie_total;
 }
@@ -159,7 +159,7 @@ private function get_zombie_count_for_round(round_number, player_count)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function spawn_enemy()
+function private spawn_enemy()
 {
 	var_f63f3454 = zm_trial::function_a36e8c38(#"hash_a0e875894ebc5ff");
 	if(isdefined(var_f63f3454))
@@ -175,7 +175,7 @@ private function spawn_enemy()
 		}
 		if(var_f55dd0ac < var_47ab7d31)
 		{
-			return 1;
+			return true;
 		}
 	}
 	challenge = zm_trial::function_a36e8c38(#"hash_79a710e660651843");
@@ -196,7 +196,7 @@ private function spawn_enemy()
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 
 /*

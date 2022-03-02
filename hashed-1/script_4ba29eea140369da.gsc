@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_trial_friendly_fire", &__init__, &__main__, undefined);
 }
@@ -103,7 +103,7 @@ function function_d8d095d5()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_9e0a2a85 = 1)
+function private function_d1de6a85(var_9e0a2a85 = 1)
 {
 	level endon(#"hash_7646638df88a3656");
 	if(function_7a600918(var_9e0a2a85))
@@ -153,7 +153,7 @@ private function function_d1de6a85(var_9e0a2a85 = 1)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_59ff1d6c::function_928be07c(level.var_3c2226ce);
 	level.var_3c2226ce = undefined;
@@ -189,7 +189,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function on_player_damage(params)
+function private on_player_damage(params)
 {
 	if(isplayer(params.eattacker) && !isbot(params.eattacker) && params.idamage >= self.health && params.eattacker != self)
 	{
@@ -212,7 +212,7 @@ private function on_player_damage(params)
 	Parameters: 0
 	Flags: Private
 */
-private function function_e2c5e34c()
+function private function_e2c5e34c()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -237,16 +237,16 @@ private function function_e2c5e34c()
 	Parameters: 0
 	Flags: Private
 */
-private function function_e1378d07()
+function private function_e1378d07()
 {
 	foreach(player in getplayers())
 	{
 		if(isalive(player) && !isbot(player) && !player laststand::player_is_in_laststand())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -258,7 +258,7 @@ private function function_e1378d07()
 	Parameters: 12
 	Flags: Private
 */
-private function function_c4e6367a(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
+function private function_c4e6367a(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
 	if(isplayer(attacker) && isbot(attacker) && level.round_number <= 20)
 	{
@@ -290,16 +290,19 @@ function function_6aa8dd73()
 		n_repacks = 4;
 		self zm_perks::function_cc24f525();
 	}
-	else if(level.round_number >= 10)
-	{
-		self zm_hero_weapon::function_1bb7f7b1(2);
-		var_98cb6e9 = array::randomize(array(#"hash_4dfeb08c20a14b8b", #"hash_2b648e8ce3814bbb", #"hash_2c8e9cd5fbd53e70", #"hash_e1311542f5782b5", #"hash_354b896513d0581d", #"hash_81c373345c076c1"));
-		n_repacks = 2;
-	}
 	else
 	{
-		self zm_hero_weapon::function_1bb7f7b1(1);
-		var_98cb6e9 = array::randomize(array(#"ar_accurate_t8", #"ar_fastfire_t8", #"ar_stealth_t8", #"ar_modular_t8", #"smg_capacity_t8", #"tr_powersemi_t8"));
+		if(level.round_number >= 10)
+		{
+			self zm_hero_weapon::function_1bb7f7b1(2);
+			var_98cb6e9 = array::randomize(array(#"hash_4dfeb08c20a14b8b", #"hash_2b648e8ce3814bbb", #"hash_2c8e9cd5fbd53e70", #"hash_e1311542f5782b5", #"hash_354b896513d0581d", #"hash_81c373345c076c1"));
+			n_repacks = 2;
+		}
+		else
+		{
+			self zm_hero_weapon::function_1bb7f7b1(1);
+			var_98cb6e9 = array::randomize(array(#"ar_accurate_t8", #"ar_fastfire_t8", #"ar_stealth_t8", #"ar_modular_t8", #"smg_capacity_t8", #"tr_powersemi_t8"));
+		}
 	}
 	foreach(w_primary in self getweaponslistprimaries())
 	{

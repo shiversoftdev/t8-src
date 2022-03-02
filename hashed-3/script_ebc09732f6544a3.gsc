@@ -18,9 +18,9 @@ function function_d15dd929(radius, origin)
 	result = function_9cc082d2(origin + vectorscale((0, 0, 1), 100), 200);
 	if(isdefined(result) && isdefined(result[#"hash_556255be476284b3"]) && result[#"hash_556255be476284b3"] & 2)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -36,62 +36,62 @@ function is_target_valid(target)
 {
 	if(!isdefined(target))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(target))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(target) && target.sessionstate == "spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(target) && target.sessionstate == "intermission")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.intermission) && level.intermission)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(target.ignoreme) && target.ignoreme)
 	{
-		return 0;
+		return false;
 	}
 	if(target isnotarget())
 	{
-		return 0;
+		return false;
 	}
 	if(issentient(target) && self function_ce6d3545(target))
 	{
-		return 0;
+		return false;
 	}
 	if(!util::function_fbce7263(self.team, target.team))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(target))
 	{
 		if(target isplayerswimming())
 		{
-			return 0;
+			return false;
 		}
 		waterdepth = target depthofplayerinwater();
 		if(waterdepth > 2)
 		{
-			return 0;
+			return false;
 		}
 		radius = self getpathfindingradius();
 		if(!function_d15dd929(radius, target.origin))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(target depthinwater() >= 10)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

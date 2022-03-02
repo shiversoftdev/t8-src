@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6a84119b30b658cb", &__init__, &__main__, undefined);
 }
@@ -77,7 +77,7 @@ function function_707471ee()
 	zm_perks::register_perk_host_migration_params(#"hash_5b141f82a55645a9", "p7_zm_vending_nuke", "divetonuke_light");
 	zm_perks::register_perk_threads(#"hash_5b141f82a55645a9", &function_2aefd3c4, &function_f3862b9b, &function_9227a4d8);
 	zm_player::function_a827358a(&function_a102936);
-	zm_perks::function_430970f6(#"hash_5b141f82a55645a9", &function_ab41c8ab);
+	zm_perks::register_actor_damage_override(#"hash_5b141f82a55645a9", &function_ab41c8ab);
 }
 
 /*
@@ -309,7 +309,7 @@ function function_d752a094()
 	self zm_perks::function_f0ac059f(self.var_95df0a1b, self.var_eb319d10, #"hash_e58ff2df5bfd9b3");
 	self thread function_eeb3bf92(10);
 	self clientfield::set("" + #"hash_10f459edea6b3eb", 1);
-	self waittill_timeout(10, #"fake_death", #"hash_57d4f53c12705eac");
+	self waittilltimeout(10, #"fake_death", #"hash_57d4f53c12705eac");
 	self function_2ca96414();
 	if(self hasperk(#"hash_48255a3b086a9bea"))
 	{

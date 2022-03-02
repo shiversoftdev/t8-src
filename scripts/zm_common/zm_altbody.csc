@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_altbody", &__init__, undefined, undefined);
 }
@@ -42,7 +42,7 @@ function __init__()
 	clientfield::register("clientuimodel", "player_lives", 1, 2, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "player_mana", 1, 8, "float", &set_player_mana, 0, 1);
 	clientfield::register("toplayer", "player_in_afterlife", 1, 1, "int", &toggle_player_altbody, 0, 1);
-	clientfield::register("allplayers", "player_altbody", 1, 1, "int", &function_7706e75d, 0, 1);
+	clientfield::register("allplayers", "player_altbody", 1, 1, "int", &toggle_player_altbody_3p, 0, 1);
 	setupclientfieldcodecallbacks("toplayer", 1, "player_in_afterlife");
 }
 
@@ -55,7 +55,7 @@ function __init__()
 	Parameters: 9
 	Flags: None
 */
-function init(name, trigger_name, trigger_hint, visionset_name, visionset_priority, enter_callback, exit_callback, var_ce76c522, var_152151d1)
+function init(name, trigger_name, trigger_hint, visionset_name, visionset_priority, enter_callback, exit_callback, enter_3p_callback, exit_3p_callback)
 {
 	if(!isdefined(level.altbody_enter_callbacks))
 	{
@@ -65,13 +65,13 @@ function init(name, trigger_name, trigger_hint, visionset_name, visionset_priori
 	{
 		level.altbody_exit_callbacks = [];
 	}
-	if(!isdefined(level.var_3b3a54b9))
+	if(!isdefined(level.altbody_enter_3p_callbacks))
 	{
-		level.var_3b3a54b9 = [];
+		level.altbody_enter_3p_callbacks = [];
 	}
-	if(!isdefined(level.var_449bb0ea))
+	if(!isdefined(level.altbody_exit_3p_callbacks))
 	{
-		level.var_449bb0ea = [];
+		level.altbody_exit_3p_callbacks = [];
 	}
 	if(!isdefined(level.altbody_visionsets))
 	{
@@ -85,8 +85,8 @@ function init(name, trigger_name, trigger_hint, visionset_name, visionset_priori
 	}
 	level.altbody_enter_callbacks[name] = enter_callback;
 	level.altbody_exit_callbacks[name] = exit_callback;
-	level.var_3b3a54b9[name] = var_ce76c522;
-	level.var_449bb0ea[name] = var_152151d1;
+	level.altbody_enter_3p_callbacks[name] = enter_3p_callback;
+	level.altbody_exit_3p_callbacks[name] = exit_3p_callback;
 }
 
 /*
@@ -150,7 +150,7 @@ function toggle_player_altbody(localclientnum, oldval, newval, bnewent, binitial
 }
 
 /*
-	Name: function_7706e75d
+	Name: toggle_player_altbody_3p
 	Namespace: zm_altbody
 	Checksum: 0xDDFDA3C7
 	Offset: 0x618
@@ -158,16 +158,16 @@ function toggle_player_altbody(localclientnum, oldval, newval, bnewent, binitial
 	Parameters: 7
 	Flags: None
 */
-function function_7706e75d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function toggle_player_altbody_3p(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(self function_21c0fa55())
 	{
 		return;
 	}
-	self.var_d44cb9d2 = newval;
+	self.altbody_3p = newval;
 	if(newval == 1)
 	{
-		callback = level.var_3b3a54b9[level.altbody_name];
+		callback = level.altbody_enter_3p_callbacks[level.altbody_name];
 		if(isdefined(callback))
 		{
 			self [[callback]](localclientnum);
@@ -175,7 +175,7 @@ function function_7706e75d(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else
 	{
-		callback = level.var_449bb0ea[level.altbody_name];
+		callback = level.altbody_exit_3p_callbacks[level.altbody_name];
 		if(isdefined(callback))
 		{
 			self [[callback]](localclientnum);
@@ -203,7 +203,7 @@ function cover_transition(localclientnum, onoff)
 		return;
 	}
 	self lui::screen_fade_out(0.05);
-	level waittill_timeout(0.15, #"demo_jump");
+	level waittilltimeout(0.15, #"demo_jump");
 	if(isdefined(self))
 	{
 		self lui::screen_fade_in(0.1);

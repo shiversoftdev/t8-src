@@ -152,7 +152,7 @@ function function_88a60d36(var_240061ef, activate_talisman)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_954b9083(var_240061ef)
+function private function_954b9083(var_240061ef)
 {
 	level endon(#"game_ended");
 	self endon(#"disconnect");

@@ -246,7 +246,7 @@ function function_bda82828()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1435bda(player, var_feed7374)
+function private function_d1435bda(player, var_feed7374)
 {
 	var_1de1f14d = struct::get_array("s_trials_power_quest_player_spawns");
 	n_ent_num = player getentitynumber();
@@ -704,10 +704,10 @@ function function_71ac80d2()
 	{
 		if(var_1679e8e.size === var_f64e8455.size)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1028,12 +1028,12 @@ function function_969cb6b2(e_player)
 		{
 			str_prompt = zm_utility::function_d6046228(#"hash_65fb48b6dbf04c10", #"hash_2e613e6f3511ecbc");
 			self sethintstringforplayer(e_player, str_prompt);
-			return 1;
+			return true;
 		}
 		self sethintstringforplayer(e_player, "");
-		return 0;
+		return false;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1186,7 +1186,7 @@ function function_a5b8e88f(var_ddab7294 = 0)
 	{
 		level.var_19819980 = 0;
 		level thread function_30da273d();
-		level waittill_timeout(8, #"hash_2f976f64c9301e7f");
+		level waittilltimeout(8, #"hash_2f976f64c9301e7f");
 		foreach(mdl_zombie in var_69b8b63f)
 		{
 			mdl_zombie show();
@@ -1247,7 +1247,7 @@ function function_a5b8e88f(var_ddab7294 = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9ead836c()
+function private function_9ead836c()
 {
 	var_4b9821e4 = 0;
 	level thread lui::screen_flash(1, 1, 0.5, 1, "white");

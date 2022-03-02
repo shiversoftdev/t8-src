@@ -70,7 +70,7 @@ function watchdeath(localclientnum)
 	Parameters: 7
 	Flags: Private
 */
-private function function_654bd68b(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_654bd68b(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{

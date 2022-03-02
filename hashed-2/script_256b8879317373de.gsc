@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"player", &__init__, undefined, undefined);
 }
@@ -197,42 +197,48 @@ function last_valid_position(update_rate)
 				self.var_5d991645 = self.origin;
 			}
 		}
-		else if(ispointonnavmesh(self.origin, self))
-		{
-			self.last_valid_position = self.origin;
-		}
-		else if(!ispointonnavmesh(self.origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(self.origin, self.last_valid_position) < (32 * 32) && (self.origin[2] - self.last_valid_position[2]) * (self.origin[2] - self.last_valid_position[2]) < (32 * 32))
-		{
-			wait(update_rate);
-			continue;
-		}
 		else
 		{
-			position = getclosestpointonnavmesh(self.origin, 100, var_fab0ffd6);
-			if(isdefined(position))
+			if(ispointonnavmesh(self.origin, self))
 			{
-				if(isdefined(level.var_2386648b) && level.var_2386648b)
+				self.last_valid_position = self.origin;
+			}
+			else
+			{
+				if(!ispointonnavmesh(self.origin, self) && ispointonnavmesh(self.last_valid_position, self) && distance2dsquared(self.origin, self.last_valid_position) < (32 * 32) && (self.origin[2] - self.last_valid_position[2]) * (self.origin[2] - self.last_valid_position[2]) < (32 * 32))
 				{
-					player_position = self.origin + vectorscale((0, 0, 1), 20);
-					var_f5df51f2 = position + vectorscale((0, 0, 1), 20);
-					player_vehicle = undefined;
-					if(isvehicle(self getgroundent()))
-					{
-						player_vehicle = self getgroundent();
-					}
-					if(bullettracepassed(player_position, var_f5df51f2, 0, self, player_vehicle))
-					{
-						self.last_valid_position = position;
-					}
+					wait(update_rate);
+					continue;
 				}
 				else
 				{
-					self.last_valid_position = position;
+					position = getclosestpointonnavmesh(self.origin, 100, var_fab0ffd6);
+					if(isdefined(position))
+					{
+						if(isdefined(level.var_2386648b) && level.var_2386648b)
+						{
+							player_position = self.origin + vectorscale((0, 0, 1), 20);
+							var_f5df51f2 = position + vectorscale((0, 0, 1), 20);
+							player_vehicle = undefined;
+							if(isvehicle(self getgroundent()))
+							{
+								player_vehicle = self getgroundent();
+							}
+							if(bullettracepassed(player_position, var_f5df51f2, 0, self, player_vehicle))
+							{
+								self.last_valid_position = position;
+							}
+						}
+						else
+						{
+							self.last_valid_position = position;
+						}
+					}
+					else if(isdefined(level.var_a6a84389))
+					{
+						self.last_valid_position = self [[level.var_a6a84389]](var_fab0ffd6);
+					}
 				}
-			}
-			else if(isdefined(level.var_a6a84389))
-			{
-				self.last_valid_position = self [[level.var_a6a84389]](var_fab0ffd6);
 			}
 		}
 		wait(update_rate);

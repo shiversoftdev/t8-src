@@ -314,33 +314,33 @@ function function_74a5d514(eattacker, idamage, smeansofdeath, weapon, shitloc)
 	Parameters: 3
 	Flags: Private
 */
-private function function_31f333c6(einflictor, eattacker, weapon)
+function private function_31f333c6(einflictor, eattacker, weapon)
 {
 	if(isplayer(einflictor))
 	{
-		return 1;
+		return true;
 	}
 	if(!isplayer(eattacker))
 	{
-		return 0;
+		return false;
 	}
 	if(isvehicle(einflictor))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.isprimary)
 	{
-		return 1;
+		return true;
 	}
 	if(weapon.isheroweapon)
 	{
-		return 1;
+		return true;
 	}
 	if(weapon.islauncher)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -352,7 +352,7 @@ private function function_31f333c6(einflictor, eattacker, weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a31ab50c(var_7c61c7a1)
+function private function_a31ab50c(var_7c61c7a1)
 {
 	var_ce3cee3a = (self.var_a8b1ce45 === gettime() ? self.var_20038876 : 0);
 	var_752c0834 = int(max(var_7c61c7a1, var_ce3cee3a));
@@ -370,7 +370,7 @@ private function function_a31ab50c(var_7c61c7a1)
 	Parameters: 13
 	Flags: Linked, Private
 */
-private function function_961fe569(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
+function private function_961fe569(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
 {
 	pixbeginevent(#"hash_161ca565ac88c256");
 	if(!level.console && idflags & 8 && isplayer(eattacker))
@@ -394,13 +394,16 @@ private function function_961fe569(einflictor, eattacker, idamage, idflags, smea
 	{
 		self burnplayer::takingburndamage(eattacker, weapon, smeansofdeath);
 	}
-	else if(smeansofdeath == "MOD_DEATH_CIRCLE")
+	else
 	{
-		vdir = undefined;
-	}
-	else if(smeansofdeath == "MOD_BLED_OUT")
-	{
-		vdir = undefined;
+		if(smeansofdeath == "MOD_DEATH_CIRCLE")
+		{
+			vdir = undefined;
+		}
+		else if(smeansofdeath == "MOD_BLED_OUT")
+		{
+			vdir = undefined;
+		}
 	}
 	self.gadget_was_active_last_damage = self gadgetisactive(0);
 	isexplosivedamage = weapon_utils::isexplosivedamage(smeansofdeath);
@@ -488,21 +491,30 @@ private function function_961fe569(einflictor, eattacker, idamage, idflags, smea
 		{
 			params = function_4d1e7b48("wound_radiation");
 		}
-		else if(isdefined(self.var_e8bb749a))
-		{
-			params = function_4d1e7b48("shock_rifle_shock");
-		}
-		else if(var_7e7a6e97)
-		{
-			params = var_9a429025;
-		}
-		else if(var_e31583b3)
-		{
-			params = var_8c8cca9b;
-		}
 		else
 		{
-			params = function_4d1e7b48("wound");
+			if(isdefined(self.var_e8bb749a))
+			{
+				params = function_4d1e7b48("shock_rifle_shock");
+			}
+			else
+			{
+				if(var_7e7a6e97)
+				{
+					params = var_9a429025;
+				}
+				else
+				{
+					if(var_e31583b3)
+					{
+						params = var_8c8cca9b;
+					}
+					else
+					{
+						params = function_4d1e7b48("wound");
+					}
+				}
+			}
 		}
 		if(!(isdefined(params.var_d8e9a175) && params.var_d8e9a175) && (!isdefined(self.var_4dcf932b) || self.var_4dcf932b != self))
 		{
@@ -593,7 +605,7 @@ private function function_961fe569(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 11
 	Flags: Linked, Private
 */
-private function player_damage_log(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex)
+function private player_damage_log(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex)
 {
 	pixbeginevent(#"hash_2819fdb5a403fe3");
 	/#
@@ -653,13 +665,13 @@ private function player_damage_log(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function should_allow_postgame_damage(smeansofdeath)
+function private should_allow_postgame_damage(smeansofdeath)
 {
 	if(smeansofdeath == "MOD_TRIGGER_HURT" || smeansofdeath == "MOD_CRUSH")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -671,7 +683,7 @@ private function should_allow_postgame_damage(smeansofdeath)
 	Parameters: 13
 	Flags: Linked, Private
 */
-private function do_post_game_damage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
+function private do_post_game_damage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
 {
 	if(!gamestate::is_game_over())
 	{
@@ -693,11 +705,11 @@ private function do_post_game_damage(einflictor, eattacker, idamage, idflags, sm
 	Parameters: 13
 	Flags: Linked, Private
 */
-private function function_b5dadafc(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
+function private function_b5dadafc(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, boneindex, vsurfacenormal)
 {
 	if(!gamestate::is_state("pregame"))
 	{
-		return 0;
+		return false;
 	}
 	friendlyfire = isplayer(eattacker) && self util::isenemyplayer(eattacker) == 0;
 	if(friendlyfire)
@@ -705,7 +717,7 @@ private function function_b5dadafc(einflictor, eattacker, idamage, idflags, smea
 		idamage = self does_player_completely_avoid_damage(idflags, shitloc, weapon, friendlyfire, 0, smeansofdeath, vpoint, idamage, einflictor, eattacker);
 		if(idamage <= 0)
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(damagefeedback::dodamagefeedback(weapon, einflictor, idamage, smeansofdeath))
@@ -720,7 +732,7 @@ private function function_b5dadafc(einflictor, eattacker, idamage, idflags, smea
 			eattacker thread damagefeedback::update(smeansofdeath, einflictor, perkfeedback, weapon, self, psoffsettime, shitloc, 0, idflags);
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -732,7 +744,7 @@ private function function_b5dadafc(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_e512b988(player, weapon, smeansofdeath, einflictor, armor_damaged)
+function private function_e512b988(player, weapon, smeansofdeath, einflictor, armor_damaged)
 {
 	perkfeedback = undefined;
 	var_14e61d05 = player function_14e61d05();
@@ -745,24 +757,33 @@ private function function_e512b988(player, weapon, smeansofdeath, einflictor, ar
 	{
 		perkfeedback = "tacticalMask";
 	}
-	else if(var_1c365dd && weapon == getweapon(#"shock_rifle"))
+	else
 	{
-		perkfeedback = "resistance";
-	}
-	else if(player hasperk(#"specialty_fireproof") && weapon_utils::isfiredamage(weapon, smeansofdeath))
-	{
-		perkfeedback = "flakjacket";
-	}
-	else if(isexplosivedamage || var_d015da29 && hasflakjacket && !weapon.ignoresflakjacket && !function_e3242ae4(weapon, einflictor))
-	{
-		perkfeedback = "flakjacket";
-		player thread challenges::flakjacketprotectedmp();
-	}
-	else if(armor_damaged)
-	{
-		if((isdefined(getgametypesetting(#"hash_11e1a0adebdab01a")) ? getgametypesetting(#"hash_11e1a0adebdab01a") : 0))
+		if(var_1c365dd && weapon == getweapon(#"shock_rifle"))
 		{
-			perkfeedback = "armor";
+			perkfeedback = "resistance";
+		}
+		else
+		{
+			if(player hasperk(#"specialty_fireproof") && weapon_utils::isfiredamage(weapon, smeansofdeath))
+			{
+				perkfeedback = "flakjacket";
+			}
+			else
+			{
+				if(isexplosivedamage || var_d015da29 && hasflakjacket && !weapon.ignoresflakjacket && !function_e3242ae4(weapon, einflictor))
+				{
+					perkfeedback = "flakjacket";
+					player thread challenges::flakjacketprotectedmp();
+				}
+				else if(armor_damaged)
+				{
+					if((isdefined(getgametypesetting(#"hash_11e1a0adebdab01a")) ? getgametypesetting(#"hash_11e1a0adebdab01a") : 0))
+					{
+						perkfeedback = "armor";
+					}
+				}
+			}
 		}
 	}
 	return perkfeedback;
@@ -777,16 +798,16 @@ private function function_e512b988(player, weapon, smeansofdeath, einflictor, ar
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e3242ae4(weapon, einflictor)
+function private function_e3242ae4(weapon, einflictor)
 {
 	if(weapon.isaikillstreakdamage)
 	{
 		if(weapon.name != "ai_tank_drone_rocket" || isdefined(einflictor.firedbyai))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -798,7 +819,7 @@ private function function_e3242ae4(weapon, einflictor)
 	Parameters: 10
 	Flags: Linked, Private
 */
-private function does_player_completely_avoid_damage(idflags, shitloc, weapon, friendlyfire, attackerishittingself, smeansofdeath, vpoint, idamage, einflictor, eattacker)
+function private does_player_completely_avoid_damage(idflags, shitloc, weapon, friendlyfire, attackerishittingself, smeansofdeath, vpoint, idamage, einflictor, eattacker)
 {
 	if(idflags & 8192)
 	{
@@ -917,7 +938,7 @@ function function_56dc620b(einflictor, eattacker, idamage, weapon, var_4dd46f8a)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_29b3ff22(einflictor, eattacker, idamage, smeansofdeath, weapon, attackerishittingteammate, vdir)
+function private function_29b3ff22(einflictor, eattacker, idamage, smeansofdeath, weapon, attackerishittingteammate, vdir)
 {
 	if(smeansofdeath == "MOD_PISTOL_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET" || smeansofdeath == "MOD_IMPACT" && !attackerishittingteammate)
 	{
@@ -949,7 +970,7 @@ private function function_29b3ff22(einflictor, eattacker, idamage, smeansofdeath
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_ef7fa582(eattacker, etarget, weapon)
+function private function_ef7fa582(eattacker, etarget, weapon)
 {
 	if(level.hardcoremode)
 	{
@@ -979,82 +1000,82 @@ private function function_ef7fa582(eattacker, etarget, weapon)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function should_do_player_damage(eattacker, einflictor, weapon, smeansofdeath, idflags)
+function private should_do_player_damage(eattacker, einflictor, weapon, smeansofdeath, idflags)
 {
 	if(gamestate::is_game_over())
 	{
-		return 0;
+		return false;
 	}
 	if(self.sessionteam == #"spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.candocombat) && !self.candocombat)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(eattacker) && isplayer(eattacker) && isdefined(eattacker.candocombat) && !eattacker.candocombat)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.hostmigrationtimer))
 	{
-		return 0;
+		return false;
 	}
 	if(level.onlyheadshots)
 	{
 		if(smeansofdeath == "MOD_PISTOL_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET")
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(einflictor) && isdefined(einflictor.team) && !self util::isenemyteam(einflictor.team))
 	{
 		if(isvehicle(einflictor) && (isdefined(einflictor.var_54b19f55) && einflictor.var_54b19f55))
 		{
-			return 0;
+			return false;
 		}
 		if(isai(einflictor) && isdefined(einflictor.ai) && (isdefined(einflictor.ai.var_54b19f55) && einflictor.ai.var_54b19f55))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(eattacker) && isdefined(eattacker.team) && !self util::isenemyteam(eattacker.team))
 	{
 		if(isvehicle(eattacker) && (isdefined(eattacker.var_54b19f55) && eattacker.var_54b19f55))
 		{
-			return 0;
+			return false;
 		}
 		if(isai(eattacker) && (isdefined(eattacker.ai.var_54b19f55) && eattacker.ai.var_54b19f55))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(self vehicle::player_is_occupant_invulnerable(eattacker, smeansofdeath))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.issupplydropweapon && !weapon.isgrenadeweapon && smeansofdeath != "MOD_TRIGGER_HURT")
 	{
-		return 0;
+		return false;
 	}
 	if(self.scene_takedamage === 0)
 	{
-		return 0;
+		return false;
 	}
 	if(function_ef7fa582(einflictor, self, weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(idflags & 8 && self is_spawn_protected())
 	{
-		return 0;
+		return false;
 	}
 	if(smeansofdeath == "MOD_CRUSH" && isdefined(einflictor) && einflictor.deal_no_crush_damage === 1)
 	{
 		return;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1066,7 +1087,7 @@ private function should_do_player_damage(eattacker, einflictor, weapon, smeansof
 	Parameters: 9
 	Flags: Linked, Private
 */
-private function apply_damage_to_armor(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, shitloc, friendlyfire, ignore_round_start_friendly_fire)
+function private apply_damage_to_armor(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, shitloc, friendlyfire, ignore_round_start_friendly_fire)
 {
 	victim = self;
 	if(friendlyfire && !function_1727a023(ignore_round_start_friendly_fire, eattacker))
@@ -1107,7 +1128,7 @@ private function apply_damage_to_armor(einflictor, eattacker, idamage, idflags, 
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function make_sure_damage_is_not_zero(idamage, armor_damaged)
+function private make_sure_damage_is_not_zero(idamage, armor_damaged)
 {
 	if(idamage < 1)
 	{
@@ -1129,7 +1150,7 @@ private function make_sure_damage_is_not_zero(idamage, armor_damaged)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function modify_player_damage_friendlyfire(idamage, eattacker)
+function private modify_player_damage_friendlyfire(idamage, eattacker)
 {
 	friendlyfire = [[level.figure_out_friendly_fire]](self, eattacker);
 	if(friendlyfire == 2 || friendlyfire == 3)
@@ -1177,7 +1198,7 @@ function function_7681dccc()
 	Parameters: 11
 	Flags: Linked, Private
 */
-private function modify_player_damage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex)
+function private modify_player_damage(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex)
 {
 	overrideplayerdamage = function_7681dccc();
 	if(isdefined(overrideplayerdamage))
@@ -1260,7 +1281,7 @@ private function modify_player_damage(einflictor, eattacker, idamage, idflags, s
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function modify_player_damage_meansofdeath(einflictor, eattacker, smeansofdeath, weapon, shitloc)
+function private modify_player_damage_meansofdeath(einflictor, eattacker, smeansofdeath, weapon, shitloc)
 {
 	if(globallogic_utils::isheadshot(weapon, shitloc, smeansofdeath, einflictor) && isplayer(eattacker) && !weapon_utils::ismeleemod(smeansofdeath))
 	{
@@ -1285,7 +1306,7 @@ private function modify_player_damage_meansofdeath(einflictor, eattacker, smeans
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_4ac2aefc(einflictor, eattacker, smeansofdeath)
+function private function_4ac2aefc(einflictor, eattacker, smeansofdeath)
 {
 	if(isplayer(eattacker))
 	{
@@ -1355,41 +1376,41 @@ private function function_4ac2aefc(einflictor, eattacker, smeansofdeath)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_811dd365(einflictor, weapon, smeansofdeath)
+function private function_811dd365(einflictor, weapon, smeansofdeath)
 {
 	if(!self is_spawn_protected())
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.explosionradius == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(weapons::getbaseweapon(weapon) == level.var_9e188c0b && weaponhasattachment(weapon, "uber"))
 	{
-		return 0;
+		return false;
 	}
 	distsqr = (isdefined(self.lastspawnpoint) ? distancesquared(einflictor.origin, self.lastspawnpoint.origin) : 0);
 	if(distsqr < 250 * 250)
 	{
 		if(smeansofdeath == "MOD_GRENADE" || smeansofdeath == "MOD_GRENADE_SPLASH")
 		{
-			return 1;
+			return true;
 		}
 		if(smeansofdeath == "MOD_PROJECTILE" || smeansofdeath == "MOD_PROJECTILE_SPLASH")
 		{
-			return 1;
+			return true;
 		}
 		if(smeansofdeath == "MOD_EXPLOSIVE")
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(killstreaks::is_killstreak_weapon(weapon))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1401,18 +1422,18 @@ private function function_811dd365(einflictor, weapon, smeansofdeath)
 	Parameters: 11
 	Flags: Linked, Private
 */
-private function function_104e1126(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex)
+function private function_104e1126(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex)
 {
 	is_explosive_damage = weapon_utils::isexplosivedamage(smeansofdeath);
 	if(is_explosive_damage)
 	{
 		if(self function_811dd365(einflictor, weapon, smeansofdeath))
 		{
-			return 0;
+			return false;
 		}
 		if(self function_eacd01b7(eattacker, weapon))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(einflictor) && (smeansofdeath == "MOD_GAS" || is_explosive_damage))
@@ -1479,7 +1500,7 @@ private function function_104e1126(einflictor, eattacker, idamage, idflags, smea
 			self.explosiveinfo[#"projectile_bounced"] = isdefined(einflictor.bounced);
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1491,17 +1512,17 @@ private function function_104e1126(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_acca46ef()
+function private function_acca46ef()
 {
 	if(!isdefined(level.discardtime) || !isdefined(level.starttime))
 	{
-		return 0;
+		return false;
 	}
 	if(level.friendlyfiredelay && level.friendlyfiredelaytime >= ((float((gettime() - level.starttime) - level.discardtime)) / 1000))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1513,29 +1534,29 @@ private function function_acca46ef()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_44b6bb92(eattacker, ignore_round_start_friendly_fire)
+function private function_44b6bb92(eattacker, ignore_round_start_friendly_fire)
 {
 	if(!isalive(eattacker))
 	{
-		return 0;
+		return false;
 	}
 	friendlyfire = [[level.figure_out_friendly_fire]](self, eattacker);
 	if(friendlyfire == 1)
 	{
 		if(function_acca46ef() && ignore_round_start_friendly_fire == 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(friendlyfire == 2)
 	{
-		return 1;
+		return true;
 	}
 	if(friendlyfire == 3)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1554,15 +1575,15 @@ function function_1727a023(ignore_round_start_friendly_fire, attacker)
 	{
 		if(function_acca46ef() && ignore_round_start_friendly_fire == 0)
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
 	if(friendlyfire == 3)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1574,7 +1595,7 @@ function function_1727a023(ignore_round_start_friendly_fire, attacker)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_eacd01b7(eattacker, weapon)
+function private function_eacd01b7(eattacker, weapon)
 {
 	if(level.hardcoremode)
 	{
@@ -1600,7 +1621,7 @@ private function function_eacd01b7(eattacker, weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f4f77cfb(weapon, einflictor)
+function private function_f4f77cfb(weapon, einflictor)
 {
 	if(weapon == level.weaponnone && isdefined(einflictor))
 	{
@@ -1608,16 +1629,19 @@ private function function_f4f77cfb(weapon, einflictor)
 		{
 			weapon = getweapon(#"explodable_barrel");
 		}
-		else if(isdefined(einflictor.destructible_type) && issubstr(einflictor.destructible_type, "vehicle_"))
+		else
 		{
-			weapon = getweapon(#"destructible_car");
-		}
-		else if(isdefined(einflictor.scriptvehicletype))
-		{
-			veh_weapon = getweapon(einflictor.scriptvehicletype);
-			if(isdefined(veh_weapon))
+			if(isdefined(einflictor.destructible_type) && issubstr(einflictor.destructible_type, "vehicle_"))
 			{
-				weapon = veh_weapon;
+				weapon = getweapon(#"destructible_car");
+			}
+			else if(isdefined(einflictor.scriptvehicletype))
+			{
+				veh_weapon = getweapon(einflictor.scriptvehicletype);
+				if(isdefined(veh_weapon))
+				{
+					weapon = veh_weapon;
+				}
 			}
 		}
 	}
@@ -1640,7 +1664,7 @@ private function function_f4f77cfb(weapon, einflictor)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function custom_gamemodes_modified_damage(victim, eattacker, idamage, smeansofdeath, weapon, einflictor, shitloc)
+function private custom_gamemodes_modified_damage(victim, eattacker, idamage, smeansofdeath, weapon, einflictor, shitloc)
 {
 	if(level.onlinegame && !sessionmodeisprivate())
 	{
@@ -1666,7 +1690,7 @@ private function custom_gamemodes_modified_damage(victim, eattacker, idamage, sm
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_a774b4ed(eattacker, einflictor, weapon, smeansofdeath, idamage)
+function private function_a774b4ed(eattacker, einflictor, weapon, smeansofdeath, idamage)
 {
 	self thread weapons::on_damage(eattacker, einflictor, weapon, smeansofdeath, idamage);
 	if(!self util::isusingremote())
@@ -1679,26 +1703,32 @@ private function function_a774b4ed(eattacker, einflictor, weapon, smeansofdeath,
 				self.var_2f5355a6 = gettime();
 			}
 		}
-		else if(function_f99d2668() && smeansofdeath == "MOD_BLED_OUT")
+		else
 		{
-			if(!isdefined(self.var_2c725854) || gettime() > self.var_2c725854)
+			if(function_f99d2668() && smeansofdeath == "MOD_BLED_OUT")
 			{
-				self playrumbleonentity("damage_bleed");
-				self.var_2c725854 = gettime();
+				if(!isdefined(self.var_2c725854) || gettime() > self.var_2c725854)
+				{
+					self playrumbleonentity("damage_bleed");
+					self.var_2c725854 = gettime();
+				}
 			}
-		}
-		else if(smeansofdeath != "MOD_DOT" && smeansofdeath != "MOD_DOT_SELF")
-		{
-			if(!isdefined(self.var_6d9f302e) || gettime() > self.var_6d9f302e)
+			else
 			{
-				self playrumbleonentity("damage_heavy");
-				self.var_6d9f302e = gettime();
+				if(smeansofdeath != "MOD_DOT" && smeansofdeath != "MOD_DOT_SELF")
+				{
+					if(!isdefined(self.var_6d9f302e) || gettime() > self.var_6d9f302e)
+					{
+						self playrumbleonentity("damage_heavy");
+						self.var_6d9f302e = gettime();
+					}
+				}
+				else if(!isdefined(self.var_b82529f5) || gettime() > self.var_b82529f5)
+				{
+					self playrumbleonentity("damage_light");
+					self.var_b82529f5 = gettime();
+				}
 			}
-		}
-		else if(!isdefined(self.var_b82529f5) || gettime() > self.var_b82529f5)
-		{
-			self playrumbleonentity("damage_light");
-			self.var_b82529f5 = gettime();
 		}
 	}
 }

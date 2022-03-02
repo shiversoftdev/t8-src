@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"death_circle", &__init__, undefined, undefined);
 }
@@ -164,7 +164,7 @@ function on_localplayer_spawned(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_382da026(localclientnum)
+function private function_382da026(localclientnum)
 {
 	self notify("1368c9cad92ba095");
 	self endon("1368c9cad92ba095");
@@ -211,7 +211,7 @@ private function function_382da026(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7eb327bd(localclientnum)
+function private function_7eb327bd(localclientnum)
 {
 	self waittill(#"death");
 	var_ef2f4cec = level.var_32e10fc2[localclientnum];
@@ -235,7 +235,7 @@ private function function_7eb327bd(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_43d7470c(localclientnum, intensity = 0)
+function private function_43d7470c(localclientnum, intensity = 0)
 {
 	if(isdefined(self.var_ef215639))
 	{
@@ -258,7 +258,7 @@ private function function_43d7470c(localclientnum, intensity = 0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d69170b(localclientnum, intensity = 0)
+function private function_d69170b(localclientnum, intensity = 0)
 {
 	if(isdefined(self.var_f6795a59))
 	{
@@ -286,7 +286,7 @@ private function function_d69170b(localclientnum, intensity = 0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b8c979ec(localclientnum, intensity = 0)
+function private function_b8c979ec(localclientnum, intensity = 0)
 {
 	if(isdefined(self.var_7e948a2d))
 	{
@@ -309,7 +309,7 @@ private function function_b8c979ec(localclientnum, intensity = 0)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_7ede78e9(localclientnum, var_d017e788 = undefined, intensity = 0)
+function private function_7ede78e9(localclientnum, var_d017e788 = undefined, intensity = 0)
 {
 	self notify("7d26c6ac6cb4777b");
 	self endon("7d26c6ac6cb4777b");
@@ -347,7 +347,7 @@ private function function_7ede78e9(localclientnum, var_d017e788 = undefined, int
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e1273acb(localclientnum, intensity = 0)
+function private function_e1273acb(localclientnum, intensity = 0)
 {
 	maxdistsq = 100000000;
 	var_4a4e047 = 0;
@@ -390,7 +390,7 @@ private function function_e1273acb(localclientnum, intensity = 0)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_de4523(localclientnum, rob = undefined, var_ba26d3a3 = undefined)
+function private function_de4523(localclientnum, rob = undefined, var_ba26d3a3 = undefined)
 {
 	if(self.var_eeee3972 === rob && self.var_99d5860e === var_ba26d3a3)
 	{
@@ -426,7 +426,7 @@ private function function_de4523(localclientnum, rob = undefined, var_ba26d3a3 =
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9e8e1f4f(localclientnum, var_65837411 = undefined)
+function private function_9e8e1f4f(localclientnum, var_65837411 = undefined)
 {
 	if(self.var_213a0963 === var_65837411)
 	{
@@ -457,7 +457,7 @@ private function function_9e8e1f4f(localclientnum, var_65837411 = undefined)
 	Parameters: 0
 	Flags: Private
 */
-private function function_63d6411e()
+function private function_63d6411e()
 {
 	self setcompassicon("");
 }
@@ -471,7 +471,7 @@ private function function_63d6411e()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_32f7227c(deathcircle, currentradius, localclientnum)
+function private function_32f7227c(deathcircle, currentradius, localclientnum)
 {
 	localplayer = function_5c10bd79(localclientnum);
 	startpos = (deathcircle.origin[0], deathcircle.origin[1], 0);
@@ -496,7 +496,7 @@ private function function_32f7227c(deathcircle, currentradius, localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a453467f(localclientnum)
+function private function_a453467f(localclientnum)
 {
 	self endon(#"death", #"hash_49f273cd81c6c0f");
 	self thread function_71f8d788();

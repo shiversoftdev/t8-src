@@ -44,25 +44,31 @@ function function_80d2bf71(localclientnum, oldval, newval, bnewent, binitialsnap
 		self util::waittill_dobj(localclientnum);
 		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92a9c52f7fc5f"], self, "tag_origin");
 	}
-	else if(newval == 2)
+	else
 	{
-		if(isdefined(self.stage_fx))
+		if(newval == 2)
 		{
-			stopfx(localclientnum, self.stage_fx);
+			if(isdefined(self.stage_fx))
+			{
+				stopfx(localclientnum, self.stage_fx);
+			}
+			self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92b9c52f7fe12"], self, "tag_origin");
 		}
-		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92b9c52f7fe12"], self, "tag_origin");
-	}
-	else if(newval == 3)
-	{
-		if(isdefined(self.stage_fx))
+		else
 		{
-			stopfx(localclientnum, self.stage_fx);
+			if(newval == 3)
+			{
+				if(isdefined(self.stage_fx))
+				{
+					stopfx(localclientnum, self.stage_fx);
+				}
+				self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92c9c52f7ffc5"], self, "tag_origin");
+			}
+			else if(isdefined(self.stage_fx))
+			{
+				stopfx(localclientnum, self.stage_fx);
+			}
 		}
-		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_69e92c9c52f7ffc5"], self, "tag_origin");
-	}
-	else if(isdefined(self.stage_fx))
-	{
-		stopfx(localclientnum, self.stage_fx);
 	}
 }
 
@@ -90,20 +96,23 @@ function function_aae8819(localclientnum, oldval, newval, bnewent, binitialsnap,
 			self.sfx = self playloopsound(#"hash_2c5ad3d4cdc507c");
 		}
 	}
-	else if(newval == 2)
+	else
 	{
-		self.fx = util::playfxontag(localclientnum, level._effect[#"hash_2717a5ed66a93a2d"], self, "tag_origin");
-		if(!isdefined(self.sfx))
+		if(newval == 2)
 		{
-			self playsound(0, #"hash_7867b5508ce25848");
-			self.sfx = self playloopsound(#"hash_2c5ad3d4cdc507c");
+			self.fx = util::playfxontag(localclientnum, level._effect[#"hash_2717a5ed66a93a2d"], self, "tag_origin");
+			if(!isdefined(self.sfx))
+			{
+				self playsound(0, #"hash_7867b5508ce25848");
+				self.sfx = self playloopsound(#"hash_2c5ad3d4cdc507c");
+			}
 		}
-	}
-	else if(isdefined(self.sfx))
-	{
-		self playsound(0, #"hash_6e263590089ef88e");
-		self stoploopsound(self.sfx);
-		self.sfx = undefined;
+		else if(isdefined(self.sfx))
+		{
+			self playsound(0, #"hash_6e263590089ef88e");
+			self stoploopsound(self.sfx);
+			self.sfx = undefined;
+		}
 	}
 }
 
@@ -134,27 +143,33 @@ function function_3a0ab08b(localclientnum, oldval, newval, bnewent, binitialsnap
 		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea4060746fe17a"], self, str_tag);
 		self.var_3177d514 = self playloopsound(#"hash_218e114cfa2b9a4");
 	}
-	else if(newval == 2)
+	else
 	{
-		if(isdefined(self.stage_fx))
+		if(newval == 2)
 		{
-			stopfx(localclientnum, self.stage_fx);
+			if(isdefined(self.stage_fx))
+			{
+				stopfx(localclientnum, self.stage_fx);
+			}
+			self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea3f60746fdfc7"], self, str_tag);
+			self.var_3177d514 = self playloopsound(#"hash_218e414cfa2bebd");
 		}
-		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea3f60746fdfc7"], self, str_tag);
-		self.var_3177d514 = self playloopsound(#"hash_218e414cfa2bebd");
-	}
-	else if(newval == 3)
-	{
-		if(isdefined(self.stage_fx))
+		else
 		{
-			stopfx(localclientnum, self.stage_fx);
+			if(newval == 3)
+			{
+				if(isdefined(self.stage_fx))
+				{
+					stopfx(localclientnum, self.stage_fx);
+				}
+				self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea3e60746fde14"], self, str_tag);
+				self.var_3177d514 = self playloopsound(#"hash_218e314cfa2bd0a");
+			}
+			else if(isdefined(self.stage_fx))
+			{
+				stopfx(localclientnum, self.stage_fx);
+			}
 		}
-		self.stage_fx = util::playfxontag(localclientnum, level._effect[#"hash_2aea3e60746fde14"], self, str_tag);
-		self.var_3177d514 = self playloopsound(#"hash_218e314cfa2bd0a");
-	}
-	else if(isdefined(self.stage_fx))
-	{
-		stopfx(localclientnum, self.stage_fx);
 	}
 }
 

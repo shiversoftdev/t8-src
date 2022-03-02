@@ -40,7 +40,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_24e2aab3e479f70e", &__init__, &__main__, undefined);
 }
@@ -165,7 +165,7 @@ function function_b589dae1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a3661fef()
+function private function_a3661fef()
 {
 	level waittill(#"start_zombie_round_logic");
 	var_6645c992 = zm_crafting::function_b18074d0(#"zblueprint_trap_hellpools");
@@ -390,7 +390,7 @@ function function_1d86d117()
 			e_trap thread zm_traps::trap_damage();
 		}
 	}
-	self waittill_timeout(self._trap_duration, #"trap_deactivate");
+	self waittilltimeout(self._trap_duration, #"trap_deactivate");
 	foreach(e_trap in level.var_482bcfef)
 	{
 		if(e_trap.script_string === self.script_string)
@@ -450,7 +450,7 @@ function activate_trap(e_player)
 		}
 		self flag::set("activated");
 		self thread function_692db12();
-		self waittill_timeout(15, #"hash_5aa6001392300725");
+		self waittilltimeout(15, #"hash_5aa6001392300725");
 		self function_b97c8553();
 	}
 }
@@ -603,7 +603,7 @@ function function_db9410fa(e_trap)
 */
 function function_506285c3(t_damage)
 {
-	self endon_callback(&function_6f5e73b5, #"death", #"disconnect");
+	self endoncallback(&function_6f5e73b5, #"death", #"disconnect");
 	if(isalive(self) && (!(isdefined(self.var_62b59590) && self.var_62b59590)))
 	{
 		self.var_62b59590 = 1;

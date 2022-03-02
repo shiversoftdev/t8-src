@@ -420,7 +420,7 @@ function function_a9d35d2()
 		self moveto(s_point.origin, 0.5, 0.1, 0.2);
 		self.var_d0fed9fb = s_point.script_int;
 		s_result = undefined;
-		s_result = self waittill_timeout(function_21a3a673(4 - level.var_9e3c632e, 6 - level.var_9e3c632e), #"hash_1b991f6cf2f6430a");
+		s_result = self waittilltimeout(function_21a3a673(4 - level.var_9e3c632e, 6 - level.var_9e3c632e), #"hash_1b991f6cf2f6430a");
 	}
 }
 
@@ -486,14 +486,17 @@ function function_c2d403f(n_index)
 					self.b_frozen = 0;
 				}
 			}
-			else if(isinarray(level.var_16972e5c, s_notify.weapon.name))
-			{
-				self clientfield::set("" + #"hash_5dd642a0bd6e6cb9", 2);
-				self.b_frozen = 1;
-			}
 			else
 			{
-				self.b_near = 1;
+				if(isinarray(level.var_16972e5c, s_notify.weapon.name))
+				{
+					self clientfield::set("" + #"hash_5dd642a0bd6e6cb9", 2);
+					self.b_frozen = 1;
+				}
+				else
+				{
+					self.b_near = 1;
+				}
 			}
 		}
 	}

@@ -27,7 +27,7 @@ function init()
 	level thread shard_watcher();
 	level thread function_9785ebce();
 	level thread pap_watcher();
-	level.var_49f54c9e = 0;
+	level.n_electric_trap_kills = 0;
 	level.var_36067f1f = 0;
 	level.var_8265e44f = 0;
 	level.var_4b81bb64 = 0;
@@ -172,11 +172,11 @@ function function_2c104547(s_params)
 	{
 		case "electric":
 		{
-			if(level.var_49f54c9e < 12)
+			if(level.n_electric_trap_kills < 12)
 			{
-				level.var_49f54c9e++;
+				level.n_electric_trap_kills++;
 				/#
-					iprintln("" + level.var_49f54c9e);
+					iprintln("" + level.n_electric_trap_kills);
 				#/
 			}
 			break;
@@ -226,7 +226,7 @@ function function_2c104547(s_params)
 			break;
 		}
 	}
-	if(level.var_49f54c9e > 11 && level.var_36067f1f > 11 && level.var_8265e44f > 11 && level.var_4b81bb64 > 11 && level.var_9e22ff45 > 11)
+	if(level.n_electric_trap_kills > 11 && level.var_36067f1f > 11 && level.var_8265e44f > 11 && level.var_4b81bb64 > 11 && level.var_9e22ff45 > 11)
 	{
 		/#
 			iprintlnbold("" + "");
@@ -373,10 +373,10 @@ function function_91cfddc4()
 	{
 		if(!bought)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

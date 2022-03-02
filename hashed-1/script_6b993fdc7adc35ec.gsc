@@ -12,7 +12,7 @@
 	Parameters: 2
 	Flags: Private
 */
-private function function_c92543a0(var_84704ed7, attachmentname)
+function private function_c92543a0(var_84704ed7, attachmentname)
 {
 	attachment = spawnstruct();
 	attachment.id = var_84704ed7.id;
@@ -41,11 +41,11 @@ function function_9e9c82a6(item, var_84704ed7, var_41a74919 = 1, var_31d2edc5 = 
 	#/
 	if(!isdefined(item) || !isdefined(item.var_a6762160) || item.var_a6762160.itemtype != #"weapon")
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(var_84704ed7) || !isdefined(var_84704ed7.var_a6762160) || !isdefined(var_84704ed7.var_bd027dd9) || var_84704ed7.var_a6762160.itemtype != #"attachment")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(item.attachments))
 	{
@@ -53,14 +53,14 @@ function function_9e9c82a6(item, var_84704ed7, var_41a74919 = 1, var_31d2edc5 = 
 		{
 			if(isdefined(attachment) && attachment.var_bd027dd9 == var_84704ed7.var_bd027dd9)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
 	attachmentname = function_2ced1d34(item, var_84704ed7.var_a6762160, var_31d2edc5);
 	if(!isdefined(attachmentname))
 	{
-		return 0;
+		return false;
 	}
 	var_84704ed7.var_4c342187 = attachmentname;
 	if(!isdefined(item.attachments))
@@ -76,7 +76,7 @@ function function_9e9c82a6(item, var_84704ed7, var_41a74919 = 1, var_31d2edc5 = 
 	{
 		function_6e9e7169(item);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -393,16 +393,16 @@ function function_4bd83c04(item)
 	#/
 	if(!isdefined(item) || !isdefined(item.var_a6762160))
 	{
-		return 0;
+		return false;
 	}
 	foreach(slot in array("attachSlotOptics", "attachSlotBarrel", "attachSlotRail", "attachSlotMagazine", "attachSlotBody", "attachSlotStock"))
 	{
 		if(isdefined(item.var_a6762160.(slot)) && item.var_a6762160.(slot))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -502,11 +502,11 @@ function function_ee669356(item)
 	#/
 	if(!isdefined(item) || !isdefined(item.var_a6762160))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(item.attachments) || !isdefined(item.var_a6762160.attachments))
 	{
-		return 1;
+		return true;
 	}
 	foreach(attachment in item.var_a6762160.attachments)
 	{
@@ -517,11 +517,11 @@ function function_ee669356(item)
 		var_84704ed7 = function_4ba8fde(attachment.var_6be1bec7);
 		if(!isdefined(var_84704ed7) || !isdefined(var_84704ed7.var_a6762160))
 		{
-			return 0;
+			return false;
 		}
 		if(!isdefined(item.attachments) || item.attachments.size <= 0)
 		{
-			return 0;
+			return false;
 		}
 		hasattachment = 0;
 		foreach(var_d7172da7 in item.attachments)
@@ -534,10 +534,10 @@ function function_ee669356(item)
 		}
 		if(!hasattachment)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -560,11 +560,11 @@ function function_b6a27222(slotid)
 		{
 			if(slotid == (weaponslot + var_259f58f3))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -608,10 +608,10 @@ function function_398b9770(var_4838b749, var_f9f8c0b5)
 	{
 		if(var_f9f8c0b5 == (var_4838b749 + var_259f58f3))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

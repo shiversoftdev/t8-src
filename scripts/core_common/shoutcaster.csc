@@ -146,7 +146,7 @@ function function_981be10f(local_client_num)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shoutcaster_monitor_xray_change(local_client_num)
+function private shoutcaster_monitor_xray_change(local_client_num)
 {
 	level notify("shoutcaster_monitor_xray_change" + local_client_num);
 	level endon("shoutcaster_monitor_xray_change" + local_client_num);
@@ -213,7 +213,7 @@ private function shoutcaster_monitor_xray_change(local_client_num)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_4c4946d4(local_client_num, localplayerteam, var_52fe6881, var_faa7a3fb)
+function private function_4c4946d4(local_client_num, localplayerteam, var_52fe6881, var_faa7a3fb)
 {
 	var_f2a410c9 = [];
 	players = getplayers(local_client_num);
@@ -318,21 +318,21 @@ function function_a0b844f1(local_client_num, var_c6fc7911, rob)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7ed4edd3(playername)
+function private function_7ed4edd3(playername)
 {
 	if(!isdefined(playername))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.var_b541c509))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.var_b541c509[playername]))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -344,25 +344,25 @@ private function function_7ed4edd3(playername)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2b07633f(playername)
+function private function_2b07633f(playername)
 {
 	if(!isdefined(playername))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.var_b9e7d957))
 	{
-		return 0;
+		return false;
 	}
 	if(level.var_b9e7d957 != playername)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.var_fea1a13))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -396,7 +396,7 @@ function function_995e01b6(localclientnum, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8e1e7736(localclientnum, player)
+function private function_8e1e7736(localclientnum, player)
 {
 	level.var_b9e7d957 = player.name;
 	if(player.team == #"allies")
@@ -419,7 +419,7 @@ private function function_8e1e7736(localclientnum, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_35248a94(localclientnum, playername)
+function private function_35248a94(localclientnum, playername)
 {
 	if(isdefined(level.var_b541c509[playername]))
 	{
@@ -437,7 +437,7 @@ private function function_35248a94(localclientnum, playername)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_69b179ea(localclientnum)
+function private function_69b179ea(localclientnum)
 {
 	if(isdefined(level.var_fea1a13))
 	{
@@ -455,7 +455,7 @@ private function function_69b179ea(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shoutcaster_monitor_player_pucks(localclientnum)
+function private shoutcaster_monitor_player_pucks(localclientnum)
 {
 	level notify("shoutcaster_monitor_player_pucks" + localclientnum);
 	level endon("shoutcaster_monitor_player_pucks" + localclientnum);

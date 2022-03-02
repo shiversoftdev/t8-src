@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_unitrigger", &__init__, &__main__, #"zm_zonemgr");
 }
@@ -52,22 +52,28 @@ function create(var_9d80e6ef = "", var_e0bc0661 = 64, func_unitrigger_logic = &f
 		{
 			function_2547d31f(s_unitrigger, var_9d80e6ef);
 		}
-		else if(getdvarint(#"hash_11ad6a9695943217", 0))
-		{
-			unitrigger_set_hint_string(s_unitrigger, var_9d80e6ef);
-		}
 		else
 		{
-			unitrigger_set_hint_string(s_unitrigger, "");
+			if(getdvarint(#"hash_11ad6a9695943217", 0))
+			{
+				unitrigger_set_hint_string(s_unitrigger, var_9d80e6ef);
+			}
+			else
+			{
+				unitrigger_set_hint_string(s_unitrigger, "");
+			}
 		}
-	}
-	else if(isfunctionptr(var_9d80e6ef))
-	{
-		function_2547d31f(s_unitrigger, var_9d80e6ef);
 	}
 	else
 	{
-		unitrigger_set_hint_string(s_unitrigger, var_9d80e6ef);
+		if(isfunctionptr(var_9d80e6ef))
+		{
+			function_2547d31f(s_unitrigger, var_9d80e6ef);
+		}
+		else
+		{
+			unitrigger_set_hint_string(s_unitrigger, var_9d80e6ef);
+		}
 	}
 	s_unitrigger.related_parent = self;
 	self.s_unitrigger = s_unitrigger;
@@ -237,7 +243,7 @@ function function_28304f6a()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function register_unitrigger_internal(unitrigger_stub, trigger_func)
+function private register_unitrigger_internal(unitrigger_stub, trigger_func)
 {
 	if(!isdefined(unitrigger_stub.script_unitrigger_type))
 	{
@@ -792,15 +798,18 @@ function function_89380dda(s_stub, var_840cc2c8 = 1)
 		s_stub.require_look_toward = 1;
 		s_stub.require_look_at = 0;
 	}
-	else if(var_840cc2c8 == 0)
-	{
-		s_stub.require_look_toward = 0;
-		s_stub.require_look_at = 0;
-	}
 	else
 	{
-		s_stub.require_look_toward = 0;
-		s_stub.require_look_at = 1;
+		if(var_840cc2c8 == 0)
+		{
+			s_stub.require_look_toward = 0;
+			s_stub.require_look_at = 0;
+		}
+		else
+		{
+			s_stub.require_look_toward = 0;
+			s_stub.require_look_at = 1;
+		}
 	}
 	function_91a18523(s_stub, &function_2565f0b0);
 }
@@ -909,7 +918,7 @@ function function_91a18523(s_stub, var_a6b7a40d)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_699abf2(s_stub, trigger)
+function private function_699abf2(s_stub, trigger)
 {
 	trigger.origin = s_stub unitrigger_origin();
 	if(isdefined(s_stub.angles))
@@ -927,7 +936,7 @@ private function function_699abf2(s_stub, trigger)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5d7dd248(s_stub, trigger)
+function private function_5d7dd248(s_stub, trigger)
 {
 	if(isdefined(s_stub.var_8d306e51) && s_stub.var_8d306e51)
 	{
@@ -977,24 +986,30 @@ function function_d0676c62(s_stub, trigger, player)
 				trigger sethintstring(s_stub.hint_string, s_stub.hint_parm1, s_stub.hint_parm2);
 			}
 		}
-		else if(isdefined(s_stub.hint_parm1))
+		else
 		{
-			if(isdefined(s_stub.var_8d306e51) && s_stub.var_8d306e51)
+			if(isdefined(s_stub.hint_parm1))
 			{
-				trigger sethintstringforplayer(player, s_stub.hint_string, s_stub.hint_parm1);
+				if(isdefined(s_stub.var_8d306e51) && s_stub.var_8d306e51)
+				{
+					trigger sethintstringforplayer(player, s_stub.hint_string, s_stub.hint_parm1);
+				}
+				else
+				{
+					trigger sethintstring(s_stub.hint_string, s_stub.hint_parm1);
+				}
 			}
 			else
 			{
-				trigger sethintstring(s_stub.hint_string, s_stub.hint_parm1);
+				if(isdefined(s_stub.var_8d306e51) && s_stub.var_8d306e51)
+				{
+					trigger sethintstringforplayer(player, s_stub.hint_string);
+				}
+				else
+				{
+					trigger sethintstring(s_stub.hint_string);
+				}
 			}
-		}
-		else if(isdefined(s_stub.var_8d306e51) && s_stub.var_8d306e51)
-		{
-			trigger sethintstringforplayer(player, s_stub.hint_string);
-		}
-		else
-		{
-			trigger sethintstring(s_stub.hint_string);
 		}
 	}
 }
@@ -1008,7 +1023,7 @@ function function_d0676c62(s_stub, trigger, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5c2f213d(s_stub, trigger)
+function private function_5c2f213d(s_stub, trigger)
 {
 	if(isdefined(s_stub.var_8d306e51) && s_stub.var_8d306e51)
 	{
@@ -1032,7 +1047,7 @@ private function function_5c2f213d(s_stub, trigger)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_933f3bf3(s_stub, trigger, player)
+function private function_933f3bf3(s_stub, trigger, player)
 {
 	if(isdefined(s_stub.prompt_and_visibility_func))
 	{
@@ -1064,7 +1079,7 @@ private function function_933f3bf3(s_stub, trigger, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2565f0b0(s_stub, trigger)
+function private function_2565f0b0(s_stub, trigger)
 {
 	if(!isdefined(trigger) || !isdefined(s_stub))
 	{
@@ -1083,7 +1098,7 @@ private function function_2565f0b0(s_stub, trigger)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_94419264()
+function private function_94419264()
 {
 	if(!isdefined(self.var_13a302d2))
 	{
@@ -1135,7 +1150,7 @@ private function function_94419264()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ba088f52(trigger)
+function private function_ba088f52(trigger)
 {
 	if(self.current_trigger !== trigger)
 	{
@@ -1166,7 +1181,7 @@ private function function_ba088f52(trigger)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_71b67b2a(trigger)
+function private function_71b67b2a(trigger)
 {
 	if(!isdefined(trigger.stub) || distancesquared(self.origin, trigger.stub unitrigger_origin()) > 65536)
 	{
@@ -1184,7 +1199,7 @@ private function function_71b67b2a(trigger)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_358a2fc7()
+function private function_358a2fc7()
 {
 	self notify(#"hash_4a86a63120e0d3d9");
 	self endon(#"hash_4a86a63120e0d3d9", #"disconnect");
@@ -1217,7 +1232,7 @@ private function function_358a2fc7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5b353bb7()
+function private function_5b353bb7()
 {
 	if(!isdefined(self.var_13a302d2))
 	{
@@ -1243,7 +1258,7 @@ private function function_5b353bb7()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d7eef1bc(zone, zone_name)
+function private function_d7eef1bc(zone, zone_name)
 {
 	self endon(#"hash_2d4daa9e80b86b60");
 	function_5b353bb7();
@@ -1268,7 +1283,7 @@ private function function_d7eef1bc(zone, zone_name)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3c84a41e(stub, zone_name)
+function private function_3c84a41e(stub, zone_name)
 {
 	waitframe(1);
 	foreach(player in util::get_players())
@@ -1289,7 +1304,7 @@ private function function_3c84a41e(stub, zone_name)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f1854fb(stub)
+function private function_f1854fb(stub)
 {
 	foreach(player in getplayers())
 	{
@@ -1309,7 +1324,7 @@ private function function_f1854fb(stub)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ba39b142()
+function private function_ba39b142()
 {
 	if(!isdefined(level.var_9d46713))
 	{
@@ -1340,7 +1355,7 @@ private function function_ba39b142()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_522794c2(stub)
+function private function_522794c2(stub)
 {
 	function_ba39b142();
 	if(isdefined(level.var_dc25ba05) && level.var_dc25ba05)
@@ -1430,18 +1445,21 @@ function assess_and_apply_visibility(trigger, stub, player, default_keep)
 			trigger.reassess_time = undefined;
 		}
 	}
-	else if(isdefined(trigger.thread_running) && trigger.thread_running)
-	{
-		keep_thread = 0;
-	}
-	trigger.thread_running = 0;
-	if(isdefined(stub.inactive_reassess_time))
-	{
-		trigger.reassess_time = stub.inactive_reassess_time;
-	}
 	else
 	{
-		trigger.reassess_time = 1;
+		if(isdefined(trigger.thread_running) && trigger.thread_running)
+		{
+			keep_thread = 0;
+		}
+		trigger.thread_running = 0;
+		if(isdefined(stub.inactive_reassess_time))
+		{
+			trigger.reassess_time = stub.inactive_reassess_time;
+		}
+		else
+		{
+			trigger.reassess_time = 1;
+		}
 	}
 	return keep_thread;
 }
@@ -1455,7 +1473,7 @@ function assess_and_apply_visibility(trigger, stub, player, default_keep)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function is_same_trigger(old_trigger, trigger)
+function private is_same_trigger(old_trigger, trigger)
 {
 	return isdefined(old_trigger) && old_trigger == trigger && trigger.parent_player == old_trigger.parent_player;
 }
@@ -1469,7 +1487,7 @@ private function is_same_trigger(old_trigger, trigger)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function check_and_build_trigger_from_unitrigger_stub(stub, player)
+function private check_and_build_trigger_from_unitrigger_stub(stub, player)
 {
 	if(!isdefined(stub))
 	{
@@ -1496,15 +1514,18 @@ private function check_and_build_trigger_from_unitrigger_stub(stub, player)
 			trigger.player = player;
 		}
 	}
-	else if(!isdefined(stub.trigger))
-	{
-		trigger = build_trigger_from_unitrigger_stub(stub, player);
-		level._unitriggers.trigger_pool[player getentitynumber()] = trigger;
-	}
 	else
 	{
-		trigger = stub.trigger;
-		trigger function_4bb09c8f(stub, player);
+		if(!isdefined(stub.trigger))
+		{
+			trigger = build_trigger_from_unitrigger_stub(stub, player);
+			level._unitriggers.trigger_pool[player getentitynumber()] = trigger;
+		}
+		else
+		{
+			trigger = stub.trigger;
+			trigger function_4bb09c8f(stub, player);
+		}
 	}
 	return trigger;
 }
@@ -1532,7 +1553,7 @@ function function_68f2282d(var_e7d50e88)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function build_trigger_from_unitrigger_stub(s_stub, player)
+function private build_trigger_from_unitrigger_stub(s_stub, player)
 {
 	radius = (isdefined(s_stub.radius) ? s_stub.radius : 64);
 	script_height = (isdefined(s_stub.script_height) ? s_stub.script_height : 64);
@@ -1609,7 +1630,7 @@ private function build_trigger_from_unitrigger_stub(s_stub, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function copy_zombie_keys_onto_trigger(trigger, s_stub)
+function private copy_zombie_keys_onto_trigger(trigger, s_stub)
 {
 	trigger.script_noteworthy = s_stub.script_noteworthy;
 	trigger.targetname = s_stub.targetname;
@@ -1628,7 +1649,7 @@ private function copy_zombie_keys_onto_trigger(trigger, s_stub)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4bb09c8f(s_stub, player)
+function private function_4bb09c8f(s_stub, player)
 {
 	if(isdefined(self))
 	{
@@ -1650,7 +1671,7 @@ private function function_4bb09c8f(s_stub, player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function trigger_thread(trigger_func)
+function private trigger_thread(trigger_func)
 {
 	self endon(#"kill_trigger");
 	if(isdefined(trigger_func))
@@ -1771,7 +1792,12 @@ function function_3fdbe6d3(trigger, var_5ca10e3c, color)
 				line(var_5ca10e3c, torigin, color, 0, 1);
 			#/
 		}
-		sphere(var_5ca10e3c, 4, color, 1, 1, 10, 1);
+		else
+		{
+			/#
+				sphere(var_5ca10e3c, 4, color, 1, 1, 10, 1);
+			#/
+		}
 		/#
 			forward = anglestoforward(tangles);
 			line(torigin, torigin + (12 * forward), color, 0, 1);
@@ -1802,7 +1828,7 @@ function function_3fdbe6d3(trigger, var_5ca10e3c, color)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bb454fe6()
+function private function_bb454fe6()
 {
 	level flag::wait_till("start_zombie_round_logic");
 	valid_range = level._unitriggers.largest_radius + 15;
@@ -2000,7 +2026,7 @@ private function function_bb454fe6()
 	Parameters: 0
 	Flags: Private
 */
-private function run_visibility_function_for_all_triggers()
+function private run_visibility_function_for_all_triggers()
 {
 	if(!isdefined(self.prompt_and_visibility_func))
 	{
@@ -2036,7 +2062,7 @@ private function run_visibility_function_for_all_triggers()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function get_closest_unitriggers(org, array, dist = 9999999)
+function private get_closest_unitriggers(org, array, dist = 9999999)
 {
 	triggers = [];
 	if(array.size < 1)

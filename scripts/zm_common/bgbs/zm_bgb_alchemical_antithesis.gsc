@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_alchemical_antithesis", &__init__, undefined, #"bgb");
 }
@@ -57,7 +57,7 @@ function validation()
 	{
 		return 0;
 	}
-	return !(isdefined(self bgb::function_ff7c0158()) && self bgb::function_ff7c0158());
+	return !(isdefined(self bgb::get_active()) && self bgb::get_active());
 }
 
 /*
@@ -87,7 +87,7 @@ function activation()
 */
 function add_to_player_score_override(points, str_awarded_by, zm_scr_spawner_location_distance)
 {
-	if(!(isdefined(self.var_2c195483) && self.var_2c195483))
+	if(!(isdefined(self.bgb_active) && self.bgb_active))
 	{
 		return points;
 	}

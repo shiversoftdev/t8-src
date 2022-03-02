@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_281322718ac3cd88", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(localclientnum, a_params)
+function private function_d1de6a85(localclientnum, a_params)
 {
 	level.var_e91491fb = (isdefined(a_params[0]) ? a_params[0] : "movement");
 }
@@ -62,7 +62,7 @@ private function function_d1de6a85(localclientnum, a_params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_e91491fb = undefined;
 }
@@ -95,7 +95,7 @@ function function_26f124d8()
 {
 	if(!isdefined(level.var_e91491fb))
 	{
-		return 1;
+		return true;
 	}
 	switch(level.var_e91491fb)
 	{
@@ -103,49 +103,49 @@ function function_26f124d8()
 		{
 			if(self isplayerads())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "jump":
 		{
 			if(self isplayerjumping())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "slide":
 		{
 			if(self isplayersliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "hash_6c6c8f6b349b8751":
 		{
 			if(self isplayerjumping() || self isplayersliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "crouch":
 		{
 			if(self getstance() === "crouch")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "prone":
 		{
 			if(self getstance() === "prone")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "movement":
 		default:
@@ -153,11 +153,11 @@ function function_26f124d8()
 			v_velocity = self getvelocity();
 			if(length(v_velocity) != 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
-	return 0;
+	return false;
 }
 

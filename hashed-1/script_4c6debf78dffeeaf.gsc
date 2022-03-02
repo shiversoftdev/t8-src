@@ -106,13 +106,16 @@ function callback_playerconnect()
 		{
 			self thread globallogic_audio::set_music_on_player("none");
 		}
-		else if(game.state != "playing")
-		{
-			self thread globallogic_audio::set_music_on_player("spawnPreLoop");
-		}
 		else
 		{
-			self thread globallogic_audio::set_music_on_player("none");
+			if(game.state != "playing")
+			{
+				self thread globallogic_audio::set_music_on_player("spawnPreLoop");
+			}
+			else
+			{
+				self thread globallogic_audio::set_music_on_player("none");
+			}
 		}
 	}
 	else
@@ -263,32 +266,35 @@ function callback_playerconnect()
 		}
 		init_character_index();
 	}
-	else if(self.pers[#"team"] == #"spectator")
-	{
-		[[level.spawnspectator]]();
-		self.sessionteam = #"spectator";
-		self.sessionstate = "spectator";
-		self thread spectate_player_watcher();
-	}
 	else
 	{
-		self.sessionteam = self.pers[#"team"];
-		self.sessionstate = "dead";
-		self globallogic_ui::updateobjectivetext();
-		[[level.spawnspectator]]();
-		init_character_index();
-		if(!draft::is_draft_this_round())
+		if(self.pers[#"team"] == #"spectator")
 		{
-			if(globallogic_utils::isvalidclass(self.pers[#"class"]) && player_role::is_valid(self player_role::get()))
-			{
-				self thread [[level.spawnclient]]();
-			}
-			else
-			{
-				self globallogic_ui::showmainmenuforteam();
-			}
+			[[level.spawnspectator]]();
+			self.sessionteam = #"spectator";
+			self.sessionstate = "spectator";
+			self thread spectate_player_watcher();
 		}
-		self thread spectating::set_permissions();
+		else
+		{
+			self.sessionteam = self.pers[#"team"];
+			self.sessionstate = "dead";
+			self globallogic_ui::updateobjectivetext();
+			[[level.spawnspectator]]();
+			init_character_index();
+			if(!draft::is_draft_this_round())
+			{
+				if(globallogic_utils::isvalidclass(self.pers[#"class"]) && player_role::is_valid(self player_role::get()))
+				{
+					self thread [[level.spawnclient]]();
+				}
+				else
+				{
+					self globallogic_ui::showmainmenuforteam();
+				}
+			}
+			self thread spectating::set_permissions();
+		}
 	}
 	if(self.sessionteam != #"spectator" && self.sessionstate != "playing" && !isalive(self))
 	{
@@ -355,7 +361,7 @@ function callback_playerconnect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_db0c0406()
+function private function_db0c0406()
 {
 	if(!isdefined(self.pers[#"score"]))
 	{
@@ -464,7 +470,7 @@ private function function_db0c0406()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function init_character_index()
+function private init_character_index()
 {
 	/#
 		autoselection = getdvarint(#"auto_select_character", -1);
@@ -511,69 +517,75 @@ private function init_character_index()
 				var_72964a59 = level.select_character;
 			}
 		}
-		else if(function_f99d2668())
+		else
 		{
-			var_72964a59 = self stats::function_6d50f14b(#"cacloadouts", #"charactercontext", #"characterindex");
-			if(var_72964a59 != 0 && (isdefined(getgametypesetting(#"hash_2992e3d39d55b312")) && getgametypesetting(#"hash_2992e3d39d55b312")))
+			if(function_f99d2668())
 			{
-				rf = function_fb05c532(var_72964a59, currentsessionmode());
-				if(isdefined(rf) && rf.var_57519715 === #"hash_350d7fc2aca48b7f")
+				var_72964a59 = self stats::function_6d50f14b(#"cacloadouts", #"charactercontext", #"characterindex");
+				if(var_72964a59 != 0 && (isdefined(getgametypesetting(#"hash_2992e3d39d55b312")) && getgametypesetting(#"hash_2992e3d39d55b312")))
 				{
-					var_72964a59 = 0;
-				}
-			}
-			if(var_72964a59 == 0)
-			{
-				playerroletemplatecount = getplayerroletemplatecount(currentsessionmode());
-				var_36918d27 = [];
-				for(i = 0; i < playerroletemplatecount; i++)
-				{
-					/#
-						if(isbot(self))
-						{
-							if(function_f4bf7e3f(i, currentsessionmode()))
-							{
-								if(!isdefined(var_36918d27))
-								{
-									var_36918d27 = [];
-								}
-								else if(!isarray(var_36918d27))
-								{
-									var_36918d27 = array(var_36918d27);
-								}
-								var_36918d27[var_36918d27.size] = i;
-							}
-							continue;
-						}
-					#/
-					rf = function_fb05c532(i, currentsessionmode());
-					if(isdefined(rf) && (isdefined(rf.var_7376c393) && rf.var_7376c393))
+					rf = function_fb05c532(var_72964a59, currentsessionmode());
+					if(isdefined(rf) && rf.var_57519715 === #"hash_350d7fc2aca48b7f")
 					{
-						if(!isdefined(var_36918d27))
-						{
-							var_36918d27 = [];
-						}
-						else if(!isarray(var_36918d27))
-						{
-							var_36918d27 = array(var_36918d27);
-						}
-						var_36918d27[var_36918d27.size] = i;
+						var_72964a59 = 0;
 					}
 				}
-				var_72964a59 = (isdefined(array::random(var_36918d27)) ? array::random(var_36918d27) : 0);
 				if(var_72964a59 == 0)
 				{
-					kick(self getentitynumber());
-					return;
+					playerroletemplatecount = getplayerroletemplatecount(currentsessionmode());
+					var_36918d27 = [];
+					for(i = 0; i < playerroletemplatecount; i++)
+					{
+						/#
+							if(isbot(self))
+							{
+								if(function_f4bf7e3f(i, currentsessionmode()))
+								{
+									if(!isdefined(var_36918d27))
+									{
+										var_36918d27 = [];
+									}
+									else if(!isarray(var_36918d27))
+									{
+										var_36918d27 = array(var_36918d27);
+									}
+									var_36918d27[var_36918d27.size] = i;
+								}
+								continue;
+							}
+						#/
+						rf = function_fb05c532(i, currentsessionmode());
+						if(isdefined(rf) && (isdefined(rf.var_7376c393) && rf.var_7376c393))
+						{
+							if(!isdefined(var_36918d27))
+							{
+								var_36918d27 = [];
+							}
+							else if(!isarray(var_36918d27))
+							{
+								var_36918d27 = array(var_36918d27);
+							}
+							var_36918d27[var_36918d27.size] = i;
+						}
+					}
+					var_72964a59 = (isdefined(array::random(var_36918d27)) ? array::random(var_36918d27) : 0);
+					if(var_72964a59 == 0)
+					{
+						kick(self getentitynumber());
+						return;
+					}
 				}
 			}
+			else
+			{
+				if(sessionmodeismultiplayergame())
+				{
+					draft::assign_remaining_players(self);
+					return;
+				}
+				var_72964a59 = self function_b3a116a1();
+			}
 		}
-		else if(sessionmodeismultiplayergame())
-		{
-			draft::assign_remaining_players(self);
-			return;
-		}
-		var_72964a59 = self function_b3a116a1();
 		draft::select_character(var_72964a59, 1);
 	}
 	if(!draft::is_draft_this_round() && player_role::is_valid(self.pers[#"characterindex"]))
@@ -592,7 +604,7 @@ private function init_character_index()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_efa6e25f()
+function private function_efa6e25f()
 {
 	self globallogic_score::initpersstat(#"score");
 	self globallogic_score::initpersstat(#"rolescore");
@@ -744,7 +756,7 @@ private function function_efa6e25f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3bd86b5d()
+function private function_3bd86b5d()
 {
 	waittillframeend();
 	if(isdefined(self))

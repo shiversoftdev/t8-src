@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"destructible_character", &__init__, undefined, undefined);
 }
@@ -92,7 +92,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _getdestructibledef(entity)
+function private _getdestructibledef(entity)
 {
 	return level.destructiblecharacterdefs[entity.destructibledef];
 }
@@ -106,7 +106,7 @@ private function _getdestructibledef(entity)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function _destructhandler(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private _destructhandler(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(!util::is_mature() || util::is_gib_restricted_build())
 	{
@@ -146,7 +146,7 @@ private function _destructhandler(localclientnum, oldvalue, newvalue, bnewent, b
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _destructpiece(localclientnum, entity, piecenumber, shouldspawngibs)
+function private _destructpiece(localclientnum, entity, piecenumber, shouldspawngibs)
 {
 	if(!isdefined(entity.destructibledef))
 	{
@@ -179,7 +179,7 @@ private function _destructpiece(localclientnum, entity, piecenumber, shouldspawn
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _getdestructstate(localclientnum, entity)
+function private _getdestructstate(localclientnum, entity)
 {
 	if(isdefined(entity._destruct_state))
 	{
@@ -197,7 +197,7 @@ private function _getdestructstate(localclientnum, entity)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _handledestructcallbacks(localclientnum, entity, piecenumber)
+function private _handledestructcallbacks(localclientnum, entity, piecenumber)
 {
 	if(isdefined(entity._destructcallbacks) && isdefined(entity._destructcallbacks[piecenumber]))
 	{

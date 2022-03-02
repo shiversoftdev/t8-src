@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_31f83f7a18d98ab2", &__init__, undefined, #"infection");
 }
@@ -30,7 +30,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!function_74650d7())
 	{
@@ -68,7 +68,7 @@ function on_localclient_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_667d34b7(localclientnum)
+function private function_667d34b7(localclientnum)
 {
 	var_d5823792 = 0;
 	while(true)
@@ -101,7 +101,7 @@ private function function_667d34b7(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_a564e332(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_a564e332(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{
@@ -127,7 +127,7 @@ private function function_a564e332(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e5f3924e(localclientnum)
+function private function_e5f3924e(localclientnum)
 {
 	players = getplayers(localclientnum);
 	foreach(player in players)
@@ -145,7 +145,7 @@ private function function_e5f3924e(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_325e85a2(localclientnum)
+function private function_325e85a2(localclientnum)
 {
 	self endon(#"hash_4f90e54d76985430");
 	while(true)

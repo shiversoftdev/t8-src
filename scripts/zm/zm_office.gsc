@@ -69,11 +69,11 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function opt_in()
+function autoexec opt_in()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
-	level.var_4ea5cce8 = 2;
+	level.bgb_machine_count = 2;
 	level.random_pandora_box_start = 1;
 	level.pack_a_punch_camo_index = 161;
 	level.pack_a_punch_camo_index_number_variants = 5;
@@ -279,7 +279,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -299,7 +299,7 @@ function function_e5086229(var_404e4288, var_8dd554ee)
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -443,7 +443,7 @@ function offhand_weapon_give_override(str_weapon)
 		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
 		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -815,9 +815,9 @@ function registerquest_key_pickup_explode(e_player)
 {
 	if(e_player != self && e_player laststand::player_is_in_laststand() && (!(isdefined(e_player.var_16735873) && e_player.var_16735873)) && !namespace_47276bad::function_ee59e344(e_player))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -865,7 +865,7 @@ function function_eeb98313(var_de1edcdb)
 	Parameters: 0
 	Flags: Private
 */
-private function function_8d718d6c()
+function private function_8d718d6c()
 {
 	/#
 		adddebugcommand("");

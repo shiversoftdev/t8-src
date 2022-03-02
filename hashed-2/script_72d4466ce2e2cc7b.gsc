@@ -184,13 +184,16 @@ function function_cfd06f57(localclientnum)
 		{
 			function_d9a960f2(4, 12, 16646058, 300, 200, 200, 0);
 		}
-		else if(isswimming(localclientnum))
-		{
-			function_d9a960f2(4, 12, 16711680, 300, 200, 200, 0);
-		}
 		else
 		{
-			function_d9a960f2(1, 12, 8698);
+			if(isswimming(localclientnum))
+			{
+				function_d9a960f2(4, 12, 16711680, 300, 200, 200, 0);
+			}
+			else
+			{
+				function_d9a960f2(1, 12, 8698);
+			}
 		}
 		wait(0.5);
 	}
@@ -224,29 +227,44 @@ function function_1edfdbc1(localclientnum)
 		{
 			function_815076cb(var_7beb3a32, 65280);
 		}
-		else if(n_health > 100)
-		{
-			function_815076cb(var_7beb3a32, 65535);
-		}
-		else if(n_health > 75)
-		{
-			function_815076cb(var_7beb3a32, 13209);
-		}
-		else if(n_health > 50)
-		{
-			function_815076cb(var_7beb3a32, 255);
-		}
-		else if(n_health > 25)
-		{
-			function_119b3b6b(var_7beb3a32, 255, 300, 200, 200, 0);
-		}
-		else if(n_health > 0)
-		{
-			function_119b3b6b(var_7beb3a32, 255, 200, 50, 50, 0);
-		}
 		else
 		{
-			function_815076cb(var_7beb3a32, 0);
+			if(n_health > 100)
+			{
+				function_815076cb(var_7beb3a32, 65535);
+			}
+			else
+			{
+				if(n_health > 75)
+				{
+					function_815076cb(var_7beb3a32, 13209);
+				}
+				else
+				{
+					if(n_health > 50)
+					{
+						function_815076cb(var_7beb3a32, 255);
+					}
+					else
+					{
+						if(n_health > 25)
+						{
+							function_119b3b6b(var_7beb3a32, 255, 300, 200, 200, 0);
+						}
+						else
+						{
+							if(n_health > 0)
+							{
+								function_119b3b6b(var_7beb3a32, 255, 200, 50, 50, 0);
+							}
+							else
+							{
+								function_815076cb(var_7beb3a32, 0);
+							}
+						}
+					}
+				}
+			}
 		}
 		wait(0.5);
 	}
@@ -309,15 +327,18 @@ function function_a78bbf22(localclientnum)
 		a_keys = array(self function_c2a5ba97("+frag"), self function_c2a5ba97("+smoke"));
 		self.var_9623f1d5 = array(0, 0);
 	}
-	else if(sessionmodeiszombiesgame())
-	{
-		a_keys = array(self function_c2a5ba97("+smoke"), self function_c2a5ba97("+frag"), self function_c2a5ba97("+weapoffhandspecial"));
-		self.var_9623f1d5 = array(0, 0, 0);
-	}
 	else
 	{
-		a_keys = array(self function_c2a5ba97("+frag"), self function_c2a5ba97("+smoke"), self function_c2a5ba97("+weapoffhandspecial"));
-		self.var_9623f1d5 = array(0, 0, 0);
+		if(sessionmodeiszombiesgame())
+		{
+			a_keys = array(self function_c2a5ba97("+smoke"), self function_c2a5ba97("+frag"), self function_c2a5ba97("+weapoffhandspecial"));
+			self.var_9623f1d5 = array(0, 0, 0);
+		}
+		else
+		{
+			a_keys = array(self function_c2a5ba97("+frag"), self function_c2a5ba97("+smoke"), self function_c2a5ba97("+weapoffhandspecial"));
+			self.var_9623f1d5 = array(0, 0, 0);
+		}
 	}
 	function_815076cb(a_keys, 855309);
 	if(sessionmodeiszombiesgame())
@@ -444,13 +465,16 @@ function function_218c905c(localclientnum, winningteam)
 	{
 		color = 9408399;
 	}
-	else if(winningteam == player.team)
+	else
 	{
-		color = 16187136;
-	}
-	else if(winningteam != player.team)
-	{
-		color = 255;
+		if(winningteam == player.team)
+		{
+			color = 16187136;
+		}
+		else if(winningteam != player.team)
+		{
+			color = 255;
+		}
 	}
 	if(isdefined(color))
 	{
@@ -507,21 +531,30 @@ function function_1d13e2db(localclientnum)
 					}
 					function_ed8d6d5e(var_d3aa0bca, 8698, 0, 750);
 				}
-				else if(var_20ef87f3 == 4)
+				else
 				{
-					function_ed8d6d5e(var_58bfadf9, 8698, 0, 750);
-				}
-				else if(var_20ef87f3 == 3)
-				{
-					function_ed8d6d5e(var_cae37ef, 8698, 0, 750);
-				}
-				else if(var_20ef87f3 == 2)
-				{
-					function_ed8d6d5e(var_d3f32152, 8698, 0, 750);
-				}
-				else if(var_20ef87f3 == 1)
-				{
-					function_d9a960f2(2, 12, 8698, 0, 750);
+					if(var_20ef87f3 == 4)
+					{
+						function_ed8d6d5e(var_58bfadf9, 8698, 0, 750);
+					}
+					else
+					{
+						if(var_20ef87f3 == 3)
+						{
+							function_ed8d6d5e(var_cae37ef, 8698, 0, 750);
+						}
+						else
+						{
+							if(var_20ef87f3 == 2)
+							{
+								function_ed8d6d5e(var_d3f32152, 8698, 0, 750);
+							}
+							else if(var_20ef87f3 == 1)
+							{
+								function_d9a960f2(2, 12, 8698, 0, 750);
+							}
+						}
+					}
 				}
 				previoustime = var_20ef87f3;
 			}

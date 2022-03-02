@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_trial_timeout", &__init__, undefined, undefined);
 }
@@ -55,7 +55,7 @@ function __init__()
 	Parameters: 8
 	Flags: Private
 */
-private function function_d1de6a85(var_9eb4b9f8, var_1215371f, grace_period, var_29cadcde, var_c811984d, var_26be3f81, var_6b594c52, var_afb6cb74)
+function private function_d1de6a85(var_9eb4b9f8, var_1215371f, grace_period, var_29cadcde, var_c811984d, var_26be3f81, var_6b594c52, var_afb6cb74)
 {
 	var_690d3062 = 0;
 	switch(getplayers().size)
@@ -118,7 +118,7 @@ private function function_d1de6a85(var_9eb4b9f8, var_1215371f, grace_period, var
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -157,7 +157,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function function_cbd444ad(params)
+function private function_cbd444ad(params)
 {
 	if(!self function_35cda2d8(params))
 	{
@@ -178,29 +178,29 @@ function function_35cda2d8(params)
 {
 	if(self.team !== level.zombie_team)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self.nuked) && self.nuked)
 	{
-		return 1;
+		return true;
 	}
 	if(isai(params.eattacker) || isai(params.einflictor))
 	{
-		return 1;
+		return true;
 	}
 	if(params.weapon === level.var_78032351)
 	{
-		return 1;
+		return true;
 	}
 	if(zm_loadout::is_melee_weapon(params.weapon) || zm_weapons::function_35746b9c(params.weapon))
 	{
-		return 1;
+		return true;
 	}
 	if(params.smeansofdeath === "MOD_IMPACT" || params.smeansofdeath === "MOD_MELEE" || params.smeansofdeath === "MOD_MELEE_ASSASSINATE" || params.smeansofdeath === "MOD_MELEE_WEAPON_BUTT")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -226,7 +226,7 @@ function function_d3eb9969()
 	Parameters: 0
 	Flags: Private
 */
-private function function_28663a8f()
+function private function_28663a8f()
 {
 	self endon(#"death");
 	level endon(#"hash_7646638df88a3656");
@@ -293,11 +293,11 @@ private function function_28663a8f()
 	Parameters: 2
 	Flags: Private
 */
-private function function_f22cd3f0(s_wait_location, ai_zombie)
+function private function_f22cd3f0(s_wait_location, ai_zombie)
 {
 	if(isdefined(s_wait_location.zone_name) && !zm_zonemgr::zone_is_enabled(s_wait_location.zone_name))
 	{
-		return 0;
+		return false;
 	}
 	vol_light_side = getent("vol_light_side", "targetname");
 	vol_dark_side = getent("vol_dark_side", "targetname");
@@ -309,15 +309,15 @@ private function function_f22cd3f0(s_wait_location, ai_zombie)
 		var_c8b07764 = istouching(s_wait_location.origin, vol_dark_side);
 		if(var_9b9fe2ad && var_50ee42a5)
 		{
-			return 1;
+			return true;
 		}
 		if(var_59248979 && var_c8b07764)
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -329,7 +329,7 @@ private function function_f22cd3f0(s_wait_location, ai_zombie)
 	Parameters: 4
 	Flags: Private
 */
-private function function_8b87e57c(var_9eb4b9f8, grace_period, var_690d3062, var_1215371f)
+function private function_8b87e57c(var_9eb4b9f8, grace_period, var_690d3062, var_1215371f)
 {
 	level endon(#"end_of_round", #"host_migration_begin", #"hash_7646638df88a3656", #"end_game");
 	if(!isdefined(level.var_489d6aa2))
@@ -370,7 +370,7 @@ private function function_8b87e57c(var_9eb4b9f8, grace_period, var_690d3062, var
 	Parameters: 0
 	Flags: Private
 */
-private function function_31f197c2()
+function private function_31f197c2()
 {
 	self endon(#"disconnect");
 	wait(0.5);
@@ -397,7 +397,7 @@ private function function_31f197c2()
 	Parameters: 2
 	Flags: Private
 */
-private function function_14a98a41(str_label, n_time_limit)
+function private function_14a98a41(str_label, n_time_limit)
 {
 	self notify("4efb28cb64a876c9");
 	self endon("4efb28cb64a876c9");
@@ -420,7 +420,7 @@ private function function_14a98a41(str_label, n_time_limit)
 	Parameters: 0
 	Flags: Private
 */
-private function function_ff66b979()
+function private function_ff66b979()
 {
 	level endon(#"end_of_round", #"end_game");
 	foreach(player in getplayers())

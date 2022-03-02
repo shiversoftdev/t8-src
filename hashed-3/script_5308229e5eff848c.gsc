@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	waitframe(1);
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 1);
@@ -48,7 +48,7 @@ autoexec function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4305a789()
+function private function_4305a789()
 {
 	function_9b8d4d02(1);
 }
@@ -62,7 +62,7 @@ private function function_4305a789()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c94723bd()
+function private function_c94723bd()
 {
 	var_d1d7eefb = (isdefined(getgametypesetting(#"hash_50b1121aee76a7e4")) ? getgametypesetting(#"hash_50b1121aee76a7e4") : 0);
 	if(!var_d1d7eefb)
@@ -85,7 +85,7 @@ private function function_c94723bd()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9b8d4d02(prematch = 0)
+function private function_9b8d4d02(prematch = 0)
 {
 	var_3a1737b4 = getscriptbundles(#"hash_10587321f369e7f3");
 	foreach(var_1461de43, var_28f8f6a9 in var_3a1737b4)
@@ -111,7 +111,7 @@ private function function_9b8d4d02(prematch = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d0dc6619()
+function private function_d0dc6619()
 {
 	namespace_b0722f43::function_96ff7b88(#"hash_35f5430256d9c158");
 	namespace_b0722f43::function_63bfe27(#"hash_35f5430256d9c158");
@@ -126,7 +126,7 @@ private function function_d0dc6619()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f16631fc()
+function private function_f16631fc()
 {
 }
 
@@ -139,7 +139,7 @@ private function function_f16631fc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_91d1fd09()
+function private function_91d1fd09()
 {
 }
 

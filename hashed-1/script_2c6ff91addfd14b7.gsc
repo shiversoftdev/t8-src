@@ -120,7 +120,7 @@ function state_emped_update(params)
 		self function_a57c34b7((self.origin + (side * 500)) + (forward * randomfloat(400)), 0, 0);
 		wait(0.6);
 		self function_d4c687c9();
-		self waittill_timeout(1.5, #"veh_collision");
+		self waittilltimeout(1.5, #"veh_collision");
 		self kill(self.origin, self.abnormal_status.attacker, self.abnormal_status.inflictor, getweapon(#"emp"));
 	}
 	else
@@ -454,10 +454,10 @@ function check_detonation_dist(origin, enemy)
 		targetpoint = enemy.origin + enemy_look_dir_offst;
 		if(distance2dsquared(targetpoint, origin) < (self.settings.detonation_distance * self.settings.detonation_distance) && ((abs(targetpoint[2] - origin[2])) < self.settings.detonation_distance || (abs((targetpoint[2] - self.settings.jump_height) - origin[2])) < self.settings.detonation_distance))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -607,18 +607,21 @@ function function_ded83def(lastenemy)
 				self playsoundtoplayer(self.sndalias[#"hash_6dacc5a8faf1b6f3"], self.enemy);
 			}
 		}
-		else if(disttoenemysquared < 750 * 750)
+		else
 		{
-			if(lastdisttoenemysquared > (750 * 750) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_26569720e0ae76f3"]))
+			if(disttoenemysquared < 750 * 750)
 			{
-				self playsoundtoplayer(self.sndalias[#"hash_26569720e0ae76f3"], self.enemy);
+				if(lastdisttoenemysquared > (750 * 750) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_26569720e0ae76f3"]))
+				{
+					self playsoundtoplayer(self.sndalias[#"hash_26569720e0ae76f3"], self.enemy);
+				}
 			}
-		}
-		else if(disttoenemysquared < 1500 * 1500)
-		{
-			if(lastdisttoenemysquared > (1500 * 1500) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_22b0b71c07ac7fea"]))
+			else if(disttoenemysquared < 1500 * 1500)
 			{
-				self playsoundtoplayer(self.sndalias[#"hash_22b0b71c07ac7fea"], self.enemy);
+				if(lastdisttoenemysquared > (1500 * 1500) && (!(isdefined(self.servershortout) && self.servershortout)) && isdefined(self.sndalias[#"hash_22b0b71c07ac7fea"]))
+				{
+					self playsoundtoplayer(self.sndalias[#"hash_22b0b71c07ac7fea"], self.enemy);
+				}
 			}
 		}
 		if(disttoenemysquared < lastdisttoenemysquared)
@@ -904,13 +907,13 @@ function function_bf16c9ed(einflictor, eattacker, smeansofdeath, weapon)
 {
 	if(isdefined(self.owner) && eattacker == self.owner && isdefined(self.settings.friendly_fire) && int(self.settings.friendly_fire) && !weapon.isemp)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(eattacker) && (isdefined(eattacker.archetype) && eattacker.archetype != #"bot") && isdefined(smeansofdeath) && smeansofdeath == "MOD_EXPLOSIVE")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1115,9 +1118,9 @@ function isdrivableplayervehicle()
 	str_vehicletype = self.vehicletype;
 	if(isdefined(str_vehicletype) && self.var_46439e18)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

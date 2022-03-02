@@ -172,9 +172,9 @@ function is_dead_sentient()
 {
 	if(issentient(self) && !isalive(self))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -278,7 +278,7 @@ function waittill_dead_or_dying(guys, num, timeoutlength)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function waittill_dead_thread(ent)
+function private waittill_dead_thread(ent)
 {
 	self waittill(#"death");
 	ent.count--;
@@ -325,7 +325,7 @@ function waittill_dead_timeout(timeoutlength)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function wait_for_shoot()
+function private wait_for_shoot()
 {
 	self endon(#"stop_shoot_at_target", #"death");
 	if(isvehicle(self) || isbot(self))
@@ -641,7 +641,7 @@ function stoppainwaitinterval()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function _allowpainrestore()
+function private _allowpainrestore()
 {
 	self endon(#"death");
 	self waittill(#"painwaitintervalremove", #"painwaitinterval");
@@ -794,13 +794,16 @@ function patrol_next_node()
 	{
 		self end_and_clean_patrol_behaviors();
 	}
-	else if(target_nodes.size != 0)
-	{
-		self.currentgoal = array::random(target_nodes);
-	}
 	else
 	{
-		self.currentgoal = array::random(target_scenes);
+		if(target_nodes.size != 0)
+		{
+			self.currentgoal = array::random(target_nodes);
+		}
+		else
+		{
+			self.currentgoal = array::random(target_scenes);
+		}
 	}
 }
 
@@ -916,9 +919,9 @@ function shouldregisterclientfieldforarchetype(archetype)
 {
 	if(isdefined(level.clientfieldaicheck) && level.clientfieldaicheck && !isarchetypeloaded(archetype))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1184,7 +1187,7 @@ function function_63734291(enemy)
 {
 	if(!isdefined(enemy))
 	{
-		return 0;
+		return false;
 	}
 	var_aba9ee4c = 1;
 	if(isdefined(self.var_ffa507cd))
@@ -1201,10 +1204,10 @@ function function_63734291(enemy)
 		if(dist_squared >= 562500)
 		{
 			enemy notify(#"hash_4853a85e5ddc4a47");
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1275,13 +1278,16 @@ function function_9139c839()
 		{
 			var_51d5c26f = self.var_ae8ec545;
 		}
-		else if(isspawner(self) && isdefined(self.aitype))
+		else
 		{
-			var_51d5c26f = function_edf479a3(self.aitype);
-		}
-		else if(isvehicle(self) && isdefined(self.scriptbundlesettings))
-		{
-			var_51d5c26f = getscriptbundle(self.scriptbundlesettings).var_ae8ec545;
+			if(isspawner(self) && isdefined(self.aitype))
+			{
+				var_51d5c26f = function_edf479a3(self.aitype);
+			}
+			else if(isvehicle(self) && isdefined(self.scriptbundlesettings))
+			{
+				var_51d5c26f = getscriptbundle(self.scriptbundlesettings).var_ae8ec545;
+			}
 		}
 		if(!isdefined(var_51d5c26f))
 		{

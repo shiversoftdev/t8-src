@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_attachments", &__init__, undefined, undefined);
 }
@@ -188,7 +188,7 @@ function dragons_breath(e_attacker, n_damage, weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ddda26e(e_attacker)
+function private function_ddda26e(e_attacker)
 {
 	self endon(#"death");
 	waitframe(5);

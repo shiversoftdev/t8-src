@@ -125,7 +125,7 @@ function function_b2755499(weapon, entity)
 	Parameters: 0
 	Flags: Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	clientfield::register("toplayer", "gadget_icepick_on", 9000, 1, "int", &icepick_on, 0, 0);
 	clientfield::register("toplayer", "currentlyHacking", 9000, 1, "int", &function_d3c5b110, 0, 0);
@@ -288,29 +288,29 @@ function function_808efdee(hacker, entity, weapon)
 {
 	if(hacker.team == entity.team)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(weapon) || !isdefined(weapon.displayname) || weapon.displayname == "")
 	{
-		return 0;
+		return false;
 	}
 	if(!weapon.ishackable)
 	{
-		return 0;
+		return false;
 	}
 	if(entity.type == "missile" || entity.type == "vehicle" || entity.type == "scriptmover" && entity clientfield::get("cant_be_hacked"))
 	{
-		return 0;
+		return false;
 	}
 	if(entity.type == "NA")
 	{
-		return 0;
+		return false;
 	}
 	if(weapon == getweapon("gadget_supplypod") && entity.type != "scriptmover")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -572,7 +572,7 @@ function function_4a82368f(local_client_num, oldval, newval, bnewent, binitialsn
 	Parameters: 2
 	Flags: Private
 */
-private function function_67b9bc99(player, local_client_num)
+function private function_67b9bc99(player, local_client_num)
 {
 	entitynumber = player getentitynumber();
 	if(isdefined(level.var_11631715[entitynumber]) && isarray(level.var_11631715[entitynumber]))
@@ -637,7 +637,7 @@ function function_d96f79be(local_client_num, oldval, newval, bwastimejump)
 	Parameters: 3
 	Flags: Private
 */
-private function function_34aba8d8(local_client_num, targetid, newval)
+function private function_34aba8d8(local_client_num, targetid, newval)
 {
 	parentmodel = getuimodel(getuimodelforcontroller(local_client_num), "IcePickHackables");
 	if(!isdefined(parentmodel))

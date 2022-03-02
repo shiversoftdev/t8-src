@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"empgrenade", &__init__, undefined, undefined);
 }
@@ -87,20 +87,26 @@ function monitorempgrenade()
 			{
 				continue;
 			}
-			else if(friendlyfire == 1)
+			else
 			{
-				hurtattacker = 0;
-				hurtvictim = 1;
-			}
-			else if(friendlyfire == 2)
-			{
-				hurtvictim = 0;
-				hurtattacker = 1;
-			}
-			else if(friendlyfire == 3)
-			{
-				hurtattacker = 1;
-				hurtvictim = 1;
+				if(friendlyfire == 1)
+				{
+					hurtattacker = 0;
+					hurtvictim = 1;
+				}
+				else
+				{
+					if(friendlyfire == 2)
+					{
+						hurtvictim = 0;
+						hurtattacker = 1;
+					}
+					else if(friendlyfire == 3)
+					{
+						hurtattacker = 1;
+						hurtvictim = 1;
+					}
+				}
 			}
 		}
 		if(hurtvictim && isdefined(self))

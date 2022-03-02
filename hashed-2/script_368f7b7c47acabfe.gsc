@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3932b346c9af0dde", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(n_count)
+function private function_d1de6a85(n_count)
 {
 	callback::function_aebeafc0(&function_aebeafc0);
 	level.var_195590fb = zm_trial::function_5769f26a(n_count);
@@ -70,7 +70,7 @@ private function function_d1de6a85(n_count)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -109,7 +109,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_aebeafc0(upgraded_weapon)
+function private function_aebeafc0(upgraded_weapon)
 {
 	w_base = zm_weapons::get_base_weapon(upgraded_weapon);
 	if(!isdefined(self.var_92cd5237))

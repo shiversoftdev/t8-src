@@ -72,7 +72,7 @@ function onstartgametype()
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_df05c5d(eventstruct)
+event private function_df05c5d(eventstruct)
 {
 	if(namespace_fcd611c3::is_active() && self namespace_fcd611c3::function_26f124d8())
 	{

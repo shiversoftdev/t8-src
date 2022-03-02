@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4bca7168ca976d7f", &__init__, undefined, undefined);
 }
@@ -33,7 +33,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!isarchetypeloaded(#"catalyst"))
 	{
@@ -81,7 +81,7 @@ function function_b6fd8c68()
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_213aaacc(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_213aaacc(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	self util::waittill_dobj(localclientnum);
 	switch(newvalue)
@@ -127,7 +127,7 @@ private function function_213aaacc(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_b3c2dc1c(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_b3c2dc1c(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_30c9f7c5634dd1dc"], self, "j_spine4");
 	playsound(0, #"hash_7d7c027e3b78c5b6", self.origin);
@@ -142,7 +142,7 @@ private function function_b3c2dc1c(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_8cc5be3b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_8cc5be3b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newval)
 	{
@@ -153,19 +153,22 @@ private function function_8cc5be3b(localclientnum, oldval, newval, bnewent, bini
 			self.var_8c3a51be = self playloopsound("zmb_ai_catalyst_corrosive_lp");
 		}
 	}
-	else if(isdefined(self.var_565b4840))
+	else
 	{
-		stopfx(localclientnum, self.var_565b4840);
-		self.var_565b4840 = undefined;
-	}
-	if(isdefined(self.var_430cfa87))
-	{
-		stopfx(localclientnum, self.var_430cfa87);
-		self.var_430cfa87 = undefined;
-	}
-	if(isdefined(self.var_8c3a51be))
-	{
-		self stoploopsound(self.var_8c3a51be);
+		if(isdefined(self.var_565b4840))
+		{
+			stopfx(localclientnum, self.var_565b4840);
+			self.var_565b4840 = undefined;
+		}
+		if(isdefined(self.var_430cfa87))
+		{
+			stopfx(localclientnum, self.var_430cfa87);
+			self.var_430cfa87 = undefined;
+		}
+		if(isdefined(self.var_8c3a51be))
+		{
+			self stoploopsound(self.var_8c3a51be);
+		}
 	}
 }
 
@@ -178,7 +181,7 @@ private function function_8cc5be3b(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_72d9d9e7(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_72d9d9e7(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue === 1)
 	{
@@ -189,16 +192,19 @@ private function function_72d9d9e7(localclientnum, oldvalue, newvalue, bnewent, 
 			self.var_983b7af9 = self playloopsound(#"hash_4d16df16d08f6404");
 		}
 	}
-	else if(isdefined(self.var_5fe1f99b))
+	else
 	{
-		stopfx(localclientnum, self.var_5fe1f99b);
-		self.var_5fe1f99b = undefined;
-	}
-	if(isdefined(self.var_983b7af9))
-	{
-		self playsound(localclientnum, #"hash_58e6fac48dd8515d");
-		self stoploopsound(self.var_983b7af9);
-		self.var_983b7af9 = undefined;
+		if(isdefined(self.var_5fe1f99b))
+		{
+			stopfx(localclientnum, self.var_5fe1f99b);
+			self.var_5fe1f99b = undefined;
+		}
+		if(isdefined(self.var_983b7af9))
+		{
+			self playsound(localclientnum, #"hash_58e6fac48dd8515d");
+			self stoploopsound(self.var_983b7af9);
+			self.var_983b7af9 = undefined;
+		}
 	}
 }
 
@@ -211,7 +217,7 @@ private function function_72d9d9e7(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_dce55f49(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_dce55f49(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue === 1)
 	{
@@ -235,7 +241,7 @@ private function function_dce55f49(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8c78e227(localclientnum)
+function private function_8c78e227(localclientnum)
 {
 	self notify(#"hash_28942d030dbe705");
 	self endon(#"hash_28942d030dbe705");
@@ -260,7 +266,7 @@ private function function_8c78e227(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_1578a764(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_1578a764(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	util::playfxontag(localclientnum, level._effect[#"hash_30656ca97fa97a81"], self, "j_spine4");
 	playsound(0, #"hash_7d7c027e3b78c5b6", self.origin);
@@ -276,7 +282,7 @@ private function function_1578a764(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_5c22755(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_5c22755(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(newvalue && isdefined(self) && self.var_9fde8624 === #"hash_78ca8e8e6bdbc8ab")
@@ -304,7 +310,7 @@ private function function_5c22755(localclientnum, oldvalue, newvalue, bnewent, b
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ce9e3dc7(animname)
+function private function_ce9e3dc7(animname)
 {
 	self endon(#"death");
 	var_1d3061ce = animname + "_scale";
@@ -337,7 +343,7 @@ private function function_ce9e3dc7(animname)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5608540a(localclientnum)
+function private function_5608540a(localclientnum)
 {
 	self.var_fab3cf78 = #"hash_10bdf06ea5640d49";
 }

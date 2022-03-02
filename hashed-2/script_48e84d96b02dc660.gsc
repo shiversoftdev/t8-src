@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"wing_drone", &__init__, undefined, undefined);
 }
@@ -136,7 +136,7 @@ function function_9664709f(params)
 	self cancelaimove();
 	self setphysacceleration((0, 0, 100 * -1));
 	waitresult = undefined;
-	waitresult = self waittill_timeout(randomintrange(4, 6), #"veh_collision");
+	waitresult = self waittilltimeout(randomintrange(4, 6), #"veh_collision");
 	self vehicle_ai::set_state("death");
 }
 

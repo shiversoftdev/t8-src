@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"supplypod", &__init__, undefined, #"killstreaks");
 }
@@ -43,7 +43,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function supplypod_placed(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private supplypod_placed(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
 	self util::waittill_dobj(localclientnum);

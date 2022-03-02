@@ -212,7 +212,7 @@ function function_1008e277()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fcf197fa(targetname, b_show)
+function private function_fcf197fa(targetname, b_show)
 {
 	var_dc3827e3 = getentarray(targetname, "targetname");
 	if(isdefined(var_dc3827e3))
@@ -289,7 +289,7 @@ function function_afd37143(str_line)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9821b7f1(str_line)
+function private function_9821b7f1(str_line)
 {
 	self endon(#"disconnect");
 	while(isdefined(self.zmannouncertalking) && self.zmannouncertalking || (isdefined(self.isspeaking) && self.isspeaking) || (isdefined(self.var_5b6ebfd0) && self.var_5b6ebfd0))

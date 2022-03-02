@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"trigger", &__init__, undefined, undefined);
 }
@@ -224,7 +224,12 @@ function look_trigger(trigger)
 				waitframe(1);
 			}
 		}
-		assertmsg("");
+		else
+		{
+			/#
+				assertmsg("");
+			#/
+		}
 	}
 }
 
@@ -486,13 +491,16 @@ function script_flag_set_touching(trigger)
 				level flag::clear(trigger.script_flag_set_on_not_touching);
 			}
 		}
-		else if(isdefined(trigger.script_flag_set_on_touching))
+		else
 		{
-			level flag::clear(trigger.script_flag_set_on_touching);
-		}
-		if(isdefined(trigger.script_flag_set_on_not_touching))
-		{
-			level flag::set(trigger.script_flag_set_on_not_touching);
+			if(isdefined(trigger.script_flag_set_on_touching))
+			{
+				level flag::clear(trigger.script_flag_set_on_touching);
+			}
+			if(isdefined(trigger.script_flag_set_on_not_touching))
+			{
+				level flag::set(trigger.script_flag_set_on_not_touching);
+			}
 		}
 	}
 }
@@ -711,38 +719,41 @@ function _trigger_wait(e_entity)
 				}
 			}
 		}
-		else if(self.classname === "trigger_damage")
-		{
-			waitresult = undefined;
-			waitresult = self waittill(#"trigger");
-			wait(self.delaynotify);
-			e_other = waitresult.activator;
-			if(isdefined(e_entity))
-			{
-				if(e_other !== e_entity)
-				{
-					continue;
-				}
-			}
-		}
 		else
 		{
-			waitresult = undefined;
-			waitresult = self waittill(#"trigger");
-			wait(self.delaynotify);
-			e_other = waitresult.activator;
-			if(isdefined(e_entity))
+			if(self.classname === "trigger_damage")
 			{
-				if(isarray(e_entity))
+				waitresult = undefined;
+				waitresult = self waittill(#"trigger");
+				wait(self.delaynotify);
+				e_other = waitresult.activator;
+				if(isdefined(e_entity))
 				{
-					if(!array::is_touching(e_entity, self))
+					if(e_other !== e_entity)
 					{
 						continue;
 					}
 				}
-				else if(!e_entity istouching(self) && e_entity !== e_other)
+			}
+			else
+			{
+				waitresult = undefined;
+				waitresult = self waittill(#"trigger");
+				wait(self.delaynotify);
+				e_other = waitresult.activator;
+				if(isdefined(e_entity))
 				{
-					continue;
+					if(isarray(e_entity))
+					{
+						if(!array::is_touching(e_entity, self))
+						{
+							continue;
+						}
+					}
+					else if(!e_entity istouching(self) && e_entity !== e_other)
+					{
+						continue;
+					}
 				}
 			}
 		}
@@ -1228,17 +1239,17 @@ function ent_already_in(var_d35ff8d8)
 {
 	if(!isdefined(self._triggers))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self._triggers[var_d35ff8d8]))
 	{
-		return 0;
+		return false;
 	}
 	if(!self._triggers[var_d35ff8d8])
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_weapon_minigun", &__init__, undefined, undefined);
 }
@@ -102,9 +102,9 @@ function func_should_drop_minigun()
 {
 	if(zm_powerups::minigun_no_drop())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

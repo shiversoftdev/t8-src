@@ -37,7 +37,7 @@ function play_animation(var_f6550bae)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_33f98f4(animation, mocomp, blendout)
+function private function_33f98f4(animation, mocomp, blendout)
 {
 	self endon(#"death", #"disconnect");
 	var_278cadb0 = spawnstruct();

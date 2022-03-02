@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_530f1e3dbb50b5f6", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(localclientnum, a_params)
+function private function_d1de6a85(localclientnum, a_params)
 {
 }
 
@@ -66,7 +66,7 @@ private function function_d1de6a85(localclientnum, a_params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(localclientnum)
+function private function_9e7b3f4d(localclientnum)
 {
 }
 
@@ -79,7 +79,7 @@ private function function_9e7b3f4d(localclientnum)
 	Parameters: 7
 	Flags: Private
 */
-private function function_6f53a9bb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_6f53a9bb(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{

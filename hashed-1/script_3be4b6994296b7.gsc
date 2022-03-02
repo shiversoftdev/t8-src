@@ -1340,22 +1340,25 @@ function function_79d4c106()
 		{
 			break;
 		}
-		else if(dt >= 30)
-		{
-			foreach(zombie in a_zombies)
-			{
-				zombie dodamage(zombie.health + 100, zombie.origin);
-			}
-			break;
-		}
 		else
 		{
-			foreach(zombie in a_zombies)
+			if(dt >= 30)
 			{
-				n_height_diff = abs(e_player.origin[2] - zombie.origin[2]);
-				if(n_height_diff > 500)
+				foreach(zombie in a_zombies)
 				{
 					zombie dodamage(zombie.health + 100, zombie.origin);
+				}
+				break;
+			}
+			else
+			{
+				foreach(zombie in a_zombies)
+				{
+					n_height_diff = abs(e_player.origin[2] - zombie.origin[2]);
+					if(n_height_diff > 500)
+					{
+						zombie dodamage(zombie.health + 100, zombie.origin);
+					}
 				}
 			}
 		}

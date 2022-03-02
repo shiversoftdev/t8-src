@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_22ac53d66b75dfae", &__init__, undefined, undefined);
 }
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_ff22cb62)
+function private function_d1de6a85(var_ff22cb62)
 {
 	self.var_ff22cb62 = zm_trial::function_5769f26a(var_ff22cb62);
 	self.var_6a7521e3 = 0;
@@ -62,7 +62,7 @@ private function function_d1de6a85(var_ff22cb62)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	foreach(s_portal in level.var_63fca02d)
@@ -87,7 +87,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_53627246()
+function private function_53627246()
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	namespace_b22c99a5::function_2976fa44(self.var_ff22cb62);

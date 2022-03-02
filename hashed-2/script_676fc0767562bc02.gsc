@@ -37,7 +37,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2d983ef9e336df0b", &__init__, &__main__, #"archetype_avogadro");
 }
@@ -219,7 +219,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f34df3c()
+function private function_f34df3c()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -275,7 +275,7 @@ private function function_f34df3c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c41e67c()
+function private function_c41e67c()
 {
 	self.maxhealth = self namespace_e0710ee6::function_8d44707e(1, self._starting_round_number);
 	self.health = self.maxhealth;
@@ -296,7 +296,7 @@ private function function_c41e67c()
 	Parameters: 1
 	Flags: Private
 */
-private function function_22006009(cmd)
+function private function_22006009(cmd)
 {
 	/#
 		zm_devgui::function_c7dd7a17("");
@@ -316,7 +316,7 @@ private function function_22006009(cmd)
 	Parameters: 4
 	Flags: Private
 */
-private function function_d60f39c2(entity, player, duration, color)
+function private function_d60f39c2(entity, player, duration, color)
 {
 	self endon(#"death");
 	while(true)
@@ -455,7 +455,7 @@ function function_16179477(origin, angles)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_44ac30aa()
+function private function_44ac30aa()
 {
 	self endon(#"death");
 	self waittill(#"hash_3f3656d2f44adc64");
@@ -471,21 +471,24 @@ private function function_44ac30aa()
 	Parameters: 12
 	Flags: Linked, Private
 */
-private function function_8f7ba033(inflictor, attacker, damage, flags, meansofdamage, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private function_8f7ba033(inflictor, attacker, damage, flags, meansofdamage, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	var_7aa37d9f = 0;
 	if(self.var_b90a4dc9 == 4 && gettime() > self.var_adf3e655 && !isdefined(self.var_8c6c9045))
 	{
 		self.var_8c6c9045 = dir * -1;
 	}
-	else if(gettime() > self.var_a8669c90 && function_dbe3b78a(meansofdamage, weapon))
+	else
 	{
-		self.var_fad7a0b8 = 1;
-		level notify(#"hash_3a603bc69204f012");
-	}
-	else if(!function_dbe3b78a(meansofdamage, weapon))
-	{
-		level notify(#"hash_7edbeeb2b6f53bfe", {#e_player:attacker});
+		if(gettime() > self.var_a8669c90 && function_dbe3b78a(meansofdamage, weapon))
+		{
+			self.var_fad7a0b8 = 1;
+			level notify(#"hash_3a603bc69204f012");
+		}
+		else if(!function_dbe3b78a(meansofdamage, weapon))
+		{
+			level notify(#"hash_7edbeeb2b6f53bfe", {#e_player:attacker});
+		}
 	}
 	return var_7aa37d9f;
 }
@@ -499,7 +502,7 @@ private function function_8f7ba033(inflictor, attacker, damage, flags, meansofda
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_dbe3b78a(meansofdeath, weapon)
+function private function_dbe3b78a(meansofdeath, weapon)
 {
 	result = 0;
 	if(meansofdeath == "MOD_MELEE" || isinarray(level.var_7b63b4a2, weapon))
@@ -518,7 +521,7 @@ private function function_dbe3b78a(meansofdeath, weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function can_see_enemy()
+function private can_see_enemy()
 {
 	if(isdefined(self.favoriteenemy) && self.var_6ed00311 < gettime())
 	{
@@ -545,7 +548,7 @@ private function can_see_enemy()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cace91f9()
+function private function_cace91f9()
 {
 	var_e22f98ec = undefined;
 	if(isdefined(self.favoriteenemy) && self.var_3f536874 < gettime())
@@ -581,7 +584,7 @@ private function function_cace91f9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4ee74b24()
+function private function_4ee74b24()
 {
 	if(isdefined(self.favoriteenemy) && self.var_6d5a7a2d < gettime())
 	{
@@ -613,7 +616,7 @@ private function function_4ee74b24()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ef12dc20(entity)
+function private function_ef12dc20(entity)
 {
 	result = 0;
 	if(can_see_enemy())
@@ -632,7 +635,7 @@ private function function_ef12dc20(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fffac33(entity)
+function private function_fffac33(entity)
 {
 	return randomintrange(2000, 3000);
 }
@@ -646,7 +649,7 @@ private function function_fffac33(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7715bf68(entity)
+function private function_7715bf68(entity)
 {
 	result = 0;
 	if(isdefined(entity.var_355757c0) && entity.var_355757c0 && self function_e67ef3bc() && isdefined(entity.favoriteenemy) && entity function_986045a5() && entity can_see_enemy())
@@ -666,7 +669,7 @@ private function function_7715bf68(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cb8cef0b(entity)
+function private function_cb8cef0b(entity)
 {
 	entity.var_52a38d7d = 0;
 	function_c8179930();
@@ -681,7 +684,7 @@ private function function_cb8cef0b(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e67ef3bc()
+function private function_e67ef3bc()
 {
 	return gettime() > self.var_afeae4f4;
 }
@@ -695,7 +698,7 @@ private function function_e67ef3bc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c8179930()
+function private function_c8179930()
 {
 	random_delay = randomfloatrange(5, 8) * 1000;
 	self.var_afeae4f4 = gettime() + random_delay;
@@ -710,7 +713,7 @@ private function function_c8179930()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_be9ade6d(entity)
+function private function_be9ade6d(entity)
 {
 	var_e98404d8 = entity getcentroid();
 	players = getplayers();
@@ -741,9 +744,9 @@ private function function_be9ade6d(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_15b528d9(duration, var_2610777)
+function private function_15b528d9(duration, var_2610777)
 {
-	self endon_callback(&function_866bf053, #"death", #"disconnect");
+	self endoncallback(&function_866bf053, #"death", #"disconnect");
 	wait((float(function_60d95f53()) / 1000) * var_2610777);
 	if(zm_utility::is_player_valid(self))
 	{
@@ -763,7 +766,7 @@ private function function_15b528d9(duration, var_2610777)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_866bf053(notifyhash)
+function private function_866bf053(notifyhash)
 {
 	self val::reset(#"hash_75b4cc8231699ebe", "disable_weapons");
 }
@@ -777,7 +780,7 @@ private function function_866bf053(notifyhash)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4d1543a2(entity)
+function private function_4d1543a2(entity)
 {
 	result = 0;
 	if(isdefined(entity.var_e85deff3) && entity.var_e85deff3 && function_93916bd3(entity) && isdefined(entity.favoriteenemy) && !function_5f4c1c68(entity))
@@ -801,7 +804,7 @@ private function function_4d1543a2(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_77d6d1fa(entity)
+function private function_77d6d1fa(entity)
 {
 	if(!isdefined(entity.var_952f8260))
 	{
@@ -837,7 +840,7 @@ private function function_77d6d1fa(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d59c4b07(entity)
+function private function_d59c4b07(entity)
 {
 	zombies = getaiteamarray(level.zombie_team);
 	zombies = arraysortclosest(zombies, entity.origin, undefined, 0, entity getpathfindingradius() + 50);
@@ -872,7 +875,7 @@ private function function_d59c4b07(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_96e43661(entity)
+function private function_96e43661(entity)
 {
 	var_c89fc811 = entity getangles();
 	registernotice_walla = anglestoforward(var_c89fc811);
@@ -909,7 +912,7 @@ private function function_96e43661(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e805c4d0(entity, asmstatename)
+function private function_e805c4d0(entity, asmstatename)
 {
 	animationstatenetworkutility::requeststate(entity, asmstatename);
 	entity.previous_origin = entity.origin;
@@ -926,7 +929,7 @@ private function function_e805c4d0(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_292adb83(entity, asmstatename)
+function private function_292adb83(entity, asmstatename)
 {
 	result = 5;
 	function_d59c4b07(entity);
@@ -972,7 +975,7 @@ private function function_292adb83(entity, asmstatename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_226216d5(entity)
+function private function_226216d5(entity)
 {
 	function_fceafc5f();
 	archetype_avogadro::function_36f6a838(entity);
@@ -987,7 +990,7 @@ private function function_226216d5(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_93916bd3(entity)
+function private function_93916bd3(entity)
 {
 	return gettime() > entity.var_7c4c892a;
 }
@@ -1001,7 +1004,7 @@ private function function_93916bd3(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fceafc5f()
+function private function_fceafc5f()
 {
 	random_delay = randomfloatrange(8, 10) * 1000;
 	self.var_7c4c892a = gettime() + random_delay;
@@ -1016,7 +1019,7 @@ private function function_fceafc5f()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9c41ab55(entity)
+function private function_9c41ab55(entity)
 {
 	var_e98404d8 = entity getcentroid();
 	players = getplayers();
@@ -1053,7 +1056,7 @@ private function function_9c41ab55(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c96c9ef8(entity)
+function private function_c96c9ef8(entity)
 {
 	result = 0;
 	var_61835cce = 0;
@@ -1085,7 +1088,7 @@ private function function_c96c9ef8(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_28df3aca(entity)
+function private function_28df3aca(entity)
 {
 	var_764cc1f9 = undefined;
 	if(isdefined(entity.var_885c1824.var_72f7bafe) && entity.var_885c1824.var_72f7bafe.size > 0)
@@ -1104,7 +1107,7 @@ private function function_28df3aca(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_315c9db0(entity, asmstatename)
+function private function_315c9db0(entity, asmstatename)
 {
 	if(isdefined(entity.var_885c1824))
 	{
@@ -1127,7 +1130,7 @@ private function function_315c9db0(entity, asmstatename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f4fc9e92(entity)
+function private function_f4fc9e92(entity)
 {
 	if(isdefined(entity.favoriteenemy) && isplayer(entity.favoriteenemy) && !zm_utility::is_player_valid(entity.favoriteenemy, 1))
 	{
@@ -1152,7 +1155,7 @@ private function function_f4fc9e92(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f1d5bfef(entity)
+function private function_f1d5bfef(entity)
 {
 	var_9c273f20 = [];
 	if(isdefined(entity.var_885c1824))
@@ -1186,7 +1189,7 @@ private function function_f1d5bfef(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7615515e(entity)
+function private function_7615515e(entity)
 {
 	if(!isdefined(entity.var_52a38d7d))
 	{
@@ -1233,7 +1236,7 @@ private function function_7615515e(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5aceb20c(entity)
+function private function_5aceb20c(entity)
 {
 	if(!can_see_enemy() && gettime() > (entity.var_d307828d + 1000))
 	{
@@ -1261,7 +1264,7 @@ private function function_5aceb20c(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_986045a5()
+function private function_986045a5()
 {
 	return isdefined(self.var_52a38d7d) && self.var_52a38d7d >= 2.5;
 }
@@ -1275,7 +1278,7 @@ private function function_986045a5()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_df65f7b(entity)
+function private function_df65f7b(entity)
 {
 	result = 0;
 	if(self.var_b90a4dc9 < 4 && (isdefined(entity.var_fad7a0b8) && entity.var_fad7a0b8))
@@ -1294,7 +1297,7 @@ private function function_df65f7b(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_11d4db33()
+function private function_11d4db33()
 {
 	self.var_a8669c90 = gettime() + 10000;
 }
@@ -1308,7 +1311,7 @@ private function function_11d4db33()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4b206a3b(entity)
+function private function_4b206a3b(entity)
 {
 	entity clientfield::set("" + #"hash_2eec8fc21495a18c", 0);
 }
@@ -1322,7 +1325,7 @@ private function function_4b206a3b(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1661ef70(entity)
+function private function_1661ef70(entity)
 {
 	archetype_avogadro::function_dbc638a8(entity);
 	function_11d4db33();
@@ -1339,7 +1342,7 @@ private function function_1661ef70(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3c40dfbf(entity)
+function private function_3c40dfbf(entity)
 {
 	entity.var_fad7a0b8 = 0;
 }
@@ -1391,7 +1394,7 @@ function function_a9be3eba(entity)
 							recordsphere(endpoint, 15, (0, 1, 0));
 						#/
 						entity.var_1ce249af = 1;
-						return 1;
+						return true;
 					}
 					/#
 						recordline(entity.origin, endpoint, (1, 0, 0));
@@ -1413,7 +1416,7 @@ function function_a9be3eba(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_195b7ea1(entity)
+function private function_195b7ea1(entity)
 {
 	result = 0;
 	if(isdefined(entity.favoriteenemy))
@@ -1436,7 +1439,7 @@ private function function_195b7ea1(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1d5cd5c8()
+function private function_1d5cd5c8()
 {
 	self.var_adf3e655 = gettime() + 200;
 }
@@ -1450,7 +1453,7 @@ private function function_1d5cd5c8()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bc881c2d(entity)
+function private function_bc881c2d(entity)
 {
 	result = 0;
 	if(self.var_b90a4dc9 == 4 && isdefined(entity.var_8c6c9045))
@@ -1469,7 +1472,7 @@ private function function_bc881c2d(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_eb3d0647(entity, asmstatename)
+function private function_eb3d0647(entity, asmstatename)
 {
 	var_ba10a63 = vectortoangles((entity.var_8c6c9045[0], entity.var_8c6c9045[1], 0));
 	entity forceteleport(entity.origin, var_ba10a63);
@@ -1487,7 +1490,7 @@ private function function_eb3d0647(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1786d14c(entity, asmstatename)
+function private function_1786d14c(entity, asmstatename)
 {
 	result = 5;
 	if(isdefined(entity.var_8c6c9045) || entity asmgetstatus() == "asm_status_complete")
@@ -1506,7 +1509,7 @@ private function function_1786d14c(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_982c84e7(entity, asmstatename)
+function private function_982c84e7(entity, asmstatename)
 {
 	function_1d5cd5c8();
 	return 4;
@@ -1521,7 +1524,7 @@ private function function_982c84e7(entity, asmstatename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bca96fd7(entity)
+function private function_bca96fd7(entity)
 {
 	result = 0;
 	if(entity.var_b90a4dc9 == 4 && isdefined(level.avogadro_outro_location) && distance2dsquared(entity.origin, level.avogadro_outro_location.origin) < 10000)
@@ -1540,7 +1543,7 @@ private function function_bca96fd7(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1f4d90a(entity, asmstatename)
+function private function_d1f4d90a(entity, asmstatename)
 {
 	entity forceteleport(level.avogadro_outro_location.origin, level.avogadro_outro_location.angles);
 	animationstatenetworkutility::requeststate(entity, asmstatename);
@@ -1556,7 +1559,7 @@ private function function_d1f4d90a(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_66b243ac(entity, asmstatename)
+function private function_66b243ac(entity, asmstatename)
 {
 	result = 5;
 	if(entity asmgetstatus() == "asm_status_complete")
@@ -1575,7 +1578,7 @@ private function function_66b243ac(entity, asmstatename)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5f4c1c68(entity)
+function private function_5f4c1c68(entity)
 {
 	result = 0;
 	if(self.var_b90a4dc9 == 4 && isdefined(level.var_43c333a8) && isdefined(level.var_43c333a8.var_a8161b1a) && entity istouching(entity.var_a8161b1a))
@@ -1594,7 +1597,7 @@ private function function_5f4c1c68(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ad642b3a(entity)
+function private function_ad642b3a(entity)
 {
 	result = 0;
 	if(self.var_b90a4dc9 == 4 && isdefined(level.var_43c333a8) && isdefined(level.var_43c333a8.vol_retreat) && isdefined(level.var_43c333a8.var_77ef4a35) && entity istouching(entity.vol_retreat))
@@ -1613,7 +1616,7 @@ private function function_ad642b3a(entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_65a26b34(entity, asmstatename)
+function private function_65a26b34(entity, asmstatename)
 {
 	entity zombie_utility::set_zombie_run_cycle("run");
 	animationstatenetworkutility::requeststate(entity, asmstatename);
@@ -1632,7 +1635,7 @@ private function function_65a26b34(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_23f14b08(entity, asmstatename)
+function private function_23f14b08(entity, asmstatename)
 {
 	result = 5;
 	if(isdefined(entity.var_f10dd7ca) && isdefined(entity.zombie_move_speed))
@@ -1664,7 +1667,7 @@ private function function_23f14b08(entity, asmstatename)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_38c9c3b5(entity, asmstatename)
+function private function_38c9c3b5(entity, asmstatename)
 {
 	entity zombie_utility::set_zombie_run_cycle("walk");
 	entity.var_f10dd7ca = undefined;
@@ -1680,7 +1683,7 @@ private function function_38c9c3b5(entity, asmstatename)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pick_new_movement_point()
+function private pick_new_movement_point()
 {
 	queryresult = positionquery_source_navigation(self.origin, 96, 256, 128, 20, self);
 	if(queryresult.data.size)

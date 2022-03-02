@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_32658a301920c858", &__init__, undefined, undefined);
 }
@@ -319,7 +319,7 @@ function function_ffeeebf3(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d193f583(localclientnum)
+function private function_d193f583(localclientnum)
 {
 	self notify(#"hash_67dbde4a0231b582");
 	self endon(#"death", #"hash_4086299956cef09d", #"hash_67dbde4a0231b582");
@@ -350,7 +350,7 @@ private function function_d193f583(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f9a794dc(localclientnum)
+function private function_f9a794dc(localclientnum)
 {
 	self endon(#"death", #"hash_4086299956cef09d");
 	level endon(#"end_game");
@@ -438,21 +438,30 @@ function function_eba88fd(localclientnum)
 		{
 			wait(0.1);
 		}
-		else if(self.var_23c215c > 15)
-		{
-			wait(0.2);
-		}
-		else if(self.var_23c215c > 10)
-		{
-			wait(0.4);
-		}
-		else if(self.var_23c215c > 5)
-		{
-			wait(1);
-		}
 		else
 		{
-			wait(2);
+			if(self.var_23c215c > 15)
+			{
+				wait(0.2);
+			}
+			else
+			{
+				if(self.var_23c215c > 10)
+				{
+					wait(0.4);
+				}
+				else
+				{
+					if(self.var_23c215c > 5)
+					{
+						wait(1);
+					}
+					else
+					{
+						wait(2);
+					}
+				}
+			}
 		}
 	}
 }
@@ -498,19 +507,22 @@ function function_313e2c94(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self.var_634618de = util::playfxontag(localclientnum, level._effect[#"hash_22aea05cb07dd55e"], self, "tag_origin");
 	}
-	else if(newval == 1)
+	else
 	{
-		if(isdefined(self.var_634618de))
+		if(newval == 1)
+		{
+			if(isdefined(self.var_634618de))
+			{
+				stopfx(localclientnum, self.var_634618de);
+				self.var_634618de = undefined;
+			}
+			self.var_634618de = util::playfxontag(localclientnum, level._effect[#"hash_4446ff1dd0f536fe"], self, "tag_origin");
+		}
+		else if(isdefined(self.var_634618de))
 		{
 			stopfx(localclientnum, self.var_634618de);
 			self.var_634618de = undefined;
 		}
-		self.var_634618de = util::playfxontag(localclientnum, level._effect[#"hash_4446ff1dd0f536fe"], self, "tag_origin");
-	}
-	else if(isdefined(self.var_634618de))
-	{
-		stopfx(localclientnum, self.var_634618de);
-		self.var_634618de = undefined;
 	}
 }
 

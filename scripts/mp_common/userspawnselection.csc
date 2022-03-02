@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"userspawnselection", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function getdatamodelprefix(id)
+function private getdatamodelprefix(id)
 {
 	return ("spawngroupStatus." + id) + ".";
 }
@@ -108,7 +108,7 @@ function setupuimodels()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function setupstaticmodelfieldsforspawngroup(spawngroup)
+function private setupstaticmodelfieldsforspawngroup(spawngroup)
 {
 	basename = getdatamodelprefix(spawngroup.uiindex);
 	namemodel = getuimodel(getglobaluimodel(), basename + "regionName");

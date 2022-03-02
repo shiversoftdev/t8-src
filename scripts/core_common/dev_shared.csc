@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init()
+function autoexec init()
 {
 	/#
 		callback::on_localclient_connect(&function_b49b1b6b);

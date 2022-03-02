@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5659ac71cc033a46", &__init__, undefined, #"hash_7a6bd16c1773964b");
 }
@@ -267,7 +267,7 @@ function function_2043936c(trigger_struct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1188c2e8()
+function private function_1188c2e8()
 {
 	var_6e5341fb = struct::get_array("cu17_drop_point", "targetname");
 	if(isdefined(var_6e5341fb) && isarray(var_6e5341fb))
@@ -291,7 +291,7 @@ private function function_1188c2e8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c816ea5b()
+function private function_c816ea5b()
 {
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 1);
 	switch(maxteamplayers)

@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"catalyst", &function_728127b);
@@ -35,7 +35,7 @@ autoexec function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&function_1fbc23ff));
@@ -90,7 +90,7 @@ function function_5608540a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_728127b()
+function private function_728127b()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -172,7 +172,7 @@ function function_84c6177b(spawner, var_62e81e47, location)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b7e4069(var_62e81e47)
+function private function_b7e4069(var_62e81e47)
 {
 	self.var_62e81e47 = var_62e81e47;
 }
@@ -186,7 +186,7 @@ private function function_b7e4069(var_62e81e47)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dc16721f(entity)
+function private function_dc16721f(entity)
 {
 	entity.__blackboard = undefined;
 	entity function_728127b();

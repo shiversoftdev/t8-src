@@ -235,15 +235,18 @@ function powerup_hud_monitor()
 					powerup_timer = player.zombie_vars[time_name];
 					powerup_on = player.zombie_vars[on_name];
 				}
-				else if(isdefined(zombie_utility::function_6403cf83(time_name, player.team)))
+				else
 				{
-					powerup_timer = zombie_utility::function_6403cf83(time_name, player.team);
-					powerup_on = zombie_utility::function_6403cf83(on_name, player.team);
-				}
-				else if(isdefined(zombie_utility::function_d2dfacfd(time_name)))
-				{
-					powerup_timer = zombie_utility::function_d2dfacfd(time_name);
-					powerup_on = zombie_utility::function_d2dfacfd(on_name);
+					if(isdefined(zombie_utility::function_6403cf83(time_name, player.team)))
+					{
+						powerup_timer = zombie_utility::function_6403cf83(time_name, player.team);
+						powerup_on = zombie_utility::function_6403cf83(on_name, player.team);
+					}
+					else if(isdefined(zombie_utility::function_d2dfacfd(time_name)))
+					{
+						powerup_timer = zombie_utility::function_d2dfacfd(time_name);
+						powerup_on = zombie_utility::function_d2dfacfd(on_name);
+					}
 				}
 				if(isdefined(powerup_timer) && isdefined(powerup_on))
 				{
@@ -331,18 +334,21 @@ function get_next_powerup()
 		powerup = level.var_ab5b85bf;
 		level.var_ab5b85bf = undefined;
 	}
-	else if(level.zm_genesis_robot_pay_towardsreactswordstart == 0 && namespace_59ff1d6c::function_901b751c(#"zmpowerupmaxammo") && isdefined(level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups) && [[level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups]]())
-	{
-		powerup = "full_ammo";
-	}
 	else
 	{
-		powerup = level.zombie_powerup_array[level.zombie_powerup_index];
-		level.zombie_powerup_index++;
-		if(level.zombie_powerup_index >= level.zombie_powerup_array.size)
+		if(level.zm_genesis_robot_pay_towardsreactswordstart == 0 && namespace_59ff1d6c::function_901b751c(#"zmpowerupmaxammo") && isdefined(level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups) && [[level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups]]())
 		{
-			level.zombie_powerup_index = 0;
-			randomize_powerups();
+			powerup = "full_ammo";
+		}
+		else
+		{
+			powerup = level.zombie_powerup_array[level.zombie_powerup_index];
+			level.zombie_powerup_index++;
+			if(level.zombie_powerup_index >= level.zombie_powerup_array.size)
+			{
+				level.zombie_powerup_index = 0;
+				randomize_powerups();
+			}
 		}
 	}
 	return powerup;
@@ -401,16 +407,16 @@ function function_70bd1ec9()
 {
 	if(!level.zombie_powerups.size)
 	{
-		return 0;
+		return false;
 	}
 	foreach(str_powerup in level.zombie_powerup_array)
 	{
 		if(isdefined(level.zombie_powerups[str_powerup]) && [[level.zombie_powerups[str_powerup].func_should_drop_with_regular_powerups]]())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -429,7 +435,7 @@ function minigun_no_drop()
 	{
 		if(players[i].zombie_vars[#"zombie_powerup_minigun_on"] == 1)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(!level flag::get("power_on"))
@@ -438,15 +444,15 @@ function minigun_no_drop()
 		{
 			if(!isdefined(level.solo_lives_given) || level.solo_lives_given == 0)
 			{
-				return 1;
+				return true;
 			}
 		}
 		else
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -531,7 +537,7 @@ function function_2ff352cc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a7a5570e()
+function private function_a7a5570e()
 {
 	for(i = 1; i <= 4; i++)
 	{
@@ -553,15 +559,15 @@ function zombie_can_drop_powerups(weapon)
 {
 	if(namespace_e4df2f52::is_active() && isdefined(weapon) && (isdefined(weapon.isriotshield) && weapon.isriotshield || (isdefined(weapon.isheroweapon) && weapon.isheroweapon)))
 	{
-		return 1;
+		return true;
 	}
 	if(zm_loadout::is_tactical_grenade(weapon) || !level flag::get("zombie_drop_powerups"))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.no_powerups) && level.no_powerups || (isdefined(self.no_powerups) && self.no_powerups) || (isdefined(weapon) && (isdefined(weapon.isheroweapon) && weapon.isheroweapon)))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.use_powerup_volumes) && level.use_powerup_volumes)
 	{
@@ -570,11 +576,11 @@ function zombie_can_drop_powerups(weapon)
 		{
 			if(self istouching(volume))
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1051,7 +1057,7 @@ function powerup_drop(drop_point, powerup, var_4e31704a = 1)
 		}
 		print_powerup_drop(powerup.powerup_name, str_debug);
 	#/
-	bb::function_eb9250cd(powerup, undefined, "_dropped");
+	bb::logpowerupevent(powerup, undefined, "_dropped");
 	powerup thread powerup_timeout();
 	powerup thread powerup_wobble();
 	powerup util::delay(0.1, "powerup_timedout", &powerup_grab);
@@ -1080,7 +1086,7 @@ function function_37e79fb6(powerup)
 	}
 	if(namespace_e0710ee6::function_54054394(powerup))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_a2a9b2de))
 	{
@@ -1094,7 +1100,7 @@ function function_37e79fb6(powerup)
 		}
 		if(isdefined(node))
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(isdefined(level.playable_area))
@@ -1103,11 +1109,11 @@ function function_37e79fb6(powerup)
 		{
 			if(powerup istouching(var_dab4474c))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1361,7 +1367,12 @@ function powerup_setup(powerup_override, powerup_team, powerup_location, powerup
 	{
 		self.powerup_player = powerup_player;
 	}
-	assert(!(isdefined(struct.player_specific) && struct.player_specific), "");
+	else
+	{
+		/#
+			assert(!(isdefined(struct.player_specific) && struct.player_specific), "");
+		#/
+	}
 	self.powerup_name = struct.powerup_name;
 	self.hint = struct.hint;
 	self.only_affects_grabber = struct.only_affects_grabber;
@@ -1487,15 +1498,23 @@ function powerup_zombie_grab(powerup_team)
 				continue;
 			}
 		}
-		else if(isdefined(level._zombiemode_powerup_zombie_grab))
+		else
 		{
-			level thread [[level._zombiemode_powerup_zombie_grab]](self);
+			if(isdefined(level._zombiemode_powerup_zombie_grab))
+			{
+				level thread [[level._zombiemode_powerup_zombie_grab]](self);
+			}
+			if(isdefined(level._game_mode_powerup_zombie_grab))
+			{
+				level thread [[level._game_mode_powerup_zombie_grab]](self, who);
+			}
+			else
+			{
+				/#
+					println("");
+				#/
+			}
 		}
-		if(isdefined(level._game_mode_powerup_zombie_grab))
-		{
-			level thread [[level._game_mode_powerup_zombie_grab]](self, who);
-		}
-		println("");
 		level thread zm_audio::sndannouncerplayvox(self.powerup_name);
 		wait(0.1);
 		self thread powerup_delete_delayed();
@@ -1528,13 +1547,16 @@ function powerup_grab(powerup_team)
 			grabbers = [];
 			grabbers[0] = self.powerup_player;
 		}
-		else if(isdefined(level.powerup_grab_get_players_override))
-		{
-			grabbers = [[level.powerup_grab_get_players_override]]();
-		}
 		else
 		{
-			grabbers = getplayers();
+			if(isdefined(level.powerup_grab_get_players_override))
+			{
+				grabbers = [[level.powerup_grab_get_players_override]]();
+			}
+			else
+			{
+				grabbers = getplayers();
+			}
 		}
 		for(i = 0; i < grabbers.size; i++)
 		{
@@ -1614,14 +1636,19 @@ function powerup_grab(powerup_team)
 							{
 								level thread [[level._zombiemode_powerup_grab]](self, player);
 							}
-							println("");
+							else
+							{
+								/#
+									println("");
+								#/
+							}
 							break;
 						}
 					}
 				}
 				demo::bookmark(#"zm_player_powerup_grabbed", gettime(), player);
 				potm::bookmark(#"zm_player_powerup_grabbed", gettime(), player);
-				bb::function_eb9250cd(self, player, "_grabbed");
+				bb::logpowerupevent(self, player, "_grabbed");
 				if(isdefined(self.var_33c87f51))
 				{
 					player recordmapevent(23, gettime(), grabber.origin, level.round_number, self.var_33c87f51);
@@ -2065,7 +2092,7 @@ function powerup_timeout()
 	wait(wait_time);
 	self hide_and_show(&function_e3f30b, &powerup_show);
 	self notify(#"powerup_timedout");
-	bb::function_eb9250cd(self, undefined, "_timedout");
+	bb::logpowerupevent(self, undefined, "_timedout");
 	self powerup_delete();
 }
 
@@ -2179,9 +2206,9 @@ function is_insta_kill_active()
 {
 	if(isdefined(zombie_utility::function_6403cf83(#"zombie_insta_kill", self.team)) && zombie_utility::function_6403cf83(#"zombie_insta_kill", self.team) || (isdefined(self zombie_utility::function_73061b82(#"zombie_insta_kill")) && self zombie_utility::function_73061b82(#"zombie_insta_kill")) || (isdefined(self.personal_instakill) && self.personal_instakill))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2247,7 +2274,7 @@ function function_fe6d6eac(player, mod, hit_location, weapon, damage)
 */
 function function_16c2586a(player, mod, shitloc)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -2327,9 +2354,9 @@ function check_for_rare_drop_override(pos)
 {
 	if(level flagsys::get(#"ape_round"))
 	{
-		return 0;
+		return false;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2348,10 +2375,10 @@ function tesla_powerup_active()
 	{
 		if(players[i].zombie_vars[#"zombie_powerup_tesla_on"])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2423,7 +2450,7 @@ function register_carpenter_node(node, callback)
 */
 function func_should_never_drop()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -2437,7 +2464,7 @@ function func_should_never_drop()
 */
 function func_should_always_drop()
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -2515,14 +2542,14 @@ function should_award_stat(powerup_name)
 		case "wolf_bonus_ammo":
 		case "wolf_bonus_points":
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(level.zombie_statless_powerups) && isdefined(level.zombie_statless_powerups[powerup_name]) && level.zombie_statless_powerups[powerup_name])
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2552,9 +2579,9 @@ function function_cfd04802(str_powerup)
 {
 	if(isdefined(level.zombie_powerups[str_powerup]) && (isdefined(level.zombie_powerups[str_powerup].only_affects_grabber) && level.zombie_powerups[str_powerup].only_affects_grabber))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

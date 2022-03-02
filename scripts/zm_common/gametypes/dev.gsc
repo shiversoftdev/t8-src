@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	/#
 		system::register(#"dev", &__init__, undefined, #"spawnlogic");
@@ -382,105 +382,123 @@ function updatedevsettings()
 				}
 				setdvar(#"scr_player_ammo", "");
 			}
-			else if(getdvarstring(#"scr_player_momentum") != "")
+			else
 			{
-				if(!isdefined(level.devgui_unlimited_momentum))
+				if(getdvarstring(#"scr_player_momentum") != "")
 				{
-					level.devgui_unlimited_momentum = 1;
-				}
-				else
-				{
-					level.devgui_unlimited_momentum = !level.devgui_unlimited_momentum;
-				}
-				if(level.devgui_unlimited_momentum)
-				{
-					iprintln("");
-					level thread devgui_unlimited_momentum();
-				}
-				else
-				{
-					iprintln("");
-					level notify(#"devgui_unlimited_momentum");
-				}
-				setdvar(#"scr_player_momentum", "");
-			}
-			else if(getdvarstring(#"scr_give_player_score") != "")
-			{
-				level thread devgui_increase_momentum(getdvarint(#"scr_give_player_score", 0));
-				setdvar(#"scr_give_player_score", "");
-			}
-			else if(getdvarstring(#"scr_player_zero_ammo") != "")
-			{
-				players = getplayers();
-				for(i = 0; i < players.size; i++)
-				{
-					player = players[i];
-					weapons = player getweaponslist();
-					arrayremovevalue(weapons, level.weaponbasemelee);
-					for(j = 0; j < weapons.size; j++)
+					if(!isdefined(level.devgui_unlimited_momentum))
 					{
-						if(weapons[j] == level.weaponnone)
-						{
-							continue;
-						}
-						player setweaponammostock(weapons[j], 0);
-						player setweaponammoclip(weapons[j], 0);
-					}
-				}
-				setdvar(#"scr_player_zero_ammo", "");
-			}
-			else if(getdvarstring(#"scr_emp_jammed") != "")
-			{
-				players = getplayers();
-				for(i = 0; i < players.size; i++)
-				{
-					player = players[i];
-					player setempjammed(getdvarint(#"scr_emp_jammed", 0));
-				}
-				setdvar(#"scr_emp_jammed", "");
-			}
-			else if(getdvarstring(#"scr_round_pause") != "")
-			{
-				if(!level.timerstopped)
-				{
-					iprintln("");
-					globallogic_utils::pausetimer();
-				}
-				else
-				{
-					iprintln("");
-					globallogic_utils::resumetimer();
-				}
-				setdvar(#"scr_round_pause", "");
-			}
-			else if(getdvarstring(#"scr_round_end") != "")
-			{
-				level globallogic::forceend();
-				setdvar(#"scr_round_end", "");
-			}
-			else if(getdvarstring(#"scr_show_hq_spawns") != "")
-			{
-				if(!isdefined(level.devgui_show_hq))
-				{
-					level.devgui_show_hq = 0;
-				}
-				if(level.gametype == "" && isdefined(level.radios))
-				{
-					if(!level.devgui_show_hq)
-					{
-						for(i = 0; i < level.radios.size; i++)
-						{
-							color = (1, 0, 0);
-							level showonespawnpoint(level.radios[i], color, "", 32, "");
-						}
+						level.devgui_unlimited_momentum = 1;
 					}
 					else
 					{
-						level notify(#"hide_hq_points");
+						level.devgui_unlimited_momentum = !level.devgui_unlimited_momentum;
 					}
-					level.devgui_show_hq = !level.devgui_show_hq;
+					if(level.devgui_unlimited_momentum)
+					{
+						iprintln("");
+						level thread devgui_unlimited_momentum();
+					}
+					else
+					{
+						iprintln("");
+						level notify(#"devgui_unlimited_momentum");
+					}
+					setdvar(#"scr_player_momentum", "");
 				}
-				setdvar(#"scr_show_hq_spawns", "");
+				else
+				{
+					if(getdvarstring(#"scr_give_player_score") != "")
+					{
+						level thread devgui_increase_momentum(getdvarint(#"scr_give_player_score", 0));
+						setdvar(#"scr_give_player_score", "");
+					}
+					else
+					{
+						if(getdvarstring(#"scr_player_zero_ammo") != "")
+						{
+							players = getplayers();
+							for(i = 0; i < players.size; i++)
+							{
+								player = players[i];
+								weapons = player getweaponslist();
+								arrayremovevalue(weapons, level.weaponbasemelee);
+								for(j = 0; j < weapons.size; j++)
+								{
+									if(weapons[j] == level.weaponnone)
+									{
+										continue;
+									}
+									player setweaponammostock(weapons[j], 0);
+									player setweaponammoclip(weapons[j], 0);
+								}
+							}
+							setdvar(#"scr_player_zero_ammo", "");
+						}
+						else
+						{
+							if(getdvarstring(#"scr_emp_jammed") != "")
+							{
+								players = getplayers();
+								for(i = 0; i < players.size; i++)
+								{
+									player = players[i];
+									player setempjammed(getdvarint(#"scr_emp_jammed", 0));
+								}
+								setdvar(#"scr_emp_jammed", "");
+							}
+							else
+							{
+								if(getdvarstring(#"scr_round_pause") != "")
+								{
+									if(!level.timerstopped)
+									{
+										iprintln("");
+										globallogic_utils::pausetimer();
+									}
+									else
+									{
+										iprintln("");
+										globallogic_utils::resumetimer();
+									}
+									setdvar(#"scr_round_pause", "");
+								}
+								else
+								{
+									if(getdvarstring(#"scr_round_end") != "")
+									{
+										level globallogic::forceend();
+										setdvar(#"scr_round_end", "");
+									}
+									else if(getdvarstring(#"scr_show_hq_spawns") != "")
+									{
+										if(!isdefined(level.devgui_show_hq))
+										{
+											level.devgui_show_hq = 0;
+										}
+										if(level.gametype == "" && isdefined(level.radios))
+										{
+											if(!level.devgui_show_hq)
+											{
+												for(i = 0; i < level.radios.size; i++)
+												{
+													color = (1, 0, 0);
+													level showonespawnpoint(level.radios[i], color, "", 32, "");
+												}
+											}
+											else
+											{
+												level notify(#"hide_hq_points");
+											}
+											level.devgui_show_hq = !level.devgui_show_hq;
+										}
+										setdvar(#"scr_show_hq_spawns", "");
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 			if(getdvarint(#"r_streamdumpdistance", 0) == 3)
 			{
@@ -588,17 +606,23 @@ function updatedevsettings()
 			{
 				player dodamage(1, player.origin + forward);
 			}
-			else if(event == "")
+			else
 			{
-				player dodamage(1, player.origin - forward);
-			}
-			else if(event == "")
-			{
-				player dodamage(1, player.origin - right);
-			}
-			else if(event == "")
-			{
-				player dodamage(1, player.origin + right);
+				if(event == "")
+				{
+					player dodamage(1, player.origin - forward);
+				}
+				else
+				{
+					if(event == "")
+					{
+						player dodamage(1, player.origin - right);
+					}
+					else if(event == "")
+					{
+						player dodamage(1, player.origin + right);
+					}
+				}
 			}
 			setdvar(#"scr_forceevent", "");
 		}
@@ -1248,9 +1272,9 @@ function dvar_turned_on(val)
 	/#
 		if(val <= 0)
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	#/
 }
 

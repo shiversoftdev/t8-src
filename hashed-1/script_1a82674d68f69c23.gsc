@@ -13,7 +13,7 @@
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_cb96f01d(mappingname, var_3e666f2f, numbits, var_7f12f171)
+function private function_cb96f01d(mappingname, var_3e666f2f, numbits, var_7f12f171)
 {
 	if(!isdefined(level.var_a16c38d9[mappingname]))
 	{

@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1b45fa71df7a015f", &__init__, undefined, undefined);
 }
@@ -71,9 +71,7 @@ function __init__()
 	level.var_5cc0eb9f = 10000;
 	if(!isdefined(level.var_61d958e8))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_61d958e8 = object;
+		level.var_61d958e8 = new throttle();
 		[[ level.var_61d958e8 ]]->initialize(3, 0.1);
 	}
 	callback::on_connect(&function_c3f6fd96);
@@ -96,17 +94,17 @@ function function_f820b73(weapon, var_e7c11b0c = 1)
 {
 	if(weapon == level.hero_weapon[#"hammer"][2])
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"hammer"][1] && var_e7c11b0c < 3)
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"hammer"][0] && var_e7c11b0c < 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -118,7 +116,7 @@ function function_f820b73(weapon, var_e7c11b0c = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c3f6fd96()
+function private function_c3f6fd96()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -137,25 +135,28 @@ private function function_c3f6fd96()
 		{
 			zm_hero_weapon::show_hint(wpn_cur, #"hash_10c853c67454fff6");
 		}
-		else if(wpn_cur == level.hero_weapon[#"hammer"][1])
+		else
 		{
-			zm_hero_weapon::show_hint(wpn_cur, #"hash_2745ea06a4f8e7fd");
-			self thread function_82466b73(wpn_cur);
-			self thread function_478a4910(wpn_cur);
-		}
-		else if(wpn_cur == level.hero_weapon[#"hammer"][2])
-		{
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"hammer"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_78fab15695ef9758");
+				zm_hero_weapon::show_hint(wpn_cur, #"hash_2745ea06a4f8e7fd");
+				self thread function_82466b73(wpn_cur);
+				self thread function_478a4910(wpn_cur);
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"hammer"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_7b9c8543bd5b051c");
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_78fab15695ef9758");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_7b9c8543bd5b051c");
+				}
+				self thread function_82466b73(wpn_cur);
+				self thread function_7399cd86(wpn_cur);
+				self thread function_68ff89f7(wpn_cur);
 			}
-			self thread function_82466b73(wpn_cur);
-			self thread function_7399cd86(wpn_cur);
-			self thread function_68ff89f7(wpn_cur);
 		}
 	}
 }
@@ -196,7 +197,7 @@ function function_1286cbf(s_params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_82466b73(weapon)
+function private function_82466b73(weapon)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	while(true)
@@ -220,7 +221,7 @@ private function function_82466b73(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_70dbf9d1(player)
+function private function_70dbf9d1(player)
 {
 	player endon(#"weapon_change", #"disconnect", #"bled_out");
 	wait(0.5);
@@ -286,7 +287,7 @@ function function_6275aed3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4493c71b(weapon)
+function private function_4493c71b(weapon)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	while(true)
@@ -344,7 +345,7 @@ function function_439c9b04(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function activate_armor(weapon)
+function private activate_armor(weapon)
 {
 	level callback::on_ai_killed(&function_1286cbf);
 	self clientfield::increment_to_player("" + #"hash_61e96e3005ea1d49");
@@ -361,7 +362,7 @@ private function activate_armor(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function set_armor(n_armor)
+function private set_armor(n_armor)
 {
 	self thread zm_armor::add(#"hash_5c9caf0397b30f1e", n_armor, 50);
 }
@@ -375,7 +376,7 @@ private function set_armor(n_armor)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7399cd86(weapon)
+function private function_7399cd86(weapon)
 {
 	self endon(#"weapon_change", #"disconnect", #"bled_out");
 	while(true)
@@ -761,11 +762,11 @@ function function_51caa467(v_attack_source, n_allowed_z_diff, n_radius_sq)
 		{
 			if(distance2dsquared(self.origin, v_attack_source) < n_radius_sq)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1048,7 +1049,7 @@ function lightning_ball_wait(n_lifetime_after_move)
 	level endon(#"lightning_ball_created");
 	self waittill(#"movedone");
 	wait(n_lifetime_after_move);
-	return 1;
+	return true;
 }
 
 /*
@@ -1064,21 +1065,21 @@ function staff_lightning_is_target_valid(ai_zombie)
 {
 	if(!isdefined(ai_zombie))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(ai_zombie.is_being_zapped) && ai_zombie.is_being_zapped)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(ai_zombie.is_mechz) && ai_zombie.is_mechz)
 	{
-		return 0;
+		return false;
 	}
 	if(isvehicle(ai_zombie) && isdefined(ai_zombie.takedamage) && !ai_zombie.takedamage)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

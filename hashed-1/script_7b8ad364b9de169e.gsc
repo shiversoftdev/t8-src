@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"smart_cover", &__init__, undefined, undefined);
 }
@@ -101,12 +101,12 @@ function function_9a2b3318(origin, angles, player)
 				dist2 = distance2dsquared(origin, protectedzone.origin);
 				if(dist2 < length2)
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

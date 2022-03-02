@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_72db755dcbd0602c", &__init__, undefined, undefined);
 }
@@ -69,7 +69,7 @@ function function_37c0d395()
 	}
 	zm_perks::register_perk_clientfields(#"hash_36b9957a693185ea", &function_137d1be7, &function_1ab3592a);
 	zm_perks::register_perk_threads(#"hash_36b9957a693185ea", &function_a639586f, &function_7328ce94, &function_9227a4d8);
-	zm_perks::function_430970f6(#"hash_36b9957a693185ea", &function_65a90069);
+	zm_perks::register_actor_damage_override(#"hash_36b9957a693185ea", &function_65a90069);
 	if(isdefined(level.var_241ad22d) && level.var_241ad22d)
 	{
 		level thread [[level.var_241ad22d]]();
@@ -434,7 +434,7 @@ function function_279e31b8(e_owner)
 {
 	self notify("b24e157aae48642");
 	self endon("b24e157aae48642");
-	self endon_callback(&function_26c2620, #"death", #"hash_7199d465a80b4f59", #"scene_ready", #"hash_36b9957a693185ea" + "_take");
+	self endoncallback(&function_26c2620, #"death", #"hash_7199d465a80b4f59", #"scene_ready", #"hash_36b9957a693185ea" + "_take");
 	var_bbf6e7fd = 16384;
 	var_fc7bb684 = e_owner.var_c153f587.origin;
 	while(isdefined(e_owner.var_c153f587) && distancesquared(self.origin, var_fc7bb684) < var_bbf6e7fd && self hasperk(#"hash_4c14ed37c4038671"))

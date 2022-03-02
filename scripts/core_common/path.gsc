@@ -10,7 +10,7 @@
 	Parameters: 5
 	Flags: Private
 */
-private function function_a760f3bf(path, var_bc114662, point_color, line_color, var_80bf7c44)
+function private function_a760f3bf(path, var_bc114662, point_color, line_color, var_80bf7c44)
 {
 	/#
 		/#
@@ -38,7 +38,7 @@ private function function_a760f3bf(path, var_bc114662, point_color, line_color, 
 	Parameters: 7
 	Flags: Private
 */
-private function function_d88e0349(var_ac3ff0b7, var_3e109452, center, radius, point_color, line_color, var_80bf7c44)
+function private function_d88e0349(var_ac3ff0b7, var_3e109452, center, radius, point_color, line_color, var_80bf7c44)
 {
 	/#
 		recordline(var_ac3ff0b7, var_3e109452, line_color, "");
@@ -56,7 +56,7 @@ private function function_d88e0349(var_ac3ff0b7, var_3e109452, center, radius, p
 	Parameters: 7
 	Flags: Private
 */
-private function function_bb43c529(var_ac3ff0b7, var_3e109452, center, radius, point_color, line_color, var_80bf7c44)
+function private function_bb43c529(var_ac3ff0b7, var_3e109452, center, radius, point_color, line_color, var_80bf7c44)
 {
 	/#
 		line(var_ac3ff0b7, var_3e109452, point_color, 1, 1);

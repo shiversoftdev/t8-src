@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_17338dc1539c77bb", &__init__, undefined, undefined);
 }
@@ -72,7 +72,7 @@ function function_c0d2e1a2(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cd5f9803(localclientnum)
+function private function_cd5f9803(localclientnum)
 {
 	self waittill(#"hash_5a7453176272efff", #"death");
 	if(isdefined(self))
@@ -90,7 +90,7 @@ private function function_cd5f9803(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_e634058b(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_e634058b(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue)
 	{

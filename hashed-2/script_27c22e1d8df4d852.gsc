@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3370c2289a4cfc20", &__init__, undefined, undefined);
 }
@@ -38,7 +38,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!zm_trial::function_b47f6aba())
 	{
@@ -152,7 +152,7 @@ function function_f79b96ac()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function finalize_clientfields()
+function private finalize_clientfields()
 {
 	clientfield::register("world", "ZMHudGlobal.trials.trialIndex", 1, getminbitcountfornum(15), "int");
 	clientfield::register("toplayer", "" + #"hash_6536ca4fb2858a9f", 16000, 1, "int");
@@ -196,7 +196,7 @@ private function finalize_clientfields()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8f7e46db()
+function private function_8f7e46db()
 {
 	level flag::wait_till("start_zombie_round_logic");
 	/#
@@ -486,11 +486,14 @@ function function_63060af4(var_acc46b81, b_mute = 0)
 	{
 		clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 2);
 	}
-	else if(!b_mute)
+	else
 	{
-		self playsoundtoplayer(#"hash_1377aa36d8ba27e1", self);
+		if(!b_mute)
+		{
+			self playsoundtoplayer(#"hash_1377aa36d8ba27e1", self);
+		}
+		clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 3);
 	}
-	clientfield::set_world_uimodel((("PlayerList.client" + self.entity_num) + ".") + "trialsCheckState", 3);
 }
 
 /*

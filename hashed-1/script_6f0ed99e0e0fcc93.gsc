@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_78bf0dc450091c57", &__init__, undefined, undefined);
 }
@@ -44,7 +44,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1caf705e(localclientnum)
+function private function_1caf705e(localclientnum)
 {
 }
 

@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"challenges", &__init__, undefined, undefined);
 }
@@ -692,15 +692,18 @@ function function_a79ea08b(einflictor, victim, idamage, weapon)
 						self stats::function_dad108fa(#"hash_47ca0bf0dc1c1522", 1);
 						var_ee03db9e = 1;
 					}
-					else if(self function_db654c9(var_3cd641b, #"bonuscard_perk_2_gluttony"))
+					else
 					{
-						self stats::function_dad108fa(#"hash_1fde92ca99c05249", 1);
-						var_ee03db9e = 1;
-					}
-					else if(self function_db654c9(var_3cd641b, #"bonuscard_perk_3_gluttony"))
-					{
-						self stats::function_dad108fa(#"hash_af94e8f65ee288c", 1);
-						var_ee03db9e = 1;
+						if(self function_db654c9(var_3cd641b, #"bonuscard_perk_2_gluttony"))
+						{
+							self stats::function_dad108fa(#"hash_1fde92ca99c05249", 1);
+							var_ee03db9e = 1;
+						}
+						else if(self function_db654c9(var_3cd641b, #"bonuscard_perk_3_gluttony"))
+						{
+							self stats::function_dad108fa(#"hash_af94e8f65ee288c", 1);
+							var_ee03db9e = 1;
+						}
 					}
 					if(var_ee03db9e)
 					{
@@ -1370,13 +1373,16 @@ function challengekills(data)
 	{
 		bulletkill = 1;
 	}
-	else if(baseweapon == level.var_9e188c0b && (meansofdeath == #"mod_impact" || meansofdeath == #"mod_projectile" || meansofdeath == #"mod_projectile_splash"))
-	{
-		bulletkill = 1;
-	}
 	else
 	{
-		bulletkill = 0;
+		if(baseweapon == level.var_9e188c0b && (meansofdeath == #"mod_impact" || meansofdeath == #"mod_projectile" || meansofdeath == #"mod_projectile_splash"))
+		{
+			bulletkill = 1;
+		}
+		else
+		{
+			bulletkill = 0;
+		}
 	}
 	if(level.teambased)
 	{
@@ -1621,85 +1627,88 @@ function challengekills(data)
 			}
 		}
 	}
-	else if(weapon_utils::ismeleemod(meansofdeath) && !isdefined(killstreak))
+	else
 	{
-		player stats::function_dad108fa(#"melee", 1);
-		if(weapon_utils::ispunch(weapon))
+		if(weapon_utils::ismeleemod(meansofdeath) && !isdefined(killstreak))
 		{
-			player stats::function_dad108fa(#"kill_enemy_with_fists", 1);
-		}
-		if(weapon.statname == #"ar_stealth_t8" || weapon.statname == #"pistol_standard_t8")
-		{
-			if(player weaponhasattachmentandunlocked(weapon, "uber"))
+			player stats::function_dad108fa(#"melee", 1);
+			if(weapon_utils::ispunch(weapon))
 			{
-				player stats::function_dad108fa(#"hash_541dc7f1d7d397a", 1);
+				player stats::function_dad108fa(#"kill_enemy_with_fists", 1);
 			}
-		}
-		checkkillstreak5(baseweapon, player);
-	}
-	else if(!isdefined(killstreak))
-	{
-		if(weaponclass == #"weapon_launcher")
-		{
-			player stats::function_dad108fa(#"hash_be93d1227e6db1", 1);
-		}
-		if(weaponpurchased)
-		{
-			var_291c422e = player loadout::function_18a77b37("primarygrenade");
-			if(weapon === var_291c422e)
+			if(weapon.statname == #"ar_stealth_t8" || weapon.statname == #"pistol_standard_t8")
 			{
-				if(player.challenge_scavengedcount > 0)
+				if(player weaponhasattachmentandunlocked(weapon, "uber"))
 				{
-					player.challenge_resuppliednamekills++;
-					if(player.challenge_resuppliednamekills >= 3)
-					{
-						player stats::function_dad108fa(#"kills_3_resupplied_nade_one_life", 1);
-						player.challenge_resuppliednamekills = 0;
-					}
-					player.challenge_scavengedcount--;
+					player stats::function_dad108fa(#"hash_541dc7f1d7d397a", 1);
 				}
 			}
-			if(isdefined(inflictoriscooked))
-			{
-				if(inflictoriscooked == 1 && weapon.statname == #"frag_grenade")
-				{
-					player stats::function_dad108fa(#"kill_with_cooked_grenade", 1);
-				}
-			}
-			if(victimlaststunnedby === player)
-			{
-				if(weaponclass == "weapon_grenade")
-				{
-					player stats::function_dad108fa(#"kill_stun_lethal", 1);
-				}
-			}
-			if(baseweapon.statname == level.weaponballisticknife.statname)
-			{
-				player function_80327323(data);
-				if(isdefined(var_26aed950[#"talent_lightweight"]))
-				{
-					player stats::function_dad108fa(#"hash_514b48072f97315e", 1);
-				}
-			}
-			if(baseweapon == level.weaponspecialcrossbow)
-			{
-				if(weapon.isdualwield)
-				{
-					checkdualwield(baseweapon, player, attacker, time, attackerwassprinting, attacker_sprint_end);
-				}
-			}
-			if(baseweapon == level.weaponshotgunenergy)
-			{
-				if(isdefined(victim.firsttimedamaged) && victim.firsttimedamaged == time)
-				{
-					player stats::function_dad108fa(#"kill_enemy_one_bullet_shotgun", 1);
-					player stats::function_e24eec31(weapon, #"kill_enemy_one_bullet_shotgun", 1);
-				}
-			}
-		}
-		if(baseweapon.forcedamagehitlocation || baseweapon == level.weaponspecialcrossbow || baseweapon == level.weaponshotgunenergy || baseweapon.statname == level.weaponballisticknife.statname)
-		{
 			checkkillstreak5(baseweapon, player);
+		}
+		else if(!isdefined(killstreak))
+		{
+			if(weaponclass == #"weapon_launcher")
+			{
+				player stats::function_dad108fa(#"hash_be93d1227e6db1", 1);
+			}
+			if(weaponpurchased)
+			{
+				var_291c422e = player loadout::function_18a77b37("primarygrenade");
+				if(weapon === var_291c422e)
+				{
+					if(player.challenge_scavengedcount > 0)
+					{
+						player.challenge_resuppliednamekills++;
+						if(player.challenge_resuppliednamekills >= 3)
+						{
+							player stats::function_dad108fa(#"kills_3_resupplied_nade_one_life", 1);
+							player.challenge_resuppliednamekills = 0;
+						}
+						player.challenge_scavengedcount--;
+					}
+				}
+				if(isdefined(inflictoriscooked))
+				{
+					if(inflictoriscooked == 1 && weapon.statname == #"frag_grenade")
+					{
+						player stats::function_dad108fa(#"kill_with_cooked_grenade", 1);
+					}
+				}
+				if(victimlaststunnedby === player)
+				{
+					if(weaponclass == "weapon_grenade")
+					{
+						player stats::function_dad108fa(#"kill_stun_lethal", 1);
+					}
+				}
+				if(baseweapon.statname == level.weaponballisticknife.statname)
+				{
+					player function_80327323(data);
+					if(isdefined(var_26aed950[#"talent_lightweight"]))
+					{
+						player stats::function_dad108fa(#"hash_514b48072f97315e", 1);
+					}
+				}
+				if(baseweapon == level.weaponspecialcrossbow)
+				{
+					if(weapon.isdualwield)
+					{
+						checkdualwield(baseweapon, player, attacker, time, attackerwassprinting, attacker_sprint_end);
+					}
+				}
+				if(baseweapon == level.weaponshotgunenergy)
+				{
+					if(isdefined(victim.firsttimedamaged) && victim.firsttimedamaged == time)
+					{
+						player stats::function_dad108fa(#"kill_enemy_one_bullet_shotgun", 1);
+						player stats::function_e24eec31(weapon, #"kill_enemy_one_bullet_shotgun", 1);
+					}
+				}
+			}
+			if(baseweapon.forcedamagehitlocation || baseweapon == level.weaponspecialcrossbow || baseweapon == level.weaponshotgunenergy || baseweapon.statname == level.weaponballisticknife.statname)
+			{
+				checkkillstreak5(baseweapon, player);
+			}
 		}
 	}
 	if(isdefined(attacker) && isdefined(attacker.tookweaponfrom) && isdefined(attacker.tookweaponfrom[weapon]) && isdefined(attacker.tookweaponfrom[weapon].previousowner))
@@ -2135,19 +2144,22 @@ function challengekills(data)
 			attacker stats::function_dad108fa(#"hash_372c6d8c80773a55", 1);
 		}
 	}
-	else if(weapon.name == #"supplydrop")
+	else
 	{
-		if(isdefined(inflictorplayerhasengineerperk))
+		if(weapon.name == #"supplydrop")
 		{
-			player stats::function_dad108fa(#"kill_booby_trap_engineer", 1);
+			if(isdefined(inflictorplayerhasengineerperk))
+			{
+				player stats::function_dad108fa(#"kill_booby_trap_engineer", 1);
+			}
 		}
-	}
-	var_2cf35051 = globallogic_score::function_3cbc4c6c(victimweapon.var_2e4a8800);
-	if(victimweapon.var_b76e0a09 === 1 || (isdefined(var_2cf35051) && var_2cf35051.var_fcd2ff3a === 1))
-	{
-		if(killstreak == #"dart" || killstreak == #"inventory_dart" || killstreak == #"recon_car" || killstreak == #"inventory_recon_car" || (killstreak == #"tank_robot" || killstreak == #"inventory_tank_robot" && var_911b9b40 === 1))
+		var_2cf35051 = globallogic_score::function_3cbc4c6c(victimweapon.var_2e4a8800);
+		if(victimweapon.var_b76e0a09 === 1 || (isdefined(var_2cf35051) && var_2cf35051.var_fcd2ff3a === 1))
 		{
-			attacker stats::function_dad108fa(#"hash_7ce97233d9d7e81", 1);
+			if(killstreak == #"dart" || killstreak == #"inventory_dart" || killstreak == #"recon_car" || killstreak == #"inventory_recon_car" || (killstreak == #"tank_robot" || killstreak == #"inventory_tank_robot" && var_911b9b40 === 1))
+			{
+				attacker stats::function_dad108fa(#"hash_7ce97233d9d7e81", 1);
+			}
 		}
 	}
 	if(weapon.isheavyweapon == 1 || attackerheroabilityactive || isdefined(killstreak))
@@ -2276,7 +2288,7 @@ function fix_challenge_stats_on_spawn()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4039ce49()
+function private function_4039ce49()
 {
 	player = self;
 	player endon(#"disconnect");
@@ -2302,7 +2314,7 @@ private function function_4039ce49()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ba57595b()
+function private function_ba57595b()
 {
 	player = self;
 	player function_223ff464();
@@ -2517,7 +2529,7 @@ function completed_specific_challenge(target_value, challenge_name)
 */
 function tally_completed_challenge(target_value, challenge_name)
 {
-	return (self completed_specific_challenge(target_value, challenge_name) ? 1 : 0);
+	return true;
 }
 
 /*
@@ -2989,78 +3001,81 @@ function function_2f462ffd(victim, weapon, inflictor, objective)
 			}
 		}
 	}
-	else if(level.hardcoremode)
+	else
 	{
-		self stats::function_dad108fa(#"hash_753f02ea48b19cd", 1);
-	}
-	else if(!level.arenamatch)
-	{
-		self stats::function_dad108fa(#"hash_45fca5cee12d8bdb", 1);
-	}
-	self contracts::player_contract_event(#"objective_ekia");
-	scoreevents = globallogic_score::function_3cbc4c6c(weapon.var_2e4a8800);
-	var_8a4cfbd = weapon.var_76ce72e8 && isdefined(scoreevents) && scoreevents.var_fcd2ff3a === 1;
-	if(var_8a4cfbd)
-	{
-		self stats::function_dad108fa(#"hash_d4a989a2da3fa72", 1);
-	}
-	else if(weapon.var_b76e0a09)
-	{
-		self stats::function_dad108fa(#"hash_6c3172682467122", 1);
-	}
-	if(isdefined(weapon.attachments) && weapon.attachments.size > 2)
-	{
-		if(self weaponhasattachmentandunlocked(weapon, "suppressed", "extbarrel", "damage"))
+		if(level.hardcoremode)
 		{
-			if(!isdefined(self.var_953ec9b5))
-			{
-				self.var_953ec9b5 = [];
-			}
-			if(!isdefined(self.var_953ec9b5[objective.entnum]))
-			{
-				self.var_953ec9b5[objective.entnum] = 0;
-			}
-			self.var_953ec9b5[objective.entnum]++;
-			if(self.var_953ec9b5[objective.entnum] == 5)
-			{
-				self stats::function_dad108fa(#"hash_6f0a5b0f2c1e8ed5", 1);
-			}
+			self stats::function_dad108fa(#"hash_753f02ea48b19cd", 1);
 		}
-	}
-	if(isdefined(victim.var_ea1458aa))
-	{
-		var_d72bd991 = victim.var_ea1458aa.attackerdamage[self.clientid];
-		gear = self function_b958b70d(var_d72bd991.class_num, "tacticalgear");
-		if(gear == #"gear_medicalinjectiongun")
+		else if(!level.arenamatch)
 		{
-			if(var_d72bd991.var_46a82df0 === 1)
-			{
-				self stats::function_dad108fa(#"hash_47c5c8af0f105c71", 1);
-			}
+			self stats::function_dad108fa(#"hash_45fca5cee12d8bdb", 1);
 		}
-		else if(gear == #"gear_equipmentcharge")
+		self contracts::player_contract_event(#"objective_ekia");
+		scoreevents = globallogic_score::function_3cbc4c6c(weapon.var_2e4a8800);
+		var_8a4cfbd = weapon.var_76ce72e8 && isdefined(scoreevents) && scoreevents.var_fcd2ff3a === 1;
+		if(var_8a4cfbd)
 		{
-			if(var_8a4cfbd)
+			self stats::function_dad108fa(#"hash_d4a989a2da3fa72", 1);
+		}
+		else if(weapon.var_b76e0a09)
+		{
+			self stats::function_dad108fa(#"hash_6c3172682467122", 1);
+		}
+		if(isdefined(weapon.attachments) && weapon.attachments.size > 2)
+		{
+			if(self weaponhasattachmentandunlocked(weapon, "suppressed", "extbarrel", "damage"))
 			{
-				if(!isdefined(self.var_9cd2c51d.var_17ff6e52))
+				if(!isdefined(self.var_953ec9b5))
 				{
-					self.var_9cd2c51d.var_17ff6e52 = 0;
+					self.var_953ec9b5 = [];
 				}
-				self.var_9cd2c51d.var_17ff6e52++;
-				if(self.var_9cd2c51d.var_17ff6e52 == 5)
+				if(!isdefined(self.var_953ec9b5[objective.entnum]))
 				{
-					self stats::function_dad108fa(#"hash_386525eb8f4537c2", 1);
+					self.var_953ec9b5[objective.entnum] = 0;
+				}
+				self.var_953ec9b5[objective.entnum]++;
+				if(self.var_953ec9b5[objective.entnum] == 5)
+				{
+					self stats::function_dad108fa(#"hash_6f0a5b0f2c1e8ed5", 1);
 				}
 			}
 		}
-	}
-	if(isdefined(victim.lastconcussedby) && victim.lastconcussedby == self && isdefined(victim.var_121392a1))
-	{
-		if(isdefined(victim.var_121392a1[#"hash_1527a22d8a6fdc21"]) && victim.var_121392a1[#"hash_1527a22d8a6fdc21"].endtime > gettime())
+		if(isdefined(victim.var_ea1458aa))
 		{
-			if(self util::is_item_purchased(#"eq_slow_grenade"))
+			var_d72bd991 = victim.var_ea1458aa.attackerdamage[self.clientid];
+			gear = self function_b958b70d(var_d72bd991.class_num, "tacticalgear");
+			if(gear == #"gear_medicalinjectiongun")
 			{
-				self stats::function_dad108fa(#"hash_1a02c128bae3a6a0", 1);
+				if(var_d72bd991.var_46a82df0 === 1)
+				{
+					self stats::function_dad108fa(#"hash_47c5c8af0f105c71", 1);
+				}
+			}
+			else if(gear == #"gear_equipmentcharge")
+			{
+				if(var_8a4cfbd)
+				{
+					if(!isdefined(self.var_9cd2c51d.var_17ff6e52))
+					{
+						self.var_9cd2c51d.var_17ff6e52 = 0;
+					}
+					self.var_9cd2c51d.var_17ff6e52++;
+					if(self.var_9cd2c51d.var_17ff6e52 == 5)
+					{
+						self stats::function_dad108fa(#"hash_386525eb8f4537c2", 1);
+					}
+				}
+			}
+		}
+		if(isdefined(victim.lastconcussedby) && victim.lastconcussedby == self && isdefined(victim.var_121392a1))
+		{
+			if(isdefined(victim.var_121392a1[#"hash_1527a22d8a6fdc21"]) && victim.var_121392a1[#"hash_1527a22d8a6fdc21"].endtime > gettime())
+			{
+				if(self util::is_item_purchased(#"eq_slow_grenade"))
+				{
+					self stats::function_dad108fa(#"hash_1a02c128bae3a6a0", 1);
+				}
 			}
 		}
 	}
@@ -3362,7 +3377,7 @@ function heroabilityactivateneardeath()
 function checkforherosurvival()
 {
 	self endon(#"death", #"disconnect");
-	self waittill_timeout(8, #"challenge_survived_from_death", #"disconnect");
+	self waittilltimeout(8, #"challenge_survived_from_death", #"disconnect");
 	self stats::function_dad108fa(#"death_dodger", 1);
 }
 
@@ -3590,7 +3605,7 @@ function flakjacketprotectedmp()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7ec2f2c(slot_index, killed)
+function private function_7ec2f2c(slot_index, killed)
 {
 	slot = self loadout::function_e27dc453(slot_index);
 	slot.killed = killed;
@@ -3605,7 +3620,7 @@ private function function_7ec2f2c(slot_index, killed)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_861fe993(slot_index)
+function private function_861fe993(slot_index)
 {
 	slot = self loadout::function_e27dc453(slot_index);
 	return slot.killed;
@@ -3648,7 +3663,7 @@ function function_19e8b086(killcount, weapon, var_2e4a8800)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_780ac329(killcount, weapon, scoreevents)
+function private function_780ac329(killcount, weapon, scoreevents)
 {
 	baseweapon = getweapon(weapon.statname);
 	ability = self loadout::function_18a77b37("specialgrenade");

@@ -76,10 +76,10 @@ function isexplosivedamage(meansofdeath)
 		case "mod_grenade_splash":
 		case "mod_projectile_splash":
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -151,8 +151,8 @@ function isfiredamage(weapon, meansofdeath)
 {
 	if(weapon.doesfiredamage && (meansofdeath == "MOD_BURNED" || meansofdeath == "MOD_GRENADE" || meansofdeath == "MOD_GRENADE_SPLASH" || meansofdeath == "MOD_DOT"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

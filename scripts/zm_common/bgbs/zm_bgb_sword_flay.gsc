@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_sword_flay", &__init__, undefined, #"bgb");
 }
@@ -35,8 +35,8 @@ function __init__()
 		return;
 	}
 	bgb::register(#"zm_bgb_sword_flay", "time", 60, &enable, &disable, undefined);
-	bgb::function_430970f6(#"zm_bgb_sword_flay", &actor_damage_override);
-	bgb::function_cc303f91(#"zm_bgb_sword_flay", &vehicle_damage_override);
+	bgb::register_actor_damage_override(#"zm_bgb_sword_flay", &actor_damage_override);
+	bgb::register_vehicle_damage_override(#"zm_bgb_sword_flay", &vehicle_damage_override);
 }
 
 /*

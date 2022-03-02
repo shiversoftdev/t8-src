@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_746f7956b9307f72", &__init__, undefined, undefined);
 }
@@ -156,14 +156,17 @@ function function_29f91f81(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_cebd6e9e = self playloopsound(#"hash_3cd6bae1469848f1", 1);
 		}
 	}
-	else if(isdefined(self.fx_trail))
+	else
 	{
-		killfx(localclientnum, self.fx_trail);
-	}
-	if(isdefined(self.var_cebd6e9e))
-	{
-		self stoploopsound(self.var_cebd6e9e);
-		self.var_cebd6e9e = undefined;
+		if(isdefined(self.fx_trail))
+		{
+			killfx(localclientnum, self.fx_trail);
+		}
+		if(isdefined(self.var_cebd6e9e))
+		{
+			self stoploopsound(self.var_cebd6e9e);
+			self.var_cebd6e9e = undefined;
+		}
 	}
 }
 
@@ -338,7 +341,7 @@ function function_522aa0e9(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_cfefd76a(localclientnum, var_b3673abf, var_3ab46b9)
+function private function_cfefd76a(localclientnum, var_b3673abf, var_3ab46b9)
 {
 	self endon(var_3ab46b9);
 	s_result = undefined;

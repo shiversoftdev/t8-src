@@ -179,7 +179,7 @@ function function_439b486f()
 		var_51bef3af = spawn("script_model", (1, 1145, -350));
 		var_51bef3af playsound(#"hash_c8d3a1557c42ab7");
 		s_notify = undefined;
-		s_notify = level waittill_timeout(253, #"hash_7646638df88a3656");
+		s_notify = level waittilltimeout(253, #"hash_7646638df88a3656");
 		var_51bef3af stopsound(#"hash_c8d3a1557c42ab7");
 		waitframe(1);
 		var_51bef3af delete();
@@ -234,9 +234,9 @@ function function_1bc491ab()
 		level.zombie_total--;
 		n_delay = (isdefined(zombie_utility::function_d2dfacfd(#"zombie_spawn_delay")) ? zombie_utility::function_d2dfacfd(#"zombie_spawn_delay") : zombie_utility::function_d2dfacfd(#"hash_7d5a25e2463f7fc5"));
 		wait(n_delay);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -235,7 +235,7 @@ function _fire(lifeid, player, team, killstreak_id)
 			player enableweaponcycling();
 			killstreakrules::killstreakstop("remote_missile", team, killstreak_id);
 		}
-		return 0;
+		return false;
 	}
 	if(isdefined(player))
 	{
@@ -293,7 +293,7 @@ function _fire(lifeid, player, team, killstreak_id)
 	wait(animlen * 0.7);
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	thread function_203098f4(0.3);
 	lui::screen_fade_out(0.1);
@@ -341,7 +341,7 @@ function _fire(lifeid, player, team, killstreak_id)
 		{
 			veh delete();
 		}
-		return 0;
+		return false;
 	}
 	cam delete();
 	player cameraactivate(0);
@@ -373,7 +373,7 @@ function _fire(lifeid, player, team, killstreak_id)
 	player thread sndwatchexplo();
 	rocket influencers::create_entity_enemy_influencer("small_vehicle", rocket.team);
 	player waittill(#"remotemissle_killstreak_done");
-	return 1;
+	return true;
 }
 
 /*
@@ -1729,17 +1729,23 @@ function remotemissile_bda_dialog()
 			{
 				bdadialog = "kill1";
 			}
-			else if(self.remotemissilebda === 2)
+			else
 			{
-				bdadialog = "kill2";
-			}
-			else if(self.remotemissilebda === 3)
-			{
-				bdadialog = "kill3";
-			}
-			else if(self.remotemissilebda > 3)
-			{
-				bdadialog = "killMultiple";
+				if(self.remotemissilebda === 2)
+				{
+					bdadialog = "kill2";
+				}
+				else
+				{
+					if(self.remotemissilebda === 3)
+					{
+						bdadialog = "kill3";
+					}
+					else if(self.remotemissilebda > 3)
+					{
+						bdadialog = "killMultiple";
+					}
+				}
 			}
 		}
 		else

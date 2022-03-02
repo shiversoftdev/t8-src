@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_51a8cfab0691454b", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_80bd7996, var_49d28bc1, var_5b932f42, var_a53dc296, var_60bdad5f)
+function private function_d1de6a85(var_80bd7996, var_49d28bc1, var_5b932f42, var_a53dc296, var_60bdad5f)
 {
 	namespace_b22c99a5::function_7d32b7d0(0);
 	n_base = 99;
@@ -94,7 +94,7 @@ private function function_d1de6a85(var_80bd7996, var_49d28bc1, var_5b932f42, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	level flag::clear(#"infinite_round_spawning");
@@ -121,7 +121,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8e69c85()
+function private function_8e69c85()
 {
 	level endon(#"hash_7646638df88a3656");
 	level.var_d76270a8 = spawn("trigger_damage_new", (-208, 530, -24), (1048576 | 2097152) | 8388608, 16, 16);
@@ -137,7 +137,7 @@ private function function_8e69c85()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_75f0aac6()
+function private function_75f0aac6()
 {
 	self endon(#"death");
 	while(true)
@@ -290,7 +290,7 @@ function set_dvar_float_if_unset(dvar, value, reset = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a4adaedb()
+function private function_a4adaedb()
 {
 	level endon(#"hash_7646638df88a3656");
 	level.var_382a24b0 = 1;

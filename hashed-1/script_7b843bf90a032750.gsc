@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7ceb08aa364e4596", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 4
 	Flags: Private
 */
-private function function_d1de6a85(var_b9c6550, var_50d1120, var_43f824d6, var_73d6ae36)
+function private function_d1de6a85(var_b9c6550, var_50d1120, var_43f824d6, var_73d6ae36)
 {
 	if(isdefined(var_b9c6550))
 	{
@@ -94,7 +94,7 @@ private function function_d1de6a85(var_b9c6550, var_50d1120, var_43f824d6, var_7
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	zm_spawner::deregister_zombie_death_event_callback(&function_138aec8e);
 }
@@ -108,7 +108,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function function_e997bb0b(var_73d6ae36)
+function private function_e997bb0b(var_73d6ae36)
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	if(isdefined(var_73d6ae36))
@@ -162,7 +162,7 @@ private function function_e997bb0b(var_73d6ae36)
 	Parameters: 0
 	Flags: Private
 */
-private function function_49091c27()
+function private function_49091c27()
 {
 	challenge = zm_trial::function_a36e8c38(#"hash_250115340b2e27a5");
 	/#
@@ -181,7 +181,7 @@ private function function_49091c27()
 	Parameters: 1
 	Flags: Private
 */
-private function function_138aec8e(attacker)
+function private function_138aec8e(attacker)
 {
 	if(isdefined(self.nuked) && self.nuked)
 	{

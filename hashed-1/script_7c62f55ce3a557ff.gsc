@@ -39,7 +39,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_722ef8a2296d547e", &__init__, &__main__, #"zm_ai_brutus");
 }
@@ -222,7 +222,7 @@ function brutus_spawning_logic()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_f332f2b7(n_spawn, str_zone_name, var_dde9ff11, var_68ffecfb)
+function private function_f332f2b7(n_spawn, str_zone_name, var_dde9ff11, var_68ffecfb)
 {
 	level endon(#"end_of_round", #"end_game");
 	var_33882d9b = 0;
@@ -559,24 +559,27 @@ function brutus_round_tracker()
 			}
 			continue;
 		}
-		else if(zm_utility::is_standard() && (!(isdefined(level.var_42cd50b3) && level.var_42cd50b3)) && (!(isdefined(level.var_cab8d080) && level.var_cab8d080)))
+		else
 		{
-			continue;
-		}
-		else if(level.next_brutus_round <= level.round_number)
-		{
-			if(isdefined(level.var_cab8d080) && level.var_cab8d080)
+			if(zm_utility::is_standard() && (!(isdefined(level.var_42cd50b3) && level.var_42cd50b3)) && (!(isdefined(level.var_cab8d080) && level.var_cab8d080)))
 			{
-				level.var_cab8d080 = undefined;
+				continue;
 			}
-			else
+			else if(level.next_brutus_round <= level.round_number)
 			{
-				wait(randomfloatrange(level.brutus_min_spawn_delay, level.brutus_max_spawn_delay));
-			}
-			if(attempt_brutus_spawn(function_7265bed3()))
-			{
-				level.music_round_override = 1;
-				level.next_brutus_round = level.round_number + randomintrange(level.brutus_min_round_fq, level.brutus_max_round_fq);
+				if(isdefined(level.var_cab8d080) && level.var_cab8d080)
+				{
+					level.var_cab8d080 = undefined;
+				}
+				else
+				{
+					wait(randomfloatrange(level.brutus_min_spawn_delay, level.brutus_max_spawn_delay));
+				}
+				if(attempt_brutus_spawn(function_7265bed3()))
+				{
+					level.music_round_override = 1;
+					level.next_brutus_round = level.round_number + randomintrange(level.brutus_min_round_fq, level.brutus_max_round_fq);
+				}
 			}
 		}
 	}
@@ -591,19 +594,22 @@ function brutus_round_tracker()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7265bed3()
+function private function_7265bed3()
 {
 	if(level.round_number >= 30)
 	{
 		level.brutus_zombie_per_round = 4;
 	}
-	else if(level.round_number >= 25)
+	else
 	{
-		level.brutus_zombie_per_round = 3;
-	}
-	else if(level.round_number >= 17)
-	{
-		level.brutus_zombie_per_round = 2;
+		if(level.round_number >= 25)
+		{
+			level.brutus_zombie_per_round = 3;
+		}
+		else if(level.round_number >= 17)
+		{
+			level.brutus_zombie_per_round = 2;
+		}
 	}
 	return level.brutus_zombie_per_round;
 }
@@ -646,10 +652,10 @@ function attempt_brutus_spawn(n_spawn_num, str_zone_name, var_dde9ff11 = 0, var_
 			iprintln("");
 		#/
 		level thread function_5e4d2f31();
-		return 0;
+		return false;
 	}
 	level notify(#"spawn_brutus", {#hash_68ffecfb:var_68ffecfb, #hash_dde9ff11:var_dde9ff11, #str_zone_name:str_zone_name, #n_spawn:n_spawn_num});
-	return 1;
+	return true;
 }
 
 /*
@@ -936,24 +942,27 @@ function wait_on_box_alarm()
 			{
 				attempt_brutus_spawn(1);
 			}
-			else if(rand <= level.brutus_alarm_chance)
+			else
 			{
-				if(level flag::get("moving_chest_now"))
+				if(rand <= level.brutus_alarm_chance)
 				{
-					continue;
-				}
-				if(attempt_brutus_spawn(1))
-				{
-					if(level.next_brutus_round == (level.round_number + 1))
+					if(level flag::get("moving_chest_now"))
 					{
-						level.next_brutus_round++;
+						continue;
 					}
-					level.brutus_alarm_chance = level.brutus_min_alarm_chance;
+					if(attempt_brutus_spawn(1))
+					{
+						if(level.next_brutus_round == (level.round_number + 1))
+						{
+							level.next_brutus_round++;
+						}
+						level.brutus_alarm_chance = level.brutus_min_alarm_chance;
+					}
 				}
-			}
-			else if(level.brutus_alarm_chance < level.brutus_max_alarm_chance)
-			{
-				level.brutus_alarm_chance = level.brutus_alarm_chance + level.brutus_alarm_chance_increment;
+				else if(level.brutus_alarm_chance < level.brutus_max_alarm_chance)
+				{
+					level.brutus_alarm_chance = level.brutus_alarm_chance + level.brutus_alarm_chance_increment;
+				}
 			}
 		}
 	}
@@ -980,9 +989,9 @@ function check_perk_machine_valid(player)
 			self.lock_fx delete();
 			self zm_perks::reset_vending_hint_string();
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1005,7 +1014,7 @@ function check_craftable_table_valid(player)
 			self.locked_cost = undefined;
 			self.lock_fx delete();
 		}
-		return 0;
+		return false;
 	}
 	if(isdefined(self.stub) && (isdefined(self.stub.is_locked) && self.stub.is_locked))
 	{
@@ -1017,9 +1026,9 @@ function check_craftable_table_valid(player)
 			self.stub.lock_fx delete();
 			self sethintstring(self.stub.hint_string);
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1094,7 +1103,7 @@ function brutus_watch_enemy()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9a78baba(var_1cc3df76)
+function private function_9a78baba(var_1cc3df76)
 {
 	least_hunted = var_1cc3df76[0];
 	for(i = 0; i < var_1cc3df76.size; i++)
@@ -1157,7 +1166,7 @@ function brutus_lockdown_client_effects(delay)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_61263ebc()
+function private function_61263ebc()
 {
 	trace = groundtrace(self.origin + vectorscale((0, 0, 1), 70), self.origin + (vectorscale((0, 0, -1), 100)), 0, self);
 	if(isdefined(trace[#"entity"]))
@@ -1165,10 +1174,10 @@ private function function_61263ebc()
 		entity = trace[#"entity"];
 		if(entity ismovingplatform())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1258,7 +1267,7 @@ function function_ba497d2d(var_de86a1af)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9398e511()
+function private function_9398e511()
 {
 	if(isdefined(level.var_f158b05c) && level.var_f158b05c.size > 0)
 	{

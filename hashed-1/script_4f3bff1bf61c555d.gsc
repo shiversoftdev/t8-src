@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"raps", &__init__, undefined, undefined);
 }
@@ -130,13 +130,16 @@ function slow_raps(trigger)
 			self setspeedimmediate(trigger.script_int, 200, 200);
 		}
 	}
-	else if(isdefined(self._override_raps_combat_speed) && self._override_raps_combat_speed < (0.5 * self.settings.defaultmovespeed))
-	{
-		self setspeed(self._override_raps_combat_speed);
-	}
 	else
 	{
-		self setspeed(0.5 * self.settings.defaultmovespeed);
+		if(isdefined(self._override_raps_combat_speed) && self._override_raps_combat_speed < (0.5 * self.settings.defaultmovespeed))
+		{
+			self setspeed(self._override_raps_combat_speed);
+		}
+		else
+		{
+			self setspeed(0.5 * self.settings.defaultmovespeed);
+		}
 	}
 	wait(1);
 	self resumespeed();

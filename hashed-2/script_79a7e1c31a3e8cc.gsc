@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"deployable", &__init__, undefined, undefined);
 }
@@ -197,10 +197,10 @@ function function_89d64a2c(origin)
 	{
 		if(distance2dsquared(var_5795c216.origin, origin) < var_5795c216.radiussqr)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -312,18 +312,18 @@ function function_b3d993e9(deployable_weapon, sethintstring = 0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ab25be55(weapon, sethintstring)
+function private function_ab25be55(weapon, sethintstring)
 {
 	if(self isplayerswimming() && !(isdefined(weapon.var_83c8d96a) ? weapon.var_83c8d96a : 0))
 	{
 		self sethintstring(#"hash_37605398dce96965");
-		return 0;
+		return false;
 	}
 	if(!self isonground())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -335,31 +335,31 @@ private function function_ab25be55(weapon, sethintstring)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_831707e8(player, deployable_weapon)
+function private function_831707e8(player, deployable_weapon)
 {
 	if(!(isdefined(deployable_weapon.var_dbbd4cec) && deployable_weapon.var_dbbd4cec))
 	{
-		return 0;
+		return false;
 	}
 	if(player depthinwater() > (isdefined(deployable_weapon.var_76127e14) ? deployable_weapon.var_76127e14 : 0))
 	{
-		return 0;
+		return false;
 	}
 	if(oob::chr_party(player.origin))
 	{
-		return 0;
+		return false;
 	}
 	if(!player isonground())
 	{
-		return 0;
+		return false;
 	}
 	if(function_89d64a2c(player.origin))
 	{
-		return 0;
+		return false;
 	}
 	if(function_54267517(player.origin))
 	{
-		return 0;
+		return false;
 	}
 	traceresults = bullettrace(player.origin + vectorscale((0, 0, 1), 10), player.origin + (vectorscale((0, 0, -1), 10)), 0, player);
 	if(isdefined(traceresults[#"entity"]))
@@ -367,10 +367,10 @@ private function function_831707e8(player, deployable_weapon)
 		entity = traceresults[#"entity"];
 		if(!function_db9eb027(entity))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -382,7 +382,7 @@ private function function_831707e8(player, deployable_weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_867664f6(player)
+function private function_867664f6(player)
 {
 	var_8a074131 = worldentnumber();
 	groundent = player getgroundent();
@@ -402,7 +402,7 @@ private function function_867664f6(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_27476e09(deployable_weapon, sethintstring = 0)
+function private function_27476e09(deployable_weapon, sethintstring = 0)
 {
 	var_ac12dd4b = level._deployable_weapons[deployable_weapon.statindex].var_1463c9a8;
 	if(!isdefined(var_ac12dd4b))
@@ -434,10 +434,7 @@ private function function_27476e09(deployable_weapon, sethintstring = 0)
 	{
 		results.isvalid = 0;
 	}
-	else if((isdefined(results.waterdepth) ? results.waterdepth : 0) > 0 && isdefined(results.var_e8995ec9))
-	{
-		results.origin = results.var_e8995ec9;
-	}
+	results.origin = results.var_e8995ec9;
 	results.isvalid = results.isvalid && !oob::chr_party(results.origin);
 	results.isvalid = results.isvalid && !function_89d64a2c(results.origin);
 	results.isvalid = results.isvalid && !function_54267517(results.origin);
@@ -464,7 +461,7 @@ private function function_27476e09(deployable_weapon, sethintstring = 0)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_d6ac81c7(deployable_weapon, player, origin, angles)
+function private function_d6ac81c7(deployable_weapon, player, origin, angles)
 {
 	var_9f2c21ea = level._deployable_weapons[deployable_weapon.statindex].var_9f2c21ea;
 	if(!isdefined(var_9f2c21ea))
@@ -483,7 +480,7 @@ private function function_d6ac81c7(deployable_weapon, player, origin, angles)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6654310c(weapon)
+function private function_6654310c(weapon)
 {
 	player = self;
 	if(level.time == player.var_3abd9b54)
@@ -558,7 +555,7 @@ function on_player_spawned()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_aab01e08()
+function private function_aab01e08()
 {
 	weapon = undefined;
 	if(self isusingoffhand())
@@ -585,7 +582,7 @@ private function function_aab01e08()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f0adf9c()
+function private function_f0adf9c()
 {
 	self notify("3bd5bdfdc5aacef9");
 	self endon("3bd5bdfdc5aacef9");
@@ -644,17 +641,17 @@ function function_db9eb027(entity)
 {
 	if(!isdefined(entity))
 	{
-		return 1;
+		return true;
 	}
 	if(isvehicle(entity) || isai(entity) || entity ismovingplatform())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.weapon) || isdefined(entity.killstreakid))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -723,21 +720,24 @@ function function_54d27855(var_503cdc82, var_421003af, var_36baa3f1, previs_weap
 			}
 			hitent = trace_result[#"entity"];
 		}
-		else if(height_offset <= previs_weapon.var_227c90e1 && height_offset >= previs_weapon.var_849af6b4)
+		else
 		{
-			var_a7bfb = 1;
-		}
-		out_of_range = var_79483ca0 > previs_weapon.var_f7e67f28;
-		if(out_of_range)
-		{
-			var_d22ba639 = 1;
-		}
-		if(!var_def28dc4 && var_6165e0de)
-		{
-			hit_location = var_503cdc82 + ((forward_vector[0], forward_vector[1], 0) * trace_result[#"fraction"]);
-			var_db3ce012 = (0, 0, 1);
-			var_ae7d780d = 1;
-			var_d22ba639 = 0;
+			if(height_offset <= previs_weapon.var_227c90e1 && height_offset >= previs_weapon.var_849af6b4)
+			{
+				var_a7bfb = 1;
+			}
+			out_of_range = var_79483ca0 > previs_weapon.var_f7e67f28;
+			if(out_of_range)
+			{
+				var_d22ba639 = 1;
+			}
+			if(!var_def28dc4 && var_6165e0de)
+			{
+				hit_location = var_503cdc82 + ((forward_vector[0], forward_vector[1], 0) * trace_result[#"fraction"]);
+				var_db3ce012 = (0, 0, 1);
+				var_ae7d780d = 1;
+				var_d22ba639 = 0;
+			}
 		}
 	}
 	else
@@ -822,7 +822,7 @@ function function_54d27855(var_503cdc82, var_421003af, var_36baa3f1, previs_weap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f77ced93(params)
+function private function_f77ced93(params)
 {
 	self setplacementhint(1);
 	self clientfield::set_to_player("gameplay_allows_deploy", 1);

@@ -30,6 +30,40 @@
 #using scripts\zm_common\zm_spawner.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
+class class_726d8173 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_726d8173
+		Checksum: 0x45EEFFAF
+		Offset: 0xF10
+		Size: 0x26
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.origin = undefined;
+		self.mover = undefined;
+		self.var_f11f68fb = undefined;
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_726d8173
+		Checksum: 0x80F724D1
+		Offset: 0xF40
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+}
+
 #namespace bat;
 
 /*
@@ -41,7 +75,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"bat", &__init__, undefined, undefined);
 }
@@ -162,21 +196,21 @@ function function_ab7568e0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ea8fc463(target)
+function private function_ea8fc463(target)
 {
 	if(!isdefined(target) || !isalive(target))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(target) && (target.sessionstate == "spectator" || target.sessionstate == "intermission"))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(target.ignoreme) && target.ignoreme || target isnotarget())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -188,7 +222,7 @@ private function function_ea8fc463(target)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function gettarget()
+function private gettarget()
 {
 	targets = getplayers();
 	var_2d605ac5 = targets[0];
@@ -222,7 +256,7 @@ private function gettarget()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1076a2e0()
+function private function_1076a2e0()
 {
 	self endon(#"change_state", #"death");
 	while(true)
@@ -262,10 +296,10 @@ private function function_1076a2e0()
 	Parameters: 0
 	Flags: Private
 */
-private function function_776e45e5()
+function private function_776e45e5()
 {
 	self endon(#"change_state", #"death");
-	self waittill_timeout(10, #"reached_end_node");
+	self waittilltimeout(10, #"reached_end_node");
 	while(true)
 	{
 		players = getplayers();
@@ -307,7 +341,7 @@ private function function_776e45e5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function initblackboard()
+function private initblackboard()
 {
 	blackboard::createblackboardforentity(self);
 	self blackboard::registervehicleblackboardattributes();
@@ -346,55 +380,6 @@ function defaultrole()
 function function_9122b0e5()
 {
 	return self ai::get_behavior_attribute("firing_rate");
-}
-
-#namespace namespace_726d8173;
-
-/*
-	Name: __constructor
-	Namespace: namespace_726d8173
-	Checksum: 0x45EEFFAF
-	Offset: 0xF10
-	Size: 0x26
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.origin = undefined;
-	self.mover = undefined;
-	self.var_f11f68fb = undefined;
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_726d8173
-	Checksum: 0x80F724D1
-	Offset: 0xF40
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace bat;
-
-/*
-	Name: function_726d8173
-	Namespace: bat
-	Checksum: 0x853D44F3
-	Offset: 0xF50
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_726d8173()
-{
-	classes.var_726d8173[0] = spawnstruct();
-	classes.var_726d8173[0].__vtable[913321084] = &namespace_726d8173::__destructor;
-	classes.var_726d8173[0].__vtable[674154906] = &namespace_726d8173::__constructor;
 }
 
 /*
@@ -455,7 +440,7 @@ function function_607df9c6(ai)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1b029905()
+function private function_1b029905()
 {
 	while(true)
 	{
@@ -504,17 +489,15 @@ function function_1fff2d()
 				scriptmodel = util::spawn_model("tag_origin", self.origin, self.angles);
 				if(isdefined(scriptmodel))
 				{
-					object = new var_726d8173();
-					[[ object ]]->__constructor();
-					self.ai.var_15916e52 = object;
+					self.ai.var_15916e52 = new class_726d8173();
 					self.ai.var_15916e52.pos = pos;
 					self.ai.var_15916e52.mover = scriptmodel;
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -530,32 +513,32 @@ function function_c48c2d66()
 {
 	if(isdefined(self.var_d880e556) && self.var_d880e556)
 	{
-		return 0;
+		return false;
 	}
 	if(zm_transform::function_abf1dcb4(#"hash_791d597ac0457860"))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.spawn_time))
 	{
-		return 0;
+		return false;
 	}
 	if(gettime() - self.spawn_time < 3500)
 	{
-		return 0;
+		return false;
 	}
 	if(self isplayinganimscripted())
 	{
-		return 0;
+		return false;
 	}
 	if(function_1fff2d())
 	{
 		/#
 			assert(isdefined(self.ai.var_15916e52));
 		#/
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -600,7 +583,7 @@ function function_630752f6(notifyhash)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_88d81715()
+function private function_88d81715()
 {
 	self endon(#"death");
 	wait(1.5);
@@ -618,7 +601,7 @@ private function function_88d81715()
 */
 function function_47c795bc(params)
 {
-	self endon_callback(&function_630752f6, #"death", #"state_change");
+	self endoncallback(&function_630752f6, #"death", #"state_change");
 	/#
 		assert(isdefined(self.ai.var_15916e52));
 	#/
@@ -934,9 +917,9 @@ function function_9471b7f9()
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -958,13 +941,16 @@ function function_2e37549f(b_force_spawn = 0, var_eb3a8721, n_round_number)
 	{
 		s_spawn_loc = var_eb3a8721;
 	}
-	else if(isdefined(level.var_29a8e07))
+	else
 	{
-		s_spawn_loc = [[level.var_29a8e07]]();
-	}
-	else if(isdefined(level.zm_loc_types[#"bat_location"]) && level.zm_loc_types[#"bat_location"].size > 0)
-	{
-		s_spawn_loc = array::random(level.zm_loc_types[#"bat_location"]);
+		if(isdefined(level.var_29a8e07))
+		{
+			s_spawn_loc = [[level.var_29a8e07]]();
+		}
+		else if(isdefined(level.zm_loc_types[#"bat_location"]) && level.zm_loc_types[#"bat_location"].size > 0)
+		{
+			s_spawn_loc = array::random(level.zm_loc_types[#"bat_location"]);
+		}
 	}
 	if(!isdefined(s_spawn_loc))
 	{
@@ -1003,9 +989,9 @@ function function_96578f39()
 	var_1a68bbce = function_133e1e25();
 	if(!(isdefined(level.var_2b94ce72) && level.var_2b94ce72) && (isdefined(level.var_15747fb1) && level.var_15747fb1) || var_7d706b3f >= var_1a68bbce || !level flag::get("spawn_zombies"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

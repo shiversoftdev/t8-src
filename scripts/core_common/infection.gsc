@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"infection", &__init__, undefined, undefined);
 }
@@ -65,9 +65,9 @@ function function_74650d7()
 {
 	if(isdefined(level.infection))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -151,7 +151,7 @@ function function_153000d0(male, female)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e8cc8373(male, female)
+function private function_e8cc8373(male, female)
 {
 	/#
 		assert(isdefined(male));
@@ -357,9 +357,9 @@ function function_687661ea()
 	xuid = self getxuid();
 	if(isdefined(level.infection.var_c4b373ef[xuid]) && level.infection.var_c4b373ef[xuid])
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -371,7 +371,7 @@ function function_687661ea()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_896b35be()
+function private function_896b35be()
 {
 	if(level.infection.platoon != #"invalid")
 	{

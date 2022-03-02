@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_perk_electric_cherry", &__init__, undefined, undefined);
 }
@@ -268,13 +268,16 @@ function electric_cherry_death_fx()
 			self clientfield::set("tesla_shock_eyes_fx", 1);
 		}
 	}
-	else if(isvehicle(self))
-	{
-		self clientfield::set("tesla_death_fx_veh", 1);
-	}
 	else
 	{
-		self clientfield::set("tesla_death_fx", 1);
+		if(isvehicle(self))
+		{
+			self clientfield::set("tesla_death_fx_veh", 1);
+		}
+		else
+		{
+			self clientfield::set("tesla_death_fx", 1);
+		}
 	}
 }
 
@@ -447,11 +450,14 @@ function electric_cherry_reload_attack()
 						}
 						self zm_score::add_to_player_score(40);
 					}
-					else if(!isdefined(a_zombies[i].is_brutus))
+					else
 					{
-						a_zombies[i] thread electric_cherry_stun();
+						if(!isdefined(a_zombies[i].is_brutus))
+						{
+							a_zombies[i] thread electric_cherry_stun();
+						}
+						a_zombies[i] thread electric_cherry_shock_fx();
 					}
-					a_zombies[i] thread electric_cherry_shock_fx();
 					wait(0.1);
 					if(isdefined(a_zombies[i]) && isalive(a_zombies[i]))
 					{
@@ -554,13 +560,16 @@ function electric_cherry_reload_fx(n_fraction)
 	{
 		self clientfield::set("electric_cherry_reload_fx", 1);
 	}
-	else if(n_fraction >= 0.33 && n_fraction < 0.67)
-	{
-		self clientfield::set("electric_cherry_reload_fx", 2);
-	}
 	else
 	{
-		self clientfield::set("electric_cherry_reload_fx", 3);
+		if(n_fraction >= 0.33 && n_fraction < 0.67)
+		{
+			self clientfield::set("electric_cherry_reload_fx", 2);
+		}
+		else
+		{
+			self clientfield::set("electric_cherry_reload_fx", 3);
+		}
 	}
 	wait(1);
 	self clientfield::set("electric_cherry_reload_fx", 0);

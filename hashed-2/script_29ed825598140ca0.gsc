@@ -149,25 +149,25 @@ function function_ca27b62b(attacker, player)
 {
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(attacker) && player util::isenemyteam(attacker.team))
 	{
-		return 0;
+		return false;
 	}
 	if(self.attackerdamage[player.clientid].damage == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_f68b214e) && level.var_f68b214e && isdefined(player.deathtime) && player.deathtime > self.attackerdamage[player.clientid].lastdamagetime)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_c77de7d6) && gettime() > ((int(level.var_c77de7d6 * 1000)) + self.attackerdamage[player.clientid].lastdamagetime))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -230,7 +230,7 @@ function function_284c61bd(attacker, meansofdeath, bledout = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_66cec679()
+function private function_66cec679()
 {
 	team = self.team;
 	teammates = getplayers(team);
@@ -256,7 +256,7 @@ private function function_66cec679()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_448f7ed2()
+function private function_448f7ed2()
 {
 	if(isdefined(level.wave_spawn) && level.wave_spawn)
 	{
@@ -270,15 +270,15 @@ private function function_448f7ed2()
 			var_4e7f2872 = isdefined(level.var_75db41a7) && time >= level.var_75db41a7;
 			if(timediff > 5000 && !var_4e7f2872)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
 	else
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -576,24 +576,27 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 			if(var_8efc9727 && smeansofdeath == "MOD_GRENADE" && level.friendlyfire == 0)
 			{
 			}
-			else if(var_8efc9727)
-			{
-				wasteamkill = 1;
-				self team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc);
-			}
 			else
 			{
-				function_ed2725ad(einflictor, attacker, weapon);
-				if(bledout == 0 || level.var_7d1eeba9 === 1)
+				if(var_8efc9727)
 				{
-					self kill(einflictor, attacker, smeansofdeath, weapon, shitloc);
-					self function_284c61bd(attacker, smeansofdeath, bledout);
+					wasteamkill = 1;
+					self team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc);
 				}
-				if(bledout == 0 || level.var_81ca6158 === 1)
+				else
 				{
-					if(level.teambased)
+					function_ed2725ad(einflictor, attacker, weapon);
+					if(bledout == 0 || level.var_7d1eeba9 === 1)
 					{
-						awardassists = 1;
+						self kill(einflictor, attacker, smeansofdeath, weapon, shitloc);
+						self function_284c61bd(attacker, smeansofdeath, bledout);
+					}
+					if(bledout == 0 || level.var_81ca6158 === 1)
+					{
+						if(level.teambased)
+						{
+							awardassists = 1;
+						}
 					}
 				}
 			}
@@ -605,58 +608,61 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 			pixendevent();
 		}
 	}
-	else if(isdefined(attacker) && (attacker.classname == "trigger_hurt_new" || attacker.classname == "worldspawn"))
-	{
-		dokillcam = 0;
-		lpattacknum = -1;
-		var_c8fa9c41 = 0;
-		lpattackguid = "";
-		lpattackname = "";
-		lpattackteam = "world";
-		scoreevents::processscoreevent(#"suicide", self, undefined, undefined);
-		self globallogic_score::incpersstat(#"suicides", 1);
-		self.suicides = self globallogic_score::getpersstat(#"suicides");
-		self.suicide = 1;
-		thread battlechatter::on_player_suicide_or_team_kill(self, "suicide");
-		awardassists = 1;
-		self function_284c61bd(undefined, smeansofdeath);
-		if(level.maxsuicidesbeforekick > 0 && level.maxsuicidesbeforekick <= self.suicides)
-		{
-			self notify(#"teamkillkicked");
-			self function_3c238bc5();
-		}
-	}
 	else
 	{
-		dokillcam = 0;
-		lpattacknum = -1;
-		var_c8fa9c41 = 0;
-		lpattackguid = "";
-		lpattackname = "";
-		lpattackteam = "world";
-		wassuicide = 1;
-		if(isdefined(einflictor) && isdefined(einflictor.killcament))
+		if(isdefined(attacker) && (attacker.classname == "trigger_hurt_new" || attacker.classname == "worldspawn"))
 		{
-			dokillcam = 1;
-			lpattacknum = self getentitynumber();
-			wassuicide = 0;
-		}
-		if(isdefined(attacker) && isdefined(attacker.team) && isdefined(level.teams[attacker.team]))
-		{
-			if(self util::isenemyteam(attacker.team))
+			dokillcam = 0;
+			lpattacknum = -1;
+			var_c8fa9c41 = 0;
+			lpattackguid = "";
+			lpattackname = "";
+			lpattackteam = "world";
+			scoreevents::processscoreevent(#"suicide", self, undefined, undefined);
+			self globallogic_score::incpersstat(#"suicides", 1);
+			self.suicides = self globallogic_score::getpersstat(#"suicides");
+			self.suicide = 1;
+			thread battlechatter::on_player_suicide_or_team_kill(self, "suicide");
+			awardassists = 1;
+			self function_284c61bd(undefined, smeansofdeath);
+			if(level.maxsuicidesbeforekick > 0 && level.maxsuicidesbeforekick <= self.suicides)
 			{
-				if(level.teambased)
-				{
-					if(!isdefined(killstreaks::get_killstreak_for_weapon(weapon)) || (isdefined(level.killstreaksgivegamescore) && level.killstreaksgivegamescore))
-					{
-						globallogic_score::giveteamscore("kill", attacker.team, attacker, self);
-					}
-				}
-				wassuicide = 0;
+				self notify(#"teamkillkicked");
+				self function_3c238bc5();
 			}
 		}
-		awardassists = 1;
-		self function_284c61bd(undefined, smeansofdeath);
+		else
+		{
+			dokillcam = 0;
+			lpattacknum = -1;
+			var_c8fa9c41 = 0;
+			lpattackguid = "";
+			lpattackname = "";
+			lpattackteam = "world";
+			wassuicide = 1;
+			if(isdefined(einflictor) && isdefined(einflictor.killcament))
+			{
+				dokillcam = 1;
+				lpattacknum = self getentitynumber();
+				wassuicide = 0;
+			}
+			if(isdefined(attacker) && isdefined(attacker.team) && isdefined(level.teams[attacker.team]))
+			{
+				if(self util::isenemyteam(attacker.team))
+				{
+					if(level.teambased)
+					{
+						if(!isdefined(killstreaks::get_killstreak_for_weapon(weapon)) || (isdefined(level.killstreaksgivegamescore) && level.killstreaksgivegamescore))
+						{
+							globallogic_score::giveteamscore("kill", attacker.team, attacker, self);
+						}
+					}
+					wassuicide = 0;
+				}
+			}
+			awardassists = 1;
+			self function_284c61bd(undefined, smeansofdeath);
+		}
 	}
 	if(isplayer(attacker) && isdefined(attacker.pers))
 	{
@@ -969,16 +975,19 @@ function callback_playerkilled(einflictor, attacker, idamage, smeansofdeath, wea
 					self thread namespace_81c567a8::function_1caf5c87(self.team);
 				}
 			}
-			else if(function_73da2f89())
-			{
-				if(self function_448f7ed2())
-				{
-					self thread namespace_81c567a8::function_b3964dc9();
-				}
-			}
 			else
 			{
-				self thread namespace_81c567a8::function_9b2bd02c();
+				if(function_73da2f89())
+				{
+					if(self function_448f7ed2())
+					{
+						self thread namespace_81c567a8::function_b3964dc9();
+					}
+				}
+				else
+				{
+					self thread namespace_81c567a8::function_9b2bd02c();
+				}
 			}
 		}
 		self.sessionstate = "dead";
@@ -1108,9 +1117,9 @@ function function_9956f107()
 {
 	if(isdefined(level.deathcircle) && !isdefined(level.deathcircle.var_7aec140c))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1158,7 +1167,7 @@ function function_73da2f89()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_93115f65()
+function private function_93115f65()
 {
 	if(game.state != "playing")
 	{
@@ -1199,7 +1208,7 @@ private function function_93115f65()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_caabcf70(victim, var_aedb48f4, laststandparams, var_a1d415ee)
+function private function_caabcf70(victim, var_aedb48f4, laststandparams, var_a1d415ee)
 {
 	/#
 		assert(isdefined(victim));
@@ -1250,7 +1259,7 @@ private function function_caabcf70(victim, var_aedb48f4, laststandparams, var_a1
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7b0f4389()
+function private function_7b0f4389()
 {
 	self.var_eca4c67f = 0;
 	if(userspawnselection::isspawnselectenabled() && (!(isdefined(self.switching_teams) && self.switching_teams)) && self globallogic_spawn::mayspawn())
@@ -1291,17 +1300,17 @@ private function function_7b0f4389()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1be915f()
+function private function_d1be915f()
 {
 	if(self isremotecontrolling())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.killstreak_delay_killcam))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1313,7 +1322,7 @@ private function function_d1be915f()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function watch_death(weapon, attacker, smeansofdeath, deathanimduration)
+function private watch_death(weapon, attacker, smeansofdeath, deathanimduration)
 {
 	defaultplayerdeathwatchtime = 1.75;
 	if(smeansofdeath == "MOD_MELEE_ASSASSINATE" || 0 > weapon.deathcamtime)
@@ -1344,7 +1353,7 @@ private function watch_death(weapon, attacker, smeansofdeath, deathanimduration)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_b029639e(attacker, einflictor, weapon, smeansofdeath, shitloc)
+function private function_b029639e(attacker, einflictor, weapon, smeansofdeath, shitloc)
 {
 	if(globallogic_utils::isheadshot(weapon, shitloc, smeansofdeath, einflictor) && isplayer(attacker) && !weapon_utils::ismeleemod(smeansofdeath))
 	{
@@ -1380,7 +1389,7 @@ private function function_b029639e(attacker, einflictor, weapon, smeansofdeath, 
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4e516ee6(attacker, weapon)
+function private function_4e516ee6(attacker, weapon)
 {
 	if(!isdefined(self.switching_teams) && !self.var_4ef33446)
 	{
@@ -1392,32 +1401,35 @@ private function function_4e516ee6(attacker, weapon)
 			self.pers[#"killstreaksearnedthiskillstreak"] = 0;
 			self setplayercurrentstreak(0);
 		}
-		else if(!(isdefined(self.var_cee93f5) && self.var_cee93f5))
+		else
 		{
-			self globallogic_score::incpersstat(#"deaths", 1, 1, 1);
-		}
-		self.deaths = self globallogic_score::getpersstat(#"deaths");
-		self updatestatratio("kdratio", "kills", "deaths");
-		if(self.pers[#"cur_kill_streak"] > self.pers[#"best_kill_streak"])
-		{
-			self.pers[#"best_kill_streak"] = self.pers[#"cur_kill_streak"];
-		}
-		self.pers[#"kill_streak_before_death"] = self.pers[#"cur_kill_streak"];
-		if(isdefined(self.pers[#"hash_33112f192fb3c234"]) && isdefined(self.pers[#"hash_33112f192fb3c234"][#"current"]))
-		{
-			self.pers[#"hash_33112f192fb3c234"][#"current"][#"highestkillstreak"] = 0;
-		}
-		self.pers[#"cur_kill_streak"] = 0;
-		self.pers[#"cur_total_kill_streak"] = 0;
-		self.pers[#"totalkillstreakcount"] = 0;
-		self.pers[#"killstreaksearnedthiskillstreak"] = 0;
-		self setplayercurrentstreak(0);
-		if(isdefined(self.cur_death_streak))
-		{
-			self.cur_death_streak++;
-			if(self.cur_death_streak >= getdvarint(#"perk_deathstreakcountrequired", 0))
+			if(!(isdefined(self.var_cee93f5) && self.var_cee93f5))
 			{
-				self enabledeathstreak();
+				self globallogic_score::incpersstat(#"deaths", 1, 1, 1);
+			}
+			self.deaths = self globallogic_score::getpersstat(#"deaths");
+			self updatestatratio("kdratio", "kills", "deaths");
+			if(self.pers[#"cur_kill_streak"] > self.pers[#"best_kill_streak"])
+			{
+				self.pers[#"best_kill_streak"] = self.pers[#"cur_kill_streak"];
+			}
+			self.pers[#"kill_streak_before_death"] = self.pers[#"cur_kill_streak"];
+			if(isdefined(self.pers[#"hash_33112f192fb3c234"]) && isdefined(self.pers[#"hash_33112f192fb3c234"][#"current"]))
+			{
+				self.pers[#"hash_33112f192fb3c234"][#"current"][#"highestkillstreak"] = 0;
+			}
+			self.pers[#"cur_kill_streak"] = 0;
+			self.pers[#"cur_total_kill_streak"] = 0;
+			self.pers[#"totalkillstreakcount"] = 0;
+			self.pers[#"killstreaksearnedthiskillstreak"] = 0;
+			self setplayercurrentstreak(0);
+			if(isdefined(self.cur_death_streak))
+			{
+				self.cur_death_streak++;
+				if(self.cur_death_streak >= getdvarint(#"perk_deathstreakcountrequired", 0))
+				{
+					self enabledeathstreak();
+				}
 			}
 		}
 	}
@@ -1444,7 +1456,7 @@ private function function_4e516ee6(attacker, weapon)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_abbc84ad(attacker, weapon, smeansofdeath, inflictor)
+function private function_abbc84ad(attacker, weapon, smeansofdeath, inflictor)
 {
 	if(isplayer(attacker) && attacker != self && (!level.teambased || self util::isenemyteam(attacker.team)))
 	{
@@ -1526,23 +1538,26 @@ function function_a3030357(attacker, einflictor, weapon, smeansofdeath, var_bee3
 		level.lastobituaryplayercount = 0;
 		level.lastobituaryplayer = undefined;
 	}
-	else if(isdefined(level.lastobituaryplayer) && level.lastobituaryplayer == attacker)
-	{
-		level.lastobituaryplayercount++;
-	}
 	else
 	{
-		level notify(#"reset_obituary_count");
-		level.lastobituaryplayer = attacker;
-		level.lastobituaryplayercount = 1;
-	}
-	level thread scoreevents::decrementlastobituaryplayercountafterfade();
-	if(level.lastobituaryplayercount >= 4)
-	{
-		level notify(#"reset_obituary_count");
-		level.lastobituaryplayercount = 0;
-		level.lastobituaryplayer = undefined;
-		self thread scoreevents::uninterruptedobitfeedkills(attacker, weapon);
+		if(isdefined(level.lastobituaryplayer) && level.lastobituaryplayer == attacker)
+		{
+			level.lastobituaryplayercount++;
+		}
+		else
+		{
+			level notify(#"reset_obituary_count");
+			level.lastobituaryplayer = attacker;
+			level.lastobituaryplayercount = 1;
+		}
+		level thread scoreevents::decrementlastobituaryplayercountafterfade();
+		if(level.lastobituaryplayercount >= 4)
+		{
+			level notify(#"reset_obituary_count");
+			level.lastobituaryplayercount = 0;
+			level.lastobituaryplayer = undefined;
+			self thread scoreevents::uninterruptedobitfeedkills(attacker, weapon);
+		}
 	}
 	overrideentitycamera = function_c0f28ff9(attacker, weapon);
 	var_50d1e41a = potm::function_775b9ad1(weapon, smeansofdeath);
@@ -1637,7 +1652,7 @@ function function_c0f28ff9(attacker, weapon)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function suicide(einflictor, attacker, smeansofdeath, weapon, shitloc)
+function private suicide(einflictor, attacker, smeansofdeath, weapon, shitloc)
 {
 	awardassists = 0;
 	self.suicide = 0;
@@ -1696,7 +1711,7 @@ private function suicide(einflictor, attacker, smeansofdeath, weapon, shitloc)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
+function private team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
 {
 	scoreevents::processscoreevent(#"team_kill", attacker, undefined, weapon);
 	self.teamkilled = 1;
@@ -1723,13 +1738,16 @@ private function team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
 		{
 			var_821200bb = 1;
 		}
-		else if(attacker.pers[#"teamkills_nostats"] > 1 && globallogic_utils::gettimepassed() < (int((8 + attacker.pers[#"teamkills_nostats"]) * 1000)))
-		{
-			var_821200bb = 1;
-		}
 		else
 		{
-			var_821200bb = attacker function_821200bb();
+			if(attacker.pers[#"teamkills_nostats"] > 1 && globallogic_utils::gettimepassed() < (int((8 + attacker.pers[#"teamkills_nostats"]) * 1000)))
+			{
+				var_821200bb = 1;
+			}
+			else
+			{
+				var_821200bb = attacker function_821200bb();
+			}
 		}
 		if(var_821200bb > 0)
 		{
@@ -1758,7 +1776,7 @@ private function team_kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function wait_and_suicide()
+function private wait_and_suicide()
 {
 	self endon(#"disconnect");
 	self val::set(#"wait_and_suicide", "freezecontrols");
@@ -1776,7 +1794,7 @@ private function wait_and_suicide()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_48a1200f(einflictor, attacker, weapon, lpattackteam)
+function private function_48a1200f(einflictor, attacker, weapon, lpattackteam)
 {
 	pixbeginevent(#"hash_115d2072d5ab2061");
 	if(isdefined(self.attackers))
@@ -1831,11 +1849,11 @@ function function_f632c17e(weapon)
 {
 	if(isdefined(weapon) && isdefined(level.iskillstreakweapon) && [[level.iskillstreakweapon]](weapon))
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(weapon) && isdefined(weapon.statname) && isdefined(level.iskillstreakweapon) && [[level.iskillstreakweapon]](getweapon(weapon.statname)))
 	{
-		return 1;
+		return true;
 	}
 	switch(weapon.name)
 	{
@@ -1845,10 +1863,10 @@ function function_f632c17e(weapon)
 		case "hash_721bd01efec90239":
 		case "hash_7b24d0d0d2823bca":
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1860,7 +1878,7 @@ function function_f632c17e(weapon)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_4e3e8bee(einflictor, attacker, smeansofdeath, weapon, var_e7a369ea)
+function private function_4e3e8bee(einflictor, attacker, smeansofdeath, weapon, var_e7a369ea)
 {
 	attacker thread globallogic_score::givekillstats(smeansofdeath, weapon, self, var_e7a369ea);
 	killstreak = killstreaks::get_killstreak_for_weapon(weapon);
@@ -1926,7 +1944,7 @@ private function function_4e3e8bee(einflictor, attacker, smeansofdeath, weapon, 
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
+function private kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
 {
 	if(!isdefined(killstreaks::get_killstreak_for_weapon(weapon)) || (isdefined(level.killstreaksgivegamescore) && level.killstreaksgivegamescore))
 	{
@@ -1960,13 +1978,13 @@ private function kill(einflictor, attacker, smeansofdeath, weapon, shitloc)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function should_allow_postgame_death(smeansofdeath)
+function private should_allow_postgame_death(smeansofdeath)
 {
 	if(smeansofdeath == "MOD_POST_GAME")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1978,7 +1996,7 @@ private function should_allow_postgame_death(smeansofdeath)
 	Parameters: 9
 	Flags: Linked, Private
 */
-private function post_game_death(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration)
+function private post_game_death(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration)
 {
 	if(!should_allow_postgame_death(smeansofdeath))
 	{
@@ -2011,7 +2029,7 @@ private function post_game_death(einflictor, attacker, idamage, smeansofdeath, w
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_395ef176()
+function private function_395ef176()
 {
 	self endon(#"disconnect");
 	var_8f42b3ff = (isdefined(level.var_8a400007) ? level.var_8a400007 : 10);
@@ -2104,7 +2122,7 @@ private function function_395ef176()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5c5a8dad(lives)
+function private function_5c5a8dad(lives)
 {
 	if(lives == 0)
 	{
@@ -2122,7 +2140,7 @@ private function function_5c5a8dad(lives)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function start_generator_captureshouldshowpain()
+function private start_generator_captureshouldshowpain()
 {
 	if(!(isdefined(level.takelivesondeath) && level.takelivesondeath))
 	{
@@ -2138,25 +2156,28 @@ private function start_generator_captureshouldshowpain()
 		if(isdefined(level.competitiveteamlives) && level.competitiveteamlives)
 		{
 		}
-		else if(self.attackers.size < 1)
+		else
 		{
-			return;
-		}
-		foreach(attacker in self.attackers)
-		{
-			if(!isdefined(attacker))
+			if(self.attackers.size < 1)
 			{
-				continue;
+				return;
 			}
-			if(attacker.team != self.team)
+			foreach(attacker in self.attackers)
 			{
-				removelives = 1;
-				break;
+				if(!isdefined(attacker))
+				{
+					continue;
+				}
+				if(attacker.team != self.team)
+				{
+					removelives = 1;
+					break;
+				}
 			}
-		}
-		if(!(isdefined(removelives) && removelives))
-		{
-			return;
+			if(!(isdefined(removelives) && removelives))
+			{
+				return;
+			}
 		}
 		game.lives[self.team]--;
 		if(self.pers[#"lives"] == 0)
@@ -2181,7 +2202,7 @@ private function start_generator_captureshouldshowpain()
 	Parameters: 10
 	Flags: Linked, Private
 */
-private function function_10f480f(attacker, idamage, smeansofdeath, weapon, shitloc, vdir, vattackerorigin, deathanimduration, einflictor, body)
+function private function_10f480f(attacker, idamage, smeansofdeath, weapon, shitloc, vdir, vattackerorigin, deathanimduration, einflictor, body)
 {
 	if(smeansofdeath == "MOD_HIT_BY_OBJECT" && self getstance() == "prone")
 	{
@@ -2242,29 +2263,29 @@ private function function_10f480f(attacker, idamage, smeansofdeath, weapon, shit
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function should_drop_weapon_on_death(wasteamkill, wassuicide, current_weapon, smeansofdeath)
+function private should_drop_weapon_on_death(wasteamkill, wassuicide, current_weapon, smeansofdeath)
 {
 	if(wasteamkill)
 	{
-		return 0;
+		return false;
 	}
 	if(wassuicide)
 	{
-		return 0;
+		return false;
 	}
 	if(smeansofdeath == "MOD_TRIGGER_HURT" && !self isonground())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(current_weapon) && current_weapon.isheavyweapon)
 	{
-		return 0;
+		return false;
 	}
 	if(smeansofdeath == "MOD_META")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2276,7 +2297,7 @@ private function should_drop_weapon_on_death(wasteamkill, wassuicide, current_we
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8826f676()
+function private function_8826f676()
 {
 	if(isbot(self))
 	{
@@ -2293,7 +2314,7 @@ private function function_8826f676()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f9dc085a()
+function private function_f9dc085a()
 {
 	if(isdefined(self.killstreak_delay_killcam))
 	{
@@ -2315,7 +2336,7 @@ private function function_f9dc085a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3c238bc5()
+function private function_3c238bc5()
 {
 	self globallogic_score::incpersstat(#"sessionbans", 1);
 	self endon(#"disconnect");
@@ -2334,7 +2355,7 @@ private function function_3c238bc5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dd602974()
+function private function_dd602974()
 {
 	self globallogic_score::incpersstat(#"sessionbans", 1);
 	self endon(#"disconnect");
@@ -2395,32 +2416,32 @@ function function_821200bb()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_78a6af2d(var_821200bb)
+function private function_78a6af2d(var_821200bb)
 {
 	if(isbot(self))
 	{
-		return 0;
+		return false;
 	}
 	if(level.friendlyfire == 4)
 	{
 		if(self.pers[#"teamkills_nostats"] >= (level.var_fe3ff9c1 + level.var_3297fce5))
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 	if(var_821200bb && level.minimumallowedteamkills >= 0)
 	{
 		if(globallogic_utils::gettimepassed() >= 5000)
 		{
-			return 1;
+			return true;
 		}
 		if(self.pers[#"teamkills_nostats"] > 1)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2464,29 +2485,29 @@ function function_a932bf9c()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function ignore_team_kills(weapon, smeansofdeath, einflictor)
+function private ignore_team_kills(weapon, smeansofdeath, einflictor)
 {
 	if(weapon_utils::ismeleemod(smeansofdeath))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.ignore_team_kills === 1 || weapon.ignoreteamkills === 1)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(einflictor) && einflictor.ignore_team_kills === 1)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(einflictor) && isdefined(einflictor.destroyedby) && isdefined(einflictor.owner) && einflictor.destroyedby != einflictor.owner)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(einflictor) && einflictor.classname == "worldspawn")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2498,15 +2519,15 @@ private function ignore_team_kills(weapon, smeansofdeath, einflictor)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function is_explosive_ragdoll(weapon, inflictor)
+function private is_explosive_ragdoll(weapon, inflictor)
 {
 	if(!isdefined(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.name == #"destructible_car" || weapon.name == #"explodable_barrel")
 	{
-		return 1;
+		return true;
 	}
 	if(weapon.projexplosiontype == "grenade")
 	{
@@ -2514,11 +2535,11 @@ private function is_explosive_ragdoll(weapon, inflictor)
 		{
 			if(inflictor.stucktoplayer == self)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2530,7 +2551,7 @@ private function is_explosive_ragdoll(weapon, inflictor)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function start_explosive_ragdoll(dir, weapon)
+function private start_explosive_ragdoll(dir, weapon)
 {
 	if(!isdefined(self))
 	{
@@ -2547,13 +2568,16 @@ private function start_explosive_ragdoll(dir, weapon)
 			y = dir[1] * y;
 		}
 	}
-	else if(math::cointoss())
+	else
 	{
-		x = x * -1;
-	}
-	if(math::cointoss())
-	{
-		y = y * -1;
+		if(math::cointoss())
+		{
+			x = x * -1;
+		}
+		if(math::cointoss())
+		{
+			y = y * -1;
+		}
 	}
 	self startragdoll();
 	self launchragdoll((x, y, z));
@@ -2568,7 +2592,7 @@ private function start_explosive_ragdoll(dir, weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function start_death_from_above_ragdoll(dir)
+function private start_death_from_above_ragdoll(dir)
 {
 	if(!isdefined(self))
 	{
@@ -2587,7 +2611,7 @@ private function start_death_from_above_ragdoll(dir)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function delayed_ragdoll(ent, shitloc, vdir, weapon, einflictor, smeansofdeath)
+function private delayed_ragdoll(ent, shitloc, vdir, weapon, einflictor, smeansofdeath)
 {
 	if(isdefined(ent))
 	{
@@ -2636,7 +2660,7 @@ private function delayed_ragdoll(ent, shitloc, vdir, weapon, einflictor, smeanso
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4ac2aefc(attacker, weapon)
+function private function_4ac2aefc(attacker, weapon)
 {
 	if(isai(attacker) && isdefined(attacker.script_owner))
 	{
@@ -2668,28 +2692,34 @@ private function function_4ac2aefc(attacker, weapon)
 			}
 			attacker.planemortarbda++;
 		}
-		else if(weapon.statname == #"dart" || weapon.statname == #"dart_turret")
+		else
 		{
-			if(!isdefined(attacker.dartbda))
+			if(weapon.statname == #"dart" || weapon.statname == #"dart_turret")
 			{
-				attacker.dartbda = 0;
+				if(!isdefined(attacker.dartbda))
+				{
+					attacker.dartbda = 0;
+				}
+				attacker.dartbda++;
 			}
-			attacker.dartbda++;
-		}
-		else if(weapon.name == #"straferun_rockets" || weapon.name == #"straferun_gun")
-		{
-			if(isdefined(attacker.straferunbda))
+			else
 			{
-				attacker.straferunbda++;
+				if(weapon.name == #"straferun_rockets" || weapon.name == #"straferun_gun")
+				{
+					if(isdefined(attacker.straferunbda))
+					{
+						attacker.straferunbda++;
+					}
+				}
+				else if(weapon.statname == #"remote_missile" || weapon.statname == #"remote_missile_missile" || weapon.name == #"remote_missile_bomblet")
+				{
+					if(!isdefined(attacker.remotemissilebda))
+					{
+						attacker.remotemissilebda = 0;
+					}
+					attacker.remotemissilebda++;
+				}
 			}
-		}
-		else if(weapon.statname == #"remote_missile" || weapon.statname == #"remote_missile_missile" || weapon.name == #"remote_missile_bomblet")
-		{
-			if(!isdefined(attacker.remotemissilebda))
-			{
-				attacker.remotemissilebda = 0;
-			}
-			attacker.remotemissilebda++;
 		}
 	}
 	return attacker;
@@ -2704,7 +2734,7 @@ private function function_4ac2aefc(attacker, weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_91cd8b0d(einflictor)
+function private function_91cd8b0d(einflictor)
 {
 	if(isdefined(einflictor) && einflictor.classname == "script_vehicle")
 	{
@@ -2726,7 +2756,7 @@ private function function_91cd8b0d(einflictor)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function update_weapon(einflictor, weapon)
+function private update_weapon(einflictor, weapon)
 {
 	if(weapon == level.weaponnone && isdefined(einflictor))
 	{
@@ -2751,7 +2781,7 @@ private function update_weapon(einflictor, weapon)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_e8decd0b(attacker, weapon, victim, einflictor, smeansofdeath)
+function private function_e8decd0b(attacker, weapon, victim, einflictor, smeansofdeath)
 {
 	if(isplayer(attacker))
 	{

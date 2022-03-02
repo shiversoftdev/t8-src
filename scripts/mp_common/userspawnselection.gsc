@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"userspawnselection", &__init__, undefined, undefined);
 }
@@ -78,10 +78,10 @@ function function_127864f2(player)
 	{
 		if(player == spawnbeacon.owner)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -116,9 +116,9 @@ function function_a316ca82(player)
 	spawnbeacon = player function_b9573d36();
 	if(isdefined(spawnbeacon))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -358,7 +358,7 @@ function setspawngroupsenabled()
 */
 function canplayerusespawngroup(spawngroupindex)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -737,7 +737,7 @@ function watchforselectiontimeout()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_disconnect()
+function private on_player_disconnect()
 {
 	self clearcacheforplayer();
 }
@@ -800,7 +800,7 @@ function filter_spawnpoints(spawnpoints)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_259770ba(e_player)
+function private function_259770ba(e_player)
 {
 	if(!isdefined(level.spawnselect.lastchosenplayerspawns[e_player.clientid]) || level.usestartspawns)
 	{
@@ -880,7 +880,7 @@ private function function_259770ba(e_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function getclientfieldprefix(id)
+function private getclientfieldprefix(id)
 {
 	return ("spawngroupStatus." + id) + ".";
 }
@@ -894,7 +894,7 @@ private function getclientfieldprefix(id)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	for(index = 0; index < 20; index++)
 	{
@@ -977,7 +977,7 @@ function on_start_gametype()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function setupspawnlistforspawngroup(spawngroupkey, spawnlistname, team)
+function private setupspawnlistforspawngroup(spawngroupkey, spawnlistname, team)
 {
 	rawspawns = struct::get_array(spawngroupkey, "groupname");
 	if(!isdefined(rawspawns))
@@ -1023,7 +1023,7 @@ private function setupspawnlistforspawngroup(spawngroupkey, spawnlistname, team)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function setupspawngroup(spawngroup)
+function private setupspawngroup(spawngroup)
 {
 	spawngroup.objectiveid = gameobjects::get_next_obj_id();
 	if(level.teambased && isdefined(game.switchedsides) && game.switchedsides)

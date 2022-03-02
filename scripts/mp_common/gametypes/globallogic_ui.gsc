@@ -138,7 +138,7 @@ function freegameplayhudelems()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_34a60b2f(original_team, var_5002c793)
+function private function_34a60b2f(original_team, var_5002c793)
 {
 	if(!isdefined(original_team) || original_team == #"spectator" || !isdefined(var_5002c793))
 	{
@@ -174,11 +174,14 @@ function menuautoassign(comingfrommenu, var_4c542e39)
 			return;
 		}
 	}
-	else if(self.sessionstate == "playing" || self.sessionstate == "dead")
+	else
 	{
-		return;
+		if(self.sessionstate == "playing" || self.sessionstate == "dead")
+		{
+			return;
+		}
+		assignment = teams::function_b55ab4b3(comingfrommenu, var_4c542e39);
 	}
-	assignment = teams::function_b55ab4b3(comingfrommenu, var_4c542e39);
 	/#
 		assignmentoverride = getdvarstring(#"autoassignteam");
 		if(assignmentoverride != "" && (assignmentoverride != #"spectator" || !isbot(self)))
@@ -444,7 +447,7 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 {
 	if(!isdefined(self.pers[#"team"]) || !isdefined(level.teams[self.pers[#"team"]]))
 	{
-		return 0;
+		return false;
 	}
 	if(!loadout::function_87bcb1b())
 	{
@@ -470,11 +473,11 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 	self loadout::function_d7c205b9(playerclass);
 	if(!player_role::is_valid(self player_role::get()))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.pers[#"class"]) && self.pers[#"class"] == playerclass)
 	{
-		return 1;
+		return true;
 	}
 	self.pers[#"changed_class"] = 1;
 	self notify(#"changed_class");
@@ -489,7 +492,7 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 	self.pers[#"weapon"] = undefined;
 	if(gamestate::is_game_over())
 	{
-		return 0;
+		return false;
 	}
 	if(self.sessionstate != "playing")
 	{
@@ -497,15 +500,15 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 		{
 			if(self isinvehicle())
 			{
-				return 0;
+				return false;
 			}
 			if(self isremotecontrolling())
 			{
-				return 0;
+				return false;
 			}
 			if(self isweaponviewonlylinked())
 			{
-				return 0;
+				return false;
 			}
 		}
 		if(self.sessionstate != "dead")
@@ -539,7 +542,7 @@ function menuclass(response, forcedclass, updatecharacterindex, closemenus)
 	}
 	level thread globallogic::updateteamstatus();
 	self thread spectating::set_permissions_for_machine();
-	return 1;
+	return true;
 }
 
 /*
@@ -563,7 +566,7 @@ function function_9ed118fe(characterindex)
 	}
 	if(!draft::can_select_character(characterindex))
 	{
-		return 0;
+		return false;
 	}
 	if(player_role::get() != characterindex)
 	{
@@ -634,30 +637,39 @@ function menupositiondraft(response, intpayload)
 			self player_role::clear();
 		}
 	}
-	else if(response == "randomcharacter")
+	else
 	{
-		self player_role::clear();
-		draft::assign_remaining_players(self);
-		if(!(isdefined(level.inprematchperiod) && level.inprematchperiod))
+		if(response == "randomcharacter")
 		{
-			self draft::close();
-			if(!function_8b1a219a())
+			self player_role::clear();
+			draft::assign_remaining_players(self);
+			if(!(isdefined(level.inprematchperiod) && level.inprematchperiod))
 			{
-				self closeingamemenu();
+				self draft::close();
+				if(!function_8b1a219a())
+				{
+					self closeingamemenu();
+				}
 			}
 		}
-	}
-	else if(response == "ready")
-	{
-		self draft::function_3e46326b();
-	}
-	else if(response == "opendraft")
-	{
-		self draft::open();
-	}
-	else if(response == "closedraft")
-	{
-		self draft::close();
+		else
+		{
+			if(response == "ready")
+			{
+				self draft::function_3e46326b();
+			}
+			else
+			{
+				if(response == "opendraft")
+				{
+					self draft::open();
+				}
+				else if(response == "closedraft")
+				{
+					self draft::close();
+				}
+			}
+		}
 	}
 }
 

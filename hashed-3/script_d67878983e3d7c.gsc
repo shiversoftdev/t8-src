@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_308dff40d53a7287", &__init__, undefined, undefined);
 }
@@ -87,7 +87,7 @@ function function_f4515ba8(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8847b8aa(localclientnum)
+function private function_8847b8aa(localclientnum)
 {
 	self endon(#"death", #"hash_395dfda1274cd506");
 	wait(1);

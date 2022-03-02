@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"killstreaks", &__init__, undefined, #"weapons");
 }
@@ -91,7 +91,7 @@ function init()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_395f82d0(killstreaktype)
+function private function_395f82d0(killstreaktype)
 {
 	globallogic_score::_setplayermomentum(self, self.momentum - self function_dceb5542(level.killstreaks[killstreaktype].itemindex));
 }
@@ -105,7 +105,7 @@ private function function_395f82d0(killstreaktype)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_427f6a2e(killstreaktype, killstreakid)
+function private function_427f6a2e(killstreaktype, killstreakid)
 {
 	if(self killstreak_dialog_queued("firewallBeingHacked", killstreaktype, killstreakid))
 	{
@@ -123,7 +123,7 @@ private function function_427f6a2e(killstreaktype, killstreakid)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6fa91236(killstreaktype, killstreakid)
+function private function_6fa91236(killstreaktype, killstreakid)
 {
 	if(self killstreak_dialog_queued("firewallHacked", killstreaktype, killstreakid))
 	{
@@ -141,7 +141,7 @@ private function function_6fa91236(killstreaktype, killstreakid)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1cd175ba(killstreaktype, killstreakid)
+function private function_1cd175ba(killstreaktype, killstreakid)
 {
 	if(self killstreak_dialog_queued("beingHacked", killstreaktype, killstreakid))
 	{
@@ -159,7 +159,7 @@ private function function_1cd175ba(killstreaktype, killstreakid)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_520a5752(killstreaktype, killstreakid, hacker)
+function private function_520a5752(killstreaktype, killstreakid, hacker)
 {
 	self globallogic_audio::flush_killstreak_dialog_on_player(killstreakid);
 	self globallogic_audio::play_taacom_dialog("hacked", killstreaktype);
@@ -186,7 +186,7 @@ private function function_520a5752(killstreaktype, killstreakid, hacker)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_7bed52a(killstreaktype, team, killstreakid)
+function private function_7bed52a(killstreaktype, team, killstreakid)
 {
 	if(!isdefined(killstreaktype) || !isdefined(killstreakid))
 	{
@@ -211,17 +211,20 @@ private function function_7bed52a(killstreaktype, team, killstreakid)
 			globallogic_audio::leader_dialog_for_other_teams(level.killstreaks[killstreaktype].enemystartdialogkey, team, undefined, killstreakid);
 		}
 	}
-	else if(!isdefined(self.currentkillstreakdialog) && isdefined(level.killstreaks[killstreaktype].requestdialogkey) && isdefined(level.heroplaydialog))
-	{
-		self thread [[level.heroplaydialog]](level.killstreaks[killstreaktype].requestdialogkey);
-	}
-	if(isdefined(level.killstreakrules[killstreaktype]) && level.killstreakrules[killstreaktype].cur > 1)
-	{
-		globallogic_audio::leader_dialog_for_other_teams(level.killstreaks[killstreaktype].enemystartmultipledialogkey, team, undefined, killstreakid);
-	}
 	else
 	{
-		globallogic_audio::leader_dialog(level.killstreaks[killstreaktype].enemystartdialogkey, undefined, excludeself, undefined, killstreakid);
+		if(!isdefined(self.currentkillstreakdialog) && isdefined(level.killstreaks[killstreaktype].requestdialogkey) && isdefined(level.heroplaydialog))
+		{
+			self thread [[level.heroplaydialog]](level.killstreaks[killstreaktype].requestdialogkey);
+		}
+		if(isdefined(level.killstreakrules[killstreaktype]) && level.killstreakrules[killstreaktype].cur > 1)
+		{
+			globallogic_audio::leader_dialog_for_other_teams(level.killstreaks[killstreaktype].enemystartmultipledialogkey, team, undefined, killstreakid);
+		}
+		else
+		{
+			globallogic_audio::leader_dialog(level.killstreaks[killstreaktype].enemystartdialogkey, undefined, excludeself, undefined, killstreakid);
+		}
 	}
 }
 
@@ -234,7 +237,7 @@ private function function_7bed52a(killstreaktype, team, killstreakid)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6a5cc212(killstreaktype, killstreakid)
+function private function_6a5cc212(killstreaktype, killstreakid)
 {
 	if(!isdefined(self.owner) || !isdefined(self.team) || self.team != self.owner.team)
 	{
@@ -253,7 +256,7 @@ private function function_6a5cc212(killstreaktype, killstreakid)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9716fce9(dialogkey, killstreaktype, killstreakid)
+function private function_9716fce9(dialogkey, killstreaktype, killstreakid)
 {
 	if(!isdefined(self.owner) || !isdefined(self.owner.team) || !isdefined(self.team) || self.team != self.owner.team)
 	{
@@ -271,7 +274,7 @@ private function function_9716fce9(dialogkey, killstreaktype, killstreakid)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_f6370f75(dialogkey, killstreaktype, killstreakid, pilotindex)
+function private function_f6370f75(dialogkey, killstreaktype, killstreakid, pilotindex)
 {
 	if(!isdefined(killstreaktype) || !isdefined(pilotindex))
 	{
@@ -289,7 +292,7 @@ private function function_f6370f75(dialogkey, killstreaktype, killstreakid, pilo
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_3d6e0cd9(dialogkey, killstreaktype, killstreakid, var_46bd7973, var_8a6b001a, weapon, priority)
+function private function_3d6e0cd9(dialogkey, killstreaktype, killstreakid, var_46bd7973, var_8a6b001a, weapon, priority)
 {
 	self globallogic_audio::play_taacom_dialog(dialogkey, killstreaktype, killstreakid, var_46bd7973, var_8a6b001a, weapon, priority);
 }
@@ -303,7 +306,7 @@ private function function_3d6e0cd9(dialogkey, killstreaktype, killstreakid, var_
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_3cf68327(dialogkey, killstreaktype, killstreakid)
+function private function_3cf68327(dialogkey, killstreaktype, killstreakid)
 {
 	/#
 		assert(isdefined(dialogkey));
@@ -327,7 +330,7 @@ private function function_3cf68327(dialogkey, killstreaktype, killstreakid)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_ed335136(dialogkey, skipteam, objectivekey, killstreakid, dialogbufferkey)
+function private function_ed335136(dialogkey, skipteam, objectivekey, killstreakid, dialogbufferkey)
 {
 	globallogic_audio::leader_dialog_for_other_teams(dialogkey, skipteam, objectivekey, killstreakid, dialogbufferkey);
 }
@@ -341,7 +344,7 @@ private function function_ed335136(dialogkey, skipteam, objectivekey, killstreak
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_b11487a4(dialogkey, team, excludelist, objectivekey, killstreakid, dialogbufferkey)
+function private function_b11487a4(dialogkey, team, excludelist, objectivekey, killstreakid, dialogbufferkey)
 {
 	globallogic_audio::leader_dialog(dialogkey, team, excludelist, objectivekey, killstreakid, dialogbufferkey);
 }
@@ -355,7 +358,7 @@ private function function_b11487a4(dialogkey, team, excludelist, objectivekey, k
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_daabc818(event, player, victim, weapon)
+function private function_daabc818(event, player, victim, weapon)
 {
 	scoreevents::processscoreevent(event, player, victim, weapon);
 }

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"persistence", &__init__, undefined, undefined);
 }
@@ -463,13 +463,16 @@ function challenge_complete(eventstruct)
 			{
 				iprintlnbold((((challengestring + "") + maxval) + "") + herostring);
 			}
-			else if(getdvarint(#"scr_debugchallenges", 0) == 2)
+			else
 			{
-				self iprintlnbold((((challengestring + "") + maxval) + "") + herostring);
-			}
-			else if(getdvarint(#"scr_debugchallenges", 0) == 3)
-			{
-				iprintln((((challengestring + "") + maxval) + "") + herostring);
+				if(getdvarint(#"scr_debugchallenges", 0) == 2)
+				{
+					self iprintlnbold((((challengestring + "") + maxval) + "") + herostring);
+				}
+				else if(getdvarint(#"scr_debugchallenges", 0) == 3)
+				{
+					iprintln((((challengestring + "") + maxval) + "") + herostring);
+				}
 			}
 		}
 	#/

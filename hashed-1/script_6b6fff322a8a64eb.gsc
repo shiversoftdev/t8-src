@@ -321,13 +321,16 @@ function function_a092874()
 	{
 		level.var_1c921b2b = 29 - level.round_number;
 	}
-	else if(level.round_number < 60)
-	{
-		level.var_1c921b2b = 59 - level.round_number;
-	}
 	else
 	{
-		level.var_1c921b2b = 0;
+		if(level.round_number < 60)
+		{
+			level.var_1c921b2b = 59 - level.round_number;
+		}
+		else
+		{
+			level.var_1c921b2b = 0;
+		}
 	}
 	level.var_c03f9529 = 1;
 	callback::on_laststand(&function_500dfb49);
@@ -346,7 +349,7 @@ function function_a092874()
 */
 function function_baf34b69()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -625,15 +628,15 @@ function function_301c7dca(player)
 	{
 		str_hint = zm_utility::function_d6046228(#"hash_15b81856e839fed9", #"hash_eb543cd4ec82ae7");
 		self sethintstring(str_hint);
-		return 1;
+		return true;
 	}
 	if(isdefined(self.stub.related_parent.b_picked_up) && !self.stub.related_parent.b_picked_up)
 	{
 		str_hint = zm_utility::function_d6046228(#"hash_4ed14fd62a0c189c", #"hash_b9eef4c2cef38d0");
 		self sethintstring(str_hint);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -798,14 +801,14 @@ function function_ab759b3a(player)
 	if(isdefined(self.stub.related_parent.b_picked_up) && self.stub.related_parent.b_picked_up)
 	{
 		self sethintstring(zm_utility::function_d6046228(#"hash_494d7fc0d10e2ff6", #"hash_9af968cebf182d2"));
-		return 1;
+		return true;
 	}
 	if(isdefined(self.stub.related_parent.b_picked_up) && !self.stub.related_parent.b_picked_up)
 	{
 		self sethintstring(zm_utility::function_d6046228(#"hash_3b3769bc56dab413", #"hash_28eeceb083aa7339"));
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -881,8 +884,19 @@ function function_6ad0e23f()
 			}
 		#/
 	}
-	iprintlnbold(("" + level.meteor_counter) + "");
-	println(("" + level.meteor_counter) + "");
+	else
+	{
+		/#
+			iprintlnbold(("" + level.meteor_counter) + "");
+			println(("" + level.meteor_counter) + "");
+		#/
+		if(getdvarint(#"hash_11ad6a9695943217", 0))
+		{
+			if(getdvarint(#"hash_11ad6a9695943217", 0))
+			{
+			}
+		}
+	}
 	zm_unitrigger::unregister_unitrigger(self.stub);
 }
 
@@ -1042,17 +1056,17 @@ function function_ee63b8a7(var_a276c861, var_19e802fa)
 	Parameters: 1
 	Flags: Private
 */
-private function is_weapon_sniper(w_weapon)
+function private is_weapon_sniper(w_weapon)
 {
 	if(isdefined(w_weapon.issniperweapon) && w_weapon.issniperweapon || w_weapon.name === #"ww_tesla_sniper_t8" || w_weapon.name === #"ww_tesla_sniper_upgraded_t8")
 	{
 		if(weaponhasattachment(w_weapon, "elo") || weaponhasattachment(w_weapon, "reflex") || weaponhasattachment(w_weapon, "holo") || weaponhasattachment(w_weapon, "is"))
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1221,7 +1235,7 @@ function function_1b0e51b5()
 	level endon(#"end_game", #"hash_21d844f0069092bd");
 	edge_life_brush = getent("edge_life_brush", "targetname");
 	s_notify = undefined;
-	s_notify = self waittill_timeout(160, #"entering_last_stand");
+	s_notify = self waittilltimeout(160, #"entering_last_stand");
 	if(isalive(self) && (self zm_zonemgr::is_player_in_zone(array("edge")) || self istouching(edge_life_brush)))
 	{
 		if(self isusingoffhand())
@@ -1253,7 +1267,7 @@ function edge_exit_watcher()
 	level endon(#"end_game");
 	edge_life_brush = getent("edge_life_brush", "targetname");
 	s_notify = undefined;
-	s_notify = self waittill_timeout(120, #"entering_last_stand", #"edge_exit");
+	s_notify = self waittilltimeout(120, #"entering_last_stand", #"edge_exit");
 	if(isalive(self) && (self zm_zonemgr::is_player_in_zone(array("edge")) || self istouching(edge_life_brush)))
 	{
 		self thread lui::screen_flash(3, 1, 0.5, 1, "white");
@@ -1305,15 +1319,18 @@ function function_fdc3c7c4()
 		arraysortclosest(var_fded3d81, self.origin);
 		var_fded3d81 = array::reverse(var_fded3d81);
 	}
-	else if(!isdefined(var_fded3d81))
+	else
 	{
-		var_fded3d81 = [];
+		if(!isdefined(var_fded3d81))
+		{
+			var_fded3d81 = [];
+		}
+		else if(!isarray(var_fded3d81))
+		{
+			var_fded3d81 = array(var_fded3d81);
+		}
+		var_fded3d81[var_fded3d81.size] = self;
 	}
-	else if(!isarray(var_fded3d81))
-	{
-		var_fded3d81 = array(var_fded3d81);
-	}
-	var_fded3d81[var_fded3d81.size] = self;
 	foreach(player in var_fded3d81)
 	{
 		s_player_respawn = self namespace_770fd0f5::get_best_spawnpoint(player);

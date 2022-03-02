@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_perk_widows_wine", &__init__, undefined, undefined);
 }
@@ -274,8 +274,8 @@ function widows_wine_contact_explosion()
 function function_c6366dbe()
 {
 	self notify(#"start_slow_field");
-	self endon_callback(&function_10519783, #"disconnect", #"player_downed", #"start_slow_field");
-	level endon_callback(&function_10519783, #"end_game");
+	self endoncallback(&function_10519783, #"disconnect", #"player_downed", #"start_slow_field");
+	level endoncallback(&function_10519783, #"end_game");
 	n_end_time = gettime() + (int(5 * 1000));
 	self clientfield::set("winters_wail_slow_field", 1);
 	while(gettime() < n_end_time)
@@ -411,7 +411,7 @@ function function_5c114d09(e_player)
 		self.var_e8920729 = 1;
 		self clientfield::set("winters_wail_freeze", 1);
 	}
-	self waittill_timeout(16, #"death");
+	self waittilltimeout(16, #"death");
 	if(!isdefined(self))
 	{
 		return;
@@ -450,7 +450,7 @@ function widows_wine_slow_zombie(e_player, var_3e5502b5, var_ca6267ad)
 		self clientfield::set("winters_wail_freeze", 1);
 	}
 	self thread namespace_9ff9f642::slowdown(var_3e5502b5);
-	self waittill_timeout(var_ca6267ad, #"death");
+	self waittilltimeout(var_ca6267ad, #"death");
 	if(!isdefined(self))
 	{
 		return;
@@ -529,9 +529,9 @@ function function_8363e820()
 {
 	if(isdefined(self.var_a33a5a37) && self.var_a33a5a37 > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

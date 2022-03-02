@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_spectating", &__init__, undefined, undefined);
 }
@@ -191,10 +191,10 @@ function otherlocalplayerstillalive()
 		}
 		if(isalive(level.players[index]))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -293,20 +293,23 @@ function setspectatepermissions()
 				self allowspectateteam("freelook", 0);
 				self allowspectateteam("localplayers", 1);
 			}
-			else if(isdefined(team) && isdefined(level.teams[team]))
-			{
-				self allowspectateteam(team, 1);
-				self allowspectateallteamsexceptteam(team, 0);
-				self allowspectateteam("freelook", 0);
-				self allowspectateteam("none", 0);
-				self allowspectateteam("localplayers", 1);
-			}
 			else
 			{
-				self allowspectateallteams(0);
-				self allowspectateteam("freelook", 0);
-				self allowspectateteam("none", 0);
-				self allowspectateteam("localplayers", 1);
+				if(isdefined(team) && isdefined(level.teams[team]))
+				{
+					self allowspectateteam(team, 1);
+					self allowspectateallteamsexceptteam(team, 0);
+					self allowspectateteam("freelook", 0);
+					self allowspectateteam("none", 0);
+					self allowspectateteam("localplayers", 1);
+				}
+				else
+				{
+					self allowspectateallteams(0);
+					self allowspectateteam("freelook", 0);
+					self allowspectateteam("none", 0);
+					self allowspectateteam("localplayers", 1);
+				}
 			}
 			break;
 		}

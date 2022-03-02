@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3ee2bcf1f7dc56c8", &init, undefined, undefined);
 }
@@ -385,11 +385,11 @@ function function_814ee815(player)
 {
 	if(self.stub.in_use === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.var_fcbb6a6b))
 	{
-		return 0;
+		return false;
 	}
 	if(function_8b1a219a())
 	{
@@ -399,7 +399,7 @@ function function_814ee815(player)
 	{
 		self sethintstring(#"hash_4a380545b9102af9");
 	}
-	return 1;
+	return true;
 }
 
 /*

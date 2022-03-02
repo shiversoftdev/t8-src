@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6111cfdbe7da9cd1", &__init__, undefined, undefined);
 }
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e973becc()
+function private function_e973becc()
 {
 	item_world::function_4de3ca98();
 	var_14957968 = getdynentarray(#"hash_6111cfdbe7da9cd1");

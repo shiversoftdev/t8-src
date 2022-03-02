@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_weap_thundergun", &__init__, &__main__, undefined);
 }
@@ -94,7 +94,7 @@ function thundergun_fx_fire(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_5059c81b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_5059c81b(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(isdefined(self))
 	{

@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_daily_challenges", &__init__, &__main__, undefined);
 }
@@ -334,17 +334,20 @@ function death_check_for_challenge_updates(e_attacker)
 		#/
 		var_27b9587 = zm_weapons::get_base_weapon(w_damage);
 	}
-	else if(zm_weapons::is_weapon_upgraded(w_damage))
-	{
-		e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_packed");
-		/#
-			debug_print("");
-		#/
-		var_27b9587 = zm_weapons::get_base_weapon(w_damage);
-	}
 	else
 	{
-		var_27b9587 = zm_weapons::function_386dacbc(w_damage);
+		if(zm_weapons::is_weapon_upgraded(w_damage))
+		{
+			e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_packed");
+			/#
+				debug_print("");
+			#/
+			var_27b9587 = zm_weapons::get_base_weapon(w_damage);
+		}
+		else
+		{
+			var_27b9587 = zm_weapons::function_386dacbc(w_damage);
+		}
 	}
 	if(zm_loadout::is_hero_weapon(w_damage))
 	{
@@ -577,7 +580,7 @@ function increment_windows_repaired(s_barrier)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function rebuild_timer()
+function private rebuild_timer()
 {
 	self endon(#"disconnect");
 	self.b_dc_rebuild_timer_active = 1;
@@ -751,8 +754,8 @@ function is_daily_challenge(n_challenge_index)
 	n_row = tablelookuprownum(#"hash_492a37b72e9cab84", 0, n_challenge_index);
 	if(n_row > -1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

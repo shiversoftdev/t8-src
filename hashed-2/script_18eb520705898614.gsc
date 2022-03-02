@@ -509,7 +509,7 @@ function function_f05be4f1(var_5ea5c94d, ended_early)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2345b68a()
+function private function_2345b68a()
 {
 	foreach(var_24b5be21 in level.var_d70578ff)
 	{
@@ -575,7 +575,7 @@ private function function_2345b68a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_44a7951d()
+function private function_44a7951d()
 {
 	if(self === level.stick_player)
 	{
@@ -604,7 +604,7 @@ private function function_44a7951d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4aa24b78()
+function private function_4aa24b78()
 {
 	self notify("5a517bbed613c3ee");
 	self endon("5a517bbed613c3ee");
@@ -626,7 +626,7 @@ private function function_4aa24b78()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_36d70cbd()
+function private function_36d70cbd()
 {
 	self notify("2c7398c281ee6695");
 	self endon("2c7398c281ee6695");
@@ -709,7 +709,7 @@ private function function_36d70cbd()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8a51807c()
+function private function_8a51807c()
 {
 	level flag::wait_till(#"all_players_spawned");
 	player = undefined;
@@ -758,7 +758,7 @@ private function function_8a51807c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d8ca90b7()
+function private function_d8ca90b7()
 {
 	level endon(#"hash_6cc69676a56eb05a");
 	level.stick_player endon(#"disconnect", #"hash_1544918b5f670dae");
@@ -793,7 +793,7 @@ private function function_d8ca90b7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_959fcbff(player)
+function private function_959fcbff(player)
 {
 	player endon(#"disconnect");
 	level flag::set(#"hash_6cc69676a56eb05a");
@@ -839,7 +839,7 @@ private function function_959fcbff(player)
 		player setinvisibletoplayer(e_player, 1);
 	}
 	player thread function_25a79bc1();
-	player.e_linkto waittill_timeout(1.5 - 0.375, #"movedone");
+	player.e_linkto waittilltimeout(1.5 - 0.375, #"movedone");
 	player.e_linkto clientfield::set("" + #"hash_69b312bcaae6308b", 0);
 	player clientfield::set("" + #"hash_30aa04edc476253f", 0);
 	s_pos = struct::get("wm_ht_pos", "targetname");
@@ -865,7 +865,7 @@ private function function_959fcbff(player)
 	player thread function_e84d4271();
 	wait(2);
 	player thread lui::screen_fade_out(1, (0.8, 0.24, 0.15));
-	level waittill_timeout(10, #"hash_132b5b79b9aeaf9e");
+	level waittilltimeout(10, #"hash_132b5b79b9aeaf9e");
 	player notify(#"tunnel_complete");
 	level flag::set(#"hash_7db49be86c73fd65");
 	if(!isdefined(player.e_linkto))
@@ -881,7 +881,7 @@ private function function_959fcbff(player)
 	player.e_linkto.angles = s_rise.angles;
 	player thread lui::screen_fade_in(1.35, (0.8, 0.24, 0.15));
 	player.e_linkto moveto(s_rise.origin, 1.5);
-	player.e_linkto waittill_timeout(1.5, #"movedone");
+	player.e_linkto waittilltimeout(1.5, #"movedone");
 	player unlink();
 	player.e_linkto delete();
 	player.s_portrait struct::delete();
@@ -908,7 +908,7 @@ private function function_959fcbff(player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3b71b7a7()
+function private function_3b71b7a7()
 {
 	self endon(#"disconnect");
 	self setvisibletoall();
@@ -930,7 +930,7 @@ private function function_3b71b7a7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_25a79bc1()
+function private function_25a79bc1()
 {
 	level endon(#"hash_445e2c5cadd58523");
 	self endon(#"player_downed", #"death", #"hash_1544918b5f670dae");
@@ -959,7 +959,7 @@ private function function_25a79bc1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3ce20299()
+function private function_3ce20299()
 {
 	self endon(#"death");
 	self zm_vo::function_8e0f4696(#"hash_39bc8bd7eaa531d5", 1.5, 1, 9999, 1, 1, 1);
@@ -976,7 +976,7 @@ private function function_3ce20299()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eabb32ca()
+function private function_eabb32ca()
 {
 	self endon(#"death");
 	n_char_index = self zm_characters::function_d35e4c92();
@@ -994,7 +994,7 @@ private function function_eabb32ca()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9e01297e()
+function private function_9e01297e()
 {
 	var_7e2d2356 = getent("stick_guide", "targetname");
 	while(!isdefined(level.var_8491c913))
@@ -1024,7 +1024,7 @@ private function function_9e01297e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e7144c05()
+function private function_e7144c05()
 {
 	self endon(#"disconnect");
 	level.var_8491c913 endon(#"death");
@@ -1046,7 +1046,7 @@ private function function_e7144c05()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e84d4271()
+function private function_e84d4271()
 {
 	self endon(#"disconnect", #"tunnel_complete");
 	while(true)
@@ -1065,7 +1065,7 @@ private function function_e84d4271()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_614e461()
+function private function_614e461()
 {
 	self endon(#"death");
 	self zm_vo::function_a2bd5a0c(#"hash_56b2b832af39a128", 0, 1, 9999, 1, 1);
@@ -1096,8 +1096,8 @@ function function_c5c7d880()
 	self notify("64ee7cc964e8a25e");
 	self endon("64ee7cc964e8a25e");
 	level endon(#"end_game");
-	level endon_callback(&function_707f7801, #"hash_445e2c5cadd58523");
-	self endon_callback(&function_707f7801, #"death");
+	level endoncallback(&function_707f7801, #"hash_445e2c5cadd58523");
+	self endoncallback(&function_707f7801, #"death");
 	self.var_54cb40e6 = 1;
 	while(true)
 	{
@@ -1137,7 +1137,7 @@ function function_707f7801(var_5a5260d8)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function stick_guide()
+function private stick_guide()
 {
 	level endon(#"hash_445e2c5cadd58523");
 	level.stick_player endon(#"disconnect");
@@ -1425,9 +1425,9 @@ function function_599edfb8(a_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d14e2180(s_portrait)
+function private function_d14e2180(s_portrait)
 {
-	self endon_callback(&function_a0a113c9, #"player_downed", #"death");
+	self endoncallback(&function_a0a113c9, #"player_downed", #"death");
 	level endon(#"hash_44ef51ef07d5d8f2");
 	self.s_portrait = s_portrait;
 	self clientfield::set("" + #"hash_4f277352731d8da", 1);
@@ -1451,7 +1451,7 @@ private function function_d14e2180(s_portrait)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a0a113c9(str_notify)
+function private function_a0a113c9(str_notify)
 {
 	if(!isdefined(self))
 	{
@@ -1477,7 +1477,7 @@ private function function_a0a113c9(str_notify)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_79ad31a0()
+function private function_79ad31a0()
 {
 	s_scene = struct::get(#"p8_fxanim_zm_man_wm_01_bundle", "scriptbundlename");
 	if(!isdefined(level.var_d2ff3b06))
@@ -1529,7 +1529,7 @@ function trigger_stick_man()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function player_stuck()
+function private player_stuck()
 {
 	self endon(#"disconnect");
 	self val::set(#"hash_3c30825a658c87fd", "show_hud", 0);
@@ -1553,7 +1553,7 @@ private function player_stuck()
 	var_3add8e25 = struct::get("s_stick_scene", "targetname");
 	var_3add8e25 thread scene::play(level.var_9661fac0, self);
 	s_result = undefined;
-	s_result = self waittill_timeout(getanimlength(var_cab90298), #"hash_1544918b5f670dae");
+	s_result = self waittilltimeout(getanimlength(var_cab90298), #"hash_1544918b5f670dae");
 	if(s_result._notify === #"hash_1544918b5f670dae")
 	{
 		b_watcher = 0;
@@ -1575,7 +1575,7 @@ private function player_stuck()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_21f38255(b_watcher)
+function private function_21f38255(b_watcher)
 {
 	level endon(#"hash_6cc69676a56eb05a");
 	self endon(#"disconnect");
@@ -1607,7 +1607,7 @@ private function function_21f38255(b_watcher)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1e60e7d2()
+function private function_1e60e7d2()
 {
 	level endon(#"end_game", #"intermission");
 	self endon(#"death");
@@ -1631,7 +1631,7 @@ private function function_1e60e7d2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_be4a0b7a(n_timeout)
+function private function_be4a0b7a(n_timeout)
 {
 	level endon(#"hash_6cc69676a56eb05a");
 	self endon(#"disconnect", #"hash_1544918b5f670dae");
@@ -1817,7 +1817,7 @@ function function_48aadc5d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_aad579ef()
+function private function_aad579ef()
 {
 	self endon(#"death");
 	self zm_vo::function_a2bd5a0c(#"hash_4790127983f61eff", 0, 1, 9999);
@@ -2139,7 +2139,7 @@ function wave_2()
 			var_258d53f3 zm_score::function_acaab828();
 			var_258d53f3 callback::function_d8abfc3d(#"on_ai_killed", &function_d1027329);
 			level flag::clear(#"hash_29b12646045186fa");
-			var_258d53f3 waittill_timeout(5 - getplayers().size, #"death");
+			var_258d53f3 waittilltimeout(5 - getplayers().size, #"death");
 			level flag::set(#"hash_29b12646045186fa");
 		}
 		else
@@ -2362,7 +2362,7 @@ function function_642fbf42()
 			var_e3cf2cc7.no_powerups = 1;
 			var_e3cf2cc7 zm_score::function_acaab828();
 			level flag::clear(#"hash_29b12646045186fa");
-			var_e3cf2cc7 waittill_timeout(6 - (n_players / 2), #"death");
+			var_e3cf2cc7 waittilltimeout(6 - (n_players / 2), #"death");
 			level flag::set(#"hash_29b12646045186fa");
 			continue;
 		}
@@ -2637,9 +2637,9 @@ function function_8b12e689()
 function function_e7b2b2eb(var_65500f70)
 {
 	var_e9b059c7 = [];
-	foreach(var_70e1deb9 in var_65500f70)
+	foreach(s_respawn_point in var_65500f70)
 	{
-		if(var_70e1deb9.script_noteworthy == "zone_cemetery_graveyard" || var_70e1deb9.script_noteworthy == "zone_cemetery_crypt")
+		if(s_respawn_point.script_noteworthy == "zone_cemetery_graveyard" || s_respawn_point.script_noteworthy == "zone_cemetery_crypt")
 		{
 			if(!isdefined(var_e9b059c7))
 			{
@@ -2649,7 +2649,7 @@ function function_e7b2b2eb(var_65500f70)
 			{
 				var_e9b059c7 = array(var_e9b059c7);
 			}
-			var_e9b059c7[var_e9b059c7.size] = var_70e1deb9;
+			var_e9b059c7[var_e9b059c7.size] = s_respawn_point;
 		}
 	}
 	return var_e9b059c7;

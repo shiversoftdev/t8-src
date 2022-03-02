@@ -50,20 +50,20 @@ function init()
 	Parameters: 1
 	Flags: Private
 */
-private function function_dd028fcb(e_player)
+function private function_dd028fcb(e_player)
 {
 	var_d49d10b0 = e_player zm_loadout::get_player_lethal_grenade();
 	if(var_d49d10b0 === level.weaponnone)
 	{
-		return 0;
+		return false;
 	}
 	if(level flag::get(#"hash_5e095d53ae9513f5"))
 	{
 		self sethintstring(#"hash_7a1ce549121dd33f");
-		return 1;
+		return true;
 	}
 	self sethintstring(#"hash_16b4b2b59405ab16");
-	return 1;
+	return true;
 }
 
 /*
@@ -75,7 +75,7 @@ private function function_dd028fcb(e_player)
 	Parameters: 0
 	Flags: Private
 */
-private function function_608b90b4()
+function private function_608b90b4()
 {
 	self endon(#"end_game");
 	while(true)
@@ -149,13 +149,16 @@ function function_79ef6b93()
 				self zm_weapons::weapon_give(level.var_bf70d56c, 1, 0);
 			}
 		}
-		else if(level flag::get(#"extra_snowballs"))
-		{
-			self zm_weapons::weapon_give(level.var_f8934665, 1, 0);
-		}
 		else
 		{
-			self zm_weapons::weapon_give(level.var_ad5d43cf, 1, 0);
+			if(level flag::get(#"extra_snowballs"))
+			{
+				self zm_weapons::weapon_give(level.var_f8934665, 1, 0);
+			}
+			else
+			{
+				self zm_weapons::weapon_give(level.var_ad5d43cf, 1, 0);
+			}
 		}
 		self thread function_76e94d52();
 		self callback::on_laststand(&function_3bb2f43b);
@@ -226,13 +229,16 @@ function function_76e94d52()
 				}
 			}
 		}
-		else if(self.var_3b55baa1 == getweapon(#"music_box"))
+		else
 		{
-			namespace_5449c7ba::function_96d95cf5();
+			if(self.var_3b55baa1 == getweapon(#"music_box"))
+			{
+				namespace_5449c7ba::function_96d95cf5();
+			}
+			self.var_3b55baa1 = undefined;
+			self.var_e01bb56 = undefined;
+			self notify(#"hash_2ef9a0f78a628812");
 		}
-		self.var_3b55baa1 = undefined;
-		self.var_e01bb56 = undefined;
-		self notify(#"hash_2ef9a0f78a628812");
 		wait(0.5);
 	}
 }
@@ -251,9 +257,9 @@ function function_75a76099()
 	var_d49d10b0 = self zm_loadout::get_player_lethal_grenade();
 	if(isdefined(var_d49d10b0) && (var_d49d10b0 == level.var_ad5d43cf || var_d49d10b0 == level.var_f8934665 || var_d49d10b0 == level.var_bf70d56c || var_d49d10b0 == level.var_d879215))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

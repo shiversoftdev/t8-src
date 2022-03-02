@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_716faff417d0eef3", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_bd9d962 = #"invert")
+function private function_d1de6a85(var_bd9d962 = #"invert")
 {
 	level endon(#"hash_7646638df88a3656");
 	wait(5);
@@ -72,8 +72,8 @@ private function function_d1de6a85(var_bd9d962 = #"invert")
 		{
 			foreach(player in getplayers())
 			{
-				player namespace_7d0afffb::function_59004002(#"zm_bgb_anywhere_but_here", 1);
-				player namespace_7d0afffb::function_59004002(#"hash_a303f67afd6f4a8", 1);
+				player bgb_pack::function_59004002(#"zm_bgb_anywhere_but_here", 1);
+				player bgb_pack::function_59004002(#"hash_a303f67afd6f4a8", 1);
 				player thread function_3d8fa20a();
 			}
 			callback::on_ai_spawned(&function_a5b02a07);
@@ -102,7 +102,7 @@ private function function_d1de6a85(var_bd9d962 = #"invert")
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	switch(level.var_2439365b)
 	{
@@ -118,8 +118,8 @@ private function function_9e7b3f4d(round_reset)
 		{
 			foreach(player in getplayers())
 			{
-				player namespace_7d0afffb::function_59004002(#"zm_bgb_anywhere_but_here", 0);
-				player namespace_7d0afffb::function_59004002(#"hash_a303f67afd6f4a8", 0);
+				player bgb_pack::function_59004002(#"zm_bgb_anywhere_but_here", 0);
+				player bgb_pack::function_59004002(#"hash_a303f67afd6f4a8", 0);
 				player setmovespeedscale(1);
 				player allowjump(1);
 				player allowprone(1);
@@ -152,7 +152,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_eaba7c6f()
+function private function_eaba7c6f()
 {
 	self thread function_3d8fa20a();
 }
@@ -166,7 +166,7 @@ private function function_eaba7c6f()
 	Parameters: 0
 	Flags: Private
 */
-private function function_3d8fa20a()
+function private function_3d8fa20a()
 {
 	self notify("63943c3872eb77bc");
 	self endon("63943c3872eb77bc");
@@ -197,7 +197,7 @@ private function function_3d8fa20a()
 	Parameters: 0
 	Flags: Private
 */
-private function function_dc856fd8()
+function private function_dc856fd8()
 {
 	self notify("4becff0e4eba900e");
 	self endon("4becff0e4eba900e");
@@ -227,7 +227,7 @@ private function function_dc856fd8()
 	Parameters: 0
 	Flags: Private
 */
-private function function_a5b02a07()
+function private function_a5b02a07()
 {
 	self endon(#"death");
 	wait(0.5);
@@ -259,17 +259,23 @@ private function function_a5b02a07()
 	{
 		self zombie_utility::set_zombie_run_cycle("sprint");
 	}
-	else if(n_players > 1)
-	{
-		self zombie_utility::set_zombie_run_cycle("run");
-	}
-	else if(math::cointoss())
-	{
-		self zombie_utility::set_zombie_run_cycle("run");
-	}
 	else
 	{
-		self zombie_utility::set_zombie_run_cycle("walk");
+		if(n_players > 1)
+		{
+			self zombie_utility::set_zombie_run_cycle("run");
+		}
+		else
+		{
+			if(math::cointoss())
+			{
+				self zombie_utility::set_zombie_run_cycle("run");
+			}
+			else
+			{
+				self zombie_utility::set_zombie_run_cycle("walk");
+			}
+		}
 	}
 }
 

@@ -368,7 +368,7 @@ function teleport_player(user)
 	{
 		return;
 	}
-	user endon_callback(&function_96e88318, #"death");
+	user endoncallback(&function_96e88318, #"death");
 	destination = undefined;
 	if(isdefined(user.teleporting) && user.teleporting == 1)
 	{
@@ -510,7 +510,7 @@ function function_96e88318(str_notify)
 */
 function function_c234a5ce()
 {
-	self endon_callback(&function_4f5d4783, #"death");
+	self endoncallback(&function_4f5d4783, #"death");
 	self val::set(#"hash_72fb2bd98173a203", "ignoreme", 1);
 	wait(1);
 	self function_4f5d4783();
@@ -545,10 +545,10 @@ function function_26ddb915()
 	{
 		if(player.teleporting === 1)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -824,7 +824,7 @@ function function_e9848fa7()
 */
 function function_9d689cc4(portal, portal_exit)
 {
-	self endon_callback(&function_2ef25d40, #"damage", #"death", #"hash_2016cf7b5d5069a7");
+	self endoncallback(&function_2ef25d40, #"damage", #"death", #"hash_2016cf7b5d5069a7");
 	if(!isdefined(portal))
 	{
 		portal = self function_e9848fa7();
@@ -1334,40 +1334,40 @@ function function_99407d66(e_player)
 	if(e_player zm_utility::is_drinking())
 	{
 		self sethintstring("");
-		return 0;
+		return false;
 	}
 	if(self.stub.related_parent.b_active === 0 && level.var_868c98df === 0)
 	{
 		self sethintstring(#"hash_5fb23a325b41e010");
-		return 1;
+		return true;
 	}
 	if(self.stub.related_parent.b_active === 1)
 	{
 		if(function_26ddb915())
 		{
 			self sethintstring(#"hash_79fc5d02a880a44b");
-			return 1;
+			return true;
 		}
 		if(self.stub.related_parent.b_locked === 1)
 		{
 			self sethintstring(#"hash_4a621c0c0f51fef9");
-			return 1;
+			return true;
 		}
 		if(function_8b1a219a())
 		{
 			self sethintstring(#"hash_57249497bfb88a5");
-			return 1;
+			return true;
 		}
 		self sethintstring(#"hash_6801c3df1d9b2a37");
-		return 1;
+		return true;
 	}
 	if(function_8b1a219a())
 	{
 		self sethintstring(#"hash_57748c9a86bf5e92");
-		return 1;
+		return true;
 	}
 	self sethintstring(#"hash_45755e67c1efbdb6");
-	return 1;
+	return true;
 }
 
 /*

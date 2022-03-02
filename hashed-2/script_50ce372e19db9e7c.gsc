@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	registerbehaviorscriptfunctions();
 	spawner::add_archetype_spawn_function(#"elephant", &function_4c731a08);
@@ -50,7 +50,7 @@ autoexec function main()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 	animation::add_global_notetrack_handler("arrow_throw", &function_aef0aaa4, 0);
 	animation::add_global_notetrack_handler("spear_unhide", &function_882f233, 0);
@@ -67,7 +67,7 @@ private function registerbehaviorscriptfunctions()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4c731a08()
+function private function_4c731a08()
 {
 	if(!(isdefined(level.var_c8d8fe54) && level.var_c8d8fe54))
 	{
@@ -95,7 +95,7 @@ private function function_4c731a08()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_deb99302()
+function private function_deb99302()
 {
 	if(isdefined(level.var_a92449fa))
 	{
@@ -115,7 +115,7 @@ private function function_deb99302()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_767db9a1(attacker, weapon, boneindex, hitloc, point)
+function private function_767db9a1(attacker, weapon, boneindex, hitloc, point)
 {
 	var_786d7e06 = namespace_e0710ee6::function_422fdfd4(self, attacker, weapon, boneindex, hitloc, point);
 	damage_scale = var_786d7e06.damage_scale;
@@ -148,7 +148,7 @@ function function_ad0f2b39(aoe)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_848ff0cc(elephant, rider)
+function private function_848ff0cc(elephant, rider)
 {
 	if(isdefined(level.var_a92449fa))
 	{
@@ -186,7 +186,7 @@ private function function_848ff0cc(elephant, rider)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9b64dc73(enemies, entity)
+function private function_9b64dc73(enemies, entity)
 {
 	foreach(enemy in enemies)
 	{
@@ -204,7 +204,7 @@ private function function_9b64dc73(enemies, entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_502d9d0d(entity, projectile)
+function private function_502d9d0d(entity, projectile)
 {
 	projectile thread function_d13a21cb(entity, projectile);
 }
@@ -218,7 +218,7 @@ private function function_502d9d0d(entity, projectile)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dae74ff5()
+function private function_dae74ff5()
 {
 }
 
@@ -231,7 +231,7 @@ private function function_dae74ff5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e41280fd()
+function private function_e41280fd()
 {
 	if(isdefined(self.var_c8ec4813) && self.var_c8ec4813)
 	{
@@ -249,7 +249,7 @@ private function function_e41280fd()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_882f233()
+function private function_882f233()
 {
 	if(isdefined(self.var_c8ec4813) && !self.var_c8ec4813)
 	{
@@ -267,7 +267,7 @@ private function function_882f233()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_aef0aaa4()
+function private function_aef0aaa4()
 {
 	/#
 		assert(isdefined(self.ai.var_ed782d5));
@@ -279,14 +279,17 @@ private function function_aef0aaa4()
 		var_eb549b4f = self.ai.var_c3f91959.origin;
 		projectile = magicbullet(self.ai.var_ed782d5, var_a137cb9f, var_eb549b4f, self.ai.elephant);
 	}
-	else if(isdefined(self.ai.elephant.favoriteenemy))
-	{
-		var_eb549b4f = self.ai.elephant.favoriteenemy.origin;
-		projectile = magicbullet(self.ai.var_ed782d5, var_a137cb9f, var_eb549b4f, self.ai.elephant, self.ai.elephant.favoriteenemy);
-	}
 	else
 	{
-		return;
+		if(isdefined(self.ai.elephant.favoriteenemy))
+		{
+			var_eb549b4f = self.ai.elephant.favoriteenemy.origin;
+			projectile = magicbullet(self.ai.var_ed782d5, var_a137cb9f, var_eb549b4f, self.ai.elephant, self.ai.elephant.favoriteenemy);
+		}
+		else
+		{
+			return;
+		}
 	}
 	var_e15d8b1f = 2;
 	if(self.ai.elephant.ai.var_112ec817 == #"hash_8e170ae91588f20")
@@ -337,7 +340,7 @@ function function_7b10e526(index, multival, target)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d13a21cb(entity, projectile)
+function private function_d13a21cb(entity, projectile)
 {
 	projectile endon(#"death");
 	landpos = entity.var_f6ea2286;
@@ -380,7 +383,7 @@ private function function_d13a21cb(entity, projectile)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_7d162bd0(projectile, var_e15d8b1f, var_c3f91959)
+function private function_7d162bd0(projectile, var_e15d8b1f, var_c3f91959)
 {
 	projectile endon(#"spear_death");
 	result = undefined;
@@ -438,25 +441,25 @@ private function function_7d162bd0(projectile, var_e15d8b1f, var_c3f91959)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5ae551a6(enemy, projectile)
+function private function_5ae551a6(enemy, projectile)
 {
 	if(isdefined(enemy.knockdown) && enemy.knockdown)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(projectile))
 	{
-		return 0;
+		return false;
 	}
 	if(gibserverutils::isgibbed(enemy, 384))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(enemy.origin, projectile.origin) > 250 * 250)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -468,7 +471,7 @@ private function function_5ae551a6(enemy, projectile)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_61d12301(projectile)
+function private function_61d12301(projectile)
 {
 	projectile endon(#"death");
 	result = undefined;
@@ -485,7 +488,7 @@ private function function_61d12301(projectile)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function watch_for_death(projectile)
+function private watch_for_death(projectile)
 {
 	projectile waittill(#"death");
 	waittillframeend();

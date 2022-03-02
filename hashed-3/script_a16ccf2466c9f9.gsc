@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3a3bac1147cc9f9d", &__init__, undefined, undefined);
 }
@@ -114,7 +114,7 @@ function function_a54d41f7(starttime)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f6fec56f()
+function private function_f6fec56f()
 {
 	self notify(#"hash_35c63d8ef4b4825");
 	self endon(#"hash_35c63d8ef4b4825", #"hash_13d72ca5a7cfd2bd");

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_731ab037ad2e053c", &__init__, &__main__, undefined);
 }
@@ -58,7 +58,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c381536b()
+function private function_c381536b()
 {
 	if(isdefined(self.var_9fde8624) && self.var_9fde8624 == #"mannequin")
 	{

@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"dart_wz", &__init__, undefined, undefined);
 }
@@ -61,7 +61,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function kill_vehicle(var_dbd1a594, weapon = level.weaponnone)
+function private kill_vehicle(var_dbd1a594, weapon = level.weaponnone)
 {
 	damageorigin = self.origin + (0, 0, 1);
 	self finishvehicleradiusdamage(self, undefined, 32000, 32000, 10, 0, "MOD_EXPLOSIVE", weapon, damageorigin, 400, -1, (0, 0, 1), 0);
@@ -76,7 +76,7 @@ private function kill_vehicle(var_dbd1a594, weapon = level.weaponnone)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_955a779c(params)
+function private function_955a779c(params)
 {
 	self endon(#"death", #"disconnect");
 	if(!isdefined(params.item) || !isdefined(params.item.var_a6762160) || !isdefined(params.item.var_a6762160.weapon) || params.item.var_a6762160.weapon.name != #"dart")
@@ -119,21 +119,21 @@ private function function_955a779c(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1e845317()
+function private function_1e845317()
 {
 	if(self clientfield::get_to_player("inside_infiltration_vehicle") != 0)
 	{
-		return 0;
+		return false;
 	}
 	if(self isinvehicle())
 	{
-		return 0;
+		return false;
 	}
 	if(!function_3238d10d(self.origin))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -145,7 +145,7 @@ private function function_1e845317()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bd506c77()
+function private function_bd506c77()
 {
 	self endon(#"death", #"disconnect");
 	remoteweapon = getweapon(#"hash_8c773df059a6d5e");
@@ -155,11 +155,11 @@ private function function_bd506c77()
 	}
 	if(self isswitchingweapons())
 	{
-		self waittill_timeout(2, #"weapon_change");
+		self waittilltimeout(2, #"weapon_change");
 	}
 	self giveweapon(remoteweapon);
 	self switchtoweapon(remoteweapon, 1);
-	self waittill_timeout(2, #"weapon_change");
+	self waittilltimeout(2, #"weapon_change");
 }
 
 /*
@@ -171,7 +171,7 @@ private function function_bd506c77()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c08cf66b()
+function private function_c08cf66b()
 {
 	remoteweapon = getweapon(#"hash_8c773df059a6d5e");
 	self takeweapon(remoteweapon);
@@ -186,7 +186,7 @@ private function function_c08cf66b()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_bac16d76(spawnorigin, spawnangles, var_d8138db2)
+function private function_bac16d76(spawnorigin, spawnangles, var_d8138db2)
 {
 	self endon(#"death", #"disconnect");
 	var_5c5b7682 = self getplayercamerapos();
@@ -227,7 +227,7 @@ private function function_bac16d76(spawnorigin, spawnangles, var_d8138db2)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5f9c568d(params)
+function private function_5f9c568d(params)
 {
 	player = self.owner;
 	player thread function_ea9fe221(self);
@@ -263,7 +263,7 @@ function function_79a59d11()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8d3b7a66()
+function private function_8d3b7a66()
 {
 	var_8d430fcb = self getplayerangles();
 	forward = anglestoforward(var_8d430fcb);
@@ -288,7 +288,7 @@ private function function_8d3b7a66()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f35d7cf3(var_5c5b7682, vehicle)
+function private function_f35d7cf3(var_5c5b7682, vehicle)
 {
 	var_8d430fcb = self getplayerangles();
 	forward = anglestoforward(var_8d430fcb);
@@ -438,7 +438,7 @@ function watchownerdisconnect(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d13b1540(vehicle)
+function private function_d13b1540(vehicle)
 {
 	self notify("6f85cb6661241b51");
 	self endon("6f85cb6661241b51");
@@ -545,10 +545,10 @@ function function_3a595d3c()
 	{
 		if(isdefined(results[#"fraction"]) && results[#"fraction"] > 0.99)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -560,25 +560,25 @@ function function_3a595d3c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c6ac711a(target)
+function private function_c6ac711a(target)
 {
 	if(!isdefined(target))
 	{
-		return 0;
+		return false;
 	}
 	if(target.classname != "grenade")
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(target.weapon) || target.weapon.name != #"dart")
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(target.owner) || target.owner != self)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -771,7 +771,7 @@ function function_ea9fe221(dart, collision)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_vehicle_killed(params)
+function private on_vehicle_killed(params)
 {
 	if(isdefined(params.occupants))
 	{
@@ -810,16 +810,16 @@ private function on_vehicle_killed(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c7aa9338(array)
+function private function_c7aa9338(array)
 {
 	foreach(ent in array)
 	{
 		if(util::function_fbce7263(ent.team, self.team))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -852,31 +852,31 @@ function isvaliddartmissiletarget(ent)
 	player = self;
 	if(!isdefined(ent))
 	{
-		return 0;
+		return false;
 	}
 	entisplayer = isplayer(ent);
 	if(entisplayer && !isalive(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(ent.ignoreme === 1)
 	{
-		return 0;
+		return false;
 	}
 	dart = player getvehicleoccupied();
 	if(!isdefined(dart))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(dart.origin, ent.origin) > player.dart_killstreak_weapon.lockonmaxrange * player.dart_killstreak_weapon.lockonmaxrange)
 	{
-		return 0;
+		return false;
 	}
 	if(entisplayer && ent hasperk(#"specialty_nokillstreakreticle"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -893,35 +893,35 @@ function isstillvaliddartmissiletarget(ent, weapon)
 	player = self;
 	if(!(target_istarget(ent) || isplayer(ent)) && (!(isdefined(ent.allowcontinuedlockonafterinvis) && ent.allowcontinuedlockonafterinvis)))
 	{
-		return 0;
+		return false;
 	}
 	dart = player getvehicleoccupied();
 	if(!isdefined(dart))
 	{
-		return 0;
+		return false;
 	}
 	entisplayer = isplayer(ent);
 	if(entisplayer && !isalive(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(ent.ignoreme === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(dart.origin, ent.origin) > player.dart_killstreak_weapon.lockonmaxrange * player.dart_killstreak_weapon.lockonmaxrange)
 	{
-		return 0;
+		return false;
 	}
 	if(entisplayer && ent hasperk(#"specialty_nokillstreakreticle"))
 	{
-		return 0;
+		return false;
 	}
 	if(!heatseekingmissile::insidestingerreticlelocked(ent, undefined, weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

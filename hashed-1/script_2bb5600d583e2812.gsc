@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_10f614b278daaebc", &__init__, undefined, undefined);
 }
@@ -32,7 +32,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	level.var_2da60c10 = [];
 	if(isdefined(getgametypesetting(#"hash_29e7b59313a2f532")) && getgametypesetting(#"hash_29e7b59313a2f532"))
@@ -70,7 +70,7 @@ function function_1c601b99()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c83057f0()
+function private function_c83057f0()
 {
 	level endon(#"game_ended");
 	while(true)
@@ -115,17 +115,17 @@ private function function_c83057f0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9ce07f7c(var_48ad08f5)
+function private function_9ce07f7c(var_48ad08f5)
 {
 	var_b1de6a06 = getentitiesinradius(var_48ad08f5.origin, 250, 15);
 	foreach(actor in var_b1de6a06)
 	{
 		if(function_62318121(var_48ad08f5, actor))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -137,7 +137,7 @@ private function function_9ce07f7c(var_48ad08f5)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_90cc805b(var_48ad08f5)
+function private function_90cc805b(var_48ad08f5)
 {
 	var_b1de6a06 = getentitiesinradius(var_48ad08f5.origin, 250, 15);
 	var_9db93b2e = [];
@@ -168,17 +168,17 @@ private function function_90cc805b(var_48ad08f5)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_62318121(var_48ad08f5, ent)
+function private function_62318121(var_48ad08f5, ent)
 {
 	if(!isdefined(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(ent.archetype == "zombie" && util::function_fbce7263(ent.team, var_48ad08f5.team))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -190,7 +190,7 @@ private function function_62318121(var_48ad08f5, ent)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_4776caf4(eventstruct)
+event private function_4776caf4(eventstruct)
 {
 	if(eventstruct.weapon.name == #"hash_10f614b278daaebc")
 	{
@@ -300,7 +300,7 @@ function function_1dba4a2()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bb17ec5a()
+function private function_bb17ec5a()
 {
 	self endon(#"death");
 	self.attacking = 1;
@@ -359,7 +359,7 @@ private function function_bb17ec5a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b053b486()
+function private function_b053b486()
 {
 	self endon(#"death");
 	self.dancing = 1;
@@ -375,7 +375,7 @@ private function function_b053b486()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function drop_to_ground(b_immediate = 0)
+function private drop_to_ground(b_immediate = 0)
 {
 	self endon(#"death");
 	s_trace = groundtrace(self.origin + vectorscale((0, 0, 1), 16), self.origin + (vectorscale((0, 0, -1), 1000)), 0, self);
@@ -403,7 +403,7 @@ private function drop_to_ground(b_immediate = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function jump(scene_ents)
+function private jump(scene_ents)
 {
 	scene_ents[#"hash_10f614b278daaebc"] endon(#"death");
 	scene_ents[#"hash_10f614b278daaebc"] waittill(#"jumped");
@@ -422,7 +422,7 @@ private function jump(scene_ents)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function face_target(target)
+function private face_target(target)
 {
 	v_dir = vectornormalize(target.origin - self.origin);
 	v_dir = (v_dir[0], v_dir[1], 0);
@@ -439,7 +439,7 @@ private function face_target(target)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c8f642f6(enemy, n_time)
+function private function_c8f642f6(enemy, n_time)
 {
 	self.mover movez(16, n_time);
 	self.mover waittill(#"movedone");

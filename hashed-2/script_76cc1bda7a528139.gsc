@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_32255dd0e99b44ef", &__init__, undefined, undefined);
 }
@@ -126,13 +126,16 @@ function function_39fb4ba9(localclientnum, oldval, newval, bnewent, binitialsnap
 				playviewmodelfx(localclientnum, level._effect[#"hash_4b54be230d4f57e9"], "tag_flash");
 			}
 		}
-		else if(b_packed === 1)
-		{
-			util::playfxontag(localclientnum, level._effect[#"hash_720e50199e045f64"], self, "tag_flash");
-		}
 		else
 		{
-			util::playfxontag(localclientnum, level._effect[#"hash_4b5aca230d53d7fb"], self, "tag_flash");
+			if(b_packed === 1)
+			{
+				util::playfxontag(localclientnum, level._effect[#"hash_720e50199e045f64"], self, "tag_flash");
+			}
+			else
+			{
+				util::playfxontag(localclientnum, level._effect[#"hash_4b5aca230d53d7fb"], self, "tag_flash");
+			}
 		}
 	}
 }

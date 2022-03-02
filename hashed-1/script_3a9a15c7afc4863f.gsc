@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_568317e5f219241c", &__init__, undefined, undefined);
 }
@@ -52,7 +52,7 @@ function function_82ad2d27()
 {
 	zm_perks::function_7f42e14e(#"hash_3eac84d6fe51944b", "mod_electric_cherry", #"perk_electric_cherry", #"specialty_electriccherry", 4000);
 	zm_perks::register_perk_threads(#"hash_3eac84d6fe51944b", &function_4b44aa37, &function_cfba6046, &function_b107ce52);
-	zm_perks::function_430970f6(#"hash_3eac84d6fe51944b", &function_f6515ba2);
+	zm_perks::register_actor_damage_override(#"hash_3eac84d6fe51944b", &function_f6515ba2);
 }
 
 /*
@@ -78,13 +78,16 @@ function electric_cherry_death_fx()
 			self clientfield::set("tesla_shock_eyes_fx", 1);
 		}
 	}
-	else if(isvehicle(self))
-	{
-		self clientfield::set("tesla_death_fx_veh", 1);
-	}
 	else
 	{
-		self clientfield::set("tesla_death_fx", 1);
+		if(isvehicle(self))
+		{
+			self clientfield::set("tesla_death_fx_veh", 1);
+		}
+		else
+		{
+			self clientfield::set("tesla_death_fx", 1);
+		}
 	}
 }
 

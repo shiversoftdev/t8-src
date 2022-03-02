@@ -39,7 +39,7 @@ function init_shared()
 	Parameters: 0
 	Flags: Private
 */
-private function function_2aec10d2()
+function private function_2aec10d2()
 {
 	if(!isdefined(level.var_2790ddf8))
 	{
@@ -64,7 +64,7 @@ private function function_2aec10d2()
 	Parameters: 0
 	Flags: Private
 */
-private function setupcallbacks()
+function private setupcallbacks()
 {
 	level.var_1b900c1d = &function_1b900c1d;
 	level.var_14151f16 = &function_14151f16;
@@ -87,7 +87,7 @@ private function setupcallbacks()
 	Parameters: 0
 	Flags: Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	clientfield::register("toplayer", "gadget_icepick_on", 9000, 1, "int");
 	clientfield::register("toplayer", "currentlyHacking", 9000, 1, "int");
@@ -121,7 +121,7 @@ private function registerclientfields()
 function function_3e3330bc()
 {
 	var_51d5c26f = function_13f4415c();
-	return (isdefined(var_51d5c26f.var_1f06f5a) ? var_51d5c26f.var_1f06f5a : 0);
+	return true;
 }
 
 /*
@@ -146,7 +146,7 @@ event function_9497a4f3(eventstruct)
 	Parameters: 2
 	Flags: Private
 */
-private function function_c18360f6(var_11a83c3a, params)
+function private function_c18360f6(var_11a83c3a, params)
 {
 	if(!isdefined(params))
 	{
@@ -197,7 +197,7 @@ private function function_c18360f6(var_11a83c3a, params)
 	Parameters: 2
 	Flags: Private
 */
-private function function_a5b83ede(hacker, var_11a83c3a)
+function private function_a5b83ede(hacker, var_11a83c3a)
 {
 	if(!isdefined(hacker) || !isdefined(var_11a83c3a))
 	{
@@ -241,7 +241,7 @@ private function function_a5b83ede(hacker, var_11a83c3a)
 	Parameters: 2
 	Flags: Private
 */
-private function function_5e9bb390(hacker, var_11a83c3a)
+function private function_5e9bb390(hacker, var_11a83c3a)
 {
 	function_a5b83ede(hacker, var_11a83c3a);
 	if(isdefined(hacker.var_e989badb))
@@ -439,7 +439,7 @@ function onplayerdisconnect()
 	Parameters: 1
 	Flags: Private
 */
-private function function_70ed4baf(entity)
+function private function_70ed4baf(entity)
 {
 	if(isdefined(entity.identifier_weapon))
 	{
@@ -484,34 +484,34 @@ function function_14151f16(entity, canhack)
 	Parameters: 2
 	Flags: Private
 */
-private function function_808efdee(hacker, entity)
+function private function_808efdee(hacker, entity)
 {
 	var_45b1bb5a = function_70ed4baf(entity);
 	if(!isdefined(var_45b1bb5a) || var_45b1bb5a == level.weaponnone && !isplayer(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(entity.team == hacker.team)
 	{
-		return 0;
+		return false;
 	}
 	if(entity.team == #"spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.var_52a68abf) && entity.var_52a68abf)
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(entity) && !var_45b1bb5a.ishackable)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.ishacked) && entity.ishacked && !isplayer(entity))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -636,7 +636,7 @@ function function_13f4415c()
 	Parameters: 1
 	Flags: Private
 */
-private function function_73d5db3b(player)
+function private function_73d5db3b(player)
 {
 	player.var_be9a0b4b = [];
 	player.var_be9a0b4b[0] = getplayers();
@@ -673,7 +673,7 @@ private function function_73d5db3b(player)
 	Parameters: 2
 	Flags: Private
 */
-private function function_d65b8dbe(array, sort_func)
+function private function_d65b8dbe(array, sort_func)
 {
 	array::function_b63fcb3(array, sort_func);
 }
@@ -687,7 +687,7 @@ private function function_d65b8dbe(array, sort_func)
 	Parameters: 2
 	Flags: Private
 */
-private function function_f1f877e0(array, sort_func)
+function private function_f1f877e0(array, sort_func)
 {
 	array::function_b63fcb3(array, sort_func);
 }
@@ -701,7 +701,7 @@ private function function_f1f877e0(array, sort_func)
 	Parameters: 2
 	Flags: Private
 */
-private function sort_vehicles(array, sort_func)
+function private sort_vehicles(array, sort_func)
 {
 	array::function_b63fcb3(array, sort_func);
 }
@@ -715,9 +715,9 @@ private function sort_vehicles(array, sort_func)
 	Parameters: 1
 	Flags: Private
 */
-private function function_7f0dadf5(player)
+function private function_7f0dadf5(player)
 {
-	player endon_callback(&function_4802ca63, #"death", #"hash_7b4714f415b8f49e");
+	player endoncallback(&function_4802ca63, #"death", #"hash_7b4714f415b8f49e");
 	level.var_fdb0a658 = 1;
 	player clientfield::set_player_uimodel("IcePickInfo.hackStarted", 1);
 	var_8b745faa = getweapon(#"gadget_icepick");
@@ -797,7 +797,7 @@ private function function_7f0dadf5(player)
 	Parameters: 3
 	Flags: Private
 */
-private function function_aaf0a382(entities, player, max)
+function private function_aaf0a382(entities, player, max)
 {
 	player endon(#"death", #"hash_7b4714f415b8f49e");
 	var_e8e3cc00 = 0;
@@ -833,7 +833,7 @@ private function function_aaf0a382(entities, player, max)
 	Parameters: 2
 	Flags: Private
 */
-private function function_2b2ed159(entity, var_dbd1a594)
+function private function_2b2ed159(entity, var_dbd1a594)
 {
 	var_dbd1a594 endon(#"death", #"hash_7b4714f415b8f49e");
 	var_87bdc7d3 = int(function_ab1f58d0(entity) * 1000);
@@ -1036,11 +1036,14 @@ function function_29f4ff02(var_dbd1a594, entity)
 		}
 		function_d545fd0a(var_dbd1a594, var_45b1bb5a);
 	}
-	else if(isdefined(entity.var_6f6b8de5))
+	else
 	{
-		var_9daa805 = 1;
+		if(isdefined(entity.var_6f6b8de5))
+		{
+			var_9daa805 = 1;
+		}
+		entity.var_6f6b8de5 = 1;
 	}
-	entity.var_6f6b8de5 = 1;
 	function_42bb8ac1(var_45b1bb5a, originalowner, var_dbd1a594, var_9daa805);
 }
 
@@ -1118,7 +1121,7 @@ function function_27c9bfc8(var_11a83c3a, announce)
 	Parameters: 2
 	Flags: Private
 */
-private function function_aadad2c(var_dbd1a594, var_11a83c3a)
+function private function_aadad2c(var_dbd1a594, var_11a83c3a)
 {
 	/#
 		assert(isdefined(var_dbd1a594));
@@ -1157,7 +1160,7 @@ private function function_aadad2c(var_dbd1a594, var_11a83c3a)
 	Parameters: 3
 	Flags: Private
 */
-private function function_a9987363(var_559f4f0a, var_dbd1a594, var_11a83c3a)
+function private function_a9987363(var_559f4f0a, var_dbd1a594, var_11a83c3a)
 {
 	/#
 		assert(isdefined(var_559f4f0a));
@@ -1189,7 +1192,7 @@ private function function_a9987363(var_559f4f0a, var_dbd1a594, var_11a83c3a)
 	Parameters: 2
 	Flags: Private
 */
-private function function_bf744a1e(var_dbd1a594, var_11a83c3a)
+function private function_bf744a1e(var_dbd1a594, var_11a83c3a)
 {
 	var_11a83c3a.var_e2131267 = var_dbd1a594;
 	var_8b745faa = getweapon(#"gadget_icepick");
@@ -1211,7 +1214,7 @@ private function function_bf744a1e(var_dbd1a594, var_11a83c3a)
 	Parameters: 1
 	Flags: Private
 */
-private function function_f255c737(var_11a83c3a)
+function private function_f255c737(var_11a83c3a)
 {
 	/#
 		assert(isdefined(var_11a83c3a));
@@ -1283,7 +1286,7 @@ function function_39026c34(var_dbd1a594, var_11a83c3a, var_4f6e2cbe)
 	Parameters: 0
 	Flags: Private
 */
-private function function_9a1266be()
+function private function_9a1266be()
 {
 	self endon(#"death", #"hash_2945c35e0b146804", #"hash_5e72464fef90323e");
 	wait(1);
@@ -1299,7 +1302,7 @@ private function function_9a1266be()
 	Parameters: 2
 	Flags: Private
 */
-private function gadget_icepick_on(slot, weapon)
+function private gadget_icepick_on(slot, weapon)
 {
 	self clientfield::set_to_player("gadget_icepick_on", 1);
 	self clientfield::set_player_uimodel("IcePickInfo.hackStarted", 0);
@@ -1334,7 +1337,7 @@ private function gadget_icepick_on(slot, weapon)
 	Parameters: 0
 	Flags: Private
 */
-private function function_30fe16c7()
+function private function_30fe16c7()
 {
 	/#
 		self notify("");
@@ -1356,7 +1359,7 @@ private function function_30fe16c7()
 	Parameters: 2
 	Flags: Private
 */
-private function gadget_icepick_off(slot, weapon)
+function private gadget_icepick_off(slot, weapon)
 {
 	self clientfield::set_to_player("gadget_icepick_on", 0);
 	self notify(#"hash_2945c35e0b146804");
@@ -1382,7 +1385,7 @@ private function gadget_icepick_off(slot, weapon)
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1f6e8d0(player)
+function private function_d1f6e8d0(player)
 {
 	player endon(#"hash_2945c35e0b146804", #"death");
 	if(!isdefined(player.var_46fccfba))
@@ -1437,7 +1440,7 @@ function function_f1148c2c(player)
 	player notify(#"hash_5e72464fef90323e");
 	if(player isswitchingweapons())
 	{
-		player waittill_timeout(1, #"weapon_change_complete");
+		player waittilltimeout(1, #"weapon_change_complete");
 	}
 	if(isdefined(player) && isplayer(player))
 	{
@@ -1454,7 +1457,7 @@ function function_f1148c2c(player)
 	Parameters: 1
 	Flags: Private
 */
-private function function_6b9d6894(player)
+function private function_6b9d6894(player)
 {
 	player endon(#"hash_2945c35e0b146804", #"death", #"disconnect");
 	if(!isdefined(player.var_3ca20bb9))
@@ -1515,13 +1518,13 @@ private function function_6b9d6894(player)
 	Parameters: 1
 	Flags: Private
 */
-private function function_28f0bd8e(hacker)
+function private function_28f0bd8e(hacker)
 {
 	hacker notify(#"hash_ea5ac4d11419268");
 	hacker endon(#"hash_ea5ac4d11419268");
 	objectiveid = hacker.var_1d6ad02e;
 	var_51d5c26f = function_13f4415c();
-	hacker waittill_timeout((isdefined(var_51d5c26f.var_9baf2d44) ? var_51d5c26f.var_9baf2d44 : 0), #"death", #"disconnect");
+	hacker waittilltimeout((isdefined(var_51d5c26f.var_9baf2d44) ? var_51d5c26f.var_9baf2d44 : 0), #"death", #"disconnect");
 	if(isdefined(objectiveid))
 	{
 		gameobjects::release_obj_id(objectiveid);
@@ -1542,7 +1545,7 @@ private function function_28f0bd8e(hacker)
 	Parameters: 1
 	Flags: Private
 */
-private function function_b76c8353(hacker)
+function private function_b76c8353(hacker)
 {
 	hacker endon(#"death", #"hash_2945c35e0b146804");
 	var_51d5c26f = function_13f4415c();

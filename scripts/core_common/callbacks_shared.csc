@@ -713,7 +713,12 @@ event codecallback_statechange(eventstruct)
 	{
 		[[level._systemstates[eventstruct.system].callback]](eventstruct.localclientnum, eventstruct.state);
 	}
-	println(("" + eventstruct.system) + "");
+	else
+	{
+		/#
+			println(("" + eventstruct.system) + "");
+		#/
+	}
 }
 
 /*
@@ -1718,7 +1723,7 @@ event codecallback_gadgetvisionpulse_reveal(eventstruct)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function fade_to_black_for_x_sec(startwait, blackscreenwait, fadeintime, fadeouttime, shadername)
+function private fade_to_black_for_x_sec(startwait, blackscreenwait, fadeintime, fadeouttime, shadername)
 {
 	self endon(#"disconnect");
 	wait(startwait);

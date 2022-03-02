@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"load", &__init__, undefined, undefined);
 }
@@ -36,13 +36,16 @@ function __init__()
 	{
 		level.game_mode_suffix = "_cp";
 	}
-	else if(sessionmodeiszombiesgame())
-	{
-		level.game_mode_suffix = "_zm";
-	}
 	else
 	{
-		level.game_mode_suffix = "_mp";
+		if(sessionmodeiszombiesgame())
+		{
+			level.game_mode_suffix = "_zm";
+		}
+		else
+		{
+			level.game_mode_suffix = "_mp";
+		}
 	}
 	/#
 		level thread first_frame();

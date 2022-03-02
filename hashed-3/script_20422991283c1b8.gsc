@@ -167,13 +167,16 @@ function function_f490f0e5(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		util::playfxontag(localclientnum, level._effect[#"hash_2b1060af0c8f9976"], self, "tag_origin");
 	}
-	else if(newval == 2)
+	else
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_3f0f201f556a272f"], self, "tag_origin");
-	}
-	else if(newval == 3)
-	{
-		util::playfxontag(localclientnum, level._effect[#"hash_62ef18672d041a6f"], self, "tag_origin");
+		if(newval == 2)
+		{
+			util::playfxontag(localclientnum, level._effect[#"hash_3f0f201f556a272f"], self, "tag_origin");
+		}
+		else if(newval == 3)
+		{
+			util::playfxontag(localclientnum, level._effect[#"hash_62ef18672d041a6f"], self, "tag_origin");
+		}
 	}
 }
 

@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register("recon_wz", &__init__, undefined, undefined);
 }
@@ -78,9 +78,9 @@ function function_3711499d(vehicle, deployable_weapon, traceresult)
 	var_d1b2ddd5 = (isdefined(deployable_weapon.var_76127e14) ? deployable_weapon.var_76127e14 : 0);
 	if(var_d1b2ddd5 > 0 && traceresult.waterdepth > var_d1b2ddd5)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -184,7 +184,7 @@ event function_e011eea6(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b96833b2(vehicle)
+function private function_b96833b2(vehicle)
 {
 	self notify("103a2be8751d4c46");
 	self endon("103a2be8751d4c46");
@@ -247,7 +247,7 @@ private function function_b96833b2(vehicle)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ec1a4a6b()
+function private function_ec1a4a6b()
 {
 	self notify("47a7355b1fe3316");
 	self endon("47a7355b1fe3316");
@@ -275,7 +275,7 @@ private function function_ec1a4a6b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_vehicle_killed(params)
+function private on_vehicle_killed(params)
 {
 	if(!isdefined(self.scriptvehicletype) || self.scriptvehicletype != "recon_wz")
 	{
@@ -314,15 +314,15 @@ private function on_vehicle_killed(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c7aa9338(array)
+function private function_c7aa9338(array)
 {
 	foreach(ent in array)
 	{
 		if(util::function_fbce7263(ent.team, self.team))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 

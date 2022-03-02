@@ -183,7 +183,7 @@ function stop_aoe_fx(local_client_num, clientfield_name, aoe_fx_info)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function aoe_fx(local_client_num, clientfield_name, aoe_fx_info)
+function private aoe_fx(local_client_num, clientfield_name, aoe_fx_info)
 {
 	self endon(#"death");
 	center = self.origin + (0, 0, aoe_fx_info.center_offset_z);
@@ -239,7 +239,7 @@ private function aoe_fx(local_client_num, clientfield_name, aoe_fx_info)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function do_aoe_fx(local_client_num, center, yaw_count, pitch, clientfield_name, aoe_fx_info)
+function private do_aoe_fx(local_client_num, center, yaw_count, pitch, clientfield_name, aoe_fx_info)
 {
 	profile_script = getdvarint(#"scr_profile_aoe_client", 0);
 	if(profile_script)
@@ -295,12 +295,12 @@ private function do_aoe_fx(local_client_num, center, yaw_count, pitch, clientfie
 		else
 		{
 			/#
-				if(debug_aoe_traces)
-				{
-					line(fx_position + vectorscale((0, 0, 1), 50), fx_position - vectorscale((0, 0, 1), 50), (1, 0, 0), 1, 0, 300);
-					sphere(fx_position, sphere_size, (1, 0, 1), 1, 1, 8, 300);
-				}
+				line(fx_position + vectorscale((0, 0, 1), 50), fx_position - vectorscale((0, 0, 1), 50), (1, 0, 0), 1, 0, 300);
+				sphere(fx_position, sphere_size, (1, 0, 1), 1, 1, 8, 300);
 			#/
+			if(debug_aoe_traces)
+			{
+			}
 			if((lengthsquared(vectorcross(forward, tracedir * -1))) == 0)
 			{
 				forward = vectorcross(right, forward);

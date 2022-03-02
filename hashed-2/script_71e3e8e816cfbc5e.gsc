@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_19b159b284b5bcb4", &__init__, undefined, #"hash_3c913111830b7769");
 }
@@ -142,7 +142,7 @@ function function_955a779c(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b854ffba()
+function private function_b854ffba()
 {
 	var_b6015a5d = 0;
 	if(isdefined(self.inventory) && isdefined(self.inventory.items))

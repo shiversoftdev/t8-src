@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"cymbal_monkey", &__init__, &__main__, undefined);
 }
@@ -31,7 +31,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	level.var_7d95e1ed = [];
 	level.var_7c5c96dc = &function_4f90c4c2;
@@ -65,7 +65,7 @@ function function_1c601b99()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	level._effect[#"monkey_glow"] = #"zm_weapons/fx8_cymbal_monkey_light";
 }
@@ -79,7 +79,7 @@ private function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a23699fe()
+function private function_a23699fe()
 {
 	level endon(#"game_ended");
 	var_cf4e80a7 = 250;
@@ -117,14 +117,14 @@ private function function_a23699fe()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7e60533f(monkey, radius)
+function private function_7e60533f(monkey, radius)
 {
 	nearby_players = getentitiesinradius(monkey.origin, radius, 1);
 	foreach(player in nearby_players)
 	{
 		if(function_17c51c94(monkey, player))
 		{
-			return 1;
+			return true;
 		}
 	}
 	var_b1de6a06 = getentitiesinradius(monkey.origin, radius, 15);
@@ -132,10 +132,10 @@ private function function_7e60533f(monkey, radius)
 	{
 		if(function_17c51c94(monkey, actor))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -147,17 +147,17 @@ private function function_7e60533f(monkey, radius)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_17c51c94(monkey, ent)
+function private function_17c51c94(monkey, ent)
 {
 	if(!isdefined(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(ent) || isactor(ent) && util::function_fbce7263(ent.team, monkey.team))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -169,7 +169,7 @@ private function function_17c51c94(monkey, ent)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_4776caf4(eventstruct)
+event private function_4776caf4(eventstruct)
 {
 	if(eventstruct.weapon.name == #"cymbal_monkey")
 	{

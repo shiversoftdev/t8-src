@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_413cdfff74818010", &__init__, undefined, "renderoverridebundle");
 }
@@ -62,7 +62,7 @@ function function_972e0565(local_client_num, bundle)
 	util::waitforclient(local_client_num);
 	if(shoutcaster::is_shoutcaster(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	localplayer = function_5c10bd79(local_client_num);
 	if(self == localplayer)
@@ -71,10 +71,10 @@ function function_972e0565(local_client_num, bundle)
 		blade = getweapon(#"sig_blade");
 		if(isthirdperson(local_client_num) && curweapon == blade)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -92,13 +92,16 @@ function function_a25e8ff(localclientnum, var_21818d51)
 	{
 		self shoutcaster::function_a0b844f1(localclientnum, #"hash_2f86d28434166be7", #"hash_71fbf1094f57b910");
 	}
-	else if(self function_21c0fa55())
-	{
-		self function_3752300d(localclientnum);
-	}
 	else
 	{
-		self function_bcc9c79c(localclientnum);
+		if(self function_21c0fa55())
+		{
+			self function_3752300d(localclientnum);
+		}
+		else
+		{
+			self function_bcc9c79c(localclientnum);
+		}
 	}
 }
 
@@ -137,7 +140,7 @@ function on_player_spawned(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5d6c2a78(localclientnum)
+function private function_5d6c2a78(localclientnum)
 {
 	foreach(player in getplayers(localclientnum))
 	{
@@ -257,18 +260,18 @@ function function_fac25f84(local_client_num, bundle)
 {
 	if(level.gameended)
 	{
-		return 0;
+		return false;
 	}
 	if(!shoutcaster::is_shoutcaster(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	player = function_5c10bd79(local_client_num);
 	if(self == player && !shoutcaster::function_2e6e4ee0(local_client_num))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

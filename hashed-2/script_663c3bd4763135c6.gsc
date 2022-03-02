@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_bonus_points_player", &__init__, undefined, undefined);
 }
@@ -34,7 +34,7 @@ autoexec function function_89f2df9()
 */
 function __init__()
 {
-	zm_powerups::register_powerup("bonus_points_player", &function_36b352c3);
+	zm_powerups::register_powerup("bonus_points_player", &grab_bonus_points_player);
 	zm_powerups::register_powerup("bonus_points_player_shared", &function_ec014d54);
 	if(zm_powerups::function_cc33adc8())
 	{
@@ -44,7 +44,7 @@ function __init__()
 }
 
 /*
-	Name: function_36b352c3
+	Name: grab_bonus_points_player
 	Namespace: zm_powerup_bonus_points_player
 	Checksum: 0xA874C7E5
 	Offset: 0x270
@@ -52,7 +52,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked
 */
-function function_36b352c3(player)
+function grab_bonus_points_player(player)
 {
 	level thread bonus_points_player_powerup(self, player);
 	player thread zm_powerups::powerup_vo("bonus");
@@ -100,13 +100,16 @@ function bonus_points_player_powerup(item, player)
 	{
 		points = item.var_258c5fbc;
 	}
-	else if(isdefined(level.var_a4c782b9) && level.var_a4c782b9)
-	{
-		points = randomintrange(1, 25) * 100;
-	}
 	else
 	{
-		points = 500;
+		if(isdefined(level.var_a4c782b9) && level.var_a4c782b9)
+		{
+			points = randomintrange(1, 25) * 100;
+		}
+		else
+		{
+			points = 500;
+		}
 	}
 	if(isdefined(level.bonus_points_powerup_override))
 	{

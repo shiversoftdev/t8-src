@@ -367,22 +367,25 @@ function function_53ef16ed(var_b6acc0c9, var_5563d1e7, var_8b1294a8, var_20d5084
 			level notify(#"grapple_complete");
 			break;
 		}
-		else if(isdefined(var_4dc9e63c))
+		else
 		{
-			level thread namespace_8c007aa6::function_831e0584(array(var_4dc9e63c));
-		}
-		namespace_73e1c3e3::function_a61ebb46((function_8b1a219a() ? #"hash_43778cd6dfd4c233" : #"hash_142e78a1bcbd104d"));
-		namespace_73e1c3e3::function_79957328(undefined);
-		if(isdefined(str_objective))
-		{
-			e_player = getplayers()[0];
-			e_player thread namespace_73e1c3e3::function_61c3d59c(str_objective, undefined);
-		}
-		if(isdefined(var_20d50849))
-		{
-			foreach(str_notify in var_20d50849)
+			if(isdefined(var_4dc9e63c))
 			{
-				level notify(str_notify);
+				level thread namespace_8c007aa6::function_831e0584(array(var_4dc9e63c));
+			}
+			namespace_73e1c3e3::function_a61ebb46((function_8b1a219a() ? #"hash_43778cd6dfd4c233" : #"hash_142e78a1bcbd104d"));
+			namespace_73e1c3e3::function_79957328(undefined);
+			if(isdefined(str_objective))
+			{
+				e_player = getplayers()[0];
+				e_player thread namespace_73e1c3e3::function_61c3d59c(str_objective, undefined);
+			}
+			if(isdefined(var_20d50849))
+			{
+				foreach(str_notify in var_20d50849)
+				{
+					level notify(str_notify);
+				}
 			}
 		}
 	}
@@ -1437,7 +1440,7 @@ function function_e340db61()
 function function_3857a1fb()
 {
 	level endon(#"combattraining_logic_finished");
-	level endon_callback(&function_b57b281a, #"hash_56fb6ae4bbd573d9");
+	level endoncallback(&function_b57b281a, #"hash_56fb6ae4bbd573d9");
 	level namespace_73e1c3e3::function_1a3c644e("s_hellstorm_end_obj");
 	level notify(#"dodge_the_hellstorm_objective_success");
 }
@@ -1469,7 +1472,7 @@ function function_b57b281a(hash)
 function function_1c78b967()
 {
 	level endon(#"combattraining_logic_finished");
-	level endon_callback(&function_b8f40318, #"hash_6308f4ed0b129e5d", #"dodge_the_hellstorm_objective_success");
+	level endoncallback(&function_b8f40318, #"hash_6308f4ed0b129e5d", #"dodge_the_hellstorm_objective_success");
 	e_player = namespace_73e1c3e3::get_player();
 	e_player namespace_64a487a9::function_fd2d220e();
 	setdvar(#"hash_3fb2952874e511c2", #"");
@@ -1513,7 +1516,7 @@ function function_1c78b967()
 		killstreak_detect::killstreaktargetset(rocket);
 		magicbullet(getweapon(#"hash_33be4792feeabece"), rocket.origin, rocket.origin + ((anglestoforward(rocket.angles + vectorscale((1, 0, 0), 20))) * 1000), rocket.owner);
 		magicbullet(getweapon(#"hash_33be4792feeabece"), rocket.origin, rocket.origin + ((anglestoforward(rocket.angles - vectorscale((1, 0, 0), 20))) * 1000), rocket.owner);
-		e_player waittill_timeout(1, #"death");
+		e_player waittilltimeout(1, #"death");
 	}
 	level thread namespace_73e1c3e3::function_79957328(undefined);
 	level thread namespace_73e1c3e3::function_c561377e(undefined);
@@ -1627,7 +1630,7 @@ function earn_the_hellstorm_objective()
 		level thread function_4d656f7f();
 		var_ab60380 = "killstreak_quantity_" + #"remote_missile";
 		result = undefined;
-		result = e_player waittill_timeout(var_40b03ff, #"death", var_ab60380);
+		result = e_player waittilltimeout(var_40b03ff, #"death", var_ab60380);
 		level notify(#"hash_271b3e8ba24ae2e2");
 		setbombtimer("A", 0);
 		setmatchflag("bomb_timer_a", 0);
@@ -1637,14 +1640,17 @@ function earn_the_hellstorm_objective()
 		{
 			break;
 		}
-		else if(result._notify == "death")
-		{
-			level thread namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_2_score_dead"), 0);
-		}
 		else
 		{
-			level thread namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_2_score_fail"), 0);
-			namespace_73e1c3e3::function_79957328(undefined);
+			if(result._notify == "death")
+			{
+				level thread namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_2_score_dead"), 0);
+			}
+			else
+			{
+				level thread namespace_8c007aa6::function_831e0584(array("vox_tvoi_tutor_ruin_final_2_score_fail"), 0);
+				namespace_73e1c3e3::function_79957328(undefined);
+			}
 		}
 		level notify(#"earn_the_hellstorm_objective");
 		level thread namespace_73e1c3e3::function_c561377e();

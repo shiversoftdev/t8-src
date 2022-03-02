@@ -42,7 +42,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	level.scoreevents_givekillstats = &givekillstats;
 	level.scoreevents_processassist = &function_b1a3b359;
@@ -158,9 +158,9 @@ function function_c9de50a6(player)
 		{
 			continue;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -240,7 +240,21 @@ function updatematchbonusscores(outcome)
 			{
 				player function_78e7b549(winnerscale, "tie", gamelength);
 			}
-			else if(isdefined(player.pers[#"team"]) && player.pers[#"team"] == winning_team)
+			else
+			{
+				if(isdefined(player.pers[#"team"]) && player.pers[#"team"] == winning_team)
+				{
+					player function_78e7b549(winnerscale, "win", gamelength);
+				}
+				else
+				{
+					player function_78e7b549(loserscale, "loss", gamelength);
+				}
+			}
+		}
+		else
+		{
+			if(function_c9de50a6(player))
 			{
 				player function_78e7b549(winnerscale, "win", gamelength);
 			}
@@ -248,14 +262,6 @@ function updatematchbonusscores(outcome)
 			{
 				player function_78e7b549(loserscale, "loss", gamelength);
 			}
-		}
-		else if(function_c9de50a6(player))
-		{
-			player function_78e7b549(winnerscale, "win", gamelength);
-		}
-		else
-		{
-			player function_78e7b549(loserscale, "loss", gamelength);
 		}
 		player.pers[#"totalmatchbonus"] = player.pers[#"totalmatchbonus"] + player.matchbonus;
 	}
@@ -284,28 +290,37 @@ function updatecustomgamewinner(outcome)
 		{
 			player.pers[#"victory"] = 0;
 		}
-		else if(level.teambased)
+		else
 		{
-			if(player.team == var_6f86cba9)
+			if(level.teambased)
 			{
-				player.pers[#"victory"] = 2;
-			}
-			else if(tie)
-			{
-				player.pers[#"victory"] = 1;
+				if(player.team == var_6f86cba9)
+				{
+					player.pers[#"victory"] = 2;
+				}
+				else
+				{
+					if(tie)
+					{
+						player.pers[#"victory"] = 1;
+					}
+					else
+					{
+						player.pers[#"victory"] = 0;
+					}
+				}
 			}
 			else
 			{
-				player.pers[#"victory"] = 0;
+				if(function_c9de50a6(player))
+				{
+					player.pers[#"victory"] = 2;
+				}
+				else
+				{
+					player.pers[#"victory"] = 0;
+				}
 			}
-		}
-		else if(function_c9de50a6(player))
-		{
-			player.pers[#"victory"] = 2;
-		}
-		else
-		{
-			player.pers[#"victory"] = 0;
 		}
 		player.victory = player.pers[#"victory"];
 		player.pers[#"sbtimeplayed"] = player.timeplayed[#"total"];
@@ -1550,16 +1565,16 @@ function areteamarraysequal(teamsa, teamsb)
 {
 	if(teamsa.size != teamsb.size)
 	{
-		return 0;
+		return false;
 	}
 	foreach(team in teamsa)
 	{
 		if(!isdefined(teamsb[team]))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1862,17 +1877,17 @@ function canupdateweaponcontractstats()
 {
 	if(getdvarint(#"enable_weapon_contract", 0) == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(!level.rankedmatch && !level.arenamatch)
 	{
-		return 0;
+		return false;
 	}
 	if(function_f99d2668())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2121,53 +2136,56 @@ function updatewinlossstats()
 			}
 		}
 	}
-	else if(match::function_5f24faac("tie"))
-	{
-		foreach(player in players)
-		{
-			if(!isdefined(player.pers[#"team"]))
-			{
-				continue;
-			}
-			if(level.hostforcedend && player ishost())
-			{
-				continue;
-			}
-			updatetiestats(player);
-		}
-	}
 	else
 	{
-		foreach(player in players)
+		if(match::function_5f24faac("tie"))
 		{
-			if(!isdefined(player.pers[#"team"]))
+			foreach(player in players)
 			{
-				continue;
-			}
-			if(level.hostforcedend && player ishost())
-			{
-				continue;
-			}
-			if(match::function_5f24faac("tie"))
-			{
-				updatetiestats(player);
-				continue;
-			}
-			if(match::function_a2b53e17(player))
-			{
-				updatewinstats(player);
-				continue;
-			}
-			if(level.rankedmatch && !level.leaguematch && player.pers[#"latejoin"] === 1)
-			{
-				updatelosslatejoinstats(player);
-			}
-			if(!level.disablestattracking)
-			{
-				player stats::function_4db3fba1(#"cur_win_streak", 0);
-				if(level.var_aa5e6547 === 1)
+				if(!isdefined(player.pers[#"team"]))
 				{
-					player stats::function_4db3fba1(#"hash_a06075423336d9c", 0);
+					continue;
+				}
+				if(level.hostforcedend && player ishost())
+				{
+					continue;
+				}
+				updatetiestats(player);
+			}
+		}
+		else
+		{
+			foreach(player in players)
+			{
+				if(!isdefined(player.pers[#"team"]))
+				{
+					continue;
+				}
+				if(level.hostforcedend && player ishost())
+				{
+					continue;
+				}
+				if(match::function_5f24faac("tie"))
+				{
+					updatetiestats(player);
+					continue;
+				}
+				if(match::function_a2b53e17(player))
+				{
+					updatewinstats(player);
+					continue;
+				}
+				if(level.rankedmatch && !level.leaguematch && player.pers[#"latejoin"] === 1)
+				{
+					updatelosslatejoinstats(player);
+				}
+				if(!level.disablestattracking)
+				{
+					player stats::function_4db3fba1(#"cur_win_streak", 0);
+					if(level.var_aa5e6547 === 1)
+					{
+						player stats::function_4db3fba1(#"hash_a06075423336d9c", 0);
+					}
 				}
 			}
 		}
@@ -2356,7 +2374,7 @@ function trackattackeedeath(attackername, rank, xp, prestige, xuid)
 */
 function default_iskillboosting()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -2613,21 +2631,21 @@ function function_f38e3d84(attacker, inflictor, weapon)
 {
 	if(!isdefined(attacker) || !isdefined(attacker.team) || self util::isenemyplayer(attacker) == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(self == attacker || (attacker.classname == "trigger_hurt_new" || attacker.classname == "worldspawn"))
 	{
-		return 0;
+		return false;
 	}
 	if(killstreaks::is_killstreak_weapon(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(attacker.team == #"spectator")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

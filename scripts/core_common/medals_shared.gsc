@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"medals", &__init__, undefined, undefined);
 }
@@ -138,7 +138,7 @@ function function_8570168d()
 	/#
 		if(getdvar(#"hash_49e94b7aefac4f49", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(sessionmodeismultiplayergame())
@@ -146,9 +146,9 @@ function function_8570168d()
 		mode = function_bea73b01();
 		if(mode == 4)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 

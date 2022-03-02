@@ -60,35 +60,35 @@ function function_95f96f3e(local_client_num, bundle, param)
 {
 	if(!self function_4e0ca360())
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(level.friendlycontentoutlines) && level.friendlycontentoutlines))
 	{
-		return 0;
+		return false;
 	}
 	if(shoutcaster::is_shoutcaster(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	if(self.type === "vehicle" && self function_4add50a7())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.vision_pulse[local_client_num]) && level.vision_pulse[local_client_num])
 	{
-		return 0;
+		return false;
 	}
 	player = function_5c10bd79(local_client_num);
 	if(self == player)
 	{
-		return 0;
+		return false;
 	}
 	if(player.var_33b61b6f === 1)
 	{
 		bundle.var_e156fd4 = 1;
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -104,21 +104,21 @@ function function_7181329a(entity)
 {
 	if(isplayer(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(entity.type != "missile" && entity.type != "vehicle" && entity.type != "scriptmover" && entity.type != "actor")
 	{
-		return 0;
+		return false;
 	}
 	if(self clientfield::get("enemyvehicle") != 0)
 	{
-		return 1;
+		return true;
 	}
 	if(entity.type != "actor" && self.type !== "vehicle" && self clientfield::get("enemyequip") != 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -134,31 +134,31 @@ function function_903bbed3(local_client_num, bundle)
 {
 	if(self function_4e0ca360())
 	{
-		return 0;
+		return false;
 	}
 	if(shoutcaster::is_shoutcaster(local_client_num))
 	{
-		return 0;
+		return false;
 	}
 	if(self.type === "vehicle" && self function_4add50a7())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.isbreachingfirewall) && self.isbreachingfirewall == 1)
 	{
-		return 0;
+		return false;
 	}
 	if(function_5778f82(local_client_num, #"specialty_showenemyvehicles") && !isplayer(self) && function_7181329a(self))
 	{
-		return 1;
+		return true;
 	}
 	player = function_5c10bd79(local_client_num);
 	if(isdefined(player) && player.var_33b61b6f === 1)
 	{
 		bundle.var_e156fd4 = 1;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -564,7 +564,7 @@ function function_8ac48939(bundle)
 	Parameters: 2
 	Flags: Private
 */
-private function function_d05902d9(local_client_num, newval)
+function private function_d05902d9(local_client_num, newval)
 {
 	if(!isdefined(level.var_b1dca2fb))
 	{
@@ -629,7 +629,7 @@ function function_32c8b999(local_client_num)
 	Parameters: 2
 	Flags: Private
 */
-private function function_f27ffe49(local_client_num, newval)
+function private function_f27ffe49(local_client_num, newval)
 {
 	if(!isdefined(level.inserted_pop_))
 	{

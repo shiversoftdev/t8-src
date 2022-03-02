@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"spawning_shared", &__init__, undefined, undefined);
 }
@@ -184,7 +184,7 @@ function on_player_killed()
 	Parameters: 0
 	Flags: Private
 */
-private function init_spawn_system()
+function private init_spawn_system()
 {
 	level.spawnsystem = spawnstruct();
 	spawnsystem = level.spawnsystem;
@@ -338,13 +338,13 @@ function function_1bc642b7()
 {
 	if(game.switchedsides == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.spawnsystem.var_3709dc53 == 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -381,20 +381,20 @@ function add_start_spawn_points(str_team, classname)
 	Parameters: 1
 	Flags: Private
 */
-private function is_spawn_trapped(team)
+function private is_spawn_trapped(team)
 {
 	/#
 		level.spawntraptriggertime = getgametypesetting(#"spawntraptriggertime");
 	#/
 	if(!level.rankedmatch)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.alivetimesaverage) && isdefined(level.alivetimesaverage[team]) && level.alivetimesaverage[team] != 0 && level.alivetimesaverage[team] < (int(level.spawntraptriggertime * 1000)))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -406,7 +406,7 @@ private function is_spawn_trapped(team)
 	Parameters: 2
 	Flags: Private
 */
-private function function_e1a7c3d9(spawn_origin, spawn_angles)
+function private function_e1a7c3d9(spawn_origin, spawn_angles)
 {
 	self predictspawnpoint(spawn_origin, spawn_angles);
 	self.predicted_spawn_point = {#angles:spawn_angles, #origin:spawn_origin};
@@ -421,15 +421,15 @@ private function function_e1a7c3d9(spawn_origin, spawn_angles)
 	Parameters: 1
 	Flags: Private
 */
-private function use_start_spawns(predictedspawn)
+function private use_start_spawns(predictedspawn)
 {
 	if(isdefined(level.alwaysusestartspawns) && level.alwaysusestartspawns)
 	{
-		return 1;
+		return true;
 	}
 	if(!(isdefined(level.usestartspawns) && level.usestartspawns))
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
@@ -440,7 +440,7 @@ private function use_start_spawns(predictedspawn)
 			{
 				level.usestartspawns = 0;
 			}
-			return 0;
+			return false;
 		}
 	}
 	else if(isdefined(level.spawn_start[#"free"]) && (level.aliveplayers[#"free"].size + level.spawningplayers[#"free"].size) >= level.spawn_start[#"free"].size)
@@ -449,9 +449,9 @@ private function use_start_spawns(predictedspawn)
 		{
 			level.usestartspawns = 0;
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -484,63 +484,66 @@ function onspawnplayer(predictedspawn = 0)
 		spawn_origin = self.resurrect_origin;
 		spawn_angles = self.resurrect_angles;
 	}
-	else if(spawnoverride)
+	else
 	{
-		if(predictedspawn && isdefined(self.tacticalinsertion))
+		if(spawnoverride)
 		{
-			self function_e1a7c3d9(self.tacticalinsertion.origin, self.tacticalinsertion.angles);
+			if(predictedspawn && isdefined(self.tacticalinsertion))
+			{
+				self function_e1a7c3d9(self.tacticalinsertion.origin, self.tacticalinsertion.angles);
+			}
+			return;
 		}
-		return;
-	}
-	if(self use_start_spawns(predictedspawn))
-	{
-		spawnpoint = undefined;
-		if(!predictedspawn)
+		if(self use_start_spawns(predictedspawn))
 		{
+			spawnpoint = undefined;
+			if(!predictedspawn)
+			{
+				if(level.teambased)
+				{
+					array::add(level.spawningplayers[self.team], self);
+				}
+				else
+				{
+					array::add(level.spawningplayers[#"free"], self);
+				}
+			}
 			if(level.teambased)
 			{
-				array::add(level.spawningplayers[self.team], self);
+				spawnteam = self.pers[#"team"];
+				if(game.switchedsides && level.spawnsystem.var_3709dc53)
+				{
+					spawnteam = util::getotherteam(spawnteam);
+				}
+				var_c162f039 = undefined;
+				if(isdefined(level.var_b8622956))
+				{
+					var_c162f039 = self [[level.var_b8622956]](level.spawn_start[spawnteam]);
+				}
+				if(!isdefined(var_c162f039) || !var_c162f039.size)
+				{
+					var_c162f039 = level.spawn_start[spawnteam];
+				}
+				spawnpoint = get_spawnpoint_random(var_c162f039, predictedspawn);
 			}
 			else
 			{
-				array::add(level.spawningplayers[#"free"], self);
+				spawnpoint = get_spawnpoint_random(level.spawn_start[#"free"], predictedspawn);
 			}
-		}
-		if(level.teambased)
-		{
-			spawnteam = self.pers[#"team"];
-			if(game.switchedsides && level.spawnsystem.var_3709dc53)
+			if(isdefined(spawnpoint))
 			{
-				spawnteam = util::getotherteam(spawnteam);
+				spawn_origin = spawnpoint.origin;
+				spawn_angles = spawnpoint.angles;
 			}
-			var_c162f039 = undefined;
-			if(isdefined(level.var_b8622956))
-			{
-				var_c162f039 = self [[level.var_b8622956]](level.spawn_start[spawnteam]);
-			}
-			if(!isdefined(var_c162f039) || !var_c162f039.size)
-			{
-				var_c162f039 = level.spawn_start[spawnteam];
-			}
-			spawnpoint = get_spawnpoint_random(var_c162f039, predictedspawn);
 		}
 		else
 		{
-			spawnpoint = get_spawnpoint_random(level.spawn_start[#"free"], predictedspawn);
-		}
-		if(isdefined(spawnpoint))
-		{
-			spawn_origin = spawnpoint.origin;
-			spawn_angles = spawnpoint.angles;
-		}
-	}
-	else
-	{
-		spawn_point = getspawnpoint(self, predictedspawn);
-		if(isdefined(spawn_point))
-		{
-			spawn_origin = spawn_point[#"origin"];
-			spawn_angles = spawn_point[#"angles"];
+			spawn_point = getspawnpoint(self, predictedspawn);
+			if(isdefined(spawn_point))
+			{
+				spawn_origin = spawn_point[#"origin"];
+				spawn_angles = spawn_point[#"angles"];
+			}
 		}
 	}
 	if(!isdefined(spawn_origin))
@@ -578,22 +581,25 @@ function onspawnplayer(predictedspawn = 0)
 	Parameters: 2
 	Flags: Private
 */
-private function getspawnpoint(player_entity, predictedspawn = 0)
+function private getspawnpoint(player_entity, predictedspawn = 0)
 {
 	if(function_f99d2668())
 	{
 		point_team = "free";
 		influencer_team = player_entity.pers[#"team"];
 	}
-	else if(level.teambased)
-	{
-		point_team = player_entity.pers[#"team"];
-		influencer_team = player_entity.pers[#"team"];
-	}
 	else
 	{
-		point_team = "free";
-		influencer_team = "free";
+		if(level.teambased)
+		{
+			point_team = player_entity.pers[#"team"];
+			influencer_team = player_entity.pers[#"team"];
+		}
+		else
+		{
+			point_team = "free";
+			influencer_team = "free";
+		}
 	}
 	if(level.teambased && isdefined(game.switchedsides) && game.switchedsides && level.spawnsystem.var_3709dc53)
 	{
@@ -710,17 +716,17 @@ function get_best_spawnpoint(point_team, influencer_team, player, predictedspawn
 	Parameters: 1
 	Flags: Private
 */
-private function spawn_point_class_name_being_used(name)
+function private spawn_point_class_name_being_used(name)
 {
 	if(!isdefined(level.spawn_point_class_names))
 	{
-		return 0;
+		return false;
 	}
 	if(isinarray(level.spawn_point_class_names, name))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -750,7 +756,7 @@ event codecallback_updatespawnpoints(eventstruct)
 	Parameters: 3
 	Flags: Private
 */
-private function add_spawn_points_internal(team, spawnpoints, list = 0)
+function private add_spawn_points_internal(team, spawnpoints, list = 0)
 {
 	oldspawnpoints = [];
 	if(level.teamspawnpoints[team].size)
@@ -869,7 +875,7 @@ function clear_spawn_points()
 	Parameters: 0
 	Flags: Private
 */
-private function update_spawn_points()
+function private update_spawn_points()
 {
 	while(true)
 	{
@@ -893,7 +899,7 @@ private function update_spawn_points()
 	Parameters: 0
 	Flags: Private
 */
-private function update_explored_spawn_points()
+function private update_explored_spawn_points()
 {
 	level flagsys::wait_till("spawn_point_exploration_enabled");
 	explored_radius = getdvarfloat(#"spawnsystem_player_explored_radius", 0);
@@ -914,7 +920,7 @@ private function update_explored_spawn_points()
 	Parameters: 1
 	Flags: Private
 */
-private function update_explored_start_spawn_points_for_team(team)
+function private update_explored_start_spawn_points_for_team(team)
 {
 	level notify("update_explored_start_spawn_points_for_team" + string(team));
 	level endon("update_explored_start_spawn_points_for_team" + string(team));
@@ -969,7 +975,7 @@ private function update_explored_start_spawn_points_for_team(team)
 	Parameters: 2
 	Flags: Private
 */
-private function update_explored_spawn_points_for_team(team, explored_radius_sq)
+function private update_explored_spawn_points_for_team(team, explored_radius_sq)
 {
 	level notify("update_explored_spawn_points_for_team" + string(team));
 	level endon("update_explored_spawn_points_for_team" + string(team));
@@ -1017,21 +1023,21 @@ private function update_explored_spawn_points_for_team(team, explored_radius_sq)
 	Parameters: 2
 	Flags: Private
 */
-private function should_update_exploration_for_player(spawnpoint, player)
+function private should_update_exploration_for_player(spawnpoint, player)
 {
 	if(!player flag::exists("spawn_exploration_active"))
 	{
-		return 0;
+		return false;
 	}
 	if(!player flag::get("spawn_exploration_active") || player isplayinganimscripted() || player.sessionstate != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(has_player_explored_spawn_point(spawnpoint, player))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1057,7 +1063,7 @@ function spawn_exploration_wait_for_one_frame()
 	Parameters: 2
 	Flags: Private
 */
-private function has_player_explored_spawn_point(spawnpoint, player)
+function private has_player_explored_spawn_point(spawnpoint, player)
 {
 	return spawnpoint.explored & (1 << player getentitynumber());
 }
@@ -1071,7 +1077,7 @@ private function has_player_explored_spawn_point(spawnpoint, player)
 	Parameters: 2
 	Flags: Private
 */
-private function set_player_explored_spawn_point(spawnpoint, player)
+function private set_player_explored_spawn_point(spawnpoint, player)
 {
 	spawnpoint.explored = spawnpoint.explored | (1 << player getentitynumber());
 	if(isdefined(player.companion))
@@ -1196,7 +1202,7 @@ function add_spawn_points(team, spawnpointname)
 	Parameters: 1
 	Flags: Private
 */
-private function remove_disabled_on_start_spawn_points(spawn_points)
+function private remove_disabled_on_start_spawn_points(spawn_points)
 {
 	disable_spawn_points = [];
 	foreach(spawn_point in spawn_points)
@@ -1233,7 +1239,7 @@ private function remove_disabled_on_start_spawn_points(spawn_points)
 	Parameters: 1
 	Flags: Private
 */
-private function setup_trigger_enabled_spawn_points(spawn_points)
+function private setup_trigger_enabled_spawn_points(spawn_points)
 {
 	enabled_spawn_points = [];
 	foreach(spawn_point in spawn_points)
@@ -1298,7 +1304,7 @@ private function setup_trigger_enabled_spawn_points(spawn_points)
 	Parameters: 0
 	Flags: Private
 */
-private function _disable_spawn_points()
+function private _disable_spawn_points()
 {
 	self endon(#"death");
 	self notify(#"end_disable_spawn_points");
@@ -1330,7 +1336,7 @@ private function _disable_spawn_points()
 	Parameters: 0
 	Flags: Private
 */
-private function _enable_spawn_points()
+function private _enable_spawn_points()
 {
 	self endon(#"death");
 	self notify(#"end_enable_spawn_points");
@@ -1362,7 +1368,7 @@ private function _enable_spawn_points()
 	Parameters: 0
 	Flags: Private
 */
-private function function_8807475c()
+function private function_8807475c()
 {
 	self.enabled = 1;
 	self.enabled = self.enabled && (!isdefined(self.trigger_enabled) || self.trigger_enabled);
@@ -1378,7 +1384,7 @@ private function function_8807475c()
 	Parameters: 1
 	Flags: Private
 */
-private function rebuild_spawn_points(team)
+function private rebuild_spawn_points(team)
 {
 	level.teamspawnpoints[team] = [];
 	for(index = 0; index < level.spawn_point_team_class_names[team].size; index++)
@@ -1452,7 +1458,7 @@ function drop_spawn_points(spawnpointname)
 	Parameters: 1
 	Flags: Private
 */
-private function add_spawn_point_classname(spawnpointclassname)
+function private add_spawn_point_classname(spawnpointclassname)
 {
 	if(!isdefined(level.spawn_point_class_names))
 	{
@@ -1470,7 +1476,7 @@ private function add_spawn_point_classname(spawnpointclassname)
 	Parameters: 2
 	Flags: Private
 */
-private function add_spawn_point_team_classname(team, spawnpointclassname)
+function private add_spawn_point_team_classname(team, spawnpointclassname)
 {
 	array::add(level.spawn_point_team_class_names[team], spawnpointclassname, 0);
 }
@@ -1519,7 +1525,7 @@ function get_spawnpoint_array(classname, include_disabled = 0)
 	Parameters: 0
 	Flags: Private
 */
-private function spawnpoint_init()
+function private spawnpoint_init()
 {
 	spawnpoint = self;
 	origin = spawnpoint.origin;
@@ -1702,15 +1708,18 @@ function move_spawn_point(var_75347e0b, start_point, new_point, new_angles)
 	{
 		var_690d7ade = var_75347e0b;
 	}
-	else if(!isdefined(var_690d7ade))
+	else
 	{
-		var_690d7ade = [];
+		if(!isdefined(var_690d7ade))
+		{
+			var_690d7ade = [];
+		}
+		else if(!isarray(var_690d7ade))
+		{
+			var_690d7ade = array(var_690d7ade);
+		}
+		var_690d7ade[var_690d7ade.size] = var_75347e0b;
 	}
-	else if(!isarray(var_690d7ade))
-	{
-		var_690d7ade = array(var_690d7ade);
-	}
-	var_690d7ade[var_690d7ade.size] = var_75347e0b;
 	foreach(targetname in var_690d7ade)
 	{
 		spawn_points = get_spawnpoint_array(targetname);

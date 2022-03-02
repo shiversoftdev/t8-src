@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3434169163ecaa3e", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_localclient_connect(localclientnum)
+function private on_localclient_connect(localclientnum)
 {
 	if(getdvarint(#"hash_7074ed0f04816b75", 0))
 	{
@@ -102,7 +102,7 @@ function function_ed66923(targetname)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_93b89303(localclientnum)
+function private function_93b89303(localclientnum)
 {
 	player = function_27673a7(localclientnum);
 	player endon(#"disconnect");

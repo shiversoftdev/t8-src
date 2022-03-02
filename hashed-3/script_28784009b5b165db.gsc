@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"auto_turret", &__init__, undefined, undefined);
 }
@@ -281,13 +281,16 @@ function state_unaware_update(params)
 			}
 			scanning_arc = relativeangle;
 		}
-		else if(self.turretontarget)
+		else
 		{
-			turret_left = !turret_left;
-		}
-		if(!turret_left)
-		{
-			scanning_arc = scanning_arc * -1;
+			if(self.turretontarget)
+			{
+				turret_left = !turret_left;
+			}
+			if(!turret_left)
+			{
+				scanning_arc = scanning_arc * -1;
+			}
 		}
 		scanning_pitch = self.settings.scanning_pitch;
 		if(!isdefined(scanning_pitch))
@@ -590,13 +593,13 @@ function turretallowfriendlyfiredamage(einflictor, eattacker, smeansofdeath, wea
 {
 	if(isdefined(self.owner) && eattacker == self.owner && isdefined(self.settings.friendly_fire) && int(self.settings.friendly_fire) && !weapon.isemp)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(eattacker) && isdefined(eattacker.archetype) && isdefined(smeansofdeath) && smeansofdeath == "MOD_EXPLOSIVE")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_51d483b647ad272e", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	callback::on_spawned(&function_dc856fd8);
 	callback::on_ai_spawned(&on_ai_spawned);
@@ -85,7 +85,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_spawned(&function_dc856fd8);
 	callback::function_824d206(&function_33f0ddd3);
@@ -134,7 +134,7 @@ function on_ai_spawned(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dc856fd8()
+function private function_dc856fd8()
 {
 	self notify("7b8b17371dc9188f");
 	self endon("7b8b17371dc9188f");
@@ -159,7 +159,7 @@ private function function_dc856fd8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_16824dc3()
+function private function_16824dc3()
 {
 	self endon(#"disconnect", #"allow_ads");
 	while(true)
@@ -186,7 +186,7 @@ private function function_16824dc3()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

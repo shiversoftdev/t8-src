@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4f65023f66a6fed1", &__init__, undefined, undefined);
 }
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	spawner = getent("weeping_spawner", "script_noteworthy");
 	level.disable_nuke_delay_spawning = 1;
@@ -112,7 +112,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -166,7 +166,7 @@ function teleport_player()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_player_damage(params)
+function private on_player_damage(params)
 {
 	if(isai(params.eattacker) || isai(params.einflictor) && (params.idamage > 0 || (isdefined(self.armor) && self.armor > 0)) && params.eattacker.archetype === #"hash_777dead372b3a736")
 	{
@@ -185,7 +185,7 @@ private function on_player_damage(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_660c908(behaviortreeentity)
+function private function_660c908(behaviortreeentity)
 {
 	behaviortreeentity setgoal(behaviortreeentity.origin);
 }

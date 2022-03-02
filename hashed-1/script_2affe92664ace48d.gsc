@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2a747ac7e33453cc", &__init__, &__main__, #"hash_6c20d49019c685c7");
 }
@@ -108,13 +108,16 @@ function spawn_single(b_force_spawn = 0, var_eb3a8721)
 	{
 		s_spawn_loc = var_eb3a8721;
 	}
-	else if(isdefined(level.var_fcde6b4))
+	else
 	{
-		s_spawn_loc = [[level.var_fcde6b4]]();
-	}
-	else if(level.zm_loc_types[#"tiger_location"].size > 0)
-	{
-		s_spawn_loc = array::random(level.zm_loc_types[#"tiger_location"]);
+		if(isdefined(level.var_fcde6b4))
+		{
+			s_spawn_loc = [[level.var_fcde6b4]]();
+		}
+		else if(level.zm_loc_types[#"tiger_location"].size > 0)
+		{
+			s_spawn_loc = array::random(level.zm_loc_types[#"tiger_location"]);
+		}
 	}
 	if(!isdefined(s_spawn_loc))
 	{
@@ -151,9 +154,9 @@ function function_66cfd7d()
 	var_b3c0e90e = function_cbfb0da4();
 	if(var_6ecc1639 >= var_b3c0e90e || !level flag::get("spawn_zombies") || (isdefined(level.var_5e45f817) && level.var_5e45f817))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -312,8 +315,8 @@ function round_spawn()
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

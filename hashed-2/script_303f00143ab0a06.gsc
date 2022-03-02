@@ -164,39 +164,42 @@ function function_9d65db70(einflictor, attacker, idamage, smeansofdeath, weapon,
 			level.var_20361ed4--;
 		}
 	}
-	else if(isdefined(weapon))
+	else
 	{
-		if(weapon.name == #"hero_flamethrower")
+		if(isdefined(weapon))
 		{
-			level.var_6bac32f8++;
-		}
-		if(weapon.name == #"gadget_radiation_field")
-		{
-			e_player = getplayers()[0];
-			trace = bullettrace(e_player.origin + vectorscale((0, 0, 1), 40), self.origin + vectorscale((0, 0, 1), 40), 0, self);
-			if(trace[#"fraction"] < 1)
+			if(weapon.name == #"hero_flamethrower")
 			{
-				e_player thread namespace_73e1c3e3::function_d471f8fa(15, undefined, 1);
-				level thread function_db3dc2c2();
+				level.var_6bac32f8++;
+			}
+			if(weapon.name == #"gadget_radiation_field")
+			{
+				e_player = getplayers()[0];
+				trace = bullettrace(e_player.origin + vectorscale((0, 0, 1), 40), self.origin + vectorscale((0, 0, 1), 40), 0, self);
+				if(trace[#"fraction"] < 1)
+				{
+					e_player thread namespace_73e1c3e3::function_d471f8fa(15, undefined, 1);
+					level thread function_db3dc2c2();
+				}
 			}
 		}
-	}
-	if(isdefined(self.beacon))
-	{
-		s_beacon = self.beacon;
-		self.beacon = undefined;
-		if(s_beacon.guard1 === self)
+		if(isdefined(self.beacon))
 		{
-			s_beacon.guard1 = undefined;
+			s_beacon = self.beacon;
+			self.beacon = undefined;
+			if(s_beacon.guard1 === self)
+			{
+				s_beacon.guard1 = undefined;
+			}
+			if(s_beacon.guard2 === self)
+			{
+				s_beacon.guard2 = undefined;
+			}
 		}
-		if(s_beacon.guard2 === self)
+		if(isdefined(level.var_a2cbd584) && level.var_a2cbd584)
 		{
-			s_beacon.guard2 = undefined;
+			attacker namespace_73e1c3e3::function_785eb2ca();
 		}
-	}
-	if(isdefined(level.var_a2cbd584) && level.var_a2cbd584)
-	{
-		attacker namespace_73e1c3e3::function_785eb2ca();
 	}
 }
 
@@ -517,7 +520,7 @@ function function_d6c7161f()
 		{
 			var_583c5a3b = 1.75 + (0.6 * level.var_f3bb2d59);
 			n_start_time = gettime() / 1000;
-			self waittill_timeout(var_583c5a3b, #"hash_4aaf6d6479e7cf20");
+			self waittilltimeout(var_583c5a3b, #"hash_4aaf6d6479e7cf20");
 			dt = (gettime() / 1000) - n_start_time;
 			if(dt >= 1.75)
 			{
@@ -629,15 +632,15 @@ function function_ce452e0()
 	{
 		level.var_d4722aa0 = 0;
 		level.var_9e5d6c86 = n_time;
-		return 1;
+		return true;
 	}
 	dt = n_time - level.var_9e5d6c86;
 	if(dt < 50.1)
 	{
-		return 0;
+		return false;
 	}
 	level.var_9e5d6c86 = n_time;
-	return 1;
+	return true;
 }
 
 /*

@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_29ee595d6bf61bf4", &__init__, undefined, undefined);
 }
@@ -136,16 +136,16 @@ function function_ee150fcc(team, team_players)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f18da875(platoon, player_counts)
+function private function_f18da875(platoon, player_counts)
 {
 	foreach(test_platoon, count in player_counts)
 	{
 		if(test_platoon != platoon && count >= player_counts[platoon])
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -162,7 +162,7 @@ function function_efe5a681(team)
 	team_players = getplayers(team);
 	if(team_players.size >= level.maxteamplayers)
 	{
-		return 0;
+		return false;
 	}
 	if(getdvarint(#"hash_aecb27a63d1fcee", 0) == 0)
 	{
@@ -174,13 +174,13 @@ function function_efe5a681(team)
 				player_counts = platoons::count_players();
 				if(player_counts[platoon] >= level.platoon.max_players)
 				{
-					return 0;
+					return false;
 				}
 				if(getdvarint(#"hash_52e8746b313ada90", 0) == 0)
 				{
 					if(function_f18da875(platoon, player_counts))
 					{
-						return 0;
+						return false;
 					}
 				}
 			}
@@ -190,15 +190,15 @@ function function_efe5a681(team)
 	party = self function_491311f4();
 	if(party.var_a15e4438 > var_fa810454)
 	{
-		return 0;
+		return false;
 	}
 	/#
 		if(getdvarint(#"hash_2ffea48b89a9ff3f", 0) && self != getplayers()[0] && getplayers()[0].team == team && !isbot(self))
 		{
-			return 0;
+			return false;
 		}
 	#/
-	return 1;
+	return true;
 }
 
 /*
@@ -335,7 +335,7 @@ function function_5d02dd86(party)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_650d105d()
+function private function_650d105d()
 {
 	if(function_582e5d7c())
 	{
@@ -378,20 +378,20 @@ private function function_650d105d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_75daeb56(party)
+function private function_75daeb56(party)
 {
 	/#
 		var_f8896168 = getdvarint(#"hash_4cbf229ab691d987", 0);
 		if(var_f8896168 && (var_f8896168 != 2 || self ishost()))
 		{
-			return 0;
+			return false;
 		}
 	#/
 	if(isdefined(party) && party.fill == 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -403,19 +403,22 @@ private function function_75daeb56(party)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_868b679c(party)
+function private function_868b679c(party)
 {
 	if(function_75daeb56(party))
 	{
 		assignment = function_959bac94();
 	}
-	else if(getdvarint(#"hash_587d8e03df4f4f8a", 0))
-	{
-		assignment = function_ccb3bc7a();
-	}
 	else
 	{
-		assignment = self function_5c389625();
+		if(getdvarint(#"hash_587d8e03df4f4f8a", 0))
+		{
+			assignment = function_ccb3bc7a();
+		}
+		else
+		{
+			assignment = self function_5c389625();
+		}
 	}
 	return assignment;
 }
@@ -429,7 +432,7 @@ private function function_868b679c(party)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1e545bc7()
+function private function_1e545bc7()
 {
 	if(function_582e5d7c())
 	{
@@ -516,20 +519,26 @@ function function_d22a4fbb(comingfrommenu, var_4c542e39)
 	{
 		assignment = teamname;
 	}
-	else if(function_a3e209ba(teamname, comingfrommenu))
-	{
-		assignment = #"spectator";
-	}
-	else if(isdefined(level.var_34e67a68) && !isbot(self))
-	{
-		assignment = level.var_34e67a68;
-	}
 	else
 	{
-		assignment = function_bec6e9a();
-		/#
-			assert(isdefined(assignment));
-		#/
+		if(function_a3e209ba(teamname, comingfrommenu))
+		{
+			assignment = #"spectator";
+		}
+		else
+		{
+			if(isdefined(level.var_34e67a68) && !isbot(self))
+			{
+				assignment = level.var_34e67a68;
+			}
+			else
+			{
+				assignment = function_bec6e9a();
+				/#
+					assert(isdefined(assignment));
+				#/
+			}
+		}
 	}
 	return assignment;
 }
@@ -555,10 +564,10 @@ function teamscoresequal()
 		}
 		if(score != getteamscore(team))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -662,10 +671,10 @@ function teamplayercountsequal(playercounts)
 		}
 		if(count != playercounts[team])
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -703,7 +712,7 @@ function function_d078493a(playercounts)
 */
 function function_321f8eb5(player)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -719,41 +728,41 @@ function function_a3e209ba(teamname, comingfrommenu)
 {
 	if(level.rankedmatch)
 	{
-		return 0;
+		return false;
 	}
 	if(level.inprematchperiod)
 	{
-		return 0;
+		return false;
 	}
 	if(teamname != "free")
 	{
-		return 0;
+		return false;
 	}
 	if(comingfrommenu)
 	{
-		return 0;
+		return false;
 	}
 	if(self ishost())
 	{
-		return 0;
+		return false;
 	}
 	if(level.forceautoassign)
 	{
-		return 0;
+		return false;
 	}
 	if(isbot(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self issplitscreen())
 	{
-		return 0;
+		return false;
 	}
 	if(![[level.var_a3e209ba]]())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -811,7 +820,7 @@ function function_7d93567f()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_94478182(distribution)
+function private function_94478182(distribution)
 {
 	var_dd3d17c1 = [];
 	foreach(platoon, var_3c12db95 in distribution)
@@ -900,7 +909,7 @@ function function_b25f48bf(var_dfb0e355, var_a9ab69de, var_d9438b7, var_ed0a1ecc
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_78db0e06(var_659f7dc3, var_5002c793)
+function private function_78db0e06(var_659f7dc3, var_5002c793)
 {
 	players = getplayers(var_659f7dc3);
 	foreach(player in players)
@@ -999,7 +1008,7 @@ function function_a9822793()
 	Parameters: 0
 	Flags: Private
 */
-private function function_a9bfa6d6()
+function private function_a9bfa6d6()
 {
 	/#
 		if(level.var_ba13fb7a)
@@ -1021,7 +1030,7 @@ private function function_a9bfa6d6()
 	Parameters: 1
 	Flags: Private
 */
-private function function_6c66cc64(team)
+function private function_6c66cc64(team)
 {
 	/#
 		players = getplayers(team);
@@ -1049,13 +1058,16 @@ private function function_6c66cc64(team)
 		{
 			platoon_name = platoon_name + "";
 		}
-		else if(platoon == #"none")
+		else
 		{
-			platoon_name = platoon_name + "";
-		}
-		else if(isdefined(level.platoons[platoon]))
-		{
-			platoon_name = platoon_name + level.platoons[platoon].name;
+			if(platoon == #"none")
+			{
+				platoon_name = platoon_name + "";
+			}
+			else if(isdefined(level.platoons[platoon]))
+			{
+				platoon_name = platoon_name + level.platoons[platoon].name;
+			}
 		}
 		println(((((("" + "") + platoon_name) + "") + var_54e8d52e) + "") + voip);
 		foreach(player in players)

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register("recon_wz", &__init__, undefined, undefined);
 }
@@ -107,7 +107,7 @@ function function_b53c3ad2(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d765daa4(localclientnum)
+function private function_d765daa4(localclientnum)
 {
 	self notify("214105bf7d36e37f");
 	self endon("214105bf7d36e37f");

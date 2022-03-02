@@ -384,24 +384,24 @@ function pentagon_ignore_spawner(spawner)
 	{
 		if(spawner.targetname == "conference_level2_spawns")
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(level flag::get("no_warroom_elevator_spawning"))
 	{
 		if(spawner.targetname == "war_room_zone_elevator_spawns")
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(level flag::get("no_labs_elevator_spawning"))
 	{
 		if(spawner.targetname == "labs_elevator_spawns")
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -530,14 +530,14 @@ function is_packroom_clear()
 	{
 		if(e_player istouching(level.pack_door_slam))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(namespace_a701220b::function_2143dc13())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

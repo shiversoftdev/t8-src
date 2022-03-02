@@ -546,16 +546,16 @@ function areteamarraysequal(teamsa, teamsb)
 {
 	if(teamsa.size != teamsb.size)
 	{
-		return 0;
+		return false;
 	}
 	foreach(team in teamsa)
 	{
 		if(!isdefined(teamsb[team]))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -842,7 +842,7 @@ function trackattackeedeath(attackername, rank, xp, prestige, xuid)
 */
 function default_iskillboosting()
 {
-	return 0;
+	return false;
 }
 
 /*

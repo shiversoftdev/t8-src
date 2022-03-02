@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	clientfield::register("scriptmover", "towers_boss_dust_ball_fx", 1, getminbitcountfornum(4), "int", &function_72955447, 0, 0);
 }
@@ -33,26 +33,32 @@ function function_72955447(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_attack_slam_trail_lg", self, "tag_origin");
 	}
-	else if(newval == 2)
+	else
 	{
-		if(isdefined(self.fx))
+		if(newval == 2)
 		{
-			stopfx(localclientnum, self.fx);
+			if(isdefined(self.fx))
+			{
+				stopfx(localclientnum, self.fx);
+			}
+			self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_attack_slam_trail", self, "tag_origin");
 		}
-		self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_attack_slam_trail", self, "tag_origin");
-	}
-	else if(newval == 3)
-	{
-		if(isdefined(self.fx))
+		else
 		{
-			stopfx(localclientnum, self.fx);
+			if(newval == 3)
+			{
+				if(isdefined(self.fx))
+				{
+					stopfx(localclientnum, self.fx);
+				}
+				self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_death_soul_trail", self, "tag_origin");
+			}
+			else if(isdefined(self.fx))
+			{
+				self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_attack_slam_trail_end", self, "tag_origin");
+				stopfx(localclientnum, self.fx);
+			}
 		}
-		self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_death_soul_trail", self, "tag_origin");
-	}
-	else if(isdefined(self.fx))
-	{
-		self.fx = util::playfxontag(localclientnum, "maps/zm_towers/fx8_boss_attack_slam_trail_end", self, "tag_origin");
-		stopfx(localclientnum, self.fx);
 	}
 }
 

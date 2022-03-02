@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"rank", &__init__, undefined, undefined);
 }
@@ -61,13 +61,16 @@ function init()
 	{
 		level.xpscale = getdvarfloat(#"scr_xpscalecp", 0);
 	}
-	else if(sessionmodeiszombiesgame())
-	{
-		level.xpscale = getdvarfloat(#"scr_xpscalezm", 0);
-	}
 	else
 	{
-		level.xpscale = getdvarfloat(#"scr_xpscalemp", 0);
+		if(sessionmodeiszombiesgame())
+		{
+			level.xpscale = getdvarfloat(#"scr_xpscalezm", 0);
+		}
+		else
+		{
+			level.xpscale = getdvarfloat(#"scr_xpscalemp", 0);
+		}
 	}
 	initscoreinfo();
 	level.maxrank = int(function_a2f05227());
@@ -277,22 +280,25 @@ function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_
 			level.scoreinfo[type][#"hash_691aeaca4a1866e3"] = var_65181181;
 		}
 	}
-	else if(sessionmodeiscampaigngame())
+	else
 	{
-		if(isdefined(res) && res)
+		if(sessionmodeiscampaigngame())
 		{
-			level.scoreinfo[type][#"res"] = res;
+			if(isdefined(res) && res)
+			{
+				level.scoreinfo[type][#"res"] = res;
+			}
 		}
-	}
-	else if(sessionmodeiszombiesgame())
-	{
-		if(isdefined(res) && res)
+		else if(sessionmodeiszombiesgame())
 		{
-			level.scoreinfo[type][#"res"] = res;
-		}
-		if(isdefined(label))
-		{
-			level.scoreinfo[type][#"label"] = label;
+			if(isdefined(res) && res)
+			{
+				level.scoreinfo[type][#"res"] = res;
+			}
+			if(isdefined(label))
+			{
+				level.scoreinfo[type][#"label"] = label;
+			}
 		}
 	}
 }
@@ -452,9 +458,9 @@ function shouldskipmomentumdisplay(type)
 {
 	if(isdefined(level.disablemomentum) && level.disablemomentum)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -513,9 +519,9 @@ function function_f7b5d9fa(type)
 	playerrole = function_4de41611();
 	if(isdefined(level.scoreinfo[type]))
 	{
-		return (isdefined(level.scoreinfo[type][#"hash_49b115fae591f06a"]) ? level.scoreinfo[type][#"hash_49b115fae591f06a"] : 0);
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -576,21 +582,21 @@ function shouldkickbyrank()
 {
 	if(self ishost())
 	{
-		return 0;
+		return false;
 	}
 	if(level.rankcap > 0 && self.pers[#"rank"] > level.rankcap)
 	{
-		return 1;
+		return true;
 	}
 	if(level.rankcap > 0 && level.minprestige == 0 && self.pers[#"plevel"] > 0)
 	{
-		return 1;
+		return true;
 	}
 	if(level.minprestige > self.pers[#"plevel"])
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -782,10 +788,10 @@ function atleastoneplayeroneachteam()
 	{
 		if(!level.playercount[team])
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -817,7 +823,7 @@ function updaterank()
 	newrankid = self getrank();
 	if(newrankid == self.pers[#"rank"])
 	{
-		return 0;
+		return false;
 	}
 	oldrank = self.pers[#"rank"];
 	rankid = self.pers[#"rank"];
@@ -833,7 +839,7 @@ function updaterank()
 		print((((("" + oldrank) + "") + newrankid) + "") + self stats::function_441050ca(#"time_played_total"));
 	#/
 	self setrank(newrankid);
-	return 1;
+	return true;
 }
 
 /*

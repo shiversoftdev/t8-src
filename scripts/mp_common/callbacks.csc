@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"callback", &__init__, undefined, undefined);
 }
@@ -189,48 +189,57 @@ function entityspawned(localclientnum)
 			self thread namespace_e6ad7806::spawned(localclientnum);
 		}
 	}
-	else if(self.type == "vehicle" || self.type == "helicopter" || self.type == "plane")
+	else
 	{
-		if(isdefined(level._customvehiclecbfunc))
+		if(self.type == "vehicle" || self.type == "helicopter" || self.type == "plane")
 		{
-			self thread [[level._customvehiclecbfunc]](localclientnum);
-		}
-		self thread vehicle::field_toggle_exhaustfx_handler(localclientnum, undefined, 0, 1);
-		self thread vehicle::field_toggle_lights_handler(localclientnum, undefined, 0, 1);
-		if(self.type == "plane" || self.type == "helicopter")
-		{
-			self thread vehicle::aircraft_dustkick();
+			if(isdefined(level._customvehiclecbfunc))
+			{
+				self thread [[level._customvehiclecbfunc]](localclientnum);
+			}
+			self thread vehicle::field_toggle_exhaustfx_handler(localclientnum, undefined, 0, 1);
+			self thread vehicle::field_toggle_lights_handler(localclientnum, undefined, 0, 1);
+			if(self.type == "plane" || self.type == "helicopter")
+			{
+				self thread vehicle::aircraft_dustkick();
+			}
+			else
+			{
+				self thread vehicle::vehicle_rumble(localclientnum);
+			}
+			if(self.type == "helicopter")
+			{
+				self thread helicopter::startfx_loop(localclientnum);
+			}
 		}
 		else
 		{
-			self thread vehicle::vehicle_rumble(localclientnum);
-		}
-		if(self.type == "helicopter")
-		{
-			self thread helicopter::startfx_loop(localclientnum);
-		}
-	}
-	else if(self.type == "scriptmover")
-	{
-		if(isdefined(level.var_83485e06))
-		{
-			self thread [[level.var_83485e06]](localclientnum);
-		}
-	}
-	else if(self.type == "actor")
-	{
-		if(isdefined(level._customactorcbfunc))
-		{
-			self thread [[level._customactorcbfunc]](localclientnum);
-		}
-	}
-	else if(self.type == "NA")
-	{
-		if(isdefined(self.weapon))
-		{
-			if(isdefined(level.var_6b11d5f6))
+			if(self.type == "scriptmover")
 			{
-				self thread [[level.var_6b11d5f6]](localclientnum);
+				if(isdefined(level.var_83485e06))
+				{
+					self thread [[level.var_83485e06]](localclientnum);
+				}
+			}
+			else
+			{
+				if(self.type == "actor")
+				{
+					if(isdefined(level._customactorcbfunc))
+					{
+						self thread [[level._customactorcbfunc]](localclientnum);
+					}
+				}
+				else if(self.type == "NA")
+				{
+					if(isdefined(self.weapon))
+					{
+						if(isdefined(level.var_6b11d5f6))
+						{
+							self thread [[level.var_6b11d5f6]](localclientnum);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -376,30 +385,33 @@ function airsupport(localclientnum, x, y, z, type, yaw, team, teamfaction, owner
 		data.flytime = (planehalfdistance * 2) / data.flyspeed;
 		planetype = "airstrike";
 	}
-	else if(type == "n")
-	{
-		planehalfdistance = 24000;
-		data.planehalfdistance = planehalfdistance;
-		data.startpoint = pos + (vectorscale(anglestoforward(direction), -1 * planehalfdistance));
-		data.endpoint = pos + vectorscale(anglestoforward(direction), planehalfdistance);
-		data.planemodel = airsupport::getplanemodel(teamfaction);
-		data.flybysound = "null";
-		data.washsound = #"evt_us_napalm_wash";
-		data.apextime = 2362;
-		data.exittype = exittype;
-		data.flyspeed = 7000;
-		data.flytime = (planehalfdistance * 2) / data.flyspeed;
-		planetype = "napalm";
-	}
 	else
 	{
-		/#
-			println("");
-			println("");
-			println(type);
-			println("");
-		#/
-		return;
+		if(type == "n")
+		{
+			planehalfdistance = 24000;
+			data.planehalfdistance = planehalfdistance;
+			data.startpoint = pos + (vectorscale(anglestoforward(direction), -1 * planehalfdistance));
+			data.endpoint = pos + vectorscale(anglestoforward(direction), planehalfdistance);
+			data.planemodel = airsupport::getplanemodel(teamfaction);
+			data.flybysound = "null";
+			data.washsound = #"evt_us_napalm_wash";
+			data.apextime = 2362;
+			data.exittype = exittype;
+			data.flyspeed = 7000;
+			data.flytime = (planehalfdistance * 2) / data.flyspeed;
+			planetype = "napalm";
+		}
+		else
+		{
+			/#
+				println("");
+				println("");
+				println(type);
+				println("");
+			#/
+			return;
+		}
 	}
 }
 

@@ -78,11 +78,11 @@ function setup_arc(weapon, var_26b2b1bb)
 	}
 	if(isdefined(level.var_8a74f7fc[weapon]))
 	{
-		return 0;
+		return false;
 	}
 	level.var_8a74f7fc[weapon] = var_26b2b1bb;
 	var_26b2b1bb.weapon = weapon;
-	return 1;
+	return true;
 }
 
 /*
@@ -192,14 +192,14 @@ function distancecheck(var_26b2b1bb, target, arc_source_pos, arc_source_origin)
 	distancesq = distancesquared(target.origin, arc_source_pos);
 	if(distancesq > var_26b2b1bb.var_34afccf5)
 	{
-		return 0;
+		return false;
 	}
 	distancesq = distancesquared(target.origin, arc_source_origin);
 	if(distancesq > var_26b2b1bb.var_1c1be14)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -215,59 +215,59 @@ function function_33d5b9a6(var_26b2b1bb, eattacker, arc_source, arc_source_origi
 {
 	if(target player::is_spawn_protected())
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(target))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(arc_source) && isdefined(arc_source.var_69ea963))
 	{
 		if(![[arc_source.var_69ea963]](target))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(arc_source) && target == arc_source)
 	{
-		return 0;
+		return false;
 	}
 	if(eattacker == target)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(target.arc_source) && target.arc_source == arc_source)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(arc_source.var_d8d780c1) && arc_source.var_d8d780c1.size >= level.var_8a74f7fc[arc_source.var_c43010fc].var_755593b1)
 	{
-		return 0;
+		return false;
 	}
 	if(target function_db12bbd1(arc_source))
 	{
-		return 0;
+		return false;
 	}
 	if(var_4d3cc1a7 && !distancecheck(var_26b2b1bb, target, self.origin, arc_source_origin))
 	{
 		/#
 			record3dtext("", self.origin - vectorscale((0, 0, 1), 20), (1, 0, 0), "", undefined, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(!damage::friendlyfirecheck(eattacker, target))
 	{
-		return 0;
+		return false;
 	}
 	if(!target damageconetrace(self.origin + vectorscale((0, 0, 1), 10), self) && (isdefined(var_26b2b1bb.var_8ce60046) && var_26b2b1bb.var_8ce60046))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_101a013c) && self.var_101a013c && (isdefined(target.var_4233f7e5) && target.var_4233f7e5))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -364,11 +364,11 @@ function function_db12bbd1(arc_source)
 		{
 			if(isdefined(source) && source == arc_source)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

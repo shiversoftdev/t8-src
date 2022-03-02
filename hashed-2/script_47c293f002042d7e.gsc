@@ -173,7 +173,7 @@ function function_eb218e8d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_c7673785()
+function private function_c7673785()
 {
 	/#
 		self endon(#"death");

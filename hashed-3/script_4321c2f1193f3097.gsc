@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2aa13876578b1f89", &__init__, undefined, undefined);
 }
@@ -316,11 +316,14 @@ function function_f11b8d1d(localclientnum, oldval, newval, bnewent, binitialsnap
 			playsound(0, #"zmb_vocals_zombie_skull_scream", sndorigin);
 		}
 	}
-	else if(isdefined(self.var_ff2eebc7))
+	else
 	{
-		deletefx(localclientnum, self.var_ff2eebc7, 1);
+		if(isdefined(self.var_ff2eebc7))
+		{
+			deletefx(localclientnum, self.var_ff2eebc7, 1);
+		}
+		self.var_ff2eebc7 = undefined;
 	}
-	self.var_ff2eebc7 = undefined;
 }
 
 /*
@@ -380,7 +383,7 @@ function beacon_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue && !namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{
@@ -453,11 +456,14 @@ function revive_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 			self playsound(localclientnum, #"hash_29c60da797dd7b3");
 		}
 	}
-	else if(isdefined(self.var_a776839a))
+	else
 	{
-		deletefx(localclientnum, self.var_a776839a, 1);
+		if(isdefined(self.var_a776839a))
+		{
+			deletefx(localclientnum, self.var_a776839a, 1);
+		}
+		self.var_a776839a = undefined;
 	}
-	self.var_a776839a = undefined;
 }
 
 /*

@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_fasttravel", &__init__, undefined, undefined);
 }
@@ -346,44 +346,47 @@ function fasttravel_rail_fx(localclientnum, oldval, newval, bnewent, binitialsna
 			self thread function_eaba4969(localclientnum, "fasttravel_rail_fx_complete", self.var_a6b9f4c1);
 		}
 	}
-	else if(newval == 2)
+	else
 	{
-		if(!isdefined(self.var_a7fc7689))
+		if(newval == 2)
 		{
-			self playsound(localclientnum, #"hash_7f171ce50ab41fb8");
-			self.var_a7fc7689 = self playloopsound(#"hash_59921813746566c8");
+			if(!isdefined(self.var_a7fc7689))
+			{
+				self playsound(localclientnum, #"hash_7f171ce50ab41fb8");
+				self.var_a7fc7689 = self playloopsound(#"hash_59921813746566c8");
+			}
+			if(isdefined(self.var_a6b9f4c1))
+			{
+				self notify(#"fasttravel_rail_fx_complete");
+				function_4468d7ac(localclientnum, self.var_a6b9f4c1);
+			}
+			var_8203417 = function_5c10bd79(localclientnum);
+			if(self == var_8203417)
+			{
+				v_origin = self gettagorigin("tag_eye");
+				self.var_a6b9f4c1 = self function_dddf661d(localclientnum, "fasttravel_break_1p", "tag_origin", v_origin, self.angles);
+			}
+			else
+			{
+				v_origin = self gettagorigin("j_spine4");
+				self.var_a6b9f4c1 = self function_dddf661d(localclientnum, "fasttravel_break_3p", "tag_origin", v_origin, self.angles);
+			}
+			self thread function_eaba4969(localclientnum, "fasttravel_rail_fx_complete", self.var_a6b9f4c1);
 		}
-		if(isdefined(self.var_a6b9f4c1))
+		else if(newval == 0)
 		{
-			self notify(#"fasttravel_rail_fx_complete");
-			function_4468d7ac(localclientnum, self.var_a6b9f4c1);
-		}
-		var_8203417 = function_5c10bd79(localclientnum);
-		if(self == var_8203417)
-		{
-			v_origin = self gettagorigin("tag_eye");
-			self.var_a6b9f4c1 = self function_dddf661d(localclientnum, "fasttravel_break_1p", "tag_origin", v_origin, self.angles);
-		}
-		else
-		{
-			v_origin = self gettagorigin("j_spine4");
-			self.var_a6b9f4c1 = self function_dddf661d(localclientnum, "fasttravel_break_3p", "tag_origin", v_origin, self.angles);
-		}
-		self thread function_eaba4969(localclientnum, "fasttravel_rail_fx_complete", self.var_a6b9f4c1);
-	}
-	else if(newval == 0)
-	{
-		if(isdefined(self.var_a7fc7689))
-		{
-			self playsound(localclientnum, #"hash_588047eba8deb34e");
-			self stoploopsound(self.var_a7fc7689);
-			self.var_a7fc7689 = undefined;
-		}
-		if(isdefined(self.var_a6b9f4c1))
-		{
-			self notify(#"fasttravel_rail_fx_complete");
-			function_4468d7ac(localclientnum, self.var_a6b9f4c1);
-			self.var_a6b9f4c1 = undefined;
+			if(isdefined(self.var_a7fc7689))
+			{
+				self playsound(localclientnum, #"hash_588047eba8deb34e");
+				self stoploopsound(self.var_a7fc7689);
+				self.var_a7fc7689 = undefined;
+			}
+			if(isdefined(self.var_a6b9f4c1))
+			{
+				self notify(#"fasttravel_rail_fx_complete");
+				function_4468d7ac(localclientnum, self.var_a6b9f4c1);
+				self.var_a6b9f4c1 = undefined;
+			}
 		}
 	}
 }
@@ -397,7 +400,7 @@ function fasttravel_rail_fx(localclientnum, oldval, newval, bnewent, binitialsna
 	Parameters: 5
 	Flags: Private
 */
-private function function_dddf661d(localclientnum, str_fx, str_tag, v_origin, v_angles)
+function private function_dddf661d(localclientnum, str_fx, str_tag, v_origin, v_angles)
 {
 	mdl_fx = util::spawn_model(localclientnum, "tag_origin", v_origin, v_angles);
 	mdl_fx linkto(self, str_tag);
@@ -414,7 +417,7 @@ private function function_dddf661d(localclientnum, str_fx, str_tag, v_origin, v_
 	Parameters: 3
 	Flags: Private
 */
-private function function_eaba4969(localclientnum, var_92d4e054, mdl_fx)
+function private function_eaba4969(localclientnum, var_92d4e054, mdl_fx)
 {
 	level endon(#"end_game");
 	self endon(var_92d4e054);
@@ -431,7 +434,7 @@ private function function_eaba4969(localclientnum, var_92d4e054, mdl_fx)
 	Parameters: 2
 	Flags: Private
 */
-private function function_4468d7ac(localclientnum, mdl_fx)
+function private function_4468d7ac(localclientnum, mdl_fx)
 {
 	if(isdefined(mdl_fx))
 	{

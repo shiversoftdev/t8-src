@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3aa7d3f1b004dd6c", undefined, &__main__, undefined);
 }
@@ -52,7 +52,7 @@ function __main__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6a51df96(notifyhash)
+function private function_6a51df96(notifyhash)
 {
 	self.var_552afb80 = undefined;
 }
@@ -66,9 +66,9 @@ private function function_6a51df96(notifyhash)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_920e8738()
+function private function_920e8738()
 {
-	self endon_callback(&function_6a51df96, #"death", #"disconnect");
+	self endoncallback(&function_6a51df96, #"death", #"disconnect");
 	while(true)
 	{
 		if(!isdefined(self.var_552afb80))
@@ -560,7 +560,7 @@ function function_f1ec5df(player, direction, var_ef0ae03b)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_dad4891b(player_in)
+function private function_dad4891b(player_in)
 {
 	var_a83960b5 = [];
 	foreach(player in getplayers())
@@ -679,7 +679,7 @@ function function_1dbfb733(type, name, condition, text_func)
 	Parameters: 2
 	Flags: Private
 */
-private function create_hudelem(y, x)
+function private create_hudelem(y, x)
 {
 	/#
 		if(!isdefined(x))

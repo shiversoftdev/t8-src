@@ -49,24 +49,24 @@ function function_f94325d3()
 	#/
 	if(isbot(player) || (isdefined(level.disablestattracking) && level.disablestattracking))
 	{
-		return 0;
+		return false;
 	}
 	if(function_f99d2668())
 	{
 		if(getdvarint(#"hash_11facc157381a65b", 0) == 1)
 		{
-			return 0;
+			return false;
 		}
 		if(!isdefined(game.state) || game.state == "pregame")
 		{
-			return 0;
+			return false;
 		}
 		if(!isdedicated() && getdvarint(#"hash_21fad94371b1fb98", 0) == 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -265,7 +265,7 @@ function inc_stat(vararg)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e6106f3b(statname, value)
+function private function_e6106f3b(statname, value)
 {
 	self set_stat(#"playerstatsbygametype", function_8921af36(), statname, #"statvalue", value);
 	self set_stat(#"playerstatsbygametype", function_8921af36(), statname, #"challengevalue", value);
@@ -282,7 +282,7 @@ private function function_e6106f3b(statname, value)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1d354b96(statname, value)
+function private function_1d354b96(statname, value)
 {
 	var_44becfa9 = self inc_stat(#"playerstatslist", statname, #"statvalue", value);
 	self addgametypestat(statname, value);
@@ -316,7 +316,7 @@ function function_baa25a23(statname, value)
 {
 	if(!function_f94325d3())
 	{
-		return 0;
+		return false;
 	}
 	if(function_f99d2668())
 	{
@@ -325,7 +325,7 @@ function function_baa25a23(statname, value)
 	else
 	{
 		self addgametypestat(statname, value);
-		return 1;
+		return true;
 	}
 }
 

@@ -129,7 +129,7 @@ function callback_playerdisconnect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_79915d44()
+function private function_79915d44()
 {
 	nemesisarray = self.pers[#"nemesis_tracking"];
 	nemesisamount = 0;

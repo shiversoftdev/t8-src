@@ -55,7 +55,7 @@ function function_3aed7ccf()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ec51ce01()
+function private function_ec51ce01()
 {
 	self endon(#"disconnect");
 	level waittill(#"hash_71d7e6a55a1ca9e");
@@ -77,7 +77,7 @@ private function function_ec51ce01()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_653f23be()
+function private function_653f23be()
 {
 	self endon(#"death");
 	level endon(#"end_game");
@@ -115,7 +115,7 @@ private function function_653f23be()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_50e46434()
+function private function_50e46434()
 {
 	self endon(#"disconnect");
 	if(namespace_59ff1d6c::function_901b751c(#"startround") > 1)
@@ -154,7 +154,7 @@ private function function_50e46434()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_863d6212()
+function private function_863d6212()
 {
 	self endon(#"disconnect");
 	if(!namespace_59ff1d6c::function_901b751c(#"hash_541a4d5c476468f4") || zm_utility::is_standard())
@@ -189,7 +189,7 @@ private function function_863d6212()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_103e6827()
+function private function_103e6827()
 {
 	self endon(#"disconnect");
 	if(!namespace_59ff1d6c::function_901b751c(#"hash_541a4d5c476468f4") || zm_utility::is_standard())
@@ -224,9 +224,9 @@ private function function_103e6827()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3c39c720()
+function private function_3c39c720()
 {
-	self endon_callback(&function_a5f404e2, #"disconnect");
+	self endoncallback(&function_a5f404e2, #"disconnect");
 	if(!namespace_59ff1d6c::function_901b751c(#"hash_541a4d5c476468f4") || zm_utility::is_standard())
 	{
 		return;
@@ -284,7 +284,7 @@ function function_8a595f5(s_params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a5f404e2(var_c34665fc)
+function private function_a5f404e2(var_c34665fc)
 {
 	level callback::remove_on_ai_killed(&function_8a595f5);
 }
@@ -298,9 +298,9 @@ private function function_a5f404e2(var_c34665fc)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_74846734()
+function private function_74846734()
 {
-	self endon_callback(&function_8828b419, #"disconnect");
+	self endoncallback(&function_8828b419, #"disconnect");
 	if(!namespace_59ff1d6c::function_901b751c(#"hash_541a4d5c476468f4") || zm_utility::is_standard())
 	{
 		return;
@@ -358,7 +358,7 @@ function function_c6125761(s_params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8828b419(var_c34665fc)
+function private function_8828b419(var_c34665fc)
 {
 	level callback::remove_on_ai_killed(&function_c6125761);
 }
@@ -372,7 +372,7 @@ private function function_8828b419(var_c34665fc)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_84d102f2()
+function private function_84d102f2()
 {
 	self endon(#"disconnect", #"hash_5766f147327163d1");
 	while(true)
@@ -416,7 +416,7 @@ private function function_84d102f2()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9fdcf13f()
+function private function_9fdcf13f()
 {
 	self endon(#"disconnect", #"hash_5766f147327163d1", #"hash_4fb1eb2c137a7955");
 	self waittill(#"weapon_change");
@@ -432,7 +432,7 @@ private function function_9fdcf13f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b3786a8a()
+function private function_b3786a8a()
 {
 	self thread function_f31369ae();
 }
@@ -446,7 +446,7 @@ private function function_b3786a8a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f31369ae()
+function private function_f31369ae()
 {
 	e_player = undefined;
 	while(isalive(self))
@@ -488,7 +488,7 @@ private function function_f31369ae()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e502ed82()
+function private function_e502ed82()
 {
 	level endon(#"end_game");
 	a_flags = array(#"hash_5827ff8b059b77f3", #"hash_786c9a9f60b254f5", #"hash_3b7c39d9b76689fb", #"hash_29ac8ec32d2a389b", #"hash_39100dea955077f2");

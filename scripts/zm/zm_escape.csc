@@ -50,7 +50,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function opt_in()
+function autoexec opt_in()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
@@ -243,7 +243,7 @@ function function_516663f8(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Private
 */
-private function function_37c86e6e(localclientnum)
+function private function_37c86e6e(localclientnum)
 {
 	level endon(#"hash_46a6202f04dd1722");
 	s_sound_origin = struct::get("s_b_64_sound");
@@ -283,7 +283,7 @@ function function_d8b90aba(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b2b92c61(localclientnum)
+function private function_b2b92c61(localclientnum)
 {
 	level endon(#"hash_63732bb5f380f042");
 	while(true)
@@ -407,7 +407,15 @@ function function_9290b227()
 			}
 		}
 	}
-	println("");
+	else
+	{
+		/#
+			println("");
+		#/
+		if(getdvarint(#"debug_audio", 0) > 0)
+		{
+		}
+	}
 }
 
 /*

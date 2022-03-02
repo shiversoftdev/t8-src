@@ -461,27 +461,30 @@ function function_a39e7a56()
 				ai = namespace_c402654::function_62db7b1c(0);
 			}
 		}
-		else if(level.var_d6538eef == 4)
-		{
-			if(level flag::get(#"hash_13bc135937af9be2"))
-			{
-				ai = namespace_16c9989b::function_27695a82();
-			}
-		}
 		else
 		{
-			s_spawn_point = array::random(level.zm_loc_types[#"zombie_location"]);
-			ai = zombie_utility::spawn_zombie(getentarray("zombie_spawner", "script_noteworthy")[0], undefined, s_spawn_point);
+			if(level.var_d6538eef == 4)
+			{
+				if(level flag::get(#"hash_13bc135937af9be2"))
+				{
+					ai = namespace_16c9989b::function_27695a82();
+				}
+			}
+			else
+			{
+				s_spawn_point = array::random(level.zm_loc_types[#"zombie_location"]);
+				ai = zombie_utility::spawn_zombie(getentarray("zombie_spawner", "script_noteworthy")[0], undefined, s_spawn_point);
+			}
 		}
 		if(isdefined(ai))
 		{
 			n_delay = (isdefined(zombie_utility::function_d2dfacfd(#"zombie_spawn_delay")) ? zombie_utility::function_d2dfacfd(#"zombie_spawn_delay") : zombie_utility::function_d2dfacfd(#"hash_7d5a25e2463f7fc5"));
 			level.var_d6538eef++;
 			wait(n_delay);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

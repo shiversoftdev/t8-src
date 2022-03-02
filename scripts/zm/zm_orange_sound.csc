@@ -54,7 +54,15 @@ function function_9290b227()
 			}
 		}
 	}
-	println("");
+	else
+	{
+		/#
+			println("");
+		#/
+		if(getdvarint(#"debug_audio", 0) > 0)
+		{
+		}
+	}
 }
 
 /*

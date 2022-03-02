@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_46f39ac878b7d58f", &__init__, &__main__, undefined);
 }
@@ -348,7 +348,7 @@ function teleport_player(user)
 	{
 		return;
 	}
-	user endon_callback(&function_96e88318, #"death");
+	user endoncallback(&function_96e88318, #"death");
 	destination = undefined;
 	if(isdefined(user.teleporting) && user.teleporting)
 	{
@@ -462,7 +462,7 @@ function function_96e88318(str_notify)
 */
 function function_c234a5ce()
 {
-	self endon_callback(&function_4f5d4783, #"death");
+	self endoncallback(&function_4f5d4783, #"death");
 	self val::set(#"hash_72fb2bd98173a203", "ignoreme", 1);
 	wait(1);
 	self function_4f5d4783();
@@ -886,7 +886,7 @@ function function_e9848fa7()
 */
 function function_9d689cc4(portal, portal_exit)
 {
-	self endon_callback(&function_2ef25d40, #"damage", #"death", #"hash_2016cf7b5d5069a7");
+	self endoncallback(&function_2ef25d40, #"damage", #"death", #"hash_2016cf7b5d5069a7");
 	if(!isdefined(portal))
 	{
 		portal = self function_e9848fa7();
@@ -1606,9 +1606,9 @@ function function_2143dc13()
 	{
 		if(e_player.var_298e4578 === level.var_63fca02d[#"portal_panic_room"])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 

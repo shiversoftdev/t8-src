@@ -82,7 +82,7 @@ function cancel()
 function fallback_traversal(endpos)
 {
 	self endon(#"death", #"hash_a729d7d4c6847f6", #"hash_37fc5d1ffce4acaf");
-	self endon_callback(&release_control, #"entering_last_stand", #"new_shot");
+	self endoncallback(&release_control, #"entering_last_stand", #"new_shot");
 	level endon(#"game_ended");
 	self teleport(endpos, "Legacy fallback");
 	self botreleasemanualcontrol();
@@ -125,7 +125,7 @@ function function_c3452ef9(params)
 function volume_traversal(params)
 {
 	self endon(#"death", #"hash_a729d7d4c6847f6", #"hash_37fc5d1ffce4acaf");
-	self endon_callback(&release_control, #"entering_last_stand", #"new_shot");
+	self endoncallback(&release_control, #"entering_last_stand", #"new_shot");
 	level endon(#"game_ended");
 	self.bot.traversal = params;
 	self bot_action::reset();
@@ -134,21 +134,9 @@ function volume_traversal(params)
 	{
 		self function_fc004e60(params);
 	}
-	else if(params.dist2d > 30 && params.var_5aacf42 >= 0)
+	else
 	{
-		/#
-			self botprinterror("");
-		#/
-		self thread function_c3452ef9(params);
-		return;
-	}
-	if(abs(params.targetheight) <= 18)
-	{
-		self walk_traversal(params);
-	}
-	else if(params.targetheight > 0)
-	{
-		if(params.var_5aacf42 < 0)
+		if(params.dist2d > 30 && params.var_5aacf42 >= 0)
 		{
 			/#
 				self botprinterror("");
@@ -156,27 +144,48 @@ function volume_traversal(params)
 			self thread function_c3452ef9(params);
 			return;
 		}
-		self mantle_traversal(params);
-	}
-	else if(params.targetheight < -72 && (!(isdefined(params.var_bccf04e7) && params.var_bccf04e7)))
-	{
-		/#
-			self botprinterror("");
-		#/
-		self thread function_c3452ef9(params);
-		return;
-	}
-	if(params.targetheight < 0)
-	{
-		self fall_traversal(params.endpos);
-	}
-	else
-	{
-		/#
-			self botprinterror("" + params.startnode.origin);
-		#/
-		self thread function_c3452ef9(params);
-		return;
+		if(abs(params.targetheight) <= 18)
+		{
+			self walk_traversal(params);
+		}
+		else
+		{
+			if(params.targetheight > 0)
+			{
+				if(params.var_5aacf42 < 0)
+				{
+					/#
+						self botprinterror("");
+					#/
+					self thread function_c3452ef9(params);
+					return;
+				}
+				self mantle_traversal(params);
+			}
+			else
+			{
+				if(params.targetheight < -72 && (!(isdefined(params.var_bccf04e7) && params.var_bccf04e7)))
+				{
+					/#
+						self botprinterror("");
+					#/
+					self thread function_c3452ef9(params);
+					return;
+				}
+				if(params.targetheight < 0)
+				{
+					self fall_traversal(params.endpos);
+				}
+				else
+				{
+					/#
+						self botprinterror("" + params.startnode.origin);
+					#/
+					self thread function_c3452ef9(params);
+					return;
+				}
+			}
+		}
 	}
 	if(!ispointonnavmesh(self.origin, self))
 	{
@@ -293,15 +302,15 @@ function function_51cbae24(params)
 {
 	if(params.targetheight < 18)
 	{
-		return 0;
+		return false;
 	}
 	dir = vectornormalize(params.endpos - params.startpos);
 	result = bullettrace(params.startpos, params.startpos + (dir * 512), 0, self);
 	if(result[#"surfacetype"] == "ladder")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -112,7 +112,7 @@ function function_6452f9c5(index)
 	Parameters: 0
 	Flags: Private
 */
-private function function_c72eb508()
+function private function_c72eb508()
 {
 	if(isdefined(self.var_9f20891))
 	{
@@ -133,7 +133,7 @@ private function function_c72eb508()
 	Parameters: 1
 	Flags: Private
 */
-private function function_37ae175b(type)
+function private function_37ae175b(type)
 {
 	/#
 		if(getdvarint(#"hash_9003cbb3abd93b7", 0) != 0)

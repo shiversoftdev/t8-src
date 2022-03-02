@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_insta_kill", &__init__, undefined, undefined);
 }
@@ -89,7 +89,7 @@ function function_d7a1e6a8(var_7d81025, player)
 	}
 	player thread zm_powerups::function_5091b029("insta_kill");
 	player zombie_utility::function_826f5e98(#"zombie_insta_kill", 1);
-	level waittill_timeout(n_wait_time, #"end_game");
+	level waittilltimeout(n_wait_time, #"end_game");
 	player zombie_utility::function_826f5e98(#"zombie_insta_kill", 0);
 	player notify(#"insta_kill_over");
 }

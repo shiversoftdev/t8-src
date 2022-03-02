@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_381cd19e62520883", &__init__, undefined, #"hash_bff403c2cb59a3a");
 }
@@ -133,7 +133,7 @@ function on_player_killed()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_895b40e4()
+function private function_895b40e4()
 {
 	self playsoundtoplayer(#"hash_70c9b45d9474b631", self);
 }

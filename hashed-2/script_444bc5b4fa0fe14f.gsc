@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4229d59c5b830185", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_49d0b42a, var_d2d5c522, var_17d04dfe, var_6a68f1d6)
+function private function_d1de6a85(var_49d0b42a, var_d2d5c522, var_17d04dfe, var_6a68f1d6)
 {
 	n_variant = getgametypesetting(#"zmtrialsvariant");
 	switch(getplayers().size)
@@ -99,7 +99,7 @@ private function function_d1de6a85(var_49d0b42a, var_d2d5c522, var_17d04dfe, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	namespace_c3287616::function_510039c1(&namespace_fd89d870::function_51ec9e09);
@@ -128,7 +128,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cb35d440()
+function private function_cb35d440()
 {
 	level endon(#"hash_7646638df88a3656");
 	while(true)

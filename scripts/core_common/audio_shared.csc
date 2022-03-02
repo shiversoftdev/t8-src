@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"audio", &__init__, undefined, undefined);
 }
@@ -629,7 +629,15 @@ function startsoundloops()
 			}
 		}
 	}
-	println("");
+	else
+	{
+		/#
+			println("");
+		#/
+		if(getdvarint(#"debug_audio", 0) > 0)
+		{
+		}
+	}
 }
 
 /*
@@ -665,7 +673,15 @@ function startlineemitters()
 			}
 		}
 	}
-	println("");
+	else
+	{
+		/#
+			println("");
+		#/
+		if(getdvarint(#"debug_audio", 0) > 0)
+		{
+		}
+	}
 }
 
 /*
@@ -1159,16 +1175,19 @@ function closest_point_on_line_to_point(point, linestart, lineend)
 	{
 		self.origin = linestart;
 	}
-	else if(t > 1)
-	{
-		self.origin = lineend;
-	}
 	else
 	{
-		start_x = linestart[0] + (t * (lineend[0] - linestart[0]));
-		start_y = linestart[1] + (t * (lineend[1] - linestart[1]));
-		start_z = linestart[2] + (t * (lineend[2] - linestart[2]));
-		self.origin = (start_x, start_y, start_z);
+		if(t > 1)
+		{
+			self.origin = lineend;
+		}
+		else
+		{
+			start_x = linestart[0] + (t * (lineend[0] - linestart[0]));
+			start_y = linestart[1] + (t * (lineend[1] - linestart[1]));
+			start_z = linestart[2] + (t * (lineend[2] - linestart[2]));
+			self.origin = (start_x, start_y, start_z);
+		}
 	}
 }
 
@@ -1258,13 +1277,16 @@ function move_sound_along_line()
 		{
 			wait(2);
 		}
-		else if(closest_dist > 262144)
-		{
-			wait(0.2);
-		}
 		else
 		{
-			wait(0.05);
+			if(closest_dist > 262144)
+			{
+				wait(0.2);
+			}
+			else
+			{
+				wait(0.05);
+			}
 		}
 	}
 }
@@ -1376,17 +1398,23 @@ function snd_underwater(localclientnum)
 		{
 			self underwaterbegin();
 		}
-		else if(underwaternotify._notify == "underwater_end")
+		else
 		{
-			self underwaterend();
-		}
-		else if(underwaternotify._notify == "swimming_begin")
-		{
-			self swimbegin();
-		}
-		else if(underwaternotify._notify == "swimming_end" && isplayer(self) && isalive(self))
-		{
-			self swimend(localclientnum);
+			if(underwaternotify._notify == "underwater_end")
+			{
+				self underwaterend();
+			}
+			else
+			{
+				if(underwaternotify._notify == "swimming_begin")
+				{
+					self swimbegin();
+				}
+				else if(underwaternotify._notify == "swimming_end" && isplayer(self) && isalive(self))
+				{
+					self swimend(localclientnum);
+				}
+			}
 		}
 	}
 }
@@ -1951,17 +1979,20 @@ function sndcchacking(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 			}
 		}
 	}
-	else if(isdefined(self.hsnd))
+	else
 	{
-		self stoploopsound(self.hsnd, 0.5);
-	}
-	if(oldval == 1)
-	{
-		playsound(0, #"gdt_cybercore_hack_success_plr", (0, 0, 0));
-	}
-	else if(oldval == 2)
-	{
-		playsound(0, #"gdt_cybercore_activate_fail_plr", (0, 0, 0));
+		if(isdefined(self.hsnd))
+		{
+			self stoploopsound(self.hsnd, 0.5);
+		}
+		if(oldval == 1)
+		{
+			playsound(0, #"gdt_cybercore_hack_success_plr", (0, 0, 0));
+		}
+		else if(oldval == 2)
+		{
+			playsound(0, #"gdt_cybercore_activate_fail_plr", (0, 0, 0));
+		}
 	}
 }
 

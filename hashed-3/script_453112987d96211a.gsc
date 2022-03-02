@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"stoker", &__init__, undefined, undefined);
 }
@@ -71,13 +71,16 @@ function function_7188417c(localclientnum, pos, surface, notetrack, bone)
 	{
 		function_36e4ebd4(localclientnum, "anim_med");
 	}
-	else if(n_scale <= 0.2 && n_scale > 0.1)
-	{
-		function_36e4ebd4(localclientnum, "damage_light");
-	}
 	else
 	{
-		function_36e4ebd4(localclientnum, "damage_light");
+		if(n_scale <= 0.2 && n_scale > 0.1)
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
+		else
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
 	}
 }
 
@@ -90,7 +93,7 @@ function function_7188417c(localclientnum, pos, surface, notetrack, bone)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_580b77a2(localclientnum)
+function private function_580b77a2(localclientnum)
 {
 	fxclientutils::playfxbundle(localclientnum, self, self.fxdef);
 }

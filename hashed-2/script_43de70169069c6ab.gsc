@@ -133,30 +133,33 @@ function function_ba8cd0cf(localclientnum, oldval, newval, bnewent, binitialsnap
 			level.var_22a393d4[level.var_22a393d4.size] = self.var_2ef4fed9;
 		}
 	}
-	else if(isdefined(self.var_2ef4fed9))
-	{
-		if(isdefined(self.var_2ef4fed9.b_hidden) && self.var_2ef4fed9.b_hidden)
-		{
-			self.var_2ef4fed9.b_hidden = undefined;
-		}
-		self.var_2ef4fed9.script_int = newval;
-	}
 	else
 	{
-		self.var_2ef4fed9 = util::spawn_model(localclientnum, self.model, self.origin, self.angles);
-		self.var_2ef4fed9.script_int = newval;
-		self.var_2ef4fed9.var_922c0c5c = &function_43c140b4;
-		self.var_2ef4fed9.var_ffeecdb6 = &function_386b1e70;
-		self.var_2ef4fed9 function_386b1e70(localclientnum);
-		if(!isdefined(level.var_22a393d4))
+		if(isdefined(self.var_2ef4fed9))
 		{
-			level.var_22a393d4 = [];
+			if(isdefined(self.var_2ef4fed9.b_hidden) && self.var_2ef4fed9.b_hidden)
+			{
+				self.var_2ef4fed9.b_hidden = undefined;
+			}
+			self.var_2ef4fed9.script_int = newval;
 		}
-		else if(!isarray(level.var_22a393d4))
+		else
 		{
-			level.var_22a393d4 = array(level.var_22a393d4);
+			self.var_2ef4fed9 = util::spawn_model(localclientnum, self.model, self.origin, self.angles);
+			self.var_2ef4fed9.script_int = newval;
+			self.var_2ef4fed9.var_922c0c5c = &function_43c140b4;
+			self.var_2ef4fed9.var_ffeecdb6 = &function_386b1e70;
+			self.var_2ef4fed9 function_386b1e70(localclientnum);
+			if(!isdefined(level.var_22a393d4))
+			{
+				level.var_22a393d4 = [];
+			}
+			else if(!isarray(level.var_22a393d4))
+			{
+				level.var_22a393d4 = array(level.var_22a393d4);
+			}
+			level.var_22a393d4[level.var_22a393d4.size] = self.var_2ef4fed9;
 		}
-		level.var_22a393d4[level.var_22a393d4.size] = self.var_2ef4fed9;
 	}
 }
 
@@ -347,17 +350,20 @@ function function_69a31ba8(localclientnum, oldval, newval, bnewent, binitialsnap
 			level.var_7d33d419[localclientnum] showpart(localclientnum, "TAG_SPOON");
 		}
 	}
-	else if(level.var_7d33d419[localclientnum] haspart(localclientnum, "tag_elbow_r"))
+	else
 	{
-		level.var_7d33d419[localclientnum] hidepart(localclientnum, "tag_elbow_r");
-	}
-	if(level.var_7d33d419[localclientnum] haspart(localclientnum, "tag_wrist_r"))
-	{
-		level.var_7d33d419[localclientnum] hidepart(localclientnum, "tag_wrist_r");
-	}
-	if(level.var_7d33d419[localclientnum] haspart(localclientnum, "TAG_SPOON"))
-	{
-		level.var_7d33d419[localclientnum] hidepart(localclientnum, "TAG_SPOON");
+		if(level.var_7d33d419[localclientnum] haspart(localclientnum, "tag_elbow_r"))
+		{
+			level.var_7d33d419[localclientnum] hidepart(localclientnum, "tag_elbow_r");
+		}
+		if(level.var_7d33d419[localclientnum] haspart(localclientnum, "tag_wrist_r"))
+		{
+			level.var_7d33d419[localclientnum] hidepart(localclientnum, "tag_wrist_r");
+		}
+		if(level.var_7d33d419[localclientnum] haspart(localclientnum, "TAG_SPOON"))
+		{
+			level.var_7d33d419[localclientnum] hidepart(localclientnum, "TAG_SPOON");
+		}
 	}
 }
 

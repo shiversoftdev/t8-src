@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"out_of_bounds", &__init__, undefined, undefined);
 }
@@ -46,22 +46,25 @@ function __init__()
 		level.oob_max_distance_before_black = getdvarint(#"oob_max_distance_before_black", 100000);
 		level.oob_time_remaining_before_black = getdvarint(#"oob_time_remaining_before_black", -1);
 	}
-	else if(function_f99d2668())
-	{
-		level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
-		level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 10000);
-		level.oob_damage_interval_ms = getdvarint(#"oob_damage_interval_ms", 3000);
-		level.oob_damage_per_interval = getdvarint(#"oob_damage_per_interval", 999);
-		level.oob_max_distance_before_black = getdvarint(#"oob_max_distance_before_black", 100000);
-		level.oob_time_remaining_before_black = getdvarint(#"oob_time_remaining_before_black", -1);
-	}
 	else
 	{
-		level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 6000);
-		level.oob_damage_interval_ms = getdvarint(#"oob_damage_interval_ms", 1000);
-		level.oob_damage_per_interval = getdvarint(#"oob_damage_per_interval", 5);
-		level.oob_max_distance_before_black = getdvarint(#"oob_max_distance_before_black", 400);
-		level.oob_time_remaining_before_black = getdvarint(#"oob_time_remaining_before_black", 1000);
+		if(function_f99d2668())
+		{
+			level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
+			level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 10000);
+			level.oob_damage_interval_ms = getdvarint(#"oob_damage_interval_ms", 3000);
+			level.oob_damage_per_interval = getdvarint(#"oob_damage_per_interval", 999);
+			level.oob_max_distance_before_black = getdvarint(#"oob_max_distance_before_black", 100000);
+			level.oob_time_remaining_before_black = getdvarint(#"oob_time_remaining_before_black", -1);
+		}
+		else
+		{
+			level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 6000);
+			level.oob_damage_interval_ms = getdvarint(#"oob_damage_interval_ms", 1000);
+			level.oob_damage_per_interval = getdvarint(#"oob_damage_per_interval", 5);
+			level.oob_max_distance_before_black = getdvarint(#"oob_max_distance_before_black", 400);
+			level.oob_time_remaining_before_black = getdvarint(#"oob_time_remaining_before_black", 1000);
+		}
 	}
 	level.oob_damage_interval_sec = float(level.oob_damage_interval_ms) / 1000;
 	var_4eb37b66 = getentarray("trigger_out_of_bounds", "classname");
@@ -204,10 +207,10 @@ function chr_party(point)
 		}
 		if(istouching(point, trigger))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -311,21 +314,24 @@ function waitforplayertouch()
 		{
 			player = entity;
 		}
-		else if(isvehicle(entity) && isalive(entity))
-		{
-			player = entity getseatoccupant(0);
-			if(!isdefined(player) || !isplayer(player))
-			{
-				continue;
-			}
-			if(isdefined(entity.var_50e3187f) && entity.var_50e3187f)
-			{
-				continue;
-			}
-		}
 		else
 		{
-			continue;
+			if(isvehicle(entity) && isalive(entity))
+			{
+				player = entity getseatoccupant(0);
+				if(!isdefined(player) || !isplayer(player))
+				{
+					continue;
+				}
+				if(isdefined(entity.var_50e3187f) && entity.var_50e3187f)
+				{
+					continue;
+				}
+			}
+			else
+			{
+				continue;
+			}
 		}
 		if(player function_65b20())
 		{
@@ -415,17 +421,17 @@ function function_65b20()
 {
 	if(self scene::is_igc_active())
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self.oobdisabled) && self.oobdisabled)
 	{
-		return 1;
+		return true;
 	}
 	if(level flag::exists("draft_complete") && !level flag::get("draft_complete"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -644,7 +650,7 @@ function watchforhostmigration(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function disableplayeroob(disabled)
+function private disableplayeroob(disabled)
 {
 	if(disabled)
 	{

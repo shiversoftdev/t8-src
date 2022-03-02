@@ -548,7 +548,7 @@ function function_a39e7a56()
 			ai = namespace_5c160465::function_dd836251();
 			if(isdefined(ai))
 			{
-				return 1;
+				return true;
 			}
 		}
 		if(level.var_d6538eef > 8)
@@ -559,7 +559,7 @@ function function_a39e7a56()
 				ai = namespace_c402654::function_62db7b1c(0);
 				if(isdefined(ai))
 				{
-					return 1;
+					return true;
 				}
 			}
 		}
@@ -573,10 +573,10 @@ function function_a39e7a56()
 				level.var_d6538eef++;
 			}
 			wait(n_delay);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

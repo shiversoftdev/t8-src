@@ -38,7 +38,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_17338dc1539c77bb", &__init__, &__main__, undefined);
 }
@@ -398,7 +398,7 @@ function function_b4b16823(einflictor, eattacker, idamage, idflags, smeansofdeat
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eb25a497()
+function private function_eb25a497()
 {
 	self endon(#"disconnect");
 	self waittill(#"player_revived");
@@ -415,7 +415,7 @@ private function function_eb25a497()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_99792b2f()
+function private function_99792b2f()
 {
 	self endon(#"death");
 	if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") != 2)
@@ -445,7 +445,7 @@ private function function_99792b2f()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c69ff317(chest)
+function private function_c69ff317(chest)
 {
 	self endon(#"death");
 	chest.zbarrier endon(#"weapon_grabbed");
@@ -500,7 +500,7 @@ function function_f53cfc70()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4e1abe8f()
+function private function_4e1abe8f()
 {
 	self endon(#"death");
 	level flag::wait_till("power_on");
@@ -537,7 +537,7 @@ private function function_4e1abe8f()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fa31ee20(var_2e1f34dd)
+function private function_fa31ee20(var_2e1f34dd)
 {
 	self thread function_c3778d8a(2, undefined);
 	var_21c1ba1 = self getentitynumber();
@@ -553,7 +553,7 @@ private function function_fa31ee20(var_2e1f34dd)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d71a9fa1()
+function private function_d71a9fa1()
 {
 	level endon(#"game_ended");
 	level.var_eb91e07c = [];
@@ -589,7 +589,7 @@ private function function_d71a9fa1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_99a3da6a()
+function private function_99a3da6a()
 {
 	var_7ab9503c = [];
 	if(!isdefined(level.zone_keys))
@@ -619,7 +619,7 @@ private function function_99a3da6a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e1bfb2de()
+function private function_e1bfb2de()
 {
 	self endon(#"death");
 	level flag::wait_till("all_players_spawned");
@@ -668,7 +668,7 @@ function custom_door_buy_check(e_door)
 {
 	if(namespace_497ab7da::is_active())
 	{
-		return 0;
+		return false;
 	}
 	var_b35154c6 = self.score - e_door.zombie_cost;
 	if(var_b35154c6 < 0 && abs(var_b35154c6) <= 200)
@@ -679,7 +679,7 @@ function custom_door_buy_check(e_door)
 			self zm_score::player_add_points("oracle_boon", abs(var_b35154c6), undefined, undefined, undefined, undefined, 1);
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -691,7 +691,7 @@ function custom_door_buy_check(e_door)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1ba093e()
+function private function_1ba093e()
 {
 	self endon(#"death");
 	pap_machine = getent("zm_pack_a_punch", "targetname");
@@ -722,7 +722,7 @@ private function function_1ba093e()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_91a9c226(pap_machine)
+function private function_91a9c226(pap_machine)
 {
 	self endon(#"death", #"pap_timeout", #"pap_taken");
 	self waittill(#"entering_last_stand");
@@ -738,7 +738,7 @@ private function function_91a9c226(pap_machine)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_de053460(pap_machine)
+function private function_de053460(pap_machine)
 {
 	self endon(#"death", #"pap_taken");
 	waitframe(2);
@@ -818,7 +818,7 @@ private function function_de053460(pap_machine)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3fe13b7b()
+function private function_3fe13b7b()
 {
 	self endon(#"death");
 	level flag::wait_till("power_on");
@@ -884,7 +884,7 @@ private function function_3fe13b7b()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c3778d8a(n_boon, n_delay = undefined)
+function private function_c3778d8a(n_boon, n_delay = undefined)
 {
 	self endon(#"death");
 	if(isdefined(n_delay))
@@ -953,20 +953,20 @@ private function function_c3778d8a(n_boon, n_delay = undefined)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3b81466e(n_boon)
+function private function_3b81466e(n_boon)
 {
 	if(level flag::get(#"hash_1c0b421abe38d4e0") || level flag::get("round_reset"))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_b22aca27[n_boon].b_available) && self.var_b22aca27[n_boon].b_available && (isdefined(self.var_6a885e6e) && !self.var_6a885e6e) && self zm_audio::function_65e5c19a())
 	{
 		self.var_b22aca27[n_boon].b_available = 0;
 		self thread function_5e8518bb(n_boon);
 		self thread function_edb554f3();
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -978,7 +978,7 @@ private function function_3b81466e(n_boon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5e8518bb(n_boon)
+function private function_5e8518bb(n_boon)
 {
 	self endon(#"death");
 	if(self.var_b22aca27[n_boon].var_e7a18e05 <= 0)
@@ -1001,7 +1001,7 @@ private function function_5e8518bb(n_boon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_edb554f3()
+function private function_edb554f3()
 {
 	self notify("2d3e894ede4eef0e");
 	self endon("2d3e894ede4eef0e");

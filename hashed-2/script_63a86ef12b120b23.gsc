@@ -37,7 +37,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2aa13876578b1f89", &__init__, undefined, undefined);
 }
@@ -85,9 +85,7 @@ function __init__()
 	namespace_9ff9f642::register_slowdown(#"hash_59b633ea4aeff841", 0.6, 0.5);
 	if(!isdefined(level.var_cfeea502))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_cfeea502 = object;
+		level.var_cfeea502 = new throttle();
 		[[ level.var_cfeea502 ]]->initialize(3, 0.1);
 	}
 }
@@ -117,7 +115,7 @@ function on_connect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_63e57124()
+function private function_63e57124()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -149,31 +147,34 @@ private function function_63e57124()
 			self thread function_4493c71b(wpn_cur, 1);
 			playrumbleonposition("grenade_rumble", self.origin);
 		}
-		else if(wpn_cur == level.hero_weapon[#"scepter"][1])
+		else
 		{
-			zm_hero_weapon::show_hint(wpn_cur, #"hash_7ebea2becf0c1aee");
-			self thread function_4521ac7e(wpn_cur, 2);
-			self thread function_4493c71b(wpn_cur, 2);
-			playrumbleonposition("grenade_rumble", self.origin);
-			self thread function_eae0296b(#"hash_50f35d4cfb775c4f", 1);
-		}
-		else if(wpn_cur == level.hero_weapon[#"scepter"][2])
-		{
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"scepter"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_5ba4f6bd62a74330");
+				zm_hero_weapon::show_hint(wpn_cur, #"hash_7ebea2becf0c1aee");
+				self thread function_4521ac7e(wpn_cur, 2);
+				self thread function_4493c71b(wpn_cur, 2);
+				playrumbleonposition("grenade_rumble", self.origin);
+				self thread function_eae0296b(#"hash_50f35d4cfb775c4f", 1);
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"scepter"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_57c3251d6df56d4");
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_5ba4f6bd62a74330");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_57c3251d6df56d4");
+				}
+				self.var_7e973e30 = wpn_prev;
+				self thread function_4521ac7e(wpn_cur, 3);
+				self thread function_4493c71b(wpn_cur, 3);
+				self thread function_e874c3e1(wpn_cur);
+				playrumbleonposition("grenade_rumble", self.origin);
+				self thread function_68ff89f7(wpn_cur);
+				self thread function_eae0296b(#"hash_50f35c4cfb775a9c", 1);
 			}
-			self.var_7e973e30 = wpn_prev;
-			self thread function_4521ac7e(wpn_cur, 3);
-			self thread function_4493c71b(wpn_cur, 3);
-			self thread function_e874c3e1(wpn_cur);
-			playrumbleonposition("grenade_rumble", self.origin);
-			self thread function_68ff89f7(wpn_cur);
-			self thread function_eae0296b(#"hash_50f35c4cfb775a9c", 1);
 		}
 	}
 }
@@ -187,7 +188,7 @@ private function function_63e57124()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_304a3c9b(var_c34665fc)
+function private function_304a3c9b(var_c34665fc)
 {
 	if(var_c34665fc === "hero_weapon_power_off" || var_c34665fc === "player_downed")
 	{
@@ -207,9 +208,9 @@ private function function_304a3c9b(var_c34665fc)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4521ac7e(var_f2a06582, n_lvl)
+function private function_4521ac7e(var_f2a06582, n_lvl)
 {
-	self endon_callback(&function_304a3c9b, #"hash_219c7081783c2153", #"player_downed", #"disconnect", #"hero_weapon_power_off");
+	self endoncallback(&function_304a3c9b, #"hash_219c7081783c2153", #"player_downed", #"disconnect", #"hero_weapon_power_off");
 	while(true)
 	{
 		s_result = undefined;
@@ -261,7 +262,7 @@ private function function_4521ac7e(var_f2a06582, n_lvl)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4493c71b(weapon, n_lvl = 1)
+function private function_4493c71b(weapon, n_lvl = 1)
 {
 	self endon(#"hash_219c7081783c2153", #"bled_out", #"disconnect");
 	while(true)
@@ -291,7 +292,7 @@ private function function_4493c71b(weapon, n_lvl = 1)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_eae0296b(var_65b6e624, b_postfx = 0)
+function private function_eae0296b(var_65b6e624, b_postfx = 0)
 {
 	if(b_postfx)
 	{
@@ -323,7 +324,7 @@ private function function_eae0296b(var_65b6e624, b_postfx = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_89fc5431()
+function private function_89fc5431()
 {
 	self.var_5762241e = undefined;
 	self.var_a0a1475c = undefined;
@@ -338,7 +339,7 @@ private function function_89fc5431()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e874c3e1(weapon)
+function private function_e874c3e1(weapon)
 {
 	self endon(#"hash_219c7081783c2153", #"death");
 	while(true)
@@ -365,7 +366,7 @@ private function function_e874c3e1(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function blood_death_fx(var_14ef0a6c)
+function private blood_death_fx(var_14ef0a6c)
 {
 }
 
@@ -703,7 +704,7 @@ function function_be8ae52f(var_f2a06582)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_b67b2aff(e_target, n_damage, v_target_pos, w_hero, b_launched = 0, var_9a119ceb = 0)
+function private function_b67b2aff(e_target, n_damage, v_target_pos, w_hero, b_launched = 0, var_9a119ceb = 0)
 {
 	e_target endon(#"death");
 	self endon(#"disconnect");
@@ -750,7 +751,7 @@ private function function_b67b2aff(e_target, n_damage, v_target_pos, w_hero, b_l
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_closest_tag(v_pos)
+function private get_closest_tag(v_pos)
 {
 	if(!isdefined(level.gib_tags))
 	{
@@ -921,49 +922,49 @@ function function_d5c9a81(e_revivee)
 {
 	if(!isdefined(e_revivee.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(e_revivee.var_4fc8bf2a) && e_revivee.var_4fc8bf2a)
 	{
-		return 1;
+		return true;
 	}
 	if(self laststand::player_is_in_laststand() && !isdefined(self.var_6d772cb))
 	{
-		return 0;
+		return false;
 	}
 	if(self.team != e_revivee.team)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_zombie) && self.is_zombie)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_7b2f6755) && self.var_7b2f6755)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_use_depthinwater_test) && level.can_revive_use_depthinwater_test && e_revivee depthinwater() > 10)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(level.can_revive) && ![[level.can_revive]](e_revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_game_module) && ![[level.can_revive_game_module]](e_revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(e_revivee zm_player::in_kill_brush() || !e_revivee zm_player::in_enabled_playable_area())
 	{
-		return 0;
+		return false;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1078,13 +1079,16 @@ function function_97429d68(n_time = 5)
 			self thread namespace_9ff9f642::slowdown(#"hash_6c580f93aa40248d");
 		}
 	}
-	else if(self.var_6f84b820 === #"heavy" || self.var_6f84b820 === #"miniboss")
-	{
-		self thread namespace_9ff9f642::slowdown(#"hash_449bc314b0c3da73");
-	}
 	else
 	{
-		self thread namespace_9ff9f642::slowdown(#"hash_6c580993aa401a5b");
+		if(self.var_6f84b820 === #"heavy" || self.var_6f84b820 === #"miniboss")
+		{
+			self thread namespace_9ff9f642::slowdown(#"hash_449bc314b0c3da73");
+		}
+		else
+		{
+			self thread namespace_9ff9f642::slowdown(#"hash_6c580993aa401a5b");
+		}
 	}
 	self clientfield::set("" + #"hash_18aecd09c861f097", 1);
 	wait(n_time);
@@ -1146,10 +1150,10 @@ function function_75e6e51c(n_time = 5, e_attacker)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_717a1af2()
+function private function_717a1af2()
 {
 	self endon(#"bled_out", #"death", #"beacon_expired");
-	var_a23636f4 = getweapon(#"hash_50f35c4cfb775a9c");
+	w_beacon = getweapon(#"hash_50f35c4cfb775a9c");
 	self function_1728db6f(0);
 	self.var_d6fe2916 = 0;
 	self.disable_hero_power_charging = 0;
@@ -1160,15 +1164,15 @@ private function function_717a1af2()
 		var_be17187b = undefined;
 		var_be17187b = self waittill(#"hash_4078956b159dd0f3");
 	}
-	while(var_be17187b.weapon != var_a23636f4);
+	while(var_be17187b.weapon != w_beacon);
 	if(isdefined(self.var_165b5fce))
 	{
-		self gadgetpowerset(self gadgetgetslot(var_a23636f4), self.var_165b5fce);
+		self gadgetpowerset(self gadgetgetslot(w_beacon), self.var_165b5fce);
 		self.saved_spike_power = undefined;
 	}
 	else
 	{
-		self gadgetpowerset(self gadgetgetslot(var_a23636f4), 100);
+		self gadgetpowerset(self gadgetgetslot(w_beacon), 100);
 	}
 	self.var_b4e3db6c = undefined;
 	self thread weapon_drop_watcher();
@@ -1233,23 +1237,23 @@ function weapon_change_watcher()
 function reset_after_bleeding_out()
 {
 	self endon(#"disconnect");
-	var_a23636f4 = getweapon(#"hash_50f35c4cfb775a9c");
+	w_beacon = getweapon(#"hash_50f35c4cfb775a9c");
 	if(isdefined(self.var_8a5094fe) && self.var_8a5094fe)
 	{
 		util::wait_network_frame();
-		self zm_weapons::weapon_give(var_a23636f4, 0, 1);
+		self zm_weapons::weapon_give(w_beacon, 0, 1);
 		self function_1728db6f(2);
 	}
 	self waittill(#"bled_out");
-	if(self hasweapon(var_a23636f4))
+	if(self hasweapon(w_beacon))
 	{
 		self.var_8a5094fe = 1;
-		self.var_3d89e839 = self gadgetpowerget(self gadgetgetslot(var_a23636f4));
+		self.var_3d89e839 = self gadgetpowerget(self gadgetgetslot(w_beacon));
 		if(self.var_3d89e839 >= 100)
 		{
 			self.var_3d89e839 = undefined;
 		}
-		self.var_4831c9c9[#"hash_50f35c4cfb775a9c"] = self getweaponammoclip(var_a23636f4);
+		self.var_4831c9c9[#"hash_50f35c4cfb775a9c"] = self getweaponammoclip(w_beacon);
 	}
 	if(isdefined(self.var_b4e3db6c))
 	{
@@ -1291,9 +1295,9 @@ function function_22bebb6b()
 	Parameters: 1
 	Flags: Linked
 */
-function function_b603ab34(var_a23636f4)
+function function_b603ab34(w_beacon)
 {
-	self endon_callback(&function_d14a3750, #"disconnect");
+	self endoncallback(&function_d14a3750, #"disconnect");
 	level scene::function_27f5972e(#"p8_fxanim_zm_zod_staff_ra_bundle");
 	waitframe(14);
 	self thread scepter_rumble(4);
@@ -1318,14 +1322,14 @@ function function_b603ab34(var_a23636f4)
 	playrumbleonposition("grenade_rumble", self.origin);
 	self function_f67f53a7(var_4eaa1f4c);
 	self thread beacon_fx_on();
-	self thread zm_hero_weapon::function_4e984e83(var_a23636f4, 0.13);
-	self thread beacon_loop(var_a23636f4, var_4eaa1f4c);
+	self thread zm_hero_weapon::function_4e984e83(w_beacon, 0.13);
+	self thread beacon_loop(w_beacon, var_4eaa1f4c);
 	self.var_6d772cb = self.var_6afa034c;
 	self.var_d6fe2916 = 1;
 	var_1c136516 = self gadgetpowerget(level.var_a53a05b5);
 	if(var_1c136516 > 5)
 	{
-		self thread function_d3dc001e(var_a23636f4);
+		self thread function_d3dc001e(w_beacon);
 		zm_utility::function_3e549e65();
 		self waittill(#"beacon_off", #"beacon_retrieved", #"death", #"hash_2b69105d9436130a");
 		zm_utility::function_b7e5029f();
@@ -1334,7 +1338,7 @@ function function_b603ab34(var_a23636f4)
 	{
 		self thread function_f168b337();
 		self notify(#"beacon_retrieved");
-		self ability_player::function_f2250880(var_a23636f4);
+		self ability_player::function_f2250880(w_beacon);
 		self.var_6d772cb = undefined;
 		self.var_d6fe2916 = 0;
 		self.disable_hero_power_charging = 0;
@@ -1368,13 +1372,13 @@ function function_d14a3750(var_c34665fc)
 	Parameters: 1
 	Flags: Linked
 */
-function function_d3dc001e(var_a23636f4)
+function function_d3dc001e(w_beacon)
 {
-	self endon_callback(&function_e7e5d6f5, #"beacon_retrieved", #"death");
+	self endoncallback(&function_e7e5d6f5, #"beacon_retrieved", #"death");
 	self.var_80612bea = 1;
 	while(true)
 	{
-		slot = self gadgetgetslot(var_a23636f4);
+		slot = self gadgetgetslot(w_beacon);
 		n_power = self gadgetpowerget(slot);
 		if(n_power <= 0)
 		{
@@ -1578,12 +1582,12 @@ function function_f168b337()
 	Parameters: 2
 	Flags: Linked
 */
-function beacon_loop(var_a23636f4, var_4eaa1f4c)
+function beacon_loop(w_beacon, var_4eaa1f4c)
 {
 	self endon(#"beacon_retrieved", #"death", #"bled_out", #"disconnect");
 	while(true)
 	{
-		slot = self gadgetgetslot(var_a23636f4);
+		slot = self gadgetgetslot(w_beacon);
 		if(self gadgetpowerget(slot) > 0)
 		{
 			array::thread_all(level.players, &function_888d5bd9, self);
@@ -1727,11 +1731,11 @@ function check_for_range_and_los(v_attack_source, n_allowed_z_diff, n_radius_sq)
 		{
 			if(distancesquared(self.origin, v_attack_source) < n_radius_sq)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1795,7 +1799,7 @@ function function_888d5bd9(e_player)
 function function_3a00c0a6(perk)
 {
 	self thread zm_perks::function_b2dfd295(perk, &function_cd010531);
-	return 0;
+	return false;
 }
 
 /*

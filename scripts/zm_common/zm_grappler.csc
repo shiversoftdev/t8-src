@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_grappler", &__init__, undefined, undefined);
 }
@@ -84,7 +84,7 @@ function function_7e79839e(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(!isdefined(level.var_da8e7aa4[newval]))
 	{
-		level waittill_timeout(1, "grapple_id_" + newval);
+		level waittilltimeout(1, "grapple_id_" + newval);
 	}
 	/#
 		assert(isdefined(level.var_da8e7aa4[newval]));
@@ -146,7 +146,7 @@ function function_f4b9c325(notifyhash)
 */
 function grapple_beam(player, tag, pivot)
 {
-	self endon_callback(&function_f4b9c325, #"death");
+	self endoncallback(&function_f4b9c325, #"death");
 	self.player = player;
 	self.tag = tag;
 	self.pivot = pivot;

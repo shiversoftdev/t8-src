@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	/#
 		system::register(#"rat", &__init__, undefined, undefined);
@@ -677,9 +677,9 @@ function function_3d37c034(params)
 			{
 				continue;
 			}
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -786,9 +786,9 @@ function function_ff8061ca(params)
 	/#
 		if(isdefined(level.power_local_doors_globally))
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	#/
 }
 

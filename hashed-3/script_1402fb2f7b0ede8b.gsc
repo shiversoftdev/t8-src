@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6713646f83073129", &__init__, undefined, undefined);
 }
@@ -52,7 +52,7 @@ function __init__()
 	Parameters: 6
 	Flags: Private
 */
-private function function_d1de6a85(var_c2964c77, description, image, var_1ab324d7, var_191009a6, var_8d63de44)
+function private function_d1de6a85(var_c2964c77, description, image, var_1ab324d7, var_191009a6, var_8d63de44)
 {
 	self.var_c2964c77 = var_c2964c77;
 	self.var_1ab324d7 = var_1ab324d7;
@@ -69,7 +69,7 @@ private function function_d1de6a85(var_c2964c77, description, image, var_1ab324d
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(!round_reset && !level flag::get(#"hash_6acab8bde7078239"))
 	{
@@ -94,7 +94,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_e7254828()
+function private function_e7254828()
 {
 	/#
 		assert(isdefined(level.var_6d87ac05) && isdefined(level.var_6d87ac05.name));

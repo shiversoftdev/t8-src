@@ -36,7 +36,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_blockers", &__init__, &__main__, undefined);
 }
@@ -64,13 +64,16 @@ function __init__()
 	{
 		thread [[level.var_c621179]]();
 	}
-	else if(function_8b1a219a())
-	{
-		zm_utility::add_zombie_hint("default_buy_debris", #"hash_4b77c0a6bc72bc31");
-	}
 	else
 	{
-		zm_utility::add_zombie_hint("default_buy_debris", #"hash_1595dd9d4d64f37b");
+		if(function_8b1a219a())
+		{
+			zm_utility::add_zombie_hint("default_buy_debris", #"hash_4b77c0a6bc72bc31");
+		}
+		else
+		{
+			zm_utility::add_zombie_hint("default_buy_debris", #"hash_1595dd9d4d64f37b");
+		}
 	}
 	if(function_8b1a219a())
 	{
@@ -256,35 +259,41 @@ function door_classify(parent_trig)
 		parent_trig.clip = self;
 		parent_trig.script_string = "clip";
 	}
-	else if(!isdefined(self.script_string))
+	else
 	{
-		if(isdefined(self.script_angles))
+		if(!isdefined(self.script_string))
 		{
-			self.script_string = "rotate";
+			if(isdefined(self.script_angles))
+			{
+				self.script_string = "rotate";
+			}
+			else if(isdefined(self.script_vector))
+			{
+				self.script_string = "move";
+			}
 		}
-		else if(isdefined(self.script_vector))
+		else
 		{
-			self.script_string = "move";
-		}
-	}
-	else if(!isdefined(self.script_string))
-	{
-		self.script_string = "";
-	}
-	switch(self.script_string)
-	{
-		case "anim":
-		{
-			/#
-				assert(isdefined(self.script_animname), "" + self.targetname);
-			#/
-			/#
-				assert(isdefined(level.scr_anim[self.script_animname]), "" + self.script_animname);
-			#/
-			/#
-				assert(isdefined(level.blocker_anim_func), "");
-			#/
-			break;
+			if(!isdefined(self.script_string))
+			{
+				self.script_string = "";
+			}
+			switch(self.script_string)
+			{
+				case "anim":
+				{
+					/#
+						assert(isdefined(self.script_animname), "" + self.targetname);
+					#/
+					/#
+						assert(isdefined(level.scr_anim[self.script_animname]), "" + self.script_animname);
+					#/
+					/#
+						assert(isdefined(level.blocker_anim_func), "");
+					#/
+					break;
+				}
+			}
 		}
 	}
 	if(self.classname == "script_brushmodel")
@@ -311,30 +320,30 @@ function door_buy()
 	force = waitresult.is_forced;
 	if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(force) && force) || (isdefined(level.var_5791d548) && level.var_5791d548))
 	{
-		return 1;
+		return true;
 	}
 	if(!isdefined(who) || !who usebuttonpressed())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.custom_door_buy_check))
 	{
 		if(!who [[level.custom_door_buy_check]](self))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(who zm_utility::in_revive_trigger())
 	{
-		return 0;
+		return false;
 	}
 	if(who zm_utility::is_drinking())
 	{
-		return 0;
+		return false;
 	}
 	if(namespace_497ab7da::is_active())
 	{
-		return 0;
+		return false;
 	}
 	cost = 0;
 	upgraded = 0;
@@ -346,38 +355,44 @@ function door_buy()
 		{
 			self.purchaser = undefined;
 		}
-		else if(who zm_score::can_player_purchase(cost))
-		{
-			who zm_score::minus_to_player_score(cost);
-			scoreevents::processscoreevent("open_door", who);
-			demo::bookmark(#"zm_player_door", gettime(), who);
-			potm::bookmark(#"zm_player_door", gettime(), who);
-			who zm_stats::increment_client_stat("doors_purchased");
-			who zm_stats::increment_player_stat("doors_purchased");
-			who zm_stats::function_2726a7c2("doors_purchased");
-			who zm_stats::increment_challenge_stat(#"survivalist_buy_door");
-			who zm_stats::function_8f10788e("boas_doors_purchased");
-			who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
-			who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
-			self.purchaser = who;
-			who namespace_e38c57c1::function_c3f3716();
-		}
 		else
 		{
-			zm_utility::play_sound_at_pos("no_purchase", self.origin);
-			if(isdefined(level.custom_door_deny_vo_func))
+			if(who zm_score::can_player_purchase(cost))
 			{
-				who thread [[level.custom_door_deny_vo_func]]();
-			}
-			else if(isdefined(level.custom_generic_deny_vo_func))
-			{
-				who thread [[level.custom_generic_deny_vo_func]](1);
+				who zm_score::minus_to_player_score(cost);
+				scoreevents::processscoreevent("open_door", who);
+				demo::bookmark(#"zm_player_door", gettime(), who);
+				potm::bookmark(#"zm_player_door", gettime(), who);
+				who zm_stats::increment_client_stat("doors_purchased");
+				who zm_stats::increment_player_stat("doors_purchased");
+				who zm_stats::function_2726a7c2("doors_purchased");
+				who zm_stats::increment_challenge_stat(#"survivalist_buy_door");
+				who zm_stats::function_8f10788e("boas_doors_purchased");
+				who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
+				who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
+				self.purchaser = who;
+				who namespace_e38c57c1::function_c3f3716();
 			}
 			else
 			{
-				who zm_audio::create_and_play_dialog(#"general", #"outofmoney");
+				zm_utility::play_sound_at_pos("no_purchase", self.origin);
+				if(isdefined(level.custom_door_deny_vo_func))
+				{
+					who thread [[level.custom_door_deny_vo_func]]();
+				}
+				else
+				{
+					if(isdefined(level.custom_generic_deny_vo_func))
+					{
+						who thread [[level.custom_generic_deny_vo_func]](1);
+					}
+					else
+					{
+						who zm_audio::create_and_play_dialog(#"general", #"outofmoney");
+					}
+				}
+				return false;
 			}
-			return 0;
 		}
 	}
 	if(isdefined(level._door_open_rumble_func))
@@ -385,8 +400,8 @@ function door_buy()
 		who thread [[level._door_open_rumble_func]]();
 	}
 	who recordmapevent(5, gettime(), who.origin, level.round_number, cost);
-	bb::function_ab9bb12c(who, self, cost, self.target, upgraded, "_door", "_purchase");
-	return 1;
+	bb::logpurchaseevent(who, self, cost, self.target, upgraded, "_door", "_purchase");
+	return true;
 }
 
 /*
@@ -714,11 +729,11 @@ function any_player_touching(trigger)
 	{
 		if(player istouching(trigger))
 		{
-			return 1;
+			return true;
 		}
 		wait(0.01);
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -738,7 +753,7 @@ function any_player_touching_any(trigger, more_triggers)
 		{
 			if(isdefined(trigger) && player istouching(trigger))
 			{
-				return 1;
+				return true;
 			}
 			if(isdefined(more_triggers) && more_triggers.size > 0)
 			{
@@ -746,13 +761,13 @@ function any_player_touching_any(trigger, more_triggers)
 				{
 					if(isdefined(trig) && player istouching(trig))
 					{
-						return 1;
+						return true;
 					}
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -771,7 +786,7 @@ function any_zombie_touching_any(trigger, more_triggers)
 	{
 		if(isdefined(trigger) && zombie istouching(trigger))
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(more_triggers) && more_triggers.size > 0)
 		{
@@ -779,12 +794,12 @@ function any_zombie_touching_any(trigger, more_triggers)
 			{
 				if(isdefined(trig) && zombie istouching(trig))
 				{
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1310,7 +1325,7 @@ function door_solid_thread()
 */
 function door_solid_thread_anim()
 {
-	self waittill_match({#notetrack:"end"}, #"door_anim");
+	self waittillmatch({#notetrack:"end"}, #"door_anim");
 	self.door_moving = undefined;
 	while(true)
 	{
@@ -1468,29 +1483,35 @@ function debris_think()
 					continue;
 				}
 			}
-			else if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.is_forced) && waitresult.is_forced) || (isdefined(level.var_5791d548) && level.var_5791d548))
+			else
 			{
-			}
-			else if(!who usebuttonpressed())
-			{
-				continue;
-			}
-			if(who zm_utility::is_drinking())
-			{
-				continue;
-			}
-			if(who zm_utility::in_revive_trigger())
-			{
-				continue;
-			}
-			if(isdefined(level.var_1092025b) && level.var_1092025b)
-			{
-				zm_utility::play_sound_at_pos("no_purchase", self.origin);
-				continue;
-			}
-			if(namespace_497ab7da::is_active())
-			{
-				continue;
+				if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.is_forced) && waitresult.is_forced) || (isdefined(level.var_5791d548) && level.var_5791d548))
+				{
+				}
+				else
+				{
+					if(!who usebuttonpressed())
+					{
+						continue;
+					}
+					if(who zm_utility::is_drinking())
+					{
+						continue;
+					}
+					if(who zm_utility::in_revive_trigger())
+					{
+						continue;
+					}
+					if(isdefined(level.var_1092025b) && level.var_1092025b)
+					{
+						zm_utility::play_sound_at_pos("no_purchase", self.origin);
+						continue;
+					}
+					if(namespace_497ab7da::is_active())
+					{
+						continue;
+					}
+				}
 			}
 		}
 		if(zm_utility::is_player_valid(who))
@@ -1499,26 +1520,29 @@ function debris_think()
 			if(getdvarint(#"zombie_unlock_all", 0) > 0 || (isdefined(waitresult.is_forced) && waitresult.is_forced) || (isdefined(level.var_5791d548) && level.var_5791d548))
 			{
 			}
-			else if(who zm_score::can_player_purchase(self.zombie_cost))
-			{
-				who zm_score::minus_to_player_score(self.zombie_cost);
-				scoreevents::processscoreevent("open_door", who);
-				demo::bookmark(#"zm_player_door", gettime(), who);
-				potm::bookmark(#"zm_player_door", gettime(), who);
-				who zm_stats::increment_client_stat("doors_purchased");
-				who zm_stats::increment_player_stat("doors_purchased");
-				who zm_stats::function_2726a7c2("doors_purchased");
-				who zm_stats::increment_challenge_stat(#"survivalist_buy_door", undefined, 1);
-				who zm_stats::function_8f10788e("boas_doors_purchased");
-				who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
-				who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
-				who namespace_e38c57c1::function_c3f3716();
-			}
 			else
 			{
-				zm_utility::play_sound_at_pos("no_purchase", self.origin);
-				who zm_audio::create_and_play_dialog(#"general", #"outofmoney");
-				continue;
+				if(who zm_score::can_player_purchase(self.zombie_cost))
+				{
+					who zm_score::minus_to_player_score(self.zombie_cost);
+					scoreevents::processscoreevent("open_door", who);
+					demo::bookmark(#"zm_player_door", gettime(), who);
+					potm::bookmark(#"zm_player_door", gettime(), who);
+					who zm_stats::increment_client_stat("doors_purchased");
+					who zm_stats::increment_player_stat("doors_purchased");
+					who zm_stats::function_2726a7c2("doors_purchased");
+					who zm_stats::increment_challenge_stat(#"survivalist_buy_door", undefined, 1);
+					who zm_stats::function_8f10788e("boas_doors_purchased");
+					who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
+					who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
+					who namespace_e38c57c1::function_c3f3716();
+				}
+				else
+				{
+					zm_utility::play_sound_at_pos("no_purchase", self.origin);
+					who zm_audio::create_and_play_dialog(#"general", #"outofmoney");
+					continue;
+				}
 			}
 			self notify(#"kill_debris_prompt_thread");
 			self thread function_f2f6ce12();
@@ -1868,15 +1892,26 @@ function function_23cbcd8()
 		{
 			self.objectid = "symbol_front";
 		}
-		else if(self.model == "p8_zm_debris_buy_symbol_01")
+		else
 		{
-			self.objectid = "symbol_front_debris";
+			if(self.model == "p8_zm_debris_buy_symbol_01")
+			{
+				self.objectid = "symbol_front_debris";
+			}
+			else
+			{
+				if(self.model == "p8_zm_power_door_symbol_01")
+				{
+					self.objectid = "symbol_front_power";
+				}
+				else
+				{
+					/#
+						assert(0, "" + self.origin);
+					#/
+				}
+			}
 		}
-		else if(self.model == "p8_zm_power_door_symbol_01")
-		{
-			self.objectid = "symbol_front_power";
-		}
-		assert(0, "" + self.origin);
 	}
 	var_9e7c3935 = util::spawn_model("tag_origin", self.origin, self.angles, 0, 1);
 	var_9e7c3935.targetname = self.targetname;
@@ -2122,29 +2157,32 @@ function blocker_init()
 					}
 				}
 			}
-			else if(targets[j].script_parameters == "repair_board")
+			else
 			{
-				targets[j].unbroken_section = getent(targets[j].target, "targetname");
-				if(isdefined(targets[j].unbroken_section))
+				if(targets[j].script_parameters == "repair_board")
 				{
-					targets[j].unbroken_section linkto(targets[j]);
-					targets[j] hide();
-					targets[j] notsolid();
-					targets[j].unbroken = 1;
-					if(isdefined(targets[j].unbroken_section.script_noteworthy) && targets[j].unbroken_section.script_noteworthy == "glass")
+					targets[j].unbroken_section = getent(targets[j].target, "targetname");
+					if(isdefined(targets[j].unbroken_section))
 					{
-						targets[j].material = "glass";
-						targets[j] thread destructible_glass_barricade(targets[j].unbroken_section, self);
-					}
-					else if(isdefined(targets[j].unbroken_section.script_noteworthy) && targets[j].unbroken_section.script_noteworthy == "metal")
-					{
-						targets[j].material = "metal";
+						targets[j].unbroken_section linkto(targets[j]);
+						targets[j] hide();
+						targets[j] notsolid();
+						targets[j].unbroken = 1;
+						if(isdefined(targets[j].unbroken_section.script_noteworthy) && targets[j].unbroken_section.script_noteworthy == "glass")
+						{
+							targets[j].material = "glass";
+							targets[j] thread destructible_glass_barricade(targets[j].unbroken_section, self);
+						}
+						else if(isdefined(targets[j].unbroken_section.script_noteworthy) && targets[j].unbroken_section.script_noteworthy == "metal")
+						{
+							targets[j].material = "metal";
+						}
 					}
 				}
-			}
-			else if(targets[j].script_parameters == "barricade_vents")
-			{
-				targets[j].material = "metal_vent";
+				else if(targets[j].script_parameters == "barricade_vents")
+				{
+					targets[j].material = "metal_vent";
+				}
 			}
 		}
 		if(isdefined(targets[j].targetname))
@@ -2423,37 +2461,37 @@ function player_fails_blocker_repair_trigger_preamble(player, players, trigger, 
 {
 	if(!isdefined(trigger))
 	{
-		return 1;
+		return true;
 	}
 	if(!player istouching(trigger, vectorscale((1, 1, 1), 10)))
 	{
-		return 1;
+		return true;
 	}
 	if(!zm_utility::is_player_valid(player))
 	{
-		return 1;
+		return true;
 	}
 	if(players.size == 1 && isdefined(players[0].intermission) && players[0].intermission == 1)
 	{
-		return 1;
+		return true;
 	}
 	if(hold_required && !player usebuttonpressed())
 	{
-		return 1;
+		return true;
 	}
 	if(!hold_required && !player util::use_button_held())
 	{
-		return 1;
+		return true;
 	}
 	if(player zm_utility::in_revive_trigger())
 	{
-		return 1;
+		return true;
 	}
 	if(player zm_utility::is_drinking())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2799,17 +2837,17 @@ function blockerstub_update_prompt(player)
 {
 	if(!zm_utility::is_player_valid(player))
 	{
-		return 0;
+		return false;
 	}
 	if(player zm_utility::in_revive_trigger())
 	{
-		return 0;
+		return false;
 	}
 	if(player zm_utility::is_drinking())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -3154,37 +3192,49 @@ function zombie_boardtear_audio_offset(chunk)
 		chunk playsound(#"zmb_break_glass_barrier");
 		chunk.already_broken = 1;
 	}
-	else if(isdefined(chunk.material) && chunk.material == "metal" && chunk.already_broken == 0)
+	else
 	{
-		chunk playsound(#"grab_metal_bar");
-		wait(randomfloatrange(0.3, 0.6));
-		chunk playsound(#"break_metal_bar");
-		chunk.already_broken = 1;
-	}
-	else if(isdefined(chunk.material) && chunk.material == "rock")
-	{
-		if(!(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx))
+		if(isdefined(chunk.material) && chunk.material == "metal" && chunk.already_broken == 0)
 		{
-			chunk playsound(#"zmb_break_rock_barrier");
+			chunk playsound(#"grab_metal_bar");
 			wait(randomfloatrange(0.3, 0.6));
-			chunk playsound(#"zmb_break_rock_barrier");
+			chunk playsound(#"break_metal_bar");
+			chunk.already_broken = 1;
 		}
-		chunk.already_broken = 1;
-	}
-	else if(isdefined(chunk.material) && chunk.material == "metal_vent")
-	{
-		if(!(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx))
+		else
 		{
-			chunk playsound(#"evt_vent_slat_remove");
+			if(isdefined(chunk.material) && chunk.material == "rock")
+			{
+				if(!(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx))
+				{
+					chunk playsound(#"zmb_break_rock_barrier");
+					wait(randomfloatrange(0.3, 0.6));
+					chunk playsound(#"zmb_break_rock_barrier");
+				}
+				chunk.already_broken = 1;
+			}
+			else
+			{
+				if(isdefined(chunk.material) && chunk.material == "metal_vent")
+				{
+					if(!(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx))
+					{
+						chunk playsound(#"evt_vent_slat_remove");
+					}
+				}
+				else
+				{
+					if(!(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx))
+					{
+						chunk zm_utility::play_sound_on_ent("break_barrier_piece");
+						wait(randomfloatrange(0.3, 0.6));
+						chunk zm_utility::play_sound_on_ent("break_barrier_piece");
+					}
+					chunk.already_broken = 1;
+				}
+			}
 		}
 	}
-	else if(!(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx))
-	{
-		chunk zm_utility::play_sound_on_ent("break_barrier_piece");
-		wait(randomfloatrange(0.3, 0.6));
-		chunk zm_utility::play_sound_on_ent("break_barrier_piece");
-	}
-	chunk.already_broken = 1;
 }
 
 /*
@@ -3413,15 +3463,18 @@ function zombie_boardtear_audio_plus_fx_offset_repair_horizontal(chunk)
 			chunk zm_utility::play_sound_on_ent("break_barrier_piece");
 		}
 	}
-	else if(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx)
-	{
-		chunk clientfield::set("tearin_board_vertical_fx", 0);
-	}
 	else
 	{
-		earthquake(randomfloatrange(0.3, 0.4), randomfloatrange(0.2, 0.4), chunk.origin, 150);
-		wait(randomfloatrange(0.3, 0.6));
-		chunk zm_utility::play_sound_on_ent("break_barrier_piece");
+		if(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx)
+		{
+			chunk clientfield::set("tearin_board_vertical_fx", 0);
+		}
+		else
+		{
+			earthquake(randomfloatrange(0.3, 0.4), randomfloatrange(0.2, 0.4), chunk.origin, 150);
+			wait(randomfloatrange(0.3, 0.6));
+			chunk zm_utility::play_sound_on_ent("break_barrier_piece");
+		}
 	}
 }
 
@@ -3449,15 +3502,18 @@ function zombie_boardtear_audio_plus_fx_offset_repair_verticle(chunk)
 			chunk zm_utility::play_sound_on_ent("break_barrier_piece");
 		}
 	}
-	else if(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx)
-	{
-		chunk clientfield::set("tearin_board_horizontal_fx", 0);
-	}
 	else
 	{
-		earthquake(randomfloatrange(0.3, 0.4), randomfloatrange(0.2, 0.4), chunk.origin, 150);
-		wait(randomfloatrange(0.3, 0.6));
-		chunk zm_utility::play_sound_on_ent("break_barrier_piece");
+		if(isdefined(level.use_clientside_board_fx) && level.use_clientside_board_fx)
+		{
+			chunk clientfield::set("tearin_board_horizontal_fx", 0);
+		}
+		else
+		{
+			earthquake(randomfloatrange(0.3, 0.4), randomfloatrange(0.2, 0.4), chunk.origin, 150);
+			wait(randomfloatrange(0.3, 0.6));
+			chunk zm_utility::play_sound_on_ent("break_barrier_piece");
+		}
 	}
 }
 
@@ -3760,7 +3816,7 @@ function quantum_bomb_open_nearest_door_validation(position)
 	{
 		if(distancesquared(zombie_doors[i].origin, position) < range_squared)
 		{
-			return 1;
+			return true;
 		}
 	}
 	zombie_airlock_doors = getentarray("zombie_airlock_buy", "targetname");
@@ -3768,7 +3824,7 @@ function quantum_bomb_open_nearest_door_validation(position)
 	{
 		if(distancesquared(zombie_airlock_doors[i].origin, position) < range_squared)
 		{
-			return 1;
+			return true;
 		}
 	}
 	zombie_debris = getentarray("zombie_debris", "targetname");
@@ -3776,10 +3832,10 @@ function quantum_bomb_open_nearest_door_validation(position)
 	{
 		if(distancesquared(zombie_debris[i].origin, position) < range_squared)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3842,13 +3898,16 @@ function function_dafd2e5a()
 	{
 		thread [[level.var_ddcd74c6]](self);
 	}
-	else if(isdefined(level.var_d5bd7049))
-	{
-		self sethintstring(level.var_d5bd7049);
-	}
 	else
 	{
-		self sethintstring(#"hash_71158766520dc432");
+		if(isdefined(level.var_d5bd7049))
+		{
+			self sethintstring(level.var_d5bd7049);
+		}
+		else
+		{
+			self sethintstring(#"hash_71158766520dc432");
+		}
 	}
 }
 

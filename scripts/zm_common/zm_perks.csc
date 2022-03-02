@@ -526,13 +526,16 @@ function function_bb184fed(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			var_c809f6c1 = 6;
 		}
-		else if(isdefined(e_player.var_74eaa305))
-		{
-			var_c809f6c1 = e_player.var_74eaa305;
-		}
 		else
 		{
-			var_c809f6c1 = e_player getentitynumber() + 1;
+			if(isdefined(e_player.var_74eaa305))
+			{
+				var_c809f6c1 = e_player.var_74eaa305;
+			}
+			else
+			{
+				var_c809f6c1 = e_player getentitynumber() + 1;
+			}
 		}
 		var_dcf4ea85 thread function_bde5bc78(localclientnum, var_fe0b737a, var_c809f6c1, 0);
 	}
@@ -739,50 +742,53 @@ function function_bde5bc78(localclientnum, var_fe0b737a, newval, oldval)
 			wait(0.01);
 		}
 	}
-	else if(level.var_c3e5c4cd == 2)
+	else
 	{
-		if(newval == 7)
+		if(level.var_c3e5c4cd == 2)
 		{
-			self.var_73bd396b function_5b123b68(localclientnum, 0);
+			if(newval == 7)
+			{
+				self.var_73bd396b function_5b123b68(localclientnum, 0);
+			}
+			else
+			{
+				self.var_73bd396b.var_be82764e = level._effect[#"hash_26247c4bfd6fed73"];
+				self.var_73bd396b function_5b123b68(localclientnum, 1, 1);
+			}
+		}
+		if(isdefined(self.var_2efc1a24))
+		{
+			killfx(localclientnum, self.var_2efc1a24);
+			self.var_2efc1a24 = undefined;
+		}
+		if(newval == 6)
+		{
+			self function_78233d29(#"hash_16b8b568a95931e7", "", "brightness", 0);
+			self function_78233d29(#"hash_16b8b568a95931e7", "", "alpha", 0);
 		}
 		else
 		{
-			self.var_73bd396b.var_be82764e = level._effect[#"hash_26247c4bfd6fed73"];
-			self.var_73bd396b function_5b123b68(localclientnum, 1, 1);
-		}
-	}
-	if(isdefined(self.var_2efc1a24))
-	{
-		killfx(localclientnum, self.var_2efc1a24);
-		self.var_2efc1a24 = undefined;
-	}
-	if(newval == 6)
-	{
-		self function_78233d29(#"hash_16b8b568a95931e7", "", "brightness", 0);
-		self function_78233d29(#"hash_16b8b568a95931e7", "", "alpha", 0);
-	}
-	else
-	{
-		self unlink();
-		v_forward = anglestoforward(self.angles) * 5;
-		v_fx_origin = self.origin + (v_forward[0], v_forward[1], 3);
-		playfx(localclientnum, level._effect[#"hash_57c8c9eff08ddf44"], v_fx_origin);
-		self moveto(self.origin - (anglestoforward(self.angles) * 2), 0.5);
-		while(isdefined(self))
-		{
-			n_time = gettime();
-			if(n_time >= n_end_time)
+			self unlink();
+			v_forward = anglestoforward(self.angles) * 5;
+			v_fx_origin = self.origin + (v_forward[0], v_forward[1], 3);
+			playfx(localclientnum, level._effect[#"hash_57c8c9eff08ddf44"], v_fx_origin);
+			self moveto(self.origin - (anglestoforward(self.angles) * 2), 0.5);
+			while(isdefined(self))
 			{
-				self function_78233d29(#"hash_16b8b568a95931e7", "", "brightness", 0);
-				self function_78233d29(#"hash_16b8b568a95931e7", "", "alpha", 0);
-				return;
+				n_time = gettime();
+				if(n_time >= n_end_time)
+				{
+					self function_78233d29(#"hash_16b8b568a95931e7", "", "brightness", 0);
+					self function_78233d29(#"hash_16b8b568a95931e7", "", "alpha", 0);
+					return;
+				}
+				n_shader_value = mapfloat(n_start_time, n_end_time, 1, 0, n_time);
+				var_6da3d352 = mapfloat(n_start_time, n_end_time, 1, 1.5, n_time);
+				self function_78233d29(#"hash_16b8b568a95931e7", "", "brightness", n_shader_value);
+				self function_78233d29(#"hash_16b8b568a95931e7", "", "alpha", n_shader_value);
+				self setscale(var_6da3d352);
+				wait(0.01);
 			}
-			n_shader_value = mapfloat(n_start_time, n_end_time, 1, 0, n_time);
-			var_6da3d352 = mapfloat(n_start_time, n_end_time, 1, 1.5, n_time);
-			self function_78233d29(#"hash_16b8b568a95931e7", "", "brightness", n_shader_value);
-			self function_78233d29(#"hash_16b8b568a95931e7", "", "alpha", n_shader_value);
-			self setscale(var_6da3d352);
-			wait(0.01);
 		}
 	}
 }
@@ -827,17 +833,17 @@ function function_5b123b68(localclientnum, b_show, b_use_offset = 0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_be3ae9c5(n_value, var_51e3f61d = 0)
+function private function_be3ae9c5(n_value, var_51e3f61d = 0)
 {
 	if(n_value < 5)
 	{
 		if(var_51e3f61d && n_value == 0)
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

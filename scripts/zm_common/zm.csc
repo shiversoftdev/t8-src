@@ -54,7 +54,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function ignore_systems()
+function autoexec ignore_systems()
 {
 	system::ignore(#"gadget_clone");
 	system::ignore(#"gadget_heat_wave");
@@ -91,7 +91,7 @@ autoexec function ignore_systems()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm", &__init__, undefined, "renderoverridebundle");
 }
@@ -904,16 +904,16 @@ function has_gibbed_piece(piece_index)
 {
 	if(!isdefined(self.gibbed_pieces))
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < self.gibbed_pieces.size; i++)
 	{
 		if(self.gibbed_pieces[i] == piece_index)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1047,9 +1047,9 @@ function check_should_gib()
 {
 	if(level.gibcount <= level.gibmaxcount)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1546,17 +1546,23 @@ function rise_dust_fx(clientnum, type, billow_fx, burst_fx)
 	{
 		effect = level._effect[#"rise_dust_water"];
 	}
-	else if(type == "snow")
+	else
 	{
-		effect = level._effect[#"rise_dust_snow"];
-	}
-	else if(type == "foliage")
-	{
-		effect = level._effect[#"rise_dust_foliage"];
-	}
-	else if(type == "none")
-	{
-		return;
+		if(type == "snow")
+		{
+			effect = level._effect[#"rise_dust_snow"];
+		}
+		else
+		{
+			if(type == "foliage")
+			{
+				effect = level._effect[#"rise_dust_foliage"];
+			}
+			else if(type == "none")
+			{
+				return;
+			}
+		}
 	}
 	t = 0;
 	while(t < dust_time)
@@ -1761,29 +1767,29 @@ function laststand(localclientnum, oldval, newval, bnewent, binitialsnap, fieldn
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b9c917cc(var_6142f944, str_bundle)
+function private function_b9c917cc(var_6142f944, str_bundle)
 {
 	if(self function_21c0fa55())
 	{
-		return 0;
+		return false;
 	}
 	if(!self function_ca024039())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_dc60105c) && level.var_dc60105c)
 	{
-		return 0;
+		return false;
 	}
 	if(isigcactive(var_6142f944))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_74b9b03b) && self.var_74b9b03b)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1795,25 +1801,25 @@ private function function_b9c917cc(var_6142f944, str_bundle)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a1ab192(var_6142f944, str_bundle)
+function private function_a1ab192(var_6142f944, str_bundle)
 {
 	if(!self function_b9c917cc(var_6142f944, str_bundle))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(self) || self function_21c0fa55() || isdemoplaying())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_dc60105c) && level.var_dc60105c)
 	{
-		return 0;
+		return false;
 	}
 	if(isigcactive(var_6142f944))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

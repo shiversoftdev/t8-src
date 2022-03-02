@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1f7228023b83d053", &__init__, &__main__, undefined);
 }
@@ -209,7 +209,7 @@ function function_cd53088e(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5ec2f851()
+function private function_5ec2f851()
 {
 	self endon(#"disconnect", #"hash_17b0a36fa17ca61a");
 	var_5c4729d5 = getent("t_r_br_sp2_7", "targetname");
@@ -360,11 +360,11 @@ function function_3bc828f8(weapon_type)
 		case "hash_494f5501b3f8e1e9":
 		case "hash_4c157b1aeefae09e":
 		{
-			return 1;
+			return true;
 		}
 		default:
 		{
-			return 0;
+			return false;
 		}
 	}
 }
@@ -518,16 +518,16 @@ function function_adc74a0d(e_grenade, n_grenade_charge_power)
 {
 	if(!isdefined(e_grenade))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	s_spork = struct::get("s_s_t_loc");
 	if(!isdefined(s_spork))
 	{
-		return 0;
+		return false;
 	}
 	distsq = distancesquared(e_grenade.origin, s_spork.origin);
 	if(distsq < (200 * 200) && !self flag::get(#"hash_79ab766693ef2532") && level flag::get(#"hash_29dc018e9551ecf"))
@@ -539,9 +539,9 @@ function function_adc74a0d(e_grenade, n_grenade_charge_power)
 		var_7b566fb linkto(var_6e6ec518);
 		self thread namespace_268fc37c::tomahawk_return_player(var_6e6ec518, undefined, 800);
 		self thread function_55a05382(var_6e6ec518, var_7b566fb);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -616,13 +616,13 @@ function function_2ad53df2(cmd)
 			case "hash_7ecd9429ad1bc7c7":
 			{
 				level thread function_45d8a460();
-				return 1;
+				return true;
 				break;
 			}
 			case "hash_3e92494695e7803f":
 			{
 				level thread function_3dfa5598();
-				return 1;
+				return true;
 				break;
 			}
 		}

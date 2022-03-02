@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_double_points", &__init__, undefined, undefined);
 }
@@ -91,7 +91,7 @@ function function_6fd6ae61(var_7d81025, player)
 	{
 		n_wait_time = 30;
 	}
-	level waittill_timeout(n_wait_time, #"end_game");
+	level waittilltimeout(n_wait_time, #"end_game");
 	player zombie_utility::function_826f5e98(#"zombie_point_scalar", undefined);
 	player clientfield::set_player_uimodel("hudItems.doublePointsActive", 0);
 }

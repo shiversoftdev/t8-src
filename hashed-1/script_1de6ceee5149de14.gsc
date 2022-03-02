@@ -1727,13 +1727,16 @@ function player_grenade_watcher()
 			{
 				level.var_fa76e237 = 1;
 			}
-			else if(var_8b8281e4 <= 550)
-			{
-				level.var_fa76e237 = 2;
-			}
 			else
 			{
-				level.var_fa76e237 = 2;
+				if(var_8b8281e4 <= 550)
+				{
+					level.var_fa76e237 = 2;
+				}
+				else
+				{
+					level.var_fa76e237 = 2;
+				}
 			}
 			level.var_a72fad31 = gettime() / 1000;
 			wait(0.1);
@@ -1778,18 +1781,24 @@ function function_58c62280(b_keyline)
 		self val::reset(#"hash_505a4c7da62f0c37", "ignoreall");
 		self.health = 50;
 	}
-	else if(level.var_ad7c0539 == 7)
+	else
 	{
-		self thread function_e706a3ca();
-	}
-	else if(level.var_ad7c0539 == 8)
-	{
-		self thread namespace_73e1c3e3::function_402c2175();
-		self thread namespace_64a487a9::function_35e77034(getweapon(#"ar_accurate_t8", 1));
-	}
-	else if(level.var_ad7c0539 == 9)
-	{
-		self namespace_64a487a9::function_fd2d220e();
+		if(level.var_ad7c0539 == 7)
+		{
+			self thread function_e706a3ca();
+		}
+		else
+		{
+			if(level.var_ad7c0539 == 8)
+			{
+				self thread namespace_73e1c3e3::function_402c2175();
+				self thread namespace_64a487a9::function_35e77034(getweapon(#"ar_accurate_t8", 1));
+			}
+			else if(level.var_ad7c0539 == 9)
+			{
+				self namespace_64a487a9::function_fd2d220e();
+			}
+		}
 	}
 	level waittill(#"hash_24bd25e0736c3ca3");
 	self val::reset(#"hash_505a4c7da62f0c37", "ignoreall");
@@ -1799,46 +1808,58 @@ function function_58c62280(b_keyline)
 		wait(n_wait);
 		self thread namespace_73e1c3e3::function_1e7b75f2(s_loc);
 	}
-	else if(level.var_ad7c0539 == 6)
+	else
 	{
-		self thread namespace_73e1c3e3::function_5b59f3b7(self.origin, self.angles, 32);
-	}
-	else if(level.var_ad7c0539 == 7)
-	{
-		s_loc = level.var_8c8703b0[level.var_122c8d00];
-		level.var_122c8d00++;
-		if(level.var_122c8d00 >= level.var_8c8703b0.size)
-		{
-			level.var_122c8d00 = 0;
-		}
-		self thread namespace_73e1c3e3::function_1e7b75f2(s_loc);
-	}
-	else if(level.var_ad7c0539 == 8)
-	{
-		if(level.var_aac17066 == 2)
-		{
-			s_loc = struct::get("s_enemy_hardpoint_guard_loc", "targetname");
-			self thread namespace_73e1c3e3::function_5b59f3b7(s_loc.origin, s_loc.angles, 300);
-		}
-	}
-	else if(level.var_ad7c0539 == 9)
-	{
-		if(isdefined(level.var_e36bc03f) && level.var_e36bc03f)
+		if(level.var_ad7c0539 == 6)
 		{
 			self thread namespace_73e1c3e3::function_5b59f3b7(self.origin, self.angles, 32);
-			var_6eee318e = struct::get(s_loc.target, "targetname");
-			self.var_2925fedc = var_6eee318e.origin;
 		}
 		else
 		{
-			s_loc = struct::get("bot_killstreak_guard_loc", "targetname");
-			self thread namespace_73e1c3e3::function_5b59f3b7(s_loc.origin, s_loc.angles, 1200);
+			if(level.var_ad7c0539 == 7)
+			{
+				s_loc = level.var_8c8703b0[level.var_122c8d00];
+				level.var_122c8d00++;
+				if(level.var_122c8d00 >= level.var_8c8703b0.size)
+				{
+					level.var_122c8d00 = 0;
+				}
+				self thread namespace_73e1c3e3::function_1e7b75f2(s_loc);
+			}
+			else
+			{
+				if(level.var_ad7c0539 == 8)
+				{
+					if(level.var_aac17066 == 2)
+					{
+						s_loc = struct::get("s_enemy_hardpoint_guard_loc", "targetname");
+						self thread namespace_73e1c3e3::function_5b59f3b7(s_loc.origin, s_loc.angles, 300);
+					}
+				}
+				else
+				{
+					if(level.var_ad7c0539 == 9)
+					{
+						if(isdefined(level.var_e36bc03f) && level.var_e36bc03f)
+						{
+							self thread namespace_73e1c3e3::function_5b59f3b7(self.origin, self.angles, 32);
+							var_6eee318e = struct::get(s_loc.target, "targetname");
+							self.var_2925fedc = var_6eee318e.origin;
+						}
+						else
+						{
+							s_loc = struct::get("bot_killstreak_guard_loc", "targetname");
+							self thread namespace_73e1c3e3::function_5b59f3b7(s_loc.origin, s_loc.angles, 1200);
+						}
+					}
+					else
+					{
+						s_loc = struct::get("s_courtyard_guard_loc", "targetname");
+						self thread namespace_73e1c3e3::function_5b59f3b7(s_loc.origin, s_loc.angles, 500);
+					}
+				}
+			}
 		}
-	}
-	else
-	{
-		s_loc = struct::get("s_courtyard_guard_loc", "targetname");
-		self thread namespace_73e1c3e3::function_5b59f3b7(s_loc.origin, s_loc.angles, 500);
 	}
 }
 

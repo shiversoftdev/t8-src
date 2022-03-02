@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"voice", &__init__, undefined, undefined);
 }
@@ -302,9 +302,9 @@ function play(scriptkey, var_17ee4803 = undefined, var_7f436309 = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function start_pending()
+function private start_pending()
 {
-	self endon_callback(&function_9db28e7, #"death", #"entering_last_stand", #"disconnect", #"hash_5335c8b16b1bd8aa");
+	self endoncallback(&function_9db28e7, #"death", #"entering_last_stand", #"disconnect", #"hash_5335c8b16b1bd8aa");
 	level endon(#"game_ended");
 	level.var_3e8bd5c[level.var_3e8bd5c.size] = self;
 	while(isdefined(self.var_78566c82) && self.var_78566c82)
@@ -327,9 +327,9 @@ private function start_pending()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function play_next()
+function private play_next()
 {
-	self endon_callback(&end_play_next, #"death", #"entering_last_stand", #"disconnect", #"hash_5335c8b16b1bd8aa");
+	self endoncallback(&end_play_next, #"death", #"entering_last_stand", #"disconnect", #"hash_5335c8b16b1bd8aa");
 	level endon(#"game_ended");
 	voice = function_777704ce();
 	if(!isdefined(voice))
@@ -400,7 +400,7 @@ private function play_next()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9b502d8d(str_line, n_wait_time)
+function private function_9b502d8d(str_line, n_wait_time)
 {
 	self endon(#"disconnect");
 	self notify(#"hash_3a2cea55af16657f");
@@ -409,7 +409,7 @@ private function function_9b502d8d(str_line, n_wait_time)
 	{
 		self openluimenu("TempDialog");
 	}
-	self waittill_timeout(n_wait_time, #"death");
+	self waittilltimeout(n_wait_time, #"death");
 	if(isdefined(self getluimenu("TempDialog")))
 	{
 		self closeluimenu(self getluimenu("TempDialog"));
@@ -425,7 +425,7 @@ private function function_9b502d8d(str_line, n_wait_time)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9db28e7(notifyhash)
+function private function_9db28e7(notifyhash)
 {
 	if(isdefined(notifyhash))
 	{
@@ -444,7 +444,7 @@ private function function_9db28e7(notifyhash)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function end_play_next(notifyhash)
+function private end_play_next(notifyhash)
 {
 	self function_9db28e7();
 	if(isdefined(notifyhash))
@@ -480,7 +480,7 @@ private function end_play_next(notifyhash)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function stop_playing()
+function private stop_playing()
 {
 	self endon(#"disconnect");
 	level endon(#"game_ended");
@@ -502,7 +502,7 @@ private function stop_playing()
 	Parameters: 0
 	Flags: Private
 */
-private function clear_queue()
+function private clear_queue()
 {
 	array::delete_all(self.var_556f910a);
 	self.var_556f910a = [];
@@ -517,7 +517,7 @@ private function clear_queue()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7924f3ca()
+function private function_7924f3ca()
 {
 	self endon(#"death", #"disconnect");
 	if(isdefined(self.var_556f910a))
@@ -550,7 +550,7 @@ private function function_7924f3ca()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function mask_sound(soundent, params, var_17ee4803)
+function private mask_sound(soundent, params, var_17ee4803)
 {
 	mask = (isdefined(params) ? params.mask : #"all");
 	if(mask == #"all")
@@ -575,21 +575,24 @@ private function mask_sound(soundent, params, var_17ee4803)
 			}
 		}
 	}
-	else if(mask == #"enemy")
+	else
 	{
-		foreach(player in getplayers())
+		if(mask == #"enemy")
 		{
-			if(player.team != self.team)
+			foreach(player in getplayers())
+			{
+				if(player.team != self.team)
+				{
+					self play_to(soundent, player);
+				}
+			}
+		}
+		else if(mask == #"self")
+		{
+			if(isplayer(self))
 			{
 				self play_to(soundent, player);
 			}
-		}
-	}
-	else if(mask == #"self")
-	{
-		if(isplayer(self))
-		{
-			self play_to(soundent, player);
 		}
 	}
 	if(isdefined(var_17ee4803) && isplayer(var_17ee4803))
@@ -607,7 +610,7 @@ private function mask_sound(soundent, params, var_17ee4803)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function play_to(soundent, player)
+function private play_to(soundent, player)
 {
 	if(isdefined(soundent))
 	{
@@ -628,7 +631,7 @@ private function play_to(soundent, player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function show_portrait_to(player)
+function private show_portrait_to(player)
 {
 	player luinotifyevent(#"offsite_comms_message", 1, self.var_54d07407);
 	player thread close_portrait(self);
@@ -643,7 +646,7 @@ private function show_portrait_to(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function close_portrait(speaker)
+function private close_portrait(speaker)
 {
 	self endon(#"disconnect");
 	level endon(#"game_ended");

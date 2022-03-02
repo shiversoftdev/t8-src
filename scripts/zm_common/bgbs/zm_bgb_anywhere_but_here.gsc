@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_anywhere_but_here", &__init__, undefined, #"bgb");
 }
@@ -74,22 +74,22 @@ function activation(var_fad9ed02 = 1)
 	}
 	if(isdefined(level.var_f44e37f7))
 	{
-		var_70e1deb9 = self [[level.var_f44e37f7]]();
+		s_respawn_point = self [[level.var_f44e37f7]]();
 	}
 	else
 	{
-		var_70e1deb9 = self function_91a62549();
+		s_respawn_point = self function_91a62549();
 	}
-	if(isdefined(level.var_40f4bfe0) && level.var_40f4bfe0 || (!isdefined(var_70e1deb9) && !var_fad9ed02))
+	if(isdefined(level.var_40f4bfe0) && level.var_40f4bfe0 || (!isdefined(s_respawn_point) && !var_fad9ed02))
 	{
-		var_70e1deb9 = struct::spawn(self.origin, self.angles);
+		s_respawn_point = struct::spawn(self.origin, self.angles);
 		var_16d4797c = getclosestpointonnavmesh(self.origin, 128, 24);
-		var_70e1deb9.origin = (isdefined(var_16d4797c) ? var_16d4797c : var_70e1deb9.origin);
+		s_respawn_point.origin = (isdefined(var_16d4797c) ? var_16d4797c : s_respawn_point.origin);
 	}
 	/#
-		assert(isdefined(var_70e1deb9), "" + self.origin);
+		assert(isdefined(s_respawn_point), "" + self.origin);
 	#/
-	if(!isdefined(var_70e1deb9))
+	if(!isdefined(s_respawn_point))
 	{
 		self val::reset(#"hash_7d2b25df35ca5b3", "ignoreme");
 		self.var_ffe2c4d7 = undefined;
@@ -97,14 +97,14 @@ function activation(var_fad9ed02 = 1)
 	}
 	if(isdefined(self.var_b520496e) && self.var_b520496e)
 	{
-		e_link = util::spawn_model("tag_origin", var_70e1deb9.origin, var_70e1deb9.angles);
-		self setplayerangles(var_70e1deb9.angles);
+		e_link = util::spawn_model("tag_origin", s_respawn_point.origin, s_respawn_point.angles);
+		self setplayerangles(s_respawn_point.angles);
 		self linkto(e_link);
 	}
 	else
 	{
-		self setorigin(var_70e1deb9.origin);
-		self setplayerangles(var_70e1deb9.angles);
+		self setorigin(s_respawn_point.origin);
+		self setplayerangles(s_respawn_point.angles);
 	}
 	self val::set(#"hash_7d2b25df35ca5b3", "freezecontrols", 1);
 	v_return_pos = self.origin + vectorscale((0, 0, 1), 60);
@@ -224,9 +224,9 @@ function function_91a62549()
 	}
 	var_de1edcdb = struct::get_array("player_respawn_point", "targetname");
 	var_65500f70 = [];
-	foreach(var_70e1deb9 in var_de1edcdb)
+	foreach(s_respawn_point in var_de1edcdb)
 	{
-		if(zm_utility::is_point_inside_enabled_zone(var_70e1deb9.origin, var_599d66bd))
+		if(zm_utility::is_point_inside_enabled_zone(s_respawn_point.origin, var_599d66bd))
 		{
 			if(!isdefined(var_65500f70))
 			{
@@ -236,7 +236,7 @@ function function_91a62549()
 			{
 				var_65500f70 = array(var_65500f70);
 			}
-			var_65500f70[var_65500f70.size] = var_70e1deb9;
+			var_65500f70[var_65500f70.size] = s_respawn_point;
 		}
 	}
 	if(isdefined(level.var_e120ae98))

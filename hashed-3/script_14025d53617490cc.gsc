@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7b83cad7c8661103", &__init__, undefined, undefined);
 }
@@ -275,13 +275,16 @@ function function_1f7c6bb9(var_d4f8477f, var_2b9d3880, var_48e9b3cc, is_lunge = 
 			{
 				n_total_damage = e_target.health + 666;
 			}
-			else if(self hasperk(#"hash_7036ce8dafbf1f81"))
-			{
-				n_total_damage = n_total_damage + 4000;
-			}
 			else
 			{
-				n_total_damage = n_total_damage + 1000;
+				if(self hasperk(#"hash_7036ce8dafbf1f81"))
+				{
+					n_total_damage = n_total_damage + 4000;
+				}
+				else
+				{
+					n_total_damage = n_total_damage + 1000;
+				}
 			}
 		}
 		e_target.var_39c64392 = undefined;
@@ -359,9 +362,9 @@ function function_866130c7(var_d4f8477f)
 {
 	if(!(isdefined(var_d4f8477f.isriotshield) && var_d4f8477f.isriotshield) && !zm_loadout::is_hero_weapon(var_d4f8477f) && (!(isdefined(var_d4f8477f.isbulletweapon) && var_d4f8477f.isbulletweapon)) && (!(isdefined(var_d4f8477f.isprimary) && var_d4f8477f.isprimary) || var_d4f8477f.isballisticknife))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -377,9 +380,9 @@ function function_da33f286()
 {
 	if(isdefined(self.var_eb319d10) && self.var_eb319d10 || self.n_regen_rate === 0 || !self.heal.enabled)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

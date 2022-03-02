@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_perkaholic", &__init__, undefined, #"bgb");
 }
@@ -53,17 +53,17 @@ function validation()
 {
 	if(isdefined(self.var_1eba264f) && self.var_1eba264f)
 	{
-		return 0;
+		return false;
 	}
 	if(namespace_5f71460c::is_active() || namespace_7b1a5a90::is_active())
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_perks::function_80cb4982() && self zm_perks::function_9a0e9d65())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

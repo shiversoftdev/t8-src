@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"player_role", &__init__, undefined, undefined);
 }
@@ -196,17 +196,23 @@ function set(index, force)
 	{
 		customloadoutindex = get_custom_loadout_index(index);
 	}
-	else if(currentsessionmode() == 2)
-	{
-		customloadoutindex = self stats::get_stat(#"hash_2a738807be622e31");
-	}
-	else if(currentsessionmode() == 3)
-	{
-		customloadoutindex = 0;
-	}
 	else
 	{
-		customloadoutindex = self.pers[#"loadoutindex"];
+		if(currentsessionmode() == 2)
+		{
+			customloadoutindex = self stats::get_stat(#"hash_2a738807be622e31");
+		}
+		else
+		{
+			if(currentsessionmode() == 3)
+			{
+				customloadoutindex = 0;
+			}
+			else
+			{
+				customloadoutindex = self.pers[#"loadoutindex"];
+			}
+		}
 	}
 	if(isdefined(customloadoutindex))
 	{

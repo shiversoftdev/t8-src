@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_770f240f9e25a58d", &__init__, undefined, undefined);
 }
@@ -55,7 +55,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_918ce680(localclientnum, pos, surface, notetrack, bone)
+function private function_918ce680(localclientnum, pos, surface, notetrack, bone)
 {
 	e_player = function_5c10bd79(localclientnum);
 	n_dist = distancesquared(pos, e_player.origin);
@@ -82,13 +82,16 @@ private function function_918ce680(localclientnum, pos, surface, notetrack, bone
 	{
 		function_36e4ebd4(localclientnum, "anim_med");
 	}
-	else if(n_scale <= 0.2 && n_scale > 0.1)
-	{
-		function_36e4ebd4(localclientnum, "damage_light");
-	}
 	else
 	{
-		function_36e4ebd4(localclientnum, "damage_light");
+		if(n_scale <= 0.2 && n_scale > 0.1)
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
+		else
+		{
+			function_36e4ebd4(localclientnum, "damage_light");
+		}
 	}
 }
 
@@ -101,7 +104,7 @@ private function function_918ce680(localclientnum, pos, surface, notetrack, bone
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_5dae94f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_5dae94f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	earthquake(localclientnum, 0.3, 1.2, self.origin, 64);
 	function_36e4ebd4(localclientnum, "damage_light");
@@ -116,7 +119,7 @@ private function function_5dae94f(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_f5a07d57(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_f5a07d57(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{
@@ -137,7 +140,7 @@ private function function_f5a07d57(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_49fab171(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_49fab171(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval)
 	{

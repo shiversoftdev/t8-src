@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4f9f7fa7527fb431", &__init__, undefined, undefined);
 }
@@ -122,15 +122,18 @@ function function_bfd817c1(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self playrumbleonentity(localclientnum, #"damage_light");
 	}
-	else if(isdefined(self.death_dash_charging_fx))
+	else
 	{
-		stopfx(localclientnum, self.death_dash_charging_fx);
-		self.death_dash_charging_fx = undefined;
-	}
-	if(isdefined(self.var_51a4a975))
-	{
-		self stoploopsound(self.var_51a4a975);
-		self.var_51a4a975 = undefined;
+		if(isdefined(self.death_dash_charging_fx))
+		{
+			stopfx(localclientnum, self.death_dash_charging_fx);
+			self.death_dash_charging_fx = undefined;
+		}
+		if(isdefined(self.var_51a4a975))
+		{
+			self stoploopsound(self.var_51a4a975);
+			self.var_51a4a975 = undefined;
+		}
 	}
 }
 
@@ -159,15 +162,18 @@ function function_fe2634b2(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self playrumbleonentity(localclientnum, #"damage_light");
 	}
-	else if(isdefined(self.death_dash_charged_fx))
+	else
 	{
-		stopfx(localclientnum, self.death_dash_charged_fx);
-		self.death_dash_charged_fx = undefined;
-	}
-	if(isdefined(self.var_202e9919))
-	{
-		self stoploopsound(self.var_202e9919);
-		self.var_202e9919 = undefined;
+		if(isdefined(self.death_dash_charged_fx))
+		{
+			stopfx(localclientnum, self.death_dash_charged_fx);
+			self.death_dash_charged_fx = undefined;
+		}
+		if(isdefined(self.var_202e9919))
+		{
+			self stoploopsound(self.var_202e9919);
+			self.var_202e9919 = undefined;
+		}
 	}
 }
 
@@ -196,15 +202,18 @@ function function_237b1f1e(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self playrumbleonentity(localclientnum, #"damage_heavy");
 	}
-	else if(isdefined(self.death_dash_charged_mod_fx))
+	else
 	{
-		stopfx(localclientnum, self.death_dash_charged_mod_fx);
-		self.death_dash_charged_mod_fx = undefined;
-	}
-	if(isdefined(self.var_202e9919))
-	{
-		self stoploopsound(self.var_202e9919);
-		self.var_202e9919 = undefined;
+		if(isdefined(self.death_dash_charged_mod_fx))
+		{
+			stopfx(localclientnum, self.death_dash_charged_mod_fx);
+			self.death_dash_charged_mod_fx = undefined;
+		}
+		if(isdefined(self.var_202e9919))
+		{
+			self stoploopsound(self.var_202e9919);
+			self.var_202e9919 = undefined;
+		}
 	}
 }
 
@@ -228,18 +237,21 @@ function function_dced8aba(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_884925ad = self playloopsound(#"hash_fa14d87437616df");
 		}
 	}
-	else if(isdefined(self.death_dash_trail_fx))
+	else
 	{
-		stopfx(localclientnum, self.death_dash_trail_fx);
-		self.death_dash_trail_fx = undefined;
+		if(isdefined(self.death_dash_trail_fx))
+		{
+			stopfx(localclientnum, self.death_dash_trail_fx);
+			self.death_dash_trail_fx = undefined;
+		}
+		if(isdefined(self.var_884925ad))
+		{
+			self playsound(localclientnum, #"hash_42cb90d7c4d6ad08");
+			self stoploopsound(self.var_884925ad);
+			self.var_884925ad = undefined;
+		}
+		self playrumbleonentity(localclientnum, "damage_heavy");
 	}
-	if(isdefined(self.var_884925ad))
-	{
-		self playsound(localclientnum, #"hash_42cb90d7c4d6ad08");
-		self stoploopsound(self.var_884925ad);
-		self.var_884925ad = undefined;
-	}
-	self playrumbleonentity(localclientnum, "damage_heavy");
 }
 
 /*

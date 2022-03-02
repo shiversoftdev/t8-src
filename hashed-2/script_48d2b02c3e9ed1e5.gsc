@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3fc11c4e389f5df9", &__init__, undefined, undefined);
 }
@@ -109,7 +109,7 @@ function function_eaeb557()
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_209450ae(eventstruct)
+event private function_209450ae(eventstruct)
 {
 	dynent = eventstruct.ent;
 	if(dynent.targetname !== "spring_event_homunculus" && dynent.targetname !== "zombie_apoc_homunculus")

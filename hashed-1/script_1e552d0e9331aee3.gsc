@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5baed9f2dca9a4df", &__init__, undefined, #"hash_5313bfeaba8f80ee");
 }
@@ -109,7 +109,7 @@ function on_player_killed()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b00fd65d()
+function private function_b00fd65d()
 {
 	maxteamplayers = (isdefined(getgametypesetting(#"maxteamplayers")) ? getgametypesetting(#"maxteamplayers") : 4);
 	var_49170438 = globallogic::totalalivecount();

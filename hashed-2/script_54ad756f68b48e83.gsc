@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	meleebundles = struct::get_script_bundles("aiassassination");
 	level._aivsai_meleebundles = [];
@@ -33,14 +33,17 @@ autoexec function main()
 			level._aivsai_meleebundles[attacker_archetype][defender_archetype] = [];
 			level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant] = [];
 		}
-		else if(!isdefined(level._aivsai_meleebundles[attacker_archetype][defender_archetype]))
+		else
 		{
-			level._aivsai_meleebundles[attacker_archetype][defender_archetype] = [];
-			level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant] = [];
-		}
-		else if(!isdefined(level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant]))
-		{
-			level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant] = [];
+			if(!isdefined(level._aivsai_meleebundles[attacker_archetype][defender_archetype]))
+			{
+				level._aivsai_meleebundles[attacker_archetype][defender_archetype] = [];
+				level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant] = [];
+			}
+			else if(!isdefined(level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant]))
+			{
+				level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant] = [];
+			}
 		}
 		level._aivsai_meleebundles[attacker_archetype][defender_archetype][attacker_variant][defender_variant] = meleebundle;
 	}
@@ -110,17 +113,17 @@ function haspotentalaivsaimeleeenemy(behaviortreeentity)
 {
 	if(!hasaivsaienemy(behaviortreeentity))
 	{
-		return 0;
+		return false;
 	}
 	if(!chooseaivsaimeleeanimations(behaviortreeentity))
 	{
-		return 0;
+		return false;
 	}
 	if(!hascloseaivsaienemy(behaviortreeentity))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -136,17 +139,17 @@ function iscloseenoughforaivsaimelee(behaviortreeentity)
 {
 	if(!hasaivsaienemy(behaviortreeentity))
 	{
-		return 0;
+		return false;
 	}
 	if(!chooseaivsaimeleeanimations(behaviortreeentity))
 	{
-		return 0;
+		return false;
 	}
 	if(!hascloseaivsaienemy(behaviortreeentity))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -158,25 +161,25 @@ function iscloseenoughforaivsaimelee(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shouldaquiremutexonenemyforaivsaimelee(behaviortreeentity)
+function private shouldaquiremutexonenemyforaivsaimelee(behaviortreeentity)
 {
 	if(isplayer(behaviortreeentity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(behaviortreeentity.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(behaviortreeentity.meleeenemy) && behaviortreeentity.meleeenemy == behaviortreeentity.enemy)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(behaviortreeentity.enemy.meleeenemy) && behaviortreeentity.enemy.meleeenemy != behaviortreeentity)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -188,7 +191,7 @@ private function shouldaquiremutexonenemyforaivsaimelee(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function hasaivsaienemy(behaviortreeentity)
+function private hasaivsaienemy(behaviortreeentity)
 {
 	enemy = behaviortreeentity.enemy;
 	if(getdvarint(#"disable_aivsai_melee", 0))
@@ -196,28 +199,28 @@ private function hasaivsaienemy(behaviortreeentity)
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(!isdefined(enemy))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(!(isalive(behaviortreeentity) && isalive(enemy)))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(!isai(enemy) || !isactor(enemy))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(enemy.archetype))
 	{
@@ -226,7 +229,7 @@ private function hasaivsaienemy(behaviortreeentity)
 			/#
 				record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 			#/
-			return 0;
+			return false;
 		}
 	}
 	if(enemy.team == behaviortreeentity.team)
@@ -234,49 +237,49 @@ private function hasaivsaienemy(behaviortreeentity)
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(enemy isragdoll())
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(enemy.ignoreme) && enemy.ignoreme)
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(enemy._ai_melee_markeddead) && enemy._ai_melee_markeddead)
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(behaviortreeentity ai::has_behavior_attribute("can_initiateaivsaimelee") && !behaviortreeentity ai::get_behavior_attribute("can_initiateaivsaimelee"))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(behaviortreeentity ai::has_behavior_attribute("can_melee") && !behaviortreeentity ai::get_behavior_attribute("can_melee"))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(enemy ai::has_behavior_attribute("can_be_meleed") && !enemy ai::get_behavior_attribute("can_be_meleed"))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(distance2dsquared(behaviortreeentity.origin, enemy.origin) > 22500)
 	{
@@ -284,7 +287,7 @@ private function hasaivsaienemy(behaviortreeentity)
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
 		behaviortreeentity._ai_melee_initiator = undefined;
-		return 0;
+		return false;
 	}
 	forwardvec = vectornormalize(anglestoforward(behaviortreeentity.angles));
 	rightvec = vectornormalize(anglestoright(behaviortreeentity.angles));
@@ -295,14 +298,14 @@ private function hasaivsaienemy(behaviortreeentity)
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(enemy isinscriptedstate())
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	currentstance = behaviortreeentity getblackboardattribute("_stance");
 	enemystance = enemy getblackboardattribute("_stance");
@@ -311,21 +314,21 @@ private function hasaivsaienemy(behaviortreeentity)
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(!shouldaquiremutexonenemyforaivsaimelee(behaviortreeentity))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(abs(behaviortreeentity.origin[2] - behaviortreeentity.enemy.origin[2]) > 16)
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	raisedenemyentorigin = (behaviortreeentity.enemy.origin[0], behaviortreeentity.enemy.origin[1], behaviortreeentity.enemy.origin[2] + 8);
 	if(!behaviortreeentity maymovetopoint(raisedenemyentorigin, 0, 1, behaviortreeentity.enemy))
@@ -333,7 +336,7 @@ private function hasaivsaienemy(behaviortreeentity)
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(enemy.allowdeath) && !enemy.allowdeath)
 	{
@@ -343,12 +346,12 @@ private function hasaivsaienemy(behaviortreeentity)
 				record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 			#/
 			self notify(#"failed_melee_mbs", {#entity:enemy});
-			return 0;
+			return false;
 		}
 		behaviortreeentity._ai_melee_attacker_loser = 1;
-		return 1;
+		return true;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -360,17 +363,17 @@ private function hasaivsaienemy(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function decideinitiator(behaviortreeentity)
+function private decideinitiator(behaviortreeentity)
 {
 	if(!isdefined(behaviortreeentity._ai_melee_initiator))
 	{
 		if(!isdefined(behaviortreeentity.enemy._ai_melee_initiator))
 		{
 			behaviortreeentity._ai_melee_initiator = 1;
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -382,13 +385,13 @@ private function decideinitiator(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isinitiator(behaviortreeentity)
+function private isinitiator(behaviortreeentity)
 {
 	if(!(isdefined(behaviortreeentity._ai_melee_initiator) && behaviortreeentity._ai_melee_initiator))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -400,14 +403,14 @@ private function isinitiator(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function hascloseaivsaienemy(behaviortreeentity)
+function private hascloseaivsaienemy(behaviortreeentity)
 {
 	if(!(isdefined(behaviortreeentity._ai_melee_animname) && isdefined(behaviortreeentity.enemy._ai_melee_animname)))
 	{
 		/#
 			record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	animationstartorigin = getstartorigin(behaviortreeentity.enemy gettagorigin("tag_sync"), behaviortreeentity.enemy gettagangles("tag_sync"), behaviortreeentity._ai_melee_animname);
 	/#
@@ -419,7 +422,7 @@ private function hascloseaivsaienemy(behaviortreeentity)
 	#/
 	if(distance2dsquared(behaviortreeentity.origin, animationstartorigin) <= 900)
 	{
-		return 1;
+		return true;
 	}
 	if(behaviortreeentity haspath())
 	{
@@ -431,10 +434,10 @@ private function hascloseaivsaienemy(behaviortreeentity)
 		#/
 		if(distance2dsquared(selfpredictedpos, animationstartorigin) <= 900)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -446,7 +449,7 @@ private function hascloseaivsaienemy(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function chooseaivsaimeleeanimations(behaviortreeentity)
+function private chooseaivsaimeleeanimations(behaviortreeentity)
 {
 	anglestoenemy = vectortoangles(behaviortreeentity.enemy.origin - behaviortreeentity.origin);
 	yawtoenemy = angleclamp180(behaviortreeentity.enemy.angles[1] - anglestoenemy[1]);
@@ -462,7 +465,7 @@ private function chooseaivsaimeleeanimations(behaviortreeentity)
 		/#
 			record3dtext((((((("" + function_9e72a96(behaviortreeentity.archetype)) + "") + behaviortreeentity.enemy.archetype) + "") + attacker_variant) + "") + defender_variant, behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	animbundle = level._aivsai_meleebundles[behaviortreeentity.archetype][behaviortreeentity.enemy.archetype][attacker_variant][defender_variant];
 	/#
@@ -479,32 +482,38 @@ private function chooseaivsaimeleeanimations(behaviortreeentity)
 		{
 			possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontflipanimations;
 		}
-		else if(isdefined(behaviortreeentity.__forceaiwrestlemelee))
-		{
-			possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontwrestleanimations;
-		}
 		else
 		{
-			possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontflipanimations;
-			possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontwrestleanimations;
+			if(isdefined(behaviortreeentity.__forceaiwrestlemelee))
+			{
+				possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontwrestleanimations;
+			}
+			else
+			{
+				possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontflipanimations;
+				possiblemelees[possiblemelees.size] = &chooseaivsaimeleefrontwrestleanimations;
+			}
 		}
-	}
-	else if(abs(yawtoenemy) < 60)
-	{
-		possiblemelees[possiblemelees.size] = &chooseaivsaimeleebackanimations;
 	}
 	else
 	{
-		rightvec = vectornormalize(anglestoright(behaviortreeentity.enemy.angles));
-		toattackervec = vectornormalize(behaviortreeentity.origin - behaviortreeentity.enemy.origin);
-		rdot = vectordot(toattackervec, rightvec);
-		if(rdot > 0)
+		if(abs(yawtoenemy) < 60)
 		{
-			possiblemelees[possiblemelees.size] = &chooseaivsaimeleerightanimations;
+			possiblemelees[possiblemelees.size] = &chooseaivsaimeleebackanimations;
 		}
 		else
 		{
-			possiblemelees[possiblemelees.size] = &chooseaivsaimeleeleftanimations;
+			rightvec = vectornormalize(anglestoright(behaviortreeentity.enemy.angles));
+			toattackervec = vectornormalize(behaviortreeentity.origin - behaviortreeentity.enemy.origin);
+			rdot = vectordot(toattackervec, rightvec);
+			if(rdot > 0)
+			{
+				possiblemelees[possiblemelees.size] = &chooseaivsaimeleerightanimations;
+			}
+			else
+			{
+				possiblemelees[possiblemelees.size] = &chooseaivsaimeleeleftanimations;
+			}
 		}
 	}
 	if(possiblemelees.size > 0)
@@ -514,9 +523,9 @@ private function chooseaivsaimeleeanimations(behaviortreeentity)
 	if(isdefined(behaviortreeentity._ai_melee_animname))
 	{
 		debug_chosenmeleeanimations(behaviortreeentity);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -528,7 +537,7 @@ private function chooseaivsaimeleeanimations(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function choosearchetypevariant(entity)
+function private choosearchetypevariant(entity)
 {
 	if(entity.archetype == #"robot")
 	{
@@ -554,25 +563,25 @@ private function choosearchetypevariant(entity)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function aivsaimeleebundleexists(behaviortreeentity, attacker_variant, defender_variant)
+function private aivsaimeleebundleexists(behaviortreeentity, attacker_variant, defender_variant)
 {
 	if(!isdefined(level._aivsai_meleebundles[behaviortreeentity.archetype]))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level._aivsai_meleebundles[behaviortreeentity.archetype][behaviortreeentity.enemy.archetype]))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level._aivsai_meleebundles[behaviortreeentity.archetype][behaviortreeentity.enemy.archetype][attacker_variant]))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level._aivsai_meleebundles[behaviortreeentity.archetype][behaviortreeentity.enemy.archetype][attacker_variant][defender_variant]))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -625,14 +634,14 @@ function playscriptedmeleeanimations()
 		/#
 			record3dtext("", self.origin, (1, 0.5, 0), "", self, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(self isragdoll() || opponent isragdoll())
 	{
 		/#
 			record3dtext("", self.origin, (1, 0.5, 0), "", self, 0.4);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(opponent._ai_melee_attacker_loser) && opponent._ai_melee_attacker_loser)
 	{
@@ -662,7 +671,7 @@ function playscriptedmeleeanimations()
 	}
 	self thread processinterrupteddeath();
 	opponent thread processinterrupteddeath();
-	self waittill_match({#notetrack:"end"}, #"aivsaimeleewinner");
+	self waittillmatch({#notetrack:"end"}, #"aivsaimeleewinner");
 	self.fixedlinkyawonly = 0;
 	aiutility::cleanupchargemeleeattack(self);
 	if(isdefined(self._ai_melee_attachedknife) && self._ai_melee_attachedknife)
@@ -685,7 +694,7 @@ function playscriptedmeleeanimations()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function chooseaivsaimeleefrontflipanimations(behaviortreeentity, animbundle)
+function private chooseaivsaimeleefrontflipanimations(behaviortreeentity, animbundle)
 {
 	/#
 		record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
@@ -716,7 +725,7 @@ private function chooseaivsaimeleefrontflipanimations(behaviortreeentity, animbu
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function chooseaivsaimeleefrontwrestleanimations(behaviortreeentity, animbundle)
+function private chooseaivsaimeleefrontwrestleanimations(behaviortreeentity, animbundle)
 {
 	/#
 		record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
@@ -747,7 +756,7 @@ private function chooseaivsaimeleefrontwrestleanimations(behaviortreeentity, ani
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function chooseaivsaimeleebackanimations(behaviortreeentity, animbundle)
+function private chooseaivsaimeleebackanimations(behaviortreeentity, animbundle)
 {
 	/#
 		record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
@@ -778,7 +787,7 @@ private function chooseaivsaimeleebackanimations(behaviortreeentity, animbundle)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function chooseaivsaimeleerightanimations(behaviortreeentity, animbundle)
+function private chooseaivsaimeleerightanimations(behaviortreeentity, animbundle)
 {
 	/#
 		record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
@@ -809,7 +818,7 @@ private function chooseaivsaimeleerightanimations(behaviortreeentity, animbundle
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function chooseaivsaimeleeleftanimations(behaviortreeentity, animbundle)
+function private chooseaivsaimeleeleftanimations(behaviortreeentity, animbundle)
 {
 	/#
 		record3dtext("", behaviortreeentity.origin, (1, 0.5, 0), "", behaviortreeentity, 0.4);
@@ -840,7 +849,7 @@ private function chooseaivsaimeleeleftanimations(behaviortreeentity, animbundle)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function debug_chosenmeleeanimations(behaviortreeentity)
+function private debug_chosenmeleeanimations(behaviortreeentity)
 {
 	/#
 		if(isdefined(behaviortreeentity._ai_melee_animname) && isdefined(behaviortreeentity.enemy._ai_melee_animname))

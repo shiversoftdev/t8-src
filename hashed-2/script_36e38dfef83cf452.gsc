@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7385ea584dca4997", &__init__, undefined, undefined);
 }
@@ -42,7 +42,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e7d2a256(localclientnum)
+function private function_e7d2a256(localclientnum)
 {
 	self thread function_20705e4c(localclientnum);
 }
@@ -56,7 +56,7 @@ private function function_e7d2a256(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_20705e4c(localclientnum)
+function private function_20705e4c(localclientnum)
 {
 	self endon(#"death");
 	while(true)

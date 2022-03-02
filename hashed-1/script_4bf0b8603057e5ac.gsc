@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_31f83f7a18d98ab2", &__init__, undefined, #"infection");
 }
@@ -41,7 +41,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!function_74650d7())
 	{
@@ -72,7 +72,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e717b0d(player)
+function private function_e717b0d(player)
 {
 	if(!isdefined(player) || !isalive(player) || !isdefined(player.inventory))
 	{
@@ -138,10 +138,10 @@ function function_f488681f()
 	spawn_point = function_89116a1e();
 	if(isdefined(spawn_point))
 	{
-		var_1b36fba4 = spawn_point.origin;
-		starttrace = physicstraceex(var_1b36fba4 + vectorscale((0, 0, 1), 128), var_1b36fba4, vectorscale((-1, -1, -1), 0.5), vectorscale((1, 1, 1), 0.5), self, 1);
-		var_1b36fba4 = starttrace[#"position"];
-		self.resurrect_origin = var_1b36fba4;
+		spawn_point_origin = spawn_point.origin;
+		starttrace = physicstraceex(spawn_point_origin + vectorscale((0, 0, 1), 128), spawn_point_origin, vectorscale((-1, -1, -1), 0.5), vectorscale((1, 1, 1), 0.5), self, 1);
+		spawn_point_origin = starttrace[#"position"];
+		self.resurrect_origin = spawn_point_origin;
 		self.resurrect_angles = spawn_point.angles;
 		self.var_139ab759 = gettime();
 	}
@@ -336,7 +336,7 @@ function function_b8c66122()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4fcf8d3f(player)
+function private function_4fcf8d3f(player)
 {
 	if(!isplayer(player) || !player is_infected())
 	{
@@ -361,7 +361,7 @@ private function function_4fcf8d3f(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2cdab964(params)
+function private function_2cdab964(params)
 {
 	attacker = params.eattacker;
 	weapon = params.weapon;
@@ -390,7 +390,7 @@ private function function_2cdab964(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_70f6e873(params)
+function private function_70f6e873(params)
 {
 	if(!isdefined(self) || !self is_infected())
 	{
@@ -418,7 +418,7 @@ private function function_70f6e873(params)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_4776caf4(eventstruct)
+event private function_4776caf4(eventstruct)
 {
 	eventstruct.projectile endon(#"death");
 	if(function_f99d2668() && isplayer(self) && isalive(self))
@@ -446,7 +446,7 @@ private event function_4776caf4(eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fcd9114b()
+function private function_fcd9114b()
 {
 	return self ismeleeing() && isdefined(self.var_8a022726) && isdefined(self.var_8a022726.var_a9309589) && self.var_8a022726 istriggerenabled() && self istouching(self.var_8a022726);
 }
@@ -510,7 +510,7 @@ function function_16e24b6c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cabd9ff3(eventstruct)
+function private function_cabd9ff3(eventstruct)
 {
 	if(!isdefined(eventstruct) || !isdefined(eventstruct.attacker) || !eventstruct.attacker is_infected())
 	{
@@ -537,7 +537,7 @@ private function function_cabd9ff3(eventstruct)
 	Parameters: 0
 	Flags: Private
 */
-private function function_44b9dd1d()
+function private function_44b9dd1d()
 {
 	/#
 		while(!canadddebugcommand())
@@ -559,7 +559,7 @@ private function function_44b9dd1d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_cdd9b388()
+function private function_cdd9b388()
 {
 	/#
 		while(true)

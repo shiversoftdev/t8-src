@@ -170,10 +170,10 @@ function function_6b437265(team)
 		}
 		if(team == spawnbeacon.team)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -400,7 +400,7 @@ function function_45a43bd6()
 	Parameters: 0
 	Flags: Private
 */
-private function setupcallbacks()
+function private setupcallbacks()
 {
 	ability_player::register_gadget_activation_callbacks(26, &gadget_spawnbeacon_on, &gadget_spawnbeacon_off);
 	callback::on_player_killed_with_params(&on_player_killed);
@@ -418,7 +418,7 @@ private function setupcallbacks()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9ede386f(slot)
+function private function_9ede386f(slot)
 {
 	wait(0.1);
 	if(!isdefined(self))
@@ -446,14 +446,17 @@ function function_8892377a()
 		self.var_9698a18d = 0;
 		self.var_583f6cce = undefined;
 	}
-	else if(!isdefined(self.pers[#"hash_677f229433c8735b"]))
+	else
 	{
-		self.pers[#"hash_677f229433c8735b"] = 0;
-	}
-	if(getdvarint(#"hash_da55c6d97d1dc52", 1) && (isdefined(level.var_6cd68fbe) ? level.var_6cd68fbe : 0) && self.pers[#"hash_677f229433c8735b"] >= 1)
-	{
-		var_4dbaac09 = self gadgetgetslot(level.spawnbeaconsettings.var_c1a364b9);
-		self thread function_9ede386f(var_4dbaac09);
+		if(!isdefined(self.pers[#"hash_677f229433c8735b"]))
+		{
+			self.pers[#"hash_677f229433c8735b"] = 0;
+		}
+		if(getdvarint(#"hash_da55c6d97d1dc52", 1) && (isdefined(level.var_6cd68fbe) ? level.var_6cd68fbe : 0) && self.pers[#"hash_677f229433c8735b"] >= 1)
+		{
+			var_4dbaac09 = self gadgetgetslot(level.spawnbeaconsettings.var_c1a364b9);
+			self thread function_9ede386f(var_4dbaac09);
+		}
 	}
 }
 
@@ -545,13 +548,16 @@ function function_a8549b52()
 		{
 			objective_setgamemodeflags(spawnbeacon.objectiveid, 2);
 		}
-		else if(spawnbeacon.threatlevel >= (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_332c5109) ? level.spawnbeaconsettings.var_51d5c26f.var_332c5109 : 0))
-		{
-			objective_setgamemodeflags(spawnbeacon.objectiveid, 1);
-		}
 		else
 		{
-			objective_setgamemodeflags(spawnbeacon.objectiveid, 0);
+			if(spawnbeacon.threatlevel >= (isdefined(level.spawnbeaconsettings.var_51d5c26f.var_332c5109) ? level.spawnbeaconsettings.var_51d5c26f.var_332c5109 : 0))
+			{
+				objective_setgamemodeflags(spawnbeacon.objectiveid, 1);
+			}
+			else
+			{
+				objective_setgamemodeflags(spawnbeacon.objectiveid, 0);
+			}
 		}
 		wait(1);
 	}
@@ -722,7 +728,7 @@ function function_4d9f82ce()
 	Parameters: 0
 	Flags: Private
 */
-private function function_e46fd633()
+function private function_e46fd633()
 {
 	spawnbeacon = self;
 	if((isdefined(level.spawnbeaconsettings.var_51d5c26f.var_d2110d43) ? level.spawnbeaconsettings.var_51d5c26f.var_d2110d43 : 0))
@@ -790,13 +796,16 @@ function function_a9ff3efb(var_d3213f00)
 		{
 			self function_e46fd633();
 		}
-		else if(isdefined(self.owner))
+		else
 		{
-			var_9a5be956 = self.owner;
-			self.owner thread killstreaks::play_taacom_dialog("spawnBeaconOfflineFriendly");
+			if(isdefined(self.owner))
+			{
+				var_9a5be956 = self.owner;
+				self.owner thread killstreaks::play_taacom_dialog("spawnBeaconOfflineFriendly");
+			}
+			function_d7cd849c(level.spawnbeaconsettings.var_51d5c26f.var_10c9ba2d, self.team, var_9a5be956);
+			function_d7cd849c(level.spawnbeaconsettings.var_51d5c26f.var_f29e64de, util::getotherteam(self.team), undefined);
 		}
-		function_d7cd849c(level.spawnbeaconsettings.var_51d5c26f.var_10c9ba2d, self.team, var_9a5be956);
-		function_d7cd849c(level.spawnbeaconsettings.var_51d5c26f.var_f29e64de, util::getotherteam(self.team), undefined);
 	}
 	if(isdefined(level.spawnbeaconsettings.var_51d5c26f.var_35fbc280))
 	{
@@ -975,7 +984,7 @@ function createspawngroupforspawnbeacon(associatedspawnbeacon, spawnstoadd)
 	#/
 	if(spawnstoadd.size == 0)
 	{
-		return 0;
+		return false;
 	}
 	team = associatedspawnbeacon.team;
 	enemyteam = util::getotherteam(team);
@@ -1002,7 +1011,7 @@ function createspawngroupforspawnbeacon(associatedspawnbeacon, spawnstoadd)
 		addspawnpoints("free", spawnstoadd, associatedspawnbeacon.spawnlist);
 	}
 	associatedspawnbeacon.spawns = spawnstoadd;
-	return 1;
+	return true;
 }
 
 /*

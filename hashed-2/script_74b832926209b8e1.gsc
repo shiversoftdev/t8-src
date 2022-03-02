@@ -146,7 +146,7 @@ function function_5f8f9262(var_5ea5c94d, ended_early)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f16c0259()
+function private function_f16c0259()
 {
 	self endon(#"death");
 	level endon(#"end_game", #"hash_478e70a97b556206");
@@ -202,7 +202,7 @@ private function function_f16c0259()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_213f1c48()
+function private function_213f1c48()
 {
 	level endon(#"end_game", #"hash_3dcff814c31d2298");
 	/#
@@ -230,7 +230,7 @@ private function function_213f1c48()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c19f52ea()
+function private function_c19f52ea()
 {
 	if(level.var_97da986d.var_6f9b20c6 > 0 && math::cointoss())
 	{
@@ -310,7 +310,7 @@ function function_67098abf(var_5ea5c94d, ended_early)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_37d390f8(e_player, var_876ad064)
+function private function_37d390f8(e_player, var_876ad064)
 {
 	if(var_876ad064)
 	{

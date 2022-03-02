@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"destructible", &__init__, undefined, undefined);
 }
@@ -90,13 +90,16 @@ function destructible_event_callback(destructible_event, attacker, weapon)
 		{
 			explosion_radius = 150;
 		}
-		else if(explosion_radius == "lg")
-		{
-			explosion_radius = 450;
-		}
 		else
 		{
-			explosion_radius = int(explosion_radius);
+			if(explosion_radius == "lg")
+			{
+				explosion_radius = 450;
+			}
+			else
+			{
+				explosion_radius = int(explosion_radius);
+			}
 		}
 		destructible_event = "explode_complex";
 	}

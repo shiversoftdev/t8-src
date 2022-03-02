@@ -809,9 +809,9 @@ function function_4f3a7675(params)
 		if(isdefined(level.var_5efad16e))
 		{
 			level [[level.var_5efad16e]]();
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	#/
 }
 

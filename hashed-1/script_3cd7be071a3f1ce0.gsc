@@ -255,47 +255,56 @@ function function_d61c8c59(localclientnum, oldval, newval, bnewent, binitialsnap
 				}
 			}
 		}
-		else if(self hasdobj(localclientnum))
+		else
 		{
-			self.var_b196c692[localclientnum] = playtagfxset(localclientnum, "weapon_katana_smoke_3p", self);
-		}
-		if(!isdefined(self.var_5d816fd0))
-		{
-			self playsound(localclientnum, #"hash_50cea74fea1f3dcc");
-			self.var_637d4665 = self playloopsound(#"hash_47a7411ff19dab6c");
-		}
-	}
-	else if(self getlocalclientnumber() === localclientnum)
-	{
-		self postfx::stoppostfxbundle(#"hash_33e699252aac7a7e");
-		a_e_players = getlocalplayers();
-		foreach(e_player in a_e_players)
-		{
-			if(!e_player util::function_50ed1561(localclientnum))
+			if(self hasdobj(localclientnum))
 			{
-				e_player notify(#"hash_3ac1c56d5f920a24");
+				self.var_b196c692[localclientnum] = playtagfxset(localclientnum, "weapon_katana_smoke_3p", self);
+			}
+			if(!isdefined(self.var_5d816fd0))
+			{
+				self playsound(localclientnum, #"hash_50cea74fea1f3dcc");
+				self.var_637d4665 = self playloopsound(#"hash_47a7411ff19dab6c");
 			}
 		}
-		if(isdefined(self.var_637d4665))
-		{
-			self playsound(localclientnum, #"hash_db54c67c5697558");
-			self stoploopsound(self.var_637d4665);
-			self.var_637d4665 = undefined;
-		}
 	}
-	else if(isdefined(self.var_b196c692[localclientnum]))
+	else
 	{
-		foreach(fx in self.var_b196c692[localclientnum])
+		if(self getlocalclientnumber() === localclientnum)
 		{
-			stopfx(localclientnum, fx);
+			self postfx::stoppostfxbundle(#"hash_33e699252aac7a7e");
+			a_e_players = getlocalplayers();
+			foreach(e_player in a_e_players)
+			{
+				if(!e_player util::function_50ed1561(localclientnum))
+				{
+					e_player notify(#"hash_3ac1c56d5f920a24");
+				}
+			}
+			if(isdefined(self.var_637d4665))
+			{
+				self playsound(localclientnum, #"hash_db54c67c5697558");
+				self stoploopsound(self.var_637d4665);
+				self.var_637d4665 = undefined;
+			}
 		}
-		self.var_b196c692[localclientnum] = undefined;
-	}
-	if(isdefined(self.var_5d816fd0))
-	{
-		self playsound(localclientnum, #"hash_28d41f681d0c4371");
-		self stoploopsound(self.var_5d816fd0);
-		self.var_5d816fd0 = undefined;
+		else
+		{
+			if(isdefined(self.var_b196c692[localclientnum]))
+			{
+				foreach(fx in self.var_b196c692[localclientnum])
+				{
+					stopfx(localclientnum, fx);
+				}
+				self.var_b196c692[localclientnum] = undefined;
+			}
+			if(isdefined(self.var_5d816fd0))
+			{
+				self playsound(localclientnum, #"hash_28d41f681d0c4371");
+				self stoploopsound(self.var_5d816fd0);
+				self.var_5d816fd0 = undefined;
+			}
+		}
 	}
 }
 

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6d455d07ee9a592c", &__init__, undefined, undefined);
 }
@@ -165,7 +165,7 @@ function function_f3edce9a()
 */
 function grenade_safe_to_throw(player, weapon)
 {
-	return 1;
+	return true;
 }
 
 /*

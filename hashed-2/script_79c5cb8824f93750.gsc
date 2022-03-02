@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1f2b90c8b7f6a12e", &__init__, undefined, #"hash_1fd69f0c10bde41c");
 }
@@ -28,7 +28,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_f031a77f()
+function autoexec function_f031a77f()
 {
 	waitframe(1);
 	function_f5a58e15();
@@ -72,7 +72,7 @@ function function_d95e620c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f5a58e15()
+function private function_f5a58e15()
 {
 	var_a6762160 = getscriptbundle(#"hash_347dc9157efc6a42");
 	if(isdefined(var_a6762160))

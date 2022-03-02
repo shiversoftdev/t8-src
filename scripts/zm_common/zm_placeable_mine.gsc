@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"placeable_mine", undefined, &__main__, undefined);
 }
@@ -40,7 +40,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __main__()
+function private __main__()
 {
 	if(isdefined(level.placeable_mines))
 	{
@@ -57,7 +57,7 @@ private function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function init_internal()
+function private init_internal()
 {
 	if(isdefined(level.placeable_mines))
 	{
@@ -171,7 +171,7 @@ function add_planted_callback(fn_planted_cb, wpn_name)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function run_planted_callbacks(e_planter)
+function private run_planted_callbacks(e_planter)
 {
 	foreach(fn in level.placeable_mine_planted_callbacks[self.weapon.name])
 	{
@@ -188,13 +188,13 @@ private function run_planted_callbacks(e_planter)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function safe_to_plant()
+function private safe_to_plant()
 {
 	if(isdefined(level.placeable_mines_max_per_player) && self.owner.placeable_mines.size >= level.placeable_mines_max_per_player)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -206,7 +206,7 @@ private function safe_to_plant()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function wait_and_detonate()
+function private wait_and_detonate()
 {
 	wait(0.1);
 	self detonate(self.owner);
@@ -221,7 +221,7 @@ private function wait_and_detonate()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function mine_watch(wpn_type)
+function private mine_watch(wpn_type)
 {
 	self endon(#"death");
 	self notify(#"mine_watch");
@@ -265,13 +265,13 @@ function is_true_placeable_mine(mine_name)
 {
 	if(!isdefined(level.placeable_mines_in_name_only))
 	{
-		return 1;
+		return true;
 	}
 	if(!isdefined(level.placeable_mines_in_name_only[mine_name]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -352,7 +352,7 @@ function disable_all_prompts_for_player()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pickup_placeable_mine()
+function private pickup_placeable_mine()
 {
 	player = self.owner;
 	wpn_type = self.weapon;
@@ -405,7 +405,7 @@ private function pickup_placeable_mine()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function pickup_placeable_mine_trigger_listener(trigger, player)
+function private pickup_placeable_mine_trigger_listener(trigger, player)
 {
 	self thread pickup_placeable_mine_trigger_listener_enable(trigger, player);
 	self thread pickup_placeable_mine_trigger_listener_disable(trigger, player);
@@ -420,7 +420,7 @@ private function pickup_placeable_mine_trigger_listener(trigger, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function pickup_placeable_mine_trigger_listener_enable(trigger, player)
+function private pickup_placeable_mine_trigger_listener_enable(trigger, player)
 {
 	self endon(#"delete", #"death");
 	while(true)
@@ -444,7 +444,7 @@ private function pickup_placeable_mine_trigger_listener_enable(trigger, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function pickup_placeable_mine_trigger_listener_disable(trigger, player)
+function private pickup_placeable_mine_trigger_listener_disable(trigger, player)
 {
 	self endon(#"delete", #"death");
 	while(true)
@@ -468,7 +468,7 @@ private function pickup_placeable_mine_trigger_listener_disable(trigger, player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function placeable_mine_damage()
+function private placeable_mine_damage()
 {
 	self endon(#"death");
 	self setcandamage(1);
@@ -524,7 +524,7 @@ private function placeable_mine_damage()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function reset_satchel_explode_this_frame()
+function private reset_satchel_explode_this_frame()
 {
 	waitframe(1);
 	level.satchelexplodethisframe = 0;
@@ -539,7 +539,7 @@ private function reset_satchel_explode_this_frame()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function replenish_after_rounds()
+function private replenish_after_rounds()
 {
 	while(true)
 	{
@@ -620,7 +620,7 @@ function zm_red_challenges_hud_wear(watcher)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function on_spawn_retrieve_trigger(watcher, player)
+function private on_spawn_retrieve_trigger(watcher, player)
 {
 	self weaponobjects::function_23b0aea9(watcher, player);
 	if(isdefined(self.pickuptrigger))
@@ -638,7 +638,7 @@ private function on_spawn_retrieve_trigger(watcher, player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function adjust_trigger_origin(origin)
+function private adjust_trigger_origin(origin)
 {
 	origin = origin + vectorscale((0, 0, 1), 20);
 	return origin;
@@ -653,7 +653,7 @@ private function adjust_trigger_origin(origin)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function placeable_mine_detonate(attacker, weapon, target)
+function private placeable_mine_detonate(attacker, weapon, target)
 {
 	if(weapon.isemp)
 	{
@@ -664,13 +664,16 @@ private function placeable_mine_detonate(attacker, weapon, target)
 	{
 		self detonate(attacker);
 	}
-	else if(isdefined(self.owner) && isplayer(self.owner))
-	{
-		self detonate(self.owner);
-	}
 	else
 	{
-		self detonate();
+		if(isdefined(self.owner) && isplayer(self.owner))
+		{
+			self detonate(self.owner);
+		}
+		else
+		{
+			self detonate();
+		}
 	}
 }
 

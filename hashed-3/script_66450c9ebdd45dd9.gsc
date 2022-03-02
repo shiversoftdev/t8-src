@@ -60,15 +60,15 @@ event function_d8f1209f(eventstruct)
 function function_86492662(player1, player2)
 {
 	var_1518f1fb = [];
-	var_d4531a1 = player1 getmpdialogname();
-	var_b510d775 = player2 getmpdialogname();
-	if(isdefined(var_d4531a1) && isdefined(var_b510d775))
+	player1name = player1 getmpdialogname();
+	player2name = player2 getmpdialogname();
+	if(isdefined(player1name) && isdefined(player2name))
 	{
 		var_f0b4da50 = tablelookuprowcount(#"hash_5ec1825aeab754a2");
 		for(i = 0; i < var_f0b4da50; i++)
 		{
 			row = tablelookuprow(#"hash_5ec1825aeab754a2", i);
-			if(row[0] == var_d4531a1 && row[1] == var_b510d775)
+			if(row[0] == player1name && row[1] == player2name)
 			{
 				var_1518f1fb[var_1518f1fb.size] = row;
 			}

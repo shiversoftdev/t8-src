@@ -54,17 +54,17 @@ function ent_already_in(var_d35ff8d8)
 {
 	if(!isdefined(self._triggers))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self._triggers[var_d35ff8d8]))
 	{
-		return 0;
+		return false;
 	}
 	if(!self._triggers[var_d35ff8d8])
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

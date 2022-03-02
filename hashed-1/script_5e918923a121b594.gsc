@@ -141,9 +141,9 @@ function function_63b383f3()
 {
 	if(self.ai.patrol.state == 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -159,9 +159,9 @@ function function_6f09c87()
 {
 	if(self.ai.patrol.state == 1 || self.ai.patrol.state == 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -173,7 +173,7 @@ function function_6f09c87()
 	Parameters: 2
 	Flags: Private
 */
-private function function_72f5ecf2(current_point, points)
+function private function_72f5ecf2(current_point, points)
 {
 	new_points = [];
 	var_ef358bee = self.ai.patrol.var_a85cb855 * self.ai.patrol.var_a85cb855;
@@ -212,7 +212,7 @@ function function_cd106dcf(left, right)
 	Parameters: 3
 	Flags: Private
 */
-private function function_12270700(origin, angles, points)
+function private function_12270700(origin, angles, points)
 {
 	foreach(point in points)
 	{
@@ -318,14 +318,14 @@ function function_94d884e4(var_9033671b)
 	Parameters: 1
 	Flags: Private
 */
-private function function_7b48c3fc(dvar)
+function private function_7b48c3fc(dvar)
 {
 	/#
 		if(getdvarint(dvar, 0))
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -343,9 +343,9 @@ function function_38d931e7()
 	var_1f2328d0 = self function_4794d6a3();
 	if(!isdefined(var_1f2328d0.var_9e404264) || var_1f2328d0.var_9e404264)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -361,7 +361,7 @@ function function_6b33bfb8(radius)
 {
 	if(self function_38d931e7())
 	{
-		return 1;
+		return true;
 	}
 	var_1f2328d0 = self function_4794d6a3();
 	if(isdefined(var_1f2328d0.overridegoalpos))
@@ -370,10 +370,10 @@ function function_6b33bfb8(radius)
 		var_1ba37935 = var_fca0ef39 * var_fca0ef39;
 		if(distancesquared(var_1f2328d0.overridegoalpos, self.origin) <= var_1ba37935)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -488,7 +488,7 @@ function function_5d31deb6()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9a61e8fb(origin)
+function private function_9a61e8fb(origin)
 {
 	if(isdefined(self.ai.patrol.var_36b19b5e))
 	{
@@ -517,7 +517,7 @@ private function function_9a61e8fb(origin)
 	Parameters: 0
 	Flags: Private
 */
-private function function_732c2878()
+function private function_732c2878()
 {
 	if(isdefined(self.var_e2aca908))
 	{
@@ -534,7 +534,7 @@ private function function_732c2878()
 	Parameters: 1
 	Flags: Private
 */
-private function function_8d4eba95(origin)
+function private function_8d4eba95(origin)
 {
 	if(isdefined(self.script_owner) && isdefined(self.ai.patrol.var_c80d374a))
 	{
@@ -556,7 +556,7 @@ private function function_8d4eba95(origin)
 	Parameters: 0
 	Flags: Private
 */
-private function function_698793f6()
+function private function_698793f6()
 {
 	if(isdefined(self.var_74e8fd19))
 	{
@@ -574,7 +574,7 @@ private function function_698793f6()
 	Parameters: 1
 	Flags: Private
 */
-private function function_f037571d(origin)
+function private function_f037571d(origin)
 {
 	self endon(#"death");
 	self function_8d4eba95(origin);
@@ -592,7 +592,7 @@ private function function_f037571d(origin)
 	Parameters: 0
 	Flags: Private
 */
-private function function_3ec67269()
+function private function_3ec67269()
 {
 	self function_698793f6();
 	self function_732c2878();
@@ -607,7 +607,7 @@ private function function_3ec67269()
 	Parameters: 0
 	Flags: Private
 */
-private function function_7c779aaf()
+function private function_7c779aaf()
 {
 	self notify(#"hash_5824b020cde66d5");
 	self endon(#"hash_5824b020cde66d5");
@@ -618,13 +618,16 @@ private function function_7c779aaf()
 	{
 		self function_3ec67269();
 	}
-	else if(isdefined(fx_marker))
+	else
 	{
-		fx_marker delete();
-	}
-	if(isdefined(var_943943a9))
-	{
-		var_943943a9 delete();
+		if(isdefined(fx_marker))
+		{
+			fx_marker delete();
+		}
+		if(isdefined(var_943943a9))
+		{
+			var_943943a9 delete();
+		}
 	}
 }
 

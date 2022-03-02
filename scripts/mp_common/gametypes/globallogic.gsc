@@ -99,7 +99,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"globallogic", &__init__, undefined, #"visionset_mgr");
 }
@@ -150,7 +150,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_spawned()
+function private on_player_spawned()
 {
 	self clientfield::set_player_uimodel("huditems.killedByEntNum", 15);
 	self.var_84c4b3e6 = 0;
@@ -331,7 +331,7 @@ function function_340107d4()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_44c8af7f()
+function private function_44c8af7f()
 {
 	level.teams = [];
 	level.teamindex = [];
@@ -683,13 +683,16 @@ function compareteambygamestat(gamestat, teama, teamb, previous_winner_score)
 	{
 		winner = undefined;
 	}
-	else if(game.stat[gamestat][teamb] > previous_winner_score)
-	{
-		winner = teamb;
-	}
 	else
 	{
-		winner = teama;
+		if(game.stat[gamestat][teamb] > previous_winner_score)
+		{
+			winner = teamb;
+		}
+		else
+		{
+			winner = teama;
+		}
 	}
 	return winner;
 }
@@ -845,9 +848,9 @@ function atleasttwoteams()
 	}
 	if(valid_count < 2)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -863,13 +866,13 @@ function function_f25690c1(team)
 {
 	if(!game.everexisted[team])
 	{
-		return 0;
+		return false;
 	}
 	if(level.playercount[team] < 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -885,11 +888,11 @@ function function_4b670b29()
 {
 	if(game.state != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(util::totalplayercount() == 0)
 	{
-		return 0;
+		return false;
 	}
 	params = {#hash_6eb69269:[], #hash_9648a6d7:[]};
 	foreach(team, _ in level.teams)
@@ -959,15 +962,15 @@ function function_4b670b29()
 		if(params.var_b2ee6c67.size == 1 && params.var_f300b200.size > 0)
 		{
 			thread [[level.onforfeit]](params);
-			return 1;
+			return true;
 		}
 	}
 	else if(params.var_6eb69269.size == 1 && params.var_9648a6d7.size > 0)
 	{
 		thread [[level.onforfeit]](params);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1003,13 +1006,13 @@ function function_7b75ee16(team)
 {
 	if(level.playerlives[team])
 	{
-		return 1;
+		return true;
 	}
 	if(level.alivecount[team] - level.laststandcount[team] > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1125,20 +1128,20 @@ function function_10dc43bc(params)
 {
 	if(params.var_8245068d == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(platoons::function_382a49e0())
 	{
 		if(params.platoons_alive.size == 1 && params.var_eb1984d4.size > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(params.teams_alive.size == 1 && params.var_46a749a8.size > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1150,24 +1153,24 @@ function function_10dc43bc(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eb1c0d37()
+function private function_eb1c0d37()
 {
 	if(level.var_f97a6ba3 && !level.var_4ad4bec3)
 	{
-		return 0;
+		return false;
 	}
 	foreach(team, _ in level.teams)
 	{
 		if(!level.var_f97a6ba3 && !level.everexisted[team])
 		{
-			return 0;
+			return false;
 		}
 		if(!teams::is_all_dead(team))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1190,7 +1193,7 @@ function dodeadeventupdates()
 			{
 				[[level.ondeadevent]]("all");
 			}
-			return 1;
+			return true;
 		}
 		foreach(team, _ in level.teams)
 		{
@@ -1212,7 +1215,7 @@ function dodeadeventupdates()
 		if([[level.var_36a111f3]](params))
 		{
 			level callback::callback(#"hash_84d8c1164d90313", params);
-			return 1;
+			return true;
 		}
 	}
 	else if(totalalivecount() == 0 && totalplayerlives() == 0 && level.maxplayercount > 1)
@@ -1222,9 +1225,9 @@ function dodeadeventupdates()
 		{
 			[[level.ondeadevent]]("all");
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1236,25 +1239,25 @@ function dodeadeventupdates()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function isonlyoneleftaliveonteam(team)
+function private isonlyoneleftaliveonteam(team)
 {
 	if(level.lastalivecount[team] <= 1)
 	{
-		return 0;
+		return false;
 	}
 	if(level.alivecount[team] != 1)
 	{
-		return 0;
+		return false;
 	}
 	if(level.playerlives[team] != 1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.aliveplayers[team]) && level.aliveplayers[team].size && level.aliveplayers[team][0] laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1275,16 +1278,16 @@ function doonelefteventupdates()
 			if(isonlyoneleftaliveonteam(team))
 			{
 				[[level.ononeleftevent]](team);
-				return 1;
+				return true;
 			}
 		}
 	}
 	else if(totalalivecount() == 1 && totalplayerlives() == 1 && level.maxplayercount > 1)
 	{
 		[[level.ononeleftevent]]("all");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1328,18 +1331,21 @@ function function_b29d2423(params)
 				level notify(#"hash_39a00a79045884ca");
 			}
 		}
-		else if(!level.gameforfeited)
+		else
 		{
-			if(util::totalplayercount() == 1 && level.maxplayercount > 1)
+			if(!level.gameforfeited)
 			{
-				thread [[level.onforfeit]]();
-				return;
+				if(util::totalplayercount() == 1 && level.maxplayercount > 1)
+				{
+					thread [[level.onforfeit]]();
+					return;
+				}
 			}
-		}
-		else if(util::totalplayercount() > 1)
-		{
-			level.gameforfeited = 0;
-			level notify(#"hash_39a00a79045884ca");
+			else if(util::totalplayercount() > 1)
+			{
+				level.gameforfeited = 0;
+				level notify(#"hash_39a00a79045884ca");
+			}
 		}
 	}
 	if(level.ingraceperiod)
@@ -1571,9 +1577,9 @@ function notifyteamwavespawn(team, time)
 		level notify("wave_respawn_" + team);
 		level.lastwave[team] = time;
 		level.waveplayerspawnindex[team] = 0;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1632,14 +1638,14 @@ function hostidledout()
 	/#
 		if(getdvarint(#"scr_writeconfigstrings", 0) == 1 || getdvarint(#"scr_hostmigrationtest", 0) == 1)
 		{
-			return 0;
+			return false;
 		}
 	#/
 	if(isdefined(hostplayer) && (!(isdefined(hostplayer.hasspawned) && hostplayer.hasspawned)) && !isdefined(hostplayer.selectedclass))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2136,9 +2142,9 @@ function function_d89bf8aa()
 		function_452e18ad();
 		game.state = "pregame";
 		map_restart(1);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2271,7 +2277,7 @@ function awardotherlootxp()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6c9e78d5(var_c1e98979)
+function private function_6c9e78d5(var_c1e98979)
 {
 	updateplacement();
 	function_68bfd6d7();
@@ -2317,13 +2323,13 @@ private function function_6c9e78d5(var_c1e98979)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function is_game_over()
+function private is_game_over()
 {
 	if(util::isoneround() || util::waslastround())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2335,7 +2341,7 @@ private function is_game_over()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_70171add()
+function private function_70171add()
 {
 	if(randomfloat(1) <= getdvarfloat(#"survey_chance", 0))
 	{
@@ -2353,7 +2359,7 @@ private function function_70171add()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_176452e3()
+function private function_176452e3()
 {
 	winning_team = round::get_winning_team();
 	winner = round::function_9b24638f();
@@ -2377,7 +2383,7 @@ private function function_176452e3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9113e843()
+function private function_9113e843()
 {
 	winning_team = round::get_winning_team();
 	overtime_round = round::function_5f24faac("overtime");
@@ -2408,7 +2414,7 @@ private function function_9113e843()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e8cd6051()
+function private function_e8cd6051()
 {
 	result = #"draw";
 	if(!match::function_5f24faac("tie") && match::function_c10174e7())
@@ -2431,7 +2437,7 @@ private function function_e8cd6051()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d8d30361(var_c1e98979)
+function private function_d8d30361(var_c1e98979)
 {
 	setmatchflag("game_ended", 1);
 	gamestate::set_state("postgame");
@@ -2454,7 +2460,7 @@ private function function_d8d30361(var_c1e98979)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_68bfd6d7()
+function private function_68bfd6d7()
 {
 	if(!is_game_over())
 	{
@@ -2499,7 +2505,7 @@ function function_dd9663e5()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4720c07f(outcome)
+function private function_4720c07f(outcome)
 {
 	level.ingraceperiod = 0;
 	function_dd9663e5();
@@ -2594,14 +2600,14 @@ function function_8b4fc766(var_c1e98979)
 		case 9:
 		case 10:
 		{
-			return 0;
+			return false;
 		}
 		default:
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2751,7 +2757,7 @@ function end_round(var_c1e98979)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f30cfedb()
+function private function_f30cfedb()
 {
 	if(util::isoneround())
 	{
@@ -2773,7 +2779,7 @@ private function function_f30cfedb()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3526a519()
+function private function_3526a519()
 {
 	var_e61d6eb0 = [];
 	foreach(vehicle in level.var_8819644a)
@@ -2814,7 +2820,7 @@ private function function_3526a519()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e4335431()
+function private function_e4335431()
 {
 	var_726f6c6 = [];
 	foreach(stash in level.var_5862f2ce)
@@ -2852,7 +2858,7 @@ private function function_e4335431()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_159d7b6f()
+function private function_159d7b6f()
 {
 	itemcount = function_8322cf16();
 	summary = [];
@@ -2893,15 +2899,18 @@ private function function_159d7b6f()
 			summary[item.targetname].var_b2f6f151[item.var_a6762160.itemtype].items[item.var_a6762160.name].count = summary[item.targetname].var_b2f6f151[item.var_a6762160.itemtype].items[item.var_a6762160.name].count + 1;
 			summary[item.targetname].var_b2f6f151[item.var_a6762160.itemtype].items[item.var_a6762160.name].rarity = hash(item.var_a6762160.rarity);
 		}
-		else if(!isdefined(var_69cbb8c[item.targetname]))
+		else
 		{
-			var_69cbb8c[item.targetname] = {};
+			if(!isdefined(var_69cbb8c[item.targetname]))
+			{
+				var_69cbb8c[item.targetname] = {};
+			}
+			if(!isdefined(var_69cbb8c[item.targetname].count))
+			{
+				var_69cbb8c[item.targetname].count = 0;
+			}
+			var_69cbb8c[item.targetname].count = var_69cbb8c[item.targetname].count + 1;
 		}
-		if(!isdefined(var_69cbb8c[item.targetname].count))
-		{
-			var_69cbb8c[item.targetname].count = 0;
-		}
-		var_69cbb8c[item.targetname].count = var_69cbb8c[item.targetname].count + 1;
 		continue;
 	}
 	wait(0.1);
@@ -2954,7 +2963,7 @@ private function function_159d7b6f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2506a4ec()
+function private function_2506a4ec()
 {
 	function_3526a519();
 	wait(0.1);
@@ -2973,7 +2982,7 @@ private function function_2506a4ec()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6a4a86()
+function private function_6a4a86()
 {
 	result = function_e8cd6051();
 	recordgameresult(result);
@@ -2998,7 +3007,7 @@ private function function_6a4a86()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5ae24200()
+function private function_5ae24200()
 {
 	self setclientuivisibilityflag("hud_visible", 0);
 	self setclientuivisibilityflag("g_compassShowEnemies", 0);
@@ -3013,7 +3022,7 @@ private function function_5ae24200()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a18a9342()
+function private function_a18a9342()
 {
 	setmatchtalkflag("EveryoneHearsEveryone", 1);
 	setmatchflag("cg_drawSpectatorMessages", 0);
@@ -3030,7 +3039,7 @@ private function function_a18a9342()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ac30613c()
+function private function_ac30613c()
 {
 	return hud_message::function_a2f30ab4(1, match::function_3624d032(), 1, match::function_f37f02fc());
 }
@@ -3044,7 +3053,7 @@ private function function_ac30613c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bd1e54e7(outcome)
+function private function_bd1e54e7(outcome)
 {
 	stopdemorecording();
 	function_a50a4f61(outcome);
@@ -3059,7 +3068,7 @@ private function function_bd1e54e7(outcome)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function player_end_game()
+function private player_end_game()
 {
 	self thread [[level.spawnintermission]](0, level.usexcamsforendgame);
 	self setclientuivisibilityflag("hud_visible", 1);
@@ -3074,7 +3083,7 @@ private function player_end_game()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f6928798()
+function private function_f6928798()
 {
 	level.intermission = 1;
 	level notify(#"hash_196a12ab46f87ead");
@@ -3275,7 +3284,7 @@ function sendafteractionreport()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5c159ad3()
+function private function_5c159ad3()
 {
 	util::preload_frontend();
 	gamerep::gamerepanalyzeandreport();
@@ -3342,7 +3351,7 @@ function function_9a022fbc(str_state)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function beacon_cp_biodomes_server_room_top_floor_door_rumble()
+function private beacon_cp_biodomes_server_room_top_floor_door_rumble()
 {
 	function_f30cfedb();
 	namespace_9a8d2924::function_323c6715();
@@ -3554,26 +3563,29 @@ function checkscorelimit()
 {
 	if(game.state != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(level.scorelimit <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		if(!util::any_team_hit_score_limit())
 		{
-			return 0;
+			return false;
 		}
 	}
-	else if(!isplayer(self))
+	else
 	{
-		return 0;
-	}
-	if(self.pointstowin < level.scorelimit)
-	{
-		return 0;
+		if(!isplayer(self))
+		{
+			return false;
+		}
+		if(self.pointstowin < level.scorelimit)
+		{
+			return false;
+		}
 	}
 	[[level.onscorelimit]]();
 }
@@ -3591,22 +3603,22 @@ function checksuddendeathscorelimit(team)
 {
 	if(game.state != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(level.roundscorelimit <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		if(!game.teamsuddendeath[team])
 		{
-			return 0;
+			return false;
 		}
 	}
 	else
 	{
-		return 0;
+		return false;
 	}
 	[[level.onscorelimit]]();
 }
@@ -3624,27 +3636,30 @@ function checkroundscorelimit()
 {
 	if(game.state != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(level.roundscorelimit <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		if(!util::any_team_hit_round_score_limit())
 		{
-			return 0;
+			return false;
 		}
 	}
-	else if(!isplayer(self))
+	else
 	{
-		return 0;
-	}
-	roundscorelimit = util::get_current_round_score_limit();
-	if(self.pointstowin < roundscorelimit)
-	{
-		return 0;
+		if(!isplayer(self))
+		{
+			return false;
+		}
+		roundscorelimit = util::get_current_round_score_limit();
+		if(self.pointstowin < roundscorelimit)
+		{
+			return false;
+		}
 	}
 	[[level.onroundscorelimit]]();
 }
@@ -4525,7 +4540,7 @@ function timelimitclock_intermission(waittime)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_51350eb8()
+function private function_51350eb8()
 {
 	level notify(#"hash_313ad43b34e74e96");
 	gamestate::set_state("playing");
@@ -4575,7 +4590,7 @@ private function function_51350eb8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b4262bec()
+function private function_b4262bec()
 {
 	level endon(#"game_ended");
 	level.friendlyfire = level.var_78d89cdd;
@@ -4668,27 +4683,27 @@ function isprematchrequirementconditionmet(activeteamcount)
 {
 	if(level.prematchrequirement == 0)
 	{
-		return 1;
+		return true;
 	}
 	if(level.teambased)
 	{
 		if(activeteamcount.size <= 1)
 		{
-			return 0;
+			return false;
 		}
 		foreach(teamcount in activeteamcount)
 		{
 			if(teamcount != level.prematchrequirement)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
 	else if(activeteamcount[#"free"] != level.prematchrequirement)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -4825,36 +4840,39 @@ function prematchperiod()
 		}
 		function_654d64ea();
 	}
-	else if(isdefined(level.var_f3e25805))
-	{
-		level thread [[level.var_f3e25805]]();
-	}
-	if(isdefined(level.var_86513cd0))
-	{
-		[[level.var_86513cd0]]();
-	}
-	thread matchstarttimer();
-	if(level.prematchperiod > 0)
-	{
-		thread prematchwaitingforplayers();
-		waitforplayers();
-		wait(level.prematchperiod);
-	}
 	else
 	{
-		matchstarttimerskip();
-		waitframe(1);
+		if(isdefined(level.var_f3e25805))
+		{
+			level thread [[level.var_f3e25805]]();
+		}
+		if(isdefined(level.var_86513cd0))
+		{
+			[[level.var_86513cd0]]();
+		}
+		thread matchstarttimer();
+		if(level.prematchperiod > 0)
+		{
+			thread prematchwaitingforplayers();
+			waitforplayers();
+			wait(level.prematchperiod);
+		}
+		else
+		{
+			matchstarttimerskip();
+			waitframe(1);
+		}
+		level.inprematchperiod = 0;
+		level thread sndsetmatchsnapshot(0);
+		foreach(player in level.players)
+		{
+			player val::reset(#"spawn_player", "freezecontrols");
+			player val::reset(#"spawn_player", "disablegadgets");
+			player enableweapons();
+			player callback::callback(#"hash_1303178bdaf337b5");
+		}
+		level callback::callback(#"hash_1303178bdaf337b5");
 	}
-	level.inprematchperiod = 0;
-	level thread sndsetmatchsnapshot(0);
-	foreach(player in level.players)
-	{
-		player val::reset(#"spawn_player", "freezecontrols");
-		player val::reset(#"spawn_player", "disablegadgets");
-		player enableweapons();
-		player callback::callback(#"hash_1303178bdaf337b5");
-	}
-	level callback::callback(#"hash_1303178bdaf337b5");
 }
 
 /*
@@ -4931,10 +4949,10 @@ function anyteamhaswavedelay()
 	{
 		if(level.wavedelay[team])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -5073,17 +5091,20 @@ function function_b9b7618()
 			}
 		#/
 	}
-	else if(!level.splitscreen)
+	else
 	{
-		level.prematchperiod = getgametypesetting(#"preroundperiod");
-	}
-	/#
-		preroundperiodoverride = getdvarint(#"preroundperiodoverride", -1);
-		if(preroundperiodoverride >= 0)
+		if(!level.splitscreen)
 		{
-			level.prematchperiod = preroundperiodoverride;
+			level.prematchperiod = getgametypesetting(#"preroundperiod");
 		}
-	#/
+		/#
+			preroundperiodoverride = getdvarint(#"preroundperiodoverride", -1);
+			if(preroundperiodoverride >= 0)
+			{
+				level.prematchperiod = preroundperiodoverride;
+			}
+		#/
+	}
 	if(!isdefined(game.timepassed))
 	{
 		game.timepassed = 0;
@@ -5516,13 +5537,16 @@ function annihilatorgunplayerkilleffect(attacker, weapon, smeansofdeath)
 	{
 		wait(weapon.fusetime / 1000);
 	}
-	else if(weapon.fusetime != 0)
-	{
-		wait(0.1);
-	}
 	else
 	{
-		wait(0.45);
+		if(weapon.fusetime != 0)
+		{
+			wait(0.1);
+		}
+		else
+		{
+			wait(0.45);
+		}
 	}
 	if(!isdefined(self))
 	{
@@ -5727,29 +5751,29 @@ function function_e050e788(weapon, attacker, einflictor, smeansofdeath)
 {
 	if(!weapon.doannihilate)
 	{
-		return 0;
+		return false;
 	}
 	if(randomfloat(1) > weapon.var_36c76157)
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(attacker))
 	{
-		return 0;
+		return false;
 	}
 	if(smeansofdeath != "MOD_IMPACT" && smeansofdeath != "MOD_GRENADE" && smeansofdeath != "MOD_GRENADE_SPLASH" && smeansofdeath != "MOD_PROJECTILE" && smeansofdeath != "MOD_PROJECTILE_SPLASH" && smeansofdeath != "MOD_MELEE")
 	{
-		return 0;
+		return false;
 	}
 	if(smeansofdeath == "MOD_IMPACT" && weapon.var_6262fd11)
 	{
-		return 0;
+		return false;
 	}
 	if(smeansofdeath == "MOD_GRENADE_SPLASH" || smeansofdeath == "MOD_PROJECTILE_SPLASH" && (!(isdefined(einflictor) && isdefined(einflictor.stucktoplayer) && einflictor.stucktoplayer == self)))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -5778,21 +5802,24 @@ function doweaponspecificcorpseeffects(body, einflictor, attacker, idamage, smea
 			body thread annihilatorgunplayerkilleffect(attacker, weapon, smeansofdeath);
 		}
 	}
-	else if(smeansofdeath == "MOD_BURNED" || (smeansofdeath == "MOD_DOT" && weapon.doesfiredamage))
+	else
 	{
-		if(!isactor(body))
+		if(smeansofdeath == "MOD_BURNED" || (smeansofdeath == "MOD_DOT" && weapon.doesfiredamage))
 		{
-			body thread burncorpse();
-		}
-	}
-	else if(weapon.isheavyweapon && isplayer(attacker))
-	{
-		if(weapon.name == #"hero_firefly_swarm")
-		{
-			value = randomint(2) + 1;
 			if(!isactor(body))
 			{
-				codesetclientfield(body, "firefly_effect", value);
+				body thread burncorpse();
+			}
+		}
+		else if(weapon.isheavyweapon && isplayer(attacker))
+		{
+			if(weapon.name == #"hero_firefly_swarm")
+			{
+				value = randomint(2) + 1;
+				if(!isactor(body))
+				{
+					codesetclientfield(body, "firefly_effect", value);
+				}
 			}
 		}
 	}
@@ -5870,26 +5897,26 @@ function function_fdb8b430(player)
 {
 	if(!isalive(player) || player.sessionstate != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(!player util::isenemyteam(self.team))
 	{
-		return 0;
+		return false;
 	}
 	distsq = distancesquared(self.origin, player.origin);
 	if(distsq > level.var_b6a8b043 * level.var_b6a8b043)
 	{
-		return 0;
+		return false;
 	}
 	if(!util::within_fov(self.origin, self.angles, player.origin, level.var_6090be3a))
 	{
-		return 0;
+		return false;
 	}
 	if(!util::within_fov(player.origin, player getplayerangles(), self.origin, level.var_6090be3a))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_530f1e3dbb50b5f6", &__init__, undefined, undefined);
 }
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	function_58fc4e38(8);
 	level flag::set(#"hash_1b9ecc7979b0fcfb");
@@ -76,7 +76,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level flag::clear(#"hash_1b9ecc7979b0fcfb");
 	var_57ba058f = getentarray("gondola_call_trigger", "targetname");

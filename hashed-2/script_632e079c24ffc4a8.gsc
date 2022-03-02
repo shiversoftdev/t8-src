@@ -36,7 +36,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4234fbd26e776f6a", &__init__, undefined, undefined);
 }
@@ -68,7 +68,7 @@ function __init__()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_6325d314, var_52b8b3a2, n_time)
+function private function_d1de6a85(var_6325d314, var_52b8b3a2, n_time)
 {
 	level flag::clear(#"spawn_zombies");
 	callback::on_spawned(&zm_towers_main_quest::function_d4e923e7);
@@ -86,7 +86,7 @@ private function function_d1de6a85(var_6325d314, var_52b8b3a2, n_time)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_spawned(&zm_towers_main_quest::function_d4e923e7);
 }
@@ -100,7 +100,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_353ea592()
+function private function_353ea592()
 {
 	self notify("6fdbe26c6aeb036");
 	self endon("6fdbe26c6aeb036");
@@ -125,7 +125,7 @@ private function function_353ea592()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8318a404()
+function private function_8318a404()
 {
 	self notify("3eafbccd965262a6");
 	self endon("3eafbccd965262a6");
@@ -173,7 +173,7 @@ private function function_8318a404()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function boss_fight()
+function private boss_fight()
 {
 	self notify("4b6131952d06894a");
 	self endon("4b6131952d06894a");
@@ -234,7 +234,7 @@ private function boss_fight()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_13576d14()
+function private function_13576d14()
 {
 	var_bfd0a84a = getentarray("towers_boss_tower_trigger", "targetname");
 	var_6848389e = 0;
@@ -262,7 +262,7 @@ private function function_13576d14()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_33935d5f()
+function private function_33935d5f()
 {
 	self notify("51b1374f19c0864a");
 	self endon("51b1374f19c0864a");
@@ -300,7 +300,7 @@ private function function_33935d5f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_92e1954c()
+function private function_92e1954c()
 {
 	self notify("602480c649d8e17f");
 	self endon("602480c649d8e17f");
@@ -323,7 +323,7 @@ private function function_92e1954c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4d682898()
+function private function_4d682898()
 {
 	self notify("1d04cafdc26414eb");
 	self endon("1d04cafdc26414eb");
@@ -346,7 +346,7 @@ private function function_4d682898()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3d487e02()
+function private function_3d487e02()
 {
 	self notify("72b45c7bc8c76fc3");
 	self endon("72b45c7bc8c76fc3");
@@ -397,7 +397,7 @@ function function_f9da4403(s_spawn, phase)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dd2db3df()
+function private function_dd2db3df()
 {
 	tower = struct::get("entrance_tower", "targetname");
 	entrance_tower_collision = getent("entrance_tower_collision", "targetname");
@@ -426,7 +426,7 @@ private function function_dd2db3df()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_95785950(var_c625106d, var_86163b89, n_stage, var_39acfdda)
+function private function_95785950(var_c625106d, var_86163b89, n_stage, var_39acfdda)
 {
 	self notify("683195b7da79b6b9");
 	self endon("683195b7da79b6b9");
@@ -454,7 +454,7 @@ private function function_95785950(var_c625106d, var_86163b89, n_stage, var_39ac
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ae1cbf2e()
+function private function_ae1cbf2e()
 {
 	self notify("6a1dc39ab115329");
 	self endon("6a1dc39ab115329");
@@ -473,7 +473,7 @@ private function function_ae1cbf2e()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_1a05e10c(str_notify, var_f13787ad, var_ca8a3a53)
+function private function_1a05e10c(str_notify, var_f13787ad, var_ca8a3a53)
 {
 	self notify("588886ce796505cd");
 	self endon("588886ce796505cd");
@@ -495,7 +495,7 @@ private function function_1a05e10c(str_notify, var_f13787ad, var_ca8a3a53)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c64fc074()
+function private function_c64fc074()
 {
 	self notify("7d5d5c98ec5ee437");
 	self endon("7d5d5c98ec5ee437");

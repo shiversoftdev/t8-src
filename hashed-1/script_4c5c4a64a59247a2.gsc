@@ -14,13 +14,11 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	if(!isdefined(level.ai_weapon_throttle))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.ai_weapon_throttle = object;
+		level.ai_weapon_throttle = new throttle();
 		[[ level.ai_weapon_throttle ]]->initialize(1, 0.1);
 	}
 }
@@ -34,7 +32,7 @@ autoexec function main()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _throwstowedweapon(entity, weapon, weaponmodel)
+function private _throwstowedweapon(entity, weapon, weaponmodel)
 {
 	entity waittill(#"death");
 	if(isdefined(entity))

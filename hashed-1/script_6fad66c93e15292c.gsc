@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_160d7214c7356e06", &__init__, undefined, undefined);
 }
@@ -117,20 +117,20 @@ function function_eb7eb3d4()
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	/#
 		if(self isinmovemode("", ""))
 		{
-			return 0;
+			return false;
 		}
 	#/
 	height = self.origin[2];
 	if(level.var_c0556c0.var_7a8196b2 > height || level.var_c0556c0.height_max < height)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

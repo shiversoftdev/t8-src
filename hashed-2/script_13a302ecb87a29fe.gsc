@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	vehicle::add_vehicletype_callback("bat", &function_9b3fe343);
 	clientfield::register("vehicle", "bat_transform_fx", 8000, 1, "int", &function_17da5dde, 0, 0);
@@ -38,7 +38,7 @@ autoexec function main()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9b3fe343(localclientnum)
+function private function_9b3fe343(localclientnum)
 {
 	self mapshaderconstant(localclientnum, 0, "scriptVector2", 0.1);
 	if(isdefined(level.debug_keyline_zombies) && level.debug_keyline_zombies)

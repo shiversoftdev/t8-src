@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_831eacd382054cc", &__init__, &__main__, undefined);
 }
@@ -72,7 +72,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_65089f84()
+function private function_65089f84()
 {
 	if(isdefined(self.var_9fde8624) && self.var_9fde8624 == #"zombie_electric")
 	{
@@ -91,7 +91,7 @@ private function function_65089f84()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4639701a(params)
+function private function_4639701a(params)
 {
 	if(isdefined(params.eattacker) && isdefined(params.eattacker.var_9fde8624) && isdefined(params.smeansofdeath) && params.eattacker.var_9fde8624 == #"zombie_electric" && params.smeansofdeath == "MOD_MELEE")
 	{
@@ -108,7 +108,7 @@ private function function_4639701a(params)
 	Parameters: 8
 	Flags: Linked, Private
 */
-private function function_1a47fb39(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime)
+function private function_1a47fb39(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime)
 {
 	self thread clientfield::set("zm_ai/zombie_electric_fx_clientfield", 0);
 	if(!(isdefined(self.water_damage) && self.water_damage))
@@ -134,7 +134,7 @@ private function function_1a47fb39(einflictor, attacker, idamage, smeansofdeath,
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_25c6cba0(entity, origin)
+function private function_25c6cba0(entity, origin)
 {
 	entity clientfield::increment("zombie_electric_burst_clientfield");
 	players = getplayers();
@@ -172,7 +172,7 @@ private function function_25c6cba0(entity, origin)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ef1b9d42()
+function private function_ef1b9d42()
 {
 	self endon(#"death");
 	wait(5);
@@ -188,7 +188,7 @@ private function function_ef1b9d42()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_79e38cc4(origin)
+function private function_79e38cc4(origin)
 {
 	var_74d136f5 = 0;
 	time_step = 0.5;

@@ -65,21 +65,30 @@ function function_d35f877a(player, weapon, statname, value = 0)
 		{
 			player.var_3dc66299.shots = player.var_3dc66299.shots + value;
 		}
-		else if(statname == #"hits")
+		else
 		{
-			player.var_3dc66299.hits = player.var_3dc66299.hits + value;
-		}
-		else if(statname == #"kills")
-		{
-			player.var_3dc66299.kills = player.var_3dc66299.kills + value;
-		}
-		else if(statname == #"deathsduringuse")
-		{
-			player.var_3dc66299.deathsduringuse = player.var_3dc66299.deathsduringuse + value;
-		}
-		else if(statname == #"headshots")
-		{
-			player.var_3dc66299.headshots = player.var_3dc66299.headshots + value;
+			if(statname == #"hits")
+			{
+				player.var_3dc66299.hits = player.var_3dc66299.hits + value;
+			}
+			else
+			{
+				if(statname == #"kills")
+				{
+					player.var_3dc66299.kills = player.var_3dc66299.kills + value;
+				}
+				else
+				{
+					if(statname == #"deathsduringuse")
+					{
+						player.var_3dc66299.deathsduringuse = player.var_3dc66299.deathsduringuse + value;
+					}
+					else if(statname == #"headshots")
+					{
+						player.var_3dc66299.headshots = player.var_3dc66299.headshots + value;
+					}
+				}
+			}
 		}
 	}
 }
@@ -111,7 +120,7 @@ function function_36185795(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_43e771ee(reason)
+function private function_43e771ee(reason)
 {
 	if(!isdefined(self))
 	{
@@ -170,7 +179,7 @@ private function function_43e771ee(reason)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fa444840()
+function private function_fa444840()
 {
 	self endon(#"disconnect");
 	level endon(#"game_ended");
@@ -218,7 +227,7 @@ private function function_fa444840()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function breadcrumbs()
+function private breadcrumbs()
 {
 	self endon(#"death", #"disconnect");
 	level endon(#"game_ended");
@@ -255,7 +264,7 @@ private function breadcrumbs()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_729bf68e()
+function private function_729bf68e()
 {
 	self endon(#"death", #"disconnect");
 	waittime = 1;
@@ -320,7 +329,7 @@ private function function_729bf68e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dddb1a7a()
+function private function_dddb1a7a()
 {
 	self endon(#"disconnect");
 	self notify(#"stop_player_monitor_wall_run");
@@ -355,7 +364,7 @@ private function function_dddb1a7a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function swimming()
+function private swimming()
 {
 	self endon(#"disconnect");
 	self notify(#"stop_player_monitor_swimming");
@@ -390,7 +399,7 @@ private function swimming()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function slide()
+function private slide()
 {
 	self endon(#"disconnect");
 	self notify(#"stop_player_monitor_slide");
@@ -425,7 +434,7 @@ private function slide()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function doublejump()
+function private doublejump()
 {
 	self endon(#"disconnect");
 	self notify(#"stop_player_monitor_doublejump");
@@ -460,7 +469,7 @@ private function doublejump()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function inactivity()
+function private inactivity()
 {
 	self endon(#"disconnect");
 	self notify(#"player_monitor_inactivity");

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"grapple", &__init__, undefined, undefined);
 }
@@ -102,15 +102,18 @@ function function_664d0a50(localclientnum)
 				thread grapple_light_watch_end(localclientnum, var_e562bc9b, "invalid");
 			}
 		}
-		else if(isdefined(var_e562bc9b))
+		else
 		{
-			killfx(localclientnum, var_e562bc9b);
-			var_e562bc9b = undefined;
-		}
-		if(isdefined(var_e413b7c3))
-		{
-			killfx(localclientnum, var_e413b7c3);
-			var_e413b7c3 = undefined;
+			if(isdefined(var_e562bc9b))
+			{
+				killfx(localclientnum, var_e562bc9b);
+				var_e562bc9b = undefined;
+			}
+			if(isdefined(var_e413b7c3))
+			{
+				killfx(localclientnum, var_e413b7c3);
+				var_e413b7c3 = undefined;
+			}
 		}
 		waitframe(1);
 	}
@@ -166,19 +169,22 @@ function function_2297363d(localclientnum)
 			player mapshaderconstant(localclientnum, 0, "scriptVector1", var_30f9f328, 0, 0, 0);
 			var_30f9f328 = var_30f9f328 + 0.05;
 		}
-		else if(function_fd33f2ef(localclientnum) == 0)
-		{
-			player mapshaderconstant(localclientnum, 0, "scriptVector1", var_30f9f328, 0, 0, 0);
-			var_30f9f328 = var_30f9f328 - 0.05;
-		}
 		else
 		{
-			player mapshaderconstant(localclientnum, 0, "scriptVector1", 0, 0, 0, 0);
-			if(isdefined(player.var_8e03a0d4))
+			if(function_fd33f2ef(localclientnum) == 0)
 			{
-				function_196e7c4b(localclientnum, player.var_8e03a0d4);
-				player.var_8e03a0d4 = undefined;
-				doearthquake = 1;
+				player mapshaderconstant(localclientnum, 0, "scriptVector1", var_30f9f328, 0, 0, 0);
+				var_30f9f328 = var_30f9f328 - 0.05;
+			}
+			else
+			{
+				player mapshaderconstant(localclientnum, 0, "scriptVector1", 0, 0, 0, 0);
+				if(isdefined(player.var_8e03a0d4))
+				{
+					function_196e7c4b(localclientnum, player.var_8e03a0d4);
+					player.var_8e03a0d4 = undefined;
+					doearthquake = 1;
+				}
 			}
 		}
 		waitframe(1);

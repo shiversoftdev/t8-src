@@ -2,6 +2,140 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
+class class_5563abae : class_6aaccc24
+{
+	var var_47e79fc;
+
+	/*
+		Name: constructor
+		Namespace: namespace_5563abae
+		Checksum: 0x33995178
+		Offset: 0x288
+		Size: 0x14
+		Parameters: 0
+		Flags: 8
+	*/
+	constructor()
+	{
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_5563abae
+		Checksum: 0x358C1231
+		Offset: 0x518
+		Size: 0x14
+		Parameters: 0
+		Flags: 16, 128
+	*/
+	destructor()
+	{
+	}
+
+	/*
+		Name: function_940bbc52
+		Namespace: namespace_5563abae
+		Checksum: 0xA75EEB4A
+		Offset: 0x4D0
+		Size: 0x3C
+		Parameters: 2
+		Flags: None
+	*/
+	function function_940bbc52(player, value)
+	{
+		player clientfield::function_9bf78ef8(var_47e79fc, "decay", value);
+	}
+
+	/*
+		Name: function_52773fa9
+		Namespace: namespace_5563abae
+		Checksum: 0xEC16543E
+		Offset: 0x488
+		Size: 0x3C
+		Parameters: 2
+		Flags: None
+	*/
+	function function_52773fa9(player, value)
+	{
+		player clientfield::function_9bf78ef8(var_47e79fc, "purity", value);
+	}
+
+	/*
+		Name: function_5c237e79
+		Namespace: namespace_5563abae
+		Checksum: 0x301F9088
+		Offset: 0x440
+		Size: 0x3C
+		Parameters: 2
+		Flags: None
+	*/
+	function function_5c237e79(player, value)
+	{
+		player clientfield::function_9bf78ef8(var_47e79fc, "plasma", value);
+	}
+
+	/*
+		Name: function_e5c37a19
+		Namespace: namespace_5563abae
+		Checksum: 0xAC90D776
+		Offset: 0x3F8
+		Size: 0x3C
+		Parameters: 2
+		Flags: None
+	*/
+	function function_e5c37a19(player, value)
+	{
+		player clientfield::function_9bf78ef8(var_47e79fc, "radiance", value);
+	}
+
+	/*
+		Name: close
+		Namespace: namespace_5563abae
+		Checksum: 0x9DF4BB6B
+		Offset: 0x3C8
+		Size: 0x24
+		Parameters: 1
+		Flags: None
+	*/
+	function close(player)
+	{
+		namespace_6aaccc24::function_a68f6e20(player);
+	}
+
+	/*
+		Name: open
+		Namespace: namespace_5563abae
+		Checksum: 0x3D78BABF
+		Offset: 0x378
+		Size: 0x44
+		Parameters: 2
+		Flags: None
+	*/
+	function open(player, persistent = 0)
+	{
+		namespace_6aaccc24::function_8b8089ba(player, "zm_zod_wonderweapon_quest", persistent);
+	}
+
+	/*
+		Name: setup_clientfields
+		Namespace: namespace_5563abae
+		Checksum: 0xFAB28428
+		Offset: 0x2A8
+		Size: 0xC4
+		Parameters: 1
+		Flags: None
+	*/
+	function setup_clientfields(uid)
+	{
+		namespace_6aaccc24::setup_clientfields(uid);
+		namespace_6aaccc24::function_da693cbe("radiance", 1, 1, "int");
+		namespace_6aaccc24::function_da693cbe("plasma", 1, 1, "int");
+		namespace_6aaccc24::function_da693cbe("purity", 1, 1, "int");
+		namespace_6aaccc24::function_da693cbe("decay", 1, 1, "int");
+	}
+
+}
+
 #namespace zm_zod_wonderweapon_quest;
 
 /*
@@ -15,9 +149,7 @@
 */
 function register(uid)
 {
-	object = new var_5563abae();
-	[[ object ]]->__constructor();
-	elem = object;
+	elem = new class_5563abae();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -118,171 +250,5 @@ function function_52773fa9(player, value)
 function function_940bbc52(player, value)
 {
 	[[ self ]]->function_940bbc52(player, value);
-}
-
-#namespace namespace_5563abae;
-
-/*
-	Name: __constructor
-	Namespace: namespace_5563abae
-	Checksum: 0x33995178
-	Offset: 0x288
-	Size: 0x14
-	Parameters: 0
-	Flags: 8
-*/
-function __constructor()
-{
-	namespace_6aaccc24::__constructor();
-}
-
-/*
-	Name: setup_clientfields
-	Namespace: namespace_5563abae
-	Checksum: 0xFAB28428
-	Offset: 0x2A8
-	Size: 0xC4
-	Parameters: 1
-	Flags: None
-*/
-function setup_clientfields(uid)
-{
-	namespace_6aaccc24::setup_clientfields(uid);
-	namespace_6aaccc24::function_da693cbe("radiance", 1, 1, "int");
-	namespace_6aaccc24::function_da693cbe("plasma", 1, 1, "int");
-	namespace_6aaccc24::function_da693cbe("purity", 1, 1, "int");
-	namespace_6aaccc24::function_da693cbe("decay", 1, 1, "int");
-}
-
-/*
-	Name: open
-	Namespace: namespace_5563abae
-	Checksum: 0x3D78BABF
-	Offset: 0x378
-	Size: 0x44
-	Parameters: 2
-	Flags: None
-*/
-function open(player, persistent = 0)
-{
-	namespace_6aaccc24::function_8b8089ba(player, "zm_zod_wonderweapon_quest", persistent);
-}
-
-/*
-	Name: close
-	Namespace: namespace_5563abae
-	Checksum: 0x9DF4BB6B
-	Offset: 0x3C8
-	Size: 0x24
-	Parameters: 1
-	Flags: None
-*/
-function close(player)
-{
-	namespace_6aaccc24::function_a68f6e20(player);
-}
-
-/*
-	Name: function_e5c37a19
-	Namespace: namespace_5563abae
-	Checksum: 0xAC90D776
-	Offset: 0x3F8
-	Size: 0x3C
-	Parameters: 2
-	Flags: None
-*/
-function function_e5c37a19(player, value)
-{
-	player clientfield::function_9bf78ef8(self.var_47e79fc, "radiance", value);
-}
-
-/*
-	Name: function_5c237e79
-	Namespace: namespace_5563abae
-	Checksum: 0x301F9088
-	Offset: 0x440
-	Size: 0x3C
-	Parameters: 2
-	Flags: None
-*/
-function function_5c237e79(player, value)
-{
-	player clientfield::function_9bf78ef8(self.var_47e79fc, "plasma", value);
-}
-
-/*
-	Name: function_52773fa9
-	Namespace: namespace_5563abae
-	Checksum: 0xEC16543E
-	Offset: 0x488
-	Size: 0x3C
-	Parameters: 2
-	Flags: None
-*/
-function function_52773fa9(player, value)
-{
-	player clientfield::function_9bf78ef8(self.var_47e79fc, "purity", value);
-}
-
-/*
-	Name: function_940bbc52
-	Namespace: namespace_5563abae
-	Checksum: 0xA75EEB4A
-	Offset: 0x4D0
-	Size: 0x3C
-	Parameters: 2
-	Flags: None
-*/
-function function_940bbc52(player, value)
-{
-	player clientfield::function_9bf78ef8(self.var_47e79fc, "decay", value);
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_5563abae
-	Checksum: 0x358C1231
-	Offset: 0x518
-	Size: 0x14
-	Parameters: 0
-	Flags: 16, 128
-*/
-function __destructor()
-{
-	namespace_6aaccc24::__destructor();
-}
-
-#namespace zm_zod_wonderweapon_quest;
-
-/*
-	Name: function_5563abae
-	Namespace: zm_zod_wonderweapon_quest
-	Checksum: 0xE2F47768
-	Offset: 0x538
-	Size: 0x386
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_5563abae()
-{
-	classes.var_5563abae[0] = spawnstruct();
-	classes.var_5563abae[0].__vtable[1500549600] = &namespace_6aaccc24::function_a68f6e20;
-	classes.var_5563abae[0].__vtable[2080182502] = &namespace_6aaccc24::function_7bfd10e6;
-	classes.var_5563abae[0].__vtable[1954510406] = &namespace_6aaccc24::function_8b8089ba;
-	classes.var_5563abae[0].__vtable[702532567] = &namespace_6aaccc24::function_d6203429;
-	classes.var_5563abae[0].__vtable[1329274013] = &namespace_6aaccc24::function_b0c4e363;
-	classes.var_5563abae[0].__vtable[592229248] = &namespace_6aaccc24::function_dcb34c80;
-	classes.var_5563abae[0].__vtable[630637378] = &namespace_6aaccc24::function_da693cbe;
-	classes.var_5563abae[0].__vtable[1855416484] = &namespace_6aaccc24::setup_clientfields;
-	classes.var_5563abae[0].__vtable[674154906] = &namespace_6aaccc24::__constructor;
-	classes.var_5563abae[0].__vtable[913321084] = &namespace_5563abae::__destructor;
-	classes.var_5563abae[0].__vtable[1811170222] = &namespace_5563abae::function_940bbc52;
-	classes.var_5563abae[0].__vtable[1383546793] = &namespace_5563abae::function_52773fa9;
-	classes.var_5563abae[0].__vtable[1545830009] = &namespace_5563abae::function_5c237e79;
-	classes.var_5563abae[0].__vtable[440174055] = &namespace_5563abae::function_e5c37a19;
-	classes.var_5563abae[0].__vtable[1516492343] = &namespace_5563abae::close;
-	classes.var_5563abae[0].__vtable[250899321] = &namespace_5563abae::open;
-	classes.var_5563abae[0].__vtable[1855416484] = &namespace_5563abae::setup_clientfields;
-	classes.var_5563abae[0].__vtable[674154906] = &namespace_5563abae::__constructor;
 }
 

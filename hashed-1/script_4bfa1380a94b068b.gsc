@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"supplypod", &__init__, undefined, #"killstreaks");
 }
@@ -203,9 +203,9 @@ function function_29de6f1f(weapon, meansofdeath = undefined)
 	var_4ea2a976 = weapon.name == "launcher_standard_t8" || weapon.name == "sig_buckler_dw";
 	if(var_a489f56 || iskillstreak || var_4ea2a976 || ismelee)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -221,9 +221,9 @@ function function_49ef5263()
 {
 	if(isdefined(self.var_48107b1c) && self.var_48107b1c || (isdefined(self.var_17d74a5c) && self.var_17d74a5c > gettime()))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -262,11 +262,11 @@ function function_92856c6(attacker, victim, weapon, attackerweapon, meansofdeath
 {
 	if(!isdefined(attacker) || !isdefined(weapon) || !isdefined(meansofdeath))
 	{
-		return 0;
+		return false;
 	}
 	if(!function_29de6f1f(attackerweapon, meansofdeath))
 	{
-		return 0;
+		return false;
 	}
 	if(attacker function_49ef5263())
 	{
@@ -275,9 +275,9 @@ function function_92856c6(attacker, victim, weapon, attackerweapon, meansofdeath
 			scoreevents::processscoreevent(#"hash_131b23d720fc82c3", attacker.var_bfeea3dd, undefined, level.var_934fb97.weapon);
 		}
 		attacker playlocalsound(#"hash_6c2a2fee191330a0");
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -358,7 +358,7 @@ function function_37a2d89d(watcher, owner)
 			owner stats::function_e24eec31(self.weapon, #"used", 1);
 			owner notify(#"supplypod");
 		}
-		self waittill_timeout(0.05, #"stationary");
+		self waittilltimeout(0.05, #"stationary");
 		if(!owner deployable::function_f8fe102f())
 		{
 			owner setriotshieldfailhint();
@@ -425,7 +425,7 @@ function setupclientfields()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function setupcallbacks()
+function private setupcallbacks()
 {
 	ability_player::register_gadget_activation_callbacks(35, &function_8524b3c5, &function_f4255c84);
 	callback::on_player_killed_with_params(&on_player_killed);
@@ -770,7 +770,7 @@ function function_9d4aabb9(var_d3213f00)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5761966a(supplypod)
+function private function_5761966a(supplypod)
 {
 	player = self;
 	player endon(#"disconnect");
@@ -802,7 +802,7 @@ private function function_5761966a(supplypod)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3c4843e3(supplypod, timetoadd)
+function private function_3c4843e3(supplypod, timetoadd)
 {
 	supplypod.var_7b7607df[self.clientid] = gettime() + (int(timetoadd * 1000));
 }
@@ -1090,7 +1090,7 @@ function function_1446053f(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8c8fb7b5(player)
+function private function_8c8fb7b5(player)
 {
 }
 
@@ -1103,7 +1103,7 @@ private function function_8c8fb7b5(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a143899c(player, waittime)
+function private function_a143899c(player, waittime)
 {
 }
 
@@ -1116,7 +1116,7 @@ private function function_a143899c(player, waittime)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_a1434496(team, player, result)
+function private function_a1434496(team, player, result)
 {
 	supplypod = self.var_5ecd70;
 	if(!isdefined(supplypod))
@@ -1213,7 +1213,7 @@ function function_18f999b5(waittime)
 	self notify(#"hash_10cd6a20d4e45365");
 	self endon(#"hash_10cd6a20d4e45365", #"disconnect");
 	result = undefined;
-	result = self waittill_timeout(waittime, #"death");
+	result = self waittilltimeout(waittime, #"death");
 	if(result._notify == #"timeout")
 	{
 		self function_46d74bb7(1);
@@ -1267,11 +1267,11 @@ function function_1f8cd247(origin, angles, player)
 			distsqr = distancesquared(origin, pod.origin);
 			if(distsqr <= testdistance)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*

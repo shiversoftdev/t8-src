@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7b83cad7c8661103", &__init__, undefined, undefined);
 }
@@ -131,8 +131,8 @@ function function_f041176c(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_8f9318d5(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon_callback(&function_e6bf47a3, #"death");
-	level endon_callback(&function_e6bf47a3, #"demo_jump");
+	self endoncallback(&function_e6bf47a3, #"death");
+	level endoncallback(&function_e6bf47a3, #"demo_jump");
 	self function_e6bf47a3();
 	if(!self zm_utility::function_f8796df3(localclientnum))
 	{
@@ -153,8 +153,8 @@ function function_8f9318d5(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_680538e2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon_callback(&function_e6bf47a3, #"death");
-	level endon_callback(&function_e6bf47a3, #"demo_jump");
+	self endoncallback(&function_e6bf47a3, #"death");
+	level endoncallback(&function_e6bf47a3, #"demo_jump");
 	self function_e6bf47a3();
 	if(!self zm_utility::function_f8796df3(localclientnum))
 	{
@@ -177,7 +177,7 @@ function function_58c4bf12(localclientnum)
 {
 	self notify("74273462170704a3");
 	self endon("74273462170704a3");
-	self endon_callback(&function_c8066972, #"death");
+	self endoncallback(&function_c8066972, #"death");
 	self function_c8066972();
 	while(true)
 	{
@@ -191,13 +191,16 @@ function function_58c4bf12(localclientnum)
 			{
 				self.var_9f0aad27 = playviewmodelfx(localclientnum, level._effect[#"hash_5200740c0a0b2719"], "tag_weapon_left");
 			}
-			else if(w_current === level.var_b77d3496)
-			{
-				self.var_9f0aad27 = playviewmodelfx(localclientnum, level._effect[#"hash_450693824062a9b0"], "tag_weapon_right");
-			}
 			else
 			{
-				self.var_9f0aad27 = playviewmodelfx(localclientnum, level._effect[#"hash_450693824062a9b0"], "tag_weapon_left");
+				if(w_current === level.var_b77d3496)
+				{
+					self.var_9f0aad27 = playviewmodelfx(localclientnum, level._effect[#"hash_450693824062a9b0"], "tag_weapon_right");
+				}
+				else
+				{
+					self.var_9f0aad27 = playviewmodelfx(localclientnum, level._effect[#"hash_450693824062a9b0"], "tag_weapon_left");
+				}
 			}
 			self playsound(localclientnum, #"hash_5e4e6d81b10399dc");
 			self util::function_e532f5da(0.8, self, "notetrack", level, "demo_jump");

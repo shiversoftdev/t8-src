@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_25e55405f08016db", &__init__, undefined, undefined);
 }
@@ -435,9 +435,9 @@ function is_in_playable_space(pos)
 		}
 		if(isdefined(node))
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 }
 
@@ -489,7 +489,7 @@ function function_163853f(var_e31f9259)
 		self zm_perks::function_f0ac059f(self.var_7d46fb46, self.var_815af0c3, #"hash_1334f2c7e1b57493");
 	}
 	self thread function_eb6d99d7(var_e31f9259);
-	self waittill_timeout(var_e31f9259, #"hash_57d4f53c12705eac", #"fake_death");
+	self waittilltimeout(var_e31f9259, #"hash_57d4f53c12705eac", #"fake_death");
 	self function_6d80c359();
 }
 

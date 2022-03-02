@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"healthoverlay", &__init__, undefined, undefined);
 }
@@ -231,13 +231,16 @@ function player_health_regen_t7()
 					newhealth = newhealth + regenrate;
 				}
 			}
-			else if(usetrueregen)
-			{
-				newhealth = ratio + regenrate;
-			}
 			else
 			{
-				newhealth = 1;
+				if(usetrueregen)
+				{
+					newhealth = ratio + regenrate;
+				}
+				else
+				{
+					newhealth = 1;
+				}
 			}
 			if(newhealth >= 1)
 			{
@@ -362,7 +365,7 @@ function function_df115fb1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2eee85c1()
+function private function_2eee85c1()
 {
 	if(self.var_61e6c24d)
 	{
@@ -379,22 +382,22 @@ private function function_2eee85c1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_df99db2()
+function private function_df99db2()
 {
 	player = self;
 	if(player.health <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(player isremotecontrolling())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.laststand) && player.laststand)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -406,7 +409,7 @@ private function function_df99db2()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f09367a0(var_dc77251f, regen_delay)
+function private function_f09367a0(var_dc77251f, regen_delay)
 {
 	if(isdefined(self.disable_health_regen_delay) && self.disable_health_regen_delay)
 	{
@@ -414,17 +417,17 @@ private function function_f09367a0(var_dc77251f, regen_delay)
 	}
 	if(!(isdefined(self.ignore_health_regen_delay) && self.ignore_health_regen_delay) && (var_dc77251f.var_fc296337 - var_dc77251f.var_ba47a7a3) < regen_delay)
 	{
-		return 0;
+		return false;
 	}
 	if(regen_delay <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(self.health >= self.var_66cb03ad)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -436,7 +439,7 @@ private function function_f09367a0(var_dc77251f, regen_delay)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8ca62ae3()
+function private function_8ca62ae3()
 {
 	if(self.heal.enabled == 0)
 	{
@@ -494,7 +497,7 @@ private function function_8ca62ae3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f8139729()
+function private function_f8139729()
 {
 	/#
 		assert(isdefined(self.var_66cb03ad));
@@ -523,7 +526,7 @@ private function function_f8139729()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function heal(var_dc77251f)
+function private heal(var_dc77251f)
 {
 	player = self;
 	if(!isdefined(player) || !isdefined(player.heal))
@@ -612,7 +615,7 @@ private function heal(var_dc77251f)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c1efb72d(var_dc77251f)
+function private function_c1efb72d(var_dc77251f)
 {
 	player = self;
 	var_66cb03ad = (player.var_66cb03ad > 0 ? player.var_66cb03ad : player.maxhealth);
@@ -624,9 +627,9 @@ private function function_c1efb72d(var_dc77251f)
 			self.atbrinkofdeath = undefined;
 		}
 		var_dc77251f.old_health = player.health;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -638,7 +641,7 @@ private function function_c1efb72d(var_dc77251f)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_69e7b01c(ratio)
+function private function_69e7b01c(ratio)
 {
 	if(ratio <= level.healthoverlaycutoff)
 	{
@@ -686,7 +689,7 @@ function player_health_regen()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8f2722f6()
+function private function_8f2722f6()
 {
 	player = self;
 	if(!(isdefined(player.var_4d9b2bc3) && player.var_4d9b2bc3))
@@ -763,7 +766,7 @@ private function function_8f2722f6()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b506b922()
+function private function_b506b922()
 {
 	level endon(#"game_ended");
 	while(true)

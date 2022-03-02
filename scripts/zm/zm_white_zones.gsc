@@ -182,15 +182,15 @@ function is_bunker_zone(str_zone)
 			case "zone_bunker_storage_entrance":
 			case "zone_bunker_diner":
 			{
-				return 1;
+				return true;
 			}
 			default:
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

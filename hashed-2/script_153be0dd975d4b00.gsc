@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_d57f57fb8d115ff", &__init__, &__main__, undefined);
 }
@@ -304,6 +304,6 @@ function function_ea998c9(b_unitrigger = 0, b_eyes = 0)
 */
 function function_504d501c(e_player)
 {
-	return 0;
+	return false;
 }
 

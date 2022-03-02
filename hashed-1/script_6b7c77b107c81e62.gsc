@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_442c4eb4e72ecbe2", &__init__, undefined, undefined);
 }
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_connect()
+function private on_player_connect()
 {
 	usetrigger = function_938bdf98();
 	self clientclaimtrigger(usetrigger);
@@ -76,7 +76,7 @@ private function on_player_connect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_disconnect()
+function private on_player_disconnect()
 {
 	if(isdefined(self.var_8a022726))
 	{
@@ -93,7 +93,7 @@ private function on_player_disconnect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_killed()
+function private on_player_killed()
 {
 	self clientfield::set_player_uimodel("hudItems.dynentUseHoldProgress", 0);
 }
@@ -107,7 +107,7 @@ private function on_player_killed()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_938bdf98()
+function private function_938bdf98()
 {
 	usetrigger = spawn("trigger_radius_use", vectorscale((0, 0, -1), 10000), 0, 128, 64, 1);
 	usetrigger triggerignoreteam();
@@ -134,7 +134,7 @@ private function function_938bdf98()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function update_loop()
+function private update_loop()
 {
 	level endon(#"game_ended");
 	var_1a1c0d86 = 0;
@@ -170,7 +170,7 @@ private function update_loop()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2f394f36()
+function private function_2f394f36()
 {
 	height = self getmaxs()[2];
 	bounds = (50, 50, height / 2);
@@ -291,7 +291,7 @@ function function_836af3b3(bundle, state)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_46502841(trigger_struct)
+function private function_46502841(trigger_struct)
 {
 	if(isdefined(level.gameended) && level.gameended)
 	{
@@ -320,7 +320,7 @@ private function function_46502841(trigger_struct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2b9e2224(trigger)
+function private function_2b9e2224(trigger)
 {
 	self endon(#"disconnect");
 	dynent = trigger.var_a9309589;
@@ -382,7 +382,7 @@ private function function_2b9e2224(trigger)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e882de59(trigger)
+function private function_e882de59(trigger)
 {
 	if(isdefined(level.gameended) && level.gameended)
 	{
@@ -462,9 +462,9 @@ function function_bf7b8a27(dynent, activator)
 		{
 			function_e2a06860(dynent, var_9bdcfcd8);
 		}
-		return (isdefined(bundle.var_a852a7dd) ? bundle.var_a852a7dd : 0);
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -476,7 +476,7 @@ function function_bf7b8a27(dynent, activator)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_3981d015(eventstruct)
+event private function_3981d015(eventstruct)
 {
 	dynent = eventstruct.ent;
 	var_16a4afdc = eventstruct.state;
@@ -550,7 +550,7 @@ private event function_3981d015(eventstruct)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_ff8b3908(eventstruct)
+event private function_ff8b3908(eventstruct)
 {
 	dynent = eventstruct.ent;
 	bundle = function_489009c1(dynent);
@@ -592,7 +592,7 @@ event function_209450ae(eventstruct)
 	Parameters: 0
 	Flags: Private
 */
-private function function_5f747d5a()
+function private function_5f747d5a()
 {
 	/#
 		level endon(#"game_ended");
@@ -634,7 +634,7 @@ private function function_5f747d5a()
 	Parameters: 0
 	Flags: Private
 */
-private function function_6b66543a()
+function private function_6b66543a()
 {
 	/#
 		self endon(#"disconnect");

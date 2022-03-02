@@ -10,7 +10,7 @@
 	Parameters: 3
 	Flags: Private
 */
-private function call_func(func, arg_count, args)
+function private call_func(func, arg_count, args)
 {
 	switch(arg_count)
 	{
@@ -118,7 +118,7 @@ private function call_func(func, arg_count, args)
 	Parameters: 1
 	Flags: Private
 */
-private function evaluate_constant(input_def)
+function private evaluate_constant(input_def)
 {
 	/#
 		assert(isdefined(input_def.constvalue));
@@ -215,7 +215,7 @@ private function evaluate_constant(input_def)
 	Parameters: 2
 	Flags: Private
 */
-private function get_node_output_param_index(node_def, param_name)
+function private get_node_output_param_index(node_def, param_name)
 {
 	for(i = 0; i < node_def.outputs.size; i++)
 	{
@@ -239,7 +239,7 @@ private function get_node_output_param_index(node_def, param_name)
 	Parameters: 2
 	Flags: Private
 */
-private function get_node_input_param_index(node_def, param_name)
+function private get_node_input_param_index(node_def, param_name)
 {
 	for(i = 0; i < node_def.inputs.size; i++)
 	{
@@ -263,7 +263,7 @@ private function get_node_input_param_index(node_def, param_name)
 	Parameters: 1
 	Flags: Private
 */
-private function is_auto_exec_node(node_def)
+function private is_auto_exec_node(node_def)
 {
 	if(node_def.nodeclass == #"event")
 	{
@@ -273,18 +273,18 @@ private function is_auto_exec_node(node_def)
 			{
 				if(isdefined(input_def.connections) && input_def.connections.size > 0)
 				{
-					return 0;
+					return false;
 				}
 				continue;
 			}
 			if(!isdefined(input_def.constvalue))
 			{
-				return 0;
+				return false;
 			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -296,7 +296,7 @@ private function is_auto_exec_node(node_def)
 	Parameters: 2
 	Flags: Private
 */
-private function get_graph_def(graph_name, force_refresh = 0)
+function private get_graph_def(graph_name, force_refresh = 0)
 {
 	if(!isdefined(level.flowgraphdefs))
 	{
@@ -362,7 +362,7 @@ private function get_graph_def(graph_name, force_refresh = 0)
 	Parameters: 0
 	Flags: Private
 */
-private function collect_outputs()
+function private collect_outputs()
 {
 	if(self.def.nodeclass == #"data" && self.evaluation_key != self.owner.evaluation_key)
 	{
@@ -381,7 +381,7 @@ private function collect_outputs()
 	Parameters: 0
 	Flags: Private
 */
-private function exec()
+function private exec()
 {
 	/#
 		level endon(#"flowgraph_mychanges");
@@ -408,7 +408,7 @@ private function exec()
 	Parameters: 0
 	Flags: Private
 */
-private function mychanges_watcher()
+function private mychanges_watcher()
 {
 	/#
 		if(self.target != level)
@@ -482,38 +482,44 @@ function collect_inputs()
 		{
 			inputs[input_index] = self evaluate_constant(input_def);
 		}
-		else if(isdefined(input_def.connections))
+		else
 		{
-			if(input_def.type == #"exec")
+			if(isdefined(input_def.connections))
 			{
-				result = 0;
-				foreach(connection_def in input_def.connections)
+				if(input_def.type == #"exec")
 				{
+					result = 0;
+					foreach(connection_def in input_def.connections)
+					{
+						node_inst = self.owner.nodes[connection_def.node.uuid];
+						outputs = node_inst collect_outputs();
+						result = result || outputs[connection_def.paramindex];
+					}
+					inputs[input_index] = result;
+				}
+				else
+				{
+					/#
+						assert(input_def.connections.size == 1, ("" + input_def.name) + "");
+					#/
+					connection_def = input_def.connections[0];
 					node_inst = self.owner.nodes[connection_def.node.uuid];
 					outputs = node_inst collect_outputs();
-					result = result || outputs[connection_def.paramindex];
+					result = outputs[connection_def.paramindex];
+					inputs[input_index] = result;
 				}
-				inputs[input_index] = result;
 			}
 			else
 			{
-				/#
-					assert(input_def.connections.size == 1, ("" + input_def.name) + "");
-				#/
-				connection_def = input_def.connections[0];
-				node_inst = self.owner.nodes[connection_def.node.uuid];
-				outputs = node_inst collect_outputs();
-				result = outputs[connection_def.paramindex];
-				inputs[input_index] = result;
+				if(input_def.type == #"exec" && self.def.is_auto_exec)
+				{
+					inputs[input_index] = 1;
+				}
+				else
+				{
+					inputs[input_index] = undefined;
+				}
 			}
-		}
-		else if(input_def.type == #"exec" && self.def.is_auto_exec)
-		{
-			inputs[input_index] = 1;
-		}
-		else
-		{
-			inputs[input_index] = undefined;
 		}
 		input_index++;
 	}

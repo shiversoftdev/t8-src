@@ -38,7 +38,7 @@ function function_f1827cc6(var_3d455c82, var_4b1985dd, var_b4bbefe4, n_radius = 
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_95fad035()
+function private function_95fad035()
 {
 	self endon(#"death");
 	while(true)
@@ -98,7 +98,7 @@ function function_e8661563(func_callback, var_c12c30aa = 0)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8769717c()
+function private function_8769717c()
 {
 	self endon(#"death");
 	waitresult = undefined;

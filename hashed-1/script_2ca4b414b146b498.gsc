@@ -101,9 +101,7 @@ function init_shared(bundlename)
 		thread register();
 		if(!isdefined(level.var_950314f5))
 		{
-			object = new throttle();
-			[[ object ]]->__constructor();
-			level.var_950314f5 = object;
+			level.var_950314f5 = new throttle();
 			[[ level.var_950314f5 ]]->initialize(1, 0.5);
 		}
 	}
@@ -174,7 +172,7 @@ function function_127fb8f3(mantis, var_dbd1a594)
 		mantis thread tank_stun(3, 1);
 		mantis thread function_1210a3d6(mantis);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -434,13 +432,13 @@ function function_4c0ed253(location, context)
 {
 	if(!self killstreakrules::iskillstreakallowed("tank_robot", self.team, 1))
 	{
-		return 0;
+		return false;
 	}
 	foreach(droplocation in level.droplocations)
 	{
 		if(distance2dsquared(droplocation, location) < 3600)
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(context.perform_physics_trace === 1)
@@ -456,20 +454,20 @@ function function_4c0ed253(location, context)
 		{
 			if(!(isdefined(level.var_66da9c3c) && level.var_66da9c3c))
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
 	result = function_9cc082d2(location + vectorscale((0, 0, 1), 100), 170);
 	if(!isdefined(result))
 	{
-		return 0;
+		return false;
 	}
 	if(context.check_same_floor === 1 && (abs(location[2] - self.origin[2])) > 96)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -606,7 +604,7 @@ function function_e1553d5f(location, killstreak_id)
 	killstreak_id = self killstreakrules::killstreakstart("tank_robot", team, 0, 1);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	bundle = level.var_400ded61.aitankkillstreakbundle;
 	killstreak = killstreaks::get_killstreak_for_weapon(bundle.var_1ab696c6);
@@ -614,7 +612,7 @@ function function_e1553d5f(location, killstreak_id)
 	if(!isdefined(context))
 	{
 		killstreak_stop_and_assert(killstreak, team, killstreak_id, "Failed to spawn struct for ai tank.");
-		return 0;
+		return false;
 	}
 	self ability_player::function_c22f319e(bundle.var_1ab696c6);
 	context.radius = level.killstreakcorebundle.ksairdropaitankradius;
@@ -633,17 +631,17 @@ function function_e1553d5f(location, killstreak_id)
 	context.dontdisconnectpaths = 1;
 	if(!isdefined(level.var_daa33d93))
 	{
-		return 0;
+		return false;
 	}
 	result = [[level.var_daa33d93]](killstreak_id, context, team);
 	if(!(isdefined(result) && result))
 	{
 		killstreakrules::killstreakstop("tank_robot", team, killstreak_id);
-		return 0;
+		return false;
 	}
 	self thread function_e00df756(team, killstreak_id);
 	self stats::function_e24eec31(bundle.var_1ab696c6, #"used", 1);
-	return 1;
+	return true;
 }
 
 /*
@@ -681,16 +679,16 @@ function function_b2acf3f2(location, context)
 		/#
 			recordsphere(location + vectorscale((0, 0, 1), 10), 2, (1, 0, 0), "");
 		#/
-		return 0;
+		return false;
 	}
 	var_8a7edebd = 5;
 	depth = getwaterheight(location) - self.origin[2];
 	inwater = depth > var_8a7edebd;
 	if(inwater)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -757,7 +755,7 @@ function crateland(crate, category, owner, team, context)
 */
 function is_location_good(location, context)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -919,7 +917,7 @@ function function_75c8a0dc(entity, jammer)
 		entity function_903fdcc2();
 		entity function_4110f8dd(1);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1133,44 +1131,47 @@ function function_9868e24e(player)
 			{
 				var_8712c5b8.state = 0;
 			}
-			else if(!bullettracepassed(origin, target.origin + vectorscale((0, 0, 1), 60), 0, player))
+			else
 			{
-				var_8712c5b8.state = 0;
-			}
-			else if(var_8712c5b8.state != 4)
-			{
-				if(locking)
+				if(!bullettracepassed(origin, target.origin + vectorscale((0, 0, 1), 60), 0, player))
 				{
-					good = util::within_fov(origin, angles, target.origin, fovcosine);
-					if(isdefined(good) && good && var_5ce6a3c6 < self.numberrockets)
+					var_8712c5b8.state = 0;
+				}
+				else if(var_8712c5b8.state != 4)
+				{
+					if(locking)
 					{
-						if(var_8712c5b8.state != 3)
+						good = util::within_fov(origin, angles, target.origin, fovcosine);
+						if(isdefined(good) && good && var_5ce6a3c6 < self.numberrockets)
 						{
-							if(var_8712c5b8.state == 2)
+							if(var_8712c5b8.state != 3)
 							{
-								if(var_8712c5b8.var_8c0f6d2c < gettime())
+								if(var_8712c5b8.state == 2)
 								{
-									var_8712c5b8.state = 3;
-									self playsoundtoplayer(#"hash_683ed977cfc2bf2b", player);
+									if(var_8712c5b8.var_8c0f6d2c < gettime())
+									{
+										var_8712c5b8.state = 3;
+										self playsoundtoplayer(#"hash_683ed977cfc2bf2b", player);
+									}
+								}
+								else
+								{
+									var_8712c5b8.state = 2;
+									var_8712c5b8.var_8c0f6d2c = gettime() + 500;
+									self playsoundtoplayer(#"hash_5386a095fd840c2e", player);
 								}
 							}
-							else
-							{
-								var_8712c5b8.state = 2;
-								var_8712c5b8.var_8c0f6d2c = gettime() + 500;
-								self playsoundtoplayer(#"hash_5386a095fd840c2e", player);
-							}
+							var_5ce6a3c6++;
 						}
-						var_5ce6a3c6++;
+						else
+						{
+							var_8712c5b8.state = 1;
+						}
 					}
 					else
 					{
 						var_8712c5b8.state = 1;
 					}
-				}
-				else
-				{
-					var_8712c5b8.state = 1;
 				}
 			}
 			var_be788bba multi_stage_target_lockon::function_c8350e33(player, var_4ef4e267);
@@ -1376,7 +1377,7 @@ function cobra_retract()
 	Parameters: 1
 	Flags: Private
 */
-private function state_combat_enter(params)
+function private state_combat_enter(params)
 {
 	if(!ispointonnavmesh(self.origin) || !ispointonnavmesh(self.origin, 50))
 	{
@@ -1522,7 +1523,7 @@ function function_b2cc6703(targets)
 	Parameters: 1
 	Flags: Private
 */
-private function update_player_threat(player)
+function private update_player_threat(player)
 {
 	entnum = self getentitynumber();
 	player.var_629a6b13[entnum] = 0;
@@ -1578,7 +1579,7 @@ private function update_player_threat(player)
 	Parameters: 1
 	Flags: Private
 */
-private function update_non_player_threat(non_player)
+function private update_non_player_threat(non_player)
 {
 	entnum = self getentitynumber();
 	non_player.var_629a6b13[entnum] = 0;
@@ -1599,7 +1600,7 @@ private function update_non_player_threat(non_player)
 	Parameters: 1
 	Flags: Private
 */
-private function update_actor_threat(actor)
+function private update_actor_threat(actor)
 {
 	entnum = self getentitynumber();
 	actor.var_629a6b13[entnum] = 0;
@@ -1639,7 +1640,7 @@ private function update_actor_threat(actor)
 	Parameters: 1
 	Flags: Private
 */
-private function update_dog_threat(dog)
+function private update_dog_threat(dog)
 {
 	entnum = self getentitynumber();
 	dog.var_629a6b13[entnum] = 0;
@@ -1660,43 +1661,43 @@ function cantargetplayer(player)
 {
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(player) || player.sessionstate != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(player.ignoreme === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.owner) && player == self.owner)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(player.team))
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased && player.team == self.team)
 	{
-		return 0;
+		return false;
 	}
 	if(player.team == #"spectator")
 	{
-		return 0;
+		return false;
 	}
 	var_2910def0 = self namespace_14c38db0::function_1c169b3a(player);
 	namespace_14c38db0::function_a4d6d6d8(player, int((isdefined(self.targeting_delay) ? self.targeting_delay : 0.25) * 1000));
 	if(!var_2910def0)
 	{
-		return 0;
+		return false;
 	}
 	if(player depthinwater() >= 30 || player isplayerswimming())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1712,21 +1713,21 @@ function function_932034ba(tank)
 {
 	if(!isdefined(tank))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(tank.team))
 	{
-		return 0;
+		return false;
 	}
 	if(tank.team == self.team)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(tank.owner) && self.owner == tank.owner)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1742,25 +1743,25 @@ function cantargetactor(actor)
 {
 	if(!isdefined(actor))
 	{
-		return 0;
+		return false;
 	}
 	if(!isactor(actor))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(actor))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(actor.team))
 	{
-		return 0;
+		return false;
 	}
 	if(actor.team == self.team)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1975,13 +1976,13 @@ function function_d15dd929(radius, origin)
 	result = function_9cc082d2(origin + vectorscale((0, 0, 1), 100), 200);
 	if(isdefined(result) && isdefined(result[#"hash_556255be476284b3"]) && result[#"hash_556255be476284b3"] & 2)
 	{
-		return 0;
+		return false;
 	}
 	if(!ispointonnavmesh(origin, radius, 1))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2095,52 +2096,55 @@ function state_combat_update(params)
 				newpos = getclosestpointonnavmesh(tacpoints[0].origin, self.goalradius, self getpathfindingradius(), self.var_6e9e073d);
 			}
 		}
-		else if(isdefined(self.enemy))
-		{
-			enemy = self.enemy;
-		}
 		else
 		{
-			enemy = self function_37cc249f();
-		}
-		if(isdefined(enemy))
-		{
-			var_4e35e079 = getclosestpointonnavmesh(enemy.origin, 500, self getpathfindingradius(), self.var_6e9e073d);
-			var_2a54124d = 0;
-			if(isdefined(var_4e35e079))
+			if(isdefined(self.enemy))
 			{
-				path = generatenavmeshpath(self.origin, var_4e35e079, self, undefined, undefined, var_80a2ada4);
-				if(isdefined(path) && path.status === "succeeded")
-				{
-					var_2a54124d = 1;
-				}
-			}
-			if(var_2a54124d)
-			{
-				newpos = var_4e35e079;
+				enemy = self.enemy;
 			}
 			else
 			{
-				searchradius = 800;
-				var_6dc80cbb = 100;
-				origin = getclosestpointonnavmesh(self.origin, var_6dc80cbb, self.var_6e9e073d);
-				forwardpos = enemy.origin;
-				if(isdefined(origin))
+				enemy = self function_37cc249f();
+			}
+			if(isdefined(enemy))
+			{
+				var_4e35e079 = getclosestpointonnavmesh(enemy.origin, 500, self getpathfindingradius(), self.var_6e9e073d);
+				var_2a54124d = 0;
+				if(isdefined(var_4e35e079))
 				{
-					cylinder = ai::t_cylinder(origin, searchradius, 500);
-					var_8f3583cf = ai::t_cylinder(self.origin, 100, 200);
-					tacpoints = tacticalquery("tank_robot_tacquery_seek", origin, cylinder, self, var_8f3583cf, forwardpos);
-					tacpoints = damage_armor_activati_(self, tacpoints);
-					if(isdefined(tacpoints) && tacpoints.size > 0)
+					path = generatenavmeshpath(self.origin, var_4e35e079, self, undefined, undefined, var_80a2ada4);
+					if(isdefined(path) && path.status === "succeeded")
 					{
-						newpos = getclosestpointonnavmesh(tacpoints[0].origin, self.goalradius, self getpathfindingradius(), self.var_6e9e073d);
+						var_2a54124d = 1;
+					}
+				}
+				if(var_2a54124d)
+				{
+					newpos = var_4e35e079;
+				}
+				else
+				{
+					searchradius = 800;
+					var_6dc80cbb = 100;
+					origin = getclosestpointonnavmesh(self.origin, var_6dc80cbb, self.var_6e9e073d);
+					forwardpos = enemy.origin;
+					if(isdefined(origin))
+					{
+						cylinder = ai::t_cylinder(origin, searchradius, 500);
+						var_8f3583cf = ai::t_cylinder(self.origin, 100, 200);
+						tacpoints = tacticalquery("tank_robot_tacquery_seek", origin, cylinder, self, var_8f3583cf, forwardpos);
+						tacpoints = damage_armor_activati_(self, tacpoints);
+						if(isdefined(tacpoints) && tacpoints.size > 0)
+						{
+							newpos = getclosestpointonnavmesh(tacpoints[0].origin, self.goalradius, self getpathfindingradius(), self.var_6e9e073d);
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			newpos = function_4ae23c85();
+			else
+			{
+				newpos = function_4ae23c85();
+			}
 		}
 		foundpath = 0;
 		if(isdefined(newpos))
@@ -2168,9 +2172,14 @@ function state_combat_update(params)
 				self setbrake(0);
 				self asmrequestsubstate(#"locomotion@movement");
 				result = undefined;
-				result = self waittill_timeout(randomintrange(4, 5), #"near_goal", #"stunned");
+				result = self waittilltimeout(randomintrange(4, 5), #"near_goal", #"stunned");
 			}
-			recordsphere(newpos, 3, (1, 0, 0), "");
+			else
+			{
+				/#
+					recordsphere(newpos, 3, (1, 0, 0), "");
+				#/
+			}
 		}
 		if(!foundpath)
 		{
@@ -2195,7 +2204,7 @@ function state_combat_update(params)
 					self setbrake(0);
 					self asmrequestsubstate(#"locomotion@movement");
 					result = undefined;
-					result = self waittill_timeout(randomintrange(4, 5), #"near_goal", #"stunned");
+					result = self waittilltimeout(randomintrange(4, 5), #"near_goal", #"stunned");
 				}
 			}
 		}
@@ -2633,7 +2642,7 @@ function function_942c857()
 	{
 		owner clientfield::set_to_player("static_postfx", 1);
 	}
-	self waittill_timeout(1, #"death");
+	self waittilltimeout(1, #"death");
 	isalive = isalive(self);
 	if(isalive)
 	{
@@ -2785,7 +2794,7 @@ function tank_stun(duration, isjammed)
 	self notify(#"stunned");
 	self notify(#"fire_stop");
 	function_4110f8dd(isjammed);
-	self waittill_timeout(duration, #"death");
+	self waittilltimeout(duration, #"death");
 	function_fd91abfb();
 }
 
@@ -2959,7 +2968,7 @@ function tank_death_think(hardpointname)
 	}
 	if(not_abandoned)
 	{
-		self waittill_timeout(2, #"remote_weapon_end", #"death");
+		self waittilltimeout(2, #"remote_weapon_end", #"death");
 		if(!isdefined(self))
 		{
 			if(isdefined(killstreak_id))
@@ -3413,9 +3422,9 @@ function function_98a125e6()
 	depth = getwaterheight(self.origin) - self.origin[2];
 	if(depth > var_d4b5931f)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3459,7 +3468,7 @@ function watchwater()
 	Parameters: 2
 	Flags: Private
 */
-private function function_3c4843e3(tank_robot, timetoadd)
+function private function_3c4843e3(tank_robot, timetoadd)
 {
 	player = self;
 	tank_robot.var_7b7607df[player.clientid] = gettime() + (int(timetoadd * 1000));

@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_near_death_experience", &__init__, undefined, #"bgb");
 }
@@ -187,49 +187,49 @@ function function_d5c9a81(e_revivee)
 {
 	if(!isdefined(e_revivee.revivetrigger))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self laststand::player_is_in_laststand())
 	{
-		return 0;
+		return false;
 	}
 	if(self.team != e_revivee.team)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_zombie) && self.is_zombie)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_use_depthinwater_test) && level.can_revive_use_depthinwater_test && e_revivee depthinwater() > 10)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(level.can_revive) && ![[level.can_revive]](e_revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.can_revive_game_module) && ![[level.can_revive_game_module]](e_revivee))
 	{
-		return 0;
+		return false;
 	}
 	if(e_revivee zm_player::in_kill_brush() || !e_revivee zm_player::in_enabled_playable_area())
 	{
-		return 0;
+		return false;
 	}
 	if(self bgb::is_enabled(#"zm_bgb_near_death_experience") && isdefined(self.var_9c42f3fe) && array::contains(self.var_9c42f3fe, e_revivee))
 	{
-		return 1;
+		return true;
 	}
 	if(e_revivee bgb::is_enabled(#"zm_bgb_near_death_experience") && isdefined(e_revivee.var_9c42f3fe) && array::contains(e_revivee.var_9c42f3fe, self))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -244,7 +244,7 @@ function function_d5c9a81(e_revivee)
 function lost_perk_override(perk, var_a83ac70f = undefined, var_6c1b825d = undefined)
 {
 	self thread zm_perks::function_b2dfd295(perk, &bgb::function_bd839f2c);
-	return 0;
+	return false;
 }
 
 /*
@@ -324,7 +324,7 @@ function function_991be229(e_player, str_notify)
 	{
 		wait(0.1);
 	}
-	return 1;
+	return true;
 }
 
 /*

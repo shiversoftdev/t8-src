@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"death_circle", &__init__, undefined, undefined);
 }
@@ -173,7 +173,7 @@ function function_3e8742fe(var_3b9f4abf, var_66b35636 = 0, var_3b4ad673 = 0, rad
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b36ed270()
+function private function_b36ed270()
 {
 	level notify(#"hash_62a9e6b8e838d208");
 	level endon(#"game_ended", #"hash_62a9e6b8e838d208");
@@ -228,7 +228,7 @@ private function function_b36ed270()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9bae34b3(var_b0b91d4, var_8e3c3c5b, oobtriggers)
+function private function_9bae34b3(var_b0b91d4, var_8e3c3c5b, oobtriggers)
 {
 	maxdist = var_b0b91d4.radius - var_8e3c3c5b.radius;
 	maxdistsq = maxdist * maxdist;
@@ -282,11 +282,11 @@ private function function_9bae34b3(var_b0b91d4, var_8e3c3c5b, oobtriggers)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_a0004b40(var_b0b91d4, var_b3411502, finalindex, oobtriggers)
+function private function_a0004b40(var_b0b91d4, var_b3411502, finalindex, oobtriggers)
 {
 	if(getdvarint(#"hash_4cfef227405e3c46", 0))
 	{
-		return 1;
+		return true;
 	}
 	for(i = finalindex - 1; i > 0; i--)
 	{
@@ -294,11 +294,11 @@ private function function_a0004b40(var_b0b91d4, var_b3411502, finalindex, oobtri
 		var_7aec140c = level.var_fb91af8[i + 1];
 		if(!function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtriggers))
 		{
-			return 0;
+			return false;
 		}
 		waitframe(1);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -310,7 +310,7 @@ private function function_a0004b40(var_b0b91d4, var_b3411502, finalindex, oobtri
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtriggers)
+function private function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtriggers)
 {
 	var_f811e54e = var_b0b91d4.radius - circle.radius;
 	sqinterfaceattributes = var_f811e54e * var_f811e54e;
@@ -363,7 +363,7 @@ private function function_a84cfbd0(var_b0b91d4, circle, var_7aec140c, oobtrigger
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3e47f08b(circle)
+function private function_3e47f08b(circle)
 {
 	if(!isdefined(circle.var_3b9f4abf) || !isdefined(circle.var_66b35636) || !isdefined(circle.var_3b4ad673))
 	{
@@ -394,16 +394,16 @@ private function function_3e47f08b(circle)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f52fd8eb(origin, oobtriggers)
+function private function_f52fd8eb(origin, oobtriggers)
 {
 	foreach(trigger in oobtriggers)
 	{
 		if(istouching(origin, trigger))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -465,7 +465,7 @@ function function_dca12a73()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ccac34f8(var_36aa237c, var_11dc771d)
+function private function_ccac34f8(var_36aa237c, var_11dc771d)
 {
 	wait(var_36aa237c);
 	level clientfield::set_world_uimodel("hudItems.warzone.collapse", var_11dc771d);
@@ -481,7 +481,7 @@ private function function_ccac34f8(var_36aa237c, var_11dc771d)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a1dbce4a()
+function private function_a1dbce4a()
 {
 	self notify("5c3e968fb8c4a0c8");
 	self endon("5c3e968fb8c4a0c8");
@@ -506,7 +506,7 @@ private function function_a1dbce4a()
 */
 function start()
 {
-	level endon_callback(&function_cc0398cd, #"game_ended", #"hash_12a8f2c59a67e4fc");
+	level endoncallback(&function_cc0398cd, #"game_ended", #"hash_12a8f2c59a67e4fc");
 	if(!level.var_d8958e58 || level.var_fb91af8.size <= 0)
 	{
 		return;
@@ -675,7 +675,7 @@ function start()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_76c22343(var_227b1773, value, var_ed2d510)
+function private function_76c22343(var_227b1773, value, var_ed2d510)
 {
 	if(!(isdefined(level.var_e7bb2ba) && level.var_e7bb2ba))
 	{
@@ -705,7 +705,7 @@ private function function_76c22343(var_227b1773, value, var_ed2d510)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cc0398cd(notifyhash)
+function private function_cc0398cd(notifyhash)
 {
 	level clientfield::set_world_uimodel("hudItems.warzone.collapseTimerState", 0);
 }
@@ -719,23 +719,26 @@ private function function_cc0398cd(notifyhash)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function countdown(var_edd69b13, circleindex, var_7aec140c)
+function private countdown(var_edd69b13, circleindex, var_7aec140c)
 {
 	level endon(#"hash_3a3e3a27bf34fa8a");
 	if(!isdefined(var_7aec140c))
 	{
 		function_58ca2822("warCircleDetectedLast");
 	}
-	else if(circleindex == 0)
-	{
-		if(!(isdefined(getgametypesetting(#"hash_6873fc00b59bcd39")) && getgametypesetting(#"hash_6873fc00b59bcd39")))
-		{
-			function_58ca2822("warCircleDetectedFirst");
-		}
-	}
 	else
 	{
-		function_58ca2822("warCircleDetected");
+		if(circleindex == 0)
+		{
+			if(!(isdefined(getgametypesetting(#"hash_6873fc00b59bcd39")) && getgametypesetting(#"hash_6873fc00b59bcd39")))
+			{
+				function_58ca2822("warCircleDetectedFirst");
+			}
+		}
+		else
+		{
+			function_58ca2822("warCircleDetected");
+		}
 	}
 	if(var_edd69b13 > 15 && var_edd69b13 >= 45)
 	{
@@ -760,7 +763,7 @@ private function countdown(var_edd69b13, circleindex, var_7aec140c)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9229c3b3(var_fdd51794, var_85ba7700, neworigin)
+function private function_9229c3b3(var_fdd51794, var_85ba7700, neworigin)
 {
 	level endon(#"game_ended", #"hash_12a8f2c59a67e4fc", #"hash_6adadb0779eac3c6");
 	if(var_fdd51794 <= 0)
@@ -808,7 +811,7 @@ private function function_9229c3b3(var_fdd51794, var_85ba7700, neworigin)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8bd303cc()
+function private function_8bd303cc()
 {
 	player = self;
 	if(isdefined(player) && (!(isdefined(player.outsidedeathcircle) && player.outsidedeathcircle)))
@@ -827,7 +830,7 @@ private function function_8bd303cc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ce0f27e0()
+function private function_ce0f27e0()
 {
 	player = self;
 	if(isdefined(player) && (isdefined(player.outsidedeathcircle) && player.outsidedeathcircle))
@@ -855,15 +858,15 @@ function function_a086017a(point)
 {
 	if(!isdefined(level.deathcircle))
 	{
-		return 1;
+		return true;
 	}
 	distsq = distance2dsquared(point, level.deathcircle.origin);
 	radiussq = level.deathcircle.radius * level.deathcircle.radius;
 	if(distsq > radiussq)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -875,9 +878,9 @@ function function_a086017a(point)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dc15ad60()
+function private function_dc15ad60()
 {
-	level endon_callback(&function_a9d55ec2, #"game_ended", #"hash_12a8f2c59a67e4fc");
+	level endoncallback(&function_a9d55ec2, #"game_ended", #"hash_12a8f2c59a67e4fc");
 	while(!isdefined(level.deathcircle))
 	{
 		waitframe(1);
@@ -936,13 +939,16 @@ private function function_dc15ad60()
 				{
 					intensity = 3;
 				}
-				else if(player.var_d2bc9ac0 >= level.var_6c870a00)
-				{
-					intensity = 2;
-				}
 				else
 				{
-					intensity = 1;
+					if(player.var_d2bc9ac0 >= level.var_6c870a00)
+					{
+						intensity = 2;
+					}
+					else
+					{
+						intensity = 1;
+					}
 				}
 				player function_60d14da8(1);
 				player clientfield::set("outsidedeathcircle", 1);
@@ -990,7 +996,7 @@ private function function_dc15ad60()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a9d55ec2(notifyhash)
+function private function_a9d55ec2(notifyhash)
 {
 	foreach(player in getplayers())
 	{
@@ -1201,9 +1207,9 @@ function function_9956f107()
 {
 	if(!isdefined(level.deathcircle) || isdefined(level.deathcircle.var_7aec140c))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1226,15 +1232,15 @@ function function_d66a3de1()
 		}
 		if(isdefined(level.var_f220c297) && level.var_f220c297 && (isdefined(level.var_78442886) ? level.var_78442886 : 0) >= var_8e3c3c5b)
 		{
-			return 0;
+			return false;
 		}
 		if(isdefined(level.var_78442886) && isdefined(level.var_245d4af9) && level.var_78442886 >= level.var_245d4af9)
 		{
-			return 0;
+			return false;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1264,7 +1270,7 @@ function function_4dc40125()
 	Parameters: 0
 	Flags: Private
 */
-private function function_5f747d5a()
+function private function_5f747d5a()
 {
 	/#
 		level endon(#"game_ended");
@@ -1326,7 +1332,7 @@ private function function_5f747d5a()
 	Parameters: 0
 	Flags: Private
 */
-private function function_75ae968e()
+function private function_75ae968e()
 {
 	/#
 		level notify(#"hash_12a8f2c59a67e4fc");
@@ -1346,7 +1352,7 @@ private function function_75ae968e()
 	Parameters: 0
 	Flags: Private
 */
-private function debug_loop()
+function private debug_loop()
 {
 	/#
 		level endon(#"game_ended");
@@ -1427,7 +1433,7 @@ private function debug_loop()
 	Parameters: 0
 	Flags: Private
 */
-private function function_ded40950()
+function private function_ded40950()
 {
 	/#
 		var_f15be329 = getdvarint(#"hash_6706b0bc8458c9f7", 0);
@@ -1470,7 +1476,7 @@ private function function_ded40950()
 	Parameters: 0
 	Flags: Private
 */
-private function function_81ccccb6()
+function private function_81ccccb6()
 {
 	/#
 		level endon(#"game_ended");
@@ -1507,7 +1513,7 @@ private function function_81ccccb6()
 	Parameters: 1
 	Flags: Private
 */
-private function function_4c517813(count)
+function private function_4c517813(count)
 {
 	/#
 		if(!isdefined(count))
@@ -1542,7 +1548,7 @@ private function function_4c517813(count)
 	Parameters: 1
 	Flags: Private
 */
-private function simulate(var_1baf9723)
+function private simulate(var_1baf9723)
 {
 	/#
 		var_4fbe4dc7 = 1000;
@@ -1593,7 +1599,7 @@ private function simulate(var_1baf9723)
 	Parameters: 5
 	Flags: Private
 */
-private function draw_circle(circle, index, var_36b41a8, color, groundtrace)
+function private draw_circle(circle, index, var_36b41a8, color, groundtrace)
 {
 	/#
 		var_e96493f7 = 30 * var_36b41a8;

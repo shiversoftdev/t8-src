@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"ray_gun_mk2v", &__init__, undefined, undefined);
 }
@@ -62,9 +62,7 @@ function __init__()
 	clientfield::register("scriptmover", "" + #"hash_278ec0c224a81e7", 20000, 1, "int");
 	if(!isdefined(level.var_46a7950a))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_46a7950a = object;
+		level.var_46a7950a = new throttle();
 		[[ level.var_46a7950a ]]->initialize(3, 0.1);
 	}
 }
@@ -175,7 +173,7 @@ function function_8d93c592(var_f2a06582)
 */
 function function_f8fdc6ad(var_f2a06582)
 {
-	self endon_callback(&function_d3f42ccc, #"death");
+	self endoncallback(&function_d3f42ccc, #"death");
 	wait(0.1);
 	while(zm_utility::is_player_valid(self) && self isfiring() && self getweaponammoclip(var_f2a06582) > 0 && !self ismeleeing() && !self isswitchingweapons())
 	{
@@ -210,7 +208,7 @@ function function_d3f42ccc(s_notify)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_closest_tag(v_pos)
+function private get_closest_tag(v_pos)
 {
 	if(!isdefined(level.gib_tags))
 	{
@@ -260,7 +258,7 @@ private function get_closest_tag(v_pos)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_5c035588(e_target, v_target_pos, var_f2a06582, b_launched = 0, var_9a119ceb = 0)
+function private function_5c035588(e_target, v_target_pos, var_f2a06582, b_launched = 0, var_9a119ceb = 0)
 {
 	e_target endon(#"death");
 	self endon(#"disconnect");

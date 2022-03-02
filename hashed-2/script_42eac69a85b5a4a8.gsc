@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_perk_quick_revive", &__init__, undefined, undefined);
 }
@@ -295,16 +295,19 @@ function unhide_quickrevive()
 		level.quick_revive_machine waittill(#"movedone");
 		level.quick_revive_machine.angles = level.quick_revive_default_angles;
 	}
-	else if(isdefined(level.quick_revive_linked_ent))
+	else
 	{
-		org = level.quick_revive_linked_ent.origin;
-		if(isdefined(level.quick_revive_linked_ent_offset))
+		if(isdefined(level.quick_revive_linked_ent))
 		{
-			org = org + level.quick_revive_linked_ent_offset;
+			org = level.quick_revive_linked_ent.origin;
+			if(isdefined(level.quick_revive_linked_ent_offset))
+			{
+				org = org + level.quick_revive_linked_ent_offset;
+			}
+			level.quick_revive_machine.origin = org;
 		}
-		level.quick_revive_machine.origin = org;
+		level.quick_revive_machine vibrate(vectorscale((0, -1, 0), 100), 0.3, 0.4, 3);
 	}
-	level.quick_revive_machine vibrate(vectorscale((0, -1, 0), 100), 0.3, 0.4, 3);
 	if(isdefined(level.quick_revive_linked_ent))
 	{
 		level.quick_revive_machine linkto(level.quick_revive_linked_ent);

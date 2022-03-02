@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_568e72715a5f3355", &__init__, undefined, #"item_world");
 }
@@ -34,7 +34,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!isdefined(getgametypesetting(#"useitemspawns")) || getgametypesetting(#"useitemspawns") == 0)
 	{
@@ -57,7 +57,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_1877f414(localclientnum)
+function private function_1877f414(localclientnum)
 {
 	if(self function_da43934d())
 	{
@@ -97,7 +97,7 @@ function function_a5c2a6b8(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_38ebb2a1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_38ebb2a1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	var_8040e225 = item_world::function_a7e98a1a(localclientnum);
 	if(newval == 2)
@@ -112,25 +112,28 @@ private function function_38ebb2a1(localclientnum, oldval, newval, bnewent, bini
 			}
 		}
 	}
-	else if(newval == 0)
+	else
 	{
-		var_8040e225.var_f0f7e918 = [];
-		player = function_27673a7(localclientnum);
-		if(isplayer(player) && isalive(player))
+		if(newval == 0)
 		{
-			player function_9116bb0e(localclientnum, 1);
-		}
-	}
-	if(isdefined(level.var_102be329) && level.var_102be329 && oldval == 2)
-	{
-		for(i = 0; i < var_8040e225.inventory.var_c212de25; i++)
-		{
-			if(var_8040e225.inventory.items[i].var_bd027dd9 != 32767)
+			var_8040e225.var_f0f7e918 = [];
+			player = function_27673a7(localclientnum);
+			if(isplayer(player) && isalive(player))
 			{
-				if(var_8040e225.inventory.items[i].availableaction == 1 || var_8040e225.inventory.items[i].availableaction == 4 || var_8040e225.inventory.items[i].availableaction == 2 || var_8040e225.inventory.items[i].availableaction == 6)
+				player function_9116bb0e(localclientnum, 1);
+			}
+		}
+		if(isdefined(level.var_102be329) && level.var_102be329 && oldval == 2)
+		{
+			for(i = 0; i < var_8040e225.inventory.var_c212de25; i++)
+			{
+				if(var_8040e225.inventory.items[i].var_bd027dd9 != 32767)
 				{
-					setuimodelvalue(createuimodel(getuimodelforcontroller(localclientnum), "hudItems.inventory.canUseQuickInventory"), 1);
-					break;
+					if(var_8040e225.inventory.items[i].availableaction == 1 || var_8040e225.inventory.items[i].availableaction == 4 || var_8040e225.inventory.items[i].availableaction == 2 || var_8040e225.inventory.items[i].availableaction == 6)
+					{
+						setuimodelvalue(createuimodel(getuimodelforcontroller(localclientnum), "hudItems.inventory.canUseQuickInventory"), 1);
+						break;
+					}
 				}
 			}
 		}
@@ -146,7 +149,7 @@ private function function_38ebb2a1(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3fe6ef04(localclientnum)
+function private function_3fe6ef04(localclientnum)
 {
 	data = item_world::function_a7e98a1a(localclientnum);
 	var_cfa0e915 = [];
@@ -170,7 +173,7 @@ private function function_3fe6ef04(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_88da0c8e(localclientnum)
+function private function_88da0c8e(localclientnum)
 {
 	var_8b39f54e = stats::function_441050ca(localclientnum, #"hash_7bb5510daa652f5e");
 	return (isdefined(var_8b39f54e) ? var_8b39f54e : 0) >= 150;
@@ -185,21 +188,21 @@ private function function_88da0c8e(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_99b22bbc(localclientnum)
+function private function_99b22bbc(localclientnum)
 {
 	if(function_96d4f30e(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(isgrappling(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(function_d5f07a6e(localclientnum))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -211,7 +214,7 @@ private function function_99b22bbc(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ca87f318(localclientnum)
+function private function_ca87f318(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("8b67206b631ec6e");
@@ -289,19 +292,19 @@ private function function_ca87f318(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_10861362(localclientnum)
+function private function_10861362(localclientnum)
 {
 	vehicle = getplayervehicle(self);
 	if(!isdefined(vehicle))
 	{
-		return 1;
+		return true;
 	}
 	var_88fa0205 = vehicle getoccupantseat(localclientnum, self);
 	if(isdefined(var_88fa0205) && (var_88fa0205 == 0 || var_88fa0205 == 4))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -313,7 +316,7 @@ private function function_10861362(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ee44351a(localclientnum, var_b619c089)
+function private function_ee44351a(localclientnum, var_b619c089)
 {
 	weapon = namespace_ad5a0cd6::function_35e06774(var_b619c089.var_a6762160);
 	if(!isdefined(weapon))
@@ -336,26 +339,26 @@ private function function_ee44351a(localclientnum, var_b619c089)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e23e5e85(localclientnum)
+function private function_e23e5e85(localclientnum)
 {
 	var_8040e225 = item_world::function_a7e98a1a(localclientnum);
 	if(!isdefined(var_8040e225) || !isdefined(var_8040e225.inventory) || !isdefined(var_8040e225.inventory.items))
 	{
-		return 0;
+		return false;
 	}
 	var_344a1b3d = var_8040e225.inventory.items[11];
 	if(!isdefined(var_344a1b3d) || var_344a1b3d.var_bd027dd9 === 32767 || var_344a1b3d.var_a6762160.itemtype !== #"armor")
 	{
-		return 0;
+		return false;
 	}
 	var_35b0780f = getuimodelvalue(getuimodel(getuimodelforcontroller(localclientnum), "predictedClientModel"));
 	var_a4d193fa = getuimodel(var_35b0780f, "armor");
 	var_15663411 = getuimodel(var_344a1b3d.var_e4130a92, "armorMax");
 	if(!isdefined(var_a4d193fa) || !isdefined(var_15663411) || getuimodelvalue(var_a4d193fa) == getuimodelvalue(var_15663411))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -367,13 +370,13 @@ private function function_e23e5e85(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e094fd92(item)
+function private function_e094fd92(item)
 {
 	if(!isdefined(item) || !isdefined(item.var_bd027dd9) || item.var_bd027dd9 == 32767 || !isdefined(item.quickequip) || item.quickequip != 1 || !isdefined(item.consumable) || item.consumable != 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -385,7 +388,7 @@ private function function_e094fd92(item)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f3ef5269(localclientnum)
+function private function_f3ef5269(localclientnum)
 {
 	var_b25b2894 = [];
 	var_8040e225 = item_world::function_a7e98a1a(localclientnum);
@@ -417,7 +420,7 @@ private function function_f3ef5269(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e090a831(localclientnum, var_bd027dd9)
+function private function_e090a831(localclientnum, var_bd027dd9)
 {
 	var_8040e225 = item_world::function_a7e98a1a(localclientnum);
 	perkindex = 0;
@@ -445,7 +448,7 @@ private function function_e090a831(localclientnum, var_bd027dd9)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_535a5a06(localclientnum, var_6e51c00)
+function private function_535a5a06(localclientnum, var_6e51c00)
 {
 	/#
 		assert(var_6e51c00 >= -1 && var_6e51c00 <= 1);
@@ -486,7 +489,7 @@ private function function_535a5a06(localclientnum, var_6e51c00)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_91483494(localclientnum)
+function private function_91483494(localclientnum)
 {
 	return function_1606ff3(localclientnum, 1);
 }
@@ -500,7 +503,7 @@ private function function_91483494(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9f5d2dc8(localclientnum)
+function private function_9f5d2dc8(localclientnum)
 {
 	return function_1606ff3(localclientnum, 0);
 }
@@ -514,7 +517,7 @@ private function function_9f5d2dc8(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1606ff3(localclientnum, var_6e51c00)
+function private function_1606ff3(localclientnum, var_6e51c00)
 {
 	var_b25b2894 = function_f3ef5269(localclientnum);
 	currentindex = function_535a5a06(localclientnum, var_6e51c00);
@@ -543,7 +546,7 @@ private function function_1606ff3(localclientnum, var_6e51c00)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_22759012(localclientnum, var_bd027dd9)
+function private function_22759012(localclientnum, var_bd027dd9)
 {
 	perkindex = function_e090a831(localclientnum, var_bd027dd9);
 	if(perkindex > -1)
@@ -569,7 +572,7 @@ private function function_22759012(localclientnum, var_bd027dd9)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_1470ccfe(localclientnum, item)
+function private function_1470ccfe(localclientnum, item)
 {
 	var_8040e225 = item_world::function_a7e98a1a(localclientnum);
 	for(i = 0; i < 10; i++)
@@ -593,7 +596,7 @@ private function function_1470ccfe(localclientnum, item)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9b83c65d(localclientnum)
+function private function_9b83c65d(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("7448ede5a4a225c6");
@@ -619,60 +622,69 @@ private function function_9b83c65d(localclientnum)
 			var_b619c089 = function_15d578f4(localclientnum, waitresult.id);
 			function_22759012(localclientnum, var_b619c089.var_bd027dd9);
 		}
-		else if(waitresult._notify === var_17bdd1c3)
+		else
 		{
-			var_b619c089 = function_15d578f4(localclientnum, waitresult.id);
-			var_bd027dd9 = function_1470ccfe(localclientnum, var_b619c089);
-			function_22759012(localclientnum, (isdefined(var_bd027dd9) ? var_b619c089.var_bd027dd9 : var_bd027dd9));
-			continue;
-		}
-		else if(waitresult._notify === var_6a10d173)
-		{
-			currentindex = function_535a5a06(localclientnum, 0);
-			var_b25b2894 = function_f3ef5269(localclientnum);
-			if(isdefined(var_b25b2894[currentindex]))
+			if(waitresult._notify === var_17bdd1c3)
 			{
-				var_b619c089 = var_b25b2894[currentindex];
+				var_b619c089 = function_15d578f4(localclientnum, waitresult.id);
+				var_bd027dd9 = function_1470ccfe(localclientnum, var_b619c089);
+				function_22759012(localclientnum, (isdefined(var_bd027dd9) ? var_b619c089.var_bd027dd9 : var_bd027dd9));
+				continue;
 			}
 			else
 			{
-				continue;
-			}
-		}
-		else if(waitresult._notify === var_ce5c0b10)
-		{
-			function_91483494(localclientnum);
-			continue;
-		}
-		else
-		{
-			var_b619c089 = var_8040e225.inventory.items[16];
-			if(!isdefined(var_b619c089) || var_b619c089.var_bd027dd9 === 32767 || var_b619c089.var_a6762160.itemtype !== #"hash_56d6621e6c4caf07")
-			{
-				if(waitresult._notify === var_e2d1f454)
+				if(waitresult._notify === var_6a10d173)
 				{
-					var_dcb56aa8 = createuimodel(getuimodelforcontroller(localclientnum), "hudItems.inventory");
-					var_3ea10284 = createuimodel(var_dcb56aa8, "armorShardNotAvailable");
-					function_9a227103(var_3ea10284);
+					currentindex = function_535a5a06(localclientnum, 0);
+					var_b25b2894 = function_f3ef5269(localclientnum);
+					if(isdefined(var_b25b2894[currentindex]))
+					{
+						var_b619c089 = var_b25b2894[currentindex];
+					}
+					else
+					{
+						continue;
+					}
 				}
-				continue;
-			}
-			var_b3d8c077 = function_ab88dbd2(localclientnum, #"hash_da23f5f536ee5f2");
-			var_a3162739 = isdefined(var_8040e225.inventory.var_f3518190) && var_b619c089 == var_8040e225.inventory.var_f3518190.item;
-			if(waitresult._notify === var_e2d1f454)
-			{
-				if(!function_e23e5e85(localclientnum) || var_b619c089.count == 0 || !function_10861362(localclientnum) && (isdefined(var_b3d8c077) && !var_b3d8c077 || (isdefined(var_b3d8c077) && var_b3d8c077 && !var_a3162739)))
+				else
 				{
-					self playsound(localclientnum, #"hash_7527c43b92789608");
-					var_dcb56aa8 = createuimodel(getuimodelforcontroller(localclientnum), "hudItems.inventory");
-					var_3ea10284 = createuimodel(var_dcb56aa8, "armorShardNotAvailable");
-					function_9a227103(var_3ea10284);
-					continue;
+					if(waitresult._notify === var_ce5c0b10)
+					{
+						function_91483494(localclientnum);
+						continue;
+					}
+					else
+					{
+						var_b619c089 = var_8040e225.inventory.items[16];
+						if(!isdefined(var_b619c089) || var_b619c089.var_bd027dd9 === 32767 || var_b619c089.var_a6762160.itemtype !== #"hash_56d6621e6c4caf07")
+						{
+							if(waitresult._notify === var_e2d1f454)
+							{
+								var_dcb56aa8 = createuimodel(getuimodelforcontroller(localclientnum), "hudItems.inventory");
+								var_3ea10284 = createuimodel(var_dcb56aa8, "armorShardNotAvailable");
+								function_9a227103(var_3ea10284);
+							}
+							continue;
+						}
+						var_b3d8c077 = function_ab88dbd2(localclientnum, #"hash_da23f5f536ee5f2");
+						var_a3162739 = isdefined(var_8040e225.inventory.var_f3518190) && var_b619c089 == var_8040e225.inventory.var_f3518190.item;
+						if(waitresult._notify === var_e2d1f454)
+						{
+							if(!function_e23e5e85(localclientnum) || var_b619c089.count == 0 || !function_10861362(localclientnum) && (isdefined(var_b3d8c077) && !var_b3d8c077 || (isdefined(var_b3d8c077) && var_b3d8c077 && !var_a3162739)))
+							{
+								self playsound(localclientnum, #"hash_7527c43b92789608");
+								var_dcb56aa8 = createuimodel(getuimodelforcontroller(localclientnum), "hudItems.inventory");
+								var_3ea10284 = createuimodel(var_dcb56aa8, "armorShardNotAvailable");
+								function_9a227103(var_3ea10284);
+								continue;
+							}
+						}
+						else if(isdefined(var_b3d8c077) && var_b3d8c077 || !var_a3162739)
+						{
+							continue;
+						}
+					}
 				}
-			}
-			else if(isdefined(var_b3d8c077) && var_b3d8c077 || !var_a3162739)
-			{
-				continue;
 			}
 		}
 		if(!isdefined(var_b619c089.var_a6762160.casttime) || var_b619c089.var_a6762160.casttime <= 0)
@@ -747,7 +759,7 @@ private function function_9b83c65d(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ac4df751(localclientnum)
+function private function_ac4df751(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("697b03f7ded5069f");
@@ -789,22 +801,25 @@ private function function_ac4df751(localclientnum)
 				function_97fedb0d(localclientnum, 5, var_bd027dd9, count);
 			}
 		}
-		else if(waitresult._notify === var_ffec0c46 || waitresult._notify === var_fcd005cc)
+		else
 		{
-			var_4838b749 = (isdefined(waitresult.slotid) ? array(16 + 1, ((16 + 1) + 6) + 1)[waitresult.slotid] : function_d768ea30(localclientnum));
-			if(isdefined(var_4838b749))
+			if(waitresult._notify === var_ffec0c46 || waitresult._notify === var_fcd005cc)
 			{
-				var_bd027dd9 = namespace_ad5a0cd6::function_970b8d86(self, var_4838b749);
-				function_97fedb0d(localclientnum, 5, var_bd027dd9);
+				var_4838b749 = (isdefined(waitresult.slotid) ? array(16 + 1, ((16 + 1) + 6) + 1)[waitresult.slotid] : function_d768ea30(localclientnum));
+				if(isdefined(var_4838b749))
+				{
+					var_bd027dd9 = namespace_ad5a0cd6::function_970b8d86(self, var_4838b749);
+					function_97fedb0d(localclientnum, 5, var_bd027dd9);
+				}
 			}
-		}
-		else if(waitresult._notify === var_46a7a0e3 || waitresult._notify === var_3d759450)
-		{
-			var_4838b749 = (isdefined(waitresult.slotid) ? array(16 + 1, ((16 + 1) + 6) + 1)[waitresult.slotid] : function_d768ea30(localclientnum));
-			if(isdefined(var_4838b749))
+			else if(waitresult._notify === var_46a7a0e3 || waitresult._notify === var_3d759450)
 			{
-				var_bd027dd9 = namespace_ad5a0cd6::function_970b8d86(self, var_4838b749);
-				function_97fedb0d(localclientnum, 8, var_bd027dd9);
+				var_4838b749 = (isdefined(waitresult.slotid) ? array(16 + 1, ((16 + 1) + 6) + 1)[waitresult.slotid] : function_d768ea30(localclientnum));
+				if(isdefined(var_4838b749))
+				{
+					var_bd027dd9 = namespace_ad5a0cd6::function_970b8d86(self, var_4838b749);
+					function_97fedb0d(localclientnum, 8, var_bd027dd9);
+				}
 			}
 		}
 	}
@@ -819,7 +834,7 @@ private function function_ac4df751(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8edef5cc(localclientnum, var_b619c089)
+function private function_8edef5cc(localclientnum, var_b619c089)
 {
 	data = item_world::function_a7e98a1a(localclientnum);
 	slot = function_daf3ebda(localclientnum, var_b619c089.var_a6762160);
@@ -857,7 +872,7 @@ private function function_8edef5cc(localclientnum, var_b619c089)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_96ce9058(localclientnum, var_6c2b2289, var_b619c089, item)
+function private function_96ce9058(localclientnum, var_6c2b2289, var_b619c089, item)
 {
 	level endon(var_6c2b2289);
 	self notify("7357e9cab2fc6298");
@@ -893,7 +908,7 @@ private function function_96ce9058(localclientnum, var_6c2b2289, var_b619c089, i
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7f35a045(localclientnum)
+function private function_7f35a045(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("70f223fcee367f6f");
@@ -1007,7 +1022,7 @@ private function function_7f35a045(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2ae9881d(localclientnum)
+function private function_2ae9881d(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("62a25a832b1d0cff");
@@ -1045,7 +1060,7 @@ private function function_2ae9881d(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1e6731e(localclientnum)
+function private function_d1e6731e(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("1eaaee589e299bd6");
@@ -1133,7 +1148,7 @@ private function function_d1e6731e(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6d9d9cd7(slotid)
+function private function_6d9d9cd7(slotid)
 {
 	/#
 		assert(isint(slotid));
@@ -1142,10 +1157,10 @@ private function function_6d9d9cd7(slotid)
 	{
 		if(slot == slotid)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1157,7 +1172,7 @@ private function function_6d9d9cd7(slotid)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d2f05352()
+function private function_d2f05352()
 {
 	level endon(#"shutdown");
 	waitframe(1);
@@ -1290,7 +1305,7 @@ private function function_d2f05352()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fe189514(var_a6762160)
+function private function_fe189514(var_a6762160)
 {
 	if(isdefined(var_a6762160) && isdefined(var_a6762160.weapon))
 	{
@@ -1308,20 +1323,23 @@ private function function_fe189514(var_a6762160)
 	Parameters: 10
 	Flags: Linked, Private
 */
-private function function_1a99656a(localclientnum, var_b619c089, var_bd027dd9, var_d8138db2, count, totalcount, availableaction, var_e35261f6 = 1, var_189fcf49 = 0, var_1204dfe9 = 1)
+function private function_1a99656a(localclientnum, var_b619c089, var_bd027dd9, var_d8138db2, count, totalcount, availableaction, var_e35261f6 = 1, var_189fcf49 = 0, var_1204dfe9 = 1)
 {
 	data = undefined;
 	if(var_d8138db2 == 32767 && isdefined(var_b619c089.var_bd027dd9) && var_b619c089.var_bd027dd9 != 32767)
 	{
 		data = level.var_d342a3fd[localclientnum];
 	}
-	else if(var_d8138db2 != 32767 && var_b619c089.var_bd027dd9 === 32767)
+	else
 	{
-		data = level.var_d342a3fd[localclientnum];
-	}
-	else if(isdefined(var_b619c089.var_a6762160) && var_b619c089.var_a6762160.itemtype === #"hash_56d6621e6c4caf07")
-	{
-		data = level.var_d342a3fd[localclientnum];
+		if(var_d8138db2 != 32767 && var_b619c089.var_bd027dd9 === 32767)
+		{
+			data = level.var_d342a3fd[localclientnum];
+		}
+		else if(isdefined(var_b619c089.var_a6762160) && var_b619c089.var_a6762160.itemtype === #"hash_56d6621e6c4caf07")
+		{
+			data = level.var_d342a3fd[localclientnum];
+		}
 	}
 	var_dbce1e30 = 0;
 	if(var_b619c089.id === var_d8138db2 && isdefined(var_b619c089.count) && var_b619c089.count > count)
@@ -1615,7 +1633,7 @@ private function function_1a99656a(localclientnum, var_b619c089, var_bd027dd9, v
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8bb02a48(localclientnum)
+function private function_8bb02a48(localclientnum)
 {
 	data = item_world::function_a7e98a1a(localclientnum);
 	if(!isdefined(data))
@@ -1653,7 +1671,7 @@ private function function_8bb02a48(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5c2fff73(localclientnum)
+function private function_5c2fff73(localclientnum)
 {
 	data = item_world::function_a7e98a1a(localclientnum);
 	if(!isdefined(data))
@@ -1691,7 +1709,7 @@ private function function_5c2fff73(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_442857e2(localclientnum, var_a6762160)
+function private function_442857e2(localclientnum, var_a6762160)
 {
 	if(!isdefined(var_a6762160))
 	{
@@ -1727,19 +1745,22 @@ private function function_442857e2(localclientnum, var_a6762160)
 			}
 		}
 	}
-	else if(var_a6762160.itemtype == #"hash_56d6621e6c4caf07")
-	{
-		var_b619c089 = data.inventory.items[16];
-	}
 	else
 	{
-		foreach(slot in array(10, 11, 12, 13, 16 + 1, ((16 + 1) + 6) + 1))
+		if(var_a6762160.itemtype == #"hash_56d6621e6c4caf07")
 		{
-			var_b619c089 = data.inventory.items[slot];
-			if(var_b619c089.var_bd027dd9 != 32767 && namespace_a0d533d1::function_73593286(var_a6762160, var_b619c089.var_a6762160))
+			var_b619c089 = data.inventory.items[16];
+		}
+		else
+		{
+			foreach(slot in array(10, 11, 12, 13, 16 + 1, ((16 + 1) + 6) + 1))
 			{
-				var_6962e967 = 1;
-				break;
+				var_b619c089 = data.inventory.items[slot];
+				if(var_b619c089.var_bd027dd9 != 32767 && namespace_a0d533d1::function_73593286(var_a6762160, var_b619c089.var_a6762160))
+				{
+					var_6962e967 = 1;
+					break;
+				}
 			}
 		}
 	}
@@ -1791,7 +1812,7 @@ private function function_442857e2(localclientnum, var_a6762160)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_39b663b7(localclientnum, var_b619c089, item)
+function private function_39b663b7(localclientnum, var_b619c089, item)
 {
 	var_409a5960 = createuimodel(getuimodelforcontroller(localclientnum), "questInfo");
 	itemindex = getitemindexfromref(item.var_a6762160.unlockableitemref);
@@ -1865,7 +1886,7 @@ private function function_39b663b7(localclientnum, var_b619c089, item)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_cb7cfe5b(localclientnum, var_a4250c2b, var_ac517de7)
+function private function_cb7cfe5b(localclientnum, var_a4250c2b, var_ac517de7)
 {
 	if(var_ac517de7.var_bd027dd9 === 32767 || !isdefined(var_ac517de7.var_a6762160) || var_ac517de7.var_a6762160.itemtype !== #"attachment")
 	{
@@ -1948,7 +1969,7 @@ private function function_cb7cfe5b(localclientnum, var_a4250c2b, var_ac517de7)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_deddbdf0(localclientnum, var_f7956021)
+function private function_deddbdf0(localclientnum, var_f7956021)
 {
 	data = item_world::function_a7e98a1a(localclientnum);
 	for(itemindex = 0; itemindex < data.inventory.var_c212de25; itemindex++)
@@ -1967,7 +1988,7 @@ private function function_deddbdf0(localclientnum, var_f7956021)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ce628f27(localclientnum)
+function private function_ce628f27(localclientnum)
 {
 	data = item_world::function_a7e98a1a(localclientnum);
 	foreach(var_a4250c2b in array(16 + 1, ((16 + 1) + 6) + 1))
@@ -2019,9 +2040,9 @@ function function_7146ceb2(localclientnum, var_a6762160)
 	data = item_world::function_a7e98a1a(localclientnum);
 	if(var_a6762160.itemtype == #"ammo")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2033,7 +2054,7 @@ function function_7146ceb2(localclientnum, var_a6762160)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a4a6f064(localclientnum, var_a6762160)
+function private function_a4a6f064(localclientnum, var_a6762160)
 {
 	return isdefined(function_daf3ebda(localclientnum, var_a6762160));
 }
@@ -2121,7 +2142,7 @@ function function_daf3ebda(localclientnum, var_a6762160)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3e624606(localclientnum)
+function private function_3e624606(localclientnum)
 {
 	self endon(#"shutdown", #"death");
 	self notify("3260d2bc5ad24d7b");
@@ -2176,7 +2197,7 @@ private function function_3e624606(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_30697356(localclientnum, var_a6762160)
+function private function_30697356(localclientnum, var_a6762160)
 {
 	if(!isdefined(var_a6762160))
 	{
@@ -2607,7 +2628,7 @@ function function_e106cbe9(localclientnum, item, var_1326fcc7 = undefined)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_85645978(data, item)
+function private function_85645978(data, item)
 {
 	currtime = gettime();
 	foreach(consumeditem in data.inventory.consumed.items)
@@ -2915,7 +2936,7 @@ function function_850588f4(localclientnum, var_4838b749)
 	#/
 	if(!isdefined(var_4838b749))
 	{
-		return 0;
+		return false;
 	}
 	data = item_world::function_a7e98a1a(localclientnum);
 	foreach(var_259f58f3 in array(1, 2, 3, 4, 5, 6))
@@ -2923,10 +2944,10 @@ function function_850588f4(localclientnum, var_4838b749)
 		slotid = namespace_a0d533d1::function_dfaca25e(var_4838b749, var_259f58f3);
 		if(data.inventory.items[slotid].var_bd027dd9 != 32767)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3112,7 +3133,7 @@ function function_d7869556(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_534dcb9c(localclientnum)
+function private function_534dcb9c(localclientnum)
 {
 	if(!isdefined(level.var_af8f97c8) || !isdefined(level.var_af8f97c8[localclientnum]))
 	{
@@ -3254,15 +3275,18 @@ function function_6231c19(params)
 			setuimodelvalue(level.var_53cbbb33[params.localclientnum], 0);
 			setuimodelvalue(level.var_3a0390dd[params.localclientnum], 1);
 		}
-		else if(isdefined(item) && isdefined(item.var_a6762160) && (isdefined(item.var_a6762160.var_dc6c5d3b) && item.var_a6762160.var_dc6c5d3b))
-		{
-			setuimodelvalue(level.var_3a0390dd[params.localclientnum], 0);
-			setuimodelvalue(level.var_53cbbb33[params.localclientnum], 1);
-		}
 		else
 		{
-			setuimodelvalue(level.var_3a0390dd[params.localclientnum], 0);
-			setuimodelvalue(level.var_53cbbb33[params.localclientnum], 0);
+			if(isdefined(item) && isdefined(item.var_a6762160) && (isdefined(item.var_a6762160.var_dc6c5d3b) && item.var_a6762160.var_dc6c5d3b))
+			{
+				setuimodelvalue(level.var_3a0390dd[params.localclientnum], 0);
+				setuimodelvalue(level.var_53cbbb33[params.localclientnum], 1);
+			}
+			else
+			{
+				setuimodelvalue(level.var_3a0390dd[params.localclientnum], 0);
+				setuimodelvalue(level.var_53cbbb33[params.localclientnum], 0);
+			}
 		}
 		if(isdefined(params.weapon.statname) && params.weapon.statname != #"")
 		{
@@ -3856,14 +3880,17 @@ function function_9116bb0e(localclientnum, closed = 0)
 				var_75c2784 = self function_e106cbe9(localclientnum, itemdef);
 				setuimodelvalue(createuimodel(var_23c48bd3, "inventoryFull"), !var_75c2784);
 			}
-			else if(itemdef.var_a6762160.itemtype === #"hash_56d6621e6c4caf07")
-			{
-				var_75c2784 = self function_ad4c6116(localclientnum, itemdef.var_a6762160);
-				setuimodelvalue(createuimodel(var_23c48bd3, "inventoryFull"), !var_75c2784);
-			}
 			else
 			{
-				setuimodelvalue(createuimodel(var_23c48bd3, "inventoryFull"), 0);
+				if(itemdef.var_a6762160.itemtype === #"hash_56d6621e6c4caf07")
+				{
+					var_75c2784 = self function_ad4c6116(localclientnum, itemdef.var_a6762160);
+					setuimodelvalue(createuimodel(var_23c48bd3, "inventoryFull"), !var_75c2784);
+				}
+				else
+				{
+					setuimodelvalue(createuimodel(var_23c48bd3, "inventoryFull"), 0);
+				}
 			}
 			if(ispc())
 			{

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	fxbundles = struct::get_script_bundles("fxcharacterdef");
 	processedfxbundles = [];
@@ -53,7 +53,7 @@ autoexec function main()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _getfxbundle(name)
+function private _getfxbundle(name)
 {
 	return level.fxcharacterdefs[name];
 }
@@ -67,7 +67,7 @@ private function _getfxbundle(name)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _configentity(localclientnum, entity)
+function private _configentity(localclientnum, entity)
 {
 	if(!isdefined(entity._fxcharacter))
 	{
@@ -93,7 +93,7 @@ private function _configentity(localclientnum, entity)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _destructhandler(localclientnum, entity, piecenumber)
+function private _destructhandler(localclientnum, entity, piecenumber)
 {
 	if(!isdefined(entity._fxcharacter))
 	{
@@ -122,7 +122,7 @@ private function _destructhandler(localclientnum, entity, piecenumber)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _gibhandler(localclientnum, entity, gibflag)
+function private _gibhandler(localclientnum, entity, gibflag)
 {
 	if(!isdefined(entity._fxcharacter))
 	{
@@ -151,7 +151,7 @@ private function _gibhandler(localclientnum, entity, gibflag)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _gibpartnametogibflag(gibpartname)
+function private _gibpartnametogibflag(gibpartname)
 {
 	if(isdefined(gibpartname))
 	{
@@ -190,7 +190,7 @@ private function _gibpartnametogibflag(gibpartname)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _isgibbed(localclientnum, entity, stopongibflag)
+function private _isgibbed(localclientnum, entity, stopongibflag)
 {
 	if(!isdefined(stopongibflag))
 	{
@@ -208,7 +208,7 @@ private function _isgibbed(localclientnum, entity, stopongibflag)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _ispiecedestructed(localclientnum, entity, stoponpiecedestroyed)
+function private _ispiecedestructed(localclientnum, entity, stoponpiecedestroyed)
 {
 	if(!isdefined(stoponpiecedestroyed))
 	{
@@ -226,17 +226,17 @@ private function _ispiecedestructed(localclientnum, entity, stoponpiecedestroyed
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _shouldplayfx(localclientnum, entity, fxstruct)
+function private _shouldplayfx(localclientnum, entity, fxstruct)
 {
 	if(_isgibbed(localclientnum, entity, fxstruct.stopongib))
 	{
-		return 0;
+		return false;
 	}
 	if(_ispiecedestructed(localclientnum, entity, fxstruct.stoponpiecedestroyed))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_363beb0dbbf3d8bb", &namespace_9b3ab448::__init__, undefined, undefined);
 }
@@ -41,7 +41,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	plannerutility::registerplannerapi(#"hash_7cb07a568d6f4cdf", &function_984c7289);
 	plannerutility::registerplannerapi(#"hash_a478e9ff1c93f25", &function_3e055926);
@@ -70,16 +70,16 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _paramshasbots(params)
+function private _paramshasbots(params)
 {
 	foreach(bot in params.bots)
 	{
 		if(isdefined(bot) && isbot(bot) && ai::getaiattribute(bot, "control") === "commander")
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -91,7 +91,7 @@ private function _paramshasbots(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5cc53671(bot)
+function private function_5cc53671(bot)
 {
 	if(isdefined(bot) && isbot(bot))
 	{
@@ -110,7 +110,7 @@ private function function_5cc53671(bot)
 	Parameters: 2
 	Flags: Private
 */
-private function function_61be4b2c(bot, gameobject)
+function private function_61be4b2c(bot, gameobject)
 {
 	var_8a1ac8ea = getclosestpointonnavmesh(bot.origin, 120, bot getpathfindingradius() * 1.05);
 	var_5bf84edd = getclosestpointonnavmesh(gameobject.origin, 200);
@@ -141,7 +141,7 @@ private function function_61be4b2c(bot, gameobject)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3ecc52d9(var_d3547bb1, var_d108dac6)
+function private function_3ecc52d9(var_d3547bb1, var_d108dac6)
 {
 	if(isdefined(self.bot.var_6369695a))
 	{
@@ -196,7 +196,7 @@ private function function_3ecc52d9(var_d3547bb1, var_d108dac6)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a702eb04(params, goal)
+function private function_a702eb04(params, goal)
 {
 	var_c19c4223 = 0;
 	for(i = 0; i < params.bots.size; i++)
@@ -259,7 +259,7 @@ private function function_a702eb04(params, goal)
 	Parameters: 2
 	Flags: Private
 */
-private function function_a023ae49(planner, params)
+function private function_a023ae49(planner, params)
 {
 	foreach(bot in params.bots)
 	{
@@ -276,7 +276,7 @@ private function function_a023ae49(planner, params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3f15f776(params)
+function private function_3f15f776(params)
 {
 	for(i = 0; i < params.bots.size; i++)
 	{
@@ -305,7 +305,7 @@ private function function_3f15f776(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6d153384(position)
+function private function_6d153384(position)
 {
 	if(level.teambased)
 	{
@@ -334,7 +334,7 @@ private function function_6d153384(position)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_69e73bdb(position)
+function private function_69e73bdb(position)
 {
 	if(!isdefined(level.spawn_start) || !isdefined(level.spawn_start[#"allies"]) || !isdefined(level.spawn_start[#"axis"]) || level.spawn_start[#"allies"].size == 0 || level.spawn_start[#"axis"].size == 0)
 	{
@@ -383,22 +383,22 @@ function function_55cc58c4(planner, var_973c5ec5)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_984c7289(planner, constants)
+function private function_984c7289(planner, constants)
 {
 	var_1b956c5a = planner::getblackboardattribute(planner, "mp_controlZones");
 	if(!isarray(var_1b956c5a) || var_1b956c5a.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < var_1b956c5a.size; i++)
 	{
 		zone = var_1b956c5a[i][#"__unsafe__"][#"controlzone"];
 		if(isdefined(zone) && isdefined(zone.gameobject))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -410,22 +410,22 @@ private function function_984c7289(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3e055926(planner, constants)
+function private function_3e055926(planner, constants)
 {
 	domflags = planner::getblackboardattribute(planner, "mp_domFlags");
 	if(!isarray(domflags) || domflags.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < domflags.size; i++)
 	{
 		domflag = domflags[i][#"__unsafe__"][#"domflag"];
 		if(isdefined(domflag) && domflags[i][#"claimed"] == 0)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -437,19 +437,19 @@ private function function_3e055926(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ca867965(planner, constants)
+function private function_ca867965(planner, constants)
 {
 	kothzone = planner::getblackboardattribute(planner, "mp_kothZone");
 	if(!isarray(kothzone) || kothzone.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	zone = kothzone[0][#"__unsafe__"][#"kothzone"];
 	if(isdefined(zone) && isdefined(zone.trig) && zone.trig istriggerenabled())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -461,12 +461,12 @@ private function function_ca867965(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_16b44b20(planner, constants)
+function private function_16b44b20(planner, constants)
 {
 	sdbomb = planner::getblackboardattribute(planner, "mp_sdBomb");
 	if(!isarray(sdbomb) || sdbomb.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	bots = planner::getblackboardattribute(planner, "doppelbots");
 	if(isdefined(bots))
@@ -495,7 +495,7 @@ private function function_16b44b20(planner, constants)
 				}
 				if(player getentitynumber() < var_7fe54ea1)
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
@@ -503,9 +503,9 @@ private function function_16b44b20(planner, constants)
 	bomb = sdbomb[0][#"__unsafe__"][#"sdbomb"];
 	if(isdefined(bomb) && bomb.trigger istriggerenabled())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -517,22 +517,22 @@ private function function_16b44b20(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c1f972ba(planner, constants)
+function private function_c1f972ba(planner, constants)
 {
 	bombzones = planner::getblackboardattribute(planner, "mp_sdBombZones");
 	if(!isarray(bombzones) || bombzones.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < bombzones.size; i++)
 	{
 		zone = bombzones[i][#"__unsafe__"][#"sdbombzone"];
 		if(isdefined(zone))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -544,19 +544,19 @@ private function function_c1f972ba(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a5c008c(planner, constants)
+function private function_a5c008c(planner, constants)
 {
 	var_8ddd85d1 = planner::getblackboardattribute(planner, "mp_sdDefuseObj");
 	if(!isarray(var_8ddd85d1) || var_8ddd85d1.size <= 0)
 	{
-		return 0;
+		return false;
 	}
 	defuse = var_8ddd85d1[0][#"__unsafe__"][#"sddefuseobj"];
 	if(isdefined(defuse))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -568,7 +568,7 @@ private function function_a5c008c(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b6cc50c3(planner, constants)
+function private function_b6cc50c3(planner, constants)
 {
 	bots = planner::getblackboardattribute(planner, "doppelbots");
 	for(i = 0; i < bots.size; i++)
@@ -576,10 +576,10 @@ private function function_b6cc50c3(planner, constants)
 		bot = bots[0][#"__unsafe__"][#"bot"];
 		if(isdefined(bot.isbombcarrier) && bot.isbombcarrier || (isdefined(level.multibomb) && level.multibomb))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -591,14 +591,14 @@ private function function_b6cc50c3(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5d508101(planner, constants)
+function private function_5d508101(planner, constants)
 {
 	var_d108dac6 = planner::getblackboardattribute(planner, "mp_laneNum");
 	if(!isdefined(var_d108dac6) || var_d108dac6.size == 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -616,9 +616,9 @@ function function_f816c9b0(var_973c5ec5, var_5d4457)
 	var_99b927c3 = var_5d4457.gameobject.curprogress > 0;
 	if(!var_803d2f2a && var_99b927c3)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -630,7 +630,7 @@ function function_f816c9b0(var_973c5ec5, var_5d4457)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c586e586(planner, constants)
+function private function_c586e586(planner, constants)
 {
 	params = spawnstruct();
 	controlzone = planner::getblackboardattribute(planner, "mp_controlZones");
@@ -710,7 +710,7 @@ private function function_c586e586(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_bb0c6999(planner, params)
+function private function_bb0c6999(planner, params)
 {
 	if(!isdefined(params.controlzone) || !_paramshasbots(params))
 	{
@@ -728,7 +728,7 @@ private function function_bb0c6999(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e9a16daa(planner, params)
+function private function_e9a16daa(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -780,7 +780,7 @@ private function function_e9a16daa(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2b5c33a8(planner, constants)
+function private function_2b5c33a8(planner, constants)
 {
 	params = spawnstruct();
 	domflags = planner::getblackboardattribute(planner, "mp_domFlags");
@@ -867,21 +867,24 @@ private function function_2b5c33a8(planner, constants)
 					bot.bot.currentflag = array::random(var_e2b90cdd);
 				}
 			}
-			else if(var_d637f1b0.size >= 0)
+			else
 			{
-				bot.bot.currentflag = var_d637f1b0[0];
-				if(var_d637f1b0.size > 1 && randomfloat(1) < 0.35 && distancesquared(bot.origin, var_d637f1b0[0].origin) > 360000)
+				if(var_d637f1b0.size >= 0)
 				{
-					bot.bot.currentflag = var_d637f1b0[1];
-					if(var_d637f1b0.size > 2 && randomfloat(1) < 0.3)
+					bot.bot.currentflag = var_d637f1b0[0];
+					if(var_d637f1b0.size > 1 && randomfloat(1) < 0.35 && distancesquared(bot.origin, var_d637f1b0[0].origin) > 360000)
 					{
-						bot.bot.currentflag = var_d637f1b0[2];
+						bot.bot.currentflag = var_d637f1b0[1];
+						if(var_d637f1b0.size > 2 && randomfloat(1) < 0.3)
+						{
+							bot.bot.currentflag = var_d637f1b0[2];
+						}
 					}
 				}
-			}
-			else if(var_2bd3822d.size > 0)
-			{
-				bot.bot.currentflag = var_2bd3822d[0];
+				else if(var_2bd3822d.size > 0)
+				{
+					bot.bot.currentflag = var_2bd3822d[0];
+				}
 			}
 		}
 		params.domflag = bot.bot.currentflag;
@@ -932,7 +935,7 @@ private function function_2b5c33a8(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4ff28605(planner, params)
+function private function_4ff28605(planner, params)
 {
 	if(!isdefined(params.domflag) || !_paramshasbots(params))
 	{
@@ -957,7 +960,7 @@ private function function_4ff28605(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fd3f340f(planner, params)
+function private function_fd3f340f(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -990,7 +993,7 @@ private function function_fd3f340f(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e32ce201(planner, constants)
+function private function_e32ce201(planner, constants)
 {
 	params = spawnstruct();
 	kothzone = planner::getblackboardattribute(planner, "mp_kothZone");
@@ -1051,7 +1054,7 @@ private function function_e32ce201(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fb2a81d9(planner, params)
+function private function_fb2a81d9(planner, params)
 {
 	if(!isdefined(params.kothzone) || !_paramshasbots(params))
 	{
@@ -1069,7 +1072,7 @@ private function function_fb2a81d9(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_99cd56f9(planner, params)
+function private function_99cd56f9(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1102,7 +1105,7 @@ private function function_99cd56f9(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f3fefad8(planner, constants)
+function private function_f3fefad8(planner, constants)
 {
 	params = spawnstruct();
 	sdbomb = planner::getblackboardattribute(planner, "mp_sdBomb");
@@ -1147,7 +1150,7 @@ private function function_f3fefad8(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3235898a(planner, params)
+function private function_3235898a(planner, params)
 {
 	if(!isdefined(params.sdbomb) || !_paramshasbots(params))
 	{
@@ -1183,7 +1186,7 @@ private function function_3235898a(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_94e18e0d(planner, params)
+function private function_94e18e0d(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1218,7 +1221,7 @@ private function function_94e18e0d(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5b04cb13(planner, constants)
+function private function_5b04cb13(planner, constants)
 {
 	params = spawnstruct();
 	sdbombzone = planner::getblackboardattribute(planner, "mp_sdBombZones");
@@ -1263,7 +1266,7 @@ private function function_5b04cb13(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_bb791fc6(planner, params)
+function private function_bb791fc6(planner, params)
 {
 	if(!isdefined(params.sdbombzone) || !_paramshasbots(params))
 	{
@@ -1292,7 +1295,7 @@ private function function_bb791fc6(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_df817333(planner, params)
+function private function_df817333(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1314,7 +1317,7 @@ private function function_df817333(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f08360d0(planner, constants)
+function private function_f08360d0(planner, constants)
 {
 	params = spawnstruct();
 	sddefuseobj = planner::getblackboardattribute(planner, "mp_sdDefuseObj");
@@ -1359,7 +1362,7 @@ private function function_f08360d0(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e7a81528(planner, params)
+function private function_e7a81528(planner, params)
 {
 	if(!isdefined(params.sddefuseobj) || !_paramshasbots(params))
 	{
@@ -1387,7 +1390,7 @@ private function function_e7a81528(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_fb79f3bd(planner, params)
+function private function_fb79f3bd(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1409,7 +1412,7 @@ private function function_fb79f3bd(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_458e36c0(planner, constants)
+function private function_458e36c0(planner, constants)
 {
 	params = spawnstruct();
 	sdbombzone = planner::getblackboardattribute(planner, "mp_sdBombZones");
@@ -1477,7 +1480,7 @@ private function function_458e36c0(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4f4ef3b6(planner, params)
+function private function_4f4ef3b6(planner, params)
 {
 	if(!isdefined(params.sdbombzone) || !_paramshasbots(params))
 	{
@@ -1502,7 +1505,7 @@ private function function_4f4ef3b6(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_53882720(planner, params)
+function private function_53882720(planner, params)
 {
 	if(!_paramshasbots(params))
 	{
@@ -1524,7 +1527,7 @@ private function function_53882720(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8c1624c4(planner, constants)
+function private function_8c1624c4(planner, constants)
 {
 	params = spawnstruct();
 	bots = [];
@@ -1600,7 +1603,7 @@ private function function_8c1624c4(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_61587057(planner, params)
+function private function_61587057(planner, params)
 {
 	if(!isdefined(params.var_bb5fa5a7) || !_paramshasbots(params))
 	{
@@ -1618,7 +1621,7 @@ private function function_61587057(planner, params)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6203826a(planner, params)
+function private function_6203826a(planner, params)
 {
 	if(!_paramshasbots(params))
 	{

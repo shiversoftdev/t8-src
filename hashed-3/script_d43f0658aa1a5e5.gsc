@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_9ecdbde5a95aedc", &__init__, undefined, undefined);
 }
@@ -44,7 +44,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_b7de760d()
+function private function_b7de760d()
 {
 	foreach(insertion in level.insertions)
 	{
@@ -53,11 +53,11 @@ private function function_b7de760d()
 		{
 			if(player == self)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -69,17 +69,17 @@ private function function_b7de760d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_58a44f22()
+function private function_58a44f22()
 {
 	teammates = getplayers(self.team);
 	foreach(player in teammates)
 	{
 		if(isplayer(player) && !isbot(player) && player function_b7de760d())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -91,7 +91,7 @@ private function function_58a44f22()
 	Parameters: 0
 	Flags: Private
 */
-private function function_9ea8f9d6()
+function private function_9ea8f9d6()
 {
 	teammates = getplayers(self.team);
 	foreach(player in teammates)
@@ -290,7 +290,7 @@ function function_39c5371e()
 	Parameters: 0
 	Flags: Private
 */
-private function function_8f2f3bcd()
+function private function_8f2f3bcd()
 {
 	center = (0, 0, 0);
 	radius = 0;
@@ -366,7 +366,7 @@ function function_13ba9cec(target_point, lead_player, var_282c0a8e)
 	#/
 	if(self isonground())
 	{
-		return 0;
+		return false;
 	}
 	goal_angles = [[var_282c0a8e]](target_point, lead_player);
 	var_8fbb46cd = vectornormalize(self getvelocity());
@@ -378,7 +378,7 @@ function function_13ba9cec(target_point, lead_player, var_282c0a8e)
 	angles = (angleclamp180(angles[0]), angleclamp180(angles[1]), 0);
 	self function_c3d37a6d(angles);
 	self botsetlookangles(angles);
-	return 1;
+	return true;
 }
 
 /*
@@ -447,7 +447,7 @@ function function_c9a18304(params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_dac81c9a(angle_delta)
+function private function_dac81c9a(angle_delta)
 {
 	max_delta = getdvarint(#"hash_11e45cd7d81b76c", 30);
 	if(angle_delta > 0)

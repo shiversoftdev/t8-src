@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_73d9e3978f860555", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 8
 	Flags: Private
 */
-private function function_d1de6a85(str_zone1, str_zone2, var_588808b1, var_91e2fb66, var_84245fe9, var_a7a5a6ef, var_11ec7b7b, var_cac66d30)
+function private function_d1de6a85(str_zone1, str_zone2, var_588808b1, var_91e2fb66, var_84245fe9, var_a7a5a6ef, var_11ec7b7b, var_cac66d30)
 {
 	if(str_zone1 == #"hash_13aa327bb61b59de")
 	{
@@ -77,7 +77,7 @@ private function function_d1de6a85(str_zone1, str_zone2, var_588808b1, var_91e2f
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(!round_reset)
 	{
@@ -119,7 +119,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_c465c67f()
+function private function_c465c67f()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");

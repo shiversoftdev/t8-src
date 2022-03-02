@@ -330,9 +330,9 @@ function chainisactive(chain)
 {
 	if(isdefined(chain.activeendtime) && chain.activeendtime > gettime())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

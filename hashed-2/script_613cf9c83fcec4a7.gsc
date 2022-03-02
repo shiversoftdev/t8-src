@@ -148,7 +148,7 @@ function player_freeze_trap_post_fx(localclientnum, oldval, newval, bnewent, bin
 */
 function function_4443ecea(localclientnum)
 {
-	self endon_callback(&function_b487d98d, #"death");
+	self endoncallback(&function_b487d98d, #"death");
 	self waittill(#"player_freeze_trap_post_fx_complete");
 	if(isdefined(self))
 	{

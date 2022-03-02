@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"status_effect_shock", &__init__, undefined, undefined);
 }
@@ -99,7 +99,7 @@ function function_1eac7817()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_51356342(duration)
+function private function_51356342(duration)
 {
 	self notify(#"hash_50998937b8ffdf86");
 	self endon(#"hash_50998937b8ffdf86", #"hash_13d72ca5a7cfd2bd");

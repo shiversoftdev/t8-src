@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1570e320e0161e3d", &__init__, undefined, undefined);
 }
@@ -56,7 +56,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_264ee2f5)
+function private function_d1de6a85(var_264ee2f5)
 {
 	var_264ee2f5 = zm_trial::function_5769f26a(var_264ee2f5);
 	level thread function_cec06121(var_264ee2f5);
@@ -73,7 +73,7 @@ private function function_d1de6a85(var_264ee2f5)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_388587c6 = undefined;
 	level zm_trial::function_25ee130(0);
@@ -104,7 +104,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_68af83a9(s_event)
+function private function_68af83a9(s_event)
 {
 	w_root = zm_weapons::function_93cd8e76(s_event.weapon);
 	if(!zm_loadout::function_2ff6913(w_root) && isarray(level.var_388587c6) && !isinarray(level.var_388587c6, w_root.name))
@@ -179,9 +179,9 @@ function function_c55d2b6e(var_9a1edfd9)
 {
 	if(isdefined(var_9a1edfd9.var_ff08ccc) && var_9a1edfd9.var_ff08ccc)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -224,7 +224,7 @@ function function_33e89162(mdl_weapon, var_6d4294b0)
 	mdl_weapon thread namespace_f8f28e08::function_51fd2597(1);
 	mdl_weapon thread namespace_f8f28e08::pickup_timeout(undefined, undefined, max(var_6d4294b0 - 5, 5));
 	var_be17187b = undefined;
-	var_be17187b = self waittill_timeout(var_6d4294b0, #"boon_weapon_picked_up");
+	var_be17187b = self waittilltimeout(var_6d4294b0, #"boon_weapon_picked_up");
 	if(var_be17187b._notify == "boon_weapon_picked_up" && isplayer(var_be17187b.player))
 	{
 		var_efd38e4b = var_be17187b.player namespace_f8f28e08::function_e2a25377(mdl_weapon.weapon.name);
@@ -260,7 +260,7 @@ function function_c99662e7(player)
 {
 	str_prompt = zm_utility::function_d6046228(#"hash_10c127acbe34c506", #"hash_4597718560da3ea2");
 	self sethintstringforplayer(player, str_prompt);
-	return 1;
+	return true;
 }
 
 /*

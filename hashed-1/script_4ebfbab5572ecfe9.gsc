@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_75393613dd2d736f", &__init__, undefined, undefined);
 }
@@ -114,13 +114,16 @@ function gaia_impact_fx(localclientnum, oldval, newval, bnewent, binitialsnap, f
 	{
 		v_org = self gettagorigin("j_h_neck_lower");
 	}
-	else if(isdefined(self gettagorigin("j_spine4")))
-	{
-		v_org = self gettagorigin("j_spine4");
-	}
 	else
 	{
-		v_org = self.origin;
+		if(isdefined(self gettagorigin("j_spine4")))
+		{
+			v_org = self gettagorigin("j_spine4");
+		}
+		else
+		{
+			v_org = self.origin;
+		}
 	}
 	v_forward = (anglestoforward(self.angles) * 1000) + self.origin;
 	v_back = (anglestoforward(self.angles) * -100) + self.origin;

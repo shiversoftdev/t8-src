@@ -149,7 +149,7 @@ function function_43084f6c(player)
 		{
 			if(var_f53fe24c function_d210981e(player.origin))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -181,12 +181,12 @@ function function_43084f6c(player)
 				}
 				if((isdefined(player.var_c676db5f[player getentitynumber()].cansee) ? player.var_c676db5f[player getentitynumber()].cansee : 0))
 				{
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -202,11 +202,11 @@ function function_9f942458(var_6ba44c6, var_fbbdf63c)
 {
 	if(!isplayer(var_fbbdf63c))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(var_fbbdf63c.var_f208fb92))
 	{
-		return 0;
+		return false;
 	}
 	foreach(sensor in var_fbbdf63c.var_f208fb92)
 	{
@@ -216,10 +216,10 @@ function function_9f942458(var_6ba44c6, var_fbbdf63c)
 		}
 		if(distancesquared(var_6ba44c6.origin, sensor.origin) < ((function_f99d2668() ? 2400 : 800) + 50) * ((function_f99d2668() ? 2400 : 800) + 50))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -235,7 +235,7 @@ function function_eddea888(player)
 {
 	if(!isdefined(player.team))
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
@@ -244,7 +244,7 @@ function function_eddea888(player)
 		{
 			if(function_9f942458(player, attacking_player))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -259,11 +259,11 @@ function function_eddea888(player)
 			}
 			if(function_9f942458(player, enemy))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -279,14 +279,14 @@ function function_ce33e204(player)
 {
 	if(!isdefined(level.activeuavs) || level.activeuavs.size == 0 || (isdefined(level.forceradar) && level.forceradar == 1))
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		otherteam = util::getotherteam(player.team);
 		if(isdefined(level.activeuavs[otherteam]) && level.activeuavs[otherteam] > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else
@@ -304,11 +304,11 @@ function function_ce33e204(player)
 			}
 			if(isdefined(level.activeuavs[enemy.entnum]) && level.activeuavs[enemy.entnum] > 0)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -320,18 +320,18 @@ function function_ce33e204(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5af0c53c(player)
+function private function_5af0c53c(player)
 {
 	if(!isdefined(level.activecounteruavs) || level.activecounteruavs.size == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		otherteam = util::getotherteam(player.team);
 		if(isdefined(level.activecounteruavs[otherteam]) && level.activecounteruavs[otherteam] > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else
@@ -349,11 +349,11 @@ private function function_5af0c53c(player)
 			}
 			if(isdefined(level.activecounteruavs[enemy.entnum]) && level.activecounteruavs[enemy.entnum] > 0)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

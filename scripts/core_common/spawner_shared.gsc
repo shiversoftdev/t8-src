@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"spawner", &__init__, &__main__, undefined);
 }
@@ -693,13 +693,16 @@ function go_to_node_using_funcs(node, get_target_func, set_goal_func_quits, opti
 		{
 			self thread ai::force_goal(get_goal(self.target));
 		}
-		else if(isdefined(node) && (isdefined(node.script_forcegoal) && node.script_forcegoal))
-		{
-			self thread ai::force_goal(get_goal(self.target));
-		}
 		else
 		{
-			[[set_goal_func_quits]](node);
+			if(isdefined(node) && (isdefined(node.script_forcegoal) && node.script_forcegoal))
+			{
+				self thread ai::force_goal(get_goal(self.target));
+			}
+			else
+			{
+				[[set_goal_func_quits]](node);
+			}
 		}
 		self waittill(#"goal");
 		[[optional_arrived_at_node_func]](node);
@@ -791,7 +794,7 @@ function go_to_node_wait_for_player(node, get_target_func, dist)
 		player = players[i];
 		if(distancesquared(player.origin, node.origin) < distancesquared(self.origin, node.origin))
 		{
-			return 1;
+			return true;
 		}
 	}
 	vec = anglestoforward(self.angles);
@@ -822,7 +825,7 @@ function go_to_node_wait_for_player(node, get_target_func, dist)
 		value = vec2[i];
 		if(vectordot(vec, value) > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	dist2rd = dist * dist;
@@ -831,10 +834,10 @@ function go_to_node_wait_for_player(node, get_target_func, dist)
 		player = players[i];
 		if(distancesquared(player.origin, self.origin) < dist2rd)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1347,34 +1350,40 @@ function spawn(b_force = 0, str_targetname, v_origin, v_angles, bignorespawningl
 				}
 				archetype_spawner = level.archetype_spawners[archetype];
 			}
-			else if(self.team == #"allies")
+			else
 			{
-				archetype = getdvarstring(#"feature_ai_ally_archetype");
-				if(getdvarstring(#"feature_ai_archetype_override") == "")
+				if(self.team == #"allies")
 				{
 					archetype = getdvarstring(#"feature_ai_ally_archetype");
-				}
-				archetype_spawner = level.archetype_spawners[archetype];
-			}
-			else if(self.team == #"team3")
-			{
-				if(getdvarstring(#"feature_ai_archetype_override") == #"enemy")
-				{
-					archetype = getdvarstring(#"feature_ai_enemy_archetype");
-				}
-				else if(getdvarstring(#"feature_ai_archetype_override") == "")
-				{
-					archetype = getdvarstring(#"feature_ai_ally_archetype");
-				}
-				else
-				{
-					archetype = getdvarstring(#"feature_ai_enemy_archetype");
-				}
-				archetype_spawner = level.archetype_spawners[archetype];
-				if(!isdefined(archetype_spawner))
-				{
-					archetype = getdvarstring(#"feature_ai_ally_archetype");
+					if(getdvarstring(#"feature_ai_archetype_override") == "")
+					{
+						archetype = getdvarstring(#"feature_ai_ally_archetype");
+					}
 					archetype_spawner = level.archetype_spawners[archetype];
+				}
+				else if(self.team == #"team3")
+				{
+					if(getdvarstring(#"feature_ai_archetype_override") == #"enemy")
+					{
+						archetype = getdvarstring(#"feature_ai_enemy_archetype");
+					}
+					else
+					{
+						if(getdvarstring(#"feature_ai_archetype_override") == "")
+						{
+							archetype = getdvarstring(#"feature_ai_ally_archetype");
+						}
+						else
+						{
+							archetype = getdvarstring(#"feature_ai_enemy_archetype");
+						}
+					}
+					archetype_spawner = level.archetype_spawners[archetype];
+					if(!isdefined(archetype_spawner))
+					{
+						archetype = getdvarstring(#"feature_ai_ally_archetype");
+						archetype_spawner = level.archetype_spawners[archetype];
+					}
 				}
 			}
 			if(isspawner(archetype_spawner))
@@ -1569,7 +1578,7 @@ function check_player_requirements()
 		if(n_player_count < self.script_minplayers)
 		{
 			self delete();
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(self.script_numplayers))
@@ -1577,7 +1586,7 @@ function check_player_requirements()
 		if(n_player_count < self.script_numplayers)
 		{
 			self delete();
-			return 0;
+			return false;
 		}
 	}
 	if(isdefined(self.script_maxplayers))
@@ -1585,10 +1594,10 @@ function check_player_requirements()
 		if(n_player_count > self.script_maxplayers)
 		{
 			self delete();
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1611,10 +1620,10 @@ function spawn_failed(spawn)
 		waittillframeend();
 		if(isalive(spawn))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2101,15 +2110,18 @@ function simple_spawn(name_or_spawners, spawn_func, vararg)
 			assert(spawners.size, ("" + name_or_spawners) + "");
 		#/
 	}
-	else if(!isdefined(name_or_spawners))
+	else
 	{
-		name_or_spawners = [];
+		if(!isdefined(name_or_spawners))
+		{
+			name_or_spawners = [];
+		}
+		else if(!isarray(name_or_spawners))
+		{
+			name_or_spawners = array(name_or_spawners);
+		}
+		spawners = name_or_spawners;
 	}
-	else if(!isarray(name_or_spawners))
-	{
-		name_or_spawners = array(name_or_spawners);
-	}
-	spawners = name_or_spawners;
 	a_spawned = [];
 	foreach(sp in spawners)
 	{
@@ -2165,7 +2177,7 @@ function simple_spawn_single(name_or_spawner, spawn_func, vararg)
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init_female_spawn()
+function autoexec init_female_spawn()
 {
 	level.female_percent = 0;
 	set_female_percent(30);

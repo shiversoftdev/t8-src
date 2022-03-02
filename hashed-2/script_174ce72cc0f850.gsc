@@ -77,7 +77,7 @@ function end(id)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8598f0d4(var_88206a50, ent)
+function private function_8598f0d4(var_88206a50, ent)
 {
 	if(isdefined(ent))
 	{
@@ -94,10 +94,10 @@ private function function_8598f0d4(var_88206a50, ent)
 		}
 		if(b_killed_by_player && e_player istouching(var_88206a50.var_f929d531))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -109,7 +109,7 @@ private function function_8598f0d4(var_88206a50, ent)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3bdbb583(var_f0e6c7a2, ent)
+function private function_3bdbb583(var_f0e6c7a2, ent)
 {
 	n_souls_required = 12;
 	if(getplayers().size > 2)
@@ -142,7 +142,7 @@ private function function_3bdbb583(var_f0e6c7a2, ent)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fab8c488()
+function private function_fab8c488()
 {
 	self endon(#"death", #"hash_63acd5ff4da933c5");
 	while(self namespace_509a75d1::function_b8a27acc())
@@ -162,7 +162,7 @@ private function function_fab8c488()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function player_enter_watcher()
+function private player_enter_watcher()
 {
 	self endon(#"death", #"hash_63acd5ff4da933c5");
 	while(!self namespace_509a75d1::function_b8a27acc())
@@ -182,7 +182,7 @@ private function player_enter_watcher()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b1e6482f()
+function private function_b1e6482f()
 {
 	self endon(#"death", #"player_enter", #"hash_63acd5ff4da933c5");
 	wait(5);

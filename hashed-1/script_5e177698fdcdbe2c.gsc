@@ -266,7 +266,7 @@ function function_af9fb8d1()
 */
 function no_delay()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -581,7 +581,7 @@ function function_25c6ed8d()
 */
 function function_93a18905()
 {
-	self endon_callback(&function_c1189522, #"death");
+	self endoncallback(&function_c1189522, #"death");
 	while(true)
 	{
 		n_radius_sqr = self.n_radius * self.n_radius;
@@ -854,7 +854,7 @@ function function_e2b8d7bb()
 	/#
 		iprintlnbold("");
 	#/
-	level waittill_timeout(10, #"hash_1785626e8834963a");
+	level waittilltimeout(10, #"hash_1785626e8834963a");
 	self setspeed(25);
 }
 
@@ -1065,7 +1065,7 @@ function function_8a1356b6()
 */
 function function_6f0a7fea()
 {
-	self endon_callback(&function_7a57c14, #"death");
+	self endoncallback(&function_7a57c14, #"death");
 	while(self.var_e63ac5c !== 1)
 	{
 		wait(1);

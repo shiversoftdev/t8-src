@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"aat", &__init__, undefined, undefined);
 }
@@ -30,7 +30,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!(isdefined(level.aat_in_use) && level.aat_in_use))
 	{
@@ -65,7 +65,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_connect()
+function private on_player_connect()
 {
 	self.aat = [];
 	self.aat_cooldown_start = [];
@@ -95,7 +95,7 @@ private function on_player_connect()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "take_weapon" && isdefined(s_event.weapon))
 	{
@@ -116,7 +116,7 @@ private function function_33f0ddd3(s_event)
 	Parameters: 0
 	Flags: Private
 */
-private function setup_devgui()
+function private setup_devgui()
 {
 	/#
 		waittillframeend();
@@ -144,7 +144,7 @@ private function setup_devgui()
 	Parameters: 0
 	Flags: Private
 */
-private function aat_devgui_think()
+function private aat_devgui_think()
 {
 	/#
 		for(;;)
@@ -180,7 +180,7 @@ private function aat_devgui_think()
 	Parameters: 4
 	Flags: Private
 */
-private function aat_set_debug_text(name, success, success_reroll, fail)
+function private aat_set_debug_text(name, success, success_reroll, fail)
 {
 	/#
 		self notify(#"aat_set_debug_text_thread");
@@ -201,17 +201,23 @@ private function aat_set_debug_text(name, success, success_reroll, fail)
 		{
 			self.aat_debug_text.color = (0, 1, 0);
 		}
-		else if(success_reroll)
-		{
-			self.aat_debug_text.color = vectorscale((1, 0, 1), 0.8);
-		}
-		else if(fail)
-		{
-			self.aat_debug_text.color = (1, 0, 0);
-		}
 		else
 		{
-			self.aat_debug_text.color = (1, 1, 1);
+			if(success_reroll)
+			{
+				self.aat_debug_text.color = vectorscale((1, 0, 1), 0.8);
+			}
+			else
+			{
+				if(fail)
+				{
+					self.aat_debug_text.color = (1, 0, 0);
+				}
+				else
+				{
+					self.aat_debug_text.color = (1, 1, 1);
+				}
+			}
 		}
 		wait(1);
 		self.aat_debug_text fadeovertime(1);
@@ -232,7 +238,7 @@ private function aat_set_debug_text(name, success, success_reroll, fail)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function aat_cooldown_init()
+function private aat_cooldown_init()
 {
 	self.aat_cooldown_start = [];
 	foreach(key, v in level.aat)
@@ -854,8 +860,8 @@ function function_c5abc232(w_current)
 	w_current = function_702fb333(w_current);
 	if(isdefined(self.aat) && isdefined(self.aat[w_current]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

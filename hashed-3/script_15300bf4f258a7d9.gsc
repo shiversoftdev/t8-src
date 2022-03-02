@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"remotemissile", &__init__, undefined, #"killstreaks");
 }
@@ -73,7 +73,7 @@ function function_dab39bb8(rocket)
 		enemy = self.owner battlechatter::get_closest_player_enemy(self.origin, 1);
 		if(!isdefined(enemy))
 		{
-			return 0;
+			return false;
 		}
 		eyepoint = enemy geteye();
 		relativepos = vectornormalize(self.origin - eyepoint);

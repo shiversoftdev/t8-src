@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"demo", &__init__, undefined, undefined);
 }
@@ -44,7 +44,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function init()
+function private init()
 {
 	potm::function_d71338e4();
 }
@@ -58,7 +58,7 @@ private function init()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_4ba58938(bookmark, overrideentitycamera)
+function private function_4ba58938(bookmark, overrideentitycamera)
 {
 	if(!isdefined(bookmark))
 	{

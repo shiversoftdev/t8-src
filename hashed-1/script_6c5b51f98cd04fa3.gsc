@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec, Private
 */
-private autoexec function init()
+function private autoexec init()
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -261,7 +261,7 @@ function function_9212ff4d(ee_name, step_name)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function run_step(ee, step, var_5ea5c94d)
+function private run_step(ee, step, var_5ea5c94d)
 {
 	level endon(#"game_ended");
 	/#
@@ -382,10 +382,10 @@ private function run_step(ee, step, var_5ea5c94d)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_3f795dc3(ee, step, var_5ea5c94d)
+function private function_3f795dc3(ee, step, var_5ea5c94d)
 {
 	level endon(#"game_ended");
-	step endon_callback(&function_df365859, #"hash_74e7dcfac985bd3e");
+	step endoncallback(&function_df365859, #"hash_74e7dcfac985bd3e");
 	level notify(step.var_e788cdd7 + "_started");
 	[[step.setup_func]](var_5ea5c94d);
 	step.completed = 1;
@@ -401,7 +401,7 @@ private function function_3f795dc3(ee, step, var_5ea5c94d)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_df365859(notifyhash)
+function private function_df365859(notifyhash)
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -530,7 +530,7 @@ function function_87306f8a(ee_name, step_name)
 		var_90adfb76 = function_9212ff4d(ee_name, step_name);
 		if(ee.started && var_90adfb76 <= ee.current_step)
 		{
-			return 0;
+			return false;
 		}
 		ee.skip_to_step = var_90adfb76;
 		if(ee.started)
@@ -541,7 +541,7 @@ function function_87306f8a(ee_name, step_name)
 		{
 			start(ee.name);
 		}
-		return 1;
+		return true;
 	#/
 }
 
@@ -591,7 +591,7 @@ function function_f2dd8601(ee_name, var_f2c264bb)
 			{
 				wait_time = 10 * ee.steps.size;
 				waitresult = undefined;
-				waitresult = level waittill_timeout(wait_time, step.var_e788cdd7 + "");
+				waitresult = level waittilltimeout(wait_time, step.var_e788cdd7 + "");
 				if(waitresult._notify == #"timeout")
 				{
 					if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -656,20 +656,26 @@ function devgui_think()
 							println((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(ee.steps[ee.current_step].name));
 						}
 					}
-					else if(var_f2c264bb == ee.current_step)
+					else
 					{
-						if(getdvarint(#"hash_7919e37cd5d57659", 0))
+						if(var_f2c264bb == ee.current_step)
 						{
-							iprintlnbold((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name));
-							println((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name));
+							if(getdvarint(#"hash_7919e37cd5d57659", 0))
+							{
+								iprintlnbold((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name));
+								println((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name));
+							}
+						}
+						else
+						{
+							if(getdvarint(#"hash_7919e37cd5d57659", 0))
+							{
+								iprintlnbold((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name) + "");
+								println((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name) + "");
+							}
+							function_87306f8a(ee.name, step_name);
 						}
 					}
-					else if(getdvarint(#"hash_7919e37cd5d57659", 0))
-					{
-						iprintlnbold((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name) + "");
-						println((("" + function_9e72a96(ee.name)) + "") + function_9e72a96(step_name) + "");
-					}
-					function_87306f8a(ee.name, step_name);
 					break;
 				}
 				case "complete":
@@ -744,7 +750,7 @@ function devgui_think()
 	Parameters: 2
 	Flags: Private
 */
-private function create_hudelem(y, x)
+function private create_hudelem(y, x)
 {
 	/#
 		if(!isdefined(x))
@@ -879,13 +885,16 @@ function function_1091b2a0(var_4f1c1316)
 		{
 			color = vectorscale((1, 1, 1), 0.75);
 		}
-		else if(!var_4f1c1316.completed)
-		{
-			color = (1, 0, 0);
-		}
 		else
 		{
-			color = (0, 1, 0);
+			if(!var_4f1c1316.completed)
+			{
+				color = (1, 0, 0);
+			}
+			else
+			{
+				color = (0, 1, 0);
+			}
 		}
 		return color;
 	#/

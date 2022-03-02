@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_35f86e4c2035f69f", &__init__, &__main__, undefined);
 }
@@ -170,11 +170,11 @@ function check_for_zombie_in_wolf_area()
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self.archetype != "zombie")
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < level.var_4952e1.size; i++)
 	{
@@ -182,11 +182,11 @@ function check_for_zombie_in_wolf_area()
 		{
 			if(!level.var_4952e1[i].is_charged && !level.var_4952e1[i].var_aa1a7f2e)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -268,17 +268,20 @@ function function_e40e9d94(n_eating_anim, ai_zombie, var_64c09f7f)
 		var_3e4fd9fd = "Eat Front";
 		var_5dedf8ea = vectorscale((0, 1, 0), 85);
 	}
-	else if(n_eating_anim == 4)
-	{
-		var_f2c6c759 = "Look Right";
-		var_3e4fd9fd = "Eat Right";
-		var_5dedf8ea = vectorscale((0, 1, 0), 85);
-	}
 	else
 	{
-		var_f2c6c759 = "Look Left";
-		var_3e4fd9fd = "Eat Left";
-		var_5dedf8ea = vectorscale((0, 1, 0), 85);
+		if(n_eating_anim == 4)
+		{
+			var_f2c6c759 = "Look Right";
+			var_3e4fd9fd = "Eat Right";
+			var_5dedf8ea = vectorscale((0, 1, 0), 85);
+		}
+		else
+		{
+			var_f2c6c759 = "Look Left";
+			var_3e4fd9fd = "Eat Left";
+			var_5dedf8ea = vectorscale((0, 1, 0), 85);
+		}
 	}
 	var_678e573f scene::play(#"hash_7ab2e0d1b8b97d93", "impact", ai_zombie);
 	var_678e573f thread scene::play(#"hash_7ab2e0d1b8b97d93", "rise", ai_zombie);
@@ -416,13 +419,16 @@ function soul_catcher_state_manager()
 	{
 		self.var_740e1e0e = getent("rune_3", "targetname");
 	}
-	else if(self.script_noteworthy == "rune_2")
+	else
 	{
-		self.var_740e1e0e = getent("rune_2", "targetname");
-	}
-	else if(self.script_noteworthy == "rune_1")
-	{
-		self.var_740e1e0e = getent("rune_1", "targetname");
+		if(self.script_noteworthy == "rune_2")
+		{
+			self.var_740e1e0e = getent("rune_2", "targetname");
+		}
+		else if(self.script_noteworthy == "rune_1")
+		{
+			self.var_740e1e0e = getent("rune_1", "targetname");
+		}
 	}
 	self waittill(#"first_zombie_killed_in_zone");
 	if(isdefined(self.t_hurt))
@@ -625,7 +631,7 @@ function first_wolf_encounter_vo(var_64c09f7f)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_74c96a90(var_64c09f7f)
+function private function_74c96a90(var_64c09f7f)
 {
 	var_8114dab6 = 0;
 	switch(self.script_noteworthy)

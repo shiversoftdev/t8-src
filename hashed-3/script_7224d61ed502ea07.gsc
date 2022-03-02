@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_wallbuy", &__init__, &__main__, array(#"zm", #"zm_zonemgr", #"zm_unitrigger", #"zm_weapons"));
 }
@@ -467,7 +467,7 @@ function wall_weapon_update_prompt(player)
 {
 	if(!isdefined(player.currentweapon))
 	{
-		return 0;
+		return false;
 	}
 	weapon = self.stub.weapon;
 	player_has_weapon = player zm_weapons::has_weapon_or_upgrade(weapon);
@@ -484,197 +484,224 @@ function wall_weapon_update_prompt(player)
 	{
 		if(!self [[level.func_override_wallbuy_prompt]](player, player_has_weapon))
 		{
-			return 0;
+			return false;
 		}
-	}
-	else if(namespace_497ab7da::is_active())
-	{
-		return 0;
-	}
-	if(!player_has_weapon)
-	{
-		self.stub.cursor_hint = "HINT_WEAPON";
-		cost = zm_weapons::get_weapon_cost(weapon);
-		if(player function_284616f8())
-		{
-			if(function_8b1a219a())
-			{
-				self.stub.hint_string = #"hash_7778a99e3a7d47";
-			}
-			else
-			{
-				self.stub.hint_string = #"hash_18379e4e114fabf9";
-			}
-			if(self.stub.var_8d306e51)
-			{
-				self sethintstringforplayer(player, self.stub.hint_string);
-			}
-			else
-			{
-				self sethintstring(self.stub.hint_string);
-			}
-		}
-		else if(player bgb::is_enabled(#"hash_4a6b297c85fafec1"))
-		{
-			if(function_8b1a219a())
-			{
-				self.stub.hint_string = #"hash_7a24a147b8f09767";
-			}
-			else
-			{
-				self.stub.hint_string = #"hash_791fe9da17cf7059";
-			}
-			if(self.stub.var_8d306e51)
-			{
-				self sethintstringforplayer(player, self.stub.hint_string);
-			}
-			else
-			{
-				self sethintstring(self.stub.hint_string);
-			}
-		}
-		else if(function_8b1a219a())
-		{
-			self.stub.hint_string = #"hash_2791ecebb85142c4";
-		}
-		else
-		{
-			self.stub.hint_string = #"hash_60606b68e93a29c8";
-		}
-		if(self.stub.var_8d306e51)
-		{
-			self sethintstringforplayer(player, self.stub.hint_string);
-		}
-		else
-		{
-			self sethintstring(self.stub.hint_string);
-		}
-	}
-	else if(player function_284616f8())
-	{
-		ammo_cost = player zm_weapons::get_ammo_cost_for_weapon(weapon);
-	}
-	else if(player zm_weapons::has_upgrade(weapon) && self.stub.hacked !== 1)
-	{
-		ammo_cost = zm_weapons::get_upgraded_ammo_cost(weapon);
 	}
 	else
 	{
-		ammo_cost = zm_weapons::get_ammo_cost(weapon);
-	}
-	var_f7b97cc4 = 0;
-	var_60da4cc1 = player zm_weapons::get_upgrade_weapon(weapon, 1);
-	if(player zm_utility::function_aa45670f(weapon, 0) || player zm_utility::function_aa45670f(var_60da4cc1, 0))
-	{
-		if(isdefined(player.var_4a06bcd2))
+		if(namespace_497ab7da::is_active())
 		{
-			special_ammo_cost = player [[player.var_4a06bcd2]](weapon, self.stub, 1);
-			if(isdefined(special_ammo_cost))
-			{
-				ammo_cost = special_ammo_cost;
-			}
+			return false;
 		}
-		if(player zm_weapons::has_weapon_or_upgrade(weapon))
+		if(!player_has_weapon)
 		{
-			var_f7b97cc4 = 1;
-			if(function_8b1a219a())
+			self.stub.cursor_hint = "HINT_WEAPON";
+			cost = zm_weapons::get_weapon_cost(weapon);
+			if(player function_284616f8())
 			{
-				self.stub.hint_string = #"hash_4fc4a485b05c45ba";
-			}
-			else
-			{
-				self.stub.hint_string = #"hash_229abc68467e92ce";
-			}
-			if(self.stub.var_8d306e51)
-			{
-				self sethintstringforplayer(player, self.stub.hint_string, ammo_cost);
+				if(function_8b1a219a())
+				{
+					self.stub.hint_string = #"hash_7778a99e3a7d47";
+				}
+				else
+				{
+					self.stub.hint_string = #"hash_18379e4e114fabf9";
+				}
+				if(self.stub.var_8d306e51)
+				{
+					self sethintstringforplayer(player, self.stub.hint_string);
+				}
+				else
+				{
+					self sethintstring(self.stub.hint_string);
+				}
 			}
 			else
 			{
-				self sethintstring(self.stub.hint_string, ammo_cost);
+				if(player bgb::is_enabled(#"hash_4a6b297c85fafec1"))
+				{
+					if(function_8b1a219a())
+					{
+						self.stub.hint_string = #"hash_7a24a147b8f09767";
+					}
+					else
+					{
+						self.stub.hint_string = #"hash_791fe9da17cf7059";
+					}
+					if(self.stub.var_8d306e51)
+					{
+						self sethintstringforplayer(player, self.stub.hint_string);
+					}
+					else
+					{
+						self sethintstring(self.stub.hint_string);
+					}
+				}
+				else
+				{
+					if(function_8b1a219a())
+					{
+						self.stub.hint_string = #"hash_2791ecebb85142c4";
+					}
+					else
+					{
+						self.stub.hint_string = #"hash_60606b68e93a29c8";
+					}
+					if(self.stub.var_8d306e51)
+					{
+						self sethintstringforplayer(player, self.stub.hint_string);
+					}
+					else
+					{
+						self sethintstring(self.stub.hint_string);
+					}
+				}
 			}
 		}
-	}
-	if(player function_284616f8())
-	{
-		if(isdefined(self.stub.hacked) && self.stub.hacked)
-		{
-			self.stub.hint_string = #"zombie_weaponammohacked_cfill_bgb_secret_shopper";
-		}
-		else if(function_8b1a219a())
-		{
-			self.stub.hint_string = #"hash_1299ea66da4a06b0";
-		}
 		else
 		{
-			self.stub.hint_string = #"hash_4a6901dda0793d3c";
-		}
-		if(self.stub.var_8d306e51)
-		{
-			self sethintstringforplayer(player, self.stub.hint_string);
-		}
-		else
-		{
-			self sethintstring(self.stub.hint_string);
-		}
-	}
-	else if(player bgb::is_enabled(#"hash_4a6b297c85fafec1"))
-	{
-		if(player zm_weapons::has_upgrade(weapon))
-		{
-			if(function_8b1a219a())
+			if(player function_284616f8())
 			{
-				self.stub.hint_string = #"hash_5897b2e20dc09cfc";
+				ammo_cost = player zm_weapons::get_ammo_cost_for_weapon(weapon);
 			}
 			else
 			{
-				self.stub.hint_string = #"hash_7d4f06d135499350";
+				if(player zm_weapons::has_upgrade(weapon) && self.stub.hacked !== 1)
+				{
+					ammo_cost = zm_weapons::get_upgraded_ammo_cost(weapon);
+				}
+				else
+				{
+					ammo_cost = zm_weapons::get_ammo_cost(weapon);
+				}
 			}
-		}
-		else if(function_8b1a219a())
-		{
-			self.stub.hint_string = #"hash_cb6a56ab3b14604";
-		}
-		else
-		{
-			self.stub.hint_string = #"hash_43ab0adee9d55608";
-		}
-		if(self.stub.var_8d306e51)
-		{
-			self sethintstringforplayer(player, self.stub.hint_string);
-		}
-		else
-		{
-			self sethintstring(self.stub.hint_string);
-		}
-	}
-	else if(!var_f7b97cc4)
-	{
-		if(isdefined(self.stub.hacked) && self.stub.hacked)
-		{
-			self.stub.hint_string = #"zombie_weaponammohacked_cfill";
-		}
-		else if(function_8b1a219a())
-		{
-			self.stub.hint_string = #"hash_3f279e3e0f564e99";
-		}
-		else
-		{
-			self.stub.hint_string = #"hash_382490a598f64833";
-		}
-		if(self.stub.var_8d306e51)
-		{
-			self sethintstringforplayer(player, self.stub.hint_string);
-		}
-		else
-		{
-			self sethintstring(self.stub.hint_string);
+			var_f7b97cc4 = 0;
+			var_60da4cc1 = player zm_weapons::get_upgrade_weapon(weapon, 1);
+			if(player zm_utility::function_aa45670f(weapon, 0) || player zm_utility::function_aa45670f(var_60da4cc1, 0))
+			{
+				if(isdefined(player.var_4a06bcd2))
+				{
+					special_ammo_cost = player [[player.var_4a06bcd2]](weapon, self.stub, 1);
+					if(isdefined(special_ammo_cost))
+					{
+						ammo_cost = special_ammo_cost;
+					}
+				}
+				if(player zm_weapons::has_weapon_or_upgrade(weapon))
+				{
+					var_f7b97cc4 = 1;
+					if(function_8b1a219a())
+					{
+						self.stub.hint_string = #"hash_4fc4a485b05c45ba";
+					}
+					else
+					{
+						self.stub.hint_string = #"hash_229abc68467e92ce";
+					}
+					if(self.stub.var_8d306e51)
+					{
+						self sethintstringforplayer(player, self.stub.hint_string, ammo_cost);
+					}
+					else
+					{
+						self sethintstring(self.stub.hint_string, ammo_cost);
+					}
+				}
+			}
+			if(player function_284616f8())
+			{
+				if(isdefined(self.stub.hacked) && self.stub.hacked)
+				{
+					self.stub.hint_string = #"zombie_weaponammohacked_cfill_bgb_secret_shopper";
+				}
+				else
+				{
+					if(function_8b1a219a())
+					{
+						self.stub.hint_string = #"hash_1299ea66da4a06b0";
+					}
+					else
+					{
+						self.stub.hint_string = #"hash_4a6901dda0793d3c";
+					}
+				}
+				if(self.stub.var_8d306e51)
+				{
+					self sethintstringforplayer(player, self.stub.hint_string);
+				}
+				else
+				{
+					self sethintstring(self.stub.hint_string);
+				}
+			}
+			else
+			{
+				if(player bgb::is_enabled(#"hash_4a6b297c85fafec1"))
+				{
+					if(player zm_weapons::has_upgrade(weapon))
+					{
+						if(function_8b1a219a())
+						{
+							self.stub.hint_string = #"hash_5897b2e20dc09cfc";
+						}
+						else
+						{
+							self.stub.hint_string = #"hash_7d4f06d135499350";
+						}
+					}
+					else
+					{
+						if(function_8b1a219a())
+						{
+							self.stub.hint_string = #"hash_cb6a56ab3b14604";
+						}
+						else
+						{
+							self.stub.hint_string = #"hash_43ab0adee9d55608";
+						}
+					}
+					if(self.stub.var_8d306e51)
+					{
+						self sethintstringforplayer(player, self.stub.hint_string);
+					}
+					else
+					{
+						self sethintstring(self.stub.hint_string);
+					}
+				}
+				else if(!var_f7b97cc4)
+				{
+					if(isdefined(self.stub.hacked) && self.stub.hacked)
+					{
+						self.stub.hint_string = #"zombie_weaponammohacked_cfill";
+					}
+					else
+					{
+						if(function_8b1a219a())
+						{
+							self.stub.hint_string = #"hash_3f279e3e0f564e99";
+						}
+						else
+						{
+							self.stub.hint_string = #"hash_382490a598f64833";
+						}
+					}
+					if(self.stub.var_8d306e51)
+					{
+						self sethintstringforplayer(player, self.stub.hint_string);
+					}
+					else
+					{
+						self sethintstring(self.stub.hint_string);
+					}
+				}
+			}
 		}
 	}
 	self.stub.cursor_hint = "HINT_WEAPON";
 	self.stub.cursor_hint_weapon = weapon;
 	self setcursorhint(self.stub.cursor_hint, self.stub.cursor_hint_weapon);
-	return 1;
+	return true;
 }
 
 /*
@@ -804,9 +831,9 @@ function placeable_mine_can_buy_weapon_extra_check_func(w_weapon)
 {
 	if(isdefined(w_weapon) && w_weapon == self zm_loadout::get_player_placeable_mine())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -957,28 +984,31 @@ function weapon_spawn_think()
 						player [[player.player_shield_reset_health]](self.weapon);
 					}
 				}
-				else if(zm_loadout::is_lethal_grenade(self.weapon))
+				else
 				{
-					player zm_weapons::weapon_take(player zm_loadout::get_player_lethal_grenade());
-					player zm_loadout::set_player_lethal_grenade(self.weapon);
-				}
-				weapon = self.weapon;
-				if(should_upgrade_weapon(player))
-				{
-					if(player zm_weapons::can_upgrade_weapon(weapon))
+					if(zm_loadout::is_lethal_grenade(self.weapon))
 					{
-						weapon = zm_weapons::get_upgrade_weapon(weapon);
-						player notify(#"zm_bgb_wall_power_used");
+						player zm_weapons::weapon_take(player zm_loadout::get_player_lethal_grenade());
+						player zm_loadout::set_player_lethal_grenade(self.weapon);
 					}
+					weapon = self.weapon;
+					if(should_upgrade_weapon(player))
+					{
+						if(player zm_weapons::can_upgrade_weapon(weapon))
+						{
+							weapon = zm_weapons::get_upgrade_weapon(weapon);
+							player notify(#"zm_bgb_wall_power_used");
+						}
+					}
+					weapon = player zm_weapons::weapon_give(weapon);
 				}
-				weapon = player zm_weapons::weapon_give(weapon);
 				if(isdefined(weapon))
 				{
 					player notify(#"hash_72df0a050bd0f72f", {#weapon:weapon});
 					player zm_stats::increment_client_stat("wallbuy_weapons_purchased");
 					player zm_stats::increment_player_stat("wallbuy_weapons_purchased");
 					player zm_stats::function_8f10788e("boas_wallbuy_weapons_purchased");
-					bb::function_ab9bb12c(player, self, cost, weapon.name, player zm_weapons::has_upgrade(weapon), "_weapon", "_purchase");
+					bb::logpurchaseevent(player, self, cost, weapon.name, player zm_weapons::has_upgrade(weapon), "_weapon", "_purchase");
 					weaponindex = undefined;
 					if(isdefined(weaponindex))
 					{
@@ -1015,13 +1045,16 @@ function weapon_spawn_think()
 					ammo_cost = zm_weapons::get_ammo_cost(weapon);
 				}
 			}
-			else if(var_47834995)
-			{
-				ammo_cost = 4500;
-			}
 			else
 			{
-				ammo_cost = zm_weapons::get_ammo_cost(weapon);
+				if(var_47834995)
+				{
+					ammo_cost = 4500;
+				}
+				else
+				{
+					ammo_cost = zm_weapons::get_ammo_cost(weapon);
+				}
 			}
 			if(isdefined(player.var_4a06bcd2))
 			{
@@ -1053,64 +1086,67 @@ function weapon_spawn_think()
 			{
 				zm_utility::play_sound_on_ent("no_purchase");
 			}
-			else if(zm_utility::function_e05ac4ad(player, ammo_cost))
+			else
 			{
-				if(var_47834995)
+				if(zm_utility::function_e05ac4ad(player, ammo_cost))
 				{
-					ammo_given = player zm_weapons::ammo_give(level.zombie_weapons[weapon].upgrade);
-				}
-				else
-				{
-					ammo_given = player zm_weapons::ammo_give(weapon);
-				}
-				if(ammo_given)
-				{
-					if(self.first_time_triggered == 0)
-					{
-						self show_all_weapon_buys(player, cost, ammo_cost, is_grenade);
-					}
 					if(var_47834995)
 					{
-						player zm_stats::increment_client_stat("upgraded_ammo_purchased");
-						player zm_stats::increment_player_stat("upgraded_ammo_purchased");
-						player namespace_e38c57c1::function_183814d3();
+						ammo_given = player zm_weapons::ammo_give(level.zombie_weapons[weapon].upgrade);
 					}
 					else
 					{
-						player zm_stats::increment_client_stat("ammo_purchased");
-						player zm_stats::increment_player_stat("ammo_purchased");
-						player zm_stats::function_8f10788e("boas_ammo_purchased");
+						ammo_given = player zm_weapons::ammo_give(weapon);
 					}
-					player contracts::function_5b88297d(#"hash_56a15f4e4fa5f4b7", 1, #"zstandard");
-					player thread zm_audio::create_and_play_dialog(#"ammo", #"buy");
-					player zm_score::minus_to_player_score(ammo_cost);
-					if(isdefined(level.var_db463b5))
+					if(ammo_given)
 					{
-						self [[level.var_db463b5]](player);
+						if(self.first_time_triggered == 0)
+						{
+							self show_all_weapon_buys(player, cost, ammo_cost, is_grenade);
+						}
+						if(var_47834995)
+						{
+							player zm_stats::increment_client_stat("upgraded_ammo_purchased");
+							player zm_stats::increment_player_stat("upgraded_ammo_purchased");
+							player namespace_e38c57c1::function_183814d3();
+						}
+						else
+						{
+							player zm_stats::increment_client_stat("ammo_purchased");
+							player zm_stats::increment_player_stat("ammo_purchased");
+							player zm_stats::function_8f10788e("boas_ammo_purchased");
+						}
+						player contracts::function_5b88297d(#"hash_56a15f4e4fa5f4b7", 1, #"zstandard");
+						player thread zm_audio::create_and_play_dialog(#"ammo", #"buy");
+						player zm_score::minus_to_player_score(ammo_cost);
+						if(isdefined(level.var_db463b5))
+						{
+							self [[level.var_db463b5]](player);
+						}
+						bb::logpurchaseevent(player, self, ammo_cost, weapon.name, var_47834995, "_ammo", "_purchase");
+						weaponindex = undefined;
+						if(isdefined(weapon))
+						{
+							weaponindex = matchrecordgetweaponindex(weapon);
+						}
+						if(isdefined(weaponindex))
+						{
+							player recordmapevent(7, gettime(), player.origin, level.round_number, weaponindex, cost);
+						}
+						wait(1);
 					}
-					bb::function_ab9bb12c(player, self, ammo_cost, weapon.name, var_47834995, "_ammo", "_purchase");
-					weaponindex = undefined;
-					if(isdefined(weapon))
-					{
-						weaponindex = matchrecordgetweaponindex(weapon);
-					}
-					if(isdefined(weaponindex))
-					{
-						player recordmapevent(7, gettime(), player.origin, level.round_number, weaponindex, cost);
-					}
-					wait(1);
-				}
-			}
-			else
-			{
-				zm_utility::play_sound_on_ent("no_purchase");
-				if(isdefined(level.custom_generic_deny_vo_func))
-				{
-					player [[level.custom_generic_deny_vo_func]]();
 				}
 				else
 				{
-					player zm_audio::create_and_play_dialog(#"general", #"outofmoney");
+					zm_utility::play_sound_on_ent("no_purchase");
+					if(isdefined(level.custom_generic_deny_vo_func))
+					{
+						player [[level.custom_generic_deny_vo_func]]();
+					}
+					else
+					{
+						player zm_audio::create_and_play_dialog(#"general", #"outofmoney");
+					}
 				}
 			}
 		}
@@ -1293,10 +1329,10 @@ function is_wallbuy(w_to_check)
 	{
 		if(s_wallbuy.weapon == w_base)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1443,13 +1479,13 @@ function function_284616f8(var_8f48d608 = 0)
 	{
 		if(self bgb::is_enabled(#"zm_bgb_secret_shopper") && (!(isdefined(self.currentweapon.var_94d4849) && self.currentweapon.var_94d4849)) && self.currentweapon.type !== "melee")
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(self bgb::is_enabled(#"zm_bgb_secret_shopper") && (!(isdefined(self.currentweapon.var_94d4849) && self.currentweapon.var_94d4849)))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

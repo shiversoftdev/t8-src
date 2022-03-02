@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_45a212c0()
+function autoexec function_45a212c0()
 {
 	var_a12b4736 = &namespace_b0722f43::function_96ff7b88;
 	var_d2223309 = &namespace_b0722f43::function_261ab7f5;
@@ -154,57 +154,60 @@ autoexec function function_45a212c0()
 		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6728f5fbe7b9eb60");
 		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_74cbb6df24a0f9bb");
 	}
-	else if(!(isdefined(getgametypesetting(#"hash_660271b8cdaeb9a6")) && getgametypesetting(#"hash_660271b8cdaeb9a6")))
+	else
 	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_76aecc693bee59bf");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_5b8edad0ddd32514")) && getgametypesetting(#"hash_5b8edad0ddd32514")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1a3febc9dd2ff956");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_1b859efecd7c5ada")) && getgametypesetting(#"hash_1b859efecd7c5ada")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_285b16162518c948");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_3c8207806a75697a")) && getgametypesetting(#"hash_3c8207806a75697a")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_44d9fdaac46214a4");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_7fa8685ec958ecdd")) && getgametypesetting(#"hash_7fa8685ec958ecdd")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_48e9d48bfecf8dd");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_6061d8cc58f521fb")) && getgametypesetting(#"hash_6061d8cc58f521fb")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_166b2f213a373dba");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_33b7c0db94a8da")) && getgametypesetting(#"hash_33b7c0db94a8da")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7017e5a5441c4da2");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_2cce084109c75fb8")) && getgametypesetting(#"hash_2cce084109c75fb8")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_69123f639841ddc7");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_1c60fd943cbf2207")) && getgametypesetting(#"hash_1c60fd943cbf2207")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_40103f4d2f71a6a7");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_4b3e4a8072125ce2")) && getgametypesetting(#"hash_4b3e4a8072125ce2")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_695778cec905e59b");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_9589e8a0dbb8631")) && getgametypesetting(#"hash_9589e8a0dbb8631")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7be8f876858deae3");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_2c6d9b9532d042fe")) && getgametypesetting(#"hash_2c6d9b9532d042fe")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6728f5fbe7b9eb60");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_fea506177d61a7e")) && getgametypesetting(#"hash_fea506177d61a7e")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_74cbb6df24a0f9bb");
+		if(!(isdefined(getgametypesetting(#"hash_660271b8cdaeb9a6")) && getgametypesetting(#"hash_660271b8cdaeb9a6")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_76aecc693bee59bf");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_5b8edad0ddd32514")) && getgametypesetting(#"hash_5b8edad0ddd32514")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1a3febc9dd2ff956");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_1b859efecd7c5ada")) && getgametypesetting(#"hash_1b859efecd7c5ada")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_285b16162518c948");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_3c8207806a75697a")) && getgametypesetting(#"hash_3c8207806a75697a")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_44d9fdaac46214a4");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_7fa8685ec958ecdd")) && getgametypesetting(#"hash_7fa8685ec958ecdd")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_48e9d48bfecf8dd");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_6061d8cc58f521fb")) && getgametypesetting(#"hash_6061d8cc58f521fb")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_166b2f213a373dba");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_33b7c0db94a8da")) && getgametypesetting(#"hash_33b7c0db94a8da")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7017e5a5441c4da2");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_2cce084109c75fb8")) && getgametypesetting(#"hash_2cce084109c75fb8")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_69123f639841ddc7");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_1c60fd943cbf2207")) && getgametypesetting(#"hash_1c60fd943cbf2207")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_40103f4d2f71a6a7");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_4b3e4a8072125ce2")) && getgametypesetting(#"hash_4b3e4a8072125ce2")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_695778cec905e59b");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_9589e8a0dbb8631")) && getgametypesetting(#"hash_9589e8a0dbb8631")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7be8f876858deae3");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_2c6d9b9532d042fe")) && getgametypesetting(#"hash_2c6d9b9532d042fe")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6728f5fbe7b9eb60");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_fea506177d61a7e")) && getgametypesetting(#"hash_fea506177d61a7e")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_74cbb6df24a0f9bb");
+		}
 	}
 	if(!(isdefined(getgametypesetting(#"hash_5c6371ef701d7485")) && getgametypesetting(#"hash_5c6371ef701d7485")))
 	{
@@ -234,129 +237,132 @@ autoexec function function_45a212c0()
 		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_199230a69a867bf8");
 		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6d33368b7b126df8");
 	}
-	else if(!(isdefined(getgametypesetting(#"hash_213efc0cbd414268")) && getgametypesetting(#"hash_213efc0cbd414268")))
+	else
 	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_32834da10f1048b0");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_2c6d9b9532d042fe")) && getgametypesetting(#"hash_2c6d9b9532d042fe")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_250876d81f2e6f6e");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_3e882b80b421ca7d")) && getgametypesetting(#"hash_3e882b80b421ca7d")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_499748ba05372c7");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_6bf344e62e07bffe")) && getgametypesetting(#"hash_6bf344e62e07bffe")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_40ced73804c1be81");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_754aaf85b6f920ab")) && getgametypesetting(#"hash_754aaf85b6f920ab")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_524268075ef65e1e");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_7fac34a754ef395a")) && getgametypesetting(#"hash_7fac34a754ef395a")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1bfc7320c1335797");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_75240ded586d3172")) && getgametypesetting(#"hash_75240ded586d3172")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_31c3a0cc51a512d2");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_4c2d5ba737e6acdf")) && getgametypesetting(#"hash_4c2d5ba737e6acdf")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_9dcbf9df7b19434");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_9589e8a0dbb8631")) && getgametypesetting(#"hash_9589e8a0dbb8631")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1bd3cb5b4becaad9");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_2209ae80a348895d")) && getgametypesetting(#"hash_2209ae80a348895d")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_2799bb4fa8f20048");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_6f7723e2e1175279")) && getgametypesetting(#"hash_6f7723e2e1175279")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_e0a40edfec418ef");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_4b3e4a8072125ce2")) && getgametypesetting(#"hash_4b3e4a8072125ce2")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6857c7a83fc6cdb1");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_d0928790c76d5cb")) && getgametypesetting(#"hash_d0928790c76d5cb")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_ac66bb9a3a19d91");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_3624e1f373e400cf")) && getgametypesetting(#"hash_3624e1f373e400cf")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_691f420597727d56");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_1d1418091b83b2f")) && getgametypesetting(#"hash_1d1418091b83b2f")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_321c0010d0c7fdc5");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_1771050d3e1a9622")) && getgametypesetting(#"hash_1771050d3e1a9622")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_363ed03cee79d627");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_754adea7069d7708")) && getgametypesetting(#"hash_754adea7069d7708")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_64f996475acdd244");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_74f828ed58482468")) && getgametypesetting(#"hash_74f828ed58482468")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7a53240a3664fe64");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_660271b8cdaeb9a6")) && getgametypesetting(#"hash_660271b8cdaeb9a6")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_52d37104fb5e6eb5");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_5b8edad0ddd32514")) && getgametypesetting(#"hash_5b8edad0ddd32514")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1b69ed326eaa32c4");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_1b859efecd7c5ada")) && getgametypesetting(#"hash_1b859efecd7c5ada")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_59da79c0dcf9cf76");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_3c8207806a75697a")) && getgametypesetting(#"hash_3c8207806a75697a")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_21779574e3841392");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_7fa8685ec958ecdd")) && getgametypesetting(#"hash_7fa8685ec958ecdd")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_52083f0c0759df13");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_fea506177d61a7e")) && getgametypesetting(#"hash_fea506177d61a7e")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_48db4f35da313bd1");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_1c60fd943cbf2207")) && getgametypesetting(#"hash_1c60fd943cbf2207")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7dced4169cb1c6bd");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_2cce084109c75fb8")) && getgametypesetting(#"hash_2cce084109c75fb8")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6fbf66e753d55ddd");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_5f44f580c6226773")) && getgametypesetting(#"hash_5f44f580c6226773")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_2a4214db930e08a7");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_33b7c0db94a8da")) && getgametypesetting(#"hash_33b7c0db94a8da")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1efebec8697e5720");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_21865506375b245a")) && getgametypesetting(#"hash_21865506375b245a")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1caa1516c9ea66af");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_34284880adc550c3")) && getgametypesetting(#"hash_34284880adc550c3")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_199230a69a867bf8");
-	}
-	if(!(isdefined(getgametypesetting(#"hash_6061d8cc58f521fb")) && getgametypesetting(#"hash_6061d8cc58f521fb")))
-	{
-		namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6d33368b7b126df8");
+		if(!(isdefined(getgametypesetting(#"hash_213efc0cbd414268")) && getgametypesetting(#"hash_213efc0cbd414268")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_32834da10f1048b0");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_2c6d9b9532d042fe")) && getgametypesetting(#"hash_2c6d9b9532d042fe")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_250876d81f2e6f6e");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_3e882b80b421ca7d")) && getgametypesetting(#"hash_3e882b80b421ca7d")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_499748ba05372c7");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_6bf344e62e07bffe")) && getgametypesetting(#"hash_6bf344e62e07bffe")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_40ced73804c1be81");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_754aaf85b6f920ab")) && getgametypesetting(#"hash_754aaf85b6f920ab")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_524268075ef65e1e");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_7fac34a754ef395a")) && getgametypesetting(#"hash_7fac34a754ef395a")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1bfc7320c1335797");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_75240ded586d3172")) && getgametypesetting(#"hash_75240ded586d3172")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_31c3a0cc51a512d2");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_4c2d5ba737e6acdf")) && getgametypesetting(#"hash_4c2d5ba737e6acdf")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_9dcbf9df7b19434");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_9589e8a0dbb8631")) && getgametypesetting(#"hash_9589e8a0dbb8631")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1bd3cb5b4becaad9");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_2209ae80a348895d")) && getgametypesetting(#"hash_2209ae80a348895d")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_2799bb4fa8f20048");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_6f7723e2e1175279")) && getgametypesetting(#"hash_6f7723e2e1175279")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_e0a40edfec418ef");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_4b3e4a8072125ce2")) && getgametypesetting(#"hash_4b3e4a8072125ce2")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6857c7a83fc6cdb1");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_d0928790c76d5cb")) && getgametypesetting(#"hash_d0928790c76d5cb")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_ac66bb9a3a19d91");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_3624e1f373e400cf")) && getgametypesetting(#"hash_3624e1f373e400cf")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_691f420597727d56");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_1d1418091b83b2f")) && getgametypesetting(#"hash_1d1418091b83b2f")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_321c0010d0c7fdc5");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_1771050d3e1a9622")) && getgametypesetting(#"hash_1771050d3e1a9622")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_363ed03cee79d627");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_754adea7069d7708")) && getgametypesetting(#"hash_754adea7069d7708")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_64f996475acdd244");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_74f828ed58482468")) && getgametypesetting(#"hash_74f828ed58482468")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7a53240a3664fe64");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_660271b8cdaeb9a6")) && getgametypesetting(#"hash_660271b8cdaeb9a6")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_52d37104fb5e6eb5");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_5b8edad0ddd32514")) && getgametypesetting(#"hash_5b8edad0ddd32514")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1b69ed326eaa32c4");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_1b859efecd7c5ada")) && getgametypesetting(#"hash_1b859efecd7c5ada")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_59da79c0dcf9cf76");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_3c8207806a75697a")) && getgametypesetting(#"hash_3c8207806a75697a")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_21779574e3841392");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_7fa8685ec958ecdd")) && getgametypesetting(#"hash_7fa8685ec958ecdd")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_52083f0c0759df13");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_fea506177d61a7e")) && getgametypesetting(#"hash_fea506177d61a7e")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_48db4f35da313bd1");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_1c60fd943cbf2207")) && getgametypesetting(#"hash_1c60fd943cbf2207")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_7dced4169cb1c6bd");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_2cce084109c75fb8")) && getgametypesetting(#"hash_2cce084109c75fb8")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6fbf66e753d55ddd");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_5f44f580c6226773")) && getgametypesetting(#"hash_5f44f580c6226773")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_2a4214db930e08a7");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_33b7c0db94a8da")) && getgametypesetting(#"hash_33b7c0db94a8da")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1efebec8697e5720");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_21865506375b245a")) && getgametypesetting(#"hash_21865506375b245a")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_1caa1516c9ea66af");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_34284880adc550c3")) && getgametypesetting(#"hash_34284880adc550c3")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_199230a69a867bf8");
+		}
+		if(!(isdefined(getgametypesetting(#"hash_6061d8cc58f521fb")) && getgametypesetting(#"hash_6061d8cc58f521fb")))
+		{
+			namespace_da5c04c3::function_7860b659(var_a12b4736, var_87d0eef8, #"hash_6d33368b7b126df8");
+		}
 	}
 	if(!(isdefined(getgametypesetting(#"hash_41d75cbe78f7837c")) && getgametypesetting(#"hash_41d75cbe78f7837c")))
 	{

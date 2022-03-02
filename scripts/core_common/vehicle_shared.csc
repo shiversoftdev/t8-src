@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"vehicle_shared", &__init__, undefined, undefined);
 }
@@ -136,7 +136,7 @@ function add_vehicletype_callback(vehicletype, callback, data = undefined)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_dd27aacd(localclientnum, vehicletype)
+function private function_dd27aacd(localclientnum, vehicletype)
 {
 	if(isdefined(vehicletype) && isdefined(level.vehicletypecallbackarray[vehicletype]))
 	{
@@ -148,9 +148,9 @@ private function function_dd27aacd(localclientnum, vehicletype)
 		{
 			self thread [[level.vehicletypecallbackarray[vehicletype]]](localclientnum);
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -744,15 +744,18 @@ function addanimtolist(animitem, liston, listoff, playwhenoff, id, maxid)
 			}
 			listoff[listoff.size] = animitem;
 		}
-		else if(!isdefined(liston))
+		else
 		{
-			liston = [];
+			if(!isdefined(liston))
+			{
+				liston = [];
+			}
+			else if(!isarray(liston))
+			{
+				liston = array(liston);
+			}
+			liston[liston.size] = animitem;
 		}
-		else if(!isarray(liston))
-		{
-			liston = array(liston);
-		}
-		liston[liston.size] = animitem;
 	}
 }
 
@@ -1465,17 +1468,23 @@ function flicker_lights(localclientnum, oldval, newval, bnewent, binitialsnap, f
 		self notify(#"hash_45365ddf9df27830");
 		self lights_off(localclientnum);
 	}
-	else if(newval == 1)
+	else
 	{
-		self thread function_44729756(localclientnum);
-	}
-	else if(newval == 2)
-	{
-		self thread function_44729756(localclientnum, 20);
-	}
-	else if(newval == 3)
-	{
-		self notify(#"hash_45365ddf9df27830");
+		if(newval == 1)
+		{
+			self thread function_44729756(localclientnum);
+		}
+		else
+		{
+			if(newval == 2)
+			{
+				self thread function_44729756(localclientnum, 20);
+			}
+			else if(newval == 3)
+			{
+				self notify(#"hash_45365ddf9df27830");
+			}
+		}
 	}
 }
 
@@ -1665,7 +1674,7 @@ function field_toggle_sounds(localclientnum, oldval, newval, bnewent, binitialsn
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dcec5385()
+function private function_dcec5385()
 {
 	self function_f753359a();
 }
@@ -1719,21 +1728,24 @@ function toggle_flir_postfxbundle(localclientnum, oldval, newval, bnewent, binit
 		}
 		update_ui_fullscreen_filter_model(localclientnum, 0);
 	}
-	else if(newval == 1)
+	else
 	{
-		if(player shouldchangescreenpostfx(localclientnum))
+		if(newval == 1)
 		{
-			player thread postfx::playpostfxbundle(#"pstfx_infrared");
-			update_ui_fullscreen_filter_model(localclientnum, 2);
+			if(player shouldchangescreenpostfx(localclientnum))
+			{
+				player thread postfx::playpostfxbundle(#"pstfx_infrared");
+				update_ui_fullscreen_filter_model(localclientnum, 2);
+			}
 		}
-	}
-	else if(newval == 2)
-	{
-		should_change = 1;
-		if(player shouldchangescreenpostfx(localclientnum))
+		else if(newval == 2)
 		{
-			player thread postfx::playpostfxbundle(#"pstfx_flir");
-			update_ui_fullscreen_filter_model(localclientnum, 1);
+			should_change = 1;
+			if(player shouldchangescreenpostfx(localclientnum))
+			{
+				player thread postfx::playpostfxbundle(#"pstfx_flir");
+				update_ui_fullscreen_filter_model(localclientnum, 1);
+			}
 		}
 	}
 }
@@ -1758,10 +1770,10 @@ function shouldchangescreenpostfx(localclientnum)
 		killcamentity = function_93e0f729(localclientnum);
 		if(isdefined(killcamentity) && killcamentity != player)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1861,45 +1873,51 @@ function field_toggle_treadfx(localclientnum, oldval, newval, bnewent, binitials
 			self kill_treads_forever();
 			self thread aircraft_dustkick();
 		}
-		else if(isdefined(bnewent) && bnewent)
-		{
-			self.csf_no_tread = 1;
-		}
 		else
 		{
-			self kill_treads_forever();
-		}
-	}
-	else if(newval)
-	{
-		/#
-			println("");
-		#/
-		if(isdefined(bnewent) && bnewent)
-		{
-			/#
-				println("" + self getentitynumber());
-			#/
-			self.csf_no_tread = 1;
-		}
-		else
-		{
-			/#
-				println("" + self getentitynumber());
-			#/
-			self kill_treads_forever();
+			if(isdefined(bnewent) && bnewent)
+			{
+				self.csf_no_tread = 1;
+			}
+			else
+			{
+				self kill_treads_forever();
+			}
 		}
 	}
 	else
 	{
-		/#
-			println("");
-		#/
-		if(isdefined(self.csf_no_tread))
+		if(newval)
 		{
-			self.csf_no_tread = 0;
+			/#
+				println("");
+			#/
+			if(isdefined(bnewent) && bnewent)
+			{
+				/#
+					println("" + self getentitynumber());
+				#/
+				self.csf_no_tread = 1;
+			}
+			else
+			{
+				/#
+					println("" + self getentitynumber());
+				#/
+				self kill_treads_forever();
+			}
 		}
-		self kill_treads_forever();
+		else
+		{
+			/#
+				println("");
+			#/
+			if(isdefined(self.csf_no_tread))
+			{
+				self.csf_no_tread = 0;
+			}
+			self kill_treads_forever();
+		}
 	}
 }
 
@@ -1949,7 +1967,7 @@ function field_use_engine_damage_sounds(localclientnum, oldval, newval, bnewent,
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a29f490a()
+function private function_a29f490a()
 {
 	self.var_76660b3a = self playloopsound(self.var_f0885951);
 }
@@ -1963,7 +1981,7 @@ private function function_a29f490a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f753359a()
+function private function_f753359a()
 {
 	if(isdefined(self.var_76660b3a))
 	{
@@ -1981,25 +1999,25 @@ private function function_f753359a()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_27b19317(localclientnum)
+function private function_27b19317(localclientnum)
 {
 	if(!self function_4add50a7())
 	{
-		return 0;
+		return false;
 	}
 	if(function_65b9eb0f(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(self.vehicleclass === "helicopter")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_304cf9da) && self.var_304cf9da)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2011,7 +2029,7 @@ private function function_27b19317(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_2d24296(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_2d24296(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(self function_27b19317(localclientnum))
 	{
@@ -2486,12 +2504,15 @@ function field_toggle_exhaustfx_handler(localclientnum, oldval, newval, bnewent,
 			self stop_exhaust(localclientnum);
 		}
 	}
-	else if(isdefined(self.csf_no_exhaust))
+	else
 	{
-		self.csf_no_exhaust = 0;
+		if(isdefined(self.csf_no_exhaust))
+		{
+			self.csf_no_exhaust = 0;
+		}
+		self stop_exhaust(localclientnum);
+		self play_exhaust(localclientnum);
 	}
-	self stop_exhaust(localclientnum);
-	self play_exhaust(localclientnum);
 }
 
 /*
@@ -2509,17 +2530,23 @@ function field_toggle_lights_handler(localclientnum, oldval, newval, bnewent, bi
 	{
 		self lights_off(localclientnum);
 	}
-	else if(newval == 2)
-	{
-		self lights_on(localclientnum, #"allies");
-	}
-	else if(newval == 3)
-	{
-		self lights_on(localclientnum, #"axis");
-	}
 	else
 	{
-		self lights_on(localclientnum);
+		if(newval == 2)
+		{
+			self lights_on(localclientnum, #"allies");
+		}
+		else
+		{
+			if(newval == 3)
+			{
+				self lights_on(localclientnum, #"axis");
+			}
+			else
+			{
+				self lights_on(localclientnum);
+			}
+		}
 	}
 }
 
@@ -2778,13 +2805,16 @@ function field_death_spawn_dynents(localclientnum, oldval, newval, bnewent, bini
 			{
 				dynent = createdynentandlaunch(localclientnum, model, self.origin + offset, self.angles, (0, 0, 0), velocity * 0.8, fx);
 			}
-			else if(newval == 1 && isdefined(fx))
-			{
-				dynent = createdynentandlaunch(localclientnum, model, self.origin + offset, self.angles, (0, 0, 0), velocity * 0.8, fx);
-			}
 			else
 			{
-				dynent = createdynentandlaunch(localclientnum, model, self.origin + offset, self.angles, (0, 0, 0), velocity * 0.8);
+				if(newval == 1 && isdefined(fx))
+				{
+					dynent = createdynentandlaunch(localclientnum, model, self.origin + offset, self.angles, (0, 0, 0), velocity * 0.8, fx);
+				}
+				else
+				{
+					dynent = createdynentandlaunch(localclientnum, model, self.origin + offset, self.angles, (0, 0, 0), velocity * 0.8);
+				}
 			}
 			if(isdefined(dynent))
 			{
@@ -2869,7 +2899,7 @@ function field_gib_spawn_dynents(localclientnum, oldval, newval, bnewent, biniti
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function build_damage_filter_list()
+function autoexec build_damage_filter_list()
 {
 	if(!isdefined(level.vehicle_damage_filters))
 	{

@@ -28,6 +28,74 @@
 #using scripts\zm_common\zm_unitrigger.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
+class class_6fde4e6 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_6fde4e6
+		Checksum: 0xBC861248
+		Offset: 0x3D0
+		Size: 0x32
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.claimed = 0;
+		self.var_4f0ea1b5 = 0;
+		self.owner = undefined;
+		self.var_6f08706b = undefined;
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_6fde4e6
+		Checksum: 0x80F724D1
+		Offset: 0x410
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+}
+
+class class_b599a4bc 
+{
+
+	/*
+		Name: constructor
+		Namespace: namespace_b599a4bc
+		Checksum: 0x13A80887
+		Offset: 0x4B0
+		Size: 0x1A
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+		self.var_f6d13e1b = [];
+		self.entity = undefined;
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_b599a4bc
+		Checksum: 0x80F724D1
+		Offset: 0x4D8
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+}
+
 #namespace namespace_cb42c6c0;
 
 /*
@@ -39,107 +107,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_32b5086207157433", &__init__, undefined, undefined);
-}
-
-#namespace namespace_6fde4e6;
-
-/*
-	Name: __constructor
-	Namespace: namespace_6fde4e6
-	Checksum: 0xBC861248
-	Offset: 0x3D0
-	Size: 0x32
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.claimed = 0;
-	self.var_4f0ea1b5 = 0;
-	self.owner = undefined;
-	self.var_6f08706b = undefined;
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_6fde4e6
-	Checksum: 0x80F724D1
-	Offset: 0x410
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace namespace_cb42c6c0;
-
-/*
-	Name: function_6fde4e6
-	Namespace: namespace_cb42c6c0
-	Checksum: 0xC4B9A197
-	Offset: 0x420
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_6fde4e6()
-{
-	classes.var_6fde4e6[0] = spawnstruct();
-	classes.var_6fde4e6[0].__vtable[913321084] = &namespace_6fde4e6::__destructor;
-	classes.var_6fde4e6[0].__vtable[674154906] = &namespace_6fde4e6::__constructor;
-}
-
-#namespace namespace_b599a4bc;
-
-/*
-	Name: __constructor
-	Namespace: namespace_b599a4bc
-	Checksum: 0x13A80887
-	Offset: 0x4B0
-	Size: 0x1A
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-	self.var_f6d13e1b = [];
-	self.entity = undefined;
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_b599a4bc
-	Checksum: 0x80F724D1
-	Offset: 0x4D8
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace namespace_cb42c6c0;
-
-/*
-	Name: function_b599a4bc
-	Namespace: namespace_cb42c6c0
-	Checksum: 0xC0383FF7
-	Offset: 0x4E8
-	Size: 0x86
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_b599a4bc()
-{
-	classes.var_b599a4bc[0] = spawnstruct();
-	classes.var_b599a4bc[0].__vtable[913321084] = &namespace_b599a4bc::__destructor;
-	classes.var_b599a4bc[0].__vtable[674154906] = &namespace_b599a4bc::__constructor;
 }
 
 /*
@@ -171,7 +141,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b595044c()
+function private function_b595044c()
 {
 	level endon(#"end_game");
 	if(!isdefined(level.var_f17bdf53))
@@ -207,7 +177,7 @@ private function function_b595044c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ccf7ac87()
+function private function_ccf7ac87()
 {
 	level endon(#"end_game");
 	if(!isdefined(level.var_2510f3e4))
@@ -380,7 +350,7 @@ function function_6b9e848(stub)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b913ec1b(targetname, category)
+function private function_b913ec1b(targetname, category)
 {
 	foreach(stub in level._unitriggers.trigger_stubs)
 	{
@@ -400,7 +370,7 @@ private function function_b913ec1b(targetname, category)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eeeb30d7()
+function private function_eeeb30d7()
 {
 	function_b913ec1b("weapon_upgrade", "lockdown_stub_type_wallbuys");
 	function_b913ec1b("bowie_upgrade", "lockdown_stub_type_wallbuys");
@@ -415,7 +385,7 @@ private function function_eeeb30d7()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9559446b()
+function private function_9559446b()
 {
 	function_b913ec1b("perk_vapor_altar_stub", "lockdown_stub_type_perks");
 }
@@ -429,7 +399,7 @@ private function function_9559446b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f7bd473a()
+function private function_f7bd473a()
 {
 	function_b913ec1b("crafting_trigger", "lockdown_stub_type_crafting_tables");
 }
@@ -457,7 +427,7 @@ function function_2bdb235d()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_2bdff7e1(entity, stub, node)
+function private function_2bdff7e1(entity, stub, node)
 {
 	var_5bd89846 = groundtrace(node.origin + vectorscale((0, 0, 1), 8), node.origin + (vectorscale((0, 0, -1), 100000)), 0, entity)[#"position"];
 	var_66694b96 = {#angles:node.angles, #origin:var_5bd89846};
@@ -585,7 +555,7 @@ function function_da72073(stub)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9f952db3(stub, entity, maxheight)
+function private function_9f952db3(stub, entity, maxheight)
 {
 	if(entity.origin[2] > stub.origin[2])
 	{
@@ -595,7 +565,7 @@ private function function_9f952db3(stub, entity, maxheight)
 				function_78eae22a(entity, stub, 7);
 			}
 		#/
-		return 0;
+		return false;
 	}
 	if(stub.origin[2] - entity.origin[2] > maxheight)
 	{
@@ -605,9 +575,9 @@ private function function_9f952db3(stub, entity, maxheight)
 				function_78eae22a(entity, stub, 11, stub.origin[2] - entity.origin[2]);
 			}
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -619,7 +589,7 @@ private function function_9f952db3(stub, entity, maxheight)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_adb36e84(stub)
+function private function_adb36e84(stub)
 {
 	self waittill(#"death");
 	function_77caff8b(stub);
@@ -656,7 +626,7 @@ function function_77caff8b(stub)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_66941fc3(stub)
+function private function_66941fc3(stub)
 {
 	for(var_77f297ef = 0; var_77f297ef < level.var_85c076ab.size; var_77f297ef++)
 	{
@@ -685,7 +655,7 @@ private function function_66941fc3(stub)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fd31eb92(stub)
+function private function_fd31eb92(stub)
 {
 	foreach(var_2943f1ec in level.var_85c076ab)
 	{
@@ -708,7 +678,7 @@ private function function_fd31eb92(stub)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f7315b07(entity)
+function private function_f7315b07(entity)
 {
 	foreach(var_2943f1ec in level.var_85c076ab)
 	{
@@ -728,7 +698,7 @@ private function function_f7315b07(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4ad92a9a(entity)
+function private function_4ad92a9a(entity)
 {
 	foreach(var_2943f1ec in level.var_85c076ab)
 	{
@@ -754,7 +724,7 @@ private function function_4ad92a9a(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e1f6d06a(stub)
+function private function_e1f6d06a(stub)
 {
 	var_f1e20c7f = function_fd31eb92(stub);
 	return isdefined(var_f1e20c7f) && (isdefined(var_f1e20c7f.var_4f0ea1b5) && var_f1e20c7f.var_4f0ea1b5);
@@ -769,7 +739,7 @@ private function function_e1f6d06a(stub)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_55d2ad24(stub, entity)
+function private function_55d2ad24(stub, entity)
 {
 	var_f1e20c7f = function_fd31eb92(stub);
 	return isdefined(var_f1e20c7f) && (isdefined(var_f1e20c7f.claimed) && var_f1e20c7f.claimed) && entity !== var_f1e20c7f.owner;
@@ -784,16 +754,16 @@ private function function_55d2ad24(stub, entity)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d3fbb5ec(entity, stub, current_zone)
+function private function_d3fbb5ec(entity, stub, current_zone)
 {
 	if(isdefined(current_zone) && isdefined(stub.in_zone) && stub.in_zone != current_zone)
 	{
 		/#
 			function_78eae22a(entity, stub, 2);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -805,7 +775,7 @@ private function function_d3fbb5ec(entity, stub, current_zone)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_9c7d5271(entity, registerlotus_right, range)
+function private function_9c7d5271(entity, registerlotus_right, range)
 {
 	current_zone = entity zm_utility::get_current_zone();
 	stubs = arraysortclosest(level.var_f17bdf53, entity.origin, undefined, 0, range);
@@ -854,23 +824,23 @@ private function function_9c7d5271(entity, registerlotus_right, range)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_fea6f0c0(entity, stub, current_zone)
+function private function_fea6f0c0(entity, stub, current_zone)
 {
 	if(isdefined(current_zone) && isdefined(stub.in_zone) && stub.in_zone != current_zone)
 	{
 		/#
 			function_78eae22a(entity, stub, 2);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(stub.var_3468124) && stub.var_3468124.var_2977c27 !== "on")
 	{
 		/#
 			function_78eae22a(entity, stub, 17);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -882,7 +852,7 @@ private function function_fea6f0c0(entity, stub, current_zone)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_db989a2a(entity, registerlotus_right, range)
+function private function_db989a2a(entity, registerlotus_right, range)
 {
 	current_zone = entity zm_utility::get_current_zone();
 	stubs = arraysortclosest(level.var_9235b607, entity.origin, undefined, 0, range);
@@ -931,16 +901,16 @@ private function function_db989a2a(entity, registerlotus_right, range)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_ea677a9a(entity, stub, current_zone)
+function private function_ea677a9a(entity, stub, current_zone)
 {
 	if(isdefined(current_zone) && isdefined(stub.in_zone) && stub.in_zone != current_zone)
 	{
 		/#
 			function_78eae22a(entity, stub, 2);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -952,7 +922,7 @@ private function function_ea677a9a(entity, stub, current_zone)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d0e1d38c(entity, registerlotus_right, range)
+function private function_d0e1d38c(entity, registerlotus_right, range)
 {
 	current_zone = entity zm_utility::get_current_zone();
 	stubs = arraysortclosest(level.var_16cfe3ef, entity.origin, undefined, 0, range);
@@ -1001,37 +971,37 @@ private function function_d0e1d38c(entity, registerlotus_right, range)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_95250640(entity, stub)
+function private function_95250640(entity, stub)
 {
 	if(level flag::get("moving_chest_now"))
 	{
 		/#
 			function_78eae22a(entity, stub.trigger_target, 15);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(stub.trigger_target.hidden) && stub.trigger_target.hidden)
 	{
 		/#
 			function_78eae22a(entity, stub.trigger_target, 3);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(stub.trigger_target._box_open) && stub.trigger_target._box_open)
 	{
 		/#
 			function_78eae22a(entity, stub.trigger_target, 4);
 		#/
-		return 0;
+		return false;
 	}
 	if(isdefined(stub.trigger_target.was_temp) && stub.trigger_target.was_temp || (isdefined(stub.trigger_target.being_removed) && stub.trigger_target.being_removed))
 	{
 		/#
 			function_78eae22a(entity, stub.trigger_target, 13);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1043,7 +1013,7 @@ private function function_95250640(entity, stub)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e6761711(entity, registerlotus_right, range)
+function private function_e6761711(entity, registerlotus_right, range)
 {
 	chests = arraysortclosest(level.chests, entity.origin, undefined, 0, range);
 	foreach(chest in chests)
@@ -1091,23 +1061,23 @@ private function function_e6761711(entity, registerlotus_right, range)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_790e3eb0(entity, trigger)
+function private function_790e3eb0(entity, trigger)
 {
 	if(trigger.pap_machine.state !== "powered")
 	{
 		/#
 			function_78eae22a(entity, trigger, 5);
 		#/
-		return 0;
+		return false;
 	}
 	if(!trigger.pap_machine flag::get("pap_waiting_for_user"))
 	{
 		/#
 			function_78eae22a(entity, trigger, 6);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1119,7 +1089,7 @@ private function function_790e3eb0(entity, trigger)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_165e2bd6(entity, registerlotus_right, range)
+function private function_165e2bd6(entity, registerlotus_right, range)
 {
 	if(!level flag::get("pap_machine_active"))
 	{
@@ -1170,16 +1140,16 @@ private function function_165e2bd6(entity, registerlotus_right, range)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_809ae5cb(entity, blocker)
+function private function_809ae5cb(entity, blocker)
 {
 	if(zm_utility::all_chunks_destroyed(blocker, blocker.barrier_chunks))
 	{
 		/#
 			function_78eae22a(entity, blocker, 12);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1191,7 +1161,7 @@ private function function_809ae5cb(entity, blocker)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_8850974b(entity, registerlotus_right, range)
+function private function_8850974b(entity, registerlotus_right, range)
 {
 	blockers = arraysortclosest(level.exterior_goals, entity.origin, undefined, 0, range);
 	foreach(blocker in blockers)
@@ -1242,16 +1212,16 @@ private function function_8850974b(entity, registerlotus_right, range)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_387fd27e(entity, var_d59d25cc)
+function private function_387fd27e(entity, var_d59d25cc)
 {
 	if(!var_d59d25cc._trap._trap_in_use || !var_d59d25cc._trap istriggerenabled())
 	{
 		/#
 			function_78eae22a(entity, var_d59d25cc, 16);
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1263,7 +1233,7 @@ private function function_387fd27e(entity, var_d59d25cc)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d2ce5ac1(entity, registerlotus_right, range)
+function private function_d2ce5ac1(entity, registerlotus_right, range)
 {
 	trap_trigs = arraysortclosest(level.var_2510f3e4, entity.origin, undefined, 0, range);
 	foreach(var_d59d25cc in trap_trigs)
@@ -1372,18 +1342,14 @@ function function_50ba1eb0(entity, stub)
 	var_2943f1ec = function_f7315b07(entity);
 	if(!isdefined(var_2943f1ec))
 	{
-		object = new var_b599a4bc();
-		[[ object ]]->__constructor();
-		var_2943f1ec = object;
+		var_2943f1ec = new class_b599a4bc();
 		var_2943f1ec.entity = entity;
 		array::add(level.var_85c076ab, var_2943f1ec);
 	}
 	var_f1e20c7f = function_fd31eb92(stub);
 	if(!isdefined(var_f1e20c7f))
 	{
-		object = new var_6fde4e6();
-		[[ object ]]->__constructor();
-		var_f1e20c7f = object;
+		var_f1e20c7f = new class_6fde4e6();
 		var_f1e20c7f.stub = stub;
 		var_f1e20c7f.owner = entity;
 		var_f1e20c7f.claimed = 1;
@@ -1831,7 +1797,7 @@ function function_f3cff6ff(entity)
 	Parameters: 3
 	Flags: Private
 */
-private function function_6351d1c3(entity, registerlotus_right, var_d05e79c8)
+function private function_6351d1c3(entity, registerlotus_right, var_d05e79c8)
 {
 	/#
 		foreach(stub in registerlotus_right)
@@ -1854,7 +1820,7 @@ private function function_6351d1c3(entity, registerlotus_right, var_d05e79c8)
 	Parameters: 0
 	Flags: Private
 */
-private function function_946bb116()
+function private function_946bb116()
 {
 	/#
 		zm_devgui::add_custom_devgui_callback(&function_2765c63);
@@ -1875,7 +1841,7 @@ private function function_946bb116()
 	Parameters: 1
 	Flags: Private
 */
-private function function_2765c63(cmd)
+function private function_2765c63(cmd)
 {
 	/#
 		switch(cmd)
@@ -1906,7 +1872,7 @@ private function function_2765c63(cmd)
 	Parameters: 0
 	Flags: Private
 */
-private function function_6e1690d5()
+function private function_6e1690d5()
 {
 	/#
 		self notify("");

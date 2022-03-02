@@ -46,7 +46,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function main()
+function autoexec main()
 {
 	clientfield::register("allplayers", "being_robot_revived", 1, 1, "int");
 	spawner::add_archetype_spawn_function(#"zod_companion", &zodcompanionbehavior::archetypezodcompanionblackboardinit);
@@ -150,7 +150,7 @@ function registerbehaviorscriptfunctions()
 	Parameters: 5
 	Flags: Private
 */
-private function mocompignorepainfaceenemyinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompignorepainfaceenemyinit(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity.blockingpain = 1;
 	entity orientmode("face enemy");
@@ -166,7 +166,7 @@ private function mocompignorepainfaceenemyinit(entity, mocompanim, mocompanimble
 	Parameters: 5
 	Flags: Private
 */
-private function mocompignorepainfaceenemyterminate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
+function private mocompignorepainfaceenemyterminate(entity, mocompanim, mocompanimblendouttime, mocompanimflag, mocompduration)
 {
 	entity.blockingpain = 0;
 }
@@ -180,7 +180,7 @@ private function mocompignorepainfaceenemyterminate(entity, mocompanim, mocompan
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function archetypezodcompanionblackboardinit()
+function private archetypezodcompanionblackboardinit()
 {
 	entity = self;
 	entity.pushable = 1;
@@ -198,7 +198,7 @@ private function archetypezodcompanionblackboardinit()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompaniondelaymovement(entity)
+function private zodcompaniondelaymovement(entity)
 {
 	entity pathmode("move delayed", 0, randomfloatrange(1, 2));
 }
@@ -212,7 +212,7 @@ private function zodcompaniondelaymovement(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionmovement(entity)
+function private zodcompanionmovement(entity)
 {
 	if(entity getblackboardattribute("_stance") != "stand")
 	{
@@ -239,12 +239,12 @@ function zodcompanioncanjuke(entity)
 		{
 			if(event.data.entity != entity && distance2dsquared(entity.origin, event.data.origin) <= tooclosejukedistancesqr)
 			{
-				return 0;
+				return false;
 			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -311,13 +311,13 @@ function zodcompanioncanpreemptivejuke(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _isvalidplayer(player)
+function private _isvalidplayer(player)
 {
 	if(!isdefined(player) || !isalive(player) || !isplayer(player) || player.sessionstate == "spectator" || player.sessionstate == "intermission" || player laststand::player_is_in_laststand() || player.ignoreme)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -329,7 +329,7 @@ private function _isvalidplayer(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _findclosest(entity, entities)
+function private _findclosest(entity, entities)
 {
 	closest = spawnstruct();
 	if(entities.size > 0)
@@ -358,15 +358,15 @@ private function _findclosest(entity, entities)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompaniontargetservice(entity)
+function private zodcompaniontargetservice(entity)
 {
 	if(zodcompanionabletoshootcondition(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.ignoreall) && entity.ignoreall)
 	{
-		return 0;
+		return false;
 	}
 	aienemies = [];
 	playerenemies = [];
@@ -409,17 +409,23 @@ private function zodcompaniontargetservice(entity)
 	{
 		entity.favoriteenemy = closestplayer.entity;
 	}
-	else if(!isdefined(closestplayer.entity))
-	{
-		entity.favoriteenemy = closestai.entity;
-	}
-	else if(closestai.distancesquared < closestplayer.distancesquared)
-	{
-		entity.favoriteenemy = closestai.entity;
-	}
 	else
 	{
-		entity.favoriteenemy = closestplayer.entity;
+		if(!isdefined(closestplayer.entity))
+		{
+			entity.favoriteenemy = closestai.entity;
+		}
+		else
+		{
+			if(closestai.distancesquared < closestplayer.distancesquared)
+			{
+				entity.favoriteenemy = closestai.entity;
+			}
+			else
+			{
+				entity.favoriteenemy = closestplayer.entity;
+			}
+		}
 	}
 }
 
@@ -432,7 +438,7 @@ private function zodcompaniontargetservice(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompaniontacticalwalkactionstart(entity)
+function private zodcompaniontacticalwalkactionstart(entity)
 {
 	entity orientmode("face enemy");
 }
@@ -446,7 +452,7 @@ private function zodcompaniontacticalwalkactionstart(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionabletoshootcondition(entity)
+function private zodcompanionabletoshootcondition(entity)
 {
 	return entity.weapon.name != level.weaponnone.name && !gibserverutils::isgibbed(entity, 16);
 }
@@ -460,13 +466,13 @@ private function zodcompanionabletoshootcondition(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionshouldtacticalwalk(entity)
+function private zodcompanionshouldtacticalwalk(entity)
 {
 	if(!entity haspath())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -478,7 +484,7 @@ private function zodcompanionshouldtacticalwalk(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionjukeinitialize(entity)
+function private zodcompanionjukeinitialize(entity)
 {
 	aiutility::choosejukedirection(entity);
 	entity clearpath();
@@ -497,7 +503,7 @@ private function zodcompanionjukeinitialize(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionpreemptivejuketerminate(entity)
+function private zodcompanionpreemptivejuketerminate(entity)
 {
 	entity.nextpreemptivejuke = gettime() + randomintrange(4000, 6000);
 	entity.nextpreemptivejukeads = randomfloatrange(0.5, 0.95);
@@ -512,7 +518,7 @@ private function zodcompanionpreemptivejuketerminate(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompaniontryreacquireservice(entity)
+function private zodcompaniontryreacquireservice(entity)
 {
 	if(!isdefined(entity.reacquire_state))
 	{
@@ -521,27 +527,27 @@ private function zodcompaniontryreacquireservice(entity)
 	if(!isdefined(entity.enemy))
 	{
 		entity.reacquire_state = 0;
-		return 0;
+		return false;
 	}
 	if(entity haspath())
 	{
-		return 0;
+		return false;
 	}
 	if(!zodcompanionabletoshootcondition(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(entity cansee(entity.enemy) && entity canshootenemy())
 	{
 		entity.reacquire_state = 0;
-		return 0;
+		return false;
 	}
 	dirtoenemy = vectornormalize(entity.enemy.origin - entity.origin);
 	forward = anglestoforward(entity.angles);
 	if(vectordot(dirtoenemy, forward) < 0.5)
 	{
 		entity.reacquire_state = 0;
-		return 0;
+		return false;
 	}
 	switch(entity.reacquire_state)
 	{
@@ -566,7 +572,7 @@ private function zodcompaniontryreacquireservice(entity)
 			if(entity.reacquire_state > 15)
 			{
 				entity.reacquire_state = 0;
-				return 0;
+				return false;
 			}
 			break;
 		}
@@ -574,10 +580,10 @@ private function zodcompaniontryreacquireservice(entity)
 	if(isvec(reacquirepos))
 	{
 		entity function_a57c34b7(reacquirepos);
-		return 1;
+		return true;
 	}
 	entity.reacquire_state++;
-	return 0;
+	return false;
 }
 
 /*
@@ -589,7 +595,7 @@ private function zodcompaniontryreacquireservice(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function manage_companion_movement(entity)
+function private manage_companion_movement(entity)
 {
 	self endon(#"death");
 	if(isdefined(level.var_1a612d42) && level.var_1a612d42.eligible_leader)
@@ -714,13 +720,13 @@ private function manage_companion_movement(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanioncollisionservice(entity)
+function private zodcompanioncollisionservice(entity)
 {
 	if(isdefined(entity.dontpushtime))
 	{
 		if(gettime() < entity.dontpushtime)
 		{
-			return 1;
+			return true;
 		}
 	}
 	var_26cddecd = 0;
@@ -745,10 +751,10 @@ private function zodcompanioncollisionservice(entity)
 	{
 		entity collidewithactors(0);
 		entity.dontpushtime = gettime() + 2000;
-		return 1;
+		return true;
 	}
 	entity collidewithactors(1);
-	return 0;
+	return false;
 }
 
 /*
@@ -760,7 +766,7 @@ private function zodcompanioncollisionservice(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d0371e1e()
+function private function_d0371e1e()
 {
 	self endon(#"death");
 	self collidewithactors(0);
@@ -777,13 +783,13 @@ private function function_d0371e1e()
 	Parameters: 2
 	Flags: Private
 */
-private function function_a2ba1ce8(target_entity, max_distance)
+function private function_a2ba1ce8(target_entity, max_distance)
 {
 	entity = self;
 	var_85e6dc61 = target_entity.origin;
 	if(distancesquared(entity.origin, var_85e6dc61) > max_distance * max_distance)
 	{
-		return 0;
+		return false;
 	}
 	path = entity calcapproximatepathtoposition(var_85e6dc61);
 	segmentlength = 0;
@@ -792,11 +798,11 @@ private function function_a2ba1ce8(target_entity, max_distance)
 		currentseglength = distance(path[index - 1], path[index]);
 		if(currentseglength + segmentlength > max_distance)
 		{
-			return 0;
+			return false;
 		}
 		segmentlength = segmentlength + currentseglength;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -808,7 +814,7 @@ private function function_a2ba1ce8(target_entity, max_distance)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_818f64d1(var_d2a1361a)
+function private function_818f64d1(var_d2a1361a)
 {
 	self endon(#"death");
 	self.var_8dc43281 = 1;
@@ -827,7 +833,7 @@ private function function_818f64d1(var_d2a1361a)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d5390a05(var_33d955f9)
+function private function_d5390a05(var_33d955f9)
 {
 	self endon(#"death");
 	self.var_7e56b71c = 1;
@@ -848,7 +854,7 @@ private function function_d5390a05(var_33d955f9)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pick_new_movement_point()
+function private pick_new_movement_point()
 {
 	queryresult = positionquery_source_navigation(self.companion_anchor_point, 96, 256, 256, 20, self);
 	if(queryresult.data.size)
@@ -885,7 +891,7 @@ private function pick_new_movement_point()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bc4cbfe(parasite)
+function private function_bc4cbfe(parasite)
 {
 	point = self;
 	height_difference = abs(point.origin[2] - parasite.origin[2]);
@@ -902,7 +908,7 @@ private function function_bc4cbfe(parasite)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionsetdesiredstancetostand(behaviortreeentity)
+function private zodcompanionsetdesiredstancetostand(behaviortreeentity)
 {
 	currentstance = behaviortreeentity getblackboardattribute("_stance");
 	if(currentstance == "crouch")
@@ -1048,7 +1054,7 @@ function zod_companion_revive_cleanup(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionfinishedsprinttransition(behaviortreeentity)
+function private zodcompanionfinishedsprinttransition(behaviortreeentity)
 {
 	behaviortreeentity.sprint_transition_happening = 0;
 	if(behaviortreeentity getblackboardattribute("_locomotion_speed") == "locomotion_speed_walk")
@@ -1072,20 +1078,20 @@ private function zodcompanionfinishedsprinttransition(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionkeepscurrentmovementmode(behaviortreeentity)
+function private zodcompanionkeepscurrentmovementmode(behaviortreeentity)
 {
 	var_202e5b5c = 262144;
 	var_c351bd17 = 147456;
 	dist = distancesquared(behaviortreeentity.origin, behaviortreeentity.companion_anchor_point);
 	if(dist > var_202e5b5c && behaviortreeentity getblackboardattribute("_locomotion_speed") == "locomotion_speed_walk")
 	{
-		return 0;
+		return false;
 	}
 	if(dist < var_c351bd17 && behaviortreeentity getblackboardattribute("_locomotion_speed") == "locomotion_speed_sprint")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1097,13 +1103,13 @@ private function zodcompanionkeepscurrentmovementmode(behaviortreeentity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function zodcompanionsprinttransitioning(behaviortreeentity)
+function private zodcompanionsprinttransitioning(behaviortreeentity)
 {
 	if(behaviortreeentity.sprint_transition_happening === 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 #namespace zodcompanionserverutils;
@@ -1117,19 +1123,22 @@ private function zodcompanionsprinttransitioning(behaviortreeentity)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _trygibbinghead(entity, damage, hitloc, isexplosive)
+function private _trygibbinghead(entity, damage, hitloc, isexplosive)
 {
 	if(isexplosive && randomfloatrange(0, 1) <= 0.5)
 	{
 		gibserverutils::gibhead(entity);
 	}
-	else if(isinarray(array("head", "neck", "helmet"), hitloc) && randomfloatrange(0, 1) <= 1)
+	else
 	{
-		gibserverutils::gibhead(entity);
-	}
-	else if((entity.health - damage) <= 0 && randomfloatrange(0, 1) <= 0.25)
-	{
-		gibserverutils::gibhead(entity);
+		if(isinarray(array("head", "neck", "helmet"), hitloc) && randomfloatrange(0, 1) <= 1)
+		{
+			gibserverutils::gibhead(entity);
+		}
+		else if((entity.health - damage) <= 0 && randomfloatrange(0, 1) <= 0.25)
+		{
+			gibserverutils::gibhead(entity);
+		}
 	}
 }
 
@@ -1142,7 +1151,7 @@ private function _trygibbinghead(entity, damage, hitloc, isexplosive)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function _trygibbinglimb(entity, damage, hitloc, isexplosive)
+function private _trygibbinglimb(entity, damage, hitloc, isexplosive)
 {
 	if(gibserverutils::isgibbed(entity, 32) || gibserverutils::isgibbed(entity, 16))
 	{
@@ -1159,23 +1168,29 @@ private function _trygibbinglimb(entity, damage, hitloc, isexplosive)
 			gibserverutils::gibleftarm(entity);
 		}
 	}
-	else if(isinarray(array("left_hand", "left_arm_lower", "left_arm_upper"), hitloc))
+	else
 	{
-		gibserverutils::gibleftarm(entity);
-	}
-	else if((entity.health - damage) <= 0 && entity.allowdeath && isinarray(array("right_hand", "right_arm_lower", "right_arm_upper"), hitloc))
-	{
-		gibserverutils::gibrightarm(entity);
-	}
-	else if((entity.health - damage) <= 0 && entity.allowdeath && randomfloatrange(0, 1) <= 0.25)
-	{
-		if(math::cointoss())
+		if(isinarray(array("left_hand", "left_arm_lower", "left_arm_upper"), hitloc))
 		{
 			gibserverutils::gibleftarm(entity);
 		}
 		else
 		{
-			gibserverutils::gibrightarm(entity);
+			if((entity.health - damage) <= 0 && entity.allowdeath && isinarray(array("right_hand", "right_arm_lower", "right_arm_upper"), hitloc))
+			{
+				gibserverutils::gibrightarm(entity);
+			}
+			else if((entity.health - damage) <= 0 && entity.allowdeath && randomfloatrange(0, 1) <= 0.25)
+			{
+				if(math::cointoss())
+				{
+					gibserverutils::gibleftarm(entity);
+				}
+				else
+				{
+					gibserverutils::gibrightarm(entity);
+				}
+			}
 		}
 	}
 }
@@ -1189,7 +1204,7 @@ private function _trygibbinglimb(entity, damage, hitloc, isexplosive)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function _trygibbinglegs(entity, damage, hitloc, isexplosive, attacker = entity)
+function private _trygibbinglegs(entity, damage, hitloc, isexplosive, attacker = entity)
 {
 	cangiblegs = (entity.health - damage) <= 0 && entity.allowdeath;
 	cangiblegs = cangiblegs || (((entity.health - damage) / entity.maxhealth) <= 0.25 && distancesquared(entity.origin, attacker.origin) <= 360000 && entity.allowdeath);
@@ -1198,31 +1213,37 @@ private function _trygibbinglegs(entity, damage, hitloc, isexplosive, attacker =
 		gibserverutils::giblegs(entity);
 		entity startragdoll();
 	}
-	else if(cangiblegs && isinarray(array("left_leg_upper", "left_leg_lower", "left_foot"), hitloc) && randomfloatrange(0, 1) <= 1)
+	else
 	{
-		if(entity.health - damage > 0)
+		if(cangiblegs && isinarray(array("left_leg_upper", "left_leg_lower", "left_foot"), hitloc) && randomfloatrange(0, 1) <= 1)
 		{
-			entity.becomecrawler = 1;
-		}
-		gibserverutils::gibleftleg(entity);
-	}
-	else if(cangiblegs && isinarray(array("right_leg_upper", "right_leg_lower", "right_foot"), hitloc) && randomfloatrange(0, 1) <= 1)
-	{
-		if(entity.health - damage > 0)
-		{
-			entity.becomecrawler = 1;
-		}
-		gibserverutils::gibrightleg(entity);
-	}
-	else if((entity.health - damage) <= 0 && entity.allowdeath && randomfloatrange(0, 1) <= 0.25)
-	{
-		if(math::cointoss())
-		{
+			if(entity.health - damage > 0)
+			{
+				entity.becomecrawler = 1;
+			}
 			gibserverutils::gibleftleg(entity);
 		}
 		else
 		{
-			gibserverutils::gibrightleg(entity);
+			if(cangiblegs && isinarray(array("right_leg_upper", "right_leg_lower", "right_foot"), hitloc) && randomfloatrange(0, 1) <= 1)
+			{
+				if(entity.health - damage > 0)
+				{
+					entity.becomecrawler = 1;
+				}
+				gibserverutils::gibrightleg(entity);
+			}
+			else if((entity.health - damage) <= 0 && entity.allowdeath && randomfloatrange(0, 1) <= 0.25)
+			{
+				if(math::cointoss())
+				{
+					gibserverutils::gibleftleg(entity);
+				}
+				else
+				{
+					gibserverutils::gibrightleg(entity);
+				}
+			}
 		}
 	}
 }
@@ -1236,7 +1257,7 @@ private function _trygibbinglegs(entity, damage, hitloc, isexplosive, attacker =
 	Parameters: 12
 	Flags: Linked, Private
 */
-private function zodcompaniongibdamageoverride(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private zodcompaniongibdamageoverride(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	entity = self;
 	if((entity.health - damage) / entity.maxhealth > 0.75)
@@ -1260,7 +1281,7 @@ private function zodcompaniongibdamageoverride(inflictor, attacker, damage, flag
 	Parameters: 12
 	Flags: Private
 */
-private function zodcompaniondestructdeathoverride(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private zodcompaniondestructdeathoverride(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	entity = self;
 	if((entity.health - damage) <= 0)
@@ -1298,7 +1319,7 @@ private function zodcompaniondestructdeathoverride(inflictor, attacker, damage, 
 	Parameters: 12
 	Flags: Linked, Private
 */
-private function zodcompaniondamageoverride(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
+function private zodcompaniondamageoverride(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
 	entity = self;
 	if(hitloc == "helmet" || hitloc == "head" || hitloc == "neck")
@@ -1317,7 +1338,7 @@ private function zodcompaniondamageoverride(inflictor, attacker, damage, flags, 
 	Parameters: 1
 	Flags: Private
 */
-private function findclosestnavmeshpositiontoenemy(enemy)
+function private findclosestnavmeshpositiontoenemy(enemy)
 {
 	enemypositiononnavmesh = undefined;
 	for(tolerancelevel = 1; tolerancelevel <= 4; tolerancelevel++)
@@ -1340,7 +1361,7 @@ private function findclosestnavmeshpositiontoenemy(enemy)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function zodcompanionsoldierspawnsetup()
+function private zodcompanionsoldierspawnsetup()
 {
 	entity = self;
 	entity.combatmode = "cover";
@@ -1440,44 +1461,47 @@ function define_new_leader()
 		{
 			self.leader = undefined;
 		}
-		else if(getdvarint(#"hash_6d35b5921943876a", 1))
+		else
 		{
-			playerpositions = [];
-			foreach(potential_leader in a_potential_leaders)
+			if(getdvarint(#"hash_6d35b5921943876a", 1))
 			{
-				if(!isdefined(playerpositions))
-				{
-					playerpositions = [];
-				}
-				else if(!isarray(playerpositions))
-				{
-					playerpositions = array(playerpositions);
-				}
-				playerpositions[playerpositions.size] = potential_leader.origin;
-			}
-			var_f67d1ba2 = generatenavmeshpath(self.origin, playerpositions, self);
-			if(isdefined(var_f67d1ba2) && var_f67d1ba2.status === "succeeded")
-			{
-				goalpos = var_f67d1ba2.pathpoints[var_f67d1ba2.pathpoints.size - 1];
+				playerpositions = [];
 				foreach(potential_leader in a_potential_leaders)
 				{
-					if(distancesquared(potential_leader.origin, goalpos) < 16 * 16)
+					if(!isdefined(playerpositions))
 					{
-						self.leader = potential_leader;
-						break;
+						playerpositions = [];
+					}
+					else if(!isarray(playerpositions))
+					{
+						playerpositions = array(playerpositions);
+					}
+					playerpositions[playerpositions.size] = potential_leader.origin;
+				}
+				var_f67d1ba2 = generatenavmeshpath(self.origin, playerpositions, self);
+				if(isdefined(var_f67d1ba2) && var_f67d1ba2.status === "succeeded")
+				{
+					goalpos = var_f67d1ba2.pathpoints[var_f67d1ba2.pathpoints.size - 1];
+					foreach(potential_leader in a_potential_leaders)
+					{
+						if(distancesquared(potential_leader.origin, goalpos) < 16 * 16)
+						{
+							self.leader = potential_leader;
+							break;
+						}
 					}
 				}
 			}
-		}
-		else
-		{
-			foreach(potential_leader in a_potential_leaders)
+			else
 			{
-				dist = pathdistance(self.origin, potential_leader.origin);
-				if(isdefined(dist) && dist < closest_distance)
+				foreach(potential_leader in a_potential_leaders)
 				{
-					closest_distance = dist;
-					self.leader = potential_leader;
+					dist = pathdistance(self.origin, potential_leader.origin);
+					if(isdefined(dist) && dist < closest_distance)
+					{
+						closest_distance = dist;
+						self.leader = potential_leader;
+					}
 				}
 			}
 		}

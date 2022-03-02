@@ -267,10 +267,10 @@ function get_any(array)
 	{
 		if(get(str_flag))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -288,10 +288,10 @@ function get_all(array)
 	{
 		if(!get(str_flag))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -591,7 +591,12 @@ function delete(str_flag)
 	{
 		self.flag[str_flag] = undefined;
 	}
-	println("" + str_flag);
+	else
+	{
+		/#
+			println("" + str_flag);
+		#/
+	}
 }
 
 /*
@@ -608,8 +613,8 @@ function script_flag_wait()
 	if(isdefined(self.script_flag_wait))
 	{
 		self wait_till(self.script_flag_wait);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

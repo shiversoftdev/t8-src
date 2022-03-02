@@ -462,13 +462,13 @@ function shouldreceivesurvivorbonus()
 {
 	if(isalive(self))
 	{
-		return 1;
+		return true;
 	}
 	if(self.hasspawned && self.pers[#"lives"] > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -514,7 +514,7 @@ function watchelimination()
 	Parameters: 1
 	Flags: Private
 */
-private function function_ce7ffccb(winner)
+function private function_ce7ffccb(winner)
 {
 	if(globallogic_utils::gettimeremaining() <= (int(level.var_18823aed * 1000)))
 	{

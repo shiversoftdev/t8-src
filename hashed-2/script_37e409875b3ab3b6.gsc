@@ -23,7 +23,7 @@
 	Parameters: 1
 	Flags: Private
 */
-private function _createcommanderplanner(team)
+function private _createcommanderplanner(team)
 {
 	planner = plannerutility::createplannerfromasset("zm_commander.ai_htn");
 	return planner;
@@ -38,7 +38,7 @@ private function _createcommanderplanner(team)
 	Parameters: 1
 	Flags: Private
 */
-private function _createsquadplanner(team)
+function private _createsquadplanner(team)
 {
 	planner = plannerutility::createplannerfromasset("zm_squad.ai_htn");
 	return planner;

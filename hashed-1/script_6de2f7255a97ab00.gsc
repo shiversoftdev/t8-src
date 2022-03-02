@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_c70352f852fda84", &__init__, undefined, #"item_world");
 }
@@ -36,7 +36,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	if(!isdefined(getgametypesetting(#"useitemspawns")) || getgametypesetting(#"useitemspawns") == 0)
 	{
@@ -59,7 +59,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Private
 */
-private function function_eaba72c9()
+function private function_eaba72c9()
 {
 	/#
 		while(true)
@@ -150,7 +150,7 @@ private function function_eaba72c9()
 	Parameters: 0
 	Flags: Private
 */
-private function function_44b9dd1d()
+function private function_44b9dd1d()
 {
 	/#
 		while(!canadddebugcommand())
@@ -180,7 +180,7 @@ private function function_44b9dd1d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_a88ee653()
+function private function_a88ee653()
 {
 	/#
 		if(isdefined(level.var_b2513722))
@@ -239,7 +239,7 @@ private function function_a88ee653()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c7bd0aa8(point, startpoint)
+function private function_c7bd0aa8(point, startpoint)
 {
 	/#
 		assert(isvec(point));
@@ -307,7 +307,7 @@ private function function_c7bd0aa8(point, startpoint)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_13339b58(var_d4bce8be)
+function private function_13339b58(var_d4bce8be)
 {
 	self endon(#"death");
 	var_ee00b371 = #"hash_4f2b2f1b4df13119";
@@ -344,7 +344,7 @@ private function function_13339b58(var_d4bce8be)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_71c31c8d()
+function private function_71c31c8d()
 {
 	self notify(#"hash_6ade3db3c3188274");
 	self.var_7bea4af0 = 1;
@@ -359,7 +359,7 @@ private function function_71c31c8d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_500a6615(itemspawnlist = #"hash_696141fcc5f2e372")
+function private function_500a6615(itemspawnlist = #"hash_696141fcc5f2e372")
 {
 	if(isdefined(self.supplydrop))
 	{
@@ -449,7 +449,7 @@ private function function_500a6615(itemspawnlist = #"hash_696141fcc5f2e372")
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e21ceb1b()
+function private function_e21ceb1b()
 {
 	self endon(#"death", #"movedone");
 	var_9d85c40f = vectorscale((1, 1, 1), 10);
@@ -508,7 +508,7 @@ private function function_e21ceb1b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ba3be344()
+function private function_ba3be344()
 {
 	self endon(#"death");
 	self notify(#"hash_57267dfd9e64c1c7");
@@ -542,7 +542,7 @@ private function function_ba3be344()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3c597e8d()
+function private function_3c597e8d()
 {
 	var_6024133d = getentarray("map_corner", "targetname");
 	if(var_6024133d.size)
@@ -561,7 +561,7 @@ private function function_3c597e8d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_43e35f94()
+function private function_43e35f94()
 {
 	var_6024133d = getentarray("map_corner", "targetname");
 	if(var_6024133d.size)
@@ -582,7 +582,7 @@ private function function_43e35f94()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_67d7d040(var_d91c179d)
+function private function_67d7d040(var_d91c179d)
 {
 	supplydrop = spawn("script_model", (0, 0, 0));
 	supplydrop.targetname = "supply_drop";
@@ -608,7 +608,7 @@ private function function_67d7d040(var_d91c179d)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_546afbb6()
+function private function_546afbb6()
 {
 	self endon(#"death");
 	var_dc66f988 = self getvelocity();
@@ -640,7 +640,7 @@ private function function_546afbb6()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a3832aa0(var_d91c179d, vehicletype)
+function private function_a3832aa0(var_d91c179d, vehicletype)
 {
 	supplydrop = spawn("script_model", vectorscale((0, 0, -1), 64000));
 	supplydrop setmodel("tag_origin");
@@ -671,7 +671,7 @@ private function function_a3832aa0(var_d91c179d, vehicletype)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_16bbdd8b(point)
+function private function_16bbdd8b(point)
 {
 	if(!isdefined(level.var_3e5e898c) || !isdefined(level.var_ae7f6100))
 	{
@@ -698,7 +698,7 @@ private function function_16bbdd8b(point)
 	Parameters: 15
 	Flags: Linked, Private
 */
-private function function_415bdb1d(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
+function private function_415bdb1d(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	if(isdefined(self.vehicletype) && self.vehicletype == "vehicle_t8_mil_helicopter_transport_dark_wz" && (max(self.health - idamage, 0)) <= 0)
 	{
@@ -722,7 +722,7 @@ private function function_415bdb1d(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 15
 	Flags: Linked, Private
 */
-private function function_9a275b1f(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
+function private function_9a275b1f(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	newhealth = max(self.health - idamage, 0);
 	var_d4bce8be = isdefined(self.scriptvehicletype) && self.scriptvehicletype == "player_tank";
@@ -734,12 +734,15 @@ private function function_9a275b1f(einflictor, eattacker, idamage, idflags, smea
 			var_b2513722 thread function_500a6615();
 			var_b2513722 thread function_ba3be344();
 		}
-		else if(isdefined(self.supplydrop))
+		else
 		{
-			self.supplydrop function_71c31c8d();
-			self thread function_546afbb6();
+			if(isdefined(self.supplydrop))
+			{
+				self.supplydrop function_71c31c8d();
+				self thread function_546afbb6();
+			}
+			self.var_b9b5403c = 0;
 		}
-		self.var_b9b5403c = 0;
 	}
 	if(newhealth <= 0)
 	{
@@ -758,7 +761,7 @@ private function function_9a275b1f(einflictor, eattacker, idamage, idflags, smea
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_eafcba42(startpoint, endpoint, droppoint, maxheight, minheight)
+function private function_eafcba42(startpoint, endpoint, droppoint, maxheight, minheight)
 {
 	points = [];
 	startpoint = trace_point(startpoint);
@@ -797,7 +800,7 @@ private function function_eafcba42(startpoint, endpoint, droppoint, maxheight, m
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function trace_point(point, var_5fd22b95 = 1, maxheight = 10000, minheight = 5000)
+function private trace_point(point, var_5fd22b95 = 1, maxheight = 10000, minheight = 5000)
 {
 	startpoint = (point[0], point[1], maxheight);
 	endpoint = (point[0], point[1], minheight);
@@ -825,7 +828,7 @@ private function trace_point(point, var_5fd22b95 = 1, maxheight = 10000, minheig
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8234217e(var_faa1ea31, vectors)
+function private function_8234217e(var_faa1ea31, vectors)
 {
 	/#
 		assert(vectors.size > 0);
@@ -857,7 +860,7 @@ private function function_8234217e(var_faa1ea31, vectors)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a40836e(angles)
+function private function_a40836e(angles)
 {
 	axises = [];
 	axises[axises.size] = anglestoforward(angles);
@@ -880,7 +883,7 @@ private function function_a40836e(angles)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_924a11ff(itemspawnlist)
+function private function_924a11ff(itemspawnlist)
 {
 	/#
 		assert(isdefined(itemspawnlist));
@@ -917,7 +920,7 @@ private function function_924a11ff(itemspawnlist)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9e8348e4()
+function private function_9e8348e4()
 {
 	self waittill(#"death");
 	self thread function_500a6615();
@@ -932,7 +935,7 @@ private function function_9e8348e4()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_c2edbefb(path, droppoint, var_86928932 = 1, var_2118f785 = undefined)
+function private function_c2edbefb(path, droppoint, var_86928932 = 1, var_2118f785 = undefined)
 {
 	self endon(#"death", #"hash_57267dfd9e64c1c7");
 	for(pathindex = 1; pathindex < path.size; pathindex++)
@@ -1022,7 +1025,7 @@ function function_ab6af198()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_261b0e67(spawnpoint, endpoint, droppoint, var_d9151bd0 = 1, vehicleoverride = undefined)
+function private function_261b0e67(spawnpoint, endpoint, droppoint, var_d9151bd0 = 1, vehicleoverride = undefined)
 {
 	var_47736ddd = array(spawnpoint, droppoint, endpoint);
 	var_7366c0ff = spawnvehicle((isdefined(vehicleoverride) ? vehicleoverride : "vehicle_t8_mil_helicopter_transport_dark_wz_infiltration"), spawnpoint, vectortoangles(vectornormalize(endpoint - spawnpoint)));

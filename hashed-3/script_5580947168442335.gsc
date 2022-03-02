@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_698dcdb18ce4f995", &__init__, undefined, undefined);
 }
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6aac1790(var_dbb94a)
+function private function_6aac1790(var_dbb94a)
 {
 	if(isdefined(var_dbb94a) && !self isattached(var_dbb94a, "tag_weapon_right"))
 	{
@@ -71,7 +71,7 @@ private function function_6aac1790(var_dbb94a)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a43054a8()
+function private function_a43054a8()
 {
 	parachute = self namespace_eb06e24d::function_fc6b6f3b();
 	var_dbb94a = parachute.("parachuteLit");
@@ -90,7 +90,7 @@ private function function_a43054a8()
 	Parameters: 0
 	Flags: Private
 */
-private function function_1c10540b()
+function private function_1c10540b()
 {
 	parachute = self namespace_eb06e24d::function_fc6b6f3b();
 	var_dbb94a = parachute.("parachuteLit");
@@ -109,7 +109,7 @@ private function function_1c10540b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_40635b9a(var_dbb94a)
+function private function_40635b9a(var_dbb94a)
 {
 	if(isdefined(var_dbb94a) && self isattached(var_dbb94a, "tag_weapon_right"))
 	{
@@ -127,7 +127,7 @@ private function function_40635b9a(var_dbb94a)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_26d46af3(eventstruct)
+function private function_26d46af3(eventstruct)
 {
 	if(!(isplayer(self) || self isplayercorpse()))
 	{
@@ -194,7 +194,7 @@ private function function_26d46af3(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c9a18304(eventstruct)
+function private function_c9a18304(eventstruct)
 {
 	if(!(isplayer(self) || self isplayercorpse()))
 	{
@@ -384,7 +384,7 @@ function function_e8a9e948(localclientnum, var_695a7111)
 {
 	if(self function_21c0fa55())
 	{
-		self endon_callback(&function_1c6573a4, #"death", #"hash_36dd69a696f827af");
+		self endoncallback(&function_1c6573a4, #"death", #"hash_36dd69a696f827af");
 		while(true)
 		{
 			vel = self getvelocity();
@@ -725,15 +725,18 @@ function function_57738ae7(localclientnum, parachute)
 	{
 		self.var_fcfda7c4 = self playloopsound("evt_skydive_wind_light", 1);
 	}
-	else if(isdefined(self.var_fcfda7c4))
+	else
 	{
-		self stoploopsound(self.var_fcfda7c4, 0);
-		self.var_fcfda7c4 = undefined;
-	}
-	if(isdefined(self.var_b7756d91))
-	{
-		self stoploopsound(self.var_b7756d91, 0);
-		self.var_b7756d91 = undefined;
+		if(isdefined(self.var_fcfda7c4))
+		{
+			self stoploopsound(self.var_fcfda7c4, 0);
+			self.var_fcfda7c4 = undefined;
+		}
+		if(isdefined(self.var_b7756d91))
+		{
+			self stoploopsound(self.var_b7756d91, 0);
+			self.var_b7756d91 = undefined;
+		}
 	}
 }
 

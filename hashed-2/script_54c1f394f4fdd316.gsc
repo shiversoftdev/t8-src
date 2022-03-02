@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3434169163ecaa3e", &__init__, undefined, undefined);
 }
@@ -59,7 +59,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_killed()
+function private on_player_killed()
 {
 	self clientfield::set_player_uimodel("hudItems.depositing", 0);
 }
@@ -91,7 +91,7 @@ function function_ed66923(targetname, count)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_be29b8d2()
+function private function_be29b8d2()
 {
 	item_world::function_1b11e73c();
 	foreach(targetname, count in level.var_a6a3e12a)
@@ -127,7 +127,7 @@ private function function_be29b8d2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_189f45d2(targetname)
+function private function_189f45d2(targetname)
 {
 	var_fd5a4651 = getdynentarray(targetname);
 	foreach(safe in var_fd5a4651)
@@ -145,7 +145,7 @@ private function function_189f45d2(targetname)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_af4c6c9b(targetname, count)
+function private function_af4c6c9b(targetname, count)
 {
 	var_fd5a4651 = getdynentarray(targetname);
 	while(var_fd5a4651.size > count)
@@ -169,7 +169,7 @@ private function function_af4c6c9b(targetname, count)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fb346efb()
+function private function_fb346efb()
 {
 	level flagsys::wait_till(#"hash_405e46788e83af41");
 	var_c88d9756 = level.var_fb91af8.size - 1;
@@ -194,7 +194,7 @@ private function function_fb346efb()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_3387f756(targetname, origin, radius)
+function private function_3387f756(targetname, origin, radius)
 {
 	var_fd5a4651 = getdynentarray(targetname);
 	radiussq = radius * radius;
@@ -218,7 +218,7 @@ private function function_3387f756(targetname, origin, radius)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fcf5be67()
+function private function_fcf5be67()
 {
 	function_e2a06860(self, 0);
 	self.var_e7823894 = 1;
@@ -239,7 +239,7 @@ private function function_fcf5be67()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ec834c4d()
+function private function_ec834c4d()
 {
 	function_e2a06860(self, 2);
 }
@@ -253,11 +253,11 @@ private function function_ec834c4d()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c92a5584(activator)
+function private function_c92a5584(activator)
 {
 	if(!isdefined(activator) || !isstruct(activator.inventory) || !isarray(activator.inventory.items))
 	{
-		return 0;
+		return false;
 	}
 	foreach(item in activator.inventory.items)
 	{
@@ -265,9 +265,9 @@ private function function_c92a5584(activator)
 		{
 			continue;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -279,7 +279,7 @@ private function function_c92a5584(activator)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_97eb71f0(activator)
+function private function_97eb71f0(activator)
 {
 	if(isdefined(activator.var_8a022726))
 	{
@@ -297,7 +297,7 @@ private function function_97eb71f0(activator)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3d49217f(activator)
+function private function_3d49217f(activator)
 {
 	var_22aec194 = activator function_2cef7d98();
 	if(isdefined(var_22aec194))
@@ -316,12 +316,12 @@ private function function_3d49217f(activator)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_7c5a1e82(activator, stateindex, var_9bdcfcd8)
+function private function_7c5a1e82(activator, stateindex, var_9bdcfcd8)
 {
 	self function_651e50d9(activator);
 	if(!isdefined(activator) || !isstruct(activator.inventory) || !isarray(activator.inventory.items))
 	{
-		return 0;
+		return false;
 	}
 	var_22aec194 = activator function_2cef7d98();
 	if(isdefined(var_22aec194))
@@ -336,10 +336,10 @@ private function function_7c5a1e82(activator, stateindex, var_9bdcfcd8)
 			globallogic_score::function_889ed975(activator, scoreamount, 0, 0);
 			activator stats::function_bb7eedf0(#"score", scoreamount);
 			activator stats::function_b7f80d87(#"score", scoreamount);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -351,7 +351,7 @@ private function function_7c5a1e82(activator, stateindex, var_9bdcfcd8)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2cef7d98()
+function private function_2cef7d98()
 {
 	var_22aec194 = undefined;
 	foreach(item in self.inventory.items)
@@ -377,7 +377,7 @@ private function function_2cef7d98()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_368adf4f(activator)
+function private function_368adf4f(activator)
 {
 	self function_651e50d9(activator);
 }
@@ -391,7 +391,7 @@ private function function_368adf4f(activator)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_651e50d9(activator)
+function private function_651e50d9(activator)
 {
 	bundle = function_489009c1(self);
 	state = function_ffdbe8c2(self);
@@ -408,7 +408,7 @@ private function function_651e50d9(activator)
 	Parameters: 0
 	Flags: Private
 */
-private function function_a6eac3b7()
+function private function_a6eac3b7()
 {
 	/#
 		while(true)

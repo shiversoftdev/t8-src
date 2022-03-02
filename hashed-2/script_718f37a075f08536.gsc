@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1455490b99d4cbbb", &__init__, undefined, #"bgb");
 }
@@ -41,7 +41,7 @@ function __init__()
 		return;
 	}
 	bgb::register(#"hash_1455490b99d4cbbb", "time", 300, &activation, &deactivation);
-	bgb::function_95296005(#"hash_1455490b99d4cbbb", &actor_death_override);
+	bgb::register_actor_death_override(#"hash_1455490b99d4cbbb", &actor_death_override);
 	level.var_5bf2be84 = gettime();
 	callback::on_ai_spawned(&on_ai_spawned);
 }

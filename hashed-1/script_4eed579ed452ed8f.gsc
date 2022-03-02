@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_65ddf3efec755b91", &__init__, undefined, undefined);
 }
@@ -68,13 +68,16 @@ function hemera_impact_fx(localclientnum, oldval, newval, bnewent, binitialsnap,
 	{
 		v_org = self gettagorigin("j_h_neck_lower");
 	}
-	else if(isdefined(self gettagorigin("j_spine4")))
-	{
-		v_org = self gettagorigin("j_spine4");
-	}
 	else
 	{
-		v_org = self.origin;
+		if(isdefined(self gettagorigin("j_spine4")))
+		{
+			v_org = self gettagorigin("j_spine4");
+		}
+		else
+		{
+			v_org = self.origin;
+		}
 	}
 	v_forward = (anglestoforward(self.angles) * 1000) + self.origin;
 	v_back = (anglestoforward(self.angles) * -100) + self.origin;
@@ -118,26 +121,29 @@ function function_ab086ad8(localclientnum, oldval, newval, bnewent, binitialsnap
 		}
 		self playsound(localclientnum, #"hash_70717b71f19db790");
 	}
-	else if(isdefined(self) && isdefined(self.var_d3316606))
+	else
 	{
-		deletefx(localclientnum, self.var_d3316606);
-		self.var_d3316606 = undefined;
-	}
-	if(isdefined(self) && isdefined(self.var_1550c80f))
-	{
-		deletefx(localclientnum, self.var_1550c80f);
-		self.var_1550c80f = undefined;
-	}
-	if(isdefined(self))
-	{
-		self playsound(localclientnum, #"hash_3fbc22745dc90009");
-		if(isdefined(self gettagorigin("j_spine4")))
+		if(isdefined(self) && isdefined(self.var_d3316606))
 		{
-			util::playfxontag(localclientnum, level._effect[#"hash_1c1dafe5ebd971f8"], self, "j_spine4");
+			deletefx(localclientnum, self.var_d3316606);
+			self.var_d3316606 = undefined;
 		}
-		else
+		if(isdefined(self) && isdefined(self.var_1550c80f))
 		{
-			util::playfxontag(localclientnum, level._effect[#"hash_1c1dafe5ebd971f8"], self, zm_utility::function_467efa7b());
+			deletefx(localclientnum, self.var_1550c80f);
+			self.var_1550c80f = undefined;
+		}
+		if(isdefined(self))
+		{
+			self playsound(localclientnum, #"hash_3fbc22745dc90009");
+			if(isdefined(self gettagorigin("j_spine4")))
+			{
+				util::playfxontag(localclientnum, level._effect[#"hash_1c1dafe5ebd971f8"], self, "j_spine4");
+			}
+			else
+			{
+				util::playfxontag(localclientnum, level._effect[#"hash_1c1dafe5ebd971f8"], self, zm_utility::function_467efa7b());
+			}
 		}
 	}
 }
@@ -336,13 +342,16 @@ function function_3fd7be85(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		v_org = self gettagorigin("j_h_neck_lower");
 	}
-	else if(isdefined(self gettagorigin("j_spine4")))
-	{
-		v_org = self gettagorigin("j_spine4");
-	}
 	else
 	{
-		v_org = self.origin;
+		if(isdefined(self gettagorigin("j_spine4")))
+		{
+			v_org = self gettagorigin("j_spine4");
+		}
+		else
+		{
+			v_org = self.origin;
+		}
 	}
 	playfx(localclientnum, level._effect[#"hash_5a8f1796382ec694"], v_org, anglestoforward(self.angles));
 }

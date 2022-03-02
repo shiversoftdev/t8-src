@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"pickup_items", &__init__, undefined, undefined);
 }
@@ -658,10 +658,10 @@ function has_active_gadget()
 		slot = self gadgetgetslot(weapon);
 		if(self gadgetisactive(slot))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -720,13 +720,13 @@ function should_switch_to_pickup_weapon(weapon)
 {
 	if(weapon.isgadget)
 	{
-		return 0;
+		return false;
 	}
 	if(weapon.isgrenadeweapon)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -747,7 +747,7 @@ function on_touch_weapon(player)
 	{
 		if(player has_active_gadget())
 		{
-			return 0;
+			return false;
 		}
 		player take_player_gadgets();
 	}
@@ -759,7 +759,7 @@ function on_touch_weapon(player)
 	player giveweapon(weapon);
 	if(!player hasweapon(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.script_ammo_clip) && isdefined(self.script_ammo_extra))
 	{
@@ -767,13 +767,16 @@ function on_touch_weapon(player)
 		{
 			player setweaponammostock(weapon, (ammo_in_reserve + self.script_ammo_clip) + self.script_ammo_extra);
 		}
-		else if(self.script_ammo_clip >= 0)
+		else
 		{
-			player setweaponammoclip(weapon, self.script_ammo_clip);
-		}
-		if(self.script_ammo_extra >= 0)
-		{
-			player setweaponammostock(weapon, self.script_ammo_extra);
+			if(self.script_ammo_clip >= 0)
+			{
+				player setweaponammoclip(weapon, self.script_ammo_clip);
+			}
+			if(self.script_ammo_extra >= 0)
+			{
+				player setweaponammostock(weapon, self.script_ammo_extra);
+			}
 		}
 	}
 	if(weapon.isgadget)
@@ -785,6 +788,6 @@ function on_touch_weapon(player)
 	{
 		player switchtoweapon(weapon);
 	}
-	return 1;
+	return true;
 }
 

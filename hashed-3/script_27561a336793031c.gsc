@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_503c1b9ec21992cc", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_53c7b205 = #"1")
+function private function_d1de6a85(var_53c7b205 = #"1")
 {
 	level.var_53c7b205 = zm_trial::function_5769f26a(var_53c7b205);
 	foreach(player in getplayers())
@@ -68,7 +68,7 @@ private function function_d1de6a85(var_53c7b205 = #"1")
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_on_spawned(&on_player_spawned);
 	level.var_53c7b205 = undefined;
@@ -83,7 +83,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_spawned()
+function private on_player_spawned()
 {
 	self thread function_13db986c(level.var_53c7b205);
 }
@@ -97,7 +97,7 @@ private function on_player_spawned()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_13db986c(var_53c7b205)
+function private function_13db986c(var_53c7b205)
 {
 	self notify("48c46c9de397db92");
 	self endon("48c46c9de397db92");

@@ -105,16 +105,19 @@ function function_c9ff0dce()
 		{
 			self thread function_2fb096bf();
 		}
-		else if(level.var_ad7c0539 === 5 && level flag::get("war_machine") || level.var_ad7c0539 === 6 || level.var_ad7c0539 === 7 || level.var_ad7c0539 === 8 || level.var_ad7c0539 === 9)
+		else
 		{
-			self thread function_fef38fec();
-		}
-		else if(level.var_ad7c0539 === 10)
-		{
-			wait(0.5);
-			if(isdefined(level.var_2159a10d) && level.var_2159a10d)
+			if(level.var_ad7c0539 === 5 && level flag::get("war_machine") || level.var_ad7c0539 === 6 || level.var_ad7c0539 === 7 || level.var_ad7c0539 === 8 || level.var_ad7c0539 === 9)
 			{
-				level namespace_8c007aa6::play_vo(#"hash_7dfd3741e740a503", 1);
+				self thread function_fef38fec();
+			}
+			else if(level.var_ad7c0539 === 10)
+			{
+				wait(0.5);
+				if(isdefined(level.var_2159a10d) && level.var_2159a10d)
+				{
+					level namespace_8c007aa6::play_vo(#"hash_7dfd3741e740a503", 1);
+				}
 			}
 		}
 		if(level.var_ad7c0539 === 5 && !level flag::get("feet_dry"))
@@ -310,19 +313,22 @@ function function_72ba0df6(einflictor, attacker, idamage, smeansofdeath, weapon,
 				level flag::set("gib_done");
 			}
 		}
-		else if(level.var_ad7c0539 === 8)
+		else
 		{
-			if(isdefined(attacker) && isplayer(attacker) && (weapon == getweapon(#"hero_pineapplegun") || weapon == getweapon(#"hero_pineapple_grenade")))
+			if(level.var_ad7c0539 === 8)
 			{
-				level flag::set("window_hit");
+				if(isdefined(attacker) && isplayer(attacker) && (weapon == getweapon(#"hero_pineapplegun") || weapon == getweapon(#"hero_pineapple_grenade")))
+				{
+					level flag::set("window_hit");
+				}
 			}
-		}
-		else if(level.var_ad7c0539 === 10)
-		{
-			e_player = namespace_73e1c3e3::get_player();
-			if(!(isdefined(e_player.var_51ff7a58) && e_player.var_51ff7a58) && isalive(e_player) && level.var_ff7ed5c8 < 900)
+			else if(level.var_ad7c0539 === 10)
 			{
-				function_86610592();
+				e_player = namespace_73e1c3e3::get_player();
+				if(!(isdefined(e_player.var_51ff7a58) && e_player.var_51ff7a58) && isalive(e_player) && level.var_ff7ed5c8 < 900)
+				{
+					function_86610592();
+				}
 			}
 		}
 	}
@@ -1678,65 +1684,77 @@ function function_58c62280(b_keyline, b_ignoreall)
 	{
 		self thread function_f9803d74();
 	}
-	else if(level.var_ad7c0539 === 5)
+	else
 	{
-		if(s_loc.script_noteworthy === "war_machine_victim")
+		if(level.var_ad7c0539 === 5)
 		{
-			self.ignoreall = 1;
-			self.targetname = "war_machine_victim";
-			self thread function_f9803d74();
-			self thread function_a40b5f9c();
-		}
-	}
-	else if(level.var_ad7c0539 === 6)
-	{
-		if(s_loc.script_noteworthy === "war_machine_aoe_pair")
-		{
-			self.ignoreme = 0;
-			self.ignoreall = 0;
-			self thread function_f9803d74();
-			s_goal = struct::get(s_loc.target);
-			self thread namespace_73e1c3e3::function_5b59f3b7(s_goal.origin, s_goal.angles, 8);
-			if(isdefined(s_goal.script_noteworthy))
+			if(s_loc.script_noteworthy === "war_machine_victim")
 			{
-				self waittill(#"goal");
-				self namespace_9c817acd::crouch();
+				self.ignoreall = 1;
+				self.targetname = "war_machine_victim";
+				self thread function_f9803d74();
+				self thread function_a40b5f9c();
 			}
 		}
 		else
 		{
-			self.ignoreme = 0;
-			self.ignoreall = 0;
-			self thread function_f9803d74();
-			s_goal = struct::get(s_loc.target);
-			self thread namespace_73e1c3e3::function_1e7b75f2(s_goal);
-		}
-	}
-	else if(level.var_ad7c0539 === 7)
-	{
-		self thread function_f9803d74();
-		self thread function_35ea89f8(s_loc);
-	}
-	else if(level.var_ad7c0539 === 8)
-	{
-		s_goal = struct::get(s_loc.target);
-		self thread namespace_73e1c3e3::function_5b59f3b7(s_goal.origin, s_goal.angles, 16);
-	}
-	else if(level.var_ad7c0539 === 10)
-	{
-		if(s_loc.script_noteworthy === "scorestreak_target")
-		{
-			self thread function_f9803d74();
-			s_goal = struct::get(s_loc.target);
-			self thread namespace_73e1c3e3::function_5b59f3b7(s_goal.origin, s_goal.angles, 32);
-		}
-		else
-		{
-			self.ignoreme = 0;
-			self.ignoreall = 0;
-			self thread function_f9803d74();
-			self thread reinforce_enemy(s_loc);
-			self namespace_73e1c3e3::function_b5e31ad(level.players[0], 150, 250);
+			if(level.var_ad7c0539 === 6)
+			{
+				if(s_loc.script_noteworthy === "war_machine_aoe_pair")
+				{
+					self.ignoreme = 0;
+					self.ignoreall = 0;
+					self thread function_f9803d74();
+					s_goal = struct::get(s_loc.target);
+					self thread namespace_73e1c3e3::function_5b59f3b7(s_goal.origin, s_goal.angles, 8);
+					if(isdefined(s_goal.script_noteworthy))
+					{
+						self waittill(#"goal");
+						self namespace_9c817acd::crouch();
+					}
+				}
+				else
+				{
+					self.ignoreme = 0;
+					self.ignoreall = 0;
+					self thread function_f9803d74();
+					s_goal = struct::get(s_loc.target);
+					self thread namespace_73e1c3e3::function_1e7b75f2(s_goal);
+				}
+			}
+			else
+			{
+				if(level.var_ad7c0539 === 7)
+				{
+					self thread function_f9803d74();
+					self thread function_35ea89f8(s_loc);
+				}
+				else
+				{
+					if(level.var_ad7c0539 === 8)
+					{
+						s_goal = struct::get(s_loc.target);
+						self thread namespace_73e1c3e3::function_5b59f3b7(s_goal.origin, s_goal.angles, 16);
+					}
+					else if(level.var_ad7c0539 === 10)
+					{
+						if(s_loc.script_noteworthy === "scorestreak_target")
+						{
+							self thread function_f9803d74();
+							s_goal = struct::get(s_loc.target);
+							self thread namespace_73e1c3e3::function_5b59f3b7(s_goal.origin, s_goal.angles, 32);
+						}
+						else
+						{
+							self.ignoreme = 0;
+							self.ignoreall = 0;
+							self thread function_f9803d74();
+							self thread reinforce_enemy(s_loc);
+							self namespace_73e1c3e3::function_b5e31ad(level.players[0], 150, 250);
+						}
+					}
+				}
+			}
 		}
 	}
 }

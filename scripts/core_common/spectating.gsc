@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"spectating", &__init__, undefined, undefined);
 }
@@ -134,10 +134,10 @@ function other_local_player_still_alive()
 		}
 		if(isalive(level.players[index]))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -197,14 +197,17 @@ function set_permissions()
 				self allowspectateallteams(1);
 				self allowspectateteam(#"none", 1);
 			}
-			else if(isdefined(team) && isdefined(level.teams[team]))
-			{
-				self allowspectateteam(team, 1);
-				self allowspectateteam(#"none", 0);
-			}
 			else
 			{
-				self allowspectateteam(#"none", 0);
+				if(isdefined(team) && isdefined(level.teams[team]))
+				{
+					self allowspectateteam(team, 1);
+					self allowspectateteam(#"none", 0);
+				}
+				else
+				{
+					self allowspectateteam(#"none", 0);
+				}
 			}
 			break;
 		}
@@ -363,9 +366,9 @@ function function_7d15f599()
 	livesleft = !(level.numlives && !self.pers[#"lives"]);
 	if(!level.alivecount[self.team] && !livesleft)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -393,7 +396,7 @@ function function_23c5f4f2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_493d2e03(team)
+function private function_493d2e03(team)
 {
 	if(!self function_7d15f599())
 	{
@@ -523,13 +526,16 @@ function function_b7c8d984(attacker, var_1178af52)
 	{
 		var_be8a6dc7 = attacker;
 	}
-	else if(isdefined(teammate))
+	else
 	{
-		var_be8a6dc7 = teammate;
-	}
-	else if(var_1178af52)
-	{
-		var_be8a6dc7 = attacker;
+		if(isdefined(teammate))
+		{
+			var_be8a6dc7 = teammate;
+		}
+		else if(var_1178af52)
+		{
+			var_be8a6dc7 = attacker;
+		}
 	}
 	return var_be8a6dc7;
 }

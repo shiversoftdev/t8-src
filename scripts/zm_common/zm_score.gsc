@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_score", &__init__, &__main__, undefined);
 }
@@ -399,13 +399,13 @@ function player_add_points(event, mod, hit_location, e_target, zombie_team, dama
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e31cf9d5(str_score_event)
+function private function_e31cf9d5(str_score_event)
 {
 	if(namespace_32623e1c::is_active(1) && (str_score_event === "death" || str_score_event === "damage_points"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -563,21 +563,24 @@ function player_reduce_points(event, n_amount)
 			{
 				percent = 0;
 			}
-			else if(namespace_59ff1d6c::function_901b751c(#"hash_1fed0d9afc0b0040"))
-			{
-				percent = namespace_59ff1d6c::function_901b751c(#"hash_1fed0d9afc0b0040") / 100;
-			}
 			else
 			{
-				percent = zombie_utility::function_d2dfacfd(#"penalty_downed");
-				step = zombie_utility::function_d2dfacfd(#"hash_3037a1f286b662e6");
-				if(step > 0)
+				if(namespace_59ff1d6c::function_901b751c(#"hash_1fed0d9afc0b0040"))
 				{
-					percent = percent * (int(self.score / step));
+					percent = namespace_59ff1d6c::function_901b751c(#"hash_1fed0d9afc0b0040") / 100;
 				}
-				if(percent > 0.5)
+				else
 				{
-					percent = 0.5;
+					percent = zombie_utility::function_d2dfacfd(#"penalty_downed");
+					step = zombie_utility::function_d2dfacfd(#"hash_3037a1f286b662e6");
+					if(step > 0)
+					{
+						percent = percent * (int(self.score / step));
+					}
+					if(percent > 0.5)
+					{
+						percent = 0.5;
+					}
 				}
 			}
 			self notify(#"i_am_down");
@@ -791,17 +794,17 @@ function can_player_purchase(n_cost, var_1c65f833 = 0)
 {
 	if(self.score >= n_cost)
 	{
-		return 1;
+		return true;
 	}
 	if(self bgb::is_enabled(#"zm_bgb_shopping_free"))
 	{
-		return 1;
+		return true;
 	}
 	if(zm_utility::is_standard() && !var_1c65f833)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -311,7 +311,7 @@ function innoplacementtrigger()
 		{
 			if(placeable istouching(level.noturretplacementtriggers[i]))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -321,15 +321,15 @@ function innoplacementtrigger()
 		{
 			if(placeable istouching(level.fatal_triggers[i]))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
 	if(placeable oob::istouchinganyoobtrigger())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -588,21 +588,30 @@ function function_e222876f(placeable)
 		{
 			placeable notify(#"cancelled");
 		}
-		else if(!(isdefined(placeable.var_e3be448) ? placeable.var_e3be448 : 0) && placeable.cancelable && player actionslotfourbuttonpressed())
+		else
 		{
-			placeable notify(#"cancelled");
-		}
-		else if(isdefined(placeable.var_25404db4) && placeable.var_25404db4 && player laststand::player_is_in_laststand())
-		{
-			placeable notify(#"cancelled");
-		}
-		else if(player scene::is_igc_active())
-		{
-			placeable notify(#"cancelled");
-		}
-		else if(player isinvehicle())
-		{
-			placeable notify(#"cancelled");
+			if(!(isdefined(placeable.var_e3be448) ? placeable.var_e3be448 : 0) && placeable.cancelable && player actionslotfourbuttonpressed())
+			{
+				placeable notify(#"cancelled");
+			}
+			else
+			{
+				if(isdefined(placeable.var_25404db4) && placeable.var_25404db4 && player laststand::player_is_in_laststand())
+				{
+					placeable notify(#"cancelled");
+				}
+				else
+				{
+					if(player scene::is_igc_active())
+					{
+						placeable notify(#"cancelled");
+					}
+					else if(player isinvehicle())
+					{
+						placeable notify(#"cancelled");
+					}
+				}
+			}
 		}
 		waitframe(1);
 	}

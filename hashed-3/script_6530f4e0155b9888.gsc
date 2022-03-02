@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_695cd3bbff366240", &__init__, undefined, undefined);
 }
@@ -69,7 +69,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function hawk_spawned(localclientnum)
+function private hawk_spawned(localclientnum)
 {
 	self thread function_23a9e4af(localclientnum);
 }
@@ -83,7 +83,7 @@ private function hawk_spawned(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8bd7314c(localclientnum)
+function private function_8bd7314c(localclientnum)
 {
 	function_1eaaceab(level.var_ef287aa1, 0);
 }
@@ -97,7 +97,7 @@ private function function_8bd7314c(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f95544c4(team1, team2)
+function private function_f95544c4(team1, team2)
 {
 	if(team1 == team2)
 	{
@@ -115,10 +115,10 @@ private function function_f95544c4(team1, team2)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5a4a871(localclientnum)
+function private function_5a4a871(localclientnum)
 {
-	self endon_callback(&function_8bd7314c, #"death");
-	self.owner endon_callback(&function_8bd7314c, #"death", #"disconnect");
+	self endoncallback(&function_8bd7314c, #"death");
+	self.owner endoncallback(&function_8bd7314c, #"death", #"disconnect");
 	array::add(level.var_ef287aa1, self, 0);
 	self.var_704e7b07 = [];
 	self.targets = [];
@@ -140,7 +140,7 @@ private function function_5a4a871(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_23a9e4af(localclientnum)
+function private function_23a9e4af(localclientnum)
 {
 	self endon(#"death");
 	while(!isdefined(self.owner))
@@ -164,7 +164,7 @@ private function function_23a9e4af(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_25b776e2(localclientnum, ti, entnum)
+function private function_25b776e2(localclientnum, ti, entnum)
 {
 	if(!isdefined(self.var_e4102217[ti]) || self.var_e4102217[ti] != entnum)
 	{
@@ -183,7 +183,7 @@ private function function_25b776e2(localclientnum, ti, entnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bbb5186f(ti)
+function private function_bbb5186f(ti)
 {
 	return self.var_e4102217[ti];
 }
@@ -197,7 +197,7 @@ private function function_bbb5186f(ti)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_2ecbc83c(localclientnum, ti, var_3c5beee7)
+function private function_2ecbc83c(localclientnum, ti, var_3c5beee7)
 {
 	if(!isdefined(self.var_6a09a180[ti]) || self.var_6a09a180[ti] != var_3c5beee7)
 	{
@@ -216,7 +216,7 @@ private function function_2ecbc83c(localclientnum, ti, var_3c5beee7)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_69d0f012(ti)
+function private function_69d0f012(ti)
 {
 	return self.var_6a09a180[ti];
 }
@@ -230,7 +230,7 @@ private function function_69d0f012(ti)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ec2a2906(localclientnum)
+function private function_ec2a2906(localclientnum)
 {
 	controllermodel = getuimodelforcontroller(localclientnum);
 	player_entnum = self getentitynumber();
@@ -266,7 +266,7 @@ private function function_ec2a2906(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3c760dfe(localclientnum)
+function private function_3c760dfe(localclientnum)
 {
 	for(ti = 0; ti < level.hawk_settings.bundle.var_48e78794; ti++)
 	{
@@ -290,7 +290,7 @@ private function function_3c760dfe(localclientnum)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_364150fd()
+function private function_364150fd()
 {
 	result = [];
 	foreach(hawk in level.var_ef287aa1)
@@ -312,7 +312,7 @@ private function function_364150fd()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a0e351e0(localclientnum)
+function private function_a0e351e0(localclientnum)
 {
 	if(!isdefined(self.var_89285548))
 	{
@@ -347,7 +347,7 @@ private function function_a0e351e0(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_2d90a835(localclientnum, radius)
+function private function_2d90a835(localclientnum, radius)
 {
 	enemies = [];
 	if(isdefined(self.owner))
@@ -378,7 +378,7 @@ private function function_2d90a835(localclientnum, radius)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d952430d(localclientnum, array, targets)
+function private function_d952430d(localclientnum, array, targets)
 {
 	var_e5cf40eb = [];
 	foreach(target in targets)
@@ -414,7 +414,7 @@ private function function_d952430d(localclientnum, array, targets)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_76b4c572(localclientnum)
+function private function_76b4c572(localclientnum)
 {
 	foreach(target in self.targets)
 	{
@@ -443,7 +443,7 @@ private function function_76b4c572(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9ace0fb6(localclientnum)
+function private function_9ace0fb6(localclientnum)
 {
 	time = gettime();
 	bundle = level.hawk_settings.bundle;
@@ -508,20 +508,20 @@ private function function_9ace0fb6(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cfd3bed0(var_8712c5b8)
+function private function_cfd3bed0(var_8712c5b8)
 {
 	if(!(isdefined(var_8712c5b8.visible) && var_8712c5b8.visible))
 	{
 		if(!isdefined(var_8712c5b8.var_1fe906d8))
 		{
-			return 0;
+			return false;
 		}
 		if(gettime() - var_8712c5b8.var_1fe906d8 > 500)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -533,7 +533,7 @@ private function function_cfd3bed0(var_8712c5b8)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_35046386(target)
+function private function_35046386(target)
 {
 	var_4ef4e267 = target getentitynumber();
 	foreach(hawk in level.var_ef287aa1)
@@ -543,11 +543,11 @@ private function function_35046386(target)
 			info = hawk.var_704e7b07[var_4ef4e267];
 			if(isdefined(info) && info.state == 1)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -559,7 +559,7 @@ private function function_35046386(target)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d53feb8c(localclientnum, targets)
+function private function_d53feb8c(localclientnum, targets)
 {
 	var_b3f5ea99 = self getentitynumber();
 	var_1dcaad7e = [];
@@ -654,7 +654,7 @@ private function function_d53feb8c(localclientnum, targets)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a552c160(localclientnum)
+function private function_a552c160(localclientnum)
 {
 	self endon(#"death", #"disconnect");
 	self.var_d32addbf = [];
@@ -911,7 +911,7 @@ function function_2e07be71(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8487fabe(localclientnum)
+function private function_8487fabe(localclientnum)
 {
 	self endon(#"death");
 	if(isdefined(self.var_b61d83c4) && self.var_b61d83c4 || !isdefined(self.owner))
@@ -988,14 +988,17 @@ private function function_8487fabe(localclientnum)
 					valid_target = var_4d392c1d == 0 || (now - self.var_5f360c48[player getentitynumber()]) < var_4d392c1d;
 				}
 			}
-			else if(bundle.var_4917731f === 1)
+			else
 			{
-				self.var_c55be3a2[player getentitynumber()] = undefined;
-				continue;
-			}
-			if(isdefined(self.var_c55be3a2[player getentitynumber()]))
-			{
-				valid_target = var_d691d922 == 0 || (now - self.var_c55be3a2[player getentitynumber()]) < var_d691d922;
+				if(bundle.var_4917731f === 1)
+				{
+					self.var_c55be3a2[player getentitynumber()] = undefined;
+					continue;
+				}
+				if(isdefined(self.var_c55be3a2[player getentitynumber()]))
+				{
+					valid_target = var_d691d922 == 0 || (now - self.var_c55be3a2[player getentitynumber()]) < var_d691d922;
+				}
 			}
 		}
 		else
@@ -1028,7 +1031,7 @@ private function function_8487fabe(localclientnum)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bba5f8f7()
+function private function_bba5f8f7()
 {
 	var_ef7046e6 = self.origin;
 	targets = [];

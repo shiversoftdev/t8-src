@@ -323,7 +323,7 @@ function function_f0e307a2(watcher, player)
 		player stats::function_e24eec31(self.weapon, #"used", 1);
 	}
 	self playloopsound(#"uin_c4_air_alarm_loop");
-	self waittill_timeout(10, #"stationary");
+	self waittilltimeout(10, #"stationary");
 	function_b70eb3a9(watcher, player);
 }
 

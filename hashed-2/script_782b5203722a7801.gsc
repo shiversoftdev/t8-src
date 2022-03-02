@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1324e72460f62df9", &__init__, undefined, undefined);
 }
@@ -77,9 +77,7 @@ function __init__()
 	zm::register_actor_damage_callback(&function_51f76fdb);
 	if(!isdefined(level.var_2e1c9680))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_2e1c9680 = object;
+		level.var_2e1c9680 = new throttle();
 		[[ level.var_2e1c9680 ]]->initialize(6, 0.1);
 	}
 }
@@ -93,7 +91,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_89ec3604()
+function private function_89ec3604()
 {
 	self endon(#"disconnect");
 	self.var_bcc8f4f0 = 0;
@@ -175,16 +173,16 @@ function function_8426ad52(weapon)
 {
 	if(!is_crossbow(weapon))
 	{
-		return 0;
+		return false;
 	}
 	var_57b07826 = function_d8effeda(weapon);
 	var_510d7f2b = self getweaponammostock(var_57b07826);
 	n_ammo_clip = self getweaponammoclip(var_57b07826);
 	if(var_510d7f2b >= 4 && n_ammo_clip > 0 || n_ammo_clip > 5)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -222,7 +220,7 @@ function function_7157628d()
 {
 	self notify("6e0a9e3b0455824");
 	self endon("6e0a9e3b0455824");
-	self endon_callback(&function_a4d47b95, #"death", #"disconnect", #"hash_72be12bd6b55fdab");
+	self endoncallback(&function_a4d47b95, #"death", #"disconnect", #"hash_72be12bd6b55fdab");
 	self.var_5e9be59f = 0;
 	while(true)
 	{
@@ -240,17 +238,20 @@ function function_7157628d()
 				self clientfield::set("" + #"hash_b38c687db71dae", 1);
 			}
 		}
-		else if(is_crossbow(w_current) && function_8426ad52(w_current) && self.chargeshotlevel > 1 && !self.var_5e9be59f && self attackbuttonpressed())
+		else
 		{
-			self clientfield::set("" + #"hash_faa2f4808c12f8d", 1);
-			self clientfield::set("" + #"hash_b38c687db71dae", 0);
-			self.var_5e9be59f = 1;
-		}
-		else if(self.var_5e9be59f && (self.chargeshotlevel <= 1 || !self attackbuttonpressed()))
-		{
-			self clientfield::set("" + #"hash_faa2f4808c12f8d", 0);
-			self clientfield::set("" + #"hash_b38c687db71dae", 1);
-			self.var_5e9be59f = 0;
+			if(is_crossbow(w_current) && function_8426ad52(w_current) && self.chargeshotlevel > 1 && !self.var_5e9be59f && self attackbuttonpressed())
+			{
+				self clientfield::set("" + #"hash_faa2f4808c12f8d", 1);
+				self clientfield::set("" + #"hash_b38c687db71dae", 0);
+				self.var_5e9be59f = 1;
+			}
+			else if(self.var_5e9be59f && (self.chargeshotlevel <= 1 || !self attackbuttonpressed()))
+			{
+				self clientfield::set("" + #"hash_faa2f4808c12f8d", 0);
+				self clientfield::set("" + #"hash_b38c687db71dae", 1);
+				self.var_5e9be59f = 0;
+			}
 		}
 		waitframe(1);
 	}
@@ -279,7 +280,7 @@ function function_a4d47b95(str_notify)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_39ffd9fc()
+function private function_39ffd9fc()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -450,7 +451,7 @@ function function_6d8527c2(var_37fa9b04, str_scene, str_shot)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8194ec6(var_5824ff75 = 0)
+function private function_8194ec6(var_5824ff75 = 0)
 {
 	self endon(#"death");
 	if(var_5824ff75)
@@ -559,13 +560,16 @@ function function_c805f2f9(params)
 	{
 		self thread scene::play(str_scene, self);
 	}
-	else if(function_a2c527e5(var_3891e803))
-	{
-		self function_9fa5e527(10);
-	}
 	else
 	{
-		self function_9fa5e527(5);
+		if(function_a2c527e5(var_3891e803))
+		{
+			self function_9fa5e527(10);
+		}
+		else
+		{
+			self function_9fa5e527(5);
+		}
 	}
 	self function_e1c4ab06(params);
 	if(isdefined(player))
@@ -635,14 +639,14 @@ function function_8a514a61(v_origin, weapon)
 	{
 		if(distancesquared(self.origin, v_origin) <= 44100)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(distancesquared(self.origin, v_origin) <= 25600)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -699,9 +703,9 @@ function is_crossbow(weapon)
 {
 	if(weapon === level.var_3891e803 || weapon === level.var_d7f4cb84 || weapon === level.var_29cce7eb || weapon === level.var_bc26d00c)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -722,18 +726,18 @@ function function_c6da1395(weapon, player)
 		n_ammo_clip = player getweaponammoclip(var_57b07826);
 		if(n_ammo_clip >= 5 || var_510d7f2b >= 4 && (weapon === level.var_29cce7eb || weapon === level.var_bc26d00c))
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(player.chargeshotlevel) && player.chargeshotlevel > 1)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(weapon === level.var_29cce7eb || weapon === level.var_bc26d00c)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -749,9 +753,9 @@ function function_a2c527e5(weapon)
 {
 	if(weapon === level.var_d7f4cb84 || weapon === level.var_bc26d00c)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1214,9 +1218,9 @@ function function_b0477b86(player, mod, shitloc)
 	var_fb9dfd01 = player getcurrentweapon();
 	if(is_crossbow(var_fb9dfd01))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

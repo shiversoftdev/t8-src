@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_a303f67afd6f4a8", &__init__, undefined, "bgb");
 }
@@ -76,29 +76,29 @@ function activation()
 	}
 	if(isdefined(level.var_5cfc800b))
 	{
-		var_70e1deb9 = self [[level.var_5cfc800b]]();
+		s_respawn_point = self [[level.var_5cfc800b]]();
 	}
 	else
 	{
-		var_70e1deb9 = self function_fdc3c7c4();
+		s_respawn_point = self function_fdc3c7c4();
 	}
-	if(!isdefined(var_70e1deb9))
+	if(!isdefined(s_respawn_point))
 	{
-		var_70e1deb9 = spawnstruct();
-		var_70e1deb9.origin = self.origin;
-		var_70e1deb9.angles = self.angles;
+		s_respawn_point = spawnstruct();
+		s_respawn_point.origin = self.origin;
+		s_respawn_point.angles = self.angles;
 		self.var_ca944973 = self.origin;
 	}
 	if(isdefined(self.var_aba36467) && self.var_aba36467)
 	{
-		e_link = util::spawn_model("tag_origin", var_70e1deb9.origin, var_70e1deb9.angles);
-		self setplayerangles(var_70e1deb9.angles);
+		e_link = util::spawn_model("tag_origin", s_respawn_point.origin, s_respawn_point.angles);
+		self setplayerangles(s_respawn_point.angles);
 		self linkto(e_link);
 	}
 	else
 	{
-		self setorigin(var_70e1deb9.origin);
-		self setplayerangles(var_70e1deb9.angles);
+		self setorigin(s_respawn_point.origin);
+		self setplayerangles(s_respawn_point.angles);
 	}
 	self val::set(#"hash_a303f67afd6f4a8", "freezecontrols", 1);
 	v_return_pos = self.origin + vectorscale((0, 0, 1), 60);
@@ -145,9 +145,9 @@ function activation()
 	self val::reset(#"hash_a303f67afd6f4a8", "ignoreme");
 	self.var_ca944973 = undefined;
 	self notify(#"hash_55489b8cb6c75352");
-	if(isdefined(var_70e1deb9.var_72d2300b) && var_70e1deb9.var_72d2300b)
+	if(isdefined(s_respawn_point.var_72d2300b) && s_respawn_point.var_72d2300b)
 	{
-		var_70e1deb9 struct::delete();
+		s_respawn_point struct::delete();
 	}
 }
 
@@ -220,7 +220,7 @@ function validation()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fdc3c7c4()
+function private function_fdc3c7c4()
 {
 	var_fded3d81 = [];
 	foreach(player in level.activeplayers)
@@ -243,15 +243,18 @@ private function function_fdc3c7c4()
 		arraysortclosest(var_fded3d81, self.origin);
 		var_fded3d81 = array::reverse(var_fded3d81);
 	}
-	else if(!isdefined(var_fded3d81))
+	else
 	{
-		var_fded3d81 = [];
+		if(!isdefined(var_fded3d81))
+		{
+			var_fded3d81 = [];
+		}
+		else if(!isarray(var_fded3d81))
+		{
+			var_fded3d81 = array(var_fded3d81);
+		}
+		var_fded3d81[var_fded3d81.size] = self;
 	}
-	else if(!isarray(var_fded3d81))
-	{
-		var_fded3d81 = array(var_fded3d81);
-	}
-	var_fded3d81[var_fded3d81.size] = self;
 	foreach(player in var_fded3d81)
 	{
 		s_player_respawn = self get_best_spawnpoint(player);
@@ -307,9 +310,9 @@ function get_best_spawnpoint(e_player)
 	var_de1edcdb = struct::get_array("player_respawn_point", "targetname");
 	var_65500f70 = [];
 	var_ed38ae06 = [];
-	foreach(var_70e1deb9 in var_de1edcdb)
+	foreach(s_respawn_point in var_de1edcdb)
 	{
-		if(zm_utility::check_point_in_enabled_zone(var_70e1deb9.origin, 1))
+		if(zm_utility::check_point_in_enabled_zone(s_respawn_point.origin, 1))
 		{
 			if(!isdefined(var_65500f70))
 			{
@@ -319,8 +322,8 @@ function get_best_spawnpoint(e_player)
 			{
 				var_65500f70 = array(var_65500f70);
 			}
-			var_65500f70[var_65500f70.size] = var_70e1deb9;
-			var_5ce8e5f9 = struct::get_array(var_70e1deb9.target, "targetname");
+			var_65500f70[var_65500f70.size] = s_respawn_point;
+			var_5ce8e5f9 = struct::get_array(s_respawn_point.target, "targetname");
 			foreach(var_5aff2c2c in var_5ce8e5f9)
 			{
 				n_script_int = self getentitynumber() + 1;
@@ -428,7 +431,7 @@ function function_22e77bc1(var_36bf7c2c, var_8afe96c9, e_player)
 		{
 			var_36bf7c2c delete();
 		}
-		return 0;
+		return false;
 	}
 	if(!(isdefined(bullettracepassed(e_player geteye() + vectorscale((0, 0, 1), 10), var_8afe96c9, 0, self, e_player, 0, 1)) && bullettracepassed(e_player geteye() + vectorscale((0, 0, 1), 10), var_8afe96c9, 0, self, e_player, 0, 1)))
 	{
@@ -436,9 +439,9 @@ function function_22e77bc1(var_36bf7c2c, var_8afe96c9, e_player)
 		{
 			var_36bf7c2c delete();
 		}
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -487,7 +490,7 @@ function function_f6d8b425(var_6a069cf8)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_87fa80cf()
+function private function_87fa80cf()
 {
 	self notify("5a76aace912e2da5");
 	self endon("5a76aace912e2da5");

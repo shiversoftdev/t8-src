@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"globallogic_audio", &__init__, undefined, undefined);
 }
@@ -361,13 +361,16 @@ function function_6374b97e(tie)
 	{
 		self set_music_on_player("matchDraw");
 	}
-	else if(match::function_a2b53e17(self))
+	else
 	{
-		self set_music_on_player("matchWin");
-	}
-	else if(!level.splitscreen)
-	{
-		self set_music_on_player("matchLose");
+		if(match::function_a2b53e17(self))
+		{
+			self set_music_on_player("matchWin");
+		}
+		else if(!level.splitscreen)
+		{
+			self set_music_on_player("matchLose");
+		}
 	}
 }
 
@@ -1207,11 +1210,11 @@ function is_team_winning(checkteam)
 		{
 			if(game.stat[#"teamscores"][team] >= score)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1231,10 +1234,10 @@ function announce_team_is_winning()
 		{
 			leader_dialog("gameWinning", team);
 			leader_dialog_for_other_teams("gameLosing", team);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

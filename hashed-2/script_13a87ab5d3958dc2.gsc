@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_16f5a81348e35487", &__init__, undefined, #"bgb");
 }
@@ -57,17 +57,17 @@ function validation()
 {
 	if(isdefined(self.var_b773066d) && self.var_b773066d)
 	{
-		return 0;
+		return false;
 	}
 	if(namespace_5f71460c::is_active() || namespace_7b1a5a90::is_active())
 	{
-		return 0;
+		return false;
 	}
 	if(self zm_perks::function_80cb4982())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

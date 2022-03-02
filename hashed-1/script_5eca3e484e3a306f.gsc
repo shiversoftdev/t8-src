@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1b45fa71df7a015f", &__init__, undefined, undefined);
 }
@@ -134,17 +134,20 @@ function function_c03894bd(localclientnum, oldval, newval, bnewent, binitialsnap
 			self thread function_9f78a957(localclientnum);
 		}
 	}
-	else if(isdefined(self.n_beacon_fx))
+	else
 	{
-		deletefx(localclientnum, self.n_beacon_fx, 0);
-		self.n_beacon_fx = undefined;
-	}
-	self playsound(0, #"hash_15633b83c64a3ebb");
-	if(isdefined(self.var_49f8e089))
-	{
-		self notify(#"hash_5384bc96a8e66d91");
-		self stoploopsound(self.var_49f8e089);
-		self.var_49f8e089 = undefined;
+		if(isdefined(self.n_beacon_fx))
+		{
+			deletefx(localclientnum, self.n_beacon_fx, 0);
+			self.n_beacon_fx = undefined;
+		}
+		self playsound(0, #"hash_15633b83c64a3ebb");
+		if(isdefined(self.var_49f8e089))
+		{
+			self notify(#"hash_5384bc96a8e66d91");
+			self stoploopsound(self.var_49f8e089);
+			self.var_49f8e089 = undefined;
+		}
 	}
 }
 
@@ -227,7 +230,7 @@ function function_93d275f2(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7dac3bb6(localclientnum)
+function private function_7dac3bb6(localclientnum)
 {
 	self endon(#"death", #"hash_5531647ca0352039");
 	while(!isdefined(level.var_76234ae5[localclientnum]))
@@ -295,7 +298,7 @@ function function_311f3501(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_85050f7f(localclientnum)
+function private function_85050f7f(localclientnum)
 {
 	self waittill(#"death", #"hash_5531647ca0352039");
 	if(isdefined(self.fx_arc))
@@ -319,7 +322,7 @@ private function function_85050f7f(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_6765f5b4(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_6765f5b4(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue && !namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{
@@ -346,11 +349,14 @@ function function_cd968d6(localclientnum, oldval, newval, bnewent, binitialsnap,
 		}
 		self playsound(localclientnum, #"hash_63d588d1f28ecdc1");
 	}
-	else if(isdefined(self.var_89d8285))
+	else
 	{
-		deletefx(localclientnum, self.var_89d8285, 1);
+		if(isdefined(self.var_89d8285))
+		{
+			deletefx(localclientnum, self.var_89d8285, 1);
+		}
+		self.var_89d8285 = undefined;
 	}
-	self.var_89d8285 = undefined;
 }
 
 /*

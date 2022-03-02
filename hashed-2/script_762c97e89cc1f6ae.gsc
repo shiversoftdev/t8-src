@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_56d3df5058c56523", &__init__, undefined, "bgb");
 }
@@ -72,15 +72,15 @@ function validation()
 		var_9428def3 = self damageriotshield(0);
 		if(var_9428def3 < n_health_max)
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_b115fab2))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

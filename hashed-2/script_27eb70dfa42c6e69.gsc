@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_497f2b070e2ff4a1", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	var_a2c75164 = getent("mannequin_ally_door", "targetname");
 	var_a2c75164 namespace_ba16273b::function_a51b6403(1);
@@ -87,7 +87,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
 	level zm_trial::function_25ee130(0);
@@ -114,7 +114,7 @@ private function function_9e7b3f4d(round_reset)
 */
 function function_26edbcdc(inflictor, attacker, damage, flags, meansofdeath, weapon, point, dir, hitloc, offsettime, boneindex, modelindex)
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -126,7 +126,7 @@ function function_26edbcdc(inflictor, attacker, damage, flags, meansofdeath, wea
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_545d53bf()
+function private function_545d53bf()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -162,7 +162,7 @@ private function function_545d53bf()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

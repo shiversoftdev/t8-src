@@ -87,7 +87,7 @@ function function_b0f112ca(var_55e8adf1, var_d3547bb1, var_d108dac6)
 	Parameters: 0
 	Flags: Private
 */
-private function function_871ecf05()
+function private function_871ecf05()
 {
 	for(i = 1; i < 128; i++)
 	{
@@ -109,7 +109,7 @@ private function function_871ecf05()
 	Parameters: 1
 	Flags: Private
 */
-private function function_8373f930(var_d108dac6)
+function private function_8373f930(var_d108dac6)
 {
 	return level.var_1a7a3f05.var_23e0aef1[var_d108dac6];
 }
@@ -123,7 +123,7 @@ private function function_8373f930(var_d108dac6)
 	Parameters: 2
 	Flags: Private
 */
-private function function_c5b9e623(volumes, score)
+function private function_c5b9e623(volumes, score)
 {
 	if(!isarray(volumes))
 	{

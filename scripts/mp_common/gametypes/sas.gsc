@@ -262,30 +262,39 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 			attacker globallogic_score::givepointstowin(int(level.pointspermeleekill));
 			scoreevents::processscoreevent(#"hash_6c8030eb05b53d5a", attacker, self, weapon);
 		}
-		else if(weapon == level.weapon_sas_primary_weapon)
+		else
 		{
-			attacker.killswithprimary++;
-			if(attacker.killswithbothawarded == 0 && attacker.killswithsecondary > 0)
+			if(weapon == level.weapon_sas_primary_weapon)
 			{
-				attacker.killswithbothawarded = 1;
+				attacker.killswithprimary++;
+				if(attacker.killswithbothawarded == 0 && attacker.killswithsecondary > 0)
+				{
+					attacker.killswithbothawarded = 1;
+				}
+				attacker globallogic_score::givepointstowin(level.pointsperprimarykill);
+				scoreevents::processscoreevent(#"hash_614b27b37ccee280", attacker, self, weapon);
 			}
-			attacker globallogic_score::givepointstowin(level.pointsperprimarykill);
-			scoreevents::processscoreevent(#"hash_614b27b37ccee280", attacker, self, weapon);
-		}
-		else if(weapon == level.weapon_sas_primary_grenade_weapon)
-		{
-			attacker globallogic_score::givepointstowin(int(level.pointsperprimarygrenadekill));
-		}
-		else if(weapon == level.weapon_sas_secondary_weapon)
-		{
-			attacker.killswithsecondary++;
-			if(attacker.killswithbothawarded == 0 && attacker.killswithprimary > 0)
+			else
 			{
-				attacker.killswithbothawarded = 1;
+				if(weapon == level.weapon_sas_primary_grenade_weapon)
+				{
+					attacker globallogic_score::givepointstowin(int(level.pointsperprimarygrenadekill));
+				}
+				else
+				{
+					if(weapon == level.weapon_sas_secondary_weapon)
+					{
+						attacker.killswithsecondary++;
+						if(attacker.killswithbothawarded == 0 && attacker.killswithprimary > 0)
+						{
+							attacker.killswithbothawarded = 1;
+						}
+					}
+					attacker globallogic_score::givepointstowin(level.pointspersecondarykill);
+					scoreevents::processscoreevent(#"hash_25ec47f9609803a9", attacker, self, weapon);
+				}
 			}
 		}
-		attacker globallogic_score::givepointstowin(level.pointspersecondarykill);
-		scoreevents::processscoreevent(#"hash_25ec47f9609803a9", attacker, self, weapon);
 		if(isdefined(level.setbackweapon) && weapon == level.setbackweapon)
 		{
 			self.pers[#"humiliated"]++;

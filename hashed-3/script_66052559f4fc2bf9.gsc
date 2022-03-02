@@ -42,7 +42,7 @@ function init_shared()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	if(function_f99d2668())
 	{
@@ -59,7 +59,7 @@ private function registerclientfields()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a5ce91f1(val)
+function private function_a5ce91f1(val)
 {
 	if(function_f99d2668())
 	{
@@ -82,10 +82,10 @@ function function_81d670f5()
 	{
 		if(!isdefined(level.var_d1455682.var_3e72919) || level.var_d1455682.var_3e72919.size == 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -97,7 +97,7 @@ function function_81d670f5()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_b8e20f5f(transition, outcome, var_f6e1baec, var_b6818fc8, func)
+function private function_b8e20f5f(transition, outcome, var_f6e1baec, var_b6818fc8, func)
 {
 	if(isdefined(var_f6e1baec) && var_f6e1baec)
 	{
@@ -184,7 +184,7 @@ function function_26654e7e(outcome)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_91b514e8(menuname)
+function private function_91b514e8(menuname)
 {
 	player = self;
 	player endon(#"disconnect");
@@ -380,9 +380,9 @@ function function_3f65d5d3()
 	if(!isdefined(self.pers[#"team"]))
 	{
 		self [[level.spawnintermission]](1);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -416,7 +416,7 @@ function function_3cfb29e1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function freeze_player_for_round_end()
+function private freeze_player_for_round_end()
 {
 	self player::freeze_player_for_round_end();
 	self thread globallogic::roundenddof();
@@ -431,7 +431,7 @@ private function freeze_player_for_round_end()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ba94df6c()
+function private function_ba94df6c()
 {
 	self setclientuivisibilityflag("hud_visible", 0);
 	self thread [[level.spawnintermission]](0);
@@ -460,7 +460,7 @@ function function_9185f489(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e22f5208(transition, outcome)
+function private function_e22f5208(transition, outcome)
 {
 	player::function_2f80d95b(&function_ba94df6c);
 }
@@ -474,7 +474,7 @@ private function function_e22f5208(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a3b4d41d(transition, outcome)
+function private function_a3b4d41d(transition, outcome)
 {
 	player::function_2f80d95b(&freeze_player_for_round_end);
 }
@@ -488,7 +488,7 @@ private function function_a3b4d41d(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_654c0030(transition, outcome)
+function private function_654c0030(transition, outcome)
 {
 	player::function_2f80d95b(&function_d7b5082e);
 	thread globallogic_audio::announce_game_winner(outcome);
@@ -504,7 +504,7 @@ private function function_654c0030(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d9d842b2(transition, outcome)
+function private function_d9d842b2(transition, outcome)
 {
 	thread globallogic_audio::function_57678746(outcome);
 }
@@ -518,7 +518,7 @@ private function function_d9d842b2(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b7fec738(transition, outcome)
+function private function_b7fec738(transition, outcome)
 {
 	thread globallogic_audio::announce_round_winner(0);
 }
@@ -532,7 +532,7 @@ private function function_b7fec738(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_66713ac(transition, outcome)
+function private function_66713ac(transition, outcome)
 {
 	thread globallogic_audio::function_5e0a6842();
 }
@@ -546,7 +546,7 @@ private function function_66713ac(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8feabee3(transition, outcome)
+function private function_8feabee3(transition, outcome)
 {
 	thread globallogic_audio::function_dfd17bd3();
 }
@@ -560,7 +560,7 @@ private function function_8feabee3(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_26bbb839(transition, outcome)
+function private function_26bbb839(transition, outcome)
 {
 	thread function_b8e20f5f(transition, outcome, transition.slowdown, transition.var_d7f20c92, &function_9185f489);
 	thread function_b8e20f5f(transition, outcome, transition.var_e2699dc7, transition.var_5f190d97, &function_a3b4d41d);
@@ -585,11 +585,11 @@ function checkroundswitch()
 {
 	if(!isdefined(level.roundswitch) || !level.roundswitch)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.onroundswitch))
 	{
-		return 0;
+		return false;
 	}
 	/#
 		assert(game.roundsplayed > 0);
@@ -597,9 +597,9 @@ function checkroundswitch()
 	if((game.roundsplayed % level.roundswitch) == 0)
 	{
 		[[level.onroundswitch]]();
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -611,7 +611,7 @@ function checkroundswitch()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e3855f6d(transition, outcome)
+function private function_e3855f6d(transition, outcome)
 {
 	if(util::waslastround())
 	{
@@ -634,7 +634,7 @@ private function function_e3855f6d(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a2d39e40(transition, outcome)
+function private function_a2d39e40(transition, outcome)
 {
 	globallogic::function_452e18ad();
 	array::run_all(level.players, &hud_message::function_6be746c2);
@@ -650,7 +650,7 @@ private function function_a2d39e40(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e3442abc(transition, outcome)
+function private function_e3442abc(transition, outcome)
 {
 	globallogic::function_452e18ad();
 	array::run_all(level.players, &hud_message::function_6be746c2);
@@ -666,7 +666,7 @@ private function function_e3442abc(transition, outcome)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_aed7dbe1(p1, p2)
+function private function_aed7dbe1(p1, p2)
 {
 	if(p1.score != p2.score)
 	{
@@ -684,7 +684,7 @@ private function function_aed7dbe1(p1, p2)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e17d407e(transition, outcome)
+function private function_e17d407e(transition, outcome)
 {
 	var_77d0878c = array();
 	foreach(player in level.players)
@@ -883,13 +883,13 @@ function function_40a46b5b(transition, outcome)
 {
 	if(isdefined(transition.disable) && transition.disable)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(transition.var_b5dabc6b) && transition.var_b5dabc6b)
 	{
 		if(util::waslastround() || util::isoneround())
 		{
-			return 1;
+			return true;
 		}
 	}
 	var_860cd9fa = isdefined(level.shouldplayovertimeround) && [[level.shouldplayovertimeround]]();
@@ -897,50 +897,50 @@ function function_40a46b5b(transition, outcome)
 	{
 		if(isdefined(transition.var_d0f2da62) && transition.var_d0f2da62)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(isdefined(transition.var_fb87c2b4) && transition.var_fb87c2b4)
 	{
-		return 1;
+		return true;
 	}
 	if(overtime::is_overtime_round())
 	{
 		if(isdefined(transition.var_e0d86f3) && transition.var_e0d86f3)
 		{
-			return 1;
+			return true;
 		}
 	}
 	else if(isdefined(transition.var_7b778818) && transition.var_7b778818)
 	{
-		return 1;
+		return true;
 	}
 	if(transition.type == "team_pose")
 	{
 		if(outcome.team == #"free")
 		{
-			return 1;
+			return true;
 		}
 		if(!isdefined(struct::get("team_pose_cam", "targetname")))
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(transition.type == "switch_sides")
 	{
 		if(!(isdefined(level.roundswitch) && level.roundswitch))
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(transition.type == "outcome")
 	{
 		if(isdefined(level.var_67a68459) && level.var_67a68459)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1026,7 +1026,7 @@ function function_3dc5df3b(time)
 	{
 		return;
 	}
-	level waittill_timeout(time * level.var_49d9aa70, #"hash_197c640e2f684a74");
+	level waittilltimeout(time * level.var_49d9aa70, #"hash_197c640e2f684a74");
 }
 
 /*

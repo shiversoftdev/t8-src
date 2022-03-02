@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2c97516cc37baa4b", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	foreach(player in getplayers())
 	{
@@ -72,7 +72,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(!round_reset)
 	{
@@ -117,7 +117,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_29bcf2f8()
+function private function_29bcf2f8()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -165,7 +165,7 @@ private function function_29bcf2f8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6fa5c86()
+function private function_6fa5c86()
 {
 	level endon(#"hash_7646638df88a3656");
 	level flag::set("infinite_round_spawning");
@@ -212,7 +212,7 @@ function on_ai_spawned()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d52378b3()
+function private function_d52378b3()
 {
 	self endon(#"death");
 	level endon(#"hash_7646638df88a3656");

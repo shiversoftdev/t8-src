@@ -85,11 +85,11 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function opt_in()
+function autoexec opt_in()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
-	level.var_4ea5cce8 = 2;
+	level.bgb_machine_count = 2;
 	level.random_pandora_box_start = 1;
 	level.pack_a_punch_camo_index = 394;
 	level.pack_a_punch_camo_index_number_variants = 1;
@@ -262,7 +262,7 @@ function offhand_weapon_give_override(str_weapon)
 		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
 		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1039,7 +1039,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1059,6 +1059,6 @@ function function_e5086229(var_404e4288, var_8dd554ee)
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 

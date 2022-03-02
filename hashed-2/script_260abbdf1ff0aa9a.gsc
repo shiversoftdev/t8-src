@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_transform", &__init__, undefined, undefined);
 }
@@ -93,7 +93,7 @@ function function_341e5a97(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_8a817bd6(model)
 {
-	self waittill_timeout(60, #"death", #"unlock_model");
+	self waittilltimeout(60, #"death", #"unlock_model");
 	util::unlock_model(model);
 }
 

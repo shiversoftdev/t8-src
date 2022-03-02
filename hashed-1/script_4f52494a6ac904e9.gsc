@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_831eacd382054cc", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_65089f84(localclientnum)
+function private function_65089f84(localclientnum)
 {
 }
 
@@ -62,7 +62,7 @@ private function function_65089f84(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function zombie_electric_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private zombie_electric_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self))
@@ -88,7 +88,7 @@ private function zombie_electric_fx(localclientnum, oldval, newval, bnewent, bin
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_8f477183(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_8f477183(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self) && newval)
@@ -106,7 +106,7 @@ private function function_8f477183(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_c9f98c07(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_c9f98c07(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self) && newval)
@@ -124,7 +124,7 @@ private function function_c9f98c07(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_4d29fadf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function private function_4d29fadf(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self) && newval)
@@ -142,7 +142,7 @@ private function function_4d29fadf(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_93585307(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_93585307(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self util::waittill_dobj(localclientnum);
 	if(isdefined(self))
@@ -162,20 +162,23 @@ private function function_93585307(localclientnum, oldval, newval, bnewent, bini
 				self.var_93ee541d = self playloopsound("zmb_aat_kilowatt_stunned_lp");
 			}
 		}
-		else if(isdefined(self.var_2e07a8e7))
+		else
 		{
-			stopfx(localclientnum, self.var_2e07a8e7);
-			self.var_2e07a8e7 = undefined;
-		}
-		if(isdefined(self.var_d48778ce))
-		{
-			stopfx(localclientnum, self.var_d48778ce);
-			self.var_d48778ce = undefined;
-		}
-		if(isdefined(self.var_93ee541d))
-		{
-			self stoploopsound(self.var_93ee541d);
-			self.var_93ee541d = undefined;
+			if(isdefined(self.var_2e07a8e7))
+			{
+				stopfx(localclientnum, self.var_2e07a8e7);
+				self.var_2e07a8e7 = undefined;
+			}
+			if(isdefined(self.var_d48778ce))
+			{
+				stopfx(localclientnum, self.var_d48778ce);
+				self.var_d48778ce = undefined;
+			}
+			if(isdefined(self.var_93ee541d))
+			{
+				self stoploopsound(self.var_93ee541d);
+				self.var_93ee541d = undefined;
+			}
 		}
 	}
 }

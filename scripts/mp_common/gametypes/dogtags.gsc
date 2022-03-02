@@ -411,25 +411,25 @@ function should_spawn_tags(einflictor, attacker, idamage, smeansofdeath, sweapon
 {
 	if(isalive(self))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.switching_teams))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(attacker) && attacker == self)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased && isdefined(attacker) && isdefined(attacker.team) && attacker.team == self.team)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(attacker) && (!isdefined(attacker.team) || attacker.team == "free") && (attacker.classname == "trigger_hurt_new" || attacker.classname == "worldspawn"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

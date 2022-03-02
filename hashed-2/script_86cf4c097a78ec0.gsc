@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"dart_wz", &__init__, undefined, undefined);
 }
@@ -96,7 +96,7 @@ function function_2d1ff9c7(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_32a729d9(localclientnum, value)
+function private function_32a729d9(localclientnum, value)
 {
 	model = getuimodel(getuimodelforcontroller(localclientnum), "vehicle.outOfRange");
 	if(isdefined(model))
@@ -114,7 +114,7 @@ private function function_32a729d9(localclientnum, value)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_542f0394(localclientnum)
+function private function_542f0394(localclientnum)
 {
 	self notify("3edfd3cf94760371");
 	self endon("3edfd3cf94760371");

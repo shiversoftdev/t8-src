@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_bgb_now_you_see_me", &__init__, undefined, #"bgb");
 }
@@ -38,11 +38,11 @@ function __init__()
 	bgb::register(#"zm_bgb_now_you_see_me", "activated", 1, undefined, undefined, undefined, &activation);
 	bgb::function_57eb02e(#"zm_bgb_now_you_see_me");
 	bgb::function_1fee6b3(#"zm_bgb_now_you_see_me", 19);
-	if(!isdefined(level.var_8787b121))
+	if(!isdefined(level.vsmgr_prio_visionset_zm_bgb_now_you_see_me))
 	{
-		level.var_8787b121 = 111;
+		level.vsmgr_prio_visionset_zm_bgb_now_you_see_me = 111;
 	}
-	visionset_mgr::register_info("visionset", "zm_bgb_now_you_see_me", 1, level.var_8787b121, 31, 1, &visionset_mgr::ramp_in_out_thread_per_player, 0);
+	visionset_mgr::register_info("visionset", "zm_bgb_now_you_see_me", 1, level.vsmgr_prio_visionset_zm_bgb_now_you_see_me, 31, 1, &visionset_mgr::ramp_in_out_thread_per_player, 0);
 	clientfield::register("toplayer", "" + #"hash_18be2b4b3936ee1f", 1, 1, "int");
 }
 
@@ -57,7 +57,7 @@ function __init__()
 */
 function validation()
 {
-	return !(isdefined(self bgb::function_ff7c0158()) && self bgb::function_ff7c0158());
+	return !(isdefined(self bgb::get_active()) && self bgb::get_active());
 }
 
 /*
@@ -77,7 +77,7 @@ function activation()
 	self playsound(#"zmb_bgb_nysm_start");
 	self clientfield::set_to_player("" + #"hash_18be2b4b3936ee1f", 1);
 	ret = undefined;
-	ret = self waittill_timeout(14.5, #"bgb_about_to_take_on_bled_out", #"end_game", #"bgb_update", #"disconnect");
+	ret = self waittilltimeout(14.5, #"bgb_about_to_take_on_bled_out", #"end_game", #"bgb_update", #"disconnect");
 	self playsound(#"zmb_bgb_nysm_end");
 	if("timeout" != ret._notify)
 	{

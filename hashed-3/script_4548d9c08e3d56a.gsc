@@ -52,7 +52,7 @@ function function_17b76033()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_73fdd23e()
+function private function_73fdd23e()
 {
 	self endon(#"disconnect");
 	self waittill(#"hash_108cb6aa18caf726");
@@ -68,7 +68,7 @@ private function function_73fdd23e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f47a878a()
+function private function_f47a878a()
 {
 	self endon(#"disconnect");
 	self waittill(#"hash_6db9af45fe6345fc");
@@ -84,7 +84,7 @@ private function function_f47a878a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_70003bac()
+function private function_70003bac()
 {
 	self endon(#"disconnect");
 	self waittill(#"hash_6e0a27b37f225a25");
@@ -100,7 +100,7 @@ private function function_70003bac()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4f363fd4()
+function private function_4f363fd4()
 {
 	self endon(#"disconnect");
 	var_4f57eb04 = getweapon(#"hash_19c157f2230454ad");
@@ -135,7 +135,7 @@ private function function_4f363fd4()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cf262a06()
+function private function_cf262a06()
 {
 	self endon(#"disconnect");
 	self waittill(#"hash_7af72088379d7ac6");
@@ -151,7 +151,7 @@ private function function_cf262a06()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e5df009()
+function private function_e5df009()
 {
 	self endon(#"disconnect", #"hash_b5d3534da3f4508");
 	level endon(#"end_game", #"activate_catwalk");
@@ -195,7 +195,7 @@ private function function_e5df009()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_4c6d1750()
+function private function_4c6d1750()
 {
 	self endon(#"disconnect", #"hash_1410cda9f15ef1c3");
 	while(true)
@@ -219,7 +219,7 @@ private function function_4c6d1750()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8b752e69()
+function private function_8b752e69()
 {
 	self endon(#"disconnect");
 	self.var_cd7cfb60 = 0;
@@ -254,7 +254,7 @@ private function function_8b752e69()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ce31237b()
+function private function_ce31237b()
 {
 	level endon(#"soul_catchers_charged");
 	self endon(#"disconnect");

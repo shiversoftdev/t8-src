@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"lead_drone", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e8549ef6()
+function private function_e8549ef6()
 {
 	self endon(#"death");
 	self useanimtree("generic");
@@ -89,7 +89,7 @@ private function function_e8549ef6()
 	Parameters: 0
 	Flags: Private
 */
-private function side_turrets_forward()
+function private side_turrets_forward()
 {
 	self turretsettargetangles(1, (10, -90, 0));
 	self turretsettargetangles(2, (10, 90, 0));
@@ -255,7 +255,7 @@ function function_b2cc6703(targets)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function update_player_threat(player)
+function private update_player_threat(player)
 {
 	entnum = self getentitynumber();
 	player.var_629a6b13[entnum] = 0;
@@ -307,7 +307,7 @@ private function update_player_threat(player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function update_non_player_threat(non_player)
+function private update_non_player_threat(non_player)
 {
 	entnum = self getentitynumber();
 	non_player.var_629a6b13[entnum] = 0;
@@ -328,7 +328,7 @@ private function update_non_player_threat(non_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function update_actor_threat(actor)
+function private update_actor_threat(actor)
 {
 	entnum = self getentitynumber();
 	actor.var_629a6b13[entnum] = 0;
@@ -364,7 +364,7 @@ private function update_actor_threat(actor)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function update_dog_threat(dog)
+function private update_dog_threat(dog)
 {
 	entnum = self getentitynumber();
 	dog.var_629a6b13[entnum] = 0;
@@ -385,47 +385,47 @@ function cantargetplayer(player)
 {
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(player) || player.sessionstate != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(player.ignoreme === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.owner) && player == self.owner)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(player.team))
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased && player.team == self.team)
 	{
-		return 0;
+		return false;
 	}
 	if(player.team == #"spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(!self cansee(player, 2))
 	{
-		return 0;
+		return false;
 	}
 	if(player depthinwater() >= 30 || player isplayerswimming())
 	{
-		return 0;
+		return false;
 	}
 	var_2910def0 = self namespace_14c38db0::function_1c169b3a(player);
 	namespace_14c38db0::function_a4d6d6d8(player, int((isdefined(self.targeting_delay) ? self.targeting_delay : 0.05) * 1000));
 	if(!var_2910def0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -441,21 +441,21 @@ function function_932034ba(tank)
 {
 	if(!isdefined(tank))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(tank.team))
 	{
-		return 0;
+		return false;
 	}
 	if(!util::function_fbce7263(tank.team, self.team))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(tank.owner) && self.owner == tank.owner)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -471,25 +471,25 @@ function cantargetactor(actor)
 {
 	if(!isdefined(actor))
 	{
-		return 0;
+		return false;
 	}
 	if(!isactor(actor))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(actor))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(actor.team))
 	{
-		return 0;
+		return false;
 	}
 	if(!util::function_fbce7263(actor.team, self.team))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5d4022ed5385d3fa", &__init__, undefined, undefined);
 }
@@ -81,13 +81,16 @@ function function_946acaec(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.blinking_fx = util::playfxontag(localclientnum, level._effect[#"hash_6d40a3f1944d81b2"], self, "tag_origin");
 	}
-	else if(newval == 1)
+	else
 	{
-		self.blinking_fx = util::playfxontag(localclientnum, level._effect[#"hash_3d339d7ae7b008d3"], self, "tag_origin");
-	}
-	else if(isdefined(self.blinking_fx))
-	{
-		deletefx(localclientnum, self.blinking_fx);
+		if(newval == 1)
+		{
+			self.blinking_fx = util::playfxontag(localclientnum, level._effect[#"hash_3d339d7ae7b008d3"], self, "tag_origin");
+		}
+		else if(isdefined(self.blinking_fx))
+		{
+			deletefx(localclientnum, self.blinking_fx);
+		}
 	}
 }
 
@@ -124,15 +127,18 @@ function function_3f09b130(localclientnum, oldval, newval, bnewent, binitialsnap
 			setfxignorepause(localclientnum, self.n_shock_fx, 1);
 		}
 	}
-	else if(isdefined(self.n_shock_eyes_fx))
+	else
 	{
-		deletefx(localclientnum, self.n_shock_eyes_fx, 1);
-		self.n_shock_eyes_fx = undefined;
-	}
-	if(isdefined(self.n_shock_fx))
-	{
-		deletefx(localclientnum, self.n_shock_fx, 1);
-		self.n_shock_fx = undefined;
+		if(isdefined(self.n_shock_eyes_fx))
+		{
+			deletefx(localclientnum, self.n_shock_eyes_fx, 1);
+			self.n_shock_eyes_fx = undefined;
+		}
+		if(isdefined(self.n_shock_fx))
+		{
+			deletefx(localclientnum, self.n_shock_fx, 1);
+			self.n_shock_fx = undefined;
+		}
 	}
 }
 

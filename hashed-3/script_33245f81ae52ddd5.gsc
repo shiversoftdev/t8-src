@@ -156,7 +156,7 @@ function gadget_vision_pulse_on_spawn()
 */
 function gadget_vision_pulse_ramp_hold_func()
 {
-	self waittill_timeout((float(level.var_2e3031be.var_4d88a1ff) / 1000) - 0.35, #"ramp_out_visionset");
+	self waittilltimeout((float(level.var_2e3031be.var_4d88a1ff) / 1000) - 0.35, #"ramp_out_visionset");
 }
 
 /*

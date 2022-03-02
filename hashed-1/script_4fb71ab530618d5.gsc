@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"blade", &__init__, undefined, undefined);
 }
@@ -159,7 +159,7 @@ function function_fcfa93d0(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e79ccfd8(localclientnum)
+function private function_e79ccfd8(localclientnum)
 {
 	function_e9f518c7(localclientnum);
 }

@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init()
+function autoexec init()
 {
 	namespace_1f694fcd::registerbrutusinterfaceattributes();
 	registerbehaviorscriptfunctions();
@@ -31,7 +31,7 @@ autoexec function init()
 	Parameters: 0
 	Flags: Private
 */
-private function function_651f04c3()
+function private function_651f04c3()
 {
 	/#
 		assert(isdefined(self.ai));
@@ -47,7 +47,7 @@ private function function_651f04c3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_517fd069()
+function private function_517fd069()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -64,7 +64,7 @@ private function function_517fd069()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3cdbfffd(entity)
+function private function_3cdbfffd(entity)
 {
 }
 
@@ -77,7 +77,7 @@ private function function_3cdbfffd(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_666b2409(entity)
+function private function_666b2409(entity)
 {
 	self.__blackboard = undefined;
 	self function_517fd069();
@@ -92,7 +92,7 @@ private function function_666b2409(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 }
 
@@ -105,7 +105,7 @@ private function registerbehaviorscriptfunctions()
 	Parameters: 1
 	Flags: Private
 */
-private function function_f9f08bb1(message)
+function private function_f9f08bb1(message)
 {
 	/#
 		if(getdvarint(#"hash_4aefa984c0b2ea80", 0))

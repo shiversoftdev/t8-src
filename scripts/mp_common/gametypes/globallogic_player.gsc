@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"globallogic_player", &__init__, undefined, undefined);
 }
@@ -48,13 +48,13 @@ function function_4b7bb02c(weapon)
 {
 	if(!killstreaks::is_killstreak_weapon(weapon))
 	{
-		return 1;
+		return true;
 	}
 	if(killstreaks::is_killstreak_weapon_assist_allowed(weapon))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

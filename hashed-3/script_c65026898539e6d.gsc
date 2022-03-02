@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_62ed3e0f56513ba7", &__init__, undefined, undefined);
 }
@@ -47,7 +47,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_6ad4e7c6)
+function private function_d1de6a85(var_6ad4e7c6)
 {
 	fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
 	/#
@@ -67,7 +67,7 @@ private function function_d1de6a85(var_6ad4e7c6)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	if(!round_reset)
@@ -92,7 +92,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_c83a4a77()
+function private function_c83a4a77()
 {
 	fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
 	/#
@@ -118,7 +118,7 @@ private function function_c83a4a77()
 	Parameters: 0
 	Flags: Private
 */
-private function function_25f146be()
+function private function_25f146be()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");

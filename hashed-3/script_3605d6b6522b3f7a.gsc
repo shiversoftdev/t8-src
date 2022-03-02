@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_25dce303ffafdaf4", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_dd1a18c9)
+function private function_d1de6a85(var_dd1a18c9)
 {
 	level.var_dd1a18c9 = zm_trial::function_5769f26a(var_dd1a18c9);
 	level.var_59f4d3a6 = 0;
@@ -74,7 +74,7 @@ private function function_d1de6a85(var_dd1a18c9)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	level.var_dd1a18c9 = undefined;
@@ -100,7 +100,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function function_cfb0f4d()
+function private function_cfb0f4d()
 {
 	level endon(#"hash_7646638df88a3656", #"hash_2b35a48172d1e0c2");
 	while(true)
@@ -130,15 +130,15 @@ private function function_cfb0f4d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_a4bcce4e()
+function private function_a4bcce4e()
 {
 	for(i = 0; i < 4; i++)
 	{
-		var_4c47dfdb = self.var_7d0afffb[i];
-		if(var_4c47dfdb === #"zm_bgb_immolation_liquidation")
+		str_bgb = self.bgb_pack[i];
+		if(str_bgb === #"zm_bgb_immolation_liquidation")
 		{
-			self.var_abfa1f6a = namespace_7d0afffb::function_834d35e(i);
-			self namespace_7d0afffb::function_b2308cd(i, 3);
+			self.var_abfa1f6a = bgb_pack::function_834d35e(i);
+			self bgb_pack::function_b2308cd(i, 3);
 		}
 	}
 }
@@ -152,14 +152,14 @@ private function function_a4bcce4e()
 	Parameters: 0
 	Flags: Private
 */
-private function function_e8f640a5()
+function private function_e8f640a5()
 {
 	for(i = 0; i < 4; i++)
 	{
-		var_4c47dfdb = self.var_7d0afffb[i];
-		if(var_4c47dfdb === #"zm_bgb_immolation_liquidation")
+		str_bgb = self.bgb_pack[i];
+		if(str_bgb === #"zm_bgb_immolation_liquidation")
 		{
-			self namespace_7d0afffb::function_b2308cd(i, self.var_abfa1f6a);
+			self bgb_pack::function_b2308cd(i, self.var_abfa1f6a);
 			self.var_abfa1f6a = undefined;
 		}
 	}

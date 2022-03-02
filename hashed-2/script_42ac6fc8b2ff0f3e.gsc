@@ -38,7 +38,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_equip_riotshield", &__init__, &__main__, undefined);
 }
@@ -99,9 +99,7 @@ function __init__()
 	}
 	if(!isdefined(level.var_2677b8bb))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_2677b8bb = object;
+		level.var_2677b8bb = new throttle();
 		[[ level.var_2677b8bb ]]->initialize(4, 0.1);
 	}
 	callback::on_connect(&on_player_connect);
@@ -205,7 +203,7 @@ function player_init_shield_health(weapon, var_cd9d17e0 = 0)
 	{
 		self givemaxammo(weapon);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -331,14 +329,22 @@ function should_shield_absorb_damage(einflictor, eattacker, idamage, idflags, sm
 					return 1;
 				}
 			}
-			else if(!isdefined(self.riotshieldentity))
+			else
 			{
-				if(!self player_shield_facing_attacker(vdir, -0.2, eattacker))
+				if(!isdefined(self.riotshieldentity))
 				{
-					return zombie_utility::function_d2dfacfd(#"riotshield_stowed_block_fraction");
+					if(!self player_shield_facing_attacker(vdir, -0.2, eattacker))
+					{
+						return zombie_utility::function_d2dfacfd(#"riotshield_stowed_block_fraction");
+					}
+				}
+				else
+				{
+					/#
+						assert(!isdefined(self.riotshieldentity), "");
+					#/
 				}
 			}
-			assert(!isdefined(self.riotshieldentity), "");
 		}
 	}
 	return 0;
@@ -431,12 +437,15 @@ function player_damage_shield(idamage, bheld, fromcode = 0, smod = "MOD_UNKNOWN"
 		self thread zm_audio::create_and_play_dialog(#"shield", #"destroy");
 		self thread player_take_riotshield();
 	}
-	else if(var_4e0da269)
+	else
 	{
-		self clientfield::increment_to_player("zm_shield_damage_rumble");
-		self playsound(#"fly_riotshield_zm_impact_zombies");
+		if(var_4e0da269)
+		{
+			self clientfield::increment_to_player("zm_shield_damage_rumble");
+			self playsound(#"fly_riotshield_zm_impact_zombies");
+		}
+		self updateriotshieldmodel();
 	}
-	self updateriotshieldmodel();
 	if(damagemax > 0)
 	{
 		self clientfield::set_player_uimodel("ZMInventoryPersonal.shield_health", shieldhealth / damagemax);
@@ -750,16 +759,19 @@ function riotshield_get_enemies_in_range(riotshield_knockdown_range, riotshield_
 					level.riotshield_knockdown_enemies[level.riotshield_knockdown_enemies.size] = e_target;
 					level.riotshield_knockdown_gib[level.riotshield_knockdown_gib.size] = 0;
 				}
-				else if(!isdefined(level.var_21ffc192))
+				else
 				{
-					level.var_21ffc192 = [];
+					if(!isdefined(level.var_21ffc192))
+					{
+						level.var_21ffc192 = [];
+					}
+					else if(!isarray(level.var_21ffc192))
+					{
+						level.var_21ffc192 = array(level.var_21ffc192);
+					}
+					level.var_21ffc192[level.var_21ffc192.size] = e_target;
+					e_target dodamage(3000, self.origin, self, self, "", "MOD_IMPACT");
 				}
-				else if(!isarray(level.var_21ffc192))
-				{
-					level.var_21ffc192 = array(level.var_21ffc192);
-				}
-				level.var_21ffc192[level.var_21ffc192.size] = e_target;
-				e_target dodamage(3000, self.origin, self, self, "", "MOD_IMPACT");
 				break;
 			}
 			case "popcorn":

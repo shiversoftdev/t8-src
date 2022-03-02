@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_491590ee8fe06753", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d1de6a85()
+function private function_d1de6a85()
 {
 	/#
 		assert(isdefined(level.zombie_weapons_upgraded));
@@ -78,7 +78,7 @@ private function function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -123,7 +123,7 @@ function is_active()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(eventstruct)
+function private function_33f0ddd3(eventstruct)
 {
 	self function_6a8979c9();
 }
@@ -137,7 +137,7 @@ private function function_33f0ddd3(eventstruct)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6a8979c9()
+function private function_6a8979c9()
 {
 	/#
 		assert(isdefined(level.var_af806901));

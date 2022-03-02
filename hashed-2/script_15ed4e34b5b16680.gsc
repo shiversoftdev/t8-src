@@ -800,7 +800,7 @@ function function_560c5174(currentnode, startwait, hardpointtype)
 function function_ab637f96(waittime, var_f49cf7e0 = 0)
 {
 	self endon(#"death", #"crashing", #"evasive");
-	self endon_callback(&function_6b4ab31d, #"hash_2fb2657921c7de37", #"damage", #"hash_1ef47c427ec739d7");
+	self endoncallback(&function_6b4ab31d, #"hash_2fb2657921c7de37", #"damage", #"hash_1ef47c427ec739d7");
 	self thread helicopter::heli_hover();
 	if(var_f49cf7e0 > 0)
 	{
@@ -904,7 +904,7 @@ function function_64dd0b39(var_fec7078b)
 	Parameters: 15
 	Flags: Private
 */
-private function function_4e049216(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
+function private function_4e049216(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	if(isdefined(einflictor) && einflictor == self)
 	{
@@ -926,21 +926,24 @@ private function function_4e049216(einflictor, eattacker, idamage, idflags, smea
 			namespace_73e1c3e3::get_player() thread namespace_73e1c3e3::function_329f9ba6(#"hash_70f2d94bae3edef5", 2, "red");
 		}
 	}
-	else if(smeansofdeath === "MOD_IMPACT" && weapon === getweapon(#"hero_pineapplegun"))
+	else
 	{
-		level notify(#"hash_788c0d72802f35af", {#v_loc:vpoint});
-		self.damagetaken = self.damagetaken + 751;
-	}
-	else if(weapon === getweapon(#"eq_cluster_semtex_grenade") && (!(isdefined(self.var_21c8bc5f) && self.var_21c8bc5f)))
-	{
-		self.var_21c8bc5f = 1;
-		level notify(#"hash_18859ff9fe569290", {#v_loc:vpoint});
-		namespace_73e1c3e3::get_player() thread namespace_73e1c3e3::magic_explosion(vpoint);
-		if(!isdefined(self.damagetaken))
+		if(smeansofdeath === "MOD_IMPACT" && weapon === getweapon(#"hero_pineapplegun"))
 		{
-			self.damagetaken = 0;
+			level notify(#"hash_788c0d72802f35af", {#v_loc:vpoint});
+			self.damagetaken = self.damagetaken + 751;
 		}
-		self.damagetaken = self.damagetaken + 1501;
+		else if(weapon === getweapon(#"eq_cluster_semtex_grenade") && (!(isdefined(self.var_21c8bc5f) && self.var_21c8bc5f)))
+		{
+			self.var_21c8bc5f = 1;
+			level notify(#"hash_18859ff9fe569290", {#v_loc:vpoint});
+			namespace_73e1c3e3::get_player() thread namespace_73e1c3e3::magic_explosion(vpoint);
+			if(!isdefined(self.damagetaken))
+			{
+				self.damagetaken = 0;
+			}
+			self.damagetaken = self.damagetaken + 1501;
+		}
 	}
 	if(self.damagetaken >= self.maxhealth && !isdefined(self.about_to_die))
 	{
@@ -1040,7 +1043,7 @@ function function_4c8f915a(str_targetname, str_team)
 	Parameters: 15
 	Flags: Private
 */
-private function function_1f04fda(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
+function private function_1f04fda(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, vdamageorigin, psoffsettime, damagefromunderneath, modelindex, partname, vsurfacenormal)
 {
 	if(isdefined(einflictor) && einflictor == self)
 	{
@@ -1061,13 +1064,16 @@ private function function_1f04fda(einflictor, eattacker, idamage, idflags, smean
 	{
 		level notify(#"hash_788c0d72802f35af", {#v_loc:vpoint});
 	}
-	else if(smeansofdeath !== "MOD_IMPACT" && weapon === var_70abea18)
+	else
 	{
-		self.damagetaken = self.damagetaken + 1501;
-	}
-	else if(smeansofdeath !== "MOD_IMPACT" && weapon === var_60350909)
-	{
-		self.damagetaken = self.damagetaken + 751;
+		if(smeansofdeath !== "MOD_IMPACT" && weapon === var_70abea18)
+		{
+			self.damagetaken = self.damagetaken + 1501;
+		}
+		else if(smeansofdeath !== "MOD_IMPACT" && weapon === var_60350909)
+		{
+			self.damagetaken = self.damagetaken + 751;
+		}
 	}
 	if(self.damagetaken >= self.maxhealth)
 	{
@@ -1090,7 +1096,7 @@ private function function_1f04fda(einflictor, eattacker, idamage, idflags, smean
 	Parameters: 1
 	Flags: Private
 */
-private function state_combat_enter(params)
+function private state_combat_enter(params)
 {
 	self thread ai_tank::turretfireupdate();
 }

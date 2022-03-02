@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_281322718ac3cd88", &__init__, undefined, undefined);
 }
@@ -52,7 +52,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_c8a36f90, var_a9dd1993, var_2953986a, var_3790b4e4, var_edc5a14f)
+function private function_d1de6a85(var_c8a36f90, var_a9dd1993, var_2953986a, var_3790b4e4, var_edc5a14f)
 {
 	level.var_e91491fb = (isdefined(var_c8a36f90) ? var_c8a36f90 : "movement");
 	callback::function_33f0ddd3(&function_33f0ddd3);
@@ -76,7 +76,7 @@ private function function_d1de6a85(var_c8a36f90, var_a9dd1993, var_2953986a, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
 	level zm_trial::function_25ee130(0);
@@ -111,7 +111,7 @@ function is_active()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_1633056a(var_a9dd1993, var_2953986a, var_3790b4e4, var_edc5a14f)
+function private function_1633056a(var_a9dd1993, var_2953986a, var_3790b4e4, var_edc5a14f)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -221,7 +221,7 @@ function function_26f124d8()
 {
 	if(!isdefined(level.var_e91491fb))
 	{
-		return 1;
+		return true;
 	}
 	switch(level.var_e91491fb)
 	{
@@ -230,49 +230,49 @@ function function_26f124d8()
 			var_389b3ef1 = self playerads();
 			if(self adsbuttonpressed() && var_389b3ef1 > 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "jump":
 		{
 			if(self zm_utility::is_jumping())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "slide":
 		{
 			if(self issliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "hash_6c6c8f6b349b8751":
 		{
 			if(self zm_utility::is_jumping() || self issliding())
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "crouch":
 		{
 			if(self getstance() === "crouch")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "prone":
 		{
 			if(self getstance() === "prone")
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 		case "movement":
 		default:
@@ -280,12 +280,12 @@ function function_26f124d8()
 			v_velocity = self getvelocity();
 			if(length(v_velocity) != 0)
 			{
-				return 1;
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -297,7 +297,7 @@ function function_26f124d8()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "give_weapon")
 	{

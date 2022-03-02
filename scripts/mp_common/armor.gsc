@@ -460,48 +460,51 @@ function get_armor_bars()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_37f4e0e0(smeansofdeath, shitloc)
+function private function_37f4e0e0(smeansofdeath, shitloc)
 {
 	if(!isdefined(smeansofdeath))
 	{
-		return 1;
+		return true;
 	}
 	isexplosivedamage = weapon_utils::isexplosivedamage(smeansofdeath);
 	if(isdefined(self.var_59a874a7) && isdefined(self.var_59a874a7.var_735ae1ee) && (!(isdefined(isexplosivedamage) && isexplosivedamage)))
 	{
 		if(!isdefined(self.var_59a874a7.var_735ae1ee.(shitloc)))
 		{
-			return 0;
+			return false;
 		}
 		if(self.var_59a874a7.var_735ae1ee.(shitloc) == 0)
 		{
-			return 0;
+			return false;
 		}
 		if(smeansofdeath == "MOD_HEAD_SHOT")
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(function_f99d2668())
 	{
 		if(smeansofdeath == "MOD_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET" || smeansofdeath == "MOD_PISTOL_BULLET" || smeansofdeath == "MOD_MELEE" || smeansofdeath == "MOD_MELEE_WEAPON_BUTT")
 		{
-			return 1;
+			return true;
 		}
 		if(isexplosivedamage)
 		{
-			return 1;
+			return true;
 		}
 	}
-	else if(smeansofdeath == "MOD_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET" || smeansofdeath == "MOD_PISTOL_BULLET" || (smeansofdeath == "MOD_IMPACT" && shitloc !== "head"))
+	else
 	{
-		return 1;
+		if(smeansofdeath == "MOD_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET" || smeansofdeath == "MOD_PISTOL_BULLET" || (smeansofdeath == "MOD_IMPACT" && shitloc !== "head"))
+		{
+			return true;
+		}
+		if(isexplosivedamage)
+		{
+			return true;
+		}
 	}
-	if(isexplosivedamage)
-	{
-		return 1;
-	}
-	return 0;
+	return false;
 }
 
 /*
@@ -513,13 +516,13 @@ private function function_37f4e0e0(smeansofdeath, shitloc)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7538fede(weapon)
+function private function_7538fede(weapon)
 {
 	if(weapon.name == #"hash_3458fd4dff2bd9e8")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -569,35 +572,41 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 		var_2274e560 = self.var_59a874a7.var_c899f877;
 		var_737c8f6e = self.var_59a874a7.var_35e3563e;
 	}
-	else if(smeansofdeath == "MOD_MELEE")
-	{
-		if(weapon_utils::ispunch(weapon))
-		{
-			var_2274e560 = var_2274e560 * self.var_59a874a7.var_22c3ab38;
-		}
-		else
-		{
-			var_2274e560 = var_2274e560 * self.var_59a874a7.var_9f307988;
-		}
-	}
-	else if(smeansofdeath == "MOD_MELEE_WEAPON_BUTT")
-	{
-		if(function_7538fede(weapon))
-		{
-			var_2274e560 = var_2274e560 * self.var_59a874a7.var_9f307988;
-		}
-		else
-		{
-			var_2274e560 = var_2274e560 * self.var_59a874a7.var_7a80f06e;
-		}
-	}
 	else
 	{
-		var_2274e560 = var_2274e560 * (weapon.var_ed6ea786 ? self.var_59a874a7.var_5164d2e2 : self.var_59a874a7.var_2274e560);
-	}
-	if(isdefined(self.var_59a874a7) && isdefined(self.var_59a874a7.var_735ae1ee))
-	{
-		var_2274e560 = var_2274e560 + (1 - var_2274e560) * (1 - self.var_59a874a7.var_735ae1ee.(shitloc));
+		if(smeansofdeath == "MOD_MELEE")
+		{
+			if(weapon_utils::ispunch(weapon))
+			{
+				var_2274e560 = var_2274e560 * self.var_59a874a7.var_22c3ab38;
+			}
+			else
+			{
+				var_2274e560 = var_2274e560 * self.var_59a874a7.var_9f307988;
+			}
+		}
+		else
+		{
+			if(smeansofdeath == "MOD_MELEE_WEAPON_BUTT")
+			{
+				if(function_7538fede(weapon))
+				{
+					var_2274e560 = var_2274e560 * self.var_59a874a7.var_9f307988;
+				}
+				else
+				{
+					var_2274e560 = var_2274e560 * self.var_59a874a7.var_7a80f06e;
+				}
+			}
+			else
+			{
+				var_2274e560 = var_2274e560 * (weapon.var_ed6ea786 ? self.var_59a874a7.var_5164d2e2 : self.var_59a874a7.var_2274e560);
+			}
+		}
+		if(isdefined(self.var_59a874a7) && isdefined(self.var_59a874a7.var_735ae1ee))
+		{
+			var_2274e560 = var_2274e560 + (1 - var_2274e560) * (1 - self.var_59a874a7.var_735ae1ee.(shitloc));
+		}
 	}
 	var_aacd5df1 = damage * var_737c8f6e;
 	var_9bb721d3 = 0;

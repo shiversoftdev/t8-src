@@ -42,7 +42,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_267df84d20de616c", &__init__, &__main__, undefined);
 }
@@ -62,9 +62,7 @@ function __init__()
 	callback::on_finalize_initialization(&init);
 	if(!isdefined(level.var_db63b33b))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_db63b33b = object;
+		level.var_db63b33b = new throttle();
 		[[ level.var_db63b33b ]]->initialize(2, 0.1);
 	}
 	init_clientfields();
@@ -347,7 +345,7 @@ function function_5b8a557f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1bcb6813()
+function private function_1bcb6813()
 {
 	if(!(isdefined(self.var_72a21e82) && self.var_72a21e82))
 	{
@@ -369,45 +367,45 @@ function function_9026cbcd(player)
 	self.hint_string = self.stub.hint_string;
 	if(player zm_utility::is_drinking() || (isdefined(level.var_4f7df1ac) && level.var_4f7df1ac))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.stub.e_trap._trap_in_use) && self.stub.e_trap._trap_in_use)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.stub.e_trap.is_cooling) && self.stub.e_trap.is_cooling)
 	{
 		self sethintstring(#"hash_21db2780833a8bfd");
-		return 1;
+		return true;
 	}
 	if(isdefined(self.stub.e_trap.var_23aecef0) && self.stub.e_trap.var_23aecef0 && !zm_utility::is_standard())
 	{
 		if(function_8b1a219a())
 		{
 			self sethintstring(#"hash_6e8ef1b690e98e51", self.stub.e_trap.zombie_cost);
-			return 1;
+			return true;
 		}
 		self sethintstring(#"hash_23c1c09e94181fdb", self.stub.e_trap.zombie_cost);
-		return 1;
+		return true;
 	}
 	if(zm_utility::is_standard())
 	{
 		if(function_8b1a219a())
 		{
 			self sethintstring(#"hash_61d85c966dd9e83f");
-			return 1;
+			return true;
 		}
 		self sethintstring(#"hash_24a438482954901");
-		return 1;
+		return true;
 	}
 	if(level.var_940ee624 > 0)
 	{
 		str_prompt = zm_utility::function_d6046228(#"hash_888d5fd1e90d685", #"hash_f1db4a15f0e12bb");
 		self sethintstring(str_prompt);
-		return 1;
+		return true;
 	}
 	self sethintstring(#"hash_5f05371ea87b812e");
-	return 1;
+	return true;
 }
 
 /*
@@ -604,7 +602,7 @@ function function_16746b30()
 			e_trap thread zm_traps::trap_damage();
 		}
 	}
-	self waittill_timeout(self._trap_duration, #"trap_deactivate");
+	self waittilltimeout(self._trap_duration, #"trap_deactivate");
 	foreach(e_trap in level.var_ba53c5c5)
 	{
 		if(e_trap.script_string === self.script_string)
@@ -921,7 +919,7 @@ function function_21fd7c39()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1eeda1e5()
+function private function_1eeda1e5()
 {
 	self endon(#"disconnect");
 	self.var_a46d8eee = 1;
@@ -970,7 +968,7 @@ function blue_fire()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e714e3a8(str_state = "off")
+function private function_e714e3a8(str_state = "off")
 {
 	switch(str_state)
 	{

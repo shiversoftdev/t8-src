@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5e3499ddc3965135", &__init__, &__main__, undefined);
 }
@@ -315,7 +315,7 @@ function function_32573d2a(player)
 	{
 		self sethintstringforplayer(player, "");
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -347,19 +347,22 @@ function function_ea6f56ee()
 			level.var_9332cecc = 1;
 			level namespace_6747c550::function_7df6bb60(#"hash_3761ebdf006d549e", 0);
 		}
-		else if(level flag::get("flag_player_grabbed_catalyst_material") && !level flag::get("flag_player_grabbed_bat_prima"))
+		else
 		{
-			var_21839a96 = #"hash_3f639544c52d4fa3";
-			level thread function_29f66f1a(var_21839a96, var_57ec466d);
-			level.var_f6a6ddae = 1;
-			level namespace_6747c550::function_7df6bb60(#"hash_3eb09edf042e93c7", 0);
-		}
-		else if(level flag::get("flag_player_grabbed_nosferatu_material") && !level flag::get("flag_player_grabbed_nosferatu_prima"))
-		{
-			var_21839a96 = #"hash_3f639644c52d5156";
-			level thread function_29f66f1a(var_21839a96, var_57ec466d);
-			level.var_ea58030a = 1;
-			level namespace_6747c550::function_7df6bb60(#"hash_3eb09ddf042e9214", 0);
+			if(level flag::get("flag_player_grabbed_catalyst_material") && !level flag::get("flag_player_grabbed_bat_prima"))
+			{
+				var_21839a96 = #"hash_3f639544c52d4fa3";
+				level thread function_29f66f1a(var_21839a96, var_57ec466d);
+				level.var_f6a6ddae = 1;
+				level namespace_6747c550::function_7df6bb60(#"hash_3eb09edf042e93c7", 0);
+			}
+			else if(level flag::get("flag_player_grabbed_nosferatu_material") && !level flag::get("flag_player_grabbed_nosferatu_prima"))
+			{
+				var_21839a96 = #"hash_3f639644c52d5156";
+				level thread function_29f66f1a(var_21839a96, var_57ec466d);
+				level.var_ea58030a = 1;
+				level namespace_6747c550::function_7df6bb60(#"hash_3eb09ddf042e9214", 0);
+			}
 		}
 		if(isdefined(level.var_9332cecc) && level.var_9332cecc && (isdefined(level.var_f6a6ddae) && level.var_f6a6ddae) && (isdefined(level.var_ea58030a) && level.var_ea58030a))
 		{
@@ -378,7 +381,7 @@ function function_ea6f56ee()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_29f66f1a(var_21839a96, var_57ec466d)
+function private function_29f66f1a(var_21839a96, var_57ec466d)
 {
 	level flag::set(#"hash_1462d174d4023e58");
 	s_machine = struct::get("s_pr_mach");
@@ -514,13 +517,16 @@ function function_7aa50bb7(e_player)
 	{
 		self sethintstring("");
 	}
-	else if(e_player zm_weapons::has_weapon_or_upgrade(level.var_f086136b))
-	{
-		self sethintstring(self.stub.blueprint.var_4dbc4aee);
-	}
 	else
 	{
-		self sethintstring(#"hash_61bd1f669b4c6a1c");
+		if(e_player zm_weapons::has_weapon_or_upgrade(level.var_f086136b))
+		{
+			self sethintstring(self.stub.blueprint.var_4dbc4aee);
+		}
+		else
+		{
+			self sethintstring(#"hash_61bd1f669b4c6a1c");
+		}
 	}
 	return can_use;
 }

@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_powerup_carpenter", &__init__, undefined, undefined);
 }
@@ -349,9 +349,9 @@ function func_should_drop_carpenter()
 {
 	if(get_num_window_destroyed() < 5 && (!(isdefined(level.var_ef7415bc) && level.var_ef7415bc)))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

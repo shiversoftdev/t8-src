@@ -28,7 +28,7 @@ function init_shared()
 	Parameters: 0
 	Flags: Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	clientfield::register("clientuimodel", "huditems.isExposedOnMinimap", 1, 1, "int", undefined, 0, 0);
 }

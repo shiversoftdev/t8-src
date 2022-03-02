@@ -34,12 +34,12 @@ function function_ea0556fc(targetname)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function init_target()
+function private init_target()
 {
 	self.hitindex = 1;
 	if(!isdefined(self.target))
 	{
-		return 0;
+		return false;
 	}
 	structs = [];
 	var_3dc92b90 = 0;
@@ -49,7 +49,7 @@ private function init_target()
 	{
 		if(!isdefined(struct) || !isint(struct.script_int) || struct.script_int <= 0)
 		{
-			return 0;
+			return false;
 		}
 		structs[structs.size] = struct;
 		var_3dc92b90 = var_3dc92b90 + struct.script_int;
@@ -61,7 +61,7 @@ private function init_target()
 	#/
 	self.structs = structs;
 	self.var_3dc92b90 = var_3dc92b90;
-	return 1;
+	return true;
 }
 
 /*
@@ -73,7 +73,7 @@ private function init_target()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_5bab934a(struct, var_d1d733b4)
+function private function_5bab934a(struct, var_d1d733b4)
 {
 	var_32c844bb = var_d1d733b4 - gettime();
 	if(var_32c844bb <= 0)
@@ -93,7 +93,7 @@ private function function_5bab934a(struct, var_d1d733b4)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function follow_path()
+function private follow_path()
 {
 	starttime = int(((floor(gettime() / self.var_3dc92b90)) * self.var_3dc92b90) + self.var_3dc92b90);
 	while(gettime() < starttime)
@@ -123,7 +123,7 @@ private function follow_path()
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_209450ae(eventstruct)
+event private function_209450ae(eventstruct)
 {
 	dynent = eventstruct.ent;
 	if(!isdefined(dynent.hitindex))

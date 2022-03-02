@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"singlelockap_guidance", &__init__, undefined, undefined);
 }
@@ -443,21 +443,21 @@ function isstillvalidtarget(weapon, ent)
 {
 	if(!isdefined(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(!insideapreticlelocked(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(ent))
 	{
-		return 0;
+		return false;
 	}
 	if(!locksighttest(ent))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -501,15 +501,15 @@ function locksighttest(target)
 	eyepos = self geteye();
 	if(!isdefined(target))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(target))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(target.var_e8ec304d) && target.var_e8ec304d)
 	{
-		return 0;
+		return false;
 	}
 	pos = target getshootatpos();
 	if(isdefined(pos))
@@ -517,7 +517,7 @@ function locksighttest(target)
 		passed = bullettracepassed(eyepos, pos, 0, target, undefined, 1, 1);
 		if(passed)
 		{
-			return 1;
+			return true;
 		}
 	}
 	pos = target getcentroid();
@@ -526,15 +526,15 @@ function locksighttest(target)
 		passed = bullettracepassed(eyepos, pos, 0, target, undefined, 1, 1);
 		if(passed)
 		{
-			return 1;
+			return true;
 		}
 	}
 	pos = target.origin;
 	passed = bullettracepassed(eyepos, pos, 0, target, undefined, 1, 1);
 	if(passed)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

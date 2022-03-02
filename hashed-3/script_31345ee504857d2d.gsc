@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7e51b62fb1d59a7b", &__init__, undefined, undefined);
 }
@@ -56,7 +56,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2f0f1b62()
+function private function_2f0f1b62()
 {
 	nodes = getallnodes();
 	foreach(node in nodes)
@@ -89,29 +89,29 @@ function function_64d25a18(entity)
 {
 	if(entity.archetype !== #"human")
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(entity.node))
 	{
-		return 0;
+		return false;
 	}
 	if(!iscovernode(entity.node))
 	{
-		return 0;
+		return false;
 	}
 	if(!entity isatcovernode())
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(entity.node.var_514e7397) && entity.node.var_514e7397))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.node.var_31c05612))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -123,7 +123,7 @@ function function_64d25a18(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b4bc7751(entity)
+function private function_b4bc7751(entity)
 {
 	/#
 		assert(!(isdefined(entity.node.var_31c05612) && entity.node.var_31c05612));

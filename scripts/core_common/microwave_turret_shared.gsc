@@ -308,15 +308,18 @@ function microwaveentity(entity)
 						entity shellshock(#"mp_radiation_low", 1.5 * shellshockscalar);
 						entity viewkick(int(25 * viewkickscalar), turret.origin);
 					}
-					else if(distancesquared(entity.origin, turret.origin) > ((750 * 1) / 3) * ((750 * 1) / 3))
-					{
-						entity shellshock(#"mp_radiation_med", 1.5 * shellshockscalar);
-						entity viewkick(int(50 * viewkickscalar), turret.origin);
-					}
 					else
 					{
-						entity shellshock(#"mp_radiation_high", 1.5 * shellshockscalar);
-						entity viewkick(int(75 * viewkickscalar), turret.origin);
+						if(distancesquared(entity.origin, turret.origin) > ((750 * 1) / 3) * ((750 * 1) / 3))
+						{
+							entity shellshock(#"mp_radiation_med", 1.5 * shellshockscalar);
+							entity viewkick(int(50 * viewkickscalar), turret.origin);
+						}
+						else
+						{
+							entity shellshock(#"mp_radiation_high", 1.5 * shellshockscalar);
+							entity viewkick(int(75 * viewkickscalar), turret.origin);
+						}
 					}
 					entity.microwaveshellshockandviewkicktime = time;
 				}
@@ -344,35 +347,35 @@ function microwaveturretaffectsentity(entity)
 	turret = self;
 	if(!isalive(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(entity) && !isai(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(entity.ignoreme === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(turret.carried) && turret.carried)
 	{
-		return 0;
+		return false;
 	}
 	if(turret weaponobjects::isstunned())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(turret.owner) && entity == turret.owner)
 	{
-		return 0;
+		return false;
 	}
 	if(!damage::friendlyfirecheck(turret.owner, entity, 0))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(entity.origin, turret.origin) > 750 * 750)
 	{
-		return 0;
+		return false;
 	}
 	angles = turret gettagangles("tag_flash");
 	origin = turret gettagorigin("tag_flash");
@@ -382,12 +385,12 @@ function microwaveturretaffectsentity(entity)
 	dot = vectordot(entdirection, forward);
 	if(dot < cos(15))
 	{
-		return 0;
+		return false;
 	}
 	if(entity damageconetrace(origin, turret, forward) <= 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

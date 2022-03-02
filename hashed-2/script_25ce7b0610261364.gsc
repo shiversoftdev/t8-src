@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6904e1bbfeec0434", &__init__, undefined, undefined);
 }
@@ -62,7 +62,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function hawk_spawned(localclientnum)
+function private hawk_spawned(localclientnum)
 {
 	self.var_51d5c26f = level.hawk_settings.bundle;
 	self thread function_23a9e4af(localclientnum);
@@ -77,7 +77,7 @@ private function hawk_spawned(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_23a9e4af(localclientnum)
+function private function_23a9e4af(localclientnum)
 {
 	self endon(#"death");
 	while(!isdefined(self.owner))

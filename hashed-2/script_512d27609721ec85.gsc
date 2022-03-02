@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_23441338314b2721", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 5
 	Flags: Private
 */
-private function function_d1de6a85(weapon_name, var_eaa7f0ba, var_957937ee, var_9c56c5a9, var_b896fe29)
+function private function_d1de6a85(weapon_name, var_eaa7f0ba, var_957937ee, var_9c56c5a9, var_b896fe29)
 {
 	if(isdefined(var_eaa7f0ba))
 	{
@@ -77,104 +77,113 @@ private function function_d1de6a85(weapon_name, var_eaa7f0ba, var_957937ee, var_
 			}
 		}
 	}
-	else if(weapon_name == #"upgraded_weapon")
-	{
-		/#
-			assert(isdefined(level.zombie_weapons_upgraded));
-		#/
-		level.var_ab9d0ec6 = [];
-		foreach(weapon in getarraykeys(level.zombie_weapons_upgraded))
-		{
-			if(weapon != level.weaponnone)
-			{
-				if(!isdefined(level.var_ab9d0ec6))
-				{
-					level.var_ab9d0ec6 = [];
-				}
-				else if(!isarray(level.var_ab9d0ec6))
-				{
-					level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
-				}
-				if(!isinarray(level.var_ab9d0ec6, weapon))
-				{
-					level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
-				}
-			}
-		}
-	}
-	else if(weapon_name == #"hash_74285cd06483f6da")
-	{
-		/#
-			assert(isdefined(level.zombie_weapons_upgraded));
-		#/
-		level.var_ab9d0ec6 = [];
-		foreach(weapon in getarraykeys(level.zombie_weapons_upgraded))
-		{
-			if(weapon != level.weaponnone)
-			{
-				if(!isdefined(level.var_ab9d0ec6))
-				{
-					level.var_ab9d0ec6 = [];
-				}
-				else if(!isarray(level.var_ab9d0ec6))
-				{
-					level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
-				}
-				if(!isinarray(level.var_ab9d0ec6, weapon))
-				{
-					level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
-				}
-			}
-		}
-		level.var_407e1afc = 1;
-	}
-	else if(weapon_name == #"mansion_primary_weapons")
-	{
-		level.var_19b2578f = 1;
-		level.var_14c8992d = 1;
-		level.var_ab9d0ec6 = array(getweapon(#"tr_powersemi_t8"), getweapon(#"ar_accurate_t8"));
-	}
 	else
 	{
-		level.var_ab9d0ec6 = array(getweapon(weapon_name));
-		if(isdefined(var_957937ee))
+		if(weapon_name == #"upgraded_weapon")
 		{
-			weapon = getweapon(var_957937ee);
-			if(!isdefined(level.var_ab9d0ec6))
+			/#
+				assert(isdefined(level.zombie_weapons_upgraded));
+			#/
+			level.var_ab9d0ec6 = [];
+			foreach(weapon in getarraykeys(level.zombie_weapons_upgraded))
 			{
-				level.var_ab9d0ec6 = [];
+				if(weapon != level.weaponnone)
+				{
+					if(!isdefined(level.var_ab9d0ec6))
+					{
+						level.var_ab9d0ec6 = [];
+					}
+					else if(!isarray(level.var_ab9d0ec6))
+					{
+						level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
+					}
+					if(!isinarray(level.var_ab9d0ec6, weapon))
+					{
+						level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
+					}
+				}
 			}
-			else if(!isarray(level.var_ab9d0ec6))
-			{
-				level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
-			}
-			level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
 		}
-		if(isdefined(var_9c56c5a9))
+		else
 		{
-			weapon = getweapon(var_9c56c5a9);
-			if(!isdefined(level.var_ab9d0ec6))
+			if(weapon_name == #"hash_74285cd06483f6da")
 			{
+				/#
+					assert(isdefined(level.zombie_weapons_upgraded));
+				#/
 				level.var_ab9d0ec6 = [];
+				foreach(weapon in getarraykeys(level.zombie_weapons_upgraded))
+				{
+					if(weapon != level.weaponnone)
+					{
+						if(!isdefined(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = [];
+						}
+						else if(!isarray(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
+						}
+						if(!isinarray(level.var_ab9d0ec6, weapon))
+						{
+							level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
+						}
+					}
+				}
+				level.var_407e1afc = 1;
 			}
-			else if(!isarray(level.var_ab9d0ec6))
+			else
 			{
-				level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
+				if(weapon_name == #"mansion_primary_weapons")
+				{
+					level.var_19b2578f = 1;
+					level.var_14c8992d = 1;
+					level.var_ab9d0ec6 = array(getweapon(#"tr_powersemi_t8"), getweapon(#"ar_accurate_t8"));
+				}
+				else
+				{
+					level.var_ab9d0ec6 = array(getweapon(weapon_name));
+					if(isdefined(var_957937ee))
+					{
+						weapon = getweapon(var_957937ee);
+						if(!isdefined(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = [];
+						}
+						else if(!isarray(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
+						}
+						level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
+					}
+					if(isdefined(var_9c56c5a9))
+					{
+						weapon = getweapon(var_9c56c5a9);
+						if(!isdefined(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = [];
+						}
+						else if(!isarray(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
+						}
+						level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
+					}
+					if(isdefined(var_b896fe29))
+					{
+						weapon = getweapon(var_b896fe29);
+						if(!isdefined(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = [];
+						}
+						else if(!isarray(level.var_ab9d0ec6))
+						{
+							level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
+						}
+						level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
+					}
+				}
 			}
-			level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
-		}
-		if(isdefined(var_b896fe29))
-		{
-			weapon = getweapon(var_b896fe29);
-			if(!isdefined(level.var_ab9d0ec6))
-			{
-				level.var_ab9d0ec6 = [];
-			}
-			else if(!isarray(level.var_ab9d0ec6))
-			{
-				level.var_ab9d0ec6 = array(level.var_ab9d0ec6);
-			}
-			level.var_ab9d0ec6[level.var_ab9d0ec6.size] = weapon;
 		}
 	}
 	/#
@@ -214,7 +223,7 @@ private function function_d1de6a85(weapon_name, var_eaa7f0ba, var_957937ee, var_
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	namespace_b22c99a5::function_f3dbeda7();
 	foreach(player in getplayers())
@@ -262,13 +271,16 @@ private function function_9e7b3f4d(round_reset)
 				}
 			}
 		}
-		else if(var_57807cdc.size == 1)
+		else
 		{
-			zm_trial::fail(#"hash_753fe45bee19e131", var_57807cdc);
-		}
-		else if(var_57807cdc.size > 1)
-		{
-			zm_trial::fail(#"hash_3539a53b7cf9ea2", var_57807cdc);
+			if(var_57807cdc.size == 1)
+			{
+				zm_trial::fail(#"hash_753fe45bee19e131", var_57807cdc);
+			}
+			else if(var_57807cdc.size > 1)
+			{
+				zm_trial::fail(#"hash_3539a53b7cf9ea2", var_57807cdc);
+			}
 		}
 	}
 	foreach(player in getplayers())
@@ -349,7 +361,7 @@ function setup_objective(str_weapon, s_challenge)
 	Parameters: 2
 	Flags: Private
 */
-private function function_c305f695(s_challenge, a_weapons)
+function private function_c305f695(s_challenge, a_weapons)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -383,7 +395,7 @@ private function function_c305f695(s_challenge, a_weapons)
 	Parameters: 0
 	Flags: Private
 */
-private function function_fa5e5e08()
+function private function_fa5e5e08()
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	var_629c4c4a = 0;
@@ -429,7 +441,7 @@ private function function_fa5e5e08()
 	Parameters: 0
 	Flags: Private
 */
-private function function_52f6931d()
+function private function_52f6931d()
 {
 	if(self.sessionstate != "spectator")
 	{
@@ -463,7 +475,7 @@ private function function_52f6931d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_46feb36d()
+function private function_46feb36d()
 {
 	if(self.sessionstate != "spectator")
 	{
@@ -496,7 +508,7 @@ private function function_46feb36d()
 	Parameters: 0
 	Flags: Private
 */
-private function function_e73fbbf7()
+function private function_e73fbbf7()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");

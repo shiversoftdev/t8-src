@@ -460,19 +460,22 @@ function call_box_think(elevator)
 				self sethintstring(#"hash_2f56b9d8ac49ff92");
 			}
 		}
-		else if(elevator.active == 1 || !who can_buy_elevator())
+		else
 		{
-			zm_utility::play_sound_at_pos("no_purchase", self.origin);
-		}
-		else if(elevator.station != self.script_noteworthy)
-		{
-			call_destination = self.script_noteworthy;
-			elevator.called = 1;
-			elevator.active = 1;
-			playsoundatposition(elevator.var_243802fa, self.origin);
-			elevator disable_callboxes();
-			elevator disable_elevator_buys();
-			self thread elevator_move_to(elevator);
+			if(elevator.active == 1 || !who can_buy_elevator())
+			{
+				zm_utility::play_sound_at_pos("no_purchase", self.origin);
+			}
+			else if(elevator.station != self.script_noteworthy)
+			{
+				call_destination = self.script_noteworthy;
+				elevator.called = 1;
+				elevator.active = 1;
+				playsoundatposition(elevator.var_243802fa, self.origin);
+				elevator disable_callboxes();
+				elevator disable_elevator_buys();
+				self thread elevator_move_to(elevator);
+			}
 		}
 		wait(0.05);
 	}
@@ -499,12 +502,12 @@ function is_elevator_clear(elevator)
 			{
 				if(players[j] istouching(elevator_door_safety[i]))
 				{
-					return 0;
+					return false;
 				}
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -585,13 +588,16 @@ function elevator_buy_think(elevator)
 			level.var_31560d97 = #"hash_146622decb4e7399";
 		}
 	}
-	else if(function_8b1a219a())
-	{
-		level.var_31560d97 = #"hash_65d7c16bd5a94c67";
-	}
 	else
 	{
-		level.var_31560d97 = #"hash_6362bcfbec5e8759";
+		if(function_8b1a219a())
+		{
+			level.var_31560d97 = #"hash_65d7c16bd5a94c67";
+		}
+		else
+		{
+			level.var_31560d97 = #"hash_6362bcfbec5e8759";
+		}
 	}
 	self setcursorhint("HINT_NOICON");
 	self usetriggerrequirelookat();
@@ -610,30 +616,33 @@ function elevator_buy_think(elevator)
 			wait(1);
 			self sethintstring(level.var_31560d97, elevator.cost);
 		}
-		else if(zm_utility::is_player_valid(who) && who zm_score::can_player_purchase(elevator.cost) && who can_buy_elevator())
+		else
 		{
-			elevator.active = 1;
-			who zm_score::minus_to_player_score(elevator.cost);
-			zm_utility::play_sound_at_pos("purchase", self.origin);
-			elevator disable_callboxes();
-			elevator disable_elevator_buys();
-			call_box_array = getentarray(elevator.station, "script_noteworthy");
-			call_box = call_box_array[0];
-			if(call_box.script_noteworthy == (elevator.targetname + "_up"))
+			if(zm_utility::is_player_valid(who) && who zm_score::can_player_purchase(elevator.cost) && who can_buy_elevator())
 			{
-				call_box.destination = elevator.targetname + "_down";
+				elevator.active = 1;
+				who zm_score::minus_to_player_score(elevator.cost);
+				zm_utility::play_sound_at_pos("purchase", self.origin);
+				elevator disable_callboxes();
+				elevator disable_elevator_buys();
+				call_box_array = getentarray(elevator.station, "script_noteworthy");
+				call_box = call_box_array[0];
+				if(call_box.script_noteworthy == (elevator.targetname + "_up"))
+				{
+					call_box.destination = elevator.targetname + "_down";
+				}
+				else
+				{
+					call_box.destination = elevator.targetname + "_up";
+				}
+				elevator thread redirect_zombies(call_box.destination);
+				self elevator_move_to(elevator);
 			}
 			else
 			{
-				call_box.destination = elevator.targetname + "_up";
+				zm_utility::play_sound_at_pos("no_purchase", self.origin);
+				who zm_audio::create_and_play_dialog(#"general", #"outofmoney");
 			}
-			elevator thread redirect_zombies(call_box.destination);
-			self elevator_move_to(elevator);
-		}
-		else
-		{
-			zm_utility::play_sound_at_pos("no_purchase", self.origin);
-			who zm_audio::create_and_play_dialog(#"general", #"outofmoney");
 		}
 		wait(0.05);
 	}
@@ -652,9 +661,9 @@ function can_buy_elevator()
 {
 	if(self zm_utility::in_revive_trigger())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -791,20 +800,23 @@ function elevator_move_to(elevator)
 			level flag::set("war_room_start");
 		}
 	}
-	else if(elevator.targetname == "elevator1")
-	{
-		function_1352fc3c();
-		elevator thread zombie_elevator_closets(1);
-		elevator.var_a231af57 = 2;
-	}
 	else
 	{
-		function_cfd40975();
-		elevator.var_a231af57 = 1;
+		if(elevator.targetname == "elevator1")
+		{
+			function_1352fc3c();
+			elevator thread zombie_elevator_closets(1);
+			elevator.var_a231af57 = 2;
+		}
+		else
+		{
+			function_cfd40975();
+			elevator.var_a231af57 = 1;
+		}
+		elevator vehicle::get_on_and_go_path(elevator.var_5a3b55a3);
+		elevator waittill(#"reached_end_node");
+		elevator.station = elevator.targetname + "_up";
 	}
-	elevator vehicle::get_on_and_go_path(elevator.var_5a3b55a3);
-	elevator waittill(#"reached_end_node");
-	elevator.station = elevator.targetname + "_up";
 	if(elevator.targetname == "elevator2")
 	{
 		util::clientnotify("ele1e");
@@ -1492,7 +1504,7 @@ function function_dec13a5b()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_da48c149(s_pos)
+function private function_da48c149(s_pos)
 {
 	var_75c89236 = 0;
 	self dontinterpolate();

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4d14e34831830ee6", &__init__, undefined, undefined);
 }
@@ -118,16 +118,19 @@ function zombie_eyes_clientfield_cb(localclientnum, oldval, newval, bnewent, bin
 			self.var_ea20345f = "rob_zm_eyes_blue";
 			var_d40cd873 = "eye_glow_blue";
 		}
-		else if(newval == 3)
-		{
-			self.var_ea20345f = "rob_zm_eyes_green";
-			var_d40cd873 = "eye_glow_green";
-		}
 		else
 		{
-			self.var_ea20345f = "rob_zm_eyes_red";
-			var_d40cd873 = "eye_glow";
-			self function_bf9d3071(self.var_ea20345f, "j_head");
+			if(newval == 3)
+			{
+				self.var_ea20345f = "rob_zm_eyes_green";
+				var_d40cd873 = "eye_glow_green";
+			}
+			else
+			{
+				self.var_ea20345f = "rob_zm_eyes_red";
+				var_d40cd873 = "eye_glow";
+				self function_bf9d3071(self.var_ea20345f, "j_head");
+			}
 		}
 		self.var_3231a850 = util::playfxontag(localclientnum, level._effect[var_d40cd873], self, "j_eyeball_le");
 		self enableonradar();

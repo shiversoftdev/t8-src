@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5b407861db3825b2", &__init__, undefined, undefined);
 }
@@ -34,7 +34,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	level thread _cleanup();
 }
@@ -48,7 +48,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function _cleanup()
+function private _cleanup()
 {
 	level flagsys::wait_till(#"hash_38a387462f3a9ad");
 	var_314770d8 = array(&function_b465b436, &function_35e11623, &function_b7c5f376, &function_6ef5c287, &function_ada16428);
@@ -75,7 +75,7 @@ private function _cleanup()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b465b436(deathcircle, var_898879a6)
+function private function_b465b436(deathcircle, var_898879a6)
 {
 	if(!isdefined(level.var_ace9fb52))
 	{
@@ -106,7 +106,7 @@ private function function_b465b436(deathcircle, var_898879a6)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_35e11623(deathcircle, var_898879a6)
+function private function_35e11623(deathcircle, var_898879a6)
 {
 	players = getplayers();
 	excludelist = [#"willy_pete":1, #"frag_grenade":1, #"hash_c78156ba6aeda14":1, #"eq_swat_grenade":1, #"eq_slow_grenade":1, #"eq_molotov":1, #"eq_cluster_semtex_grenade":1, #"eq_acid_bomb":1];
@@ -208,7 +208,7 @@ private function function_35e11623(deathcircle, var_898879a6)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b7c5f376(deathcircle, var_898879a6)
+function private function_b7c5f376(deathcircle, var_898879a6)
 {
 	if(!isdefined(level.var_a4a4012e))
 	{
@@ -255,7 +255,7 @@ private function function_b7c5f376(deathcircle, var_898879a6)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6ef5c287(deathcircle, var_898879a6)
+function private function_6ef5c287(deathcircle, var_898879a6)
 {
 	if(!isdefined(level.var_a5f063d))
 	{
@@ -292,7 +292,7 @@ private function function_6ef5c287(deathcircle, var_898879a6)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ada16428(deathcircle, var_898879a6)
+function private function_ada16428(deathcircle, var_898879a6)
 {
 	time = gettime();
 	if(time < level.var_63e0085)
@@ -399,7 +399,7 @@ private function function_ada16428(deathcircle, var_898879a6)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_213a12e4()
+function private function_213a12e4()
 {
 	b_occupied = 0;
 	for(i = 0; i < 4; i++)
@@ -427,7 +427,7 @@ private function function_213a12e4()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_3703bc36(entity, deathcircle, var_7e2f7f1f = 0)
+function private function_3703bc36(entity, deathcircle, var_7e2f7f1f = 0)
 {
 	if(!isdefined(entity) || !isdefined(deathcircle) || !isfloat(deathcircle.radius))
 	{

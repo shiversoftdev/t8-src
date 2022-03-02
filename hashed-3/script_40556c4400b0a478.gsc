@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2e2fcde8843638d9", &__init__, undefined, undefined);
 }
@@ -29,7 +29,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	spawner::add_archetype_spawn_function(#"brutus", &function_e67297f2);
 	/#
@@ -46,7 +46,7 @@ private function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e67297f2()
+function private function_e67297f2()
 {
 	if(self.var_9fde8624 !== #"hash_273dea5b2e3044c0")
 	{
@@ -64,7 +64,7 @@ private function function_e67297f2()
 	Parameters: 0
 	Flags: Private
 */
-private function function_f2cc1ec()
+function private function_f2cc1ec()
 {
 	/#
 		adddebugcommand("");
@@ -82,7 +82,7 @@ private function function_f2cc1ec()
 	Parameters: 1
 	Flags: Private
 */
-private function function_5162a3de(cmd)
+function private function_5162a3de(cmd)
 {
 	/#
 		switch(cmd)

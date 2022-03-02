@@ -159,7 +159,7 @@ function function_6b107487()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5ae9d41e()
+function private function_5ae9d41e()
 {
 	self clientfield::increment("elevator_rumble");
 	level waittill(#"hash_231c2abba527e2e4");
@@ -389,7 +389,7 @@ function function_6ff33a91(var_217fca51)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ac52c6f1()
+function private function_ac52c6f1()
 {
 	foreach(e_player in level.activeplayers)
 	{
@@ -415,12 +415,12 @@ function function_88cbb4b3(player)
 	if(player hasweapon(getweapon(#"hash_52b03a79f854eed3")) || player hasweapon(getweapon(#"hash_32a584f5a65c70d1")) || player flag::get(#"hash_6b33efdeedf241f") || (isdefined(player.var_6b910e38) && player.var_6b910e38))
 	{
 		self sethintstring("");
-		return 0;
+		return false;
 	}
 	if(zm_loadout::is_hero_weapon(player getcurrentweapon()))
 	{
 		self sethintstring("");
-		return 0;
+		return false;
 	}
 	if(function_8b1a219a())
 	{
@@ -430,7 +430,7 @@ function function_88cbb4b3(player)
 	{
 		self sethintstring(#"hash_51ad91916b4b0de5");
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -472,7 +472,7 @@ function function_c5e0a9a4()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eebe4e13()
+function private function_eebe4e13()
 {
 	self endon(#"disconnect");
 	self.var_6b910e38 = 1;
@@ -548,26 +548,29 @@ function function_32fbad12(a_ents)
 				level thread function_6098c5c(var_fdc7d6b5, v_origin, var_965869c9);
 			}
 		}
-		else if(n_chance >= 4 && n_chance < 20 || (isdefined(level.var_18d2e3aa) && level.var_18d2e3aa))
+		else
 		{
-			level.var_18d2e3aa = undefined;
-			var_d147b93a = #"p8_zm_vending_three_gun_sign";
-			v_origin = var_965869c9 gettagorigin("tag_net_3") + (-15, -10, -13);
-			v_angles = (324, 135, 72);
-		}
-		else if(n_chance >= 70 || (isdefined(level.var_64f95ac4) && level.var_64f95ac4))
-		{
-			level.var_64f95ac4 = undefined;
-			var_d147b93a = #"hash_5865aeb1d1f0712a";
-			if(level flag::get(#"hash_dd62a8822ea4a38"))
+			if(n_chance >= 4 && n_chance < 20 || (isdefined(level.var_18d2e3aa) && level.var_18d2e3aa))
 			{
-				v_origin = var_965869c9 gettagorigin("tag_net_3") + (vectorscale((1, 0, -1), 10));
-				v_angles = vectorscale((1, 0, 0), 324);
+				level.var_18d2e3aa = undefined;
+				var_d147b93a = #"p8_zm_vending_three_gun_sign";
+				v_origin = var_965869c9 gettagorigin("tag_net_3") + (-15, -10, -13);
+				v_angles = (324, 135, 72);
 			}
-			else
+			else if(n_chance >= 70 || (isdefined(level.var_64f95ac4) && level.var_64f95ac4))
 			{
-				v_origin = var_965869c9 gettagorigin("tag_net_3") + (0, -5, -12);
-				v_angles = vectorscale((1, 0, 0), 300);
+				level.var_64f95ac4 = undefined;
+				var_d147b93a = #"hash_5865aeb1d1f0712a";
+				if(level flag::get(#"hash_dd62a8822ea4a38"))
+				{
+					v_origin = var_965869c9 gettagorigin("tag_net_3") + (vectorscale((1, 0, -1), 10));
+					v_angles = vectorscale((1, 0, 0), 324);
+				}
+				else
+				{
+					v_origin = var_965869c9 gettagorigin("tag_net_3") + (0, -5, -12);
+					v_angles = vectorscale((1, 0, 0), 300);
+				}
 			}
 		}
 	}
@@ -716,7 +719,7 @@ function function_d0bb3c35()
 function function_5753ae89()
 {
 	self endon(#"disconnect");
-	level.var_5c14fe03 endon_callback(&function_2084efc3, #"death", #"hash_4ecfa36be208fd5f");
+	level.var_5c14fe03 endoncallback(&function_2084efc3, #"death", #"hash_4ecfa36be208fd5f");
 	while(true)
 	{
 		s_result = undefined;
@@ -764,7 +767,7 @@ function function_48e7a1d7(e_grenade, n_grenade_charge_power)
 	self endon(#"disconnect");
 	if(!isdefined(level.var_5c14fe03))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_5c14fe03.var_3d3748c4) && level.var_5c14fe03.var_3d3748c4 && level.var_5c14fe03.var_d86e9c27 == self)
 	{
@@ -776,9 +779,9 @@ function function_48e7a1d7(e_grenade, n_grenade_charge_power)
 		var_9c0bf2db linkto(var_6e6ec518);
 		self thread namespace_268fc37c::tomahawk_return_player(var_6e6ec518, undefined, 800);
 		self thread function_be995f48(var_6e6ec518, var_9c0bf2db);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

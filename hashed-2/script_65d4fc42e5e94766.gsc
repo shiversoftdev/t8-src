@@ -148,19 +148,19 @@ function function_b76a2e3f(ispredictedspawn)
 	if(infection::function_74650d7() && self infection::is_infected())
 	{
 		self infection::function_f488681f();
-		return 1;
+		return true;
 	}
 	if(!isdefined(level.var_7767cea8))
 	{
 		self function_8cef1872();
-		return 0;
+		return false;
 	}
 	if(level.var_7767cea8.size < 1)
 	{
 		self.resurrect_origin = (0, 0, 0);
 		self.resurrect_angles = (0, 0, 0);
 		self function_8cef1872();
-		return 1;
+		return true;
 	}
 	teammask = getteammask(self.team);
 	teamindex = 0;
@@ -180,35 +180,38 @@ function function_b76a2e3f(ispredictedspawn)
 	{
 		spawn = dest.spawns[var_92438b9c];
 	}
-	else if(!isdefined(dest.spawns[var_92438b9c].spawntime))
-	{
-		dest.spawns[var_92438b9c].spawntime = spawntime;
-		spawn = dest.spawns[var_92438b9c];
-	}
 	else
 	{
-		var_f5bb80c2 = var_92438b9c;
-		var_e34bb789 = dest.spawns[var_f5bb80c2].spawntime;
-		for(idx = 0; idx < level.maxteamplayers; idx++)
+		if(!isdefined(dest.spawns[var_92438b9c].spawntime))
 		{
-			spawnindex = (idx + var_92438b9c) % dest.spawns.size;
-			if(!isdefined(dest.spawns[spawnindex].spawntime))
-			{
-				dest.spawns[spawnindex].spawntime = spawntime;
-				spawn = dest.spawns[spawnindex];
-				break;
-				continue;
-			}
-			if(dest.spawns[spawnindex].spawntime < var_e34bb789)
-			{
-				var_f5bb80c2 = spawnindex;
-				var_e34bb789 = dest.spawns[spawnindex].spawntime;
-			}
+			dest.spawns[var_92438b9c].spawntime = spawntime;
+			spawn = dest.spawns[var_92438b9c];
 		}
-		if(!isdefined(spawn))
+		else
 		{
-			dest.spawns[var_f5bb80c2].spawntime = spawntime;
-			spawn = dest.spawns[var_f5bb80c2];
+			var_f5bb80c2 = var_92438b9c;
+			var_e34bb789 = dest.spawns[var_f5bb80c2].spawntime;
+			for(idx = 0; idx < level.maxteamplayers; idx++)
+			{
+				spawnindex = (idx + var_92438b9c) % dest.spawns.size;
+				if(!isdefined(dest.spawns[spawnindex].spawntime))
+				{
+					dest.spawns[spawnindex].spawntime = spawntime;
+					spawn = dest.spawns[spawnindex];
+					break;
+					continue;
+				}
+				if(dest.spawns[spawnindex].spawntime < var_e34bb789)
+				{
+					var_f5bb80c2 = spawnindex;
+					var_e34bb789 = dest.spawns[spawnindex].spawntime;
+				}
+			}
+			if(!isdefined(spawn))
+			{
+				dest.spawns[var_f5bb80c2].spawntime = spawntime;
+				spawn = dest.spawns[var_f5bb80c2];
+			}
 		}
 	}
 	if(getdvarint(#"hash_3d461f9c27bd2450", 1) > 0 && !isbot(self))
@@ -227,7 +230,7 @@ function function_b76a2e3f(ispredictedspawn)
 		self function_8cef1872();
 		self thread function_bb9099b9();
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -359,7 +362,7 @@ function function_8cef1872()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c263fd97()
+function private function_c263fd97()
 {
 	level endon(#"hash_1c605a92cc507414");
 	self endon(#"disconnect");
@@ -456,7 +459,7 @@ private function function_c263fd97()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3b1d0553(dest)
+function private function_3b1d0553(dest)
 {
 	targets = struct::get_array(dest.target, "targetname");
 	foreach(target in targets)
@@ -475,7 +478,7 @@ private function function_3b1d0553(dest)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_178abfd(struct)
+function private function_178abfd(struct)
 {
 	if(!isarray(level.struct))
 	{

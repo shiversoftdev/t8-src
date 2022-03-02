@@ -88,10 +88,10 @@ function player(e_player, kvp, var_dad37549, var_b095575e = 0)
 		if(s_teleport.(str_key) === str_value && (!(isdefined(s_teleport.b_used) && s_teleport.b_used)))
 		{
 			e_player function_29305761(s_teleport, var_20212d26.var_dad37549, var_b095575e);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -118,10 +118,10 @@ function hero(ai_hero, kvp, var_dad37549)
 		if(s_teleport.(str_key) === str_value && (!(isdefined(s_teleport.b_used) && s_teleport.b_used)))
 		{
 			ai_hero function_df1911b9(s_teleport, var_20212d26.var_dad37549);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -151,7 +151,7 @@ function function_ff8a7a3(kvp)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1d2a3300()
+function private function_1d2a3300()
 {
 	if(!isdefined(level.var_d941f923))
 	{
@@ -175,7 +175,7 @@ private function function_1d2a3300()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e6615993(kvp, var_dad37549)
+function private function_e6615993(kvp, var_dad37549)
 {
 	if(isdefined(self.script_teleport_location))
 	{
@@ -186,15 +186,18 @@ private function function_e6615993(kvp, var_dad37549)
 			var_dad37549 = self.var_3e93c0f9;
 		}
 	}
-	else if(isdefined(kvp) && isarray(kvp))
-	{
-		str_value = kvp[0];
-		str_key = kvp[1];
-	}
 	else
 	{
-		str_value = kvp;
-		str_key = "script_teleport_location";
+		if(isdefined(kvp) && isarray(kvp))
+		{
+			str_value = kvp[0];
+			str_key = kvp[1];
+		}
+		else
+		{
+			str_value = kvp;
+			str_key = "script_teleport_location";
+		}
 	}
 	if(!isdefined(var_dad37549))
 	{
@@ -219,7 +222,7 @@ private function function_e6615993(kvp, var_dad37549)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_166effac(kvp, var_dad37549)
+function private function_166effac(kvp, var_dad37549)
 {
 	var_20212d26 = self function_e6615993(kvp, var_dad37549);
 	if(!isdefined(var_20212d26))
@@ -288,7 +291,7 @@ private function function_166effac(kvp, var_dad37549)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_29305761(s_teleport, var_dad37549, var_b095575e = 0)
+function private function_29305761(s_teleport, var_dad37549, var_b095575e = 0)
 {
 	self endon(#"death");
 	if(distancesquared(s_teleport.origin, self.origin) < var_dad37549 * var_dad37549)

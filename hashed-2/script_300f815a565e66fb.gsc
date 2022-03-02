@@ -458,7 +458,7 @@ function enemyempactive()
 {
 	if(!function_d12cde1c())
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
@@ -466,7 +466,7 @@ function enemyempactive()
 		{
 			if(util::function_fbce7263(team, self.team) && teamhasactiveemp(team))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
@@ -477,11 +477,11 @@ function enemyempactive()
 		{
 			if(player hasactiveemp())
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

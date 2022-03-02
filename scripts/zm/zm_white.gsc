@@ -79,11 +79,11 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function opt_in()
+function autoexec opt_in()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
-	level.var_4ea5cce8 = 2;
+	level.bgb_machine_count = 2;
 	level.random_pandora_box_start = 1;
 	level.pack_a_punch_camo_index = 345;
 	level.pack_a_punch_camo_index_number_variants = 1;
@@ -325,13 +325,13 @@ function function_98b78151()
 {
 	if(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_ef785c4c) && level.var_ef785c4c || namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -468,9 +468,9 @@ function function_b6f53cd2()
 	var_58df03c9 = level flag::get(#"hash_1478cafcd626c361") && !level flag::get(#"circuit_step_complete");
 	if(var_8b613a4f && !var_58df03c9)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -649,7 +649,7 @@ function offhand_weapon_give_override(str_weapon)
 		self setweaponammoclip(self zm_loadout::get_player_tactical_grenade(), 0);
 		self takeweapon(self zm_loadout::get_player_tactical_grenade());
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -858,9 +858,9 @@ function custom_magic_box_selection_logic(w_weapon, e_player)
 {
 	if(namespace_9cf755b::is_ray_gun(w_weapon) && e_player namespace_9cf755b::function_7b08796f())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -877,9 +877,9 @@ function function_2f57e2d2(e_player)
 	var_5f6b2789 = self.stub.trigger_target;
 	if(var_5f6b2789.weapon_out === 1 && namespace_9cf755b::is_ray_gun(var_5f6b2789.zbarrier.weapon) && e_player namespace_9cf755b::function_7b08796f())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1284,7 +1284,7 @@ function function_c8ce0a17(var_404e4288, var_8dd554ee)
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1304,7 +1304,7 @@ function function_e5086229(var_404e4288, var_8dd554ee)
 	{
 		level.zombie_total--;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1431,7 +1431,7 @@ function function_cc45705b(var_de1edcdb)
 	Parameters: 0
 	Flags: Private
 */
-private function function_6919a3fd()
+function private function_6919a3fd()
 {
 	/#
 		adddebugcommand("");

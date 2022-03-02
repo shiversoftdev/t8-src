@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4d627d417c74336d", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_38282db8)
+function private function_d1de6a85(var_38282db8)
 {
 	var_38282db8 = zm_trial::function_5769f26a(var_38282db8);
 	foreach(player in getplayers())
@@ -70,7 +70,7 @@ private function function_d1de6a85(var_38282db8)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	level.var_4220f02a = undefined;
 }
@@ -157,15 +157,15 @@ function function_e7985d50()
 {
 	if(isdefined(self.var_16735873) && self.var_16735873 || self util::function_88c74107() || (isdefined(self.var_ffe2c4d7) && self.var_ffe2c4d7) || (isdefined(self.var_25c3de32) && self.var_25c3de32))
 	{
-		return 1;
+		return true;
 	}
 	w_weapon = self getcurrentweapon();
 	w_weapon = zm_weapons::get_base_weapon(w_weapon);
 	var_f77522bb = self getnormalizedmovement();
 	if(isarray(level.var_4220f02a) && self isfiring() && isinarray(level.var_4220f02a, w_weapon) && var_f77522bb == (0, 0, 0))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	/#
 		system::register(#"damagefeedback", &__init__, undefined, undefined);
@@ -67,7 +67,7 @@ function should_play_sound(mod)
 {
 	if(!isdefined(mod))
 	{
-		return 0;
+		return false;
 	}
 	switch(mod)
 	{
@@ -78,10 +78,10 @@ function should_play_sound(mod)
 		case "mod_melee_assassinate":
 		case "mod_melee":
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -137,17 +137,23 @@ function hit_alert_sfx_cp(mod, inflictor, perkfeedback, weapon, victim, psoffset
 		{
 			hitalias = #"chr_hitmarker_robot";
 		}
-		else if(isdefined(victim.archetype) && (victim.archetype == #"human" || victim.archetype == #"human_riotshield" || victim.archetype == #"human_rpg" || victim.archetype == #"civilian"))
+		else
 		{
-			hitalias = #"chr_hitmarker_human";
-		}
-		else if(isbot(victim))
-		{
-			hitalias = #"chr_hitmarker_human";
-		}
-		else if(isplayer(victim))
-		{
-			hitalias = #"chr_hitmarker_human";
+			if(isdefined(victim.archetype) && (victim.archetype == #"human" || victim.archetype == #"human_riotshield" || victim.archetype == #"human_rpg" || victim.archetype == #"civilian"))
+			{
+				hitalias = #"chr_hitmarker_human";
+			}
+			else
+			{
+				if(isbot(victim))
+				{
+					hitalias = #"chr_hitmarker_human";
+				}
+				else if(isplayer(victim))
+				{
+					hitalias = #"chr_hitmarker_human";
+				}
+			}
 		}
 		if(isdefined(hitalias))
 		{
@@ -179,192 +185,246 @@ function hit_alert_sfx_mp(mod, inflictor, perkfeedback, weapon, victim, psoffset
 		{
 			hitalias = weapon.hitsound;
 		}
-		else if(weapon.grappleweapon)
+		else
 		{
-			hitalias = #"hash_671bc9a2de453f2e";
-		}
-		else if(weapon.name == #"snowball")
-		{
-			hitalias = #"hash_65089a4793316b63";
-		}
-		else if(weapon.name == #"hash_1888d1367d69b3a7")
-		{
-			hitalias = #"hash_1fd605562fb1fd3a";
-		}
-		else if(isvehicle(victim))
-		{
-			hitalias = #"hash_2ce81d103e923201";
-		}
-		else if(isdefined(victim) && isdefined(victim.victimsoundmod))
-		{
-			switch(victim.victimsoundmod)
+			if(weapon.grappleweapon)
 			{
-				case "safeguard_robot":
-				{
-					hitalias = #"mpl_hit_alert_escort";
-					break;
-				}
-				case "vehicle":
-				{
-					hitalias = #"hash_2ce81d103e923201";
-					break;
-				}
-				default:
-				{
-					hitalias = #"mpl_hit_alert";
-					break;
-				}
+				hitalias = #"hash_671bc9a2de453f2e";
 			}
-		}
-		else if(isdefined(inflictor) && isdefined(inflictor.soundmod))
-		{
-			switch(inflictor.soundmod)
+			else
 			{
-				case "player":
+				if(weapon.name == #"snowball")
 				{
-					if(isdefined(idflags) && idflags & 2048 && isdefined(victim))
+					hitalias = #"hash_65089a4793316b63";
+				}
+				else
+				{
+					if(weapon.name == #"hash_1888d1367d69b3a7")
 					{
-						if(isdefined(victim.var_426947c4))
-						{
-							hitalias = #"hash_74a7b6ba3604ede9";
-						}
-						else if(function_f99d2668())
-						{
-							hitalias = #"hash_2248618b48085ce5";
-						}
-						else
-						{
-							hitalias = #"mpl_hit_alert";
-						}
-					}
-					else if(isdefined(victim) && (isdefined(victim.isaiclone) && victim.isaiclone))
-					{
-						hitalias = #"mpl_hit_alert_clone";
-					}
-					else if(isdefined(victim) && (isdefined(victim.isaiclone) && victim.isaiclone))
-					{
-						hitalias = #"mpl_hit_alert_clone";
-					}
-					else if(isdefined(victim) && (isdefined(victim.var_342564dd) && victim.var_342564dd))
-					{
-						hitalias = #"hash_3e284f9a53e3010b";
-					}
-					else if(isdefined(victim) && isplayer(victim) && isdefined(victim.carryobject) && isdefined(victim.carryobject.hitsound) && isdefined(perkfeedback) && perkfeedback == "armor")
-					{
-						hitalias = victim.carryobject.hitsound;
-					}
-					else if(mod == "MOD_BURNED")
-					{
-						hitalias = #"mpl_hit_alert_burn";
-					}
-					else if(isdefined(fatal) && fatal)
-					{
-						if(weapons::isheadshot(shitloc, mod))
-						{
-							hitalias = #"hash_616dd8ea01d089ac";
-						}
-						else
-						{
-							hitalias = #"hash_31e38d8520839566";
-						}
-					}
-					else if(weapons::isheadshot(shitloc, mod))
-					{
-						hitalias = #"hash_29ca1afa9209bfc6";
-					}
-					else if(mod == "MOD_MELEE_WEAPON_BUTT")
-					{
-					}
-					else if(shitloc === "riotshield")
-					{
-						hitalias = #"prj_bullet_impact_shield";
+						hitalias = #"hash_1fd605562fb1fd3a";
 					}
 					else
 					{
-						hitalias = #"hash_205c83ac75849f80";
+						if(isvehicle(victim))
+						{
+							hitalias = #"hash_2ce81d103e923201";
+						}
+						else
+						{
+							if(isdefined(victim) && isdefined(victim.victimsoundmod))
+							{
+								switch(victim.victimsoundmod)
+								{
+									case "safeguard_robot":
+									{
+										hitalias = #"mpl_hit_alert_escort";
+										break;
+									}
+									case "vehicle":
+									{
+										hitalias = #"hash_2ce81d103e923201";
+										break;
+									}
+									default:
+									{
+										hitalias = #"mpl_hit_alert";
+										break;
+									}
+								}
+							}
+							else
+							{
+								if(isdefined(inflictor) && isdefined(inflictor.soundmod))
+								{
+									switch(inflictor.soundmod)
+									{
+										case "player":
+										{
+											if(isdefined(idflags) && idflags & 2048 && isdefined(victim))
+											{
+												if(isdefined(victim.var_426947c4))
+												{
+													hitalias = #"hash_74a7b6ba3604ede9";
+												}
+												else
+												{
+													if(function_f99d2668())
+													{
+														hitalias = #"hash_2248618b48085ce5";
+													}
+													else
+													{
+														hitalias = #"mpl_hit_alert";
+													}
+												}
+											}
+											else
+											{
+												if(isdefined(victim) && (isdefined(victim.isaiclone) && victim.isaiclone))
+												{
+													hitalias = #"mpl_hit_alert_clone";
+												}
+												else
+												{
+													if(isdefined(victim) && (isdefined(victim.isaiclone) && victim.isaiclone))
+													{
+														hitalias = #"mpl_hit_alert_clone";
+													}
+													else
+													{
+														if(isdefined(victim) && (isdefined(victim.var_342564dd) && victim.var_342564dd))
+														{
+															hitalias = #"hash_3e284f9a53e3010b";
+														}
+														else
+														{
+															if(isdefined(victim) && isplayer(victim) && isdefined(victim.carryobject) && isdefined(victim.carryobject.hitsound) && isdefined(perkfeedback) && perkfeedback == "armor")
+															{
+																hitalias = victim.carryobject.hitsound;
+															}
+															else
+															{
+																if(mod == "MOD_BURNED")
+																{
+																	hitalias = #"mpl_hit_alert_burn";
+																}
+																else
+																{
+																	if(isdefined(fatal) && fatal)
+																	{
+																		if(weapons::isheadshot(shitloc, mod))
+																		{
+																			hitalias = #"hash_616dd8ea01d089ac";
+																		}
+																		else
+																		{
+																			hitalias = #"hash_31e38d8520839566";
+																		}
+																	}
+																	else
+																	{
+																		if(weapons::isheadshot(shitloc, mod))
+																		{
+																			hitalias = #"hash_29ca1afa9209bfc6";
+																		}
+																		else
+																		{
+																			if(mod == "MOD_MELEE_WEAPON_BUTT")
+																			{
+																			}
+																			else
+																			{
+																				if(shitloc === "riotshield")
+																				{
+																					hitalias = #"prj_bullet_impact_shield";
+																				}
+																				else
+																				{
+																					hitalias = #"hash_205c83ac75849f80";
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+											break;
+										}
+										case "heatwave":
+										{
+											hitalias = #"mpl_hit_alert_heatwave";
+											break;
+										}
+										case "heli":
+										{
+											hitalias = #"mpl_hit_alert_air";
+											break;
+										}
+										case "hpm":
+										{
+											hitalias = #"mpl_hit_alert_hpm";
+											break;
+										}
+										case "taser_spike":
+										{
+											hitalias = #"mpl_hit_alert_taser_spike";
+											break;
+										}
+										case "straferun":
+										case "dog":
+										{
+											break;
+										}
+										case "firefly":
+										{
+											hitalias = #"mpl_hit_alert_firefly";
+											break;
+										}
+										case "drone_land":
+										{
+											hitalias = #"mpl_hit_alert_air";
+											break;
+										}
+										case "mini_turret":
+										{
+											hitalias = #"mpl_hit_alert_quiet";
+											break;
+										}
+										case "raps":
+										{
+											hitalias = #"mpl_hit_alert_air";
+											break;
+										}
+										case "default_loud":
+										{
+											hitalias = #"mpl_hit_heli_gunner";
+											break;
+										}
+										default:
+										{
+											hitalias = #"mpl_hit_alert";
+											break;
+										}
+									}
+								}
+								else
+								{
+									if(mod == "MOD_BURNED" || mod == "MOD_DOT")
+									{
+										hitalias = #"mpl_hit_alert_burn";
+									}
+									else
+									{
+										hitalias = #"mpl_hit_alert";
+									}
+								}
+							}
+						}
 					}
-					break;
-				}
-				case "heatwave":
-				{
-					hitalias = #"mpl_hit_alert_heatwave";
-					break;
-				}
-				case "heli":
-				{
-					hitalias = #"mpl_hit_alert_air";
-					break;
-				}
-				case "hpm":
-				{
-					hitalias = #"mpl_hit_alert_hpm";
-					break;
-				}
-				case "taser_spike":
-				{
-					hitalias = #"mpl_hit_alert_taser_spike";
-					break;
-				}
-				case "straferun":
-				case "dog":
-				{
-					break;
-				}
-				case "firefly":
-				{
-					hitalias = #"mpl_hit_alert_firefly";
-					break;
-				}
-				case "drone_land":
-				{
-					hitalias = #"mpl_hit_alert_air";
-					break;
-				}
-				case "mini_turret":
-				{
-					hitalias = #"mpl_hit_alert_quiet";
-					break;
-				}
-				case "raps":
-				{
-					hitalias = #"mpl_hit_alert_air";
-					break;
-				}
-				case "default_loud":
-				{
-					hitalias = #"mpl_hit_heli_gunner";
-					break;
-				}
-				default:
-				{
-					hitalias = #"mpl_hit_alert";
-					break;
 				}
 			}
 		}
-		else if(mod == "MOD_BURNED" || mod == "MOD_DOT")
-		{
-			hitalias = #"mpl_hit_alert_burn";
-		}
-		else
-		{
-			hitalias = #"mpl_hit_alert";
-		}
 	}
-	else if(mod === "MOD_MELEE_WEAPON_BUTT")
+	else
 	{
-		if(fatal === 1)
+		if(mod === "MOD_MELEE_WEAPON_BUTT")
 		{
-			hitalias = #"hash_27781beb722b7488";
-		}
-	}
-	else if(isdefined(inflictor) && isdefined(inflictor.owner) && isdefined(inflictor.owner.soundmod))
-	{
-		if(inflictor.owner.soundmod == #"player" && isdefined(idflags) && idflags & 2048 && isdefined(victim))
-		{
-			if(isdefined(victim.var_426947c4))
+			if(fatal === 1)
 			{
-				hitalias = #"hash_74a7b6ba3604ede9";
+				hitalias = #"hash_27781beb722b7488";
+			}
+		}
+		else if(isdefined(inflictor) && isdefined(inflictor.owner) && isdefined(inflictor.owner.soundmod))
+		{
+			if(inflictor.owner.soundmod == #"player" && isdefined(idflags) && idflags & 2048 && isdefined(victim))
+			{
+				if(isdefined(victim.var_426947c4))
+				{
+					hitalias = #"hash_74a7b6ba3604ede9";
+				}
 			}
 		}
 	}
@@ -403,13 +463,13 @@ function function_34fbafdc(weapon, mod)
 {
 	if(isdefined(weapon) && isdefined(weapon.var_965cc0b3) && weapon.var_965cc0b3)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(weapon) && weapon === level.var_1b72f911 && mod === "MOD_DOT")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -429,7 +489,7 @@ function update(mod, inflictor, perkfeedback, weapon, victim, psoffsettime, shit
 	}
 	if(isdefined(self.nohitmarkers) && self.nohitmarkers)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(weapon) && weapon.statname == #"recon_car" && isdefined(victim) && isdefined(victim.owner) && inflictor === victim.owner)
 	{
@@ -736,19 +796,19 @@ function dodamagefeedback(weapon, einflictor, idamage, smeansofdeath)
 {
 	if(!isdefined(weapon))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(weapon.nohitmarker) && weapon.nohitmarker)
 	{
-		return 0;
+		return false;
 	}
 	if(level.allowhitmarkers == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(smeansofdeath) && smeansofdeath == "MOD_MELEE_ASSASSINATE")
 	{
-		return 0;
+		return false;
 	}
 	if(level.allowhitmarkers == 1)
 	{
@@ -756,11 +816,11 @@ function dodamagefeedback(weapon, einflictor, idamage, smeansofdeath)
 		{
 			if(istacticalhitmarker(weapon, smeansofdeath, idamage))
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -780,14 +840,14 @@ function istacticalhitmarker(weapon, smeansofdeath, idamage)
 		{
 			if(smeansofdeath == "MOD_GRENADE_SPLASH")
 			{
-				return 1;
+				return true;
 			}
 		}
 		else if(idamage == 1)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 

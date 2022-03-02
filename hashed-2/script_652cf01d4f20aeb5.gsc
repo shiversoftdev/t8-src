@@ -209,15 +209,18 @@ function function_d332685()
 		e_who thread namespace_3263198e::function_51b752a9(#"hash_18bc664341e86310");
 		level namespace_6747c550::function_7df6bb60("zm_orange_zipquest_keycard_1", 1);
 	}
-	else if(!isdefined(level.var_79260935.n_keys_placed) || level.var_79260935.n_keys_placed == 0)
-	{
-		e_who thread namespace_3263198e::function_51b752a9(#"hash_52378df470d0a88b");
-	}
 	else
 	{
-		e_who thread namespace_3263198e::function_51b752a9(#"hash_35c946ee7d89155d");
+		if(!isdefined(level.var_79260935.n_keys_placed) || level.var_79260935.n_keys_placed == 0)
+		{
+			e_who thread namespace_3263198e::function_51b752a9(#"hash_52378df470d0a88b");
+		}
+		else
+		{
+			e_who thread namespace_3263198e::function_51b752a9(#"hash_35c946ee7d89155d");
+		}
+		level namespace_6747c550::function_7df6bb60("zm_orange_zipquest_keycard_2", 1);
 	}
-	level namespace_6747c550::function_7df6bb60("zm_orange_zipquest_keycard_2", 1);
 	level.var_79260935.var_f4c36022++;
 	self zm_unitrigger::unregister_unitrigger(self.s_unitrigger);
 }
@@ -243,25 +246,28 @@ function function_f83bfaa()
 		{
 			continue;
 		}
-		else if(level.var_79260935.var_f4c36022 === 1)
+		else
 		{
-			if(level.var_79260935.n_keys_placed == 0)
+			if(level.var_79260935.var_f4c36022 === 1)
 			{
-				e_who thread namespace_3263198e::function_51b752a9(#"hash_6997edb52b235dd9");
-				self function_61298be5();
+				if(level.var_79260935.n_keys_placed == 0)
+				{
+					e_who thread namespace_3263198e::function_51b752a9(#"hash_6997edb52b235dd9");
+					self function_61298be5();
+				}
+				else
+				{
+					e_who thread namespace_3263198e::function_51b752a9(#"hash_6b8c87cc827523c2");
+					self function_2ec6a1aa();
+				}
 			}
 			else
 			{
+				e_who thread namespace_3263198e::function_51b752a9(#"hash_6997edb52b235dd9");
+				self function_61298be5();
 				e_who thread namespace_3263198e::function_51b752a9(#"hash_6b8c87cc827523c2");
 				self function_2ec6a1aa();
 			}
-		}
-		else
-		{
-			e_who thread namespace_3263198e::function_51b752a9(#"hash_6997edb52b235dd9");
-			self function_61298be5();
-			e_who thread namespace_3263198e::function_51b752a9(#"hash_6b8c87cc827523c2");
-			self function_2ec6a1aa();
 		}
 	}
 }
@@ -483,10 +489,10 @@ function function_36db86a9(e_player)
 	{
 		str_hint = zm_utility::function_d6046228(#"hash_3d7d3a56e292c6fa", #"hash_b6e409536fc91fe");
 		self sethintstring(str_hint);
-		return 1;
+		return true;
 	}
 	self sethintstring("");
-	return 1;
+	return true;
 }
 
 /*
@@ -590,16 +596,16 @@ function function_bb5cf7f2(e_player)
 	if(zm_utility::is_classic() && level.var_45827161[level.round_number] !== undefined || (zm_utility::is_trials() && (level.round_number == 5 || level.round_number == 19)))
 	{
 		self sethintstring(#"hash_3c96e29876e85183");
-		return 1;
+		return true;
 	}
 	if(var_cb24ec97)
 	{
 		str_hint = zm_utility::function_d6046228(#"hash_56fc5ab8c0878d32", #"hash_17af2e2ebc75a206");
 		self sethintstring(str_hint);
-		return 1;
+		return true;
 	}
 	self sethintstring(#"hash_3a0b70fac224c702");
-	return 1;
+	return true;
 }
 
 /*
@@ -795,7 +801,7 @@ function function_c0510b69(e_player)
 {
 	str_hint = zm_utility::function_d6046228(#"hash_7976ce10c7043db7", #"hash_226401bfc284fb25");
 	self sethintstring(str_hint);
-	return 1;
+	return true;
 }
 
 /*
@@ -850,7 +856,7 @@ function function_7c831be0(e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_89c75856()
+function private function_89c75856()
 {
 	var_b3362cd = getent(self.target, "targetname");
 	var_b3362cd show();
@@ -867,7 +873,7 @@ private function function_89c75856()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_disconnect()
+function private on_disconnect()
 {
 	if(self hasweapon(level.var_79260935.var_ff31c99))
 	{
@@ -887,7 +893,7 @@ private function on_disconnect()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "take_weapon" && s_event.weapon === level.var_79260935.var_ff31c99 && self.var_3b55baa1 !== level.var_79260935.var_ff31c99)
 	{

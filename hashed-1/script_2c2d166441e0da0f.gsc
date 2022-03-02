@@ -31,33 +31,51 @@ function init()
 	{
 		function_36cc50(#"hash_50c4ae7eab84983b", 1, 1);
 	}
-	else if(isdefined(level.var_2e681d63) && level.var_2e681d63 && (isdefined(level.var_6b59ac2c) && level.var_6b59ac2c))
-	{
-		function_36cc50(#"hash_70f16a3fe6713fa0", 4, 2);
-	}
-	else if(isdefined(level.var_bf864abf) && level.var_bf864abf && (isdefined(level.var_4f7f5c18) && level.var_4f7f5c18))
-	{
-		function_36cc50(#"hash_2d45c1aaf7808b60", 4, 2);
-	}
-	else if(isdefined(level.var_e7cfbb8e) && level.var_e7cfbb8e && (isdefined(level.var_b6e30614) && level.var_b6e30614))
-	{
-		function_36cc50(#"hash_7905cf70902495a2", 10, 4);
-	}
-	else if(isdefined(level.var_fa831ab8) && level.var_fa831ab8 && (isdefined(level.var_9196aafd) && level.var_9196aafd))
-	{
-		function_36cc50(#"hash_78b8c004294d69fe", 4, 2);
-	}
-	else if(isdefined(level.var_d373b4e4) && level.var_d373b4e4)
-	{
-		function_f910ed8a();
-	}
-	else if(isdefined(level.var_fd7ef894) && level.var_fd7ef894)
-	{
-		function_f0b2e300();
-	}
 	else
 	{
-		function_c41ad9f9();
+		if(isdefined(level.var_2e681d63) && level.var_2e681d63 && (isdefined(level.var_6b59ac2c) && level.var_6b59ac2c))
+		{
+			function_36cc50(#"hash_70f16a3fe6713fa0", 4, 2);
+		}
+		else
+		{
+			if(isdefined(level.var_bf864abf) && level.var_bf864abf && (isdefined(level.var_4f7f5c18) && level.var_4f7f5c18))
+			{
+				function_36cc50(#"hash_2d45c1aaf7808b60", 4, 2);
+			}
+			else
+			{
+				if(isdefined(level.var_e7cfbb8e) && level.var_e7cfbb8e && (isdefined(level.var_b6e30614) && level.var_b6e30614))
+				{
+					function_36cc50(#"hash_7905cf70902495a2", 10, 4);
+				}
+				else
+				{
+					if(isdefined(level.var_fa831ab8) && level.var_fa831ab8 && (isdefined(level.var_9196aafd) && level.var_9196aafd))
+					{
+						function_36cc50(#"hash_78b8c004294d69fe", 4, 2);
+					}
+					else
+					{
+						if(isdefined(level.var_d373b4e4) && level.var_d373b4e4)
+						{
+							function_f910ed8a();
+						}
+						else
+						{
+							if(isdefined(level.var_fd7ef894) && level.var_fd7ef894)
+							{
+								function_f0b2e300();
+							}
+							else
+							{
+								function_c41ad9f9();
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	level notify(#"hash_7f7eec328c07606d");
 	if(isdefined(level.var_bbad516a) && level.var_bbad516a)
@@ -106,7 +124,7 @@ function function_6df0d3b6(zone_name)
 		{
 			if(isdefined(level.var_f8f715a7) && level.var_f8f715a7)
 			{
-				return 1;
+				return true;
 			}
 			break;
 		}
@@ -114,7 +132,7 @@ function function_6df0d3b6(zone_name)
 		{
 			if(isdefined(level.var_81d13d70) && level.var_81d13d70)
 			{
-				return 1;
+				return true;
 			}
 			break;
 		}
@@ -122,7 +140,7 @@ function function_6df0d3b6(zone_name)
 		{
 			if(isdefined(level.var_c62c0fea) && level.var_c62c0fea)
 			{
-				return 1;
+				return true;
 			}
 			break;
 		}
@@ -130,12 +148,12 @@ function function_6df0d3b6(zone_name)
 		{
 			if(isdefined(level.var_3195c89b) && level.var_3195c89b)
 			{
-				return 1;
+				return true;
 			}
 			break;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

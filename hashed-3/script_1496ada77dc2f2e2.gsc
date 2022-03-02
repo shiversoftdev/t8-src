@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2c983afcd92a9970", &__init__, undefined, undefined);
 }
@@ -59,7 +59,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(var_2a0af02f)
+function private function_d1de6a85(var_2a0af02f)
 {
 	level.var_4ecf5754 = (isdefined(var_2a0af02f) ? var_2a0af02f : #"hash_65cfe78dc61dd3af");
 	switch(level.var_4ecf5754)
@@ -107,7 +107,7 @@ private function function_d1de6a85(var_2a0af02f)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	switch(level.var_4ecf5754)
 	{
@@ -163,7 +163,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Private
 */
-private function on_player_spawned()
+function private on_player_spawned()
 {
 	if(level.var_4ecf5754 === #"hash_65cfe78dc61dd3af")
 	{
@@ -203,7 +203,7 @@ function function_40c7a8fd()
 	Parameters: 0
 	Flags: Private
 */
-private function function_69fa75f8()
+function private function_69fa75f8()
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -214,7 +214,7 @@ private function function_69fa75f8()
 		while(true)
 		{
 			var_be17187b = undefined;
-			var_be17187b = self waittill_timeout(1, #"weapon_fired", #"hash_3e0895cd0cc16d2d", #"lightning_ball_created", #"hash_4d733389a8e35a7c");
+			var_be17187b = self waittilltimeout(1, #"weapon_fired", #"hash_3e0895cd0cc16d2d", #"lightning_ball_created", #"hash_4d733389a8e35a7c");
 			if(var_be17187b._notify != "timeout")
 			{
 				self clientfield::set_to_player("" + #"hash_1b9477ddcf30191f", 0);
@@ -258,12 +258,12 @@ function function_6d8cf829()
 	Parameters: 0
 	Flags: Private
 */
-private function function_ad641569()
+function private function_ad641569()
 {
 	self notify("3d0a827cbf03ae74");
 	self endon("3d0a827cbf03ae74");
 	self endon(#"disconnect");
-	level endon_callback(&function_1a109202, #"hash_7646638df88a3656", #"host_migration_begin");
+	level endoncallback(&function_1a109202, #"hash_7646638df88a3656", #"host_migration_begin");
 	while(true)
 	{
 		wait(function_21a3a673(5, 15));
@@ -323,7 +323,7 @@ function function_1a109202(str_notify)
 	Parameters: 0
 	Flags: Private
 */
-private function function_604ff1eb()
+function private function_604ff1eb()
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	wait(5);

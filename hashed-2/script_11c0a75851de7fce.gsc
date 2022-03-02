@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_37ef143ef409b670", &__init__, undefined, undefined);
 }
@@ -63,9 +63,7 @@ function __init__()
 	level._effect[#"hash_41de5d1fefd715d0"] = #"hash_65b54823a8e8631e";
 	if(!isdefined(level.var_90e0e2a0))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_90e0e2a0 = object;
+		level.var_90e0e2a0 = new throttle();
 		[[ level.var_90e0e2a0 ]]->initialize(4, 0.1);
 	}
 	callback::on_connect(&function_9592c5c1);
@@ -89,17 +87,17 @@ function function_83c8b26e(weapon, var_e7c11b0c = 1)
 {
 	if(weapon == level.hero_weapon[#"minigun"][2])
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"minigun"][1] && var_e7c11b0c < 3)
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"minigun"][0] && var_e7c11b0c < 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -111,7 +109,7 @@ function function_83c8b26e(weapon, var_e7c11b0c = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9592c5c1()
+function private function_9592c5c1()
 {
 	self endon(#"disconnect");
 	self thread function_1b26ce66();
@@ -136,25 +134,28 @@ private function function_9592c5c1()
 		{
 			zm_hero_weapon::show_hint(wpn_cur, #"hash_6933501bf415a72c");
 		}
-		else if(wpn_cur == level.hero_weapon[#"minigun"][1])
+		else
 		{
-			zm_hero_weapon::show_hint(wpn_cur, #"hash_30df02915fdc6a67");
-			self thread function_ebaedcdd(wpn_cur);
-			self thread function_478a4910(wpn_cur);
-		}
-		else if(wpn_cur == level.hero_weapon[#"minigun"][2])
-		{
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"minigun"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_53f4514d440c7816");
+				zm_hero_weapon::show_hint(wpn_cur, #"hash_30df02915fdc6a67");
+				self thread function_ebaedcdd(wpn_cur);
+				self thread function_478a4910(wpn_cur);
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"minigun"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_407cc98232081886");
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_53f4514d440c7816");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_407cc98232081886");
+				}
+				self thread function_ebaedcdd(wpn_cur);
+				self thread function_9d166ae8(wpn_cur);
+				self thread function_68ff89f7(wpn_cur);
 			}
-			self thread function_ebaedcdd(wpn_cur);
-			self thread function_9d166ae8(wpn_cur);
-			self thread function_68ff89f7(wpn_cur);
 		}
 	}
 }
@@ -168,7 +169,7 @@ private function function_9592c5c1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1b26ce66()
+function private function_1b26ce66()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -192,7 +193,7 @@ private function function_1b26ce66()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5ef1fdde(w_minigun)
+function private function_5ef1fdde(w_minigun)
 {
 	self endon(#"disconnect");
 	n_slot = self gadgetgetslot(w_minigun);
@@ -303,7 +304,7 @@ function function_34a75fed(inflictor, attacker, damage, flags, meansofdeath, wea
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fae65b82()
+function private function_fae65b82()
 {
 	[[ level.var_90e0e2a0 ]]->waitinqueue(self);
 	if(isdefined(self))
@@ -321,7 +322,7 @@ private function function_fae65b82()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_335a27d1()
+function private function_335a27d1()
 {
 	if(self.var_9b5f3241 === 1)
 	{
@@ -482,7 +483,7 @@ function function_9d166ae8(w_minigun)
 			while(isdefined(e_grenade))
 			{
 				s_result = undefined;
-				s_result = e_grenade waittill_timeout(4, #"stationary", #"death");
+				s_result = e_grenade waittilltimeout(4, #"stationary", #"death");
 				if(isdefined(e_grenade))
 				{
 					if(s_result._notify == "stationary")
@@ -507,15 +508,18 @@ function function_9d166ae8(w_minigun)
 						e_grenade clientfield::set("minigun_nuke_rob", 1);
 						e_grenade playloopsound("wpn_minigun_nuke_riser");
 					}
-					else if(s_result._notify == "timeout")
-					{
-						v_end_pos = e_grenade.origin;
-						e_grenade delete();
-						break;
-					}
 					else
 					{
-						e_grenade clientfield::set("minigun_nuke_rob", 0);
+						if(s_result._notify == "timeout")
+						{
+							v_end_pos = e_grenade.origin;
+							e_grenade delete();
+							break;
+						}
+						else
+						{
+							e_grenade clientfield::set("minigun_nuke_rob", 0);
+						}
 					}
 				}
 			}
@@ -641,7 +645,7 @@ function function_13409329(v_end_pos, w_minigun)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_292bb3d7(e_player, w_minigun, v_pos)
+function private function_292bb3d7(e_player, w_minigun, v_pos)
 {
 	self endon(#"death");
 	[[ level.var_90e0e2a0 ]]->waitinqueue(self);

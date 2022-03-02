@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"vehicle_ai", &__init__, undefined, undefined);
 }
@@ -53,17 +53,17 @@ function entityisarchetype(entity, archetype)
 {
 	if(!isdefined(entity))
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(entity) && entity.usingvehicle && isdefined(entity.viewlockedentity) && entity.viewlockedentity.archetype === archetype)
 	{
-		return 1;
+		return true;
 	}
 	if(isvehicle(entity) && entity.archetype === archetype)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -106,17 +106,23 @@ function gettargetpos(target, geteye)
 		{
 			pos = target;
 		}
-		else if(isdefined(geteye) && geteye && issentient(target))
+		else
 		{
-			pos = target geteye();
-		}
-		else if(isentity(target))
-		{
-			pos = target.origin;
-		}
-		else if(isdefined(target.origin) && isvec(target.origin))
-		{
-			pos = target.origin;
+			if(isdefined(geteye) && geteye && issentient(target))
+			{
+				pos = target geteye();
+			}
+			else
+			{
+				if(isentity(target))
+				{
+					pos = target.origin;
+				}
+				else if(isdefined(target.origin) && isvec(target.origin))
+				{
+					pos = target.origin;
+				}
+			}
 		}
 	}
 	return pos;
@@ -383,13 +389,16 @@ function getairfollowingposition(userelativeangletohost)
 	{
 		angles = self.host gettagangles(self.host.airfollowconfig.tag);
 	}
-	else if(isplayer(self.host))
-	{
-		angles = self.host getplayerangles();
-	}
 	else
 	{
-		angles = self.host.angles;
+		if(isplayer(self.host))
+		{
+			angles = self.host getplayerangles();
+		}
+		else
+		{
+			angles = self.host.angles;
+		}
 	}
 	yawangles = (0, angles[1], 0);
 	newoffset = rotatepoint(offset, yawangles);
@@ -557,7 +566,7 @@ function waittill_pathing_done(maxtime = 15)
 {
 	self endon(#"change_state");
 	result = undefined;
-	result = self waittill_timeout(maxtime, #"near_goal", #"force_goal", #"reached_end_node", #"pathfind_failed");
+	result = self waittilltimeout(maxtime, #"near_goal", #"force_goal", #"reached_end_node", #"pathfind_failed");
 }
 
 /*
@@ -573,7 +582,7 @@ function waittill_pathresult(maxtime = 0.5)
 {
 	self endon(#"change_state");
 	result = undefined;
-	result = self waittill_timeout(maxtime, #"pathfind_failed", #"pathfind_succeeded", #"change_state");
+	result = self waittilltimeout(maxtime, #"pathfind_failed", #"pathfind_succeeded", #"change_state");
 	succeeded = result === "pathfind_succeeded";
 	return succeeded;
 }
@@ -739,37 +748,40 @@ function nudge_collision()
 			self setvehvelocity(self.velocity + (normal * 90));
 			self collision_fx(normal);
 		}
-		else if(empedoroff)
-		{
-			if(isdefined(self.bounced))
-			{
-				self playsound(#"veh_wasp_wall_imp");
-				self setvehvelocity((0, 0, 0));
-				self setangularvelocity((0, 0, 0));
-				pitch = self.angles[0];
-				pitch = math::sign(pitch) * math::clamp(abs(pitch), 10, 15);
-				self.angles = (pitch, self.angles[1], self.angles[2]);
-				self.bounced = undefined;
-				self notify(#"landed");
-				return;
-			}
-			self.bounced = 1;
-			self setvehvelocity(self.velocity + (normal * 30));
-			self collision_fx(normal);
-		}
 		else
 		{
-			impact_vel = abs(vectordot(velocity, normal));
-			if(normal[2] < 0.6 && impact_vel < 100)
+			if(empedoroff)
 			{
-				self setvehvelocity(self.velocity + (normal * 90));
+				if(isdefined(self.bounced))
+				{
+					self playsound(#"veh_wasp_wall_imp");
+					self setvehvelocity((0, 0, 0));
+					self setangularvelocity((0, 0, 0));
+					pitch = self.angles[0];
+					pitch = math::sign(pitch) * math::clamp(abs(pitch), 10, 15);
+					self.angles = (pitch, self.angles[1], self.angles[2]);
+					self.bounced = undefined;
+					self notify(#"landed");
+					return;
+				}
+				self.bounced = 1;
+				self setvehvelocity(self.velocity + (normal * 30));
 				self collision_fx(normal);
 			}
 			else
 			{
-				self playsound(#"veh_wasp_ground_death");
-				self thread vehicle_death::death_fire_loop_audio();
-				self notify(#"crash_done");
+				impact_vel = abs(vectordot(velocity, normal));
+				if(normal[2] < 0.6 && impact_vel < 100)
+				{
+					self setvehvelocity(self.velocity + (normal * 90));
+					self collision_fx(normal);
+				}
+				else
+				{
+					self playsound(#"veh_wasp_ground_death");
+					self thread vehicle_death::death_fire_loop_audio();
+					self notify(#"crash_done");
+				}
 			}
 		}
 	}
@@ -909,7 +921,7 @@ function iff_override(owner, time = 60)
 	#/
 	self thread iff_notifymeinnsec(timeout - 10, "iff_override_revert_warn");
 	msg = undefined;
-	msg = self waittill_timeout(timeout, #"iff_override_reverted");
+	msg = self waittilltimeout(timeout, #"iff_override_reverted");
 	if(msg == "timeout")
 	{
 		self notify(#"iff_override_reverted");
@@ -2148,7 +2160,7 @@ function defaultstate_emped_exit(params)
 */
 function defaultstate_emped_reenter(params)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -2253,18 +2265,18 @@ function function_329f45a4(current_state, to_state, connection, params)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.emped) && self.emped || (isdefined(self.jammed) && self.jammed))
 	{
-		return 0;
+		return false;
 	}
 	driver = self getseatoccupant(0);
 	if(isplayer(driver))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2283,10 +2295,10 @@ function function_6664e3af(current_state, to_state_name, connection, params)
 		driver = self getseatoccupant(0);
 		if(!isdefined(driver))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2685,13 +2697,16 @@ function positionquery_filter_distawayfromtarget(queryresult, targetarray, dista
 			{
 				origin = target;
 			}
-			else if(issentient(target) && isalive(target))
+			else
 			{
-				origin = target.origin;
-			}
-			else if(isentity(target))
-			{
-				origin = target.origin;
+				if(issentient(target) && isalive(target))
+				{
+					origin = target.origin;
+				}
+				else if(isentity(target))
+				{
+					origin = target.origin;
+				}
 			}
 			if(isdefined(origin) && distance2dsquared(point.origin, origin) < (distance * distance))
 			{
@@ -2881,7 +2896,7 @@ function function_7ae52016(val)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e057db25(var_2d1cbdd9, goalpos, vararg)
+function private function_e057db25(var_2d1cbdd9, goalpos, vararg)
 {
 	switch(vararg.size)
 	{
@@ -3019,7 +3034,7 @@ function function_1d436633(vararg)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4ab1a63a(goal)
+function private function_4ab1a63a(goal)
 {
 	if(isdefined(self.settings.engagementheightmax) && isdefined(self.settings.engagementheightmin))
 	{
@@ -3260,7 +3275,7 @@ function function_1e0d693b(goal, enemy)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4646fb11(goal)
+function private function_4646fb11(goal)
 {
 	minsearchradius = math::clamp(120, 0, goal.goalradius);
 	maxsearchradius = math::clamp(800, 120, goal.goalradius);
@@ -3387,17 +3402,23 @@ function function_b1bd875a()
 			{
 				newpos = self getclosestpointonnavvolume(var_1f2328d0.goalpos, self.radius * 2);
 			}
-			else if(!isatgoal)
-			{
-				point = function_4ab1a63a(var_1f2328d0);
-			}
-			else if(isdefined(enemy))
-			{
-				point = function_1e0d693b(var_1f2328d0, enemy);
-			}
 			else
 			{
-				point = function_4646fb11(var_1f2328d0);
+				if(!isatgoal)
+				{
+					point = function_4ab1a63a(var_1f2328d0);
+				}
+				else
+				{
+					if(isdefined(enemy))
+					{
+						point = function_1e0d693b(var_1f2328d0, enemy);
+					}
+					else
+					{
+						point = function_4646fb11(var_1f2328d0);
+					}
+				}
 			}
 			if(isdefined(point))
 			{

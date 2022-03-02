@@ -31,7 +31,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6a371c43cac9a1c4", &__init__, &__main__, undefined);
 }
@@ -216,16 +216,16 @@ function function_ec3a8858()
 	player = self;
 	if(!isplayer(player))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.inventory) && isdefined(player.inventory.consumed))
 	{
 		if((isdefined(player.inventory.inventory.consumed.size) ? player.inventory.consumed.size : 0) > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -237,7 +237,7 @@ function function_ec3a8858()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f874ca5e(var_10e8ffc4)
+function private function_f874ca5e(var_10e8ffc4)
 {
 	player = self;
 	/#
@@ -371,7 +371,7 @@ function player_disconnected()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fb20ad56()
+function private function_fb20ad56()
 {
 	player = self;
 	/#
@@ -389,7 +389,7 @@ private function function_fb20ad56()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d61fdbef()
+function private function_d61fdbef()
 {
 	player = self;
 	/#
@@ -407,7 +407,7 @@ private function function_d61fdbef()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_67949803()
+function private function_67949803()
 {
 	player = self;
 	/#
@@ -425,44 +425,65 @@ private function function_67949803()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_51cae91b(placement)
+function private function_51cae91b(placement)
 {
 	player = self;
 	if(placement <= 5 && level.var_db720da1.top5 > 0)
 	{
 		player function_ffda8476("top5", #"hash_1c5941725865ae68", level.var_db720da1.top5);
 	}
-	else if(placement <= 10 && level.var_db720da1.top10 > 0)
+	else
 	{
-		player function_ffda8476("top10", #"hash_1c5941725865ae68", level.var_db720da1.top10);
-	}
-	else if(placement <= 15 && level.var_db720da1.top15 > 0)
-	{
-		player function_ffda8476("top15", #"hash_1c5941725865ae68", level.var_db720da1.top15);
-	}
-	else if(placement <= 20 && level.var_db720da1.top20 > 0)
-	{
-		player function_ffda8476("top20", #"hash_1c5941725865ae68", level.var_db720da1.top20);
-	}
-	else if(placement <= 25 && level.var_db720da1.top25 > 0)
-	{
-		player function_ffda8476("top25", #"hash_1c5941725865ae68", level.var_db720da1.top25);
-	}
-	else if(placement <= 30 && level.var_db720da1.top30 > 0)
-	{
-		player function_ffda8476("top30", #"hash_1c5941725865ae68", level.var_db720da1.top30);
-	}
-	else if(placement <= 50 && level.var_db720da1.top50 > 0)
-	{
-		player function_ffda8476("top50", #"hash_1c5941725865ae68", level.var_db720da1.top50);
-	}
-	else if(placement <= 60 && level.var_db720da1.top60 > 0)
-	{
-		player function_ffda8476("top60", #"hash_1c5941725865ae68", level.var_db720da1.top60);
-	}
-	else if(placement <= 75 && level.var_db720da1.top75 > 0)
-	{
-		player function_ffda8476("top75", #"hash_1c5941725865ae68", level.var_db720da1.top75);
+		if(placement <= 10 && level.var_db720da1.top10 > 0)
+		{
+			player function_ffda8476("top10", #"hash_1c5941725865ae68", level.var_db720da1.top10);
+		}
+		else
+		{
+			if(placement <= 15 && level.var_db720da1.top15 > 0)
+			{
+				player function_ffda8476("top15", #"hash_1c5941725865ae68", level.var_db720da1.top15);
+			}
+			else
+			{
+				if(placement <= 20 && level.var_db720da1.top20 > 0)
+				{
+					player function_ffda8476("top20", #"hash_1c5941725865ae68", level.var_db720da1.top20);
+				}
+				else
+				{
+					if(placement <= 25 && level.var_db720da1.top25 > 0)
+					{
+						player function_ffda8476("top25", #"hash_1c5941725865ae68", level.var_db720da1.top25);
+					}
+					else
+					{
+						if(placement <= 30 && level.var_db720da1.top30 > 0)
+						{
+							player function_ffda8476("top30", #"hash_1c5941725865ae68", level.var_db720da1.top30);
+						}
+						else
+						{
+							if(placement <= 50 && level.var_db720da1.top50 > 0)
+							{
+								player function_ffda8476("top50", #"hash_1c5941725865ae68", level.var_db720da1.top50);
+							}
+							else
+							{
+								if(placement <= 60 && level.var_db720da1.top60 > 0)
+								{
+									player function_ffda8476("top60", #"hash_1c5941725865ae68", level.var_db720da1.top60);
+								}
+								else if(placement <= 75 && level.var_db720da1.top75 > 0)
+								{
+									player function_ffda8476("top75", #"hash_1c5941725865ae68", level.var_db720da1.top75);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -475,7 +496,7 @@ private function function_51cae91b(placement)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a0fea1a9()
+function private function_a0fea1a9()
 {
 	player = self;
 	/#
@@ -493,7 +514,7 @@ private function function_a0fea1a9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3217b0d2()
+function private function_3217b0d2()
 {
 	player = self;
 	/#
@@ -519,7 +540,7 @@ private function function_3217b0d2()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6a7970fe()
+function private function_6a7970fe()
 {
 	player = self;
 	/#
@@ -692,13 +713,16 @@ function function_66fe9481(vehicle, player, seatindex)
 		{
 			player.var_e081a4e5[#"air"] = 1;
 		}
-		else if(var_7c6311c4 && !isdefined(player.var_e081a4e5[#"sea"]))
+		else
 		{
-			player.var_e081a4e5[#"sea"] = 1;
-		}
-		else if(var_f03db647 && !isdefined(player.var_e081a4e5[#"land"]))
-		{
-			player.var_e081a4e5[#"land"] = 1;
+			if(var_7c6311c4 && !isdefined(player.var_e081a4e5[#"sea"]))
+			{
+				player.var_e081a4e5[#"sea"] = 1;
+			}
+			else if(var_f03db647 && !isdefined(player.var_e081a4e5[#"land"]))
+			{
+				player.var_e081a4e5[#"land"] = 1;
+			}
 		}
 		if(player.var_e081a4e5.size == 3)
 		{
@@ -980,7 +1004,7 @@ function function_36e144fa(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a117c988()
+function private function_a117c988()
 {
 	if(isdefined(self.laststandparams))
 	{
@@ -1023,7 +1047,7 @@ private function function_a117c988()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_player_killed(params)
+function private on_player_killed(params)
 {
 	victim = self;
 	/#
@@ -1073,13 +1097,16 @@ function function_35ac33e1(attacker, victim, var_c5948a69 = {})
 			{
 				var_ced14f4b = level.var_db720da1.var_7751a92c;
 			}
-			else if(isdefined(var_507f7385) && var_507f7385)
-			{
-				var_ced14f4b = level.var_db720da1.var_cbafe055;
-			}
 			else
 			{
-				var_ced14f4b = level.var_db720da1.var_56dcbb49;
+				if(isdefined(var_507f7385) && var_507f7385)
+				{
+					var_ced14f4b = level.var_db720da1.var_cbafe055;
+				}
+				else
+				{
+					var_ced14f4b = level.var_db720da1.var_56dcbb49;
+				}
 			}
 		}
 		attacker function_ffda8476("kill", #"killxp", var_ced14f4b);
@@ -1277,10 +1304,10 @@ function function_c7aa9338(array)
 	{
 		if(util::function_fbce7263(ent.team, self.team))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1427,7 +1454,7 @@ function function_6c478b00(params)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_4776caf4(eventstruct)
+event private function_4776caf4(eventstruct)
 {
 	if(level.inprematchperiod)
 	{
@@ -1695,7 +1722,7 @@ function function_10a4dd0a(params)
 	Parameters: 1
 	Flags: Private, Event
 */
-private event function_209450ae(eventstruct)
+event private function_209450ae(eventstruct)
 {
 	if(level.inprematchperiod)
 	{

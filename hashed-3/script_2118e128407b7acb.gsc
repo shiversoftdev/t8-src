@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1bc870c3bcb2ff32", &__init__, undefined, undefined);
 }
@@ -131,7 +131,7 @@ function archetypezombiedogblackboardinit()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function archetypezombiedogonanimscriptedcallback(entity)
+function private archetypezombiedogonanimscriptedcallback(entity)
 {
 	entity.__blackboard = undefined;
 	entity archetypezombiedogblackboardinit();
@@ -243,41 +243,41 @@ function need_to_run()
 	run_height = 64;
 	if(level.dog_round_count > 1)
 	{
-		return 1;
+		return true;
 	}
 	if(self.health < self.maxhealth)
 	{
-		return 1;
+		return true;
 	}
 	if(!isdefined(self.enemy) || !isalive(self.enemy))
 	{
-		return 0;
+		return false;
 	}
 	if(!self cansee(self.enemy))
 	{
-		return 0;
+		return false;
 	}
 	dist = distancesquared(self.origin, self.enemy.origin);
 	if(dist > run_dist_squared)
 	{
-		return 0;
+		return false;
 	}
 	height = self.origin[2] - self.enemy.origin[2];
 	if(abs(height) > run_height)
 	{
-		return 0;
+		return false;
 	}
 	yaw = self absyawtoenemy();
 	if(yaw > run_yaw)
 	{
-		return 0;
+		return false;
 	}
 	pitch = angleclamp180(vectortoangles(self.origin - self.enemy.origin)[0]);
 	if(abs(pitch) > run_pitch)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -357,7 +357,7 @@ function is_target_valid(dog, target)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function get_favorite_enemy(dog)
+function private get_favorite_enemy(dog)
 {
 	dog_targets = [];
 	if(sessionmodeiszombiesgame())
@@ -510,19 +510,22 @@ function zombiedogtargetservice(behaviortreeentity)
 				[[level.var_d22435d9]](behaviortreeentity);
 			}
 		}
-		else if(isdefined(behaviortreeentity function_4794d6a3().overridegoalpos))
-		{
-			behaviortreeentity function_d4c687c9();
-		}
-		if(isdefined(level.no_target_override))
-		{
-			[[level.no_target_override]](behaviortreeentity);
-		}
 		else
 		{
-			behaviortreeentity setgoal(behaviortreeentity.origin);
+			if(isdefined(behaviortreeentity function_4794d6a3().overridegoalpos))
+			{
+				behaviortreeentity function_d4c687c9();
+			}
+			if(isdefined(level.no_target_override))
+			{
+				[[level.no_target_override]](behaviortreeentity);
+			}
+			else
+			{
+				behaviortreeentity setgoal(behaviortreeentity.origin);
+			}
+			return;
 		}
-		return;
 	}
 	if(!(isdefined(behaviortreeentity.hasseenfavoriteenemy) && behaviortreeentity.hasseenfavoriteenemy))
 	{
@@ -568,17 +571,17 @@ function zombiedogshouldmelee(behaviortreeentity)
 {
 	if(behaviortreeentity.ignoreall || !is_target_valid(behaviortreeentity, behaviortreeentity.favoriteenemy))
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(level.intermission) && level.intermission))
 	{
 		meleedist = 72;
 		if(distancesquared(behaviortreeentity.origin, behaviortreeentity.favoriteenemy.origin) < (meleedist * meleedist) && behaviortreeentity cansee(behaviortreeentity.favoriteenemy))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -622,21 +625,21 @@ function use_low_attack()
 {
 	if(!isdefined(self.enemy) || !isplayer(self.enemy))
 	{
-		return 0;
+		return false;
 	}
 	height_diff = self.enemy.origin[2] - self.origin[2];
 	low_enough = 30;
 	if(height_diff < low_enough && self.enemy getstance() == "prone")
 	{
-		return 1;
+		return true;
 	}
 	melee_origin = (self.origin[0], self.origin[1], self.origin[2] + 65);
 	enemy_origin = (self.enemy.origin[0], self.enemy.origin[1], self.enemy.origin[2] + 32);
 	if(!bullettracepassed(melee_origin, enemy_origin, 0, self))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

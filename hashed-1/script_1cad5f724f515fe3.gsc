@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function bb_getarrivaltype()
+function private bb_getarrivaltype()
 {
 	if(self ai::get_behavior_attribute("disablearrivals"))
 	{
@@ -31,7 +31,7 @@ private function bb_getarrivaltype()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function bb_gettacticalarrivalfacingyaw()
+function private bb_gettacticalarrivalfacingyaw()
 {
 	return angleclamp180(self.angles[1] - self.node.angles[1]);
 }
@@ -45,7 +45,7 @@ private function bb_gettacticalarrivalfacingyaw()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function bb_getlocomotionmovementtype()
+function private bb_getlocomotionmovementtype()
 {
 	if(!ai::getaiattribute(self, "disablesprint"))
 	{
@@ -94,7 +94,7 @@ private function bb_getlocomotionmovementtype()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function bb_getcoverflankability()
+function private bb_getcoverflankability()
 {
 	if(self asmistransitionrunning())
 	{

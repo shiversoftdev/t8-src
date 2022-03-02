@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"laststand", &__init__, undefined, undefined);
 }
@@ -103,11 +103,14 @@ function laststand_bleed(localclientnum, oldval, newval, bnewent, binitialsnap, 
 		self util::waittill_dobj(localclientnum);
 		self.var_63796ff0 = function_239993de(localclientnum, "player/fx8_plyr_blood_drip_last_stand", self, "j_spine4");
 	}
-	else if(isdefined(self.var_63796ff0))
+	else
 	{
-		stopfx(localclientnum, self.var_63796ff0);
+		if(isdefined(self.var_63796ff0))
+		{
+			stopfx(localclientnum, self.var_63796ff0);
+		}
+		self notify(#"hash_7698972484f247e8");
 	}
-	self notify(#"hash_7698972484f247e8");
 }
 
 /*

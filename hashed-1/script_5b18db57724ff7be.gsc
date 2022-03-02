@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_camos", &__init__, undefined, undefined);
 }
@@ -221,7 +221,7 @@ function function_264bcab7(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e5ed6edb(weapon)
+function private function_e5ed6edb(weapon)
 {
 	weaponoptions = self getbuildkitweaponoptions(weapon);
 	if(!isdefined(self.pers) || !isdefined(self.pers[#"activecamo"]))
@@ -246,18 +246,18 @@ private function function_e5ed6edb(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d0ae71bb(weapon)
+function private function_d0ae71bb(weapon)
 {
 	if(isdefined(self function_79be4786(weapon)))
 	{
-		return 1;
+		return true;
 	}
 	weaponoptions = self getbuildkitweaponoptions(weapon);
 	if(function_2470f404(weaponoptions) != 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -303,7 +303,7 @@ function function_7b29c2d2(weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_160898c()
+function private function_160898c()
 {
 	self notify(#"hash_7e9b17b054c01cb3");
 	self endon(#"death", #"hash_7e9b17b054c01cb3");
@@ -354,7 +354,7 @@ function function_432cf6d(weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d01affa9()
+function private function_d01affa9()
 {
 	self notify(#"hash_3dbf3a8521ba1621");
 	self endon(#"death", #"hash_3dbf3a8521ba1621");
@@ -396,7 +396,7 @@ function function_4092decc(weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5ae5fabe()
+function private function_5ae5fabe()
 {
 	if(self stats::function_441050ca(#"weapons_mastery_assault") == 0 && self stats::get_stat(#"hash_37d1fc7f168f221a", #"weapon_assault", #"challenges", #"statvalue") >= 42)
 	{

@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_33c476e136a43b71", &__init__, undefined, undefined);
 }
@@ -365,7 +365,12 @@ function function_4cfd3896(activator, laststate, state)
 	{
 		self.buoy show();
 	}
-	assert(isdefined(self.buoy), "");
+	else
+	{
+		/#
+			assert(isdefined(self.buoy), "");
+		#/
+	}
 	self.var_8d868455 = activator;
 	self.var_575ef853 = 0;
 	activator thread function_6c71782a(self);
@@ -533,7 +538,7 @@ function function_16e4e507(dynent)
 {
 	self notify("651631a8d4cdd907");
 	self endon("651631a8d4cdd907");
-	self endon_callback(&function_73532e4f, #"death", #"hash_61bb9580151c93d5");
+	self endoncallback(&function_73532e4f, #"death", #"hash_61bb9580151c93d5");
 	if(!isplayer(self))
 	{
 		return;
@@ -612,7 +617,7 @@ function function_176e516(dynent)
 	{
 		return;
 	}
-	self endon_callback(&function_73532e4f, #"death", #"hash_61bb9580151c93d5");
+	self endoncallback(&function_73532e4f, #"death", #"hash_61bb9580151c93d5");
 	while(dynent.var_fb09ad1c != 3)
 	{
 		if(dynent.var_fb09ad1c != 3 && (self jumpbuttonpressed() || self stancebuttonpressed()))

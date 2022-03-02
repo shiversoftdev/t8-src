@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_20ba676676b7bccf", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue && !namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{
@@ -100,26 +100,29 @@ function function_ea3e4435(localclientnum, oldval, newval, bnewent, binitialsnap
 			self.var_d3d459f[localclientnum] = playtagfxset(localclientnum, "weapon_katana_smoke_3p", self);
 		}
 	}
-	else if(self getlocalclientnumber() === localclientnum)
+	else
 	{
-		self postfx::stoppostfxbundle(#"hash_34ce6f9f022458f8");
-		self thread function_82ee4d9d(localclientnum);
-		a_e_players = getlocalplayers();
-		foreach(e_player in a_e_players)
+		if(self getlocalclientnumber() === localclientnum)
 		{
-			if(!e_player util::function_50ed1561(localclientnum))
+			self postfx::stoppostfxbundle(#"hash_34ce6f9f022458f8");
+			self thread function_82ee4d9d(localclientnum);
+			a_e_players = getlocalplayers();
+			foreach(e_player in a_e_players)
 			{
-				e_player notify(#"hash_49e404aa0d33e9ac");
+				if(!e_player util::function_50ed1561(localclientnum))
+				{
+					e_player notify(#"hash_49e404aa0d33e9ac");
+				}
 			}
 		}
-	}
-	else if(isdefined(self.var_d3d459f[localclientnum]))
-	{
-		foreach(fx in self.var_d3d459f[localclientnum])
+		else if(isdefined(self.var_d3d459f[localclientnum]))
 		{
-			stopfx(localclientnum, fx);
+			foreach(fx in self.var_d3d459f[localclientnum])
+			{
+				stopfx(localclientnum, fx);
+			}
+			self.var_d3d459f[localclientnum] = undefined;
 		}
-		self.var_d3d459f[localclientnum] = undefined;
 	}
 }
 
@@ -132,7 +135,7 @@ function function_ea3e4435(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_66752a96(localclientnum)
+function private function_66752a96(localclientnum)
 {
 	ai::add_ai_spawn_function(&function_74541167);
 	a_ai = getentarraybytype(localclientnum, 15);
@@ -151,7 +154,7 @@ private function function_66752a96(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_74541167(localclientnum)
+function private function_74541167(localclientnum)
 {
 	if(!isdefined(self.var_1030ad00))
 	{
@@ -176,7 +179,7 @@ private function function_74541167(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_82ee4d9d(localclientnum)
+function private function_82ee4d9d(localclientnum)
 {
 	ai::function_932006d1(&function_74541167);
 	a_ai = getentarraybytype(localclientnum, 15);

@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_23b05089013ba630", &__init__, undefined, undefined);
 }
@@ -59,7 +59,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function onconnect()
+function private onconnect()
 {
 	self thread function_13ad9a60();
 }
@@ -73,7 +73,7 @@ private function onconnect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_13ad9a60()
+function private function_13ad9a60()
 {
 	self endon(#"disconnect");
 	while(true)

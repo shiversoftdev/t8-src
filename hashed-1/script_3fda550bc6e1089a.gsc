@@ -183,14 +183,14 @@ function usekillstreakhelicopter(hardpointtype)
 {
 	if(self killstreakrules::iskillstreakallowed(hardpointtype, self.team) == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(level.heli_paths) || !level.heli_paths.size)
 	{
 		/#
 			iprintlnbold("");
 		#/
-		return 0;
+		return false;
 	}
 	if(hardpointtype == "helicopter_comlink" || hardpointtype == "inventory_helicopter_comlink")
 	{
@@ -218,7 +218,7 @@ function usekillstreakhelicopter(hardpointtype)
 	killstreak_id = self killstreakrules::killstreakstart(hardpointtype, self.team);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_34f03cda))
 	{
@@ -227,7 +227,7 @@ function usekillstreakhelicopter(hardpointtype)
 	self killstreaks::play_killstreak_start_dialog(hardpointtype, self.team, killstreak_id);
 	self thread announcehelicopterinbound(hardpointtype);
 	thread heli_think(self, startnode, self.team, missilesenabled, protectlocation, hardpointtype, armored, killstreak_id);
-	return 1;
+	return true;
 }
 
 /*
@@ -798,13 +798,16 @@ function heli_think(owner, startnode, heli_team, missilesenabled, protectlocatio
 	{
 		chopper.numflares = 1;
 	}
-	else if(hardpointtype == "helicopter_guard")
-	{
-		chopper.numflares = 1;
-	}
 	else
 	{
-		chopper.numflares = 2;
+		if(hardpointtype == "helicopter_guard")
+		{
+			chopper.numflares = 1;
+		}
+		else
+		{
+			chopper.numflares = 2;
+		}
 	}
 	chopper.flareoffset = vectorscale((0, 0, -1), 256);
 	chopper.waittime = level.heli_dest_wait;
@@ -912,17 +915,23 @@ function heli_missile_regen()
 		{
 			self waittill(#"hash_49f5138339c191ab");
 		}
-		else if(self.currentstate == "heavy smoke")
-		{
-			wait(level.heli_missile_regen_time / 4);
-		}
-		else if(self.currentstate == "light smoke")
-		{
-			wait(level.heli_missile_regen_time / 2);
-		}
 		else
 		{
-			wait(level.heli_missile_regen_time);
+			if(self.currentstate == "heavy smoke")
+			{
+				wait(level.heli_missile_regen_time / 4);
+			}
+			else
+			{
+				if(self.currentstate == "light smoke")
+				{
+					wait(level.heli_missile_regen_time / 2);
+				}
+				else
+				{
+					wait(level.heli_missile_regen_time);
+				}
+			}
 		}
 		if(self.missile_ammo < level.heli_missile_max)
 		{
@@ -1003,13 +1012,16 @@ function heli_targeting(missilesenabled, hardpointtype)
 			{
 				killstreaks::update_dog_threat(targets[0]);
 			}
-			else if(isactor(targets[0]))
-			{
-				killstreaks::update_actor_threat(targets[0]);
-			}
 			else
 			{
-				killstreaks::update_player_threat(targets[0]);
+				if(isactor(targets[0]))
+				{
+					killstreaks::update_actor_threat(targets[0]);
+				}
+				else
+				{
+					killstreaks::update_player_threat(targets[0]);
+				}
 			}
 			self.primarytarget = targets[0];
 			self notify(#"hash_60aef9581f7a8d3");
@@ -1062,40 +1074,40 @@ function cantargetplayer_turret(player, hardpointtype)
 {
 	if(!isalive(player) || player.sessionstate != "playing")
 	{
-		return 0;
+		return false;
 	}
 	if(player.ignoreme === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(player == self.owner)
 	{
 		self check_owner(hardpointtype);
-		return 0;
+		return false;
 	}
 	if(player airsupport::cantargetplayerwithspecialty() == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(distance(player.origin, self.origin) > level.heli_visual_range)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(player.team))
 	{
-		return 0;
+		return false;
 	}
 	if(!util::function_fbce7263(player.team, self.team))
 	{
-		return 0;
+		return false;
 	}
 	if(player.team == #"spectator")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.spawntime) && ((float(gettime() - player.spawntime)) / 1000) <= level.heli_target_spawnprotection)
 	{
-		return 0;
+		return false;
 	}
 	heli_centroid = self.origin + (vectorscale((0, 0, -1), 160));
 	heli_forward_norm = anglestoforward(self.angles);
@@ -1103,15 +1115,15 @@ function cantargetplayer_turret(player, hardpointtype)
 	visible_amount = player sightconetrace(heli_turret_point, self);
 	if(visible_amount < level.heli_target_recognition)
 	{
-		return 0;
+		return false;
 	}
 	var_2910def0 = self namespace_14c38db0::function_1c169b3a(player);
 	namespace_14c38db0::function_a4d6d6d8(player, int((isdefined(self.targeting_delay) ? self.targeting_delay : 0.25) * 1000));
 	if(!var_2910def0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1608,17 +1620,23 @@ function play_bda_dialog()
 	{
 		bdadialog = "kill1";
 	}
-	else if(self.bda == 2)
+	else
 	{
-		bdadialog = "kill2";
-	}
-	else if(self.bda == 3)
-	{
-		bdadialog = "kill3";
-	}
-	else if(self.bda > 3)
-	{
-		bdadialog = "killMultiple";
+		if(self.bda == 2)
+		{
+			bdadialog = "kill2";
+		}
+		else
+		{
+			if(self.bda == 3)
+			{
+				bdadialog = "kill3";
+			}
+			else if(self.bda > 3)
+			{
+				bdadialog = "killMultiple";
+			}
+		}
 	}
 	self killstreaks::play_pilot_dialog_on_owner(bdadialog, self.killstreaktype, self.killstreak_id);
 	self notify(#"bda_dialog", {#dialog_key:bdadialog});
@@ -1919,35 +1937,38 @@ function heli_set_active_camo_state(state)
 		heli.camo_state = 0;
 		heli.camo_state_switch_time = gettime();
 	}
-	else if(state == 1)
+	else
 	{
-		if(heli.active_camo_disabled)
+		if(state == 1)
 		{
-			return;
-		}
-		heli clientfield::set("toggle_lights", 0);
-		if(heli.camo_state == 0)
-		{
-			heli playsound(#"veh_hind_cloak_on");
-		}
-		heli.camo_state = 1;
-		heli.camo_state_switch_time = gettime();
-		if(isdefined(heli.owner))
-		{
-			if(isdefined(heli.play_camo_dialog) && heli.play_camo_dialog)
+			if(heli.active_camo_disabled)
 			{
-				heli killstreaks::play_pilot_dialog_on_owner("activateCounter", "helicopter_comlink", self.killstreak_id);
-				heli.play_camo_dialog = 0;
+				return;
 			}
-			else if(!isdefined(heli.play_camo_dialog))
+			heli clientfield::set("toggle_lights", 0);
+			if(heli.camo_state == 0)
 			{
-				heli.play_camo_dialog = 1;
+				heli playsound(#"veh_hind_cloak_on");
+			}
+			heli.camo_state = 1;
+			heli.camo_state_switch_time = gettime();
+			if(isdefined(heli.owner))
+			{
+				if(isdefined(heli.play_camo_dialog) && heli.play_camo_dialog)
+				{
+					heli killstreaks::play_pilot_dialog_on_owner("activateCounter", "helicopter_comlink", self.killstreak_id);
+					heli.play_camo_dialog = 0;
+				}
+				else if(!isdefined(heli.play_camo_dialog))
+				{
+					heli.play_camo_dialog = 1;
+				}
 			}
 		}
-	}
-	else if(state == 2)
-	{
-		heli clientfield::set("toggle_lights", 1);
+		else if(state == 2)
+		{
+			heli clientfield::set("toggle_lights", 1);
+		}
 	}
 	if(isdefined(heli.flak_drone))
 	{
@@ -2229,7 +2250,7 @@ function heli_crash(hardpointtype, player, playernotify)
 			rateofspin = 45 + randomint(90);
 			thread heli_secondary_explosions();
 			self thread heli_spin(rateofspin);
-			self waittill_timeout(randomintrange(4, 6), #"near_goal");
+			self waittilltimeout(randomintrange(4, 6), #"near_goal");
 			if(isdefined(player) && isdefined(playernotify))
 			{
 				player notify(playernotify);
@@ -2305,7 +2326,7 @@ function crashonnearestcrashpath(hardpointtype)
 	self thread heli_spin(rateofspin);
 	self endon(#"death");
 	self waittill(#"hash_69f631648cf75ba");
-	self waittill_timeout(5, #"hash_477c371e4f948b01");
+	self waittilltimeout(5, #"hash_477c371e4f948b01");
 	self thread heli_explode();
 }
 
@@ -2500,27 +2521,33 @@ function function_e1058a3e()
 	{
 		playfx(level.chopper_fx[#"explode"][#"guard"], self.origin, forward);
 	}
-	else if(isdefined(self.vehicletype) && self.vehicletype == #"heli_player_gunner_mp")
-	{
-		playfx(level.chopper_fx[#"explode"][#"gunner"], self.origin, forward);
-	}
-	else if(isdefined(self.vehicletype) && self.vehicletype == #"vehicle_t8_mil_helicopter_swat_transport")
-	{
-		fxpos = self gettagorigin("tag_deathfx");
-		if(!isdefined(fxpos))
-		{
-			fxpos = self.origin;
-		}
-		playfx(level.chopper_fx[#"explode"][#"large"], fxpos, forward);
-	}
 	else
 	{
-		fxpos = self gettagorigin("tag_deathfx");
-		if(!isdefined(fxpos))
+		if(isdefined(self.vehicletype) && self.vehicletype == #"heli_player_gunner_mp")
 		{
-			fxpos = self.origin;
+			playfx(level.chopper_fx[#"explode"][#"gunner"], self.origin, forward);
 		}
-		playfx("destruct/fx8_trans_heli_exp_lg", fxpos, forward);
+		else
+		{
+			if(isdefined(self.vehicletype) && self.vehicletype == #"vehicle_t8_mil_helicopter_swat_transport")
+			{
+				fxpos = self gettagorigin("tag_deathfx");
+				if(!isdefined(fxpos))
+				{
+					fxpos = self.origin;
+				}
+				playfx(level.chopper_fx[#"explode"][#"large"], fxpos, forward);
+			}
+			else
+			{
+				fxpos = self gettagorigin("tag_deathfx");
+				if(!isdefined(fxpos))
+				{
+					fxpos = self.origin;
+				}
+				playfx("destruct/fx8_trans_heli_exp_lg", fxpos, forward);
+			}
+		}
 	}
 	self playsound(level.heli_sound[#"crash"]);
 }
@@ -2597,7 +2624,7 @@ function function_86012f82(goalpos, stop)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8de67419(var_b4c35bb7)
+function private function_8de67419(var_b4c35bb7)
 {
 	self endon(#"death");
 	radius = distance(self.origin, var_b4c35bb7);
@@ -2623,11 +2650,14 @@ private function function_8de67419(var_b4c35bb7)
 			waitframe(1);
 		}
 	}
-	else if(issentient(self))
+	else
 	{
-		self function_60d50ea4();
+		if(issentient(self))
+		{
+			self function_60d50ea4();
+		}
+		self notify(#"hash_2bf34763927dd61b");
 	}
-	self notify(#"hash_2bf34763927dd61b");
 }
 
 /*
@@ -2770,7 +2800,7 @@ function heli_leave(var_70031e7b = undefined, var_1caffd41 = 0)
 		self thread function_8de67419(var_b4c35bb7);
 		if(isdefined(level.var_65f7e97e))
 		{
-			self waittill_timeout(level.var_65f7e97e, #"fallback_goal", #"hash_2bf34763927dd61b", #"death");
+			self waittilltimeout(level.var_65f7e97e, #"fallback_goal", #"hash_2bf34763927dd61b", #"death");
 		}
 		else
 		{
@@ -2787,7 +2817,7 @@ function heli_leave(var_70031e7b = undefined, var_1caffd41 = 0)
 	self function_86012f82(var_b4c35bb7, 1);
 	if(isdefined(level.var_65f7e97e))
 	{
-		self waittill_timeout(level.var_65f7e97e, #"fallback_goal", #"near_goal", #"death");
+		self waittilltimeout(level.var_65f7e97e, #"fallback_goal", #"near_goal", #"death");
 	}
 	else
 	{
@@ -2869,22 +2899,25 @@ function heli_fly(currentnode, startwait, hardpointtype)
 			self waittill(#"near_goal");
 			self notify(#"hash_69f631648cf75ba");
 		}
-		else if(isdefined(nextnode.script_delay) && !isdefined(self.donotstop))
-		{
-			stop = 1;
-		}
-		self setspeed(heli_speed, heli_accel);
-		self set_goal_pos(pos, stop);
-		if(!isdefined(nextnode.script_delay) || isdefined(self.donotstop))
-		{
-			self waittill(#"near_goal");
-			self notify(#"hash_69f631648cf75ba");
-		}
 		else
 		{
-			self setgoalyaw(nextnode.angles[1]);
-			self waittill(#"goal");
-			heli_wait(nextnode.script_delay);
+			if(isdefined(nextnode.script_delay) && !isdefined(self.donotstop))
+			{
+				stop = 1;
+			}
+			self setspeed(heli_speed, heli_accel);
+			self set_goal_pos(pos, stop);
+			if(!isdefined(nextnode.script_delay) || isdefined(self.donotstop))
+			{
+				self waittill(#"near_goal");
+				self notify(#"hash_69f631648cf75ba");
+			}
+			else
+			{
+				self setgoalyaw(nextnode.angles[1]);
+				self waittill(#"goal");
+				heli_wait(nextnode.script_delay);
+			}
 		}
 		for(index = 0; index < level.heli_loop_paths.size; index++)
 		{
@@ -2978,17 +3011,17 @@ function is_targeted()
 {
 	if(isdefined(self.locking_on) && self.locking_on)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self.locked_on) && self.locked_on)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(self.locking_on_hacking) && self.locking_on_hacking)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3254,7 +3287,7 @@ function function_438e7b44(startnode, protectdest, hardpointtype, heli_team)
 			if(isdefined(var_2ca2e589) && var_2ca2e589)
 			{
 				waitresult = undefined;
-				waitresult = self waittill_timeout(time, #"hash_594587fd1093c3b3", #"hash_7cda5f1e15bc902c", #"hash_7654c30da43c0215");
+				waitresult = self waittilltimeout(time, #"hash_594587fd1093c3b3", #"hash_7cda5f1e15bc902c", #"hash_7654c30da43c0215");
 				if(waitresult._notify != "timeout")
 				{
 					var_2ca2e589 = 0;
@@ -3383,7 +3416,7 @@ function heli_protect(startnode, protectdest, hardpointtype, heli_team)
 	self thread updatetargetyaw();
 	self thread updatespeedonlock();
 	self function_86012f82(protectdest, 1);
-	self waittill_timeout(30, #"near_goal", #"hash_60aef9581f7a8d3");
+	self waittilltimeout(30, #"near_goal", #"hash_60aef9581f7a8d3");
 	self setneargoalnotifydist(256);
 	var_520e3459 = level.heli_protect_pos_time;
 	var_2ca2e589 = 1;
@@ -3403,11 +3436,11 @@ function heli_protect(startnode, protectdest, hardpointtype, heli_team)
 		if(isdefined(var_c092cd08))
 		{
 			self function_86012f82(var_c092cd08.origin, 1);
-			self waittill_timeout(10, #"near_goal", #"hash_12e918889eada2ad");
+			self waittilltimeout(10, #"near_goal", #"hash_12e918889eada2ad");
 		}
 		else
 		{
-			self waittill_timeout(var_520e3459, #"hash_12e918889eada2ad");
+			self waittilltimeout(var_520e3459, #"hash_12e918889eada2ad");
 		}
 		if(!ispointinnavvolume(self.origin, "navvolume_big"))
 		{
@@ -3693,9 +3726,9 @@ function target_cone_check(target, conecosine)
 		/#
 			airsupport::debug_print3d_simple("" + heli_dot_target, self, vectorscale((0, 0, -1), 40), 40);
 		#/
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

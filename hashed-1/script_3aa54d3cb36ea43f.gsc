@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_44c6201436ba267e", &__init__, &__main__, #"hash_5ecf1967e7cb0189");
 }
@@ -83,7 +83,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b656013e()
+function private function_b656013e()
 {
 	level endon(#"game_over");
 	bundle = level.var_b3d6ef3b[0] ai::function_9139c839();
@@ -161,12 +161,12 @@ function function_7640eac2()
 	if(level.var_f1e94d9.size < 1)
 	{
 		self.b_ignore_cleanup = 1;
-		return 1;
+		return true;
 	}
 	if(zm_utility::is_standard() && level flag::exists("started_defend_area") && level flag::get("started_defend_area"))
 	{
 		self.b_ignore_cleanup = 1;
-		return 1;
+		return true;
 	}
 	var_31f7011a = arraycopy(level.players);
 	var_31f7011a = arraysortclosest(var_31f7011a, self.origin);
@@ -197,7 +197,7 @@ function function_7640eac2()
 	{
 		self function_9a9b5f49(var_b2aa54a9);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -211,7 +211,7 @@ function function_7640eac2()
 */
 function function_9a9b5f49(spot)
 {
-	self endon_callback(&zm_spawner::function_fe3cb19a, #"death");
+	self endoncallback(&zm_spawner::function_fe3cb19a, #"death");
 	self zm_spawner::function_fe3cb19a();
 	self.mdl_anchor = util::spawn_model("tag_origin", self.origin, self.angles);
 	self ghost();
@@ -250,7 +250,7 @@ function function_9a9b5f49(spot)
 	Parameters: 10
 	Flags: Linked, Private
 */
-private function function_7e791d5d(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
+function private function_7e791d5d(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
 {
 	if(isdefined(eattacker) && isai(eattacker) && eattacker.archetype == #"gegenees" && eattacker.team != self.team)
 	{
@@ -291,17 +291,23 @@ function function_7107da88(var_dbce0c44)
 	{
 		var_1797c23a = 1;
 	}
-	else if(level.round_number <= 10)
-	{
-		var_1797c23a = 1;
-	}
-	else if(level.round_number <= 17)
-	{
-		var_1797c23a = 2;
-	}
 	else
 	{
-		var_1797c23a = 3;
+		if(level.round_number <= 10)
+		{
+			var_1797c23a = 1;
+		}
+		else
+		{
+			if(level.round_number <= 17)
+			{
+				var_1797c23a = 2;
+			}
+			else
+			{
+				var_1797c23a = 3;
+			}
+		}
 	}
 	var_2506688 = (var_1797c23a > 8 ? var_1797c23a * 0.75 : max(var_1797c23a - 3, 0));
 	n_num_to_spawn = function_21a3a673(int(var_2506688), int(min(var_8cf00d40, var_1797c23a)));
@@ -346,9 +352,9 @@ function round_spawn()
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -370,13 +376,16 @@ function spawn_single(b_force_spawn = 0, var_eb3a8721, var_bc66d64b)
 	{
 		s_spawn_loc = var_eb3a8721;
 	}
-	else if(isdefined(level.var_9e923fdb))
+	else
 	{
-		s_spawn_loc = [[level.var_9e923fdb]]();
-	}
-	else if(level.zm_loc_types[#"gegenees_location"].size > 0)
-	{
-		s_spawn_loc = array::random(level.zm_loc_types[#"gegenees_location"]);
+		if(isdefined(level.var_9e923fdb))
+		{
+			s_spawn_loc = [[level.var_9e923fdb]]();
+		}
+		else if(level.zm_loc_types[#"gegenees_location"].size > 0)
+		{
+			s_spawn_loc = array::random(level.zm_loc_types[#"gegenees_location"]);
+		}
 	}
 	if(!isdefined(s_spawn_loc))
 	{
@@ -422,9 +431,9 @@ function function_48c60fc2()
 	var_ba74cbf9 = function_5685dac6();
 	if(!(isdefined(level.var_a2831281) && level.var_a2831281) && (isdefined(level.var_153e9058) && level.var_153e9058 || var_d6ddc067 >= var_ba74cbf9 || !level flag::get("spawn_zombies")))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

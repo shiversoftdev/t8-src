@@ -272,23 +272,26 @@ function callback_playerconnect()
 			self thread spectating::setspectatepermissions();
 		}
 	}
-	else if(self.pers[#"team"] == "spectator")
-	{
-		[[level.spawnspectator]]();
-		self.sessionteam = "spectator";
-		self.sessionstate = "spectator";
-		self thread spectate_player_watcher();
-	}
 	else
 	{
-		self.sessionteam = self.pers[#"team"];
-		self.sessionstate = "dead";
-		[[level.spawnspectator]]();
-		if(globallogic_utils::isvalidclass(self.pers[#"class"]))
+		if(self.pers[#"team"] == "spectator")
 		{
-			self thread [[level.spawnclient]]();
+			[[level.spawnspectator]]();
+			self.sessionteam = "spectator";
+			self.sessionstate = "spectator";
+			self thread spectate_player_watcher();
 		}
-		self thread spectating::setspectatepermissions();
+		else
+		{
+			self.sessionteam = self.pers[#"team"];
+			self.sessionstate = "dead";
+			[[level.spawnspectator]]();
+			if(globallogic_utils::isvalidclass(self.pers[#"class"]))
+			{
+				self thread [[level.spawnclient]]();
+			}
+			self thread spectating::setspectatepermissions();
+		}
 	}
 	if(self.sessionteam != "spectator")
 	{
@@ -334,14 +337,14 @@ function spectate_player_watcher()
 		else
 		{
 			/#
-				if(!level.splitscreen && !level.hardcoremode && getdvarint(#"scr_showperksonspawn", 0) == 1 && game.state != "" && !isdefined(self.perkhudelem))
-				{
-					if(level.perksenabled == 1)
-					{
-						self hud::showperks();
-					}
-				}
+				self hud::showperks();
 			#/
+			if(!level.splitscreen && !level.hardcoremode && getdvarint(#"scr_showperksonspawn", 0) == 1 && game.state != "" && !isdefined(self.perkhudelem))
+			{
+				if(level.perksenabled == 1)
+				{
+				}
+			}
 			count = 0;
 			for(i = 0; i < level.players.size; i++)
 			{
@@ -362,12 +365,15 @@ function spectate_player_watcher()
 				}
 				self.watchingactiveclient = 1;
 			}
-			else if(self.watchingactiveclient)
+			else
 			{
-				[[level.onspawnspectator]]();
-				self val::set(#"spectate", "freezecontrols", 1);
+				if(self.watchingactiveclient)
+				{
+					[[level.onspawnspectator]]();
+					self val::set(#"spectate", "freezecontrols", 1);
+				}
+				self.watchingactiveclient = 0;
 			}
-			self.watchingactiveclient = 0;
 			wait(0.5);
 		}
 	}

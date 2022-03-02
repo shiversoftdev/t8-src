@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_20ba676676b7bccf", &__init__, undefined, undefined);
 }
@@ -57,9 +57,7 @@ function __init__()
 	level.var_9ea358cc = 0;
 	if(!isdefined(level.var_3594d33a))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_3594d33a = object;
+		level.var_3594d33a = new throttle();
 		[[ level.var_3594d33a ]]->initialize(3, 0.1);
 	}
 	callback::on_connect(&function_9a0f234b);
@@ -81,17 +79,17 @@ function function_c740060f(weapon, var_e7c11b0c = 1)
 {
 	if(weapon == level.hero_weapon[#"katana"][2])
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"katana"][1] && var_e7c11b0c < 3)
 	{
-		return 1;
+		return true;
 	}
 	if(weapon == level.hero_weapon[#"katana"][0] && var_e7c11b0c < 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -103,7 +101,7 @@ function function_c740060f(weapon, var_e7c11b0c = 1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9a0f234b()
+function private function_9a0f234b()
 {
 	self endon(#"disconnect");
 	self thread function_756560e3();
@@ -130,27 +128,30 @@ private function function_9a0f234b()
 			zm_hero_weapon::show_hint(wpn_cur, #"hash_648a5b1eedae58b9");
 			self thread function_9fdcf13f();
 		}
-		else if(wpn_cur == level.hero_weapon[#"katana"][1])
+		else
 		{
-			zm_hero_weapon::show_hint(wpn_cur, #"hash_52cddac894472d22");
-			self thread function_119af40d(wpn_cur);
-			self thread function_478a4910(wpn_cur);
-			self thread function_9fdcf13f();
-		}
-		else if(wpn_cur == level.hero_weapon[#"katana"][2])
-		{
-			if(!self gamepadusedlast())
+			if(wpn_cur == level.hero_weapon[#"katana"][1])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_4bf673fe684c7bcd");
+				zm_hero_weapon::show_hint(wpn_cur, #"hash_52cddac894472d22");
+				self thread function_119af40d(wpn_cur);
+				self thread function_478a4910(wpn_cur);
+				self thread function_9fdcf13f();
 			}
-			else
+			else if(wpn_cur == level.hero_weapon[#"katana"][2])
 			{
-				self zm_hero_weapon::show_hint(wpn_cur, #"hash_33116738f78d04b3");
+				if(!self gamepadusedlast())
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_4bf673fe684c7bcd");
+				}
+				else
+				{
+					self zm_hero_weapon::show_hint(wpn_cur, #"hash_33116738f78d04b3");
+				}
+				self thread function_119af40d(wpn_cur);
+				self thread function_fcc26273(wpn_cur);
+				self thread function_68ff89f7(wpn_cur);
+				self thread function_9fdcf13f();
 			}
-			self thread function_119af40d(wpn_cur);
-			self thread function_fcc26273(wpn_cur);
-			self thread function_68ff89f7(wpn_cur);
-			self thread function_9fdcf13f();
 		}
 	}
 }
@@ -164,7 +165,7 @@ private function function_9a0f234b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9fdcf13f()
+function private function_9fdcf13f()
 {
 	self endon(#"disconnect");
 	wait(1);
@@ -182,7 +183,7 @@ private function function_9fdcf13f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_756560e3()
+function private function_756560e3()
 {
 	self endon(#"disconnect");
 	while(true)
@@ -331,7 +332,7 @@ function function_af221ee1(s_params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_1475944a()
+function private function_1475944a()
 {
 	level.var_9ea358cc++;
 	self waittill(#"death", #"hash_36afc85dcef683d2");
@@ -449,7 +450,7 @@ function function_7903608c(var_c1ed7977)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_bbe55589(e_player, var_c1ed7977, str_hitloc)
+function private function_bbe55589(e_player, var_c1ed7977, str_hitloc)
 {
 	self endon(#"death");
 	n_base_damage = 50;

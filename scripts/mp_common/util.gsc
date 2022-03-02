@@ -436,7 +436,7 @@ function wait_endon(waittime, endonstring, endonstring2, endonstring3, endonstri
 		self endon(endonstring4);
 	}
 	wait(waittime);
-	return 1;
+	return true;
 }
 
 /*
@@ -513,17 +513,17 @@ function ent_already_in_trigger(trig)
 {
 	if(!isdefined(self._triggers))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self._triggers[trig getentitynumber()]))
 	{
-		return 0;
+		return false;
 	}
 	if(!self._triggers[trig getentitynumber()])
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -619,7 +619,7 @@ function iskillstreaksenabled()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_78e3e07b(team, index, var_6d8f07f6)
+function private function_78e3e07b(team, index, var_6d8f07f6)
 {
 	setobjectivetext(team, var_6d8f07f6.text);
 	if(level.splitscreen)
@@ -945,9 +945,9 @@ function ispressbuild()
 	buildtype = getdvarstring(#"buildtype");
 	if(isdefined(buildtype) && buildtype == "press")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1092,7 +1092,7 @@ function hide_hint_text(b_fade_before_hiding = 1)
 		if(b_fade_before_hiding)
 		{
 			lui::play_animation(self.hint_menu_handle, "fadeout");
-			self waittill_timeout(0.75, #"kill_hint_text", #"death", #"hint_text_removed");
+			self waittilltimeout(0.75, #"kill_hint_text", #"death", #"hint_text_removed");
 		}
 		self closeluimenu(self.hint_menu_handle);
 		self.hint_menu_handle = undefined;
@@ -1112,7 +1112,7 @@ function hide_hint_text(b_fade_before_hiding = 1)
 function fade_hint_text_after_time(n_display_time, str_turn_off_notify)
 {
 	self endon(#"hint_text_removed", #"death", #"kill_hint_text");
-	self waittill_timeout(n_display_time - 0.75, str_turn_off_notify, #"hint_text_removed", #"kill_hint_text");
+	self waittilltimeout(n_display_time - 0.75, str_turn_off_notify, #"hint_text_removed", #"kill_hint_text");
 	hide_hint_text(1);
 }
 
@@ -1128,7 +1128,7 @@ function fade_hint_text_after_time(n_display_time, str_turn_off_notify)
 function hide_hint_text_listener(n_time)
 {
 	self endon(#"hint_text_removed", #"disconnect");
-	self waittill_timeout(n_time, #"kill_hint_text", #"death", #"hint_text_removed", #"disconnect");
+	self waittilltimeout(n_time, #"kill_hint_text", #"death", #"hint_text_removed", #"disconnect");
 	hide_hint_text(0);
 }
 
@@ -1172,12 +1172,12 @@ function is_objective_game(game_type)
 		case "tdm":
 		case "clean":
 		{
-			return 0;
+			return false;
 			break;
 		}
 		default:
 		{
-			return 1;
+			return true;
 		}
 	}
 }
@@ -1328,17 +1328,17 @@ function function_94a3be2()
 {
 	if(isdefined(level.var_903e2252) && level.var_903e2252)
 	{
-		return 1;
+		return true;
 	}
 	if((isdefined(getgametypesetting(#"drafttime")) ? getgametypesetting(#"drafttime") : 0) < 30)
 	{
-		return 1;
+		return true;
 	}
 	if(!(isdefined(getgametypesetting(#"draftenabled")) && getgametypesetting(#"draftenabled")))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

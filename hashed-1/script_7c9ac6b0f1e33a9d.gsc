@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_weap_thundergun", &__init__, &__main__, undefined);
 }
@@ -474,26 +474,32 @@ function playthundergunpainanim()
 		}
 		getupanim = "zm_thundergun_getup_belly_early";
 	}
-	else if(self.damageyaw > -135 && self.damageyaw < -45)
-	{
-		fallanim = "zm_thundergun_fall_left";
-		getupanim = "zm_thundergun_getup_belly_early";
-	}
-	else if(self.damageyaw > 45 && self.damageyaw < 135)
-	{
-		fallanim = "zm_thundergun_fall_right";
-		getupanim = "zm_thundergun_getup_belly_early";
-	}
 	else
 	{
-		fallanim = "zm_thundergun_fall_back";
-		if(randomint(100) < 50)
+		if(self.damageyaw > -135 && self.damageyaw < -45)
 		{
-			getupanim = "zm_thundergun_getup_back_early";
+			fallanim = "zm_thundergun_fall_left";
+			getupanim = "zm_thundergun_getup_belly_early";
 		}
 		else
 		{
-			getupanim = "zm_thundergun_getup_back_late";
+			if(self.damageyaw > 45 && self.damageyaw < 135)
+			{
+				fallanim = "zm_thundergun_fall_right";
+				getupanim = "zm_thundergun_getup_belly_early";
+			}
+			else
+			{
+				fallanim = "zm_thundergun_fall_back";
+				if(randomint(100) < 50)
+				{
+					getupanim = "zm_thundergun_getup_back_early";
+				}
+				else
+				{
+					getupanim = "zm_thundergun_getup_back_late";
+				}
+			}
 		}
 	}
 	self setanimstatefromasd(fallanim);

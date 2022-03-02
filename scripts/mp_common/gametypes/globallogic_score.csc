@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	clientfield::register("clientuimodel", "hudItems.scoreProtected", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.minorActions.action0", 1, 1, "counter", undefined, 0, 0);

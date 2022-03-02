@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function registerbehaviorscriptfunctions()
+function autoexec registerbehaviorscriptfunctions()
 {
 	/#
 		assert(isscriptfunctionptr(&explosivekilled));
@@ -211,9 +211,9 @@ function explosivekilled(entity)
 {
 	if(entity getblackboardattribute("_damage_weapon_class") == "explosive")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -229,13 +229,13 @@ function electrifiedkilled(entity)
 {
 	if(entity.damageweapon.rootweapon.name == "shotgun_pump_taser")
 	{
-		return 1;
+		return true;
 	}
 	if(entity getblackboardattribute("_damage_mod") == "mod_electrocuted")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -251,9 +251,9 @@ function burnedkilled(entity)
 {
 	if(entity getblackboardattribute("_damage_mod") == "mod_burned")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -269,9 +269,9 @@ function rapskilled(entity)
 {
 	if(isdefined(self.attacker) && isdefined(self.attacker.archetype) && self.attacker.archetype == #"raps")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -306,7 +306,7 @@ function function_e2010f4c(entity, var_515373f2)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function tookflashbangdamage(entity)
+function private tookflashbangdamage(entity)
 {
 	if(isdefined(entity.damageweapon) && isdefined(entity.damagemod))
 	{
@@ -395,29 +395,44 @@ function bb_actorgetdamagelocation()
 		{
 			possiblehitlocations[possiblehitlocations.size] = "head";
 		}
-		else if(isinarray(array("torso_upper", "torso_mid"), shitloc))
+		else
 		{
-			possiblehitlocations[possiblehitlocations.size] = "chest";
-		}
-		else if(isinarray(array("torso_lower", "groin"), shitloc))
-		{
-			possiblehitlocations[possiblehitlocations.size] = "groin";
-		}
-		else if(isinarray(array("torso_lower", "groin"), shitloc))
-		{
-			possiblehitlocations[possiblehitlocations.size] = "legs";
-		}
-		else if(isinarray(array("left_arm_upper", "left_arm_lower", "left_hand"), shitloc))
-		{
-			possiblehitlocations[possiblehitlocations.size] = "left_arm";
-		}
-		else if(isinarray(array("right_arm_upper", "right_arm_lower", "right_hand", "gun"), shitloc))
-		{
-			possiblehitlocations[possiblehitlocations.size] = "right_arm";
-		}
-		else if(isinarray(array("right_leg_upper", "left_leg_upper", "right_leg_lower", "left_leg_lower", "right_foot", "left_foot"), shitloc))
-		{
-			possiblehitlocations[possiblehitlocations.size] = "legs";
+			if(isinarray(array("torso_upper", "torso_mid"), shitloc))
+			{
+				possiblehitlocations[possiblehitlocations.size] = "chest";
+			}
+			else
+			{
+				if(isinarray(array("torso_lower", "groin"), shitloc))
+				{
+					possiblehitlocations[possiblehitlocations.size] = "groin";
+				}
+				else
+				{
+					if(isinarray(array("torso_lower", "groin"), shitloc))
+					{
+						possiblehitlocations[possiblehitlocations.size] = "legs";
+					}
+					else
+					{
+						if(isinarray(array("left_arm_upper", "left_arm_lower", "left_hand"), shitloc))
+						{
+							possiblehitlocations[possiblehitlocations.size] = "left_arm";
+						}
+						else
+						{
+							if(isinarray(array("right_arm_upper", "right_arm_lower", "right_hand", "gun"), shitloc))
+							{
+								possiblehitlocations[possiblehitlocations.size] = "right_arm";
+							}
+							else if(isinarray(array("right_leg_upper", "left_leg_upper", "right_leg_lower", "left_leg_lower", "right_foot", "left_foot"), shitloc))
+							{
+								possiblehitlocations[possiblehitlocations.size] = "legs";
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	if(possiblehitlocations.size == 0)
@@ -650,15 +665,18 @@ function addaioverridedamagecallback(entity, callback, addtofront)
 		}
 		entity.aioverridedamage = damageoverrides;
 	}
-	else if(!isdefined(entity.aioverridedamage))
+	else
 	{
-		entity.aioverridedamage = [];
+		if(!isdefined(entity.aioverridedamage))
+		{
+			entity.aioverridedamage = [];
+		}
+		else if(!isarray(entity.aioverridedamage))
+		{
+			entity.aioverridedamage = array(entity.aioverridedamage);
+		}
+		entity.aioverridedamage[entity.aioverridedamage.size] = callback;
 	}
-	else if(!isarray(entity.aioverridedamage))
-	{
-		entity.aioverridedamage = array(entity.aioverridedamage);
-	}
-	entity.aioverridedamage[entity.aioverridedamage.size] = callback;
 }
 
 /*

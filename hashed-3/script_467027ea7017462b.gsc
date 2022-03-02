@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_items", &__init__, &__main__, undefined);
 }
@@ -201,7 +201,7 @@ function function_4d230236(var_9c95ad05, fn_callback)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_307756a0()
+function private function_307756a0()
 {
 	while(true)
 	{
@@ -221,7 +221,7 @@ private function function_307756a0()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b64c32cf(player)
+function private function_b64c32cf(player)
 {
 	foreach(item in level.item_list)
 	{

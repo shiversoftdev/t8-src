@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1e8004ee73b43357", &init_shared, undefined, undefined);
 }
@@ -579,13 +579,16 @@ function function_8a03d3f3(owner, impactpos, startpos, normal, multiplier, rotat
 		{
 			fireweapon = var_c0fe81f1;
 		}
-		else if(isdefined(locations[#"steam"][var_7ee5c69b]))
-		{
-			fireweapon = var_fc031a6d;
-		}
 		else
 		{
-			fireweapon = (isdefined(locations[#"hash_33059ac06a23beca"][var_7ee5c69b]) ? var_1c8ca3ba : var_8eb0a180);
+			if(isdefined(locations[#"steam"][var_7ee5c69b]))
+			{
+				fireweapon = var_fc031a6d;
+			}
+			else
+			{
+				fireweapon = (isdefined(locations[#"hash_33059ac06a23beca"][var_7ee5c69b]) ? var_1c8ca3ba : var_8eb0a180);
+			}
 		}
 		level thread function_42b9fdbe(fireweapon, locations[#"loc"][var_7ee5c69b], locations[#"normal"][var_7ee5c69b], int(var_4dd46f8a.var_b79d64a9), team, mdl_anchor);
 	}
@@ -813,13 +816,13 @@ function damageeffectarea(owner, position, killcament, normal, weapon, var_4dd46
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function is_round_reset()
+function private is_round_reset()
 {
 	if(level flag::exists("round_reset") && level flag::get("round_reset"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -831,7 +834,7 @@ private function is_round_reset()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_30125f88()
+function private function_30125f88()
 {
 	if(level.friendlyfire > 0)
 	{
@@ -1046,17 +1049,20 @@ function getpotentialtargets(owner, var_4dd46f8a)
 				}
 			}
 		}
-		else if(!isdefined(self))
+		else
 		{
-			continue;
-		}
-		if(!isdefined(self.team))
-		{
-			continue;
-		}
-		if(!util::function_fbce7263(target.team, self.team))
-		{
-			continue;
+			if(!isdefined(self))
+			{
+				continue;
+			}
+			if(!isdefined(self.team))
+			{
+				continue;
+			}
+			if(!util::function_fbce7263(target.team, self.team))
+			{
+				continue;
+			}
 		}
 		potential_targets[potential_targets.size] = target;
 	}
@@ -1350,20 +1356,20 @@ function candofiredamage(killcament, victim, resetfiretime)
 {
 	if(isplayer(victim) && victim depthofplayerinwater() >= 1 && (!(isdefined(level.var_c62ed297) && level.var_c62ed297)))
 	{
-		return 0;
+		return false;
 	}
 	if(is_round_reset())
 	{
-		return 0;
+		return false;
 	}
 	entnum = victim getentitynumber();
 	if(!isdefined(level.var_660293e0[entnum]))
 	{
 		level.var_660293e0[entnum] = 1;
 		level thread resetfiredamage(entnum, resetfiretime);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

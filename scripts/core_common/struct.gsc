@@ -10,7 +10,7 @@
 	Parameters: 0
 	Flags: Linked, AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	if(!isdefined(level.struct))
 	{

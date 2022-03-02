@@ -370,7 +370,7 @@ function host_migration_respawn()
 		self setorigin(new_origin.origin);
 		self setplayerangles(angles);
 	}
-	return 1;
+	return true;
 }
 
 /*

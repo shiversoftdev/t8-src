@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_60e9e594b4389b03", &__init__, undefined, undefined);
 }
@@ -134,7 +134,7 @@ function waittill_pathing_done(maxtime = 15)
 {
 	self endon(#"death");
 	self endon(#"change_state");
-	self waittill_timeout(maxtime, #"near_goal");
+	self waittilltimeout(maxtime, #"near_goal");
 }
 
 /*
@@ -205,7 +205,7 @@ function function_e452a40c(params)
 		self setspeed(self.settings.var_9eff22ee);
 		self setbrake(0);
 		self function_a57c34b7(self.ai.var_a38db64f, 1, 1);
-		self waittill_timeout(30, #"near_goal");
+		self waittilltimeout(30, #"near_goal");
 		if(isdefined(self.fxent))
 		{
 			self.fxent delete();
@@ -277,9 +277,9 @@ function function_78b6454d()
 {
 	if(gettime() > self.var_373d5c91)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -381,10 +381,10 @@ function function_413aacb3(target)
 		}
 		if(var_3f1f1429.favoriteenemy === target)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

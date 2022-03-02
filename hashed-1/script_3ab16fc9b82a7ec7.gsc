@@ -41,25 +41,28 @@ function boiling_trap_death_fx(localclientnum, oldval, newval, bnewent, binitial
 		self._enemy_orb_explosion = util::playfxontag(localclientnum, level._effect[#"hash_6f73421e00853979"], self, "j_head");
 		self.var_895fc896 = util::playfxontag(localclientnum, level._effect[#"hash_2d586022ea5a3e3e"], self, "j_spine4");
 	}
-	else if(isdefined(self.var_5f1a7000))
+	else
 	{
-		stopfx(localclientnum, self.var_5f1a7000);
-		self.var_5f1a7000 = undefined;
-	}
-	if(isdefined(self.var_259cede3))
-	{
-		stopfx(localclientnum, self.var_259cede3);
-		self.var_259cede3 = undefined;
-	}
-	if(isdefined(self._enemy_orb_explosion))
-	{
-		stopfx(localclientnum, self._enemy_orb_explosion);
-		self._enemy_orb_explosion = undefined;
-	}
-	if(isdefined(self.var_895fc896))
-	{
-		stopfx(localclientnum, self.var_895fc896);
-		self.var_895fc896 = undefined;
+		if(isdefined(self.var_5f1a7000))
+		{
+			stopfx(localclientnum, self.var_5f1a7000);
+			self.var_5f1a7000 = undefined;
+		}
+		if(isdefined(self.var_259cede3))
+		{
+			stopfx(localclientnum, self.var_259cede3);
+			self.var_259cede3 = undefined;
+		}
+		if(isdefined(self._enemy_orb_explosion))
+		{
+			stopfx(localclientnum, self._enemy_orb_explosion);
+			self._enemy_orb_explosion = undefined;
+		}
+		if(isdefined(self.var_895fc896))
+		{
+			stopfx(localclientnum, self.var_895fc896);
+			self.var_895fc896 = undefined;
+		}
 	}
 }
 

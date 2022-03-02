@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_weapons", &__init__, &__main__, undefined);
 }
@@ -76,7 +76,7 @@ function __main__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_player_connect(localclientnum)
+function private on_player_connect(localclientnum)
 {
 	if(getmigrationstatus(localclientnum))
 	{
@@ -144,27 +144,36 @@ function compute_player_weapon_ammo_cost(weapon, cost, upgraded, n_base_non_wall
 		{
 			n_ammo_cost = 4000;
 		}
-		else if(is_wonder_weapon)
-		{
-			n_ammo_cost = 7500;
-		}
 		else
 		{
-			n_ammo_cost = n_upgraded_non_wallbuy_cost;
+			if(is_wonder_weapon)
+			{
+				n_ammo_cost = 7500;
+			}
+			else
+			{
+				n_ammo_cost = n_upgraded_non_wallbuy_cost;
+			}
 		}
-	}
-	else if(zm_wallbuy::is_wallbuy(w_root))
-	{
-		n_ammo_cost = cost;
-		n_ammo_cost = zm_utility::halve_score(n_ammo_cost);
-	}
-	else if(is_wonder_weapon)
-	{
-		n_ammo_cost = 4000;
 	}
 	else
 	{
-		n_ammo_cost = n_base_non_wallbuy_cost;
+		if(zm_wallbuy::is_wallbuy(w_root))
+		{
+			n_ammo_cost = cost;
+			n_ammo_cost = zm_utility::halve_score(n_ammo_cost);
+		}
+		else
+		{
+			if(is_wonder_weapon)
+			{
+				n_ammo_cost = 4000;
+			}
+			else
+			{
+				n_ammo_cost = n_base_non_wallbuy_cost;
+			}
+		}
 	}
 	return n_ammo_cost;
 }
@@ -266,9 +275,9 @@ function is_weapon_upgraded(weapon)
 	rootweapon = function_386dacbc(weapon);
 	if(isdefined(level.zombie_weapons_upgraded[rootweapon]))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3266a9b8fa091d91", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function function_e52f65ea()
 {
 	zm_perks::function_7f42e14e(#"hash_300c4e868f92134b", "mod_deadshot", #"perk_dead_shot", #"specialty_deadshot", 3000);
 	zm_perks::register_perk_threads(#"hash_300c4e868f92134b", &function_f93c5f09, &function_ce99709d);
-	zm_perks::function_430970f6(#"hash_300c4e868f92134b", &function_36228265);
+	zm_perks::register_actor_damage_override(#"hash_300c4e868f92134b", &function_36228265);
 	callback::on_ai_killed(&on_ai_killed);
 }
 

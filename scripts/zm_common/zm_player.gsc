@@ -59,7 +59,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_player", &__init__, undefined, undefined);
 }
@@ -127,12 +127,15 @@ function updateplayernum(player)
 			player.playernum = game._team1_num;
 			game._team1_num = player.playernum + 1;
 		}
-		else if(!isdefined(game._team2_num))
+		else
 		{
-			game._team2_num = 0;
+			if(!isdefined(game._team2_num))
+			{
+				game._team2_num = 0;
+			}
+			player.playernum = game._team2_num;
+			game._team2_num = player.playernum + 1;
 		}
-		player.playernum = game._team2_num;
-		game._team2_num = player.playernum + 1;
 	}
 }
 
@@ -192,29 +195,38 @@ function getfreespawnpoint(spawnpoints, player)
 					arrayremovevalue(spawnpoints, spawnpoints[i]);
 					i = 0;
 				}
-				else if(player.team == #"allies" && (isdefined(spawnpoints[i].script_int) && spawnpoints[i].script_int == 2))
+				else
+				{
+					if(player.team == #"allies" && (isdefined(spawnpoints[i].script_int) && spawnpoints[i].script_int == 2))
+					{
+						arrayremovevalue(spawnpoints, spawnpoints[i]);
+						i = 0;
+					}
+					else
+					{
+						i++;
+					}
+				}
+			}
+			else
+			{
+				if(player.team == #"allies" && (isdefined(spawnpoints[i].script_int) && spawnpoints[i].script_int == 1))
 				{
 					arrayremovevalue(spawnpoints, spawnpoints[i]);
 					i = 0;
 				}
 				else
 				{
-					i++;
+					if(player.team != #"allies" && (isdefined(spawnpoints[i].script_int) && spawnpoints[i].script_int == 2))
+					{
+						arrayremovevalue(spawnpoints, spawnpoints[i]);
+						i = 0;
+					}
+					else
+					{
+						i++;
+					}
 				}
-			}
-			else if(player.team == #"allies" && (isdefined(spawnpoints[i].script_int) && spawnpoints[i].script_int == 1))
-			{
-				arrayremovevalue(spawnpoints, spawnpoints[i]);
-				i = 0;
-			}
-			else if(player.team != #"allies" && (isdefined(spawnpoints[i].script_int) && spawnpoints[i].script_int == 2))
-			{
-				arrayremovevalue(spawnpoints, spawnpoints[i]);
-				i = 0;
-			}
-			else
-			{
-				i++;
 			}
 		}
 	}
@@ -568,7 +580,7 @@ function callback_playerdamage(einflictor, eattacker, idamage, idflags, smeansof
 	{
 		var_ca70d16a = !startedinlaststand && self laststand::player_is_in_laststand();
 	}
-	bb::function_95e18a48(eattacker, self, weapon, idamage, smeansofdeath, shitloc, self.health <= 0, var_ca70d16a);
+	bb::logdamage(eattacker, self, weapon, idamage, smeansofdeath, shitloc, self.health <= 0, var_ca70d16a);
 	if(isplayer(eattacker) && idamage > 0 && (!(isdefined(self.var_265cb589) && self.var_265cb589)) && (!(isdefined(level.var_dc60105c) && level.var_dc60105c)))
 	{
 		eattacker util::show_hit_marker(var_ca70d16a);
@@ -767,7 +779,7 @@ function function_3799b373(var_fb6fa3e1, var_bbbf9a69 = 0)
 {
 	if(!level flag::get("start_zombie_round_logic"))
 	{
-		return 1;
+		return true;
 	}
 	a_e_players = getplayers();
 	var_7ff2e79a = 0;
@@ -799,13 +811,13 @@ function function_3799b373(var_fb6fa3e1, var_bbbf9a69 = 0)
 			var_2af2f14d = 1;
 			continue;
 		}
-		return 1;
+		return true;
 	}
 	if(var_bbbf9a69 && var_2af2f14d && var_7ff2e79a)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -925,16 +937,16 @@ function in_life_brush()
 	life_brushes = getentarray("life_brush", "script_noteworthy");
 	if(!isdefined(life_brushes) || !isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < life_brushes.size; i++)
 	{
 		if(self istouching(life_brushes[i]))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -968,17 +980,17 @@ function in_kill_brush()
 	self.kill_brush = undefined;
 	if(!isdefined(kill_brushes))
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < kill_brushes.size; i++)
 	{
 		if(self istouching(kill_brushes[i]))
 		{
 			self.kill_brush = kill_brushes[i];
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1001,12 +1013,12 @@ function in_enabled_playable_area(var_22a4c702 = 500)
 		node = function_52c1730(self.origin, level.var_a2a9b2de, var_22a4c702);
 		if(isdefined(node) && zm_zonemgr::zone_is_enabled(node.targetname))
 		{
-			return 1;
+			return true;
 		}
 		queryresult = function_72ce47bb(self.origin, 0, self getpathfindingradius(), self function_6a9ae71() * 0.5, 2, 1, undefined, undefined, level.var_e046d333);
 		if(queryresult.data.size > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(zm_utility::function_c85ebbbc())
@@ -1014,17 +1026,17 @@ function in_enabled_playable_area(var_22a4c702 = 500)
 		playable_area = getentarray("player_volume", "script_noteworthy");
 		if(!isdefined(playable_area))
 		{
-			return 0;
+			return false;
 		}
 		for(i = 0; i < playable_area.size; i++)
 		{
 			if(zm_zonemgr::zone_is_enabled(playable_area[i].targetname) && self istouching(playable_area[i]))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1141,7 +1153,7 @@ function function_de3936f8(var_ffb1863c)
 {
 	self notify(#"hash_639868d8cfc48f96");
 	self endon(#"disconnect", #"hash_639868d8cfc48f96");
-	self waittill_timeout(1, #"weapon_change_complete");
+	self waittilltimeout(1, #"weapon_change_complete");
 	if(self zm_loadout::has_powerup_weapon() || self laststand::player_is_in_laststand() || self.sessionstate == "spectator" || isdefined(self.laststandpistol))
 	{
 		return;
@@ -1162,13 +1174,16 @@ function function_de3936f8(var_ffb1863c)
 			{
 				self takeweapon(var_ffb1863c);
 			}
-			else if(isinarray(var_3ba4bf7d, self.currentweapon))
-			{
-				self takeweapon(self.currentweapon);
-			}
 			else
 			{
-				self takeweapon(var_3ba4bf7d[0]);
+				if(isinarray(var_3ba4bf7d, self.currentweapon))
+				{
+					self takeweapon(self.currentweapon);
+				}
+				else
+				{
+					self takeweapon(var_3ba4bf7d[0]);
+				}
 			}
 			wait(1);
 			if(!self getweaponslistprimaries().size)
@@ -1284,7 +1299,7 @@ function player_grenade_multiattack_bookmark_watcher(grenade, weapon)
 	killcam_entity_info = killcam::get_killcam_entity_info(self, grenade, weapon);
 	einflictor = grenade;
 	ret_val = undefined;
-	ret_val = grenade waittill_timeout(15, #"explode", #"death", #"disconnect");
+	ret_val = grenade waittilltimeout(15, #"explode", #"death", #"disconnect");
 	if(!isdefined(self) || (isdefined(ret_val) && "timeout" == ret_val._notify))
 	{
 		return;
@@ -1374,7 +1389,7 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 {
 	if(isai(eattacker) && self.ignoreme && smeansofdeath === "MOD_MELEE")
 	{
-		return 1;
+		return true;
 	}
 	/#
 		if(isai(eattacker) && self.ignoreme)
@@ -1388,13 +1403,16 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 			{
 				str = str + function_9e72a96(eattacker.archetype);
 			}
-			else if(isdefined(eattacker))
-			{
-				str = (str + "") + eattacker getentitynumber();
-			}
 			else
 			{
-				str = str + "";
+				if(isdefined(eattacker))
+				{
+					str = (str + "") + eattacker getentitynumber();
+				}
+				else
+				{
+					str = str + "";
+				}
 			}
 			println(str);
 			println("" + (self.ignoreme ? "" : ""));
@@ -1404,11 +1422,11 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 	#/
 	if(!isdefined(einflictor) || !isdefined(eattacker))
 	{
-		return 0;
+		return false;
 	}
 	if(einflictor == self || eattacker == self)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(einflictor) && isdefined(einflictor.team))
 	{
@@ -1416,11 +1434,11 @@ function player_prevent_damage(einflictor, eattacker, idamage, idflags, smeansof
 		{
 			if(einflictor.team == self.team)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1765,7 +1783,7 @@ function spectator_respawn()
 	self zm_score::player_reduce_points("died");
 	self zm_melee_weapon::spectator_respawn_all();
 	self thread zm_perks::function_2babacc2();
-	return 1;
+	return true;
 }
 
 /*
@@ -2158,7 +2176,7 @@ function remove_ignore_attacker()
 function player_damage_override_cheat(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
 {
 	player_damage_override(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime);
-	return 0;
+	return false;
 }
 
 /*
@@ -2802,7 +2820,7 @@ function slowdown(str_type, var_a47cf2b2)
 		return;
 	}
 	self notify(#"hash_31eac0065ba118f5");
-	self endon_callback(&function_fe7a7d5b, #"hash_31eac0065ba118f5", #"death", #"hash_28af7943f07d93e2");
+	self endoncallback(&function_fe7a7d5b, #"hash_31eac0065ba118f5", #"death", #"hash_28af7943f07d93e2");
 	/#
 		assert(isdefined(level.var_f27112f9[str_type]), ("" + str_type) + "");
 	#/
@@ -2887,7 +2905,7 @@ function function_520f4da5()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fe7a7d5b(str_notify)
+function private function_fe7a7d5b(str_notify)
 {
 	self setmovespeedscale(1);
 }

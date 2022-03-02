@@ -278,22 +278,25 @@ function playerzombie_soundboard()
 				self.usesound_nexttime = gettime() + self.usesound_waittime;
 			}
 		}
-		else if(self attackbuttonpressed())
+		else
 		{
-			if(self can_do_input("attack"))
+			if(self attackbuttonpressed())
 			{
-				self thread playerzombie_play_sound(attacksound);
-				self thread playerzombie_waitfor_buttonrelease("attack");
-				self.attacksound_nexttime = gettime() + self.attacksound_waittime;
+				if(self can_do_input("attack"))
+				{
+					self thread playerzombie_play_sound(attacksound);
+					self thread playerzombie_waitfor_buttonrelease("attack");
+					self.attacksound_nexttime = gettime() + self.attacksound_waittime;
+				}
 			}
-		}
-		else if(self adsbuttonpressed())
-		{
-			if(self can_do_input("ads"))
+			else if(self adsbuttonpressed())
 			{
-				self thread playerzombie_play_sound(adssound);
-				self thread playerzombie_waitfor_buttonrelease("ads");
-				self.adssound_nexttime = gettime() + self.adssound_waittime;
+				if(self can_do_input("ads"))
+				{
+					self thread playerzombie_play_sound(adssound);
+					self thread playerzombie_waitfor_buttonrelease("ads");
+					self.adssound_nexttime = gettime() + self.adssound_waittime;
+				}
 			}
 		}
 		waitframe(1);
@@ -397,23 +400,26 @@ function playerzombie_waitfor_buttonrelease(inputtype)
 		}
 		self.buttonpressed_use = 0;
 	}
-	else if(inputtype == "attack")
+	else
 	{
-		self.buttonpressed_attack = 1;
-		while(self attackbuttonpressed())
+		if(inputtype == "attack")
 		{
-			waitframe(1);
+			self.buttonpressed_attack = 1;
+			while(self attackbuttonpressed())
+			{
+				waitframe(1);
+			}
+			self.buttonpressed_attack = 0;
 		}
-		self.buttonpressed_attack = 0;
-	}
-	else if(inputtype == "ads")
-	{
-		self.buttonpressed_ads = 1;
-		while(self adsbuttonpressed())
+		else if(inputtype == "ads")
 		{
-			waitframe(1);
+			self.buttonpressed_ads = 1;
+			while(self adsbuttonpressed())
+			{
+				waitframe(1);
+			}
+			self.buttonpressed_ads = 0;
 		}
-		self.buttonpressed_ads = 0;
 	}
 }
 

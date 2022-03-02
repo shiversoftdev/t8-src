@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1869d2f2ce17de3d", &__init__, undefined, undefined);
 }
@@ -65,7 +65,7 @@ function function_930e5d42(localclientnum)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_dbd63244()
+function private function_dbd63244()
 {
 	/#
 		assert(isplayer(self));
@@ -105,7 +105,7 @@ private function function_dbd63244()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c9d3a835()
+function private function_c9d3a835()
 {
 	return self.origin + vectorscale((0, 0, 1), 36);
 }
@@ -119,7 +119,7 @@ private function function_c9d3a835()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3e9077b(localclientnum)
+function private function_3e9077b(localclientnum)
 {
 	level endon(#"game_ended");
 	self endon(#"disconnect", #"shutdown", #"death");

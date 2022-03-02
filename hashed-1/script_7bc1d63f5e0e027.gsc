@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2d11bcef9355cc81", &__init__, &__main__, undefined);
 }
@@ -198,7 +198,7 @@ function function_e9f6e0f7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_35b30784(string)
+function private function_35b30784(string)
 {
 	if(!isdefined(level.var_7b4e19aa))
 	{

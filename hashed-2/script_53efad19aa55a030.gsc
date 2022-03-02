@@ -81,43 +81,43 @@ function function_163442cb(params, w_weapon)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_89769800(params, unitrigger, b_start, var_c060d2c8)
+function private function_89769800(params, unitrigger, b_start, var_c060d2c8)
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!zm_utility::is_player_valid(self))
 	{
-		return 0;
+		return false;
 	}
 	if(self laststand::player_is_in_laststand() || self zm_utility::in_revive_trigger())
 	{
-		return 0;
+		return false;
 	}
 	if(!self usebuttonpressed())
 	{
-		return 0;
+		return false;
 	}
 	trigger = unitrigger zm_unitrigger::unitrigger_trigger(self);
 	if(!isdefined(trigger))
 	{
-		return 0;
+		return false;
 	}
 	if(b_start)
 	{
 		if(isdefined(params.var_deac51dd) && ![[params.var_deac51dd]](self, unitrigger))
 		{
-			return 0;
+			return false;
 		}
 	}
 	else if(isdefined(params.var_5301f4f1) && ![[params.var_5301f4f1]](self, unitrigger))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(params.var_e2ae1db1) && params.var_e2ae1db1 && !self util::is_player_looking_at(trigger.origin, params.var_2b18af9d, var_c060d2c8))
 	{
-		return 0;
+		return false;
 	}
 	if(unitrigger.script_unitrigger_type == "unitrigger_radius_use")
 	{
@@ -126,14 +126,14 @@ private function function_89769800(params, unitrigger, b_start, var_c060d2c8)
 		radius_sq = (2.25 * unitrigger.radius) * unitrigger.radius;
 		if(distance2dsquared(torigin, porigin) > radius_sq)
 		{
-			return 0;
+			return false;
 		}
 	}
 	else if(!isdefined(trigger) || !trigger istouching(self, vectorscale((1, 1, 1), 10)))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -145,7 +145,7 @@ private function function_89769800(params, unitrigger, b_start, var_c060d2c8)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_1b125050(params, unitrigger, var_c060d2c8)
+function private function_1b125050(params, unitrigger, var_c060d2c8)
 {
 	return function_89769800(params, unitrigger, 1, var_c060d2c8);
 }
@@ -159,7 +159,7 @@ private function function_1b125050(params, unitrigger, var_c060d2c8)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_a82534d(params, unitrigger, var_c060d2c8)
+function private function_a82534d(params, unitrigger, var_c060d2c8)
 {
 	return function_89769800(params, unitrigger, 0, var_c060d2c8);
 }
@@ -173,7 +173,7 @@ private function function_a82534d(params, unitrigger, var_c060d2c8)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function player_progress_bar_update(start_time, use_time)
+function private player_progress_bar_update(start_time, use_time)
 {
 	self endon(#"entering_last_stand", #"death", #"hash_17d245ea00b65b48");
 	while(isdefined(self) && (gettime() - start_time) < use_time)
@@ -201,7 +201,7 @@ private function player_progress_bar_update(start_time, use_time)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function player_progress_bar(start_time, use_time)
+function private player_progress_bar(start_time, use_time)
 {
 	if(level.zm_build_progress zm_build_progress::is_open(self) || !isdefined(start_time) || !isdefined(use_time))
 	{
@@ -249,7 +249,7 @@ function function_48098d30(player, params)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_f8b39299(player, params, var_c060d2c8)
+function private function_f8b39299(player, params, var_c060d2c8)
 {
 	b_waited = 0;
 	if(!isdefined(self))
@@ -328,11 +328,14 @@ private function function_f8b39299(player, params, var_c060d2c8)
 		}
 		result = "progress_succeed";
 	}
-	else if(isdefined(params.var_4737bddd))
+	else
 	{
-		thread [[params.var_4737bddd]](player, self);
+		if(isdefined(params.var_4737bddd))
+		{
+			thread [[params.var_4737bddd]](player, self);
+		}
+		result = "progress_failed";
 	}
-	result = "progress_failed";
 	if(isdefined(params.var_3e17832))
 	{
 		thread [[params.var_3e17832]](player, self);
@@ -366,7 +369,7 @@ private function function_f8b39299(player, params, var_c060d2c8)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_4335011a(player, params, var_c060d2c8)
+function private function_4335011a(player, params, var_c060d2c8)
 {
 	self thread function_48098d30(player, params);
 	self thread function_f8b39299(player, params, var_c060d2c8);
@@ -374,9 +377,9 @@ private function function_4335011a(player, params, var_c060d2c8)
 	retval = self waittill(#"progress_succeed", #"progress_failed");
 	if(retval._notify == "progress_succeed")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

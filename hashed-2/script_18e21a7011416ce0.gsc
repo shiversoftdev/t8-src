@@ -33,7 +33,7 @@ function init()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_fe4dc0ff(var_a276c861)
+function private function_fe4dc0ff(var_a276c861)
 {
 	level endon(#"end_game");
 	if(!isdefined(level.var_c5c448d))
@@ -57,7 +57,7 @@ private function function_fe4dc0ff(var_a276c861)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3f739fed(var_a276c861, var_19e802fa)
+function private function_3f739fed(var_a276c861, var_19e802fa)
 {
 	if(!var_a276c861)
 	{

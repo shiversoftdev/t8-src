@@ -172,9 +172,9 @@ function isvalidnonshieldweapon(weapon)
 {
 	if(!weapons::may_drop(weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -427,11 +427,11 @@ function riotshielddistancetest(origin)
 				/#
 					println("");
 				#/
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -513,21 +513,30 @@ function watchdeployedriotshielddamage()
 		{
 			damage = damage * getdvarfloat(#"riotshield_melee_damage_scale", 0);
 		}
-		else if(type == "MOD_PISTOL_BULLET" || type == "MOD_RIFLE_BULLET")
+		else
 		{
-			damage = damage * getdvarfloat(#"riotshield_bullet_damage_scale", 0);
-		}
-		else if(type == "MOD_GRENADE" || type == "MOD_GRENADE_SPLASH" || type == "MOD_EXPLOSIVE" || type == "MOD_EXPLOSIVE_SPLASH" || type == "MOD_PROJECTILE" || type == "MOD_PROJECTILE_SPLASH")
-		{
-			damage = damage * getdvarfloat(#"riotshield_explosive_damage_scale", 0);
-		}
-		else if(type == "MOD_IMPACT")
-		{
-			damage = damage * getdvarfloat(#"riotshield_projectile_damage_scale", 0);
-		}
-		else if(type == "MOD_CRUSH")
-		{
-			damage = damagemax;
+			if(type == "MOD_PISTOL_BULLET" || type == "MOD_RIFLE_BULLET")
+			{
+				damage = damage * getdvarfloat(#"riotshield_bullet_damage_scale", 0);
+			}
+			else
+			{
+				if(type == "MOD_GRENADE" || type == "MOD_GRENADE_SPLASH" || type == "MOD_EXPLOSIVE" || type == "MOD_EXPLOSIVE_SPLASH" || type == "MOD_PROJECTILE" || type == "MOD_PROJECTILE_SPLASH")
+				{
+					damage = damage * getdvarfloat(#"riotshield_explosive_damage_scale", 0);
+				}
+				else
+				{
+					if(type == "MOD_IMPACT")
+					{
+						damage = damage * getdvarfloat(#"riotshield_projectile_damage_scale", 0);
+					}
+					else if(type == "MOD_CRUSH")
+					{
+						damage = damagemax;
+					}
+				}
+			}
 		}
 		self.damagetaken = self.damagetaken + damage;
 		if(self.damagetaken >= damagemax)

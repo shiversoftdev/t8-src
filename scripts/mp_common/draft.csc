@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"draft", &__init__, undefined, undefined);
 }
@@ -501,30 +501,42 @@ function function_bb0565d0(var_de58f286)
 		{
 			var_e78b2a99 = level.var_f35699bc[weapon.name];
 		}
-		else if(weapon_group == #"")
+		else
 		{
-			var_e78b2a99 = "brawler";
-			dualwield = getweapon(#"hash_1b055fadc5573c29");
-			if(weapon.name == dualwield.name)
+			if(weapon_group == #"")
 			{
-				var_e78b2a99 = "pistol";
+				var_e78b2a99 = "brawler";
+				dualwield = getweapon(#"hash_1b055fadc5573c29");
+				if(weapon.name == dualwield.name)
+				{
+					var_e78b2a99 = "pistol";
+				}
 			}
-		}
-		else if(weapon_group == #"weapon_launcher" || weapon_group == #"weapon_launcher_alt")
-		{
-			var_e78b2a99 = "launcher";
-		}
-		else if(weapon_group == #"weapon_pistol" || weapon_group == #"weapon_pistol_dw")
-		{
-			var_e78b2a99 = "pistol";
-		}
-		else if(weapon_group == #"weapon_smg")
-		{
-			var_e78b2a99 = "smg";
-		}
-		else if(weapon_group == #"weapon_knife")
-		{
-			var_e78b2a99 = "melee";
+			else
+			{
+				if(weapon_group == #"weapon_launcher" || weapon_group == #"weapon_launcher_alt")
+				{
+					var_e78b2a99 = "launcher";
+				}
+				else
+				{
+					if(weapon_group == #"weapon_pistol" || weapon_group == #"weapon_pistol_dw")
+					{
+						var_e78b2a99 = "pistol";
+					}
+					else
+					{
+						if(weapon_group == #"weapon_smg")
+						{
+							var_e78b2a99 = "smg";
+						}
+						else if(weapon_group == #"weapon_knife")
+						{
+							var_e78b2a99 = "melee";
+						}
+					}
+				}
+			}
 		}
 	}
 	return associativearray(#"default", associativearray(#"select", associativearray(#"male", "pb_rifle_male_draft_ch_select_3", #"female", "pb_rifle_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_rifle_male_draft_select_to_preready_3", #"female", "pb_rifle_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_rifle_male_draft_preready_to_select_3", #"female", "pb_rifle_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_rifle_male_draft_preready_1", "pb_rifle_male_draft_preready_2", "pb_rifle_male_draft_preready_3", "pb_rifle_male_draft_preready_4", "pb_rifle_male_draft_preready_5"), #"female", array("pb_rifle_fem_draft_preready_1", "pb_rifle_fem_draft_preready_2", "pb_rifle_fem_draft_preready_3", "pb_rifle_fem_draft_preready_4", "pb_rifle_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_rifle_male_draft_transition_1", "pb_rifle_male_draft_transition_2", "pb_rifle_male_draft_transition_3", "pb_rifle_male_draft_transition_4", "pb_rifle_male_draft_transition_5"), #"female", array("pb_rifle_fem_draft_transition_1", "pb_rifle_fem_draft_transition_2", "pb_rifle_fem_draft_transition_3", "pb_rifle_fem_draft_transition_4", "pb_rifle_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_rifle_male_draft_readyup_1", "pb_rifle_male_draft_readyup_2", "pb_rifle_male_draft_readyup_3", "pb_rifle_male_draft_readyup_4", "pb_rifle_male_draft_readyup_5"), #"female", array("pb_rifle_fem_draft_readyup_1", "pb_rifle_fem_draft_readyup_2", "pb_rifle_fem_draft_readyup_3", "pb_rifle_fem_draft_readyup_4", "pb_rifle_fem_draft_readyup_5"))), #"brawler", associativearray(#"select", associativearray(#"male", "pb_brawler_male_draft_idle_ch_select_3", #"female", "pb_brawler_fem_draft_idle_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_brawler_male_draft_select_to_preready_3", #"female", "pb_brawler_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_brawler_male_draft_preready_to_select_3", #"female", "pb_brawler_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_brawler_male_draft_idle_preready1", "pb_brawler_male_draft_idle_preready2", "pb_brawler_male_draft_idle_preready3", "pb_brawler_male_draft_idle_preready4", "pb_brawler_male_draft_idle_preready5"), #"female", array("pb_brawler_fem_draft_idle_preready1", "pb_brawler_fem_draft_idle_preready2", "pb_brawler_fem_draft_idle_preready3", "pb_brawler_fem_draft_idle_preready4", "pb_brawler_fem_draft_idle_preready5")), #"ready", associativearray(#"male", array("pb_brawler_male_draft_idle_transition_1", "pb_brawler_male_draft_idle_transition_2", "pb_brawler_male_draft_idle_transition_3", "pb_brawler_male_draft_idle_transition_4", "pb_brawler_male_draft_idle_transition_5"), #"female", array("pb_brawler_fem_draft_idle_transition_1", "pb_brawler_fem_draft_idle_transition_2", "pb_brawler_fem_draft_idle_transition_3", "pb_brawler_fem_draft_idle_transition_4", "pb_brawler_fem_draft_idle_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_brawler_male_draft_readyup_1", "pb_brawler_male_draft_readyup_2", "pb_brawler_male_draft_readyup_3", "pb_brawler_male_draft_readyup_4", "pb_brawler_male_draft_readyup_5"), #"female", array("pb_brawler_fem_draft_readyup_1", "pb_brawler_fem_draft_readyup_2", "pb_brawler_fem_draft_readyup_3", "pb_brawler_fem_draft_readyup_4", "pb_brawler_fem_draft_readyup_5"))), #"melee", associativearray(#"select", associativearray(#"male", "pb_melee_male_draft_ch_select_3", #"female", "pb_melee_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_melee_male_draft_select_to_preready_3", #"female", "pb_melee_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_melee_male_draft_preready_to_select_3", #"female", "pb_melee_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_melee_male_draft_preready_1", "pb_melee_male_draft_preready_2", "pb_melee_male_draft_preready_3", "pb_melee_male_draft_preready_4", "pb_melee_male_draft_preready_5"), #"female", array("pb_melee_fem_draft_preready_1", "pb_melee_fem_draft_preready_2", "pb_melee_fem_draft_preready_3", "pb_melee_fem_draft_preready_4", "pb_melee_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_melee_male_draft_transition_1", "pb_melee_male_draft_transition_2", "pb_melee_male_draft_transition_3", "pb_melee_male_draft_transition_4", "pb_melee_male_draft_transition_5"), #"female", array("pb_melee_fem_draft_transition_1", "pb_melee_fem_draft_transition_2", "pb_melee_fem_draft_transition_3", "pb_melee_fem_draft_transition_4", "pb_melee_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_melee_male_draft_readyup_1", "pb_melee_male_draft_readyup_2", "pb_melee_male_draft_readyup_3", "pb_melee_male_draft_readyup_4", "pb_melee_male_draft_readyup_5"), #"female", array("pb_melee_fem_draft_readyup_1", "pb_melee_fem_draft_readyup_2", "pb_melee_fem_draft_readyup_3", "pb_melee_fem_draft_readyup_4", "pb_melee_fem_draft_readyup_5"))), #"melee_alt", associativearray(#"select", associativearray(#"male", "pb_melee_alt_male_draft_ch_select_3", #"female", "pb_melee_alt_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_melee_alt_male_draft_select_to_preready_3", #"female", "pb_melee_alt_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_melee_alt_male_draft_preready_to_select_3", #"female", "pb_melee_alt_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_melee_alt_male_draft_preready_1", "pb_melee_alt_male_draft_preready_2", "pb_melee_alt_male_draft_preready_3", "pb_melee_alt_male_draft_preready_4", "pb_melee_alt_male_draft_preready_5"), #"female", array("pb_melee_alt_fem_draft_preready_1", "pb_melee_alt_fem_draft_preready_2", "pb_melee_alt_fem_draft_preready_3", "pb_melee_alt_fem_draft_preready_4", "pb_melee_alt_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_melee_alt_male_draft_transition_1", "pb_melee_alt_male_draft_transition_2", "pb_melee_alt_male_draft_transition_3", "pb_melee_alt_male_draft_transition_4", "pb_melee_alt_male_draft_transition_5"), #"female", array("pb_melee_alt_fem_draft_transition_1", "pb_melee_alt_fem_draft_transition_2", "pb_melee_alt_fem_draft_transition_3", "pb_melee_alt_fem_draft_transition_4", "pb_melee_alt_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_melee_alt_male_draft_readyup_1", "pb_melee_alt_male_draft_readyup_2", "pb_melee_alt_male_draft_readyup_3", "pb_melee_alt_male_draft_readyup_4", "pb_melee_alt_male_draft_readyup_5"), #"female", array("pb_melee_alt_fem_draft_readyup_1", "pb_melee_alt_fem_draft_readyup_2", "pb_melee_alt_fem_draft_readyup_3", "pb_melee_alt_fem_draft_readyup_4", "pb_melee_alt_fem_draft_readyup_5"))), #"melee_backhand", associativearray(#"select", associativearray(#"male", "pb_backhander_male_draft_ch_select_3", #"female", "pb_backhander_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_backhander_male_draft_select_to_preready_3", #"female", "pb_backhander_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_backhander_male_draft_preready_to_select_3", #"female", "pb_backhander_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_backhander_male_draft_preready_1", "pb_backhander_male_draft_preready_2", "pb_backhander_male_draft_preready_3", "pb_backhander_male_draft_preready_4", "pb_backhander_male_draft_preready_5"), #"female", array("pb_backhander_fem_draft_preready_1", "pb_backhander_fem_draft_preready_2", "pb_backhander_fem_draft_preready_3", "pb_backhander_fem_draft_preready_4", "pb_backhander_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_backhander_male_draft_transition_1", "pb_backhander_male_draft_transition_2", "pb_backhander_male_draft_transition_3", "pb_backhander_male_draft_transition_4", "pb_backhander_male_draft_transition_5"), #"female", array("pb_backhander_fem_draft_transition_1", "pb_backhander_fem_draft_transition_2", "pb_backhander_fem_draft_transition_3", "pb_backhander_fem_draft_transition_4", "pb_backhander_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_backhander_male_draft_readyup_1", "pb_backhander_male_draft_readyup_2", "pb_backhander_male_draft_readyup_3", "pb_backhander_male_draft_readyup_4", "pb_backhander_male_draft_readyup_5"), #"female", array("pb_backhander_fem_draft_readyup_1", "pb_backhander_fem_draft_readyup_2", "pb_backhander_fem_draft_readyup_3", "pb_backhander_fem_draft_readyup_4", "pb_backhander_fem_draft_readyup_5"))), #"melee_actionfigure", associativearray(#"select", associativearray(#"male", "pb_action_figure_male_draft_ch_select_3", #"female", "pb_action_figure_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_action_figure_male_draft_select_to_preready_3", #"female", "pb_action_figure_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_action_figure_male_draft_preready_to_select_3", #"female", "pb_action_figure_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_action_figure_male_draft_preready_1", "pb_action_figure_male_draft_preready_2", "pb_action_figure_male_draft_preready_3", "pb_action_figure_male_draft_preready_4", "pb_action_figure_male_draft_preready_5"), #"female", array("pb_action_figure_fem_draft_preready_1", "pb_action_figure_fem_draft_preready_2", "pb_action_figure_fem_draft_preready_3", "pb_action_figure_fem_draft_preready_4", "pb_action_figure_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_action_figure_male_draft_transition_1", "pb_action_figure_male_draft_transition_2", "pb_action_figure_male_draft_transition_3", "pb_action_figure_male_draft_transition_4", "pb_action_figure_male_draft_transition_5"), #"female", array("pb_action_figure_fem_draft_transition_1", "pb_action_figure_fem_draft_transition_2", "pb_action_figure_fem_draft_transition_3", "pb_action_figure_fem_draft_transition_4", "pb_action_figure_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_action_figure_male_draft_readyup_1", "pb_action_figure_male_draft_readyup_2", "pb_action_figure_male_draft_readyup_3", "pb_action_figure_male_draft_readyup_4", "pb_action_figure_male_draft_readyup_5"), #"female", array("pb_action_figure_fem_draft_readyup_1", "pb_action_figure_fem_draft_readyup_2", "pb_action_figure_fem_draft_readyup_3", "pb_action_figure_fem_draft_readyup_4", "pb_action_figure_fem_draft_readyup_5"))), #"launcher", associativearray(#"select", associativearray(#"male", "pb_launcher_male_draft_ch_select_3", #"female", "pb_launcher_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_launcher_male_draft_select_to_preready_3", #"female", "pb_launcher_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_launcher_male_draft_preready_to_select_3", #"female", "pb_launcher_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_launcher_male_draft_preready1", "pb_launcher_male_draft_preready2", "pb_launcher_male_draft_preready3", "pb_launcher_male_draft_preready4", "pb_launcher_male_draft_preready5"), #"female", array("pb_launcher_fem_draft_ch_preready_1", "pb_launcher_fem_draft_ch_preready_2", "pb_launcher_fem_draft_ch_preready_3", "pb_launcher_fem_draft_ch_preready_4", "pb_launcher_fem_draft_ch_preready_5")), #"ready", associativearray(#"male", array("pb_launcher_male_draft_transition_1", "pb_launcher_male_draft_transition_2", "pb_launcher_male_draft_transition_3", "pb_launcher_male_draft_transition_4", "pb_launcher_male_draft_transition_5"), #"female", array("pb_launcher_fem_draft_transition_1", "pb_launcher_fem_draft_transition_2", "pb_launcher_fem_draft_transition_3", "pb_launcher_fem_draft_transition_4", "pb_launcher_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_launcher_male_draft_readyup_1", "pb_launcher_male_draft_readyup_2", "pb_launcher_male_draft_readyup_3", "pb_launcher_male_draft_readyup_4", "pb_launcher_male_draft_readyup_5"), #"female", array("pb_launcher_fem_draft_readyup_1", "pb_launcher_fem_draft_readyup_2", "pb_launcher_fem_draft_readyup_3", "pb_launcher_fem_draft_readyup_4", "pb_launcher_fem_draft_readyup_5"))), #"pistol", associativearray(#"select", associativearray(#"male", "pb_pistol_male_draft_ch_select_3", #"female", "pb_pistol_fem_draft_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_pistol_male_draft_select_to_preready_3", #"female", "pb_pistol_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_pistol_male_draft_preready_to_select_3", #"female", "pb_pistol_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_pistol_male_draft_preready_1", "pb_pistol_male_draft_preready_2", "pb_pistol_male_draft_preready_3", "pb_pistol_male_draft_preready_4", "pb_pistol_male_draft_preready_5"), #"female", array("pb_pistol_fem_draft_preready_1", "pb_pistol_fem_draft_preready_2", "pb_pistol_fem_draft_preready_3", "pb_pistol_fem_draft_preready_4", "pb_pistol_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_pistol_male_draft_transition_1", "pb_pistol_male_draft_transition_2", "pb_pistol_male_draft_transition_3", "pb_pistol_male_draft_transition_4", "pb_pistol_male_draft_transition_5"), #"female", array("pb_pistol_fem_draft_transition_1", "pb_pistol_fem_draft_transition_2", "pb_pistol_fem_draft_transition_3", "pb_pistol_fem_draft_transition_4", "pb_pistol_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_pistol_male_draft_readyup_1", "pb_pistol_male_draft_readyup_2", "pb_pistol_male_draft_readyup_3", "pb_pistol_male_draft_readyup_4", "pb_pistol_male_draft_readyup_5"), #"female", array("pb_pistol_fem_draft_readyup_1", "pb_pistol_fem_draft_readyup_2", "pb_pistol_fem_draft_readyup_3", "pb_pistol_fem_draft_readyup_4", "pb_pistol_fem_draft_readyup_5"))), #"smg", associativearray(#"select", associativearray(#"male", "pb_smg_male_draft_idle_ch_select_3", #"female", "pb_smg_fem_draft_idle_ch_select_3"), #"hash_6eaac8719751cb14", associativearray(#"male", "pb_smg_male_draft_select_to_preready_3", #"female", "pb_smg_fem_draft_select_to_preready_3"), #"hash_2fe61241a25ee67c", associativearray(#"male", "pb_smg_male_draft_preready_to_select_3", #"female", "pb_smg_fem_draft_preready_to_select_3"), #"hash_173d4186160f785", associativearray(#"male", array("pb_smg_male_draft_preready_1", "pb_smg_male_draft_preready_2", "pb_smg_male_draft_preready_3", "pb_smg_male_draft_preready_4", "pb_smg_male_draft_preready_5"), #"female", array("pb_smg_fem_draft_preready_1", "pb_smg_fem_draft_preready_2", "pb_smg_fem_draft_preready_3", "pb_smg_fem_draft_preready_4", "pb_smg_fem_draft_preready_5")), #"ready", associativearray(#"male", array("pb_smg_male_draft_transition_1", "pb_smg_male_draft_transition_2", "pb_smg_male_draft_transition_3", "pb_smg_male_draft_transition_4", "pb_smg_male_draft_transition_5"), #"female", array("pb_smg_fem_draft_transition_1", "pb_smg_fem_draft_transition_2", "pb_smg_fem_draft_transition_3", "pb_smg_fem_draft_transition_4", "pb_smg_fem_draft_transition_5")), #"hash_47427a985c282f7e", associativearray(#"male", array("pb_smg_male_draft_readyup_1", "pb_smg_male_draft_readyup_2", "pb_smg_male_draft_readyup_3", "pb_smg_male_draft_readyup_4", "pb_smg_male_draft_readyup_5"), #"female", array("pb_smg_fem_draft_readyup_1", "pb_smg_fem_draft_readyup_2", "pb_smg_fem_draft_readyup_3", "pb_smg_fem_draft_readyup_4", "pb_smg_fem_draft_readyup_5"))))[var_e78b2a99];
@@ -572,32 +584,38 @@ function function_6b532f83(localclientnum, var_de58f286, sessionmode)
 			}
 			var_de58f286.var_3afd181d = var_de58f286.var_91065a59;
 		}
-		else if(player_role::is_valid(var_de58f286.focusedcharacterindex))
-		{
-			if(var_de58f286.selected)
-			{
-				anim_intro_name = var_799bae98[#"hash_2fe61241a25ee67c"][gender];
-				var_de58f286.selected = 0;
-			}
-			anim_name = var_799bae98[#"select"][gender];
-		}
-		else if(!var_de58f286.var_91065a59)
-		{
-			if(var_7eb5dfe9 == 1 && !shoutcaster::is_shoutcaster(localclientnum))
-			{
-				anim_intro_name = var_799bae98[#"hash_6eaac8719751cb14"][gender];
-			}
-			var_b793aad = var_799bae98[#"hash_173d4186160f785"][gender];
-			anim_name = var_b793aad[var_7eb5dfe9 % var_b793aad.size];
-		}
 		else
 		{
-			var_ca1716fe = var_799bae98[#"ready"][gender];
-			anim_intro_name = var_ca1716fe[var_7eb5dfe9 % var_ca1716fe.size];
-			var_177782dd = var_799bae98[#"hash_47427a985c282f7e"][gender];
-			anim_name = var_177782dd[var_7eb5dfe9 % var_177782dd.size];
+			if(player_role::is_valid(var_de58f286.focusedcharacterindex))
+			{
+				if(var_de58f286.selected)
+				{
+					anim_intro_name = var_799bae98[#"hash_2fe61241a25ee67c"][gender];
+					var_de58f286.selected = 0;
+				}
+				anim_name = var_799bae98[#"select"][gender];
+			}
+			else
+			{
+				if(!var_de58f286.var_91065a59)
+				{
+					if(var_7eb5dfe9 == 1 && !shoutcaster::is_shoutcaster(localclientnum))
+					{
+						anim_intro_name = var_799bae98[#"hash_6eaac8719751cb14"][gender];
+					}
+					var_b793aad = var_799bae98[#"hash_173d4186160f785"][gender];
+					anim_name = var_b793aad[var_7eb5dfe9 % var_b793aad.size];
+				}
+				else
+				{
+					var_ca1716fe = var_799bae98[#"ready"][gender];
+					anim_intro_name = var_ca1716fe[var_7eb5dfe9 % var_ca1716fe.size];
+					var_177782dd = var_799bae98[#"hash_47427a985c282f7e"][gender];
+					anim_name = var_177782dd[var_7eb5dfe9 % var_177782dd.size];
+				}
+				var_de58f286.selected = 1;
+			}
 		}
-		var_de58f286.selected = 1;
 	}
 	else
 	{
@@ -625,7 +643,7 @@ function function_93a4f3c5(localclientnum, var_d0c67621)
 		var_3f83e0ee = character_customization::function_7474681d(localclientnum, sessionmode, [[ var_d0c67621 ]]->function_82e05d64().focusedcharacterindex);
 		if(!character_customization::function_aa5382ed(var_de58f286.var_625ec6da, var_3f83e0ee))
 		{
-			return 0;
+			return false;
 		}
 		[[ var_d0c67621 ]]->function_82e05d64().var_625ec6da = var_3f83e0ee;
 	}
@@ -646,7 +664,7 @@ function function_93a4f3c5(localclientnum, var_d0c67621)
 		[[ var_d0c67621 ]]->function_72e88afb(0);
 		function_799e0ac1(localclientnum, var_d0c67621, 1);
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -721,30 +739,42 @@ function function_a1c71160(localclientnum, var_d0c67621)
 			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = getweapon(#"pistol_standard_t8");
 			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
 		}
-		else if(isdefined(level.var_8eef5741) && level.var_8eef5741)
-		{
-			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = level.var_bf82f6b0;
-			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
-		}
-		else if(isdefined(level.isgungame) && level.isgungame)
-		{
-			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = getweapon(#"pistol_fullauto_t8");
-			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
-		}
-		else if(isdefined(level.var_207a1c9a) && level.var_207a1c9a)
-		{
-			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = getweapon(#"special_crossbow_t8");
-			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
-		}
-		else if(([[ var_d0c67621 ]]->function_82e05d64().primaryweapon) == level.weaponnone)
-		{
-			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = [[ var_d0c67621 ]]->function_82e05d64().secondaryweapon;
-			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = [[ var_d0c67621 ]]->function_82e05d64().secondaryweaponoptions;
-		}
 		else
 		{
-			[[ var_d0c67621 ]]->function_82e05d64().activeweapon = [[ var_d0c67621 ]]->function_82e05d64().primaryweapon;
-			[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = [[ var_d0c67621 ]]->function_82e05d64().primaryweaponoptions;
+			if(isdefined(level.var_8eef5741) && level.var_8eef5741)
+			{
+				[[ var_d0c67621 ]]->function_82e05d64().activeweapon = level.var_bf82f6b0;
+				[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
+			}
+			else
+			{
+				if(isdefined(level.isgungame) && level.isgungame)
+				{
+					[[ var_d0c67621 ]]->function_82e05d64().activeweapon = getweapon(#"pistol_fullauto_t8");
+					[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
+				}
+				else
+				{
+					if(isdefined(level.var_207a1c9a) && level.var_207a1c9a)
+					{
+						[[ var_d0c67621 ]]->function_82e05d64().activeweapon = getweapon(#"special_crossbow_t8");
+						[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = 0;
+					}
+					else
+					{
+						if(([[ var_d0c67621 ]]->function_82e05d64().primaryweapon) == level.weaponnone)
+						{
+							[[ var_d0c67621 ]]->function_82e05d64().activeweapon = [[ var_d0c67621 ]]->function_82e05d64().secondaryweapon;
+							[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = [[ var_d0c67621 ]]->function_82e05d64().secondaryweaponoptions;
+						}
+						else
+						{
+							[[ var_d0c67621 ]]->function_82e05d64().activeweapon = [[ var_d0c67621 ]]->function_82e05d64().primaryweapon;
+							[[ var_d0c67621 ]]->function_82e05d64().var_b8f20727 = [[ var_d0c67621 ]]->function_82e05d64().primaryweaponoptions;
+						}
+					}
+				}
+			}
 		}
 		[[ var_d0c67621 ]]->function_82e05d64().params.activeweapon = [[ var_d0c67621 ]]->function_82e05d64().activeweapon;
 		[[ var_d0c67621 ]]->function_82e05d64().params.var_b8f20727 = [[ var_d0c67621 ]]->function_82e05d64().var_b8f20727;

@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"music_box", &__init__, undefined, undefined);
 }
@@ -46,9 +46,7 @@ function __init__()
 	zm_loadout::register_lethal_grenade_for_level(#"music_box");
 	if(!isdefined(level.var_14160fb0))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_14160fb0 = object;
+		level.var_14160fb0 = new throttle();
 		[[ level.var_14160fb0 ]]->initialize(4, 0.05);
 	}
 	level flag::init(#"hash_621d31a87bd6d05b");
@@ -221,13 +219,13 @@ function function_3adb94b4(e_zombie)
 {
 	if(isdefined(e_zombie.var_42d5176d) && e_zombie.var_42d5176d || e_zombie.marked_for_death === 1 || e_zombie.var_46d39f48 === 1 || e_zombie.no_gib === 1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(e_zombie.mdl_trap_mover))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -239,7 +237,7 @@ function function_3adb94b4(e_zombie)
 	Parameters: 1
 	Flags: Private
 */
-private function function_3710157f(e_zombie)
+function private function_3710157f(e_zombie)
 {
 	level endon(#"end_game");
 	self endon(#"death");
@@ -310,7 +308,7 @@ function _second_compass_map_mp_ruins(e_owner)
 {
 	if(ispointonnavmesh(self.origin, 60))
 	{
-		return 1;
+		return true;
 	}
 	v_dir = vectornormalize(e_owner.origin - self.origin);
 	v_pos = self.origin + (v_dir * 32);
@@ -322,10 +320,10 @@ function _second_compass_map_mp_ruins(e_owner)
 		{
 			self.origin = v_valid_point;
 			self.var_1a61db89 clientfield::set("" + #"hash_60a7e5b79e8064a5", 1);
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -369,8 +367,8 @@ function function_cdb0d1e(e_zombie)
 {
 	if(e_zombie.var_42d5176d === 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 

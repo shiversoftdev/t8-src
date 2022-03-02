@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	/#
 		system::register(#"scene_debug", &function_c3c9d0e5, undefined, undefined);
@@ -340,15 +340,18 @@ function display_scene_menu(str_type, str_scene)
 					}
 				}
 			}
-			else if(level.localplayers[0] util::up_button_held())
+			else
 			{
-				held = 1;
-				selected = selected - 10;
-			}
-			else if(!level.localplayers[0] util::up_button_pressed())
-			{
-				held = 0;
-				up_pressed = 0;
+				if(level.localplayers[0] util::up_button_held())
+				{
+					held = 1;
+					selected = selected - 10;
+				}
+				else if(!level.localplayers[0] util::up_button_pressed())
+				{
+					held = 0;
+					up_pressed = 0;
+				}
 			}
 			if(!down_pressed)
 			{
@@ -362,15 +365,18 @@ function display_scene_menu(str_type, str_scene)
 					}
 				}
 			}
-			else if(level.localplayers[0] util::down_button_held())
+			else
 			{
-				held = 1;
-				selected = selected + 10;
-			}
-			else if(!level.localplayers[0] util::down_button_pressed())
-			{
-				held = 0;
-				down_pressed = 0;
+				if(level.localplayers[0] util::down_button_held())
+				{
+					held = 1;
+					selected = selected + 10;
+				}
+				else if(!level.localplayers[0] util::down_button_pressed())
+				{
+					held = 0;
+					down_pressed = 0;
+				}
 			}
 			if(held)
 			{
@@ -383,13 +389,16 @@ function display_scene_menu(str_type, str_scene)
 					selected = names.size - 1;
 				}
 			}
-			else if(selected < 0)
+			else
 			{
-				selected = names.size - 1;
-			}
-			else if(selected >= names.size)
-			{
-				selected = 0;
+				if(selected < 0)
+				{
+					selected = names.size - 1;
+				}
+				else if(selected >= names.size)
+				{
+					selected = 0;
+				}
 			}
 			if(level.localplayers[0] buttonpressed(""))
 			{
@@ -419,36 +428,48 @@ function display_scene_menu(str_type, str_scene)
 					}
 					level thread display_scene_menu(str_type);
 				}
-				else if(names[selected] == "")
-				{
-					setdvar(#"client_scene_menu", 0);
-				}
-				else if(b_shot_menu)
+				else
 				{
 					if(names[selected] == "")
 					{
-						level.scene_menu_shot_index = selected;
-						while(level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed(""))
+						setdvar(#"client_scene_menu", 0);
+					}
+					else if(b_shot_menu)
+					{
+						if(names[selected] == "")
 						{
-							waitframe(1);
+							level.scene_menu_shot_index = selected;
+							while(level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed(""))
+							{
+								waitframe(1);
+							}
+							level thread display_scene_menu(str_type);
 						}
-						level thread display_scene_menu(str_type);
-					}
-					else if(names[selected] == "")
-					{
-						setdvar(#"stop_client_scene", str_scene);
-					}
-					else if(names[selected] == "")
-					{
-						setdvar(#"init_client_scene", str_scene);
-					}
-					else if(names[selected] == "")
-					{
-						setdvar(#"run_client_scene", str_scene);
-					}
-					else
-					{
-						setdvar(#"run_client_scene", (str_scene + "") + names[selected]);
+						else
+						{
+							if(names[selected] == "")
+							{
+								setdvar(#"stop_client_scene", str_scene);
+							}
+							else
+							{
+								if(names[selected] == "")
+								{
+									setdvar(#"init_client_scene", str_scene);
+								}
+								else
+								{
+									if(names[selected] == "")
+									{
+										setdvar(#"run_client_scene", str_scene);
+									}
+									else
+									{
+										setdvar(#"run_client_scene", (str_scene + "") + names[selected]);
+									}
+								}
+							}
+						}
 					}
 				}
 				while(level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed("") || level.localplayers[0] buttonpressed(""))
@@ -480,9 +501,9 @@ function function_c0f30783(s_scenedef)
 	/#
 		if(!(isdefined(s_scenedef.var_241c5f3c) && s_scenedef.var_241c5f3c) || (isdefined(s_scenedef.var_241c5f3c) && s_scenedef.var_241c5f3c && getdvarint(#"hash_11ad6a9695943217", 0)))
 		{
-			return 1;
+			return true;
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -559,14 +580,17 @@ function function_e67dabcc(strings, n_selected, str_title, var_444abf97)
 				text = text + "";
 				str_color = (0, 1, 0);
 			}
-			else if(is_scene_initialized(text))
-			{
-				text = text + "";
-				str_color = (0, 1, 0);
-			}
 			else
 			{
-				str_color = (1, 1, 1);
+				if(is_scene_initialized(text))
+				{
+					text = text + "";
+					str_color = (0, 1, 0);
+				}
+				else
+				{
+					str_color = (1, 1, 1);
+				}
 			}
 			if(i == 5)
 			{
@@ -594,10 +618,10 @@ function is_scene_playing(str_scene)
 		{
 			if(level flagsys::get(str_scene + ""))
 			{
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -617,10 +641,10 @@ function is_scene_initialized(str_scene)
 		{
 			if(level flagsys::get(str_scene + ""))
 			{
-				return 1;
+				return true;
 			}
 		}
-		return 0;
+		return false;
 	#/
 }
 
@@ -779,14 +803,17 @@ function debug_display()
 						print3d(self.origin - (0, 0, n_offset + 10), ("" + (isdefined(function_12479eba(o_scene._str_name)) ? "" + function_12479eba(o_scene._str_name) : "")) + "", (0.8, 0.2, 0.8), 1, 0.15, debug_frames);
 					}
 				}
-				else if(isdefined(self.scriptbundlename))
-				{
-					print3d(self.origin - vectorscale((0, 0, 1), 15), self.scriptbundlename, (0.8, 0.2, 0.8), 1, 0.3, debug_frames);
-				}
 				else
 				{
-					self.debug_display = 0;
-					break;
+					if(isdefined(self.scriptbundlename))
+					{
+						print3d(self.origin - vectorscale((0, 0, 1), 15), self.scriptbundlename, (0.8, 0.2, 0.8), 1, 0.3, debug_frames);
+					}
+					else
+					{
+						self.debug_display = 0;
+						break;
+					}
 				}
 				wait(debug_time);
 			}

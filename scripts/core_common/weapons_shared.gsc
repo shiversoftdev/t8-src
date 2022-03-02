@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"weapons_shared", &__init__, undefined, undefined);
 }
@@ -297,30 +297,42 @@ function function_e870d33d()
 				var_6900cfa4 = settings.var_442896c4;
 				var_5035eb1b = 3;
 			}
-			else if(var_37c33d3b >= 44)
+			else
 			{
-				var_6900cfa4 = settings.var_442896c4;
-				var_5035eb1b = 0;
-			}
-			else if(var_37c33d3b >= 40)
-			{
-				var_6900cfa4 = settings.var_e90ee08e;
-				var_5035eb1b = -4;
-			}
-			else if(var_37c33d3b >= 36)
-			{
-				var_6900cfa4 = settings.var_7188ee00;
-				var_5035eb1b = -8;
-			}
-			else if(var_37c33d3b >= 32)
-			{
-				var_6900cfa4 = settings.var_dffa4ad9;
-				var_5035eb1b = -12;
-			}
-			else if(var_37c33d3b >= 28)
-			{
-				var_6900cfa4 = settings.var_c93b1eb3;
-				var_5035eb1b = -16;
+				if(var_37c33d3b >= 44)
+				{
+					var_6900cfa4 = settings.var_442896c4;
+					var_5035eb1b = 0;
+				}
+				else
+				{
+					if(var_37c33d3b >= 40)
+					{
+						var_6900cfa4 = settings.var_e90ee08e;
+						var_5035eb1b = -4;
+					}
+					else
+					{
+						if(var_37c33d3b >= 36)
+						{
+							var_6900cfa4 = settings.var_7188ee00;
+							var_5035eb1b = -8;
+						}
+						else
+						{
+							if(var_37c33d3b >= 32)
+							{
+								var_6900cfa4 = settings.var_dffa4ad9;
+								var_5035eb1b = -12;
+							}
+							else if(var_37c33d3b >= 28)
+							{
+								var_6900cfa4 = settings.var_c93b1eb3;
+								var_5035eb1b = -16;
+							}
+						}
+					}
+				}
 			}
 			if(player getstance() == "crouch" && var_37c33d3b >= 36)
 			{
@@ -921,10 +933,10 @@ function function_9568854f(weapon, attachmentname)
 	{
 		if(attachment == attachmentname)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -968,16 +980,16 @@ function isheadshot(shitloc, smeansofdeath)
 {
 	if(isdefined(shitloc) && (shitloc == "head" || shitloc == "helmet"))
 	{
-		return 1;
+		return true;
 	}
 	switch(smeansofdeath)
 	{
 		case "mod_melee_assassinate":
 		case "mod_melee":
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 0;
+	return false;
 }
 

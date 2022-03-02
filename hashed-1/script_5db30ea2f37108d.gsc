@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_1f7228023b83d053", &__init__, undefined, undefined);
 }
@@ -80,7 +80,7 @@ function function_9e8baed0(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_f72f97af(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self endon_callback(&function_f8f90b83, #"disconnect");
+	self endoncallback(&function_f8f90b83, #"disconnect");
 	if(!isdefined(level.var_a8f38afe))
 	{
 		level.var_a8f38afe = [];
@@ -156,7 +156,7 @@ function function_f72f97af(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f8f90b83(var_c34665fc)
+function private function_f8f90b83(var_c34665fc)
 {
 	localclientnum = self getlocalclientnumber();
 	if(isdefined(level.var_a8f38afe[localclientnum]))
@@ -187,13 +187,16 @@ function function_b42c46e3(localclientnum, oldval, newval, bnewent, binitialsnap
 		var_fcec724a = struct::get("s_sp_fx_glint_loc");
 		self.var_4e35f286 = playfx(localclientnum, level._effect[#"hash_7fcbe2549babd8c"], var_fcec724a.origin);
 	}
-	else if(isdefined(self.var_87d57162))
+	else
 	{
-		self.var_87d57162 delete();
-	}
-	if(isdefined(self.var_4e35f286))
-	{
-		stopfx(localclientnum, self.var_4e35f286);
+		if(isdefined(self.var_87d57162))
+		{
+			self.var_87d57162 delete();
+		}
+		if(isdefined(self.var_4e35f286))
+		{
+			stopfx(localclientnum, self.var_4e35f286);
+		}
 	}
 }
 

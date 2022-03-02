@@ -52,7 +52,7 @@ function function_f747c7cd(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_97adc67(localclientnum)
+function private function_97adc67(localclientnum)
 {
 	self endon(#"death", #"entityshutdown");
 	util::waittill_dobj(localclientnum);
@@ -90,7 +90,7 @@ private function function_97adc67(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_a0c1af51(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_a0c1af51(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	util::waittill_dobj(localclientnum);
 	if(!isdefined(self))

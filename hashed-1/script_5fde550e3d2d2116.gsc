@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"ray_gun_mk2y", &__init__, undefined, undefined);
 }
@@ -74,7 +74,7 @@ function function_f77ced93(s_params)
 */
 function function_54922a21()
 {
-	self endon_callback(&function_a059fe7f, #"death", #"hash_414b2baf34e01af8");
+	self endoncallback(&function_a059fe7f, #"death", #"hash_414b2baf34e01af8");
 	w_current = self getcurrentweapon();
 	while(true)
 	{

@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_perk_deadshot", &__init__, undefined, undefined);
 }
@@ -139,7 +139,7 @@ function player_deadshot_perk_handler(localclientnum, oldval, newval, bnewent, b
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function is_local_player(player)
+function private is_local_player(player)
 {
 	if(!isdefined(player) || !isplayer(player))
 	{

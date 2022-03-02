@@ -534,7 +534,7 @@ function function_c3076788(e_player)
 {
 	if(level.var_7629d4e2 === 1)
 	{
-		return 0;
+		return false;
 	}
 	e_player.var_bec34462 = e_player function_117157d7();
 	if(isdefined(e_player.var_bec34462.n_slot))
@@ -610,26 +610,32 @@ function function_c3076788(e_player)
 		}
 		case 9:
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(e_player.currentweapon.isheroweapon === 1 || e_player.currentweapon.name === #"hash_603fdd2e4ae5b2b0")
 	{
 		self sethintstring("");
 	}
-	else if(isdefined(var_45d63569))
-	{
-		self sethintstring(zm_utility::function_d6046228(str_hint, var_306b9dd6), var_339390e4, var_45d63569);
-	}
-	else if(isdefined(var_339390e4))
-	{
-		self sethintstring(zm_utility::function_d6046228(str_hint, var_306b9dd6), var_339390e4);
-	}
 	else
 	{
-		self sethintstring(zm_utility::function_d6046228(str_hint, var_306b9dd6));
+		if(isdefined(var_45d63569))
+		{
+			self sethintstring(zm_utility::function_d6046228(str_hint, var_306b9dd6), var_339390e4, var_45d63569);
+		}
+		else
+		{
+			if(isdefined(var_339390e4))
+			{
+				self sethintstring(zm_utility::function_d6046228(str_hint, var_306b9dd6), var_339390e4);
+			}
+			else
+			{
+				self sethintstring(zm_utility::function_d6046228(str_hint, var_306b9dd6));
+			}
+		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1075,20 +1081,23 @@ function function_117157d7()
 					s_action.n_id = 5;
 				}
 			}
-			else if(isdefined(var_2c09b688))
+			else
 			{
-				if(namespace_9cf755b::function_c654e39a(var_2c09b688))
+				if(isdefined(var_2c09b688))
 				{
-					s_action.n_id = 4;
+					if(namespace_9cf755b::function_c654e39a(var_2c09b688))
+					{
+						s_action.n_id = 4;
+					}
+					else
+					{
+						s_action.n_id = 7;
+					}
 				}
 				else
 				{
-					s_action.n_id = 7;
+					s_action.n_id = 2;
 				}
-			}
-			else
-			{
-				s_action.n_id = 2;
 			}
 		}
 		else if(level.s_ww_interact.var_e76526e8[n_slot].n_state == 1 && namespace_9cf755b::function_c654e39a(var_2c09b688))
@@ -1102,17 +1111,23 @@ function function_117157d7()
 		{
 			s_action.n_id = 1;
 		}
-		else if(namespace_9cf755b::function_c654e39a(var_2c09b688))
-		{
-			s_action.n_id = 3;
-		}
-		else if(function_8ff10cdc())
-		{
-			s_action.n_id = 0;
-		}
 		else
 		{
-			s_action.n_id = 9;
+			if(namespace_9cf755b::function_c654e39a(var_2c09b688))
+			{
+				s_action.n_id = 3;
+			}
+			else
+			{
+				if(function_8ff10cdc())
+				{
+					s_action.n_id = 0;
+				}
+				else
+				{
+					s_action.n_id = 9;
+				}
+			}
 		}
 	}
 	return s_action;
@@ -1133,10 +1148,10 @@ function function_8ff10cdc()
 	{
 		if(s_slot.n_state == 1)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1148,7 +1163,7 @@ function function_8ff10cdc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_63841688()
+function private function_63841688()
 {
 	callback::on_disconnect(&on_disconnect);
 	level thread pap_timeout_watcher();
@@ -1164,7 +1179,7 @@ private function function_63841688()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_disconnect()
+function private on_disconnect()
 {
 	if(self.var_382b64f2 === 1)
 	{
@@ -1192,7 +1207,7 @@ private function on_disconnect()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_timeout_watcher()
+function private pap_timeout_watcher()
 {
 	level endon(#"end_game");
 	while(true)
@@ -1216,7 +1231,7 @@ private function pap_timeout_watcher()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_33f0ddd3(s_event)
+function private function_33f0ddd3(s_event)
 {
 	if(s_event.event === "take_weapon" && namespace_9cf755b::function_c654e39a(s_event.weapon))
 	{
@@ -1257,7 +1272,7 @@ private function function_33f0ddd3(s_event)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_537cf9cc(var_ea6b9209, n_ammo_clip, var_510d7f2b, var_f702cf26)
+function private function_537cf9cc(var_ea6b9209, n_ammo_clip, var_510d7f2b, var_f702cf26)
 {
 	function_b308d26b(var_ea6b9209, n_ammo_clip, var_510d7f2b, var_f702cf26);
 	/#

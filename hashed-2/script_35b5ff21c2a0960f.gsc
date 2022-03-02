@@ -119,11 +119,11 @@ function isfriendlyfire(eself, eattacker)
 {
 	if(!isdefined(eattacker))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.friendlyfire) && level.friendlyfire > 0)
 	{
-		return 0;
+		return false;
 	}
 	var_b423c7f3 = 1;
 	if(isdefined(eself.var_20c71d46) && isdefined(eself.owner) && eself.owner == eattacker)
@@ -135,14 +135,14 @@ function isfriendlyfire(eself, eattacker)
 		occupant_team = eself vehicle::vehicle_get_occupant_team();
 		if(occupant_team != "free" && occupant_team != "neutral" && (!util::function_fbce7263(occupant_team, eattacker.team) || util::function_9b7092ef(occupant_team, eattacker.team)))
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(!level.hardcoremode && isdefined(eself.owner) && eself.owner === eattacker.owner && !isdefined(eself.var_20c71d46))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

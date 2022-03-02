@@ -581,7 +581,7 @@ function function_ec08dc3a(s_params)
 */
 function function_85324f75(var_8657f7ff = 0)
 {
-	level endon_callback(&function_3cba3938, #"kill_special_round_fog", #"end_game");
+	level endoncallback(&function_3cba3938, #"kill_special_round_fog", #"end_game");
 	self endon(#"death");
 	if(!var_8657f7ff)
 	{
@@ -623,7 +623,7 @@ function function_85324f75(var_8657f7ff = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3cba3938(var_c34665fc)
+function private function_3cba3938(var_c34665fc)
 {
 	if(var_c34665fc == "kill_special_round_fog")
 	{

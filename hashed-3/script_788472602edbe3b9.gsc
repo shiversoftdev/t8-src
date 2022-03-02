@@ -37,7 +37,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_313e9d31()
+function autoexec function_313e9d31()
 {
 	callback::on_start_gametype(&function_dd840c5f);
 	level.var_660101f = getgametypesetting(#"specialisthealingenabled_allies_1");
@@ -306,7 +306,7 @@ function function_11b299fc()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function create_class_exclusion_list()
+function private create_class_exclusion_list()
 {
 	currentdvar = 0;
 	level.itemexclusions = [];
@@ -331,17 +331,17 @@ private function create_class_exclusion_list()
 	Parameters: 1
 	Flags: Private
 */
-private function is_attachment_excluded(attachment)
+function private is_attachment_excluded(attachment)
 {
 	numexclusions = level.attachmentexclusions.size;
 	for(exclusionindex = 0; exclusionindex < numexclusions; exclusionindex++)
 	{
 		if(attachment == level.attachmentexclusions[exclusionindex])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -353,7 +353,7 @@ private function is_attachment_excluded(attachment)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function load_default_loadout(weaponclass, classnum)
+function private load_default_loadout(weaponclass, classnum)
 {
 	level.classtoclassnum[weaponclass] = classnum;
 	level.var_8e1db8ee[classnum] = weaponclass;
@@ -368,29 +368,46 @@ private function load_default_loadout(weaponclass, classnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function weapon_class_register(weaponname, weapon_type)
+function private weapon_class_register(weaponname, weapon_type)
 {
 	if(issubstr("weapon_smg weapon_cqb weapon_assault weapon_tactical weapon_lmg weapon_sniper weapon_shotgun weapon_launcher weapon_knife weapon_special", weapon_type))
 	{
 		level.primary_weapon_array[getweapon(weaponname)] = 1;
 	}
-	else if(issubstr("weapon_pistol", weapon_type))
+	else
 	{
-		level.side_arm_array[getweapon(weaponname)] = 1;
+		if(issubstr("weapon_pistol", weapon_type))
+		{
+			level.side_arm_array[getweapon(weaponname)] = 1;
+		}
+		else
+		{
+			if(issubstr("weapon_grenade hero", weapon_type))
+			{
+				level.grenade_array[getweapon(weaponname)] = 1;
+			}
+			else
+			{
+				if(weapon_type == "weapon_explosive")
+				{
+					level.inventory_array[getweapon(weaponname)] = 1;
+				}
+				else
+				{
+					if(weapon_type == "weapon_rifle")
+					{
+						level.inventory_array[getweapon(weaponname)] = 1;
+					}
+					else
+					{
+						/#
+							assert(0, (("" + weapon_type) + "") + weaponname);
+						#/
+					}
+				}
+			}
+		}
 	}
-	else if(issubstr("weapon_grenade hero", weapon_type))
-	{
-		level.grenade_array[getweapon(weaponname)] = 1;
-	}
-	else if(weapon_type == "weapon_explosive")
-	{
-		level.inventory_array[getweapon(weaponname)] = 1;
-	}
-	else if(weapon_type == "weapon_rifle")
-	{
-		level.inventory_array[getweapon(weaponname)] = 1;
-	}
-	assert(0, (("" + weapon_type) + "") + weaponname);
 }
 
 /*
@@ -402,7 +419,7 @@ private function weapon_class_register(weaponname, weapon_type)
 	Parameters: 1
 	Flags: Private
 */
-private function heavy_weapon_register_dialog(weapon)
+function private heavy_weapon_register_dialog(weapon)
 {
 	readyvo = weapon.name + "_ready";
 	game.dialog[readyvo] = readyvo;
@@ -417,7 +434,7 @@ private function heavy_weapon_register_dialog(weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6bc4927f()
+function private function_6bc4927f()
 {
 	level.meleeweapons = [];
 	level.primary_weapon_array = [];
@@ -468,7 +485,7 @@ private function function_6bc4927f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8624b793()
+function private function_8624b793()
 {
 	/#
 		wait(0.5);
@@ -531,7 +548,7 @@ function function_97d216fa(response)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f8157311(weaponclass, killstreaknum)
+function private function_f8157311(weaponclass, killstreaknum)
 {
 	killstreaknum++;
 	killstreakstring = "killstreak" + killstreaknum;
@@ -695,7 +712,7 @@ function function_51dceab7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function reset_specialty_slots(class_num)
+function private reset_specialty_slots(class_num)
 {
 	self.specialty = [];
 }
@@ -723,13 +740,13 @@ function function_da96d067()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_50797a7f(equipment_name)
+function private function_50797a7f(equipment_name)
 {
 	if(equipment_name == level.weapontacticalinsertion.name && level.disabletacinsert)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -761,7 +778,7 @@ function init_player(takeallweapons)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_f8ae6f87()
+function private function_f8ae6f87()
 {
 	self gestures::function_ae63f496();
 }
@@ -775,7 +792,7 @@ private function function_f8ae6f87()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c84c77d8(loadoutslot)
+function private function_c84c77d8(loadoutslot)
 {
 	switch(loadoutslot)
 	{
@@ -784,7 +801,7 @@ private function function_c84c77d8(loadoutslot)
 			self.var_86fd5bf3.var_a2ef45f8--;
 			if(self.var_86fd5bf3.var_a2ef45f8 < 0)
 			{
-				return 0;
+				return false;
 			}
 			break;
 		}
@@ -793,7 +810,7 @@ private function function_c84c77d8(loadoutslot)
 			self.var_86fd5bf3.var_cd3db98c--;
 			if(self.var_86fd5bf3.var_cd3db98c < 0)
 			{
-				return 0;
+				return false;
 			}
 			break;
 		}
@@ -802,12 +819,12 @@ private function function_c84c77d8(loadoutslot)
 			self.var_86fd5bf3.var_25a22f4--;
 			if(self.var_86fd5bf3.var_25a22f4 < 0)
 			{
-				return 0;
+				return false;
 			}
 			break;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -819,7 +836,7 @@ private function function_c84c77d8(loadoutslot)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c0a72f5c()
+function private function_c0a72f5c()
 {
 	pixbeginevent(#"hash_73501a4f12a7c2bc");
 	self.var_c8836f02 = self function_fd62a2aa(self.class_num);
@@ -969,7 +986,7 @@ function function_6972fdbb(weaponclass)
 	Parameters: 0
 	Flags: Private
 */
-private function function_d81e599e()
+function private function_d81e599e()
 {
 	self.spawnweapon = level.weaponbasemeleeheld;
 	self giveweapon(level.weaponbasemeleeheld);
@@ -988,7 +1005,7 @@ private function function_d81e599e()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6bc6995e(weapon_options)
+function private function_6bc6995e(weapon_options)
 {
 	return weapon_options;
 }
@@ -1002,7 +1019,7 @@ private function function_6bc6995e(weapon_options)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_297a521e(type_index)
+function private function_297a521e(type_index)
 {
 	return self calcweaponoptions(self.class_num, type_index);
 }
@@ -1016,7 +1033,7 @@ private function function_297a521e(type_index)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f4042786(type_index)
+function private function_f4042786(type_index)
 {
 	weapon_options = self function_297a521e(type_index);
 	return function_6bc6995e(weapon_options);
@@ -1031,7 +1048,7 @@ private function function_f4042786(type_index)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2ada6938(slot)
+function private function_2ada6938(slot)
 {
 	weapon = self getloadoutweapon(self.class_num, slot);
 	if(weapon.iscarriedkillstreak)
@@ -1056,7 +1073,7 @@ private function function_2ada6938(slot)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function give_weapon(weapon, slot, var_a6a8156, var_bc218695)
+function private give_weapon(weapon, slot, var_a6a8156, var_bc218695)
 {
 	if(weapon != level.weaponnull)
 	{
@@ -1099,7 +1116,7 @@ private function give_weapon(weapon, slot, var_a6a8156, var_bc218695)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_d35292b6(var_c41b864, new_weapon, var_9691c281, var_8feec653)
+function private function_d35292b6(var_c41b864, new_weapon, var_9691c281, var_8feec653)
 {
 	spawn_weapon = var_c41b864;
 	if(new_weapon != level.weaponnull)
@@ -1121,7 +1138,7 @@ private function function_d35292b6(var_c41b864, new_weapon, var_9691c281, var_8f
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_286ee0b6(previous_weapon, spawn_weapon)
+function private function_286ee0b6(previous_weapon, spawn_weapon)
 {
 	if(!self hasmaxprimaryweapons())
 	{
@@ -1143,7 +1160,7 @@ private function function_286ee0b6(previous_weapon, spawn_weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ee9b8d55()
+function private function_ee9b8d55()
 {
 	primary_weapon = function_18a77b37("primary");
 	secondary_weapon = function_18a77b37("secondary");
@@ -1159,7 +1176,7 @@ private function function_ee9b8d55()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d9035e42(weapon)
+function private function_d9035e42(weapon)
 {
 	itemindex = getbaseweaponitemindex(weapon);
 	iteminfo = getunlockableiteminfofromindex(itemindex, 1);
@@ -1168,7 +1185,7 @@ private function function_d9035e42(weapon)
 		self.var_86fd5bf3.var_42aa9c3--;
 		if(self.var_86fd5bf3.var_42aa9c3 < 0)
 		{
-			return 0;
+			return false;
 		}
 	}
 	else if(iteminfo.loadoutslotname === "secondary")
@@ -1176,10 +1193,10 @@ private function function_d9035e42(weapon)
 		self.var_86fd5bf3.var_ab1984e9--;
 		if(self.var_86fd5bf3.var_ab1984e9 < 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1191,16 +1208,16 @@ private function function_d9035e42(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e229fb1(weapon)
+function private function_e229fb1(weapon)
 {
 	foreach(attachment in weapon.attachments)
 	{
 		if(attachment === "uber")
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1212,16 +1229,16 @@ private function function_e229fb1(weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ad874c55(weapon)
+function private function_ad874c55(weapon)
 {
 	foreach(attachment in weapon.attachments)
 	{
 		if(attachment === "clantag" || attachment === "killcounter" || attachment === "custom2")
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1233,7 +1250,7 @@ private function function_ad874c55(weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3aa744b9(slot, weapon)
+function private function_3aa744b9(slot, weapon)
 {
 	num_attachments = weapon.attachments.size;
 	if(function_ad874c55(weapon))
@@ -1250,14 +1267,14 @@ private function function_3aa744b9(slot, weapon)
 		self.var_86fd5bf3.var_355c3581 = self.var_86fd5bf3.var_355c3581 - num_attachments;
 		if(self.var_86fd5bf3.var_355c3581 < 0)
 		{
-			return 0;
+			return false;
 		}
 		if(var_2c23a9e6 || weapon.isdualwield)
 		{
 			self.var_86fd5bf3.var_882b6b71--;
 			if(self.var_86fd5bf3.var_882b6b71 < 0)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
@@ -1266,18 +1283,18 @@ private function function_3aa744b9(slot, weapon)
 		self.var_86fd5bf3.var_934131b6 = self.var_86fd5bf3.var_934131b6 - num_attachments;
 		if(self.var_86fd5bf3.var_934131b6 < 0)
 		{
-			return 0;
+			return false;
 		}
 		if(var_2c23a9e6 || weapon.isdualwield)
 		{
 			self.var_86fd5bf3.var_c3fc8c73--;
 			if(self.var_86fd5bf3.var_c3fc8c73 < 0)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1289,7 +1306,7 @@ private function function_3aa744b9(slot, weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d126318c(slot, weapon)
+function private function_d126318c(slot, weapon)
 {
 	var_b5bd8bd9 = 0;
 	var_5d05dc8 = 0;
@@ -1333,7 +1350,7 @@ private function function_d126318c(slot, weapon)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_68c2f1dc(slot, previous_weapon, var_c41b864, var_fe5710f, var_60b97679)
+function private function_68c2f1dc(slot, previous_weapon, var_c41b864, var_fe5710f, var_60b97679)
 {
 	loadout = self function_e27dc453(slot);
 	var_8feec653 = loadout.weapon;
@@ -1362,7 +1379,7 @@ private function function_68c2f1dc(slot, previous_weapon, var_c41b864, var_fe571
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_cba7f33e(slot, previous_weapon, var_c41b864, var_4571c11d)
+function private function_cba7f33e(slot, previous_weapon, var_c41b864, var_4571c11d)
 {
 	var_8feec653 = self function_18a77b37(slot);
 	weapon = self function_2ada6938(slot);
@@ -1379,7 +1396,7 @@ private function function_cba7f33e(slot, previous_weapon, var_c41b864, var_4571c
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function give_hero_gadget(previous_weapon, var_c41b864, var_4571c11d)
+function private give_hero_gadget(previous_weapon, var_c41b864, var_4571c11d)
 {
 	var_8feec653 = self function_18a77b37("herogadget");
 	self [[var_4571c11d]]("herogadget", previous_weapon);
@@ -1395,7 +1412,7 @@ private function give_hero_gadget(previous_weapon, var_c41b864, var_4571c11d)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_f20f595a(previous_weapon, var_c41b864, var_4571c11d)
+function private function_f20f595a(previous_weapon, var_c41b864, var_4571c11d)
 {
 	var_8feec653 = self function_18a77b37("ultimate");
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_ec20b2a))
@@ -1446,7 +1463,7 @@ function function_d98a8122(spawn_weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function give_weapons(previous_weapon)
+function private give_weapons(previous_weapon)
 {
 	pixbeginevent(#"give_weapons");
 	self.primaryloadoutgunsmithvariantindex = self getloadoutgunsmithvariantindex(self.class_num, 0);
@@ -1528,7 +1545,7 @@ function function_5536bd9e()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8e961216(slot, previous_weapon)
+function private function_8e961216(slot, previous_weapon)
 {
 	pixbeginevent(#"hash_7187aa59ab81d21a");
 	changedclass = self.pers[#"changed_class"];
@@ -1680,7 +1697,7 @@ function function_c3448ab0(slot, previous_weapon, force_give_gadget_health_regen
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_215f4f21(slot, previous_weapon)
+function private function_215f4f21(slot, previous_weapon)
 {
 	pixbeginevent(#"hash_7ef6c9c82f604aa3");
 	changedclass = self.pers[#"changed_class"];
@@ -1755,7 +1772,7 @@ private function function_215f4f21(slot, previous_weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c4d5300a(slot, previous_weapon)
+function private function_c4d5300a(slot, previous_weapon)
 {
 	pixbeginevent(#"hash_2a6b8fa16718b02a");
 	changedclass = self.pers[#"changed_class"];
@@ -1941,7 +1958,7 @@ function give_loadout(team, weaponclass)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b61852e1()
+function private function_b61852e1()
 {
 	self endon(#"disconnect");
 	self notify("25e412c683e8d36");
@@ -1963,7 +1980,7 @@ private function function_b61852e1()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_43048d33(spawn_weapon, primaryweapon)
+function private function_43048d33(spawn_weapon, primaryweapon)
 {
 	if(!isdefined(self.firstspawn))
 	{
@@ -2014,7 +2031,7 @@ private function function_43048d33(spawn_weapon, primaryweapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_connecting()
+function private on_player_connecting()
 {
 	if(!isdefined(self))
 	{
@@ -2111,7 +2128,7 @@ function init_dvars()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function cac_selector()
+function private cac_selector()
 {
 	self.detectexplosives = 0;
 	if(isdefined(self.specialty))
@@ -2220,36 +2237,42 @@ function cac_modified_damage(victim, attacker, damage, mod, weapon, inflictor, h
 				#/
 			}
 		}
-		else if(victim hasperk(#"specialty_armorvest") && isprimarydamage(mod) && !function_4c80bca1(hitloc))
+		else
 		{
-			final_damage = damage * (level.cac_armorvest_data * 0.01);
-			/#
-				if(debug)
+			if(victim hasperk(#"specialty_armorvest") && isprimarydamage(mod) && !function_4c80bca1(hitloc))
+			{
+				final_damage = damage * (level.cac_armorvest_data * 0.01);
+				/#
+					if(debug)
+					{
+						println((("" + attacker.name) + "") + victim.name);
+					}
+				#/
+			}
+			else
+			{
+				if(victim hasperk(#"specialty_fireproof") && weapon_utils::isfiredamage(weapon, mod))
 				{
-					println((("" + attacker.name) + "") + victim.name);
+					final_damage = damage * (level.cac_fireproof_data * 0.01);
+					/#
+						if(debug)
+						{
+							println((("" + attacker.name) + "") + victim.name);
+						}
+					#/
 				}
-			#/
-		}
-		else if(victim hasperk(#"specialty_fireproof") && weapon_utils::isfiredamage(weapon, mod))
-		{
-			final_damage = damage * (level.cac_fireproof_data * 0.01);
-			/#
-				if(debug)
+				else if(!var_81ca51d && victim hasperk(#"specialty_flakjacket") && weapon_utils::isexplosivedamage(mod) && !weapon.ignoresflakjacket && !victim grenade_stuck(inflictor))
 				{
-					println((("" + attacker.name) + "") + victim.name);
+					cac_data = (level.hardcoremode ? level.cac_flakjacket_hardcore_data : level.cac_flakjacket_data);
+					final_damage = int(damage * (cac_data / 100));
+					/#
+						if(debug)
+						{
+							println(((("" + victim.name) + "") + attacker.name) + "");
+						}
+					#/
 				}
-			#/
-		}
-		else if(!var_81ca51d && victim hasperk(#"specialty_flakjacket") && weapon_utils::isexplosivedamage(mod) && !weapon.ignoresflakjacket && !victim grenade_stuck(inflictor))
-		{
-			cac_data = (level.hardcoremode ? level.cac_flakjacket_hardcore_data : level.cac_flakjacket_data);
-			final_damage = int(damage * (cac_data / 100));
-			/#
-				if(debug)
-				{
-					println(((("" + victim.name) + "") + attacker.name) + "");
-				}
-			#/
+			}
 		}
 	}
 	/#
@@ -2281,7 +2304,7 @@ function cac_modified_damage(victim, attacker, damage, mod, weapon, inflictor, h
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4c80bca1(hitloc)
+function private function_4c80bca1(hitloc)
 {
 	return hitloc == "helmet" || hitloc == "head" || hitloc == "neck";
 }
@@ -2295,7 +2318,7 @@ private function function_4c80bca1(hitloc)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function grenade_stuck(inflictor)
+function private grenade_stuck(inflictor)
 {
 	return isdefined(inflictor) && isdefined(inflictor.stucktoplayer) && inflictor.stucktoplayer == self;
 }
@@ -2309,7 +2332,7 @@ private function grenade_stuck(inflictor)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6dd64ede(slot, weapon)
+function private function_6dd64ede(slot, weapon)
 {
 	self gadgetdeactivate(self.gadget_health_regen_slot, self.gadget_health_regen_weapon);
 	thread function_c57586b8();
@@ -2324,7 +2347,7 @@ private function function_6dd64ede(slot, weapon)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c57586b8()
+function private function_c57586b8()
 {
 	self endon(#"disconnect");
 	wait(0.5);
@@ -2344,7 +2367,7 @@ private function function_c57586b8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8aa3ff4e()
+function private function_8aa3ff4e()
 {
 	wildcards = self function_6f2c0492(self.class_num);
 	self.var_86fd5bf3 = spawnstruct();

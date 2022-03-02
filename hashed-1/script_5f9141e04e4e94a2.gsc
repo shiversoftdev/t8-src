@@ -74,7 +74,7 @@ function init()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_18a1849f(e_player)
+function private function_18a1849f(e_player)
 {
 	if(!isdefined(level.var_23674b8f.e_player))
 	{
@@ -92,7 +92,7 @@ private function function_18a1849f(e_player)
 	Parameters: 1
 	Flags: Private
 */
-private function function_a4ea69bf(w_weapon)
+function private function_a4ea69bf(w_weapon)
 {
 	return isdefined(w_weapon) && (w_weapon == level.var_23674b8f.var_905d8263 || w_weapon == level.var_23674b8f.var_3b5ae85);
 }
@@ -106,7 +106,7 @@ private function function_a4ea69bf(w_weapon)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f6048ee(e_player)
+function private function_f6048ee(e_player)
 {
 	if(isdefined(e_player))
 	{
@@ -121,17 +121,20 @@ private function function_f6048ee(e_player)
 				self sethintstring(#"hash_12346bdab086516e");
 			}
 		}
-		else if(level.var_23674b8f.e_player == e_player)
-		{
-			self sethintstring(#"hash_74fc96e8d58ff646");
-		}
 		else
 		{
-			self sethintstring(#"hash_2054e8fdb6521566");
+			if(level.var_23674b8f.e_player == e_player)
+			{
+				self sethintstring(#"hash_74fc96e8d58ff646");
+			}
+			else
+			{
+				self sethintstring(#"hash_2054e8fdb6521566");
+			}
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -143,7 +146,7 @@ private function function_f6048ee(e_player)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5b4f9f76(e_player)
+function private function_5b4f9f76(e_player)
 {
 	var_2fff5cb5 = level.var_23674b8f.e_player === e_player;
 	var_24441d81 = !isdefined(level.var_23674b8f.e_player) && !isdefined(e_player.var_9c20e2c9);
@@ -173,7 +176,7 @@ function start_quest()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b60df00d()
+function private function_b60df00d()
 {
 	level endon(#"insanity_mode_triggered");
 	level thread function_cbeb9a33();
@@ -216,9 +219,9 @@ function function_33d9b1f8()
 			self thread function_1f955544();
 			self.var_7a9b6c1d = 1;
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -278,7 +281,7 @@ function function_62970384()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_9d66ea6f(var_2e1f34dd, e_player)
+function private function_9d66ea6f(var_2e1f34dd, e_player)
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -325,7 +328,7 @@ function function_c5868f47()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_87e09347()
+function private function_87e09347()
 {
 	level endon(#"end_game", #"hash_36fd0ff497e7cb39");
 	level.var_23674b8f.n_step = 2;
@@ -378,7 +381,7 @@ private function function_87e09347()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_eddc2ed3()
+function private function_eddc2ed3()
 {
 	if(zm_utility::is_classic())
 	{
@@ -400,7 +403,7 @@ private function function_eddc2ed3()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fe82c566()
+function private function_fe82c566()
 {
 	self endon(#"death", #"hash_530fc6e3ae75d439");
 	level.var_23674b8f.var_c8a6d360 = 0;
@@ -448,7 +451,7 @@ private function function_fe82c566()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_92344a03()
+function private function_92344a03()
 {
 	self endon(#"death", #"hash_376274afc09952fa");
 	while(true)
@@ -579,7 +582,7 @@ function function_b99d76c0()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2b0060b8()
+function private function_2b0060b8()
 {
 	self endon(#"death");
 	var_a28e7c1f = self.origin + (0, 0, 1);
@@ -610,7 +613,7 @@ private function function_2b0060b8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a66f0de2()
+function private function_a66f0de2()
 {
 	namespace_bd74bbd2::end(#"sc_mk2y");
 	s_unitrigger = level.var_23674b8f.var_fead3ae9 namespace_2e9c09b3::function_f1827cc6(&function_b9a31cb, &function_f6048ee, &function_5b4f9f76);
@@ -628,7 +631,7 @@ private function function_a66f0de2()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b9a31cb(var_2e1f34dd, e_player)
+function private function_b9a31cb(var_2e1f34dd, e_player)
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -659,7 +662,7 @@ private function function_b9a31cb(var_2e1f34dd, e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_17f3e9e2()
+function private function_17f3e9e2()
 {
 	s_unitrigger = level.var_23674b8f.var_fead3ae9 zm_unitrigger::create(&function_7015dc35, 96);
 	zm_unitrigger::unitrigger_force_per_player_triggers(s_unitrigger);
@@ -675,7 +678,7 @@ private function function_17f3e9e2()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7015dc35(e_player)
+function private function_7015dc35(e_player)
 {
 	if(isdefined(e_player))
 	{
@@ -687,9 +690,9 @@ private function function_7015dc35(e_player)
 		{
 			self sethintstring(#"hash_2054e8fdb6521566");
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -701,7 +704,7 @@ private function function_7015dc35(e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2ac1278b()
+function private function_2ac1278b()
 {
 	self endon(#"death");
 	while(true)
@@ -752,7 +755,7 @@ function function_bafa7a2b()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a36c4a5e()
+function private function_a36c4a5e()
 {
 	level.var_23674b8f.e_player thread function_cba90c3c();
 	level.var_23674b8f.n_step = 4;
@@ -767,7 +770,7 @@ private function function_a36c4a5e()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_cba90c3c()
+function private function_cba90c3c()
 {
 	self endon(#"death");
 	self waittill(#"hash_13f3f231b45420ef");
@@ -791,7 +794,7 @@ private function function_cba90c3c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fa74521f()
+function private function_fa74521f()
 {
 	/#
 		if(getdvarint(#"hash_7919e37cd5d57659", 0))
@@ -813,7 +816,7 @@ private function function_fa74521f()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_disconnect()
+function private on_disconnect()
 {
 	if(function_18a1849f(self))
 	{
@@ -830,7 +833,7 @@ private function on_disconnect()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_ac5deb51(var_e19b7aed = 1)
+function private function_ac5deb51(var_e19b7aed = 1)
 {
 	level notify(#"hash_36fd0ff497e7cb39");
 	switch(level.var_23674b8f.n_step)

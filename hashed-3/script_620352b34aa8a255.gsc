@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_262f628396f811df", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1de6a85(timeout_time, var_b2c60867)
+function private function_d1de6a85(timeout_time, var_b2c60867)
 {
 	callback::add_callback(#"hash_137b937fd26992be", &function_ff66b979);
 	self.timeout_time = zm_trial::function_5769f26a(timeout_time);
@@ -71,7 +71,7 @@ private function function_d1de6a85(timeout_time, var_b2c60867)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	callback::remove_callback(#"hash_137b937fd26992be", &function_ff66b979);
 	foreach(player in getplayers())
@@ -94,7 +94,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28ac7)
+function private function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28ac7)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656", #"host_migration_begin");
@@ -140,7 +140,7 @@ private function function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function damage_monitor(var_a4a28ac7)
+function private damage_monitor(var_a4a28ac7)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656", #"host_migration_begin");
@@ -188,7 +188,7 @@ private function damage_monitor(var_a4a28ac7)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ff66b979()
+function private function_ff66b979()
 {
 	level endon(#"end_of_round");
 	foreach(player in getplayers())

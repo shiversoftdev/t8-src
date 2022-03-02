@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"planner_commander_utility", &plannercommanderutility::__init__, undefined, undefined);
 }
@@ -35,7 +35,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	plannerutility::registerplannerapi(#"hash_3032cc0c39eec160", &function_790fb743);
 	plannerutility::registerplannerapi(#"hash_27cb7425e82f36b2", &function_a05a08bf);
@@ -145,7 +145,7 @@ private function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function _assignsquadunclaimeddefendgameobjectparam(planner, squadindex)
+function private _assignsquadunclaimeddefendgameobjectparam(planner, squadindex)
 {
 	defendobjects = planner::getblackboardattribute(planner, #"gameobjects_defend");
 	validobjects = [];
@@ -178,7 +178,7 @@ private function _assignsquadunclaimeddefendgameobjectparam(planner, squadindex)
 	Parameters: 2
 	Flags: Private
 */
-private function _assignsquadassaultgameobjectparam(planner, squadindex)
+function private _assignsquadassaultgameobjectparam(planner, squadindex)
 {
 	assaultobjects = planner::getblackboardattribute(planner, #"gameobjects_assault");
 	if(assaultobjects.size > 0)
@@ -199,7 +199,7 @@ private function _assignsquadassaultgameobjectparam(planner, squadindex)
 	Parameters: 2
 	Flags: Private
 */
-private function _assignsquaddefendgameobjectparam(planner, squadindex)
+function private _assignsquaddefendgameobjectparam(planner, squadindex)
 {
 	defendobjects = planner::getblackboardattribute(planner, #"gameobjects_defend");
 	if(defendobjects.size > 0)
@@ -220,7 +220,7 @@ private function _assignsquaddefendgameobjectparam(planner, squadindex)
 	Parameters: 1
 	Flags: Private
 */
-private function _calculatealliedteams(team)
+function private _calculatealliedteams(team)
 {
 	return array(team);
 }
@@ -234,7 +234,7 @@ private function _calculatealliedteams(team)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _calculatebotscentroid(doppelbots)
+function private _calculatebotscentroid(doppelbots)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -260,7 +260,7 @@ private function _calculatebotscentroid(doppelbots)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _calculateclosestgameobject(position, gameobjects)
+function private _calculateclosestgameobject(position, gameobjects)
 {
 	/#
 		assert(isvec(position));
@@ -295,7 +295,7 @@ private function _calculateclosestgameobject(position, gameobjects)
 	Parameters: 2
 	Flags: Private
 */
-private function function_65b16924(doppelbots, components)
+function private function_65b16924(doppelbots, components)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -359,7 +359,7 @@ private function function_65b16924(doppelbots, components)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _calculateallpathablegameobjects(planner, doppelbots, gameobjects)
+function private _calculateallpathablegameobjects(planner, doppelbots, gameobjects)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -441,7 +441,7 @@ private function _calculateallpathablegameobjects(planner, doppelbots, gameobjec
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_816f4052(planner, doppelbots, bundles)
+function private function_816f4052(planner, doppelbots, bundles)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -540,7 +540,7 @@ private function function_816f4052(planner, doppelbots, bundles)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_77cd4593(planner, doppelbots, components)
+function private function_77cd4593(planner, doppelbots, components)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -667,7 +667,7 @@ private function function_77cd4593(planner, doppelbots, components)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_98bde2b6(doppelbots, entities)
+function private function_98bde2b6(doppelbots, entities)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -743,7 +743,7 @@ private function function_98bde2b6(doppelbots, entities)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _calculateallpathableobjectives(doppelbots, objectives)
+function private _calculateallpathableobjectives(doppelbots, objectives)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -808,7 +808,7 @@ private function _calculateallpathableobjectives(doppelbots, objectives)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _calculateallpathableclients(doppelbots, clients)
+function private _calculateallpathableclients(doppelbots, clients)
 {
 	/#
 		assert(isarray(doppelbots));
@@ -891,7 +891,7 @@ private function _calculateallpathableclients(doppelbots, clients)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _calculatepositionquerypath(queryresult, position, entity)
+function private _calculatepositionquerypath(queryresult, position, entity)
 {
 	path = undefined;
 	longestpath = 0;
@@ -929,7 +929,7 @@ private function _calculatepositionquerypath(queryresult, position, entity)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _calculateprioritygameobjects(gameobjects, prioritygameobjectidentifiers)
+function private _calculateprioritygameobjects(gameobjects, prioritygameobjectidentifiers)
 {
 	prioritygameobjects = [];
 	foreach(gameobjectentry in gameobjects)
@@ -959,7 +959,7 @@ private function _calculateprioritygameobjects(gameobjects, prioritygameobjectid
 	Parameters: 1
 	Flags: Private
 */
-private function _updatehistoricalgameobjects(commander)
+function private _updatehistoricalgameobjects(commander)
 {
 	destroyedgameobjecttotal = blackboard::getstructblackboardattribute(commander, #"gameobjects_assault_destroyed");
 	assaultobjects = blackboard::getstructblackboardattribute(commander, #"gameobjects_assault");
@@ -999,7 +999,7 @@ private function _updatehistoricalgameobjects(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function daemonupdateclients(commander)
+function private daemonupdateclients(commander)
 {
 	team = blackboard::getstructblackboardattribute(commander, #"team");
 	clients = getplayers(team);
@@ -1066,7 +1066,7 @@ private function daemonupdateclients(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function daemonupdategameobjects(commander)
+function private daemonupdategameobjects(commander)
 {
 	if(isdefined(level.a_gameobjects))
 	{
@@ -1173,7 +1173,7 @@ private function daemonupdategameobjects(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e6443602(commander)
+function private function_e6443602(commander)
 {
 	if(isdefined(level.var_97964e1))
 	{
@@ -1232,7 +1232,7 @@ private function function_e6443602(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7706a6fa(commander)
+function private function_7706a6fa(commander)
 {
 	if(isdefined(level.var_8239a46c) && level flagsys::get(#"hash_3a3d68ab491e1985"))
 	{
@@ -1336,7 +1336,7 @@ private function function_7706a6fa(commander)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function daemonupdateobjective(commander)
+function private daemonupdateobjective(commander)
 {
 	if(isdefined(level.a_objectives))
 	{
@@ -1469,7 +1469,7 @@ function function_790fb743(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a05a08bf(planner, constants)
+function private function_a05a08bf(planner, constants)
 {
 	/#
 		assert(isstring(constants[#"key"]) || function_7a600918(constants[#"key"]), ("" + "") + "");
@@ -1486,7 +1486,7 @@ private function function_a05a08bf(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyblackboardvalueistrue(planner, constants)
+function private strategyblackboardvalueistrue(planner, constants)
 {
 	/#
 		assert(isstring(constants[#"key"]) || function_7a600918(constants[#"key"]), ("" + "") + "");
@@ -1503,7 +1503,7 @@ private function strategyblackboardvalueistrue(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_a75b29d8(planner, constants)
+function private function_a75b29d8(planner, constants)
 {
 	/#
 		assert(isstring(constants[#"focus"]) || function_7a600918(constants[#"focus"]), ("" + "") + "");
@@ -1514,7 +1514,7 @@ private function function_a75b29d8(planner, constants)
 	#/
 	if(!isdefined(target))
 	{
-		return 0;
+		return false;
 	}
 	strategy = target[#"strategy"];
 	/#
@@ -1522,7 +1522,7 @@ private function function_a75b29d8(planner, constants)
 	#/
 	if(!isstruct(strategy))
 	{
-		return 0;
+		return false;
 	}
 	var_90b56683 = strategiccommandutility::function_f4921cb3(constants[#"focus"]);
 	var_3c288f1b = strategy.("doppelbotsfocus");
@@ -1530,10 +1530,10 @@ private function function_a75b29d8(planner, constants)
 	{
 		if(var_3c288f1b == focus)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1545,7 +1545,7 @@ private function function_a75b29d8(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e0092cfc(planner, constant)
+function private function_e0092cfc(planner, constant)
 {
 	planner::setblackboardattribute(planner, #"current_target", undefined);
 	targets = planner::getblackboardattribute(planner, #"targets");
@@ -1580,7 +1580,7 @@ private function function_e0092cfc(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_86270cca(planner, constant)
+function private function_86270cca(planner, constant)
 {
 	target = planner::getblackboardattribute(planner, #"current_target");
 	validsquads = planner::getblackboardattribute(planner, #"hash_4661e4151a0f3f7d");
@@ -1662,7 +1662,7 @@ private function function_86270cca(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_14c766b3(planner, constant)
+function private function_14c766b3(planner, constant)
 {
 	var_3d32e488 = planner::getblackboardattribute(planner, #"hash_6df1f48e5a0dda8");
 	target = planner::getblackboardattribute(planner, #"current_target");
@@ -1732,7 +1732,7 @@ private function function_14c766b3(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_52012b78(planner, constant)
+function private function_52012b78(planner, constant)
 {
 	target = planner::getblackboardattribute(planner, #"current_target");
 	/#
@@ -1797,7 +1797,7 @@ private function function_52012b78(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_34464159(planner, constant)
+function private function_34464159(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1847,7 +1847,7 @@ private function function_34464159(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadcalculatepathableobjectivesparam(planner, constant)
+function private strategysquadcalculatepathableobjectivesparam(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1869,7 +1869,7 @@ private function strategysquadcalculatepathableobjectivesparam(planner, constant
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadcalculatepathableplayersparam(planner, constant)
+function private strategysquadcalculatepathableplayersparam(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1891,7 +1891,7 @@ private function strategysquadcalculatepathableplayersparam(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyincrementblackboardvalue(planner, constants)
+function private strategyincrementblackboardvalue(planner, constants)
 {
 	/#
 		assert(isarray(constants));
@@ -1911,7 +1911,7 @@ private function strategyincrementblackboardvalue(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_166d74b2(planner, constants)
+function private function_166d74b2(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -1973,7 +1973,7 @@ private function function_166d74b2(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_f162255b(planner, constants)
+function private function_f162255b(planner, constants)
 {
 	targets = planner::getblackboardattribute(planner, #"targets");
 	priorities = array(#"hash_179ccf9d7cfd1e31", #"hash_254689c549346d57", #"hash_4bd86f050b36e1f6", #"hash_19c0ac460bdb9928", #"hash_160b01bbcd78c723", #"hash_c045a5aa4ac7c1d", #"hash_47fd3da20e90cd01", #"hash_64fc5c612a94639c", #"hash_46658a8270df5a9e");
@@ -2000,7 +2000,7 @@ private function function_f162255b(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysetblackboardvalue(planner, constants)
+function private strategysetblackboardvalue(planner, constants)
 {
 	/#
 		assert(isarray(constants));
@@ -2020,7 +2020,7 @@ private function strategysetblackboardvalue(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_20de0d52(planner, constants)
+function private function_20de0d52(planner, constants)
 {
 	/#
 		assert(isarray(constants));
@@ -2040,7 +2040,7 @@ private function function_20de0d52(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyshouldrushprogress(planner, constant)
+function private strategyshouldrushprogress(planner, constant)
 {
 	if(planner::getblackboardattribute(planner, #"allow_progress_throttling") === 1)
 	{
@@ -2077,7 +2077,7 @@ private function strategyshouldrushprogress(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyshouldthrottleprogress(planner, constant)
+function private strategyshouldthrottleprogress(planner, constant)
 {
 	if(planner::getblackboardattribute(planner, #"allow_progress_throttling") === 1)
 	{
@@ -2114,7 +2114,7 @@ private function strategyshouldthrottleprogress(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadorderparam(planner, constants)
+function private strategysquadorderparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2136,7 +2136,7 @@ private function strategysquadorderparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadassignforcegoalparam(planner, constants)
+function private strategysquadassignforcegoalparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2156,7 +2156,7 @@ private function strategysquadassignforcegoalparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadassignpathableescortparam(planner, constants)
+function private strategysquadassignpathableescortparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2198,7 +2198,7 @@ private function strategysquadassignpathableescortparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadassignpathableobjectparam(planner, constant)
+function private strategysquadassignpathableobjectparam(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2245,7 +2245,7 @@ private function strategysquadassignpathableobjectparam(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadassignpathableobjectiveparam(planner, constant)
+function private strategysquadassignpathableobjectiveparam(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2276,7 +2276,7 @@ private function strategysquadassignpathableobjectiveparam(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadassignpathableunclaimedobjectparam(planner, constant)
+function private strategysquadassignpathableunclaimedobjectparam(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2324,7 +2324,7 @@ private function strategysquadassignpathableunclaimedobjectparam(planner, consta
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_b77887e(planner, constants)
+function private function_b77887e(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2347,7 +2347,7 @@ private function function_b77887e(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadassignwanderparam(planner, constants)
+function private strategysquadassignwanderparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2366,7 +2366,7 @@ private function strategysquadassignwanderparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadclaimobjectparam(planner, constants)
+function private strategysquadclaimobjectparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2392,7 +2392,7 @@ private function strategysquadclaimobjectparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadcopyblackboardvalue(planner, constants)
+function private strategysquadcopyblackboardvalue(planner, constants)
 {
 	/#
 		assert(isstring(constants[#"from"]) || function_7a600918(constants[#"from"]), ("" + "") + "");
@@ -2417,7 +2417,7 @@ private function strategysquadcopyblackboardvalue(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_86c0732e(planner, constants)
+function private function_86c0732e(planner, constants)
 {
 	/#
 		assert(isstring(constants[#"from"]) || function_7a600918(constants[#"from"]), ("" + "") + "");
@@ -2442,7 +2442,7 @@ private function function_86c0732e(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d58b0781(planner, constants)
+function private function_d58b0781(planner, constants)
 {
 	return function_faa6dd57(planner, constants, constants[#"key"]);
 }
@@ -2456,7 +2456,7 @@ private function function_d58b0781(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_45f841ea(planner, constants)
+function private function_45f841ea(planner, constants)
 {
 	return function_faa6dd57(planner, constants, #"hash_1a25f2c4feaf60cf");
 }
@@ -2470,7 +2470,7 @@ private function function_45f841ea(planner, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_faa6dd57(planner, constants, var_92812a91)
+function private function_faa6dd57(planner, constants, var_92812a91)
 {
 	squads = planner::getblackboardattribute(planner, var_92812a91);
 	/#
@@ -2514,7 +2514,7 @@ private function function_faa6dd57(planner, constants, var_92812a91)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadcreateofsizexparam(planner, constants)
+function private strategysquadcreateofsizexparam(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -2554,7 +2554,7 @@ private function strategysquadcreateofsizexparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescortassignmainguardparam(planner, constants)
+function private strategysquadescortassignmainguardparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2580,7 +2580,7 @@ private function strategysquadescortassignmainguardparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescortassignrearguardparam(planner, constants)
+function private strategysquadescortassignrearguardparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2606,7 +2606,7 @@ private function strategysquadescortassignrearguardparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescortassignvanguardparam(planner, constants)
+function private strategysquadescortassignvanguardparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2632,7 +2632,7 @@ private function strategysquadescortassignvanguardparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescortcalculatepathablepoiparam(planner, constants)
+function private strategysquadescortcalculatepathablepoiparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2656,7 +2656,7 @@ private function strategysquadescortcalculatepathablepoiparam(planner, constants
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescorthasnomainguard(planner, constants)
+function private strategysquadescorthasnomainguard(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2667,10 +2667,10 @@ private function strategysquadescorthasnomainguard(planner, constants)
 	{
 		if(escort[#"escortmainguard"].size > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2682,7 +2682,7 @@ private function strategysquadescorthasnomainguard(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescorthasnorearguard(planner, constants)
+function private strategysquadescorthasnorearguard(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2693,10 +2693,10 @@ private function strategysquadescorthasnorearguard(planner, constants)
 	{
 		if(escort[#"escortrearguard"].size > 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2708,7 +2708,7 @@ private function strategysquadescorthasnorearguard(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadescorthasnovanguard(planner, constants)
+function private strategysquadescorthasnovanguard(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2719,10 +2719,10 @@ private function strategysquadescorthasnovanguard(planner, constants)
 	{
 		if(escort[#"escortvanguard"].size > 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2734,7 +2734,7 @@ private function strategysquadescorthasnovanguard(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadsortescortpoi(planner, constants)
+function private strategysquadsortescortpoi(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2770,7 +2770,7 @@ private function strategysquadsortescortpoi(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function bunker_exposure_scale(planner, constants)
+function private bunker_exposure_scale(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2796,7 +2796,7 @@ private function bunker_exposure_scale(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadhaspathableescort(planner, constants)
+function private strategysquadhaspathableescort(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2815,7 +2815,7 @@ private function strategysquadhaspathableescort(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadhaspathableobject(planner, constants)
+function private strategysquadhaspathableobject(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2834,7 +2834,7 @@ private function strategysquadhaspathableobject(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadhaspathableobjective(planner, constants)
+function private strategysquadhaspathableobjective(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2853,7 +2853,7 @@ private function strategysquadhaspathableobjective(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategysquadhaspathableunclaimedobject(planner, constant)
+function private strategysquadhaspathableunclaimedobject(planner, constant)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -2864,10 +2864,10 @@ private function strategysquadhaspathableunclaimedobject(planner, constant)
 	{
 		if(!gameobjects[index][#"gameobject"][#"claimed"])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2879,7 +2879,7 @@ private function strategysquadhaspathableunclaimedobject(planner, constant)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxassaultobjects(planner, constants)
+function private strategyhasatleastxassaultobjects(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -2896,7 +2896,7 @@ private function strategyhasatleastxassaultobjects(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxdefendobjects(planner, constants)
+function private strategyhasatleastxdefendobjects(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -2913,7 +2913,7 @@ private function strategyhasatleastxdefendobjects(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxobjectives(planner, constants)
+function private strategyhasatleastxobjectives(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -2930,7 +2930,7 @@ private function strategyhasatleastxobjectives(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxplayers(planner, constants)
+function private strategyhasatleastxplayers(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -2947,7 +2947,7 @@ private function strategyhasatleastxplayers(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxpriorityassaultobjects(planner, constants)
+function private strategyhasatleastxpriorityassaultobjects(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -2983,7 +2983,7 @@ private function strategyhasatleastxpriorityassaultobjects(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxprioritydefendobjects(planner, constants)
+function private strategyhasatleastxprioritydefendobjects(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -3019,7 +3019,7 @@ private function strategyhasatleastxprioritydefendobjects(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategyhasatleastxunassignedbots(planner, constants)
+function private strategyhasatleastxunassignedbots(planner, constants)
 {
 	/#
 		assert(isint(constants[#"amount"]), ("" + "") + "");
@@ -3182,7 +3182,7 @@ function function_f6a3c6d5(planner, constants)
 	#/
 	if(!isarray(targets))
 	{
-		return 0;
+		return false;
 	}
 	priorities = array(#"hash_179ccf9d7cfd1e31", #"hash_254689c549346d57", #"hash_4bd86f050b36e1f6", #"hash_19c0ac460bdb9928", #"hash_160b01bbcd78c723", #"hash_c045a5aa4ac7c1d", #"hash_47fd3da20e90cd01", #"hash_64fc5c612a94639c", #"hash_46658a8270df5a9e");
 	/#
@@ -3192,10 +3192,10 @@ function function_f6a3c6d5(planner, constants)
 	{
 		if(targets[priority].size > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3207,7 +3207,7 @@ function function_f6a3c6d5(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghascalculatedpaths(planner, constants)
+function private strategypathinghascalculatedpaths(planner, constants)
 {
 	return planner::getblackboardattribute(planner, #"pathing_calculated_paths").size > 0;
 }
@@ -3221,7 +3221,7 @@ private function strategypathinghascalculatedpaths(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghascalculatedpathablepath(planner, constants)
+function private strategypathinghascalculatedpathablepath(planner, constants)
 {
 	bots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
 	botindex = planner::getblackboardattribute(planner, #"pathing_current_bot_index");
@@ -3238,7 +3238,7 @@ private function strategypathinghascalculatedpathablepath(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghasnorequestpoints(planner, constants)
+function private strategypathinghasnorequestpoints(planner, constants)
 {
 	return planner::getblackboardattribute(planner, #"pathing_requested_points").size <= 0;
 }
@@ -3252,7 +3252,7 @@ private function strategypathinghasnorequestpoints(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghasrequestpoints(planner, constants)
+function private strategypathinghasrequestpoints(planner, constants)
 {
 	return planner::getblackboardattribute(planner, #"pathing_requested_points").size > 0;
 }
@@ -3266,7 +3266,7 @@ private function strategypathinghasrequestpoints(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghasunprocessedgameobjects(planner, constants)
+function private strategypathinghasunprocessedgameobjects(planner, constants)
 {
 	requestedgameobjects = planner::getblackboardattribute(planner, #"pathing_requested_gameobjects");
 	gameobjectindex = planner::getblackboardattribute(planner, #"pathing_current_gameobject_index");
@@ -3282,7 +3282,7 @@ private function strategypathinghasunprocessedgameobjects(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghasunprocessedobjectives(planner, constants)
+function private strategypathinghasunprocessedobjectives(planner, constants)
 {
 	requestedobjectives = planner::getblackboardattribute(planner, #"pathing_requested_objectives");
 	objectiveindex = planner::getblackboardattribute(planner, #"pathing_current_objective_index");
@@ -3298,7 +3298,7 @@ private function strategypathinghasunprocessedobjectives(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghasunprocessedrequestpoints(planner, constants)
+function private strategypathinghasunprocessedrequestpoints(planner, constants)
 {
 	requestedpoints = planner::getblackboardattribute(planner, #"pathing_requested_points");
 	bots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
@@ -3316,7 +3316,7 @@ private function strategypathinghasunprocessedrequestpoints(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathinghasunreachablepath(planner, constants)
+function private strategypathinghasunreachablepath(planner, constants)
 {
 	botindex = planner::getblackboardattribute(planner, #"pathing_current_bot_index");
 	calculatedpaths = planner::getblackboardattribute(planner, #"pathing_calculated_paths");
@@ -3332,7 +3332,7 @@ private function strategypathinghasunreachablepath(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingaddassaultgameobjectsparam(planner, constants)
+function private strategypathingaddassaultgameobjectsparam(planner, constants)
 {
 	assaultobjects = planner::getblackboardattribute(planner, #"gameobjects_assault");
 	planner::setblackboardattribute(planner, #"pathing_requested_gameobjects", assaultobjects);
@@ -3348,7 +3348,7 @@ private function strategypathingaddassaultgameobjectsparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingadddefendgameobjectsparam(planner, constants)
+function private strategypathingadddefendgameobjectsparam(planner, constants)
 {
 	defendobjects = planner::getblackboardattribute(planner, #"gameobjects_defend");
 	planner::setblackboardattribute(planner, #"pathing_requested_gameobjects", defendobjects);
@@ -3364,7 +3364,7 @@ private function strategypathingadddefendgameobjectsparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingaddobjectivesparam(planner, constants)
+function private strategypathingaddobjectivesparam(planner, constants)
 {
 	objectives = planner::getblackboardattribute(planner, #"objectives");
 	planner::setblackboardattribute(planner, #"pathing_requested_objectives", objectives);
@@ -3380,7 +3380,7 @@ private function strategypathingaddobjectivesparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingaddsquadbotsparam(planner, constants)
+function private strategypathingaddsquadbotsparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -3400,7 +3400,7 @@ private function strategypathingaddsquadbotsparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingaddsquadescortsparam(planner, constants)
+function private strategypathingaddsquadescortsparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -3429,7 +3429,7 @@ private function strategypathingaddsquadescortsparam(planner, constants)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingaddtosquadcalculatedgameobjectsparam(planner, constants)
+function private strategypathingaddtosquadcalculatedgameobjectsparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -3458,7 +3458,7 @@ private function strategypathingaddtosquadcalculatedgameobjectsparam(planner, co
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingaddtosquadcalculatedobjectivesparam(planner, constants)
+function private strategypathingaddtosquadcalculatedobjectivesparam(planner, constants)
 {
 	squadindex = planner::getblackboardattribute(planner, #"current_squad");
 	/#
@@ -3487,7 +3487,7 @@ private function strategypathingaddtosquadcalculatedobjectivesparam(planner, con
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingcalculatepathtorequestedpointsparam(planner, constants)
+function private strategypathingcalculatepathtorequestedpointsparam(planner, constants)
 {
 	requestedpoints = planner::getblackboardattribute(planner, #"pathing_requested_points");
 	bots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
@@ -3542,7 +3542,7 @@ private function strategypathingcalculatepathtorequestedpointsparam(planner, con
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingcalculategameobjectrequestpointsparam(planner, constants)
+function private strategypathingcalculategameobjectrequestpointsparam(planner, constants)
 {
 	requestedbots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
 	requestedgameobjects = planner::getblackboardattribute(planner, #"pathing_requested_gameobjects");
@@ -3572,7 +3572,7 @@ private function strategypathingcalculategameobjectrequestpointsparam(planner, c
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingcalculateobjectiverequestpointsparam(planner, constants)
+function private strategypathingcalculateobjectiverequestpointsparam(planner, constants)
 {
 	requestedbots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
 	requestedobjectives = planner::getblackboardattribute(planner, #"pathing_requested_objectives");
@@ -3602,7 +3602,7 @@ private function strategypathingcalculateobjectiverequestpointsparam(planner, co
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingcalculateobjectivepathabilityparam(planner, constants)
+function private strategypathingcalculateobjectivepathabilityparam(planner, constants)
 {
 	requestedbots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
 	requestedobjectives = planner::getblackboardattribute(planner, #"pathing_requested_objectives");
@@ -3637,7 +3637,7 @@ private function strategypathingcalculateobjectivepathabilityparam(planner, cons
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function strategypathingcalculategameobjectpathabilityparam(planner, constants)
+function private strategypathingcalculategameobjectpathabilityparam(planner, constants)
 {
 	requestedbots = planner::getblackboardattribute(planner, #"pathing_requested_bots");
 	requestedgameobjects = planner::getblackboardattribute(planner, #"pathing_requested_gameobjects");
@@ -3672,7 +3672,7 @@ private function strategypathingcalculategameobjectpathabilityparam(planner, con
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_61d2b8ef(commander, squad, constants)
+function private function_61d2b8ef(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	order = plannersquadutility::getblackboardattribute(squad, "order");
@@ -3700,7 +3700,7 @@ private function function_61d2b8ef(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscorebotpresence(commander, squad, constants)
+function private utilityscorebotpresence(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	if(isdefined(doppelbots) && doppelbots.size > 0)
@@ -3727,7 +3727,7 @@ private function utilityscorebotpresence(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_de2b04c0(commander, squad, constants)
+function private function_de2b04c0(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	if(isdefined(doppelbots) && doppelbots.size > 0)
@@ -3765,7 +3765,7 @@ private function function_de2b04c0(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscoreescortpathing(commander, squad, constants)
+function private utilityscoreescortpathing(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	escorts = plannersquadutility::getblackboardattribute(squad, "escorts");
@@ -3830,7 +3830,7 @@ function utilityscoreforcegoal(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscoregameobjectpathing(commander, squad, constants)
+function private utilityscoregameobjectpathing(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	if(!isdefined(doppelbots) || doppelbots.size <= 0)
@@ -3861,7 +3861,7 @@ private function utilityscoregameobjectpathing(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscoregameobjectpriority(commander, squad, constants)
+function private utilityscoregameobjectpriority(commander, squad, constants)
 {
 	priorityidentifiers = constants[#"priority"];
 	if(!isdefined(priorityidentifiers) || priorityidentifiers.size <= 0)
@@ -3935,7 +3935,7 @@ private function utilityscoregameobjectpriority(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscoregameobjectsvalidity(commander, squad, constants)
+function private utilityscoregameobjectsvalidity(commander, squad, constants)
 {
 	gameobjects = plannersquadutility::getblackboardattribute(squad, "gameobjects");
 	if(!isdefined(gameobjects))
@@ -3962,7 +3962,7 @@ private function utilityscoregameobjectsvalidity(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_2985faa1(commander, squad, constants)
+function private function_2985faa1(commander, squad, constants)
 {
 	target = plannersquadutility::getblackboardattribute(squad, "target");
 	if(!isdefined(target))
@@ -3981,7 +3981,7 @@ private function function_2985faa1(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscoreprogressthrottling(commander, squad, constants)
+function private utilityscoreprogressthrottling(commander, squad, constants)
 {
 	if(blackboard::getstructblackboardattribute(commander, #"allow_progress_throttling") === 1)
 	{
@@ -4029,7 +4029,7 @@ private function utilityscoreprogressthrottling(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_a65b2be5(commander, squad, constants)
+function private function_a65b2be5(commander, squad, constants)
 {
 	var_fcee18d7 = plannersquadutility::getblackboardattribute(squad, "target");
 	if(!isdefined(var_fcee18d7))
@@ -4044,21 +4044,24 @@ private function function_a65b2be5(commander, squad, constants)
 			return 0;
 		}
 	}
-	else if(var_fcee18d7[#"type"] === "destroy" || var_fcee18d7[#"type"] === "defend")
+	else
 	{
-		return 0;
-	}
-	if(var_fcee18d7[#"type"] === "capturearea")
-	{
-		return 0;
-	}
-	if(var_fcee18d7[#"type"] === "destroy" || var_fcee18d7[#"type"] === "goto")
-	{
-		var_5fbc7570 = var_fcee18d7[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
-		commanderteam = blackboard::getstructblackboardattribute(commander, #"team");
-		if(!strategiccommandutility::function_f867cce0(var_5fbc7570, commanderteam))
+		if(var_fcee18d7[#"type"] === "destroy" || var_fcee18d7[#"type"] === "defend")
 		{
 			return 0;
+		}
+		if(var_fcee18d7[#"type"] === "capturearea")
+		{
+			return 0;
+		}
+		if(var_fcee18d7[#"type"] === "destroy" || var_fcee18d7[#"type"] === "goto")
+		{
+			var_5fbc7570 = var_fcee18d7[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
+			commanderteam = blackboard::getstructblackboardattribute(commander, #"team");
+			if(!strategiccommandutility::function_f867cce0(var_5fbc7570, commanderteam))
+			{
+				return 0;
+			}
 		}
 	}
 	return 1;
@@ -4073,7 +4076,7 @@ private function function_a65b2be5(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_f389ef61(commander, squad, constants)
+function private function_f389ef61(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	team = blackboard::getstructblackboardattribute(commander, #"team");
@@ -4101,7 +4104,7 @@ private function function_f389ef61(commander, squad, constants)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function utilityscoreviableescort(commander, squad, constants)
+function private utilityscoreviableescort(commander, squad, constants)
 {
 	doppelbots = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	escorts = plannersquadutility::getblackboardattribute(squad, "escorts");

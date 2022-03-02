@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_laststand", &__init__, undefined, undefined);
 }
@@ -69,7 +69,7 @@ function wait_and_set_revive_shader_constant()
 	while(true)
 	{
 		waitresult = undefined;
-		waitresult = level waittill_match({#notetrack:"revive_shader_constant"}, #"notetrack");
+		waitresult = level waittillmatch({#notetrack:"revive_shader_constant"}, #"notetrack");
 		player = function_5c10bd79(waitresult.localclientnum);
 		player mapshaderconstant(waitresult.localclientnum, 0, "scriptVector2", 0, 1, 0, getservertime(waitresult.localclientnum) / 1000);
 		waitframe(1);
@@ -124,12 +124,15 @@ function function_50d4c00a(localclientnum, oldval, newval, bnewent, binitialsnap
 			self thread function_be34e28f(localclientnum, var_d2c301e0);
 		}
 	}
-	else if(self == function_5c10bd79(localclientnum))
+	else
 	{
-		self notify(#"hash_2f1dc2ea83ba9e2");
-		self postfx::exitpostfxbundle("pstfx_zm_last_stand");
+		if(self == function_5c10bd79(localclientnum))
+		{
+			self notify(#"hash_2f1dc2ea83ba9e2");
+			self postfx::exitpostfxbundle("pstfx_zm_last_stand");
+		}
+		level.var_16af4504[self getentitynumber()] = undefined;
 	}
-	level.var_16af4504[self getentitynumber()] = undefined;
 }
 
 /*
@@ -143,7 +146,7 @@ function function_50d4c00a(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_be34e28f(localclientnum, var_d2c301e0)
 {
-	self endon_callback(&function_ac994c83, #"death", #"hash_2f1dc2ea83ba9e2");
+	self endoncallback(&function_ac994c83, #"death", #"hash_2f1dc2ea83ba9e2");
 	self postfx::playpostfxbundle("pstfx_zm_last_stand");
 	var_6c2f58e2 = var_d2c301e0 + (int(level.var_629da31e * 1000));
 	if(util::function_cd6c95db(localclientnum) || namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))

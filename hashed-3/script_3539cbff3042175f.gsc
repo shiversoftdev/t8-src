@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"uav", &__init__, undefined, #"killstreaks");
 }
@@ -322,12 +322,12 @@ function activateuav()
 	#/
 	if(self killstreakrules::iskillstreakallowed("uav", self.team) == 0)
 	{
-		return 0;
+		return false;
 	}
 	killstreak_id = self killstreakrules::killstreakstart("uav", self.team);
 	if(killstreak_id == -1)
 	{
-		return 0;
+		return false;
 	}
 	rotator = level.var_b59e7114;
 	attach_angle = -90;
@@ -376,7 +376,7 @@ function activateuav()
 	self killstreaks::play_killstreak_start_dialog("uav", self.team, killstreak_id);
 	uav killstreaks::play_pilot_dialog_on_owner("arrive", "uav", killstreak_id);
 	uav thread killstreaks::player_killstreak_threat_tracking("uav");
-	return 1;
+	return true;
 }
 
 /*

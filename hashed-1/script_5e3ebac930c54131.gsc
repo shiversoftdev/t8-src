@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function __init__()
+function autoexec __init__()
 {
 	function_6df391ab();
 }
@@ -176,13 +176,16 @@ function function_6df391ab()
 				}
 				namespace_da5c04c3::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_19b0005ca3a8c6c", #"hash_119ebf7c38f10724");
 			}
-			else if(isdefined(getgametypesetting(#"hash_58a3b9a2190fbbc6")) && getgametypesetting(#"hash_58a3b9a2190fbbc6"))
-			{
-				namespace_da5c04c3::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_2cb3a37c908b9d9b", #"hash_23031ef9fe71ef45");
-			}
 			else
 			{
-				namespace_da5c04c3::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_2cb3a37c908b9d9b", #"hash_2174b8eb76412fb3");
+				if(isdefined(getgametypesetting(#"hash_58a3b9a2190fbbc6")) && getgametypesetting(#"hash_58a3b9a2190fbbc6"))
+				{
+					namespace_da5c04c3::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_2cb3a37c908b9d9b", #"hash_23031ef9fe71ef45");
+				}
+				else
+				{
+					namespace_da5c04c3::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_2cb3a37c908b9d9b", #"hash_2174b8eb76412fb3");
+				}
 			}
 		}
 		else if(isdefined(getgametypesetting(#"hash_33f54380ad99eeab")) && getgametypesetting(#"hash_33f54380ad99eeab"))

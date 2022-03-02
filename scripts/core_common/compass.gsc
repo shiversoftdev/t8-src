@@ -44,16 +44,19 @@ function setupminimap(material = "", zone = 0)
 			southeast = corner0 + side;
 		}
 	}
-	else if(vectordot(cornerdiff, north) > 0)
-	{
-		side = vecscale(north, vectordot(cornerdiff, north));
-		northwest = corner0 + side;
-		southeast = corner1 - side;
-	}
 	else
 	{
-		northwest = corner0;
-		southeast = corner1;
+		if(vectordot(cornerdiff, north) > 0)
+		{
+			side = vecscale(north, vectordot(cornerdiff, north));
+			northwest = corner0 + side;
+			southeast = corner1 - side;
+		}
+		else
+		{
+			northwest = corner0;
+			southeast = corner1;
+		}
 	}
 	setminimap(material, northwest[0], northwest[1], southeast[0], southeast[1]);
 	setminimapzone(northwest[0], northwest[1], southeast[0], southeast[1]);
@@ -97,16 +100,19 @@ function setupminimapzone(zone)
 			southeast = corner0 + side;
 		}
 	}
-	else if(vectordot(cornerdiff, north) > 0)
-	{
-		side = vecscale(north, vectordot(cornerdiff, north));
-		northwest = corner0 + side;
-		southeast = corner1 - side;
-	}
 	else
 	{
-		northwest = corner0;
-		southeast = corner1;
+		if(vectordot(cornerdiff, north) > 0)
+		{
+			side = vecscale(north, vectordot(cornerdiff, north));
+			northwest = corner0 + side;
+			southeast = corner1 - side;
+		}
+		else
+		{
+			northwest = corner0;
+			southeast = corner1;
+		}
 	}
 	setminimapzone(northwest[0], northwest[1], southeast[0], southeast[1]);
 }

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_12075e5736a83384", &__init__, undefined, undefined);
 }
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_34259a50, var_1d00ec07, var_10cad39b, var_f9ab255c)
+function private function_d1de6a85(var_34259a50, var_1d00ec07, var_10cad39b, var_f9ab255c)
 {
 	archetypes = array::remove_undefined(array(var_34259a50, var_1d00ec07, var_10cad39b, var_f9ab255c), 0);
 	self.var_c54c0d81 = [];
@@ -65,7 +65,7 @@ private function function_d1de6a85(var_34259a50, var_1d00ec07, var_10cad39b, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	self.var_c54c0d81 = undefined;
 }

@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_b69b008e289ded4", &__init__, undefined, #"bgb");
 }
@@ -88,9 +88,9 @@ function validation()
 	w_current = self getcurrentweapon();
 	if(isdefined(w_current.isheroweapon) && w_current.isheroweapon || zm_weapons::is_wonder_weapon(w_current))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -122,11 +122,14 @@ function function_1ff1beff()
 				self perks::function_45d12554("specialty_freefire");
 			}
 		}
-		else if(!self hasperk("specialty_freefire"))
+		else
 		{
-			self perks::function_7637bafa("specialty_freefire");
+			if(!self hasperk("specialty_freefire"))
+			{
+				self perks::function_7637bafa("specialty_freefire");
+			}
+			self function_9d347621(var_1c114591);
 		}
-		self function_9d347621(var_1c114591);
 	}
 }
 

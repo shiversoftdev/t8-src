@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"blight_father", &__init__, undefined, undefined);
 }
@@ -28,7 +28,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function precache()
+function autoexec precache()
 {
 	ai::add_archetype_spawn_function(#"blight_father", &function_859ccb1e);
 }
@@ -55,7 +55,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_859ccb1e(localclientnum)
+function private function_859ccb1e(localclientnum)
 {
 	fxclientutils::playfxbundle(localclientnum, self, self.fxdef);
 	self mapshaderconstant(localclientnum, 0, "scriptVector2", 1, 0, 0, 1);

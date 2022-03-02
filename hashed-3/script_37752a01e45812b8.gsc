@@ -208,7 +208,7 @@ function function_3931c78()
 */
 function function_f85d3d98()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -342,7 +342,7 @@ function function_6577cacc()
 */
 function function_9364acc1()
 {
-	self endon_callback(&namespace_18db89ed::function_c64292f, #"death");
+	self endoncallback(&namespace_18db89ed::function_c64292f, #"death");
 	self.var_7dc2d507 = 1;
 	self notify(#"player_frozen");
 	self namespace_18db89ed::function_bad6907c();

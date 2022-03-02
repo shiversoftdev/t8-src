@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2cc19c7ccaa4e97f", &__init__, undefined, undefined);
 }
@@ -67,7 +67,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_fbb8f1d1()
+function private function_fbb8f1d1()
 {
 	if(!isplayer(self))
 	{
@@ -89,7 +89,7 @@ private function function_fbb8f1d1()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_77a44aec()
+function private function_77a44aec()
 {
 	possibletargets = [];
 	foreach(player in getplayers())
@@ -182,7 +182,7 @@ private function function_77a44aec()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f81eaa29(players)
+function private function_f81eaa29(players)
 {
 	mostkills = 0;
 	topplayers = [];
@@ -207,7 +207,7 @@ private function function_f81eaa29(players)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9141be4e()
+function private function_9141be4e()
 {
 	if(!self clientfield::get("ishighvaluetarget") || !isdefined(self.laststandparams))
 	{
@@ -230,7 +230,7 @@ private function function_9141be4e()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_3f8e4156(params)
+function private function_3f8e4156(params)
 {
 	if(!self clientfield::get("ishighvaluetarget"))
 	{
@@ -276,7 +276,7 @@ private function function_3f8e4156(params)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_player_disconnect()
+function private on_player_disconnect()
 {
 	if(!self clientfield::get("ishighvaluetarget"))
 	{

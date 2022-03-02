@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_blockers", &__init__, undefined, undefined);
 }
@@ -198,12 +198,15 @@ function function_aa07bb71(str_fx_name, var_bd367366, var_6142f944, var_ee0af263
 		}
 		audio::playloopat(var_bd367366, self.origin);
 	}
-	else if(isdefined(self.var_907b36d0))
+	else
 	{
-		killfx(var_6142f944, self.var_907b36d0);
-		self.var_907b36d0 = undefined;
+		if(isdefined(self.var_907b36d0))
+		{
+			killfx(var_6142f944, self.var_907b36d0);
+			self.var_907b36d0 = undefined;
+		}
+		audio::stoploopat(var_bd367366, self.origin);
 	}
-	audio::stoploopat(var_bd367366, self.origin);
 }
 
 /*

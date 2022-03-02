@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"contracts", &__init__, undefined, undefined);
 }
@@ -365,7 +365,7 @@ function function_fd9fb79b(var_38280f2f, delta = 1)
 	Parameters: 2
 	Flags: Private
 */
-private function function_902ef0de(var_38280f2f, delta)
+function private function_902ef0de(var_38280f2f, delta)
 {
 	/#
 		if(getdvarint(#"scr_contract_debug_multiplier", 0) > 0)

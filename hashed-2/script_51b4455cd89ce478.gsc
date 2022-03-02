@@ -135,6 +135,6 @@ function function_fd19ef53(e_entity, str_field)
 function function_7e40ae2d(x, e_entity, str_field, var_b8003601)
 {
 	e_entity.(str_field) = var_b8003601;
-	return 1;
+	return true;
 }
 

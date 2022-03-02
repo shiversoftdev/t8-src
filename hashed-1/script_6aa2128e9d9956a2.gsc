@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_69a3fa9c29ebbb82", &function_f0f91440, undefined, undefined);
 }
@@ -207,10 +207,10 @@ function is_equipment(entity)
 		weapon = entity.weapon;
 		if(weapon.name === #"ability_smart_cover" || weapon.name === #"eq_tripwire" || weapon.name === #"trophy_system" || weapon.name === #"eq_concertina_wire" || weapon.name === #"eq_sensor" || weapon.name === #"cymbal_monkey" || weapon.name === #"gadget_supplypod" || weapon.name === #"hash_10f614b278daaebc")
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -594,10 +594,10 @@ function function_d7b6ee00(activator, laststate, state)
 				state = 1;
 			}
 			function_e2a06860(self, state);
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -615,7 +615,7 @@ function function_51a020(activator, laststate, state)
 	{
 		if(laststate == state)
 		{
-			return 0;
+			return false;
 		}
 		var_a9309589 = getdynent(self.target);
 		currentstate = function_ffdbe8c2(var_a9309589);
@@ -629,7 +629,7 @@ function function_51a020(activator, laststate, state)
 			results = bullettracepassed(start, end, 0, activator);
 			if(!results)
 			{
-				return 0;
+				return false;
 			}
 			center = var_a9309589.origin + vectorscale((0, 0, 1), 40);
 			start = center + ((right * bounds.mins[1]) * 0.85);
@@ -637,7 +637,7 @@ function function_51a020(activator, laststate, state)
 			results = bullettracepassed(start, end, 0, activator);
 			if(!results)
 			{
-				return 0;
+				return false;
 			}
 		}
 		if(currentstate != state)
@@ -645,6 +645,6 @@ function function_51a020(activator, laststate, state)
 			function_e2a06860(var_a9309589, state);
 		}
 	}
-	return 1;
+	return true;
 }
 

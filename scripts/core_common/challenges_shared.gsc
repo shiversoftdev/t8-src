@@ -23,7 +23,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"challenges_shared", &__init__, undefined, undefined);
 }
@@ -218,14 +218,14 @@ function canprocesschallenges()
 	/#
 		if(getdvarint(#"scr_debug_challenges", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(level.rankedmatch || level.arenamatch || sessionmodeiscampaigngame())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -360,7 +360,7 @@ function isdamagefromplayercontrolledaitank(eattacker, einflictor, weapon)
 			{
 				if(eattacker.remoteweapon == einflictor)
 				{
-					return 1;
+					return true;
 				}
 			}
 		}
@@ -369,10 +369,10 @@ function isdamagefromplayercontrolledaitank(eattacker, einflictor, weapon)
 	{
 		if(isdefined(einflictor) && !isdefined(einflictor.from_ai))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -394,12 +394,12 @@ function isdamagefromplayercontrolledsentry(eattacker, einflictor, weapon)
 			{
 				if(isdefined(einflictor.controlled) && einflictor.controlled)
 				{
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -657,7 +657,7 @@ function ishighestscoringplayer(player)
 {
 	if(!isdefined(player.score) || player.score < 1)
 	{
-		return 0;
+		return false;
 	}
 	players = level.players;
 	if(level.teambased)
@@ -689,10 +689,10 @@ function ishighestscoringplayer(player)
 		}
 		if(players[i].score >= highscore)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1213,7 +1213,7 @@ function function_659f7dc(var_1ef5a3ba, var_3e853b2e, var_25ad32e1)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_d6f929d6()
+function private function_d6f929d6()
 {
 	wait(2);
 	level.var_4f654f3a = 1;
@@ -1317,7 +1317,7 @@ function function_354f257f()
 {
 	if(!isdefined(self))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(self.pers[#"controllerparticipationchecksskipped"]))
 	{
@@ -1326,7 +1326,7 @@ function function_354f257f()
 	if(self.sessionstate != "playing" || (isdefined(self.var_4c45f505) && self.var_4c45f505))
 	{
 		self.pers[#"controllerparticipationchecksskipped"]++;
-		return 0;
+		return false;
 	}
 	self.pers[#"controllerparticipationchecks"]++;
 	var_51ba979b = #"failure";
@@ -1367,7 +1367,7 @@ function function_354f257f()
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1510,16 +1510,19 @@ function destroyscorestreak(weapon, playercontrolled, groundbased, countaskillst
 			self stats::function_dad108fa(#"destroy_scorestreak_with_dart", 1);
 		}
 	}
-	else if(weapon.var_b76e0a09)
-	{
-		self stats::function_dad108fa(#"destroy_scorestreak_with_specialist", 1);
-	}
 	else
 	{
-		weaponclass = util::getweaponclass(weapon);
-		if(isdefined(weaponclass) && weaponclass == #"weapon_launcher")
+		if(weapon.var_b76e0a09)
 		{
-			self stats::function_dad108fa(#"hash_be93d1227e6db1", 1);
+			self stats::function_dad108fa(#"destroy_scorestreak_with_specialist", 1);
+		}
+		else
+		{
+			weaponclass = util::getweaponclass(weapon);
+			if(isdefined(weaponclass) && weaponclass == #"weapon_launcher")
+			{
+				self stats::function_dad108fa(#"hash_be93d1227e6db1", 1);
+			}
 		}
 	}
 	if(!isdefined(playercontrolled) || playercontrolled == 0)
@@ -1928,20 +1931,20 @@ function endedearly(winner, tie)
 {
 	if(level.hostforcedend)
 	{
-		return 1;
+		return true;
 	}
 	if(!isdefined(winner))
 	{
-		return 1;
+		return true;
 	}
 	if(level.teambased)
 	{
 		if(tie)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1986,10 +1989,10 @@ function didloserfailchallenge(winner, challenge)
 		}
 		if(game.challenge[team][challenge])
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2486,13 +2489,16 @@ function destroyedaircraft(attacker, weapon, playercontrolled, lethal = 1)
 		{
 			attacker stats::function_dad108fa(#"destroy_aircraft_with_emp", 1);
 		}
-		else if(weapon.name == #"missile_drone_projectile" || weapon.name == #"missile_drone")
+		else
 		{
-			attacker stats::function_dad108fa(#"destroy_aircraft_with_missile_drone", 1);
-		}
-		else if(weapon.isbulletweapon)
-		{
-			attacker stats::function_dad108fa(#"shoot_aircraft", 1);
+			if(weapon.name == #"missile_drone_projectile" || weapon.name == #"missile_drone")
+			{
+				attacker stats::function_dad108fa(#"destroy_aircraft_with_missile_drone", 1);
+			}
+			else if(weapon.isbulletweapon)
+			{
+				attacker stats::function_dad108fa(#"shoot_aircraft", 1);
+			}
 		}
 	}
 	if(attacker util::has_blind_eye_perk_purchased_and_equipped())
@@ -3072,9 +3078,9 @@ function weaponisknife(weapon)
 {
 	if(weapon == level.weaponbasemelee || weapon == level.weaponbasemeleeheld || weapon.rootweapon.statname == level.weaponballisticknife.statname)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3098,25 +3104,37 @@ function eventreceived(eventname)
 			{
 				self stats::function_d40764f3(#"killstreak_10", 1);
 			}
-			else if(eventname == "killstreak_15")
+			else
 			{
-				self stats::function_d40764f3(#"killstreak_15", 1);
-			}
-			else if(eventname == "killstreak_20")
-			{
-				self stats::function_d40764f3(#"killstreak_20", 1);
-			}
-			else if(eventname == "multikill_3")
-			{
-				self stats::function_d40764f3(#"multikill_3", 1);
-			}
-			else if(eventname == "kill_enemy_who_killed_teammate")
-			{
-				self stats::function_d40764f3(#"kill_enemy_who_killed_teammate", 1);
-			}
-			else if(eventname == "kill_enemy_injuring_teammate")
-			{
-				self stats::function_d40764f3(#"kill_enemy_injuring_teammate", 1);
+				if(eventname == "killstreak_15")
+				{
+					self stats::function_d40764f3(#"killstreak_15", 1);
+				}
+				else
+				{
+					if(eventname == "killstreak_20")
+					{
+						self stats::function_d40764f3(#"killstreak_20", 1);
+					}
+					else
+					{
+						if(eventname == "multikill_3")
+						{
+							self stats::function_d40764f3(#"multikill_3", 1);
+						}
+						else
+						{
+							if(eventname == "kill_enemy_who_killed_teammate")
+							{
+								self stats::function_d40764f3(#"kill_enemy_who_killed_teammate", 1);
+							}
+							else if(eventname == "kill_enemy_injuring_teammate")
+							{
+								self stats::function_d40764f3(#"kill_enemy_injuring_teammate", 1);
+							}
+						}
+					}
+				}
 			}
 			break;
 		}
@@ -3126,17 +3144,23 @@ function eventreceived(eventname)
 			{
 				self stats::function_d40764f3(#"killstreak_10", 1);
 			}
-			else if(eventname == "killstreak_15")
+			else
 			{
-				self stats::function_d40764f3(#"killstreak_15", 1);
-			}
-			else if(eventname == "killstreak_20")
-			{
-				self stats::function_d40764f3(#"killstreak_20", 1);
-			}
-			else if(eventname == "killstreak_30")
-			{
-				self stats::function_d40764f3(#"killstreak_30", 1);
+				if(eventname == "killstreak_15")
+				{
+					self stats::function_d40764f3(#"killstreak_15", 1);
+				}
+				else
+				{
+					if(eventname == "killstreak_20")
+					{
+						self stats::function_d40764f3(#"killstreak_20", 1);
+					}
+					else if(eventname == "killstreak_30")
+					{
+						self stats::function_d40764f3(#"killstreak_30", 1);
+					}
+				}
 			}
 			break;
 		}
@@ -3146,17 +3170,23 @@ function eventreceived(eventname)
 			{
 				self stats::function_d40764f3(#"defused_bomb_last_man_alive", 1);
 			}
-			else if(eventname == "elimination_and_last_player_alive")
+			else
 			{
-				self stats::function_d40764f3(#"elimination_and_last_player_alive", 1);
-			}
-			else if(eventname == "killed_bomb_planter")
-			{
-				self stats::function_d40764f3(#"killed_bomb_planter", 1);
-			}
-			else if(eventname == "killed_bomb_defuser")
-			{
-				self stats::function_d40764f3(#"killed_bomb_defuser", 1);
+				if(eventname == "elimination_and_last_player_alive")
+				{
+					self stats::function_d40764f3(#"elimination_and_last_player_alive", 1);
+				}
+				else
+				{
+					if(eventname == "killed_bomb_planter")
+					{
+						self stats::function_d40764f3(#"killed_bomb_planter", 1);
+					}
+					else if(eventname == "killed_bomb_defuser")
+					{
+						self stats::function_d40764f3(#"killed_bomb_defuser", 1);
+					}
+				}
 			}
 			break;
 		}

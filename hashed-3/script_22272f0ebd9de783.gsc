@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_55c1d88784016490", &__init__, &__main__, undefined);
 }
@@ -180,7 +180,7 @@ function function_8fe2d903()
 			var_9bda8088 thread zm_traps::trap_damage();
 		}
 	}
-	self waittill_timeout(self._trap_duration, #"trap_deactivate");
+	self waittilltimeout(self._trap_duration, #"trap_deactivate");
 	foreach(var_9bda8088 in level.var_5f47f17d)
 	{
 		if(var_9bda8088.script_string === self.script_string)
@@ -255,17 +255,20 @@ function function_6f34f900()
 		{
 			continue;
 		}
-		else if(!e_player issliding())
-		{
-			continue;
-		}
 		else
 		{
-			var_82cc90a0 = e_player.health;
-			wait(0.85);
-			if(isdefined(e_player) && var_82cc90a0 == e_player.health)
+			if(!e_player issliding())
 			{
-				e_player notify(#"hash_731c84be18ae9fa3");
+				continue;
+			}
+			else
+			{
+				var_82cc90a0 = e_player.health;
+				wait(0.85);
+				if(isdefined(e_player) && var_82cc90a0 == e_player.health)
+				{
+					e_player notify(#"hash_731c84be18ae9fa3");
+				}
 			}
 		}
 	}

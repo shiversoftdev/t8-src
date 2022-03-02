@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_56fdbf7338674899", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-private function function_d1de6a85(n_count, n_repacks)
+function private function_d1de6a85(n_count, n_repacks)
 {
 	/#
 		assert(isdefined(level.zombie_weapons_upgraded));
@@ -97,7 +97,7 @@ private function function_d1de6a85(n_count, n_repacks)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -152,7 +152,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 2
 	Flags: Private
 */
-private function function_e73fbbf7(var_5ba20db5, var_27f8d634)
+function private function_e73fbbf7(var_5ba20db5, var_27f8d634)
 {
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
@@ -170,24 +170,30 @@ private function function_e73fbbf7(var_5ba20db5, var_27f8d634)
 				var_fa5d7ea0 = 1;
 			}
 		}
-		else if(zm_weapons::weapon_supports_aat(var_f2a06582) && var_27f8d634 > 0)
-		{
-			self namespace_b22c99a5::function_63060af4(0);
-			self namespace_b22c99a5::function_f3aacffb();
-			n_repacks = zm_pap_util::function_83c29ddb(var_f2a06582);
-			self namespace_b22c99a5::function_c2cd0cba(var_27f8d634);
-			self namespace_b22c99a5::function_2190356a(n_repacks);
-			var_fa5d7ea0 = 0;
-		}
-		else if(zm_weapons::is_weapon_upgraded(var_f2a06582))
-		{
-			self namespace_b22c99a5::function_63060af4(1);
-		}
 		else
 		{
-			self namespace_b22c99a5::function_63060af4(0);
+			if(zm_weapons::weapon_supports_aat(var_f2a06582) && var_27f8d634 > 0)
+			{
+				self namespace_b22c99a5::function_63060af4(0);
+				self namespace_b22c99a5::function_f3aacffb();
+				n_repacks = zm_pap_util::function_83c29ddb(var_f2a06582);
+				self namespace_b22c99a5::function_c2cd0cba(var_27f8d634);
+				self namespace_b22c99a5::function_2190356a(n_repacks);
+				var_fa5d7ea0 = 0;
+			}
+			else
+			{
+				if(zm_weapons::is_weapon_upgraded(var_f2a06582))
+				{
+					self namespace_b22c99a5::function_63060af4(1);
+				}
+				else
+				{
+					self namespace_b22c99a5::function_63060af4(0);
+				}
+				var_fa5d7ea0 = 0;
+			}
 		}
-		var_fa5d7ea0 = 0;
 		self waittill(#"weapon_change_complete");
 	}
 }
@@ -201,7 +207,7 @@ private function function_e73fbbf7(var_5ba20db5, var_27f8d634)
 	Parameters: 2
 	Flags: Private
 */
-private function function_46feb36d(var_5ba20db5, var_27f8d634)
+function private function_46feb36d(var_5ba20db5, var_27f8d634)
 {
 	if(self.sessionstate != "spectator")
 	{

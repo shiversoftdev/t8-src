@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"archetype_avogadro", &__init__, &__main__, undefined);
 }
@@ -180,7 +180,7 @@ function function_ee579eb5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_8a404313()
+function private function_8a404313()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -196,7 +196,7 @@ private function function_8a404313()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c7791d22(entity)
+function private function_c7791d22(entity)
 {
 	entity.__blackboard = undefined;
 	entity function_8a404313();
@@ -267,13 +267,16 @@ function function_dbc638a8(entity)
 	{
 		entity clientfield::set("" + #"hash_2eec8fc21495a18c", 1);
 	}
-	else if(entity.health < entity.maxhealth * 0.66)
-	{
-		entity clientfield::set("" + #"hash_2eec8fc21495a18c", 2);
-	}
 	else
 	{
-		entity clientfield::set("" + #"hash_2eec8fc21495a18c", 3);
+		if(entity.health < entity.maxhealth * 0.66)
+		{
+			entity clientfield::set("" + #"hash_2eec8fc21495a18c", 2);
+		}
+		else
+		{
+			entity clientfield::set("" + #"hash_2eec8fc21495a18c", 3);
+		}
 	}
 }
 
@@ -317,7 +320,7 @@ function function_80fc1a78(time)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_66dd488a()
+function private function_66dd488a()
 {
 	foreach(bolt in level.var_58143890)
 	{
@@ -339,7 +342,7 @@ private function function_66dd488a()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_7e03184e(bolt, entity)
+function private function_7e03184e(bolt, entity)
 {
 	/#
 		/#
@@ -358,7 +361,7 @@ private function function_7e03184e(bolt, entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cbdce009(bolt)
+function private function_cbdce009(bolt)
 {
 	bolt.owner = undefined;
 }
@@ -372,29 +375,29 @@ private function function_cbdce009(bolt)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f8e8c129(entity)
+function private function_f8e8c129(entity)
 {
 	if(isdefined(entity.can_shoot) && !entity.can_shoot)
 	{
-		return 0;
+		return false;
 	}
 	var_99387d40 = blackboard::getblackboardevents(#"hash_27bee30b37f7debe");
 	if(var_99387d40.size > 0)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_a35afcb2) && ![[level.var_a35afcb2]](entity))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(entity.bolt))
 	{
-		return 1;
+		return true;
 	}
 	bolt = function_66dd488a();
 	if(!isdefined(bolt))
 	{
-		return 0;
+		return false;
 	}
 	enemy = (isdefined(self.attackable) ? self.attackable : self.favoriteenemy);
 	if(isdefined(enemy))
@@ -424,12 +427,12 @@ private function function_f8e8c129(entity)
 				{
 					function_7e03184e(bolt, entity);
 					entity.bolt = bolt;
-					return 1;
+					return true;
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -441,7 +444,7 @@ private function function_f8e8c129(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_7e5905cd(entity)
+function private function_7e5905cd(entity)
 {
 	enemy = self.favoriteenemy;
 	if(isdefined(enemy))
@@ -467,7 +470,7 @@ private function function_7e5905cd(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6cf71c35(entity)
+function private function_6cf71c35(entity)
 {
 	if(isdefined(entity.bolt))
 	{
@@ -485,7 +488,7 @@ private function function_6cf71c35(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function shoot_bolt_wait(entity)
+function private shoot_bolt_wait(entity)
 {
 	bolt = entity.bolt;
 	entity.bolt = undefined;
@@ -597,7 +600,7 @@ function function_a495d71f(entity)
 						recordsphere(endpoint, 15, (0, 1, 0));
 					#/
 					entity.var_1ce249af = 1;
-					return 1;
+					return true;
 				}
 				/#
 					recordline(entity.origin, endpoint, (1, 0, 0));

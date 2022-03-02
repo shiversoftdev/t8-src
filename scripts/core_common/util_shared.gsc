@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"util_shared", &__init__, &__main__, undefined);
 }
@@ -1360,117 +1360,120 @@ function _single_thread(entity, func, arg1, arg2, a_vars)
 			}
 		}
 	}
-	else if(isdefined(arg1))
-	{
-		switch(a_vars.size)
-		{
-			case 8:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6], a_vars[7]);
-				break;
-			}
-			case 7:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6]);
-				break;
-			}
-			case 6:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5]);
-				break;
-			}
-			case 5:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4]);
-				break;
-			}
-			case 4:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3]);
-				break;
-			}
-			case 3:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2]);
-				break;
-			}
-			case 2:
-			{
-				entity thread [[func]](arg1, a_vars[0], a_vars[1]);
-				break;
-			}
-			case 1:
-			{
-				entity thread [[func]](arg1, a_vars[0]);
-				break;
-			}
-			case 0:
-			{
-				entity thread [[func]](arg1);
-				break;
-			}
-			default:
-			{
-				/#
-					assertmsg("");
-				#/
-			}
-		}
-	}
 	else
 	{
-		switch(a_vars.size)
+		if(isdefined(arg1))
 		{
-			case 8:
+			switch(a_vars.size)
 			{
-				entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6], a_vars[7]);
-				break;
+				case 8:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6], a_vars[7]);
+					break;
+				}
+				case 7:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6]);
+					break;
+				}
+				case 6:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5]);
+					break;
+				}
+				case 5:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4]);
+					break;
+				}
+				case 4:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2], a_vars[3]);
+					break;
+				}
+				case 3:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1], a_vars[2]);
+					break;
+				}
+				case 2:
+				{
+					entity thread [[func]](arg1, a_vars[0], a_vars[1]);
+					break;
+				}
+				case 1:
+				{
+					entity thread [[func]](arg1, a_vars[0]);
+					break;
+				}
+				case 0:
+				{
+					entity thread [[func]](arg1);
+					break;
+				}
+				default:
+				{
+					/#
+						assertmsg("");
+					#/
+				}
 			}
-			case 7:
+		}
+		else
+		{
+			switch(a_vars.size)
 			{
-				entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6]);
-				break;
-			}
-			case 6:
-			{
-				entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5]);
-				break;
-			}
-			case 5:
-			{
-				entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4]);
-				break;
-			}
-			case 4:
-			{
-				entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3]);
-				break;
-			}
-			case 3:
-			{
-				entity thread [[func]](a_vars[0], a_vars[1], a_vars[2]);
-				break;
-			}
-			case 2:
-			{
-				entity thread [[func]](a_vars[0], a_vars[1]);
-				break;
-			}
-			case 1:
-			{
-				entity thread [[func]](a_vars[0]);
-				break;
-			}
-			case 0:
-			{
-				entity thread [[func]]();
-				break;
-			}
-			default:
-			{
-				/#
-					assertmsg("");
-				#/
+				case 8:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6], a_vars[7]);
+					break;
+				}
+				case 7:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5], a_vars[6]);
+					break;
+				}
+				case 6:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4], a_vars[5]);
+					break;
+				}
+				case 5:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3], a_vars[4]);
+					break;
+				}
+				case 4:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1], a_vars[2], a_vars[3]);
+					break;
+				}
+				case 3:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1], a_vars[2]);
+					break;
+				}
+				case 2:
+				{
+					entity thread [[func]](a_vars[0], a_vars[1]);
+					break;
+				}
+				case 1:
+				{
+					entity thread [[func]](a_vars[0]);
+					break;
+				}
+				case 0:
+				{
+					entity thread [[func]]();
+					break;
+				}
+				default:
+				{
+					/#
+						assertmsg("");
+					#/
+				}
 			}
 		}
 	}
@@ -2339,7 +2342,12 @@ function spawn_model(model_name, origin = (0, 0, 0), angles = (0, 0, 0), n_spawn
 		{
 			break;
 		}
-		println(((((("" + "") + model_name) + "") + origin) + "") + angles);
+		else
+		{
+			/#
+				println(((((("" + "") + model_name) + "") + origin) + "") + angles);
+			#/
+		}
 		waitframe(1);
 	}
 	model setmodel(model_name);
@@ -2481,7 +2489,7 @@ function wait_endon(waittime, endonstring, endonstring2, endonstring3, endonstri
 		self endon(endonstring4);
 	}
 	wait(waittime);
-	return 1;
+	return true;
 }
 
 /*
@@ -2640,9 +2648,9 @@ function is_primary_damage(meansofdeath)
 {
 	if(meansofdeath == "MOD_RIFLE_BULLET" || meansofdeath == "MOD_PISTOL_BULLET")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2729,10 +2737,10 @@ function any_player_is_touching(ent, team)
 	{
 		if(isalive(player) && player istouching(ent))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2750,12 +2758,22 @@ function set_console_status()
 	{
 		level.console = getdvarstring(#"consolegame") == "true";
 	}
-	assert(level.console == getdvarstring(#"consolegame") == "", "");
+	else
+	{
+		/#
+			assert(level.console == getdvarstring(#"consolegame") == "", "");
+		#/
+	}
 	if(!isdefined(level.consolexenon))
 	{
 		level.xenon = getdvarstring(#"xenongame") == "true";
 	}
-	assert(level.xenon == getdvarstring(#"xenongame") == "", "");
+	else
+	{
+		/#
+			assert(level.xenon == getdvarstring(#"xenongame") == "", "");
+		#/
+	}
 }
 
 /*
@@ -3046,20 +3064,23 @@ function button_held_think(which_button)
 				self._holding_button[which_button] = 0;
 			}
 		}
-		else if(self [[level._button_funcs[which_button]]]())
+		else
 		{
-			if(time_started == 0)
+			if(self [[level._button_funcs[which_button]]]())
 			{
-				time_started = gettime();
+				if(time_started == 0)
+				{
+					time_started = gettime();
+				}
+				if(gettime() - time_started > use_time)
+				{
+					self._holding_button[which_button] = 1;
+				}
 			}
-			if(gettime() - time_started > use_time)
+			else if(time_started != 0)
 			{
-				self._holding_button[which_button] = 1;
+				time_started = 0;
 			}
-		}
-		else if(time_started != 0)
-		{
-			time_started = 0;
 		}
 		waitframe(1);
 	}
@@ -3450,17 +3471,17 @@ function function_fbce7263(team_a, team_b)
 {
 	if(team_a === team_b || function_9b7092ef(team_a, team_b))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(team_a) || !isdefined(team_b))
 	{
-		return 1;
+		return true;
 	}
 	if(function_b37afded(team_a, team_b))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -4264,11 +4285,19 @@ function set_lighting_state(n_state)
 				}
 			}
 		}
-		else if(isplayer(self))
+		else
 		{
-			self setlightingstate(self.lighting_state);
+			if(isplayer(self))
+			{
+				self setlightingstate(self.lighting_state);
+			}
+			else
+			{
+				/#
+					assertmsg("");
+				#/
+			}
 		}
-		assertmsg("");
 	}
 }
 
@@ -4303,11 +4332,19 @@ function set_sun_shadow_split_distance(f_distance)
 				}
 			}
 		}
-		else if(isplayer(self))
+		else
 		{
-			self setsunshadowsplitdistance(self.sun_shadow_split_distance);
+			if(isplayer(self))
+			{
+				self setsunshadowsplitdistance(self.sun_shadow_split_distance);
+			}
+			else
+			{
+				/#
+					assertmsg("");
+				#/
+			}
 		}
-		assertmsg("");
 	}
 }
 
@@ -4346,11 +4383,19 @@ function function_7f49ffb7(var_bf01552a)
 				}
 			}
 		}
-		else if(isplayer(self))
+		else
 		{
-			self function_61471b4a(self.var_bf01552a);
+			if(isplayer(self))
+			{
+				self function_61471b4a(self.var_bf01552a);
+			}
+			else
+			{
+				/#
+					assertmsg("");
+				#/
+			}
 		}
-		assertmsg("");
 	}
 }
 
@@ -4766,9 +4811,9 @@ function isoneround()
 {
 	if(level.roundlimit == 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4784,9 +4829,9 @@ function isfirstround()
 {
 	if(game.roundsplayed == 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4802,9 +4847,9 @@ function islastround()
 {
 	if(level.roundlimit > 1 && game.roundsplayed >= (level.roundlimit - 1))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4820,25 +4865,25 @@ function waslastround()
 {
 	if(level.forcedend)
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(level.nextroundisovertime))
 	{
 		if(level.nextroundisovertime)
 		{
 			level.nextroundisovertime = 1;
-			return 0;
+			return false;
 		}
 		if(isdefined(game.overtime_round) && game.overtime_round > 0)
 		{
-			return 1;
+			return true;
 		}
 	}
 	if(hitroundlimit() || hitscorelimit() || hitroundwinlimit())
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4874,10 +4919,10 @@ function anyteamhitroundwinlimit()
 	{
 		if(getroundswon(team) >= level.roundwinlimit)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4896,10 +4941,10 @@ function anyteamhitroundlimitwithdraws()
 	{
 		if((getroundswon(team) + tie_wins) >= level.roundwinlimit)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4924,10 +4969,10 @@ function function_385658da()
 		}
 		if(wins != count)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -4943,20 +4988,20 @@ function hitroundwinlimit()
 {
 	if(!isdefined(level.roundwinlimit) || level.roundwinlimit <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(anyteamhitroundwinlimit())
 	{
-		return 1;
+		return true;
 	}
 	if(anyteamhitroundlimitwithdraws())
 	{
 		if(!function_385658da())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4974,10 +5019,10 @@ function any_team_hit_score_limit()
 	{
 		if(game.stat[#"teamscores"][team] >= level.scorelimit)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -4993,17 +5038,17 @@ function hitscorelimit()
 {
 	if(level.scoreroundwinbased)
 	{
-		return 0;
+		return false;
 	}
 	if(level.scorelimit <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		if(any_team_hit_score_limit())
 		{
-			return 1;
+			return true;
 		}
 	}
 	else
@@ -5013,11 +5058,11 @@ function hitscorelimit()
 			player = level.players[i];
 			if(isdefined(player.pointstowin) && player.pointstowin >= level.scorelimit)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -5050,10 +5095,10 @@ function any_team_hit_round_score_limit()
 	{
 		if(game.stat[#"teamscores"][team] >= round_score_limit)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -5069,13 +5114,13 @@ function hitroundscorelimit()
 {
 	if(level.roundscorelimit <= 0)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased)
 	{
 		if(any_team_hit_round_score_limit())
 		{
-			return 1;
+			return true;
 		}
 	}
 	else
@@ -5086,11 +5131,11 @@ function hitroundscorelimit()
 			player = level.players[i];
 			if(isdefined(player.pointstowin) && player.pointstowin >= roundscorelimit)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -5163,9 +5208,9 @@ function isroundbased()
 {
 	if(level.roundlimit != 1 && level.roundwinlimit != 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -5272,7 +5317,7 @@ function delayed_delete(f_delay_seconds)
 function is_safehouse()
 {
 	mapname = function_53bbf9d2();
-	return 0;
+	return false;
 }
 
 /*
@@ -5291,7 +5336,7 @@ function is_new_cp_map()
 	{
 		default:
 		{
-			return 0;
+			return false;
 		}
 	}
 }
@@ -6253,7 +6298,7 @@ function clearallcooldowns()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_4627b63d(alias)
+function private function_4627b63d(alias)
 {
 	/#
 		assert(isdefined(level.var_3c691677));
@@ -6273,7 +6318,7 @@ private function function_4627b63d(alias)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_3cb7a62d()
+function private function_3cb7a62d()
 {
 	/#
 		assert(isdefined(level.team_mapping));
@@ -6384,7 +6429,7 @@ function function_9b7092ef(team1, team2, team3, team4)
 {
 	if(!isdefined(team1) || !isdefined(team2))
 	{
-		return 0;
+		return false;
 	}
 	foreach(var_ef54b214 in level.var_fdf974de)
 	{
@@ -6396,13 +6441,13 @@ function function_9b7092ef(team1, team2, team3, team4)
 				{
 					if(!isdefined(team4) || array::contains(var_ef54b214, team4))
 					{
-						return 1;
+						return true;
 					}
 				}
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -6727,16 +6772,16 @@ function function_72cbea07(player, weapon)
 {
 	if(!isdefined(player.var_9c4683a0))
 	{
-		return 0;
+		return false;
 	}
 	foreach(var_e64f4a4a in player.var_9c4683a0)
 	{
 		if(var_e64f4a4a == weapon)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -6878,7 +6923,7 @@ function show_hit_marker(var_554cb812 = 0, var_1ed250ec = 0)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_6e97119b(var_554cb812, var_1ed250ec)
+function private function_6e97119b(var_554cb812, var_1ed250ec)
 {
 	self endon(#"death");
 	if(!isdefined(self.var_9a94bf1))
@@ -6969,11 +7014,11 @@ function is_party_gamemode()
 		case "shrp":
 		case "gun":
 		{
-			return 1;
+			return true;
 			break;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -7223,9 +7268,9 @@ function is_spectating()
 {
 	if(self.sessionstate == #"spectator")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -7242,7 +7287,7 @@ function function_8570168d()
 	/#
 		if(getdvar(#"hash_49e94b7aefac4f49", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(sessionmodeismultiplayergame())
@@ -7250,10 +7295,10 @@ function function_8570168d()
 		mode = function_bea73b01();
 		if(mode == 4)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -7445,13 +7490,16 @@ function function_d608a743()
 		{
 			util::single_thread_argarray(self, s_callback.func, s_callback.params);
 		}
-		else if(isdefined(s_result.params))
-		{
-			util::single_thread_argarray(self, s_callback.func, s_result.params);
-		}
 		else
 		{
-			util::single_thread_argarray(self, s_callback.func);
+			if(isdefined(s_result.params))
+			{
+				util::single_thread_argarray(self, s_callback.func, s_result.params);
+			}
+			else
+			{
+				util::single_thread_argarray(self, s_callback.func);
+			}
 		}
 	}
 }

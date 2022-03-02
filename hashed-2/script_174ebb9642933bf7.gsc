@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_18c69cd2b0bf61b9", &__init__, undefined, undefined);
 }
@@ -97,9 +97,9 @@ function crawler_round_spawn()
 	if(isdefined(ai))
 	{
 		level.zombie_total--;
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -290,7 +290,7 @@ function function_a5abd591()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9a898f07(e_target)
+function private function_9a898f07(e_target)
 {
 	if(isdefined(level.zm_loc_types[#"hash_506aba309cfe3f56"]) && level.zm_loc_types[#"hash_506aba309cfe3f56"].size > 0)
 	{
@@ -362,7 +362,7 @@ function function_87348a88(e_target)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9216fd1f()
+function private function_9216fd1f()
 {
 	spawn_locations = [];
 	spawn_location = undefined;
@@ -398,7 +398,7 @@ private function function_9216fd1f()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e2bab5ec(spot)
+function private function_e2bab5ec(spot)
 {
 	if(isdefined(self.anchor))
 	{

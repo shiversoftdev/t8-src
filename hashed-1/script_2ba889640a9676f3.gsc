@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_2d11bcef9355cc81", &__init__, undefined, undefined);
 }
@@ -184,7 +184,7 @@ function infusion_lights_cold(localclientnum, oldval, newval, bnewent, binitials
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_619bb271(string)
+function private function_619bb271(string)
 {
 	if(!isdefined(level.var_989f7c7c))
 	{

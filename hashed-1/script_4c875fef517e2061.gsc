@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_31eaab29298885c6", &__init__, undefined, undefined);
 }
@@ -205,7 +205,7 @@ function function_fff5377e(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_793a9f3d(localclientnum)
+function private function_793a9f3d(localclientnum)
 {
 	a_ai = getentarraybytype(localclientnum, 15);
 	a_vh = getentarraybytype(localclientnum, 12);

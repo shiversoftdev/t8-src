@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"clientfaceanim_shared", undefined, &main, undefined);
 }
@@ -47,7 +47,7 @@ function main()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_localclient_connect(localclientnum)
+function private on_localclient_connect(localclientnum)
 {
 	thread function_cf386505(localclientnum);
 }
@@ -61,7 +61,7 @@ private function on_localclient_connect(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_player_spawned(localclientnum)
+function private on_player_spawned(localclientnum)
 {
 	self callback::on_shutdown(&on_player_shutdown);
 }
@@ -75,7 +75,7 @@ private function on_player_spawned(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function on_player_shutdown(localclientnum)
+function private on_player_shutdown(localclientnum)
 {
 	if(isplayer(self))
 	{
@@ -141,7 +141,7 @@ function buildandvalidatefacialanimationlist(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function facialanimationthink_getwaittime(localclientnum)
+function private facialanimationthink_getwaittime(localclientnum)
 {
 	min_wait = 0.1;
 	max_wait = 1;
@@ -161,13 +161,16 @@ private function facialanimationthink_getwaittime(localclientnum)
 	{
 		distance_factor = 1;
 	}
-	else if(distancesq < min_wait_distance_sq)
-	{
-		distance_factor = 0;
-	}
 	else
 	{
-		distance_factor = (distancesq - min_wait_distance_sq) / (max_wait_distance_sq - min_wait_distance_sq);
+		if(distancesq < min_wait_distance_sq)
+		{
+			distance_factor = 0;
+		}
+		else
+		{
+			distance_factor = (distancesq - min_wait_distance_sq) / (max_wait_distance_sq - min_wait_distance_sq);
+		}
 	}
 	return ((max_wait - min_wait) * distance_factor) + min_wait;
 }
@@ -181,7 +184,7 @@ private function facialanimationthink_getwaittime(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_26ff990a(local_client_num)
+function private function_26ff990a(local_client_num)
 {
 	max_players = 10;
 	max_distance = 2000;
@@ -233,7 +236,7 @@ private function function_26ff990a(local_client_num)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_cf386505(local_client_num)
+function private function_cf386505(local_client_num)
 {
 	var_40425722 = 1;
 	while(true)
@@ -259,7 +262,7 @@ private function function_cf386505(local_client_num)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function updatefacialanimforplayer(localclientnum, player)
+function private updatefacialanimforplayer(localclientnum, player)
 {
 	if(!isdefined(player._currentfacestate))
 	{
@@ -290,33 +293,51 @@ private function updatefacialanimforplayer(localclientnum, player)
 	{
 		nextfacestate = #"death";
 	}
-	else if(player isplayerfiring())
-	{
-		nextfacestate = #"combat_shoot";
-	}
-	else if(player isplayersliding())
-	{
-		nextfacestate = #"sliding";
-	}
-	else if(player isplayerwallrunning())
-	{
-		nextfacestate = #"wallrunning";
-	}
-	else if(player isplayersprinting())
-	{
-		nextfacestate = #"sprinting";
-	}
-	else if(player isplayerjumping() || player isplayerdoublejumping())
-	{
-		nextfacestate = #"jumping";
-	}
-	else if(player isplayerswimming())
-	{
-		nextfacestate = #"swimming";
-	}
 	else
 	{
-		nextfacestate = #"combat";
+		if(player isplayerfiring())
+		{
+			nextfacestate = #"combat_shoot";
+		}
+		else
+		{
+			if(player isplayersliding())
+			{
+				nextfacestate = #"sliding";
+			}
+			else
+			{
+				if(player isplayerwallrunning())
+				{
+					nextfacestate = #"wallrunning";
+				}
+				else
+				{
+					if(player isplayersprinting())
+					{
+						nextfacestate = #"sprinting";
+					}
+					else
+					{
+						if(player isplayerjumping() || player isplayerdoublejumping())
+						{
+							nextfacestate = #"jumping";
+						}
+						else
+						{
+							if(player isplayerswimming())
+							{
+								nextfacestate = #"swimming";
+							}
+							else
+							{
+								nextfacestate = #"combat";
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	if(player._currentfacestate == "inactive" || currfacestate != nextfacestate)
 	{
@@ -338,7 +359,7 @@ private function updatefacialanimforplayer(localclientnum, player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function applynewfaceanim(localclientnum, animation)
+function private applynewfaceanim(localclientnum, animation)
 {
 	clearallfacialanims(localclientnum);
 	if(isdefined(animation))
@@ -357,7 +378,7 @@ private function applynewfaceanim(localclientnum, animation)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function applydeathanim(localclientnum)
+function private applydeathanim(localclientnum)
 {
 	if(isdefined(self._currentfacestate) && self._currentfacestate == #"death")
 	{
@@ -379,7 +400,7 @@ private function applydeathanim(localclientnum)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d55dc6af(notifystring, param3)
+function private function_d55dc6af(notifystring, param3)
 {
 	self clearallfacialanims(self.localclientnum);
 }
@@ -393,7 +414,7 @@ private function function_d55dc6af(notifystring, param3)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function clearallfacialanims(localclientnum)
+function private clearallfacialanims(localclientnum)
 {
 	if(isdefined(self._currentfaceanim) && self hasdobj(localclientnum))
 	{

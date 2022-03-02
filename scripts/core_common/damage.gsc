@@ -17,11 +17,11 @@ function friendlyfirecheck(owner, attacker, forcedfriendlyfirerule)
 {
 	if(!isdefined(owner))
 	{
-		return 1;
+		return true;
 	}
 	if(!level.teambased)
 	{
-		return 1;
+		return true;
 	}
 	friendlyfirerule = [[level.figure_out_friendly_fire]](undefined, attacker);
 	if(isdefined(forcedfriendlyfirerule))
@@ -30,11 +30,11 @@ function friendlyfirecheck(owner, attacker, forcedfriendlyfirerule)
 	}
 	if(friendlyfirerule != 0)
 	{
-		return 1;
+		return true;
 	}
 	if(attacker == owner)
 	{
-		return 1;
+		return true;
 	}
 	if(isplayer(attacker))
 	{
@@ -45,59 +45,65 @@ function friendlyfirecheck(owner, attacker, forcedfriendlyfirerule)
 		}
 		if(isdefined(attacker.pers) && !isdefined(attacker.pers[#"team"]))
 		{
-			return 1;
+			return true;
 		}
 		if(isdefined(attacker.pers) && util::function_fbce7263(attacker.pers[#"team"], ownerteam))
 		{
-			return 1;
+			return true;
 		}
 	}
-	else if(isactor(attacker))
+	else
 	{
-		ownerteam = owner.team;
-		if(!isdefined(ownerteam) && isdefined(owner.pers))
-		{
-			ownerteam = owner.pers[#"team"];
-		}
-		if(util::function_fbce7263(attacker.team, ownerteam))
-		{
-			return 1;
-		}
-	}
-	else if(isvehicle(attacker))
-	{
-		if(isdefined(attacker.owner) && isplayer(attacker.owner))
+		if(isactor(attacker))
 		{
 			ownerteam = owner.team;
 			if(!isdefined(ownerteam) && isdefined(owner.pers))
 			{
 				ownerteam = owner.pers[#"team"];
 			}
-			if(util::function_fbce7263(attacker.owner.pers[#"team"], ownerteam))
+			if(util::function_fbce7263(attacker.team, ownerteam))
 			{
-				return 1;
+				return true;
 			}
 		}
 		else
 		{
-			occupant_team = attacker vehicle::vehicle_get_occupant_team();
-			if(isplayer(owner))
+			if(isvehicle(attacker))
 			{
-				if(util::function_fbce7263(occupant_team, owner.pers[#"team"]) && occupant_team != #"spectator")
+				if(isdefined(attacker.owner) && isplayer(attacker.owner))
 				{
-					return 1;
+					ownerteam = owner.team;
+					if(!isdefined(ownerteam) && isdefined(owner.pers))
+					{
+						ownerteam = owner.pers[#"team"];
+					}
+					if(util::function_fbce7263(attacker.owner.pers[#"team"], ownerteam))
+					{
+						return true;
+					}
+				}
+				else
+				{
+					occupant_team = attacker vehicle::vehicle_get_occupant_team();
+					if(isplayer(owner))
+					{
+						if(util::function_fbce7263(occupant_team, owner.pers[#"team"]) && occupant_team != #"spectator")
+						{
+							return true;
+						}
+					}
+					else if(util::function_fbce7263(owner.team, occupant_team))
+					{
+						return true;
+					}
 				}
 			}
-			else if(util::function_fbce7263(owner.team, occupant_team))
+			else if(attacker.classname === "worldspawn")
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	else if(attacker.classname === "worldspawn")
-	{
-		return 1;
-	}
-	return 0;
+	return false;
 }
 

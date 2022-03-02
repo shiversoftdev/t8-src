@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_4b8517108556612", &__init__, undefined, undefined);
 }
@@ -45,7 +45,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_190ae9a1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_190ae9a1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	origin = self gettagorigin("j_spine4");
 	if(isdefined(self) && newval && isdefined(origin))

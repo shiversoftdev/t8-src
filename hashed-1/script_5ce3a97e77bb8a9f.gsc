@@ -208,18 +208,21 @@ function missile_fired(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 			player.var_ac70fe70 = util::playfxontag(localclientnum, #"hash_50b25e352ba908d0", self, "tag_origin");
 		}
 	}
-	else if(newval == 2)
-	{
-		if(isdefined(self.hellfireobjid))
-		{
-			self notify(#"hellfire_detonated");
-			objective_delete(localclientnum, self.hellfireobjid);
-			util::releaseobjid(localclientnum, self.hellfireobjid);
-		}
-	}
 	else
 	{
-		self notify(#"cleanup_objectives");
+		if(newval == 2)
+		{
+			if(isdefined(self.hellfireobjid))
+			{
+				self notify(#"hellfire_detonated");
+				objective_delete(localclientnum, self.hellfireobjid);
+				util::releaseobjid(localclientnum, self.hellfireobjid);
+			}
+		}
+		else
+		{
+			self notify(#"cleanup_objectives");
+		}
 	}
 	ammo_ui_data_model = getuimodel(getuimodelforcontroller(localclientnum), "vehicle.rocketAmmo");
 	if(isdefined(ammo_ui_data_model))
@@ -348,13 +351,16 @@ function function_d260edc9(localclientnum)
 			function_a837926b(localclientnum, postfxbundle);
 		}
 	}
-	else if(isdefined(player.var_ac70fe70))
+	else
 	{
-		killfx(localclientnum, player.var_ac70fe70);
-	}
-	if(function_148ccc79(localclientnum, postfxbundle))
-	{
-		codestoppostfxbundlelocal(localclientnum, postfxbundle);
+		if(isdefined(player.var_ac70fe70))
+		{
+			killfx(localclientnum, player.var_ac70fe70);
+		}
+		if(function_148ccc79(localclientnum, postfxbundle))
+		{
+			codestoppostfxbundlelocal(localclientnum, postfxbundle);
+		}
 	}
 }
 
@@ -382,13 +388,16 @@ function function_c65b18ed(localclientnum, oldval, newval, bnewent, binitialsnap
 			function_a837926b(localclientnum, postfxbundle);
 		}
 	}
-	else if(isdefined(player.var_ac70fe70))
+	else
 	{
-		killfx(localclientnum, player.var_ac70fe70);
-	}
-	if(function_148ccc79(localclientnum, postfxbundle))
-	{
-		codestoppostfxbundlelocal(localclientnum, postfxbundle);
+		if(isdefined(player.var_ac70fe70))
+		{
+			killfx(localclientnum, player.var_ac70fe70);
+		}
+		if(function_148ccc79(localclientnum, postfxbundle))
+		{
+			codestoppostfxbundlelocal(localclientnum, postfxbundle);
+		}
 	}
 }
 

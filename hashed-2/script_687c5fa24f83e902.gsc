@@ -30,13 +30,16 @@ function init_shared()
 	{
 		level.var_5101157d.bundle = getscriptbundle(#"hash_25c242b3e86ced05");
 	}
-	else if(function_f99d2668())
+	else
 	{
-		level.var_5101157d.bundle = getscriptbundle(#"hash_25e448b3e889dd9d");
-	}
-	else if(sessionmodeiscampaigngame())
-	{
-		level.var_5101157d.bundle = getscriptbundle(#"hash_25a046b3e8500d6b");
+		if(function_f99d2668())
+		{
+			level.var_5101157d.bundle = getscriptbundle(#"hash_25e448b3e889dd9d");
+		}
+		else if(sessionmodeiscampaigngame())
+		{
+			level.var_5101157d.bundle = getscriptbundle(#"hash_25a046b3e8500d6b");
+		}
 	}
 	function_8434338d();
 }
@@ -195,14 +198,17 @@ function function_1c2930c7(localclientnum)
 			player function_bf191832(0, (0, 0, 0), (0, 0, 0));
 			continue;
 		}
-		else if(isdefined(var_b43e8dc2) && var_ccfe777)
+		else
 		{
-			var_ccfe777 = 0;
-		}
-		else if(!isdefined(var_b43e8dc2))
-		{
-			player function_bf191832(0, (0, 0, 0), (0, 0, 0));
-			continue;
+			if(isdefined(var_b43e8dc2) && var_ccfe777)
+			{
+				var_ccfe777 = 0;
+			}
+			else if(!isdefined(var_b43e8dc2))
+			{
+				player function_bf191832(0, (0, 0, 0), (0, 0, 0));
+				continue;
+			}
 		}
 		if((isdefined(level.var_5101157d.bundle.var_8fa9aac4) ? level.var_5101157d.bundle.var_8fa9aac4 : 0))
 		{

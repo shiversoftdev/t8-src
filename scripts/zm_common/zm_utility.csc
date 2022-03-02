@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_utility", &__init__, &__main__, undefined);
 }
@@ -97,7 +97,7 @@ function ignore_triggers(timer)
 */
 function is_encounter()
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -217,9 +217,9 @@ function is_classic()
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"zclassic")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -236,9 +236,9 @@ function is_standard()
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"zstandard")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -255,9 +255,9 @@ function is_trials()
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"ztrials" || level flag::exists(#"ztrial"))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -274,9 +274,9 @@ function is_tutorial()
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"ztutorial")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -293,9 +293,9 @@ function is_grief()
 	str_gametype = util::function_5df4294();
 	if(str_gametype == #"zgrief")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -337,13 +337,13 @@ function function_e51dc2d8()
 {
 	if(!getdvarint(#"hash_2992299f853b2039", 0))
 	{
-		return 0;
+		return false;
 	}
 	if(level.gamedifficulty == 0)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -475,13 +475,13 @@ function umbra_fix_trigger(localclientnum, pos, height, radius, umbra_name)
 			/#
 				drawcylinder(pos, radius, height, (0, 1, 0));
 			#/
-			return 1;
+			return true;
 		}
 	}
 	/#
 		drawcylinder(pos, radius, height, (1, 0, 0));
 	#/
-	return 0;
+	return false;
 }
 
 /*
@@ -887,7 +887,7 @@ function good_barricade_damaged(localclientnum)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_fe127aaf(localclientnum, var_ee6bcd51, str_fx)
+function private function_fe127aaf(localclientnum, var_ee6bcd51, str_fx)
 {
 	if(isdefined(var_ee6bcd51))
 	{

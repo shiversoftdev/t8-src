@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_37ef143ef409b670", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue && !namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
 	{
@@ -68,7 +68,7 @@ private function function_d05553c6(localclientnum, oldvalue, newvalue, bnewent, 
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function minigun_nuke_rob(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private minigun_nuke_rob(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	if(newvalue == 1)
 	{
@@ -89,7 +89,7 @@ private function minigun_nuke_rob(localclientnum, oldvalue, newvalue, bnewent, b
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function minigun_nuke_rumble(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
+function private minigun_nuke_rumble(localclientnum, oldvalue, newvalue, bnewent, binitialsnap, fieldname, wasdemojump)
 {
 	self playrumbleonentity(localclientnum, "damage_heavy");
 	if(function_65b9eb0f(localclientnum))
@@ -97,7 +97,7 @@ private function minigun_nuke_rumble(localclientnum, oldvalue, newvalue, bnewent
 		return;
 	}
 	self thread postfx::playpostfxbundle(#"hash_3b0eec5d73aa6243");
-	self waittill_timeout(1, #"death");
+	self waittilltimeout(1, #"death");
 	if(isdefined(self))
 	{
 		self thread postfx::exitpostfxbundle(#"hash_3b0eec5d73aa6243");

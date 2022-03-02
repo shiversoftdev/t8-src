@@ -15,7 +15,7 @@
 	Parameters: 1
 	Flags: Private
 */
-private function function_bf7acc22(squad)
+function private function_bf7acc22(squad)
 {
 	botentries = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	foreach(botinfo in botentries)
@@ -37,7 +37,7 @@ private function function_bf7acc22(squad)
 	Parameters: 1
 	Flags: Private
 */
-private function _debugsquad(squad)
+function private _debugsquad(squad)
 {
 	/#
 		if(!isdefined(level.__plannersquaddebug))
@@ -128,42 +128,54 @@ private function _debugsquad(squad)
 								}
 							}
 						}
-						else if(target[#"type"] == "" || target[#"type"] == "")
-						{
-							var_5fbc7570 = target[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
-							targetpos = var_5fbc7570.origin;
-							component = target[#"__unsafe__"][#"component"];
-							var_35e9a86a = component.var_2956bff4;
-							if(isdefined(component.var_6bc907c4))
-							{
-								function_f301de44(component.var_6bc907c4, (1, 0, 1), "");
-								recordline(targetpos, component.var_6bc907c4.origin, (1, 0, 1), "");
-								record3dtext("", component.var_6bc907c4.origin, (1, 0, 1), "", textscale);
-							}
-						}
-						else if(target[#"type"] == "")
-						{
-							var_5fbc7570 = target[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
-							targetpos = var_5fbc7570.origin;
-							component = target[#"__unsafe__"][#"component"];
-							var_35e9a86a = component.var_cc67d976;
-						}
-						else if(target[#"type"] == "")
-						{
-							var_5fbc7570 = target[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
-							targetpos = var_5fbc7570.origin;
-							component = target[#"__unsafe__"][#"component"];
-							var_35e9a86a = component.var_c68dc48c;
-						}
-						else if(target[#"type"] == "")
-						{
-							bundle = target[#"__unsafe__"][#"bundle"];
-							targetpos = bundle.var_27726d51.origin;
-						}
 						else
 						{
-							yoffset = yoffset + 13;
-							recordtext("" + target[#"type"], position + (xoffset, yoffset, 0), (1, 0, 0), "", textscale);
+							if(target[#"type"] == "" || target[#"type"] == "")
+							{
+								var_5fbc7570 = target[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
+								targetpos = var_5fbc7570.origin;
+								component = target[#"__unsafe__"][#"component"];
+								var_35e9a86a = component.var_2956bff4;
+								if(isdefined(component.var_6bc907c4))
+								{
+									function_f301de44(component.var_6bc907c4, (1, 0, 1), "");
+									recordline(targetpos, component.var_6bc907c4.origin, (1, 0, 1), "");
+									record3dtext("", component.var_6bc907c4.origin, (1, 0, 1), "", textscale);
+								}
+							}
+							else
+							{
+								if(target[#"type"] == "")
+								{
+									var_5fbc7570 = target[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
+									targetpos = var_5fbc7570.origin;
+									component = target[#"__unsafe__"][#"component"];
+									var_35e9a86a = component.var_cc67d976;
+								}
+								else
+								{
+									if(target[#"type"] == "")
+									{
+										var_5fbc7570 = target[#"__unsafe__"][#"hash_57b897c5ec9b1b71"];
+										targetpos = var_5fbc7570.origin;
+										component = target[#"__unsafe__"][#"component"];
+										var_35e9a86a = component.var_c68dc48c;
+									}
+									else
+									{
+										if(target[#"type"] == "")
+										{
+											bundle = target[#"__unsafe__"][#"bundle"];
+											targetpos = bundle.var_27726d51.origin;
+										}
+										else
+										{
+											yoffset = yoffset + 13;
+											recordtext("" + target[#"type"], position + (xoffset, yoffset, 0), (1, 0, 0), "", textscale);
+										}
+									}
+								}
+							}
 						}
 						if(isdefined(targetpos))
 						{
@@ -212,7 +224,7 @@ private function _debugsquad(squad)
 	Parameters: 7
 	Flags: Private
 */
-private function function_101999aa(strategy, header, var_71b35362, position, color, channel, textscale)
+function private function_101999aa(strategy, header, var_71b35362, position, color, channel, textscale)
 {
 	/#
 		xoffset = 0;
@@ -238,7 +250,7 @@ private function function_101999aa(strategy, header, var_71b35362, position, col
 	Parameters: 3
 	Flags: Private
 */
-private function function_f301de44(trigger, color, channel)
+function private function_f301de44(trigger, color, channel)
 {
 	/#
 		maxs = trigger getmaxs();
@@ -268,7 +280,7 @@ private function function_f301de44(trigger, color, channel)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _executeplan(squad)
+function private _executeplan(squad)
 {
 	/#
 		assert(isdefined(squad));
@@ -333,21 +345,21 @@ private function _executeplan(squad)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9de03b3f(squad)
+function private function_9de03b3f(squad)
 {
 	botentries = plannersquadutility::getblackboardattribute(squad, "doppelbots");
 	if(!isdefined(botentries))
 	{
-		return 0;
+		return false;
 	}
 	foreach(botinfo in botentries)
 	{
 		if(isdefined(botinfo[#"__unsafe__"][#"bot"]))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -359,7 +371,7 @@ private function function_9de03b3f(squad)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _plan(squad)
+function private _plan(squad)
 {
 	planstarttime = gettime();
 	squad.plan = planner::plan(squad.planner, squad.blackboard.values, squad.maxplannerframetime);
@@ -376,7 +388,7 @@ private function _plan(squad)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _strategize(squad)
+function private _strategize(squad)
 {
 	/#
 		assert(isdefined(squad));
@@ -409,7 +421,7 @@ private function _strategize(squad)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _updateplanner(squad)
+function private _updateplanner(squad)
 {
 	/#
 		assert(isdefined(squad));

@@ -354,10 +354,10 @@ function function_c3bf42e9()
 		str_player_zone = e_player zm_zonemgr::get_player_zone();
 		if(isdefined(str_player_zone) && function_94b7a4bd(str_player_zone))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -392,9 +392,9 @@ function function_94b7a4bd(str_zone)
 {
 	if(str_zone == "security_lobby" || str_zone == "decontamination" || str_zone == "geological_processing" || str_zone == "upper_catwalk" || str_zone == "human_infusion" || str_zone == "specimen_storage")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -406,7 +406,7 @@ function function_94b7a4bd(str_zone)
 	Parameters: 0
 	Flags: Private
 */
-private function function_502f97fa()
+function private function_502f97fa()
 {
 	if(!isdefined(self.favoriteenemy) || (isdefined(self.favoriteenemy) && self function_8a80437(self.favoriteenemy) !== 1))
 	{
@@ -473,7 +473,7 @@ private function function_502f97fa()
 	Parameters: 1
 	Flags: Private
 */
-private function function_8a80437(target)
+function private function_8a80437(target)
 {
 	result = 1;
 	if(isdefined(self) && isdefined(target) && isdefined(self.archetype) && self.archetype == #"zombie_dog")

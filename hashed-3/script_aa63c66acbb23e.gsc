@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"strategic_command", &strategiccommandutility::__init__, undefined, undefined);
 }
@@ -38,7 +38,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	/#
 		level thread _debuggameobjects();
@@ -49,9 +49,7 @@ private function __init__()
 	#/
 	if(!isdefined(level.strategic_command_throttle))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.strategic_command_throttle = object;
+		level.strategic_command_throttle = new throttle();
 		[[ level.strategic_command_throttle ]]->initialize(1, float(function_60d95f53()) / 1000);
 	}
 }
@@ -65,7 +63,7 @@ private function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ee3d20f5(entity, points)
+function private function_ee3d20f5(entity, points)
 {
 	path = undefined;
 	shortestpath = undefined;
@@ -102,7 +100,7 @@ private function function_ee3d20f5(entity, points)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _calculatepathtopoints(entity, points)
+function private _calculatepathtopoints(entity, points)
 {
 	path = undefined;
 	shortestpath = undefined;
@@ -149,7 +147,7 @@ private function _calculatepathtopoints(entity, points)
 	Parameters: 1
 	Flags: Private
 */
-private function function_45857dbe(members)
+function private function_45857dbe(members)
 {
 	/#
 		var_48fb9acf = 0;
@@ -184,7 +182,7 @@ private function function_45857dbe(members)
 	Parameters: 3
 	Flags: Private
 */
-private function function_65b80a10(commander, member, vehicle = undefined)
+function private function_65b80a10(commander, member, vehicle = undefined)
 {
 	/#
 		if(isdefined(vehicle))
@@ -244,7 +242,7 @@ private function function_65b80a10(commander, member, vehicle = undefined)
 	Parameters: 1
 	Flags: Private
 */
-private function function_41c81572(var_78caba27)
+function private function_41c81572(var_78caba27)
 {
 	/#
 		switch(var_78caba27)
@@ -278,7 +276,7 @@ private function function_41c81572(var_78caba27)
 	Parameters: 4
 	Flags: Private
 */
-private function function_741d9796(member, vehicle, commander, var_78caba27)
+function private function_741d9796(member, vehicle, commander, var_78caba27)
 {
 	/#
 		switch(var_78caba27)
@@ -352,7 +350,7 @@ private function function_741d9796(member, vehicle, commander, var_78caba27)
 	Parameters: 3
 	Flags: Private
 */
-private function function_7c3d768e(var_1b2a0645, var_d695a79f, commander)
+function private function_7c3d768e(var_1b2a0645, var_d695a79f, commander)
 {
 	/#
 		if(!isdefined(commander))
@@ -393,7 +391,7 @@ private function function_7c3d768e(var_1b2a0645, var_d695a79f, commander)
 	Parameters: 4
 	Flags: Private
 */
-private function function_df74a8f3(var_1b2a0645, var_d695a79f, members, commander)
+function private function_df74a8f3(var_1b2a0645, var_d695a79f, members, commander)
 {
 	/#
 		var_6e868cb7 = 0;
@@ -501,7 +499,7 @@ private function function_df74a8f3(var_1b2a0645, var_d695a79f, members, commande
 	Parameters: 0
 	Flags: Private
 */
-private function function_75df771f()
+function private function_75df771f()
 {
 	/#
 		xoffset = 150;
@@ -568,7 +566,7 @@ private function function_75df771f()
 	Parameters: 0
 	Flags: Private
 */
-private function _debuggameobjects()
+function private _debuggameobjects()
 {
 	while(true)
 	{
@@ -595,7 +593,7 @@ private function _debuggameobjects()
 	Parameters: 0
 	Flags: Private
 */
-private function function_f0be958()
+function private function_f0be958()
 {
 	/#
 		while(true)
@@ -622,7 +620,7 @@ private function function_f0be958()
 	Parameters: 0
 	Flags: Private
 */
-private function function_1e535a11()
+function private function_1e535a11()
 {
 	/#
 		while(true)
@@ -649,7 +647,7 @@ private function function_1e535a11()
 	Parameters: 2
 	Flags: Private
 */
-private function function_31badd5d(var_5fbc7570, index)
+function private function_31badd5d(var_5fbc7570, index)
 {
 	/#
 		if(!isdefined(index))
@@ -681,18 +679,21 @@ private function function_31badd5d(var_5fbc7570, index)
 					function_3ed19fa3(gameobject.mdl_gameobject);
 					recordline(origin, gameobject.mdl_gameobject.origin, var_651415fc, "");
 				}
-				else if(isdefined(component.var_2956bff4))
+				else
 				{
-					var_41dd65b0 = component.var_2956bff4;
-					function_20610c3(component.var_2956bff4, var_651415fc, "");
-					recordline(origin, component.var_2956bff4.origin, var_651415fc, "");
-					record3dtext("", component.var_2956bff4.origin + (vectorscale((0, 0, -1), 5)), var_651415fc, "");
-				}
-				if(isdefined(component.var_6bc907c4))
-				{
-					function_20610c3(component.var_6bc907c4, var_651415fc, "");
-					recordline(origin, component.var_6bc907c4.origin, var_651415fc, "");
-					record3dtext("", component.var_6bc907c4.origin + vectorscale((0, 0, 1), 5), var_651415fc, "");
+					if(isdefined(component.var_2956bff4))
+					{
+						var_41dd65b0 = component.var_2956bff4;
+						function_20610c3(component.var_2956bff4, var_651415fc, "");
+						recordline(origin, component.var_2956bff4.origin, var_651415fc, "");
+						record3dtext("", component.var_2956bff4.origin + (vectorscale((0, 0, -1), 5)), var_651415fc, "");
+					}
+					if(isdefined(component.var_6bc907c4))
+					{
+						function_20610c3(component.var_6bc907c4, var_651415fc, "");
+						recordline(origin, component.var_6bc907c4.origin, var_651415fc, "");
+						record3dtext("", component.var_6bc907c4.origin + vectorscale((0, 0, 1), 5), var_651415fc, "");
+					}
 				}
 				if(isdefined(var_41dd65b0))
 				{
@@ -729,7 +730,7 @@ private function function_31badd5d(var_5fbc7570, index)
 	Parameters: 2
 	Flags: Private
 */
-private function function_3ed19fa3(gameobject, position)
+function private function_3ed19fa3(gameobject, position)
 {
 	/#
 		/#
@@ -820,7 +821,7 @@ private function function_3ed19fa3(gameobject, position)
 	Parameters: 2
 	Flags: Private
 */
-private function function_adb62fbb(breadcrumb, index)
+function private function_adb62fbb(breadcrumb, index)
 {
 	/#
 		if(!isdefined(index))
@@ -864,7 +865,7 @@ private function function_adb62fbb(breadcrumb, index)
 	Parameters: 4
 	Flags: Private, Variadic
 */
-private function function_15462dcd(pos, color, channel, vararg)
+function private function_15462dcd(pos, color, channel, vararg)
 {
 	/#
 		/#
@@ -891,7 +892,7 @@ private function function_15462dcd(pos, color, channel, vararg)
 	Parameters: 3
 	Flags: Private
 */
-private function function_20610c3(volume, color, channel)
+function private function_20610c3(volume, color, channel)
 {
 	/#
 		/#
@@ -923,7 +924,7 @@ private function function_20610c3(volume, color, channel)
 	Parameters: 0
 	Flags: Private
 */
-private function function_35fd8254()
+function private function_35fd8254()
 {
 	/#
 		while(true)
@@ -991,7 +992,7 @@ private function function_35fd8254()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_7712a8e4(strategy, var_a5bd84a3, var_48ce643a, doppelbots = 1, companions = 1)
+function private function_7712a8e4(strategy, var_a5bd84a3, var_48ce643a, doppelbots = 1, companions = 1)
 {
 	/#
 		assert(isdefined(strategy));
@@ -1921,15 +1922,15 @@ function function_208c970d(gpbundle, var_832340f2)
 	bundle = gpbundle.o_gpbundle;
 	if(!isdefined(bundle))
 	{
-		return 0;
+		return false;
 	}
 	if(!(bundle.var_96f00c9f === var_832340f2 || bundle.var_96f00c9f === team || (bundle.var_eb371c04 === var_832340f2 || bundle.var_eb371c04 === team)))
 	{
-		return 0;
+		return false;
 	}
 	if(!bundle flag::get("bundle_initialized"))
 	{
-		return 0;
+		return false;
 	}
 	type = gpbundle.classname;
 	switch(type)
@@ -1938,20 +1939,20 @@ function function_208c970d(gpbundle, var_832340f2)
 		{
 			if(!isdefined(bundle.var_27726d51))
 			{
-				return 0;
+				return false;
 			}
 			if(!isdefined(bundle.var_27726d51.mdl_gameobject))
 			{
-				return 0;
+				return false;
 			}
 			break;
 		}
 		default:
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1985,21 +1986,21 @@ function function_f867cce0(var_5fbc7570, commanderteam)
 	#/
 	if(!isdefined(component))
 	{
-		return 0;
+		return false;
 	}
 	if(!var_5fbc7570 flag::get("enabled"))
 	{
-		return 0;
+		return false;
 	}
 	if(var_5fbc7570 flag::get("complete"))
 	{
-		return 0;
+		return false;
 	}
 	if(component.m_str_team !== commanderteam && component.m_str_team != #"any")
 	{
 		if(!isdefined(var_5fbc7570.var_3093fd62) || var_5fbc7570.var_3093fd62 == 0)
 		{
-			return 0;
+			return false;
 		}
 	}
 	type = var_5fbc7570.scriptbundlename;
@@ -2019,10 +2020,10 @@ function function_f867cce0(var_5fbc7570, commanderteam)
 		}
 		default:
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2147,7 +2148,7 @@ function querypointsinsideposition(bot, position, radius, halfheight)
 	Parameters: 2
 	Flags: Private
 */
-private function function_1891d0d2(points, var_75ae35a4)
+function private function_1891d0d2(points, var_75ae35a4)
 {
 	/#
 		var_2586092e = 50;

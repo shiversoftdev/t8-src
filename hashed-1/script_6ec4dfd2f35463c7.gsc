@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"status_effect_pulse", &__init__, undefined, undefined);
 }
@@ -80,7 +80,7 @@ function pulse_apply(var_756fda07, weapon, var_84171a6c)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function pulse_rumble_loop(duration)
+function private pulse_rumble_loop(duration)
 {
 	self endon(#"pulse_rumble_loop");
 	self notify(#"pulse_rumble_loop");

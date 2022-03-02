@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_39775c4aaea6051b", &__init__, undefined, undefined);
 }
@@ -167,17 +167,23 @@ function tomahawk_trail_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"tomahawk_trail"], self, "tag_fx");
 	}
-	else if(newval == 2)
+	else
 	{
-		self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"tomahawk_trail_ug"], self, "tag_fx");
-	}
-	else if(newval == 3)
-	{
-		self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"tomahawk_charged_trail"], self, "tag_fx");
-	}
-	else if(newval == 4)
-	{
-		self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"hash_f0d62b29afe4b7c"], self, "tag_fx");
+		if(newval == 2)
+		{
+			self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"tomahawk_trail_ug"], self, "tag_fx");
+		}
+		else
+		{
+			if(newval == 3)
+			{
+				self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"tomahawk_charged_trail"], self, "tag_fx");
+			}
+			else if(newval == 4)
+			{
+				self.n_trail_fx = util::playfxontag(localclientnum, level._effect[#"hash_f0d62b29afe4b7c"], self, "tag_fx");
+			}
+		}
 	}
 }
 

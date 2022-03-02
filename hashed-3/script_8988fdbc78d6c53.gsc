@@ -244,7 +244,7 @@ event loadout_changed(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function snipinterfaceattributes(weapon)
+function private snipinterfaceattributes(weapon)
 {
 	if(isdefined(level.var_e1b654ee))
 	{
@@ -322,7 +322,7 @@ function function_9d7ae85f(weaponname, createfunc, var_7b2908f = 2)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_db765b94()
+function private function_db765b94()
 {
 	watcherweapons = getwatcherweapons();
 	foreach(weapon in watcherweapons)
@@ -344,7 +344,7 @@ private function function_db765b94()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function setupretrievablewatcher(watcher)
+function private setupretrievablewatcher(watcher)
 {
 	if(!isdefined(watcher.onspawnretrievetriggers))
 	{
@@ -538,14 +538,17 @@ function weapondetonate(attacker, weapon)
 			self detonate();
 		}
 	}
-	else if(isdefined(self.owner) && isplayer(self.owner))
-	{
-		self.playdialog = 0;
-		self detonate(self.owner);
-	}
 	else
 	{
-		self detonate();
+		if(isdefined(self.owner) && isplayer(self.owner))
+		{
+			self.playdialog = 0;
+			self detonate(self.owner);
+		}
+		else
+		{
+			self detonate();
+		}
 	}
 	if(isdefined(self.owner) && isplayer(self.owner))
 	{
@@ -1399,7 +1402,7 @@ function resetweaponobjectwatcher(watcher, ownerteam)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function createweaponobjectwatcher(weaponname, ownerteam)
+function private createweaponobjectwatcher(weaponname, ownerteam)
 {
 	if(!isdefined(self.weaponobjectwatcherarray))
 	{
@@ -1467,7 +1470,7 @@ private function createweaponobjectwatcher(weaponname, ownerteam)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function createuseweaponobjectwatcher(weaponname, ownerteam)
+function private createuseweaponobjectwatcher(weaponname, ownerteam)
 {
 	weaponobjectwatcher = createweaponobjectwatcher(weaponname, ownerteam);
 	weaponobjectwatcher.type = "use";
@@ -1484,7 +1487,7 @@ private function createuseweaponobjectwatcher(weaponname, ownerteam)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function createproximityweaponobjectwatcher(weaponname, ownerteam)
+function private createproximityweaponobjectwatcher(weaponname, ownerteam)
 {
 	weaponobjectwatcher = createweaponobjectwatcher(weaponname, ownerteam);
 	weaponobjectwatcher.type = "proximity";
@@ -1809,13 +1812,16 @@ function onspawnproximityweaponobject(watcher, owner)
 	{
 		self thread [[level._proximityweaponobjectdetonation_override]](watcher);
 	}
-	else if(isdefined(self._proximityweaponobjectdetonation_override))
-	{
-		self thread [[self._proximityweaponobjectdetonation_override]](watcher);
-	}
 	else
 	{
-		self thread proximityweaponobjectdetonation(watcher);
+		if(isdefined(self._proximityweaponobjectdetonation_override))
+		{
+			self thread [[self._proximityweaponobjectdetonation_override]](watcher);
+		}
+		else
+		{
+			self thread proximityweaponobjectdetonation(watcher);
+		}
 	}
 	/#
 		if(level.weaponobjectdebug == 1)
@@ -2183,7 +2189,7 @@ function hackernotmoving()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function set_hint_string(hint_string, var_c1846261)
+function private set_hint_string(hint_string, var_c1846261)
 {
 	if(isdefined(hint_string) && hint_string != "")
 	{
@@ -2427,101 +2433,101 @@ function canhack(player, owner, weapon_check)
 {
 	if(!isdefined(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isplayer(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(player))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(owner))
 	{
-		return 0;
+		return false;
 	}
 	if(owner == player)
 	{
-		return 0;
+		return false;
 	}
 	if(level.teambased && !util::function_fbce7263(player.team, owner.team))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.isdefusing) && player.isdefusing)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.isplanting) && player.isplanting)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.proxbar) && !player.proxbar.hidden)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.revivingteammate) && player.revivingteammate == 1)
 	{
-		return 0;
+		return false;
 	}
 	if(!player isonground())
 	{
-		return 0;
+		return false;
 	}
 	if(player isinvehicle())
 	{
-		return 0;
+		return false;
 	}
 	if(player isweaponviewonlylinked())
 	{
-		return 0;
+		return false;
 	}
 	if(!player hasperk(#"specialty_disarmexplosive"))
 	{
-		return 0;
+		return false;
 	}
 	if(player isempjammed())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(player.laststand) && player.laststand)
 	{
-		return 0;
+		return false;
 	}
 	if(weapon_check)
 	{
 		if(player isthrowinggrenade())
 		{
-			return 0;
+			return false;
 		}
 		if(player isswitchingweapons())
 		{
-			return 0;
+			return false;
 		}
 		if(player ismeleeing())
 		{
-			return 0;
+			return false;
 		}
 		weapon = player getcurrentweapon();
 		if(!isdefined(weapon))
 		{
-			return 0;
+			return false;
 		}
 		if(weapon == level.weaponnone)
 		{
-			return 0;
+			return false;
 		}
 		if(weapon.isequipment && player isfiring())
 		{
-			return 0;
+			return false;
 		}
 		if(weapon.isspecificuse)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2582,52 +2588,52 @@ function proximityweaponobject_validtriggerentity(watcher, ent)
 	{
 		if(isdefined(self.owner) && ent == self.owner)
 		{
-			return 0;
+			return false;
 		}
 		if(isvehicle(ent))
 		{
 			if(watcher.ignorevehicles)
 			{
-				return 0;
+				return false;
 			}
 			if(self.owner === ent.owner)
 			{
-				return 0;
+				return false;
 			}
 		}
 		if(!damage::friendlyfirecheck(self.owner, ent, 0))
 		{
-			return 0;
+			return false;
 		}
 		if(watcher.ignorevehicles && isai(ent) && (!(isdefined(ent.isaiclone) && ent.isaiclone)))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(lengthsquared(ent getvelocity()) < 10 && !isdefined(watcher.immediatedetonation))
 	{
-		return 0;
+		return false;
 	}
 	if(!ent shouldaffectweaponobject(self, watcher))
 	{
-		return 0;
+		return false;
 	}
 	if(self isstunned())
 	{
-		return 0;
+		return false;
 	}
 	if(isplayer(ent))
 	{
 		if(!isalive(ent))
 		{
-			return 0;
+			return false;
 		}
 		if(isdefined(watcher.immunespecialty) && ent hasperk(watcher.immunespecialty))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -2686,26 +2692,26 @@ function proximityweaponobject_isspawnprotected(watcher, ent)
 {
 	if(!isplayer(ent))
 	{
-		return 0;
+		return false;
 	}
 	foreach(protected_ent in self.protected_entities)
 	{
 		if(protected_ent == ent)
 		{
-			return 1;
+			return true;
 		}
 	}
 	linked_to = self getlinkedent();
 	if(linked_to === ent)
 	{
-		return 0;
+		return false;
 	}
 	if(ent player::is_spawn_protected())
 	{
 		self thread proximityweaponobject_spawnprotect(watcher, ent);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3084,7 +3090,7 @@ function saydamaged(orig, amount)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_c9fc5521(player, weapon)
+function private function_c9fc5521(player, weapon)
 {
 	maxammo = 0;
 	loadout = player loadout::function_1ee886f7(weapon);
@@ -3099,17 +3105,23 @@ private function function_c9fc5521(player, weapon)
 			maxammo = weapon.maxammo + weapon.clipsize;
 		}
 	}
-	else if(isdefined(player.grenadetypeprimary) && weapon == player.grenadetypeprimary && isdefined(player.grenadetypeprimarycount) && player.grenadetypeprimarycount > 0)
-	{
-		maxammo = player.grenadetypeprimarycount;
-	}
-	else if(isdefined(player.grenadetypesecondary) && weapon == player.grenadetypesecondary && isdefined(player.grenadetypesecondarycount) && player.grenadetypesecondarycount > 0)
-	{
-		maxammo = player.grenadetypesecondarycount;
-	}
 	else
 	{
-		maxammo = weapon.maxammo + weapon.clipsize;
+		if(isdefined(player.grenadetypeprimary) && weapon == player.grenadetypeprimary && isdefined(player.grenadetypeprimarycount) && player.grenadetypeprimarycount > 0)
+		{
+			maxammo = player.grenadetypeprimarycount;
+		}
+		else
+		{
+			if(isdefined(player.grenadetypesecondary) && weapon == player.grenadetypesecondary && isdefined(player.grenadetypesecondarycount) && player.grenadetypesecondarycount > 0)
+			{
+				maxammo = player.grenadetypesecondarycount;
+			}
+			else
+			{
+				maxammo = weapon.maxammo + weapon.clipsize;
+			}
+		}
 	}
 	return maxammo;
 }
@@ -3123,7 +3135,7 @@ private function function_c9fc5521(player, weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_3847e88b(player, weapon)
+function private function_3847e88b(player, weapon)
 {
 	ammo = player getweaponammoclip(weapon);
 	if(!weapon.iscliponly)
@@ -3142,19 +3154,19 @@ private function function_3847e88b(player, weapon)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_e0093db1(player, weapon)
+function private function_e0093db1(player, weapon)
 {
 	maxammo = function_c9fc5521(player, weapon);
 	if(maxammo == 0)
 	{
-		return 0;
+		return false;
 	}
 	ammo = function_3847e88b(player, weapon);
 	if(ammo >= maxammo)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -3352,7 +3364,7 @@ function function_672ba881(weapon)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function spawn_interact_trigger(type, origin, width, height, var_c16194e2)
+function private spawn_interact_trigger(type, origin, width, height, var_c16194e2)
 {
 	if(isdefined(width) && isdefined(height))
 	{
@@ -3381,7 +3393,7 @@ private function spawn_interact_trigger(type, origin, width, height, var_c16194e
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_c7cdf243(origin, width, height)
+function private function_c7cdf243(origin, width, height)
 {
 	return spawn_interact_trigger("trigger_radius_use", origin, width, height);
 }
@@ -3395,7 +3407,7 @@ private function function_c7cdf243(origin, width, height)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_d5e8c3d0(origin, width, height)
+function private function_d5e8c3d0(origin, width, height)
 {
 	return spawn_interact_trigger("trigger_radius", origin, width, height, 1);
 }
@@ -3607,7 +3619,7 @@ function destroyent()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_452dcb49(player, weapon)
+function private function_452dcb49(player, weapon)
 {
 	if(weapon.iscliponly || weapon.var_d98594b2 == "Clip Then Ammo")
 	{
@@ -3871,11 +3883,11 @@ function useteamequipmentclientfield(watcher)
 		{
 			if(isdefined(self))
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

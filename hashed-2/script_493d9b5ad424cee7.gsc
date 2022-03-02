@@ -273,24 +273,27 @@ function function_476d4cb5()
 			self.var_28f1732d clientfield::set("soapstone_start_fx", 0);
 		}
 	}
-	else if(level.s_soapstone.is_hot)
-	{
-		self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_hot");
-		self.var_4eed727b clientfield::set("soapstone_start_fx", 2);
-		if(level.s_soapstone.var_b6e5b65f == 2)
-		{
-			self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_hot");
-			self.var_28f1732d clientfield::set("soapstone_start_fx", 2);
-		}
-	}
 	else
 	{
-		self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_cold");
-		self.var_4eed727b clientfield::set("soapstone_start_fx", 1);
-		if(level.s_soapstone.var_b6e5b65f == 2)
+		if(level.s_soapstone.is_hot)
 		{
-			self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_cold");
-			self.var_28f1732d clientfield::set("soapstone_start_fx", 1);
+			self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_hot");
+			self.var_4eed727b clientfield::set("soapstone_start_fx", 2);
+			if(level.s_soapstone.var_b6e5b65f == 2)
+			{
+				self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_hot");
+				self.var_28f1732d clientfield::set("soapstone_start_fx", 2);
+			}
+		}
+		else
+		{
+			self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_cold");
+			self.var_4eed727b clientfield::set("soapstone_start_fx", 1);
+			if(level.s_soapstone.var_b6e5b65f == 2)
+			{
+				self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_cold");
+				self.var_28f1732d clientfield::set("soapstone_start_fx", 1);
+			}
 		}
 	}
 	self.var_4eed727b show();
@@ -406,24 +409,27 @@ function function_2b438f6f()
 			self.var_28f1732d clientfield::set("soapstone_start_fx", 0);
 		}
 	}
-	else if(level.s_soapstone.is_hot)
-	{
-		self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_hot");
-		self.var_4eed727b clientfield::set("soapstone_start_fx", 2);
-		if(level.s_soapstone.var_b6e5b65f == 2)
-		{
-			self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_hot");
-			self.var_28f1732d clientfield::set("soapstone_start_fx", 2);
-		}
-	}
 	else
 	{
-		self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_cold");
-		self.var_4eed727b clientfield::set("soapstone_start_fx", 1);
-		if(level.s_soapstone.var_b6e5b65f == 2)
+		if(level.s_soapstone.is_hot)
 		{
-			self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_cold");
-			self.var_28f1732d clientfield::set("soapstone_start_fx", 1);
+			self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_hot");
+			self.var_4eed727b clientfield::set("soapstone_start_fx", 2);
+			if(level.s_soapstone.var_b6e5b65f == 2)
+			{
+				self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_hot");
+				self.var_28f1732d clientfield::set("soapstone_start_fx", 2);
+			}
+		}
+		else
+		{
+			self.var_4eed727b setmodel("p8_zm_ora_soapstone_01_cold");
+			self.var_4eed727b clientfield::set("soapstone_start_fx", 1);
+			if(level.s_soapstone.var_b6e5b65f == 2)
+			{
+				self.var_28f1732d setmodel("p8_zm_ora_soapstone_01_cold");
+				self.var_28f1732d clientfield::set("soapstone_start_fx", 1);
+			}
 		}
 	}
 	self.var_4eed727b show();
@@ -513,19 +519,22 @@ function function_9961d00()
 					self.is_placed = 1;
 					level flag::set(#"hash_238e5c8b416f855");
 				}
-				else if(level.s_soapstone.is_charged && level.s_soapstone.is_hot)
-				{
-					self setmodel("p8_zm_ora_soapstone_01_hot");
-					self show();
-					level function_88a86ef8(0);
-					self playsound(#"hash_69b229acb5e3a598");
-					level.s_soapstone.var_b6e5b65f = level.s_soapstone.var_b6e5b65f - 1;
-					self.is_placed = 1;
-					level flag::set(#"hash_57d2cbf7d6c2035a");
-				}
 				else
 				{
-					s_activation.e_who namespace_3263198e::function_51b752a9("vox_soap_stones_insert_room_temp", -1, 1, 0);
+					if(level.s_soapstone.is_charged && level.s_soapstone.is_hot)
+					{
+						self setmodel("p8_zm_ora_soapstone_01_hot");
+						self show();
+						level function_88a86ef8(0);
+						self playsound(#"hash_69b229acb5e3a598");
+						level.s_soapstone.var_b6e5b65f = level.s_soapstone.var_b6e5b65f - 1;
+						self.is_placed = 1;
+						level flag::set(#"hash_57d2cbf7d6c2035a");
+					}
+					else
+					{
+						s_activation.e_who namespace_3263198e::function_51b752a9("vox_soap_stones_insert_room_temp", -1, 1, 0);
+					}
 				}
 				break;
 			}

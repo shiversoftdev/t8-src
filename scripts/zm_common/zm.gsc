@@ -138,7 +138,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function ignore_systems()
+function autoexec ignore_systems()
 {
 	system::ignore(#"gadget_clone");
 	system::ignore(#"gadget_armor");
@@ -172,7 +172,7 @@ autoexec function ignore_systems()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm", &__init__, undefined, undefined);
 }
@@ -399,10 +399,10 @@ function cheat_enabled(val)
 	if(getdvarint(#"zombie_cheat", 0) >= val)
 	{
 		/#
-			return 1;
+			return true;
 		#/
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -988,7 +988,7 @@ function init_levelvars()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_b10f6843()
+function private function_b10f6843()
 {
 	n_starting = ((level.round_number - namespace_59ff1d6c::function_901b751c(#"startround")) + 1) * 500;
 	return (isdefined(level.player_starting_points) ? level.player_starting_points : n_starting);
@@ -1411,7 +1411,7 @@ function vehicle_damage_override(einflictor, eattacker, idamage, idflags, smeans
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_7bdb1f9f(attacker, damage, meansofdeath, weapon, shitloc)
+function private function_7bdb1f9f(attacker, damage, meansofdeath, weapon, shitloc)
 {
 	if(isdefined(level.headshots_only) && level.headshots_only || namespace_25f0796c::is_active() && isplayer(attacker))
 	{
@@ -1763,7 +1763,7 @@ function actor_damage_override_wrapper(inflictor, attacker, damage, flags, means
 			self thread [[func_override]](willbekilled, inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype);
 		}
 	}
-	bb::function_95e18a48(attacker, self, weapon, damage_override, meansofdeath, shitloc, willbekilled, willbekilled);
+	bb::logdamage(attacker, self, weapon, damage_override, meansofdeath, shitloc, willbekilled, willbekilled);
 	if(!willbekilled || (!(isdefined(self.dont_die_on_me) && self.dont_die_on_me)))
 	{
 		self thread zm_score::function_89db94b3(attacker, damage_override, inflictor);
@@ -2052,7 +2052,7 @@ function function_758406d8()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_70171add()
+function private function_70171add()
 {
 	if(randomfloat(1) <= getdvarfloat(#"survey_chance", 0))
 	{
@@ -2234,7 +2234,7 @@ function end_game()
 		player zm_stats::function_ae547e45("boas_gameType", util::function_5df4294());
 	}
 	zm_stats::function_ea5b4947(1);
-	bb::function_22b9bc7("end_game");
+	bb::logroundevent("end_game");
 	upload_leaderboards();
 	recordgameresult(#"draw");
 	globallogic::function_6c8d7c31(#"draw");
@@ -2867,10 +2867,10 @@ function is_idgun_damage(weapon)
 	{
 		if(isinarray(level.idgun_weapons, weapon))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_3997833cc3034f0", &__init__, undefined, undefined);
 }
@@ -27,7 +27,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function __init__()
+function private __init__()
 {
 	ai::add_ai_spawn_function(&function_f3a051c6);
 }
@@ -41,7 +41,7 @@ private function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f3a051c6(localclientnum)
+function private function_f3a051c6(localclientnum)
 {
 }
 

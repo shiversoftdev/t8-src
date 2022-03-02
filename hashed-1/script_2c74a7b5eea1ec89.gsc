@@ -116,7 +116,7 @@ function get_hack_timeout()
 */
 function get_hack_protection()
 {
-	return (isdefined(get_bundle(self).kshackprotection) ? get_bundle(self).kshackprotection : 0);
+	return true;
 }
 
 /*
@@ -317,7 +317,7 @@ function get_shots_to_kill(weapon, meansofdeath, bundle)
 		{
 			shotstokill = bundle.var_3020f1b2;
 		}
-		return (isdefined(shotstokill) ? shotstokill : 0);
+		return true;
 	}
 	if(baseweapon === level.weaponspecialcrossbow)
 	{
@@ -336,7 +336,7 @@ function get_shots_to_kill(weapon, meansofdeath, bundle)
 		{
 			shotstokill = bundle.var_1de74ef1;
 		}
-		return (isdefined(shotstokill) ? shotstokill : 0);
+		return true;
 	}
 	switch(weapon.rootweapon.name)
 	{
@@ -490,7 +490,7 @@ function get_shots_to_kill(weapon, meansofdeath, bundle)
 			break;
 		}
 	}
-	return (isdefined(shotstokill) ? shotstokill : 0);
+	return true;
 }
 
 /*
@@ -512,13 +512,16 @@ function get_emp_grenade_damage(killstreaktype, maxhealth)
 		if(empgrenadestokill == 0)
 		{
 		}
-		else if(empgrenadestokill > 0)
-		{
-			emp_weapon_damage = (maxhealth / empgrenadestokill) + 1;
-		}
 		else
 		{
-			emp_weapon_damage = 0;
+			if(empgrenadestokill > 0)
+			{
+				emp_weapon_damage = (maxhealth / empgrenadestokill) + 1;
+			}
+			else
+			{
+				emp_weapon_damage = 0;
+			}
 		}
 	}
 	return emp_weapon_damage;
@@ -539,13 +542,16 @@ function function_daad16b8(maxhealth, weapon_damage, var_8cef04)
 	if(var_8cef04 == 0)
 	{
 	}
-	else if(var_8cef04 > 0)
-	{
-		weapon_damage = (maxhealth / var_8cef04) + 1;
-	}
 	else
 	{
-		weapon_damage = 0;
+		if(var_8cef04 > 0)
+		{
+			weapon_damage = (maxhealth / var_8cef04) + 1;
+		}
+		else
+		{
+			weapon_damage = 0;
+		}
 	}
 	return weapon_damage;
 }
@@ -641,17 +647,20 @@ function function_dd7587e4(bundle, maxhealth, attacker, weapon, type, damage, fl
 			if(shotstokill == 0)
 			{
 			}
-			else if(shotstokill > 0)
-			{
-				if(isdefined(chargeshotlevel) && chargeshotlevel > 0)
-				{
-					shotstokill = shotstokill / chargeshotlevel;
-				}
-				weapon_damage = (maxhealth / shotstokill) + 1;
-			}
 			else
 			{
-				weapon_damage = 0;
+				if(shotstokill > 0)
+				{
+					if(isdefined(chargeshotlevel) && chargeshotlevel > 0)
+					{
+						shotstokill = shotstokill / chargeshotlevel;
+					}
+					weapon_damage = (maxhealth / shotstokill) + 1;
+				}
+				else
+				{
+					weapon_damage = 0;
+				}
 			}
 		}
 		if(!isdefined(weapon_damage))
@@ -680,62 +689,80 @@ function function_dd7587e4(bundle, maxhealth, attacker, weapon, type, damage, fl
 					}
 				}
 			}
-			else if(type == "MOD_IMPACT" && (isdefined(level.var_1b72f911) && function_6bacfedc(weapon, level.var_1b72f911)))
+			else
 			{
-				var_108f064f = (isdefined(bundle.var_4be7d629) ? bundle.var_4be7d629 : 0);
-				if(var_108f064f == 0)
+				if(type == "MOD_IMPACT" && (isdefined(level.var_1b72f911) && function_6bacfedc(weapon, level.var_1b72f911)))
 				{
-				}
-				else if(var_108f064f > 0)
-				{
-					weapon_damage = (maxhealth / var_108f064f) + 1;
-				}
-				else
-				{
-					weapon_damage = 0;
-				}
-			}
-			else if(type == "MOD_PROJECTILE" || type == "MOD_EXPLOSIVE" || (type == "MOD_PROJECTILE_SPLASH" && bundle.var_38de4989 === 1) && (!isdefined(weapon.isempkillstreak) || !weapon.isempkillstreak) && (!isdefined(level.weaponpistolenergy) || weapon.statname != level.weaponpistolenergy.statname || level.weaponpistolenergy.statname == level.weaponnone.statname) && (!isdefined(level.weaponspecialcrossbow) || weapon.statname != level.weaponspecialcrossbow.statname || level.weaponspecialcrossbow.statname == level.weaponnone.statname) && weapon.rootweapon.name != #"trophy_system")
-			{
-				if(function_6bacfedc(weapon, level.weaponshotgunenergy))
-				{
-					weapon_damage = function_daad16b8(maxhealth, weapon_damage, bundle.ksshotgunenergytokill);
-				}
-				else
-				{
-					rocketstokill = (isdefined(bundle.ksrocketstokill) ? bundle.ksrocketstokill : 0);
-					if(level.var_71c35c9f && isdefined(bundle.var_b744074b) && bundle.var_b744074b != 0)
+					var_108f064f = (isdefined(bundle.var_4be7d629) ? bundle.var_4be7d629 : 0);
+					if(var_108f064f == 0)
 					{
-						rocketstokill = bundle.var_b744074b;
-					}
-					if(rocketstokill == 0)
-					{
-					}
-					else if(rocketstokill > 0)
-					{
-						if(weapon.rootweapon.name == "launcher_multi")
-						{
-							rocketstokill = rocketstokill * 2;
-						}
-						weapon_damage = (maxhealth / rocketstokill) + 1;
 					}
 					else
 					{
-						weapon_damage = 0;
+						if(var_108f064f > 0)
+						{
+							weapon_damage = (maxhealth / var_108f064f) + 1;
+						}
+						else
+						{
+							weapon_damage = 0;
+						}
 					}
 				}
-			}
-			else if(type == "MOD_GRENADE" || type == "MOD_GRENADE_SPLASH" && (!isdefined(weapon.isempkillstreak) || !weapon.isempkillstreak))
-			{
-				weapon_damage = function_14bd8ba5(damage, bundle.ksgrenadedamagemultiplier);
-			}
-			else if(type == "MOD_MELEE_WEAPON_BUTT" || type == "MOD_MELEE")
-			{
-				weapon_damage = function_14bd8ba5(damage, bundle.ksmeleedamagemultiplier);
-			}
-			else if(type == "MOD_PROJECTILE_SPLASH")
-			{
-				weapon_damage = function_14bd8ba5(damage, bundle.ksprojectilespashmultiplier);
+				else
+				{
+					if(type == "MOD_PROJECTILE" || type == "MOD_EXPLOSIVE" || (type == "MOD_PROJECTILE_SPLASH" && bundle.var_38de4989 === 1) && (!isdefined(weapon.isempkillstreak) || !weapon.isempkillstreak) && (!isdefined(level.weaponpistolenergy) || weapon.statname != level.weaponpistolenergy.statname || level.weaponpistolenergy.statname == level.weaponnone.statname) && (!isdefined(level.weaponspecialcrossbow) || weapon.statname != level.weaponspecialcrossbow.statname || level.weaponspecialcrossbow.statname == level.weaponnone.statname) && weapon.rootweapon.name != #"trophy_system")
+					{
+						if(function_6bacfedc(weapon, level.weaponshotgunenergy))
+						{
+							weapon_damage = function_daad16b8(maxhealth, weapon_damage, bundle.ksshotgunenergytokill);
+						}
+						else
+						{
+							rocketstokill = (isdefined(bundle.ksrocketstokill) ? bundle.ksrocketstokill : 0);
+							if(level.var_71c35c9f && isdefined(bundle.var_b744074b) && bundle.var_b744074b != 0)
+							{
+								rocketstokill = bundle.var_b744074b;
+							}
+							if(rocketstokill == 0)
+							{
+							}
+							else
+							{
+								if(rocketstokill > 0)
+								{
+									if(weapon.rootweapon.name == "launcher_multi")
+									{
+										rocketstokill = rocketstokill * 2;
+									}
+									weapon_damage = (maxhealth / rocketstokill) + 1;
+								}
+								else
+								{
+									weapon_damage = 0;
+								}
+							}
+						}
+					}
+					else
+					{
+						if(type == "MOD_GRENADE" || type == "MOD_GRENADE_SPLASH" && (!isdefined(weapon.isempkillstreak) || !weapon.isempkillstreak))
+						{
+							weapon_damage = function_14bd8ba5(damage, bundle.ksgrenadedamagemultiplier);
+						}
+						else
+						{
+							if(type == "MOD_MELEE_WEAPON_BUTT" || type == "MOD_MELEE")
+							{
+								weapon_damage = function_14bd8ba5(damage, bundle.ksmeleedamagemultiplier);
+							}
+							else if(type == "MOD_PROJECTILE_SPLASH")
+							{
+								weapon_damage = function_14bd8ba5(damage, bundle.ksprojectilespashmultiplier);
+							}
+						}
+					}
+				}
 			}
 		}
 	}

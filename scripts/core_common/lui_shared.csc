@@ -10,6 +10,205 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
+class class_6aaccc24 
+{
+	var var_47d8642e;
+	var var_47e79fc;
+
+	/*
+		Name: constructor
+		Namespace: namespace_6aaccc24
+		Checksum: 0x80F724D1
+		Offset: 0x2640
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 8
+	*/
+	constructor()
+	{
+	}
+
+	/*
+		Name: destructor
+		Namespace: namespace_6aaccc24
+		Checksum: 0x80F724D1
+		Offset: 0x2A28
+		Size: 0x4
+		Parameters: 0
+		Flags: Linked, 16, 128
+	*/
+	destructor()
+	{
+	}
+
+	/*
+		Name: function_92ba69fa
+		Namespace: namespace_6aaccc24
+		Checksum: 0xBBFCD106
+		Offset: 0x29C0
+		Size: 0x5A
+		Parameters: 2
+		Flags: Linked
+	*/
+	function function_92ba69fa(localclientnum, field)
+	{
+		/#
+			assert(var_47d8642e, "");
+		#/
+		return function_88759655(localclientnum, var_47e79fc, field);
+	}
+
+	/*
+		Name: function_d7d2fcce
+		Namespace: namespace_6aaccc24
+		Checksum: 0xDFD2CDB7
+		Offset: 0x2950
+		Size: 0x64
+		Parameters: 3
+		Flags: Linked
+	*/
+	function function_d7d2fcce(localclientnum, field, value)
+	{
+		/#
+			assert(var_47d8642e, "");
+		#/
+		function_bcc2134a(localclientnum, var_47e79fc, field, value);
+	}
+
+	/*
+		Name: close
+		Namespace: namespace_6aaccc24
+		Checksum: 0x34DE8D6
+		Offset: 0x28F0
+		Size: 0x54
+		Parameters: 1
+		Flags: Linked
+	*/
+	function close(localclientnum)
+	{
+		/#
+			assert(var_47d8642e, "");
+		#/
+		function_43d5b973(localclientnum, var_47e79fc);
+	}
+
+	/*
+		Name: is_open
+		Namespace: namespace_6aaccc24
+		Checksum: 0x885EA434
+		Offset: 0x2890
+		Size: 0x52
+		Parameters: 1
+		Flags: Linked
+	*/
+	function is_open(localclientnum)
+	{
+		/#
+			assert(var_47d8642e, "");
+		#/
+		return function_e148e3b7(localclientnum, var_47e79fc);
+	}
+
+	/*
+		Name: open
+		Namespace: namespace_6aaccc24
+		Checksum: 0x237B563F
+		Offset: 0x2818
+		Size: 0x6C
+		Parameters: 2
+		Flags: Linked
+	*/
+	function open(localclientnum, menu_name)
+	{
+		/#
+			assert(var_47d8642e, "");
+		#/
+		function_5686f5cd(localclientnum, menu_name, var_47e79fc);
+		[[ self ]]->function_fa582112(localclientnum);
+	}
+
+	/*
+		Name: function_fa582112
+		Namespace: namespace_6aaccc24
+		Checksum: 0xBECC2060
+		Offset: 0x27D8
+		Size: 0x34
+		Parameters: 1
+		Flags: Linked
+	*/
+	function function_fa582112(localclientnum)
+	{
+		/#
+			assert(var_47d8642e, "");
+		#/
+	}
+
+	/*
+		Name: function_5c1bb138
+		Namespace: namespace_6aaccc24
+		Checksum: 0xDB389259
+		Offset: 0x27A8
+		Size: 0x26
+		Parameters: 1
+		Flags: Linked
+	*/
+	function function_5c1bb138(uid)
+	{
+		self.var_47e79fc = uid;
+		self.var_47d8642e = 1;
+	}
+
+	/*
+		Name: function_dcb34c80
+		Namespace: namespace_6aaccc24
+		Checksum: 0xCDF44B94
+		Offset: 0x2710
+		Size: 0x8C
+		Parameters: 3
+		Flags: Linked
+	*/
+	function function_dcb34c80(var_2a0de052, field_name, version)
+	{
+		/#
+			assert(!var_47d8642e, "");
+		#/
+		clientfield::function_78175813("clientuimodel", var_2a0de052, (("luielement." + var_47e79fc) + ".") + field_name, version, undefined, 0, 0);
+	}
+
+	/*
+		Name: function_da693cbe
+		Namespace: namespace_6aaccc24
+		Checksum: 0x6DF9DD22
+		Offset: 0x2680
+		Size: 0x84
+		Parameters: 5
+		Flags: Linked
+	*/
+	function function_da693cbe(field_name, version, bits, type, callback)
+	{
+		/#
+			assert(!var_47d8642e, "");
+		#/
+		clientfield::function_346f95ba(var_47e79fc, field_name, version, bits, type, callback, 0, 0);
+	}
+
+	/*
+		Name: setup_clientfields
+		Namespace: namespace_6aaccc24
+		Checksum: 0xF4A31FEA
+		Offset: 0x2650
+		Size: 0x26
+		Parameters: 1
+		Flags: Linked
+	*/
+	function setup_clientfields(uid)
+	{
+		self.var_47e79fc = uid;
+		self.var_47d8642e = 0;
+	}
+
+}
+
 #namespace lui;
 
 /*
@@ -21,7 +220,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"lui_shared", &__init__, undefined, undefined);
 }
@@ -159,15 +358,18 @@ function addmenuexploders(menu_name, localclientnum, exploder)
 			menu_data.exploders[menu_data.exploders.size] = expl;
 		}
 	}
-	else if(!isdefined(menu_data.exploders))
+	else
 	{
-		menu_data.exploders = [];
+		if(!isdefined(menu_data.exploders))
+		{
+			menu_data.exploders = [];
+		}
+		else if(!isarray(menu_data.exploders))
+		{
+			menu_data.exploders = array(menu_data.exploders);
+		}
+		menu_data.exploders[menu_data.exploders.size] = exploder;
 	}
-	else if(!isarray(menu_data.exploders))
-	{
-		menu_data.exploders = array(menu_data.exploders);
-	}
-	menu_data.exploders[menu_data.exploders.size] = exploder;
 }
 
 /*
@@ -510,39 +712,45 @@ function client_menus(localclientnum)
 		{
 			clientmenustack[i].state = state;
 		}
-		else if(status === "closed" && isdefined(menu_index))
+		else
 		{
-			/#
+			if(status === "closed" && isdefined(menu_index))
+			{
 				/#
-					assert(menu_index == 0);
+					/#
+						assert(menu_index == 0);
+					#/
 				#/
-			#/
-			if(menu_index == 0)
-			{
-				popped = array::pop(clientmenustack, 0, 0);
-				setup_menu(localclientnum, clientmenustack[0], popped);
+				if(menu_index == 0)
+				{
+					popped = array::pop(clientmenustack, 0, 0);
+					setup_menu(localclientnum, clientmenustack[0], popped);
+				}
 			}
-		}
-		else if(status === "opened" && !isdefined(menu_index))
-		{
-			menu_data = spawnstruct();
-			menu_data.menu_name = menu_name;
-			menu_data.state = state;
-			if(isdefined(waitresult.mode))
+			else
 			{
-				menu_data.charactermode = waitresult.mode;
+				if(status === "opened" && !isdefined(menu_index))
+				{
+					menu_data = spawnstruct();
+					menu_data.menu_name = menu_name;
+					menu_data.state = state;
+					if(isdefined(waitresult.mode))
+					{
+						menu_data.charactermode = waitresult.mode;
+					}
+					lastmenu = (clientmenustack.size > 0 ? clientmenustack[0] : undefined);
+					setup_menu(localclientnum, menu_data, lastmenu);
+					array::push_front(clientmenustack, menu_data);
+				}
+				else if(isdefined(menu_index) && statechange)
+				{
+					/#
+						assert(menu_index == 0);
+					#/
+					clientmenustack[0].state = state;
+					function_afb6dd92(localclientnum, clientmenustack[0]);
+				}
 			}
-			lastmenu = (clientmenustack.size > 0 ? clientmenustack[0] : undefined);
-			setup_menu(localclientnum, menu_data, lastmenu);
-			array::push_front(clientmenustack, menu_data);
-		}
-		else if(isdefined(menu_index) && statechange)
-		{
-			/#
-				assert(menu_index == 0);
-			#/
-			clientmenustack[0].state = state;
-			function_afb6dd92(localclientnum, clientmenustack[0]);
 		}
 	}
 }
@@ -652,7 +860,7 @@ function screen_close_menu()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function _screen_close_menu()
+function private _screen_close_menu()
 {
 	self notify(#"_screen_fade");
 	self endon(#"_screen_fade");
@@ -683,7 +891,7 @@ private function _screen_close_menu()
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function _screen_fade(n_time, n_target_alpha, n_start_alpha, v_color, b_force_close_menu)
+function private _screen_fade(n_time, n_target_alpha, n_start_alpha, v_color, b_force_close_menu)
 {
 	self notify(#"_screen_fade");
 	self endon(#"_screen_fade");
@@ -776,9 +984,7 @@ function set_color(menu, color)
 */
 function function_b48acaf1(uid)
 {
-	object = new var_6aaccc24();
-	[[ object ]]->__constructor();
-	elem = object;
+	elem = new class_6aaccc24();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -809,227 +1015,5 @@ function function_da693cbe(field_name, version, bits, type, callback)
 function function_dcb34c80(var_2a0de052, field_name, version)
 {
 	[[ self ]]->function_dcb34c80(var_2a0de052, field_name, version);
-}
-
-#namespace namespace_6aaccc24;
-
-/*
-	Name: __constructor
-	Namespace: namespace_6aaccc24
-	Checksum: 0x80F724D1
-	Offset: 0x2640
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 8
-*/
-function __constructor()
-{
-}
-
-/*
-	Name: setup_clientfields
-	Namespace: namespace_6aaccc24
-	Checksum: 0xF4A31FEA
-	Offset: 0x2650
-	Size: 0x26
-	Parameters: 1
-	Flags: Linked
-*/
-function setup_clientfields(uid)
-{
-	self.var_47e79fc = uid;
-	self.var_47d8642e = 0;
-}
-
-/*
-	Name: function_da693cbe
-	Namespace: namespace_6aaccc24
-	Checksum: 0x6DF9DD22
-	Offset: 0x2680
-	Size: 0x84
-	Parameters: 5
-	Flags: Linked
-*/
-function function_da693cbe(field_name, version, bits, type, callback)
-{
-	/#
-		assert(!self.var_47d8642e, "");
-	#/
-	clientfield::function_346f95ba(self.var_47e79fc, field_name, version, bits, type, callback, 0, 0);
-}
-
-/*
-	Name: function_dcb34c80
-	Namespace: namespace_6aaccc24
-	Checksum: 0xCDF44B94
-	Offset: 0x2710
-	Size: 0x8C
-	Parameters: 3
-	Flags: Linked
-*/
-function function_dcb34c80(var_2a0de052, field_name, version)
-{
-	/#
-		assert(!self.var_47d8642e, "");
-	#/
-	clientfield::function_78175813("clientuimodel", var_2a0de052, (("luielement." + self.var_47e79fc) + ".") + field_name, version, undefined, 0, 0);
-}
-
-/*
-	Name: function_5c1bb138
-	Namespace: namespace_6aaccc24
-	Checksum: 0xDB389259
-	Offset: 0x27A8
-	Size: 0x26
-	Parameters: 1
-	Flags: Linked
-*/
-function function_5c1bb138(uid)
-{
-	self.var_47e79fc = uid;
-	self.var_47d8642e = 1;
-}
-
-/*
-	Name: function_fa582112
-	Namespace: namespace_6aaccc24
-	Checksum: 0xBECC2060
-	Offset: 0x27D8
-	Size: 0x34
-	Parameters: 1
-	Flags: Linked
-*/
-function function_fa582112(localclientnum)
-{
-	/#
-		assert(self.var_47d8642e, "");
-	#/
-}
-
-/*
-	Name: open
-	Namespace: namespace_6aaccc24
-	Checksum: 0x237B563F
-	Offset: 0x2818
-	Size: 0x6C
-	Parameters: 2
-	Flags: Linked
-*/
-function open(localclientnum, menu_name)
-{
-	/#
-		assert(self.var_47d8642e, "");
-	#/
-	function_5686f5cd(localclientnum, menu_name, self.var_47e79fc);
-	[[ self ]]->function_fa582112(localclientnum);
-}
-
-/*
-	Name: is_open
-	Namespace: namespace_6aaccc24
-	Checksum: 0x885EA434
-	Offset: 0x2890
-	Size: 0x52
-	Parameters: 1
-	Flags: Linked
-*/
-function is_open(localclientnum)
-{
-	/#
-		assert(self.var_47d8642e, "");
-	#/
-	return function_e148e3b7(localclientnum, self.var_47e79fc);
-}
-
-/*
-	Name: close
-	Namespace: namespace_6aaccc24
-	Checksum: 0x34DE8D6
-	Offset: 0x28F0
-	Size: 0x54
-	Parameters: 1
-	Flags: Linked
-*/
-function close(localclientnum)
-{
-	/#
-		assert(self.var_47d8642e, "");
-	#/
-	function_43d5b973(localclientnum, self.var_47e79fc);
-}
-
-/*
-	Name: function_d7d2fcce
-	Namespace: namespace_6aaccc24
-	Checksum: 0xDFD2CDB7
-	Offset: 0x2950
-	Size: 0x64
-	Parameters: 3
-	Flags: Linked
-*/
-function function_d7d2fcce(localclientnum, field, value)
-{
-	/#
-		assert(self.var_47d8642e, "");
-	#/
-	function_bcc2134a(localclientnum, self.var_47e79fc, field, value);
-}
-
-/*
-	Name: function_92ba69fa
-	Namespace: namespace_6aaccc24
-	Checksum: 0xBBFCD106
-	Offset: 0x29C0
-	Size: 0x5A
-	Parameters: 2
-	Flags: Linked
-*/
-function function_92ba69fa(localclientnum, field)
-{
-	/#
-		assert(self.var_47d8642e, "");
-	#/
-	return function_88759655(localclientnum, self.var_47e79fc, field);
-}
-
-/*
-	Name: __destructor
-	Namespace: namespace_6aaccc24
-	Checksum: 0x80F724D1
-	Offset: 0x2A28
-	Size: 0x4
-	Parameters: 0
-	Flags: Linked, 16, 128
-*/
-function __destructor()
-{
-}
-
-#namespace lui;
-
-/*
-	Name: function_6aaccc24
-	Namespace: lui
-	Checksum: 0x4F67B69B
-	Offset: 0x2A38
-	Size: 0x266
-	Parameters: 0
-	Flags: AutoExec, Private, 128
-*/
-private autoexec function function_6aaccc24()
-{
-	classes.var_6aaccc24[0] = spawnstruct();
-	classes.var_6aaccc24[0].__vtable[913321084] = &namespace_6aaccc24::__destructor;
-	classes.var_6aaccc24[0].__vtable[1833276934] = &namespace_6aaccc24::function_92ba69fa;
-	classes.var_6aaccc24[0].__vtable[674038578] = &namespace_6aaccc24::function_d7d2fcce;
-	classes.var_6aaccc24[0].__vtable[1516492343] = &namespace_6aaccc24::close;
-	classes.var_6aaccc24[0].__vtable[632663907] = &namespace_6aaccc24::is_open;
-	classes.var_6aaccc24[0].__vtable[250899321] = &namespace_6aaccc24::open;
-	classes.var_6aaccc24[0].__vtable[94887662] = &namespace_6aaccc24::function_fa582112;
-	classes.var_6aaccc24[0].__vtable[1545318712] = &namespace_6aaccc24::function_5c1bb138;
-	classes.var_6aaccc24[0].__vtable[592229248] = &namespace_6aaccc24::function_dcb34c80;
-	classes.var_6aaccc24[0].__vtable[630637378] = &namespace_6aaccc24::function_da693cbe;
-	classes.var_6aaccc24[0].__vtable[1855416484] = &namespace_6aaccc24::setup_clientfields;
-	classes.var_6aaccc24[0].__vtable[674154906] = &namespace_6aaccc24::__constructor;
 }
 

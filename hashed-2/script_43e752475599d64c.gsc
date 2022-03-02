@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_493e4f8e3fb8b3d7", &__init__, undefined, undefined);
 }
@@ -99,7 +99,7 @@ function hero_weapon_power(e_player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5792ec16()
+function private function_5792ec16()
 {
 	self endon(#"disconnect");
 	self.var_c09e6d59 = 1;

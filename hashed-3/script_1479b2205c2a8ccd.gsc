@@ -244,7 +244,7 @@ function function_ede90521()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a5fa6428()
+function private function_a5fa6428()
 {
 	level endon(#"end_game", #"hash_6ba951b37826e520");
 	wait(2);
@@ -276,7 +276,7 @@ private function function_a5fa6428()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function cover_think()
+function private cover_think()
 {
 	level endon(#"end_game", #"hash_6ba951b37826e520");
 	self endon(#"death");
@@ -310,7 +310,7 @@ private function cover_think()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_9c223c27()
+function private function_9c223c27()
 {
 	level endon(#"end_game", #"hash_6ba951b37826e520");
 	self endon(#"death");

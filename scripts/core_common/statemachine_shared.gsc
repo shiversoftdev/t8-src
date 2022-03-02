@@ -204,14 +204,14 @@ function set_state(name, state_params)
 	state = self.states[name];
 	if(!isdefined(self.owner))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(state))
 	{
 		/#
 			assertmsg((("" + name) + "") + self.name);
 		#/
-		return 0;
+		return false;
 	}
 	reenter = self.current_state === state;
 	if(isdefined(state.reenter_func) && reenter)
@@ -220,7 +220,7 @@ function set_state(name, state_params)
 	}
 	if(reenter && shouldreenter !== 1)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.current_state))
 	{
@@ -251,7 +251,7 @@ function set_state(name, state_params)
 	{
 		self.owner thread [[self.current_state.update_func]](self.current_state.state_params);
 	}
-	return 1;
+	return true;
 }
 
 /*

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"player", &__init__, undefined, undefined);
 }
@@ -134,7 +134,7 @@ function function_f22aa227(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_8656d7d1(localclientnum)
+function private function_8656d7d1(localclientnum)
 {
 	player = self;
 	if(!isdefined(player))
@@ -195,7 +195,7 @@ function function_c98e67ae(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9f517895(localclientnum)
+function private function_9f517895(localclientnum)
 {
 	player = self;
 	if(!isdefined(player))
@@ -227,7 +227,7 @@ private function function_9f517895(localclientnum)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e2d964e8()
+function private function_e2d964e8()
 {
 	if(self.visionpulsereveal === 1)
 	{
@@ -289,7 +289,7 @@ function function_f2ba057()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f71119e0(var_c8db7193)
+function private function_f71119e0(var_c8db7193)
 {
 	if(self.visionpulsereveal === 1)
 	{
@@ -345,7 +345,7 @@ function function_5da42cd4(var_6560376a)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_bd70f43d()
+function private function_bd70f43d()
 {
 	if(!self function_d2503806(#"rob_sonar_set_enemy"))
 	{
@@ -362,7 +362,7 @@ private function function_bd70f43d()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_994b4121()
+function private function_994b4121()
 {
 	if(self function_d2503806(#"rob_sonar_set_enemy"))
 	{

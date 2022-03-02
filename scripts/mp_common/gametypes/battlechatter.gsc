@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"battlechatter", &__init__, undefined, undefined);
 }
@@ -271,13 +271,16 @@ function on_joined_team(params)
 				self globallogic_audio::leader_dialog_on_player(level.leaderdialog.starthcgamedialog, undefined, undefined, undefined, 1);
 			}
 		}
-		else if(globallogic_utils::function_308e3379())
-		{
-			self globallogic_audio::leader_dialog_on_player(level.leaderdialog.var_f6fda321, undefined, undefined, undefined, 1);
-		}
 		else
 		{
-			self globallogic_audio::leader_dialog_on_player(level.leaderdialog.startgamedialog, undefined, undefined, undefined, 1);
+			if(globallogic_utils::function_308e3379())
+			{
+				self globallogic_audio::leader_dialog_on_player(level.leaderdialog.var_f6fda321, undefined, undefined, undefined, 1);
+			}
+			else
+			{
+				self globallogic_audio::leader_dialog_on_player(level.leaderdialog.startgamedialog, undefined, undefined, undefined, 1);
+			}
 		}
 		self.pers[#"playedgamemode"] = 1;
 	}
@@ -636,58 +639,79 @@ function pain_vox(meansofdeath, weapon)
 			dialogkey = playerbundle.exertpaindrowning;
 			self.voxdrowning = 1;
 		}
-		else if(meansofdeath == "MOD_DOT" || meansofdeath == "MOD_DOT_SELF")
+		else
 		{
-			if(!isdefined(self.var_dbffaa32))
+			if(meansofdeath == "MOD_DOT" || meansofdeath == "MOD_DOT_SELF")
 			{
-				return;
-			}
-			if(isdefined(weapon))
-			{
-				if(weapon.doesfiredamage)
+				if(!isdefined(self.var_dbffaa32))
 				{
-					dialogkey = playerbundle.var_c3b67de0;
+					return;
+				}
+				if(isdefined(weapon))
+				{
+					if(weapon.doesfiredamage)
+					{
+						dialogkey = playerbundle.var_c3b67de0;
+					}
+				}
+				else
+				{
+					dialogkey = playerbundle.exertpaindamagetick;
 				}
 			}
 			else
 			{
-				dialogkey = playerbundle.exertpaindamagetick;
+				if(meansofdeath == "MOD_FALLING")
+				{
+					if(self hasperk(#"specialty_quieter"))
+					{
+						return;
+					}
+					dialogkey = playerbundle.exertpainfalling;
+				}
+				else
+				{
+					if(meansofdeath == "MOD_BURNED")
+					{
+						dialogkey = playerbundle.var_c3b67de0;
+					}
+					else
+					{
+						if(meansofdeath == "MOD_ELECTROCUTED")
+						{
+							dialogkey = playerbundle.var_68bb30c1;
+						}
+						else
+						{
+							if(self isplayerunderwater())
+							{
+								dialogkey = playerbundle.exertpainunderwater;
+							}
+							else
+							{
+								if(meansofdeath == "MOD_MELEE")
+								{
+									dialogkey = playerbundle.var_b801796c;
+								}
+								else
+								{
+									if(isdefined(weapon))
+									{
+										if(weapon.name == "shock_rifle")
+										{
+											dialogkey = playerbundle.exertdeathelectrocuted;
+										}
+									}
+									if(!isdefined(dialogkey))
+									{
+										dialogkey = playerbundle.exertpain;
+									}
+								}
+							}
+						}
+					}
+				}
 			}
-		}
-		else if(meansofdeath == "MOD_FALLING")
-		{
-			if(self hasperk(#"specialty_quieter"))
-			{
-				return;
-			}
-			dialogkey = playerbundle.exertpainfalling;
-		}
-		else if(meansofdeath == "MOD_BURNED")
-		{
-			dialogkey = playerbundle.var_c3b67de0;
-		}
-		else if(meansofdeath == "MOD_ELECTROCUTED")
-		{
-			dialogkey = playerbundle.var_68bb30c1;
-		}
-		else if(self isplayerunderwater())
-		{
-			dialogkey = playerbundle.exertpainunderwater;
-		}
-		else if(meansofdeath == "MOD_MELEE")
-		{
-			dialogkey = playerbundle.var_b801796c;
-		}
-		else if(isdefined(weapon))
-		{
-			if(weapon.name == "shock_rifle")
-			{
-				dialogkey = playerbundle.exertdeathelectrocuted;
-			}
-		}
-		if(!isdefined(dialogkey))
-		{
-			dialogkey = playerbundle.exertpain;
 		}
 		exertbuffer = mpdialog_value("playerExertBuffer", 0);
 		if(isdefined(self.var_1ba38d8b) && (gettime() - self.var_1ba38d8b) < (int(exertbuffer * 1000)))
@@ -919,20 +943,23 @@ function function_7139078d()
 				}
 			}
 		}
-		else if(isdefined(result.suppressor.turretweapon))
+		else
 		{
-			if(result.suppressor.turretweapon.name == #"hash_36a6454f13b54f18")
+			if(isdefined(result.suppressor.turretweapon))
 			{
-				result.suppressor.var_87b1ba00 = 1;
-				self play_killstreak_threat(result.suppressor.killstreaktype);
+				if(result.suppressor.turretweapon.name == #"hash_36a6454f13b54f18")
+				{
+					result.suppressor.var_87b1ba00 = 1;
+					self play_killstreak_threat(result.suppressor.killstreaktype);
+				}
 			}
-		}
-		else if(isdefined(result.suppressor.weapon))
-		{
-			if(isdefined(level.var_24de8afe) && isdefined(result.suppressor.ai) && (isdefined(result.suppressor.ai.swat_gunner) && result.suppressor.ai.swat_gunner) && result.suppressor.weapon.name == #"hash_6c1be4b025206124")
+			else if(isdefined(result.suppressor.weapon))
 			{
-				result.suppressor [[level.var_24de8afe]](self, result.suppressor.script_owner);
-				result.suppressor.var_87b1ba00 = 1;
+				if(isdefined(level.var_24de8afe) && isdefined(result.suppressor.ai) && (isdefined(result.suppressor.ai.swat_gunner) && result.suppressor.ai.swat_gunner) && result.suppressor.weapon.name == #"hash_6c1be4b025206124")
+				{
+					result.suppressor [[level.var_24de8afe]](self, result.suppressor.script_owner);
+					result.suppressor.var_87b1ba00 = 1;
+				}
 			}
 		}
 		if(!isdefined(dialogkey))
@@ -1105,7 +1132,7 @@ function function_bd715920(var_28b40381, attacker, var_87017634, var_d963f0cf, t
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_95e44f78(weapon, timedelay)
+function private function_95e44f78(weapon, timedelay)
 {
 	bundlename = self getmpdialogname();
 	if(!isdefined(bundlename))
@@ -1307,25 +1334,28 @@ function enemy_threat()
 						traceresult[#"entity"].var_9ee835dc = 1;
 						self.enemythreattime = gettime();
 					}
-					else if(isdefined(playerweapon) && (isplayer(traceresult[#"entity"]) || isdefined(traceresult[#"entity"].owner)))
+					else
 					{
-						var_24d3b6ca = (isplayer(traceresult[#"entity"]) ? traceresult[#"entity"] : traceresult[#"entity"].owner);
-						var_24d3b6ca function_bd715920(playerweapon, self, traceresult[#"entity"].origin, traceresult[#"entity"]);
-						traceresult[#"entity"].var_9ee835dc = 1;
-						self.enemythreattime = gettime();
-					}
-					else if(dialog_chance("enemyContactChance"))
-					{
-						if(dialog_chance("enemyHeroContactChance"))
+						if(isdefined(playerweapon) && (isplayer(traceresult[#"entity"]) || isdefined(traceresult[#"entity"].owner)))
 						{
-							self function_551980b7(traceresult[#"entity"] getmpdialogname());
+							var_24d3b6ca = (isplayer(traceresult[#"entity"]) ? traceresult[#"entity"] : traceresult[#"entity"].owner);
+							var_24d3b6ca function_bd715920(playerweapon, self, traceresult[#"entity"].origin, traceresult[#"entity"]);
+							traceresult[#"entity"].var_9ee835dc = 1;
+							self.enemythreattime = gettime();
 						}
-						else
+						else if(dialog_chance("enemyContactChance"))
 						{
-							self thread play_dialog("threatInfantry", 2);
+							if(dialog_chance("enemyHeroContactChance"))
+							{
+								self function_551980b7(traceresult[#"entity"] getmpdialogname());
+							}
+							else
+							{
+								self thread play_dialog("threatInfantry", 2);
+							}
+							level notify(#"level_enemy_spotted", self.team);
+							self.enemythreattime = gettime();
 						}
-						level notify(#"level_enemy_spotted", self.team);
-						self.enemythreattime = gettime();
 					}
 				}
 			}
@@ -1399,14 +1429,14 @@ function function_d804d2f0(var_70b80ca6, player, allyradiussq)
 {
 	if(!isdefined(player) || !isdefined(player.origin) || !isdefined(var_70b80ca6) || !isdefined(var_70b80ca6.origin) || !isalive(player) || player.sessionstate != "playing" || player.playingdialog || player isplayerunderwater() || player isremotecontrolling() || player isinvehicle() || player isweaponviewonlylinked() || player == var_70b80ca6 || player.team != var_70b80ca6.team || player.playerrole == var_70b80ca6.playerrole || player hasperk(#"specialty_quieter"))
 	{
-		return 0;
+		return false;
 	}
 	distsq = distancesquared(var_70b80ca6.origin, player.origin);
 	if(distsq > allyradiussq)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1450,11 +1480,11 @@ function function_e6457410(attacker, victim, weapon, inflictor)
 {
 	if(!isdefined(attacker) || !isplayer(attacker) || attacker hasperk(#"specialty_quieter"))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(weapon) || !isplayer(victim))
 	{
-		return 0;
+		return false;
 	}
 	var_17a094cf = undefined;
 	var_cf38843b = undefined;
@@ -1603,9 +1633,9 @@ function function_e6457410(attacker, victim, weapon, inflictor)
 	if(isdefined(var_17a094cf))
 	{
 		attacker function_18aba49d(0, weapon, undefined);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1975,21 +2005,24 @@ function say_kill_battle_chatter(attacker, weapon, victim, inflictor, meansofdea
 		{
 			killdialog = attacker get_random_key("killSniper");
 		}
-		else if(dialog_chance("enemyHeroKillChance"))
+		else
 		{
-			victimdialogname = victim getmpdialogname();
-			if(isdefined(victimdialogname) && isdefined(level.bcsounds[#"kill_dialog"][victimdialogname]))
+			if(dialog_chance("enemyHeroKillChance"))
 			{
-				killdialog = attacker get_random_key(level.bcsounds[#"kill_dialog"][victimdialogname]);
+				victimdialogname = victim getmpdialogname();
+				if(isdefined(victimdialogname) && isdefined(level.bcsounds[#"kill_dialog"][victimdialogname]))
+				{
+					killdialog = attacker get_random_key(level.bcsounds[#"kill_dialog"][victimdialogname]);
+				}
+				else
+				{
+					killdialog = attacker get_random_key("killGeneric");
+				}
 			}
 			else
 			{
 				killdialog = attacker get_random_key("killGeneric");
 			}
-		}
-		else
-		{
-			killdialog = attacker get_random_key("killGeneric");
 		}
 	}
 	victim.spottedtime = undefined;
@@ -2033,7 +2066,7 @@ function grenade_tracking()
 				case "concussion_grenade":
 				{
 					waitresult = undefined;
-					waitresult = grenade waittill_timeout(0.3, #"death");
+					waitresult = grenade waittilltimeout(0.3, #"death");
 					if(waitresult._notify == "death" || !isdefined(grenade))
 					{
 						continue;
@@ -2763,23 +2796,26 @@ function play_dialog(dialogkey, dialogflags, dialogbuffer, enemy)
 			self playsoundontag(dialogalias, "J_Head");
 		}
 	}
-	else if(dialogflags & 1)
-	{
-		if(self function_1339f3f3())
-		{
-			if(isdefined(enemy))
-			{
-				self playsoundontag(dialogalias, "J_Head", self.team, enemy);
-			}
-			else
-			{
-				self playsoundontag(dialogalias, "J_Head", self.team);
-			}
-		}
-	}
 	else
 	{
-		self playlocalsound(dialogalias);
+		if(dialogflags & 1)
+		{
+			if(self function_1339f3f3())
+			{
+				if(isdefined(enemy))
+				{
+					self playsoundontag(dialogalias, "J_Head", self.team, enemy);
+				}
+				else
+				{
+					self playsoundontag(dialogalias, "J_Head", self.team);
+				}
+			}
+		}
+		else
+		{
+			self playlocalsound(dialogalias);
+		}
 	}
 	self notify(#"played_dialog");
 	self thread wait_dialog_buffer(dialogbuffer);
@@ -2866,23 +2902,26 @@ function function_a48c33ff(dialogalias, dialogflags, dialogbuffer, enemy)
 			self playsoundontag(dialogalias, "J_Head");
 		}
 	}
-	else if(dialogflags & 1)
-	{
-		if(self function_1339f3f3())
-		{
-			if(isdefined(enemy))
-			{
-				self playsoundontag(dialogalias, "J_Head", self.team, enemy);
-			}
-			else
-			{
-				self playsoundontag(dialogalias, "J_Head", self.team);
-			}
-		}
-	}
 	else
 	{
-		self playlocalsound(dialogalias);
+		if(dialogflags & 1)
+		{
+			if(self function_1339f3f3())
+			{
+				if(isdefined(enemy))
+				{
+					self playsoundontag(dialogalias, "J_Head", self.team, enemy);
+				}
+				else
+				{
+					self playsoundontag(dialogalias, "J_Head", self.team);
+				}
+			}
+		}
+		else
+		{
+			self playlocalsound(dialogalias);
+		}
 	}
 	self notify(#"played_dialog");
 	self thread wait_dialog_buffer(dialogbuffer);
@@ -3242,36 +3281,39 @@ function play_gadget_ready(weapon, userflip = 0)
 		waittime = mpdialog_value(delaykey, minwaittime);
 		dialogflags = dialogflags + 64;
 	}
-	else if(isdefined(self.isthief) && self.isthief)
-	{
-		generickey = playerbundle.thiefweaponready;
-		repeatkey = playerbundle.thiefweaponrepeat;
-		repeatthresholdkey = "thiefRepeatThreshold";
-		chancekey = "thiefReadyChance";
-		delaykey = "thiefRevealDelay";
-	}
 	else
 	{
-		generickey = playerbundle.rouletteabilityready;
-		repeatkey = playerbundle.rouletteabilityrepeat;
-		repeatthresholdkey = "rouletteRepeatThreshold";
-		chancekey = "rouletteReadyChance";
-		delaykey = "rouletteRevealDelay";
-	}
-	if(randomint(100) < mpdialog_value(chancekey, 0))
-	{
-		dialogkey = generickey;
-	}
-	else
-	{
-		waittime = mpdialog_value(delaykey, 0);
-		if(self.laststolengadget === weapon && (self.laststolengadgettime + (int(mpdialog_value(repeatthresholdkey, 0) * 1000))) > gettime())
+		if(isdefined(self.isthief) && self.isthief)
 		{
-			dialogkey = repeatkey;
+			generickey = playerbundle.thiefweaponready;
+			repeatkey = playerbundle.thiefweaponrepeat;
+			repeatthresholdkey = "thiefRepeatThreshold";
+			chancekey = "thiefReadyChance";
+			delaykey = "thiefRevealDelay";
 		}
 		else
 		{
-			dialogflags = dialogflags + 64;
+			generickey = playerbundle.rouletteabilityready;
+			repeatkey = playerbundle.rouletteabilityrepeat;
+			repeatthresholdkey = "rouletteRepeatThreshold";
+			chancekey = "rouletteReadyChance";
+			delaykey = "rouletteRevealDelay";
+		}
+		if(randomint(100) < mpdialog_value(chancekey, 0))
+		{
+			dialogkey = generickey;
+		}
+		else
+		{
+			waittime = mpdialog_value(delaykey, 0);
+			if(self.laststolengadget === weapon && (self.laststolengadgettime + (int(mpdialog_value(repeatthresholdkey, 0) * 1000))) > gettime())
+			{
+				dialogkey = repeatkey;
+			}
+			else
+			{
+				dialogflags = dialogflags + 64;
+			}
 		}
 	}
 	self.laststolengadget = weapon;
@@ -4531,7 +4573,7 @@ function function_bf68a5ab(var_4d5833c)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_253c2ba4(var_cf210c5b, dialogbuffer)
+function private function_253c2ba4(var_cf210c5b, dialogbuffer)
 {
 	if(!level.allowspecialistdialog || !isdefined(self) || !isplayer(self) || !isdefined(var_cf210c5b))
 	{
@@ -4793,23 +4835,26 @@ function function_4fb91bc7(weapon, var_df17fa82, var_53c10ed8)
 	{
 		self thread killstreaks::play_taacom_dialog(var_60d3002f);
 	}
-	else if(var_b3fe42a9 === 1)
+	else
 	{
-		if(var_53c10ed8 === 1)
+		if(var_b3fe42a9 === 1)
 		{
-			self thread killstreaks::play_taacom_dialog(var_60d3002f, undefined, undefined, 5, var_df17fa82, weapon);
+			if(var_53c10ed8 === 1)
+			{
+				self thread killstreaks::play_taacom_dialog(var_60d3002f, undefined, undefined, 5, var_df17fa82, weapon);
+			}
+			else
+			{
+				self thread killstreaks::play_taacom_dialog(var_60d3002f, undefined, undefined, 3, var_df17fa82, weapon);
+			}
 		}
 		else
 		{
-			self thread killstreaks::play_taacom_dialog(var_60d3002f, undefined, undefined, 3, var_df17fa82, weapon);
+			self thread killstreaks::play_taacom_dialog(var_60d3002f, undefined, undefined, 4, var_df17fa82);
 		}
+		var_fc9a842 = mpdialog_value("taacomHackedReplyCooldownSec", 0);
+		self.var_d6422943 = gettime() + (int(var_fc9a842 * 1000));
 	}
-	else
-	{
-		self thread killstreaks::play_taacom_dialog(var_60d3002f, undefined, undefined, 4, var_df17fa82);
-	}
-	var_fc9a842 = mpdialog_value("taacomHackedReplyCooldownSec", 0);
-	self.var_d6422943 = gettime() + (int(var_fc9a842 * 1000));
 }
 
 /*
@@ -4936,13 +4981,13 @@ function can_play_dialog(teamonly)
 {
 	if(!isplayer(self) || !isalive(self) || self.playingdialog === 1 || self isplayerunderwater() || self isremotecontrolling() || self isinvehicle() || self isweaponviewonlylinked())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(teamonly) && !teamonly && self hasperk(#"specialty_quieter"))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -5087,13 +5132,16 @@ function game_end_vox(winner)
 		{
 			dialogkey = playerbundle.boostdraw;
 		}
-		else if(isdefined(winner) && (level.teambased && isdefined(level.teams[winner]) && player.pers[#"team"] == winner) || (!level.teambased && player == winner))
-		{
-			dialogkey = playerbundle.boostwin;
-		}
 		else
 		{
-			dialogkey = playerbundle.boostloss;
+			if(isdefined(winner) && (level.teambased && isdefined(level.teams[winner]) && player.pers[#"team"] == winner) || (!level.teambased && player == winner))
+			{
+				dialogkey = playerbundle.boostwin;
+			}
+			else
+			{
+				dialogkey = playerbundle.boostloss;
+			}
 		}
 		if(isdefined(dialogkey))
 		{

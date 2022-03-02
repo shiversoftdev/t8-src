@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function init()
+function autoexec init()
 {
 	namespace_70571b3::registernovacrawlerinterfaceattributes();
 	registerbehaviorscriptfunctions();
@@ -31,7 +31,7 @@ autoexec function init()
 	Parameters: 0
 	Flags: Private
 */
-private function function_32107b12()
+function private function_32107b12()
 {
 	/#
 		assert(isdefined(self.ai));
@@ -47,7 +47,7 @@ private function function_32107b12()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ea4610a7()
+function private function_ea4610a7()
 {
 	blackboard::createblackboardforentity(self);
 	ai::createinterfaceforentity(self);
@@ -64,7 +64,7 @@ private function function_ea4610a7()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b11c2bcd(entity)
+function private function_b11c2bcd(entity)
 {
 }
 
@@ -77,7 +77,7 @@ private function function_b11c2bcd(entity)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_80f18700(entity)
+function private function_80f18700(entity)
 {
 	self.__blackboard = undefined;
 	self function_ea4610a7();
@@ -92,7 +92,7 @@ private function function_80f18700(entity)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function registerbehaviorscriptfunctions()
+function private registerbehaviorscriptfunctions()
 {
 }
 
@@ -105,7 +105,7 @@ private function registerbehaviorscriptfunctions()
 	Parameters: 1
 	Flags: Private
 */
-private function function_3d50e4d0(message)
+function private function_3d50e4d0(message)
 {
 	/#
 		if(getdvarint(#"hash_35bebcc5f50d2641", 0))

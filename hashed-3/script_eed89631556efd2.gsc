@@ -144,16 +144,19 @@ function state_off_update(params)
 			self updateflakdronespeed();
 			self function_a57c34b7(self.current_pathto_pos);
 		}
-		else if(isdefined(self.parent.heligoalpos))
-		{
-			self.current_pathto_pos = self.parent.heligoalpos;
-		}
 		else
 		{
-			self.current_pathto_pos = queryorigin;
+			if(isdefined(self.parent.heligoalpos))
+			{
+				self.current_pathto_pos = self.parent.heligoalpos;
+			}
+			else
+			{
+				self.current_pathto_pos = queryorigin;
+			}
+			self updateflakdronespeed();
+			self function_a57c34b7(self.current_pathto_pos);
 		}
-		self updateflakdronespeed();
-		self function_a57c34b7(self.current_pathto_pos);
 		wait(randomfloatrange(0.1, 0.2));
 	}
 }

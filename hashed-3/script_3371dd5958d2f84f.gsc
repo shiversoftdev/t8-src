@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_50251e63e4a703b5", &__init__, undefined, #"weapons");
 }
@@ -39,7 +39,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: Private
 */
-private function __init__()
+function private __init__()
 {
 	callback::on_connect(&onconnect);
 	level.givecustomloadout = &function_738575c4;
@@ -67,7 +67,7 @@ private function __init__()
 	Parameters: 3
 	Flags: Private
 */
-private function function_597cbfb8(slot, weapon, force = 0)
+function private function_597cbfb8(slot, weapon, force = 0)
 {
 	if(!force)
 	{
@@ -108,7 +108,7 @@ private function function_597cbfb8(slot, weapon, force = 0)
 	Parameters: 1
 	Flags: Private
 */
-private function onplayerkilled(params)
+function private onplayerkilled(params)
 {
 	function_cea5cbc5();
 	if(!isdefined(params.eattacker) || params.eattacker != self)
@@ -130,7 +130,7 @@ private function onplayerkilled(params)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9ede386f(slot)
+function private function_9ede386f(slot)
 {
 	wait(0.1);
 	self gadgetpowerset(slot, 0);
@@ -146,7 +146,7 @@ private function function_9ede386f(slot)
 	Parameters: 0
 	Flags: Private
 */
-private function registerclientfields()
+function private registerclientfields()
 {
 	if(isdefined(level.var_a9f35be1))
 	{
@@ -188,7 +188,7 @@ private function registerclientfields()
 	Parameters: 0
 	Flags: Private
 */
-private function onconnect()
+function private onconnect()
 {
 	if(!isdefined(self.pers[#"hash_50251e63e4a703b5"]))
 	{
@@ -215,7 +215,7 @@ private function onconnect()
 	Parameters: 0
 	Flags: Private
 */
-private function function_485e3421()
+function private function_485e3421()
 {
 	if(isdefined(self.pers[#"hash_50251e63e4a703b5"].armor))
 	{
@@ -249,7 +249,7 @@ function function_22096d8e()
 	Parameters: 0
 	Flags: Private
 */
-private function function_c6de6bdd()
+function private function_c6de6bdd()
 {
 	self menus::register_menu_response_callback("BountyHunterBuy", &function_40eb02fc);
 	self menus::register_menu_response_callback("BountyHunterPackageSelect", &function_40eb02fc);
@@ -264,7 +264,7 @@ private function function_c6de6bdd()
 	Parameters: 2
 	Flags: Private
 */
-private function function_40eb02fc(response, intpayload)
+function private function_40eb02fc(response, intpayload)
 {
 	if(!isdefined(intpayload))
 	{
@@ -401,27 +401,39 @@ private function function_40eb02fc(response, intpayload)
 	{
 		self function_a3d739c6(slot, package);
 	}
-	else if(slot == 5)
+	else
 	{
-		self function_e6fa90be(package);
-	}
-	else if(slot <= 9)
-	{
-		self function_14e4d700(slot, package);
-		intpayload = package.var_220eaf2;
-	}
-	else if(slot == 10)
-	{
-		self function_1875e2a9(package);
-	}
-	else if(slot <= 12)
-	{
-		self function_7a836986(slot - 11, package, var_e120a933);
-		intpayload = var_e120a933;
-	}
-	else if(slot <= 101)
-	{
-		self addammo(slot - 100, package);
+		if(slot == 5)
+		{
+			self function_e6fa90be(package);
+		}
+		else
+		{
+			if(slot <= 9)
+			{
+				self function_14e4d700(slot, package);
+				intpayload = package.var_220eaf2;
+			}
+			else
+			{
+				if(slot == 10)
+				{
+					self function_1875e2a9(package);
+				}
+				else
+				{
+					if(slot <= 12)
+					{
+						self function_7a836986(slot - 11, package, var_e120a933);
+						intpayload = var_e120a933;
+					}
+					else if(slot <= 101)
+					{
+						self addammo(slot - 100, package);
+					}
+				}
+			}
+		}
 	}
 	if(isdefined(clientfield))
 	{
@@ -447,7 +459,7 @@ private function function_40eb02fc(response, intpayload)
 	Parameters: 4
 	Flags: Private
 */
-private function function_5b8256ca(package, isammo = 0, var_e120a933 = undefined, var_eb3ffe17 = 0)
+function private function_5b8256ca(package, isammo = 0, var_e120a933 = undefined, var_eb3ffe17 = 0)
 {
 	money = self.pers[#"money"];
 	registerend_prestige_imp = (var_eb3ffe17 ? 1 : (isdefined(getgametypesetting(#"hash_1b34b26470f4368")) ? getgametypesetting(#"hash_1b34b26470f4368") : 1));
@@ -463,16 +475,16 @@ private function function_5b8256ca(package, isammo = 0, var_e120a933 = undefined
 	cost = int(cost);
 	if(!isdefined(cost))
 	{
-		return 0;
+		return false;
 	}
 	if(money < cost)
 	{
-		return 0;
+		return false;
 	}
 	money = money - cost;
 	self clientfield::set_to_player("bountyMoney", money);
 	self.pers[#"money"] = money;
-	return 1;
+	return true;
 }
 
 /*
@@ -484,7 +496,7 @@ private function function_5b8256ca(package, isammo = 0, var_e120a933 = undefined
 	Parameters: 2
 	Flags: Private
 */
-private function function_a3d739c6(slot, package)
+function private function_a3d739c6(slot, package)
 {
 	self.pers[#"hash_50251e63e4a703b5"].weapons[slot] = spawnstruct();
 	self.pers[#"hash_50251e63e4a703b5"].weapons[slot].name = package.var_60f86f10[0].item;
@@ -502,7 +514,7 @@ private function function_a3d739c6(slot, package)
 	Parameters: 1
 	Flags: Private
 */
-private function function_e6fa90be(package)
+function private function_e6fa90be(package)
 {
 	self.pers[#"hash_50251e63e4a703b5"].armor = {};
 	self.pers[#"hash_50251e63e4a703b5"].armor.name = package.var_60f86f10[0].item;
@@ -522,7 +534,7 @@ private function function_e6fa90be(package)
 	Parameters: 2
 	Flags: Private
 */
-private function function_14e4d700(slot, package)
+function private function_14e4d700(slot, package)
 {
 	foreach(talent in package.var_60f86f10)
 	{
@@ -567,22 +579,22 @@ function function_ff8ef46b(slot, clientfield, newval)
 	Parameters: 1
 	Flags: Private
 */
-private function function_2b402d5d(package)
+function private function_2b402d5d(package)
 {
 	primary = self.pers[#"hash_50251e63e4a703b5"].weapons[0];
 	if(!isdefined(primary))
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(primary.name))
 	{
-		return 0;
+		return false;
 	}
 	if(primary.name == package.var_60f86f10[0].item)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -594,7 +606,7 @@ private function function_2b402d5d(package)
 	Parameters: 2
 	Flags: Private
 */
-private function addammo(slot, package)
+function private addammo(slot, package)
 {
 	if(isdefined(package.refillammo) && package.refillammo > 0)
 	{
@@ -624,7 +636,7 @@ private function addammo(slot, package)
 	Parameters: 1
 	Flags: Private
 */
-private function function_1875e2a9(package)
+function private function_1875e2a9(package)
 {
 	self.pers[#"hash_50251e63e4a703b5"].scorestreak = package.var_60f86f10[0].item;
 }
@@ -638,7 +650,7 @@ private function function_1875e2a9(package)
 	Parameters: 3
 	Flags: Private
 */
-private function function_7a836986(slot, package, var_e120a933)
+function private function_7a836986(slot, package, var_e120a933)
 {
 	var_51cc2fc9 = package.var_95c30fc5[var_e120a933 - 1].attachmentlist;
 	var_db6dac44 = strtok(var_51cc2fc9, "+");
@@ -668,7 +680,7 @@ private function function_7a836986(slot, package, var_e120a933)
 	Parameters: 2
 	Flags: Private
 */
-private function function_738575c4(takeoldweapon, var_86bf0b36 = 1)
+function private function_738575c4(takeoldweapon, var_86bf0b36 = 1)
 {
 	self loadout::init_player(1);
 	weapons = self getweaponslist();
@@ -700,7 +712,7 @@ private function function_738575c4(takeoldweapon, var_86bf0b36 = 1)
 	Parameters: 0
 	Flags: Private
 */
-private function function_d2f0197a()
+function private function_d2f0197a()
 {
 	if(isdefined(self.pers[#"hash_50251e63e4a703b5"].armor))
 	{
@@ -720,7 +732,7 @@ private function function_d2f0197a()
 	Parameters: 1
 	Flags: Private
 */
-private function function_659633d8(var_31e314e8)
+function private function_659633d8(var_31e314e8)
 {
 	switch(var_31e314e8.name)
 	{
@@ -748,7 +760,7 @@ private function function_659633d8(var_31e314e8)
 	Parameters: 1
 	Flags: Private
 */
-private function function_51a2c3b3(var_31e314e8)
+function private function_51a2c3b3(var_31e314e8)
 {
 	if(!isdefined(var_31e314e8))
 	{
@@ -780,7 +792,7 @@ private function function_51a2c3b3(var_31e314e8)
 	Parameters: 1
 	Flags: Private
 */
-private function function_52630bb(var_31e314e8)
+function private function_52630bb(var_31e314e8)
 {
 	var_f740a469 = function_659633d8(var_31e314e8);
 	self setperk(var_f740a469);
@@ -795,7 +807,7 @@ private function function_52630bb(var_31e314e8)
 	Parameters: 1
 	Flags: Private
 */
-private function function_2b71fd3(var_31e314e8)
+function private function_2b71fd3(var_31e314e8)
 {
 	var_f740a469 = function_659633d8(var_31e314e8);
 	self unsetperk(var_f740a469);
@@ -810,7 +822,7 @@ private function function_2b71fd3(var_31e314e8)
 	Parameters: 0
 	Flags: Private
 */
-private function function_f14e5ee3()
+function private function_f14e5ee3()
 {
 	var_7d27f2d6 = self.pers[#"hash_50251e63e4a703b5"].weapons[0];
 	if(isdefined(var_7d27f2d6))
@@ -876,7 +888,7 @@ private function function_f14e5ee3()
 	Parameters: 0
 	Flags: Private
 */
-private function function_898839b4()
+function private function_898839b4()
 {
 	var_81b9af1a = self.pers[#"hash_50251e63e4a703b5"].talents;
 	foreach(item in var_81b9af1a)
@@ -898,7 +910,7 @@ private function function_898839b4()
 	Parameters: 2
 	Flags: Private
 */
-private function function_c1932ad3(weap, data)
+function private function_c1932ad3(weap, data)
 {
 	if(data.ammo > 0)
 	{
@@ -923,7 +935,7 @@ private function function_c1932ad3(weap, data)
 	Parameters: 0
 	Flags: Private
 */
-private function function_6a829089()
+function private function_6a829089()
 {
 	var_2b15e2fe = getweapon(#"hash_76d1218de27081f6");
 	if(isdefined(self.var_c7e6d7c7) && self.var_c7e6d7c7)
@@ -943,7 +955,7 @@ private function function_6a829089()
 	Parameters: 0
 	Flags: Private
 */
-private function function_422164cd()
+function private function_422164cd()
 {
 	self function_e6f9e3cd();
 	self clearperks();
@@ -976,7 +988,7 @@ private function function_422164cd()
 	Parameters: 0
 	Flags: Private
 */
-private function function_8d5ede64()
+function private function_8d5ede64()
 {
 	if(isdefined(self.pers[#"hash_50251e63e4a703b5"].scorestreak))
 	{

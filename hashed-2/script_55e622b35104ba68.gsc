@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_75440eb9162352b6", &__init__, undefined, undefined);
 }
@@ -142,7 +142,7 @@ function function_3ca86964(var_1d83d08d)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function on_finalize_initialization()
+function private on_finalize_initialization()
 {
 	level flagsys::wait_till(#"hash_43bac6444a9b65f3");
 	insertion = self;
@@ -184,7 +184,7 @@ private function on_finalize_initialization()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_fd3c1bcc(start, end, default_val)
+function private function_fd3c1bcc(start, end, default_val)
 {
 	trace = worldtrace(start, end);
 	if(trace[#"fraction"] < 1)
@@ -238,7 +238,7 @@ function function_d53a8c5b(insertion, fly_over_point, var_59526dd5, offset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9ddb4115(var_1d83d08d)
+function private function_9ddb4115(var_1d83d08d)
 {
 	/#
 		assert(isstruct(var_1d83d08d));
@@ -536,7 +536,7 @@ function function_bb2c2f4d(point, direction, step, depth)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_abd3bc1a()
+function private function_abd3bc1a()
 {
 	if(!isalive(self))
 	{
@@ -590,7 +590,7 @@ function function_baf204f5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7a4c1517()
+function private function_7a4c1517()
 {
 	self val::reset(#"hash_75440eb9162352b6", "freezecontrols");
 	self val::reset(#"hash_75440eb9162352b6", "disablegadgets");
@@ -643,7 +643,7 @@ function function_3354a054()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_bc824660(insertion)
+function private function_bc824660(insertion)
 {
 	/#
 		assert(isstruct(insertion));
@@ -673,7 +673,7 @@ private function function_bc824660(insertion)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_948ac812(insertion)
+function private function_948ac812(insertion)
 {
 	/#
 		assert(isstruct(insertion));
@@ -839,10 +839,10 @@ function function_df47b31b(flag)
 		insertion = level.insertions[index];
 		if(!insertion flagsys::get(flag))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1377,7 +1377,7 @@ function function_bcde1e07()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c62b5591(insertion)
+function private function_c62b5591(insertion)
 {
 	/#
 		assert(isstruct(insertion));
@@ -1727,7 +1727,7 @@ function function_f795bf83(insertion, vehicle, yaw)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e3f18577()
+function private function_e3f18577()
 {
 	height = 0;
 	/#
@@ -1878,7 +1878,7 @@ function function_80c60f66(player)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_e59d879f(insertion, var_6ad01bed, var_cf46aa72)
+function private function_e59d879f(insertion, var_6ad01bed, var_cf46aa72)
 {
 	/#
 		assert(isstruct(insertion));
@@ -1907,7 +1907,7 @@ private function function_e59d879f(insertion, var_6ad01bed, var_cf46aa72)
 	vehiclespawners[#"heli_infil_spawner"] = getent("heli_infil_spawner", "targetname");
 	if(vehiclespawners.size == 0)
 	{
-		return 0;
+		return false;
 	}
 	spawner::global_spawn_throttle(1);
 	if(1)
@@ -2033,7 +2033,7 @@ private function function_e59d879f(insertion, var_6ad01bed, var_cf46aa72)
 	insertion thread function_6da3daa0(insertion, insertion.var_ef5094f9, insertion.var_ef5094f9.startorigin, insertion.var_ef5094f9.endorigin, var_37362e08 + insertion.var_ef5094f9.forwardoffset);
 	insertion thread function_ca5b6591(insertion, startpoint, endpoint, var_872f085f);
 	function_948ac812(insertion);
-	return 1;
+	return true;
 }
 
 /*
@@ -2486,7 +2486,7 @@ function function_45644b08()
 	Parameters: 0
 	Flags: Private
 */
-private function function_63793dbe()
+function private function_63793dbe()
 {
 	/#
 		time = getdvarfloat(#"hash_102dc944a54c88d9", 0);
@@ -2533,7 +2533,7 @@ function function_85635daf(startpoint, total_distance, delta_t)
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_afdad0c8(insertion, plane, startpoint, endpoint, var_671fc488)
+function private function_afdad0c8(insertion, plane, startpoint, endpoint, var_671fc488)
 {
 	/#
 		assert(isstruct(insertion));
@@ -2625,7 +2625,7 @@ private function function_afdad0c8(insertion, plane, startpoint, endpoint, var_6
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function function_6da3daa0(insertion, plane, startpoint, endpoint, var_6a694ed8)
+function private function_6da3daa0(insertion, plane, startpoint, endpoint, var_6a694ed8)
 {
 	/#
 		assert(isstruct(insertion));
@@ -2832,7 +2832,7 @@ function function_2e54d73e(insertion, passenger, vehicle)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_ced05c63(note, payload)
+function private function_ced05c63(note, payload)
 {
 	teammates = getplayers(self.team);
 	foreach(player in teammates)
@@ -3089,7 +3089,7 @@ function function_712f9f52()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_66c91693(eventstruct)
+function private function_66c91693(eventstruct)
 {
 	if(!eventstruct.parachute)
 	{
@@ -3166,7 +3166,7 @@ function function_c71552d0(insertion, fadeouttime, var_8e0c0121, fadeintime, rum
 	Parameters: 1
 	Flags: Private
 */
-private function function_d7f18e8f(players)
+function private function_d7f18e8f(players)
 {
 	foreach(player in players)
 	{
@@ -3193,10 +3193,10 @@ function function_6660c1f()
 		insertion = level.insertions[index];
 		if(insertion flagsys::get(#"hash_60fcdd11812a0134"))
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -3215,10 +3215,10 @@ function function_e5d4df1c()
 		insertion = level.insertions[index];
 		if(insertion flagsys::get(#"hash_122f326d72f4c884"))
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -3230,7 +3230,7 @@ function function_e5d4df1c()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_a4deb676()
+function private function_a4deb676()
 {
 	var_d9bf1973 = getentarray("game_start_button", "script_noteworthy");
 	array::delete_all(var_d9bf1973);
@@ -3351,7 +3351,7 @@ function function_8fc2a69e()
 	Parameters: 5
 	Flags: Private
 */
-private function debug_sphere(origin, radius, color, alpha, time)
+function private debug_sphere(origin, radius, color, alpha, time)
 {
 	/#
 		if(!isdefined(alpha))
@@ -3414,7 +3414,7 @@ function debug_line(from, to, color, time, depthtest)
 	Parameters: 1
 	Flags: Private
 */
-private function function_943c98fb(insertion)
+function private function_943c98fb(insertion)
 {
 	/#
 		/#

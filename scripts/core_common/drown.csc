@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"drown", &__init__, undefined, #"visionset_mgr");
 }
@@ -277,13 +277,16 @@ function drown_stage_callback(localclientnum, oldval, newval, bnewent, binitials
 		self enable_drown(localclientnum, newval);
 		self thread player_drown_fx(localclientnum, newval);
 	}
-	else if(!bnewent)
-	{
-		self thread player_fade_out_drown_fx(localclientnum);
-	}
 	else
 	{
-		self disable_drown(localclientnum);
+		if(!bnewent)
+		{
+			self thread player_fade_out_drown_fx(localclientnum);
+		}
+		else
+		{
+			self disable_drown(localclientnum);
+		}
 	}
 }
 

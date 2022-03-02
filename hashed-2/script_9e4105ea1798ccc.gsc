@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_armor", &__init__, undefined, undefined);
 }
@@ -247,19 +247,22 @@ function damage(n_damage, mod_type, e_attacker)
 			var_c5aebd9f = var_c5aebd9f + var_ee47fd1b;
 			n_index++;
 		}
-		else if(var_2a0d4230 > 0)
-		{
-			var_c5aebd9f = var_c5aebd9f + var_2a0d4230;
-			self remove(var_b12ac727);
-			if(self.armor <= 0)
-			{
-				self playsound(#"hash_2817ca3f96127e62");
-			}
-			n_index++;
-		}
 		else
 		{
-			n_index++;
+			if(var_2a0d4230 > 0)
+			{
+				var_c5aebd9f = var_c5aebd9f + var_2a0d4230;
+				self remove(var_b12ac727);
+				if(self.armor <= 0)
+				{
+					self playsound(#"hash_2817ca3f96127e62");
+				}
+				n_index++;
+			}
+			else
+			{
+				n_index++;
+			}
 		}
 	}
 	self notify(#"damage_armor", {#attacker:e_attacker, #mod:mod_type});

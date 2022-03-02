@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"catalyst", &__init__, undefined, undefined);
 }
@@ -27,7 +27,7 @@ autoexec function function_89f2df9()
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function precache()
+function autoexec precache()
 {
 }
 
@@ -54,7 +54,7 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_5608540a(localclientnum)
+function private function_5608540a(localclientnum)
 {
 	self mapshaderconstant(localclientnum, 0, "scriptVector2", 1, 0, 0, 1);
 }

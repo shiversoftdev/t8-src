@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_stats", &__init__, undefined, undefined);
 }
@@ -2296,7 +2296,7 @@ function function_cb8a5c29()
 	while(true)
 	{
 		s_result = undefined;
-		s_result = level waittill_timeout(60, #"hash_3fdaafe712252cf5", #"trap_kill");
+		s_result = level waittilltimeout(60, #"hash_3fdaafe712252cf5", #"trap_kill");
 		if(s_result._notify == "timeout")
 		{
 			level.var_b8cbd9e6 = 1;
@@ -2371,17 +2371,17 @@ function function_ea5b4947(b_end_game = 0)
 			#/
 			player function_e8f77739(#"zm_timeplayed", int(var_78c18942));
 		}
-		if(isdefined(player.var_7d0afffb) && isarray(player.var_7d0afffb))
+		if(isdefined(player.bgb_pack) && isarray(player.bgb_pack))
 		{
-			foreach(bgb in player.var_7d0afffb)
+			foreach(bgb in player.bgb_pack)
 			{
-				if(!isdefined(player.var_ed782493) || !isdefined(player.var_ed782493[bgb]) || !player.var_ed782493[bgb].var_a286cbfb)
+				if(!isdefined(player.bgb_stats) || !isdefined(player.bgb_stats[bgb]) || !player.bgb_stats[bgb].bgb_used_this_game)
 				{
 					continue;
 				}
-				player reportlootconsume(bgb, player.var_ed782493[bgb].var_a286cbfb);
-				player.var_ed782493[bgb].var_c2a984f0 = player.var_ed782493[bgb].var_c2a984f0 - player.var_ed782493[bgb].var_a286cbfb;
-				player.var_ed782493[bgb].var_a286cbfb = 0;
+				player reportlootconsume(bgb, player.bgb_stats[bgb].bgb_used_this_game);
+				player.bgb_stats[bgb].var_c2a984f0 = player.bgb_stats[bgb].var_c2a984f0 - player.bgb_stats[bgb].bgb_used_this_game;
+				player.bgb_stats[bgb].bgb_used_this_game = 0;
 			}
 		}
 		player util::function_22bf0a4a();

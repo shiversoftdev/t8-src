@@ -12,7 +12,7 @@
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _blackboardsapplyundostate(planner, state)
+function private _blackboardsapplyundostate(planner, state)
 {
 	/#
 		assert(isstruct(planner));
@@ -40,7 +40,7 @@ private function _blackboardsapplyundostate(planner, state)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _blackboardscalculateundostate(planner)
+function private _blackboardscalculateundostate(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -65,7 +65,7 @@ private function _blackboardscalculateundostate(planner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _blackboardsreadmode(planner)
+function private _blackboardsreadmode(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -88,7 +88,7 @@ private function _blackboardsreadmode(planner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _blackboardsreadwritemode(planner)
+function private _blackboardsreadwritemode(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -111,7 +111,7 @@ private function _blackboardsreadwritemode(planner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _initializeplannerfunctions(functype)
+function private _initializeplannerfunctions(functype)
 {
 	if(!isdefined(level._plannerscriptfunctions))
 	{
@@ -132,7 +132,7 @@ private function _initializeplannerfunctions(functype)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _plancalculateplanindex(planner)
+function private _plancalculateplanindex(planner)
 {
 	return planner.plan.size - 1;
 }
@@ -146,7 +146,7 @@ private function _plancalculateplanindex(planner)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _planexpandaction(planner, action)
+function private _planexpandaction(planner, action)
 {
 	planner.api = action.api;
 	pixbeginevent(action.api);
@@ -183,7 +183,7 @@ private function _planexpandaction(planner, action)
 	planner.api = undefined;
 	aiprofile_endentry();
 	pixendevent();
-	return 1;
+	return true;
 }
 
 /*
@@ -195,7 +195,7 @@ private function _planexpandaction(planner, action)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _planexpandpostcondition(planner, postcondition)
+function private _planexpandpostcondition(planner, postcondition)
 {
 	planner.api = postcondition.api;
 	pixbeginevent(postcondition.api);
@@ -216,7 +216,7 @@ private function _planexpandpostcondition(planner, postcondition)
 	planner.api = undefined;
 	aiprofile_endentry();
 	pixendevent();
-	return 1;
+	return true;
 }
 
 /*
@@ -228,7 +228,7 @@ private function _planexpandpostcondition(planner, postcondition)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _planexpandprecondition(planner, precondition)
+function private _planexpandprecondition(planner, precondition)
 {
 	planner.api = precondition.api;
 	pixbeginevent(precondition.api);
@@ -260,7 +260,7 @@ private function _planexpandprecondition(planner, precondition)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _planfindnextsibling(planner, parentnodeentry, currentchildindex)
+function private _planfindnextsibling(planner, parentnodeentry, currentchildindex)
 {
 	/#
 		assert(isstruct(planner));
@@ -277,7 +277,7 @@ private function _planfindnextsibling(planner, parentnodeentry, currentchildinde
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _planstackhasnodes(planner)
+function private _planstackhasnodes(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -294,7 +294,7 @@ private function _planstackhasnodes(planner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _planstackpeeknode(planner)
+function private _planstackpeeknode(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -315,7 +315,7 @@ private function _planstackpeeknode(planner)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _planstackpopnode(planner)
+function private _planstackpopnode(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -337,7 +337,7 @@ private function _planstackpopnode(planner)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _planstackpushnode(planner, node, childindex = undefined)
+function private _planstackpushnode(planner, node, childindex = undefined)
 {
 	/#
 		assert(isstruct(planner));
@@ -362,7 +362,7 @@ private function _planstackpushnode(planner, node, childindex = undefined)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function _planpushvalidparent(planner, childnodeentry, result)
+function private _planpushvalidparent(planner, childnodeentry, result)
 {
 	while(_planstackhasnodes(planner))
 	{
@@ -428,7 +428,7 @@ private function _planpushvalidparent(planner, childnodeentry, result)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function _planprocessstack(planner)
+function private _planprocessstack(planner)
 {
 	/#
 		assert(isstruct(planner));
@@ -484,7 +484,7 @@ private function _planprocessstack(planner)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function _undoplan(planner, planindex)
+function private _undoplan(planner, planindex)
 {
 	/#
 		assert(isstruct(planner));
@@ -947,7 +947,7 @@ function printplanner(planner, filename)
 	Parameters: 1
 	Flags: Private
 */
-private function _printclearprintid(plannernode)
+function private _printclearprintid(plannernode)
 {
 	/#
 		plannernode.printid = undefined;
@@ -973,7 +973,7 @@ private function _printclearprintid(plannernode)
 	Parameters: 1
 	Flags: Private
 */
-private function function_3af5bab0(node)
+function private function_3af5bab0(node)
 {
 	/#
 		text = node.type;
@@ -999,17 +999,23 @@ private function function_3af5bab0(node)
 				{
 					text = text + ((key + "") + value);
 				}
-				else if(isstring(value))
+				else
 				{
-					text = text + (((key + "") + value) + "");
-				}
-				else if(isarray(value))
-				{
-					text = text + (key + "");
-				}
-				else if(!isdefined(value))
-				{
-					text = text + (key + "");
+					if(isstring(value))
+					{
+						text = text + (((key + "") + value) + "");
+					}
+					else
+					{
+						if(isarray(value))
+						{
+							text = text + (key + "");
+						}
+						else if(!isdefined(value))
+						{
+							text = text + (key + "");
+						}
+					}
 				}
 				first = 0;
 			}
@@ -1031,7 +1037,7 @@ private function function_3af5bab0(node)
 	Parameters: 4
 	Flags: Private
 */
-private function _printplannernode(file, plannernode, indent, printid)
+function private _printplannernode(file, plannernode, indent, printid)
 {
 	/#
 		/#

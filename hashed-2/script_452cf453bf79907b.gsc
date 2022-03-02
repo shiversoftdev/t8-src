@@ -10,13 +10,13 @@
 	Parameters: 0
 	Flags: Private
 */
-private function function_605bb988()
+function private function_605bb988()
 {
 	if(!isalive(self))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -28,7 +28,7 @@ private function function_605bb988()
 	Parameters: 0
 	Flags: Private
 */
-private function function_8240e8b4()
+function private function_8240e8b4()
 {
 	if(function_605bb988())
 	{
@@ -74,7 +74,7 @@ function function_b8d4946e(window)
 	Parameters: 0
 	Flags: Private
 */
-private function function_c9f765ff()
+function private function_c9f765ff()
 {
 	self endon(#"disconnect");
 	while(true)

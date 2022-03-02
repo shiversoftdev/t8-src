@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_65ddf3efec755b91", &__init__, undefined, undefined);
 }
@@ -68,9 +68,7 @@ function __init__()
 	callback::on_connect(&on_player_connect);
 	if(!isdefined(level.var_ab6fef61))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		level.var_ab6fef61 = object;
+		level.var_ab6fef61 = new throttle();
 		[[ level.var_ab6fef61 ]]->initialize(6, 0.1);
 	}
 	namespace_9ff9f642::register_slowdown(#"hash_7e8287b2e2587da1", 0.6, 3);
@@ -115,15 +113,18 @@ function function_3f8da82c()
 		if(s_notify.weapon === level.var_e8ffa40)
 		{
 		}
-		else if(s_notify.weapon === level.var_45072d7d || s_notify.weapon === level.var_836fa4da)
+		else
 		{
-			self.var_e34577ca = undefined;
-			self thread function_54922a21();
-		}
-		else if(isdefined(self.var_8999a4bf))
-		{
-			self.var_8999a4bf clientfield::set("" + #"hash_47f6efd679c0437d", 0);
-			self.var_8999a4bf delete();
+			if(s_notify.weapon === level.var_45072d7d || s_notify.weapon === level.var_836fa4da)
+			{
+				self.var_e34577ca = undefined;
+				self thread function_54922a21();
+			}
+			else if(isdefined(self.var_8999a4bf))
+			{
+				self.var_8999a4bf clientfield::set("" + #"hash_47f6efd679c0437d", 0);
+				self.var_8999a4bf delete();
+			}
 		}
 	}
 }
@@ -173,13 +174,16 @@ function function_d8a9b5a6(weapon)
 		{
 			n_proj = 3;
 		}
-		else if(!a_e_targets.size || (a_e_targets.size === 1 && !isactor(a_e_targets[0])))
-		{
-			n_proj = 1;
-		}
 		else
 		{
-			n_proj = 3;
+			if(!a_e_targets.size || (a_e_targets.size === 1 && !isactor(a_e_targets[0])))
+			{
+				n_proj = 1;
+			}
+			else
+			{
+				n_proj = 3;
+			}
 		}
 	}
 	for(i = 0; i < n_proj; i++)
@@ -192,24 +196,30 @@ function function_d8a9b5a6(weapon)
 			{
 				self thread function_8e7f5291(e_projectile, a_e_targets[i], n_damage);
 			}
-			else if(i == 1 && isdefined(a_e_targets[i - 1]))
+			else
 			{
-				self thread function_8e7f5291(e_projectile, a_e_targets[i - 1], n_damage);
-			}
-			else if(i == 2)
-			{
-				if(isdefined(a_e_targets[i - 1]))
+				if(i == 1 && isdefined(a_e_targets[i - 1]))
 				{
 					self thread function_8e7f5291(e_projectile, a_e_targets[i - 1], n_damage);
 				}
-				else if(isdefined(a_e_targets[i - 2]))
+				else
 				{
-					self thread function_8e7f5291(e_projectile, a_e_targets[i - 2], n_damage);
+					if(i == 2)
+					{
+						if(isdefined(a_e_targets[i - 1]))
+						{
+							self thread function_8e7f5291(e_projectile, a_e_targets[i - 1], n_damage);
+						}
+						else if(isdefined(a_e_targets[i - 2]))
+						{
+							self thread function_8e7f5291(e_projectile, a_e_targets[i - 2], n_damage);
+						}
+					}
+					else
+					{
+						self thread function_8e7f5291(e_projectile);
+					}
 				}
-			}
-			else
-			{
-				self thread function_8e7f5291(e_projectile);
 			}
 		}
 		wait(0.1);
@@ -374,38 +384,38 @@ function is_valid_target(e_target, n_range)
 {
 	if(zm_utility::is_magic_bullet_shield_enabled(e_target))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(e_target.var_aea6e035) && e_target.var_aea6e035 || (isdefined(e_target.var_f9b38410) && e_target.var_f9b38410))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(e_target.marked_for_death) && e_target.marked_for_death)
 	{
-		return 0;
+		return false;
 	}
 	if(distance2dsquared(self.origin, e_target.origin) <= (64 * 64) && (self zm_utility::is_player_looking_at(e_target getcentroid(), 0.3, 1, self) || self zm_utility::is_player_looking_at(e_target getcentroid() + vectorscale((0, 0, 1), 32), 0.3, 1, self)))
 	{
-		return 1;
+		return true;
 	}
 	if(isdefined(e_target.fake_death) && e_target.fake_death)
 	{
-		return 0;
+		return false;
 	}
 	if(!isalive(e_target))
 	{
-		return 0;
+		return false;
 	}
 	if(distance2dsquared(self.origin, e_target.origin) > n_range * n_range)
 	{
-		return 0;
+		return false;
 	}
 	var_c060d2c8 = !(isdefined(level.var_58f509b6) && level.var_58f509b6);
 	if(!self zm_utility::is_player_looking_at(e_target getcentroid(), 0.9, var_c060d2c8, self) && !self zm_utility::is_player_looking_at(e_target.origin, 0.9, var_c060d2c8, self) && !self zm_utility::is_player_looking_at(e_target getcentroid() + vectorscale((0, 0, 1), 28), 0.9, var_c060d2c8, self))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -499,13 +509,16 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 			{
 				e_projectile moveto(v_right_end, n_time);
 			}
-			else if(e_projectile.n_index === 2)
-			{
-				e_projectile moveto(v_left_end, n_time);
-			}
 			else
 			{
-				e_projectile moveto(v_end, n_time);
+				if(e_projectile.n_index === 2)
+				{
+					e_projectile moveto(v_left_end, n_time);
+				}
+				else
+				{
+					e_projectile moveto(v_end, n_time);
+				}
 			}
 			wait(n_time - 0.05);
 			if(isdefined(ai_zombie) && ai_zombie.var_6f84b820 === #"boss")
@@ -537,13 +550,16 @@ function function_8e7f5291(e_projectile, ai_zombie, n_damage)
 					{
 						v_horz = v_target + (anglestoright(ai_zombie.angles) * 100);
 					}
-					else if(e_projectile.n_index === 2)
-					{
-						v_horz = v_target - (anglestoright(ai_zombie.angles) * 100);
-					}
 					else
 					{
-						v_horz = v_target;
+						if(e_projectile.n_index === 2)
+						{
+							v_horz = v_target - (anglestoright(ai_zombie.angles) * 100);
+						}
+						else
+						{
+							v_horz = v_target;
+						}
 					}
 					if(isdefined(v_horz))
 					{
@@ -618,22 +634,28 @@ function function_30239376(e_target)
 		{
 			v_org = e_target gettagorigin("j_tail_1");
 		}
-		else if(isdefined(e_target gettagorigin("j_spine4")))
+		else
+		{
+			if(isdefined(e_target gettagorigin("j_spine4")))
+			{
+				v_org = e_target gettagorigin("j_spine4");
+			}
+			else
+			{
+				v_org = e_target getcentroid();
+			}
+		}
+	}
+	else
+	{
+		if(isdefined(e_target gettagorigin("j_spine4")))
 		{
 			v_org = e_target gettagorigin("j_spine4");
 		}
 		else
 		{
-			v_org = e_target getcentroid();
+			v_org = e_target.origin;
 		}
-	}
-	else if(isdefined(e_target gettagorigin("j_spine4")))
-	{
-		v_org = e_target gettagorigin("j_spine4");
-	}
-	else
-	{
-		v_org = e_target.origin;
 	}
 	return v_org;
 }
@@ -692,13 +714,16 @@ function function_dced5aef(e_target, weapon = level.weaponnone, n_damage, b_char
 				{
 					e_target dodamage(n_damage, self.origin, self, undefined, "none", "MOD_UNKNOWN", 0, weapon);
 				}
-				else if(isdefined(e_target.marked_for_death) && e_target.marked_for_death)
-				{
-					self thread function_e56c350e(e_target, b_charged, n_damage);
-				}
 				else
 				{
-					e_target dodamage(n_damage, e_target.origin, self, self, "none", "MOD_UNKNOWN", 0, weapon);
+					if(isdefined(e_target.marked_for_death) && e_target.marked_for_death)
+					{
+						self thread function_e56c350e(e_target, b_charged, n_damage);
+					}
+					else
+					{
+						e_target dodamage(n_damage, e_target.origin, self, self, "none", "MOD_UNKNOWN", 0, weapon);
+					}
 				}
 				break;
 			}
@@ -810,7 +835,7 @@ function function_3f079da()
 */
 function function_b27148c8(weapon)
 {
-	self endon_callback(&function_8a56ed15, #"death", #"disconnect", #"weapon_change", #"weapon_fired", #"hash_609518a5a35564bf");
+	self endoncallback(&function_8a56ed15, #"death", #"disconnect", #"weapon_change", #"weapon_fired", #"hash_609518a5a35564bf");
 	v_trace = self function_3f079da();
 	v_ground = groundtrace(v_trace + vectorscale((0, 0, 1), 200), v_trace + (vectorscale((0, 0, -1), 1000)), 0, self)[#"position"];
 	if(!isdefined(self.var_8999a4bf))
@@ -1029,19 +1054,22 @@ function function_e56c350e(e_target, b_charged, n_damage)
 		n_damage = e_target.health + 999;
 		w_weapon = level.var_45072d7d;
 	}
-	else if(e_target.health <= n_damage)
-	{
-		e_target.marked_for_death = 1;
-		e_target clientfield::set("hemera_proj_death", 1);
-		e_target thread ai::stun(2);
-		wait(1);
-		e_target clientfield::set("hemera_proj_death", 0);
-		gibserverutils::annihilate(e_target);
-		n_damage = e_target.health + 999;
-	}
 	else
 	{
-		n_damage = n_damage;
+		if(e_target.health <= n_damage)
+		{
+			e_target.marked_for_death = 1;
+			e_target clientfield::set("hemera_proj_death", 1);
+			e_target thread ai::stun(2);
+			wait(1);
+			e_target clientfield::set("hemera_proj_death", 0);
+			gibserverutils::annihilate(e_target);
+			n_damage = e_target.health + 999;
+		}
+		else
+		{
+			n_damage = n_damage;
+		}
 	}
 	if(isalive(e_target))
 	{

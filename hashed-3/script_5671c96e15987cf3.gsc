@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7ce6a9f15f5680e0", &__init__, undefined, undefined);
 }
@@ -95,9 +95,7 @@ function give_perk()
 	self thread function_6607df78();
 	if(!isdefined(self.var_3dd38cd4))
 	{
-		object = new throttle();
-		[[ object ]]->__constructor();
-		self.var_3dd38cd4 = object;
+		self.var_3dd38cd4 = new throttle();
 		[[ self.var_3dd38cd4 ]]->initialize(4, 0.05);
 	}
 }

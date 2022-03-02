@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_664a4361aaa4140d", &init_shared, undefined, undefined);
 }
@@ -75,7 +75,7 @@ function player_init(localclientnum)
 	Parameters: 7
 	Flags: Linked, Private
 */
-private function function_73021afc(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function private function_73021afc(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
 	starttime = gettime();
@@ -119,7 +119,7 @@ private function function_73021afc(localclientnum, oldval, newval, bnewent, bini
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a252eaf0(localclientnum)
+function private function_a252eaf0(localclientnum)
 {
 	var_9cf4b61c = self getentitynumber();
 	self waittill(#"death");
@@ -139,7 +139,7 @@ private function function_a252eaf0(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_e3a084cd(localclientnum)
+function private function_e3a084cd(localclientnum)
 {
 	self setcompassicon("minimap_sensor_dart_flying");
 	self function_8e04481f();
@@ -222,7 +222,7 @@ private function function_e3a084cd(localclientnum)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_31a1aa18(localclientnum)
+function private function_31a1aa18(localclientnum)
 {
 	level waittill(#"game_ended");
 	function_c18242d9(localclientnum);

@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_5bdca5e9d7130244", &__init__, undefined, undefined);
 }
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_d1de6a85(var_30dbb2e5, var_f2c84b6b)
+function private function_d1de6a85(var_30dbb2e5, var_f2c84b6b)
 {
 	self.var_f2c84b6b = var_f2c84b6b;
 	self.var_30dbb2e5 = var_30dbb2e5;
@@ -107,7 +107,7 @@ function is_active(var_61ee083c = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_af55104(var_f2c84b6b)
+function private function_af55104(var_f2c84b6b)
 {
 	self notify("31521b89b82403a5");
 	self endon("31521b89b82403a5");
@@ -171,7 +171,7 @@ private function function_af55104(var_f2c84b6b)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function reset_loadout(var_96288bc8 = 0)
+function private reset_loadout(var_96288bc8 = 0)
 {
 	self notify("48ec1afa4e1f3b29");
 	self endon("48ec1afa4e1f3b29");
@@ -219,7 +219,7 @@ private function reset_loadout(var_96288bc8 = 0)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	if(self.var_30dbb2e5 === "zombie_fists")
 	{
@@ -236,7 +236,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_d1dabace(n_time = 30)
+function private function_d1dabace(n_time = 30)
 {
 	level endon(#"hash_7646638df88a3656", #"end_game");
 	level.var_236b9f7a = &function_37fe3e07;
@@ -263,7 +263,7 @@ private function function_d1dabace(n_time = 30)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_59d771f7()
+function private function_59d771f7()
 {
 	level notify(#"enable_equipment");
 	level.var_236b9f7a = undefined;
@@ -288,7 +288,7 @@ private function function_59d771f7()
 */
 function function_37fe3e07(e_player, var_957235ca)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -302,7 +302,7 @@ function function_37fe3e07(e_player, var_957235ca)
 */
 function function_3d4fea64(e_player, player_has_weapon)
 {
-	return 0;
+	return false;
 }
 
 /*
@@ -316,6 +316,6 @@ function function_3d4fea64(e_player, player_has_weapon)
 */
 function function_bf591b5a(e_player)
 {
-	return 0;
+	return false;
 }
 

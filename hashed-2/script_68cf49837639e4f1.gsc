@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_6e4fd4c82cd73524", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-private function function_d1de6a85(n_kill_count)
+function private function_d1de6a85(n_kill_count)
 {
 	level.var_f7e95a13 = zm_trial::function_5769f26a(n_kill_count);
 	foreach(player in getplayers())
@@ -72,7 +72,7 @@ private function function_d1de6a85(n_kill_count)
 	Parameters: 1
 	Flags: Private
 */
-private function function_9e7b3f4d(round_reset)
+function private function_9e7b3f4d(round_reset)
 {
 	var_7df0eb27 = level.var_f7e95a13;
 	level.var_f7e95a13 = undefined;
@@ -133,7 +133,7 @@ private function function_9e7b3f4d(round_reset)
 	Parameters: 1
 	Flags: Private
 */
-private function on_ai_killed(params)
+function private on_ai_killed(params)
 {
 	e_attacker = params.eattacker;
 	if(!isplayer(e_attacker))
@@ -160,7 +160,7 @@ private function on_ai_killed(params)
 	Parameters: 0
 	Flags: Private
 */
-private function function_d99b4aa5()
+function private function_d99b4aa5()
 {
 	foreach(e_player in getplayers())
 	{
@@ -177,7 +177,7 @@ private function function_d99b4aa5()
 	Parameters: 1
 	Flags: Private
 */
-private function on_death(params)
+function private on_death(params)
 {
 	if(isdefined(self.var_76bb4a3e) && self.var_76bb4a3e < level.var_f7e95a13)
 	{

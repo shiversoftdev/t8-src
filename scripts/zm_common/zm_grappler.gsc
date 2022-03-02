@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_grappler", &__init__, &__main__, undefined);
 }
@@ -68,7 +68,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_5f5a3405()
+function private function_5f5a3405()
 {
 	foreach(key, value in level.var_ddd7276e)
 	{
@@ -96,10 +96,10 @@ function function_56813755()
 	{
 		if(value === 0)
 		{
-			return 0;
+			return false;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -111,7 +111,7 @@ function function_56813755()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_2772f623(id)
+function private function_2772f623(id)
 {
 	/#
 		assert(isdefined(level.var_ddd7276e[id]) && level.var_ddd7276e[id] === 1);
@@ -197,19 +197,22 @@ function function_c43e7cab()
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_1b905efa(e_source, e_target, id)
+function private function_1b905efa(e_source, e_target, id)
 {
 	if(isdefined(e_source) && isdefined(e_target))
 	{
 		util::waittill_any_ents_two(e_source, "death", e_target, "death");
 	}
-	else if(isdefined(e_source))
+	else
 	{
-		e_source waittill(#"death");
-	}
-	else if(isdefined(e_target))
-	{
-		e_target waittill(#"death");
+		if(isdefined(e_source))
+		{
+			e_source waittill(#"death");
+		}
+		else if(isdefined(e_target))
+		{
+			e_target waittill(#"death");
+		}
 	}
 	util::wait_network_frame();
 	function_2772f623(id);
@@ -252,7 +255,7 @@ function function_30a5f5c1(e_source, e_target)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_b9937e84(var_ad3953a4, var_c53e9947, n_speed)
+function private function_b9937e84(var_ad3953a4, var_c53e9947, n_speed)
 {
 	n_distance = distance(var_ad3953a4 function_f21c3519(), var_c53e9947 function_f21c3519());
 	return n_distance / n_speed;

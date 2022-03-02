@@ -47,7 +47,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_pack_a_punch", &__init__, &__main__, undefined);
 }
@@ -127,7 +127,7 @@ function __main__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function spawn_init()
+function private spawn_init()
 {
 	if(isdefined(level.var_7199d651) && level.var_7199d651)
 	{
@@ -328,7 +328,7 @@ function function_a2e4892a()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_6309e7d5()
+function private function_6309e7d5()
 {
 	zm_pap_util::set_interaction_height(44);
 	zm_pap_util::function_530eb959(112);
@@ -347,7 +347,7 @@ private function function_6309e7d5()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_c6d69354()
+function private function_c6d69354()
 {
 	zm_pap_util::set_interaction_height(60);
 	zm_pap_util::function_530eb959(112);
@@ -366,17 +366,17 @@ private function function_c6d69354()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function get_start_state()
+function private get_start_state()
 {
 	if(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_ef785c4c) && level.var_ef785c4c || namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 2)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -457,7 +457,7 @@ function function_bb629351(b_on, str_state = "power_on", str_waittill)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function turn_on(origin, radius)
+function private turn_on(origin, radius)
 {
 	if(isstruct(self) && isdefined(self.target))
 	{
@@ -518,7 +518,7 @@ private function turn_on(origin, radius)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function turn_off(origin, radius)
+function private turn_off(origin, radius)
 {
 	if(self iszbarrier())
 	{
@@ -585,7 +585,7 @@ function is_on()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_e13fa347()
+function private function_e13fa347()
 {
 	if(isdefined(self.one_time_cost))
 	{
@@ -613,7 +613,7 @@ private function function_e13fa347()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function toggle_think(powered_on)
+function private toggle_think(powered_on)
 {
 	while(!clientfield::function_6b3b55da())
 	{
@@ -642,7 +642,7 @@ private function toggle_think(powered_on)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function function_64416c32(delta, origin, radius)
+function private function_64416c32(delta, origin, radius)
 {
 	if(isdefined(self.target))
 	{
@@ -657,10 +657,10 @@ private function function_64416c32(delta, origin, radius)
 		}
 		if(distancesquared(paporigin, origin) < radius * radius)
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -682,12 +682,15 @@ function function_c0bdaa76(b_on)
 		}
 		zm_unitrigger::register_static_unitrigger(self.unitrigger_stub, &function_72cf5db2);
 	}
-	else if(!(isdefined(self.unitrigger_stub.registered) && self.unitrigger_stub.registered))
+	else
 	{
-		return;
+		if(!(isdefined(self.unitrigger_stub.registered) && self.unitrigger_stub.registered))
+		{
+			return;
+		}
+		self flag::wait_till("pap_waiting_for_user");
+		zm_unitrigger::unregister_unitrigger(self.unitrigger_stub);
 	}
-	self flag::wait_till("pap_waiting_for_user");
-	zm_unitrigger::unregister_unitrigger(self.unitrigger_stub);
 }
 
 /*
@@ -699,7 +702,7 @@ function function_c0bdaa76(b_on)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_72cf5db2()
+function private function_72cf5db2()
 {
 	self endon(#"hash_672bc8ddbec0fa33", #"death");
 	pap_machine = self.stub.zbarrier;
@@ -785,9 +788,9 @@ function function_ec9ac3b2(e_player, current_weapon)
 {
 	if(e_player namespace_e38c57c1::function_3da195ec(current_weapon))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -803,7 +806,7 @@ function function_d0288a41()
 {
 	if(isdefined(self.var_61d0df53) && self.var_61d0df53)
 	{
-		return 1;
+		return true;
 	}
 }
 
@@ -816,33 +819,33 @@ function function_d0288a41()
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_8a5fe651(pap_machine, current_weapon)
+function private function_8a5fe651(pap_machine, current_weapon)
 {
 	if(isdefined(level.pack_a_punch.custom_validation))
 	{
 		valid = pap_machine [[level.pack_a_punch.custom_validation]](self);
 		if(!valid)
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(!self zm_magicbox::can_buy_weapon(0) || self laststand::player_is_in_laststand() || (isdefined(self.intermission) && self.intermission) || self isthrowinggrenade() || namespace_497ab7da::is_active() || namespace_83dc3729::is_active() || (!self zm_weapons::can_upgrade_weapon(current_weapon) && !zm_weapons::weapon_supports_aat(current_weapon)))
 	{
-		return 0;
+		return false;
 	}
 	if(self isswitchingweapons())
 	{
 		wait(0.1);
 		if(!isdefined(self) || (isdefined(self) && self isswitchingweapons()))
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(!zm_weapons::is_weapon_or_base_included(current_weapon))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -854,7 +857,7 @@ private function function_8a5fe651(pap_machine, current_weapon)
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function function_222c0292(current_weapon, packa_rollers, pap_machine, var_376755db, var_9c076b6 = 0, var_aa0d72d4 = 0)
+function private function_222c0292(current_weapon, packa_rollers, pap_machine, var_376755db, var_9c076b6 = 0, var_aa0d72d4 = 0)
 {
 	pap_machine.pack_player = self;
 	pap_machine flag::clear("pap_waiting_for_user");
@@ -975,7 +978,7 @@ private function function_222c0292(current_weapon, packa_rollers, pap_machine, v
 	Parameters: 5
 	Flags: Linked, Private
 */
-private function third_person_weapon_upgrade(current_weapon, var_eaad2188, upgrade_weapon, packa_rollers, pap_machine)
+function private third_person_weapon_upgrade(current_weapon, var_eaad2188, upgrade_weapon, packa_rollers, pap_machine)
 {
 	pap_machine endon(#"hash_672bc8ddbec0fa33");
 	var_d85decd8 = self getbuildkitweapon(current_weapon);
@@ -1015,13 +1018,16 @@ private function third_person_weapon_upgrade(current_weapon, var_eaad2188, upgra
 		pap_machine playsound(#"hash_552a43efc3f770d");
 		var_397d50da = min(var_397d50da, 1.25);
 	}
-	else if(util::function_5df4294() === #"zstandard")
-	{
-		pap_machine playsound(#"hash_552a43efc3f770d");
-	}
 	else
 	{
-		pap_machine playsound(#"zmb_perks_packa_upgrade");
+		if(util::function_5df4294() === #"zstandard")
+		{
+			pap_machine playsound(#"hash_552a43efc3f770d");
+		}
+		else
+		{
+			pap_machine playsound(#"zmb_perks_packa_upgrade");
+		}
 	}
 	wait(var_397d50da);
 	pap_machine setweapon(pap_machine.unitrigger_stub.upgrade_weapon);
@@ -1046,7 +1052,7 @@ private function third_person_weapon_upgrade(current_weapon, var_eaad2188, upgra
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_ecb78870()
+function private function_ecb78870()
 {
 	self flag::set("pap_in_retrigger_delay");
 	wait(level.var_a3b71a00);
@@ -1062,7 +1068,7 @@ private function function_ecb78870()
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function wait_for_player_to_take(player, weapon, packa_timer, var_a86430cb, var_9c076b6 = 0, var_aa0d72d4 = 0)
+function private wait_for_player_to_take(player, weapon, packa_timer, var_a86430cb, var_9c076b6 = 0, var_aa0d72d4 = 0)
 {
 	self endon(#"death");
 	pap_machine = self.stub.zbarrier;
@@ -1219,7 +1225,7 @@ private function wait_for_player_to_take(player, weapon, packa_timer, var_a86430
 	Parameters: 6
 	Flags: Linked, Private
 */
-private function wait_for_timeout(weapon, packa_timer, player, var_a86430cb, var_9c076b6 = 0, var_aa0d72d4 = 0)
+function private wait_for_timeout(weapon, packa_timer, player, var_a86430cb, var_9c076b6 = 0, var_aa0d72d4 = 0)
 {
 	self endon(#"pap_taken");
 	if(isdefined(player) && isdefined(player.var_14361e0c))
@@ -1279,7 +1285,7 @@ private function wait_for_timeout(weapon, packa_timer, player, var_a86430cb, var
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function wait_for_disconnect(player)
+function private wait_for_disconnect(player)
 {
 	self endon(#"pap_taken", #"pap_timeout");
 	while(isdefined(player))
@@ -1301,7 +1307,7 @@ private function wait_for_disconnect(player)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function destroy_weapon_in_blackout()
+function private destroy_weapon_in_blackout()
 {
 	pap_machine = self;
 	pap_machine endon(#"pap_timeout", #"pap_taken", #"pap_player_disconnected");
@@ -1321,7 +1327,7 @@ private function destroy_weapon_in_blackout()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_f0fe4bae(s_unitrigger_stub)
+function private function_f0fe4bae(s_unitrigger_stub)
 {
 	original_weapon = self getcurrentweapon();
 	if(original_weapon != level.weaponnone && !zm_loadout::is_placeable_mine(original_weapon) && !zm_equipment::is_equipment(original_weapon))
@@ -1354,7 +1360,7 @@ private function function_f0fe4bae(s_unitrigger_stub)
 	Parameters: 3
 	Flags: Linked, Private
 */
-private function shutoffpapsounds(pap_machine, var_884bde3, var_1e9dad36)
+function private shutoffpapsounds(pap_machine, var_884bde3, var_1e9dad36)
 {
 	pap_machine endon(#"hash_404acc7ce223033");
 	while(true)
@@ -1377,7 +1383,7 @@ private function shutoffpapsounds(pap_machine, var_884bde3, var_1e9dad36)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function turnonpapsounds(pap_machine)
+function private turnonpapsounds(pap_machine)
 {
 	pap_machine flag::wait_till("Pack_A_Punch_on");
 	pap_machine playloopsound(#"zmb_perks_packa_loop");
@@ -1392,7 +1398,7 @@ private function turnonpapsounds(pap_machine)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_initial()
+function private pap_initial()
 {
 	self setzbarrierpiecestate(0, "closed");
 	if(isdefined(self.unitrigger_stub.var_1f0dbe42))
@@ -1410,7 +1416,7 @@ private function pap_initial()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_power_off()
+function private pap_power_off()
 {
 	self setzbarrierpiecestate(0, "closing");
 }
@@ -1424,7 +1430,7 @@ private function pap_power_off()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_power_on()
+function private pap_power_on()
 {
 	self endon(#"zbarrier_state_change");
 	self setzbarrierpiecestate(0, "opening");
@@ -1445,7 +1451,7 @@ private function pap_power_on()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_powered()
+function private pap_powered()
 {
 	self endon(#"zbarrier_state_change");
 	self setzbarrierpiecestate(4, "closed");
@@ -1464,7 +1470,7 @@ private function pap_powered()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_take_gun()
+function private pap_take_gun()
 {
 	self setzbarrierpiecestate(1, "opening");
 	self setzbarrierpiecestate(3, "opening");
@@ -1484,7 +1490,7 @@ private function pap_take_gun()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_eject_gun()
+function private pap_eject_gun()
 {
 	self setzbarrierpiecestate(1, "closing");
 	self setzbarrierpiecestate(3, "closing");
@@ -1499,7 +1505,7 @@ private function pap_eject_gun()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_leaving()
+function private pap_leaving()
 {
 	self setzbarrierpiecestate(5, "closing");
 	do
@@ -1520,7 +1526,7 @@ private function pap_leaving()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function pap_arriving()
+function private pap_arriving()
 {
 	self endon(#"zbarrier_state_change");
 	self setzbarrierpiecestate(0, "opening");
@@ -1540,7 +1546,7 @@ private function pap_arriving()
 	Parameters: 0
 	Flags: Private
 */
-private function get_pap_zbarrier_state()
+function private get_pap_zbarrier_state()
 {
 	return self.state;
 }
@@ -1554,7 +1560,7 @@ private function get_pap_zbarrier_state()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function set_pap_zbarrier_state(state)
+function private set_pap_zbarrier_state(state)
 {
 	for(i = 0; i < self getnumzbarrierpieces(); i++)
 	{
@@ -1585,7 +1591,7 @@ private function set_pap_zbarrier_state(state)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function process_pap_zbarrier_state(state)
+function private process_pap_zbarrier_state(state)
 {
 	switch(state)
 	{
@@ -1734,36 +1740,36 @@ function function_41cd6368(str_state)
 		{
 			self thread function_7c1b15f2();
 			self.state = "take_gun";
-			return 0;
+			return false;
 		}
 		case "eject_gun":
 		{
 			self thread function_2bb87d58();
 			self.state = "eject_gun";
-			return 0;
+			return false;
 		}
 		case "arriving":
 		{
 			self showzbarrierpiece(4);
 			self thread function_e0fbd38a();
 			self.state = "arriving";
-			return 0;
+			return false;
 		}
 		case "leaving":
 		{
 			self showzbarrierpiece(4);
 			self thread function_d896758();
 			self.state = "leaving";
-			return 0;
+			return false;
 		}
 		case "powered":
 		{
 			self setzbarrierpiecestate(3, "closed");
 			self setzbarrierpiecestate(5, "closed");
-			return 1;
+			return true;
 		}
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1775,7 +1781,7 @@ function function_41cd6368(str_state)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_7c1b15f2()
+function private function_7c1b15f2()
 {
 	self showzbarrierpiece(4);
 	var_f27ec4b6 = function_acd31f7d();
@@ -1792,7 +1798,7 @@ private function function_7c1b15f2()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2bb87d58()
+function private function_2bb87d58()
 {
 	self showzbarrierpiece(4);
 	var_f27ec4b6 = function_acd31f7d();
@@ -1809,7 +1815,7 @@ private function function_2bb87d58()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_acd31f7d()
+function private function_acd31f7d()
 {
 	var_d2fd7259 = weapons::getbaseweapon(self.unitrigger_stub.current_weapon);
 	if(isdefined(level.var_48c45225) && isinarray(level.var_48c45225, var_d2fd7259.name))

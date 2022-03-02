@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_698dcdb18ce4f995", &__init__, undefined, undefined);
 }
@@ -69,7 +69,7 @@ function function_d2a1520c()
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_c9a18304(eventstruct)
+function private function_c9a18304(eventstruct)
 {
 	model = function_d2a1520c();
 	if(eventstruct.freefall)
@@ -93,23 +93,26 @@ private function function_c9a18304(eventstruct)
 			}
 		}
 	}
-	else if(self isattached(model))
+	else
 	{
-		self detach(model);
-	}
-	if(!self function_9a0edd92())
-	{
-		parachute = self namespace_eb06e24d::function_fc6b6f3b();
-		parachute_weapon = parachute.("parachute");
-		if(isdefined(parachute_weapon))
+		if(self isattached(model))
 		{
-			if(self hasweapon(parachute_weapon))
+			self detach(model);
+		}
+		if(!self function_9a0edd92())
+		{
+			parachute = self namespace_eb06e24d::function_fc6b6f3b();
+			parachute_weapon = parachute.("parachute");
+			if(isdefined(parachute_weapon))
 			{
-				self takeweapon(parachute_weapon);
+				if(self hasweapon(parachute_weapon))
+				{
+					self takeweapon(parachute_weapon);
+				}
 			}
 		}
+		self setclientuivisibilityflag("weapon_hud_visible", 1);
 	}
-	self setclientuivisibilityflag("weapon_hud_visible", 1);
 }
 
 /*
@@ -121,7 +124,7 @@ private function function_c9a18304(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_6aac1790(var_dbb94a)
+function private function_6aac1790(var_dbb94a)
 {
 }
 
@@ -134,7 +137,7 @@ private function function_6aac1790(var_dbb94a)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_b6e83203(delay)
+function private function_b6e83203(delay)
 {
 	if(isdefined(delay))
 	{
@@ -155,7 +158,7 @@ private function function_b6e83203(delay)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_26d46af3(eventstruct)
+function private function_26d46af3(eventstruct)
 {
 	if(eventstruct.parachute)
 	{
@@ -182,7 +185,7 @@ private function function_26d46af3(eventstruct)
 	Parameters: 1
 	Flags: Linked, Private
 */
-private function function_a7e644f6(eventstruct)
+function private function_a7e644f6(eventstruct)
 {
 	if(!eventstruct.var_711b1aa7)
 	{
@@ -204,7 +207,7 @@ private function function_a7e644f6(eventstruct)
 	Parameters: 0
 	Flags: Private
 */
-private function function_1fc427dc()
+function private function_1fc427dc()
 {
 	/#
 		mapname = util::function_53bbf9d2();

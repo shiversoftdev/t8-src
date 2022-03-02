@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"gadget_tripwire", &__init__, undefined, undefined);
 }
@@ -190,9 +190,9 @@ function function_a4b3da97(trace)
 {
 	if(trace[#"fraction"] < 1)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -248,13 +248,16 @@ function function_55c50f15()
 										var_6e75c10a = "beam8_plyr_equip_ied_enmy";
 									}
 								}
-								else if(isdefined(level.var_c72e8c51.var_10e5bb56) && level.var_c72e8c51.var_10e5bb56)
-								{
-									var_6e75c10a = "beam8_plyr_equip_ied_frnd_wz";
-								}
 								else
 								{
-									var_6e75c10a = "beam8_plyr_equip_ied_frnd";
+									if(isdefined(level.var_c72e8c51.var_10e5bb56) && level.var_c72e8c51.var_10e5bb56)
+									{
+										var_6e75c10a = "beam8_plyr_equip_ied_frnd_wz";
+									}
+									else
+									{
+										var_6e75c10a = "beam8_plyr_equip_ied_frnd";
+									}
 								}
 								beam_id = player beam::launch(tripwire, "tag_fx", self, "tag_fx", var_6e75c10a);
 								arrayinsert(level.tripwire.localclients[player.localclientnum].beams, beam_id, level.tripwire.localclients[player.localclientnum].beams.size);
@@ -304,17 +307,17 @@ function function_2a919ef0(localclientnum)
 	currentoffhand = function_e9fe14ee(localclientnum);
 	if(level.var_c27600b0 != currentoffhand)
 	{
-		return 0;
+		return false;
 	}
 	if(!function_96d4f30e(localclientnum))
 	{
-		return 0;
+		return false;
 	}
 	if(!function_182a2ad3(localclientnum))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -515,21 +518,21 @@ function function_26c580d9(localclientnum, tripwire, trace, var_f2edf308)
 {
 	if(isdefined(level.tripwire.localclients[localclientnum].model.hitent) && isplayer(level.tripwire.localclients[localclientnum].model.hitent))
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(tripwire.origin, self.origin) < 100)
 	{
-		return 0;
+		return false;
 	}
 	if(distancesquared(tripwire.origin, self.origin) > level.var_c72e8c51.var_831055cb * level.var_c72e8c51.var_831055cb)
 	{
-		return 0;
+		return false;
 	}
 	if(!self function_a4b3da97(trace) || !self function_a4b3da97(var_f2edf308))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*

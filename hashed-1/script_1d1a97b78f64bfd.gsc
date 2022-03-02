@@ -321,9 +321,9 @@ function allowremotestart(var_59d2c24b)
 	player = self;
 	if(isdefined(var_59d2c24b) && var_59d2c24b || player usebuttonpressed() && !player.throwinggrenade && !player meleebuttonpressed() && !player util::isusingremote() && (!(isdefined(player.carryobject) && (isdefined(player.carryobject.disallowremotecontrol) && player.carryobject.disallowremotecontrol))))
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*

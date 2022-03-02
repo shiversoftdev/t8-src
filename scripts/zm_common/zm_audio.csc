@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"zm_audio", &__init__, undefined, undefined);
 }
@@ -299,11 +299,11 @@ function function_42e50d5()
 			case "hash_50f35d4cfb775c4f":
 			case "hash_50f35e4cfb775e02":
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*

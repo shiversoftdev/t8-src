@@ -330,13 +330,16 @@ function function_93440c52()
 				{
 					iprintlnbold("");
 				}
-				else if(var_b948ae6c == 1)
-				{
-					iprintlnbold("");
-				}
 				else
 				{
-					iprintlnbold("");
+					if(var_b948ae6c == 1)
+					{
+						iprintlnbold("");
+					}
+					else
+					{
+						iprintlnbold("");
+					}
 				}
 			}
 			waitframe(1);
@@ -380,12 +383,12 @@ function function_fd3c3ed0(enabled)
 	/#
 		if(!isdefined(level.players) || level.players.size == 0)
 		{
-			return 0;
+			return false;
 		}
 		player = level.players[0];
 		if(!isdefined(player) || !isalive(player) || isdefined(player.placementoffset) || !isdefined(player.prop))
 		{
-			return 0;
+			return false;
 		}
 		if(enabled)
 		{
@@ -395,7 +398,7 @@ function function_fd3c3ed0(enabled)
 		{
 			player function_401f47cd();
 		}
-		return 1;
+		return true;
 	#/
 }
 
@@ -573,21 +576,30 @@ function function_4a5dac11()
 			{
 				self function_92f23bcd(-1);
 			}
-			else if(msg == "")
+			else
 			{
-				self function_92f23bcd(1);
-			}
-			else if(msg == "")
-			{
-				self function_cdf89a29(1);
-			}
-			else if(msg == "")
-			{
-				self function_cdf89a29(-1);
-			}
-			else if(msg == "")
-			{
-				function_77511c75();
+				if(msg == "")
+				{
+					self function_92f23bcd(1);
+				}
+				else
+				{
+					if(msg == "")
+					{
+						self function_cdf89a29(1);
+					}
+					else
+					{
+						if(msg == "")
+						{
+							self function_cdf89a29(-1);
+						}
+						else if(msg == "")
+						{
+							function_77511c75();
+						}
+					}
+				}
 			}
 		}
 	#/
@@ -747,109 +759,136 @@ function function_75154360(val)
 			self.var_35eb52f1 setvalue(self.prop.info.propheight);
 			self.var_a2f59097 setvalue(self.prop.info.proprange);
 		}
-		else if(hudelem == self.var_3634d14e || hudelem == self.var_a2614669)
+		else
 		{
-			sizes = array("", "", "", "", "", "");
-			index = 0;
-			for(i = 0; i < sizes.size; i++)
+			if(hudelem == self.var_3634d14e || hudelem == self.var_a2614669)
 			{
-				if(sizes[i] == self.prop.info.propsizetext)
+				sizes = array("", "", "", "", "", "");
+				index = 0;
+				for(i = 0; i < sizes.size; i++)
 				{
-					index = i;
-					break;
+					if(sizes[i] == self.prop.info.propsizetext)
+					{
+						index = i;
+						break;
+					}
+				}
+				index = index + val;
+				if(index < 0)
+				{
+					index = sizes.size - 1;
+				}
+				else if(index >= sizes.size)
+				{
+					index = 0;
+				}
+				self.prop.info.propsizetext = sizes[index];
+				self.prop.info.propsize = prop::getpropsize(self.prop.info.propsizetext);
+				self.var_3634d14e settext("" + self.prop.info.propsizetext);
+				self.var_a2614669 setvalue(self.prop.info.propsize);
+				self.health = self.prop.info.propsize;
+				self.maxhealth = self.health;
+			}
+			else
+			{
+				if(hudelem == self.var_5ee5df03)
+				{
+					var_dfa19677 = 0.1;
+					var_34b4cc47 = 10;
+					var_59913b42 = 0.01;
+					self.prop.info.var_9846ca56 = self.prop.info.var_9846ca56 + (var_59913b42 * val);
+					self.prop.info.var_9846ca56 = math::clamp(self.prop.info.var_9846ca56, var_dfa19677, var_34b4cc47);
+					self.prop setscale(self.prop.info.var_9846ca56);
+					self.var_5ee5df03 setvalue(self.prop.info.var_9846ca56);
+				}
+				else
+				{
+					if(hudelem == self.var_66df6677)
+					{
+						self.prop unlink();
+						self.prop.info.xyzoffset = (self.prop.info.xyzoffset[0] + val, self.prop.info.xyzoffset[1], self.prop.info.xyzoffset[2]);
+						self.prop.xyzoffset = self.prop.info.xyzoffset;
+						self.var_66df6677 setvalue(self.prop.info.xyzoffset[0]);
+						function_c2ab2206();
+					}
+					else
+					{
+						if(hudelem == self.var_ec9a93)
+						{
+							self.prop unlink();
+							self.prop.info.xyzoffset = (self.prop.info.xyzoffset[0], self.prop.info.xyzoffset[1] + val, self.prop.info.xyzoffset[2]);
+							self.prop.xyzoffset = self.prop.info.xyzoffset;
+							self.var_ec9a93 setvalue(self.prop.info.xyzoffset[1]);
+							function_c2ab2206();
+						}
+						else
+						{
+							if(hudelem == self.var_811d1afa)
+							{
+								self.prop unlink();
+								self.prop.info.xyzoffset = (self.prop.info.xyzoffset[0], self.prop.info.xyzoffset[1], self.prop.info.xyzoffset[2] + val);
+								self.prop.xyzoffset = self.prop.info.xyzoffset;
+								self.var_811d1afa setvalue(self.prop.info.xyzoffset[2]);
+								function_c2ab2206();
+							}
+							else
+							{
+								if(hudelem == self.var_d7336ed8)
+								{
+									self.prop unlink();
+									self.prop.info.anglesoffset = (self.prop.info.anglesoffset[0] + val, self.prop.info.anglesoffset[1], self.prop.info.anglesoffset[2]);
+									self.prop.anglesoffset = self.prop.info.anglesoffset;
+									self.var_d7336ed8 setvalue(self.prop.info.anglesoffset[0]);
+									function_c2ab2206();
+								}
+								else
+								{
+									if(hudelem == self.var_334e2710)
+									{
+										self.prop unlink();
+										self.prop.info.anglesoffset = (self.prop.info.anglesoffset[0], self.prop.info.anglesoffset[1] + val, self.prop.info.anglesoffset[2]);
+										self.prop.anglesoffset = self.prop.info.anglesoffset;
+										self.var_334e2710 setvalue(self.prop.info.anglesoffset[1]);
+										function_c2ab2206();
+									}
+									else
+									{
+										if(hudelem == self.var_faa235b5)
+										{
+											self.prop unlink();
+											self.prop.info.anglesoffset = (self.prop.info.anglesoffset[0], self.prop.info.anglesoffset[1], self.prop.info.anglesoffset[2] + val);
+											self.prop.anglesoffset = self.prop.info.anglesoffset;
+											self.var_faa235b5 setvalue(self.prop.info.anglesoffset[2]);
+											function_c2ab2206();
+										}
+										else
+										{
+											if(hudelem == self.var_35eb52f1)
+											{
+												adjust = 10;
+												self.prop.info.propheight = self.prop.info.propheight + (adjust * val);
+												self.prop.info.propheight = math::clamp(self.prop.info.propheight, -30, 40);
+												self.thirdpersonheightoffset = self.prop.info.propheight;
+												self setclientthirdperson(1);
+												self.var_35eb52f1 setvalue(self.prop.info.propheight);
+											}
+											else if(hudelem == self.var_a2f59097)
+											{
+												adjust = 10;
+												self.prop.info.proprange = self.prop.info.proprange + (adjust * val);
+												self.prop.info.proprange = math::clamp(self.prop.info.proprange, 50, 360);
+												self.thirdpersonrange = self.prop.info.proprange;
+												self setclientthirdperson(1);
+												self.var_a2f59097 setvalue(self.prop.info.proprange);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
-			index = index + val;
-			if(index < 0)
-			{
-				index = sizes.size - 1;
-			}
-			else if(index >= sizes.size)
-			{
-				index = 0;
-			}
-			self.prop.info.propsizetext = sizes[index];
-			self.prop.info.propsize = prop::getpropsize(self.prop.info.propsizetext);
-			self.var_3634d14e settext("" + self.prop.info.propsizetext);
-			self.var_a2614669 setvalue(self.prop.info.propsize);
-			self.health = self.prop.info.propsize;
-			self.maxhealth = self.health;
-		}
-		else if(hudelem == self.var_5ee5df03)
-		{
-			var_dfa19677 = 0.1;
-			var_34b4cc47 = 10;
-			var_59913b42 = 0.01;
-			self.prop.info.var_9846ca56 = self.prop.info.var_9846ca56 + (var_59913b42 * val);
-			self.prop.info.var_9846ca56 = math::clamp(self.prop.info.var_9846ca56, var_dfa19677, var_34b4cc47);
-			self.prop setscale(self.prop.info.var_9846ca56);
-			self.var_5ee5df03 setvalue(self.prop.info.var_9846ca56);
-		}
-		else if(hudelem == self.var_66df6677)
-		{
-			self.prop unlink();
-			self.prop.info.xyzoffset = (self.prop.info.xyzoffset[0] + val, self.prop.info.xyzoffset[1], self.prop.info.xyzoffset[2]);
-			self.prop.xyzoffset = self.prop.info.xyzoffset;
-			self.var_66df6677 setvalue(self.prop.info.xyzoffset[0]);
-			function_c2ab2206();
-		}
-		else if(hudelem == self.var_ec9a93)
-		{
-			self.prop unlink();
-			self.prop.info.xyzoffset = (self.prop.info.xyzoffset[0], self.prop.info.xyzoffset[1] + val, self.prop.info.xyzoffset[2]);
-			self.prop.xyzoffset = self.prop.info.xyzoffset;
-			self.var_ec9a93 setvalue(self.prop.info.xyzoffset[1]);
-			function_c2ab2206();
-		}
-		else if(hudelem == self.var_811d1afa)
-		{
-			self.prop unlink();
-			self.prop.info.xyzoffset = (self.prop.info.xyzoffset[0], self.prop.info.xyzoffset[1], self.prop.info.xyzoffset[2] + val);
-			self.prop.xyzoffset = self.prop.info.xyzoffset;
-			self.var_811d1afa setvalue(self.prop.info.xyzoffset[2]);
-			function_c2ab2206();
-		}
-		else if(hudelem == self.var_d7336ed8)
-		{
-			self.prop unlink();
-			self.prop.info.anglesoffset = (self.prop.info.anglesoffset[0] + val, self.prop.info.anglesoffset[1], self.prop.info.anglesoffset[2]);
-			self.prop.anglesoffset = self.prop.info.anglesoffset;
-			self.var_d7336ed8 setvalue(self.prop.info.anglesoffset[0]);
-			function_c2ab2206();
-		}
-		else if(hudelem == self.var_334e2710)
-		{
-			self.prop unlink();
-			self.prop.info.anglesoffset = (self.prop.info.anglesoffset[0], self.prop.info.anglesoffset[1] + val, self.prop.info.anglesoffset[2]);
-			self.prop.anglesoffset = self.prop.info.anglesoffset;
-			self.var_334e2710 setvalue(self.prop.info.anglesoffset[1]);
-			function_c2ab2206();
-		}
-		else if(hudelem == self.var_faa235b5)
-		{
-			self.prop unlink();
-			self.prop.info.anglesoffset = (self.prop.info.anglesoffset[0], self.prop.info.anglesoffset[1], self.prop.info.anglesoffset[2] + val);
-			self.prop.anglesoffset = self.prop.info.anglesoffset;
-			self.var_faa235b5 setvalue(self.prop.info.anglesoffset[2]);
-			function_c2ab2206();
-		}
-		else if(hudelem == self.var_35eb52f1)
-		{
-			adjust = 10;
-			self.prop.info.propheight = self.prop.info.propheight + (adjust * val);
-			self.prop.info.propheight = math::clamp(self.prop.info.propheight, -30, 40);
-			self.thirdpersonheightoffset = self.prop.info.propheight;
-			self setclientthirdperson(1);
-			self.var_35eb52f1 setvalue(self.prop.info.propheight);
-		}
-		else if(hudelem == self.var_a2f59097)
-		{
-			adjust = 10;
-			self.prop.info.proprange = self.prop.info.proprange + (adjust * val);
-			self.prop.info.proprange = math::clamp(self.prop.info.proprange, 50, 360);
-			self.thirdpersonrange = self.prop.info.proprange;
-			self setclientthirdperson(1);
-			self.var_a2f59097 setvalue(self.prop.info.proprange);
 		}
 	#/
 }
@@ -1414,7 +1453,7 @@ function function_77511c75()
 		magicbullet(weapon, start, end, var_3473cb36);
 		start = end + vectorscale((0, 0, 1), 100);
 		magicbullet(weapon, start, end, var_3473cb36);
-		player waittill_timeout(0.3, #"damage");
+		player waittilltimeout(0.3, #"damage");
 		wait(0.05);
 		player.health = player.maxhealth;
 	#/

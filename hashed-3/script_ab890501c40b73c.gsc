@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"contracts", &__init__, undefined, undefined);
 }
@@ -252,27 +252,27 @@ function can_process_contracts()
 {
 	if(getdvarint(#"hash_5f85c5979e163766", 0) == 0)
 	{
-		return 0;
+		return false;
 	}
 	if(getdvarint(#"hash_1b141c095b69af9a", 1) == 0)
 	{
-		return 0;
+		return false;
 	}
 	/#
 		if(getdvarint(#"scr_debug_challenges", 0))
 		{
-			return 1;
+			return true;
 		}
 	#/
 	if(!level.onlinegame || (isdefined(level.var_aa2d5655) && level.var_aa2d5655))
 	{
-		return 0;
+		return false;
 	}
 	if(util::function_5df4294() == "ztutorial")
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -320,7 +320,7 @@ function function_5b88297d(var_38280f2f, delta = 1, var_86024473)
 	Parameters: 2
 	Flags: Linked, Private
 */
-private function function_902ef0de(var_38280f2f, delta)
+function private function_902ef0de(var_38280f2f, delta)
 {
 	/#
 		if(getdvarint(#"scr_contract_debug_multiplier", 0) > 0)
@@ -489,7 +489,7 @@ function function_677a89c8()
 */
 function function_30dc9a23()
 {
-	self endon_callback(&function_1729afac, #"disconnect", #"perk_vapor_lost");
+	self endoncallback(&function_1729afac, #"disconnect", #"perk_vapor_lost");
 	var_c16ab86f = 0;
 	while(true)
 	{
@@ -546,7 +546,7 @@ function function_1729afac(var_c34665fc)
 */
 function function_9d5cd9ee()
 {
-	self endon_callback(&function_1395d508, #"disconnect", #"destroy_riotshield");
+	self endoncallback(&function_1395d508, #"disconnect", #"destroy_riotshield");
 	var_c16ab86f = 0;
 	while(true)
 	{

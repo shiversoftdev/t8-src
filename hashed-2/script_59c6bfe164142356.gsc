@@ -252,7 +252,7 @@ function spawnsmokegrenadetrigger(smokeweapon, duration, owner)
 	{
 		thread function_8b6ddd71(self, smokeweapon);
 	}
-	self waittill_timeout(duration, #"death");
+	self waittilltimeout(duration, #"death");
 	arrayremovevalue(level.smoke_grenade_triggers, trigger);
 	if(isdefined(anchor))
 	{
@@ -278,7 +278,7 @@ function function_b4a975f1(attacker, victim, weapon, attackerweapon, meansofdeat
 {
 	if(!isdefined(attacker) || !isdefined(victim))
 	{
-		return 0;
+		return false;
 	}
 	var_b999539c = victim function_367ce00e();
 	if(isdefined(var_b999539c))
@@ -301,7 +301,7 @@ function function_b4a975f1(attacker, victim, weapon, attackerweapon, meansofdeat
 					}
 				}
 			}
-			return 1;
+			return true;
 		}
 		if(isdefined(var_b999539c.owner) && isplayer(var_b999539c.owner) && isalive(var_b999539c.owner) && util::function_fbce7263(var_b999539c.owner.team, victim.team))
 		{
@@ -311,7 +311,7 @@ function function_b4a975f1(attacker, victim, weapon, attackerweapon, meansofdeat
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -385,25 +385,25 @@ function function_50ef4b12(weapon)
 {
 	if(getweapon(#"eq_smoke") == weapon.rootweapon)
 	{
-		return 1;
+		return true;
 	}
 	if(getweapon(#"willy_pete") == weapon.rootweapon)
 	{
-		return 1;
+		return true;
 	}
 	if(getweapon(#"hash_615e6c73989c85b4") == weapon.rootweapon)
 	{
-		return 1;
+		return true;
 	}
 	if(getweapon(#"hash_7a88daffaea7a9cf") == weapon.rootweapon)
 	{
-		return 1;
+		return true;
 	}
 	if(getweapon(#"hash_531d2030796963b2") == weapon.rootweapon)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -415,22 +415,22 @@ function function_50ef4b12(weapon)
 	Parameters: 1
 	Flags: Private
 */
-private function function_579815a1(weapon)
+function private function_579815a1(weapon)
 {
 	if(!isdefined(weapon.var_4dd46f8a))
 	{
-		return 0;
+		return false;
 	}
 	var_e6fbac16 = getscriptbundle(weapon.var_4dd46f8a);
 	if(var_e6fbac16.var_8ceb6ac8 === 1)
 	{
-		return 1;
+		return true;
 	}
 	if(var_e6fbac16.var_6942aad6 === 1)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -453,7 +453,7 @@ function function_87d0a127(grenadeent, smokeweapon)
 	while(true)
 	{
 		waitresult = undefined;
-		waitresult = grenadeent waittill_timeout(0.25, #"death");
+		waitresult = grenadeent waittilltimeout(0.25, #"death");
 		if(isdefined(owner))
 		{
 			if(isdefined(grenadeent) && isdefined(grenadeent.var_b999539c) && owner istouching(grenadeent.var_b999539c) && waitresult._notify == #"timeout")
@@ -491,7 +491,7 @@ function function_8b6ddd71(grenadeent, smokeweapon)
 	while(true)
 	{
 		waitresult = undefined;
-		waitresult = grenadeent waittill_timeout(0.25, #"death");
+		waitresult = grenadeent waittilltimeout(0.25, #"death");
 		foreach(player in level.players)
 		{
 			curval = player clientfield::get("insmoke");
@@ -555,13 +555,16 @@ event function_debb0d4e(eventstruct)
 	{
 		weapon_smoke = getweapon(#"eq_smoke");
 	}
-	else if(weapon.rootweapon == getweapon(#"hash_531d2030796963b2"))
-	{
-		weapon_smoke = getweapon(#"hash_531d2030796963b2");
-	}
 	else
 	{
-		weapon_smoke = getweapon(#"willy_pete");
+		if(weapon.rootweapon == getweapon(#"hash_531d2030796963b2"))
+		{
+			weapon_smoke = getweapon(#"hash_531d2030796963b2");
+		}
+		else
+		{
+			weapon_smoke = getweapon(#"willy_pete");
+		}
 	}
 	duration = function_f199623f(weapon_smoke);
 	totaltime = duration + function_184e15d2(weapon_smoke);

@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"gadget_hero_weapon", &__init__, undefined, undefined);
 }
@@ -182,7 +182,7 @@ function gadget_hero_weapon_ready(slot, weapon)
 */
 function function_de324246(slot, weapon)
 {
-	return 0;
+	return false;
 }
 
 /*

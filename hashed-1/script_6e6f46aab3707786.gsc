@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_7fd8887cb5f0865a", &__init__, &__main__, #"zm_weapons");
 }
@@ -219,13 +219,13 @@ function function_3b0168a9(v_origin, v_angles, player)
 {
 	if(isdefined(level.var_899f5cb) && level.var_899f5cb.size >= 2)
 	{
-		return 0;
+		return false;
 	}
 	var_78e5d9d1 = (v_origin[0], v_origin[1], v_origin[2] + 40);
 	trace = bullettrace(var_78e5d9d1, var_78e5d9d1 + (0, 0, 300 - 40), 0, player);
 	if(trace[#"fraction"] < 1)
 	{
-		return 0;
+		return false;
 	}
 	foreach(var_10d4f67d in level.var_899f5cb)
 	{
@@ -236,7 +236,7 @@ function function_3b0168a9(v_origin, v_angles, player)
 			dt = n_time - var_10d4f67d.var_9c62d8ad;
 			if(dt > 2)
 			{
-				return 0;
+				return false;
 			}
 		}
 	}
@@ -252,10 +252,10 @@ function function_3b0168a9(v_origin, v_angles, player)
 					player thread function_cf0a2056();
 				}
 			}
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -269,7 +269,7 @@ function function_3b0168a9(v_origin, v_angles, player)
 */
 function function_cd366cf2(e_grenade, e_player)
 {
-	return 1;
+	return true;
 }
 
 /*
@@ -563,12 +563,12 @@ function function_3f08f8e9(var_10d4f67d)
 	{
 		if(var_56a585e8 == var_10d4f67d.var_373fe23f)
 		{
-			return 1;
+			return true;
 		}
 	}
 	self.var_534a42ac[self.var_534a42ac.size] = var_10d4f67d.var_373fe23f;
 	self.var_45bfef99 = 1;
-	return 0;
+	return false;
 }
 
 /*
@@ -716,15 +716,15 @@ function function_32b5113(ai_zombie)
 	n_dist = distance(self.origin, ai_zombie.origin);
 	if(n_dist > 400)
 	{
-		return 0;
+		return false;
 	}
 	if(!zm_utility::check_point_in_playable_area(ai_zombie.origin) || ai_zombie function_3f08f8e9(self))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(ai_zombie.var_69a981e6) && ai_zombie.var_69a981e6)
 	{
-		return 0;
+		return false;
 	}
 	if(!isdefined(ai_zombie.var_6f84b820))
 	{
@@ -734,9 +734,9 @@ function function_32b5113(ai_zombie)
 				println(("" + ai_zombie.archetype) + "");
 			}
 		#/
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -813,7 +813,7 @@ function grenade_stolen_by_sam(weapon)
 */
 function function_72085d9()
 {
-	self waittill_timeout(30, #"hash_90cfd38343f41f2", #"death");
+	self waittilltimeout(30, #"hash_90cfd38343f41f2", #"death");
 	self zm_utility::deactivate_zombie_point_of_interest();
 	self notify(#"hash_7a19b162c9e303dc");
 	arrayremovevalue(level.var_899f5cb, self);

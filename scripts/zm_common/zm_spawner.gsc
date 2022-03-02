@@ -163,16 +163,16 @@ function is_spawner_targeted_by_blocker(ent)
 		{
 			if(targeters[i].targetname == "zombie_door" || targeters[i].targetname == "zombie_debris")
 			{
-				return 1;
+				return true;
 			}
 			result = is_spawner_targeted_by_blocker(targeters[i]);
 			if(result)
 			{
-				return 1;
+				return true;
 			}
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -413,13 +413,13 @@ function should_skip_teardown(find_flesh_struct_string)
 {
 	if(!isdefined(find_flesh_struct_string))
 	{
-		return 1;
+		return true;
 	}
 	if(find_flesh_struct_string === "find_flesh")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -447,22 +447,28 @@ function zombie_think()
 			self waittill(#"zombie_custom_think_done", find_flesh_struct_string);
 		}
 	}
-	else if(isdefined(self.start_inert) && self.start_inert)
-	{
-		find_flesh_struct_string = "find_flesh";
-		self thread function_d3b3f8b6();
-	}
-	else if(isdefined(self.custom_location))
-	{
-		self thread [[self.custom_location]]();
-	}
 	else
 	{
-		self thread do_zombie_spawn();
+		if(isdefined(self.start_inert) && self.start_inert)
+		{
+			find_flesh_struct_string = "find_flesh";
+			self thread function_d3b3f8b6();
+		}
+		else
+		{
+			if(isdefined(self.custom_location))
+			{
+				self thread [[self.custom_location]]();
+			}
+			else
+			{
+				self thread do_zombie_spawn();
+			}
+			waitresult = undefined;
+			waitresult = self waittill(#"risen");
+			find_flesh_struct_string = waitresult.find_flesh_struct_string;
+		}
 	}
-	waitresult = undefined;
-	waitresult = self waittill(#"risen");
-	find_flesh_struct_string = waitresult.find_flesh_struct_string;
 	self.find_flesh_struct_string = find_flesh_struct_string;
 	/#
 		self.backupnode = self.first_node;
@@ -626,12 +632,12 @@ function zombie_assure_node()
 function zombie_bad_path()
 {
 	var_29b8f3d0 = undefined;
-	var_29b8f3d0 = self waittill_timeout(2, #"bad_path");
+	var_29b8f3d0 = self waittilltimeout(2, #"bad_path");
 	if(var_29b8f3d0._notify === "bad_path")
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -648,7 +654,7 @@ function do_a_taunt()
 	self endon(#"death");
 	if(self.missinglegs)
 	{
-		return 0;
+		return false;
 	}
 	if(!self.first_node.zbarrier zbarriersupportszombietaunts())
 	{
@@ -711,13 +717,13 @@ function should_attack_player_thru_boards()
 {
 	if(self.missinglegs)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.first_node.zbarrier))
 	{
 		if(!self.first_node.zbarrier zbarriersupportszombiereachthroughattacks())
 		{
-			return 0;
+			return false;
 		}
 	}
 	if(getdvarstring(#"zombie_reachin_freq") == "")
@@ -738,7 +744,7 @@ function should_attack_player_thru_boards()
 	}
 	if(!attack || freq < randomint(100))
 	{
-		return 0;
+		return false;
 	}
 	self.old_origin = self.origin;
 	attackanimstate = "zm_window_melee";
@@ -750,7 +756,7 @@ function should_attack_player_thru_boards()
 	self notify(#"bhtn_action_notify", {#action:"attack"});
 	self animscripted("window_melee_anim", self.origin, self.angles, "ai_zombie_window_attack_arm_l_out");
 	self window_notetracks("window_melee_anim");
-	return 1;
+	return true;
 }
 
 /*
@@ -825,7 +831,7 @@ function get_attack_spot(node)
 	index = get_attack_spot_index(node);
 	if(!isdefined(index))
 	{
-		return 0;
+		return false;
 	}
 	/#
 		val = getdvarint(#"zombie_attack_spot", 0);
@@ -838,7 +844,7 @@ function get_attack_spot(node)
 	self.attacking_spot_index = index;
 	node.attack_spots_taken[index] = 1;
 	self.attacking_spot = node.attack_spots[index];
-	return 1;
+	return true;
 }
 
 /*
@@ -922,22 +928,25 @@ function zombie_boardtear_offset_fx_horizontle(chunk, node)
 				playfx(level._effect[#"glass_break"], chunk.origin, node.angles);
 				chunk.unbroken = 0;
 			}
-			else if(isdefined(chunk.material) && chunk.material == "metal")
+			else
 			{
-				playfx(level._effect[#"fx_zombie_bar_break"], chunk.origin);
-				chunk.unbroken = 0;
-			}
-			else if(isdefined(chunk.material) && chunk.material == "rock")
-			{
-				if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
+				if(isdefined(chunk.material) && chunk.material == "metal")
 				{
-					chunk clientfield::set("tearin_rock_fx", 1);
+					playfx(level._effect[#"fx_zombie_bar_break"], chunk.origin);
+					chunk.unbroken = 0;
 				}
-				else
+				else if(isdefined(chunk.material) && chunk.material == "rock")
 				{
-					playfx(level._effect[#"wall_break"], chunk.origin);
+					if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
+					{
+						chunk clientfield::set("tearin_rock_fx", 1);
+					}
+					else
+					{
+						playfx(level._effect[#"wall_break"], chunk.origin);
+					}
+					chunk.unbroken = 0;
 				}
-				chunk.unbroken = 0;
 			}
 		}
 	}
@@ -952,20 +961,26 @@ function zombie_boardtear_offset_fx_horizontle(chunk, node)
 			playfx(level._effect[#"fx_zombie_bar_break"], chunk.origin);
 		}
 	}
-	else if(isdefined(chunk.material) && chunk.material == "rock")
-	{
-		if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
-		{
-			chunk clientfield::set("tearin_rock_fx", 1);
-		}
-	}
-	else if(isdefined(level.use_clientside_board_fx))
-	{
-		chunk clientfield::set("tearin_board_vertical_fx", 1);
-	}
 	else
 	{
-		wait(randomfloatrange(0.2, 0.4));
+		if(isdefined(chunk.material) && chunk.material == "rock")
+		{
+			if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
+			{
+				chunk clientfield::set("tearin_rock_fx", 1);
+			}
+		}
+		else
+		{
+			if(isdefined(level.use_clientside_board_fx))
+			{
+				chunk clientfield::set("tearin_board_vertical_fx", 1);
+			}
+			else
+			{
+				wait(randomfloatrange(0.2, 0.4));
+			}
+		}
 	}
 }
 
@@ -989,22 +1004,25 @@ function zombie_boardtear_offset_fx_verticle(chunk, node)
 				playfx(level._effect[#"glass_break"], chunk.origin, node.angles);
 				chunk.unbroken = 0;
 			}
-			else if(isdefined(chunk.material) && chunk.material == "metal")
+			else
 			{
-				playfx(level._effect[#"fx_zombie_bar_break"], chunk.origin);
-				chunk.unbroken = 0;
-			}
-			else if(isdefined(chunk.material) && chunk.material == "rock")
-			{
-				if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
+				if(isdefined(chunk.material) && chunk.material == "metal")
 				{
-					chunk clientfield::set("tearin_rock_fx", 1);
+					playfx(level._effect[#"fx_zombie_bar_break"], chunk.origin);
+					chunk.unbroken = 0;
 				}
-				else
+				else if(isdefined(chunk.material) && chunk.material == "rock")
 				{
-					playfx(level._effect[#"wall_break"], chunk.origin);
+					if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
+					{
+						chunk clientfield::set("tearin_rock_fx", 1);
+					}
+					else
+					{
+						playfx(level._effect[#"wall_break"], chunk.origin);
+					}
+					chunk.unbroken = 0;
 				}
-				chunk.unbroken = 0;
 			}
 		}
 	}
@@ -1019,20 +1037,26 @@ function zombie_boardtear_offset_fx_verticle(chunk, node)
 			playfx(level._effect[#"fx_zombie_bar_break"], chunk.origin);
 		}
 	}
-	else if(isdefined(chunk.material) && chunk.material == "rock")
-	{
-		if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
-		{
-			chunk clientfield::set("tearin_rock_fx", 1);
-		}
-	}
-	else if(isdefined(level.use_clientside_board_fx))
-	{
-		chunk clientfield::set("tearin_board_horizontal_fx", 1);
-	}
 	else
 	{
-		wait(randomfloatrange(0.2, 0.4));
+		if(isdefined(chunk.material) && chunk.material == "rock")
+		{
+			if(isdefined(level.use_clientside_rock_tearin_fx) && level.use_clientside_rock_tearin_fx)
+			{
+				chunk clientfield::set("tearin_rock_fx", 1);
+			}
+		}
+		else
+		{
+			if(isdefined(level.use_clientside_board_fx))
+			{
+				chunk clientfield::set("tearin_board_horizontal_fx", 1);
+			}
+			else
+			{
+				wait(randomfloatrange(0.2, 0.4));
+			}
+		}
 	}
 }
 
@@ -1275,9 +1299,9 @@ function player_can_score_from_zombies()
 {
 	if(isdefined(self) && (isdefined(self.inhibit_scoring_from_zombies) && self.inhibit_scoring_from_zombies))
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -1407,7 +1431,7 @@ function zombie_death_animscript(einflictor, attacker, idamage, smeansofdeath, w
 	self zombie_utility::reset_attack_spot();
 	if(self check_zombie_death_animscript_callbacks())
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.zombie_death_animscript_override))
 	{
@@ -1434,7 +1458,7 @@ function zombie_death_animscript(einflictor, attacker, idamage, smeansofdeath, w
 	{
 		level notify(#"zombie_grenade_death", self.origin);
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1450,16 +1474,16 @@ function check_zombie_death_animscript_callbacks()
 {
 	if(!isdefined(level.zombie_death_animscript_callbacks))
 	{
-		return 0;
+		return false;
 	}
 	for(i = 0; i < level.zombie_death_animscript_callbacks.size; i++)
 	{
 		if(self [[level.zombie_death_animscript_callbacks[i]]]())
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1489,7 +1513,7 @@ function register_zombie_death_animscript_callback(func)
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function flame_corpse_fx()
+function private flame_corpse_fx()
 {
 	if(!isdefined(level.var_d39e8272))
 	{
@@ -1509,7 +1533,7 @@ private function flame_corpse_fx()
 	}
 	self clientfield::set(str_clientfield, 1);
 	s_result = undefined;
-	s_result = self waittill_timeout(10, #"actor_corpse", #"deleted");
+	s_result = self waittilltimeout(10, #"actor_corpse", #"deleted");
 	if(isdefined(self))
 	{
 		self clientfield::set(str_clientfield, 0);
@@ -1521,7 +1545,7 @@ private function flame_corpse_fx()
 			e_corpse = s_result.corpse;
 			e_corpse thread function_2cc66();
 			e_corpse clientfield::set(str_clientfield, 1);
-			e_corpse waittill_timeout(randomfloatrange(1.5, 6), #"death");
+			e_corpse waittilltimeout(randomfloatrange(1.5, 6), #"death");
 			if(isdefined(e_corpse))
 			{
 				e_corpse clientfield::set(str_clientfield, 0);
@@ -1540,7 +1564,7 @@ private function flame_corpse_fx()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_2cc66()
+function private function_2cc66()
 {
 	level.var_d39e8272++;
 	s_result = undefined;
@@ -1567,17 +1591,23 @@ function damage_on_fire(player, weapon)
 		{
 			dmg = level.zombie_health * randomfloatrange(0.2, 0.3);
 		}
-		else if(level.round_number < 9)
-		{
-			dmg = level.zombie_health * randomfloatrange(0.15, 0.25);
-		}
-		else if(level.round_number < 11)
-		{
-			dmg = level.zombie_health * randomfloatrange(0.1, 0.2);
-		}
 		else
 		{
-			dmg = level.zombie_health * randomfloatrange(0.1, 0.15);
+			if(level.round_number < 9)
+			{
+				dmg = level.zombie_health * randomfloatrange(0.15, 0.25);
+			}
+			else
+			{
+				if(level.round_number < 11)
+				{
+					dmg = level.zombie_health * randomfloatrange(0.1, 0.2);
+				}
+				else
+				{
+					dmg = level.zombie_health * randomfloatrange(0.1, 0.15);
+				}
+			}
 		}
 		if(isalive(player))
 		{
@@ -1660,9 +1690,9 @@ function zombie_flame_damage(mod, player, weapon)
 		{
 			self thread zombie_death::flame_death_fx();
 		}
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -1891,18 +1921,21 @@ function zombie_death_event(zombie)
 		level.zombie_total++;
 		level.zombie_total_subtract++;
 	}
-	else if(isdefined(zombie.attacker) && isplayer(zombie.attacker))
+	else
 	{
-		level.zombie_player_killed_count++;
-		if(isdefined(zombie.sound_damage_player) && zombie.sound_damage_player == zombie.attacker)
+		if(isdefined(zombie.attacker) && isplayer(zombie.attacker))
 		{
-			zombie.attacker thread zm_audio::create_and_play_dialog(#"kill", #"damage");
+			level.zombie_player_killed_count++;
+			if(isdefined(zombie.sound_damage_player) && zombie.sound_damage_player == zombie.attacker)
+			{
+				zombie.attacker thread zm_audio::create_and_play_dialog(#"kill", #"damage");
+			}
+			zombie.attacker notify(#"zom_kill", {#zombie:zombie});
 		}
-		zombie.attacker notify(#"zom_kill", {#zombie:zombie});
-	}
-	else if(zombie.ignoreall && (!(isdefined(zombie.marked_for_death) && zombie.marked_for_death)))
-	{
-		level.zombies_timeout_spawn++;
+		else if(zombie.ignoreall && (!(isdefined(zombie.marked_for_death) && zombie.marked_for_death)))
+		{
+			level.zombies_timeout_spawn++;
+		}
 	}
 	level notify(#"zom_kill");
 	level.total_zombies_killed++;
@@ -2014,9 +2047,9 @@ function filter_spawn_points(point, player, player_dir)
 {
 	if(vectordot(point.origin - player.origin, player_dir) > 0)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -2436,13 +2469,16 @@ function do_zombie_rise(spot)
 	{
 		substate = randomint(2);
 	}
-	else if(self.zombie_move_speed == "run")
+	else
 	{
-		substate = 2;
-	}
-	else if(self.zombie_move_speed == "sprint")
-	{
-		substate = 3;
+		if(self.zombie_move_speed == "run")
+		{
+			substate = 2;
+		}
+		else if(self.zombie_move_speed == "sprint")
+		{
+			substate = 3;
+		}
 	}
 	self orientmode("face default");
 	custom_riseanim = (isdefined(self.custom_riseanim) ? self.custom_riseanim : level.custom_riseanim);
@@ -2450,13 +2486,16 @@ function do_zombie_rise(spot)
 	{
 		self animscripted("rise_anim", self.origin, spot.angles, custom_riseanim, "normal");
 	}
-	else if(isdefined(level.custom_rise_func))
-	{
-		self [[level.custom_rise_func]](spot);
-	}
 	else
 	{
-		self animscripted("rise_anim", self.origin, spot.angles, "ai_zombie_base_traverse_ground_climbout_fast", "normal");
+		if(isdefined(level.custom_rise_func))
+		{
+			self [[level.custom_rise_func]](spot);
+		}
+		else
+		{
+			self animscripted("rise_anim", self.origin, spot.angles, "ai_zombie_base_traverse_ground_climbout_fast", "normal");
+		}
 	}
 	self zombie_shared::donotetracks("rise_anim", &zombie_utility::handle_rise_notetracks, spot);
 	self notify(#"rise_anim_finished");
@@ -2510,29 +2549,38 @@ function zombie_rise_burst_fx(zombie)
 	{
 		zombie clientfield::set("zombie_riser_fx_water", 1);
 	}
-	else if(isdefined(self.script_parameters) && self.script_parameters == "in_foliage" && (isdefined(level._foliage_risers) && level._foliage_risers))
+	else
 	{
-		zombie clientfield::set("zombie_riser_fx_foliage", 1);
-	}
-	else if(isdefined(self.script_parameters) && self.script_parameters == "in_snow")
-	{
-		zombie clientfield::set("zombie_riser_fx", 1);
-	}
-	else if(isdefined(zombie.zone_name) && isdefined(level.zones[zombie.zone_name]))
-	{
-		low_g_zones = getentarray(zombie.zone_name, "targetname");
-		if(low_g_zones.size && isdefined(low_g_zones[0].script_string) && low_g_zones[0].script_string == "lowgravity")
+		if(isdefined(self.script_parameters) && self.script_parameters == "in_foliage" && (isdefined(level._foliage_risers) && level._foliage_risers))
 		{
-			zombie clientfield::set("zombie_riser_fx_lowg", 1);
+			zombie clientfield::set("zombie_riser_fx_foliage", 1);
 		}
 		else
 		{
-			zombie clientfield::set("zombie_riser_fx", 1);
+			if(isdefined(self.script_parameters) && self.script_parameters == "in_snow")
+			{
+				zombie clientfield::set("zombie_riser_fx", 1);
+			}
+			else
+			{
+				if(isdefined(zombie.zone_name) && isdefined(level.zones[zombie.zone_name]))
+				{
+					low_g_zones = getentarray(zombie.zone_name, "targetname");
+					if(low_g_zones.size && isdefined(low_g_zones[0].script_string) && low_g_zones[0].script_string == "lowgravity")
+					{
+						zombie clientfield::set("zombie_riser_fx_lowg", 1);
+					}
+					else
+					{
+						zombie clientfield::set("zombie_riser_fx", 1);
+					}
+				}
+				else
+				{
+					zombie clientfield::set("zombie_riser_fx", 1);
+				}
+			}
 		}
-	}
-	else
-	{
-		zombie clientfield::set("zombie_riser_fx", 1);
 	}
 }
 
@@ -2691,7 +2739,7 @@ function function_1446cbd3()
 */
 function function_45bb11e4(spot)
 {
-	self endon_callback(&function_fe3cb19a, #"death");
+	self endoncallback(&function_fe3cb19a, #"death");
 	self.var_5535a47d = 1;
 	self function_fe3cb19a();
 	self.mdl_anchor = util::spawn_model("tag_origin", self.origin, self.angles);
@@ -2723,13 +2771,16 @@ function function_45bb11e4(spot)
 			e_align scene::play(spot.scriptbundlename, self);
 		}
 	}
-	else if(isinarray(scene::get_all_shot_names(spot.scriptbundlename), "default"))
-	{
-		e_align scene::play(spot.scriptbundlename, "default", self);
-	}
 	else
 	{
-		e_align scene::play(spot.scriptbundlename, self);
+		if(isinarray(scene::get_all_shot_names(spot.scriptbundlename), "default"))
+		{
+			e_align scene::play(spot.scriptbundlename, "default", self);
+		}
+		else
+		{
+			e_align scene::play(spot.scriptbundlename, self);
+		}
 	}
 	if(isdefined(self.var_9ed3cc11))
 	{
@@ -2754,7 +2805,7 @@ function function_45bb11e4(spot)
 function function_2d97cae1()
 {
 	waitresult = undefined;
-	waitresult = self waittill_timeout(1, #"death");
+	waitresult = self waittilltimeout(1, #"death");
 	self function_fe3cb19a();
 }
 

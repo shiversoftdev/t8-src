@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"lightning_chain", &init, undefined, undefined);
 }
@@ -73,15 +73,18 @@ function lc_shock_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fiel
 			self playsound(0, #"hash_63d588d1f28ecdc1");
 		}
 	}
-	else if(isdefined(self.lc_shock_fx))
+	else
 	{
-		stopfx(localclientnum, self.lc_shock_fx);
-		self.lc_shock_fx = undefined;
-	}
-	if(isdefined(self.var_b3a6c3f7))
-	{
-		self stoploopsound(self.var_b3a6c3f7);
-		self.var_b3a6c3f7 = undefined;
+		if(isdefined(self.lc_shock_fx))
+		{
+			stopfx(localclientnum, self.lc_shock_fx);
+			self.lc_shock_fx = undefined;
+		}
+		if(isdefined(self.var_b3a6c3f7))
+		{
+			self stoploopsound(self.var_b3a6c3f7);
+			self.var_b3a6c3f7 = undefined;
+		}
 	}
 }
 

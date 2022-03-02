@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"hash_43777b2fbd27a61d", &__init__, undefined, undefined);
 }
@@ -120,17 +120,17 @@ function function_72be4f1b()
 {
 	if(isdefined(level.var_e6db911d) && level.var_e6db911d && self.team == "axis")
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_6a0c3e3e) && level.var_6a0c3e3e && self.team == "allies" && isbot(self))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.disablespawning) && self.disablespawning)
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -446,18 +446,21 @@ function function_fd2d220e(var_742b083e = undefined)
 	{
 		setdvar(#"hash_48162cd174e3034d", 0);
 	}
-	else if(isdefined(var_742b083e))
+	else
 	{
-		wait(var_742b083e);
-	}
-	if(isdefined(self.var_de9764de))
-	{
-		foreach(weapon in self.var_de9764de)
+		if(isdefined(var_742b083e))
 		{
-			self giveweapon(weapon);
+			wait(var_742b083e);
 		}
-		self takeweapon(namespace_73e1c3e3::function_84adcd1f());
-		self.var_de9764de = undefined;
+		if(isdefined(self.var_de9764de))
+		{
+			foreach(weapon in self.var_de9764de)
+			{
+				self giveweapon(weapon);
+			}
+			self takeweapon(namespace_73e1c3e3::function_84adcd1f());
+			self.var_de9764de = undefined;
+		}
 	}
 }
 
@@ -1564,13 +1567,16 @@ function function_7bb67fd()
 		{
 			self.navmeshpoint = self.origin;
 		}
-		else if(ispointonnavmesh(e_enemy.origin, self))
-		{
-			self.navmeshpoint = e_enemy.origin;
-		}
 		else
 		{
-			self.navmeshpoint = getclosestpointonnavmesh(e_enemy.origin, 512, 30);
+			if(ispointonnavmesh(e_enemy.origin, self))
+			{
+				self.navmeshpoint = e_enemy.origin;
+			}
+			else
+			{
+				self.navmeshpoint = getclosestpointonnavmesh(e_enemy.origin, 512, 30);
+			}
 		}
 		if(isdefined(self.navmeshpoint))
 		{
@@ -2008,31 +2014,20 @@ function function_82569431(einflictor, attacker, idamage, smeansofdeath, weapon,
 	Parameters: 2
 	Flags: None
 */
-function function_7e8fcca2()
+function function_7e8fcca2(nd_spawn, n_state = 4)
 {
-System.ArgumentException: Expecting While Loop At FirstArrayKey
-   at Cerberus.Logic.Decompiler.TryMarkForeachVM36(Int32 i) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1494
-   at Cerberus.Logic.Decompiler.FindForEachLoops() in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 1298
-   at Cerberus.Logic.Decompiler..ctor(ScriptExport function, ScriptBase script) in D:\Modding\Call of Duty\t89-dec\Cerberus.Logic\Decompiler\Decompiler.cs:line 206
-/*
-No Output
-*/
-
-	/* ======== */
-
-/* 
-	Stack: 
-*/
-	/* ======== */
-
-/* 
-	Blocks: 
-	Cerberus.Logic.BasicBlock at 0x5310, end at 0x53FF
-	Cerberus.Logic.IfBlock at 0x5352, end at 0x5362
-	Cerberus.Logic.IfBlock at 0x538A, end at 0x53FC
-*/
-	/* ======== */
-
+	entities = function_66ced330();
+	var_e8d6f89 = 0;
+	var_5e77b63f = entities;
+	var_8cc3d0af = getfirstarraykeycached(var_5e77b63f);
+	if(isdefined(var_8cc3d0af))
+	{
+		entity = var_5e77b63f[var_8cc3d0af];
+		var_b2bf0b58 = GetNextArrayKey(var_5e77b63f, var_8cc3d0af);
+		entity function_3895c193(#"axis");
+		entity thread function_59458966(nd_spawn, n_state);
+		return entity;
+	}
 }
 
 /*

@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register(#"match", &__init__, undefined, undefined);
 }
@@ -44,7 +44,7 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_37f04b09()
+function private function_37f04b09()
 {
 	if(!isdefined(game.outcome))
 	{
@@ -62,7 +62,7 @@ private function function_37f04b09()
 	Parameters: 0
 	Flags: Linked, Private
 */
-private function function_94003d29()
+function private function_94003d29()
 {
 	function_37f04b09();
 	round::function_37f04b09();
@@ -95,7 +95,7 @@ function function_f37f02fc()
 	Parameters: 0
 	Flags: Private
 */
-private function function_b6b94df8()
+function private function_b6b94df8()
 {
 	if(overtime::is_overtime_round())
 	{
@@ -201,13 +201,13 @@ function function_c10174e7()
 {
 	if(isdefined(game.outcome.team) && isdefined(level.teams[game.outcome.team]))
 	{
-		return 1;
+		return true;
 	}
 	if(game.outcome.players.size)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -237,9 +237,9 @@ function function_ebd67076(team)
 {
 	if(isdefined(game.outcome.team) && team == game.outcome.team)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -255,20 +255,20 @@ function function_a2b53e17(player)
 {
 	if(game.outcome.platoon !== #"none" && function_22448d6c(player.pers[#"team"]) === game.outcome.platoon)
 	{
-		return 1;
+		return true;
 	}
 	if(game.outcome.team !== #"free" && player.pers[#"team"] === game.outcome.team)
 	{
-		return 1;
+		return true;
 	}
 	if(game.outcome.players.size)
 	{
 		if(player == game.outcome.players[0])
 		{
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -284,9 +284,9 @@ function function_75f97ac7()
 {
 	if(game.outcome.players.size)
 	{
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 /*
@@ -431,13 +431,16 @@ function function_6d0354e3()
 				winner = globallogic::determineteamwinnerbygamestat("overtimeroundswon");
 			}
 		}
-		else if(level.scoreroundwinbased)
-		{
-			winner = globallogic::determineteamwinnerbygamestat("roundswon");
-		}
 		else
 		{
-			winner = globallogic::determineteamwinnerbyteamscore();
+			if(level.scoreroundwinbased)
+			{
+				winner = globallogic::determineteamwinnerbygamestat("roundswon");
+			}
+			else
+			{
+				winner = globallogic::determineteamwinnerbyteamscore();
+			}
 		}
 	}
 	return winner;

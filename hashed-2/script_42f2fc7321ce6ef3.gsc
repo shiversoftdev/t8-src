@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-autoexec function function_89f2df9()
+function autoexec function_89f2df9()
 {
 	system::register("zm_aat_brain_decay", &__init__, undefined, #"aat");
 }
@@ -83,13 +83,16 @@ function result(death, attacker, mod, weapon)
 				self.variant_type = 7;
 			}
 		}
-		else if(self.zombie_arms_position == "up")
-		{
-			self.variant_type = 7;
-		}
 		else
 		{
-			self.variant_type = 8;
+			if(self.zombie_arms_position == "up")
+			{
+				self.variant_type = 7;
+			}
+			else
+			{
+				self.variant_type = 8;
+			}
 		}
 	}
 	if(isplayer(attacker))
@@ -157,7 +160,7 @@ function function_8e97a3a4(attacker, weapon)
 	Parameters: 4
 	Flags: Linked, Private
 */
-private function function_fef86dd4(var_c5ad44f1, n_damage, e_attacker, weapon)
+function private function_fef86dd4(var_c5ad44f1, n_damage, e_attacker, weapon)
 {
 	if(namespace_25f0796c::is_active())
 	{
@@ -191,33 +194,33 @@ function function_682e5375()
 {
 	if(isdefined(level.aat[#"zm_aat_brain_decay"].immune_result_direct[self.archetype]) && level.aat[#"zm_aat_brain_decay"].immune_result_direct[self.archetype])
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.barricade_enter) && self.barricade_enter)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_traversing) && self.is_traversing)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.var_69a981e6) && self.var_69a981e6)
 	{
-		return 0;
+		return false;
 	}
 	if(!(isdefined(self.completed_emerging_into_playable_area) && self.completed_emerging_into_playable_area))
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(self.is_leaping) && self.is_leaping)
 	{
-		return 0;
+		return false;
 	}
 	if(isdefined(level.var_b897ed83) && !self [[level.var_b897ed83]]())
 	{
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 /*
@@ -232,8 +235,8 @@ function function_682e5375()
 function zombie_death_time_limit(e_attacker, weapon)
 {
 	self endon(#"death");
-	level endon_callback(&function_a22e41ec, #"end_game", #"restart_round");
-	self waittill_timeout(8, #"hash_1bbb03bd582e937f");
+	level endoncallback(&function_a22e41ec, #"end_game", #"restart_round");
+	self waittilltimeout(8, #"hash_1bbb03bd582e937f");
 	var_8651a024 = self getcentroid();
 	self clientfield::set("zm_aat_brain_decay", 0);
 	self clientfield::increment("zm_aat_brain_decay_exp", 1);
