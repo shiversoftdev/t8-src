@@ -6,11 +6,11 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_14104b98;
+#namespace zm_red_challenges;
 
 /*
 	Name: init
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x16DFBB97
 	Offset: 0x178
 	Size: 0x72E
@@ -26,13 +26,13 @@ function init()
 	clientfield::register("scriptmover", "" + #"hash_74fc30de57a0657a", 16000, 3, "int", &function_de1bffd6, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_21f5fab6a3d22093", 16000, 3, "int", &function_9ed71eeb, 0, 0);
 	clientfield::register("scriptmover", "" + #"keyline_model", 16000, 1, "int", &keyline_model, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_565760e2c7c1e5cb", 16000, 1, "int", &function_a7ee082f, 0, 0);
+	clientfield::register("scriptmover", "" + #"pickup_glow", 16000, 1, "int", &pickup_glow, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_8b48433c3fe40e4", 16000, 3, "int", &function_75ac8f21, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_4bde11d71410ea67", 16000, 3, "int", &function_250bbf4e, 0, 0);
-	clientfield::register("world", "" + #"hash_34bdcd0feba3d912", 16000, 1, "int", &function_4b8846c3, 0, 0);
+	clientfield::register("world", "" + #"cleanup_challenges", 16000, 1, "int", &cleanup_challenges, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_47490b879090eb55", 16000, 3, "int", &function_840d5e0b, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_7b1dd5c08e2585c", 16000, 3, "int", &function_c63a4f32, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_118e9445b028d4bf", 16000, 1, "int", &function_beb03b41, 0, 0);
+	clientfield::register("scriptmover", "" + #"rob_coals", 16000, 1, "int", &rob_coals, 0, 0);
 	level._effect[#"hash_379eadfebd945316"] = #"hash_556b5a8aa255768d";
 	level._effect[#"hash_3229d3874a037840"] = #"hash_48053ee21dfed9c9";
 	level._effect[#"hash_31c3f08749acf655"] = #"hash_482741e21e1bc548";
@@ -51,14 +51,14 @@ function init()
 	level._effect[#"hash_eafc8632695ccef"][3] = #"maps/zm_red/fx8_soul_charge_purple";
 	level._effect[#"hash_fa374812e6016c9"][4] = #"hash_6cfbd6f08cfc2656";
 	level._effect[#"hash_eafc8632695ccef"][4] = #"hash_17bb97645fa8148b";
-	level._effect[#"hash_565760e2c7c1e5cb"] = #"zm_weapons/fx8_cymbal_monkey_light";
+	level._effect[#"pickup_glow"] = #"zm_weapons/fx8_cymbal_monkey_light";
 	namespace_f8f28e08::init();
 	level.var_7987392b = undefined;
 }
 
 /*
 	Name: function_de1bffd6
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0xD7687222
 	Offset: 0x8B0
 	Size: 0x392
@@ -129,7 +129,7 @@ function function_de1bffd6(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_9ed71eeb
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x45A316C5
 	Offset: 0xC50
 	Size: 0x342
@@ -193,7 +193,7 @@ function function_9ed71eeb(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: keyline_model
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0xD9E6861D
 	Offset: 0xFA0
 	Size: 0x9C
@@ -208,31 +208,31 @@ function keyline_model(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 	}
 	if(newval)
 	{
-		self function_bf9d3071(#"rob_sonar_set_friendly");
+		self playrenderoverridebundle(#"rob_sonar_set_friendly");
 	}
 	else
 	{
-		self function_5d482e78(#"rob_sonar_set_friendly");
+		self stoprenderoverridebundle(#"rob_sonar_set_friendly");
 	}
 }
 
 /*
-	Name: function_a7ee082f
-	Namespace: namespace_14104b98
+	Name: pickup_glow
+	Namespace: zm_red_challenges
 	Checksum: 0x455F4549
 	Offset: 0x1048
 	Size: 0x74
 	Parameters: 7
 	Flags: Linked
 */
-function function_a7ee082f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function pickup_glow(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	util::playfxontag(localclientnum, level._effect[#"hash_565760e2c7c1e5cb"], self, "tag_origin");
+	util::playfxontag(localclientnum, level._effect[#"pickup_glow"], self, "tag_origin");
 }
 
 /*
 	Name: function_75ac8f21
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x8EC2531C
 	Offset: 0x10C8
 	Size: 0x82
@@ -251,7 +251,7 @@ function function_75ac8f21(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_3298ba0
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x42F3055E
 	Offset: 0x1158
 	Size: 0xC0
@@ -278,7 +278,7 @@ function function_3298ba0(n_index)
 
 /*
 	Name: function_250bbf4e
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x5D95AC41
 	Offset: 0x1220
 	Size: 0xA4
@@ -296,21 +296,21 @@ function function_250bbf4e(localclientnum, oldval, newval, bnewent, binitialsnap
 		var_99f92cf4 = self function_3298ba0(newval);
 		if(isdefined(var_99f92cf4))
 		{
-			var_99f92cf4 function_bf9d3071(#"rob_sonar_set_friendly");
+			var_99f92cf4 playrenderoverridebundle(#"rob_sonar_set_friendly");
 		}
 	}
 }
 
 /*
-	Name: function_4b8846c3
-	Namespace: namespace_14104b98
+	Name: cleanup_challenges
+	Namespace: zm_red_challenges
 	Checksum: 0xB85BA97
 	Offset: 0x12D0
 	Size: 0xF8
 	Parameters: 7
 	Flags: Linked
 */
-function function_4b8846c3(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function cleanup_challenges(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(isdefined(level.var_7987392b) && isarray(level.var_7987392b))
 	{
@@ -318,7 +318,7 @@ function function_4b8846c3(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			if(isdefined(var_99f92cf4))
 			{
-				var_99f92cf4 function_5d482e78(#"rob_sonar_set_friendly");
+				var_99f92cf4 stoprenderoverridebundle(#"rob_sonar_set_friendly");
 			}
 		}
 	}
@@ -326,7 +326,7 @@ function function_4b8846c3(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_840d5e0b
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0xE7F8AE64
 	Offset: 0x13D0
 	Size: 0x4A
@@ -340,7 +340,7 @@ function function_840d5e0b(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_c63a4f32
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0xA8423505
 	Offset: 0x1428
 	Size: 0x2C4
@@ -382,7 +382,7 @@ function function_c63a4f32(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: fake_physicslaunch
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x12433902
 	Offset: 0x16F8
 	Size: 0x148
@@ -404,15 +404,15 @@ function fake_physicslaunch(target_pos, power, var_4862f668)
 }
 
 /*
-	Name: function_beb03b41
-	Namespace: namespace_14104b98
+	Name: rob_coals
+	Namespace: zm_red_challenges
 	Checksum: 0x22DF4E2
 	Offset: 0x1848
 	Size: 0x8C
 	Parameters: 7
 	Flags: Linked
 */
-function function_beb03b41(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function rob_coals(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(newval)
 	{
@@ -427,7 +427,7 @@ function function_beb03b41(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_4eff20ff
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x548E279D
 	Offset: 0x18E0
 	Size: 0x1C8
@@ -437,7 +437,7 @@ function function_beb03b41(localclientnum, oldval, newval, bnewent, binitialsnap
 function function_4eff20ff()
 {
 	self endon(#"death", #"hash_6bc81dae92c4902e");
-	self function_bf9d3071("rob_zm_red_cin_coals");
+	self playrenderoverridebundle("rob_zm_red_cin_coals");
 	level.var_75ca8fda = 0;
 	level.var_6437d5e7 = 0.002;
 	self function_78233d29("rob_zm_red_cin_coals", "", "Brightness", 1);
@@ -466,7 +466,7 @@ function function_4eff20ff()
 
 /*
 	Name: function_23333a90
-	Namespace: namespace_14104b98
+	Namespace: zm_red_challenges
 	Checksum: 0x4FD7DB6D
 	Offset: 0x1AB0
 	Size: 0xD4
@@ -490,6 +490,6 @@ function function_23333a90()
 		self function_78233d29("rob_zm_red_cin_coals", "", "Alpha", level.var_75ca8fda);
 		waitframe(1);
 	}
-	self function_5d482e78("rob_zm_red_cin_coals");
+	self stoprenderoverridebundle("rob_zm_red_cin_coals");
 }
 

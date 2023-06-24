@@ -9,7 +9,7 @@
 #namespace namespace_1261609;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_1261609
 	Checksum: 0xC9F02658
 	Offset: 0xC8
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_33946b9507c6ec22", &__init__, &__main__, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 function __main__()
 {
 	/#
-		function_2085db3b();
+		init_devgui();
 	#/
 	function_2cdcf5c3();
 }
@@ -100,7 +100,7 @@ function function_2cdcf5c3()
 }
 
 /*
-	Name: function_2085db3b
+	Name: init_devgui
 	Namespace: namespace_1261609
 	Checksum: 0x6A46A7AE
 	Offset: 0x2E0
@@ -108,10 +108,10 @@ function function_2cdcf5c3()
 	Parameters: 0
 	Flags: None
 */
-function function_2085db3b()
+function init_devgui()
 {
 	/#
-		mapname = util::function_53bbf9d2();
+		mapname = util::get_map_name();
 		adddebugcommand(("" + mapname) + "");
 		adddebugcommand(("" + mapname) + "");
 		adddebugcommand(("" + mapname) + "");

@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_24ac3512 : class_6aaccc24
+class cremote_missile_target_lockon : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0xD290F05B
 		Offset: 0x290
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_24ac3512 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x6CAF8E6C
 		Offset: 0x520
 		Size: 0x14
@@ -33,64 +33,64 @@ class class_24ac3512 : class_6aaccc24
 	}
 
 	/*
-		Name: function_b9d6aaa7
-		Namespace: namespace_24ac3512
+		Name: set_killed
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x892D7DE5
 		Offset: 0x4D8
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_b9d6aaa7(player, value)
+	function set_killed(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "killed", value);
 	}
 
 	/*
-		Name: function_505f092a
-		Namespace: namespace_24ac3512
+		Name: set_isHawkTag
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x66559755
 		Offset: 0x490
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_505f092a(player, value)
+	function set_isHawkTag(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "isHawkTag", value);
 	}
 
 	/*
-		Name: function_2ecbc83c
-		Namespace: namespace_24ac3512
+		Name: set_target_locked
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x3B243AA6
 		Offset: 0x448
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_2ecbc83c(player, value)
+	function set_target_locked(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "target_locked", value);
 	}
 
 	/*
-		Name: function_3b7b386a
-		Namespace: namespace_24ac3512
+		Name: set_clientnum
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x6AF702C4
 		Offset: 0x400
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_3b7b386a(player, value)
+	function set_clientnum(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "clientnum", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x20F4DD30
 		Offset: 0x3D0
 		Size: 0x24
@@ -99,12 +99,12 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x2D4AD92F
 		Offset: 0x380
 		Size: 0x44
@@ -113,12 +113,12 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "remote_missile_target_lockon", persistent);
+		cLUIelem::open_luielem(player, "remote_missile_target_lockon", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x2C552A0C
 		Offset: 0x2B0
 		Size: 0xC4
@@ -127,11 +127,11 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("clientnum", 1, 7, "int");
-		namespace_6aaccc24::function_da693cbe("target_locked", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("isHawkTag", 13000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("killed", 13000, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("clientnum", 1, 7, "int");
+		cLUIelem::function_da693cbe("target_locked", 1, 1, "int");
+		cLUIelem::function_da693cbe("isHawkTag", 13000, 1, "int");
+		cLUIelem::function_da693cbe("killed", 13000, 1, "int");
 	}
 
 }
@@ -149,7 +149,7 @@ class class_24ac3512 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_24ac3512();
+	elem = new cremote_missile_target_lockon();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -197,7 +197,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_3b7b386a
+	Name: set_clientnum
 	Namespace: remote_missile_target_lockon
 	Checksum: 0x8EE83BC6
 	Offset: 0x1D0
@@ -205,13 +205,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: Linked
 */
-function function_3b7b386a(player, value)
+function set_clientnum(player, value)
 {
-	[[ self ]]->function_3b7b386a(player, value);
+	[[ self ]]->set_clientnum(player, value);
 }
 
 /*
-	Name: function_2ecbc83c
+	Name: set_target_locked
 	Namespace: remote_missile_target_lockon
 	Checksum: 0xE63D3D36
 	Offset: 0x200
@@ -219,13 +219,13 @@ function function_3b7b386a(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_2ecbc83c(player, value)
+function set_target_locked(player, value)
 {
-	[[ self ]]->function_2ecbc83c(player, value);
+	[[ self ]]->set_target_locked(player, value);
 }
 
 /*
-	Name: function_505f092a
+	Name: set_isHawkTag
 	Namespace: remote_missile_target_lockon
 	Checksum: 0xC3390F80
 	Offset: 0x230
@@ -233,13 +233,13 @@ function function_2ecbc83c(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_505f092a(player, value)
+function set_isHawkTag(player, value)
 {
-	[[ self ]]->function_505f092a(player, value);
+	[[ self ]]->set_isHawkTag(player, value);
 }
 
 /*
-	Name: function_b9d6aaa7
+	Name: set_killed
 	Namespace: remote_missile_target_lockon
 	Checksum: 0xB64F83FF
 	Offset: 0x260
@@ -247,8 +247,8 @@ function function_505f092a(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_b9d6aaa7(player, value)
+function set_killed(player, value)
 {
-	[[ self ]]->function_b9d6aaa7(player, value);
+	[[ self ]]->set_killed(player, value);
 }
 

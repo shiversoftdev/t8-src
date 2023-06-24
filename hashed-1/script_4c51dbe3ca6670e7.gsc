@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_467027ea7017462b;
-#using script_52c6c2d1a2ef1b46;
-#using script_57f7003580bb15e0;
-#using script_6a3f43063dfd1bdc;
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_items.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\core_common\status_effects\status_effect_util.gsc;
+#using scripts\zm\zm_hms_util.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -19,7 +19,7 @@
 #namespace namespace_a6437486;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a6437486
 	Checksum: 0xD5C2047F
 	Offset: 0x220
@@ -27,7 +27,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_5d4022ed5385d3fa", &__init__, &__main__, undefined);
 }
@@ -72,7 +72,7 @@ function init_clientfields()
 */
 function __main__()
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_4b16b22d8a0d3301"))
+	if(!zm_custom::function_901b751c(#"zmtrapsenabled"))
 	{
 		return;
 	}
@@ -174,10 +174,10 @@ function function_d12e5ff9(e_player)
 	}
 	if(self.stub.related_parent.trap_struct.var_41ee2ddc === 0 || (isdefined(level.var_4f7df1ac) && level.var_4f7df1ac))
 	{
-		self sethintstring(#"hash_21db2780833a8bfd");
+		self sethintstring(#"zombie/trap_cooldown");
 		return true;
 	}
-	if(util::function_5df4294() == "zstandard")
+	if(util::get_game_type() == "zstandard")
 	{
 		if(function_8b1a219a())
 		{
@@ -593,7 +593,7 @@ function function_93284efd(e_trigger)
 	{
 		self.var_58538bef = 0;
 	}
-	var_5b857980 = function_4d1e7b48(#"hash_19533caf858a9f3b");
+	shock_status_effect = getstatuseffect(#"hash_19533caf858a9f3b");
 	if(e_trigger zm_traps::function_3f401e8d(self))
 	{
 		return;
@@ -601,7 +601,7 @@ function function_93284efd(e_trigger)
 	if(!(isdefined(self.b_no_trap_damage) && self.b_no_trap_damage))
 	{
 		self thread zm_traps::player_elec_damage(e_trigger);
-		status_effect::status_effect_apply(var_5b857980, undefined, self, 0);
+		status_effect::status_effect_apply(shock_status_effect, undefined, self, 0);
 	}
 }
 

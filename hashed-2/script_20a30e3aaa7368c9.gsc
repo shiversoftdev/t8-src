@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_5e02ffeb : class_6aaccc24
+class cLUIelemBar_ct : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x9A0989D9
 		Offset: 0x708
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_5e02ffeb : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x7A01DD2A
 		Offset: 0xC38
 		Size: 0x14
@@ -33,120 +33,120 @@ class class_5e02ffeb : class_6aaccc24
 	}
 
 	/*
-		Name: function_fd8c13fb
-		Namespace: namespace_5e02ffeb
+		Name: set_bar_percent
+		Namespace: cLUIelemBar_ct
 		Checksum: 0xEB6F5279
 		Offset: 0xBF0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_fd8c13fb(player, value)
+	function set_bar_percent(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "bar_percent", value);
 	}
 
 	/*
-		Name: function_7420df0a
-		Namespace: namespace_5e02ffeb
+		Name: set_blue
+		Namespace: cLUIelemBar_ct
 		Checksum: 0xA446DE64
 		Offset: 0xBA8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_7420df0a(player, value)
+	function set_blue(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "blue", value);
 	}
 
 	/*
-		Name: function_2208b8db
-		Namespace: namespace_5e02ffeb
+		Name: set_green
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x7DE0DD94
 		Offset: 0xB60
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_2208b8db(player, value)
+	function set_green(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "green", value);
 	}
 
 	/*
-		Name: function_eccc151d
-		Namespace: namespace_5e02ffeb
+		Name: set_red
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x88B698E3
 		Offset: 0xB18
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_eccc151d(player, value)
+	function set_red(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "red", value);
 	}
 
 	/*
-		Name: function_aa5c711d
-		Namespace: namespace_5e02ffeb
+		Name: set_alpha
+		Namespace: cLUIelemBar_ct
 		Checksum: 0xFDFFA5D3
 		Offset: 0xAD0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_aa5c711d(player, value)
+	function set_alpha(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "alpha", value);
 	}
 
 	/*
-		Name: function_237ff433
-		Namespace: namespace_5e02ffeb
+		Name: set_fadeOverTime
+		Namespace: cLUIelemBar_ct
 		Checksum: 0xE565C188
 		Offset: 0xA88
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_237ff433(player, value)
+	function set_fadeOverTime(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "fadeOverTime", value);
 	}
 
 	/*
-		Name: function_5dbd7024
-		Namespace: namespace_5e02ffeb
+		Name: set_height
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x8592683D
 		Offset: 0xA40
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_5dbd7024(player, value)
+	function set_height(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "height", value);
 	}
 
 	/*
-		Name: function_8b0b5811
-		Namespace: namespace_5e02ffeb
+		Name: set_width
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x7091CF0B
 		Offset: 0x9F8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_8b0b5811(player, value)
+	function set_width(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "width", value);
 	}
 
 	/*
 		Name: set_y
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0xBEA0A124
 		Offset: 0x9B0
 		Size: 0x3C
@@ -160,7 +160,7 @@ class class_5e02ffeb : class_6aaccc24
 
 	/*
 		Name: set_x
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x9AE01914
 		Offset: 0x968
 		Size: 0x3C
@@ -174,7 +174,7 @@ class class_5e02ffeb : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x7C3A5041
 		Offset: 0x938
 		Size: 0x24
@@ -183,12 +183,12 @@ class class_5e02ffeb : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x272F7E96
 		Offset: 0x8E8
 		Size: 0x44
@@ -197,12 +197,12 @@ class class_5e02ffeb : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "LUIelemBar_ct", persistent);
+		cLUIelem::open_luielem(player, "LUIelemBar_ct", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_5e02ffeb
+		Namespace: cLUIelemBar_ct
 		Checksum: 0x553F19E7
 		Offset: 0x728
 		Size: 0x1B4
@@ -211,17 +211,17 @@ class class_5e02ffeb : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("x", 1, 7, "int");
-		namespace_6aaccc24::function_da693cbe("y", 1, 6, "int");
-		namespace_6aaccc24::function_da693cbe("width", 1, 6, "int");
-		namespace_6aaccc24::function_da693cbe("height", 1, 6, "int");
-		namespace_6aaccc24::function_da693cbe("fadeOverTime", 1, 5, "int");
-		namespace_6aaccc24::function_da693cbe("alpha", 1, 4, "float");
-		namespace_6aaccc24::function_da693cbe("red", 1, 4, "float");
-		namespace_6aaccc24::function_da693cbe("green", 1, 4, "float");
-		namespace_6aaccc24::function_da693cbe("blue", 1, 4, "float");
-		namespace_6aaccc24::function_da693cbe("bar_percent", 1, 6, "float");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("x", 1, 7, "int");
+		cLUIelem::function_da693cbe("y", 1, 6, "int");
+		cLUIelem::function_da693cbe("width", 1, 6, "int");
+		cLUIelem::function_da693cbe("height", 1, 6, "int");
+		cLUIelem::function_da693cbe("fadeOverTime", 1, 5, "int");
+		cLUIelem::function_da693cbe("alpha", 1, 4, "float");
+		cLUIelem::function_da693cbe("red", 1, 4, "float");
+		cLUIelem::function_da693cbe("green", 1, 4, "float");
+		cLUIelem::function_da693cbe("blue", 1, 4, "float");
+		cLUIelem::function_da693cbe("bar_percent", 1, 6, "float");
 	}
 
 }
@@ -239,9 +239,9 @@ class class_5e02ffeb : class_6aaccc24
 */
 function set_color(player, red, green, blue)
 {
-	self function_eccc151d(player, red);
-	self function_2208b8db(player, green);
-	self function_7420df0a(player, blue);
+	self set_red(player, red);
+	self set_green(player, green);
+	self set_blue(player, blue);
 }
 
 /*
@@ -255,8 +255,8 @@ function set_color(player, red, green, blue)
 */
 function fade(player, var_1a92607f, duration = 0)
 {
-	self function_aa5c711d(player, var_1a92607f);
-	self function_237ff433(player, int(duration * 10));
+	self set_alpha(player, var_1a92607f);
+	self set_fadeOverTime(player, int(duration * 10));
 }
 
 /*
@@ -341,8 +341,8 @@ function function_f97e9049(player, var_c6572d9b, var_d390c80e)
 */
 function function_35f52fe9(player, width, height)
 {
-	self function_8b0b5811(player, int(width / 4));
-	self function_5dbd7024(player, int(height / 4));
+	self set_width(player, int(width / 4));
+	self set_height(player, int(height / 4));
 }
 
 /*
@@ -356,7 +356,7 @@ function function_35f52fe9(player, width, height)
 */
 function register(uid)
 {
-	elem = new class_5e02ffeb();
+	elem = new cLUIelemBar_ct();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -432,7 +432,7 @@ function set_y(player, value)
 }
 
 /*
-	Name: function_8b0b5811
+	Name: set_width
 	Namespace: luielembar_ct
 	Checksum: 0x93FF9059
 	Offset: 0x588
@@ -440,13 +440,13 @@ function set_y(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_8b0b5811(player, value)
+function set_width(player, value)
 {
-	[[ self ]]->function_8b0b5811(player, value);
+	[[ self ]]->set_width(player, value);
 }
 
 /*
-	Name: function_5dbd7024
+	Name: set_height
 	Namespace: luielembar_ct
 	Checksum: 0x791F10A3
 	Offset: 0x5B8
@@ -454,13 +454,13 @@ function function_8b0b5811(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5dbd7024(player, value)
+function set_height(player, value)
 {
-	[[ self ]]->function_5dbd7024(player, value);
+	[[ self ]]->set_height(player, value);
 }
 
 /*
-	Name: function_237ff433
+	Name: set_fadeOverTime
 	Namespace: luielembar_ct
 	Checksum: 0x4F7FF27D
 	Offset: 0x5E8
@@ -468,13 +468,13 @@ function function_5dbd7024(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_237ff433(player, value)
+function set_fadeOverTime(player, value)
 {
-	[[ self ]]->function_237ff433(player, value);
+	[[ self ]]->set_fadeOverTime(player, value);
 }
 
 /*
-	Name: function_aa5c711d
+	Name: set_alpha
 	Namespace: luielembar_ct
 	Checksum: 0xB493EE0
 	Offset: 0x618
@@ -482,13 +482,13 @@ function function_237ff433(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_aa5c711d(player, value)
+function set_alpha(player, value)
 {
-	[[ self ]]->function_aa5c711d(player, value);
+	[[ self ]]->set_alpha(player, value);
 }
 
 /*
-	Name: function_eccc151d
+	Name: set_red
 	Namespace: luielembar_ct
 	Checksum: 0x9DF3BFF2
 	Offset: 0x648
@@ -496,13 +496,13 @@ function function_aa5c711d(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_eccc151d(player, value)
+function set_red(player, value)
 {
-	[[ self ]]->function_eccc151d(player, value);
+	[[ self ]]->set_red(player, value);
 }
 
 /*
-	Name: function_2208b8db
+	Name: set_green
 	Namespace: luielembar_ct
 	Checksum: 0x6C07628A
 	Offset: 0x678
@@ -510,13 +510,13 @@ function function_eccc151d(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_2208b8db(player, value)
+function set_green(player, value)
 {
-	[[ self ]]->function_2208b8db(player, value);
+	[[ self ]]->set_green(player, value);
 }
 
 /*
-	Name: function_7420df0a
+	Name: set_blue
 	Namespace: luielembar_ct
 	Checksum: 0x72764BFA
 	Offset: 0x6A8
@@ -524,13 +524,13 @@ function function_2208b8db(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_7420df0a(player, value)
+function set_blue(player, value)
 {
-	[[ self ]]->function_7420df0a(player, value);
+	[[ self ]]->set_blue(player, value);
 }
 
 /*
-	Name: function_fd8c13fb
+	Name: set_bar_percent
 	Namespace: luielembar_ct
 	Checksum: 0x5FD1F414
 	Offset: 0x6D8
@@ -538,8 +538,8 @@ function function_7420df0a(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_fd8c13fb(player, value)
+function set_bar_percent(player, value)
 {
-	[[ self ]]->function_fd8c13fb(player, value);
+	[[ self ]]->set_bar_percent(player, value);
 }
 

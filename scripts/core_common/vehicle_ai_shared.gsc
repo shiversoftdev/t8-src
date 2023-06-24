@@ -13,7 +13,7 @@
 #namespace vehicle_ai;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: vehicle_ai
 	Checksum: 0x68A0FBD6
 	Offset: 0x290
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"vehicle_ai", &__init__, undefined, undefined);
 }

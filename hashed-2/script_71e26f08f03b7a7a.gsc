@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6de2f7255a97ab00;
+#using scripts\mp_common\item_supply_drop.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flagsys_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -7,7 +7,7 @@
 #namespace namespace_3d2704b3;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_3d2704b3
 	Checksum: 0xF01AB1AC
 	Offset: 0x88
@@ -15,9 +15,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_280fe2667ed2d300", &__init__, undefined, #"hash_c70352f852fda84");
+	system::register(#"hash_280fe2667ed2d300", &__init__, undefined, #"item_supply_drop");
 }
 
 /*
@@ -63,9 +63,9 @@ function private function_2d47ee1e(var_6ed927a6, var_caba78c2, waittime, var_ef5
 			var_6ed927a6 = level.var_ef5dbc90[var_6ed927a6];
 		}
 	}
-	var_58ca2822 = !var_ef5e1b44.var_7f40d76c;
+	voiceevent = !var_ef5e1b44.var_7f40d76c;
 	var_ef5e1b44.var_7f40d76c = 1;
-	level thread namespace_8f74625a::function_418e26fe(var_6ed927a6, var_d6388d1, var_58ca2822, var_ef5e1b44.heightoffset, var_d6388d1, vehicletype);
+	level thread item_supply_drop::function_418e26fe(var_6ed927a6, var_d6388d1, voiceevent, var_ef5e1b44.heightoffset, var_d6388d1, vehicletype);
 	var_ef5e1b44.heightoffset = var_ef5e1b44.heightoffset + 600;
 }
 
@@ -80,7 +80,7 @@ function private function_2d47ee1e(var_6ed927a6, var_caba78c2, waittime, var_ef5
 */
 function function_f0297225(var_2ab9d3bd, var_f532cd9f, var_3afaa57b)
 {
-	if(!function_7a600918(var_2ab9d3bd) || !isint(var_f532cd9f) || !isint(var_3afaa57b))
+	if(!ishash(var_2ab9d3bd) || !isint(var_f532cd9f) || !isint(var_3afaa57b))
 	{
 		/#
 			assert(0);
@@ -125,9 +125,9 @@ function function_d0178153(var_2ab9d3bd)
 	Parameters: 3
 	Flags: Linked
 */
-function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
+function start(supplydrops = 1, minwaittime = 20, var_fe6b2eab = 20)
 {
-	if(isint(var_b76aef06) && var_b76aef06 < 1)
+	if(isint(supplydrops) && supplydrops < 1)
 	{
 		return;
 	}
@@ -136,39 +136,39 @@ function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
 	{
 		foreach(key, value in minwaittime)
 		{
-			minwaittime[key] = minwaittime[key] * level.var_8d8322b4;
+			minwaittime[key] = minwaittime[key] * level.deathcircletimescale;
 		}
 	}
 	else
 	{
-		minwaittime = minwaittime * level.var_8d8322b4;
+		minwaittime = minwaittime * level.deathcircletimescale;
 	}
 	if(isarray(var_fe6b2eab))
 	{
 		foreach(key, value in var_fe6b2eab)
 		{
-			var_fe6b2eab[key] = var_fe6b2eab[key] * level.var_8d8322b4;
+			var_fe6b2eab[key] = var_fe6b2eab[key] * level.deathcircletimescale;
 		}
 	}
 	else
 	{
-		var_fe6b2eab = var_fe6b2eab / level.var_8d8322b4;
+		var_fe6b2eab = var_fe6b2eab / level.deathcircletimescale;
 	}
 	var_b2003e21 = 0;
-	if(!isarray(var_b76aef06))
+	if(!isarray(supplydrops))
 	{
-		var_b2003e21 = var_b76aef06;
-		var_b76aef06 = [];
+		var_b2003e21 = supplydrops;
+		supplydrops = [];
 		for(index = 0; index < var_b2003e21; index++)
 		{
-			var_b76aef06[index] = 1;
+			supplydrops[index] = 1;
 		}
 	}
 	else
 	{
-		for(index = 0; index < var_b76aef06.size; index++)
+		for(index = 0; index < supplydrops.size; index++)
 		{
-			var_b2003e21 = var_b2003e21 + var_b76aef06[index];
+			var_b2003e21 = var_b2003e21 + supplydrops[index];
 		}
 	}
 	var_7003bde7 = [];
@@ -222,7 +222,7 @@ function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
 		{
 			return;
 		}
-		deathcircle = level.var_fb91af8[level.var_52b56362];
+		deathcircle = level.deathcircles[level.var_52b56362];
 		var_caba78c2 = minwaittime;
 		if(isarray(minwaittime))
 		{
@@ -233,16 +233,16 @@ function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
 		{
 			var_205efcd5 = var_fe6b2eab[int(min(var_77c44f00, var_fe6b2eab.size - 1))];
 		}
-		var_edd69b13 = deathcircle.var_edd69b13;
-		var_fdd51794 = deathcircle.var_fdd51794;
-		var_7565ca79 = var_edd69b13 + var_fdd51794;
+		waitsec = deathcircle.waitsec;
+		scalesec = deathcircle.scalesec;
+		var_7565ca79 = waitsec + scalesec;
 		waittime = var_7565ca79 - var_205efcd5;
 		var_ef5e1b44 = spawnstruct();
 		var_ef5e1b44.var_7f40d76c = 0;
 		var_ef5e1b44.heightoffset = 0;
 		if(waittime > var_caba78c2)
 		{
-			var_972b892d = var_b76aef06[var_f2cf27c4];
+			var_972b892d = supplydrops[var_f2cf27c4];
 			if(var_972b892d > 0)
 			{
 				var_9356dcab = randomint(var_972b892d);
@@ -253,7 +253,7 @@ function start(var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
 					{
 						var_6ed927a6 = var_7003bde7[var_f2cf27c4];
 					}
-					if(isdefined(level.var_2089aa11) && !isdefined(var_6ed927a6) && (isdefined(getgametypesetting(#"hash_24918193d72a5866")) && getgametypesetting(#"hash_24918193d72a5866")))
+					if(isdefined(level.var_2089aa11) && !isdefined(var_6ed927a6) && (isdefined(getgametypesetting(#"wzheavymetalheroes")) && getgametypesetting(#"wzheavymetalheroes")))
 					{
 						var_6ed927a6 = level.var_2089aa11;
 					}
@@ -290,7 +290,7 @@ function function_1c1e1a45(var_b3b96cdb = undefined, var_47d17dcb = 0)
 		{
 			return;
 		}
-		level thread namespace_8f74625a::function_7d4a448f(var_47d17dcb);
+		level thread item_supply_drop::function_7d4a448f(var_47d17dcb);
 		var_3d3a70a8++;
 		if(isdefined(var_b3b96cdb) && var_3d3a70a8 > var_b3b96cdb)
 		{
@@ -301,7 +301,7 @@ function function_1c1e1a45(var_b3b96cdb = undefined, var_47d17dcb = 0)
 }
 
 /*
-	Name: function_9d6e1370
+	Name: start_vehicle
 	Namespace: namespace_3d2704b3
 	Checksum: 0xCBCB2359
 	Offset: 0xD40
@@ -309,13 +309,13 @@ function function_1c1e1a45(var_b3b96cdb = undefined, var_47d17dcb = 0)
 	Parameters: 4
 	Flags: Linked
 */
-function function_9d6e1370(vehicletype, var_b76aef06 = 1, minwaittime = 20, var_fe6b2eab = 20)
+function start_vehicle(vehicletype, supplydrops = 1, minwaittime = 20, var_fe6b2eab = 20)
 {
 	if(!isdefined(vehicletype))
 	{
 		return;
 	}
-	if(isint(var_b76aef06) && var_b76aef06 < 1)
+	if(isint(supplydrops) && supplydrops < 1)
 	{
 		return;
 	}
@@ -324,39 +324,39 @@ function function_9d6e1370(vehicletype, var_b76aef06 = 1, minwaittime = 20, var_
 	{
 		foreach(key, value in minwaittime)
 		{
-			minwaittime[key] = minwaittime[key] * level.var_8d8322b4;
+			minwaittime[key] = minwaittime[key] * level.deathcircletimescale;
 		}
 	}
 	else
 	{
-		minwaittime = minwaittime * level.var_8d8322b4;
+		minwaittime = minwaittime * level.deathcircletimescale;
 	}
 	if(isarray(var_fe6b2eab))
 	{
 		foreach(key, value in var_fe6b2eab)
 		{
-			var_fe6b2eab[key] = var_fe6b2eab[key] * level.var_8d8322b4;
+			var_fe6b2eab[key] = var_fe6b2eab[key] * level.deathcircletimescale;
 		}
 	}
 	else
 	{
-		var_fe6b2eab = var_fe6b2eab / level.var_8d8322b4;
+		var_fe6b2eab = var_fe6b2eab / level.deathcircletimescale;
 	}
 	var_b2003e21 = 0;
-	if(!isarray(var_b76aef06))
+	if(!isarray(supplydrops))
 	{
-		var_b2003e21 = var_b76aef06;
-		var_b76aef06 = [];
+		var_b2003e21 = supplydrops;
+		supplydrops = [];
 		for(index = 0; index < var_b2003e21; index++)
 		{
-			var_b76aef06[index] = 1;
+			supplydrops[index] = 1;
 		}
 	}
 	else
 	{
-		for(index = 0; index < var_b76aef06.size; index++)
+		for(index = 0; index < supplydrops.size; index++)
 		{
-			var_b2003e21 = var_b2003e21 + var_b76aef06[index];
+			var_b2003e21 = var_b2003e21 + supplydrops[index];
 		}
 	}
 	var_77c44f00 = 0;
@@ -367,7 +367,7 @@ function function_9d6e1370(vehicletype, var_b76aef06 = 1, minwaittime = 20, var_
 		{
 			return;
 		}
-		deathcircle = level.var_fb91af8[level.var_52b56362];
+		deathcircle = level.deathcircles[level.var_52b56362];
 		var_caba78c2 = minwaittime;
 		if(isarray(minwaittime))
 		{
@@ -378,9 +378,9 @@ function function_9d6e1370(vehicletype, var_b76aef06 = 1, minwaittime = 20, var_
 		{
 			var_205efcd5 = var_fe6b2eab[int(min(var_77c44f00, var_fe6b2eab.size - 1))];
 		}
-		var_edd69b13 = deathcircle.var_edd69b13;
-		var_fdd51794 = deathcircle.var_fdd51794;
-		var_7565ca79 = var_edd69b13 + var_fdd51794;
+		waitsec = deathcircle.waitsec;
+		scalesec = deathcircle.scalesec;
+		var_7565ca79 = waitsec + scalesec;
 		waittime = var_7565ca79 - var_205efcd5;
 		var_ef5e1b44 = spawnstruct();
 		var_ef5e1b44.var_7f40d76c = 1;
@@ -392,7 +392,7 @@ function function_9d6e1370(vehicletype, var_b76aef06 = 1, minwaittime = 20, var_
 		}
 		if(waittime > var_caba78c2)
 		{
-			var_972b892d = var_b76aef06[var_f2cf27c4];
+			var_972b892d = supplydrops[var_f2cf27c4];
 			for(index = 0; index < var_972b892d; index++)
 			{
 				level thread function_2d47ee1e(undefined, var_caba78c2, waittime, var_ef5e1b44, 1, var_30d3ad8b);

@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_1615105f580458d3;
-#using script_5bb072c3abf4652c;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm\weapons\zm_weap_tomahawk.gsc;
+#using scripts\zm_common\zm_vo.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -27,7 +27,7 @@
 #namespace namespace_273ad667;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_273ad667
 	Checksum: 0x7F6E9973
 	Offset: 0x220
@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_1f7228023b83d053", &__init__, &__main__, undefined);
 }
@@ -51,8 +51,8 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("toplayer", "" + #"hash_7ac3885ce718835a", 1, 1, "int");
-	clientfield::register("toplayer", "" + #"hash_1cc99c389ebd9577", 1, 4, "int");
+	clientfield::register("toplayer", "" + #"place_spoon", 1, 1, "int");
+	clientfield::register("toplayer", "" + #"fill_blood", 1, 4, "int");
 	clientfield::register("toplayer", "" + #"hash_2058d8d474a6b3e1", 1, 1, "int");
 	clientfield::register("toplayer", "" + #"hash_cc5b97a575d4d6d", 1, 1, "int");
 	clientfield::register("world", "" + #"hash_ef497244490a0fc", 1, 3, "int");
@@ -111,7 +111,7 @@ function vtol_dig()
 	self flag::init(#"hash_3ade5b9424a14f81");
 	self flag::init(#"hash_79ab766693ef2532");
 	self waittill(#"spawned");
-	self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 1);
+	self clientfield::set_to_player("" + #"fill_blood", 1);
 }
 
 /*
@@ -154,12 +154,12 @@ function function_3a563d3c(params)
 		e_player = waitresult.activator;
 		if(isplayer(e_player))
 		{
-			e_player takeweapon(getweapon(#"hash_52b03a79f854eed3"));
+			e_player takeweapon(getweapon(#"spoon_alcatraz"));
 			if(isdefined(e_player.var_1c4683c4))
 			{
 				e_player giveweapon(e_player.var_1c4683c4);
 			}
-			e_player clientfield::set_to_player("" + #"hash_7ac3885ce718835a", 1);
+			e_player clientfield::set_to_player("" + #"place_spoon", 1);
 			e_player flag::set(#"hash_6b33efdeedf241f");
 		}
 	}
@@ -184,9 +184,9 @@ function function_cd53088e(params)
 		e_player = waitresult.activator;
 		if(isplayer(e_player) && e_player flag::get(#"hash_30ae3926b2d211db"))
 		{
-			e_player clientfield::set_to_player("" + #"hash_7ac3885ce718835a", 0);
+			e_player clientfield::set_to_player("" + #"place_spoon", 0);
 			wait(0.1);
-			e_player clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 8);
+			e_player clientfield::set_to_player("" + #"fill_blood", 8);
 			e_player flag::set(#"hash_3ade5b9424a14f81");
 			playsoundatposition(#"hash_70c32e03adb92ec1", level.var_92a01e03.origin);
 			playsoundatposition(#"hash_2f578ca03993ba56", level.var_4b9d0136.origin);
@@ -309,32 +309,32 @@ function function_7127bd6c(var_8c79ac3f)
 	{
 		case 1:
 		{
-			self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 2);
+			self clientfield::set_to_player("" + #"fill_blood", 2);
 			break;
 		}
 		case 13:
 		{
-			self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 3);
+			self clientfield::set_to_player("" + #"fill_blood", 3);
 			break;
 		}
 		case 25:
 		{
-			self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 4);
+			self clientfield::set_to_player("" + #"fill_blood", 4);
 			break;
 		}
 		case 37:
 		{
-			self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 5);
+			self clientfield::set_to_player("" + #"fill_blood", 5);
 			break;
 		}
 		case 49:
 		{
-			self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 6);
+			self clientfield::set_to_player("" + #"fill_blood", 6);
 			break;
 		}
 		case 60:
 		{
-			self clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 7);
+			self clientfield::set_to_player("" + #"fill_blood", 7);
 			break;
 		}
 	}
@@ -353,12 +353,12 @@ function function_3bc828f8(weapon_type)
 {
 	switch(weapon_type.name)
 	{
-		case "hash_23882a5729dceca":
-		case "hash_1b5092cccdb3d65b":
-		case "hash_25a13b6f6232a985":
+		case "ww_blundergat_fire_t8":
+		case "ww_blundergat_fire_t8_upgraded":
+		case "ww_blundergat_acid_t8":
 		case "hash_3de0926b89369160":
 		case "hash_494f5501b3f8e1e9":
-		case "hash_4c157b1aeefae09e":
+		case "ww_blundergat_acid_t8_upgraded":
 		{
 			return true;
 		}
@@ -380,7 +380,7 @@ function function_3bc828f8(weapon_type)
 */
 function function_34b43e30(e_player)
 {
-	return e_player hasweapon(getweapon(#"hash_52b03a79f854eed3")) && !e_player flag::get(#"hash_6b33efdeedf241f") && e_player util::is_looking_at(self.origin);
+	return e_player hasweapon(getweapon(#"spoon_alcatraz")) && !e_player flag::get(#"hash_6b33efdeedf241f") && e_player util::is_looking_at(self.origin);
 }
 
 /*
@@ -533,11 +533,11 @@ function function_adc74a0d(e_grenade, n_grenade_charge_power)
 	if(distsq < (200 * 200) && !self flag::get(#"hash_79ab766693ef2532") && level flag::get(#"hash_29dc018e9551ecf"))
 	{
 		self clientfield::set_to_player("" + #"hash_2058d8d474a6b3e1", 0);
-		var_6e6ec518 = namespace_268fc37c::tomahawk_spawn(e_grenade.origin);
+		var_6e6ec518 = zm_weap_tomahawk::tomahawk_spawn(e_grenade.origin);
 		var_6e6ec518.n_grenade_charge_power = n_grenade_charge_power;
 		var_7b566fb = util::spawn_model("wpn_t8_zm_spork_world", e_grenade.origin, s_spork.angles);
 		var_7b566fb linkto(var_6e6ec518);
-		self thread namespace_268fc37c::tomahawk_return_player(var_6e6ec518, undefined, 800);
+		self thread zm_weap_tomahawk::tomahawk_return_player(var_6e6ec518, undefined, 800);
 		self thread function_55a05382(var_6e6ec518, var_7b566fb);
 		return true;
 	}
@@ -559,7 +559,7 @@ function function_55a05382(var_6e6ec518, var_87d57162)
 	var_6e6ec518 waittill(#"death");
 	var_87d57162 delete();
 	w_current = self.currentweapon;
-	self zm_melee_weapon::award_melee_weapon(#"hash_32a584f5a65c70d1");
+	self zm_melee_weapon::award_melee_weapon(#"spork_alcatraz");
 	self flag::set(#"hash_79ab766693ef2532");
 	self clientfield::set_to_player("" + #"hash_cc5b97a575d4d6d", 0);
 }
@@ -591,7 +591,7 @@ function function_d987ffa1()
 {
 	/#
 		zm_devgui::add_custom_devgui_callback(&function_2ad53df2);
-		if(getdvarint(#"hash_11ad6a9695943217", 0))
+		if(getdvarint(#"zm_debug_ee", 0))
 		{
 			adddebugcommand("");
 			adddebugcommand("");
@@ -644,15 +644,15 @@ function function_45d8a460()
 		foreach(player in level.players)
 		{
 			level flag::set(#"hash_3b1ad1b5bdc81825");
-			if(!player hasweapon(getweapon(#"hash_52b03a79f854eed3")))
+			if(!player hasweapon(getweapon(#"spoon_alcatraz")))
 			{
 				while(!isdefined(player.var_1c4683c4))
 				{
-					player.var_1c4683c4 = player.var_49377865[#"melee_weapon"];
+					player.var_1c4683c4 = player.slot_weapons[#"melee_weapon"];
 					wait(0.1);
 				}
 				w_current = player.currentweapon;
-				player giveweapon(getweapon(#"hash_52b03a79f854eed3"));
+				player giveweapon(getweapon(#"spoon_alcatraz"));
 				player switchtoweapon(w_current);
 			}
 		}
@@ -673,9 +673,9 @@ function function_3dfa5598()
 	/#
 		foreach(player in level.players)
 		{
-			if(player hasweapon(getweapon(#"hash_52b03a79f854eed3")))
+			if(player hasweapon(getweapon(#"spoon_alcatraz")))
 			{
-				player takeweapon(getweapon(#"hash_52b03a79f854eed3"));
+				player takeweapon(getweapon(#"spoon_alcatraz"));
 				if(isdefined(player.var_1c4683c4))
 				{
 					player giveweapon(player.var_1c4683c4);
@@ -687,8 +687,8 @@ function function_3dfa5598()
 			{
 				player.var_8c79ac3f = undefined;
 			}
-			player clientfield::set_to_player("" + #"hash_7ac3885ce718835a", 1);
-			player clientfield::set_to_player("" + #"hash_1cc99c389ebd9577", 7);
+			player clientfield::set_to_player("" + #"place_spoon", 1);
+			player clientfield::set_to_player("" + #"fill_blood", 7);
 			if(!isdefined(level.var_92a01e03.var_da0824c7))
 			{
 				level.var_92a01e03.var_da0824c7 = level.var_92a01e03 zm_unitrigger::create(&function_c5c760a1, 64, &function_cd53088e);

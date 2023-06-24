@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6ce38ab036223e6e;
+#using scripts\zm_common\zm_round_logic.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\math_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -33,8 +33,8 @@ event main(eventstruct)
 	level.onscorelimit = &onscorelimit;
 	level._game_module_custom_spawn_init_func = &zm_gametype::custom_spawn_init_func;
 	level._game_module_stat_update_func = &zm_stats::survival_classic_custom_stat_update;
-	level._round_start_func = &namespace_a28acff3::round_start;
-	zm_player::register_player_damage_callback(&function_567c449a);
+	level._round_start_func = &zm_round_logic::round_start;
+	zm_player::register_player_damage_callback(&playerdamagecallback);
 	callback::on_spawned(&onplayerspawned);
 }
 
@@ -110,7 +110,7 @@ function onscorelimit()
 }
 
 /*
-	Name: function_567c449a
+	Name: playerdamagecallback
 	Namespace: zgrief
 	Checksum: 0xB80BC2BF
 	Offset: 0x550
@@ -118,7 +118,7 @@ function onscorelimit()
 	Parameters: 10
 	Flags: None
 */
-function function_567c449a(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
+function playerdamagecallback(einflictor, eattacker, idamage, idflags, smeansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime)
 {
 	if(isdefined(eattacker) && isplayer(eattacker))
 	{

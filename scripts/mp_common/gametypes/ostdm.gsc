@@ -3,11 +3,11 @@
 #using scripts\mp_common\gametypes\os.gsc;
 #using scripts\mp_common\gametypes\tdm.gsc;
 
-#namespace namespace_140b10cf;
+#namespace ostdm;
 
 /*
 	Name: main
-	Namespace: namespace_140b10cf
+	Namespace: ostdm
 	Checksum: 0xBC31A217
 	Offset: 0xA8
 	Size: 0x64

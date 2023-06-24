@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_3e5ec44cfab7a201;
-#using script_6a3f43063dfd1bdc;
+#using scripts\zm\zm_hms_util.gsc;
 #using scripts\core_common\exploder_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -18,7 +18,7 @@
 */
 function register(id, version, script_noteworthy, func_success, func_fail)
 {
-	namespace_617a54f4::function_d8383812(id, version, script_noteworthy, &function_8598f0d4, &function_3bdbb583, 1);
+	namespace_617a54f4::function_d8383812(id, version, script_noteworthy, &is_soul_capture, &soul_captured, 1);
 	s_sc = struct::get(script_noteworthy, "script_noteworthy");
 	s_sc.var_f929d531 = getent(s_sc.player_area, "targetname");
 	s_sc.var_f929d531.id = id;
@@ -64,12 +64,12 @@ function end(id)
 		s_sc = level.var_345df07[id];
 		exploder::stop_exploder(s_sc.fx_exp);
 		namespace_617a54f4::function_2a94055d(id);
-		s_sc.var_f929d531 notify(#"hash_63acd5ff4da933c5");
+		s_sc.var_f929d531 notify(#"event_end");
 	}
 }
 
 /*
-	Name: function_8598f0d4
+	Name: is_soul_capture
 	Namespace: namespace_bd74bbd2
 	Checksum: 0xDE189D4F
 	Offset: 0x328
@@ -77,7 +77,7 @@ function end(id)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_8598f0d4(var_88206a50, ent)
+function private is_soul_capture(var_88206a50, ent)
 {
 	if(isdefined(ent))
 	{
@@ -101,7 +101,7 @@ function private function_8598f0d4(var_88206a50, ent)
 }
 
 /*
-	Name: function_3bdbb583
+	Name: soul_captured
 	Namespace: namespace_bd74bbd2
 	Checksum: 0x99A80DE
 	Offset: 0x420
@@ -109,7 +109,7 @@ function private function_8598f0d4(var_88206a50, ent)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_3bdbb583(var_f0e6c7a2, ent)
+function private soul_captured(var_f0e6c7a2, ent)
 {
 	n_souls_required = 12;
 	if(getplayers().size > 2)
@@ -122,7 +122,7 @@ function private function_3bdbb583(var_f0e6c7a2, ent)
 	}
 	var_f0e6c7a2.var_7944be4a++;
 	/#
-		if(level flag::get(#"hash_6dcc421d5fbf8d22"))
+		if(level flag::get(#"soul_fill"))
 		{
 			var_f0e6c7a2.var_7944be4a = n_souls_required;
 		}
@@ -144,8 +144,8 @@ function private function_3bdbb583(var_f0e6c7a2, ent)
 */
 function private function_fab8c488()
 {
-	self endon(#"death", #"hash_63acd5ff4da933c5");
-	while(self namespace_509a75d1::function_b8a27acc())
+	self endon(#"death", #"event_end");
+	while(self zm_hms_util::function_b8a27acc())
 	{
 		wait(0.1);
 	}
@@ -164,8 +164,8 @@ function private function_fab8c488()
 */
 function private player_enter_watcher()
 {
-	self endon(#"death", #"hash_63acd5ff4da933c5");
-	while(!self namespace_509a75d1::function_b8a27acc())
+	self endon(#"death", #"event_end");
+	while(!self zm_hms_util::function_b8a27acc())
 	{
 		wait(0.1);
 	}
@@ -184,7 +184,7 @@ function private player_enter_watcher()
 */
 function private function_b1e6482f()
 {
-	self endon(#"death", #"player_enter", #"hash_63acd5ff4da933c5");
+	self endon(#"death", #"player_enter", #"event_end");
 	wait(5);
 	level thread [[level.var_345df07[self.id].func_fail]]();
 	end(self.id);

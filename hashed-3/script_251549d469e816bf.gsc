@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_b58d10b2 : class_6aaccc24
+class cluielemimage : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0x2A0D4E23
 		Offset: 0x458
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_b58d10b2 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0x3A51D09B
 		Offset: 0xA98
 		Size: 0x14
@@ -31,120 +31,120 @@ class class_b58d10b2 : class_6aaccc24
 	}
 
 	/*
-		Name: function_6416c30d
-		Namespace: namespace_b58d10b2
+		Name: set_material
+		Namespace: cluielemimage
 		Checksum: 0x566FEE0F
 		Offset: 0xA60
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_6416c30d(localclientnum, value)
+	function set_material(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "material", value);
+		[[ self ]]->set_data(localclientnum, "material", value);
 	}
 
 	/*
-		Name: function_7420df0a
-		Namespace: namespace_b58d10b2
+		Name: set_blue
+		Namespace: cluielemimage
 		Checksum: 0x3C229E66
 		Offset: 0xA28
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_7420df0a(localclientnum, value)
+	function set_blue(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "blue", value);
+		[[ self ]]->set_data(localclientnum, "blue", value);
 	}
 
 	/*
-		Name: function_2208b8db
-		Namespace: namespace_b58d10b2
+		Name: set_green
+		Namespace: cluielemimage
 		Checksum: 0x8776D27E
 		Offset: 0x9F0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_2208b8db(localclientnum, value)
+	function set_green(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "green", value);
+		[[ self ]]->set_data(localclientnum, "green", value);
 	}
 
 	/*
-		Name: function_eccc151d
-		Namespace: namespace_b58d10b2
+		Name: set_red
+		Namespace: cluielemimage
 		Checksum: 0x73D7CE69
 		Offset: 0x9B8
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_eccc151d(localclientnum, value)
+	function set_red(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "red", value);
+		[[ self ]]->set_data(localclientnum, "red", value);
 	}
 
 	/*
-		Name: function_aa5c711d
-		Namespace: namespace_b58d10b2
+		Name: set_alpha
+		Namespace: cluielemimage
 		Checksum: 0x99959D0
 		Offset: 0x980
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_aa5c711d(localclientnum, value)
+	function set_alpha(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "alpha", value);
+		[[ self ]]->set_data(localclientnum, "alpha", value);
 	}
 
 	/*
-		Name: function_237ff433
-		Namespace: namespace_b58d10b2
+		Name: set_fadeOverTime
+		Namespace: cluielemimage
 		Checksum: 0x5574019E
 		Offset: 0x948
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_237ff433(localclientnum, value)
+	function set_fadeOverTime(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "fadeOverTime", value);
+		[[ self ]]->set_data(localclientnum, "fadeOverTime", value);
 	}
 
 	/*
-		Name: function_5dbd7024
-		Namespace: namespace_b58d10b2
+		Name: set_height
+		Namespace: cluielemimage
 		Checksum: 0xD484F925
 		Offset: 0x910
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_5dbd7024(localclientnum, value)
+	function set_height(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "height", value);
+		[[ self ]]->set_data(localclientnum, "height", value);
 	}
 
 	/*
-		Name: function_8b0b5811
-		Namespace: namespace_b58d10b2
+		Name: set_width
+		Namespace: cluielemimage
 		Checksum: 0x656FC8C1
 		Offset: 0x8D8
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_8b0b5811(localclientnum, value)
+	function set_width(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "width", value);
+		[[ self ]]->set_data(localclientnum, "width", value);
 	}
 
 	/*
 		Name: set_y
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0x9211EBC0
 		Offset: 0x8A0
 		Size: 0x30
@@ -153,12 +153,12 @@ class class_b58d10b2 : class_6aaccc24
 	*/
 	function set_y(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "y", value);
+		[[ self ]]->set_data(localclientnum, "y", value);
 	}
 
 	/*
 		Name: set_x
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0xFA7DAD40
 		Offset: 0x868
 		Size: 0x30
@@ -167,12 +167,12 @@ class class_b58d10b2 : class_6aaccc24
 	*/
 	function set_x(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "x", value);
+		[[ self ]]->set_data(localclientnum, "x", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0xB682BD37
 		Offset: 0x830
 		Size: 0x2C
@@ -181,12 +181,12 @@ class class_b58d10b2 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"luielemimage");
+		cLUIelem::open(localclientnum, #"luielemimage");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0x5E8BD47A
 		Offset: 0x6B8
 		Size: 0x16C
@@ -195,22 +195,22 @@ class class_b58d10b2 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "x", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "y", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "width", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "height", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "fadeOverTime", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "alpha", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "red", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "green", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "blue", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "material", #"");
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "x", 0);
+		[[ self ]]->set_data(localclientnum, "y", 0);
+		[[ self ]]->set_data(localclientnum, "width", 0);
+		[[ self ]]->set_data(localclientnum, "height", 0);
+		[[ self ]]->set_data(localclientnum, "fadeOverTime", 0);
+		[[ self ]]->set_data(localclientnum, "alpha", 0);
+		[[ self ]]->set_data(localclientnum, "red", 0);
+		[[ self ]]->set_data(localclientnum, "green", 0);
+		[[ self ]]->set_data(localclientnum, "blue", 0);
+		[[ self ]]->set_data(localclientnum, "material", #"");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0x6DAB4032
 		Offset: 0x688
 		Size: 0x24
@@ -219,31 +219,31 @@ class class_b58d10b2 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_b58d10b2
+		Namespace: cluielemimage
 		Checksum: 0x8114E94B
 		Offset: 0x478
 		Size: 0x204
 		Parameters: 11
 		Flags: None
 	*/
-	function setup_clientfields(uid, var_218de242, var_f6cc2724, var_997793d7, var_fae6c0b5, var_a3e0a6ce, var_af074abc, var_9350f184, var_788c188f, var_3fb95ac9, var_e6b6b84b)
+	function setup_clientfields(uid, xcallback, ycallback, widthcallback, heightcallback, fadeOverTimecallback, alphacallback, redcallback, greencallback, bluecallback, var_e6b6b84b)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("x", 1, 7, "int", var_218de242);
-		namespace_6aaccc24::function_da693cbe("y", 1, 6, "int", var_f6cc2724);
-		namespace_6aaccc24::function_da693cbe("width", 1, 6, "int", var_997793d7);
-		namespace_6aaccc24::function_da693cbe("height", 1, 6, "int", var_fae6c0b5);
-		namespace_6aaccc24::function_da693cbe("fadeOverTime", 1, 5, "int", var_a3e0a6ce);
-		namespace_6aaccc24::function_da693cbe("alpha", 1, 4, "float", var_af074abc);
-		namespace_6aaccc24::function_da693cbe("red", 1, 4, "float", var_9350f184);
-		namespace_6aaccc24::function_da693cbe("green", 1, 4, "float", var_788c188f);
-		namespace_6aaccc24::function_da693cbe("blue", 1, 4, "float", var_3fb95ac9);
-		namespace_6aaccc24::function_dcb34c80("material", "material", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("x", 1, 7, "int", xcallback);
+		cLUIelem::function_da693cbe("y", 1, 6, "int", ycallback);
+		cLUIelem::function_da693cbe("width", 1, 6, "int", widthcallback);
+		cLUIelem::function_da693cbe("height", 1, 6, "int", heightcallback);
+		cLUIelem::function_da693cbe("fadeOverTime", 1, 5, "int", fadeOverTimecallback);
+		cLUIelem::function_da693cbe("alpha", 1, 4, "float", alphacallback);
+		cLUIelem::function_da693cbe("red", 1, 4, "float", redcallback);
+		cLUIelem::function_da693cbe("green", 1, 4, "float", greencallback);
+		cLUIelem::function_da693cbe("blue", 1, 4, "float", bluecallback);
+		cLUIelem::function_dcb34c80("material", "material", 1);
 	}
 
 }
@@ -259,10 +259,10 @@ class class_b58d10b2 : class_6aaccc24
 	Parameters: 11
 	Flags: None
 */
-function register(uid, var_218de242, var_f6cc2724, var_997793d7, var_fae6c0b5, var_a3e0a6ce, var_af074abc, var_9350f184, var_788c188f, var_3fb95ac9, var_e6b6b84b)
+function register(uid, xcallback, ycallback, widthcallback, heightcallback, fadeOverTimecallback, alphacallback, redcallback, greencallback, bluecallback, var_e6b6b84b)
 {
-	elem = new class_b58d10b2();
-	[[ elem ]]->setup_clientfields(uid, var_218de242, var_f6cc2724, var_997793d7, var_fae6c0b5, var_a3e0a6ce, var_af074abc, var_9350f184, var_788c188f, var_3fb95ac9, var_e6b6b84b);
+	elem = new cluielemimage();
+	[[ elem ]]->setup_clientfields(uid, xcallback, ycallback, widthcallback, heightcallback, fadeOverTimecallback, alphacallback, redcallback, greencallback, bluecallback, var_e6b6b84b);
 	return elem;
 }
 
@@ -277,7 +277,7 @@ function register(uid, var_218de242, var_f6cc2724, var_997793d7, var_fae6c0b5, v
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_b58d10b2();
+	elem = new cluielemimage();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -353,7 +353,7 @@ function set_y(localclientnum, value)
 }
 
 /*
-	Name: function_8b0b5811
+	Name: set_width
 	Namespace: luielemimage
 	Checksum: 0x4F464214
 	Offset: 0x2D8
@@ -361,13 +361,13 @@ function set_y(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_8b0b5811(localclientnum, value)
+function set_width(localclientnum, value)
 {
-	[[ self ]]->function_8b0b5811(localclientnum, value);
+	[[ self ]]->set_width(localclientnum, value);
 }
 
 /*
-	Name: function_5dbd7024
+	Name: set_height
 	Namespace: luielemimage
 	Checksum: 0xE53E6A9A
 	Offset: 0x308
@@ -375,13 +375,13 @@ function function_8b0b5811(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5dbd7024(localclientnum, value)
+function set_height(localclientnum, value)
 {
-	[[ self ]]->function_5dbd7024(localclientnum, value);
+	[[ self ]]->set_height(localclientnum, value);
 }
 
 /*
-	Name: function_237ff433
+	Name: set_fadeOverTime
 	Namespace: luielemimage
 	Checksum: 0xF4F2C88A
 	Offset: 0x338
@@ -389,13 +389,13 @@ function function_5dbd7024(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_237ff433(localclientnum, value)
+function set_fadeOverTime(localclientnum, value)
 {
-	[[ self ]]->function_237ff433(localclientnum, value);
+	[[ self ]]->set_fadeOverTime(localclientnum, value);
 }
 
 /*
-	Name: function_aa5c711d
+	Name: set_alpha
 	Namespace: luielemimage
 	Checksum: 0x568FC7AD
 	Offset: 0x368
@@ -403,13 +403,13 @@ function function_237ff433(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_aa5c711d(localclientnum, value)
+function set_alpha(localclientnum, value)
 {
-	[[ self ]]->function_aa5c711d(localclientnum, value);
+	[[ self ]]->set_alpha(localclientnum, value);
 }
 
 /*
-	Name: function_eccc151d
+	Name: set_red
 	Namespace: luielemimage
 	Checksum: 0x1170A18
 	Offset: 0x398
@@ -417,13 +417,13 @@ function function_aa5c711d(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_eccc151d(localclientnum, value)
+function set_red(localclientnum, value)
 {
-	[[ self ]]->function_eccc151d(localclientnum, value);
+	[[ self ]]->set_red(localclientnum, value);
 }
 
 /*
-	Name: function_2208b8db
+	Name: set_green
 	Namespace: luielemimage
 	Checksum: 0x267816D2
 	Offset: 0x3C8
@@ -431,13 +431,13 @@ function function_eccc151d(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_2208b8db(localclientnum, value)
+function set_green(localclientnum, value)
 {
-	[[ self ]]->function_2208b8db(localclientnum, value);
+	[[ self ]]->set_green(localclientnum, value);
 }
 
 /*
-	Name: function_7420df0a
+	Name: set_blue
 	Namespace: luielemimage
 	Checksum: 0xB231D50C
 	Offset: 0x3F8
@@ -445,13 +445,13 @@ function function_2208b8db(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_7420df0a(localclientnum, value)
+function set_blue(localclientnum, value)
 {
-	[[ self ]]->function_7420df0a(localclientnum, value);
+	[[ self ]]->set_blue(localclientnum, value);
 }
 
 /*
-	Name: function_6416c30d
+	Name: set_material
 	Namespace: luielemimage
 	Checksum: 0xBA04CF9D
 	Offset: 0x428
@@ -459,8 +459,8 @@ function function_7420df0a(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_6416c30d(localclientnum, value)
+function set_material(localclientnum, value)
 {
-	[[ self ]]->function_6416c30d(localclientnum, value);
+	[[ self ]]->set_material(localclientnum, value);
 }
 

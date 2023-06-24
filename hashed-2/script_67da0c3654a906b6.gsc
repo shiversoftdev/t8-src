@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -10,7 +10,7 @@
 #namespace namespace_6c76c1da;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_6c76c1da
 	Checksum: 0x93F6291E
 	Offset: 0xC8
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_442b60ca31422a3c", &__init__, undefined, undefined);
 }
@@ -38,11 +38,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_5124770c13a75bab", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_5124770c13a75bab", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_6c76c1da
 	Checksum: 0x7D95D6C0
 	Offset: 0x178
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 3
 	Flags: Private
 */
-function private function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
+function private on_begin(var_93fc795f, var_a7c52900, var_c8a36f90)
 {
 	var_a7c52900 = zm_trial::function_5769f26a(var_a7c52900);
 	level.var_1c8f9eba = var_c8a36f90;
@@ -61,7 +61,7 @@ function private function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 		{
 			switch(var_c8a36f90)
 			{
-				case "hash_7ea198622e307b9":
+				case "prone_random":
 				{
 					player thread function_9c988cd8(var_93fc795f, var_a7c52900, 1);
 					break;
@@ -79,7 +79,7 @@ function private function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_6c76c1da
 	Checksum: 0xE99A207B
 	Offset: 0x2E0
@@ -87,7 +87,7 @@ function private function_d1de6a85(var_93fc795f, var_a7c52900, var_c8a36f90)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.var_1c8f9eba = undefined;
 }
@@ -213,7 +213,7 @@ function private function_26f124d8()
 			}
 			return false;
 		}
-		case "hash_7ea198622e307b9":
+		case "prone_random":
 		case "prone":
 		{
 			if(self getstance() === "prone")

@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_256b8879317373de;
-#using script_3f9e0dc8454d98e1;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -16,7 +16,7 @@
 #namespace namespace_e38c57c1;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_e38c57c1
 	Checksum: 0xEA0F2566
 	Offset: 0xF8
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_7576c66086ab62aa", &__init__, &__main__, undefined);
 }
@@ -89,29 +89,29 @@ function function_9af806be(var_c5b25bc5)
 	{
 		case 1:
 		{
-			self player::function_2a67df65(#"hash_5caf5318fed765da", -50);
+			self player::function_2a67df65(#"fl1", -50);
 			self zm_utility::function_e0448fec();
 			break;
 		}
 		case 2:
 		{
-			self perks::function_7637bafa(#"hash_53010725c65a98a5");
+			self perks::perk_setperk(#"hash_53010725c65a98a5");
 			break;
 		}
 		case 3:
 		{
-			self player::function_2a67df65(#"hash_4a896918f453f7d6", 50);
+			self player::function_2a67df65(#"db1", 50);
 			self zm_utility::function_e0448fec();
 			break;
 		}
 		case 4:
 		{
-			self perks::function_7637bafa(#"hash_130074ec6de7a431");
+			self perks::perk_setperk(#"hash_130074ec6de7a431");
 			break;
 		}
 		case 5:
 		{
-			self perks::function_7637bafa(#"hash_1bc7d0ea42d1d0a8");
+			self perks::perk_setperk(#"hash_1bc7d0ea42d1d0a8");
 			break;
 		}
 		case 6:
@@ -147,27 +147,27 @@ function function_2a94cd59()
 		{
 			case 1:
 			{
-				self player::function_b933de24(#"hash_5caf5318fed765da");
+				self player::function_b933de24(#"fl1");
 				break;
 			}
 			case 2:
 			{
-				self perks::function_45d12554(#"hash_53010725c65a98a5");
+				self perks::perk_unsetperk(#"hash_53010725c65a98a5");
 				break;
 			}
 			case 3:
 			{
-				self player::function_b933de24(#"hash_4a896918f453f7d6");
+				self player::function_b933de24(#"db1");
 				break;
 			}
 			case 4:
 			{
-				self perks::function_45d12554(#"hash_130074ec6de7a431");
+				self perks::perk_unsetperk(#"hash_130074ec6de7a431");
 				break;
 			}
 			case 5:
 			{
-				self perks::function_45d12554(#"hash_1bc7d0ea42d1d0a8");
+				self perks::perk_unsetperk(#"hash_1bc7d0ea42d1d0a8");
 				break;
 			}
 			case 6:
@@ -376,24 +376,24 @@ function devgui()
 		adddebugcommand("");
 		adddebugcommand("");
 		level.var_8e9d88b6 = [];
-		level.var_8e9d88b6[#"hash_5caf5318fed765da"] = 1;
-		level.var_8e9d88b6[#"hash_56fd011944685352"] = 2;
-		level.var_8e9d88b6[#"hash_4a896918f453f7d6"] = 3;
-		level.var_8e9d88b6[#"hash_356b191335bab8"] = 4;
-		level.var_8e9d88b6[#"hash_34ad5ed8d296ff88"] = 5;
-		level.var_8e9d88b6[#"hash_ffc38cdd7774e8b"] = 6;
+		level.var_8e9d88b6[#"fl1"] = 1;
+		level.var_8e9d88b6[#"tn1"] = 2;
+		level.var_8e9d88b6[#"db1"] = 3;
+		level.var_8e9d88b6[#"bf1"] = 4;
+		level.var_8e9d88b6[#"helmets1"] = 5;
+		level.var_8e9d88b6[#"season1"] = 6;
 		while(true)
 		{
 			waitframe(1);
 			str_command = getdvarstring(#"hash_443a451d4b2f9de2", "");
 			switch(str_command)
 			{
-				case "hash_356b191335bab8":
-				case "hash_ffc38cdd7774e8b":
-				case "hash_34ad5ed8d296ff88":
-				case "hash_4a896918f453f7d6":
-				case "hash_56fd011944685352":
-				case "hash_5caf5318fed765da":
+				case "bf1":
+				case "season1":
+				case "helmets1":
+				case "db1":
+				case "tn1":
+				case "fl1":
 				{
 					foreach(e_player in getplayers())
 					{
@@ -472,7 +472,7 @@ function on_player_connect()
 	/#
 		self endon(#"disconnect");
 		level flag::wait_till("");
-		self function_53bb2a5();
+		self devgui_player_menu();
 	#/
 }
 
@@ -497,7 +497,7 @@ function function_c1ccd7f3(var_fc09f1a3, n_player, vararg)
 }
 
 /*
-	Name: function_53bb2a5
+	Name: devgui_player_menu
 	Namespace: namespace_e38c57c1
 	Checksum: 0xF5799266
 	Offset: 0x10C0
@@ -505,7 +505,7 @@ function function_c1ccd7f3(var_fc09f1a3, n_player, vararg)
 	Parameters: 0
 	Flags: None
 */
-function function_53bb2a5()
+function devgui_player_menu()
 {
 	/#
 		self function_1c3ffffd();

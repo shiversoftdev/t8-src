@@ -9,7 +9,7 @@
 #namespace globallogic_audio;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic_audio
 	Checksum: 0x49BA0C15
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic_audio", &__init__, undefined, undefined);
 }

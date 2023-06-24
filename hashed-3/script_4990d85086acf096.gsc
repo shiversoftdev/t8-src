@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_ec0fbe79 : class_6aaccc24
+class czm_location : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0x144846DD
 		Offset: 0x200
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_ec0fbe79 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0xA5AF63B2
 		Offset: 0x378
 		Size: 0x14
@@ -31,22 +31,22 @@ class class_ec0fbe79 : class_6aaccc24
 	}
 
 	/*
-		Name: function_e967988b
-		Namespace: namespace_ec0fbe79
+		Name: set_location_name
+		Namespace: czm_location
 		Checksum: 0xC2786A25
 		Offset: 0x340
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_e967988b(localclientnum, value)
+	function set_location_name(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "location_name", value);
+		[[ self ]]->set_data(localclientnum, "location_name", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0x7F36AFBE
 		Offset: 0x308
 		Size: 0x2C
@@ -55,12 +55,12 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"zm_location");
+		cLUIelem::open(localclientnum, #"zm_location");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0xBDB01B95
 		Offset: 0x2B0
 		Size: 0x4C
@@ -69,13 +69,13 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "location_name", #"");
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "location_name", #"");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0xD11D3009
 		Offset: 0x280
 		Size: 0x24
@@ -84,12 +84,12 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0x27606F78
 		Offset: 0x220
 		Size: 0x54
@@ -98,8 +98,8 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_5c0f4d11)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_dcb34c80("string", "location_name", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_dcb34c80("string", "location_name", 1);
 	}
 
 }
@@ -117,7 +117,7 @@ class class_ec0fbe79 : class_6aaccc24
 */
 function register(uid, var_5c0f4d11)
 {
-	elem = new class_ec0fbe79();
+	elem = new czm_location();
 	[[ elem ]]->setup_clientfields(uid, var_5c0f4d11);
 	return elem;
 }
@@ -133,7 +133,7 @@ function register(uid, var_5c0f4d11)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_ec0fbe79();
+	elem = new czm_location();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -181,7 +181,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_e967988b
+	Name: set_location_name
 	Namespace: zm_location
 	Checksum: 0x8D484312
 	Offset: 0x1D0
@@ -189,8 +189,8 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_e967988b(localclientnum, value)
+function set_location_name(localclientnum, value)
 {
-	[[ self ]]->function_e967988b(localclientnum, value);
+	[[ self ]]->set_location_name(localclientnum, value);
 }
 

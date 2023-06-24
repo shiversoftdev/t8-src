@@ -5,7 +5,7 @@
 #namespace zm_bgb_licensed_contractor;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_licensed_contractor
 	Checksum: 0x90C12C2C
 	Offset: 0x90
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_licensed_contractor", &__init__, undefined, #"bgb");
 }

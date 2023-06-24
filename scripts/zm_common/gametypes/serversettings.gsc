@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -7,7 +7,7 @@
 #namespace serversettings;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: serversettings
 	Checksum: 0xCB22BAC
 	Offset: 0x98
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"serversettings", &__init__, undefined, undefined);
 }
@@ -68,7 +68,7 @@ function main()
 		level.allow_teamchange = 1;
 	}
 	setdvar(#"ui_allow_teamchange", level.allow_teamchange);
-	level.friendlyfire = getgametypesetting(#"hash_3f8f02e8109b6e93");
+	level.friendlyfire = getgametypesetting(#"zmfriendlyfiretype");
 	setdvar(#"ui_friendlyfire", level.friendlyfire);
 	if(!isdefined(getdvar(#"scr_mapsize")))
 	{
@@ -135,11 +135,11 @@ function updateserversettings()
 		level.allowvote = g_allowvote;
 		setdvar(#"ui_allowvote", level.allowvote);
 	}
-	scr_friendlyfire = getgametypesetting(#"hash_3f8f02e8109b6e93");
+	scr_friendlyfire = getgametypesetting(#"zmfriendlyfiretype");
 	if(level.friendlyfire != scr_friendlyfire)
 	{
 		level.friendlyfire = scr_friendlyfire;
-		namespace_59ff1d6c::function_928be07c();
+		zm_custom::function_928be07c();
 		setdvar(#"ui_friendlyfire", level.friendlyfire);
 	}
 }

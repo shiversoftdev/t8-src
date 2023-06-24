@@ -1281,7 +1281,7 @@ function function_ff74bf7(team)
 	Parameters: 4
 	Flags: Linked
 */
-function function_5a68c330(var_e0dd85aa, s_team, n_clientnum, var_ba966ff5 = 0)
+function function_5a68c330(var_e0dd85aa, s_team, n_clientnum, extradata = 0)
 {
 	if(!isdefined(var_e0dd85aa))
 	{
@@ -1311,7 +1311,7 @@ function function_5a68c330(var_e0dd85aa, s_team, n_clientnum, var_ba966ff5 = 0)
 	players = get_players();
 	foreach(player in players)
 	{
-		player luinotifyevent(#"hash_2f8d0153aa606f7d", 4, var_e0dd85aa, var_dfc4aab4, n_clientnum, var_ba966ff5);
+		player luinotifyevent(#"announcement_event", 4, var_e0dd85aa, var_dfc4aab4, n_clientnum, extradata);
 	}
 }
 

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_70a43d6ba27cff6a;
-#using script_8988fdbc78d6c53;
+#using scripts\core_common\globallogic\globallogic_player.gsc;
+#using scripts\weapons\weaponobjects.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -21,10 +21,10 @@
 function init_shared()
 {
 	register_clientfields();
-	level.var_f791a4f2 = spawnstruct();
+	level.trackerperk = spawnstruct();
 	level.var_c8241070 = &function_c8241070;
 	thread function_a7e7bda0();
-	level.var_f791a4f2.var_75492b09 = [];
+	level.trackerperk.var_75492b09 = [];
 	callback::on_spawned(&onplayerspawned);
 }
 
@@ -67,15 +67,15 @@ function onplayerspawned()
 */
 function function_c8241070(player, weapon)
 {
-	if(!isdefined(level.var_f791a4f2.var_75492b09[player.clientid]))
+	if(!isdefined(level.trackerperk.var_75492b09[player.clientid]))
 	{
-		level.var_f791a4f2.var_75492b09[player.clientid] = spawnstruct();
+		level.trackerperk.var_75492b09[player.clientid] = spawnstruct();
 	}
-	level.var_f791a4f2.var_75492b09[player.clientid].var_80ec1137 = gettime();
-	level.var_f791a4f2.var_75492b09[player.clientid].var_2e0b3c25 = player.origin;
-	level.var_f791a4f2.var_75492b09[player.clientid].var_2672a259 = weapon;
-	level.var_f791a4f2.var_75492b09[player.clientid].var_851de005 = player;
-	level.var_f791a4f2.var_75492b09[player.clientid].expiretime = gettime() + (float(getdvarint(#"hash_6f3f10e68d2fedba", 0)) / 1000);
+	level.trackerperk.var_75492b09[player.clientid].var_80ec1137 = gettime();
+	level.trackerperk.var_75492b09[player.clientid].var_2e0b3c25 = player.origin;
+	level.trackerperk.var_75492b09[player.clientid].var_2672a259 = weapon;
+	level.trackerperk.var_75492b09[player.clientid].var_851de005 = player;
+	level.trackerperk.var_75492b09[player.clientid].expiretime = gettime() + (float(getdvarint(#"hash_6f3f10e68d2fedba", 0)) / 1000);
 }
 
 /*
@@ -129,11 +129,11 @@ function function_43084f6c(player)
 */
 function function_2c77961d(player)
 {
-	if(!isdefined(level.var_f791a4f2.var_75492b09[player.clientid]))
+	if(!isdefined(level.trackerperk.var_75492b09[player.clientid]))
 	{
 		return false;
 	}
-	if(gettime() > level.var_f791a4f2.var_75492b09[player.clientid].expiretime)
+	if(gettime() > level.trackerperk.var_75492b09[player.clientid].expiretime)
 	{
 		return false;
 	}

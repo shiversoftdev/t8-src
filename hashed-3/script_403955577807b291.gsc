@@ -1,15 +1,15 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6ad3fda349f49bf9;
+#using scripts\killstreaks\killstreak_detect.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\postfx_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-#namespace namespace_94f334ac;
+#namespace icepick;
 
 /*
 	Name: init_shared
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0xE95909AE
 	Offset: 0x3C8
 	Size: 0x6C
@@ -35,7 +35,7 @@ function init_shared()
 
 /*
 	Name: function_b53fa4ba
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x802BCAD0
 	Offset: 0x440
 	Size: 0xDA
@@ -64,7 +64,7 @@ function function_b53fa4ba(entity)
 
 /*
 	Name: function_b2755499
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0xDD7FB740
 	Offset: 0x528
 	Size: 0x196
@@ -73,52 +73,52 @@ function function_b53fa4ba(entity)
 */
 function function_b2755499(weapon, entity)
 {
-	var_373a6acd = weapon;
+	returnweapon = weapon;
 	switch(weapon.name)
 	{
 		case "cobra_20mm_comlink":
 		{
-			var_373a6acd = getweapon("helicopter_comlink");
+			returnweapon = getweapon("helicopter_comlink");
 			break;
 		}
-		case "hash_36a6454f13b54f18":
+		case "gun_ultimate_turret":
 		{
-			var_373a6acd = getweapon("ultimate_turret");
+			returnweapon = getweapon("ultimate_turret");
 			break;
 		}
 		case "hash_17df39d53492b0bf":
 		{
-			var_373a6acd = getweapon("ac130");
+			returnweapon = getweapon("ac130");
 			break;
 		}
 		case "straferun_gun":
 		{
-			var_373a6acd = getweapon("straferun");
+			returnweapon = getweapon("straferun");
 			break;
 		}
 		case "hash_26ffb92552ae26be":
 		{
-			var_373a6acd = getweapon("drone_squadron");
+			returnweapon = getweapon("drone_squadron");
 			break;
 		}
 		case "hash_7eca6eae4128f3a0":
 		{
-			var_373a6acd = function_b53fa4ba(entity);
+			returnweapon = function_b53fa4ba(entity);
 			break;
 		}
 		case "hash_61b88900b127386a":
 		case "hash_71088fcd3aaa23fb":
 		{
-			var_373a6acd = getweapon("eq_hawk");
+			returnweapon = getweapon("eq_hawk");
 			break;
 		}
 	}
-	return var_373a6acd;
+	return returnweapon;
 }
 
 /*
 	Name: registerclientfields
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0xEE6BD5A3
 	Offset: 0x6C8
 	Size: 0x4C4
@@ -149,7 +149,7 @@ function private registerclientfields()
 
 /*
 	Name: function_45e26cb2
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x37AB8D8C
 	Offset: 0xB98
 	Size: 0x66
@@ -160,17 +160,17 @@ function function_45e26cb2(local_client_num, oldval, newval, bnewent, binitialsn
 {
 	if(newval == 1)
 	{
-		self.var_acee3911 = 1;
+		self.cantbehacked = 1;
 	}
 	else
 	{
-		self.var_acee3911 = 0;
+		self.cantbehacked = 0;
 	}
 }
 
 /*
 	Name: function_d3c5b110
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x58D4C8D7
 	Offset: 0xC08
 	Size: 0xFC
@@ -196,7 +196,7 @@ function function_d3c5b110(local_client_num, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: function_39f69700
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x756D6AA2
 	Offset: 0xD10
 	Size: 0x2CE
@@ -213,71 +213,71 @@ function function_39f69700(local_client_num, oldval, newval, bnewent, binitialsn
 	totalcount = getuimodelvalue(getuimodel(parentmodel, "hackablesCount"));
 	for(index = 0; index < totalcount; index++)
 	{
-		var_e4130a92 = getuimodel(parentmodel, "item" + index);
-		isplayer = getuimodelvalue(getuimodel(var_e4130a92, "hackableCategory")) == 0;
+		itemuimodel = getuimodel(parentmodel, "item" + index);
+		isplayer = getuimodelvalue(getuimodel(itemuimodel, "hackableCategory")) == 0;
 		if(!isplayer)
 		{
 			continue;
 		}
-		var_959dd66c = getuimodelvalue(getuimodel(var_e4130a92, "hackableId"));
+		var_959dd66c = getuimodelvalue(getuimodel(itemuimodel, "hackableId"));
 		if(newval == -1)
 		{
-			setuimodelvalue(getuimodel(var_e4130a92, "hackStatus"), 0);
+			setuimodelvalue(getuimodel(itemuimodel, "hackStatus"), 0);
 			continue;
 		}
 		else if(newval == -2)
 		{
-			setuimodelvalue(getuimodel(var_e4130a92, "hackStatus"), 2);
+			setuimodelvalue(getuimodel(itemuimodel, "hackStatus"), 2);
 			continue;
 		}
 		if(var_959dd66c < newval)
 		{
-			setuimodelvalue(getuimodel(var_e4130a92, "hackStatus"), 2);
+			setuimodelvalue(getuimodel(itemuimodel, "hackStatus"), 2);
 			continue;
 		}
 		if(var_959dd66c == newval)
 		{
-			setuimodelvalue(getuimodel(var_e4130a92, "hackStatus"), 1);
+			setuimodelvalue(getuimodel(itemuimodel, "hackStatus"), 1);
 			continue;
 		}
-		setuimodelvalue(getuimodel(var_e4130a92, "hackStatus"), 0);
+		setuimodelvalue(getuimodel(itemuimodel, "hackStatus"), 0);
 	}
 }
 
 /*
 	Name: function_ca096bad
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x850008DB
 	Offset: 0xFE8
 	Size: 0x26C
 	Parameters: 7
 	Flags: None
 */
-function function_ca096bad(model, index, var_3cf2d21, entnum, category, categoryindex, weapon)
+function function_ca096bad(model, index, namehash, entnum, category, categoryindex, weapon)
 {
-	var_e4130a92 = createuimodel(model, "item" + index);
-	if(isdefined(var_3cf2d21))
+	itemuimodel = createuimodel(model, "item" + index);
+	if(isdefined(namehash))
 	{
-		setuimodelvalue(createuimodel(var_e4130a92, "hackableName"), var_3cf2d21);
+		setuimodelvalue(createuimodel(itemuimodel, "hackableName"), namehash);
 	}
 	var_c097c11c = 0;
-	setuimodelvalue(createuimodel(var_e4130a92, "hackableId"), entnum);
+	setuimodelvalue(createuimodel(itemuimodel, "hackableId"), entnum);
 	if(isdefined(weapon) && weapon.statname != #"")
 	{
 		weaponindex = getitemindexfromref(weapon.statname);
-		setuimodelvalue(createuimodel(var_e4130a92, "hackableItemIndex"), weaponindex);
+		setuimodelvalue(createuimodel(itemuimodel, "hackableItemIndex"), weaponindex);
 		var_c097c11c = weapon.var_df381b5d == 2;
 	}
-	setuimodelvalue(createuimodel(var_e4130a92, "hackableCategory"), category);
-	setuimodelvalue(createuimodel(var_e4130a92, "indexWithinCategory"), categoryindex);
-	setuimodelvalue(createuimodel(var_e4130a92, "hackStatus"), 0);
-	setuimodelvalue(createuimodel(var_e4130a92, "hackableDoubleWidth"), var_c097c11c);
-	setuimodelvalue(createuimodel(var_e4130a92, "hackableFlavorText"), #"");
+	setuimodelvalue(createuimodel(itemuimodel, "hackableCategory"), category);
+	setuimodelvalue(createuimodel(itemuimodel, "indexWithinCategory"), categoryindex);
+	setuimodelvalue(createuimodel(itemuimodel, "hackStatus"), 0);
+	setuimodelvalue(createuimodel(itemuimodel, "hackableDoubleWidth"), var_c097c11c);
+	setuimodelvalue(createuimodel(itemuimodel, "hackableFlavorText"), #"");
 }
 
 /*
 	Name: function_808efdee
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0xABF87136
 	Offset: 0x1260
 	Size: 0x162
@@ -315,7 +315,7 @@ function function_808efdee(hacker, entity, weapon)
 
 /*
 	Name: function_8d50c205
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x11D6BAE0
 	Offset: 0x13D0
 	Size: 0xF8
@@ -324,18 +324,18 @@ function function_808efdee(hacker, entity, weapon)
 */
 function function_8d50c205(left, right)
 {
-	var_93633a81 = function_b2755499(left.weapon, left);
-	var_84792f3e = function_b2755499(right.weapon, right);
-	if(isplayer(left) || isplayer(right) || var_93633a81.var_8134b209 == var_84792f3e.var_8134b209)
+	leftweapon = function_b2755499(left.weapon, left);
+	rightweapon = function_b2755499(right.weapon, right);
+	if(isplayer(left) || isplayer(right) || leftweapon.var_8134b209 == rightweapon.var_8134b209)
 	{
 		return left getentitynumber() < right getentitynumber();
 	}
-	return var_93633a81.var_8134b209 < var_84792f3e.var_8134b209;
+	return leftweapon.var_8134b209 < rightweapon.var_8134b209;
 }
 
 /*
 	Name: function_adceefd
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x664225A8
 	Offset: 0x14D0
 	Size: 0x380
@@ -372,20 +372,20 @@ function function_adceefd(local_client_num, hacker)
 		{
 			continue;
 		}
-		var_96cc400c = function_b2755499(var_20651f4.weapon, var_20651f4);
-		if(!function_808efdee(self, var_20651f4, var_96cc400c))
+		entweapon = function_b2755499(var_20651f4.weapon, var_20651f4);
+		if(!function_808efdee(self, var_20651f4, entweapon))
 		{
 			continue;
 		}
-		if(!isdefined(var_94e70cdd[var_96cc400c.var_a8bd8bb2]))
+		if(!isdefined(var_94e70cdd[entweapon.var_a8bd8bb2]))
 		{
-			var_94e70cdd[var_96cc400c.var_a8bd8bb2] = [];
+			var_94e70cdd[entweapon.var_a8bd8bb2] = [];
 		}
-		else if(!isarray(var_94e70cdd[var_96cc400c.var_a8bd8bb2]))
+		else if(!isarray(var_94e70cdd[entweapon.var_a8bd8bb2]))
 		{
-			var_94e70cdd[var_96cc400c.var_a8bd8bb2] = array(var_94e70cdd[var_96cc400c.var_a8bd8bb2]);
+			var_94e70cdd[entweapon.var_a8bd8bb2] = array(var_94e70cdd[entweapon.var_a8bd8bb2]);
 		}
-		var_94e70cdd[var_96cc400c.var_a8bd8bb2][var_94e70cdd[var_96cc400c.var_a8bd8bb2].size] = var_20651f4;
+		var_94e70cdd[entweapon.var_a8bd8bb2][var_94e70cdd[entweapon.var_a8bd8bb2].size] = var_20651f4;
 	}
 	array::function_b63fcb3(var_94e70cdd[0], &function_8d50c205);
 	array::function_b63fcb3(var_94e70cdd[1], &function_8d50c205);
@@ -395,7 +395,7 @@ function function_adceefd(local_client_num, hacker)
 
 /*
 	Name: watchfordeath
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x3130A27D
 	Offset: 0x1858
 	Size: 0x10C
@@ -404,8 +404,8 @@ function function_adceefd(local_client_num, hacker)
 */
 function watchfordeath(local_client_num, entity, index)
 {
-	entity endon(#"hash_321e96994b3767cd");
-	while(isdefined(entity) && (!(isdefined(entity.var_acee3911) && entity.var_acee3911)))
+	entity endon(#"icepickhacked");
+	while(isdefined(entity) && (!(isdefined(entity.cantbehacked) && entity.cantbehacked)))
 	{
 		waitframe(1);
 	}
@@ -414,13 +414,13 @@ function watchfordeath(local_client_num, entity, index)
 	{
 		return;
 	}
-	var_e4130a92 = createuimodel(parentmodel, "item" + index);
-	setuimodelvalue(createuimodel(var_e4130a92, "hackStatus"), 3);
+	itemuimodel = createuimodel(parentmodel, "item" + index);
+	setuimodelvalue(createuimodel(itemuimodel, "hackStatus"), 3);
 }
 
 /*
 	Name: function_9e88e881
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x81AB0D84
 	Offset: 0x1970
 	Size: 0x58C
@@ -438,7 +438,7 @@ function function_9e88e881(local_client_num)
 	var_a9705012[2] = 0;
 	var_88d95648 = function_e563a9b(local_client_num);
 	var_9411ea0 = 0;
-	var_e33ae97c = function_adceefd(local_client_num, self);
+	hackableitems = function_adceefd(local_client_num, self);
 	numplayers = getdvarint(#"com_maxclients", 0);
 	for(i = 0; i < numplayers; i++)
 	{
@@ -446,11 +446,11 @@ function function_9e88e881(local_client_num)
 		var_9411ea0++;
 		var_a9705012[0]++;
 	}
-	var_8b745faa = getweapon(#"gadget_icepick");
-	var_a4739e20 = getscriptbundle(var_8b745faa.var_4dd46f8a);
+	icepickweapon = getweapon(#"gadget_icepick");
+	var_a4739e20 = getscriptbundle(icepickweapon.customsettings);
 	var_9b81203 = var_a4739e20.var_a65e249e;
 	var_f998f517 = 0;
-	foreach(var_20651f4 in var_e33ae97c[1])
+	foreach(var_20651f4 in hackableitems[1])
 	{
 		var_b095c57b = function_b2755499(var_20651f4.weapon, var_20651f4);
 		var_f998f517 = var_f998f517 + var_b095c57b.var_df381b5d;
@@ -464,7 +464,7 @@ function function_9e88e881(local_client_num)
 		var_9411ea0++;
 	}
 	var_f998f517 = 0;
-	foreach(var_20651f4 in var_e33ae97c[2])
+	foreach(var_20651f4 in hackableitems[2])
 	{
 		var_b095c57b = function_b2755499(var_20651f4.weapon, var_20651f4);
 		var_f998f517 = var_f998f517 + var_b095c57b.var_df381b5d;
@@ -486,7 +486,7 @@ function function_9e88e881(local_client_num)
 
 /*
 	Name: function_868adc20
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x2CDF27E
 	Offset: 0x1F08
 	Size: 0x124
@@ -515,7 +515,7 @@ function function_868adc20(local_client_num, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: icepick_on
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0xF4660742
 	Offset: 0x2038
 	Size: 0xCE
@@ -537,7 +537,7 @@ function icepick_on(local_client_num, oldval, newval, bnewent, binitialsnap, fie
 
 /*
 	Name: function_4a82368f
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x4806162E
 	Offset: 0x2110
 	Size: 0xF4
@@ -565,7 +565,7 @@ function function_4a82368f(local_client_num, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: function_67b9bc99
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x632F7FD5
 	Offset: 0x2210
 	Size: 0xF0
@@ -586,7 +586,7 @@ function private function_67b9bc99(player, local_client_num)
 
 /*
 	Name: function_d96f79be
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x85F0F988
 	Offset: 0x2308
 	Size: 0x19C
@@ -630,7 +630,7 @@ function function_d96f79be(local_client_num, oldval, newval, bwastimejump)
 
 /*
 	Name: function_34aba8d8
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x470B181C
 	Offset: 0x24B0
 	Size: 0x232
@@ -647,8 +647,8 @@ function private function_34aba8d8(local_client_num, targetid, newval)
 	totalcount = getuimodelvalue(getuimodel(parentmodel, "hackablesCount"));
 	for(index = 0; index < totalcount; index++)
 	{
-		var_e4130a92 = getuimodel(parentmodel, "item" + index);
-		var_959dd66c = getuimodelvalue(getuimodel(var_e4130a92, "hackableId"));
+		itemuimodel = getuimodel(parentmodel, "item" + index);
+		var_959dd66c = getuimodelvalue(getuimodel(itemuimodel, "hackableId"));
 		if(var_959dd66c != targetid)
 		{
 			continue;
@@ -664,20 +664,20 @@ function private function_34aba8d8(local_client_num, targetid, newval)
 			{
 				var_cce9de60 = #"";
 			}
-			setuimodelvalue(getuimodel(var_e4130a92, "hackableFlavorText"), var_cce9de60);
+			setuimodelvalue(getuimodel(itemuimodel, "hackableFlavorText"), var_cce9de60);
 		}
 		else if(newval == 2)
 		{
-			self notify(#"hash_321e96994b3767cd");
+			self notify(#"icepickhacked");
 		}
-		setuimodelvalue(getuimodel(var_e4130a92, "hackStatus"), newval);
+		setuimodelvalue(getuimodel(itemuimodel, "hackStatus"), newval);
 		break;
 	}
 }
 
 /*
 	Name: function_91803954
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0xEBA9AE7A
 	Offset: 0x26F0
 	Size: 0x1A8
@@ -727,7 +727,7 @@ function function_91803954(local_client_num, oldval, newval)
 
 /*
 	Name: function_1238516b
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x3A7D9481
 	Offset: 0x28A0
 	Size: 0x12C
@@ -759,7 +759,7 @@ function function_1238516b(local_client_num, oldval, newval, bnewent, binitialsn
 
 /*
 	Name: function_fd2904cd
-	Namespace: namespace_94f334ac
+	Namespace: icepick
 	Checksum: 0x8CD5640D
 	Offset: 0x29D8
 	Size: 0x3C

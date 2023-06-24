@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_d596aaaa : class_6aaccc24
+class czm_arcade_keys : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_d596aaaa
+		Namespace: czm_arcade_keys
 		Checksum: 0x290E66B0
 		Offset: 0x1D0
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_d596aaaa : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_d596aaaa
+		Namespace: czm_arcade_keys
 		Checksum: 0x75D4ADFA
 		Offset: 0x310
 		Size: 0x14
@@ -33,22 +33,22 @@ class class_d596aaaa : class_6aaccc24
 	}
 
 	/*
-		Name: function_3684f146
-		Namespace: namespace_d596aaaa
+		Name: set_key_count
+		Namespace: czm_arcade_keys
 		Checksum: 0x5C61B4
 		Offset: 0x2C8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_3684f146(player, value)
+	function set_key_count(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "key_count", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_d596aaaa
+		Namespace: czm_arcade_keys
 		Checksum: 0x1541A95E
 		Offset: 0x298
 		Size: 0x24
@@ -57,12 +57,12 @@ class class_d596aaaa : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_d596aaaa
+		Namespace: czm_arcade_keys
 		Checksum: 0x8B56151E
 		Offset: 0x248
 		Size: 0x44
@@ -71,12 +71,12 @@ class class_d596aaaa : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_arcade_keys", persistent);
+		cLUIelem::open_luielem(player, "zm_arcade_keys", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_d596aaaa
+		Namespace: czm_arcade_keys
 		Checksum: 0x8FC351E0
 		Offset: 0x1F0
 		Size: 0x4C
@@ -85,8 +85,8 @@ class class_d596aaaa : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("key_count", 1, 4, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("key_count", 1, 4, "int");
 	}
 
 }
@@ -104,7 +104,7 @@ class class_d596aaaa : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_d596aaaa();
+	elem = new czm_arcade_keys();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -152,7 +152,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_3684f146
+	Name: set_key_count
 	Namespace: zm_arcade_keys
 	Checksum: 0xA212BB4E
 	Offset: 0x1A0
@@ -160,8 +160,8 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_3684f146(player, value)
+function set_key_count(player, value)
 {
-	[[ self ]]->function_3684f146(player, value);
+	[[ self ]]->set_key_count(player, value);
 }
 

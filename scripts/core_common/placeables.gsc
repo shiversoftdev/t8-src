@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_79a7e1c31a3e8cc;
+#using scripts\weapons\deployable.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\oob.gsc;
 #using scripts\core_common\scene_shared.gsc;
@@ -98,7 +98,7 @@ function function_e4fd9a4c(placeable)
 		{
 			if(placeable.weapon.deployable)
 			{
-				deployable::function_2e088f73(placeable.weapon, placeable.var_8f4513d1, undefined, placeable.placehintstring, placeable.invalidlocationhintstring);
+				deployable::register_deployable(placeable.weapon, placeable.var_8f4513d1, undefined, placeable.placehintstring, placeable.invalidlocationhintstring);
 				if(isplayer(player))
 				{
 					player giveweapon(placeable.weapon);
@@ -206,8 +206,8 @@ function function_b7fcffdd(placeable)
 	player = self;
 	player endon(#"disconnect", #"death");
 	placeable endon(#"placed", #"cancelled");
-	player notify(#"hash_6a6d790b6c192aee");
-	player endon(#"hash_6a6d790b6c192aee");
+	player notify(#"placeable_deployable");
+	player endon(#"placeable_deployable");
 	placeable notsolid();
 	if(isdefined(placeable.vehicle))
 	{
@@ -540,9 +540,9 @@ function watchplacement(placeable)
 	Parameters: 1
 	Flags: None
 */
-function function_613a226a(var_844f9de6)
+function function_613a226a(allow_alt)
 {
-	self.var_e3be448 = var_844f9de6;
+	self.var_e3be448 = allow_alt;
 }
 
 /*

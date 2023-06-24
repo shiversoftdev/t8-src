@@ -75,7 +75,7 @@ function addblackboardevent(eventname, data, timetoliveinmillis)
 {
 	/#
 		/#
-			assert(isstring(eventname) || function_7a600918(eventname), "");
+			assert(isstring(eventname) || ishash(eventname), "");
 		#/
 		/#
 			assert(isdefined(data), "");

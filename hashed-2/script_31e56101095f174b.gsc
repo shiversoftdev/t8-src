@@ -650,7 +650,7 @@ function createaction(actionname, constants)
 		assert(!isdefined(constants) || isarray(constants));
 	#/
 	/#
-		assert(function_7a600918(actionname));
+		assert(ishash(actionname));
 	#/
 	node = spawnstruct();
 	node.type = "action";
@@ -671,7 +671,7 @@ function createaction(actionname, constants)
 function createplanner(name)
 {
 	/#
-		assert(function_7a600918(name));
+		assert(ishash(name));
 	#/
 	planner = spawnstruct();
 	planner.cancel = 0;
@@ -696,7 +696,7 @@ function createplanner(name)
 function createpostcondition(functionname, constants)
 {
 	/#
-		assert(function_7a600918(functionname));
+		assert(ishash(functionname));
 	#/
 	/#
 		assert(!isdefined(constants) || isarray(constants));
@@ -723,7 +723,7 @@ function createpostcondition(functionname, constants)
 function createprecondition(functionname, constants)
 {
 	/#
-		assert(function_7a600918(functionname));
+		assert(ishash(functionname));
 	#/
 	/#
 		assert(!isdefined(constants) || isarray(constants));
@@ -811,7 +811,7 @@ function getblackboardattribute(planner, attribute, blackboardindex = 0)
 		assert(isstruct(planner));
 	#/
 	/#
-		assert(isstring(attribute) || function_7a600918(attribute));
+		assert(isstring(attribute) || ishash(attribute));
 	#/
 	/#
 		assert(isarray(planner.blackboards));
@@ -1084,7 +1084,7 @@ function setblackboardattribute(planner, attribute, value, blackboardindex = 0, 
 		assert(isstruct(planner));
 	#/
 	/#
-		assert(isstring(attribute) || function_7a600918(attribute));
+		assert(isstring(attribute) || ishash(attribute));
 	#/
 	/#
 		assert(isarray(planner.blackboards));
@@ -1226,7 +1226,7 @@ function createplannerfromasset(assetname)
 function getplannerapifunction(functionname)
 {
 	/#
-		assert(function_7a600918(functionname) && functionname != "", "");
+		assert(ishash(functionname) && functionname != "", "");
 	#/
 	/#
 		assert(isdefined(level._plannerscriptfunctions[#"api"][functionname]), ("" + function_9e72a96(functionname)) + "");
@@ -1246,7 +1246,7 @@ function getplannerapifunction(functionname)
 function getplanneractionfunctions(actionname)
 {
 	/#
-		assert(function_7a600918(actionname) && actionname != "", "");
+		assert(ishash(actionname) && actionname != "", "");
 	#/
 	/#
 		assert(isdefined(level._plannerscriptfunctions[#"action"][actionname]), ("" + function_9e72a96(actionname)) + "");
@@ -1266,7 +1266,7 @@ function getplanneractionfunctions(actionname)
 function registerplannerapi(functionname, functionptr)
 {
 	/#
-		assert(function_7a600918(functionname) && functionname != "", "");
+		assert(ishash(functionname) && functionname != "", "");
 	#/
 	/#
 		assert(isfunctionptr(functionptr), ("" + function_9e72a96(functionname)) + "");
@@ -1290,7 +1290,7 @@ function registerplannerapi(functionname, functionptr)
 function registerplanneraction(actionname, paramfuncptr, initializefuncptr, updatefuncptr, terminatefuncptr)
 {
 	/#
-		assert(function_7a600918(actionname) && actionname != "", "");
+		assert(ishash(actionname) && actionname != "", "");
 	#/
 	planner::_initializeplannerfunctions("Action");
 	/#

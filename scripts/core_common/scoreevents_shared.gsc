@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_bc839bb0e693558;
+#using scripts\abilities\ability_power.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\contracts_shared.gsc;
 #using scripts\core_common\rank_shared.gsc;
@@ -48,7 +48,7 @@ function processscoreevent(event, player, victim, weapon, var_36f23f1f)
 	{
 		return scoregiven;
 	}
-	if(isdefined(level.var_64ce2685) && level.var_64ce2685)
+	if(isdefined(level.disablescoreevents) && level.disablescoreevents)
 	{
 		return scoregiven;
 	}
@@ -59,13 +59,13 @@ function processscoreevent(event, player, victim, weapon, var_36f23f1f)
 	pixbeginevent(#"processscoreevent");
 	isscoreevent = 0;
 	/#
-		if(getdvarint(#"hash_39060c853726e6c0", 0) > 0)
+		if(getdvarint(#"logscoreevents", 0) > 0)
 		{
 			if(!isdefined(level.var_10cd7193))
 			{
 				level.var_10cd7193 = [];
 			}
-			eventstr = (function_7a600918(event) ? function_9e72a96(event) : event);
+			eventstr = (ishash(event) ? function_9e72a96(event) : event);
 			if(!isdefined(level.var_10cd7193))
 			{
 				level.var_10cd7193 = [];
@@ -114,7 +114,7 @@ function processscoreevent(event, player, victim, weapon, var_36f23f1f)
 		player addrankxp(event, weapon, player.class_num, pickedup, isscoreevent, xp_difficulty_multiplier);
 		if(isdefined(event) && isdefined(weapon) && isdefined(level.scoreinfo[event]))
 		{
-			var_6d1793bb = level.scoreinfo[event][#"hash_17ffe407dca54dd7"];
+			var_6d1793bb = level.scoreinfo[event][#"medalnamehash"];
 			if(isdefined(var_6d1793bb))
 			{
 				specialistindex = player getspecialistindex();
@@ -331,14 +331,14 @@ function getscoreeventtablename(gametype)
 		{
 			prefix = #"hash_5f114025234e912f";
 		}
-		else if(function_f99d2668())
+		else if(sessionmodeiswarzonegame())
 		{
 			prefix = #"hash_2bedaa060f1bcc0f";
 		}
 	}
-	gametype = function_ea13f55(gametype, "_hc", "");
-	gametype = function_ea13f55(gametype, "_cwl", "");
-	gametype = function_ea13f55(gametype, "_bb", "");
+	gametype = strreplace(gametype, "_hc", "");
+	gametype = strreplace(gametype, "_cwl", "");
+	gametype = strreplace(gametype, "_bb", "");
 	tablename = ((prefix + "_") + gametype) + ".csv";
 	if(!(isdefined(isassetloaded("stringtable", tablename)) && isassetloaded("stringtable", tablename)))
 	{

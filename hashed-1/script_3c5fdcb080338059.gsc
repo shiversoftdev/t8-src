@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -9,7 +9,7 @@
 #namespace namespace_ea9baedf;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_ea9baedf
 	Checksum: 0x4C70B33B
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_c25f006b5e1726d", &__init__, undefined, undefined);
 }
@@ -37,11 +37,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_7735a2dc4298e55c", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_7735a2dc4298e55c", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_ea9baedf
 	Checksum: 0x4EF89EC8
 	Offset: 0x148
@@ -49,7 +49,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-function private function_d1de6a85(kill_count)
+function private on_begin(kill_count)
 {
 	self.kill_count = zm_trial::function_5769f26a(kill_count);
 	foreach(player in getplayers())
@@ -57,7 +57,7 @@ function private function_d1de6a85(kill_count)
 		player.var_c957540c = 0;
 	}
 	zm_spawner::register_zombie_death_event_callback(&function_138aec8e);
-	namespace_b22c99a5::function_c2cd0cba(self.kill_count);
+	zm_trial_util::function_c2cd0cba(self.kill_count);
 	foreach(player in getplayers())
 	{
 		player thread function_7f62f098(self);
@@ -66,7 +66,7 @@ function private function_d1de6a85(kill_count)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_ea9baedf
 	Checksum: 0x782F7331
 	Offset: 0x2C8
@@ -74,11 +74,11 @@ function private function_d1de6a85(kill_count)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_f3aacffb();
+		player zm_trial_util::function_f3aacffb();
 	}
 	if(!round_reset)
 	{
@@ -130,7 +130,7 @@ function private function_7f62f098(challenge)
 		{
 			var_96936cca = challenge.kill_count;
 		}
-		self namespace_b22c99a5::function_2190356a(var_96936cca);
+		self zm_trial_util::function_2190356a(var_96936cca);
 		waitframe(1);
 	}
 }

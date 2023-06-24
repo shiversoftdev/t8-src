@@ -17,7 +17,7 @@
 #namespace zm_attackables;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_attackables
 	Checksum: 0x65C5C234
 	Offset: 0x178
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_attackables", &__init__, &__main__, undefined);
 }

@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1254ac024174d9c0;
-#using script_14f4a3c583c77d4b;
-#using script_7133a4d461308099;
-#using script_ab890501c40b73c;
+#using scripts\zm_common\trials\zm_trial_disable_buys.gsc;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\core_common\activecamo_shared.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -20,7 +20,7 @@
 #namespace zm_melee_weapon;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_melee_weapon
 	Checksum: 0x25562EEC
 	Offset: 0x158
@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"melee_weapon", &__init__, &__main__, undefined);
 }
@@ -99,7 +99,7 @@ function init(weapon_name, flourish_weapon_name, cost, wallbuy_targetname, hint_
 	}
 	zm_loadout::register_melee_weapon_for_level(weapon.name);
 	/#
-		if(!isdefined(level.zombie_weapons[weapon]) && (!is_ee || getdvarint(#"hash_11ad6a9695943217", 0)))
+		if(!isdefined(level.zombie_weapons[weapon]) && (!is_ee || getdvarint(#"zm_debug_ee", 0)))
 		{
 			if(isdefined(level.devgui_add_weapon))
 			{
@@ -327,7 +327,7 @@ function function_e5bf8f08(player)
 	}
 	else
 	{
-		if(namespace_497ab7da::is_active())
+		if(zm_trial_disable_buys::is_active())
 		{
 			return false;
 		}
@@ -556,7 +556,7 @@ function melee_weapon_think(weapon, cost, flourish_fn, vo_dialog_id, flourish_we
 			wait(0.1);
 			continue;
 		}
-		if(namespace_497ab7da::is_active())
+		if(zm_trial_disable_buys::is_active())
 		{
 			wait(0.1);
 			continue;
@@ -620,7 +620,7 @@ function melee_weapon_think(weapon, cost, flourish_fn, vo_dialog_id, flourish_we
 					{
 						level clientfield::set(self.clientfieldname, 1);
 					}
-					if(zm_utility::function_166646a6() != 1 && !isdefined(model))
+					if(zm_utility::get_story() != 1 && !isdefined(model))
 					{
 						var_6ff4b667 = struct::get(self.target, "targetname");
 						if(isdefined(var_6ff4b667) && isdefined(var_6ff4b667.target))
@@ -639,7 +639,7 @@ function melee_weapon_think(weapon, cost, flourish_fn, vo_dialog_id, flourish_we
 				level notify(#"weapon_bought", {#weapon:weapon, #player:player});
 				player zm_score::minus_to_player_score(cost);
 				player zm_stats::function_c0c6ab19(#"wallbuys", 1, 1);
-				player zm_stats::function_c0c6ab19(#"hash_6f9f408a95b50400", 1, 1);
+				player zm_stats::function_c0c6ab19(#"weapons_bought", 1, 1);
 				player contracts::function_5b88297d(#"hash_4a8bbc38f59c2743", 1, #"zstandard");
 				player contracts::function_5b88297d(#"hash_56a15f4e4fa5f4b7", 1, #"zstandard");
 				player thread give_melee_weapon(vo_dialog_id, flourish_weapon, weapon, flourish_fn, self);

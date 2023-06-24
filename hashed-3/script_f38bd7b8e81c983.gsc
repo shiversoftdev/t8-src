@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_28212a1c4376c358;
+#using scripts\weapons\deployable.csc;
 #using scripts\core_common\struct.csc;
 #using scripts\core_common\system_shared.csc;
 
 #namespace ultimate_turret;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: ultimate_turret
 	Checksum: 0xD2B57A0E
 	Offset: 0xA8
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register("ultimate_turret_wz", &__init__, undefined, undefined);
 }
@@ -30,6 +30,6 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	deployable::function_2e088f73(getweapon("ultimate_turret"), 1);
+	deployable::register_deployable(getweapon("ultimate_turret"), 1);
 }
 

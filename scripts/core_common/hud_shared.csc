@@ -5,7 +5,7 @@
 #namespace hud;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: hud
 	Checksum: 0x1C8456E
 	Offset: 0x90
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hud", &__init__, undefined, undefined);
 }

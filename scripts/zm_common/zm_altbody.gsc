@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_b52a163973f339f;
+#using scripts\zm_common\zm_characters.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -26,7 +26,7 @@
 #namespace zm_altbody;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_altbody
 	Checksum: 0x80F98D21
 	Offset: 0x240
@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_altbody", &__init__, undefined, undefined);
 }

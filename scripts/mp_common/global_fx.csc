@@ -4,7 +4,7 @@
 #namespace global_fx;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: global_fx
 	Checksum: 0x20F4789
 	Offset: 0x70
@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"global_fx", &__init__, &main, undefined);
 }

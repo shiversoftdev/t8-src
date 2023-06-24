@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3c362258ff800237;
-#using script_3d5821d793ed4c6;
+#using scripts\zm_common\zm_trial.csc;
+#using scripts\zm_common\zm_trial_util.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\system_shared.csc;
@@ -8,7 +8,7 @@
 #namespace namespace_fcd611c3;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_fcd611c3
 	Checksum: 0xE11F5AFB
 	Offset: 0xB0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_281322718ac3cd88", &__init__, undefined, undefined);
 }
@@ -36,11 +36,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_64d77357e69aee75", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_64d77357e69aee75", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_fcd611c3
 	Checksum: 0x8A779047
 	Offset: 0x160
@@ -48,13 +48,13 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-function private function_d1de6a85(localclientnum, a_params)
+function private on_begin(localclientnum, a_params)
 {
 	level.var_e91491fb = (isdefined(a_params[0]) ? a_params[0] : "movement");
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_fcd611c3
 	Checksum: 0xFA366148
 	Offset: 0x1B0
@@ -62,7 +62,7 @@ function private function_d1de6a85(localclientnum, a_params)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.var_e91491fb = undefined;
 }

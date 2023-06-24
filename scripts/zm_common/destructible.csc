@@ -5,7 +5,7 @@
 #namespace destructible;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: destructible
 	Checksum: 0x34C588DF
 	Offset: 0xC0
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"destructible", &__init__, undefined, undefined);
 }

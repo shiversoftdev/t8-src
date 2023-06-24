@@ -11,7 +11,7 @@
 #namespace zm_jump_pad;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_jump_pad
 	Checksum: 0x2015D980
 	Offset: 0xE8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_jump_pad", &__init__, undefined, undefined);
 }
@@ -139,7 +139,7 @@ function delayed_jump_pad_start(who)
 	wait(0.5);
 	if(who istouching(self))
 	{
-		self thread trigger::function_521edc64(who, &jump_pad_start, &jump_pad_cancel);
+		self thread trigger::function_thread(who, &jump_pad_start, &jump_pad_cancel);
 	}
 }
 

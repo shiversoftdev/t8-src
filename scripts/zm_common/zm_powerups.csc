@@ -341,6 +341,6 @@ function private play_powerup_fx(localclientnum, str_fx, var_6df65756 = 0)
 */
 function function_cc33adc8()
 {
-	return util::function_5df4294() != "zcleansed";
+	return util::get_game_type() != "zcleansed";
 }
 

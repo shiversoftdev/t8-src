@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2255a7ad3edc838f;
+#using scripts\core_common\bots\bot.gsc;
 #using script_30e0aa25775a6927;
 #using script_31e56101095f174b;
-#using script_321486e8a7c7176f;
-#using script_3d2e260ec67fded8;
+#using scripts\core_common\ai\planner_squad.gsc;
+#using scripts\core_common\ai\planner_squad_utility.gsc;
 #using script_522aeb6ae906391e;
-#using script_aa63c66acbb23e;
+#using scripts\core_common\ai\strategic_command.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\perks.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -13,7 +13,7 @@
 #namespace namespace_5bb8bcd5;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_5bb8bcd5
 	Checksum: 0xBA9E12BD
 	Offset: 0xE0
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_2e2ae8534f387ccf", &namespace_ed876ec::__init__, undefined, undefined);
 }
@@ -99,7 +99,7 @@ function private function_37d90686(bot, path)
 		var_3eecdd31 = 0;
 		foreach(point in adjustedpath)
 		{
-			var_3eecdd31 = var_3eecdd31 + pow(bot function_bdda420f(point, 128).size, 1.5);
+			var_3eecdd31 = var_3eecdd31 + pow(bot getenemiesinradius(point, 128).size, 1.5);
 		}
 	}
 	return var_3eecdd31;
@@ -116,7 +116,7 @@ function private function_37d90686(bot, path)
 */
 function private function_3e6c9e50(weapon)
 {
-	if(isdefined(weapon.firetype) && weapon.firetype == #"hash_74e162e14a20482b")
+	if(isdefined(weapon.firetype) && weapon.firetype == #"single shot")
 	{
 		if(weapon.clipsize < 20)
 		{
@@ -147,7 +147,7 @@ function private function_3e6c9e50(weapon)
 function private function_48d6c189(weapon)
 {
 	var_f8e2456f = (weapon.clipsize * weapon.firetime) + weapon.reloadtime;
-	if(isdefined(weapon.firetype) && weapon.firetype == #"hash_74e162e14a20482b")
+	if(isdefined(weapon.firetype) && weapon.firetype == #"single shot")
 	{
 		var_f8e2456f = var_f8e2456f + (weapon.clipsize * 0.5);
 	}
@@ -315,7 +315,7 @@ function private function_d6d5e252(bot, altar)
 		assert(isstruct(altar));
 	#/
 	specialty = bot.var_c27f1e90[altar.script_int];
-	return bot perks::function_be94fe26(specialty);
+	return bot perks::perk_hasperk(specialty);
 }
 
 /*
@@ -356,7 +356,7 @@ function private function_66cc90a(planner, params)
 		{
 			altar = params.altar[#"__unsafe__"][#"altar"];
 			var_8d32cef2 = getclosestpointonnavmesh(params.altar[#"origin"], 200, bot getpathfindingradius());
-			bot bot::function_7a6eea9c(altar);
+			bot bot::set_interact(altar);
 			bot setgoal(var_8d32cef2);
 			bot.goalradius = 512;
 		}
@@ -412,7 +412,7 @@ function private function_14c67eb3(planner, constants)
 	}
 	var_5f1842bf = [];
 	distancesq = constants[#"distance"] * constants[#"distance"];
-	altars = planner::getblackboardattribute(planner, #"hash_789c87157aa8ed0c");
+	altars = planner::getblackboardattribute(planner, #"zm_altars");
 	if(!isdefined(altars))
 	{
 		altars = [];
@@ -435,8 +435,8 @@ function private function_14c67eb3(planner, constants)
 			{
 				continue;
 			}
-			var_40f1a26c = level._custom_perks[perk];
-			cost = var_40f1a26c.cost;
+			customperk = level._custom_perks[perk];
+			cost = customperk.cost;
 			if(isfunctionptr(level._custom_perks[perk].cost))
 			{
 				cost = [[level._custom_perks[perk].cost]]();
@@ -513,7 +513,7 @@ function private function_e442b780(planner, params)
 		{
 			blocker = params.blocker[#"__unsafe__"][#"blocker"];
 			var_9b096a0b = getclosestpointonnavmesh(params.blocker[#"origin"], 200, bot getpathfindingradius());
-			bot bot::function_7a6eea9c(blocker);
+			bot bot::set_interact(blocker);
 			bot setgoal(var_9b096a0b);
 			bot.goalradius = 512;
 		}
@@ -612,7 +612,7 @@ function private function_2af9b775(planner, constants)
 	}
 	if(isdefined(var_2fcdec8b))
 	{
-		planner::setblackboardattribute(planner, #"hash_5a7c0b7729c7cc94", array(var_2fcdec8b));
+		planner::setblackboardattribute(planner, #"zm_pathable_blockers", array(var_2fcdec8b));
 		/#
 			if(isdefined(var_2fcdec8b) && getdvarint(#"hash_76cdb24d903cc201", 0))
 			{
@@ -668,7 +668,7 @@ function private function_73f656f5(planner, params)
 		{
 			chest = params.chest[#"__unsafe__"][#"chest"];
 			var_9b3def7 = getclosestpointonnavmesh(params.chest[#"origin"], 200, bot getpathfindingradius());
-			bot bot::function_7a6eea9c(chest);
+			bot bot::set_interact(chest);
 			bot setgoal(var_9b3def7);
 			bot.goalradius = 512;
 		}
@@ -700,7 +700,7 @@ function private function_e057582f(planner, constants)
 	}
 	var_6a7f5461 = [];
 	distancesq = constants[#"distance"] * constants[#"distance"];
-	chests = planner::getblackboardattribute(planner, #"hash_5b81c238b9038817");
+	chests = planner::getblackboardattribute(planner, #"zm_chests");
 	if(!isdefined(chests))
 	{
 		chests = [];
@@ -754,7 +754,7 @@ function private function_e057582f(planner, constants)
 	}
 	if(isdefined(var_58fadc5d))
 	{
-		planner::setblackboardattribute(planner, #"hash_1e0780dc9a8db7a5", array(var_58fadc5d));
+		planner::setblackboardattribute(planner, #"zm_pathable_chests", array(var_58fadc5d));
 		params.chest = var_58fadc5d;
 	}
 	return params;
@@ -777,7 +777,7 @@ function function_ac1b59c(planner, constants)
 		return params;
 	}
 	var_6a7f5461 = [];
-	chests = planner::getblackboardattribute(planner, #"hash_5b81c238b9038817");
+	chests = planner::getblackboardattribute(planner, #"zm_chests");
 	if(!isdefined(chests))
 	{
 		chests = [];
@@ -819,7 +819,7 @@ function function_ac1b59c(planner, constants)
 	}
 	if(isdefined(var_58fadc5d))
 	{
-		planner::setblackboardattribute(planner, #"hash_1e0780dc9a8db7a5", array(var_58fadc5d));
+		planner::setblackboardattribute(planner, #"zm_pathable_chests", array(var_58fadc5d));
 		params.chest = var_58fadc5d;
 	}
 	return params;
@@ -929,7 +929,7 @@ function private function_4f6a626d(planner, constants)
 	}
 	if(isdefined(var_7cc71b7c))
 	{
-		planner::setblackboardattribute(planner, #"hash_2661b50084f00ea2", array(var_7cc71b7c));
+		planner::setblackboardattribute(planner, #"zm_pathable_powerups", array(var_7cc71b7c));
 		params.powerup = var_7cc71b7c;
 	}
 	return params;
@@ -1024,12 +1024,12 @@ function private function_557051df(planner, constants)
 	var_a0301374 = undefined;
 	foreach(var_c42f08a2 in switches)
 	{
-		var_5ef756b8 = var_c42f08a2[#"__unsafe__"][#"switch"];
-		if(!isdefined(var_5ef756b8))
+		switchent = var_c42f08a2[#"__unsafe__"][#"switch"];
+		if(!isdefined(switchent))
 		{
 			continue;
 		}
-		pathsegment = strategiccommandutility::calculatepathtotrigger(params.bots[0], var_5ef756b8);
+		pathsegment = strategiccommandutility::calculatepathtotrigger(params.bots[0], switchent);
 		if(isdefined(pathsegment) && isdefined(pathsegment.status) && pathsegment.status == #"succeeded")
 		{
 			if(pathsegment.pathdistance > constants[#"distance"] * 2)
@@ -1049,7 +1049,7 @@ function private function_557051df(planner, constants)
 	}
 	if(isdefined(var_a0301374))
 	{
-		planner::setblackboardattribute(planner, #"hash_4e466b58ddff8a8f", array(var_a0301374));
+		planner::setblackboardattribute(planner, #"zm_pathable_switches", array(var_a0301374));
 		params.var_ed8f7cef = var_a0301374;
 	}
 	return params;
@@ -1070,8 +1070,8 @@ function private function_967b74c1(planner, params)
 	{
 		return 2;
 	}
-	var_5ef756b8 = params.var_ed8f7cef[#"__unsafe__"][#"switch"];
-	if(!isdefined(var_5ef756b8))
+	switchent = params.var_ed8f7cef[#"__unsafe__"][#"switch"];
+	if(!isdefined(switchent))
 	{
 		return 2;
 	}
@@ -1079,8 +1079,8 @@ function private function_967b74c1(planner, params)
 	{
 		if(strategiccommandutility::isvalidbot(bot))
 		{
-			var_bd055918 = getclosestpointonnavmesh(var_5ef756b8.origin, 200, bot getpathfindingradius());
-			bot bot::function_7a6eea9c(var_5ef756b8);
+			var_bd055918 = getclosestpointonnavmesh(switchent.origin, 200, bot getpathfindingradius());
+			bot bot::set_interact(switchent);
 			bot setgoal(var_bd055918);
 			bot.goalradius = 512;
 		}
@@ -1103,8 +1103,8 @@ function private function_20f747ae(planner, params)
 	{
 		return 2;
 	}
-	var_5ef756b8 = params.var_ed8f7cef[#"__unsafe__"][#"switch"];
-	if(!isdefined(var_5ef756b8))
+	switchent = params.var_ed8f7cef[#"__unsafe__"][#"switch"];
+	if(!isdefined(switchent))
 	{
 		return 2;
 	}
@@ -1132,7 +1132,7 @@ function private function_6fe73720(planner, params)
 		{
 			wallbuy = params.wallbuy[#"__unsafe__"][#"wallbuy"];
 			var_141550e2 = getclosestpointonnavmesh(params.wallbuy[#"origin"], 200, bot getpathfindingradius());
-			bot bot::function_7a6eea9c(wallbuy);
+			bot bot::set_interact(wallbuy);
 			bot setgoal(var_141550e2);
 			bot.goalradius = 512;
 		}
@@ -1160,8 +1160,8 @@ function private function_393b9c76(planner, constants)
 	/#
 		assert(isint(constants[#"hash_357612272d0dca05"]) || isfloat(constants[#"hash_357612272d0dca05"]), ("" + "") + "");
 	#/
-	var_66c1c955 = isdefined(constants[#"hash_4149860c20496820"]) && constants[#"hash_4149860c20496820"];
-	var_45bdcccb = isdefined(constants[#"hash_5011e8f2767fd1f"]) && constants[#"hash_5011e8f2767fd1f"];
+	var_66c1c955 = isdefined(constants[#"highcost"]) && constants[#"highcost"];
+	var_45bdcccb = isdefined(constants[#"highrank"]) && constants[#"highrank"];
 	if(var_45bdcccb)
 	{
 		var_66c1c955 = 0;
@@ -1202,7 +1202,7 @@ function private function_393b9c76(planner, constants)
 	rank = 2147483647;
 	shortestpath = undefined;
 	var_c5e003e1 = undefined;
-	var_cfb25645 = function_1b0a9309(params.bots[0]);
+	currentweaponrank = function_1b0a9309(params.bots[0]);
 	foreach(var_df2f03d1 in var_8c60fdb3)
 	{
 		weapon = var_df2f03d1[#"weapon"];
@@ -1212,7 +1212,7 @@ function private function_393b9c76(planner, constants)
 		}
 		wallbuy = var_df2f03d1[#"__unsafe__"][#"wallbuy"];
 		weaponrank = function_8cfcffa3(params.bots[0], wallbuy.weapon);
-		if(weaponrank - var_cfb25645 < constants[#"hash_357612272d0dca05"])
+		if(weaponrank - currentweaponrank < constants[#"hash_357612272d0dca05"])
 		{
 			continue;
 		}
@@ -1246,7 +1246,7 @@ function private function_393b9c76(planner, constants)
 	}
 	if(isdefined(var_c5e003e1))
 	{
-		planner::setblackboardattribute(planner, #"hash_3f8e61aec9140f86", array(var_c5e003e1));
+		planner::setblackboardattribute(planner, #"zm_pathable_wallbuys", array(var_c5e003e1));
 		params.wallbuy = var_c5e003e1;
 	}
 	return params;
@@ -1429,19 +1429,19 @@ function function_bd34d468()
 function function_9259be56()
 {
 	/#
-		var_86914e6e = [];
+		obbs = [];
 		var_521da80d = array("", "", "");
 		foreach(var_b849a5e7 in var_521da80d)
 		{
 			doorblockers = getentarray(var_b849a5e7, "");
 			foreach(doorblocker in doorblockers)
 			{
-				var_75ae35a4 = function_fc9f37f4(doorblocker);
-				var_75ae35a4.points = tacticalquery(#"stratcom_tacquery_trigger", var_75ae35a4);
-				var_86914e6e[var_86914e6e.size] = var_75ae35a4;
+				obb = function_fc9f37f4(doorblocker);
+				obb.points = tacticalquery(#"stratcom_tacquery_trigger", obb);
+				obbs[obbs.size] = obb;
 			}
 		}
-		return var_86914e6e;
+		return obbs;
 	#/
 }
 
@@ -1457,19 +1457,19 @@ function function_9259be56()
 function function_6e494c0e()
 {
 	/#
-		var_86914e6e = [];
+		obbs = [];
 		foreach(wallbuy in level._spawned_wallbuys)
 		{
-			var_75ae35a4 = function_3ad5b4e7(wallbuy.trigger_stub);
+			obb = function_3ad5b4e7(wallbuy.trigger_stub);
 			origin = getclosestpointonnavmesh(wallbuy.trigger_stub.origin, 200, 15.1875);
-			var_75ae35a4.points = [];
+			obb.points = [];
 			if(isdefined(origin))
 			{
-				var_75ae35a4.points[var_75ae35a4.points.size] = {#origin:origin};
+				obb.points[obb.points.size] = {#origin:origin};
 			}
-			var_86914e6e[var_86914e6e.size] = var_75ae35a4;
+			obbs[obbs.size] = obb;
 		}
-		return var_86914e6e;
+		return obbs;
 	#/
 }
 
@@ -1517,21 +1517,21 @@ function function_3ad5b4e7(triggerstub)
 	Parameters: 1
 	Flags: None
 */
-function function_fafff2f(var_86914e6e)
+function function_fafff2f(obbs)
 {
 	/#
-		foreach(var_75ae35a4 in var_86914e6e)
+		foreach(obb in obbs)
 		{
-			box(var_75ae35a4.center, var_75ae35a4.halfsize * -1, var_75ae35a4.halfsize, var_75ae35a4.angles[1], (0, 1, 0));
-			if(var_75ae35a4.points.size > 0)
+			box(obb.center, obb.halfsize * -1, obb.halfsize, obb.angles[1], (0, 1, 0));
+			if(obb.points.size > 0)
 			{
-				foreach(point in var_75ae35a4.points)
+				foreach(point in obb.points)
 				{
 					sphere(point.origin, 10, (0, 1, 0));
 				}
 				continue;
 			}
-			sphere(var_75ae35a4.center, 20, (1, 0, 0));
+			sphere(obb.center, 20, (1, 0, 0));
 		}
 	#/
 }

@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_24c32478acf44108;
-#using script_256b8879317373de;
+#using scripts\core_common\player\player_shared.gsc;
 #using script_35598499769dbb3d;
-#using script_3f9e0dc8454d98e1;
-#using script_42ac6fc8b2ff0f3e;
-#using script_4d000493c57bb851;
-#using script_5660bae5b402a1eb;
-#using script_6e3c826b1814cab6;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm\weapons\zm_weap_riotshield.gsc;
+#using scripts\zm_common\zm_crafting.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
@@ -33,7 +33,7 @@
 #namespace namespace_b13f32ef;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_b13f32ef
 	Checksum: 0x6D7EF02F
 	Offset: 0x170
@@ -41,7 +41,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_67501a71e89fb822", &__init__, &__main__, undefined);
 }
@@ -138,7 +138,7 @@ function function_dcdaf81c(weapon, riotshield_knockdown_range, riotshield_gib_ra
 			#/
 			level.riotshield_fling_enemies[i] thread function_80a146c1(self, weapon);
 			var_d3f92d4d = 30;
-			if(self hasperk(#"hash_4262dc5dc4acb784"))
+			if(self hasperk(#"specialty_mod_shield"))
 			{
 				var_d3f92d4d = var_d3f92d4d * 0.66;
 			}
@@ -179,7 +179,7 @@ function function_dcdaf81c(weapon, riotshield_knockdown_range, riotshield_gib_ra
 				var_d3f92d4d = 20;
 			}
 		}
-		if(self hasperk(#"hash_4262dc5dc4acb784"))
+		if(self hasperk(#"specialty_mod_shield"))
 		{
 			var_d3f92d4d = var_d3f92d4d * 0.66;
 		}
@@ -296,7 +296,7 @@ function function_376cd4f6(weapon)
 		{
 			level.riotshield_fling_enemies[i] thread riotshield::riotshield_fling_zombie(self, level.riotshield_fling_vecs[i], i);
 			var_d3f92d4d = zombie_utility::function_d2dfacfd(#"riotshield_fling_damage_shield");
-			if(self hasperk(#"hash_4262dc5dc4acb784"))
+			if(self hasperk(#"specialty_mod_shield"))
 			{
 				var_d3f92d4d = var_d3f92d4d * 0.66;
 			}
@@ -329,7 +329,7 @@ function function_376cd4f6(weapon)
 				var_d3f92d4d = zombie_utility::function_d2dfacfd(#"hash_6835f7c5524585f3");
 			}
 		}
-		if(self hasperk(#"hash_4262dc5dc4acb784"))
+		if(self hasperk(#"specialty_mod_shield"))
 		{
 			var_d3f92d4d = var_d3f92d4d * 0.66;
 		}

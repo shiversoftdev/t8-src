@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_9e6034d2 : class_6aaccc24
+class cplayer_insertion_choice : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x416897F9
 		Offset: 0x1D8
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_9e6034d2 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x37B3756
 		Offset: 0x418
 		Size: 0x14
@@ -34,7 +34,7 @@ class class_9e6034d2 : class_6aaccc24
 
 	/*
 		Name: set_state
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0xC60874C
 		Offset: 0x2D0
 		Size: 0x13C
@@ -49,13 +49,13 @@ class class_9e6034d2 : class_6aaccc24
 		}
 		else
 		{
-			if(#"hash_bcb68d30ea251e2" == state_name)
+			if(#"groundvehicle" == state_name)
 			{
 				player clientfield::function_9bf78ef8(var_47e79fc, "_state", 1);
 			}
 			else
 			{
-				if(#"hash_a9365fdb97f532b" == state_name)
+				if(#"halojump" == state_name)
 				{
 					player clientfield::function_9bf78ef8(var_47e79fc, "_state", 2);
 				}
@@ -80,7 +80,7 @@ class class_9e6034d2 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x33E0F342
 		Offset: 0x2A0
 		Size: 0x24
@@ -89,12 +89,12 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0xEC0BE477
 		Offset: 0x250
 		Size: 0x44
@@ -103,12 +103,12 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "player_insertion_choice", persistent);
+		cLUIelem::open_luielem(player, "player_insertion_choice", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0xFF882A3C
 		Offset: 0x1F8
 		Size: 0x4C
@@ -117,8 +117,8 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 2, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 2, "int");
 	}
 
 }
@@ -136,7 +136,7 @@ class class_9e6034d2 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_9e6034d2();
+	elem = new cplayer_insertion_choice();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

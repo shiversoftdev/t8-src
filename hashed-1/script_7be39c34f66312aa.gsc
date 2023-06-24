@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 
@@ -65,7 +65,7 @@ function magic_box_update()
 	self endon(#"end_game");
 	util::registerclientsys("box_indicator");
 	util::setclientsysstate("box_indicator", level._pentagon_no_power);
-	if(namespace_59ff1d6c::function_901b751c(#"hash_4e0ec3fe56f08b47") == 0)
+	if(zm_custom::function_901b751c(#"hash_4e0ec3fe56f08b47") == 0)
 	{
 		return;
 	}

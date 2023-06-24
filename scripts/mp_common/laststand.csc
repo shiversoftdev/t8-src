@@ -9,7 +9,7 @@
 #namespace laststand;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: laststand
 	Checksum: 0xAFDB1CF4
 	Offset: 0x288
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"laststand", &__init__, undefined, undefined);
 }
@@ -66,8 +66,8 @@ function function_e71af9c9(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			self postfx::playpostfxbundle("pstfx_drowning");
 			value = 0.99;
-			self postfx::function_c8b5f318("pstfx_drowning", #"hash_529f62d9ea291b22", value);
-			self postfx::function_c8b5f318("pstfx_drowning", #"hash_5043dadd8f112a93", value - 0.3);
+			self postfx::function_c8b5f318("pstfx_drowning", #"outer radius", value);
+			self postfx::function_c8b5f318("pstfx_drowning", #"inner radius", value - 0.3);
 			self postfx::function_c8b5f318("pstfx_drowning", #"opacity", 1);
 		}
 		if(newval > 0.5)
@@ -130,8 +130,8 @@ function function_8960f852(oldval, newval)
 	{
 		value = oldval - (oldval - newval) * (1 - duration);
 		duration = duration - 0.1;
-		self postfx::function_c8b5f318("pstfx_drowning", #"hash_529f62d9ea291b22", value);
-		self postfx::function_c8b5f318("pstfx_drowning", #"hash_5043dadd8f112a93", value - 0.8);
+		self postfx::function_c8b5f318("pstfx_drowning", #"outer radius", value);
+		self postfx::function_c8b5f318("pstfx_drowning", #"inner radius", value - 0.8);
 		wait(0.1);
 	}
 }

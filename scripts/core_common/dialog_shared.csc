@@ -6,7 +6,7 @@
 #namespace dialog_shared;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: dialog_shared
 	Checksum: 0xF531AC2
 	Offset: 0x2A8
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"dialog_shared", &__init__, undefined, undefined);
 }
@@ -221,10 +221,10 @@ function dialog_chance(chancekey)
 */
 function function_ad01601e(characterindex)
 {
-	var_bacff7f = getcharacterfields(characterindex, currentsessionmode());
-	if(isdefined(var_bacff7f) && isdefined(var_bacff7f.mpdialog))
+	characterfields = getcharacterfields(characterindex, currentsessionmode());
+	if(isdefined(characterfields) && isdefined(characterfields.mpdialog))
 	{
-		dialogbundle = struct::get_script_bundle("mpdialog_player", var_bacff7f.mpdialog);
+		dialogbundle = struct::get_script_bundle("mpdialog_player", characterfields.mpdialog);
 		alias = get_dialog_bundle_alias(dialogbundle, "characterSelect");
 		if(isdefined(level.var_aefa616f) && level.var_aefa616f && dialog_chance("characterSelectMaldivesChance"))
 		{

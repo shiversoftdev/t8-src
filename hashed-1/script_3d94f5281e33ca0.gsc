@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_71c799ba : class_6aaccc24
+class cct_shared_ingame_objective : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0x64ECCE70
 		Offset: 0x280
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_71c799ba : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0x967AEF80
 		Offset: 0xDC8
 		Size: 0x14
@@ -31,36 +31,36 @@ class class_71c799ba : class_6aaccc24
 	}
 
 	/*
-		Name: function_54166b84
-		Namespace: namespace_71c799ba
+		Name: set_objpoints
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0x26ABD408
 		Offset: 0xD90
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_54166b84(localclientnum, value)
+	function set_objpoints(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objpoints", value);
+		[[ self ]]->set_data(localclientnum, "objpoints", value);
 	}
 
 	/*
-		Name: function_eab3d36f
-		Namespace: namespace_71c799ba
+		Name: set_objectiveText
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0xA607E24A
 		Offset: 0xD58
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_eab3d36f(localclientnum, value)
+	function set_objectiveText(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objectiveText", value);
+		[[ self ]]->set_data(localclientnum, "objectiveText", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0x942B967E
 		Offset: 0x450
 		Size: 0x8FC
@@ -71,241 +71,241 @@ class class_71c799ba : class_6aaccc24
 	{
 		if(#"defaultstate" == state_name)
 		{
-			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
+			[[ self ]]->set_data(localclientnum, "_state", 0);
 		}
 		else
 		{
 			if(#"fadeout" == state_name)
 			{
-				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
+				[[ self ]]->set_data(localclientnum, "_state", 1);
 			}
 			else
 			{
 				if(#"timer_on" == state_name)
 				{
-					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 2);
+					[[ self ]]->set_data(localclientnum, "_state", 2);
 				}
 				else
 				{
 					if(#"hash_7b45e6511e6e3303" == state_name)
 					{
-						[[ self ]]->function_d7d2fcce(localclientnum, "_state", 3);
+						[[ self ]]->set_data(localclientnum, "_state", 3);
 					}
 					else
 					{
 						if(#"dynobj_killtoearnhellstorm" == state_name)
 						{
-							[[ self ]]->function_d7d2fcce(localclientnum, "_state", 4);
+							[[ self ]]->set_data(localclientnum, "_state", 4);
 						}
 						else
 						{
 							if(#"hash_1f92740e023d0e37" == state_name)
 							{
-								[[ self ]]->function_d7d2fcce(localclientnum, "_state", 5);
+								[[ self ]]->set_data(localclientnum, "_state", 5);
 							}
 							else
 							{
 								if(#"dynobj_killtoearnrcxd" == state_name)
 								{
-									[[ self ]]->function_d7d2fcce(localclientnum, "_state", 6);
+									[[ self ]]->set_data(localclientnum, "_state", 6);
 								}
 								else
 								{
 									if(#"hash_2ad0da501b5586a4" == state_name)
 									{
-										[[ self ]]->function_d7d2fcce(localclientnum, "_state", 7);
+										[[ self ]]->set_data(localclientnum, "_state", 7);
 									}
 									else
 									{
 										if(#"dynobj_killtoearnswat" == state_name)
 										{
-											[[ self ]]->function_d7d2fcce(localclientnum, "_state", 8);
+											[[ self ]]->set_data(localclientnum, "_state", 8);
 										}
 										else
 										{
 											if(#"hash_4de4402f8698c768" == state_name)
 											{
-												[[ self ]]->function_d7d2fcce(localclientnum, "_state", 9);
+												[[ self ]]->set_data(localclientnum, "_state", 9);
 											}
 											else
 											{
 												if(#"hash_63d3d0d871ba1adb" == state_name)
 												{
-													[[ self ]]->function_d7d2fcce(localclientnum, "_state", 10);
+													[[ self ]]->set_data(localclientnum, "_state", 10);
 												}
 												else
 												{
 													if(#"hash_2f0272e755f4abf7" == state_name)
 													{
-														[[ self ]]->function_d7d2fcce(localclientnum, "_state", 11);
+														[[ self ]]->set_data(localclientnum, "_state", 11);
 													}
 													else
 													{
 														if(#"dynobj_killtoearnlightningstrike" == state_name)
 														{
-															[[ self ]]->function_d7d2fcce(localclientnum, "_state", 12);
+															[[ self ]]->set_data(localclientnum, "_state", 12);
 														}
 														else
 														{
 															if(#"hash_71743ffed428ea2f" == state_name)
 															{
-																[[ self ]]->function_d7d2fcce(localclientnum, "_state", 13);
+																[[ self ]]->set_data(localclientnum, "_state", 13);
 															}
 															else
 															{
 																if(#"hash_519ed82ca27249dd" == state_name)
 																{
-																	[[ self ]]->function_d7d2fcce(localclientnum, "_state", 14);
+																	[[ self ]]->set_data(localclientnum, "_state", 14);
 																}
 																else
 																{
 																	if(#"hash_7d5a07e3680ec561" == state_name)
 																	{
-																		[[ self ]]->function_d7d2fcce(localclientnum, "_state", 15);
+																		[[ self ]]->set_data(localclientnum, "_state", 15);
 																	}
 																	else
 																	{
 																		if(#"hash_80668531e9e4db6" == state_name)
 																		{
-																			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 16);
+																			[[ self ]]->set_data(localclientnum, "_state", 16);
 																		}
 																		else
 																		{
 																			if(#"hash_5ba30c4069a3b28" == state_name)
 																			{
-																				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 17);
+																				[[ self ]]->set_data(localclientnum, "_state", 17);
 																			}
 																			else
 																			{
 																				if(#"dynobj_killmantises" == state_name)
 																				{
-																					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 18);
+																					[[ self ]]->set_data(localclientnum, "_state", 18);
 																				}
 																				else
 																				{
 																					if(#"hash_83700757d6b9194" == state_name)
 																					{
-																						[[ self ]]->function_d7d2fcce(localclientnum, "_state", 19);
+																						[[ self ]]->set_data(localclientnum, "_state", 19);
 																					}
 																					else
 																					{
 																						if(#"hash_6dfb08308c7640b0" == state_name)
 																						{
-																							[[ self ]]->function_d7d2fcce(localclientnum, "_state", 20);
+																							[[ self ]]->set_data(localclientnum, "_state", 20);
 																						}
 																						else
 																						{
 																							if(#"hash_2a4442540584316a" == state_name)
 																							{
-																								[[ self ]]->function_d7d2fcce(localclientnum, "_state", 21);
+																								[[ self ]]->set_data(localclientnum, "_state", 21);
 																							}
 																							else
 																							{
 																								if(#"hash_7917ffb178e31e9c" == state_name)
 																								{
-																									[[ self ]]->function_d7d2fcce(localclientnum, "_state", 22);
+																									[[ self ]]->set_data(localclientnum, "_state", 22);
 																								}
 																								else
 																								{
 																									if(#"hash_1a051da4d150816" == state_name)
 																									{
-																										[[ self ]]->function_d7d2fcce(localclientnum, "_state", 23);
+																										[[ self ]]->set_data(localclientnum, "_state", 23);
 																									}
 																									else
 																									{
 																										if(#"hash_347a715457b3ba72" == state_name)
 																										{
-																											[[ self ]]->function_d7d2fcce(localclientnum, "_state", 24);
+																											[[ self ]]->set_data(localclientnum, "_state", 24);
 																										}
 																										else
 																										{
 																											if(#"hash_21962bee0a15424" == state_name)
 																											{
-																												[[ self ]]->function_d7d2fcce(localclientnum, "_state", 25);
+																												[[ self ]]->set_data(localclientnum, "_state", 25);
 																											}
 																											else
 																											{
 																												if(#"dynobj_killzombies" == state_name)
 																												{
-																													[[ self ]]->function_d7d2fcce(localclientnum, "_state", 26);
+																													[[ self ]]->set_data(localclientnum, "_state", 26);
 																												}
 																												else
 																												{
 																													if(#"hash_29a3c52abd286a3d" == state_name)
 																													{
-																														[[ self ]]->function_d7d2fcce(localclientnum, "_state", 27);
+																														[[ self ]]->set_data(localclientnum, "_state", 27);
 																													}
 																													else
 																													{
 																														if(#"hash_6b6581d0506c0b19" == state_name)
 																														{
-																															[[ self ]]->function_d7d2fcce(localclientnum, "_state", 28);
+																															[[ self ]]->set_data(localclientnum, "_state", 28);
 																														}
 																														else
 																														{
 																															if(#"hash_34061eae676df48d" == state_name)
 																															{
-																																[[ self ]]->function_d7d2fcce(localclientnum, "_state", 29);
+																																[[ self ]]->set_data(localclientnum, "_state", 29);
 																															}
 																															else
 																															{
 																																if(#"hash_2937fe33c735a583" == state_name)
 																																{
-																																	[[ self ]]->function_d7d2fcce(localclientnum, "_state", 30);
+																																	[[ self ]]->set_data(localclientnum, "_state", 30);
 																																}
 																																else
 																																{
 																																	if(#"hash_4bfdec8101cde9e7" == state_name)
 																																	{
-																																		[[ self ]]->function_d7d2fcce(localclientnum, "_state", 31);
+																																		[[ self ]]->set_data(localclientnum, "_state", 31);
 																																	}
 																																	else
 																																	{
 																																		if(#"dynobj_killspawnbeacons" == state_name)
 																																		{
-																																			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 32);
+																																			[[ self ]]->set_data(localclientnum, "_state", 32);
 																																		}
 																																		else
 																																		{
 																																			if(#"hash_1a4b4231363359c4" == state_name)
 																																			{
-																																				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 33);
+																																				[[ self ]]->set_data(localclientnum, "_state", 33);
 																																			}
 																																			else
 																																			{
 																																				if(#"dynobj_killwiretrappedenemies" == state_name)
 																																				{
-																																					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 34);
+																																					[[ self ]]->set_data(localclientnum, "_state", 34);
 																																				}
 																																				else
 																																				{
 																																					if(#"hash_5c25a457d21d00a3" == state_name)
 																																					{
-																																						[[ self ]]->function_d7d2fcce(localclientnum, "_state", 35);
+																																						[[ self ]]->set_data(localclientnum, "_state", 35);
 																																					}
 																																					else
 																																					{
-																																						if(#"hash_1ac63732ae333c4d" == state_name)
+																																						if(#"oneline" == state_name)
 																																						{
-																																							[[ self ]]->function_d7d2fcce(localclientnum, "_state", 36);
+																																							[[ self ]]->set_data(localclientnum, "_state", 36);
 																																						}
 																																						else
 																																						{
 																																							if(#"hash_6e90224596225271" == state_name)
 																																							{
-																																								[[ self ]]->function_d7d2fcce(localclientnum, "_state", 37);
+																																								[[ self ]]->set_data(localclientnum, "_state", 37);
 																																							}
 																																							else
 																																							{
 																																								if(#"hash_52e0c66ed90c5996" == state_name)
 																																								{
-																																									[[ self ]]->function_d7d2fcce(localclientnum, "_state", 38);
+																																									[[ self ]]->set_data(localclientnum, "_state", 38);
 																																								}
 																																								else
 																																								{
 																																									if(#"hash_75d2922ca26f2a88" == state_name)
 																																									{
-																																										[[ self ]]->function_d7d2fcce(localclientnum, "_state", 39);
+																																										[[ self ]]->set_data(localclientnum, "_state", 39);
 																																									}
 																																									else
 																																									{
@@ -358,7 +358,7 @@ class class_71c799ba : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0xE131F252
 		Offset: 0x418
 		Size: 0x2C
@@ -367,12 +367,12 @@ class class_71c799ba : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"ct_shared_ingame_objective");
+		cLUIelem::open(localclientnum, #"ct_shared_ingame_objective");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0xB6455A91
 		Offset: 0x388
 		Size: 0x88
@@ -381,15 +381,15 @@ class class_71c799ba : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 		[[ self ]]->set_state(localclientnum, #"defaultstate");
-		[[ self ]]->function_d7d2fcce(localclientnum, "objectiveText", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "objpoints", 0);
+		[[ self ]]->set_data(localclientnum, "objectiveText", #"");
+		[[ self ]]->set_data(localclientnum, "objpoints", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0x97961506
 		Offset: 0x358
 		Size: 0x24
@@ -398,12 +398,12 @@ class class_71c799ba : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_71c799ba
+		Namespace: cct_shared_ingame_objective
 		Checksum: 0x3FD7B63E
 		Offset: 0x2A0
 		Size: 0xAC
@@ -412,10 +412,10 @@ class class_71c799ba : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_a584bc49, var_ea26adc8)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 6, "int");
-		namespace_6aaccc24::function_dcb34c80("string", "objectiveText", 1);
-		namespace_6aaccc24::function_da693cbe("objpoints", 1, 11, "int", var_ea26adc8);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 6, "int");
+		cLUIelem::function_dcb34c80("string", "objectiveText", 1);
+		cLUIelem::function_da693cbe("objpoints", 1, 11, "int", var_ea26adc8);
 	}
 
 }
@@ -433,7 +433,7 @@ class class_71c799ba : class_6aaccc24
 */
 function register(uid, var_a584bc49, var_ea26adc8)
 {
-	elem = new class_71c799ba();
+	elem = new cct_shared_ingame_objective();
 	[[ elem ]]->setup_clientfields(uid, var_a584bc49, var_ea26adc8);
 	return elem;
 }
@@ -449,7 +449,7 @@ function register(uid, var_a584bc49, var_ea26adc8)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_71c799ba();
+	elem = new cct_shared_ingame_objective();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -511,7 +511,7 @@ function set_state(localclientnum, state_name)
 }
 
 /*
-	Name: function_eab3d36f
+	Name: set_objectiveText
 	Namespace: ct_shared_ingame_objective
 	Checksum: 0x5691ABE4
 	Offset: 0x220
@@ -519,13 +519,13 @@ function set_state(localclientnum, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_eab3d36f(localclientnum, value)
+function set_objectiveText(localclientnum, value)
 {
-	[[ self ]]->function_eab3d36f(localclientnum, value);
+	[[ self ]]->set_objectiveText(localclientnum, value);
 }
 
 /*
-	Name: function_54166b84
+	Name: set_objpoints
 	Namespace: ct_shared_ingame_objective
 	Checksum: 0x91A06E5F
 	Offset: 0x250
@@ -533,8 +533,8 @@ function function_eab3d36f(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_54166b84(localclientnum, value)
+function set_objpoints(localclientnum, value)
 {
-	[[ self ]]->function_54166b84(localclientnum, value);
+	[[ self ]]->set_objpoints(localclientnum, value);
 }
 

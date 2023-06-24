@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_7228a45f434ec207;
+#using scripts\zm\weapons\zm_weap_tomahawk.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\postfx_shared.csc;
@@ -9,25 +9,25 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_60a296cc;
+#namespace zm_escape_weap_quest;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_60a296cc
+	Name: __init__system__
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x713886E8
 	Offset: 0x210
 	Size: 0x3C
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_35f86e4c2035f69f", &__init__, undefined, undefined);
+	system::register(#"zm_escape_weap_quest", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xE9B9898F
 	Offset: 0x258
 	Size: 0x3D2
@@ -55,7 +55,7 @@ function __init__()
 
 /*
 	Name: function_e4a48a64
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xD9FB8728
 	Offset: 0x638
 	Size: 0x252
@@ -104,7 +104,7 @@ function function_e4a48a64(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_b543a4ed
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x8DCB1735
 	Offset: 0x898
 	Size: 0xEE
@@ -130,7 +130,7 @@ function function_b543a4ed(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_1f632068
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xD8EF6797
 	Offset: 0x990
 	Size: 0xA2
@@ -148,7 +148,7 @@ function function_1f632068(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_63eff42e
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x85D5E8CA
 	Offset: 0xA40
 	Size: 0xA2
@@ -166,7 +166,7 @@ function function_63eff42e(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_dfe17a5d
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xB81674AD
 	Offset: 0xAF0
 	Size: 0x13A
@@ -196,7 +196,7 @@ function function_dfe17a5d(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_724af26a
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xA46CBB8C
 	Offset: 0xC38
 	Size: 0x122
@@ -226,7 +226,7 @@ function function_724af26a(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_1302ffdd
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xC2E3F05B
 	Offset: 0xD68
 	Size: 0xF2
@@ -249,7 +249,7 @@ function function_1302ffdd(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_c17bd665
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xF5BFBED0
 	Offset: 0xE68
 	Size: 0xF2

@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_1615105f580458d3;
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm\weapons\zm_weap_tomahawk.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -22,25 +22,25 @@
 #using scripts\zm_common\zm_weapons.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_60a296cc;
+#namespace zm_escape_weap_quest;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_60a296cc
+	Name: __init__system__
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xE03033B5
 	Offset: 0x388
 	Size: 0x44
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_35f86e4c2035f69f", &__init__, &__main__, undefined);
+	system::register(#"zm_escape_weap_quest", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xFEC6F75D
 	Offset: 0x3D8
 	Size: 0x244
@@ -63,7 +63,7 @@ function __init__()
 
 /*
 	Name: function_bad944b5
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xBD848ED2
 	Offset: 0x628
 	Size: 0x374
@@ -72,7 +72,7 @@ function __init__()
 */
 function function_bad944b5()
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_65a1298089d361f1") || zm_utility::is_standard())
+	if(!zm_custom::function_901b751c(#"zmequipmentisenabled") || zm_utility::is_standard())
 	{
 		return;
 	}
@@ -108,7 +108,7 @@ function function_bad944b5()
 
 /*
 	Name: __main__
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xE98F933A
 	Offset: 0x9A8
 	Size: 0x5C
@@ -117,7 +117,7 @@ function function_bad944b5()
 */
 function __main__()
 {
-	if(namespace_59ff1d6c::function_901b751c(#"hash_65a1298089d361f1") && !zm_utility::is_standard())
+	if(zm_custom::function_901b751c(#"zmequipmentisenabled") && !zm_utility::is_standard())
 	{
 		level thread tomahawk_pickup();
 	}
@@ -125,7 +125,7 @@ function __main__()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x924D9E91
 	Offset: 0xA10
 	Size: 0x172
@@ -139,10 +139,10 @@ function on_player_connect()
 	{
 		var_29b8f3d0 = undefined;
 		var_29b8f3d0 = self waittill("new_" + "lethal_grenade");
-		var_3759bc11 = var_29b8f3d0.weapon;
+		w_newweapon = var_29b8f3d0.weapon;
 		var_22e180dd = self zm_loadout::get_player_lethal_grenade();
-		var_f92d6c6e = getweapon(#"tomahawk_t8");
-		if(var_3759bc11 == var_f92d6c6e || var_22e180dd === var_f92d6c6e)
+		w_tomahawk = getweapon(#"tomahawk_t8");
+		if(w_newweapon == w_tomahawk || var_22e180dd === w_tomahawk)
 		{
 			if(self flag::exists(#"hash_46915cd7994e2d33"))
 			{
@@ -159,7 +159,7 @@ function on_player_connect()
 
 /*
 	Name: check_for_zombie_in_wolf_area
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xE19921FF
 	Offset: 0xB90
 	Size: 0xB8
@@ -191,7 +191,7 @@ function check_for_zombie_in_wolf_area()
 
 /*
 	Name: function_d2093ddd
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xD5836B0A
 	Offset: 0xC50
 	Size: 0x336
@@ -246,7 +246,7 @@ function function_d2093ddd(willbekilled, inflictor, attacker, damage, flags, mod
 
 /*
 	Name: function_e40e9d94
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x539FB0C4
 	Offset: 0xF90
 	Size: 0x62C
@@ -290,9 +290,9 @@ function function_e40e9d94(n_eating_anim, ai_zombie, var_64c09f7f)
 	{
 		ai_zombie clientfield::set("" + #"hash_588871862d19b97d", 1);
 	}
-	var_f79d91ef = self.s_scene.origin - var_678e573f.origin;
-	var_17deee3d = vectorscale(var_f79d91ef, 0.2);
-	v_angles_forward = vectortoangles(var_f79d91ef);
+	vec_dir = self.s_scene.origin - var_678e573f.origin;
+	var_17deee3d = vectorscale(vec_dir, 0.2);
+	v_angles_forward = vectortoangles(vec_dir);
 	var_678e573f moveto(var_678e573f.origin + var_17deee3d, var_66a8d5fc, var_66a8d5fc);
 	if(self.var_43bd3b5 == 0)
 	{
@@ -302,7 +302,7 @@ function function_e40e9d94(n_eating_anim, ai_zombie, var_64c09f7f)
 	{
 		wait(var_66a8d5fc);
 	}
-	self notify(#"hash_481def0c42ce94e0");
+	self notify(#"wolf_eating");
 	if(self.var_43bd3b5 < 5)
 	{
 		self thread function_e07f0c65(var_64c09f7f);
@@ -361,7 +361,7 @@ function function_e40e9d94(n_eating_anim, ai_zombie, var_64c09f7f)
 
 /*
 	Name: function_37937b33
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x7F5E317E
 	Offset: 0x15C8
 	Size: 0x6C
@@ -371,14 +371,14 @@ function function_e40e9d94(n_eating_anim, ai_zombie, var_64c09f7f)
 function function_37937b33()
 {
 	self endon(#"death");
-	self waittill(#"hash_60ba27e6f0456c32");
+	self waittill(#"zombie_eaten_hide");
 	self clientfield::increment("" + #"hash_338ecd1287d0623b");
 	self ghost();
 }
 
 /*
 	Name: which_eating_anim
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xA061F913
 	Offset: 0x1640
 	Size: 0xF6
@@ -403,7 +403,7 @@ function which_eating_anim()
 
 /*
 	Name: soul_catcher_state_manager
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x1270C8BF
 	Offset: 0x1740
 	Size: 0x2A4
@@ -452,7 +452,7 @@ function soul_catcher_state_manager()
 
 /*
 	Name: function_ee929ece
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x4C8CC6D4
 	Offset: 0x19F0
 	Size: 0xE2
@@ -461,8 +461,8 @@ function soul_catcher_state_manager()
 */
 function function_ee929ece()
 {
-	self notify(#"hash_6d1b4e0ea35336a7");
-	self endon(#"hash_481def0c42ce94e0", #"hash_1c2dd0a16f7ac134", #"hash_6d1b4e0ea35336a7");
+	self notify(#"wolf_idling");
+	self endon(#"wolf_eating", #"hash_1c2dd0a16f7ac134", #"wolf_idling");
 	while(true)
 	{
 		var_ba0da6c = array::random(level.var_22f00ccf);
@@ -474,7 +474,7 @@ function function_ee929ece()
 
 /*
 	Name: wolf_head_removal
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x108A27E9
 	Offset: 0x1AE0
 	Size: 0x8C
@@ -491,7 +491,7 @@ function wolf_head_removal(wolf_head_model_string)
 
 /*
 	Name: soul_catchers_charged
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x2850B6AD
 	Offset: 0x1B78
 	Size: 0x68
@@ -514,7 +514,7 @@ function soul_catchers_charged()
 
 /*
 	Name: soul_catcher_check
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xE2B87585
 	Offset: 0x1BE8
 	Size: 0xD4
@@ -546,7 +546,7 @@ function soul_catcher_check()
 
 /*
 	Name: function_e07f0c65
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xCE94AE87
 	Offset: 0x1CC8
 	Size: 0xD2
@@ -572,7 +572,7 @@ function function_e07f0c65(var_64c09f7f)
 
 /*
 	Name: function_41b1af8c
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xC9E5B6CD
 	Offset: 0x1DA8
 	Size: 0x102
@@ -600,7 +600,7 @@ function function_41b1af8c()
 
 /*
 	Name: first_wolf_encounter_vo
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xABD509F
 	Offset: 0x1EB8
 	Size: 0xD8
@@ -615,7 +615,7 @@ function first_wolf_encounter_vo(var_64c09f7f)
 	{
 		if(!(isdefined(a_closest[i].dontspeak) && a_closest[i].dontspeak))
 		{
-			a_closest[i] thread zm_audio::create_and_play_dialog(#"wolf_head", #"hash_4c424d9a6fe3214c", undefined, 1);
+			a_closest[i] thread zm_audio::create_and_play_dialog(#"wolf_head", #"feed_first", undefined, 1);
 			level.wolf_encounter_vo_played = 1;
 			break;
 		}
@@ -624,7 +624,7 @@ function first_wolf_encounter_vo(var_64c09f7f)
 
 /*
 	Name: function_74c96a90
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x211A4FC9
 	Offset: 0x1F98
 	Size: 0x162
@@ -677,7 +677,7 @@ function private function_74c96a90(var_64c09f7f)
 
 /*
 	Name: tomahawk_pickup
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xB2CC5D8C
 	Offset: 0x2108
 	Size: 0x294
@@ -722,7 +722,7 @@ function tomahawk_pickup()
 
 /*
 	Name: function_5fd2c72e
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xEE038907
 	Offset: 0x23A8
 	Size: 0x64
@@ -738,7 +738,7 @@ function function_5fd2c72e()
 
 /*
 	Name: tomahawk_pickup_trigger
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x5DB2867F
 	Offset: 0x2418
 	Size: 0xDE
@@ -762,7 +762,7 @@ function tomahawk_pickup_trigger()
 
 /*
 	Name: function_f0ef3897
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x94FE4CF9
 	Offset: 0x2500
 	Size: 0x434
@@ -771,8 +771,8 @@ function tomahawk_pickup_trigger()
 */
 function function_f0ef3897(e_player)
 {
-	e_player notify(#"hash_78d7f70251d51f7c");
-	e_player endon(#"hash_78d7f70251d51f7c", #"disconnect");
+	e_player notify(#"obtained_tomahawk");
+	e_player endon(#"obtained_tomahawk", #"disconnect");
 	var_fd22f9df = struct::get("tom_pil");
 	var_6e6ec518 = var_fd22f9df.scene_ents[#"prop 2"];
 	var_6e6ec518 setinvisibletoplayer(e_player);
@@ -786,7 +786,7 @@ function function_f0ef3897(e_player)
 		var_f8807d03 = #"hash_77bbe7cec9945ff5";
 		if(!(isdefined(e_player.var_e9c9a450) && e_player.var_e9c9a450))
 		{
-			e_player thread zm_audio::create_and_play_dialog(#"hash_3238b63089543463", #"pickup", undefined, 1);
+			e_player thread zm_audio::create_and_play_dialog(#"ax_upgrade", #"pickup", undefined, 1);
 			e_player.var_e9c9a450 = 1;
 		}
 	}
@@ -812,7 +812,7 @@ function function_f0ef3897(e_player)
 	}
 	e_player clientfield::set_to_player("tomahawk_in_use", 1);
 	e_player notify(#"player_obtained_tomahawk");
-	level notify(#"hash_be544b0040afa0b");
+	level notify(#"tomahawk_aquired");
 	e_player zm_stats::increment_client_stat("prison_tomahawk_acquired", 0);
 	if(e_player flag::exists(#"hash_11ab20934759ebc3") && e_player flag::get(#"hash_11ab20934759ebc3"))
 	{
@@ -823,7 +823,7 @@ function function_f0ef3897(e_player)
 
 /*
 	Name: function_b5b00d86
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0x37BA4FEB
 	Offset: 0x2940
 	Size: 0xD4
@@ -848,7 +848,7 @@ function function_b5b00d86()
 
 /*
 	Name: function_6300f001
-	Namespace: namespace_60a296cc
+	Namespace: zm_escape_weap_quest
 	Checksum: 0xADB339AC
 	Offset: 0x2A20
 	Size: 0x3EC

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -10,7 +10,7 @@
 #namespace namespace_5c493a54;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_5c493a54
 	Checksum: 0xB3CF4C35
 	Offset: 0xA0
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_23b914dca866a297", &__init__, undefined, undefined);
 }
@@ -38,11 +38,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_b7f913776f85df2", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_b7f913776f85df2", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_5c493a54
 	Checksum: 0x4A2E8EB4
 	Offset: 0x150
@@ -50,7 +50,7 @@ function __init__()
 	Parameters: 3
 	Flags: Private
 */
-function private function_d1de6a85(var_2e5ed433, var_1532dab3, var_94d24883)
+function private on_begin(var_2e5ed433, var_1532dab3, var_94d24883)
 {
 	level.var_2e5ed433 = zm_trial::function_5769f26a(var_2e5ed433) * 1000;
 	if(isdefined(var_1532dab3))
@@ -68,7 +68,7 @@ function private function_d1de6a85(var_2e5ed433, var_1532dab3, var_94d24883)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_5c493a54
 	Checksum: 0xC0711C14
 	Offset: 0x260
@@ -76,7 +76,7 @@ function private function_d1de6a85(var_2e5ed433, var_1532dab3, var_94d24883)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.var_2e5ed433 = undefined;
 	level notify(#"hash_2669c6e7b1eb2e4b");

@@ -18,10 +18,10 @@
 */
 function preload()
 {
-	level._effect[#"hash_1dee7be0bae904ec"] = #"hash_59977c4c851916e0";
+	level._effect[#"pap_soul"] = #"hash_59977c4c851916e0";
 	level._effect[#"hash_1549a7f7c4a3d66e"] = #"hash_1a06427eff8dfe13";
 	level._effect[#"pap_explosion"] = #"hash_c25bcbc2422f364";
-	level._effect[#"hash_430c8a8704e0d2af"] = #"hash_4847c0d5a4c9cd6";
+	level._effect[#"pap_fire"] = #"hash_4847c0d5a4c9cd6";
 	init_clientfields();
 }
 
@@ -49,13 +49,13 @@ function main()
 */
 function init_clientfields()
 {
-	namespace_617a54f4::function_d8383812(#"sc_pap_beach", 24000, "sc_pap_beach", 400, level._effect[#"hash_1dee7be0bae904ec"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
-	namespace_617a54f4::function_d8383812(#"sc_pap_boathouse", 24000, "sc_pap_boathouse", 400, level._effect[#"hash_1dee7be0bae904ec"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
-	namespace_617a54f4::function_d8383812(#"sc_pap_ship", 24000, "sc_pap_ship", 400, level._effect[#"hash_1dee7be0bae904ec"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
-	namespace_617a54f4::function_d8383812(#"sc_pap_lagoon", 24000, "sc_pap_lagoon", 400, level._effect[#"hash_1dee7be0bae904ec"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
-	namespace_617a54f4::function_d8383812(#"sc_pap_island", 24000, "sc_pap_island", 400, level._effect[#"hash_1dee7be0bae904ec"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
+	namespace_617a54f4::function_d8383812(#"sc_pap_beach", 24000, "sc_pap_beach", 400, level._effect[#"pap_soul"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
+	namespace_617a54f4::function_d8383812(#"sc_pap_boathouse", 24000, "sc_pap_boathouse", 400, level._effect[#"pap_soul"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
+	namespace_617a54f4::function_d8383812(#"sc_pap_ship", 24000, "sc_pap_ship", 400, level._effect[#"pap_soul"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
+	namespace_617a54f4::function_d8383812(#"sc_pap_lagoon", 24000, "sc_pap_lagoon", 400, level._effect[#"pap_soul"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
+	namespace_617a54f4::function_d8383812(#"sc_pap_island", 24000, "sc_pap_island", 400, level._effect[#"pap_soul"], level._effect[#"hash_1549a7f7c4a3d66e"], undefined, undefined, 1);
 	clientfield::register("scriptmover", "" + #"hash_411947cf11cffb69", 24000, 1, "int", &pap_explosion, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_249c83f6060ea7ba", 24000, 1, "int", &function_e183e043, 0, 0);
+	clientfield::register("scriptmover", "" + #"hash_249c83f6060ea7ba", 24000, 1, "int", &pap_fire, 0, 0);
 }
 
 /*
@@ -76,7 +76,7 @@ function pap_explosion(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 }
 
 /*
-	Name: function_e183e043
+	Name: pap_fire
 	Namespace: namespace_4b68b2b3
 	Checksum: 0x3772DA23
 	Offset: 0x550
@@ -84,11 +84,11 @@ function pap_explosion(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 	Parameters: 7
 	Flags: Linked
 */
-function function_e183e043(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function pap_fire(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
 	if(newval)
 	{
-		self.fx_fire = util::playfxontag(localclientnum, level._effect[#"hash_430c8a8704e0d2af"], self, "tag_origin");
+		self.fx_fire = util::playfxontag(localclientnum, level._effect[#"pap_fire"], self, "tag_origin");
 	}
 }
 

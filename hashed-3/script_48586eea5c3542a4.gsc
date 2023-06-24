@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -26,7 +26,7 @@ function init()
 {
 	level function_e12fb431();
 	level function_2b6fe83b();
-	if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") != 2)
+	if(zm_custom::function_901b751c(#"zmpowerdoorstate") != 2)
 	{
 		level third_fallen_soldiers_robots_decon_room_cleared();
 	}
@@ -52,7 +52,7 @@ function init()
 */
 function main()
 {
-	if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") != 2)
+	if(zm_custom::function_901b751c(#"zmpowerdoorstate") != 2)
 	{
 		level thread function_63522769();
 	}
@@ -131,7 +131,7 @@ function function_e86e864b()
 	{
 		s_result = undefined;
 		s_result = self waittill(#"damage");
-		if(namespace_3263198e::function_fe8ee9f0(s_result.weapon, 0) && isplayer(s_result.attacker) && !isbot(s_result.attacker))
+		if(zm_orange_util::function_fe8ee9f0(s_result.weapon, 0) && isplayer(s_result.attacker) && !isbot(s_result.attacker))
 		{
 			s_result.attacker notify(#"hash_2a12c37201945891");
 		}
@@ -153,7 +153,7 @@ function function_790e5d6()
 	self endon("137e016f39e5002f");
 	self endon(#"death");
 	self endon(#"disconnect");
-	self endon(#"hash_285d5f0628929bdb");
+	self endon(#"bells_failed");
 	var_a3404ecb = 0;
 	while(!var_a3404ecb)
 	{
@@ -192,7 +192,7 @@ function function_a0367a9()
 	self endon(#"disconnect");
 	self endon(#"bells_complete");
 	wait(12);
-	self notify(#"hash_285d5f0628929bdb");
+	self notify(#"bells_failed");
 	self.var_c4baf001 = 0;
 	self thread function_790e5d6();
 }
@@ -270,7 +270,7 @@ function function_e140ff5c()
 */
 function function_4ff2cfd9(s_result)
 {
-	if(self.archetype == #"zombie_dog" && namespace_3263198e::function_fe8ee9f0(s_result.weapon, 0) && !level flag::get(#"hash_6046825f3ec27c48"))
+	if(self.archetype == #"zombie_dog" && zm_orange_util::function_fe8ee9f0(s_result.weapon, 0) && !level flag::get(#"hash_6046825f3ec27c48"))
 	{
 		s_result.eattacker.var_59c409c3 = s_result.eattacker.var_59c409c3 + 1;
 		if(s_result.eattacker.var_59c409c3 >= 5)
@@ -834,7 +834,7 @@ function function_82947e72()
 	{
 		s_result = undefined;
 		s_result = self waittill(#"damage");
-		if(s_result.weapon.name === #"pistol_standard_t8" || s_result.weapon.name === #"hash_cd53ea4d4ee864c")
+		if(s_result.weapon.name === #"pistol_standard_t8" || s_result.weapon.name === #"pistol_standard_t8_upgraded")
 		{
 			level exploder::exploder("fxexp_glass_jar_exp");
 			self hide();

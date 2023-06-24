@@ -55,7 +55,7 @@ class ccontainer
 #namespace containers;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: containers
 	Checksum: 0xD77BE98F
 	Offset: 0x2C8
@@ -63,7 +63,7 @@ class ccontainer
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"containers", &__init__, undefined, undefined);
 }

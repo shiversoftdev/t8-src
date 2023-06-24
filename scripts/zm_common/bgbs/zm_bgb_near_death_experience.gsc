@@ -13,7 +13,7 @@
 #namespace zm_bgb_near_death_experience;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_near_death_experience
 	Checksum: 0xDDF68340
 	Offset: 0x1A8
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_near_death_experience", &__init__, undefined, #"bgb");
 }
@@ -65,7 +65,7 @@ function enable()
 	}
 	self thread bgb::function_f51e3503(240, &function_db295169, &function_cbaf1f69);
 	self thread function_68acd38e();
-	self thread function_8e5f5406();
+	self thread revive_override();
 }
 
 /*
@@ -100,7 +100,7 @@ function function_68acd38e()
 }
 
 /*
-	Name: function_8e5f5406
+	Name: revive_override
 	Namespace: zm_bgb_near_death_experience
 	Checksum: 0x600332BE
 	Offset: 0x488
@@ -108,7 +108,7 @@ function function_68acd38e()
 	Parameters: 0
 	Flags: Linked
 */
-function function_8e5f5406()
+function revive_override()
 {
 	self.var_718eafbc = 0;
 	foreach(e_player in level.players)

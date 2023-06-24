@@ -8,7 +8,7 @@
 #namespace shellshock;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: shellshock
 	Checksum: 0xDCC135E4
 	Offset: 0x108
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"shellshock", &__init__, undefined, undefined);
 }

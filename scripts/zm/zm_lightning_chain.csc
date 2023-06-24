@@ -8,7 +8,7 @@
 #namespace lightning_chain;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: lightning_chain
 	Checksum: 0xECD5F183
 	Offset: 0x130
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"lightning_chain", &init, undefined, undefined);
 }

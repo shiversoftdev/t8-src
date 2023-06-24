@@ -2,12 +2,12 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_f2a6c231 : class_6aaccc24
+class cfail_screen : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x3D4388C8
 		Offset: 0x188
 		Size: 0x14
@@ -20,7 +20,7 @@ class class_f2a6c231 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x3FA51520
 		Offset: 0x258
 		Size: 0x14
@@ -33,7 +33,7 @@ class class_f2a6c231 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x6A16FBDD
 		Offset: 0x228
 		Size: 0x24
@@ -42,12 +42,12 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0xACC65BF7
 		Offset: 0x1D8
 		Size: 0x44
@@ -56,12 +56,12 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "fail_screen", persistent);
+		cLUIelem::open_luielem(player, "fail_screen", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0xAB2BA741
 		Offset: 0x1A8
 		Size: 0x24
@@ -70,7 +70,7 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -88,7 +88,7 @@ class class_f2a6c231 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_f2a6c231();
+	elem = new cfail_screen();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

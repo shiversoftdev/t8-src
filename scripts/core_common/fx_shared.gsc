@@ -118,7 +118,7 @@ function create_oneshot_effect(fxid)
 function play(str_fx, v_origin = (0, 0, 0), v_angles = (0, 0, 0), time_to_delete_or_notify, b_link_to_self = 0, str_tag, b_no_cull, b_ignore_pause_world)
 {
 	self notify(str_fx);
-	if(!isdefined(time_to_delete_or_notify) || (!isstring(time_to_delete_or_notify) && !function_7a600918(time_to_delete_or_notify) && time_to_delete_or_notify == -1) && (isdefined(b_link_to_self) && b_link_to_self) && isdefined(str_tag))
+	if(!isdefined(time_to_delete_or_notify) || (!isstring(time_to_delete_or_notify) && !ishash(time_to_delete_or_notify) && time_to_delete_or_notify == -1) && (isdefined(b_link_to_self) && b_link_to_self) && isdefined(str_tag))
 	{
 		playfxontag(get(str_fx), self, str_tag, b_ignore_pause_world);
 		return self;
@@ -159,7 +159,7 @@ function play(str_fx, v_origin = (0, 0, 0), v_angles = (0, 0, 0), time_to_delete
 */
 function _play_fx_delete(ent, time_to_delete_or_notify = -1)
 {
-	if(isstring(time_to_delete_or_notify) || function_7a600918(time_to_delete_or_notify))
+	if(isstring(time_to_delete_or_notify) || ishash(time_to_delete_or_notify))
 	{
 		ent util::waittill_either("death", time_to_delete_or_notify);
 	}

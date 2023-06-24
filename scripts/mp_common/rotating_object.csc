@@ -7,7 +7,7 @@
 #namespace rotating_object;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: rotating_object
 	Checksum: 0x4FF8BCB0
 	Offset: 0xB0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"rotating_object", &__init__, undefined, undefined);
 }

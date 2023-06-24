@@ -8,7 +8,7 @@
 #namespace match;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: match
 	Checksum: 0xAC2250AA
 	Offset: 0xC8
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"match", &__init__, undefined, undefined);
 }
@@ -133,7 +133,7 @@ function set_flag(flag)
 }
 
 /*
-	Name: function_5f24faac
+	Name: get_flag
 	Namespace: match
 	Checksum: 0x9FBA52B9
 	Offset: 0x2A0
@@ -141,13 +141,13 @@ function set_flag(flag)
 	Parameters: 1
 	Flags: Linked
 */
-function function_5f24faac(flag)
+function get_flag(flag)
 {
-	return outcome::function_5f24faac(game.outcome, flag);
+	return outcome::get_flag(game.outcome, flag);
 }
 
 /*
-	Name: function_46cb766c
+	Name: clear_flag
 	Namespace: match
 	Checksum: 0x74B29B9B
 	Offset: 0x2D8
@@ -155,9 +155,9 @@ function function_5f24faac(flag)
 	Parameters: 1
 	Flags: None
 */
-function function_46cb766c(flag)
+function clear_flag(flag)
 {
-	return outcome::function_46cb766c(game.outcome, flag);
+	return outcome::clear_flag(game.outcome, flag);
 }
 
 /*
@@ -225,7 +225,7 @@ function get_winning_team()
 }
 
 /*
-	Name: function_ebd67076
+	Name: is_winning_team
 	Namespace: match
 	Checksum: 0x99F509C5
 	Offset: 0x408
@@ -233,7 +233,7 @@ function get_winning_team()
 	Parameters: 1
 	Flags: None
 */
-function function_ebd67076(team)
+function is_winning_team(team)
 {
 	if(isdefined(game.outcome.team) && team == game.outcome.team)
 	{
@@ -253,7 +253,7 @@ function function_ebd67076(team)
 */
 function function_a2b53e17(player)
 {
-	if(game.outcome.platoon !== #"none" && function_22448d6c(player.pers[#"team"]) === game.outcome.platoon)
+	if(game.outcome.platoon !== #"none" && getteamplatoon(player.pers[#"team"]) === game.outcome.platoon)
 	{
 		return true;
 	}
@@ -348,9 +348,9 @@ function function_9b24638f()
 	Parameters: 1
 	Flags: None
 */
-function function_d1e740f6(var_512330f1)
+function function_d1e740f6(team_or_player)
 {
-	outcome::function_d1e740f6(game.outcome, var_512330f1);
+	outcome::function_d1e740f6(game.outcome, team_or_player);
 }
 
 /*
@@ -424,9 +424,9 @@ function function_6d0354e3()
 	winner = round::function_9b24638f();
 	if(game.outcome.var_aefc8b8d.var_c1e98979 != 7)
 	{
-		if(level.teambased && function_5f24faac("overtime"))
+		if(level.teambased && get_flag("overtime"))
 		{
-			if(!(isdefined(level.doubleovertime) && level.doubleovertime) || round::function_5f24faac("tie"))
+			if(!(isdefined(level.doubleovertime) && level.doubleovertime) || round::get_flag("tie"))
 			{
 				winner = globallogic::determineteamwinnerbygamestat("overtimeroundswon");
 			}

@@ -177,7 +177,7 @@ class squad
 #namespace aisquads;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: aisquads
 	Checksum: 0xC9C6F142
 	Offset: 0xB0
@@ -185,7 +185,7 @@ class squad
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"ai_squads", &__init__, undefined, undefined);
 }

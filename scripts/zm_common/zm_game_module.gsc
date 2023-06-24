@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_6ce38ab036223e6e;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -242,7 +242,7 @@ function zombie_goto_round(target_round)
 	}
 	level.zombie_total = 0;
 	level.zombie_health = zombie_utility::ai_calculate_health(zombie_utility::function_d2dfacfd(#"zombie_health_start"), target_round);
-	namespace_a28acff3::set_round_number(target_round);
+	zm_round_logic::set_round_number(target_round);
 	enemies = getaiteamarray(level.zombie_team);
 	if(isdefined(enemies))
 	{

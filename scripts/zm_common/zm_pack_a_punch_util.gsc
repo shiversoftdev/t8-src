@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1254ac024174d9c0;
-#using script_3f9e0dc8454d98e1;
-#using script_5b18db57724ff7be;
+#using scripts\zm_common\trials\zm_trial_disable_buys.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_camos.gsc;
 #using script_698dd790cdc4965f;
-#using script_6e3c826b1814cab6;
-#using script_7133a4d461308099;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\core_common\activecamo_shared.gsc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
@@ -209,7 +209,7 @@ function update_hint_string(player)
 	{
 		if(zm_utility::is_standard())
 		{
-			if(!namespace_59ff1d6c::function_901b751c(#"hash_57a5c7a9dcf94d61") || !b_weapon_supports_aat)
+			if(!zm_custom::function_901b751c(#"hash_57a5c7a9dcf94d61") || !b_weapon_supports_aat)
 			{
 				self sethintstringforplayer(player, #"hash_fea06394ae21371");
 				return true;
@@ -221,7 +221,7 @@ function update_hint_string(player)
 		}
 		return false;
 	}
-	if(namespace_497ab7da::is_active())
+	if(zm_trial_disable_buys::is_active())
 	{
 		self sethintstring(#"hash_55d25caf8f7bbb2f");
 		return true;

@@ -12,7 +12,7 @@
 #namespace vehicle;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: vehicle
 	Checksum: 0xB48782F3
 	Offset: 0x9B0
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"vehicle_shared", &__init__, undefined, undefined);
 }
@@ -177,7 +177,7 @@ function spawned_callback(localclientnum)
 			function_dd27aacd(localclientnum, self.scriptvehicletype);
 		}
 	}
-	if(self function_5d43fd44())
+	if(self usessubtargets())
 	{
 		self thread function_529fa01();
 	}
@@ -326,17 +326,17 @@ function function_a87e7c22(subtarget)
 		if(!isdefined(self.var_d2c05029[subtarget]) || self.var_d2c05029[subtarget] <= time)
 		{
 			self.var_d2c05029[subtarget] = time + 150;
-			bone = self function_d55293d0(subtarget);
-			self function_bf9d3071(#"hash_20bdbaa0db5eb57d", bone);
+			bone = self submodelboneforsubtarget(subtarget);
+			self playrenderoverridebundle(#"hash_20bdbaa0db5eb57d", bone);
 			wait(0.1);
-			self function_5d482e78(#"hash_20bdbaa0db5eb57d", bone);
+			self stoprenderoverridebundle(#"hash_20bdbaa0db5eb57d", bone);
 		}
 	}
 	else
 	{
-		self function_bf9d3071(#"hash_20bdbaa0db5eb57d");
+		self playrenderoverridebundle(#"hash_20bdbaa0db5eb57d");
 		wait(0.15);
-		self function_5d482e78(#"hash_20bdbaa0db5eb57d");
+		self stoprenderoverridebundle(#"hash_20bdbaa0db5eb57d");
 	}
 }
 
@@ -573,7 +573,7 @@ function play_boost(localclientnum, var_a7ba3864)
 function kill_boost(localclientnum, var_1ca9b241)
 {
 	self endon(#"death");
-	wait(self.var_686515e3 + 0.5);
+	wait(self.boostduration + 0.5);
 	self notify(#"end_boost");
 	if(isdefined(var_1ca9b241))
 	{
@@ -953,12 +953,12 @@ function function_34105b89(localclientnum, groupid, ison)
 	}
 	self endon(#"death");
 	util::waittill_dobj(localclientnum);
-	var_babd059c = function_7927d9b1(settings, groupid);
-	if(!isarray(var_babd059c))
+	bone_group = function_7927d9b1(settings, groupid);
+	if(!isarray(bone_group))
 	{
 		return;
 	}
-	foreach(var_b969bea7 in var_babd059c)
+	foreach(var_b969bea7 in bone_group)
 	{
 		if(isdefined(var_b969bea7) && isdefined(var_b969bea7.var_f08513a))
 		{
@@ -1344,7 +1344,7 @@ function lights_off(localclientnum)
 }
 
 /*
-	Name: function_44729756
+	Name: lights_flicker
 	Namespace: vehicle
 	Checksum: 0xD72702C7
 	Offset: 0x4480
@@ -1352,11 +1352,11 @@ function lights_off(localclientnum)
 	Parameters: 3
 	Flags: Linked
 */
-function function_44729756(localclientnum, duration = 8, var_5db078ba = 1)
+function lights_flicker(localclientnum, duration = 8, var_5db078ba = 1)
 {
 	self notify("15457a87e1f08c8e");
 	self endon("15457a87e1f08c8e");
-	self endon(#"hash_45365ddf9df27830");
+	self endon(#"cancel_flicker");
 	self endon(#"death");
 	if(!isdefined(self.scriptbundlesettings))
 	{
@@ -1465,24 +1465,24 @@ function flicker_lights(localclientnum, oldval, newval, bnewent, binitialsnap, f
 {
 	if(newval == 0)
 	{
-		self notify(#"hash_45365ddf9df27830");
+		self notify(#"cancel_flicker");
 		self lights_off(localclientnum);
 	}
 	else
 	{
 		if(newval == 1)
 		{
-			self thread function_44729756(localclientnum);
+			self thread lights_flicker(localclientnum);
 		}
 		else
 		{
 			if(newval == 2)
 			{
-				self thread function_44729756(localclientnum, 20);
+				self thread lights_flicker(localclientnum, 20);
 			}
 			else if(newval == 3)
 			{
-				self notify(#"hash_45365ddf9df27830");
+				self notify(#"cancel_flicker");
 			}
 		}
 	}
@@ -1969,7 +1969,7 @@ function field_use_engine_damage_sounds(localclientnum, oldval, newval, bnewent,
 */
 function private function_a29f490a()
 {
-	self.var_76660b3a = self playloopsound(self.var_f0885951);
+	self.var_76660b3a = self playloopsound(self.hornsound);
 }
 
 /*
@@ -2035,7 +2035,7 @@ function private function_2d24296(localclientnum, oldval, newval, bnewent, binit
 	{
 		return;
 	}
-	if(!isdefined(self.var_f0885951))
+	if(!isdefined(self.hornsound))
 	{
 		return;
 	}
@@ -2043,7 +2043,7 @@ function private function_2d24296(localclientnum, oldval, newval, bnewent, binit
 	{
 		if(self.vehicleclass === "helicopter" && (!(isdefined(self.var_304cf9da) && self.var_304cf9da)))
 		{
-			self playsound(localclientnum, self.var_f0885951);
+			self playsound(localclientnum, self.hornsound);
 		}
 		else
 		{
@@ -2106,9 +2106,9 @@ function function_7d1d0e65(localclientnum, oldval, newval, bnewent, binitialsnap
 				}
 				case 1:
 				{
-					if(isdefined(var_b5ddf091.warning) && isdefined(var_b5ddf091.var_b82c68ed))
+					if(isdefined(var_b5ddf091.warning) && isdefined(var_b5ddf091.tag_warning))
 					{
-						handle = util::playfxontag(localclientnum, var_b5ddf091.warning, self, var_b5ddf091.var_b82c68ed);
+						handle = util::playfxontag(localclientnum, var_b5ddf091.warning, self, var_b5ddf091.tag_warning);
 						if(!isdefined(self.fx_handles[#"malfunction"]))
 						{
 							self.fx_handles[#"malfunction"] = [];

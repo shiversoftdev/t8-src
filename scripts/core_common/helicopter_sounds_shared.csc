@@ -6,7 +6,7 @@
 #namespace helicopter_sounds;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: helicopter_sounds
 	Checksum: 0x5D286EA6
 	Offset: 0x210
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"helicopter_sounds", &__init__, undefined, undefined);
 }

@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_158d50d476435605;
+#using scripts\core_common\activecamo_shared.csc;
 #using scripts\core_common\animation_shared.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\audio_shared.csc;
@@ -534,7 +534,7 @@ function function_b195a021(func, obj)
 }
 
 /*
-	Name: function_e9e16e2f
+	Name: on_killcam_begin
 	Namespace: callback
 	Checksum: 0xC3BF41A0
 	Offset: 0xF28
@@ -542,13 +542,13 @@ function function_b195a021(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_e9e16e2f(func, obj)
+function on_killcam_begin(func, obj)
 {
 	add_callback(#"killcam_begin", func, obj);
 }
 
 /*
-	Name: function_4f6cafea
+	Name: on_killcam_end
 	Namespace: callback
 	Checksum: 0x4AC1D2B9
 	Offset: 0xF70
@@ -556,13 +556,13 @@ function function_e9e16e2f(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_4f6cafea(func, obj)
+function on_killcam_end(func, obj)
 {
 	add_callback(#"killcam_end", func, obj);
 }
 
 /*
-	Name: function_10a8ebd8
+	Name: on_melee
 	Namespace: callback
 	Checksum: 0x3F39F469
 	Offset: 0xFB8
@@ -570,13 +570,13 @@ function function_4f6cafea(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_10a8ebd8(func, obj)
+function on_melee(func, obj)
 {
 	add_callback(#"melee", func, obj);
 }
 
 /*
-	Name: function_35a12f19
+	Name: on_trigger
 	Namespace: callback
 	Checksum: 0x9414E5C5
 	Offset: 0x1000
@@ -584,9 +584,9 @@ function function_10a8ebd8(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_35a12f19(func, obj)
+function on_trigger(func, obj)
 {
-	add_entity_callback(#"hash_1bd0411eb5169b", func, obj);
+	add_entity_callback(#"on_trigger", func, obj);
 }
 
 /*
@@ -600,7 +600,7 @@ function function_35a12f19(func, obj)
 */
 function function_b74bf3e(func, obj)
 {
-	function_52ac9652(#"hash_1bd0411eb5169b", func, obj);
+	function_52ac9652(#"on_trigger", func, obj);
 }
 
 /*
@@ -1396,7 +1396,7 @@ event function_327732bf(eventstruct)
 {
 	if(isdefined(level.var_dda8e1d8))
 	{
-		[[level.var_dda8e1d8]](eventstruct.localclientnum, eventstruct.job_index, eventstruct.extracam_index, eventstruct.session_mode, eventstruct.character_index, eventstruct.var_7abdc6dd, eventstruct.item_type, eventstruct.item_index, eventstruct.is_defaultrender);
+		[[level.var_dda8e1d8]](eventstruct.localclientnum, eventstruct.job_index, eventstruct.extracam_index, eventstruct.session_mode, eventstruct.character_index, eventstruct.outfit_index, eventstruct.item_type, eventstruct.item_index, eventstruct.is_defaultrender);
 	}
 }
 
@@ -1607,11 +1607,11 @@ event function_2073f6dc(eventstruct)
 	magnitude = float(eventstruct.magnitude);
 	innerradius = float(eventstruct.innerradius);
 	outerradius = float(eventstruct.outerradius);
-	var_489a8c6f = (isdefined(self.var_f501d778) ? self.var_f501d778 : 50);
-	var_5143872f = (isdefined(self.var_e14c1b5c) ? self.var_e14c1b5c : 25);
+	innerdamage = (isdefined(self.var_f501d778) ? self.var_f501d778 : 50);
+	outerdamage = (isdefined(self.var_e14c1b5c) ? self.var_e14c1b5c : 25);
 	var_a62fd3ab = (isdefined(self.var_abe3f153) ? self.var_abe3f153 : 1);
 	var_c1cde02b = (isdefined(self.var_bd0f9401) ? self.var_bd0f9401 : 1);
-	physicsexplosionsphere(eventstruct.localclientnum, origin, outerradius, innerradius, magnitude, var_489a8c6f, var_5143872f, var_a62fd3ab, var_c1cde02b);
+	physicsexplosionsphere(eventstruct.localclientnum, origin, outerradius, innerradius, magnitude, innerdamage, outerdamage, var_a62fd3ab, var_c1cde02b);
 }
 
 /*
@@ -1810,7 +1810,7 @@ event function_582e112f(eventstruct)
 {
 	if(isdefined(level.var_45ca79e5))
 	{
-		[[level.var_45ca79e5]](eventstruct.localclientnum, eventstruct.eventtype, eventstruct.var_d8138db2, eventstruct.value, eventstruct.value2);
+		[[level.var_45ca79e5]](eventstruct.localclientnum, eventstruct.eventtype, eventstruct.itemid, eventstruct.value, eventstruct.value2);
 	}
 }
 
@@ -1844,7 +1844,7 @@ event function_6eb09118(eventstruct)
 {
 	if(isdefined(level.var_a6c75fcb))
 	{
-		self callback(#"hash_1bd0411eb5169b", eventstruct);
+		self callback(#"on_trigger", eventstruct);
 		self callback(#"hash_46d459e3750a3345", eventstruct);
 		self function_3507ed1f("all");
 	}
@@ -2002,7 +2002,7 @@ event function_a1ad9b51(eventstruct)
 */
 event function_fbeb26f6(eventstruct)
 {
-	self callback(#"hash_1d3c7b07ff527f3e", eventstruct.localclientnum, eventstruct);
+	self callback(#"updateactivecamo", eventstruct.localclientnum, eventstruct);
 }
 
 /*

@@ -5,7 +5,7 @@
 #namespace scriptmodels;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: scriptmodels
 	Checksum: 0x151079A9
 	Offset: 0xA8
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"scriptmodels", &__init__, undefined, undefined);
 }

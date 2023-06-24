@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\zm_score.gsc;
@@ -8,7 +8,7 @@
 #namespace namespace_983e5028;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_983e5028
 	Checksum: 0x5EDBB3C1
 	Offset: 0xA8
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_1633972af838a447", &__init__, undefined, undefined);
 }
@@ -36,11 +36,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_2fc73bc20035fe8", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_2fc73bc20035fe8", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_983e5028
 	Checksum: 0x861EF37D
 	Offset: 0x158
@@ -48,7 +48,7 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-function private function_d1de6a85(var_d34d02af)
+function private on_begin(var_d34d02af)
 {
 	level.var_d34d02af = zm_trial::function_5769f26a(var_d34d02af);
 	callback::function_78ccee50(&function_78ccee50);
@@ -59,7 +59,7 @@ function private function_d1de6a85(var_d34d02af)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_983e5028
 	Checksum: 0xC72452A0
 	Offset: 0x228
@@ -67,7 +67,7 @@ function private function_d1de6a85(var_d34d02af)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	callback::function_deba137d(&function_78ccee50);
 	level.var_d34d02af = undefined;
@@ -110,7 +110,7 @@ function private function_a5a431f6()
 	while(true)
 	{
 		var_be17187b = undefined;
-		var_be17187b = self waittill(#"hash_7d855302d88c6701", #"lightning_ball_created");
+		var_be17187b = self waittill(#"ammo_reduction", #"lightning_ball_created");
 		self zm_score::player_reduce_points("take_specified", level.var_d34d02af);
 	}
 }

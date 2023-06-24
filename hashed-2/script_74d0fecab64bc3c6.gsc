@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3affe3aaa3f22cb0;
+#using scripts\wz_common\character_unlock_fixup.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_d0919546;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_d0919546
 	Checksum: 0xF1095535
 	Offset: 0x78
@@ -13,9 +13,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_5d70c94021e00856", &__init__, undefined, #"hash_1fd69f0c10bde41c");
+	system::register(#"hash_5d70c94021e00856", &__init__, undefined, #"character_unlock_fixup");
 }
 
 /*
@@ -29,12 +29,12 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	namespace_fa6b9ef8::function_82330491(#"hash_178221dd8299137b", #"hash_3c068bc5135b7df0", #"hash_7b73db9303fddf07", &function_d95e620c, undefined);
-	namespace_fa6b9ef8::function_82330491(#"hash_263de5e9fa6d16ea", #"hash_1c057428d4e91ae8", #"hash_109da3cfabaa9b8f", &function_d95e620c, undefined);
-	namespace_fa6b9ef8::function_82330491(#"hash_8c7045e78561cf4", #"hash_2b8f5badea243dda", #"hash_7b76b39303ffd0e6", &function_d95e620c, undefined);
-	namespace_fa6b9ef8::function_82330491(#"hash_74709eb5a08139fb", #"hash_78ae81c11d646d8b", #"hash_7b69e49303f599cd", &function_d95e620c, undefined);
-	namespace_fa6b9ef8::function_82330491(#"hash_517bb26004a9c12b", #"hash_1a942f2aeeccb69", #"hash_7b5fb89303ecfa84", &function_d95e620c, undefined);
-	namespace_fa6b9ef8::function_82330491(#"hash_3532d912b12917c9", #"hash_78ae86c11d64760a", #"hash_7b7dc39304060ac4", &function_d95e620c, undefined);
+	character_unlock_fixup::register_character_unlock(#"hash_178221dd8299137b", #"hash_3c068bc5135b7df0", #"hash_7b73db9303fddf07", &function_d95e620c, undefined);
+	character_unlock_fixup::register_character_unlock(#"hash_263de5e9fa6d16ea", #"hash_1c057428d4e91ae8", #"hash_109da3cfabaa9b8f", &function_d95e620c, undefined);
+	character_unlock_fixup::register_character_unlock(#"hash_8c7045e78561cf4", #"hash_2b8f5badea243dda", #"hash_7b76b39303ffd0e6", &function_d95e620c, undefined);
+	character_unlock_fixup::register_character_unlock(#"hash_74709eb5a08139fb", #"hash_78ae81c11d646d8b", #"hash_7b69e49303f599cd", &function_d95e620c, undefined);
+	character_unlock_fixup::register_character_unlock(#"hash_517bb26004a9c12b", #"hash_1a942f2aeeccb69", #"hash_7b5fb89303ecfa84", &function_d95e620c, undefined);
+	character_unlock_fixup::register_character_unlock(#"hash_3532d912b12917c9", #"hash_78ae86c11d64760a", #"hash_7b7dc39304060ac4", &function_d95e620c, undefined);
 }
 
 /*

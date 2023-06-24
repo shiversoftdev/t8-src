@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_ec0fbe79 : class_6aaccc24
+class czm_location : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0xD449F9F4
 		Offset: 0x1D8
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_ec0fbe79 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0x1E5FCA3E
 		Offset: 0x318
 		Size: 0x14
@@ -33,22 +33,22 @@ class class_ec0fbe79 : class_6aaccc24
 	}
 
 	/*
-		Name: function_e967988b
-		Namespace: namespace_ec0fbe79
+		Name: set_location_name
+		Namespace: czm_location
 		Checksum: 0x2828A4D
 		Offset: 0x2D0
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_e967988b(player, value)
+	function set_location_name(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "location_name", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0xB9850192
 		Offset: 0x2A0
 		Size: 0x24
@@ -57,12 +57,12 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0xCB8DE962
 		Offset: 0x250
 		Size: 0x44
@@ -71,12 +71,12 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_location", persistent);
+		cLUIelem::open_luielem(player, "zm_location", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_ec0fbe79
+		Namespace: czm_location
 		Checksum: 0x8DC2E22C
 		Offset: 0x1F8
 		Size: 0x4C
@@ -85,8 +85,8 @@ class class_ec0fbe79 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_dcb34c80("string", "location_name", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_dcb34c80("string", "location_name", 1);
 	}
 
 }
@@ -104,7 +104,7 @@ class class_ec0fbe79 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_ec0fbe79();
+	elem = new czm_location();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -152,7 +152,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_e967988b
+	Name: set_location_name
 	Namespace: zm_location
 	Checksum: 0x8C44B296
 	Offset: 0x1A8
@@ -160,8 +160,8 @@ function is_open(player)
 	Parameters: 2
 	Flags: Linked
 */
-function function_e967988b(player, value)
+function set_location_name(player, value)
 {
-	[[ self ]]->function_e967988b(player, value);
+	[[ self ]]->set_location_name(player, value);
 }
 

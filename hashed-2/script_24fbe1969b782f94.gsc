@@ -7,7 +7,7 @@
 #namespace wing_drone;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: wing_drone
 	Checksum: 0x4C82AFD9
 	Offset: 0xD0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"wing_drone", &__init__, undefined, undefined);
 }

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_3f9e0dc8454d98e1;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -28,7 +28,7 @@
 */
 function init()
 {
-	dvar = util::function_5df4294();
+	dvar = util::get_game_type();
 	if(dvar == "zcleansed")
 	{
 		level.weaponzmturnedmelee = getweapon(#"zombiemelee");

@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_2347be59 : class_6aaccc24
+class cmulti_stage_friendly_lockon : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_2347be59
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0xD237A6A4
 		Offset: 0x238
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_2347be59 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_2347be59
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0x518221F6
 		Offset: 0x428
 		Size: 0x14
@@ -31,36 +31,36 @@ class class_2347be59 : class_6aaccc24
 	}
 
 	/*
-		Name: function_f1e8a488
-		Namespace: namespace_2347be59
+		Name: set_targetState
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0xED20910E
 		Offset: 0x3F0
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_f1e8a488(localclientnum, value)
+	function set_targetState(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "targetState", value);
+		[[ self ]]->set_data(localclientnum, "targetState", value);
 	}
 
 	/*
-		Name: function_c8350e33
-		Namespace: namespace_2347be59
+		Name: set_entNum
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0xF48DA4A7
 		Offset: 0x3B8
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_c8350e33(localclientnum, value)
+	function set_entNum(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "entNum", value);
+		[[ self ]]->set_data(localclientnum, "entNum", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_2347be59
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0x1DC657DE
 		Offset: 0x380
 		Size: 0x2C
@@ -69,12 +69,12 @@ class class_2347be59 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"multi_stage_friendly_lockon");
+		cLUIelem::open(localclientnum, #"multi_stage_friendly_lockon");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_2347be59
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0xA755282
 		Offset: 0x318
 		Size: 0x5C
@@ -83,14 +83,14 @@ class class_2347be59 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "entNum", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "targetState", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "entNum", 0);
+		[[ self ]]->set_data(localclientnum, "targetState", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_2347be59
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0xEA7CF898
 		Offset: 0x2E8
 		Size: 0x24
@@ -99,12 +99,12 @@ class class_2347be59 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_2347be59
+		Namespace: cmulti_stage_friendly_lockon
 		Checksum: 0x3572EC3F
 		Offset: 0x258
 		Size: 0x84
@@ -113,9 +113,9 @@ class class_2347be59 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_5a7b4b38, var_29786c92)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("entNum", 1, 10, "int", var_5a7b4b38);
-		namespace_6aaccc24::function_da693cbe("targetState", 1, 3, "int", var_29786c92);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("entNum", 1, 10, "int", var_5a7b4b38);
+		cLUIelem::function_da693cbe("targetState", 1, 3, "int", var_29786c92);
 	}
 
 }
@@ -133,7 +133,7 @@ class class_2347be59 : class_6aaccc24
 */
 function register(uid, var_5a7b4b38, var_29786c92)
 {
-	elem = new class_2347be59();
+	elem = new cmulti_stage_friendly_lockon();
 	[[ elem ]]->setup_clientfields(uid, var_5a7b4b38, var_29786c92);
 	return elem;
 }
@@ -149,7 +149,7 @@ function register(uid, var_5a7b4b38, var_29786c92)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_2347be59();
+	elem = new cmulti_stage_friendly_lockon();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -197,7 +197,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_c8350e33
+	Name: set_entNum
 	Namespace: multi_stage_friendly_lockon
 	Checksum: 0x6E9DC72A
 	Offset: 0x1D8
@@ -205,13 +205,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_c8350e33(localclientnum, value)
+function set_entNum(localclientnum, value)
 {
-	[[ self ]]->function_c8350e33(localclientnum, value);
+	[[ self ]]->set_entNum(localclientnum, value);
 }
 
 /*
-	Name: function_f1e8a488
+	Name: set_targetState
 	Namespace: multi_stage_friendly_lockon
 	Checksum: 0x3EC68DB8
 	Offset: 0x208
@@ -219,8 +219,8 @@ function function_c8350e33(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_f1e8a488(localclientnum, value)
+function set_targetState(localclientnum, value)
 {
-	[[ self ]]->function_f1e8a488(localclientnum, value);
+	[[ self ]]->set_targetState(localclientnum, value);
 }
 

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
-#using script_7224d61ed502ea07;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_wallbuy.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
@@ -8,7 +8,7 @@
 #namespace namespace_6cc2ce5b;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_6cc2ce5b
 	Checksum: 0x4D2FD287
 	Offset: 0xA0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_4a6b297c85fafec1", &__init__, undefined, "bgb");
 }
@@ -82,7 +82,7 @@ function disable()
 */
 function validation()
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_51a2cf319e12d9ae"))
+	if(!zm_custom::function_901b751c(#"zmwallbuysenabled"))
 	{
 		return false;
 	}
@@ -98,7 +98,7 @@ function validation()
 	Parameters: 2
 	Flags: Linked
 */
-function function_84832f40(var_38e724e6, var_2b6f3563)
+function function_84832f40(w_wallbuy, var_2b6f3563)
 {
 	return 10;
 }
@@ -112,9 +112,9 @@ function function_84832f40(var_38e724e6, var_2b6f3563)
 	Parameters: 2
 	Flags: Linked
 */
-function override_ammo_cost(var_38e724e6, stub)
+function override_ammo_cost(w_wallbuy, stub)
 {
-	if(self zm_weapons::has_upgrade(var_38e724e6))
+	if(self zm_weapons::has_upgrade(w_wallbuy))
 	{
 		return 500;
 	}

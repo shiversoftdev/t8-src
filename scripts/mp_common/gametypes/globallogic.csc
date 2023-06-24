@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_4029012c9af5b12a;
-#using script_49c434794684964a;
-#using script_6ad3fda349f49bf9;
-#using script_6f7d15a072a2565;
+#using scripts\mp_common\player\player.csc;
+#using scripts\core_common\player\player_shared.csc;
+#using scripts\killstreaks\killstreak_detect.csc;
+#using scripts\mp_common\gametypes\display_transition.csc;
 #using scripts\core_common\animation_shared.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
@@ -16,7 +16,7 @@
 #namespace globallogic;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic
 	Checksum: 0x9BC30A9
 	Offset: 0x420
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic", &__init__, undefined, #"visionset_mgr");
 }
@@ -87,14 +87,14 @@ function __init__()
 	{
 		level.var_90bb9821 = getgametypesetting(#"playermaxhealth") - 150;
 	}
-	setdvar(#"hash_6028c4687677bbc9", getgametypesetting(#"boastenabled"));
+	setdvar(#"bg_boastenabled", getgametypesetting(#"boastenabled"));
 	boastallowcam = getgametypesetting(#"boastallowcam");
 	setdvar(#"hash_23c5d7207ebc0bf9", boastallowcam);
 	setdvar(#"hash_62833d3c5e6d7380", boastallowcam);
 	setdvar(#"hash_e099986c072eb0f", getgametypesetting(#"hash_104f124f56f0f20a"));
 	setdvar(#"hash_553ad8f9db24bf22", int(1000 * getgametypesetting(#"hash_1614b9cbe0df6f75")));
 	callback::on_spawned(&on_player_spawned);
-	namespace_81c567a8::init_shared();
+	display_transition::init_shared();
 }
 
 /*
@@ -297,7 +297,7 @@ function function_765b7c63(local_client_num, oldval, newval, bnewent, binitialsn
 		self stoploopsound(self.var_8e7f416f);
 		self.var_33b61b6f = 0;
 	}
-	level notify(#"hash_2452fc0a6548ed2d");
+	level notify(#"thermal_toggle");
 	players = getplayers(local_client_num);
 	foreach(player in players)
 	{

@@ -2,7 +2,7 @@
 #using script_28356b649490eda1;
 #using script_38dc72b5220a1a67;
 #using script_40e017336a087343;
-#using script_45e0fb7326469ccf;
+#using scripts\core_common\vehicles\driving_fx.csc;
 #using script_7814d07c54641f82;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
@@ -11,25 +11,25 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\core_common\vehicle_shared.csc;
 
-#namespace namespace_964fbfb5;
+#namespace wz_vehicle;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_964fbfb5
+	Name: __init__system__
+	Namespace: wz_vehicle
 	Checksum: 0xB3526EB
 	Offset: 0x348
 	Size: 0x3C
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_efc308ec898ff43", &__init__, undefined, undefined);
+	system::register(#"wz_vehicle", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x5C247086
 	Offset: 0x390
 	Size: 0x35C
@@ -60,7 +60,7 @@ function __init__()
 
 /*
 	Name: on_localplayer_spawned
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x16A7200E
 	Offset: 0x6F8
 	Size: 0xA4
@@ -72,7 +72,7 @@ function private on_localplayer_spawned(localclientnum)
 	if(self function_21c0fa55())
 	{
 		self.var_53204996 = &function_3ec2efae;
-		if(isdefined(getgametypesetting(#"hash_78bfea2b72e79da3")) && getgametypesetting(#"hash_78bfea2b72e79da3"))
+		if(isdefined(getgametypesetting(#"wzenablebountyhuntervehicles")) && getgametypesetting(#"wzenablebountyhuntervehicles"))
 		{
 			level thread function_8fd2e04f(localclientnum);
 		}
@@ -81,7 +81,7 @@ function private on_localplayer_spawned(localclientnum)
 
 /*
 	Name: function_12d038ac
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xB1AC2D79
 	Offset: 0x7A8
 	Size: 0xAC
@@ -106,7 +106,7 @@ function private function_12d038ac(localclientnum, oldval, newval, bnewent, bini
 
 /*
 	Name: function_54e9d3c4
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x29878F81
 	Offset: 0x860
 	Size: 0x22C
@@ -144,13 +144,13 @@ function private function_54e9d3c4(localclientnum)
 		self.var_e29b96d2 function_a5edb367(#"neutral");
 		self.var_e29b96d2 function_8e04481f();
 		self.var_e29b96d2 function_5e00861(0.62);
-		self.var_e29b96d2 function_5db470de(localclientnum, 2400, 1);
+		self.var_e29b96d2 enablevisioncircle(localclientnum, 2400, 1);
 	}
 }
 
 /*
 	Name: function_3ec2efae
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xA22E339B
 	Offset: 0xA98
 	Size: 0x178
@@ -192,22 +192,22 @@ function function_3ec2efae(localclientnum)
 }
 
 /*
-	Name: function_ba36f5d
-	Namespace: namespace_964fbfb5
+	Name: stunnedcallback
+	Namespace: wz_vehicle
 	Checksum: 0xC124A17E
 	Offset: 0xC18
 	Size: 0x2C
 	Parameters: 2
 	Flags: Linked
 */
-function function_ba36f5d(localclientnum, val)
+function stunnedcallback(localclientnum, val)
 {
 	self setstunned(val);
 }
 
 /*
 	Name: function_79500af5
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x5DF0791F
 	Offset: 0xC50
 	Size: 0x42
@@ -217,12 +217,12 @@ function function_ba36f5d(localclientnum, val)
 function private function_79500af5(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_fb9c790a
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xCF3B331D
 	Offset: 0xCA0
 	Size: 0x42
@@ -232,12 +232,12 @@ function private function_79500af5(localclientnum, data)
 function private function_fb9c790a(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_bd3b5229
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x57669517
 	Offset: 0xCF0
 	Size: 0xD4
@@ -247,7 +247,7 @@ function private function_fb9c790a(localclientnum, data)
 function private function_bd3b5229(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 	if(isdefined(self.scriptbundlesettings))
 	{
 		if(!isdefined(self.settings))
@@ -263,7 +263,7 @@ function private function_bd3b5229(localclientnum, data)
 
 /*
 	Name: function_500291c4
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x6D4222F8
 	Offset: 0xDD0
 	Size: 0x42
@@ -273,12 +273,12 @@ function private function_bd3b5229(localclientnum, data)
 function private function_500291c4(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_8278ed00
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xB510415C
 	Offset: 0xE20
 	Size: 0x42
@@ -288,12 +288,12 @@ function private function_500291c4(localclientnum, data)
 function private function_8278ed00(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_6b617752
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xFC0BB653
 	Offset: 0xE70
 	Size: 0x4A
@@ -304,12 +304,12 @@ function private function_6b617752(localclientnum, data)
 {
 	self.var_917cf8e3 = &function_b0d51c9;
 	self.var_1a6ef836 = 0;
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_cc0af45d
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x74C42F54
 	Offset: 0xEC8
 	Size: 0x4A
@@ -320,12 +320,12 @@ function private function_cc0af45d(localclientnum, data)
 {
 	self.var_917cf8e3 = &function_b0d51c9;
 	self.var_1a6ef836 = 0;
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_a01726dd
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x96174A5C
 	Offset: 0xF20
 	Size: 0xEC
@@ -352,7 +352,7 @@ function private function_a01726dd(localclientnum, data)
 
 /*
 	Name: function_cb575bc3
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x71C8CCC0
 	Offset: 0x1018
 	Size: 0xD4
@@ -362,7 +362,7 @@ function private function_a01726dd(localclientnum, data)
 function private function_cb575bc3(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 	if(isdefined(self.scriptbundlesettings))
 	{
 		if(!isdefined(self.settings))
@@ -378,7 +378,7 @@ function private function_cb575bc3(localclientnum, data)
 
 /*
 	Name: function_c0f1d81b
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x423D1970
 	Offset: 0x10F8
 	Size: 0x42
@@ -388,12 +388,12 @@ function private function_cb575bc3(localclientnum, data)
 function private function_c0f1d81b(localclientnum, data)
 {
 	self function_3f24c5a(1);
-	self.var_ba36f5d = &function_ba36f5d;
+	self.stunnedcallback = &stunnedcallback;
 }
 
 /*
 	Name: function_8411122e
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x8E64FD02
 	Offset: 0x1148
 	Size: 0x104
@@ -426,7 +426,7 @@ function private function_8411122e(localclientnum, owner)
 
 /*
 	Name: function_b0d51c9
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xA5F80DC7
 	Offset: 0x1258
 	Size: 0x10A
@@ -461,7 +461,7 @@ function private function_b0d51c9(localclientnum, owner)
 
 /*
 	Name: function_74272495
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x76BA0F69
 	Offset: 0x1370
 	Size: 0x18
@@ -475,7 +475,7 @@ function private function_74272495(localclientnum, owner)
 
 /*
 	Name: function_69fda304
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x20E6397
 	Offset: 0x1390
 	Size: 0xA0
@@ -501,7 +501,7 @@ function private function_69fda304(localclientnum)
 
 /*
 	Name: heli_exit
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x6102C0EC
 	Offset: 0x1438
 	Size: 0x5C
@@ -518,7 +518,7 @@ function private heli_exit(localclientnum)
 
 /*
 	Name: function_d1731820
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x298E221D
 	Offset: 0x14A0
 	Size: 0x4E
@@ -536,7 +536,7 @@ function private function_d1731820(localclientnum)
 
 /*
 	Name: function_ff8d2820
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xC7918B
 	Offset: 0x14F8
 	Size: 0x84
@@ -563,7 +563,7 @@ function private function_ff8d2820(localclientnum, rumble)
 
 /*
 	Name: function_732976d8
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x9F48FB87
 	Offset: 0x1588
 	Size: 0x24C
@@ -612,7 +612,7 @@ function private function_732976d8(localclientnum, vehicle)
 
 /*
 	Name: field_do_deathfx
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xB3C5CA80
 	Offset: 0x17E0
 	Size: 0x6C
@@ -629,7 +629,7 @@ function private field_do_deathfx(localclientnum, oldval, newval, bnewent, binit
 
 /*
 	Name: function_de69d
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x4E684A1D
 	Offset: 0x1858
 	Size: 0x6C
@@ -646,7 +646,7 @@ function private function_de69d(localclientnum, oldval, newval, bnewent, binitia
 
 /*
 	Name: function_b4806ee
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x46C66858
 	Offset: 0x18D0
 	Size: 0x11A
@@ -666,16 +666,16 @@ function private function_b4806ee(localclientnum, oldval, newval, bnewent, binit
 	}
 	if(newval == 1)
 	{
-		if(isdefined(self.settings) && isdefined(self.settings.var_e90e82ca))
+		if(isdefined(self.settings) && isdefined(self.settings.vehicle_turret))
 		{
-			self.var_ec515b18 = self util::playfxontag(localclientnum, self.settings.var_e90e82ca, self, "tag_gunner_flash1");
+			self.var_ec515b18 = self util::playfxontag(localclientnum, self.settings.vehicle_turret, self, "tag_gunner_flash1");
 		}
 	}
 }
 
 /*
 	Name: function_a998aede
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0x1F75ED9E
 	Offset: 0x19F8
 	Size: 0xB2
@@ -700,7 +700,7 @@ function private function_a998aede(localclientnum, oldval, newval, bnewent, bini
 
 /*
 	Name: function_8fd2e04f
-	Namespace: namespace_964fbfb5
+	Namespace: wz_vehicle
 	Checksum: 0xF7BD962F
 	Offset: 0x1AB8
 	Size: 0x278

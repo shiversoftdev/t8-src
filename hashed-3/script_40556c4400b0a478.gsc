@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2afa753925b20cc0;
+#using scripts\zm\ai\zm_ai_brutus.gsc;
 #using scripts\core_common\spawner_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\zm_devgui.gsc;
@@ -7,7 +7,7 @@
 #namespace namespace_9d28c60;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_9d28c60
 	Checksum: 0x54FFF659
 	Offset: 0xC0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_2e2fcde8843638d9", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function private __init__()
 */
 function private function_e67297f2()
 {
-	if(self.var_9fde8624 !== #"hash_273dea5b2e3044c0")
+	if(self.var_9fde8624 !== #"brutus_special")
 	{
 		return;
 	}
@@ -92,7 +92,7 @@ function private function_5162a3de(cmd)
 				spawners = getspawnerarray();
 				foreach(spawner in spawners)
 				{
-					if(spawner.var_9fde8624 === #"hash_273dea5b2e3044c0" && isdefined(spawner.script_noteworthy))
+					if(spawner.var_9fde8624 === #"brutus_special" && isdefined(spawner.script_noteworthy))
 					{
 						zm_devgui::spawn_archetype(spawner.script_noteworthy);
 						break;
@@ -105,7 +105,7 @@ function private function_5162a3de(cmd)
 				brutuses = getaiarchetypearray(#"brutus");
 				foreach(brutus in brutuses)
 				{
-					if(brutus.var_9fde8624 === #"hash_273dea5b2e3044c0")
+					if(brutus.var_9fde8624 === #"brutus_special")
 					{
 						brutus kill(undefined, undefined, undefined, undefined, 0, 1);
 					}

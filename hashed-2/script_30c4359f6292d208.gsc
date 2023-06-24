@@ -7,7 +7,7 @@
 #namespace namespace_ca2d9d65;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_ca2d9d65
 	Checksum: 0xF44498FC
 	Offset: 0xD8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_55c97cd74c2ed150", &__init__, undefined, undefined);
 }
@@ -32,7 +32,7 @@ function autoexec function_89f2df9()
 function __init__()
 {
 	clientfield::register("toplayer", "audio_log_ball_fx", 1, 3, "int", &function_50865dc7, 0, 0);
-	level._effect[#"hash_660550377f6cb3e3"] = #"hash_445f04139d92c61b";
+	level._effect[#"audio_ball"] = #"hash_445f04139d92c61b";
 }
 
 /*
@@ -55,6 +55,6 @@ function function_50865dc7(localclientnum, oldval, newval, bnewent, binitialsnap
 			break;
 		}
 	}
-	util::playfxontag(localclientnum, level._effect[#"hash_660550377f6cb3e3"], var_a1cf77d2, "tag_origin");
+	util::playfxontag(localclientnum, level._effect[#"audio_ball"], var_a1cf77d2, "tag_origin");
 }
 

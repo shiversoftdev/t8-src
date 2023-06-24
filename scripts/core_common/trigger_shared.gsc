@@ -12,7 +12,7 @@
 #namespace trigger;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: trigger
 	Checksum: 0xE3E7AA94
 	Offset: 0x238
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"trigger", &__init__, undefined, undefined);
 }
@@ -60,7 +60,7 @@ function function_cbf8fb6b(var_60ffbed2, func_handler, func_init, var_114fa26c =
 			}
 			else
 			{
-				self callback::function_35a12f19(func_handler);
+				self callback::on_trigger(func_handler);
 			}
 		}
 		if(isfunctionptr(func_init))
@@ -337,8 +337,8 @@ function function_ac2f203a(str_flag)
 */
 function flag_set_trigger()
 {
-	var_af1bea51 = util::create_flags_and_return_tokens(self.script_flag_set);
-	foreach(str_flag in var_af1bea51)
+	a_str_flags = util::create_flags_and_return_tokens(self.script_flag_set);
+	foreach(str_flag in a_str_flags)
 	{
 		level flag::set(str_flag);
 	}
@@ -355,8 +355,8 @@ function flag_set_trigger()
 */
 function flag_clear_trigger(s_info)
 {
-	var_af1bea51 = util::create_flags_and_return_tokens(self.script_flag_clear);
-	foreach(str_flag in var_af1bea51)
+	a_str_flags = util::create_flags_and_return_tokens(self.script_flag_clear);
+	foreach(str_flag in a_str_flags)
 	{
 		level flag::clear(str_flag);
 	}
@@ -1187,7 +1187,7 @@ function trigger_group(s_info)
 }
 
 /*
-	Name: function_521edc64
+	Name: function_thread
 	Namespace: trigger
 	Checksum: 0x463179E0
 	Offset: 0x2A50
@@ -1195,7 +1195,7 @@ function trigger_group(s_info)
 	Parameters: 3
 	Flags: None
 */
-function function_521edc64(ent, on_enter_payload, on_exit_payload)
+function function_thread(ent, on_enter_payload, on_exit_payload)
 {
 	ent endon(#"death");
 	if(!isdefined(self))
@@ -1332,7 +1332,7 @@ function run(func, vararg)
 		{
 			if(trig.target === self.targetname)
 			{
-				trig callback::function_35a12f19(&function_996dfbe2, undefined, self, func, vararg);
+				trig callback::on_trigger(&function_996dfbe2, undefined, self, func, vararg);
 				var_3bdd90c2 = 1;
 			}
 		}

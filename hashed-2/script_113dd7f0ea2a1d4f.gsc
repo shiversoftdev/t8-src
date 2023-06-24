@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_8a452bea : class_6aaccc24
+class cprototype_hud : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0xD146032D
 		Offset: 0x618
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_8a452bea : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0xFB3A1CC8
 		Offset: 0xDE8
 		Size: 0x14
@@ -33,232 +33,232 @@ class class_8a452bea : class_6aaccc24
 	}
 
 	/*
-		Name: function_19a87901
-		Namespace: namespace_8a452bea
+		Name: set_deploy_prompt_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x9BD15039
 		Offset: 0xDA0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_19a87901(player, value)
+	function set_deploy_prompt_visibility(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "deploy_prompt_visibility", value);
 	}
 
 	/*
-		Name: function_1f1846cf
-		Namespace: namespace_8a452bea
+		Name: set_fail_fanfare_visibility
+		Namespace: cprototype_hud
 		Checksum: 0xA9BBFFBD
 		Offset: 0xD58
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_1f1846cf(player, value)
+	function set_fail_fanfare_visibility(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "fail_fanfare_visibility", value);
 	}
 
 	/*
-		Name: function_cbcd8e48
-		Namespace: namespace_8a452bea
+		Name: set_fanfare_visibility
+		Namespace: cprototype_hud
 		Checksum: 0xCA916871
 		Offset: 0xD10
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_cbcd8e48(player, value)
+	function set_fanfare_visibility(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "fanfare_visibility", value);
 	}
 
 	/*
-		Name: function_8b286a2f
-		Namespace: namespace_8a452bea
+		Name: set_objective3_strike
+		Namespace: cprototype_hud
 		Checksum: 0xFBD1DE33
 		Offset: 0xCC8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_8b286a2f(player, value)
+	function set_objective3_strike(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective3_strike", value);
 	}
 
 	/*
-		Name: function_565d4199
-		Namespace: namespace_8a452bea
+		Name: set_objective2_strike
+		Namespace: cprototype_hud
 		Checksum: 0xCF9D1BD0
 		Offset: 0xC80
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_565d4199(player, value)
+	function set_objective2_strike(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective2_strike", value);
 	}
 
 	/*
-		Name: function_cc538489
-		Namespace: namespace_8a452bea
+		Name: set_objective1_strike
+		Namespace: cprototype_hud
 		Checksum: 0x7B924F7F
 		Offset: 0xC38
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_cc538489(player, value)
+	function set_objective1_strike(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective1_strike", value);
 	}
 
 	/*
-		Name: function_4e0e26c8
-		Namespace: namespace_8a452bea
+		Name: set_objective_prompt_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x38273724
 		Offset: 0xBF0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_4e0e26c8(player, value)
+	function set_objective_prompt_visibility(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective_prompt_visibility", value);
 	}
 
 	/*
-		Name: function_a18b1c70
-		Namespace: namespace_8a452bea
+		Name: set_objective3_string
+		Namespace: cprototype_hud
 		Checksum: 0xF6F0374E
 		Offset: 0xBA8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_a18b1c70(player, value)
+	function set_objective3_string(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective3_string", value);
 	}
 
 	/*
-		Name: function_a7596728
-		Namespace: namespace_8a452bea
+		Name: set_objective2_string
+		Namespace: cprototype_hud
 		Checksum: 0xCBDAC031
 		Offset: 0xB60
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_a7596728(player, value)
+	function set_objective2_string(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective2_string", value);
 	}
 
 	/*
-		Name: function_ad839e96
-		Namespace: namespace_8a452bea
+		Name: set_objective1_string
+		Namespace: cprototype_hud
 		Checksum: 0x2BECF7C4
 		Offset: 0xB18
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_ad839e96(player, value)
+	function set_objective1_string(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objective1_string", value);
 	}
 
 	/*
-		Name: function_953da284
-		Namespace: namespace_8a452bea
+		Name: set_active_objective_string
+		Namespace: cprototype_hud
 		Checksum: 0xBA7A32EB
 		Offset: 0xAD0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_953da284(player, value)
+	function set_active_objective_string(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "active_objective_string", value);
 	}
 
 	/*
-		Name: function_d0c21ed0
-		Namespace: namespace_8a452bea
+		Name: set_craft_progress
+		Namespace: cprototype_hud
 		Checksum: 0xE2C4BF8
 		Offset: 0xA88
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_d0c21ed0(player, value)
+	function set_craft_progress(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "craft_progress", value);
 	}
 
 	/*
-		Name: function_4d15d40b
-		Namespace: namespace_8a452bea
+		Name: set_resource_count_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x1C66732B
 		Offset: 0xA40
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_4d15d40b(player, value)
+	function set_resource_count_visibility(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "resource_count_visibility", value);
 	}
 
 	/*
-		Name: function_db0a5e97
-		Namespace: namespace_8a452bea
+		Name: set_defense_resource_count
+		Namespace: cprototype_hud
 		Checksum: 0xA007F782
 		Offset: 0x9F8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_db0a5e97(player, value)
+	function set_defense_resource_count(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "defense_resource_count", value);
 	}
 
 	/*
-		Name: function_bf6f7729
-		Namespace: namespace_8a452bea
+		Name: set_upgrade_resource_count
+		Namespace: cprototype_hud
 		Checksum: 0xB7AEB639
 		Offset: 0x9B0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_bf6f7729(player, value)
+	function set_upgrade_resource_count(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "upgrade_resource_count", value);
 	}
 
 	/*
-		Name: function_67cb2b67
-		Namespace: namespace_8a452bea
+		Name: set_barrier_prompt_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x91AD8421
 		Offset: 0x968
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_67cb2b67(player, value)
+	function set_barrier_prompt_visibility(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "barrier_prompt_visibility", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0xD42AEE95
 		Offset: 0x938
 		Size: 0x24
@@ -267,12 +267,12 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0xB70060FA
 		Offset: 0x8E8
 		Size: 0x44
@@ -281,12 +281,12 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "prototype_hud", persistent);
+		cLUIelem::open_luielem(player, "prototype_hud", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0x900FAA92
 		Offset: 0x638
 		Size: 0x2A4
@@ -295,23 +295,23 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("barrier_prompt_visibility", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("upgrade_resource_count", 4000, 8, "int");
-		namespace_6aaccc24::function_da693cbe("defense_resource_count", 4000, 8, "int");
-		namespace_6aaccc24::function_da693cbe("resource_count_visibility", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("craft_progress", 4000, 5, "float");
-		namespace_6aaccc24::function_dcb34c80("string", "active_objective_string", 4000);
-		namespace_6aaccc24::function_dcb34c80("string", "objective1_string", 4000);
-		namespace_6aaccc24::function_dcb34c80("string", "objective2_string", 4000);
-		namespace_6aaccc24::function_dcb34c80("string", "objective3_string", 4000);
-		namespace_6aaccc24::function_da693cbe("objective_prompt_visibility", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("objective1_strike", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("objective2_strike", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("objective3_strike", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("fanfare_visibility", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("fail_fanfare_visibility", 4000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("deploy_prompt_visibility", 4000, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("barrier_prompt_visibility", 4000, 1, "int");
+		cLUIelem::function_da693cbe("upgrade_resource_count", 4000, 8, "int");
+		cLUIelem::function_da693cbe("defense_resource_count", 4000, 8, "int");
+		cLUIelem::function_da693cbe("resource_count_visibility", 4000, 1, "int");
+		cLUIelem::function_da693cbe("craft_progress", 4000, 5, "float");
+		cLUIelem::function_dcb34c80("string", "active_objective_string", 4000);
+		cLUIelem::function_dcb34c80("string", "objective1_string", 4000);
+		cLUIelem::function_dcb34c80("string", "objective2_string", 4000);
+		cLUIelem::function_dcb34c80("string", "objective3_string", 4000);
+		cLUIelem::function_da693cbe("objective_prompt_visibility", 4000, 1, "int");
+		cLUIelem::function_da693cbe("objective1_strike", 4000, 1, "int");
+		cLUIelem::function_da693cbe("objective2_strike", 4000, 1, "int");
+		cLUIelem::function_da693cbe("objective3_strike", 4000, 1, "int");
+		cLUIelem::function_da693cbe("fanfare_visibility", 4000, 1, "int");
+		cLUIelem::function_da693cbe("fail_fanfare_visibility", 4000, 1, "int");
+		cLUIelem::function_da693cbe("deploy_prompt_visibility", 4000, 1, "int");
 	}
 
 }
@@ -329,7 +329,7 @@ class class_8a452bea : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_8a452bea();
+	elem = new cprototype_hud();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -377,7 +377,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_67cb2b67
+	Name: set_barrier_prompt_visibility
 	Namespace: prototype_hud
 	Checksum: 0xF5E16B7B
 	Offset: 0x318
@@ -385,13 +385,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_67cb2b67(player, value)
+function set_barrier_prompt_visibility(player, value)
 {
-	[[ self ]]->function_67cb2b67(player, value);
+	[[ self ]]->set_barrier_prompt_visibility(player, value);
 }
 
 /*
-	Name: function_bf6f7729
+	Name: set_upgrade_resource_count
 	Namespace: prototype_hud
 	Checksum: 0x37EFDFA4
 	Offset: 0x348
@@ -399,13 +399,13 @@ function function_67cb2b67(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_bf6f7729(player, value)
+function set_upgrade_resource_count(player, value)
 {
-	[[ self ]]->function_bf6f7729(player, value);
+	[[ self ]]->set_upgrade_resource_count(player, value);
 }
 
 /*
-	Name: function_db0a5e97
+	Name: set_defense_resource_count
 	Namespace: prototype_hud
 	Checksum: 0x9A52CF9C
 	Offset: 0x378
@@ -413,13 +413,13 @@ function function_bf6f7729(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_db0a5e97(player, value)
+function set_defense_resource_count(player, value)
 {
-	[[ self ]]->function_db0a5e97(player, value);
+	[[ self ]]->set_defense_resource_count(player, value);
 }
 
 /*
-	Name: function_4d15d40b
+	Name: set_resource_count_visibility
 	Namespace: prototype_hud
 	Checksum: 0xCD246604
 	Offset: 0x3A8
@@ -427,13 +427,13 @@ function function_db0a5e97(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_4d15d40b(player, value)
+function set_resource_count_visibility(player, value)
 {
-	[[ self ]]->function_4d15d40b(player, value);
+	[[ self ]]->set_resource_count_visibility(player, value);
 }
 
 /*
-	Name: function_d0c21ed0
+	Name: set_craft_progress
 	Namespace: prototype_hud
 	Checksum: 0x107C6EDF
 	Offset: 0x3D8
@@ -441,13 +441,13 @@ function function_4d15d40b(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_d0c21ed0(player, value)
+function set_craft_progress(player, value)
 {
-	[[ self ]]->function_d0c21ed0(player, value);
+	[[ self ]]->set_craft_progress(player, value);
 }
 
 /*
-	Name: function_953da284
+	Name: set_active_objective_string
 	Namespace: prototype_hud
 	Checksum: 0xEC2383FE
 	Offset: 0x408
@@ -455,13 +455,13 @@ function function_d0c21ed0(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_953da284(player, value)
+function set_active_objective_string(player, value)
 {
-	[[ self ]]->function_953da284(player, value);
+	[[ self ]]->set_active_objective_string(player, value);
 }
 
 /*
-	Name: function_ad839e96
+	Name: set_objective1_string
 	Namespace: prototype_hud
 	Checksum: 0xA21D1015
 	Offset: 0x438
@@ -469,13 +469,13 @@ function function_953da284(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_ad839e96(player, value)
+function set_objective1_string(player, value)
 {
-	[[ self ]]->function_ad839e96(player, value);
+	[[ self ]]->set_objective1_string(player, value);
 }
 
 /*
-	Name: function_a7596728
+	Name: set_objective2_string
 	Namespace: prototype_hud
 	Checksum: 0xFE8FA60B
 	Offset: 0x468
@@ -483,13 +483,13 @@ function function_ad839e96(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_a7596728(player, value)
+function set_objective2_string(player, value)
 {
-	[[ self ]]->function_a7596728(player, value);
+	[[ self ]]->set_objective2_string(player, value);
 }
 
 /*
-	Name: function_a18b1c70
+	Name: set_objective3_string
 	Namespace: prototype_hud
 	Checksum: 0x30E73DB1
 	Offset: 0x498
@@ -497,13 +497,13 @@ function function_a7596728(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_a18b1c70(player, value)
+function set_objective3_string(player, value)
 {
-	[[ self ]]->function_a18b1c70(player, value);
+	[[ self ]]->set_objective3_string(player, value);
 }
 
 /*
-	Name: function_4e0e26c8
+	Name: set_objective_prompt_visibility
 	Namespace: prototype_hud
 	Checksum: 0x90749BB7
 	Offset: 0x4C8
@@ -511,13 +511,13 @@ function function_a18b1c70(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_4e0e26c8(player, value)
+function set_objective_prompt_visibility(player, value)
 {
-	[[ self ]]->function_4e0e26c8(player, value);
+	[[ self ]]->set_objective_prompt_visibility(player, value);
 }
 
 /*
-	Name: function_cc538489
+	Name: set_objective1_strike
 	Namespace: prototype_hud
 	Checksum: 0x5195E9EF
 	Offset: 0x4F8
@@ -525,13 +525,13 @@ function function_4e0e26c8(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_cc538489(player, value)
+function set_objective1_strike(player, value)
 {
-	[[ self ]]->function_cc538489(player, value);
+	[[ self ]]->set_objective1_strike(player, value);
 }
 
 /*
-	Name: function_565d4199
+	Name: set_objective2_strike
 	Namespace: prototype_hud
 	Checksum: 0x9B00B84A
 	Offset: 0x528
@@ -539,13 +539,13 @@ function function_cc538489(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_565d4199(player, value)
+function set_objective2_strike(player, value)
 {
-	[[ self ]]->function_565d4199(player, value);
+	[[ self ]]->set_objective2_strike(player, value);
 }
 
 /*
-	Name: function_8b286a2f
+	Name: set_objective3_strike
 	Namespace: prototype_hud
 	Checksum: 0xAA6C1924
 	Offset: 0x558
@@ -553,13 +553,13 @@ function function_565d4199(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_8b286a2f(player, value)
+function set_objective3_strike(player, value)
 {
-	[[ self ]]->function_8b286a2f(player, value);
+	[[ self ]]->set_objective3_strike(player, value);
 }
 
 /*
-	Name: function_cbcd8e48
+	Name: set_fanfare_visibility
 	Namespace: prototype_hud
 	Checksum: 0xABACBBCA
 	Offset: 0x588
@@ -567,13 +567,13 @@ function function_8b286a2f(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_cbcd8e48(player, value)
+function set_fanfare_visibility(player, value)
 {
-	[[ self ]]->function_cbcd8e48(player, value);
+	[[ self ]]->set_fanfare_visibility(player, value);
 }
 
 /*
-	Name: function_1f1846cf
+	Name: set_fail_fanfare_visibility
 	Namespace: prototype_hud
 	Checksum: 0x6A6D29B5
 	Offset: 0x5B8
@@ -581,13 +581,13 @@ function function_cbcd8e48(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_1f1846cf(player, value)
+function set_fail_fanfare_visibility(player, value)
 {
-	[[ self ]]->function_1f1846cf(player, value);
+	[[ self ]]->set_fail_fanfare_visibility(player, value);
 }
 
 /*
-	Name: function_19a87901
+	Name: set_deploy_prompt_visibility
 	Namespace: prototype_hud
 	Checksum: 0xF608C7AB
 	Offset: 0x5E8
@@ -595,8 +595,8 @@ function function_1f1846cf(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_19a87901(player, value)
+function set_deploy_prompt_visibility(player, value)
 {
-	[[ self ]]->function_19a87901(player, value);
+	[[ self ]]->set_deploy_prompt_visibility(player, value);
 }
 

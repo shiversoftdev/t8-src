@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_616a42d0 : class_6aaccc24
+class czm_build_progress : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_616a42d0
+		Namespace: czm_build_progress
 		Checksum: 0x552D683C
 		Offset: 0x1F8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_616a42d0 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_616a42d0
+		Namespace: czm_build_progress
 		Checksum: 0xE101194C
 		Offset: 0x368
 		Size: 0x14
@@ -31,22 +31,22 @@ class class_616a42d0 : class_6aaccc24
 	}
 
 	/*
-		Name: function_affe8f61
-		Namespace: namespace_616a42d0
+		Name: set_progress
+		Namespace: czm_build_progress
 		Checksum: 0x1A68DFC5
 		Offset: 0x330
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_affe8f61(localclientnum, value)
+	function set_progress(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "progress", value);
+		[[ self ]]->set_data(localclientnum, "progress", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_616a42d0
+		Namespace: czm_build_progress
 		Checksum: 0x4B95EE6B
 		Offset: 0x2F8
 		Size: 0x2C
@@ -55,12 +55,12 @@ class class_616a42d0 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"zm_build_progress");
+		cLUIelem::open(localclientnum, #"zm_build_progress");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_616a42d0
+		Namespace: czm_build_progress
 		Checksum: 0xDFDA8CA4
 		Offset: 0x2A8
 		Size: 0x48
@@ -69,13 +69,13 @@ class class_616a42d0 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "progress", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "progress", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_616a42d0
+		Namespace: czm_build_progress
 		Checksum: 0xA0F86E98
 		Offset: 0x278
 		Size: 0x24
@@ -84,12 +84,12 @@ class class_616a42d0 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_616a42d0
+		Namespace: czm_build_progress
 		Checksum: 0x915AF0A2
 		Offset: 0x218
 		Size: 0x54
@@ -98,8 +98,8 @@ class class_616a42d0 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_afaddf7a)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("progress", 1, 6, "float", var_afaddf7a);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("progress", 1, 6, "float", var_afaddf7a);
 	}
 
 }
@@ -117,7 +117,7 @@ class class_616a42d0 : class_6aaccc24
 */
 function register(uid, var_afaddf7a)
 {
-	elem = new class_616a42d0();
+	elem = new czm_build_progress();
 	[[ elem ]]->setup_clientfields(uid, var_afaddf7a);
 	return elem;
 }
@@ -133,7 +133,7 @@ function register(uid, var_afaddf7a)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_616a42d0();
+	elem = new czm_build_progress();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -181,7 +181,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_affe8f61
+	Name: set_progress
 	Namespace: zm_build_progress
 	Checksum: 0xE4EC5688
 	Offset: 0x1C8
@@ -189,8 +189,8 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_affe8f61(localclientnum, value)
+function set_progress(localclientnum, value)
 {
-	[[ self ]]->function_affe8f61(localclientnum, value);
+	[[ self ]]->set_progress(localclientnum, value);
 }
 

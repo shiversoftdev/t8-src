@@ -119,7 +119,7 @@ function private function_c72eb508()
 		return self.var_9f20891;
 	}
 	count = function_3045dd71();
-	seed = self getentitynumber() + (isdefined(level.var_cca3647d) ? level.var_cca3647d : 0);
+	seed = self getentitynumber() + (isdefined(level.item_spawn_seed) ? level.item_spawn_seed : 0);
 	self.var_9f20891 = function_d59c2d03(count, seed);
 	return self.var_9f20891;
 }

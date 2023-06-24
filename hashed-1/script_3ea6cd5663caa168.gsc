@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2efbf80b6e18c0ab;
+#using scripts\mp_common\teams\teamset.gsc;
 
 #namespace namespace_6f4abfc0;
 

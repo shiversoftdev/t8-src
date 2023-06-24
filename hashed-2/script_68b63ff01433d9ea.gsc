@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1b10fdf0addd52e;
+#using scripts\zm_common\zm_transformation.gsc;
 #using script_35598499769dbb3d;
 #using script_387eab232fe22983;
 #using script_3e5ec44cfab7a201;
-#using script_3f9e0dc8454d98e1;
-#using script_52c6c2d1a2ef1b46;
-#using script_5bb072c3abf4652c;
-#using script_6c5b51f98cd04fa3;
-#using script_6e3c826b1814cab6;
-#using script_760946ab27d685b4;
-#using script_79c9122f9058e8ba;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\zm_common\zm_vo.gsc;
+#using scripts\zm_common\zm_sq.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm\zm_mansion_jordans.gsc;
+#using scripts\zm\ai\zm_ai_nosferatu.gsc;
 #using script_ab862743b3070a;
-#using script_b52a163973f339f;
-#using script_b761c44ab2e5b46;
-#using script_c17220bc4d57fdd;
+#using scripts\zm_common\zm_characters.gsc;
+#using scripts\zm\zm_mansion_special_rounds.gsc;
+#using scripts\zm\zm_mansion_silver_bullet.gsc;
 #using script_db06eb511bd9b36;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
@@ -44,11 +44,11 @@
 #using scripts\zm_common\zm_weapons.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_c2ad41c5;
+#namespace mansion_storage;
 
 /*
 	Name: init
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x1D85D652
 	Offset: 0x430
 	Size: 0x2C4
@@ -58,24 +58,24 @@
 function init()
 {
 	clientfield::register("scriptmover", "" + #"hash_65a58403194ef1b4", 8000, 1, "int");
-	clientfield::register("world", "" + #"hash_d8f7d3d92b32a26", 8000, 1, "int");
+	clientfield::register("world", "" + #"start_billiards", 8000, 1, "int");
 	serverfield::register("billiard_ball_sunk_sf", 8000, getminbitcountfornum(9), "int", &function_cf048af);
 	clientfield::register("world", "" + #"hash_354bb8ac5de6640a", 8000, getminbitcountfornum(9), "int");
 	clientfield::register("world", "" + #"hash_75594bca6b54706e", 8000, 1, "int");
 	clientfield::register("world", "" + #"hash_2c115514da4cee51", 17000, 1, "int");
-	clientfield::register("scriptmover", "" + #"hash_4103918642e9fdf9", 8000, 1, "counter");
-	clientfield::register("scriptmover", "" + #"hash_74f15de74cd5b883", 8000, 1, "counter");
+	clientfield::register("scriptmover", "" + #"barrel_drip", 8000, 1, "counter");
+	clientfield::register("scriptmover", "" + #"barrel_spray", 8000, 1, "counter");
 	function_c739f755();
-	namespace_ee206246::start(#"hash_4c0e5e4b34877996");
-	namespace_ee206246::start(#"hash_65636bbec86da22c");
-	namespace_ee206246::start(#"hash_4ca89643d74ccffb", 1);
+	zm_sq::start(#"hash_4c0e5e4b34877996");
+	zm_sq::start(#"hash_65636bbec86da22c");
+	zm_sq::start(#"zm_storage_billiards", 1);
 	level thread function_550d0bc6();
 	level thread function_e63ede31();
 }
 
 /*
 	Name: function_c739f755
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x10847E3B
 	Offset: 0x700
 	Size: 0x244
@@ -84,17 +84,17 @@ function init()
 */
 function function_c739f755()
 {
-	namespace_ee206246::register(#"hash_4c0e5e4b34877996", #"step_1", #"hash_5b60b951867b6b11", &function_63ceee4b, &function_a1ed8c28);
-	namespace_ee206246::register(#"hash_4c0e5e4b34877996", #"step_2", #"hash_5b60b651867b65f8", &function_4e14c2d7, &function_21e10c11);
-	namespace_ee206246::register(#"hash_65636bbec86da22c", #"step_1", #"hash_1551692125951197", &function_6c1be65c, &function_e4b6830d);
-	namespace_ee206246::register(#"hash_65636bbec86da22c", #"step_2", #"hash_15516a212595134a", &function_28995f54, &function_f5692472);
-	namespace_ee206246::register(#"hash_4ca89643d74ccffb", #"step_1", #"hash_33b63d9ccbdb1e3e", &function_ffc4a06a, &function_a4daedbe);
-	namespace_ee206246::register(#"hash_4ca89643d74ccffb", #"step_2", #"hash_33b63c9ccbdb1c8b", &function_f21f0537, &function_2ff803fa);
+	zm_sq::register(#"hash_4c0e5e4b34877996", #"step_1", #"hash_5b60b951867b6b11", &function_63ceee4b, &function_a1ed8c28);
+	zm_sq::register(#"hash_4c0e5e4b34877996", #"step_2", #"hash_5b60b651867b65f8", &function_4e14c2d7, &function_21e10c11);
+	zm_sq::register(#"hash_65636bbec86da22c", #"step_1", #"hash_1551692125951197", &function_6c1be65c, &function_e4b6830d);
+	zm_sq::register(#"hash_65636bbec86da22c", #"step_2", #"hash_15516a212595134a", &function_28995f54, &function_f5692472);
+	zm_sq::register(#"zm_storage_billiards", #"step_1", #"hash_33b63d9ccbdb1e3e", &function_ffc4a06a, &function_a4daedbe);
+	zm_sq::register(#"zm_storage_billiards", #"step_2", #"hash_33b63c9ccbdb1c8b", &function_f21f0537, &function_2ff803fa);
 }
 
 /*
 	Name: function_550d0bc6
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xE1DA71C3
 	Offset: 0x950
 	Size: 0x64
@@ -113,7 +113,7 @@ function function_550d0bc6()
 
 /*
 	Name: function_e63ede31
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x839D6FB9
 	Offset: 0x9C0
 	Size: 0x5C
@@ -131,7 +131,7 @@ function function_e63ede31()
 
 /*
 	Name: function_63ceee4b
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x9CADA1C0
 	Offset: 0xA28
 	Size: 0xFE
@@ -158,7 +158,7 @@ function function_63ceee4b(var_a276c861)
 
 /*
 	Name: function_a1ed8c28
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x179A74BA
 	Offset: 0xB30
 	Size: 0x102
@@ -179,7 +179,7 @@ function function_a1ed8c28(var_a276c861, ended_early)
 
 /*
 	Name: function_ff726bbb
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x82A0D07D
 	Offset: 0xC40
 	Size: 0x754
@@ -191,7 +191,7 @@ function function_ff726bbb(var_2afee46 = 1)
 	level.var_969e8ac2.var_22796fad = [];
 	var_61243b5c = scene::get_active_scenes(#"p8_fxanim_zm_man_bookcase_01_bundle");
 	var_b0db8553 = var_61243b5c[0];
-	var_1d305e7f = var_b0db8553.scene_ents[#"hash_7aff0ee60ddd937b"];
+	var_1d305e7f = var_b0db8553.scene_ents[#"prop 1"];
 	var_19d968b8 = getent("e_secret_clip_left", "targetname");
 	var_19d968b8 linkto(var_1d305e7f, "tag_origin");
 	var_bad218e = var_b0db8553.scene_ents[#"prop 2"];
@@ -201,7 +201,7 @@ function function_ff726bbb(var_2afee46 = 1)
 	var_d16a9f7c disconnectpaths();
 	var_befaf308 = scene::get_active_scenes(#"p8_fxanim_zm_man_bookcase_02_bundle");
 	var_f6281a0 = var_befaf308[0];
-	var_d3f97071 = var_f6281a0.scene_ents[#"hash_7aff0ee60ddd937b"];
+	var_d3f97071 = var_f6281a0.scene_ents[#"prop 1"];
 	var_84d63a77 = getent("w_secret_clip_left", "targetname");
 	var_84d63a77 linkto(var_d3f97071, "tag_origin");
 	var_db4a4ab3 = var_f6281a0.scene_ents[#"prop 2"];
@@ -211,7 +211,7 @@ function function_ff726bbb(var_2afee46 = 1)
 	var_7b9ecc98 disconnectpaths();
 	level.var_d1e98ce7 = util::spawn_model("tag_origin", (var_84d63a77.origin + var_7b9ecc98.origin) / 2);
 	level.var_44c19f1a = util::spawn_model("tag_origin", (var_19d968b8.origin + var_d16a9f7c.origin) / 2);
-	var_d6a83f7c = array(#"p8_zm_man_book_symbol_02", #"p8_zm_man_book_symbol_03", #"p8_zm_man_book_symbol_01", #"hash_5a2bfbb29186d2d6");
+	var_d6a83f7c = array(#"p8_zm_man_book_symbol_02", #"p8_zm_man_book_symbol_03", #"p8_zm_man_book_symbol_01", #"p8_zm_man_book_symbol_04");
 	_plyr_exterior_gunner_front = array("w_secret_left_object", "e_secret_left_object", "w_secret_right_object", "e_secret_right_object");
 	var_b4536237 = array(0, 1, 2, 3);
 	if(var_2afee46)
@@ -275,7 +275,7 @@ function function_ff726bbb(var_2afee46 = 1)
 
 /*
 	Name: function_56c97aea
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xE18EA800
 	Offset: 0x13A0
 	Size: 0x100
@@ -299,7 +299,7 @@ function function_56c97aea()
 
 /*
 	Name: function_34f6d80a
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x9F51C950
 	Offset: 0x14A8
 	Size: 0x1E4
@@ -343,7 +343,7 @@ function function_34f6d80a()
 
 /*
 	Name: function_4e14c2d7
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xCCFA2B0B
 	Offset: 0x1698
 	Size: 0x15C
@@ -386,7 +386,7 @@ function function_4e14c2d7(var_a276c861)
 
 /*
 	Name: function_21e10c11
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x2BEBF255
 	Offset: 0x1800
 	Size: 0x14
@@ -399,7 +399,7 @@ function function_21e10c11(var_a276c861, ended_early)
 
 /*
 	Name: function_46348c75
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x6C5DB6A9
 	Offset: 0x1820
 	Size: 0x44
@@ -414,7 +414,7 @@ function function_46348c75()
 
 /*
 	Name: function_941b297c
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xC5FEC1E2
 	Offset: 0x1870
 	Size: 0x304
@@ -468,7 +468,7 @@ function function_941b297c(var_22c00989)
 
 /*
 	Name: function_94a403a4
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xAA2816F8
 	Offset: 0x1B80
 	Size: 0x16C
@@ -503,7 +503,7 @@ function function_94a403a4(var_1c855a0d)
 
 /*
 	Name: function_6c1be65c
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x14950615
 	Offset: 0x1CF8
 	Size: 0x1EC
@@ -512,7 +512,7 @@ function function_94a403a4(var_1c855a0d)
 */
 function function_6c1be65c(var_a276c861)
 {
-	level.var_992001f4 = [];
+	level.a_s_barrels = [];
 	level.var_8efe799b = [];
 	level flagsys::wait_till(#"load_main_complete");
 	level flag::init(#"hash_63f87f83cf6cbc6a");
@@ -524,7 +524,7 @@ function function_6c1be65c(var_a276c861)
 		mdl_clip disconnectpaths();
 		var_9890436b = scene::get_active_scenes(#"p8_fxanim_zm_man_wine_rack_bundle");
 		var_7195997b = var_9890436b[0];
-		var_c65c37fc = var_7195997b.scene_ents[#"hash_7aff0ee60ddd937b"];
+		var_c65c37fc = var_7195997b.scene_ents[#"prop 1"];
 		mdl_clip enablelinkto();
 		mdl_clip linkto(var_c65c37fc, "tag_animate");
 		level.var_4918f183 = util::spawn_model("tag_origin", mdl_clip.origin);
@@ -535,7 +535,7 @@ function function_6c1be65c(var_a276c861)
 
 /*
 	Name: function_e4b6830d
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x6BBD9DC1
 	Offset: 0x1EF0
 	Size: 0xF0
@@ -546,7 +546,7 @@ function function_e4b6830d(var_a276c861, ended_early)
 {
 	if(var_a276c861 || ended_early)
 	{
-		foreach(s_barrel in level.var_992001f4)
+		foreach(s_barrel in level.a_s_barrels)
 		{
 			s_barrel notify(#"busted");
 			if(isdefined(s_barrel.var_b0fe1e03))
@@ -563,7 +563,7 @@ function function_e4b6830d(var_a276c861, ended_early)
 
 /*
 	Name: function_c63076b4
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xCE5B5CD1
 	Offset: 0x1FE8
 	Size: 0x2AE
@@ -572,30 +572,30 @@ function function_e4b6830d(var_a276c861, ended_early)
 */
 function function_c63076b4(var_2afee46 = 1)
 {
-	level.var_992001f4 = array::randomize(struct::get_array("leaker"));
+	level.a_s_barrels = array::randomize(struct::get_array("leaker"));
 	level.var_a54c0174 = 0;
 	var_38376e1d = 0.25;
-	for(i = 0; i < level.var_992001f4.size; i++)
+	for(i = 0; i < level.a_s_barrels.size; i++)
 	{
-		level.var_992001f4[i].var_b0fe1e03 = util::spawn_model("tag_origin", level.var_992001f4[i].origin, level.var_992001f4[i].angles);
-		level.var_992001f4[i].var_80221a28 = util::spawn_model("tag_origin", level.var_992001f4[i].origin, level.var_992001f4[i].angles);
+		level.a_s_barrels[i].var_b0fe1e03 = util::spawn_model("tag_origin", level.a_s_barrels[i].origin, level.a_s_barrels[i].angles);
+		level.a_s_barrels[i].var_80221a28 = util::spawn_model("tag_origin", level.a_s_barrels[i].origin, level.a_s_barrels[i].angles);
 		wait(0.1);
-		if(isdefined(level.var_992001f4[i].var_b0fe1e03))
+		if(isdefined(level.a_s_barrels[i].var_b0fe1e03))
 		{
-			level.var_992001f4[i].n_rate = var_38376e1d + (var_38376e1d * i);
-			level.var_992001f4[i].t_trig = getent(level.var_992001f4[i].target, "targetname");
-			level.var_992001f4[i] thread function_3e37bb63();
+			level.a_s_barrels[i].n_rate = var_38376e1d + (var_38376e1d * i);
+			level.a_s_barrels[i].t_trig = getent(level.a_s_barrels[i].target, "targetname");
+			level.a_s_barrels[i] thread function_3e37bb63();
 			if(var_2afee46)
 			{
-				level.var_992001f4[i] thread function_85e39c4d();
+				level.a_s_barrels[i] thread function_85e39c4d();
 				level clientfield::set("" + #"hash_2c115514da4cee51", 1);
 			}
 		}
 		/#
 			if(var_2afee46)
 			{
-				level.var_992001f4[i].var_b0fe1e03.script_int = i;
-				level.var_992001f4[i].var_b0fe1e03 thread namespace_a34af286::function_95b6c945();
+				level.a_s_barrels[i].var_b0fe1e03.script_int = i;
+				level.a_s_barrels[i].var_b0fe1e03 thread mansion_jordans::function_95b6c945();
 			}
 		#/
 	}
@@ -603,7 +603,7 @@ function function_c63076b4(var_2afee46 = 1)
 
 /*
 	Name: function_3e37bb63
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xD35CB96B
 	Offset: 0x22A0
 	Size: 0x60
@@ -615,14 +615,14 @@ function function_3e37bb63()
 	self endon(#"busted");
 	while(true)
 	{
-		self.var_b0fe1e03 clientfield::increment("" + #"hash_4103918642e9fdf9");
+		self.var_b0fe1e03 clientfield::increment("" + #"barrel_drip");
 		wait(self.n_rate);
 	}
 }
 
 /*
 	Name: function_85e39c4d
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB21A0ECC
 	Offset: 0x2308
 	Size: 0x18A
@@ -644,7 +644,7 @@ function function_85e39c4d()
 			{
 				level flag::set(#"hash_521d6bb11da55099");
 			}
-			if(!level flag::get(#"hash_63f87f83cf6cbc6a") && self == (level.var_992001f4[level.var_8efe799b.size - 1]))
+			if(!level flag::get(#"hash_63f87f83cf6cbc6a") && self == (level.a_s_barrels[level.var_8efe799b.size - 1]))
 			{
 				self thread function_5e130882();
 				self.e_attacker = s_notify.attacker;
@@ -660,7 +660,7 @@ function function_85e39c4d()
 
 /*
 	Name: function_5e130882
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x4E3BD655
 	Offset: 0x24A0
 	Size: 0x44
@@ -671,13 +671,13 @@ function function_5e130882()
 {
 	if(isdefined(self.var_80221a28))
 	{
-		self.var_80221a28 clientfield::increment("" + #"hash_74f15de74cd5b883");
+		self.var_80221a28 clientfield::increment("" + #"barrel_spray");
 	}
 }
 
 /*
 	Name: function_28995f54
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x1592A7C4
 	Offset: 0x24F0
 	Size: 0x7C
@@ -698,7 +698,7 @@ function function_28995f54(var_a276c861)
 
 /*
 	Name: function_f5692472
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x16DA48D4
 	Offset: 0x2578
 	Size: 0x14
@@ -711,7 +711,7 @@ function function_f5692472(var_a276c861, ended_early)
 
 /*
 	Name: function_e3a40726
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB053BCA5
 	Offset: 0x2598
 	Size: 0x174
@@ -748,7 +748,7 @@ function function_e3a40726()
 
 /*
 	Name: function_1cc03a23
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x3E9387E
 	Offset: 0x2718
 	Size: 0x5C
@@ -763,7 +763,7 @@ function function_1cc03a23(s_pos)
 
 /*
 	Name: function_410dd5a6
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB480881B
 	Offset: 0x2780
 	Size: 0xAE
@@ -775,7 +775,7 @@ function function_410dd5a6(s_pos)
 	var_e007f14b = util::spawn_model(#"p8_zm_silver_bullet_pile_01", s_pos.origin, s_pos.angles);
 	if(isdefined(var_e007f14b))
 	{
-		var_47323b73 = var_e007f14b zm_unitrigger::create(&namespace_d0842c8b::function_252cf612, 64, &function_b601eebc);
+		var_47323b73 = var_e007f14b zm_unitrigger::create(&mansion_silver_bullet::function_252cf612, 64, &function_b601eebc);
 		var_47323b73.var_e007f14b = var_e007f14b;
 		var_47323b73.var_6646a22 = 1;
 	}
@@ -783,7 +783,7 @@ function function_410dd5a6(s_pos)
 
 /*
 	Name: function_f2ca3ec8
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB21B4101
 	Offset: 0x2838
 	Size: 0x1C6
@@ -795,7 +795,7 @@ function function_f2ca3ec8(s_pos)
 	var_9b6698a3 = array(#"lmg_double_t8", #"lmg_heavy_t8", #"lmg_spray_t8", #"lmg_standard_t8");
 	str_weapon = array::random(var_9b6698a3);
 	var_498a708 = getweapon(str_weapon);
-	var_a76c9d75 = level.var_992001f4[level.var_992001f4.size - 1].e_attacker;
+	var_a76c9d75 = level.a_s_barrels[level.a_s_barrels.size - 1].e_attacker;
 	if(!isdefined(var_a76c9d75))
 	{
 		var_a76c9d75 = getplayers()[0];
@@ -812,7 +812,7 @@ function function_f2ca3ec8(s_pos)
 
 /*
 	Name: function_b601eebc
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB887C2F5
 	Offset: 0x2A08
 	Size: 0x110
@@ -831,20 +831,20 @@ function function_b601eebc()
 		{
 			continue;
 		}
-		if(player namespace_d0842c8b::function_ec89dca9())
+		if(player mansion_silver_bullet::function_ec89dca9())
 		{
 			continue;
 		}
 		self.stub.var_e007f14b delete();
 		level clientfield::set("" + #"hash_2c115514da4cee51", 0);
-		player namespace_d0842c8b::function_4e849ab();
+		player mansion_silver_bullet::function_4e849ab();
 		zm_unitrigger::unregister_unitrigger(self.stub);
 	}
 }
 
 /*
 	Name: function_ffc4a06a
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xCB1091CE
 	Offset: 0x2B20
 	Size: 0x194
@@ -864,7 +864,7 @@ function function_ffc4a06a(var_a276c861)
 		level.var_e967a159 = 0;
 		level.var_691e2bc4 = undefined;
 		level.var_a24c96c7 = array(1, 2, 3, 4, 5, 6, 7, 8, 9);
-		level clientfield::set("" + #"hash_d8f7d3d92b32a26", 1);
+		level clientfield::set("" + #"start_billiards", 1);
 		/#
 			level thread function_e061d576();
 		#/
@@ -874,7 +874,7 @@ function function_ffc4a06a(var_a276c861)
 
 /*
 	Name: function_a4daedbe
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x1662748E
 	Offset: 0x2CC0
 	Size: 0x36
@@ -891,7 +891,7 @@ function function_a4daedbe(var_a276c861, ended_early)
 
 /*
 	Name: function_68e49445
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xBFD356B0
 	Offset: 0x2D00
 	Size: 0x290
@@ -924,7 +924,7 @@ function function_68e49445()
 
 /*
 	Name: function_784a41d1
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xE05E7DE
 	Offset: 0x2F98
 	Size: 0x3C
@@ -938,7 +938,7 @@ function function_784a41d1(s_notify)
 
 /*
 	Name: function_cf048af
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xC261C2B7
 	Offset: 0x2FE0
 	Size: 0x26C
@@ -1005,7 +1005,7 @@ function function_cf048af(oldval, newval)
 
 /*
 	Name: function_35ab22f4
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x5AFFC0FB
 	Offset: 0x3258
 	Size: 0x148
@@ -1029,7 +1029,7 @@ function function_35ab22f4()
 
 /*
 	Name: function_e061d576
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x30ECA3A2
 	Offset: 0x33A8
 	Size: 0x90
@@ -1053,7 +1053,7 @@ function function_e061d576()
 
 /*
 	Name: function_f21f0537
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x677E021E
 	Offset: 0x3440
 	Size: 0x242
@@ -1090,7 +1090,7 @@ function function_f21f0537(var_a276c861)
 		case 3:
 		{
 			a_players = array::get_all_closest(s_pocket.origin, getplayers());
-			a_players[0] magicgrenadetype(getweapon(#"hash_34b7eb9fde56bd35"), s_pocket.origin + vectorscale((0, 0, 1), 12), vectorscale((0, 0, 1), 200));
+			a_players[0] magicgrenadetype(getweapon(#"eq_frag_grenade"), s_pocket.origin + vectorscale((0, 0, 1), 12), vectorscale((0, 0, 1), 200));
 			a_players[0] zm_audio::create_and_play_dialog(#"grenade", #"react", undefined, 1);
 			break;
 		}
@@ -1103,7 +1103,7 @@ function function_f21f0537(var_a276c861)
 
 /*
 	Name: function_2ff803fa
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xE6C2CA2D
 	Offset: 0x3690
 	Size: 0x26
@@ -1116,7 +1116,7 @@ function function_2ff803fa(var_a276c861, ended_early)
 
 /*
 	Name: function_fd9b3e16
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x23921B8D
 	Offset: 0x36C0
 	Size: 0x1AC
@@ -1129,7 +1129,7 @@ function function_fd9b3e16(n_reward)
 	mdl_clip = getent("secret_furniture_clip", "targetname");
 	var_cef195d9 = scene::get_active_scenes(#"p8_fxanim_zm_man_bookcase_03_bundle");
 	var_edd21e7e = var_cef195d9[0];
-	var_89bf536b = var_edd21e7e.scene_ents[#"hash_7aff0ee60ddd937b"];
+	var_89bf536b = var_edd21e7e.scene_ents[#"prop 1"];
 	mdl_clip enablelinkto();
 	mdl_clip linkto(var_89bf536b, "tag_animate");
 	level.var_c218e707 = util::spawn_model("tag_origin", mdl_clip.origin);
@@ -1141,7 +1141,7 @@ function function_fd9b3e16(n_reward)
 
 /*
 	Name: function_a7983bee
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xA1D3F85B
 	Offset: 0x3878
 	Size: 0x18E
@@ -1166,7 +1166,7 @@ function function_a7983bee()
 
 /*
 	Name: function_cd9f1d74
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x6BDCADD6
 	Offset: 0x3A10
 	Size: 0x2F2
@@ -1185,14 +1185,14 @@ function function_cd9f1d74(n_reward)
 		}
 		case 1:
 		{
-			var_b7a9df7c = #"hash_5f31d1bf67933013";
-			var_ce5ed2e9 = #"hash_6953696819bf1875";
+			var_b7a9df7c = #"p8_zm_elixir_ctrl_z_ui";
+			var_ce5ed2e9 = #"zm_bgb_ctrl_z";
 		}
-		var_b7a9df7c = #"hash_144549dfb6b8bda5";
+		var_b7a9df7c = #"p8_zm_elixir_in_plain_sight_ui";
 		var_ce5ed2e9 = #"zm_bgb_in_plain_sight";
 		var_b7a9df7c = #"hash_65291a8ef0716ac6";
-		var_ce5ed2e9 = #"hash_560ca45c0a2daef2";
-		var_b7a9df7c = #"hash_59d206090210d6c9";
+		var_ce5ed2e9 = #"zm_bgb_phantom_reload";
+		var_b7a9df7c = #"p8_zm_elixir_sword_flay_ui";
 		var_ce5ed2e9 = #"zm_bgb_sword_flay";
 		var_f1ef5a23 = util::spawn_model(var_b7a9df7c, s_shelf.origin, s_shelf.angles);
 		var_7b57e2cc = util::spawn_model(#"p8_zm_elixir_bottle_plain_sight_lid", s_shelf.origin + vectorscale((0, 0, 1), 6.75), s_shelf.angles);
@@ -1216,7 +1216,7 @@ function function_cd9f1d74(n_reward)
 
 /*
 	Name: function_67c3a7dd
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xBE9FD889
 	Offset: 0x3D10
 	Size: 0xEA
@@ -1248,7 +1248,7 @@ function function_67c3a7dd()
 
 /*
 	Name: function_7f4f9503
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB4A8793F
 	Offset: 0x3E08
 	Size: 0x9C
@@ -1269,7 +1269,7 @@ function function_7f4f9503(str_bgb)
 
 /*
 	Name: function_907eba72
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0x82A2AB28
 	Offset: 0x3EB0
 	Size: 0xD8
@@ -1296,7 +1296,7 @@ function function_907eba72()
 
 /*
 	Name: function_2b75135a
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xA00EACF5
 	Offset: 0x3F90
 	Size: 0x96
@@ -1317,7 +1317,7 @@ function function_2b75135a(player)
 
 /*
 	Name: function_cc012e8d
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB7AB4C98
 	Offset: 0x4030
 	Size: 0x1D6
@@ -1328,7 +1328,7 @@ function function_cc012e8d(player)
 {
 	switch(self.stub.var_ce5ed2e9)
 	{
-		case "hash_6953696819bf1875":
+		case "zm_bgb_ctrl_z":
 		{
 			str_prompt = zm_utility::function_d6046228(#"hash_620d7c84d23fd049", #"hash_6daedc8fd5a061d7");
 			self sethintstringforplayer(player, str_prompt);
@@ -1340,7 +1340,7 @@ function function_cc012e8d(player)
 			self sethintstringforplayer(player, str_prompt);
 			break;
 		}
-		case "hash_560ca45c0a2daef2":
+		case "zm_bgb_phantom_reload":
 		{
 			str_prompt = zm_utility::function_d6046228(#"hash_31c6885bdf2cb06", #"hash_6517a92891b8b0a2");
 			self sethintstringforplayer(player, str_prompt);
@@ -1358,7 +1358,7 @@ function function_cc012e8d(player)
 
 /*
 	Name: function_7b425c11
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xB01D1ECB
 	Offset: 0x4210
 	Size: 0x78
@@ -1379,7 +1379,7 @@ function function_7b425c11()
 
 /*
 	Name: function_63c873d9
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xD8E0F663
 	Offset: 0x4290
 	Size: 0x2D8
@@ -1402,7 +1402,7 @@ function function_63c873d9(var_dc2ad9ce)
 			{
 				a_e_players[i].var_d2822b91 = 0;
 			}
-			if(a_e_players[i] namespace_c05f06c7::is_valid())
+			if(a_e_players[i] mansion_util::is_valid())
 			{
 				n_index = a_e_players[i] zm_characters::function_d35e4c92();
 				str_vo_alias = "vox_secret_chamber_enter_plr_" + n_index;
@@ -1411,8 +1411,8 @@ function function_63c873d9(var_dc2ad9ce)
 				{
 					if(distancesquared(var_dc2ad9ce.origin, a_e_players[i].origin) < 65536 && !a_e_players[i] function_80d68e4d(var_dc2ad9ce, 0.766, 0) && bullettracepassed(a_e_players[i] geteye(), var_dc2ad9ce.origin, 0, undefined))
 					{
-						var_36414a9f = a_e_players[i] zm_vo::function_8e0f4696(var_a5e8d5c7[a_e_players[i].var_d2822b91]);
-						if(isdefined(var_36414a9f) && var_36414a9f)
+						b_ret = a_e_players[i] zm_vo::vo_say(var_a5e8d5c7[a_e_players[i].var_d2822b91]);
+						if(isdefined(b_ret) && b_ret)
 						{
 							if(isdefined(a_e_players[i]))
 							{
@@ -1432,7 +1432,7 @@ function function_63c873d9(var_dc2ad9ce)
 
 /*
 	Name: function_840d0d56
-	Namespace: namespace_c2ad41c5
+	Namespace: mansion_storage
 	Checksum: 0xF7FE7794
 	Offset: 0x4570
 	Size: 0x172

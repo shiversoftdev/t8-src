@@ -6,7 +6,7 @@
 #namespace namespace_87f097c4;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_87f097c4
 	Checksum: 0x626E0AA8
 	Offset: 0xD8
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_7551e984c9a42af9", &__init__, undefined, undefined);
 }
@@ -33,13 +33,13 @@ function __init__()
 	level.var_6e0c26c7 = (isdefined(getgametypesetting(#"hash_30b11d064f146fcc")) ? getgametypesetting(#"hash_30b11d064f146fcc") : 0) || (isdefined(getgametypesetting(#"hash_697d65a68cc6c6f1")) ? getgametypesetting(#"hash_697d65a68cc6c6f1") : 0);
 	if(level.var_6e0c26c7)
 	{
-		clientfield::register("world", "zombie_arm_blood_splash", 20000, 1, "counter", &function_548630a, 0, 0);
-		clientfield::register("world", "bathtub_fake_soul_sfx", 20000, 1, "counter", &function_11111d4c, 0, 0);
+		clientfield::register("world", "zombie_arm_blood_splash", 20000, 1, "counter", &zombie_arm_blood_splash, 0, 0);
+		clientfield::register("world", "bathtub_fake_soul_sfx", 20000, 1, "counter", &bathtub_fake_soul_sfx, 0, 0);
 	}
 }
 
 /*
-	Name: function_548630a
+	Name: zombie_arm_blood_splash
 	Namespace: namespace_87f097c4
 	Checksum: 0xA8C607B5
 	Offset: 0x270
@@ -47,9 +47,9 @@ function __init__()
 	Parameters: 7
 	Flags: Linked
 */
-function function_548630a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function zombie_arm_blood_splash(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	bathtub = struct::get(#"hash_53bbab305c87572a", "targetname");
+	bathtub = struct::get(#"zombie_bathub", "targetname");
 	if(isdefined(bathtub))
 	{
 		playfx(localclientnum, #"hash_6e2b2bcea07134d1", bathtub.origin, (0, 0, 1));
@@ -57,7 +57,7 @@ function function_548630a(localclientnum, oldval, newval, bnewent, binitialsnap,
 }
 
 /*
-	Name: function_11111d4c
+	Name: bathtub_fake_soul_sfx
 	Namespace: namespace_87f097c4
 	Checksum: 0xA322312B
 	Offset: 0x320
@@ -65,10 +65,10 @@ function function_548630a(localclientnum, oldval, newval, bnewent, binitialsnap,
 	Parameters: 7
 	Flags: Linked
 */
-function function_11111d4c(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function bathtub_fake_soul_sfx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	wait(0.2);
-	bathtub = struct::get(#"hash_53bbab305c87572a", "targetname");
+	bathtub = struct::get(#"zombie_bathub", "targetname");
 	if(isdefined(bathtub))
 	{
 		playsound(localclientnum, #"zmb_sq_souls_impact", bathtub.origin);

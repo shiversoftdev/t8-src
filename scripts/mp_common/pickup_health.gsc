@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using script_2dc48f46bfeac894;
-#using script_4663ec59d864e437;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\abilities\ability_player.gsc;
+#using scripts\abilities\gadgets\gadget_health_regen.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\gameobjects_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace pickup_health;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: pickup_health
 	Checksum: 0x181FB090
 	Offset: 0x110
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"pickup_health", &__init__, undefined, #"weapons");
 }
@@ -36,13 +36,13 @@ function autoexec function_89f2df9()
 function private __init__()
 {
 	callback::on_connect(&onconnect);
-	callback::on_spawned(&function_590c4630);
-	ability_player::register_gadget_activation_callbacks(23, &function_368c92b1, &function_6dd64ede);
-	level.var_ad24980b = &function_6dd64ede;
+	callback::on_spawned(&onspawned);
+	ability_player::register_gadget_activation_callbacks(23, &onhealthregen, &offhealthregen);
+	level.healingdisabled = &offhealthregen;
 	level.var_99a34951 = getgametypesetting(#"hash_712f4c2a96bca56e");
 	level.var_33a3ef40 = getgametypesetting(#"hash_647310a2fe3554f7");
 	level.var_aff59367 = getgametypesetting(#"hash_44533f4f290c5e77");
-	level.var_ca2fc68c = getgametypesetting(#"hash_6a2434c947c86b9b");
+	level.pickup_respawn_time = getgametypesetting(#"hash_6a2434c947c86b9b");
 }
 
 /*
@@ -111,7 +111,7 @@ function private onconnect()
 }
 
 /*
-	Name: function_590c4630
+	Name: onspawned
 	Namespace: pickup_health
 	Checksum: 0x9F506E64
 	Offset: 0x5D0
@@ -119,7 +119,7 @@ function private onconnect()
 	Parameters: 0
 	Flags: Private
 */
-function private function_590c4630()
+function private onspawned()
 {
 	self function_3fbb0e22();
 }
@@ -140,7 +140,7 @@ function function_3fbb0e22()
 }
 
 /*
-	Name: function_368c92b1
+	Name: onhealthregen
 	Namespace: pickup_health
 	Checksum: 0x51456269
 	Offset: 0x620
@@ -148,13 +148,13 @@ function function_3fbb0e22()
 	Parameters: 2
 	Flags: Private
 */
-function private function_368c92b1(slot, weapon)
+function private onhealthregen(slot, weapon)
 {
 	self.pers[#"pickup_health"]--;
 }
 
 /*
-	Name: function_6dd64ede
+	Name: offhealthregen
 	Namespace: pickup_health
 	Checksum: 0x823707F1
 	Offset: 0x658
@@ -162,14 +162,14 @@ function private function_368c92b1(slot, weapon)
 	Parameters: 2
 	Flags: Private
 */
-function private function_6dd64ede(slot, weapon)
+function private offhealthregen(slot, weapon)
 {
 	self gadgetdeactivate(self.gadget_health_regen_slot, self.gadget_health_regen_weapon);
-	thread function_a01a8a21();
+	thread healingdone();
 }
 
 /*
-	Name: function_a01a8a21
+	Name: healingdone
 	Namespace: pickup_health
 	Checksum: 0x62B0B445
 	Offset: 0x6B0
@@ -177,7 +177,7 @@ function private function_6dd64ede(slot, weapon)
 	Parameters: 0
 	Flags: Private
 */
-function private function_a01a8a21()
+function private healingdone()
 {
 	wait(0.5);
 	self function_2bcfabea();
@@ -239,7 +239,7 @@ function private function_7a80944d(player)
 	level endon(#"game_ended");
 	self endon(#"death");
 	player endon(#"disconnect");
-	wait((isdefined(level.var_ca2fc68c) ? level.var_ca2fc68c : 0));
+	wait((isdefined(level.pickup_respawn_time) ? level.pickup_respawn_time : 0));
 	if(isdefined(self.objectiveid))
 	{
 		objective_setvisibletoplayer(self.objectiveid, player);

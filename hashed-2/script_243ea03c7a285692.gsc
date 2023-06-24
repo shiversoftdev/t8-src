@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_135e8f9a : class_6aaccc24
+class crevive_hud : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0x5094C0B9
 		Offset: 0x248
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_135e8f9a : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0x6A4B80D2
 		Offset: 0x468
 		Size: 0x14
@@ -33,50 +33,50 @@ class class_135e8f9a : class_6aaccc24
 	}
 
 	/*
-		Name: function_28ebf0f1
-		Namespace: namespace_135e8f9a
+		Name: set_fadeTime
+		Namespace: crevive_hud
 		Checksum: 0xEF18594C
 		Offset: 0x420
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_28ebf0f1(player, value)
+	function set_fadeTime(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "fadeTime", value);
 	}
 
 	/*
-		Name: function_3b7b386a
-		Namespace: namespace_135e8f9a
+		Name: set_clientnum
+		Namespace: crevive_hud
 		Checksum: 0x4EEF2D1
 		Offset: 0x3D8
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_3b7b386a(player, value)
+	function set_clientnum(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "clientNum", value);
 	}
 
 	/*
-		Name: function_d5ea17f0
-		Namespace: namespace_135e8f9a
+		Name: set_text
+		Namespace: crevive_hud
 		Checksum: 0xE48CC578
 		Offset: 0x390
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_d5ea17f0(player, value)
+	function set_text(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "text", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xA06177E0
 		Offset: 0x360
 		Size: 0x24
@@ -85,12 +85,12 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xCA70395A
 		Offset: 0x310
 		Size: 0x44
@@ -99,12 +99,12 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "revive_hud", persistent);
+		cLUIelem::open_luielem(player, "revive_hud", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xC7F4ECA2
 		Offset: 0x268
 		Size: 0x9C
@@ -113,10 +113,10 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_dcb34c80("string", "text", 1);
-		namespace_6aaccc24::function_da693cbe("clientNum", 1, 6, "int");
-		namespace_6aaccc24::function_da693cbe("fadeTime", 1, 5, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_dcb34c80("string", "text", 1);
+		cLUIelem::function_da693cbe("clientNum", 1, 6, "int");
+		cLUIelem::function_da693cbe("fadeTime", 1, 5, "int");
 	}
 
 }
@@ -134,7 +134,7 @@ class class_135e8f9a : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_135e8f9a();
+	elem = new crevive_hud();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -182,7 +182,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_d5ea17f0
+	Name: set_text
 	Namespace: revive_hud
 	Checksum: 0xA25A0F67
 	Offset: 0x1B8
@@ -190,13 +190,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: Linked
 */
-function function_d5ea17f0(player, value)
+function set_text(player, value)
 {
-	[[ self ]]->function_d5ea17f0(player, value);
+	[[ self ]]->set_text(player, value);
 }
 
 /*
-	Name: function_3b7b386a
+	Name: set_clientnum
 	Namespace: revive_hud
 	Checksum: 0x12EBF496
 	Offset: 0x1E8
@@ -204,13 +204,13 @@ function function_d5ea17f0(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_3b7b386a(player, value)
+function set_clientnum(player, value)
 {
-	[[ self ]]->function_3b7b386a(player, value);
+	[[ self ]]->set_clientnum(player, value);
 }
 
 /*
-	Name: function_28ebf0f1
+	Name: set_fadeTime
 	Namespace: revive_hud
 	Checksum: 0x9930F51F
 	Offset: 0x218
@@ -218,8 +218,8 @@ function function_3b7b386a(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_28ebf0f1(player, value)
+function set_fadeTime(player, value)
 {
-	[[ self ]]->function_28ebf0f1(player, value);
+	[[ self ]]->set_fadeTime(player, value);
 }
 

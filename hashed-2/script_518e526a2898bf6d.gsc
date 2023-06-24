@@ -44,7 +44,7 @@ function init_clientfields()
 */
 function init_fx()
 {
-	level._effect[#"hash_6c3415e2a989a2e0"] = "zm_ai/fx8_blightfather_vomit_object";
+	level._effect[#"fx8_blightfather_vomit_object"] = "zm_ai/fx8_blightfather_vomit_object";
 }
 
 /*
@@ -65,7 +65,7 @@ function vomit(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname,
 	}
 	if(newval)
 	{
-		self.var_39c21153 = util::playfxontag(localclientnum, level._effect[#"hash_6c3415e2a989a2e0"], self, "tag_origin");
+		self.var_39c21153 = util::playfxontag(localclientnum, level._effect[#"fx8_blightfather_vomit_object"], self, "tag_origin");
 	}
 }
 

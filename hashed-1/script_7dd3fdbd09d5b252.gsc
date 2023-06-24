@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_e6fa6527 : class_6aaccc24
+class cdeath_zone : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0x5AA9760A
 		Offset: 0x1F8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_e6fa6527 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xBA546DB2
 		Offset: 0x360
 		Size: 0x14
@@ -31,22 +31,22 @@ class class_e6fa6527 : class_6aaccc24
 	}
 
 	/*
-		Name: function_3820c524
-		Namespace: namespace_e6fa6527
+		Name: set_shutdown_sec
+		Namespace: cdeath_zone
 		Checksum: 0xC9F3B802
 		Offset: 0x328
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_3820c524(localclientnum, value)
+	function set_shutdown_sec(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "shutdown_sec", value);
+		[[ self ]]->set_data(localclientnum, "shutdown_sec", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xB041637E
 		Offset: 0x2F0
 		Size: 0x2C
@@ -55,12 +55,12 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"death_zone");
+		cLUIelem::open(localclientnum, #"death_zone");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xD91EBA63
 		Offset: 0x2A8
 		Size: 0x40
@@ -69,13 +69,13 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "shutdown_sec", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "shutdown_sec", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xAF31A14
 		Offset: 0x278
 		Size: 0x24
@@ -84,12 +84,12 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xC30C40A7
 		Offset: 0x218
 		Size: 0x54
@@ -98,8 +98,8 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_fd61f748)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("shutdown_sec", 1, 9, "int", var_fd61f748);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("shutdown_sec", 1, 9, "int", var_fd61f748);
 	}
 
 }
@@ -117,7 +117,7 @@ class class_e6fa6527 : class_6aaccc24
 */
 function register(uid, var_fd61f748)
 {
-	elem = new class_e6fa6527();
+	elem = new cdeath_zone();
 	[[ elem ]]->setup_clientfields(uid, var_fd61f748);
 	return elem;
 }
@@ -133,7 +133,7 @@ function register(uid, var_fd61f748)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_e6fa6527();
+	elem = new cdeath_zone();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -181,7 +181,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_3820c524
+	Name: set_shutdown_sec
 	Namespace: death_zone
 	Checksum: 0x1BA2743
 	Offset: 0x1C8
@@ -189,8 +189,8 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_3820c524(localclientnum, value)
+function set_shutdown_sec(localclientnum, value)
 {
-	[[ self ]]->function_3820c524(localclientnum, value);
+	[[ self ]]->set_shutdown_sec(localclientnum, value);
 }
 

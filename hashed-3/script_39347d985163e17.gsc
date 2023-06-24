@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_14af1fd264ffe8cc;
-#using script_14f4a3c583c77d4b;
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -16,7 +16,7 @@
 #namespace namespace_5c5619de;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_5c5619de
 	Checksum: 0x407B69A
 	Offset: 0x118
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_1570e320e0161e3d", &__init__, undefined, undefined);
 }
@@ -44,11 +44,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_27f8093e2c3d8f82", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_27f8093e2c3d8f82", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_5c5619de
 	Checksum: 0xD35ADD89
 	Offset: 0x1C8
@@ -56,16 +56,16 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_d1de6a85(var_264ee2f5)
+function private on_begin(var_264ee2f5)
 {
 	var_264ee2f5 = zm_trial::function_5769f26a(var_264ee2f5);
 	level thread function_cec06121(var_264ee2f5);
-	callback::function_f77ced93(&namespace_b22c99a5::function_79518194);
+	callback::function_f77ced93(&zm_trial_util::function_79518194);
 	callback::function_33f0ddd3(&function_68af83a9);
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_5c5619de
 	Checksum: 0xBE785F41
 	Offset: 0x250
@@ -73,15 +73,15 @@ function private function_d1de6a85(var_264ee2f5)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.var_388587c6 = undefined;
 	level zm_trial::function_25ee130(0);
-	callback::function_5a753d97(&namespace_b22c99a5::function_79518194);
+	callback::function_5a753d97(&zm_trial_util::function_79518194);
 	callback::function_824d206(&function_68af83a9);
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_dc0859e();
+		player zm_trial_util::function_dc0859e();
 		if(!round_reset)
 		{
 			player.var_ad52095e = undefined;
@@ -132,10 +132,10 @@ function function_cec06121(var_264ee2f5)
 	wait(12);
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_bf710271();
+		player zm_trial_util::function_bf710271();
 	}
 	level zm_trial::function_25ee130(1);
-	level.var_388587c6 = array(#"hash_40788017f1c860f0", #"hash_7dc8f3611c942007", #"hash_6184fe412da2bb57", #"hash_552dc81e8f3ba5bc", #"hash_3041cc761d495272", #"hash_2f4a72ac7be5902e", #"hash_55ab674fdfba3485", #"hash_62c799cc48d4d897", #"hash_e052dd0c54e4a6f", #"hash_24c644460c2b5642", #"hash_65f0a900303f4c55");
+	level.var_388587c6 = array(#"ar_standard_t8_upgraded", #"pistol_fullauto_t8_upgraded", #"smg_fastburst_t8_upgraded", #"smg_mp40_t8_upgraded", #"smg_folding_t8_upgraded", #"shotgun_fullauto_t8_upgraded", #"lmg_stealth_t8_upgraded", #"sniper_mini14_t8_upgraded", #"ar_peacekeeper_t8_upgraded", #"tr_flechette_t8_upgraded", #"sniper_locus_t8_upgraded");
 	foreach(player in getplayers())
 	{
 		var_4cd7f83c = player getweaponslistprimaries();
@@ -146,7 +146,7 @@ function function_cec06121(var_264ee2f5)
 				player unlockweapon(var_f20e894b);
 			}
 		}
-		player namespace_b22c99a5::function_7dbb1712(1);
+		player zm_trial_util::function_7dbb1712(1);
 	}
 	while(true)
 	{

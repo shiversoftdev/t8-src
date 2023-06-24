@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_5660bae5b402a1eb;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\laststand_shared.gsc;
@@ -21,7 +21,7 @@
 #namespace namespace_47a807c3;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_47a807c3
 	Checksum: 0x4463B3D2
 	Offset: 0x118
@@ -29,7 +29,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_7587f8ddd6b0d47a", &__init__, undefined, undefined);
 }
@@ -140,22 +140,22 @@ function function_81eaae89(e_player)
 */
 function function_40935801()
 {
-	self notify(#"hash_4c60ab5ca6d3899");
-	self endon(#"hash_4c60ab5ca6d3899", #"death", #"bled_out");
+	self notify(#"picked_up_pap");
+	self endon(#"picked_up_pap", #"death", #"bled_out");
 	wait(30);
 	self function_ad31c153();
 	var_e8145621 = self getweaponslistprimaries();
 	w_current_weapon = self getcurrentweapon();
-	foreach(var_91bb47aa in var_e8145621)
+	foreach(w_upgraded in var_e8145621)
 	{
-		var_2af07147 = self zm_weapons::get_base_weapon(var_91bb47aa);
-		n_clip = self getweaponammoclip(var_91bb47aa);
-		n_stock = self getweaponammostock(var_91bb47aa);
-		if(w_current_weapon == var_91bb47aa)
+		var_2af07147 = self zm_weapons::get_base_weapon(w_upgraded);
+		n_clip = self getweaponammoclip(w_upgraded);
+		n_stock = self getweaponammostock(w_upgraded);
+		if(w_current_weapon == w_upgraded)
 		{
 			var_147bd2 = var_2af07147;
 		}
-		self zm_weapons::weapon_take(var_91bb47aa);
+		self zm_weapons::weapon_take(w_upgraded);
 		self zm_weapons::weapon_give(var_2af07147, 1, 0);
 		self setweaponammoclip(var_2af07147, n_clip);
 		self setweaponammostock(var_2af07147, n_stock);

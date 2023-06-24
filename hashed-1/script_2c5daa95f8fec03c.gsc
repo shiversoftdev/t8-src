@@ -24,7 +24,7 @@ function initweakpoints(entity, var_97e1b97d)
 	{
 		var_7c4db75f = function_2e532eed(var_dd54fdb1);
 		var_7c4db75f.currstate = 2;
-		if(isdefined(var_dd54fdb1.var_e37acc23) && var_dd54fdb1.var_e37acc23)
+		if(isdefined(var_dd54fdb1.activebydefault) && var_dd54fdb1.activebydefault)
 		{
 			var_7c4db75f.currstate = 1;
 		}
@@ -37,14 +37,14 @@ function initweakpoints(entity, var_97e1b97d)
 			var_7c4db75f.health = var_dd54fdb1.health;
 		}
 		var_7c4db75f.maxhealth = var_7c4db75f.health;
-		var_7c4db75f.var_d8fa3d82 = [];
+		var_7c4db75f.hittags = [];
 		if(isdefined(var_dd54fdb1.var_51e8b151))
 		{
-			array::add(var_7c4db75f.var_d8fa3d82, var_dd54fdb1.var_51e8b151);
+			array::add(var_7c4db75f.hittags, var_dd54fdb1.var_51e8b151);
 		}
 		if(isdefined(var_dd54fdb1.var_910e2f9b))
 		{
-			array::add(var_7c4db75f.var_d8fa3d82, var_dd54fdb1.var_910e2f9b);
+			array::add(var_7c4db75f.hittags, var_dd54fdb1.var_910e2f9b);
 		}
 		array::add(entity.var_5ace757d, var_7c4db75f);
 	}
@@ -59,7 +59,7 @@ function initweakpoints(entity, var_97e1b97d)
 	Parameters: 3
 	Flags: Linked
 */
-function function_3131f5dd(entity, hitloc, var_6b0c6fac)
+function function_3131f5dd(entity, hitloc, weakpointstate)
 {
 	if(!isdefined(hitloc))
 	{
@@ -69,7 +69,7 @@ function function_3131f5dd(entity, hitloc, var_6b0c6fac)
 	{
 		foreach(var_dd54fdb1 in entity.var_5ace757d)
 		{
-			if(isdefined(var_6b0c6fac) && var_dd54fdb1.currstate !== var_6b0c6fac)
+			if(isdefined(weakpointstate) && var_dd54fdb1.currstate !== weakpointstate)
 			{
 				continue;
 			}
@@ -90,7 +90,7 @@ function function_3131f5dd(entity, hitloc, var_6b0c6fac)
 	Parameters: 3
 	Flags: Linked
 */
-function function_73ab4754(entity, point, var_6b0c6fac)
+function function_73ab4754(entity, point, weakpointstate)
 {
 	if(!isdefined(point))
 	{
@@ -102,15 +102,15 @@ function function_73ab4754(entity, point, var_6b0c6fac)
 		var_833f593 = 2147483647;
 		foreach(var_dd54fdb1 in entity.var_5ace757d)
 		{
-			if(isdefined(var_6b0c6fac) && var_dd54fdb1.currstate !== var_6b0c6fac)
+			if(isdefined(weakpointstate) && var_dd54fdb1.currstate !== weakpointstate)
 			{
 				continue;
 			}
 			if(isdefined(var_dd54fdb1.var_b7fbe51b))
 			{
-				foreach(var_f16c2276 in var_dd54fdb1.var_d8fa3d82)
+				foreach(hittag in var_dd54fdb1.hittags)
 				{
-					tagorigin = entity gettagorigin(var_f16c2276);
+					tagorigin = entity gettagorigin(hittag);
 					distsq = distancesquared(point, tagorigin);
 					if(distsq <= (var_dd54fdb1.var_b7fbe51b * var_dd54fdb1.var_b7fbe51b) && var_833f593 > distsq)
 					{
@@ -133,7 +133,7 @@ function function_73ab4754(entity, point, var_6b0c6fac)
 	Parameters: 3
 	Flags: None
 */
-function function_6bb685f0(entity, point, var_6b0c6fac)
+function function_6bb685f0(entity, point, weakpointstate)
 {
 	if(!isdefined(point))
 	{
@@ -143,15 +143,15 @@ function function_6bb685f0(entity, point, var_6b0c6fac)
 	{
 		foreach(var_dd54fdb1 in entity.var_5ace757d)
 		{
-			if(isdefined(var_6b0c6fac) && var_dd54fdb1.currstate !== var_6b0c6fac)
+			if(isdefined(weakpointstate) && var_dd54fdb1.currstate !== weakpointstate)
 			{
 				continue;
 			}
 			if(isdefined(var_dd54fdb1.var_b7fbe51b))
 			{
-				foreach(var_f16c2276 in var_dd54fdb1.var_d8fa3d82)
+				foreach(hittag in var_dd54fdb1.hittags)
 				{
-					tagorigin = entity gettagorigin(var_f16c2276);
+					tagorigin = entity gettagorigin(hittag);
 					distsq = distancesquared(point, tagorigin);
 					if(distsq <= (var_dd54fdb1.var_b7fbe51b * var_dd54fdb1.var_b7fbe51b))
 					{
@@ -172,7 +172,7 @@ function function_6bb685f0(entity, point, var_6b0c6fac)
 	Parameters: 3
 	Flags: Linked
 */
-function function_37e3f011(entity, bone, var_6b0c6fac)
+function function_37e3f011(entity, bone, weakpointstate)
 {
 	if(!isdefined(entity))
 	{
@@ -189,7 +189,7 @@ function function_37e3f011(entity, bone, var_6b0c6fac)
 	if(isdefined(bonename) && isdefined(entity.var_5ace757d))
 	{
 		/#
-			if(getdvarint(#"hash_50608e24a3f5f666", 0) > 0)
+			if(getdvarint(#"scr_weakpoint_debug", 0) > 0)
 			{
 				if(!isstring(bone))
 				{
@@ -199,13 +199,13 @@ function function_37e3f011(entity, bone, var_6b0c6fac)
 		#/
 		foreach(var_dd54fdb1 in entity.var_5ace757d)
 		{
-			if(isdefined(var_6b0c6fac) && var_dd54fdb1.currstate !== var_6b0c6fac)
+			if(isdefined(weakpointstate) && var_dd54fdb1.currstate !== weakpointstate)
 			{
 				continue;
 			}
-			foreach(var_f16c2276 in var_dd54fdb1.var_d8fa3d82)
+			foreach(hittag in var_dd54fdb1.hittags)
 			{
-				if(var_f16c2276 == bonename)
+				if(hittag == bonename)
 				{
 					return var_dd54fdb1;
 				}
@@ -287,7 +287,7 @@ function function_f29756fe(var_dd54fdb1)
 function function_26901d33(var_dd54fdb1)
 {
 	var_dd54fdb1.currstate = 2;
-	if(isdefined(var_dd54fdb1.var_e37acc23) && var_dd54fdb1.var_e37acc23)
+	if(isdefined(var_dd54fdb1.activebydefault) && var_dd54fdb1.activebydefault)
 	{
 		var_dd54fdb1.currstate = 1;
 	}

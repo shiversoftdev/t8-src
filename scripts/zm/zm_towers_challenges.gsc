@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_19424da8b32cedc;
-#using script_3a3c430eb58ed475;
-#using script_52c6c2d1a2ef1b46;
-#using script_5f7a85316133915b;
-#using script_6021ce59143452c3;
-#using script_6ce38ab036223e6e;
-#using script_6e3c826b1814cab6;
-#using script_782b5203722a7801;
-#using script_d8b1f4ee30e5fc5;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm\ai\zm_ai_gladiator.gsc;
+#using scripts\zm\zm_towers_crowd.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\zm_common\zm_vapor_random.gsc;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm\weapons\zm_weap_crossbow.gsc;
+#using scripts\core_common\ai\archetype_tiger.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -35,7 +35,7 @@
 #namespace zm_towers_challenges;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_towers_challenges
 	Checksum: 0xCFDDA3A6
 	Offset: 0x648
@@ -43,7 +43,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_towers_challenges", &__init__, &__main__, undefined);
 }
@@ -97,13 +97,13 @@ function init()
 		return;
 	}
 	level flag::wait_till("all_players_spawned");
-	level._effect[#"hash_19dcb4c0d04c8e2b"] = #"hash_387c78244f5f45e5";
+	level._effect[#"brazier_fire"] = #"hash_387c78244f5f45e5";
 	level._effect[#"energy_soul"] = #"hash_24eb30a2d07ae5a9";
 	level._effect[#"energy_soul_target"] = #"hash_6f5f4eb9267613e3";
 	level.var_edaf085e = array(&function_15280d13, &function_75b0f76a, &function_2cf8fe6a);
 	level.var_4c2f3e2 = array(&function_ce7b3715, &function_1abdfaa6);
 	level.var_171c81ae = array(&function_d9ed4d25, &function_8b70fc31, &function_45396550);
-	if(!namespace_59ff1d6c::function_901b751c(#"zmshieldisenabled"))
+	if(!zm_custom::function_901b751c(#"zmshieldisenabled"))
 	{
 		level.var_171c81ae = array(&function_8b70fc31, &function_d9ed4d25);
 	}
@@ -122,7 +122,7 @@ function init()
 	}
 	var_ae9f0595 = array(#"ar_mg1909_t8", #"lmg_standard_t8", #"tr_midburst_t8");
 	var_ae9f0595 = array::randomize(var_ae9f0595);
-	level.var_5d1e28ac = array(#"self_revive", #"bonus_points_player", #"hash_cd53ea4d4ee864c", #"full_ammo", #"hero_weapon_power", var_ae9f0595[0], #"free_perk", #"full_ammo", #"hash_1efb82c43276a4e3");
+	level.var_5d1e28ac = array(#"self_revive", #"bonus_points_player", #"pistol_standard_t8_upgraded", #"full_ammo", #"hero_weapon_power", var_ae9f0595[0], #"free_perk", #"full_ammo", #"lmg_spray_t8_upgraded");
 	zm_spawner::register_zombie_death_event_callback(&function_edf51f63);
 	zm_spawner::register_zombie_death_event_callback(&function_4f3835a0);
 	zm_spawner::register_zombie_death_event_callback(&function_82437bf6);
@@ -134,7 +134,7 @@ function init()
 	zm_spawner::register_zombie_death_event_callback(&function_20d01751);
 	zm_spawner::register_zombie_death_event_callback(&function_2cd047f4);
 	callback::on_ai_damage(&function_fb326fd3);
-	namespace_c49f9e2b::function_36fff581(&function_b5c10847);
+	zm_ai_gladiator::function_36fff581(&function_b5c10847);
 	level.get_player_perk_purchase_limit = &function_3c4fc73;
 	var_6eaa1749 = getentarray("t_zm_towers_cleat_damage_trig", "script_noteworthy");
 	foreach(var_986431d3 in var_6eaa1749)
@@ -210,9 +210,9 @@ function function_3e23c5c0(var_2a0eed37 = 1)
 	Parameters: 1
 	Flags: Linked
 */
-function function_7e61f202(var_e73f578d)
+function function_7e61f202(mdl_banner)
 {
-	switch(var_e73f578d.targetname)
+	switch(mdl_banner.targetname)
 	{
 		case "hash_5485fa3ed2c27d5c":
 		{
@@ -247,20 +247,20 @@ function function_99cdcc10()
 	var_d65b49c5 = getentarray("t_challenge_brazier_trigger", "script_noteworthy");
 	var_155201f2 = getentarray("t_zm_towers_cleat_damage_trig", "script_noteworthy");
 	var_b2966463 = getentarray("t_challenge_cleat_hint_trig", "script_noteworthy");
-	var_41b177e9 = arraycombine(var_d65b49c5, var_155201f2, 0, 0);
-	var_41b177e9 = arraycombine(var_41b177e9, var_b2966463, 0, 0);
+	a_t_challenges = arraycombine(var_d65b49c5, var_155201f2, 0, 0);
+	a_t_challenges = arraycombine(a_t_challenges, var_b2966463, 0, 0);
 	level flag::set(#"hash_7e6d1a215978eac4");
-	foreach(var_e77827da in var_41b177e9)
+	foreach(t_challenge in a_t_challenges)
 	{
 		if(isplayer(self))
 		{
-			if(var_e77827da.var_da61c116 === 1)
+			if(t_challenge.var_da61c116 === 1)
 			{
-				var_e77827da setinvisibletoplayer(self);
+				t_challenge setinvisibletoplayer(self);
 			}
 			continue;
 		}
-		var_e77827da setinvisibletoall();
+		t_challenge setinvisibletoall();
 	}
 }
 
@@ -281,14 +281,14 @@ function function_fd8a137e(n_time = 0)
 	{
 		wait(n_time);
 	}
-	level namespace_6747c550::function_7df6bb60(#"zm_towers_challenges", 0, self);
-	level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", 0, self);
+	level zm_ui_inventory::function_7df6bb60(#"zm_towers_challenges", 0, self);
+	level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", 0, self);
 	if(isdefined(self.challenge_struct))
 	{
 		foreach(var_6bf81b9d in self.challenge_struct function_876f93aa())
 		{
-			level namespace_6747c550::function_7df6bb60(#"zm_towers_challenges", 0, var_6bf81b9d);
-			level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", 0, var_6bf81b9d);
+			level zm_ui_inventory::function_7df6bb60(#"zm_towers_challenges", 0, var_6bf81b9d);
+			level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", 0, var_6bf81b9d);
 		}
 	}
 }
@@ -429,7 +429,7 @@ function function_702ac990(e_player, e_trig)
 			}
 			else
 			{
-				e_player thread function_ae982bb9(#"hash_50039ce41162afea");
+				e_player thread function_ae982bb9(#"challenge_available");
 				[[self.var_62368fa4[self.n_challenges_complete]]](e_player, e_trig, var_5f06d3f8);
 				if(self.n_challenges_complete == 2 && level flag::get("first_player_completed_3rd_challenge") && !level flag::get("challenge_trap_piece_spawned"))
 				{
@@ -458,17 +458,17 @@ function function_702ac990(e_player, e_trig)
 		self.n_challenges_complete++;
 		if(self.n_challenges_complete <= 3)
 		{
-			e_player namespace_ebd828b::function_b8dfa139(#"hash_300454c11a18ae03");
+			e_player zm_towers_crowd::function_b8dfa139(#"hash_300454c11a18ae03");
 		}
 		else
 		{
 			if(self.n_challenges_complete > 3 && self.n_challenges_complete <= 6)
 			{
-				e_player namespace_ebd828b::function_b8dfa139(#"hash_39efd1a80488c531");
+				e_player zm_towers_crowd::function_b8dfa139(#"hash_39efd1a80488c531");
 			}
 			else if(self.n_challenges_complete > 6 && self.n_challenges_complete <= 9)
 			{
-				e_player namespace_ebd828b::function_b8dfa139(#"hash_69fc3ba948618464");
+				e_player zm_towers_crowd::function_b8dfa139(#"hash_69fc3ba948618464");
 			}
 		}
 		if(self.n_challenges_complete == self.var_62368fa4.size)
@@ -1074,8 +1074,8 @@ function function_49bc2885(e_attacker)
 	{
 		return;
 	}
-	var_be633b3a = getweapon("knife");
-	var_1c0d76f8 = getweapon("bowie_knife");
+	w_knife = getweapon("knife");
+	w_bowie_knife = getweapon("bowie_knife");
 	n_progress = 0;
 	if(isdefined(self.damageweapon.ismeleeweapon) && self.damageweapon.ismeleeweapon && self.damagemod == "MOD_MELEE" && !zm_loadout::is_hero_weapon(self.damageweapon) || zm_weapons::function_35746b9c(self.damageweapon, self.damagemod))
 	{
@@ -1531,7 +1531,7 @@ function function_347214f4(e_player)
 		e_player thread function_29c490cf(self);
 		e_player thread function_789f4d85(self);
 		var_29b8f3d0 = undefined;
-		var_29b8f3d0 = e_player waittill(#"death", #"hash_7df55853368e6305", #"hash_66c8b65d784513d4");
+		var_29b8f3d0 = e_player waittill(#"death", #"hash_7df55853368e6305", #"left_temple");
 		if(var_29b8f3d0._notify == #"hash_7df55853368e6305")
 		{
 			break;
@@ -1565,7 +1565,7 @@ function function_29c490cf(var_31e6bd22)
 		}
 		waitframe(1);
 	}
-	self notify(#"hash_66c8b65d784513d4");
+	self notify(#"left_temple");
 }
 
 /*
@@ -1579,7 +1579,7 @@ function function_29c490cf(var_31e6bd22)
 */
 function function_789f4d85(var_31e6bd22)
 {
-	self endon(#"death", #"hash_66c8b65d784513d4");
+	self endon(#"death", #"left_temple");
 	var_31e6bd22 endon(#"hash_2818df4f7bf04998");
 	level waittill(#"end_of_round");
 	self notify(#"hash_7df55853368e6305");
@@ -1645,7 +1645,7 @@ function function_1fe5e1a3(e_player)
 	while(self.var_4b213d1b < 120)
 	{
 		n_amount = e_player.var_7df228aa.var_def266a8;
-		if(e_player namespace_ebd828b::function_aa0b6eb())
+		if(e_player zm_towers_crowd::function_aa0b6eb())
 		{
 			self.var_4b213d1b++;
 			n_progress = self.var_4b213d1b;
@@ -1761,7 +1761,7 @@ function function_b3114574(weapon_type)
 		case "hash_237b6756a81881cb":
 		case "zhield_zword_dw":
 		case "hash_2f351450f2e936dc":
-		case "hash_68bfa6918dc2eb81":
+		case "zhield_zword_dw_upgraded":
 		{
 			return true;
 			break;
@@ -1899,7 +1899,7 @@ function function_fb326fd3(params)
 	{
 		return;
 	}
-	if(namespace_10f9f462::is_crossbow(params.weapon) && isarray(e_player.var_d382ba7a))
+	if(zm_weap_crossbow::is_crossbow(params.weapon) && isarray(e_player.var_d382ba7a))
 	{
 		e_player.challenge_struct.var_b11d9e23 = e_player.var_d382ba7a.size;
 		if(e_player.challenge_struct.var_b11d9e23 > 0)
@@ -2531,14 +2531,14 @@ function _good_door_opened(e_player, e_trig)
 			self.var_14172483 = var_50ed6de;
 			break;
 		}
-		case "hash_cd53ea4d4ee864c":
+		case "pistol_standard_t8_upgraded":
 		{
 			e_trig.var_f2e7f46a = 1;
 			self.var_f7d17867 = vectorscale((0, 0, 1), 7);
 			self.var_14172483 = var_50ed6de;
 			break;
 		}
-		case "hash_1efb82c43276a4e3":
+		case "lmg_spray_t8_upgraded":
 		{
 			e_trig.var_f2e7f46a = 1;
 			self.var_f7d17867 = vectorscale((0, 0, 1), 7);
@@ -2557,7 +2557,7 @@ function _good_door_opened(e_player, e_trig)
 				break;
 			}
 			self.var_62fef0f1 = var_62fef0f1;
-			self namespace_e7c67ece::function_2cc4144b(var_62fef0f1);
+			self zm_vapor_random::function_2cc4144b(var_62fef0f1);
 			var_d9973a01 = anglestoforward(self.angles) * -2;
 			self.var_f7d17867 = var_d9973a01 + vectorscale((0, 0, 1), 7);
 			self.var_14172483 = var_50ed6de;
@@ -2566,7 +2566,7 @@ function _good_door_opened(e_player, e_trig)
 	}
 	var_e18247ac = self.origin + self.var_f7d17867;
 	var_9ac46b0e = self.angles + self.var_14172483;
-	if(var_aa4f9213 == #"ar_mg1909_t8" || var_aa4f9213 == #"lmg_standard_t8" || var_aa4f9213 == #"tr_midburst_t8" || var_aa4f9213 == #"hash_1efb82c43276a4e3" || var_aa4f9213 == #"hash_cd53ea4d4ee864c")
+	if(var_aa4f9213 == #"ar_mg1909_t8" || var_aa4f9213 == #"lmg_standard_t8" || var_aa4f9213 == #"tr_midburst_t8" || var_aa4f9213 == #"lmg_spray_t8_upgraded" || var_aa4f9213 == #"pistol_standard_t8_upgraded")
 	{
 		self.var_4d0b3b87 = zm_utility::spawn_buildkit_weapon_model(e_player, getweapon(var_aa4f9213), undefined, var_e18247ac, var_9ac46b0e);
 		self.var_4d0b3b87.str_weapon_name = var_aa4f9213;
@@ -2684,8 +2684,8 @@ function player_give_reward(e_trig)
 			break;
 		}
 		case "tr_midburst_t8":
-		case "hash_cd53ea4d4ee864c":
-		case "hash_1efb82c43276a4e3":
+		case "pistol_standard_t8_upgraded":
+		case "lmg_spray_t8_upgraded":
 		case "ar_mg1909_t8":
 		case "lmg_standard_t8":
 		{
@@ -2721,13 +2721,13 @@ function player_give_reward(e_trig)
 function private function_e2e90905()
 {
 	var_aa4f9213 = level.var_5d1e28ac[self.challenge_struct.var_860b8f1e];
-	if(var_aa4f9213 === #"hash_cd53ea4d4ee864c")
+	if(var_aa4f9213 === #"pistol_standard_t8_upgraded")
 	{
 		level clientfield::set("" + #"hash_2e38cc453c5ecb9c", 1);
 	}
 	else
 	{
-		if(var_aa4f9213 === #"hash_1efb82c43276a4e3")
+		if(var_aa4f9213 === #"lmg_spray_t8_upgraded")
 		{
 			level clientfield::set("" + #"hash_2e38cc453c5ecb9c", 2);
 		}
@@ -2750,11 +2750,11 @@ function private function_e2e90905()
 function swap_weapon(var_498a708)
 {
 	var_6822257f = self getweaponslist();
-	foreach(var_f99a6771 in var_6822257f)
+	foreach(w_gun in var_6822257f)
 	{
-		if(var_f99a6771.rootweapon === var_498a708)
+		if(w_gun.rootweapon === var_498a708)
 		{
-			self zm_weapons::function_7c5dd4bd(var_f99a6771);
+			self zm_weapons::function_7c5dd4bd(w_gun);
 			return;
 		}
 	}
@@ -2814,13 +2814,13 @@ function function_bce7e59b(e_player, n_challenge_index, n_current_progress)
 {
 	if(isdefined(e_player) && isdefined(self.var_25276720) && e_player == self.var_25276720)
 	{
-		level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", n_current_progress, e_player);
-		level namespace_6747c550::function_7df6bb60(#"zm_towers_challenges", n_challenge_index, e_player);
+		level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", n_current_progress, e_player);
+		level zm_ui_inventory::function_7df6bb60(#"zm_towers_challenges", n_challenge_index, e_player);
 	}
 	foreach(var_6bf81b9d in self function_876f93aa())
 	{
-		level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", n_current_progress, var_6bf81b9d);
-		level namespace_6747c550::function_7df6bb60(#"zm_towers_challenges", n_challenge_index, var_6bf81b9d);
+		level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", n_current_progress, var_6bf81b9d);
+		level zm_ui_inventory::function_7df6bb60(#"zm_towers_challenges", n_challenge_index, var_6bf81b9d);
 	}
 }
 
@@ -2837,11 +2837,11 @@ function private function_544b63c0(n_progress)
 {
 	if(isdefined(self.var_25276720))
 	{
-		level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", n_progress, self.var_25276720);
+		level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", n_progress, self.var_25276720);
 	}
 	foreach(var_6bf81b9d in self function_876f93aa())
 	{
-		level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", n_progress, var_6bf81b9d);
+		level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", n_progress, var_6bf81b9d);
 	}
 }
 
@@ -2907,7 +2907,7 @@ function function_a83b406a()
 function function_e4b04738(var_5630d868, e_player, str_hint_text, var_2597a9f0)
 {
 	/#
-		level namespace_6747c550::function_7df6bb60(#"hash_4b82dc3b7c860360", var_5630d868, e_player);
+		level zm_ui_inventory::function_7df6bb60(#"hash_4b82dc3b7c860360", var_5630d868, e_player);
 		self function_2ae8eabe(var_5630d868, var_5630d868);
 		self notify(var_2597a9f0);
 	#/

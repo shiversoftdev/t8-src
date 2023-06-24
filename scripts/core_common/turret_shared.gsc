@@ -8,7 +8,7 @@
 #namespace turret;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: turret
 	Checksum: 0x4C7C43AE
 	Offset: 0x2C0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"turret", &__init__, undefined, undefined);
 }
@@ -1732,7 +1732,7 @@ function trace_test(e_target, v_offset = (0, 0, 0), n_index)
 	s_turret = _get_turret_data(n_index);
 	v_start_org = self gettagorigin(s_turret.str_tag_pivot);
 	v_target = e_target.origin + v_offset;
-	if(sessionmodeismultiplayergame() || function_f99d2668() && isplayer(e_target))
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame() && isplayer(e_target))
 	{
 		v_target = e_target getshootatpos();
 	}

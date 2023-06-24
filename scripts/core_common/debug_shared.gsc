@@ -6,7 +6,7 @@
 #namespace debug;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: debug
 	Checksum: 0x60A229C1
 	Offset: 0x80
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"debug", &__init__, undefined, undefined);

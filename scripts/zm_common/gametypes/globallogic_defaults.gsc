@@ -42,9 +42,9 @@ function getwinningteamfromloser(losing_team)
 function default_onforfeit(team)
 {
 	level.gameforfeited = 1;
-	level notify(#"hash_7c63ed1f465e8e8e");
-	level endon(#"hash_7c63ed1f465e8e8e");
-	level endon(#"hash_39a00a79045884ca");
+	level notify(#"forfeit in progress");
+	level endon(#"forfeit in progress");
+	level endon(#"abort forfeit");
 	forfeit_delay = 20;
 	announcement(game.strings[#"opponent_forfeiting_in"], forfeit_delay, 0);
 	wait(10);

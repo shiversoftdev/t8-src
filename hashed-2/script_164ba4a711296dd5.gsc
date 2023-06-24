@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_b6e5ba9d : class_6aaccc24
+class cinsertion_passenger_count : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x1B896CD7
 		Offset: 0x1D8
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_b6e5ba9d : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x80C99C31
 		Offset: 0x318
 		Size: 0x14
@@ -34,7 +34,7 @@ class class_b6e5ba9d : class_6aaccc24
 
 	/*
 		Name: set_count
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0xACA037B0
 		Offset: 0x2D0
 		Size: 0x3C
@@ -48,7 +48,7 @@ class class_b6e5ba9d : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x659F47EB
 		Offset: 0x2A0
 		Size: 0x24
@@ -57,12 +57,12 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0xECB542A8
 		Offset: 0x250
 		Size: 0x44
@@ -71,12 +71,12 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "insertion_passenger_count", persistent);
+		cLUIelem::open_luielem(player, "insertion_passenger_count", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x8D63D486
 		Offset: 0x1F8
 		Size: 0x4C
@@ -85,8 +85,8 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("count", 1, 7, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("count", 1, 7, "int");
 	}
 
 }
@@ -104,7 +104,7 @@ class class_b6e5ba9d : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_b6e5ba9d();
+	elem = new cinsertion_passenger_count();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

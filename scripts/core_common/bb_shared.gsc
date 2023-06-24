@@ -90,14 +90,14 @@ function commit_weapon_data(spawnid, currentweapon, time0)
 			blackboxeventname = #"zmweapons";
 			eventname = #"hash_67140d84a7660909";
 		}
-		else if(function_f99d2668())
+		else if(sessionmodeiswarzonegame())
 		{
-			blackboxeventname = #"hash_205db9f882d276a1";
+			blackboxeventname = #"wzweapons";
 			eventname = #"hash_63ec5305e1ef1335";
 		}
 	}
-	var_aba8a4d5 = {#hits:self._bbdata[#"hits"], #shots:self._bbdata[#"shots"], #duration:time1 - time0, #name:currentweapon.name, #spawnid:spawnid};
-	function_92d1707f(eventname, blackboxeventname, var_aba8a4d5);
+	event_data = {#hits:self._bbdata[#"hits"], #shots:self._bbdata[#"shots"], #duration:time1 - time0, #name:currentweapon.name, #spawnid:spawnid};
+	function_92d1707f(eventname, blackboxeventname, event_data);
 	self._bbdata[#"shots"] = 0;
 	self._bbdata[#"hits"] = 0;
 }

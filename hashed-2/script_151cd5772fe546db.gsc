@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_b9aee0cd : class_6aaccc24
+class czm_arcade_timer : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_b9aee0cd
+		Namespace: czm_arcade_timer
 		Checksum: 0x31D99A06
 		Offset: 0x2C8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_b9aee0cd : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_b9aee0cd
+		Namespace: czm_arcade_timer
 		Checksum: 0x14004975
 		Offset: 0x5D0
 		Size: 0x14
@@ -31,64 +31,64 @@ class class_b9aee0cd : class_6aaccc24
 	}
 
 	/*
-		Name: function_28ccc05d
-		Namespace: namespace_b9aee0cd
+		Name: set_title
+		Namespace: czm_arcade_timer
 		Checksum: 0xA6E6A9E0
 		Offset: 0x598
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_28ccc05d(localclientnum, value)
+	function set_title(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "title", value);
+		[[ self ]]->set_data(localclientnum, "title", value);
 	}
 
 	/*
-		Name: function_21eb67aa
-		Namespace: namespace_b9aee0cd
+		Name: set_minutes
+		Namespace: czm_arcade_timer
 		Checksum: 0x8EE5E467
 		Offset: 0x560
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_21eb67aa(localclientnum, value)
+	function set_minutes(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "minutes", value);
+		[[ self ]]->set_data(localclientnum, "minutes", value);
 	}
 
 	/*
-		Name: function_c48569e7
-		Namespace: namespace_b9aee0cd
+		Name: set_seconds
+		Namespace: czm_arcade_timer
 		Checksum: 0x5AC68377
 		Offset: 0x528
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_c48569e7(localclientnum, value)
+	function set_seconds(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "seconds", value);
+		[[ self ]]->set_data(localclientnum, "seconds", value);
 	}
 
 	/*
-		Name: function_7954feaf
-		Namespace: namespace_b9aee0cd
+		Name: set_showzero
+		Namespace: czm_arcade_timer
 		Checksum: 0x2D8946B8
 		Offset: 0x4F0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_7954feaf(localclientnum, value)
+	function set_showzero(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "showzero", value);
+		[[ self ]]->set_data(localclientnum, "showzero", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_b9aee0cd
+		Namespace: czm_arcade_timer
 		Checksum: 0x42D913AD
 		Offset: 0x4B8
 		Size: 0x2C
@@ -97,12 +97,12 @@ class class_b9aee0cd : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"zm_arcade_timer");
+		cLUIelem::open(localclientnum, #"zm_arcade_timer");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_b9aee0cd
+		Namespace: czm_arcade_timer
 		Checksum: 0x6AB17A46
 		Offset: 0x408
 		Size: 0xA4
@@ -111,16 +111,16 @@ class class_b9aee0cd : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "showzero", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "seconds", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "minutes", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "title", #"");
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "showzero", 0);
+		[[ self ]]->set_data(localclientnum, "seconds", 0);
+		[[ self ]]->set_data(localclientnum, "minutes", 0);
+		[[ self ]]->set_data(localclientnum, "title", #"");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_b9aee0cd
+		Namespace: czm_arcade_timer
 		Checksum: 0x27725EB9
 		Offset: 0x3D8
 		Size: 0x24
@@ -129,12 +129,12 @@ class class_b9aee0cd : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_b9aee0cd
+		Namespace: czm_arcade_timer
 		Checksum: 0x5FB7986
 		Offset: 0x2E8
 		Size: 0xE4
@@ -143,11 +143,11 @@ class class_b9aee0cd : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_8fd8bfaa, var_b1de907e, var_359a4d9a, var_395b3059)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("showzero", 1, 1, "int", var_8fd8bfaa);
-		namespace_6aaccc24::function_da693cbe("seconds", 1, 6, "int", var_b1de907e);
-		namespace_6aaccc24::function_da693cbe("minutes", 1, 4, "int", var_359a4d9a);
-		namespace_6aaccc24::function_dcb34c80("string", "title", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("showzero", 1, 1, "int", var_8fd8bfaa);
+		cLUIelem::function_da693cbe("seconds", 1, 6, "int", var_b1de907e);
+		cLUIelem::function_da693cbe("minutes", 1, 4, "int", var_359a4d9a);
+		cLUIelem::function_dcb34c80("string", "title", 1);
 	}
 
 }
@@ -165,7 +165,7 @@ class class_b9aee0cd : class_6aaccc24
 */
 function register(uid, var_8fd8bfaa, var_b1de907e, var_359a4d9a, var_395b3059)
 {
-	elem = new class_b9aee0cd();
+	elem = new czm_arcade_timer();
 	[[ elem ]]->setup_clientfields(uid, var_8fd8bfaa, var_b1de907e, var_359a4d9a, var_395b3059);
 	return elem;
 }
@@ -181,7 +181,7 @@ function register(uid, var_8fd8bfaa, var_b1de907e, var_359a4d9a, var_395b3059)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_b9aee0cd();
+	elem = new czm_arcade_timer();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -229,7 +229,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_7954feaf
+	Name: set_showzero
 	Namespace: zm_arcade_timer
 	Checksum: 0x40403259
 	Offset: 0x208
@@ -237,13 +237,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_7954feaf(localclientnum, value)
+function set_showzero(localclientnum, value)
 {
-	[[ self ]]->function_7954feaf(localclientnum, value);
+	[[ self ]]->set_showzero(localclientnum, value);
 }
 
 /*
-	Name: function_c48569e7
+	Name: set_seconds
 	Namespace: zm_arcade_timer
 	Checksum: 0xC416F0F4
 	Offset: 0x238
@@ -251,13 +251,13 @@ function function_7954feaf(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_c48569e7(localclientnum, value)
+function set_seconds(localclientnum, value)
 {
-	[[ self ]]->function_c48569e7(localclientnum, value);
+	[[ self ]]->set_seconds(localclientnum, value);
 }
 
 /*
-	Name: function_21eb67aa
+	Name: set_minutes
 	Namespace: zm_arcade_timer
 	Checksum: 0xFD822439
 	Offset: 0x268
@@ -265,13 +265,13 @@ function function_c48569e7(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_21eb67aa(localclientnum, value)
+function set_minutes(localclientnum, value)
 {
-	[[ self ]]->function_21eb67aa(localclientnum, value);
+	[[ self ]]->set_minutes(localclientnum, value);
 }
 
 /*
-	Name: function_28ccc05d
+	Name: set_title
 	Namespace: zm_arcade_timer
 	Checksum: 0xD3600D3C
 	Offset: 0x298
@@ -279,8 +279,8 @@ function function_21eb67aa(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_28ccc05d(localclientnum, value)
+function set_title(localclientnum, value)
 {
-	[[ self ]]->function_28ccc05d(localclientnum, value);
+	[[ self ]]->set_title(localclientnum, value);
 }
 

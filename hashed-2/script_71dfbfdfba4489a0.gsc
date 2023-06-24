@@ -4,7 +4,7 @@
 #namespace as_debug;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: as_debug
 	Checksum: 0x29041158
 	Offset: 0x70
@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"as_debug", &__init__, undefined, undefined);

@@ -6,7 +6,7 @@
 #namespace clientids;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: clientids
 	Checksum: 0x7C47E173
 	Offset: 0x80
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"clientids", &__init__, undefined, undefined);
 }

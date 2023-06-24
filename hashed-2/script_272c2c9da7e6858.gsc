@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_9f4bb53a : class_6aaccc24
+class clower_message : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_9f4bb53a
+		Namespace: clower_message
 		Checksum: 0x32A4ACEE
 		Offset: 0x258
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_9f4bb53a : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_9f4bb53a
+		Namespace: clower_message
 		Checksum: 0x17FF3373
 		Offset: 0x538
 		Size: 0x14
@@ -33,36 +33,36 @@ class class_9f4bb53a : class_6aaccc24
 	}
 
 	/*
-		Name: function_18a028a3
-		Namespace: namespace_9f4bb53a
+		Name: set_countdownTimeSeconds
+		Namespace: clower_message
 		Checksum: 0x6A3610B0
 		Offset: 0x4F0
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_18a028a3(player, value)
+	function set_countdownTimeSeconds(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "countdownTimeSeconds", value);
 	}
 
 	/*
-		Name: function_cd1b9801
-		Namespace: namespace_9f4bb53a
+		Name: set_message
+		Namespace: clower_message
 		Checksum: 0x951A891A
 		Offset: 0x4A8
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_cd1b9801(player, value)
+	function set_message(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "message", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_9f4bb53a
+		Namespace: clower_message
 		Checksum: 0x6F3DDF00
 		Offset: 0x3A0
 		Size: 0xFC
@@ -101,7 +101,7 @@ class class_9f4bb53a : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_9f4bb53a
+		Namespace: clower_message
 		Checksum: 0x722E2ADD
 		Offset: 0x370
 		Size: 0x24
@@ -110,12 +110,12 @@ class class_9f4bb53a : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_9f4bb53a
+		Namespace: clower_message
 		Checksum: 0x31F200AB
 		Offset: 0x320
 		Size: 0x44
@@ -124,12 +124,12 @@ class class_9f4bb53a : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "lower_message", persistent);
+		cLUIelem::open_luielem(player, "lower_message", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_9f4bb53a
+		Namespace: clower_message
 		Checksum: 0x9A44BA3E
 		Offset: 0x278
 		Size: 0x9C
@@ -138,10 +138,10 @@ class class_9f4bb53a : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 2, "int");
-		namespace_6aaccc24::function_dcb34c80("string", "message", 1);
-		namespace_6aaccc24::function_da693cbe("countdownTimeSeconds", 1, 5, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 2, "int");
+		cLUIelem::function_dcb34c80("string", "message", 1);
+		cLUIelem::function_da693cbe("countdownTimeSeconds", 1, 5, "int");
 	}
 
 }
@@ -159,7 +159,7 @@ class class_9f4bb53a : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_9f4bb53a();
+	elem = new clower_message();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -221,7 +221,7 @@ function set_state(player, state_name)
 }
 
 /*
-	Name: function_cd1b9801
+	Name: set_message
 	Namespace: lower_message
 	Checksum: 0xF2DDF70C
 	Offset: 0x1F8
@@ -229,13 +229,13 @@ function set_state(player, state_name)
 	Parameters: 2
 	Flags: Linked
 */
-function function_cd1b9801(player, value)
+function set_message(player, value)
 {
-	[[ self ]]->function_cd1b9801(player, value);
+	[[ self ]]->set_message(player, value);
 }
 
 /*
-	Name: function_18a028a3
+	Name: set_countdownTimeSeconds
 	Namespace: lower_message
 	Checksum: 0xDABCD213
 	Offset: 0x228
@@ -243,8 +243,8 @@ function function_cd1b9801(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_18a028a3(player, value)
+function set_countdownTimeSeconds(player, value)
 {
-	[[ self ]]->function_18a028a3(player, value);
+	[[ self ]]->set_countdownTimeSeconds(player, value);
 }
 

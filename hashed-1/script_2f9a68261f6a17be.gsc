@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -13,7 +13,7 @@
 #namespace namespace_b28d86fd;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_b28d86fd
 	Checksum: 0x165F1B2C
 	Offset: 0xE8
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_41cb195ec280085c", &__init__, undefined, undefined);
 }
@@ -41,11 +41,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_149b9c514fee8fc3", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_149b9c514fee8fc3", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_b28d86fd
 	Checksum: 0x6F54AE69
 	Offset: 0x198
@@ -53,21 +53,21 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
 	callback::function_33f0ddd3(&function_33f0ddd3);
 	foreach(player in getplayers())
 	{
-		player thread namespace_b22c99a5::function_bf710271();
-		player namespace_b22c99a5::function_7dbb1712(1);
+		player thread zm_trial_util::function_bf710271();
+		player zm_trial_util::function_7dbb1712(1);
 	}
-	var_ec9e2b1d = getentarray("zombie_trap", "targetname");
+	a_t_traps = getentarray("zombie_trap", "targetname");
 	str_text = zm_utility::function_d6046228(#"hash_24a438482954901", #"hash_61d85c966dd9e83f");
-	foreach(var_9bda8088 in var_ec9e2b1d)
+	foreach(t_trap in a_t_traps)
 	{
-		if(!(isdefined(var_9bda8088._trap_in_use) && var_9bda8088._trap_in_use) && (isdefined(var_9bda8088.var_b3166dc1) && var_9bda8088.var_b3166dc1))
+		if(!(isdefined(t_trap._trap_in_use) && t_trap._trap_in_use) && (isdefined(t_trap.var_b3166dc1) && t_trap.var_b3166dc1))
 		{
-			var_9bda8088 zm_traps::trap_set_string(str_text, var_9bda8088.zombie_cost);
+			t_trap zm_traps::trap_set_string(str_text, t_trap.zombie_cost);
 		}
 	}
 	a_ai = getaiteamarray(level.zombie_team);
@@ -87,7 +87,7 @@ function private function_d1de6a85()
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_b28d86fd
 	Checksum: 0x814D7792
 	Offset: 0x4F0
@@ -95,7 +95,7 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	callback::function_824d206(&function_33f0ddd3);
 	level.var_153e9058 = undefined;
@@ -103,16 +103,16 @@ function private function_9e7b3f4d(round_reset)
 	level zm_trial::function_25ee130(0);
 	foreach(player in getplayers())
 	{
-		player thread namespace_b22c99a5::function_dc0859e();
-		player namespace_b22c99a5::function_7dbb1712(1);
+		player thread zm_trial_util::function_dc0859e();
+		player zm_trial_util::function_7dbb1712(1);
 	}
-	var_ec9e2b1d = getentarray("zombie_trap", "targetname");
+	a_t_traps = getentarray("zombie_trap", "targetname");
 	str_text = zm_utility::function_d6046228(#"hash_23c1c09e94181fdb", #"hash_6e8ef1b690e98e51");
-	foreach(var_9bda8088 in var_ec9e2b1d)
+	foreach(t_trap in a_t_traps)
 	{
-		if(!(isdefined(var_9bda8088._trap_in_use) && var_9bda8088._trap_in_use) && (isdefined(var_9bda8088.var_b3166dc1) && var_9bda8088.var_b3166dc1))
+		if(!(isdefined(t_trap._trap_in_use) && t_trap._trap_in_use) && (isdefined(t_trap.var_b3166dc1) && t_trap.var_b3166dc1))
 		{
-			var_9bda8088 zm_traps::trap_set_string(str_text, var_9bda8088.zombie_cost);
+			t_trap zm_traps::trap_set_string(str_text, t_trap.zombie_cost);
 		}
 	}
 }

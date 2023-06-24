@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_35598499769dbb3d;
-#using script_3f9e0dc8454d98e1;
-#using script_5660bae5b402a1eb;
-#using script_6a3f43063dfd1bdc;
-#using script_ab890501c40b73c;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm\zm_hms_util.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -95,11 +95,11 @@ function init_weapons_locker()
 	}
 	callback::on_connect(&on_player_connect);
 	level flag::wait_till(#"hash_25d9ccebd2bdecd9");
-	var_89ea5336 = getent("e_sarge_l", "targetname");
-	var_ff82be75 = getent("e_sarge_r", "targetname");
-	var_89ea5336 playsound(#"hash_75410a9cb6086f34");
-	var_89ea5336 rotateyaw(185, 0.85, 0.1, 0.1);
-	var_ff82be75 rotateyaw(-220, 1, 0.05, 0.05);
+	e_door_l = getent("e_sarge_l", "targetname");
+	e_door_r = getent("e_sarge_r", "targetname");
+	e_door_l playsound(#"hash_75410a9cb6086f34");
+	e_door_l rotateyaw(185, 0.85, 0.1, 0.1);
+	e_door_r rotateyaw(-220, 1, 0.05, 0.05);
 	level.s_weapons_locker zm_unitrigger::create(&function_9d485d13, 64);
 	level.s_weapons_locker thread function_4ef09c7a();
 }
@@ -119,15 +119,15 @@ function function_33e9442f()
 	level.s_ray_gun_case.s_case = struct::get("rg_case", "targetname");
 	level.s_ray_gun_case.s_case scene::play("idle");
 	level.s_ray_gun_case.var_a2b9ebe7 = getent(level.s_ray_gun_case.target, "targetname");
-	level.s_ray_gun_case.var_a2b9ebe7.var_5af20245 = level.var_2aeeb358[3];
+	level.s_ray_gun_case.var_a2b9ebe7.w_pickup = level.a_w_ray_guns[3];
 	if(zm_utility::function_e51dc2d8())
 	{
-		s_unitrigger = level.s_ray_gun_case.var_a2b9ebe7 zm_unitrigger::create(&namespace_9cf755b::function_358da2a7);
+		s_unitrigger = level.s_ray_gun_case.var_a2b9ebe7 zm_unitrigger::create(&zm_white_util::function_358da2a7);
 		level.s_ray_gun_case.var_a2b9ebe7.var_4f84520b = 0;
 		level flag::wait_till(#"enable_countermeasure_5");
 		level.s_ray_gun_case.s_case scene::play("open");
 		zm_unitrigger::unitrigger_force_per_player_triggers(s_unitrigger);
-		level.s_ray_gun_case.var_a2b9ebe7 thread namespace_9cf755b::function_d1ca61a7();
+		level.s_ray_gun_case.var_a2b9ebe7 thread zm_white_util::function_d1ca61a7();
 	}
 	else
 	{
@@ -152,14 +152,14 @@ function function_31c7123b()
 	s_trap.e_volume = getent(s_trap.target, "targetname");
 	s_trap.e_volume._trap_type = "acid";
 	s_trap.var_28ea1870 = struct::get_array(s_trap.target3, "targetname");
-	s_trap.var_54a168f2 = struct::get_array(s_trap.target2, "targetname");
+	s_trap.a_s_buttons = struct::get_array(s_trap.target2, "targetname");
 	s_trap.a_e_lights = getentarray(s_trap.target4, "targetname");
 	s_trap.var_2c0d31a5 = struct::get_array(s_trap.target5, "targetname");
 	s_trap.var_6b64b967 = 0;
 	s_trap.var_41ee2ddc = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till(#"hash_25d9cdebd2bdee8c");
-	foreach(s_button in s_trap.var_54a168f2)
+	foreach(s_button in s_trap.a_s_buttons)
 	{
 		s_button.s_trap = s_trap;
 		s_button zm_unitrigger::create(&function_67b12ae8, 64);
@@ -213,7 +213,7 @@ function function_6c029b7()
 			level.s_shower_trap.activated_by_player = e_who;
 			if(!(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f) && zm_audio::function_65e5c19a())
 			{
-				e_who thread zm_audio::create_and_play_dialog(#"hash_3f3ef774cd01d778", #"activate");
+				e_who thread zm_audio::create_and_play_dialog(#"trap_generic", #"activate");
 			}
 		}
 	}
@@ -488,14 +488,14 @@ function function_d8a7606()
 	s_trap.e_volume = getent(s_trap.target, "targetname");
 	s_trap.e_volume._trap_type = "fire";
 	s_trap.var_28ea1870 = struct::get_array(s_trap.target3, "targetname");
-	s_trap.var_54a168f2 = struct::get_array(s_trap.target2, "targetname");
+	s_trap.a_s_buttons = struct::get_array(s_trap.target2, "targetname");
 	s_trap.a_e_lights = getentarray(s_trap.target4, "targetname");
 	s_trap.var_2c0d31a5 = struct::get_array(s_trap.target5, "targetname");
 	s_trap.var_6b64b967 = 0;
 	s_trap.var_41ee2ddc = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till(#"hash_25d9caebd2bde973");
-	foreach(s_button in s_trap.var_54a168f2)
+	foreach(s_button in s_trap.a_s_buttons)
 	{
 		s_button.s_trap = s_trap;
 		s_button zm_unitrigger::create(&function_67b12ae8, 64);
@@ -550,7 +550,7 @@ function function_f24b1ecb()
 			level.s_fire_trap.activated_by_player = e_who;
 			if(!(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f) && zm_audio::function_65e5c19a())
 			{
-				e_who thread zm_audio::create_and_play_dialog(#"hash_3f3ef774cd01d778", #"activate");
+				e_who thread zm_audio::create_and_play_dialog(#"trap_generic", #"activate");
 			}
 		}
 	}
@@ -808,7 +808,7 @@ function function_982029e3()
 	s_trap._trap_type = "rotating";
 	s_trap.e_volume = getent(s_trap.target, "targetname");
 	s_trap.e_volume._trap_type = "rotating";
-	s_trap.var_54a168f2 = struct::get_array(s_trap.target2, "targetname");
+	s_trap.a_s_buttons = struct::get_array(s_trap.target2, "targetname");
 	s_trap.a_e_lights = getentarray(s_trap.target4, "targetname");
 	s_trap.var_2c0d31a5 = struct::get_array(s_trap.target5, "targetname");
 	s_trap.e_trap = struct::get(s_trap.target3, "targetname");
@@ -817,7 +817,7 @@ function function_982029e3()
 	s_trap.var_41ee2ddc = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till(#"hash_25d9cbebd2bdeb26");
-	foreach(s_button in s_trap.var_54a168f2)
+	foreach(s_button in s_trap.a_s_buttons)
 	{
 		s_button.s_trap = s_trap;
 		s_button zm_unitrigger::create(&function_67b12ae8, 64);
@@ -872,7 +872,7 @@ function function_6facfabc()
 			level.s_spinning_trap.activated_by_player = e_who;
 			if(!(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f) && zm_audio::function_65e5c19a())
 			{
-				e_who thread zm_audio::create_and_play_dialog(#"hash_3f3ef774cd01d778", #"activate");
+				e_who thread zm_audio::create_and_play_dialog(#"trap_generic", #"activate");
 			}
 		}
 	}
@@ -1017,7 +1017,7 @@ function function_7bd8cfde(var_64c09f7f, s_trap)
 		self clientfield::set("spinning_trap_blood_fx", 1);
 	}
 	self playsound(#"hash_42c6cc2204b7fbbd");
-	v_hook = s_trap.e_trap.scene_ents[#"hash_7aff0ee60ddd937b"] gettagorigin("tag_fan_blade_A_2");
+	v_hook = s_trap.e_trap.scene_ents[#"prop 1"] gettagorigin("tag_fan_blade_A_2");
 	n_dist = distance2d(self.origin, v_hook);
 	if(!(isdefined(s_trap.var_705682df) && s_trap.var_705682df) && self.var_6f84b820 === #"basic" && n_dist <= 128 && self.team != #"allies")
 	{
@@ -1028,7 +1028,7 @@ function function_7bd8cfde(var_64c09f7f, s_trap)
 	{
 		if(isai(self) && !isvehicle(self))
 		{
-			self thread function_572d630b();
+			self thread a_a_arms();
 		}
 		if(self.var_6f84b820 === #"basic" && !isvehicle(self))
 		{
@@ -1065,8 +1065,8 @@ function function_bcfd9acb(s_trap)
 	s_trap.var_705682df = 1;
 	self.var_bd4627e1 = 1;
 	self clientfield::set("spinning_trap_eye_fx", 1);
-	var_e72c9959 = util::spawn_model("tag_origin", s_trap.e_trap.scene_ents[#"hash_7aff0ee60ddd937b"] gettagorigin("tag_fan_blade_A_2"), s_trap.e_trap.scene_ents[#"hash_7aff0ee60ddd937b"] gettagangles("tag_fan_blade_A_2"));
-	var_e72c9959 linkto(s_trap.e_trap.scene_ents[#"hash_7aff0ee60ddd937b"], "tag_fan_blade_A_2");
+	var_e72c9959 = util::spawn_model("tag_origin", s_trap.e_trap.scene_ents[#"prop 1"] gettagorigin("tag_fan_blade_A_2"), s_trap.e_trap.scene_ents[#"prop 1"] gettagangles("tag_fan_blade_A_2"));
+	var_e72c9959 linkto(s_trap.e_trap.scene_ents[#"prop 1"], "tag_fan_blade_A_2");
 	self val::set("spinning_trap", "ignoreall", 1);
 	self val::set("spinning_trap", "allowdeath", 0);
 	self.b_ignore_cleanup = 1;
@@ -1190,7 +1190,7 @@ function function_1259cbbb(s_trap)
 }
 
 /*
-	Name: function_572d630b
+	Name: a_a_arms
 	Namespace: namespace_87b5173f
 	Checksum: 0xE04BD3DD
 	Offset: 0x4098
@@ -1198,7 +1198,7 @@ function function_1259cbbb(s_trap)
 	Parameters: 0
 	Flags: Linked
 */
-function function_572d630b()
+function a_a_arms()
 {
 	wait(2);
 	if(isdefined(self))
@@ -1226,7 +1226,7 @@ function function_af613bbf(a_weapons)
 		{
 			self.var_af561b1f = #"hash_4176883a68b00090";
 			self.var_a794d091 = #"hash_2fa3f09f73bf523c";
-			self.var_636a8bf7 = #"hash_4bf5a2219b1a65d2";
+			self.var_636a8bf7 = #"tr_longburst_t8_upgraded";
 			self.var_45c57fa5 setinvisibletoplayer(self, 0);
 			break;
 		}
@@ -1234,7 +1234,7 @@ function function_af613bbf(a_weapons)
 		{
 			self.var_af561b1f = #"hash_4e543dd90408cd76";
 			self.var_a794d091 = #"hash_2e3938a646e43352";
-			self.var_636a8bf7 = #"hash_1fc7843987e89a83";
+			self.var_636a8bf7 = #"lmg_standard_t8_upgraded";
 			self.var_45c57fa5 setinvisibletoplayer(self, 0);
 			break;
 		}
@@ -1242,7 +1242,7 @@ function function_af613bbf(a_weapons)
 		{
 			self.var_af561b1f = #"hash_6dd7b677c74ebba9";
 			self.var_a794d091 = #"hash_24f2c78de733d877";
-			self.var_636a8bf7 = #"hash_4dfeb08c20a14b8b";
+			self.var_636a8bf7 = #"ar_accurate_t8_upgraded";
 			self.var_45c57fa5 setinvisibletoplayer(self, 0);
 			break;
 		}
@@ -1250,7 +1250,7 @@ function function_af613bbf(a_weapons)
 		{
 			self.var_af561b1f = #"hash_58eff35154ec1990";
 			self.var_a794d091 = #"hash_670dd9efc63b2d3c";
-			self.var_636a8bf7 = #"hash_459f15018585edda";
+			self.var_636a8bf7 = #"shotgun_pump_t8_upgraded";
 			self.var_45c57fa5 setinvisibletoplayer(self, 0);
 			break;
 		}
@@ -1359,10 +1359,10 @@ function function_67b12ae8(e_player)
 	}
 	if(s_button.s_trap.var_41ee2ddc === 0)
 	{
-		self sethintstring(#"hash_21db2780833a8bfd");
+		self sethintstring(#"zombie/trap_cooldown");
 		return true;
 	}
-	if(util::function_5df4294() == "zstandard")
+	if(util::get_game_type() == "zstandard")
 	{
 		if(function_8b1a219a())
 		{
@@ -1427,11 +1427,11 @@ function function_91ecec97(a_e_lights, str_model)
 function swap_weapon(var_498a708)
 {
 	var_6822257f = self getweaponslist();
-	foreach(var_f99a6771 in var_6822257f)
+	foreach(w_gun in var_6822257f)
 	{
-		if(var_f99a6771.rootweapon === var_498a708)
+		if(w_gun.rootweapon === var_498a708)
 		{
-			self zm_weapons::function_7c5dd4bd(var_f99a6771);
+			self zm_weapons::function_7c5dd4bd(w_gun);
 			return;
 		}
 	}

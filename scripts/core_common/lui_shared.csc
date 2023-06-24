@@ -10,14 +10,14 @@
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
 
-class class_6aaccc24 
+class cLUIelem 
 {
 	var var_47d8642e;
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x80F724D1
 		Offset: 0x2640
 		Size: 0x4
@@ -30,7 +30,7 @@ class class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x80F724D1
 		Offset: 0x2A28
 		Size: 0x4
@@ -42,15 +42,15 @@ class class_6aaccc24
 	}
 
 	/*
-		Name: function_92ba69fa
-		Namespace: namespace_6aaccc24
+		Name: get_data
+		Namespace: cLUIelem
 		Checksum: 0xBBFCD106
 		Offset: 0x29C0
 		Size: 0x5A
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_92ba69fa(localclientnum, field)
+	function get_data(localclientnum, field)
 	{
 		/#
 			assert(var_47d8642e, "");
@@ -59,15 +59,15 @@ class class_6aaccc24
 	}
 
 	/*
-		Name: function_d7d2fcce
-		Namespace: namespace_6aaccc24
+		Name: set_data
+		Namespace: cLUIelem
 		Checksum: 0xDFD2CDB7
 		Offset: 0x2950
 		Size: 0x64
 		Parameters: 3
 		Flags: Linked
 	*/
-	function function_d7d2fcce(localclientnum, field, value)
+	function set_data(localclientnum, field, value)
 	{
 		/#
 			assert(var_47d8642e, "");
@@ -77,7 +77,7 @@ class class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x34DE8D6
 		Offset: 0x28F0
 		Size: 0x54
@@ -89,12 +89,12 @@ class class_6aaccc24
 		/#
 			assert(var_47d8642e, "");
 		#/
-		function_43d5b973(localclientnum, var_47e79fc);
+		closeluielem(localclientnum, var_47e79fc);
 	}
 
 	/*
 		Name: is_open
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x885EA434
 		Offset: 0x2890
 		Size: 0x52
@@ -111,7 +111,7 @@ class class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x237B563F
 		Offset: 0x2818
 		Size: 0x6C
@@ -123,13 +123,13 @@ class class_6aaccc24
 		/#
 			assert(var_47d8642e, "");
 		#/
-		function_5686f5cd(localclientnum, menu_name, var_47e79fc);
+		openluielem(localclientnum, menu_name, var_47e79fc);
 		[[ self ]]->function_fa582112(localclientnum);
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0xBECC2060
 		Offset: 0x27D8
 		Size: 0x34
@@ -145,7 +145,7 @@ class class_6aaccc24
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0xDB389259
 		Offset: 0x27A8
 		Size: 0x26
@@ -160,7 +160,7 @@ class class_6aaccc24
 
 	/*
 		Name: function_dcb34c80
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0xCDF44B94
 		Offset: 0x2710
 		Size: 0x8C
@@ -177,7 +177,7 @@ class class_6aaccc24
 
 	/*
 		Name: function_da693cbe
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x6DF9DD22
 		Offset: 0x2680
 		Size: 0x84
@@ -194,7 +194,7 @@ class class_6aaccc24
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0xF4A31FEA
 		Offset: 0x2650
 		Size: 0x26
@@ -212,7 +212,7 @@ class class_6aaccc24
 #namespace lui;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: lui
 	Checksum: 0x38946C01
 	Offset: 0x1C8
@@ -220,7 +220,7 @@ class class_6aaccc24
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"lui_shared", &__init__, undefined, undefined);
 }
@@ -451,12 +451,12 @@ function function_e41243c1(var_e953aca6)
 	Parameters: 10
 	Flags: Linked
 */
-function createcameramenu(menu_name, localclientnum, target_name, xcam, sub_xcam, xcam_frame = undefined, var_1f199068 = undefined, var_2c679be0 = undefined, lerp_time = 0, var_f37c29f7 = 0)
+function createcameramenu(menu_name, localclientnum, target_name, xcam, sub_xcam, xcam_frame = undefined, var_1f199068 = undefined, var_2c679be0 = undefined, lerp_time = 0, lut_index = 0)
 {
 	/#
 		assert(!isdefined(level.client_menus[localclientnum][menu_name]));
 	#/
-	level.client_menus[localclientnum][menu_name] = {#hash_e57ed98b:[], #hash_f37c29f7:var_f37c29f7, #lerp_time:lerp_time, #hash_2c679be0:function_e41243c1(var_2c679be0), #hash_1f199068:function_e41243c1(var_1f199068), #xcam_frame:xcam_frame, #sub_xcam:sub_xcam, #xcam:xcam, #target_name:target_name, #menu_name:menu_name};
+	level.client_menus[localclientnum][menu_name] = {#hash_e57ed98b:[], #hash_f37c29f7:lut_index, #lerp_time:lerp_time, #hash_2c679be0:function_e41243c1(var_2c679be0), #hash_1f199068:function_e41243c1(var_1f199068), #xcam_frame:xcam_frame, #sub_xcam:sub_xcam, #xcam:xcam, #target_name:target_name, #menu_name:menu_name};
 	return level.client_menus[localclientnum][menu_name];
 }
 
@@ -469,12 +469,12 @@ function createcameramenu(menu_name, localclientnum, target_name, xcam, sub_xcam
 	Parameters: 9
 	Flags: Linked
 */
-function function_9d7ab167(menu_name, localclientnum, session_mode, target_name, xcam, sub_xcam, xcam_frame = undefined, lerp_time = 0, var_f37c29f7 = 0)
+function function_9d7ab167(menu_name, localclientnum, session_mode, target_name, xcam, sub_xcam, xcam_frame = undefined, lerp_time = 0, lut_index = 0)
 {
 	/#
 		assert(isdefined(level.client_menus[localclientnum][menu_name]));
 	#/
-	level.client_menus[localclientnum][menu_name].var_e57ed98b[session_mode] = {#hash_f37c29f7:var_f37c29f7, #lerp_time:lerp_time, #xcam_frame:xcam_frame, #sub_xcam:sub_xcam, #xcam:xcam, #target_name:target_name};
+	level.client_menus[localclientnum][menu_name].var_e57ed98b[session_mode] = {#hash_f37c29f7:lut_index, #lerp_time:lerp_time, #xcam_frame:xcam_frame, #sub_xcam:sub_xcam, #xcam:xcam, #target_name:target_name};
 }
 
 /*
@@ -486,12 +486,12 @@ function function_9d7ab167(menu_name, localclientnum, session_mode, target_name,
 	Parameters: 7
 	Flags: Linked
 */
-function createcustomcameramenu(menu_name, localclientnum, camera_function, has_state, var_1f199068 = undefined, var_2c679be0 = undefined, var_f37c29f7 = 0)
+function createcustomcameramenu(menu_name, localclientnum, camera_function, has_state, var_1f199068 = undefined, var_2c679be0 = undefined, lut_index = 0)
 {
 	/#
 		assert(!isdefined(level.client_menus[localclientnum][menu_name]));
 	#/
-	level.client_menus[localclientnum][menu_name] = {#hash_f37c29f7:var_f37c29f7, #hash_2c679be0:function_e41243c1(var_2c679be0), #hash_1f199068:function_e41243c1(var_1f199068), #has_state:has_state, #camera_function:camera_function, #menu_name:menu_name};
+	level.client_menus[localclientnum][menu_name] = {#hash_f37c29f7:lut_index, #hash_2c679be0:function_e41243c1(var_2c679be0), #hash_1f199068:function_e41243c1(var_1f199068), #has_state:has_state, #camera_function:camera_function, #menu_name:menu_name};
 	return level.client_menus[localclientnum][menu_name];
 }
 
@@ -562,9 +562,9 @@ function setup_menu(localclientnum, menu_data, previous_menu)
 				playradiantexploder(localclientnum, exploder);
 			}
 		}
-		if(isdefined(new_menu.var_f37c29f7))
+		if(isdefined(new_menu.lut_index))
 		{
-			setdvar(#"vc_lut", new_menu.var_f37c29f7);
+			setdvar(#"vc_lut", new_menu.lut_index);
 		}
 		if(isdefined(new_menu.camera_function))
 		{
@@ -984,7 +984,7 @@ function set_color(menu, color)
 */
 function function_b48acaf1(uid)
 {
-	elem = new class_6aaccc24();
+	elem = new cLUIelem();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

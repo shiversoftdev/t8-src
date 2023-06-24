@@ -7,7 +7,7 @@
 #namespace weapon_customization_icon;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: weapon_customization_icon
 	Checksum: 0x7714083D
 	Offset: 0x170
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"weapon_customization_icon", &__init__, undefined, undefined);
 }
@@ -243,7 +243,7 @@ function get_safehouse_position_struct()
 {
 	position = spawnstruct();
 	position.angles = (0, 0, 0);
-	switch(util::function_53bbf9d2())
+	switch(util::get_map_name())
 	{
 		default:
 		{

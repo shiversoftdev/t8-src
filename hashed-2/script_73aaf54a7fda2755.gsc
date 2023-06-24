@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_35598499769dbb3d;
-#using script_3f9e0dc8454d98e1;
-#using script_57f7003580bb15e0;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\status_effects\status_effect_util.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -13,7 +13,7 @@
 #namespace namespace_1d05befd;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_1d05befd
 	Checksum: 0x75AFCEF2
 	Offset: 0x1C8
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_831eacd382054cc", &__init__, &__main__, undefined);
 }
@@ -44,7 +44,7 @@ function __init__()
 	clientfield::register("actor", "zombie_electric_burst_stun_friendly_clientfield", 21000, 1, "int");
 	clientfield::register("toplayer", "zombie_electric_burst_postfx_clientfield", 21000, 1, "counter");
 	callback::on_player_damage(&function_4639701a);
-	level.var_f8eb6737 = function_4d1e7b48(#"hash_3a1f530cdb5f75f4");
+	level.var_f8eb6737 = getstatuseffect(#"hash_3a1f530cdb5f75f4");
 	/#
 		zm_devgui::function_c7dd7a17("", "");
 	#/

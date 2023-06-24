@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_14224618 : class_6aaccc24
+class cfull_screen_black : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_14224618
+		Namespace: cfull_screen_black
 		Checksum: 0xE8886016
 		Offset: 0x3A0
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_14224618 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_14224618
+		Namespace: cfull_screen_black
 		Checksum: 0x643ED5B6
 		Offset: 0x848
 		Size: 0x14
@@ -31,106 +31,106 @@ class class_14224618 : class_6aaccc24
 	}
 
 	/*
-		Name: function_ae1277a0
-		Namespace: namespace_14224618
+		Name: set_drawHUD
+		Namespace: cfull_screen_black
 		Checksum: 0xA96A7069
 		Offset: 0x810
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_ae1277a0(localclientnum, value)
+	function set_drawHUD(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "drawHUD", value);
+		[[ self ]]->set_data(localclientnum, "drawHUD", value);
 	}
 
 	/*
-		Name: function_331f9dd
-		Namespace: namespace_14224618
+		Name: set_endAlpha
+		Namespace: cfull_screen_black
 		Checksum: 0x762135CA
 		Offset: 0x7D8
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_331f9dd(localclientnum, value)
+	function set_endAlpha(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "endAlpha", value);
+		[[ self ]]->set_data(localclientnum, "endAlpha", value);
 	}
 
 	/*
-		Name: function_9cd54463
-		Namespace: namespace_14224618
+		Name: set_startAlpha
+		Namespace: cfull_screen_black
 		Checksum: 0x2F79870B
 		Offset: 0x7A0
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_9cd54463(localclientnum, value)
+	function set_startAlpha(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "startAlpha", value);
+		[[ self ]]->set_data(localclientnum, "startAlpha", value);
 	}
 
 	/*
-		Name: function_237ff433
-		Namespace: namespace_14224618
+		Name: set_fadeOverTime
+		Namespace: cfull_screen_black
 		Checksum: 0x780C8161
 		Offset: 0x768
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_237ff433(localclientnum, value)
+	function set_fadeOverTime(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "fadeOverTime", value);
+		[[ self ]]->set_data(localclientnum, "fadeOverTime", value);
 	}
 
 	/*
-		Name: function_7420df0a
-		Namespace: namespace_14224618
+		Name: set_blue
+		Namespace: cfull_screen_black
 		Checksum: 0x51E86F79
 		Offset: 0x730
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_7420df0a(localclientnum, value)
+	function set_blue(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "blue", value);
+		[[ self ]]->set_data(localclientnum, "blue", value);
 	}
 
 	/*
-		Name: function_2208b8db
-		Namespace: namespace_14224618
+		Name: set_green
+		Namespace: cfull_screen_black
 		Checksum: 0x87EFAB85
 		Offset: 0x6F8
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_2208b8db(localclientnum, value)
+	function set_green(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "green", value);
+		[[ self ]]->set_data(localclientnum, "green", value);
 	}
 
 	/*
-		Name: function_eccc151d
-		Namespace: namespace_14224618
+		Name: set_red
+		Namespace: cfull_screen_black
 		Checksum: 0x59BF51D1
 		Offset: 0x6C0
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_eccc151d(localclientnum, value)
+	function set_red(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "red", value);
+		[[ self ]]->set_data(localclientnum, "red", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_14224618
+		Namespace: cfull_screen_black
 		Checksum: 0x1F1F9B49
 		Offset: 0x688
 		Size: 0x2C
@@ -139,12 +139,12 @@ class class_14224618 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"full_screen_black");
+		cLUIelem::open(localclientnum, #"full_screen_black");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_14224618
+		Namespace: cfull_screen_black
 		Checksum: 0xD53FCE31
 		Offset: 0x570
 		Size: 0x110
@@ -153,19 +153,19 @@ class class_14224618 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "red", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "green", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "blue", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "fadeOverTime", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "startAlpha", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "endAlpha", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "drawHUD", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "red", 0);
+		[[ self ]]->set_data(localclientnum, "green", 0);
+		[[ self ]]->set_data(localclientnum, "blue", 0);
+		[[ self ]]->set_data(localclientnum, "fadeOverTime", 0);
+		[[ self ]]->set_data(localclientnum, "startAlpha", 0);
+		[[ self ]]->set_data(localclientnum, "endAlpha", 0);
+		[[ self ]]->set_data(localclientnum, "drawHUD", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_14224618
+		Namespace: cfull_screen_black
 		Checksum: 0x805BB644
 		Offset: 0x540
 		Size: 0x24
@@ -174,28 +174,28 @@ class class_14224618 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_14224618
+		Namespace: cfull_screen_black
 		Checksum: 0xB7350A45
 		Offset: 0x3C0
 		Size: 0x174
 		Parameters: 8
 		Flags: Linked
 	*/
-	function setup_clientfields(uid, var_9350f184, var_788c188f, var_3fb95ac9, var_a3e0a6ce, var_b046940, var_34291db, var_32445b2)
+	function setup_clientfields(uid, redcallback, greencallback, bluecallback, fadeOverTimecallback, var_b046940, var_34291db, var_32445b2)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("red", 1, 3, "float", var_9350f184);
-		namespace_6aaccc24::function_da693cbe("green", 1, 3, "float", var_788c188f);
-		namespace_6aaccc24::function_da693cbe("blue", 1, 3, "float", var_3fb95ac9);
-		namespace_6aaccc24::function_da693cbe("fadeOverTime", 1, 12, "int", var_a3e0a6ce);
-		namespace_6aaccc24::function_da693cbe("startAlpha", 1, 5, "float", var_b046940);
-		namespace_6aaccc24::function_da693cbe("endAlpha", 1, 5, "float", var_34291db);
-		namespace_6aaccc24::function_da693cbe("drawHUD", 1, 1, "int", var_32445b2);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("red", 1, 3, "float", redcallback);
+		cLUIelem::function_da693cbe("green", 1, 3, "float", greencallback);
+		cLUIelem::function_da693cbe("blue", 1, 3, "float", bluecallback);
+		cLUIelem::function_da693cbe("fadeOverTime", 1, 12, "int", fadeOverTimecallback);
+		cLUIelem::function_da693cbe("startAlpha", 1, 5, "float", var_b046940);
+		cLUIelem::function_da693cbe("endAlpha", 1, 5, "float", var_34291db);
+		cLUIelem::function_da693cbe("drawHUD", 1, 1, "int", var_32445b2);
 	}
 
 }
@@ -211,10 +211,10 @@ class class_14224618 : class_6aaccc24
 	Parameters: 8
 	Flags: Linked
 */
-function register(uid, var_9350f184, var_788c188f, var_3fb95ac9, var_a3e0a6ce, var_b046940, var_34291db, var_32445b2)
+function register(uid, redcallback, greencallback, bluecallback, fadeOverTimecallback, var_b046940, var_34291db, var_32445b2)
 {
-	elem = new class_14224618();
-	[[ elem ]]->setup_clientfields(uid, var_9350f184, var_788c188f, var_3fb95ac9, var_a3e0a6ce, var_b046940, var_34291db, var_32445b2);
+	elem = new cfull_screen_black();
+	[[ elem ]]->setup_clientfields(uid, redcallback, greencallback, bluecallback, fadeOverTimecallback, var_b046940, var_34291db, var_32445b2);
 	return elem;
 }
 
@@ -229,7 +229,7 @@ function register(uid, var_9350f184, var_788c188f, var_3fb95ac9, var_a3e0a6ce, v
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_14224618();
+	elem = new cfull_screen_black();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -277,7 +277,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_eccc151d
+	Name: set_red
 	Namespace: full_screen_black
 	Checksum: 0x7056E8B8
 	Offset: 0x250
@@ -285,13 +285,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_eccc151d(localclientnum, value)
+function set_red(localclientnum, value)
 {
-	[[ self ]]->function_eccc151d(localclientnum, value);
+	[[ self ]]->set_red(localclientnum, value);
 }
 
 /*
-	Name: function_2208b8db
+	Name: set_green
 	Namespace: full_screen_black
 	Checksum: 0x9C50F715
 	Offset: 0x280
@@ -299,13 +299,13 @@ function function_eccc151d(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_2208b8db(localclientnum, value)
+function set_green(localclientnum, value)
 {
-	[[ self ]]->function_2208b8db(localclientnum, value);
+	[[ self ]]->set_green(localclientnum, value);
 }
 
 /*
-	Name: function_7420df0a
+	Name: set_blue
 	Namespace: full_screen_black
 	Checksum: 0xD20AB2CD
 	Offset: 0x2B0
@@ -313,13 +313,13 @@ function function_2208b8db(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_7420df0a(localclientnum, value)
+function set_blue(localclientnum, value)
 {
-	[[ self ]]->function_7420df0a(localclientnum, value);
+	[[ self ]]->set_blue(localclientnum, value);
 }
 
 /*
-	Name: function_237ff433
+	Name: set_fadeOverTime
 	Namespace: full_screen_black
 	Checksum: 0x4371CE57
 	Offset: 0x2E0
@@ -327,13 +327,13 @@ function function_7420df0a(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_237ff433(localclientnum, value)
+function set_fadeOverTime(localclientnum, value)
 {
-	[[ self ]]->function_237ff433(localclientnum, value);
+	[[ self ]]->set_fadeOverTime(localclientnum, value);
 }
 
 /*
-	Name: function_9cd54463
+	Name: set_startAlpha
 	Namespace: full_screen_black
 	Checksum: 0x558D1C5A
 	Offset: 0x310
@@ -341,13 +341,13 @@ function function_237ff433(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_9cd54463(localclientnum, value)
+function set_startAlpha(localclientnum, value)
 {
-	[[ self ]]->function_9cd54463(localclientnum, value);
+	[[ self ]]->set_startAlpha(localclientnum, value);
 }
 
 /*
-	Name: function_331f9dd
+	Name: set_endAlpha
 	Namespace: full_screen_black
 	Checksum: 0x9254A5B7
 	Offset: 0x340
@@ -355,13 +355,13 @@ function function_9cd54463(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_331f9dd(localclientnum, value)
+function set_endAlpha(localclientnum, value)
 {
-	[[ self ]]->function_331f9dd(localclientnum, value);
+	[[ self ]]->set_endAlpha(localclientnum, value);
 }
 
 /*
-	Name: function_ae1277a0
+	Name: set_drawHUD
 	Namespace: full_screen_black
 	Checksum: 0xBBD2D0CF
 	Offset: 0x370
@@ -369,8 +369,8 @@ function function_331f9dd(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_ae1277a0(localclientnum, value)
+function set_drawHUD(localclientnum, value)
 {
-	[[ self ]]->function_ae1277a0(localclientnum, value);
+	[[ self ]]->set_drawHUD(localclientnum, value);
 }
 

@@ -6,7 +6,7 @@
 #namespace music_box;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: music_box
 	Checksum: 0x5FE15137
 	Offset: 0x190
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"music_box", &__init__, undefined, undefined);
 }

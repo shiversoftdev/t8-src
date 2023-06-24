@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1dfbba29049027e1;
+#using scripts\zm\zm_escape_travel.gsc;
 #using script_4cc2542101cb7973;
-#using script_5bb072c3abf4652c;
-#using script_6e3c826b1814cab6;
-#using script_b52a163973f339f;
+#using scripts\zm_common\zm_vo.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_characters.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -24,7 +24,7 @@
 #namespace namespace_a0f5c7fc;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a0f5c7fc
 	Checksum: 0x56A55E21
 	Offset: 0x240
@@ -32,7 +32,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_261b71c31eed2733", &__init__, &__main__, undefined);
 }
@@ -139,7 +139,7 @@ function function_4e68b0f4()
 	s_info = undefined;
 	s_info = var_baa069fa waittill(#"trigger");
 	e_player = s_info.activator;
-	e_player thread zm_audio::create_and_play_dialog(#"hash_64207dd7a5dc4420", #"react", undefined, 1);
+	e_player thread zm_audio::create_and_play_dialog(#"exam_room", #"react", undefined, 1);
 }
 
 /*
@@ -157,7 +157,7 @@ function function_29543c()
 	s_info = undefined;
 	s_info = var_baa069fa waittill(#"trigger");
 	e_player = s_info.activator;
-	b_say = e_player zm_audio::create_and_play_dialog(#"zone_dock", #"hash_4f30a7de1a21c7cb", undefined, 1);
+	b_say = e_player zm_audio::create_and_play_dialog(#"zone_dock", #"react_0", undefined, 1);
 	if(isdefined(b_say) && b_say && e_player zm_characters::is_character(array(#"hash_1aa57ef704f24fa5", #"hash_36bc80636f0fdac4")))
 	{
 		wait(soundgetplaybacktime(#"hash_6598db6cd61c4aad") / 1000);
@@ -175,7 +175,7 @@ function function_29543c()
 			if(distancesquared(e_nikolai.origin, e_player.origin) < 589824)
 			{
 				var_9a0250b7 = #"hash_465a6e7feb94a61d";
-				e_nikolai zm_vo::function_8e0f4696(var_9a0250b7, 0, 0, 9999);
+				e_nikolai zm_vo::vo_say(var_9a0250b7, 0, 0, 9999);
 			}
 		}
 	}
@@ -304,7 +304,7 @@ function function_4f89089b()
 		s_result = self waittill(#"trigger");
 		if(isplayer(s_result.activator) && isalive(s_result.activator))
 		{
-			b_played = s_result.activator zm_audio::create_and_play_dialog(#"hash_2df8832316a42fe1", #"react");
+			b_played = s_result.activator zm_audio::create_and_play_dialog(#"vpods", #"react");
 			if(isdefined(b_played) && b_played)
 			{
 				s_result.activator.var_b5fbfab4 = 1;
@@ -395,7 +395,7 @@ function function_350029c6()
 	s_info = undefined;
 	s_info = self waittill(#"trigger");
 	e_player = s_info.activator;
-	e_player thread zm_audio::create_and_play_dialog(#"hash_b5b3ba3a669576", #"turn_on");
+	e_player thread zm_audio::create_and_play_dialog(#"build_64", #"turn_on");
 }
 
 /*
@@ -502,14 +502,14 @@ function private function_49189399()
 	}
 	if(level.players.size > 1)
 	{
-		e_player thread zm_audio::create_and_play_dialog(#"hash_3eb2a18d21c3a5db", #"react", undefined, 1);
+		e_player thread zm_audio::create_and_play_dialog(#"cell_block", #"react", undefined, 1);
 	}
 	else
 	{
 		e_richtofen = namespace_69ddf44f::function_b1203924();
 		if(isalive(e_richtofen))
 		{
-			e_richtofen thread zm_audio::create_and_play_dialog(#"hash_3eb2a18d21c3a5db", #"react", undefined, 1);
+			e_richtofen thread zm_audio::create_and_play_dialog(#"cell_block", #"react", undefined, 1);
 		}
 	}
 	level flag::set(#"hash_732657441f7793dc");
@@ -577,7 +577,7 @@ function function_db185b3()
 		s_info = undefined;
 		s_info = self waittill(#"trigger");
 		e_player = s_info.activator;
-		e_player thread zm_audio::create_and_play_dialog(#"hash_6530bd618d24bb74", #"react");
+		e_player thread zm_audio::create_and_play_dialog(#"escape_plan", #"react");
 	}
 }
 
@@ -600,7 +600,7 @@ function private function_a78a3261()
 			var_be632f74 = 1;
 			foreach(player in getplayers())
 			{
-				if(player namespace_efb8c7fe::function_9a8ab327())
+				if(player zm_escape_travel::function_9a8ab327())
 				{
 					var_be632f74 = 0;
 					break;
@@ -642,7 +642,7 @@ function function_818b85eb()
 	if(!self flag::get(#"hash_1308e79a11093c1e"))
 	{
 		self flag::set(#"hash_1308e79a11093c1e");
-		self thread zm_audio::create_and_play_dialog(#"hellhole", #"hash_18fc0277d6348d4");
+		self thread zm_audio::create_and_play_dialog(#"hellhole", #"enter_first");
 	}
 	else
 	{
@@ -669,7 +669,7 @@ function function_c179111e()
 		e_player = array::random(a_e_players);
 		if(isalive(e_player))
 		{
-			e_player thread zm_audio::create_and_play_dialog(#"hash_440246191b63e903", #"react");
+			e_player thread zm_audio::create_and_play_dialog(#"elev_crash", #"react");
 		}
 	}
 }

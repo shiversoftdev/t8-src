@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_1e6cb1a9 : class_6aaccc24
+class cself_revive_visuals : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_1e6cb1a9
+		Namespace: cself_revive_visuals
 		Checksum: 0x1A335DFD
 		Offset: 0x230
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_1e6cb1a9 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_1e6cb1a9
+		Namespace: cself_revive_visuals
 		Checksum: 0x2D057D23
 		Offset: 0x3E0
 		Size: 0x14
@@ -33,36 +33,36 @@ class class_1e6cb1a9 : class_6aaccc24
 	}
 
 	/*
-		Name: function_d50fdde9
-		Namespace: namespace_1e6cb1a9
+		Name: set_revive_progress
+		Namespace: cself_revive_visuals
 		Checksum: 0x23EB0ACD
 		Offset: 0x398
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_d50fdde9(player, value)
+	function set_revive_progress(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "revive_progress", value);
 	}
 
 	/*
-		Name: function_7a5768aa
-		Namespace: namespace_1e6cb1a9
+		Name: set_self_revive_progress_bar_fill
+		Namespace: cself_revive_visuals
 		Checksum: 0x33F62F01
 		Offset: 0x350
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_7a5768aa(player, value)
+	function set_self_revive_progress_bar_fill(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "self_revive_progress_bar_fill", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_1e6cb1a9
+		Namespace: cself_revive_visuals
 		Checksum: 0xBCF2A8D
 		Offset: 0x320
 		Size: 0x24
@@ -71,12 +71,12 @@ class class_1e6cb1a9 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_1e6cb1a9
+		Namespace: cself_revive_visuals
 		Checksum: 0x49A803CC
 		Offset: 0x2D0
 		Size: 0x44
@@ -85,12 +85,12 @@ class class_1e6cb1a9 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "self_revive_visuals", persistent);
+		cLUIelem::open_luielem(player, "self_revive_visuals", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_1e6cb1a9
+		Namespace: cself_revive_visuals
 		Checksum: 0xA6D220AB
 		Offset: 0x250
 		Size: 0x74
@@ -99,9 +99,9 @@ class class_1e6cb1a9 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("self_revive_progress_bar_fill", 1, 5, "float");
-		namespace_6aaccc24::function_da693cbe("revive_progress", 1, 5, "float");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("self_revive_progress_bar_fill", 1, 5, "float");
+		cLUIelem::function_da693cbe("revive_progress", 1, 5, "float");
 	}
 
 }
@@ -119,7 +119,7 @@ class class_1e6cb1a9 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_1e6cb1a9();
+	elem = new cself_revive_visuals();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -167,7 +167,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_7a5768aa
+	Name: set_self_revive_progress_bar_fill
 	Namespace: self_revive_visuals
 	Checksum: 0x2E311F5
 	Offset: 0x1D0
@@ -175,13 +175,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_7a5768aa(player, value)
+function set_self_revive_progress_bar_fill(player, value)
 {
-	[[ self ]]->function_7a5768aa(player, value);
+	[[ self ]]->set_self_revive_progress_bar_fill(player, value);
 }
 
 /*
-	Name: function_d50fdde9
+	Name: set_revive_progress
 	Namespace: self_revive_visuals
 	Checksum: 0xBC271F56
 	Offset: 0x200
@@ -189,8 +189,8 @@ function function_7a5768aa(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_d50fdde9(player, value)
+function set_revive_progress(player, value)
 {
-	[[ self ]]->function_d50fdde9(player, value);
+	[[ self ]]->set_revive_progress(player, value);
 }
 

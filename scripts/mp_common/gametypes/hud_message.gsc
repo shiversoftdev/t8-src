@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e54c7a9a7e1e2;
+#using scripts\mp_common\teams\teams.gsc;
 #using scripts\core_common\hud_message_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 #using scripts\mp_common\gametypes\outcome.gsc;
@@ -29,23 +29,23 @@ function init()
 	game.strings[#"overtime"] = #"hash_19d325d8d1bfd3de";
 	game.strings[#"roundend"] = #"hash_62af47ae5592dbf8";
 	game.strings[#"intermission"] = #"hash_24bb668f17a9cc67";
-	game.strings[#"match_bonus"] = #"hash_57a8d1440d2cb4c7";
+	game.strings[#"match_bonus"] = #"mp/match_bonus_is";
 	game.strings[#"codpoints_match_bonus"] = #"mp_codpoints_match_bonus_is";
-	game.strings[#"cod_caster_team_wins"] = #"hash_4c5b0e4d83e5f96e";
-	game.strings[#"cod_caster_team_eliminated"] = #"hash_22438613d436b209";
+	game.strings[#"cod_caster_team_wins"] = #"mp/wins";
+	game.strings[#"cod_caster_team_eliminated"] = #"mp/team_eliminated";
 	game.strings[#"tie"] = #"hash_72785a9088fa0d1b";
-	game.strings[#"round_draw"] = #"hash_7d3ae25e0187143e";
+	game.strings[#"round_draw"] = #"mp/round_draw";
 	game.strings[#"enemies_eliminated"] = #"hash_3191d03a1c0615ad";
 	game.strings[#"team_eliminated"] = #"hash_5ebfcbc4ad2769b6";
-	game.strings[#"score_limit_reached"] = #"hash_3050eee23c6a3574";
-	game.strings[#"round_score_limit_reached"] = #"hash_3050eee23c6a3574";
-	game.strings[#"round_limit_reached"] = #"hash_3b23cb510ab5970a";
-	game.strings[#"time_limit_reached"] = #"hash_4e2680278af76571";
-	game.strings[#"players_forfeited"] = #"hash_4b172be7ce459674";
+	game.strings[#"score_limit_reached"] = #"mp/score_limit_reached";
+	game.strings[#"round_score_limit_reached"] = #"mp/score_limit_reached";
+	game.strings[#"round_limit_reached"] = #"mp/round_limit_reached";
+	game.strings[#"time_limit_reached"] = #"mp/time_limit_reached";
+	game.strings[#"players_forfeited"] = #"mp/players_forfeited";
 	game.strings[#"other_teams_forfeited"] = #"mp_other_teams_forfeited";
-	game.strings[#"hash_d79f1c697d6bc1b"] = #"hash_115339e33ac1efcb";
-	game.strings[#"hash_5f818a6c2853a7c"] = #"hash_cd63faed592da03";
-	game.strings[#"game_ended"] = #"hash_4f9682270c82e8f6";
+	game.strings[#"host_sucks"] = #"hash_115339e33ac1efcb";
+	game.strings[#"host_ended"] = #"hash_cd63faed592da03";
+	game.strings[#"game_ended"] = #"mp/ended_game";
 	level.var_c3abe983 = [];
 	function_5d9d54a9(0, game.strings[#"tie"]);
 	function_36419c2(1, game.strings[#"victory"], game.strings[#"defeat"]);
@@ -55,8 +55,8 @@ function init()
 	function_36419c2(5, game.strings[#"round_limit_reached"], game.strings[#"round_limit_reached"]);
 	function_36419c2(6, game.strings[#"enemies_eliminated"], game.strings[#"team_eliminated"]);
 	function_5d9d54a9(8, game.strings[#"game_ended"]);
-	function_2b2308c6(9, game.strings[#"hash_5f818a6c2853a7c"], game.strings[#"game_ended"]);
-	function_5d9d54a9(10, game.strings[#"hash_d79f1c697d6bc1b"]);
+	function_2b2308c6(9, game.strings[#"host_ended"], game.strings[#"game_ended"]);
+	function_5d9d54a9(10, game.strings[#"host_sucks"]);
 }
 
 /*
@@ -175,7 +175,7 @@ function function_a2f30ab4(var_68c25772, var_c1e98979, game_end, outcome)
 					}
 					else
 					{
-						if(outcome::function_5f24faac(outcome, "tie"))
+						if(outcome::get_flag(outcome, "tie"))
 						{
 							result.var_14f94126 = function_460b0309(game_end);
 						}
@@ -254,13 +254,13 @@ function teamoutcomenotify(outcome)
 	outcometext = function_5b0c08ec(self, outcome);
 	if(level.gametype == "ctf" || level.gametype == "escort" || level.gametype == "ball" && overtime::is_overtime_round())
 	{
-		if(outcome::function_5f24faac(outcome, "overtime"))
+		if(outcome::get_flag(outcome, "overtime"))
 		{
 			if(isdefined(game.overtime_first_winner))
 			{
 				winner = game.overtime_first_winner;
 			}
-			if(!outcome::function_5f24faac(outcome, "tie"))
+			if(!outcome::get_flag(outcome, "tie"))
 			{
 				winningtime = game.overtime_time_to_beat[level.gametype];
 			}
@@ -274,7 +274,7 @@ function teamoutcomenotify(outcome)
 			else
 			{
 				winningtime = undefined;
-				if(outcome::function_5f24faac(outcome, "tie") && isdefined(game.overtime_first_winner))
+				if(outcome::get_flag(outcome, "tie") && isdefined(game.overtime_first_winner))
 				{
 					if(game.overtime_first_winner == #"allies")
 					{
@@ -302,7 +302,7 @@ function teamoutcomenotify(outcome)
 					}
 				}
 			}
-			if(level.gametype == "escort" && outcome::function_5f24faac(outcome, "tie"))
+			if(level.gametype == "escort" && outcome::get_flag(outcome, "tie"))
 			{
 				winnerenum = 0;
 				if(!(isdefined(level.finalgameend) && level.finalgameend))
@@ -339,7 +339,7 @@ function teamoutcomenotify(outcome)
 	}
 	else
 	{
-		if(level.gametype == "ball" && !outcome::function_5f24faac(outcome, "tie") && game.roundsplayed < level.roundlimit && isdefined(game.round_time_to_beat) && !overtime::is_overtime_round())
+		if(level.gametype == "ball" && !outcome::get_flag(outcome, "tie") && game.roundsplayed < level.roundlimit && isdefined(game.round_time_to_beat) && !overtime::is_overtime_round())
 		{
 			winningtime = game.round_time_to_beat;
 			if(!isdefined(losingtime))
@@ -488,7 +488,7 @@ function function_5b0c08ec(player, outcome)
 	/#
 		assert(isdefined(level.var_c3abe983[outcome.var_c1e98979]));
 	#/
-	if(outcome::function_5f24faac(outcome, "tie") && !function_82f36142(outcome.var_c1e98979))
+	if(outcome::get_flag(outcome, "tie") && !function_82f36142(outcome.var_c1e98979))
 	{
 		return game.strings[#"tie"];
 	}

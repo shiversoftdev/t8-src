@@ -7,7 +7,7 @@
 #namespace ambient;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: ambient
 	Checksum: 0xB0D8D2F6
 	Offset: 0x160
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"ambient", &__init__, undefined, undefined);
 }

@@ -15,8 +15,8 @@
 function function_d92cb558(result, vararg)
 {
 	/#
-		var_2f3fa528 = "";
-		return var_2f3fa528;
+		pathstr = "";
+		return pathstr;
 	#/
 }
 
@@ -65,7 +65,7 @@ function set_stat(vararg)
 	}
 	value = vararg[vararg.size - 1];
 	arrayremoveindex(vararg, vararg.size - 1);
-	result = function_484b4b09(vararg, value);
+	result = writematchstat(vararg, value);
 	/#
 		function_d92cb558(result, vararg);
 	#/
@@ -85,10 +85,10 @@ function function_7a93acec(vararg)
 {
 	vec = vararg[vararg.size - 1];
 	arrayremoveindex(vararg, vararg.size - 1);
-	var_22f1ed01 = set_stat(vararg, 0, int(vec[0]));
-	var_531b181 = set_stat(vararg, 1, int(vec[1]));
-	var_bea5a46a = set_stat(vararg, 2, int(vec[2]));
-	return isdefined(var_22f1ed01) && var_22f1ed01 && (isdefined(var_531b181) && var_531b181) && (isdefined(var_bea5a46a) && var_bea5a46a);
+	vec_0 = set_stat(vararg, 0, int(vec[0]));
+	vec_1 = set_stat(vararg, 1, int(vec[1]));
+	vec_2 = set_stat(vararg, 2, int(vec[2]));
+	return isdefined(vec_0) && vec_0 && (isdefined(vec_1) && vec_1) && (isdefined(vec_2) && vec_2);
 }
 
 /*
@@ -202,10 +202,10 @@ function function_ded5f5b6(vararg)
 	{
 		vec = vararg[vararg.size - 1];
 		arrayremoveindex(vararg, vararg.size - 1);
-		var_22f1ed01 = set_player_stat(vararg, 0, int(vec[0]));
-		var_531b181 = set_player_stat(vararg, 1, int(vec[1]));
-		var_bea5a46a = set_player_stat(vararg, 2, int(vec[2]));
-		return isdefined(var_22f1ed01) && var_22f1ed01 && (isdefined(var_531b181) && var_531b181) && (isdefined(var_bea5a46a) && var_bea5a46a);
+		vec_0 = set_player_stat(vararg, 0, int(vec[0]));
+		vec_1 = set_player_stat(vararg, 1, int(vec[1]));
+		vec_2 = set_player_stat(vararg, 2, int(vec[2]));
+		return isdefined(vec_0) && vec_0 && (isdefined(vec_1) && vec_1) && (isdefined(vec_2) && vec_2);
 	}
 }
 

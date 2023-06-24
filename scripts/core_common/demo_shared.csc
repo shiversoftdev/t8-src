@@ -9,7 +9,7 @@
 #namespace demo;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: demo
 	Checksum: 0x2F979049
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"demo", &__init__, undefined, undefined);
 }

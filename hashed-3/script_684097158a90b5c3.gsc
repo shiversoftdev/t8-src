@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1e72c148eb0b32d2;
+#using scripts\zm\powerup\zm_powerup_nuke.gsc;
 #using script_2c5daa95f8fec03c;
-#using script_3f9e0dc8454d98e1;
-#using script_58c342edd81589fb;
-#using script_5bb072c3abf4652c;
-#using script_7e59d7bba853fe4b;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_round_spawning.gsc;
+#using scripts\zm_common\zm_vo.gsc;
+#using scripts\zm_common\ai\zm_ai_utility.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -15,25 +15,25 @@
 #using scripts\zm_common\zm_score.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_acd9c698;
+#namespace zombie_gladiator_util;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_acd9c698
+	Name: __init__system__
+	Namespace: zombie_gladiator_util
 	Checksum: 0x6E817A6A
 	Offset: 0x1B8
 	Size: 0x54
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_45a40cc86aed6e2a", &__init__, &__main__, #"hash_770f240f9e25a58d");
+	system::register(#"zombie_gladiator_util", &__init__, &__main__, #"zm_ai_gladiator");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x616FDDFA
 	Offset: 0x218
 	Size: 0x13C
@@ -46,13 +46,13 @@ function __init__()
 	level.var_735451fc = getentarray("zombie_gladiator_marauder_spawner", "script_noteworthy");
 	level.var_4d136b9a = arraycombine(level.var_fc0d2372, level.var_735451fc, 0, 0);
 	level.var_7e0bfb6 = 0;
-	namespace_c3287616::register_archetype(#"gladiator_destroyer", &function_c251d29f, &function_bb067153, &function_2efc00db, 225);
-	namespace_c3287616::register_archetype(#"gladiator_marauder", &function_c251d29f, &function_60e6998a, &function_c9cd31, 75);
+	zm_round_spawning::register_archetype(#"gladiator_destroyer", &function_c251d29f, &function_bb067153, &function_2efc00db, 225);
+	zm_round_spawning::register_archetype(#"gladiator_marauder", &function_c251d29f, &function_60e6998a, &function_c9cd31, 75);
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x55B3175C
 	Offset: 0x360
 	Size: 0x7C
@@ -67,7 +67,7 @@ function __main__()
 
 /*
 	Name: function_8c0ab720
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x8C228105
 	Offset: 0x3E8
 	Size: 0x1C4
@@ -76,7 +76,7 @@ function __main__()
 */
 function private function_8c0ab720()
 {
-	n_hp = namespace_e0710ee6::function_8d44707e(1) * (isdefined(level.var_1b0cc4f5) ? level.var_1b0cc4f5 : 1);
+	n_hp = zm_ai_utility::function_8d44707e(1) * (isdefined(level.var_1b0cc4f5) ? level.var_1b0cc4f5 : 1);
 	if(self.var_9fde8624 == #"gladiator_marauder")
 	{
 		n_hp = n_hp * 0.7;
@@ -105,7 +105,7 @@ function private function_8c0ab720()
 
 /*
 	Name: vo
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0xECE4F163
 	Offset: 0x5B8
 	Size: 0x196
@@ -128,7 +128,7 @@ function vo()
 		{
 			level.var_7e0bfb6 = 1;
 			line = array::random(a_vo);
-			if(zm_vo::function_8e0f4696(line))
+			if(zm_vo::vo_say(line))
 			{
 				arrayremovevalue(a_vo, line);
 				if(!a_vo.size)
@@ -144,7 +144,7 @@ function vo()
 
 /*
 	Name: function_c03b6f46
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x357953B6
 	Offset: 0x758
 	Size: 0xCC
@@ -174,7 +174,7 @@ function function_c03b6f46(n_min_dist_sq, n_max_dist_sq)
 
 /*
 	Name: function_bfa79e98
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x45B77A5A
 	Offset: 0x830
 	Size: 0x140
@@ -215,7 +215,7 @@ function function_bfa79e98(sp_spawner = level.var_4d136b9a[0], s_spot, str_type,
 
 /*
 	Name: function_69f309b
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0xC45B8545
 	Offset: 0x978
 	Size: 0x294
@@ -270,7 +270,7 @@ function function_69f309b(n_to_spawn = 1, str_type = array::random(level.var_4d1
 
 /*
 	Name: function_2efc00db
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0xBADB79F5
 	Offset: 0xC18
 	Size: 0x208
@@ -321,7 +321,7 @@ function function_2efc00db(b_force_spawn = 0, var_eb3a8721)
 
 /*
 	Name: function_c9cd31
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0xF976C6C7
 	Offset: 0xE28
 	Size: 0x208
@@ -372,7 +372,7 @@ function function_c9cd31(b_force_spawn = 0, var_eb3a8721)
 
 /*
 	Name: function_e4d7ae2b
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x826EED7C
 	Offset: 0x1038
 	Size: 0xBC
@@ -392,7 +392,7 @@ function function_e4d7ae2b()
 
 /*
 	Name: function_78913059
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x1F9916F9
 	Offset: 0x1100
 	Size: 0xBC
@@ -415,7 +415,7 @@ function function_78913059()
 
 /*
 	Name: function_5d0001ad
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x7A5E090
 	Offset: 0x11C8
 	Size: 0xC0
@@ -453,7 +453,7 @@ function function_5d0001ad()
 
 /*
 	Name: function_45876e23
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0xEB131394
 	Offset: 0x1290
 	Size: 0xAA
@@ -490,7 +490,7 @@ function function_45876e23()
 
 /*
 	Name: function_c251d29f
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x2F2E92E3
 	Offset: 0x1348
 	Size: 0x1C2
@@ -519,7 +519,7 @@ function function_c251d29f(var_dbce0c44)
 
 /*
 	Name: function_60e6998a
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x3CC33ADD
 	Offset: 0x1518
 	Size: 0x3C
@@ -539,7 +539,7 @@ function function_60e6998a()
 
 /*
 	Name: function_bb067153
-	Namespace: namespace_acd9c698
+	Namespace: zombie_gladiator_util
 	Checksum: 0x8776E33B
 	Offset: 0x1560
 	Size: 0x3C

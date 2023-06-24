@@ -9,12 +9,12 @@
 #using scripts\core_common\trigger_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 
-class class_e72c95 
+class cwavemanager 
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_e72c95
+		Namespace: cwavemanager
 		Checksum: 0x14029FC
 		Offset: 0x228
 		Size: 0x4A
@@ -33,7 +33,7 @@ class class_e72c95
 
 	/*
 		Name: destructor
-		Namespace: namespace_e72c95
+		Namespace: cwavemanager
 		Checksum: 0x80F724D1
 		Offset: 0x280
 		Size: 0x4
@@ -114,7 +114,7 @@ class class_8e39177
 #namespace namespace_96ff9fb2;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_96ff9fb2
 	Checksum: 0x592F3965
 	Offset: 0x1E0
@@ -122,7 +122,7 @@ class class_8e39177
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register("wave_manager", &__init__, &__main__, undefined);
 }
@@ -139,10 +139,10 @@ function autoexec function_89f2df9()
 function private __init__()
 {
 	level.var_ca74a4bc = [];
-	level.var_a3688653 = [];
+	level.a_s_wave_managers = [];
 	/#
 		setdvar(#"hash_1feb7de8a9fa6573", -1);
-		level thread function_c4c03054();
+		level thread debug_think();
 	#/
 }
 
@@ -157,8 +157,8 @@ function private __init__()
 */
 function private __main__()
 {
-	level.var_a3688653 = struct::get_script_bundle_instances("wave_manager");
-	foreach(s_wave_manager in level.var_a3688653)
+	level.a_s_wave_managers = struct::get_script_bundle_instances("wave_manager");
+	foreach(s_wave_manager in level.a_s_wave_managers)
 	{
 		s_wave_manager flag::init("wave_manager_started");
 		s_wave_manager function_51ce850d();
@@ -184,7 +184,7 @@ function private function_b14456ef()
 			level.var_a44d1e7 = 0;
 		}
 		level.var_a44d1e7++;
-		str_map_name = util::function_53bbf9d2();
+		str_map_name = util::get_map_name();
 		foreach(var_dcd6c23 in level.var_ca74a4bc)
 		{
 			var_29b80910 = var_dcd6c23.var_cf3bea8a;
@@ -199,7 +199,7 @@ function private function_b14456ef()
 }
 
 /*
-	Name: function_c4c03054
+	Name: debug_think
 	Namespace: namespace_96ff9fb2
 	Checksum: 0xF00141FC
 	Offset: 0x6F8
@@ -207,7 +207,7 @@ function private function_b14456ef()
 	Parameters: 0
 	Flags: Private
 */
-function private function_c4c03054()
+function private debug_think()
 {
 	/#
 		while(true)
@@ -427,11 +427,11 @@ function private function_c4c03054()
 */
 function private function_51ce850d()
 {
-	self namespace_2e6206f9::function_278f9455("script_enable_on_success", &wave_manager::start);
-	self namespace_2e6206f9::function_278f9455("script_enable_on_failure", &wave_manager::start);
-	self namespace_2e6206f9::function_278f9455("script_enable_no_specialist", &wave_manager::start);
-	self namespace_2e6206f9::function_278f9455("script_disable_on_success", &wave_manager::stop);
-	self namespace_2e6206f9::function_278f9455("script_disable_on_failure", &wave_manager::stop);
+	self namespace_2e6206f9::register_callback("script_enable_on_success", &wave_manager::start);
+	self namespace_2e6206f9::register_callback("script_enable_on_failure", &wave_manager::start);
+	self namespace_2e6206f9::register_callback("script_enable_no_specialist", &wave_manager::start);
+	self namespace_2e6206f9::register_callback("script_disable_on_success", &wave_manager::stop);
+	self namespace_2e6206f9::register_callback("script_disable_on_failure", &wave_manager::stop);
 	self namespace_2e6206f9::function_c6dbc898("breadcrumb", "script_enable_on_success", &function_710cbc75);
 	self namespace_2e6206f9::function_c6dbc898("breadcrumb", "script_enable_on_failure", &function_710cbc75);
 	self namespace_2e6206f9::function_c6dbc898("breadcrumb", "script_enable_no_specialist", &function_710cbc75);
@@ -451,7 +451,7 @@ function private function_374e4d47()
 	foreach(var_7418aa09 in trigger::get_all())
 	{
 		var_a40eadd = [];
-		foreach(s_wave_manager in level.var_a3688653)
+		foreach(s_wave_manager in level.a_s_wave_managers)
 		{
 			if(isdefined(var_7418aa09.target) && var_7418aa09.target === s_wave_manager.targetname)
 			{
@@ -495,7 +495,7 @@ function private function_be478e08(var_a40eadd)
 */
 function private function_ad40f5b3()
 {
-	foreach(s_wave_manager in level.var_a3688653)
+	foreach(s_wave_manager in level.a_s_wave_managers)
 	{
 		if(isdefined(level.skipto_current_objective) && isdefined(s_wave_manager.var_4053bf4d))
 		{
@@ -509,7 +509,7 @@ function private function_ad40f5b3()
 			}
 		}
 	}
-	foreach(s_wave_manager in level.var_a3688653)
+	foreach(s_wave_manager in level.a_s_wave_managers)
 	{
 		if(isdefined(s_wave_manager.script_enable_on_start) && s_wave_manager.script_enable_on_start && (!(isdefined(s_wave_manager.var_f50b617f) && s_wave_manager.var_f50b617f)))
 		{
@@ -799,7 +799,7 @@ function private function_4810b274(var_dcd6c23, b_auto_delete)
 */
 function private function_3ff920ca(s_wave_manager_struct, str_team, b_looping, str_wavemanager, str_spawner_targets, var_e8332bc1)
 {
-	var_dcd6c23 = new class_e72c95();
+	var_dcd6c23 = new cwavemanager();
 	var_dcd6c23.m_s_bundle = struct::get_script_bundle("wave_manager", (isdefined(str_wavemanager) ? str_wavemanager : s_wave_manager_struct.scriptbundlename));
 	var_dcd6c23.var_cf3bea8a = get_unique_id();
 	var_dcd6c23.var_556afb3d = var_dcd6c23.m_s_bundle.name;
@@ -1256,7 +1256,7 @@ function private function_60fa5e02(var_c21b798e)
 }
 
 /*
-	Name: function_8726b97d
+	Name: complete_spawn_set
 	Namespace: namespace_96ff9fb2
 	Checksum: 0x9E26B265
 	Offset: 0x39E0
@@ -1264,7 +1264,7 @@ function private function_60fa5e02(var_c21b798e)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_8726b97d(var_c21b798e)
+function private complete_spawn_set(var_c21b798e)
 {
 	var_c21b798e flag::set(("spawn_set_" + var_c21b798e.m_n_index) + "_complete");
 }
@@ -1592,7 +1592,7 @@ function private function_8f5ed189(var_dcd6c23, var_c21b798e)
 		}
 		wait(0.1);
 	}
-	function_8726b97d(var_c21b798e);
+	complete_spawn_set(var_c21b798e);
 	while(true)
 	{
 		var_c21b798e.var_bb290b79 = array::remove_dead(var_c21b798e.var_bb290b79);
@@ -1636,11 +1636,11 @@ function private get_unique_id()
 */
 function private function_d081cf72(var_a2b4b991)
 {
-	if(isdefined(var_a2b4b991.var_28184dd8))
+	if(isdefined(var_a2b4b991.spawntypes))
 	{
-		foreach(var_3abe2668 in var_a2b4b991.var_28184dd8)
+		foreach(s_spawn_type in var_a2b4b991.spawntypes)
 		{
-			if(isdefined(var_3abe2668.variant))
+			if(isdefined(s_spawn_type.variant))
 			{
 				return true;
 			}
@@ -1661,15 +1661,15 @@ function private function_d081cf72(var_a2b4b991)
 function private function_ed819a97(var_a2b4b991)
 {
 	var_c165240a = [];
-	if(isdefined(var_a2b4b991.var_28184dd8))
+	if(isdefined(var_a2b4b991.spawntypes))
 	{
-		foreach(var_3abe2668 in var_a2b4b991.var_28184dd8)
+		foreach(s_spawn_type in var_a2b4b991.spawntypes)
 		{
-			if(isdefined(var_3abe2668.variant))
+			if(isdefined(s_spawn_type.variant))
 			{
-				var_2f2d7675 = (isdefined(var_3abe2668.var_34ceb858) ? var_3abe2668.var_34ceb858 : 0);
-				var_40b0c36 = {#name:var_3abe2668.variant, #hash_a33f2319:[], #hash_2f2d7675:var_2f2d7675};
-				var_c165240a[var_3abe2668.variant] = var_40b0c36;
+				var_2f2d7675 = (isdefined(s_spawn_type.var_34ceb858) ? s_spawn_type.var_34ceb858 : 0);
+				var_40b0c36 = {#name:s_spawn_type.variant, #hash_a33f2319:[], #hash_2f2d7675:var_2f2d7675};
+				var_c165240a[s_spawn_type.variant] = var_40b0c36;
 			}
 		}
 	}
@@ -1731,9 +1731,9 @@ function private function_32b947df(kvp)
 			str_key = kvp[0];
 			str_value = kvp[1];
 		}
-		var_a3688653 = struct::get_array(str_value, str_key);
-		var_a3688653 = array::filter(var_a3688653, 0, &function_5b3b889f);
-		foreach(s_wave_manager in var_a3688653)
+		a_s_wave_managers = struct::get_array(str_value, str_key);
+		a_s_wave_managers = array::filter(a_s_wave_managers, 0, &function_5b3b889f);
+		foreach(s_wave_manager in a_s_wave_managers)
 		{
 			if(isdefined(s_wave_manager.var_dcd6c23))
 			{
@@ -1752,7 +1752,7 @@ function private function_32b947df(kvp)
 			}
 		}
 		/#
-			assert(var_a3688653.size, ((("" + str_key) + "") + str_value) + "");
+			assert(a_s_wave_managers.size, ((("" + str_key) + "") + str_value) + "");
 		#/
 	}
 	else
@@ -1797,7 +1797,7 @@ function private function_32b947df(kvp)
 */
 function private function_63e08195(kvp, b_assert = 1)
 {
-	var_a3688653 = [];
+	a_s_wave_managers = [];
 	if(isdefined(kvp))
 	{
 		if(isarray(kvp))
@@ -1810,28 +1810,28 @@ function private function_63e08195(kvp, b_assert = 1)
 			str_value = kvp;
 			str_key = "targetname";
 		}
-		var_a3688653 = struct::get_array(str_value, str_key);
+		a_s_wave_managers = struct::get_array(str_value, str_key);
 	}
 	else
 	{
-		var_a3688653 = self;
-		if(!isdefined(var_a3688653))
+		a_s_wave_managers = self;
+		if(!isdefined(a_s_wave_managers))
 		{
-			var_a3688653 = [];
+			a_s_wave_managers = [];
 		}
-		else if(!isarray(var_a3688653))
+		else if(!isarray(a_s_wave_managers))
 		{
-			var_a3688653 = array(var_a3688653);
+			a_s_wave_managers = array(a_s_wave_managers);
 		}
 	}
-	var_a3688653 = array::filter(var_a3688653, 0, &function_5b3b889f);
+	a_s_wave_managers = array::filter(a_s_wave_managers, 0, &function_5b3b889f);
 	if(b_assert)
 	{
 		/#
-			assert(var_a3688653.size, (isdefined(kvp) ? ((("" + str_key) + "") + str_value) + "" : ""));
+			assert(a_s_wave_managers.size, (isdefined(kvp) ? ((("" + str_key) + "") + str_value) + "" : ""));
 		#/
 	}
-	return var_a3688653;
+	return a_s_wave_managers;
 }
 
 /*
@@ -1845,7 +1845,7 @@ function private function_63e08195(kvp, b_assert = 1)
 */
 function private function_fa056daa()
 {
-	if(isinarray(level.var_a3688653, self))
+	if(isinarray(level.a_s_wave_managers, self))
 	{
 		if(isdefined(self.var_dcd6c23))
 		{
@@ -1892,7 +1892,7 @@ function private function_e0bfee59()
 */
 function private function_5b3b889f(var_ac1d69cd)
 {
-	return isinarray(level.var_a3688653, var_ac1d69cd);
+	return isinarray(level.a_s_wave_managers, var_ac1d69cd);
 }
 
 /*
@@ -1948,8 +1948,8 @@ function private function_bf55c711(n_wave, var_bced2a83)
 */
 function start(kvp, var_964c77e1, vararg)
 {
-	var_a3688653 = self namespace_96ff9fb2::function_63e08195(kvp);
-	foreach(s_wave_manager in var_a3688653)
+	a_s_wave_managers = self namespace_96ff9fb2::function_63e08195(kvp);
+	foreach(s_wave_manager in a_s_wave_managers)
 	{
 		var_e8332bc1 = new class_8e39177();
 		var_e8332bc1.var_964c77e1 = var_964c77e1;
@@ -2270,10 +2270,10 @@ function function_77941ace(kvp, n_wave)
 */
 function function_6893f05b(kvp, n_wave, var_bced2a83 = 1)
 {
-	var_a3688653 = [];
-	var_a3688653 = self namespace_96ff9fb2::function_63e08195(kvp);
+	a_s_wave_managers = [];
+	a_s_wave_managers = self namespace_96ff9fb2::function_63e08195(kvp);
 	var_a1f4e09d = 0;
-	foreach(s_wave_manager in var_a3688653)
+	foreach(s_wave_manager in a_s_wave_managers)
 	{
 		if(isdefined(s_wave_manager.var_dcd6c23))
 		{
@@ -2299,10 +2299,10 @@ function add_spawn_function(kvp, var_964c77e1, vararg)
 	/#
 		assert(isdefined(var_964c77e1));
 	#/
-	var_a3688653 = self namespace_96ff9fb2::function_63e08195(kvp, 0);
-	if(var_a3688653.size)
+	a_s_wave_managers = self namespace_96ff9fb2::function_63e08195(kvp, 0);
+	if(a_s_wave_managers.size)
 	{
-		foreach(s_wave_manager in var_a3688653)
+		foreach(s_wave_manager in a_s_wave_managers)
 		{
 			var_e8332bc1 = new class_8e39177();
 			var_e8332bc1.var_964c77e1 = var_964c77e1;
@@ -2371,10 +2371,10 @@ function remove_spawn_function(kvp, var_964c77e1)
 	/#
 		assert(isdefined(var_964c77e1));
 	#/
-	var_a3688653 = self namespace_96ff9fb2::function_63e08195(kvp, 0);
-	if(var_a3688653.size)
+	a_s_wave_managers = self namespace_96ff9fb2::function_63e08195(kvp, 0);
+	if(a_s_wave_managers.size)
 	{
-		foreach(s_wave_manager in var_a3688653)
+		foreach(s_wave_manager in a_s_wave_managers)
 		{
 			if(isdefined(s_wave_manager.var_dcd6c23))
 			{

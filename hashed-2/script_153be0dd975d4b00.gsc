@@ -13,7 +13,7 @@
 #namespace namespace_3f3f1a00;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_3f3f1a00
 	Checksum: 0x32E15BC5
 	Offset: 0x1E8
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_d57f57fb8d115ff", &__init__, &__main__, undefined);
 }
@@ -64,16 +64,16 @@ function __main__()
 */
 function init()
 {
-	level.var_96471be = struct::get_array("s_trap_button", "targetname");
+	level.a_s_trap_buttons = struct::get_array("s_trap_button", "targetname");
 	scene::add_scene_func("p8_fxanim_zm_towers_trap_switch_bundle", &function_cb307051, "init");
 	level thread function_eac89317();
 	var_7febdbb2 = getentarray("trig_buy_bladepillars_to_upper_south", "targetname");
 	array::thread_all(var_7febdbb2, &function_ea998c9, 0, 1);
-	foreach(var_4b912983 in level.var_4fe2f84d[#"zblueprint_trap_hellpools"])
+	foreach(t_crafting in level.var_4fe2f84d[#"zblueprint_trap_hellpools"])
 	{
-		if(var_4b912983.script_noteworthy === "danu" || var_4b912983.script_noteworthy === "ra")
+		if(t_crafting.script_noteworthy === "danu" || t_crafting.script_noteworthy === "ra")
 		{
-			var_4b912983 thread function_ea998c9(1, 0);
+			t_crafting thread function_ea998c9(1, 0);
 		}
 	}
 }
@@ -91,7 +91,7 @@ function function_cb307051(a_ents)
 {
 	if(!isdefined(self.script_int))
 	{
-		a_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_green", 1);
+		a_ents[#"prop 1"] clientfield::set("trap_switch_green", 1);
 	}
 }
 
@@ -106,7 +106,7 @@ function function_cb307051(a_ents)
 */
 function function_81badccf(str_id)
 {
-	foreach(s_trap_button in level.var_96471be)
+	foreach(s_trap_button in level.a_s_trap_buttons)
 	{
 		if(s_trap_button.script_string === str_id)
 		{
@@ -126,7 +126,7 @@ function function_81badccf(str_id)
 */
 function function_6087ebc2(str_id)
 {
-	foreach(s_trap_button in level.var_96471be)
+	foreach(s_trap_button in level.a_s_trap_buttons)
 	{
 		if(s_trap_button.script_string === str_id)
 		{
@@ -146,7 +146,7 @@ function function_6087ebc2(str_id)
 */
 function function_1b229077(str_id)
 {
-	foreach(s_trap_button in level.var_96471be)
+	foreach(s_trap_button in level.a_s_trap_buttons)
 	{
 		if(s_trap_button.script_string === str_id)
 		{
@@ -170,7 +170,7 @@ function function_eac89317()
 	while(true)
 	{
 		s_notify = undefined;
-		s_notify = level waittill(#"traps_activated", #"traps_available", #"hash_3c662e7b29cfc3dd");
+		s_notify = level waittill(#"traps_activated", #"traps_available", #"traps_cooldown");
 		if(isdefined(s_notify.var_be3f58a))
 		{
 			switch(s_notify._notify)
@@ -185,7 +185,7 @@ function function_eac89317()
 					function_6087ebc2(s_notify.var_be3f58a);
 					break;
 				}
-				case "hash_3c662e7b29cfc3dd":
+				case "traps_cooldown":
 				{
 					function_1b229077(s_notify.var_be3f58a);
 					break;
@@ -207,8 +207,8 @@ function function_eac89317()
 function function_8cfecd54()
 {
 	self thread scene::play("Shot 1");
-	self.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_green", 0);
-	self.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_red", 1);
+	self.scene_ents[#"prop 1"] clientfield::set("trap_switch_green", 0);
+	self.scene_ents[#"prop 1"] clientfield::set("trap_switch_red", 1);
 }
 
 /*
@@ -223,8 +223,8 @@ function function_8cfecd54()
 function function_707cb9a9()
 {
 	self thread scene::play("Shot 2");
-	self.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_smoke", 0);
-	self.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_green", 1);
+	self.scene_ents[#"prop 1"] clientfield::set("trap_switch_smoke", 0);
+	self.scene_ents[#"prop 1"] clientfield::set("trap_switch_green", 1);
 }
 
 /*
@@ -238,8 +238,8 @@ function function_707cb9a9()
 */
 function function_baf2d8eb()
 {
-	self.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_red", 0);
-	self.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_smoke", 1);
+	self.scene_ents[#"prop 1"] clientfield::set("trap_switch_red", 0);
+	self.scene_ents[#"prop 1"] clientfield::set("trap_switch_smoke", 1);
 }
 
 /*
@@ -281,7 +281,7 @@ function function_ea998c9(b_unitrigger = 0, b_eyes = 0)
 	{
 		var_541193d8 = struct::get_array(#"s_trap_button");
 		s_switch = arraygetclosest(self.origin, var_541193d8);
-		s_switch.scene_ents[#"hash_7aff0ee60ddd937b"] clientfield::set("trap_switch_green", 1);
+		s_switch.scene_ents[#"prop 1"] clientfield::set("trap_switch_green", 1);
 	}
 	if(b_unitrigger)
 	{

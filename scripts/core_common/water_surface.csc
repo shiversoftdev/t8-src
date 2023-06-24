@@ -7,7 +7,7 @@
 #namespace water_surface;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: water_surface
 	Checksum: 0x8BBA00A
 	Offset: 0xB8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"water_surface", &__init__, undefined, undefined);
 }

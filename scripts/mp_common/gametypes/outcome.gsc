@@ -54,20 +54,20 @@ function function_a1a81955()
 	Parameters: 2
 	Flags: Linked
 */
-function is_winner(outcome, var_512330f1)
+function is_winner(outcome, team_or_player)
 {
-	if(isplayer(var_512330f1))
+	if(isplayer(team_or_player))
 	{
-		if(isdefined(outcome.players) && outcome.players.size && outcome.players[0] == var_512330f1)
+		if(isdefined(outcome.players) && outcome.players.size && outcome.players[0] == team_or_player)
 		{
 			return true;
 		}
-		if(isdefined(outcome.team) && outcome.team == var_512330f1.team)
+		if(isdefined(outcome.team) && outcome.team == team_or_player.team)
 		{
 			return true;
 		}
 	}
-	else if(isdefined(outcome.team) && outcome.team == var_512330f1)
+	else if(isdefined(outcome.team) && outcome.team == team_or_player)
 	{
 		return true;
 	}
@@ -89,7 +89,7 @@ function set_flag(outcome, flag)
 }
 
 /*
-	Name: function_5f24faac
+	Name: get_flag
 	Namespace: outcome
 	Checksum: 0xDA160E79
 	Offset: 0x370
@@ -97,13 +97,13 @@ function set_flag(outcome, flag)
 	Parameters: 2
 	Flags: Linked
 */
-function function_5f24faac(outcome, flag)
+function get_flag(outcome, flag)
 {
 	return outcome flagsys::get(flag);
 }
 
 /*
-	Name: function_46cb766c
+	Name: clear_flag
 	Namespace: outcome
 	Checksum: 0x5457B92B
 	Offset: 0x3A8
@@ -111,7 +111,7 @@ function function_5f24faac(outcome, flag)
 	Parameters: 2
 	Flags: Linked
 */
-function function_46cb766c(outcome, flag)
+function clear_flag(outcome, flag)
 {
 	return outcome flagsys::clear(flag);
 }
@@ -251,20 +251,20 @@ function function_d30d1a2e(outcome)
 	Parameters: 2
 	Flags: Linked
 */
-function function_d1e740f6(outcome, var_512330f1)
+function function_d1e740f6(outcome, team_or_player)
 {
-	if(!isdefined(var_512330f1))
+	if(!isdefined(team_or_player))
 	{
 		return;
 	}
-	if(isplayer(var_512330f1))
+	if(isplayer(team_or_player))
 	{
-		outcome.players[outcome.players.size] = var_512330f1;
-		outcome.team = var_512330f1.team;
+		outcome.players[outcome.players.size] = team_or_player;
+		outcome.team = team_or_player.team;
 	}
 	else
 	{
-		outcome.team = var_512330f1;
+		outcome.team = team_or_player;
 	}
 }
 

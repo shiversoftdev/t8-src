@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_140ed462 : class_6aaccc24
+class czm_game_timer : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_140ed462
+		Namespace: czm_game_timer
 		Checksum: 0xBAFC6C13
 		Offset: 0x280
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_140ed462 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_140ed462
+		Namespace: czm_game_timer
 		Checksum: 0x201650C4
 		Offset: 0x4F0
 		Size: 0x14
@@ -31,50 +31,50 @@ class class_140ed462 : class_6aaccc24
 	}
 
 	/*
-		Name: function_7954feaf
-		Namespace: namespace_140ed462
+		Name: set_showzero
+		Namespace: czm_game_timer
 		Checksum: 0x244B186E
 		Offset: 0x4B8
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_7954feaf(localclientnum, value)
+	function set_showzero(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "showzero", value);
+		[[ self ]]->set_data(localclientnum, "showzero", value);
 	}
 
 	/*
-		Name: function_21eb67aa
-		Namespace: namespace_140ed462
+		Name: set_minutes
+		Namespace: czm_game_timer
 		Checksum: 0x474EEA73
 		Offset: 0x480
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_21eb67aa(localclientnum, value)
+	function set_minutes(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "minutes", value);
+		[[ self ]]->set_data(localclientnum, "minutes", value);
 	}
 
 	/*
-		Name: function_c48569e7
-		Namespace: namespace_140ed462
+		Name: set_seconds
+		Namespace: czm_game_timer
 		Checksum: 0x44EB424D
 		Offset: 0x448
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_c48569e7(localclientnum, value)
+	function set_seconds(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "seconds", value);
+		[[ self ]]->set_data(localclientnum, "seconds", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_140ed462
+		Namespace: czm_game_timer
 		Checksum: 0x91F1521
 		Offset: 0x410
 		Size: 0x2C
@@ -83,12 +83,12 @@ class class_140ed462 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"zm_game_timer");
+		cLUIelem::open(localclientnum, #"zm_game_timer");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_140ed462
+		Namespace: czm_game_timer
 		Checksum: 0xE2A72655
 		Offset: 0x390
 		Size: 0x78
@@ -97,15 +97,15 @@ class class_140ed462 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "seconds", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "minutes", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "showzero", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "seconds", 0);
+		[[ self ]]->set_data(localclientnum, "minutes", 0);
+		[[ self ]]->set_data(localclientnum, "showzero", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_140ed462
+		Namespace: czm_game_timer
 		Checksum: 0xDEFB438D
 		Offset: 0x360
 		Size: 0x24
@@ -114,12 +114,12 @@ class class_140ed462 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_140ed462
+		Namespace: czm_game_timer
 		Checksum: 0xFB9F5F43
 		Offset: 0x2A0
 		Size: 0xB4
@@ -128,10 +128,10 @@ class class_140ed462 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_b1de907e, var_359a4d9a, var_8fd8bfaa)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("seconds", 1, 6, "int", var_b1de907e);
-		namespace_6aaccc24::function_da693cbe("minutes", 1, 9, "int", var_359a4d9a);
-		namespace_6aaccc24::function_da693cbe("showzero", 1, 1, "int", var_8fd8bfaa);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("seconds", 1, 6, "int", var_b1de907e);
+		cLUIelem::function_da693cbe("minutes", 1, 9, "int", var_359a4d9a);
+		cLUIelem::function_da693cbe("showzero", 1, 1, "int", var_8fd8bfaa);
 	}
 
 }
@@ -149,7 +149,7 @@ class class_140ed462 : class_6aaccc24
 */
 function register(uid, var_b1de907e, var_359a4d9a, var_8fd8bfaa)
 {
-	elem = new class_140ed462();
+	elem = new czm_game_timer();
 	[[ elem ]]->setup_clientfields(uid, var_b1de907e, var_359a4d9a, var_8fd8bfaa);
 	return elem;
 }
@@ -165,7 +165,7 @@ function register(uid, var_b1de907e, var_359a4d9a, var_8fd8bfaa)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_140ed462();
+	elem = new czm_game_timer();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -213,7 +213,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_c48569e7
+	Name: set_seconds
 	Namespace: zm_game_timer
 	Checksum: 0x73B55EBE
 	Offset: 0x1F0
@@ -221,13 +221,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_c48569e7(localclientnum, value)
+function set_seconds(localclientnum, value)
 {
-	[[ self ]]->function_c48569e7(localclientnum, value);
+	[[ self ]]->set_seconds(localclientnum, value);
 }
 
 /*
-	Name: function_21eb67aa
+	Name: set_minutes
 	Namespace: zm_game_timer
 	Checksum: 0xFDA88E29
 	Offset: 0x220
@@ -235,13 +235,13 @@ function function_c48569e7(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_21eb67aa(localclientnum, value)
+function set_minutes(localclientnum, value)
 {
-	[[ self ]]->function_21eb67aa(localclientnum, value);
+	[[ self ]]->set_minutes(localclientnum, value);
 }
 
 /*
-	Name: function_7954feaf
+	Name: set_showzero
 	Namespace: zm_game_timer
 	Checksum: 0xB436270D
 	Offset: 0x250
@@ -249,8 +249,8 @@ function function_21eb67aa(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_7954feaf(localclientnum, value)
+function set_showzero(localclientnum, value)
 {
-	[[ self ]]->function_7954feaf(localclientnum, value);
+	[[ self ]]->set_showzero(localclientnum, value);
 }
 

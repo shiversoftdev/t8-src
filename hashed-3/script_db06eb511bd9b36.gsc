@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
@@ -9,7 +9,7 @@
 #namespace zm_cleanup;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_cleanup
 	Checksum: 0x4C0947BA
 	Offset: 0xB8
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_cleanup", &__init__, &__main__, undefined);
 }
@@ -598,7 +598,7 @@ function no_target_override(ai_zombie)
 	if(!isdefined(ai_zombie.var_cc1c538e))
 	{
 		ai_zombie.var_cc1c538e = ai_zombie get_escape_position();
-		ai_zombie val::set(#"hash_70eb9b26a388505a", "ignoreall", 1);
+		ai_zombie val::set(#"zm_cleanup_mgr", "ignoreall", 1);
 	}
 	if(isdefined(ai_zombie.var_cc1c538e))
 	{
@@ -622,7 +622,7 @@ function no_target_override(ai_zombie)
 function function_d22435d9(ai_zombie)
 {
 	ai_zombie.var_cc1c538e = undefined;
-	ai_zombie val::reset(#"hash_70eb9b26a388505a", "ignoreall");
+	ai_zombie val::reset(#"zm_cleanup_mgr", "ignoreall");
 }
 
 /*

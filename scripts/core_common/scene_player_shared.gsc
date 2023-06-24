@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_18f0d22c75b141a7;
+#using scripts\core_common\player\player_loadout.gsc;
 #using script_24c15fbbb838c794;
-#using script_256b8879317373de;
+#using scripts\core_common\player\player_shared.gsc;
 #using scripts\core_common\animation_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
@@ -219,7 +219,7 @@ class csceneplayer : csceneobject
 	}
 
 	/*
-		Name: function_52b00538
+		Name: stop_camera
 		Namespace: csceneplayer
 		Checksum: 0x48562CD1
 		Offset: 0x5FE0
@@ -227,7 +227,7 @@ class csceneplayer : csceneobject
 		Parameters: 1
 		Flags: Linked
 	*/
-	function function_52b00538(player)
+	function stop_camera(player)
 	{
 		endcamanimscripted(player);
 	}
@@ -260,7 +260,7 @@ class csceneplayer : csceneobject
 		Parameters: 5
 		Flags: Linked
 	*/
-	function _camanimscripted(player, var_ef4c0f91, v_origin, v_angles, n_start_time = 0)
+	function _camanimscripted(player, str_camera, v_origin, v_angles, n_start_time = 0)
 	{
 		player notify(#"camanimscripted");
 		player endon(#"camanimscripted", #"disconnect");
@@ -268,11 +268,11 @@ class csceneplayer : csceneobject
 		{
 			player thread scene::scene_disable_player_stuff(_o_scene._s, _s);
 		}
-		var_57949b2d = getcamanimtime(var_ef4c0f91) * n_start_time;
+		var_57949b2d = getcamanimtime(str_camera) * n_start_time;
 		var_41193b94 = int(gettime() - var_57949b2d);
 		player dontinterpolate();
-		camanimscripted(player, var_ef4c0f91, var_41193b94, v_origin, v_angles);
-		wait_for_camera(var_ef4c0f91, n_start_time);
+		camanimscripted(player, str_camera, var_41193b94, v_origin, v_angles);
+		wait_for_camera(str_camera, n_start_time);
 		player dontinterpolate();
 	}
 
@@ -396,12 +396,12 @@ class csceneplayer : csceneobject
 		player notify(#"hash_375ad02201949a8d");
 		player endon(#"camanimscripted", #"hash_375ad02201949a8d", #"disconnect");
 		_o_scene waittilltimeout(0.1, #"scene_done", #"scene_stop", #"scene_skip_completed");
-		function_52b00538(player);
+		stop_camera(player);
 		/#
 			if(isdefined(_o_scene._b_testing) && _o_scene._b_testing)
 			{
 				p_host = util::gethostplayer();
-				function_52b00538(p_host);
+				stop_camera(p_host);
 			}
 		#/
 	}
@@ -435,12 +435,12 @@ class csceneplayer : csceneobject
 					player clientfield::set_to_player("player_pbg_bank_scene_system", 1);
 					break;
 				}
-				case "hash_5d9e7981e1527c4c":
+				case "bank3":
 				{
 					player clientfield::set_to_player("player_pbg_bank_scene_system", 2);
 					break;
 				}
-				case "hash_5d9e7881e1527a99":
+				case "bank4":
 				{
 					player clientfield::set_to_player("player_pbg_bank_scene_system", 3);
 					break;
@@ -485,7 +485,7 @@ class csceneplayer : csceneobject
 		player val::reset(#"scene", "hide");
 		player flagsys::clear(#"shared_igc");
 		player flagsys::clear(#"scene");
-		player flagsys::clear(#"hash_33908195984d5565");
+		player flagsys::clear(#"scene_interactive_shot");
 		player flagsys::clear(#"hash_2f30b24ec0e23830");
 		player flagsys::clear(#"hash_e2ce599b208682a");
 		player flagsys::clear(#"hash_f21f320f68c0457");
@@ -799,22 +799,22 @@ class csceneplayer : csceneobject
 					{
 						if(player gamepadusedlast())
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_66ac13c66930481e");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_66ac13c66930481e");
 						}
 						else
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_2e61b9986055044e");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_2e61b9986055044e");
 						}
 					}
 					else
 					{
 						if(player gamepadusedlast())
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_f7f3ef0446b4447");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_f7f3ef0446b4447");
 						}
 						else
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_63aa233af2b054f1");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_63aa233af2b054f1");
 						}
 					}
 					break;
@@ -826,61 +826,61 @@ class csceneplayer : csceneobject
 					{
 						if(player gamepadusedlast())
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_b89e8fe23b5a6ff");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_b89e8fe23b5a6ff");
 						}
 						else
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_5cafbb3ef224b89");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_5cafbb3ef224b89");
 						}
 					}
 					else
 					{
 						if(player gamepadusedlast())
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_43fe6cadb07b27b2");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_43fe6cadb07b27b2");
 						}
 						else
 						{
-							level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_121d78dfceea3bf2");
+							level.interactive_shot interactive_shot::set_text(player, #"hash_121d78dfceea3bf2");
 						}
 					}
 					break;
 				}
 				case "jump":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_5b57ca9476df902b");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_5b57ca9476df902b");
 					break;
 				}
 				case "stance":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_30214ec564c2c09b");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_30214ec564c2c09b");
 					break;
 				}
 				case "use":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_1c489083f5cdb3f6");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_1c489083f5cdb3f6");
 					break;
 				}
 				case "weapon_switch":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_5d8ce20bafb14fec");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_5d8ce20bafb14fec");
 					break;
 				}
 				case "sprint":
 				{
 					if(player gamepadusedlast())
 					{
-						level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_6b873520c198df93");
+						level.interactive_shot interactive_shot::set_text(player, #"hash_6b873520c198df93");
 					}
 					else
 					{
-						level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_7f72586820c8b86d");
+						level.interactive_shot interactive_shot::set_text(player, #"hash_7f72586820c8b86d");
 					}
 					break;
 				}
 				case "melee":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_6c4731677fa269b1");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_6c4731677fa269b1");
 					break;
 				}
 				case "attack":
@@ -889,27 +889,27 @@ class csceneplayer : csceneobject
 				}
 				case "dpad_up":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_327b92f099f4b62e");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_327b92f099f4b62e");
 					break;
 				}
 				case "dpad_down":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_51f4288480f483f7");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_51f4288480f483f7");
 					break;
 				}
 				case "dpad_left":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_2f8bb64325eeac62");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_2f8bb64325eeac62");
 					break;
 				}
 				case "dpad_right":
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"hash_2c841879f1d933ef");
+					level.interactive_shot interactive_shot::set_text(player, #"hash_2c841879f1d933ef");
 					break;
 				}
 				default:
 				{
-					level.interactive_shot interactive_shot::function_d5ea17f0(player, #"");
+					level.interactive_shot interactive_shot::set_text(player, #"");
 					break;
 				}
 			}
@@ -1145,7 +1145,7 @@ class csceneplayer : csceneobject
 		var_a3cc5416 = (isdefined(var_a3cc5416) ? var_a3cc5416 : 0.0001);
 		self.var_a3cc5416 = undefined;
 		var_ec50a0d3 = _s.shots[csceneobject::get_shot(_str_shot)];
-		player flagsys::set(#"hash_33908195984d5565");
+		player flagsys::set(#"scene_interactive_shot");
 		player.player_anim_look_enabled = 1;
 		player.player_anim_clamp_right = (isdefined(player.player_anim_clamp_right) ? player.player_anim_clamp_right : 75);
 		player.player_anim_clamp_left = (isdefined(player.player_anim_clamp_left) ? player.player_anim_clamp_left : 75);
@@ -1385,8 +1385,8 @@ class csceneplayer : csceneobject
 							{
 								if(animhasnotetrack(var_efc540b6, "interactive_shot_marker"))
 								{
-									var_36e740de = getnotetracktimes(var_efc540b6, "interactive_shot_marker");
-									foreach(n_time in var_36e740de)
+									a_n_times = getnotetracktimes(var_efc540b6, "interactive_shot_marker");
+									foreach(n_time in a_n_times)
 									{
 										if(n_time > var_f667af2f)
 										{
@@ -1480,12 +1480,12 @@ class csceneplayer : csceneobject
 					player clientfield::set_to_player("player_pbg_bank_scene_system", 1);
 					break;
 				}
-				case "hash_5d9e7981e1527c4c":
+				case "bank3":
 				{
 					player clientfield::set_to_player("player_pbg_bank_scene_system", 2);
 					break;
 				}
-				case "hash_5d9e7881e1527a99":
+				case "bank4":
 				{
 					player clientfield::set_to_player("player_pbg_bank_scene_system", 3);
 					break;
@@ -1713,11 +1713,11 @@ class csceneplayer : csceneobject
 			player closemenu("mobile_armory_loadout");
 			params = {#intpayload:0, #response:"cancel", #menu:"mobile_armory_loadout"};
 			player notify(#"menuresponse", params);
-			player callback::callback(#"hash_4e1a50a35ec44bcc", params);
+			player callback::callback(#"menu_response", params);
 		}
 		if(player flagsys::get(#"mobile_armory_begin_use"))
 		{
-			player val::reset(#"hash_7d805ac79a31898e", "disable_weapons");
+			player val::reset(#"mobile_armory_use", "disable_weapons");
 			player flagsys::clear(#"mobile_armory_begin_use");
 		}
 		if(getdvarint(#"scene_hide_player", 0))
@@ -1742,10 +1742,10 @@ class csceneplayer : csceneobject
 						for(var_6e0e2531 = 0; var_6e0e2531 < var_b744a7ed; var_6e0e2531++)
 						{
 							var_322595c6 = function_d7c3cf6c(var_2074c3ff, var_6e0e2531, var_be7bc546);
-							if(var_322595c6.var_3cf2d21 === _s.model)
+							if(var_322595c6.namehash === _s.model)
 							{
 								player setcharacterbodytype(var_2074c3ff);
-								player function_8fd843dd(var_6e0e2531);
+								player setcharacteroutfit(var_6e0e2531);
 								if(isdefined(_s.var_a5617859) && isarray(var_322595c6.presets))
 								{
 									var_a919ac81 = strtok(_s.var_a5617859, "");
@@ -1804,7 +1804,7 @@ class csceneplayer : csceneobject
 		set_player_stance(player);
 		player flagsys::set(#"scene");
 		waitframe(0);
-		if(isdefined(var_55b4f21e.var_1bc28a87) && var_55b4f21e.var_1bc28a87)
+		if(isdefined(var_55b4f21e.interactiveshot) && var_55b4f21e.interactiveshot)
 		{
 			thread function_7d761e79(player);
 		}
@@ -1881,7 +1881,7 @@ class csceneplayer : csceneobject
 	*/
 	function function_d09b043()
 	{
-		if(isdefined(var_55b4f21e.var_1bc28a87) && var_55b4f21e.var_1bc28a87)
+		if(isdefined(var_55b4f21e.interactiveshot) && var_55b4f21e.interactiveshot)
 		{
 			return;
 		}
@@ -1945,7 +1945,7 @@ class csceneplayer : csceneobject
 		if(isalive(_e))
 		{
 			_e notify(#"scene_stop");
-			function_52b00538(_e);
+			stop_camera(_e);
 			_e flagsys::clear(#"hash_7cddd51e45d3ff3e");
 			if(!(isdefined(_s.diewhenfinished) && _s.diewhenfinished) || !b_finished)
 			{
@@ -2054,7 +2054,7 @@ class cscenesharedplayer : csceneobject, csceneplayer
 	{
 		foreach(player in [[_func_get]](_str_team))
 		{
-			csceneplayer::function_52b00538(player);
+			csceneplayer::stop_camera(player);
 			player animation::stop();
 			player thread scene::scene_enable_player_stuff(_o_scene._s, _s, _o_scene._e_root);
 		}
@@ -2152,7 +2152,7 @@ class cscenesharedplayer : csceneobject, csceneplayer
 		n_lerp = csceneobject::get_lerp_time();
 		if(!csceneplayer::function_6c1c67c1())
 		{
-			csceneplayer::function_52b00538(player);
+			csceneplayer::stop_camera(player);
 			n_camera_tween = csceneobject::get_camera_tween();
 			if(n_camera_tween > 0)
 			{
@@ -2183,9 +2183,9 @@ class cscenesharedplayer : csceneobject, csceneplayer
 			}
 			if(csceneobject::function_5c2a9efa())
 			{
-				player val::set(#"hash_268db5647c547679", "freezecontrols", 1);
+				player val::set(#"scene_player", "freezecontrols", 1);
 				csceneobject::function_5c082667();
-				player val::reset(#"hash_268db5647c547679", "freezecontrols");
+				player val::reset(#"scene_player", "freezecontrols");
 			}
 			else
 			{

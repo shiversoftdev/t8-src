@@ -213,7 +213,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 				#/
 				while(self.istalking)
 				{
-					self waittill(#"hash_53464a658a055815");
+					self waittill(#"done speaking");
 				}
 			}
 		}
@@ -223,10 +223,10 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 				println((("" + self.a.facialsoundalias) + "") + str_script_alias);
 			#/
 			self stopsound(self.a.facialsoundalias);
-			self notify(#"hash_5d02e24cebf138cb");
+			self notify(#"cancel speaking");
 			while(self.istalking)
 			{
-				self waittill(#"hash_53464a658a055815");
+				self waittill(#"done speaking");
 			}
 		}
 	}
@@ -303,7 +303,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 	{
 		self thread _temp_dialog(str_script_alias, uniquenotify);
 	}
-	self waittill(#"death", #"hash_5d02e24cebf138cb", uniquenotify);
+	self waittill(#"death", #"cancel speaking", uniquenotify);
 	if(importance == 1)
 	{
 		level.numberofimportantpeopletalking = level.numberofimportantpeopletalking - 1;
@@ -318,7 +318,7 @@ function playfacethread(facialanim, str_script_alias, importance, notifystring, 
 		self.a.currentdialogimportance = undefined;
 		self.lastsaytime = gettime();
 	}
-	self notify(#"hash_53464a658a055815", {#vo_line:str_notify_alias});
+	self notify(#"done speaking", {#vo_line:str_notify_alias});
 	self notify(notifystring);
 }
 
@@ -387,7 +387,7 @@ function private _temp_dialog(str_line, uniquenotify, b_missing_vo = 0)
 	}
 	n_wait_time = (strtok(str_line, " ").size - 1) / 2;
 	n_wait_time = math::clamp(n_wait_time, 2, 5);
-	self waittilltimeout(n_wait_time, #"death", #"hash_5d02e24cebf138cb");
+	self waittilltimeout(n_wait_time, #"death", #"cancel speaking");
 	foreach(player in level.players)
 	{
 		if(isdefined(player getluimenu("TempDialog")))

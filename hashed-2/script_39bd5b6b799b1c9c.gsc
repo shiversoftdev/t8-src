@@ -45,7 +45,7 @@ function autoexec __init__()
 function function_2eb2c17c(origin, item)
 {
 	traceoffset = vectorscale((0, 0, 1), 4);
-	var_5d97fed1 = item.var_8e092725 === -1;
+	var_5d97fed1 = item.hidetime === -1;
 	var_8e2d9611 = item.origin + traceoffset;
 	var_b0fbfe59 = bullettrace(origin, var_8e2d9611, 0, self, 0);
 	if(var_b0fbfe59[#"fraction"] < 1 && var_b0fbfe59[#"entity"] !== item)
@@ -105,11 +105,11 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 		{
 			continue;
 		}
-		var_47684cd2 = itemdef.origin - origin;
+		toitem = itemdef.origin - origin;
 		var_abd887b5 = distance2dsquared(itemdef.origin, origin);
 		if(var_abd887b5 < var_66347f1f && (abs(itemdef.origin[2] - origin[2])) < 72)
 		{
-			dot = vectordot(forward, vectornormalize(var_47684cd2));
+			dot = vectordot(forward, vectornormalize(toitem));
 			if(dot >= 0.965 && var_abd887b5 < var_66347f1f && dot > var_9fd8216d)
 			{
 				if(!self can_pick_up(itemdef) || !function_2eb2c17c(origin, itemdef))
@@ -123,7 +123,7 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 			{
 				break;
 			}
-			var_1777205e = vectordot(var_75f6d739, vectornormalize((var_47684cd2[0], var_47684cd2[1], 0)));
+			var_1777205e = vectordot(var_75f6d739, vectornormalize((toitem[0], toitem[1], 0)));
 			var_c5722fe1 = 0;
 			if(var_4bd72bfe)
 			{
@@ -169,7 +169,7 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 		{
 			break;
 		}
-		var_1777205e = vectordot(var_75f6d739, vectornormalize((var_47684cd2[0], var_47684cd2[1], 0)));
+		var_1777205e = vectordot(var_75f6d739, vectornormalize((toitem[0], toitem[1], 0)));
 		if(var_1777205e >= 0.866 && var_abd887b5 < var_7cd624f6)
 		{
 			if(!self can_pick_up(itemdef) || !function_2eb2c17c(origin, itemdef))
@@ -205,9 +205,9 @@ function function_6061a15(var_f4b807cb, maxdist, origin, angles, forward, var_4b
 	if(isdefined(var_9b882d22))
 	{
 		neardist = util::function_4c1656d5();
-		var_9b882d22.var_5a15eef2 = neardist < maxdist && distance2dsquared(origin, var_9b882d22.origin) > (neardist * neardist);
-		var_9b882d22.var_dae3e8db = distance2dsquared(origin, var_9b882d22.origin) < (128 - 12) * (128 - 12);
-		var_9b882d22.var_5d97fed1 = var_9b882d22.var_8e092725 === -1;
+		var_9b882d22.isfar = neardist < maxdist && distance2dsquared(origin, var_9b882d22.origin) > (neardist * neardist);
+		var_9b882d22.isclose = distance2dsquared(origin, var_9b882d22.origin) < (128 - 12) * (128 - 12);
+		var_9b882d22.var_5d97fed1 = var_9b882d22.hidetime === -1;
 	}
 	return var_9b882d22;
 }
@@ -384,8 +384,8 @@ function function_6af455de(localclientnum, origin, angles)
 		{
 			continue;
 		}
-		var_f902212b = vectornormalize(vehicle.origin - origin);
-		dot = vectordot(forward, var_f902212b);
+		tovehicle = vectornormalize(vehicle.origin - origin);
+		dot = vectordot(forward, tovehicle);
 		var_aba3faed = distance2dsquared(vehicle.origin, origin);
 		if(dot >= 0.965 && (!isdefined(var_e664ecda) || var_aba3faed < var_e664ecda))
 		{
@@ -423,17 +423,17 @@ function function_c62ad9a7(vehicle)
 		{
 			case "player_atv":
 			{
-				hinttext = #"hash_2007e0c3be383f26";
+				hinttext = #"wz/player_atv";
 				break;
 			}
 			case "helicopter_light":
 			{
-				hinttext = #"hash_8b24b9a8b37cbd4";
+				hinttext = #"wz/helicopter";
 				break;
 			}
 			case "cargo_truck_wz":
 			{
-				hinttext = #"hash_31aeb0f803285127";
+				hinttext = #"wz/cargo_truck";
 				break;
 			}
 			case "tactical_raft_wz":
@@ -443,32 +443,32 @@ function function_c62ad9a7(vehicle)
 			}
 			case "player_fav":
 			{
-				hinttext = #"hash_d4649719cad3c69";
+				hinttext = #"wz/arav";
 				break;
 			}
 			case "player_suv":
 			{
-				hinttext = #"hash_51759939a9774d6d";
+				hinttext = #"wz/suv";
 				break;
 			}
 			case "player_muscle":
 			{
-				hinttext = #"hash_5057fbcd1ec7a683";
+				hinttext = #"wz/muscle_car";
 				break;
 			}
 			case "pbr_boat_wz":
 			{
-				hinttext = #"hash_4a4c5c39a5d5f303";
+				hinttext = #"wz/pbr";
 				break;
 			}
 			case "player_motorcycle":
 			{
-				hinttext = #"hash_27cc3dadf4c042d8";
+				hinttext = #"wz/motorcycle";
 				break;
 			}
 			case "player_tank":
 			{
-				hinttext = #"hash_47934713b29ff6f5";
+				hinttext = #"wz/tank";
 				break;
 			}
 		}
@@ -493,12 +493,12 @@ function can_pick_up(item, servertime = undefined)
 	}
 	if(isdefined(servertime))
 	{
-		if(item.var_8e092725 > 0 && item.var_8e092725 <= servertime)
+		if(item.hidetime > 0 && item.hidetime <= servertime)
 		{
 			return false;
 		}
 	}
-	else if(item.var_8e092725 > 0 && item.var_8e092725 != -1)
+	else if(item.hidetime > 0 && item.hidetime != -1)
 	{
 		return false;
 	}
@@ -521,7 +521,7 @@ function can_pick_up(item, servertime = undefined)
 function function_4cbb6617(inventory, itemtype, var_da328e7b, var_bcc2655a)
 {
 	/#
-		assert(function_7a600918(itemtype));
+		assert(ishash(itemtype));
 	#/
 	/#
 		assert(isarray(var_da328e7b));
@@ -560,7 +560,7 @@ function function_4cbb6617(inventory, itemtype, var_da328e7b, var_bcc2655a)
 			items[var_b74300d3] = item;
 		}
 	}
-	var_db14b831 = [];
+	listitems = [];
 	for(currentindex = 0; currentindex < var_da328e7b.size; currentindex++)
 	{
 		if(var_da328e7b[currentindex] == var_c7837092)
@@ -573,7 +573,7 @@ function function_4cbb6617(inventory, itemtype, var_da328e7b, var_bcc2655a)
 		var_b74300d3 = var_da328e7b[index];
 		if(isdefined(items[var_b74300d3]))
 		{
-			var_db14b831[var_db14b831.size] = items[var_b74300d3];
+			listitems[listitems.size] = items[var_b74300d3];
 		}
 	}
 	if(currentindex < var_da328e7b.size)
@@ -583,11 +583,11 @@ function function_4cbb6617(inventory, itemtype, var_da328e7b, var_bcc2655a)
 			var_b74300d3 = var_da328e7b[index];
 			if(isdefined(items[var_b74300d3]))
 			{
-				var_db14b831[var_db14b831.size] = items[var_b74300d3];
+				listitems[listitems.size] = items[var_b74300d3];
 			}
 		}
 	}
-	return var_db14b831;
+	return listitems;
 }
 
 /*
@@ -810,12 +810,12 @@ function function_35e06774(var_a6762160, var_48cfb6ca = 0)
 	Parameters: 1
 	Flags: Linked
 */
-function function_f4a8d375(var_d8138db2)
+function function_f4a8d375(itemid)
 {
 	/#
-		assert(function_2c7fc531(var_d8138db2));
+		assert(function_2c7fc531(itemid));
 	#/
-	point = function_b1702735(var_d8138db2);
+	point = function_b1702735(itemid);
 	if(isdefined(point))
 	{
 		var_a6762160 = point.var_a6762160;

@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_2051697f : class_6aaccc24
+class czm_towers_pap_hud : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_2051697f
+		Namespace: czm_towers_pap_hud
 		Checksum: 0x58440466
 		Offset: 0x298
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_2051697f : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_2051697f
+		Namespace: czm_towers_pap_hud
 		Checksum: 0xA7CF1CC
 		Offset: 0x528
 		Size: 0x14
@@ -33,64 +33,64 @@ class class_2051697f : class_6aaccc24
 	}
 
 	/*
-		Name: function_b6ec93fa
-		Namespace: namespace_2051697f
+		Name: set_odin_acquired
+		Namespace: czm_towers_pap_hud
 		Checksum: 0x48780F9D
 		Offset: 0x4E0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_b6ec93fa(player, value)
+	function set_odin_acquired(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "odin_acquired", value);
 	}
 
 	/*
-		Name: function_8a094f25
-		Namespace: namespace_2051697f
+		Name: set_zeus_acquired
+		Namespace: czm_towers_pap_hud
 		Checksum: 0xB2E3EEFC
 		Offset: 0x498
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_8a094f25(player, value)
+	function set_zeus_acquired(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "zeus_acquired", value);
 	}
 
 	/*
-		Name: function_bd5da28f
-		Namespace: namespace_2051697f
+		Name: set_ra_acquired
+		Namespace: czm_towers_pap_hud
 		Checksum: 0x5BEE22C6
 		Offset: 0x450
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_bd5da28f(player, value)
+	function set_ra_acquired(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "ra_acquired", value);
 	}
 
 	/*
-		Name: function_eda3959a
-		Namespace: namespace_2051697f
+		Name: set_danu_acquired
+		Namespace: czm_towers_pap_hud
 		Checksum: 0x343E20DE
 		Offset: 0x408
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_eda3959a(player, value)
+	function set_danu_acquired(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "danu_acquired", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_2051697f
+		Namespace: czm_towers_pap_hud
 		Checksum: 0xFDEFABBE
 		Offset: 0x3D8
 		Size: 0x24
@@ -99,12 +99,12 @@ class class_2051697f : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_2051697f
+		Namespace: czm_towers_pap_hud
 		Checksum: 0x6F3BD843
 		Offset: 0x388
 		Size: 0x44
@@ -113,12 +113,12 @@ class class_2051697f : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_towers_pap_hud", persistent);
+		cLUIelem::open_luielem(player, "zm_towers_pap_hud", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_2051697f
+		Namespace: czm_towers_pap_hud
 		Checksum: 0x8E6378A7
 		Offset: 0x2B8
 		Size: 0xC4
@@ -127,11 +127,11 @@ class class_2051697f : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("danu_acquired", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("ra_acquired", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("zeus_acquired", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("odin_acquired", 1, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("danu_acquired", 1, 1, "int");
+		cLUIelem::function_da693cbe("ra_acquired", 1, 1, "int");
+		cLUIelem::function_da693cbe("zeus_acquired", 1, 1, "int");
+		cLUIelem::function_da693cbe("odin_acquired", 1, 1, "int");
 	}
 
 }
@@ -149,7 +149,7 @@ class class_2051697f : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_2051697f();
+	elem = new czm_towers_pap_hud();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -197,7 +197,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_eda3959a
+	Name: set_danu_acquired
 	Namespace: zm_towers_pap_hud
 	Checksum: 0x1DD72F4A
 	Offset: 0x1D8
@@ -205,13 +205,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_eda3959a(player, value)
+function set_danu_acquired(player, value)
 {
-	[[ self ]]->function_eda3959a(player, value);
+	[[ self ]]->set_danu_acquired(player, value);
 }
 
 /*
-	Name: function_bd5da28f
+	Name: set_ra_acquired
 	Namespace: zm_towers_pap_hud
 	Checksum: 0xFA5C49A1
 	Offset: 0x208
@@ -219,13 +219,13 @@ function function_eda3959a(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_bd5da28f(player, value)
+function set_ra_acquired(player, value)
 {
-	[[ self ]]->function_bd5da28f(player, value);
+	[[ self ]]->set_ra_acquired(player, value);
 }
 
 /*
-	Name: function_8a094f25
+	Name: set_zeus_acquired
 	Namespace: zm_towers_pap_hud
 	Checksum: 0xFD216808
 	Offset: 0x238
@@ -233,13 +233,13 @@ function function_bd5da28f(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_8a094f25(player, value)
+function set_zeus_acquired(player, value)
 {
-	[[ self ]]->function_8a094f25(player, value);
+	[[ self ]]->set_zeus_acquired(player, value);
 }
 
 /*
-	Name: function_b6ec93fa
+	Name: set_odin_acquired
 	Namespace: zm_towers_pap_hud
 	Checksum: 0xBDA447B7
 	Offset: 0x268
@@ -247,8 +247,8 @@ function function_8a094f25(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_b6ec93fa(player, value)
+function set_odin_acquired(player, value)
 {
-	[[ self ]]->function_b6ec93fa(player, value);
+	[[ self ]]->set_odin_acquired(player, value);
 }
 

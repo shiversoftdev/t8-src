@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_158d50d476435605;
-#using script_18a9e529264a3d29;
+#using scripts\core_common\activecamo_shared.csc;
+#using scripts\zm_common\zm_maptable.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\flag_shared.csc;
 #using scripts\core_common\postfx_shared.csc;
@@ -13,7 +13,7 @@
 #namespace zm_utility;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_utility
 	Checksum: 0x7D99F724
 	Offset: 0x1D8
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_utility", &__init__, &__main__, undefined);
 }
@@ -37,7 +37,7 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	level._effect[#"hash_7dc0459342cedaa4"] = #"hash_3002526b7ff53cbf";
+	level._effect[#"zm_zone_edge_marker"] = #"hash_3002526b7ff53cbf";
 	clientfield::register("scriptmover", "zm_zone_edge_marker_count", 1, getminbitcountfornum(15), "int", &zm_zone_edge_marker_count, 0, 0);
 	clientfield::register("toplayer", "zm_zone_out_of_bounds", 1, 1, "int", &zm_zone_out_of_bounds, 0, 0);
 	clientfield::register("actor", "flame_corpse_fx", 1, 1, "int", &flame_corpse_fx, 0, 0);
@@ -214,7 +214,7 @@ function spawn_buildkit_weapon_model(localclientnum, weapon, camo, origin, angle
 */
 function is_classic()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"zclassic")
 	{
 		return true;
@@ -233,7 +233,7 @@ function is_classic()
 */
 function is_standard()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"zstandard")
 	{
 		return true;
@@ -252,7 +252,7 @@ function is_standard()
 */
 function is_trials()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"ztrials" || level flag::exists(#"ztrial"))
 	{
 		return true;
@@ -271,7 +271,7 @@ function is_trials()
 */
 function is_tutorial()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"ztutorial")
 	{
 		return true;
@@ -290,7 +290,7 @@ function is_tutorial()
 */
 function is_grief()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"zgrief")
 	{
 		return true;
@@ -316,7 +316,7 @@ function is_gametype_active(a_gametypes)
 	}
 	for(i = 0; i < a_gametypes.size; i++)
 	{
-		if(util::function_5df4294() == a_gametypes[i])
+		if(util::get_game_type() == a_gametypes[i])
 		{
 			b_is_gametype_active = 1;
 		}
@@ -335,7 +335,7 @@ function is_gametype_active(a_gametypes)
 */
 function function_e51dc2d8()
 {
-	if(!getdvarint(#"hash_2992299f853b2039", 0))
+	if(!getdvarint(#"zm_ee_enabled", 0))
 	{
 		return false;
 	}
@@ -632,7 +632,7 @@ function function_ae3780f1(localclientnum, n_fx_id, var_3ab46b9)
 }
 
 /*
-	Name: function_90500af5
+	Name: get_cast
 	Namespace: zm_utility
 	Checksum: 0xDD376061
 	Offset: 0x14C8
@@ -640,13 +640,13 @@ function function_ae3780f1(localclientnum, n_fx_id, var_3ab46b9)
 	Parameters: 0
 	Flags: None
 */
-function function_90500af5()
+function get_cast()
 {
-	return namespace_cb7cafc3::function_90500af5();
+	return zm_maptable::get_cast();
 }
 
 /*
-	Name: function_166646a6
+	Name: get_story
 	Namespace: zm_utility
 	Checksum: 0x442E838A
 	Offset: 0x14E8
@@ -654,9 +654,9 @@ function function_90500af5()
 	Parameters: 0
 	Flags: Linked
 */
-function function_166646a6()
+function get_story()
 {
-	return namespace_cb7cafc3::function_166646a6();
+	return zm_maptable::get_story();
 }
 
 /*
@@ -678,7 +678,7 @@ function zm_zone_edge_marker_count(localclientnum, oldval, newval, bnewent, bini
 		self.origin = self.origin + (v_right * 6);
 		for(i = 1; i <= newval; i++)
 		{
-			var_a05a609b = playfx(localclientnum, level._effect[#"hash_7dc0459342cedaa4"], self.origin + v_spacing, v_forward);
+			var_a05a609b = playfx(localclientnum, level._effect[#"zm_zone_edge_marker"], self.origin + v_spacing, v_forward);
 			if(!isdefined(self.var_dd1709dd))
 			{
 				self.var_dd1709dd = [];
@@ -776,7 +776,7 @@ function flame_corpse_fx(localclientnum, oldval, newval, bnewent, binitialsnap, 
 */
 function function_c599ed65()
 {
-	if(function_166646a6() == 1)
+	if(get_story() == 1)
 	{
 		level.var_12b59dee = "rob_zm_eyes_yellow";
 		level._effect[#"eye_glow"] = #"hash_760112479afe6e2";
@@ -868,7 +868,7 @@ function good_barricade_damaged(localclientnum)
 {
 	if(isdefined(self.var_12b59dee))
 	{
-		self function_5d482e78(self.var_12b59dee, "j_head");
+		self stoprenderoverridebundle(self.var_12b59dee, "j_head");
 		self.var_12b59dee = undefined;
 	}
 	if(isdefined(self.var_3231a850))
@@ -891,7 +891,7 @@ function private function_fe127aaf(localclientnum, var_ee6bcd51, str_fx)
 {
 	if(isdefined(var_ee6bcd51))
 	{
-		self function_bf9d3071(var_ee6bcd51, "j_head");
+		self playrenderoverridebundle(var_ee6bcd51, "j_head");
 		self.var_12b59dee = var_ee6bcd51;
 	}
 	if(isdefined(str_fx))

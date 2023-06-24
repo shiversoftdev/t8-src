@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_3f9e0dc8454d98e1;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -17,7 +17,7 @@
 #namespace zm_daily_challenges;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_daily_challenges
 	Checksum: 0x7BD1559D
 	Offset: 0x178
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_daily_challenges", &__init__, &__main__, undefined);
 }
@@ -192,7 +192,7 @@ function death_check_for_challenge_updates(e_attacker)
 	{
 		return;
 	}
-	e_attacker zm_stats::increment_challenge_stat(#"hash_5e55c46e5a1503d8");
+	e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills");
 	/#
 		debug_print("");
 	#/
@@ -217,7 +217,7 @@ function death_check_for_challenge_updates(e_attacker)
 		{
 			case "heavy":
 			{
-				e_attacker zm_stats::increment_challenge_stat(#"hash_6e0f4b04cfa35100");
+				e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_heavy");
 				/#
 					debug_print("");
 				#/
@@ -237,7 +237,7 @@ function death_check_for_challenge_updates(e_attacker)
 	{
 		case "blight_father":
 		{
-			e_attacker zm_stats::increment_challenge_stat(#"hash_6c935ae328885f55");
+			e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_blightfather");
 			/#
 				debug_print("");
 			#/
@@ -245,7 +245,7 @@ function death_check_for_challenge_updates(e_attacker)
 		}
 		case "catalyst":
 		{
-			e_attacker zm_stats::increment_challenge_stat(#"hash_73286b5cdcfd7b5e");
+			e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_catalyst");
 			/#
 				debug_print("");
 			#/
@@ -254,13 +254,13 @@ function death_check_for_challenge_updates(e_attacker)
 				/#
 					e_attacker debug_print("");
 				#/
-				e_attacker zm_stats::increment_challenge_stat(#"hash_27474bb0ff47386d");
+				e_attacker zm_stats::increment_challenge_stat(#"catalyst_transformation_denials");
 			}
 			break;
 		}
 		case "gladiator":
 		{
-			e_attacker zm_stats::increment_challenge_stat(#"hash_2fbf25cb3ff98982");
+			e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_gladiator");
 			/#
 				debug_print("");
 			#/
@@ -276,7 +276,7 @@ function death_check_for_challenge_updates(e_attacker)
 		}
 		case "tiger":
 		{
-			e_attacker zm_stats::increment_challenge_stat(#"hash_1b4164cf952cfb18");
+			e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_tiger");
 			/#
 				debug_print("");
 			#/
@@ -285,7 +285,7 @@ function death_check_for_challenge_updates(e_attacker)
 	}
 	if(isdefined(self.missinglegs) && self.missinglegs)
 	{
-		e_attacker zm_stats::increment_challenge_stat(#"hash_304a6bb4f0088db7");
+		e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_crawler");
 		/#
 			debug_print("");
 		#/
@@ -332,7 +332,7 @@ function death_check_for_challenge_updates(e_attacker)
 		/#
 			debug_print("");
 		#/
-		var_27b9587 = zm_weapons::get_base_weapon(w_damage);
+		w_stat = zm_weapons::get_base_weapon(w_damage);
 	}
 	else
 	{
@@ -342,11 +342,11 @@ function death_check_for_challenge_updates(e_attacker)
 			/#
 				debug_print("");
 			#/
-			var_27b9587 = zm_weapons::get_base_weapon(w_damage);
+			w_stat = zm_weapons::get_base_weapon(w_damage);
 		}
 		else
 		{
-			var_27b9587 = zm_weapons::function_386dacbc(w_damage);
+			w_stat = zm_weapons::function_386dacbc(w_damage);
 		}
 	}
 	if(zm_loadout::is_hero_weapon(w_damage))
@@ -356,9 +356,9 @@ function death_check_for_challenge_updates(e_attacker)
 			debug_print("");
 		#/
 	}
-	if(isdefined(level.zombie_weapons[var_27b9587]))
+	if(isdefined(level.zombie_weapons[w_stat]))
 	{
-		switch(level.zombie_weapons[var_27b9587].weapon_classname)
+		switch(level.zombie_weapons[w_stat].weapon_classname)
 		{
 			case "ar":
 			{
@@ -410,7 +410,7 @@ function death_check_for_challenge_updates(e_attacker)
 			}
 			case "tr":
 			{
-				e_attacker zm_stats::increment_challenge_stat(#"hash_1f71d9744e11b29d");
+				e_attacker zm_stats::increment_challenge_stat(#"zm_daily_kills_tactical_rifle");
 				/#
 					debug_print("");
 				#/
@@ -727,7 +727,7 @@ function on_challenge_complete(params)
 		{
 			uploadstats(self);
 		}
-		a_challenges = table::load(#"hash_492a37b72e9cab84", "a0");
+		a_challenges = table::load(#"gamedata/stats/zm/statsmilestones4.csv", "a0");
 		str_current_challenge = a_challenges[n_challenge_index][#"e4"];
 		n_players = level.players.size;
 		n_time_played = game.timepassed / 1000;
@@ -751,7 +751,7 @@ function on_challenge_complete(params)
 */
 function is_daily_challenge(n_challenge_index)
 {
-	n_row = tablelookuprownum(#"hash_492a37b72e9cab84", 0, n_challenge_index);
+	n_row = tablelookuprownum(#"gamedata/stats/zm/statsmilestones4.csv", 0, n_challenge_index);
 	if(n_row > -1)
 	{
 		return true;

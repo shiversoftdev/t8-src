@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_12282e6b2cc91b42;
-#using script_1611421ee9b880d3;
+#using scripts\zm_common\zm_customgame.csc;
+#using scripts\zm_common\zm_wallbuy.csc;
 #using script_624a704d0f6bf28d;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
@@ -14,11 +14,11 @@
 #using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
 
-#namespace namespace_4e1a75d3;
+#namespace white_main_quest;
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x890C94B0
 	Offset: 0x500
 	Size: 0x31C
@@ -42,7 +42,7 @@ function init_clientfields()
 
 /*
 	Name: init_fx
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0xAE1B6E3C
 	Offset: 0x828
 	Size: 0x15A
@@ -51,8 +51,8 @@ function init_clientfields()
 */
 function init_fx()
 {
-	level._effect[#"hash_51c7bc3539ed5540"] = #"hash_59977c4c851916e0";
-	level._effect[#"hash_68213763a7707b92"] = #"hash_1a06427eff8dfe13";
+	level._effect[#"pap_projectile"] = #"hash_59977c4c851916e0";
+	level._effect[#"pap_projectile_end"] = #"hash_1a06427eff8dfe13";
 	level._effect[#"fx_steam_lab_dry_ice"] = "_t7/steam/fx_steam_lab_dry_ice";
 	level._effect[#"hash_675f4b19e646ca6c"] = #"hash_4310e1cb3f897c7c";
 	level._effect[#"fx8_power_wisp_lg"] = "maps/zm_white/fx8_power_wisp_lg";
@@ -63,7 +63,7 @@ function init_fx()
 
 /*
 	Name: function_a4630e54
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x94EC362
 	Offset: 0x990
 	Size: 0xAC
@@ -84,7 +84,7 @@ function function_a4630e54(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_a290f1b0
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x1A74B836
 	Offset: 0xA48
 	Size: 0xAC
@@ -105,7 +105,7 @@ function function_a290f1b0(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_ac3315e5
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0xFB176D02
 	Offset: 0xB00
 	Size: 0xAC
@@ -126,7 +126,7 @@ function function_ac3315e5(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_4b104fc5
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x9A3B6B50
 	Offset: 0xBB8
 	Size: 0xAC
@@ -147,7 +147,7 @@ function function_4b104fc5(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: clock_interact_feedback
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x637BC217
 	Offset: 0xC70
 	Size: 0x64
@@ -164,7 +164,7 @@ function clock_interact_feedback(localclientnum, oldval, newval, bnewent, biniti
 
 /*
 	Name: server_carry_feedback
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x8B15FD17
 	Offset: 0xCE0
 	Size: 0x64
@@ -181,7 +181,7 @@ function server_carry_feedback(localclientnum, oldval, newval, bnewent, binitial
 
 /*
 	Name: server_carry_fail_feedback
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x70535099
 	Offset: 0xD50
 	Size: 0x64
@@ -198,7 +198,7 @@ function server_carry_fail_feedback(localclientnum, oldval, newval, bnewent, bin
 
 /*
 	Name: server_carry_audio_feedback
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0xE562D29B
 	Offset: 0xDC0
 	Size: 0xAE
@@ -220,7 +220,7 @@ function server_carry_audio_feedback(localclientnum, oldval, newval, bnewent, bi
 
 /*
 	Name: soul_release
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x492F5282
 	Offset: 0xE78
 	Size: 0xBC
@@ -231,17 +231,17 @@ function soul_release(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 {
 	if(newval)
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_51c7bc3539ed5540"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"pap_projectile"], self, "tag_origin");
 	}
 	else
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_68213763a7707b92"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"pap_projectile_end"], self, "tag_origin");
 	}
 }
 
 /*
 	Name: function_9bc657a7
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0x2E75505C
 	Offset: 0xF40
 	Size: 0x74
@@ -255,7 +255,7 @@ function function_9bc657a7(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: registerooze_gate_colcontrolrobotmelee
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0xC45B6276
 	Offset: 0xFC0
 	Size: 0xAC
@@ -276,7 +276,7 @@ function registerooze_gate_colcontrolrobotmelee(localclientnum, oldval, newval, 
 
 /*
 	Name: portal_map_to_nuclear_state
-	Namespace: namespace_4e1a75d3
+	Namespace: white_main_quest
 	Checksum: 0xF86B80CB
 	Offset: 0x1078
 	Size: 0x420

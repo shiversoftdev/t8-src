@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1b80a90bb1ce332e;
-#using script_6fe18f6a76bd7e8d;
-#using script_7c21aca7f8a3572a;
-#using script_ecbb3819941bb69;
+#using scripts\killstreaks\helicopter_shared.csc;
+#using scripts\weapons\acid_bomb.csc;
+#using scripts\killstreaks\airsupport.csc;
+#using scripts\abilities\gadgets\gadget_vision_pulse.csc;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\footsteps_shared.csc;
 #using scripts\core_common\system_shared.csc;
@@ -13,7 +13,7 @@
 #namespace callback;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: callback
 	Checksum: 0xF5E1CFAD
 	Offset: 0x140
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"callback", &__init__, undefined, undefined);
 }
@@ -186,7 +186,7 @@ function entityspawned(localclientnum)
 		}
 		if(self.weapon.name === "eq_acid_bomb")
 		{
-			self thread namespace_e6ad7806::spawned(localclientnum);
+			self thread acid_bomb::spawned(localclientnum);
 		}
 	}
 	else
@@ -458,9 +458,9 @@ function callback_stunned(localclientnum, oldval, newval, bnewent, binitialsnap,
 	{
 		self notify(#"not_stunned");
 	}
-	if(isdefined(self.var_ba36f5d))
+	if(isdefined(self.stunnedcallback))
 	{
-		self [[self.var_ba36f5d]](localclientnum, newval);
+		self [[self.stunnedcallback]](localclientnum, newval);
 	}
 }
 

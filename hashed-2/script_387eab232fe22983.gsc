@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1b10fdf0addd52e;
-#using script_3657077a08b7f19e;
-#using script_3f9e0dc8454d98e1;
-#using script_58c342edd81589fb;
-#using script_7e59d7bba853fe4b;
+#using scripts\zm_common\zm_transformation.gsc;
+#using scripts\zm_common\trials\zm_trial_special_enemy.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_round_spawning.gsc;
+#using scripts\zm_common\ai\zm_ai_utility.gsc;
 #using script_ab862743b3070a;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -12,25 +12,25 @@
 #using scripts\zm_common\zm_score.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_977da60;
+#namespace zombie_werewolf_util;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_977da60
+	Name: __init__system__
+	Namespace: zombie_werewolf_util
 	Checksum: 0x54860100
 	Offset: 0x180
 	Size: 0x54
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_482f0758be7584b2", &__init__, &__main__, #"hash_6e8654cf5bb63c35");
+	system::register(#"zombie_werewolf_util", &__init__, &__main__, #"zm_ai_werewolf");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xB63C130D
 	Offset: 0x1E0
 	Size: 0x1BC
@@ -53,14 +53,14 @@ function __init__()
 		var_362056e0.script_forcespawn = 1;
 	}
 	zm_score::function_e5d6e6dd(#"werewolf", 250);
-	namespace_c3287616::register_archetype(#"werewolf", &function_45bed901, &round_spawn, &function_47a88a0c, 300);
-	namespace_c3287616::function_306ce518(#"werewolf", &function_d7a8d5a8);
-	namespace_32192f7::function_95c1dd81(#"werewolf", &function_fb4cbb48);
+	zm_round_spawning::register_archetype(#"werewolf", &function_45bed901, &round_spawn, &function_47a88a0c, 300);
+	zm_round_spawning::function_306ce518(#"werewolf", &function_d7a8d5a8);
+	zm_trial_special_enemy::function_95c1dd81(#"werewolf", &function_fb4cbb48);
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x5657A7B0
 	Offset: 0x3A8
 	Size: 0x6C
@@ -69,12 +69,12 @@ function __init__()
 */
 function __main__()
 {
-	zm_transform::function_cfca77a7(#"hash_2ca39a768b9be4ab", #"werewolf", &function_39212989, 1, undefined, undefined, "aib_vign_zm_mnsn_werewolf_pre_transform", "aib_vign_zm_mnsn_werewolf_post_transform", &function_5c0a0b26);
+	zm_transform::function_cfca77a7(#"spawner_zm_werewolf", #"werewolf", &function_39212989, 1, undefined, undefined, "aib_vign_zm_mnsn_werewolf_pre_transform", "aib_vign_zm_mnsn_werewolf_post_transform", &function_5c0a0b26);
 }
 
 /*
 	Name: function_39212989
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x5F7684BD
 	Offset: 0x420
 	Size: 0x1E
@@ -83,7 +83,7 @@ function __main__()
 */
 function private function_39212989()
 {
-	if(!namespace_e0710ee6::function_db610082())
+	if(!zm_ai_utility::function_db610082())
 	{
 		return false;
 	}
@@ -92,7 +92,7 @@ function private function_39212989()
 
 /*
 	Name: function_5c0a0b26
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xE21A923B
 	Offset: 0x448
 	Size: 0x14
@@ -105,7 +105,7 @@ function private function_5c0a0b26(zombie, var_167b5341)
 
 /*
 	Name: function_6268b69f
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xFEF87E04
 	Offset: 0x468
 	Size: 0xBC
@@ -116,9 +116,9 @@ function function_6268b69f()
 {
 	var_47469148 = getaiarchetypearray(#"werewolf");
 	var_492bcd12 = var_47469148.size;
-	foreach(var_e3cf2cc7 in var_47469148)
+	foreach(ai_werewolf in var_47469148)
 	{
-		if(!isalive(var_e3cf2cc7))
+		if(!isalive(ai_werewolf))
 		{
 			var_492bcd12--;
 		}
@@ -128,7 +128,7 @@ function function_6268b69f()
 
 /*
 	Name: function_15d944aa
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xC61E8B74
 	Offset: 0x530
 	Size: 0xBC
@@ -148,7 +148,7 @@ function function_15d944aa()
 
 /*
 	Name: function_1f269f0f
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xB9352EF9
 	Offset: 0x5F8
 	Size: 0x8A
@@ -184,7 +184,7 @@ function function_1f269f0f()
 
 /*
 	Name: function_cd674a85
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x80F3006E
 	Offset: 0x690
 	Size: 0xB0
@@ -221,7 +221,7 @@ function function_cd674a85()
 
 /*
 	Name: function_fb4cbb48
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x30A276C6
 	Offset: 0x748
 	Size: 0x2A
@@ -230,13 +230,13 @@ function function_cd674a85()
 */
 function private function_fb4cbb48()
 {
-	var_e3cf2cc7 = function_47a88a0c(undefined, undefined, 1);
-	return isdefined(var_e3cf2cc7);
+	ai_werewolf = function_47a88a0c(undefined, undefined, 1);
+	return isdefined(ai_werewolf);
 }
 
 /*
 	Name: function_a7a6a96c
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x4F9DBFEF
 	Offset: 0x780
 	Size: 0xD8
@@ -245,25 +245,25 @@ function private function_fb4cbb48()
 */
 function function_a7a6a96c(spawner, s_spot, n_round_number)
 {
-	var_e3cf2cc7 = zombie_utility::spawn_zombie(level.var_491fd91[0], "stoker", s_spot, n_round_number);
-	if(isdefined(var_e3cf2cc7))
+	ai_werewolf = zombie_utility::spawn_zombie(level.var_491fd91[0], "stoker", s_spot, n_round_number);
+	if(isdefined(ai_werewolf))
 	{
 		if(isdefined(s_spot.scriptbundlename))
 		{
-			s_spot thread scene::play(s_spot.scriptbundlename, array(var_e3cf2cc7));
+			s_spot thread scene::play(s_spot.scriptbundlename, array(ai_werewolf));
 		}
 		else
 		{
-			var_e3cf2cc7.check_point_in_enabled_zone = &zm_utility::check_point_in_playable_area;
-			var_e3cf2cc7 thread zombie_utility::round_spawn_failsafe();
+			ai_werewolf.check_point_in_enabled_zone = &zm_utility::check_point_in_playable_area;
+			ai_werewolf thread zombie_utility::round_spawn_failsafe();
 		}
 	}
-	return var_e3cf2cc7;
+	return ai_werewolf;
 }
 
 /*
 	Name: get_favorite_enemy
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x13FBFE00
 	Offset: 0x860
 	Size: 0x136
@@ -303,7 +303,7 @@ function get_favorite_enemy()
 
 /*
 	Name: round_spawn
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x6554F926
 	Offset: 0x9A0
 	Size: 0x3C
@@ -323,7 +323,7 @@ function round_spawn()
 
 /*
 	Name: function_47a88a0c
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x3969A656
 	Offset: 0x9E8
 	Size: 0x2FC
@@ -398,7 +398,7 @@ function function_47a88a0c(n_to_spawn = 1, var_1fafa3fc, b_force_spawn = 0, var_
 
 /*
 	Name: function_774f6e70
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x7050067E
 	Offset: 0xCF0
 	Size: 0x184
@@ -407,29 +407,29 @@ function function_47a88a0c(n_to_spawn = 1, var_1fafa3fc, b_force_spawn = 0, var_
 */
 function function_774f6e70(s_spawn_loc, var_58a8a3cb = 1, var_cda6f9a7 = undefined, var_d5e7e76d = undefined)
 {
-	self endon(#"death", #"hash_1783be2ff62b582c");
+	self endon(#"death", #"patrol_done");
 	if(!(isdefined(self.b_patrol) && self.b_patrol))
 	{
 		return;
 	}
 	if(isdefined(s_spawn_loc.target))
 	{
-		var_a8a8b6f8 = namespace_e0710ee6::function_35eac38d(getnode(s_spawn_loc.target, "targetname"));
-		namespace_e0710ee6::start_patrol(self, var_a8a8b6f8.path, var_a8a8b6f8.loops, var_cda6f9a7, var_d5e7e76d);
+		var_a8a8b6f8 = zm_ai_utility::function_35eac38d(getnode(s_spawn_loc.target, "targetname"));
+		zm_ai_utility::start_patrol(self, var_a8a8b6f8.path, var_a8a8b6f8.loops, var_cda6f9a7, var_d5e7e76d);
 		if(var_58a8a3cb)
 		{
 			for(n_timer = randomintrange(60, 90); n_timer > 0 && level.var_9427911d > 15; n_timer--)
 			{
 				wait(1);
 			}
-			namespace_e0710ee6::stop_patrol(self);
+			zm_ai_utility::stop_patrol(self);
 		}
 	}
 }
 
 /*
 	Name: function_7c14f53f
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xCA271B31
 	Offset: 0xE80
 	Size: 0x1C
@@ -438,12 +438,12 @@ function function_774f6e70(s_spawn_loc, var_58a8a3cb = 1, var_cda6f9a7 = undefin
 */
 function function_7c14f53f()
 {
-	namespace_e0710ee6::stop_patrol(self);
+	zm_ai_utility::stop_patrol(self);
 }
 
 /*
 	Name: function_d7a8d5a8
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0x4DD4CED4
 	Offset: 0xEA8
 	Size: 0xE2
@@ -460,7 +460,7 @@ function function_d7a8d5a8(n_round_number)
 	while(true)
 	{
 		level waittill(#"hash_5d3012139f083ccb");
-		if(namespace_c3287616::function_d0db51fc(#"werewolf") && (!(isdefined(level.var_153e9058) && level.var_153e9058)))
+		if(zm_round_spawning::function_d0db51fc(#"werewolf") && (!(isdefined(level.var_153e9058) && level.var_153e9058)))
 		{
 			level.var_d7b601b9++;
 			level.var_2c03ab22 = level.round_number + function_21a3a673(3, 5);
@@ -470,7 +470,7 @@ function function_d7a8d5a8(n_round_number)
 
 /*
 	Name: function_45bed901
-	Namespace: namespace_977da60
+	Namespace: zombie_werewolf_util
 	Checksum: 0xE080D718
 	Offset: 0xF98
 	Size: 0x222

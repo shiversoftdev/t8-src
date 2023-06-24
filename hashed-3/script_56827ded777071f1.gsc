@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_5660bae5b402a1eb;
-#using script_6ce38ab036223e6e;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -20,7 +20,7 @@
 #namespace namespace_3f3f1a00;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_3f3f1a00
 	Checksum: 0x39B7929B
 	Offset: 0x138
@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_d57f57fb8d115ff", &__init__, &__main__, undefined);
 }
@@ -71,8 +71,8 @@ function __main__()
 */
 function init()
 {
-	level.var_2e4bdecf = getentarray("mdl_trap_button", "targetname");
-	foreach(mdl_trap_button in level.var_2e4bdecf)
+	level.a_mdl_trap_buttons = getentarray("mdl_trap_button", "targetname");
+	foreach(mdl_trap_button in level.a_mdl_trap_buttons)
 	{
 		mdl_trap_button thread function_63be76e0();
 	}
@@ -90,7 +90,7 @@ function init()
 */
 function function_bb013f42(str_id)
 {
-	foreach(mdl_trap_button in level.var_2e4bdecf)
+	foreach(mdl_trap_button in level.a_mdl_trap_buttons)
 	{
 		if(mdl_trap_button.script_string === str_id)
 		{
@@ -110,7 +110,7 @@ function function_bb013f42(str_id)
 */
 function function_75046566(str_id)
 {
-	foreach(mdl_trap_button in level.var_2e4bdecf)
+	foreach(mdl_trap_button in level.a_mdl_trap_buttons)
 	{
 		if(mdl_trap_button.script_string === str_id)
 		{

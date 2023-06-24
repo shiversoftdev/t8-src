@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5bb072c3abf4652c;
+#using scripts\zm_common\zm_vo.gsc;
 #using script_6c983b627f4a3d51;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -93,7 +93,7 @@ function function_9c8540b4(e_player, n_amount)
 			level flag::set("fl_oracle_unlocked");
 			foreach(player in getplayers())
 			{
-				player zm_vo::function_8e0f4696(#"hash_4c29e41ef47ad9b2", 0, 1, 9999, 1, 1, 1);
+				player zm_vo::vo_say(#"hash_4c29e41ef47ad9b2", 0, 1, 9999, 1, 1, 1);
 			}
 		}
 	}
@@ -130,7 +130,7 @@ function function_e71df7b6()
 function function_f4472adf(a_ents)
 {
 	level.var_bb7822b7 = [];
-	level.var_bb7822b7[0] = a_ents[#"hash_7aff0ee60ddd937b"];
+	level.var_bb7822b7[0] = a_ents[#"prop 1"];
 	level.var_bb7822b7[1] = a_ents[#"prop 2"];
 	level.var_bb7822b7[2] = a_ents[#"prop 3"];
 	level.var_bb7822b7[3] = a_ents[#"prop 4"];
@@ -188,6 +188,6 @@ function function_407b2b88()
 	level flag::wait_till("all_players_connected");
 	level flag::wait_till("power_on");
 	level.var_483180c5 = getent("coal_brazier_apollo", "targetname");
-	level.var_483180c5 clientfield::set("" + #"hash_118e9445b028d4bf", 1);
+	level.var_483180c5 clientfield::set("" + #"rob_coals", 1);
 }
 

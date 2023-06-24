@@ -2,12 +2,12 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_f4d68515 : class_6aaccc24
+class cinitial_black : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_f4d68515
+		Namespace: cinitial_black
 		Checksum: 0xDCCB29A0
 		Offset: 0x190
 		Size: 0x14
@@ -20,7 +20,7 @@ class class_f4d68515 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_f4d68515
+		Namespace: cinitial_black
 		Checksum: 0x168D3D20
 		Offset: 0x260
 		Size: 0x14
@@ -33,7 +33,7 @@ class class_f4d68515 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_f4d68515
+		Namespace: cinitial_black
 		Checksum: 0x8859BA13
 		Offset: 0x230
 		Size: 0x24
@@ -42,12 +42,12 @@ class class_f4d68515 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_f4d68515
+		Namespace: cinitial_black
 		Checksum: 0xCEBA4374
 		Offset: 0x1E0
 		Size: 0x44
@@ -56,12 +56,12 @@ class class_f4d68515 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "initial_black", persistent);
+		cLUIelem::open_luielem(player, "initial_black", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_f4d68515
+		Namespace: cinitial_black
 		Checksum: 0xF81FE114
 		Offset: 0x1B0
 		Size: 0x24
@@ -70,7 +70,7 @@ class class_f4d68515 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -88,7 +88,7 @@ class class_f4d68515 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_f4d68515();
+	elem = new cinitial_black();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

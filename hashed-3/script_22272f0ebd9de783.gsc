@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_5660bae5b402a1eb;
-#using script_6ce38ab036223e6e;
-#using script_ab890501c40b73c;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -25,7 +25,7 @@
 #namespace namespace_a5b1b1d7;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a5b1b1d7
 	Checksum: 0xDF76DD1C
 	Offset: 0x1D8
@@ -33,7 +33,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_55c1d88784016490", &__init__, &__main__, undefined);
 }
@@ -169,26 +169,26 @@ function function_8fe2d903()
 	self notify(#"trap_activate");
 	level notify(#"trap_activate", self);
 	self.activated_by_player thread function_45a2294f(self.script_string);
-	foreach(var_9bda8088 in level.var_5f47f17d)
+	foreach(t_trap in level.var_5f47f17d)
 	{
-		if(var_9bda8088.script_string === self.script_string)
+		if(t_trap.script_string === self.script_string)
 		{
-			var_deed061f = getentarray(var_9bda8088.target, "targetname");
-			var_db919ceb = getent(var_deed061f[0].target, "targetname");
-			var_db919ceb scene::play("p8_fxanim_zm_towers_trap_blade_01_bundle", "Shot 1", var_db919ceb);
-			var_db919ceb thread scene::play("p8_fxanim_zm_towers_trap_blade_01_bundle", "Shot 2", var_db919ceb);
-			var_9bda8088 thread zm_traps::trap_damage();
+			var_deed061f = getentarray(t_trap.target, "targetname");
+			mdl_trap = getent(var_deed061f[0].target, "targetname");
+			mdl_trap scene::play("p8_fxanim_zm_towers_trap_blade_01_bundle", "Shot 1", mdl_trap);
+			mdl_trap thread scene::play("p8_fxanim_zm_towers_trap_blade_01_bundle", "Shot 2", mdl_trap);
+			t_trap thread zm_traps::trap_damage();
 		}
 	}
 	self waittilltimeout(self._trap_duration, #"trap_deactivate");
-	foreach(var_9bda8088 in level.var_5f47f17d)
+	foreach(t_trap in level.var_5f47f17d)
 	{
-		if(var_9bda8088.script_string === self.script_string)
+		if(t_trap.script_string === self.script_string)
 		{
-			var_deed061f = getentarray(var_9bda8088.target, "targetname");
-			var_db919ceb = getent(var_deed061f[0].target, "targetname");
-			var_db919ceb thread scene::play("p8_fxanim_zm_towers_trap_blade_01_bundle", "Shot 3", var_db919ceb);
-			var_9bda8088 notify(#"trap_done");
+			var_deed061f = getentarray(t_trap.target, "targetname");
+			mdl_trap = getent(var_deed061f[0].target, "targetname");
+			mdl_trap thread scene::play("p8_fxanim_zm_towers_trap_blade_01_bundle", "Shot 3", mdl_trap);
+			t_trap notify(#"trap_done");
 		}
 	}
 }
@@ -228,7 +228,7 @@ function function_45a2294f(str_id)
 	}
 	level notify(#"traps_activated", {#hash_be3f58a:str_id});
 	wait(30);
-	level notify(#"hash_3c662e7b29cfc3dd", {#hash_be3f58a:str_id});
+	level notify(#"traps_cooldown", {#hash_be3f58a:str_id});
 	n_cooldown = zm_traps::function_da13db45(60, self);
 	wait(n_cooldown);
 	level notify(#"traps_available", {#hash_be3f58a:str_id});
@@ -245,7 +245,7 @@ function function_45a2294f(str_id)
 */
 function function_6f34f900()
 {
-	level endon(#"hash_3c662e7b29cfc3dd");
+	level endon(#"traps_cooldown");
 	while(true)
 	{
 		s_info = undefined;
@@ -296,7 +296,7 @@ function activate_trap(e_player)
 }
 
 /*
-	Name: function_b97c8553
+	Name: deactivate_trap
 	Namespace: namespace_a5b1b1d7
 	Checksum: 0x51597EED
 	Offset: 0xB50
@@ -304,7 +304,7 @@ function activate_trap(e_player)
 	Parameters: 1
 	Flags: Linked
 */
-function function_b97c8553(e_trap)
+function deactivate_trap(e_trap)
 {
 	e_trap notify(#"trap_deactivate");
 	self flag::clear("activated");
@@ -328,7 +328,7 @@ function damage(e_trap)
 	}
 	if(self.var_6f84b820 === #"miniboss" || self.var_6f84b820 === #"heavy")
 	{
-		e_trap.var_1a26b52 function_b97c8553(e_trap);
+		e_trap.var_1a26b52 deactivate_trap(e_trap);
 		if(isdefined(e_trap.activated_by_player))
 		{
 			e_trap.activated_by_player notify(#"hash_74fc45698491be88");
@@ -348,7 +348,7 @@ function damage(e_trap)
 		level notify(#"trap_kill", {#e_trap:e_trap, #e_victim:self});
 		self dodamage(self.health + 666, self.origin, e_trap);
 		self thread function_373d49f(v_dest, 0.25, 0, 0.125);
-		self thread namespace_11c28b18::function_ae1b4f5b(90, 75, 25);
+		self thread zm_towers_util::function_ae1b4f5b(90, 75, 25);
 	}
 }
 

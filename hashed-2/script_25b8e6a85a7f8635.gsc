@@ -52,7 +52,7 @@ function init()
 function init_fx()
 {
 	level._effect[#"hash_7866a63fde6b972d"] = #"hash_2edb406c045a5b80";
-	level._effect[#"hash_774d000cf6ac79ec"] = #"hash_2eb17822848d1484";
+	level._effect[#"perk_marker"] = #"hash_2eb17822848d1484";
 	level._effect[#"hash_498a1ea189a3ea3b"] = #"hash_4d4ecfd7d55314e9";
 }
 
@@ -165,9 +165,9 @@ function function_834ab8cc()
 {
 	level flag::wait_till("all_players_spawned");
 	var_b80f0510 = getentarray("zm_pack_a_punch", "targetname");
-	foreach(var_a84febff in var_b80f0510)
+	foreach(e_pap in var_b80f0510)
 	{
-		var_a84febff zm_pack_a_punch::set_state_hidden();
+		e_pap zm_pack_a_punch::set_state_hidden();
 	}
 	foreach(var_5baafbb2 in level.var_76a7ad28)
 	{
@@ -314,10 +314,10 @@ function function_71461330()
 */
 function function_4204dba2()
 {
-	var_b8055433 = self.var_3468124.var_73bd396b;
-	var_2379bb0e = spawn("script_model", var_b8055433.origin);
-	var_2379bb0e.angles = var_b8055433.angles;
-	var_2379bb0e setmodel(var_b8055433.model);
+	e_machine = self.var_3468124.var_73bd396b;
+	var_2379bb0e = spawn("script_model", e_machine.origin);
+	var_2379bb0e.angles = e_machine.angles;
+	var_2379bb0e setmodel(e_machine.model);
 	var_2379bb0e hide();
 	level.var_dcd1e798.origin = var_2379bb0e.origin;
 	var_2379bb0e linkto(level.var_dcd1e798, "tag_animate_origin");
@@ -325,7 +325,7 @@ function function_4204dba2()
 	waitframe(2);
 	var_2379bb0e show();
 	wait(2);
-	level thread function_48acb6ed(var_b8055433.origin);
+	level thread function_48acb6ed(e_machine.origin);
 	self zm_perks::function_59fb56ff(1);
 	var_2379bb0e delete();
 }

@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -10,7 +10,7 @@
 #namespace namespace_e7fb1aea;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_e7fb1aea
 	Checksum: 0xCCA35D9F
 	Offset: 0xA0
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_6e4fd4c82cd73524", &__init__, undefined, undefined);
 }
@@ -38,11 +38,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_6e4fd4c82cd73524", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_6e4fd4c82cd73524", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_e7fb1aea
 	Checksum: 0xA4FCA65B
 	Offset: 0x150
@@ -50,21 +50,21 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-function private function_d1de6a85(n_kill_count)
+function private on_begin(n_kill_count)
 {
 	level.var_f7e95a13 = zm_trial::function_5769f26a(n_kill_count);
 	foreach(player in getplayers())
 	{
 		player.var_76bb4a3e = 0;
-		player namespace_b22c99a5::function_c2cd0cba(level.var_f7e95a13);
-		player namespace_b22c99a5::function_2190356a(player.var_76bb4a3e);
+		player zm_trial_util::function_c2cd0cba(level.var_f7e95a13);
+		player zm_trial_util::function_2190356a(player.var_76bb4a3e);
 		player callback::on_death(&on_death);
 	}
 	callback::on_ai_killed(&on_ai_killed);
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_e7fb1aea
 	Checksum: 0x5266C4C8
 	Offset: 0x288
@@ -72,13 +72,13 @@ function private function_d1de6a85(n_kill_count)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	var_7df0eb27 = level.var_f7e95a13;
 	level.var_f7e95a13 = undefined;
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_f3aacffb();
+		player zm_trial_util::function_f3aacffb();
 		player callback::remove_on_death(&on_death);
 	}
 	callback::remove_on_ai_killed(&on_ai_killed);
@@ -143,10 +143,10 @@ function private on_ai_killed(params)
 	if(isdefined(params.weapon) && isplayer(e_attacker) && (zm_loadout::is_hero_weapon(params.weapon) || zm_hero_weapon::function_6a32b8f(params.weapon)) && (isdefined(e_attacker.var_76bb4a3e) && e_attacker.var_76bb4a3e < level.var_f7e95a13))
 	{
 		e_attacker.var_76bb4a3e++;
-		e_attacker namespace_b22c99a5::function_2190356a(e_attacker.var_76bb4a3e);
+		e_attacker zm_trial_util::function_2190356a(e_attacker.var_76bb4a3e);
 		if(e_attacker.var_76bb4a3e == level.var_f7e95a13)
 		{
-			e_attacker namespace_b22c99a5::function_63060af4(1);
+			e_attacker zm_trial_util::function_63060af4(1);
 		}
 	}
 }

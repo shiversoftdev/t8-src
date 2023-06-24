@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_4c50b35ef5f6d7ae;
-#using script_8988fdbc78d6c53;
+#using scripts\weapons\bouncingbetty.gsc;
+#using scripts\weapons\weaponobjects.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace bouncingbetty;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: bouncingbetty
 	Checksum: 0xD351979F
 	Offset: 0xB8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"bouncingbetty", &__init__, undefined, undefined);
 }

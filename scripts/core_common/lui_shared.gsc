@@ -10,13 +10,13 @@
 #using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
 
-class class_6aaccc24 
+class cLUIelem 
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x387822F2
 		Offset: 0x2A38
 		Size: 0x12
@@ -30,7 +30,7 @@ class class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x80F724D1
 		Offset: 0x2CE0
 		Size: 0x4
@@ -42,25 +42,25 @@ class class_6aaccc24
 	}
 
 	/*
-		Name: function_a68f6e20
-		Namespace: namespace_6aaccc24
+		Name: close_luielem
+		Namespace: cLUIelem
 		Checksum: 0xA6BAE91C
 		Offset: 0x2C90
 		Size: 0x44
 		Parameters: 1
 		Flags: Linked
 	*/
-	function function_a68f6e20(player)
+	function close_luielem(player)
 	{
 		if(isplayer(player))
 		{
-			player function_43d5b973(var_47e79fc);
+			player closeluielem(var_47e79fc);
 		}
 	}
 
 	/*
 		Name: function_7bfd10e6
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x37FC4B61
 		Offset: 0x2C58
 		Size: 0x2A
@@ -73,22 +73,22 @@ class class_6aaccc24
 	}
 
 	/*
-		Name: function_8b8089ba
-		Namespace: namespace_6aaccc24
+		Name: open_luielem
+		Namespace: cLUIelem
 		Checksum: 0xAABD2700
 		Offset: 0x2C00
 		Size: 0x4C
 		Parameters: 3
 		Flags: Linked
 	*/
-	function function_8b8089ba(player, menu_name, persistent = 0)
+	function open_luielem(player, menu_name, persistent = 0)
 	{
-		player function_5686f5cd(menu_name, var_47e79fc, persistent);
+		player openluielem(menu_name, var_47e79fc, persistent);
 	}
 
 	/*
 		Name: function_d6203429
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0xD149A308
 		Offset: 0x2BB8
 		Size: 0x3C
@@ -101,22 +101,22 @@ class class_6aaccc24
 	}
 
 	/*
-		Name: function_b0c4e363
-		Namespace: namespace_6aaccc24
+		Name: set_clientfield
+		Namespace: cLUIelem
 		Checksum: 0xF0B4C8ED
 		Offset: 0x2B70
 		Size: 0x3C
 		Parameters: 3
 		Flags: Linked
 	*/
-	function function_b0c4e363(player, field_name, value)
+	function set_clientfield(player, field_name, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, field_name, value);
 	}
 
 	/*
 		Name: function_dcb34c80
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0xE2AC1EFF
 		Offset: 0x2AF0
 		Size: 0x74
@@ -130,7 +130,7 @@ class class_6aaccc24
 
 	/*
 		Name: function_da693cbe
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x1FAE6DB3
 		Offset: 0x2A80
 		Size: 0x64
@@ -144,7 +144,7 @@ class class_6aaccc24
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_6aaccc24
+		Namespace: cLUIelem
 		Checksum: 0x22DFD7AC
 		Offset: 0x2A58
 		Size: 0x1A
@@ -161,7 +161,7 @@ class class_6aaccc24
 #namespace lui;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: lui
 	Checksum: 0x291F4A5E
 	Offset: 0x258
@@ -169,7 +169,7 @@ class class_6aaccc24
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"lui_shared", &__init__, undefined, undefined);
 }
@@ -209,7 +209,7 @@ function function_b95a3ba5(alias, registerfunc, uid)
 }
 
 /*
-	Name: function_e810a527
+	Name: get_luimenu
 	Namespace: lui
 	Checksum: 0x34FD4BAF
 	Offset: 0x3A0
@@ -217,7 +217,7 @@ function function_b95a3ba5(alias, registerfunc, uid)
 	Parameters: 1
 	Flags: Linked
 */
-function function_e810a527(alias)
+function get_luimenu(alias)
 {
 	return level.luimenus[alias];
 }
@@ -279,9 +279,9 @@ function set_color(menu, color)
 {
 	if(!isint(menu))
 	{
-		[[ menu ]]->function_eccc151d(self, color[0]);
-		[[ menu ]]->function_2208b8db(self, color[1]);
-		[[ menu ]]->function_7420df0a(self, color[2]);
+		[[ menu ]]->set_red(self, color[0]);
+		[[ menu ]]->set_green(self, color[1]);
+		[[ menu ]]->set_blue(self, color[2]);
 	}
 }
 
@@ -565,19 +565,19 @@ function private _play_movie_for_player(str_movie, str_type, show_black_screen, 
 	{
 		self playsoundtoplayer(#"uin_pip_open", self);
 	}
-	lui_menu = function_e810a527(str_menu);
+	lui_menu = get_luimenu(str_menu);
 	[[ lui_menu ]]->open(self);
 	if(isdefined(lui_menu))
 	{
-		[[ lui_menu ]]->function_87bb24(self, str_movie);
-		[[ lui_menu ]]->function_251fc818(self, str_key);
-		[[ lui_menu ]]->function_8f7a8b9c(self, show_black_screen);
-		[[ lui_menu ]]->function_5caa21cb(self, b_looping);
+		[[ lui_menu ]]->set_movieName(self, str_movie);
+		[[ lui_menu ]]->set_movieKey(self, str_key);
+		[[ lui_menu ]]->set_showBlackScreen(self, show_black_screen);
+		[[ lui_menu ]]->set_looping(self, b_looping);
 		[[ lui_menu ]]->registerplayer_callout_traversal(self, b_skippable);
-		[[ lui_menu ]]->function_493305af(self, 0);
+		[[ lui_menu ]]->set_additive(self, 0);
 		if(issubstr(str_type, "additive"))
 		{
-			[[ lui_menu ]]->function_493305af(self, 1);
+			[[ lui_menu ]]->set_additive(self, 1);
 		}
 		while(true)
 		{
@@ -703,12 +703,12 @@ function play_outro_movie(show_black_screen = 1)
 */
 function private function_1bc580af()
 {
-	lui_menu = function_e810a527("full_screen_movie");
+	lui_menu = get_luimenu("full_screen_movie");
 	[[ lui_menu ]]->open(self);
 	if(isdefined(lui_menu))
 	{
-		[[ lui_menu ]]->function_3a81612d(self, 1);
-		[[ lui_menu ]]->function_8f7a8b9c(self, 1);
+		[[ lui_menu ]]->set_playOutroMovie(self, 1);
+		[[ lui_menu ]]->set_showBlackScreen(self, 1);
 		while(true)
 		{
 			waitresult = undefined;
@@ -925,9 +925,9 @@ function private _screen_fade(n_time, n_target_alpha, n_start_alpha, v_color, b_
 	}
 	else
 	{
-		if(isdefined(function_e810a527(str_menu)))
+		if(isdefined(get_luimenu(str_menu)))
 		{
-			lui_menu = function_e810a527(str_menu);
+			lui_menu = get_luimenu(str_menu);
 			[[ lui_menu ]]->open(self);
 		}
 		else
@@ -952,10 +952,10 @@ function private _screen_fade(n_time, n_target_alpha, n_start_alpha, v_color, b_
 	}
 	else
 	{
-		[[ lui_menu ]]->function_9cd54463(self, n_start_alpha);
-		[[ lui_menu ]]->function_331f9dd(self, n_target_alpha);
-		[[ lui_menu ]]->function_237ff433(self, n_time_ms);
-		[[ lui_menu ]]->function_ae1277a0(self, drawhud);
+		[[ lui_menu ]]->set_startAlpha(self, n_start_alpha);
+		[[ lui_menu ]]->set_endAlpha(self, n_target_alpha);
+		[[ lui_menu ]]->set_fadeOverTime(self, n_time_ms);
+		[[ lui_menu ]]->set_drawHUD(self, drawhud);
 	}
 	/#
 		if(!isdefined(level.n_fade_debug_time))
@@ -979,7 +979,7 @@ function private _screen_fade(n_time, n_target_alpha, n_start_alpha, v_color, b_
 	}
 	else
 	{
-		[[ lui_menu ]]->function_237ff433(self, 0);
+		[[ lui_menu ]]->set_fadeOverTime(self, 0);
 	}
 	if(isdefined(self.screen_fade_menus) && (b_force_close_menu || n_target_alpha == 0))
 	{

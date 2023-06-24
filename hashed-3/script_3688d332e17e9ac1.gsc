@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -9,7 +9,7 @@
 #namespace namespace_ae2d0839;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_ae2d0839
 	Checksum: 0xF06E91E2
 	Offset: 0xC8
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_7c9607fd2f57a1c7", &__init__, undefined, undefined);
 }
@@ -37,11 +37,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_4043192ca121b4d4", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_4043192ca121b4d4", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_ae2d0839
 	Checksum: 0x530B07DD
 	Offset: 0x178
@@ -49,13 +49,13 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_d1de6a85(var_59803fa8)
+function private on_begin(var_59803fa8)
 {
 	callback::on_ai_damage(&on_ai_damage);
 	level.var_3c453815 = zm_trial::function_5769f26a(var_59803fa8);
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_8677ce00(1);
+		player zm_trial_util::function_8677ce00(1);
 		player.b_hit = 0;
 		player callback::function_78ccee50(&function_78ccee50);
 		foreach(var_5a1e3e5b in level.hero_weapon)
@@ -65,15 +65,15 @@ function private function_d1de6a85(var_59803fa8)
 				player function_28602a03(w_hero, 1, 1);
 			}
 		}
-		player namespace_b22c99a5::function_9bf8e274();
-		foreach(var_64225f6c in level.zombie_weapons)
+		player zm_trial_util::function_9bf8e274();
+		foreach(w_equip in level.zombie_weapons)
 		{
-			if(zm_loadout::is_melee_weapon(var_64225f6c.weapon) || zm_loadout::is_lethal_grenade(var_64225f6c.weapon))
+			if(zm_loadout::is_melee_weapon(w_equip.weapon) || zm_loadout::is_lethal_grenade(w_equip.weapon))
 			{
-				player function_28602a03(var_64225f6c.weapon, 1, 1);
+				player function_28602a03(w_equip.weapon, 1, 1);
 			}
 		}
-		player namespace_b22c99a5::function_dc9ab223(1, 1);
+		player zm_trial_util::function_dc9ab223(1, 1);
 	}
 	callback::function_33f0ddd3(&function_33f0ddd3);
 	level zm_trial::function_44200d07(1);
@@ -81,7 +81,7 @@ function private function_d1de6a85(var_59803fa8)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_ae2d0839
 	Checksum: 0x906C7059
 	Offset: 0x4C8
@@ -89,7 +89,7 @@ function private function_d1de6a85(var_59803fa8)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	callback::remove_on_ai_damage(&on_ai_damage);
 	callback::function_824d206(&function_33f0ddd3);
@@ -106,16 +106,16 @@ function private function_9e7b3f4d(round_reset)
 				player unlockweapon(w_hero);
 			}
 		}
-		player namespace_b22c99a5::function_73ff0096();
-		foreach(var_64225f6c in level.zombie_weapons)
+		player zm_trial_util::function_73ff0096();
+		foreach(w_equip in level.zombie_weapons)
 		{
-			if(zm_loadout::is_melee_weapon(var_64225f6c.weapon) || zm_loadout::is_lethal_grenade(var_64225f6c.weapon))
+			if(zm_loadout::is_melee_weapon(w_equip.weapon) || zm_loadout::is_lethal_grenade(w_equip.weapon))
 			{
-				player unlockweapon(var_64225f6c.weapon);
+				player unlockweapon(w_equip.weapon);
 			}
 		}
-		player namespace_b22c99a5::function_dc9ab223(0, 1);
-		player namespace_b22c99a5::function_8677ce00(0);
+		player zm_trial_util::function_dc9ab223(0, 1);
+		player zm_trial_util::function_8677ce00(0);
 	}
 	level zm_trial::function_44200d07(0);
 	level zm_trial::function_cd75b690(0);

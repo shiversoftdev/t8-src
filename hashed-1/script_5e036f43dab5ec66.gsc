@@ -193,7 +193,7 @@ function function_c49fe830()
 		if(zm_utility::is_player_valid(self, 0, 0) && isinarray(var_d4061661, str_zone) && !level.var_c9942395)
 		{
 			level thread function_a1379826();
-			self thread zm_audio::create_and_play_dialog(#"hash_20b463357f4ae8f", #"arena");
+			self thread zm_audio::create_and_play_dialog(#"location_enter", #"arena");
 			break;
 		}
 		wait(1);

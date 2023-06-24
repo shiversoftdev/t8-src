@@ -398,9 +398,9 @@ function function_df71a9b9()
 		e_attacker = var_ddb40357.e_player;
 		if(isplayer(e_attacker) && isdefined(e_attacker.var_5e47a087))
 		{
-			var_2b198109 = getaiteamarray(level.zombie_team);
+			a_e_zombies = getaiteamarray(level.zombie_team);
 			e_attacker.var_5e47a087 = 0;
-			foreach(e_zombie in var_2b198109)
+			foreach(e_zombie in a_e_zombies)
 			{
 				if(e_zombie.var_6ee03e9a === 1)
 				{

@@ -2,7 +2,7 @@
 #using script_178024232e91b0a1;
 #using script_3aa0f32b70d4f7cb;
 #using script_4a3f9b8905878272;
-#using script_6809bf766eba194a;
+#using scripts\core_common\ai\archetype_utility.gsc;
 #using script_caf007e2a98afa2;
 #using scripts\core_common\math_shared.gsc;
 
@@ -670,7 +670,7 @@ function traverseactionstart(behaviortreeentity, asmstatename)
 		}
 		else
 		{
-			record3dtext("" + (function_7a600918(result[#"animation"]) ? function_9e72a96(result[#"animation"]) : result[#"animation"]), self.origin + vectorscale((0, 0, 1), 16), (1, 0, 0), "");
+			record3dtext("" + (ishash(result[#"animation"]) ? function_9e72a96(result[#"animation"]) : result[#"animation"]), self.origin + vectorscale((0, 0, 1), 16), (1, 0, 0), "");
 		}
 	#/
 	animationstatenetworkutility::requeststate(behaviortreeentity, asmstatename);

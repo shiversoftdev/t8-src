@@ -39,7 +39,7 @@ function private function_59c1a869(var_8dd0b014, var_d1c21f6f, var_b06dd57e)
 	{
 		return;
 	}
-	if(!function_7a600918(var_d1c21f6f) || !function_7a600918(var_b06dd57e))
+	if(!ishash(var_d1c21f6f) || !ishash(var_b06dd57e))
 	{
 		/#
 			assert(0);
@@ -74,7 +74,7 @@ function private function_41015db1(var_8dd0b014, itemname, var_44ed74a7)
 	{
 		return;
 	}
-	if(!function_7a600918(itemname) || !function_7a600918(var_44ed74a7))
+	if(!ishash(itemname) || !ishash(var_44ed74a7))
 	{
 		/#
 			assert(0);
@@ -222,7 +222,7 @@ function function_261ab7f5(itemname, var_44ed74a7)
 }
 
 /*
-	Name: function_636d607c
+	Name: add_spawn_point
 	Namespace: namespace_b0722f43
 	Checksum: 0xC4B4C06
 	Offset: 0x4F0
@@ -230,13 +230,13 @@ function function_261ab7f5(itemname, var_44ed74a7)
 	Parameters: 3
 	Flags: None
 */
-function function_636d607c(origin, targetname, angles = (0, 0, 0))
+function add_spawn_point(origin, targetname, angles = (0, 0, 0))
 {
 	if(!function_bbc0b67f(1))
 	{
 		return;
 	}
-	if(!isvec(origin) || !isvec(angles) || !function_7a600918(targetname))
+	if(!isvec(origin) || !isvec(angles) || !ishash(targetname))
 	{
 		/#
 			assert(0);
@@ -266,7 +266,7 @@ function function_e70fa91c(var_cf456610, var_2ab9d3bd, var_6647c284 = -1)
 	{
 		return;
 	}
-	if(!function_7a600918(var_cf456610) || !function_7a600918(var_2ab9d3bd) || !isint(var_6647c284))
+	if(!ishash(var_cf456610) || !ishash(var_2ab9d3bd) || !isint(var_6647c284))
 	{
 		/#
 			assert(0);
@@ -296,7 +296,7 @@ function function_2749fcc3(var_89b7987e, var_cf456610, var_2ab9d3bd, var_6647c28
 	{
 		return;
 	}
-	if(!function_7a600918(var_cf456610) || !function_7a600918(var_2ab9d3bd) || !isint(var_6647c284))
+	if(!ishash(var_cf456610) || !ishash(var_2ab9d3bd) || !isint(var_6647c284))
 	{
 		/#
 			assert(0);
@@ -326,7 +326,7 @@ function function_96ff7b88(itemname)
 	{
 		return;
 	}
-	if(!function_7a600918(itemname))
+	if(!ishash(itemname))
 	{
 		/#
 			assert(0);
@@ -337,7 +337,7 @@ function function_96ff7b88(itemname)
 }
 
 /*
-	Name: function_63bfe27
+	Name: remove_item
 	Namespace: namespace_b0722f43
 	Checksum: 0xA18B8B77
 	Offset: 0x930
@@ -345,13 +345,13 @@ function function_96ff7b88(itemname)
 	Parameters: 1
 	Flags: Linked
 */
-function function_63bfe27(itemname)
+function remove_item(itemname)
 {
 	if(!function_bbc0b67f(0))
 	{
 		return;
 	}
-	if(!function_7a600918(itemname))
+	if(!ishash(itemname))
 	{
 		/#
 			assert(0);

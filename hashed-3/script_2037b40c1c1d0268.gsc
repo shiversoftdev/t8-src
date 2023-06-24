@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_ec15ff6a : class_6aaccc24
+class cct_progressbar_status : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0x1E2FA6C8
 		Offset: 0x1E8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_ec15ff6a : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0xED15F7F8
 		Offset: 0x5C8
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_ec15ff6a : class_6aaccc24
 
 	/*
 		Name: set_state
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0x418B5AD4
 		Offset: 0x318
 		Size: 0x2A4
@@ -43,67 +43,67 @@ class class_ec15ff6a : class_6aaccc24
 	{
 		if(#"defaultstate" == state_name)
 		{
-			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
+			[[ self ]]->set_data(localclientnum, "_state", 0);
 		}
 		else
 		{
 			if(#"download_complete" == state_name)
 			{
-				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
+				[[ self ]]->set_data(localclientnum, "_state", 1);
 			}
 			else
 			{
-				if(#"hash_4082029e6e323467" == state_name)
+				if(#"downloading" == state_name)
 				{
-					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 2);
+					[[ self ]]->set_data(localclientnum, "_state", 2);
 				}
 				else
 				{
-					if(#"hash_4730cb5d57cb0f20" == state_name)
+					if(#"connection_lost" == state_name)
 					{
-						[[ self ]]->function_d7d2fcce(localclientnum, "_state", 3);
+						[[ self ]]->set_data(localclientnum, "_state", 3);
 					}
 					else
 					{
-						if(#"hash_4f1ec9353f4eee22" == state_name)
+						if(#"downloading1" == state_name)
 						{
-							[[ self ]]->function_d7d2fcce(localclientnum, "_state", 4);
+							[[ self ]]->set_data(localclientnum, "_state", 4);
 						}
 						else
 						{
 							if(#"hash_42f8a09c2e0a99e3" == state_name)
 							{
-								[[ self ]]->function_d7d2fcce(localclientnum, "_state", 5);
+								[[ self ]]->set_data(localclientnum, "_state", 5);
 							}
 							else
 							{
-								if(#"hash_af852d7b85b0c03" == state_name)
+								if(#"awaitingconnection" == state_name)
 								{
-									[[ self ]]->function_d7d2fcce(localclientnum, "_state", 6);
+									[[ self ]]->set_data(localclientnum, "_state", 6);
 								}
 								else
 								{
 									if(#"hash_7f00f68e42b5b8f6" == state_name)
 									{
-										[[ self ]]->function_d7d2fcce(localclientnum, "_state", 7);
+										[[ self ]]->set_data(localclientnum, "_state", 7);
 									}
 									else
 									{
-										if(#"hash_a890619c656ded5" == state_name)
+										if(#"sabotagedata" == state_name)
 										{
-											[[ self ]]->function_d7d2fcce(localclientnum, "_state", 8);
+											[[ self ]]->set_data(localclientnum, "_state", 8);
 										}
 										else
 										{
-											if(#"hash_3db441cc059cbd6c" == state_name)
+											if(#"sabotagedata1" == state_name)
 											{
-												[[ self ]]->function_d7d2fcce(localclientnum, "_state", 9);
+												[[ self ]]->set_data(localclientnum, "_state", 9);
 											}
 											else
 											{
 												if(#"hash_7185fe2194047325" == state_name)
 												{
-													[[ self ]]->function_d7d2fcce(localclientnum, "_state", 10);
+													[[ self ]]->set_data(localclientnum, "_state", 10);
 												}
 												else
 												{
@@ -127,7 +127,7 @@ class class_ec15ff6a : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0xC4F2C1E1
 		Offset: 0x2E0
 		Size: 0x2C
@@ -136,12 +136,12 @@ class class_ec15ff6a : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"ct_progressbar_status");
+		cLUIelem::open(localclientnum, #"ct_progressbar_status");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0xFC38863A
 		Offset: 0x290
 		Size: 0x44
@@ -150,13 +150,13 @@ class class_ec15ff6a : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 		[[ self ]]->set_state(localclientnum, #"defaultstate");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0x6A955C2E
 		Offset: 0x260
 		Size: 0x24
@@ -165,12 +165,12 @@ class class_ec15ff6a : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_ec15ff6a
+		Namespace: cct_progressbar_status
 		Checksum: 0xDD12400F
 		Offset: 0x208
 		Size: 0x4C
@@ -179,8 +179,8 @@ class class_ec15ff6a : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 4, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 4, "int");
 	}
 
 }
@@ -198,7 +198,7 @@ class class_ec15ff6a : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_ec15ff6a();
+	elem = new cct_progressbar_status();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -214,7 +214,7 @@ function register(uid)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_ec15ff6a();
+	elem = new cct_progressbar_status();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6a3f43063dfd1bdc;
-#using script_6c5b51f98cd04fa3;
+#using scripts\zm\zm_hms_util.gsc;
+#using scripts\zm_common\zm_sq.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\struct.gsc;
 
@@ -18,7 +18,7 @@
 function init()
 {
 	init_flags();
-	function_88d1bd71();
+	init_quest();
 }
 
 /*
@@ -40,7 +40,7 @@ function init_flags()
 }
 
 /*
-	Name: function_88d1bd71
+	Name: init_quest
 	Namespace: namespace_6f62781f
 	Checksum: 0x8024A27B
 	Offset: 0x1A0
@@ -48,18 +48,18 @@ function init_flags()
 	Parameters: 0
 	Flags: Linked
 */
-function function_88d1bd71()
+function init_quest()
 {
 	level.var_51acdb19 = getent("dempsey_grenade", "targetname");
-	level.var_a7a99ef1 = struct::get(#"hash_5720572540b41747");
+	level.var_a7a99ef1 = struct::get(#"dempsey_audio");
 	level.var_cd51aa28 = 0;
 	level.var_440b230b = 0;
-	namespace_ee206246::register(#"hash_63dc1e557f49595f", #"step_1", #"hash_4d540289d82df269", &function_4c20829a, &function_37518cc4);
-	namespace_ee206246::register(#"hash_63dc1e557f49595f", #"step_2", #"hash_4d53ff89d82ded50", &function_ec156b93, &function_44101788);
-	namespace_ee206246::register(#"hash_63dc1e557f49595f", #"step_3", #"hash_4d540089d82def03", &function_f2757dee, &function_cc61f0a3);
-	namespace_ee206246::register(#"hash_63dc1e557f49595f", #"step_4", #"hash_4d540589d82df782", &function_29f2b66e, &function_4cf57214);
-	namespace_ee206246::register(#"hash_63dc1e557f49595f", #"step_5", #"hash_4d540689d82df935", &function_b7f1e7df, &function_2c09c7d2);
-	namespace_ee206246::start(#"hash_63dc1e557f49595f");
+	zm_sq::register(#"hash_63dc1e557f49595f", #"step_1", #"hash_4d540289d82df269", &function_4c20829a, &function_37518cc4);
+	zm_sq::register(#"hash_63dc1e557f49595f", #"step_2", #"hash_4d53ff89d82ded50", &function_ec156b93, &function_44101788);
+	zm_sq::register(#"hash_63dc1e557f49595f", #"step_3", #"hash_4d540089d82def03", &function_f2757dee, &function_cc61f0a3);
+	zm_sq::register(#"hash_63dc1e557f49595f", #"step_4", #"hash_4d540589d82df782", &function_29f2b66e, &function_4cf57214);
+	zm_sq::register(#"hash_63dc1e557f49595f", #"step_5", #"hash_4d540689d82df935", &function_b7f1e7df, &function_2c09c7d2);
+	zm_sq::start(#"hash_63dc1e557f49595f");
 }
 
 /*
@@ -268,9 +268,9 @@ function function_2c09c7d2(var_5ea5c94d, ended_early)
 	else
 	{
 		level.var_cd51aa28 = 5;
-		namespace_509a75d1::function_e308175e(#"hash_3bd00f2e3293cc1a", level.var_a7a99ef1.origin);
+		zm_hms_util::function_e308175e(#"hash_3bd00f2e3293cc1a", level.var_a7a99ef1.origin);
 		wait(1);
-		namespace_509a75d1::function_e308175e(#"hash_63eaabff22eb9bab", level.var_a7a99ef1.origin);
+		zm_hms_util::function_e308175e(#"hash_63eaabff22eb9bab", level.var_a7a99ef1.origin);
 	}
 }
 
@@ -286,7 +286,7 @@ function function_2c09c7d2(var_5ea5c94d, ended_early)
 function grenade_watcher()
 {
 	level endon(#"end_game");
-	self endon(#"hash_6bd75ef75b59f0b9");
+	self endon(#"step_completed");
 	while(true)
 	{
 		waitresult = undefined;
@@ -298,27 +298,27 @@ function grenade_watcher()
 				case 0:
 				{
 					level flag::set(#"hash_3e2d063d97c06905");
-					self notify(#"hash_6bd75ef75b59f0b9");
+					self notify(#"step_completed");
 				}
 				case 1:
 				{
 					level flag::set(#"hash_8987a45b2eda7c4");
-					self notify(#"hash_6bd75ef75b59f0b9");
+					self notify(#"step_completed");
 				}
 				case 2:
 				{
 					level flag::set(#"hash_743603caa0ee0976");
-					self notify(#"hash_6bd75ef75b59f0b9");
+					self notify(#"step_completed");
 				}
 				case 3:
 				{
 					level flag::set(#"hash_370781d7705e4e18");
-					self notify(#"hash_6bd75ef75b59f0b9");
+					self notify(#"step_completed");
 				}
 				case 4:
 				{
 					level flag::set(#"hash_3b152242499836c8");
-					self notify(#"hash_6bd75ef75b59f0b9");
+					self notify(#"step_completed");
 				}
 			}
 			level.var_440b230b = level.round_number;

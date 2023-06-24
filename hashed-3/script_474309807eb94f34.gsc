@@ -10,17 +10,17 @@
 	Parameters: 1
 	Flags: Linked
 */
-function function_385ef18d(var_e827f698)
+function function_385ef18d(camoweapon)
 {
 	/#
-		assert(isdefined(var_e827f698));
+		assert(isdefined(camoweapon));
 	#/
-	var_e69cf15d = function_3786d342(var_e827f698);
+	var_e69cf15d = function_3786d342(camoweapon);
 	if(isdefined(var_e69cf15d) && var_e69cf15d != level.weaponnone)
 	{
-		var_e827f698 = var_e69cf15d;
+		camoweapon = var_e69cf15d;
 	}
-	return var_e827f698;
+	return camoweapon;
 }
 
 /*

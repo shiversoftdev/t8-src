@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_2affe92664ace48d;
-#using script_3f9e0dc8454d98e1;
-#using script_52c6c2d1a2ef1b46;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
 #using script_684097158a90b5c3;
-#using script_6e3c826b1814cab6;
-#using script_d8b1f4ee30e5fc5;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\core_common\ai\archetype_tiger.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -20,11 +20,11 @@
 #using scripts\zm_common\zm_score.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_2ea65b04;
+#namespace zm_towers_pap_quest;
 
 /*
 	Name: init
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x966FDBE
 	Offset: 0xA48
 	Size: 0x32C
@@ -41,14 +41,14 @@ function init()
 	level thread scene::init("p8_fxanim_zm_towers_pap_door_blue_bundle");
 	level thread scene::init("p8_fxanim_zm_towers_pap_door_red_bundle");
 	level thread scene::init("p8_fxanim_zm_towers_pap_sarcophagus_bundle");
-	n_pap_enabled = namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2");
+	n_pap_enabled = zm_custom::function_901b751c(#"zmpapenabled");
 	if(n_pap_enabled == 2 || (isdefined(level.var_fe2bb2ac) && level.var_fe2bb2ac) || (isdefined(level.var_15747fb1) && level.var_15747fb1))
 	{
 		level thread function_a7faeaaf();
 	}
 	else if(n_pap_enabled == 0)
 	{
-		level flag::set(#"hash_2802a934b7e37913");
+		level flag::set(#"pap_disabled");
 		mdl_sentinel_artifact = getent("mdl_pap_quest_sentinel_artifact", "targetname");
 		mdl_sentinel_artifact hide();
 		mdl_sentinel_artifact notsolid();
@@ -66,7 +66,7 @@ function init()
 
 /*
 	Name: function_5ad3e281
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x5FA8D57F
 	Offset: 0xD80
 	Size: 0x3C
@@ -81,7 +81,7 @@ function function_5ad3e281()
 
 /*
 	Name: function_a7faeaaf
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x95B334BD
 	Offset: 0xDC8
 	Size: 0x174
@@ -105,7 +105,7 @@ function function_a7faeaaf()
 
 /*
 	Name: function_90a833e2
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x6DDD4C6B
 	Offset: 0xF48
 	Size: 0x2E4
@@ -114,7 +114,7 @@ function function_a7faeaaf()
 */
 function function_90a833e2()
 {
-	level flag::init(#"hash_2802a934b7e37913");
+	level flag::init(#"pap_disabled");
 	level flag::init(#"hash_2a7d461c7eff8179");
 	level flag::init(#"hash_798d51388d6e10f4");
 	level flag::init(#"hash_18134dc5b9b39a96");
@@ -141,7 +141,7 @@ function function_90a833e2()
 
 /*
 	Name: function_ce84849b
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x449A4469
 	Offset: 0x1238
 	Size: 0x44
@@ -157,7 +157,7 @@ function function_ce84849b()
 
 /*
 	Name: function_9b917fd5
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xE42A753C
 	Offset: 0x1288
 	Size: 0xD4
@@ -173,7 +173,7 @@ function function_9b917fd5(is_powered)
 		level waittill(#"hash_7ca261f468171655");
 	}
 	level flag::wait_till("zm_towers_pap_quest_completed");
-	if(!level flag::get(#"hash_2802a934b7e37913"))
+	if(!level flag::get(#"pap_disabled"))
 	{
 		self zm_pack_a_punch::function_bb629351(1, "arriving", "arrive_anim_done");
 	}
@@ -181,7 +181,7 @@ function function_9b917fd5(is_powered)
 
 /*
 	Name: pap_quest_init
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x2D08525
 	Offset: 0x1368
 	Size: 0x45C
@@ -203,25 +203,25 @@ function pap_quest_init(var_5ea5c94d)
 	var_5cf420b9 = array(#"danu", #"ra", #"odin", #"zeus");
 	var_16561d51 = array::randomize(var_16561d51);
 	level.var_4118581a = 0;
-	foreach(i, var_5542e979 in var_5cf420b9)
+	foreach(i, str_tower in var_5cf420b9)
 	{
-		level thread function_199b1814(var_5542e979, var_16561d51[i]);
+		level thread function_199b1814(str_tower, var_16561d51[i]);
 	}
 	level.var_c22016cf = 0;
 	level.var_7695ff59 = 0;
 	level.var_9847c460 = 0;
 	level thread function_a2f4eb85();
-	var_307566 = getentarray("mdl_pap_quest_head", "targetname");
-	foreach(mdl_head in var_307566)
+	a_mdl_heads = getentarray("mdl_pap_quest_head", "targetname");
+	foreach(mdl_head in a_mdl_heads)
 	{
 		mdl_head flag::init(#"hash_26125a3306681e2");
 		mdl_head hide();
 	}
 	level thread function_d7c092b9();
-	level namespace_6747c550::function_7df6bb60(#"hash_4fce42c559430ff9", 1);
-	level namespace_6747c550::function_7df6bb60(#"hash_6257a73f22800e57", 1);
-	level namespace_6747c550::function_7df6bb60(#"hash_61f69ed4cbd8f2f5", 1);
-	level namespace_6747c550::function_7df6bb60(#"hash_5114ed99a6bad03b", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_4fce42c559430ff9", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_6257a73f22800e57", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_61f69ed4cbd8f2f5", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_5114ed99a6bad03b", 1);
 	if(!var_5ea5c94d)
 	{
 		level flag::wait_till_all(array(#"hash_3d833ecc64915d8d", #"hash_d38ff215be3a4fc", #"hash_4142472dec557d03", #"hash_45b6b1ee5d5038b4"));
@@ -232,7 +232,7 @@ function pap_quest_init(var_5ea5c94d)
 
 /*
 	Name: function_18b39e14
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x5B08DF2F
 	Offset: 0x17D0
 	Size: 0x1A4
@@ -261,17 +261,17 @@ function function_18b39e14()
 
 /*
 	Name: function_3effad88
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xC6CFDCC2
 	Offset: 0x1980
 	Size: 0x244
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_3effad88(var_5542e979)
+function private function_3effad88(str_tower)
 {
 	str_prompt = zm_utility::function_d6046228(#"hash_2a4860e40142bac5", #"hash_7c465ea7da6991fb");
-	switch(var_5542e979)
+	switch(str_tower)
 	{
 		case "danu":
 		{
@@ -301,21 +301,21 @@ function private function_3effad88(var_5542e979)
 	var_e362d075 triggerenable(1);
 	var_e362d075 sethintstring(str_prompt);
 	level flag::clear(#"hash_798d51388d6e10f4");
-	level thread function_199b1814(var_5542e979, function_67fffa0(var_5542e979));
+	level thread function_199b1814(str_tower, function_67fffa0(str_tower));
 }
 
 /*
-	Name: function_57d79cac
-	Namespace: namespace_2ea65b04
+	Name: pap_quest_restart
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x932077D0
 	Offset: 0x1BD0
 	Size: 0x57C
 	Parameters: 0
 	Flags: Linked
 */
-function function_57d79cac()
+function pap_quest_restart()
 {
-	level notify(#"hash_47472704726954cf");
+	level notify(#"pap_quest_restart");
 	level flag::clear(#"hash_18134dc5b9b39a96");
 	level flag::clear(#"hash_582eea77824b014d");
 	level flag::clear(#"hash_5cc500f9282cd290");
@@ -341,24 +341,24 @@ function function_57d79cac()
 	var_5cf420b9 = array(#"danu", #"ra", #"odin", #"zeus");
 	var_16561d51 = array::randomize(var_16561d51);
 	level.var_4118581a = 0;
-	foreach(i, var_5542e979 in var_5cf420b9)
+	foreach(i, str_tower in var_5cf420b9)
 	{
-		level thread function_199b1814(var_5542e979, var_16561d51[i]);
+		level thread function_199b1814(str_tower, var_16561d51[i]);
 	}
 	level.var_c22016cf = 0;
 	level.var_7695ff59 = 0;
 	level.var_9847c460 = 0;
 	level thread function_a2f4eb85();
-	var_307566 = getentarray("mdl_pap_quest_head", "targetname");
-	foreach(mdl_head in var_307566)
+	a_mdl_heads = getentarray("mdl_pap_quest_head", "targetname");
+	foreach(mdl_head in a_mdl_heads)
 	{
 		mdl_head flag::clear(#"hash_26125a3306681e2");
 		mdl_head hide();
 	}
-	level namespace_6747c550::function_7df6bb60(#"hash_4fce42c559430ff9", 1);
-	level namespace_6747c550::function_7df6bb60(#"hash_6257a73f22800e57", 1);
-	level namespace_6747c550::function_7df6bb60(#"hash_61f69ed4cbd8f2f5", 1);
-	level namespace_6747c550::function_7df6bb60(#"hash_5114ed99a6bad03b", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_4fce42c559430ff9", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_6257a73f22800e57", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_61f69ed4cbd8f2f5", 1);
+	level zm_ui_inventory::function_7df6bb60(#"hash_5114ed99a6bad03b", 1);
 	if(isdefined(level.var_9ca6160c))
 	{
 		array::delete_all(level.var_9ca6160c);
@@ -369,7 +369,7 @@ function function_57d79cac()
 
 /*
 	Name: function_64f2d6de
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x3E415DF3
 	Offset: 0x2158
 	Size: 0xD8
@@ -378,9 +378,9 @@ function function_57d79cac()
 */
 function function_64f2d6de(a_ents)
 {
-	var_f99f1421 = a_ents[#"hash_7aff0ee60ddd937b"];
-	var_307566 = getentarray("mdl_pap_quest_head", "targetname");
-	foreach(mdl_head in var_307566)
+	var_f99f1421 = a_ents[#"prop 1"];
+	a_mdl_heads = getentarray("mdl_pap_quest_head", "targetname");
+	foreach(mdl_head in a_mdl_heads)
 	{
 		mdl_head linkto(var_f99f1421, mdl_head.var_d06913fa);
 	}
@@ -388,7 +388,7 @@ function function_64f2d6de(a_ents)
 
 /*
 	Name: function_97e78811
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x4C6ECBAB
 	Offset: 0x2238
 	Size: 0x1D0
@@ -421,18 +421,18 @@ function function_97e78811(var_5ea5c94d, ended_early)
 
 /*
 	Name: function_199b1814
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xA2D1B0B7
 	Offset: 0x2410
 	Size: 0x1004
 	Parameters: 2
 	Flags: Linked
 */
-function function_199b1814(var_5542e979, var_32af2882)
+function function_199b1814(str_tower, var_32af2882)
 {
-	level notify(var_5542e979 + "_pap_quest_restart");
-	level endon(#"pap_quest_completed", #"hash_47472704726954cf", var_5542e979 + "_pap_quest_restart");
-	switch(var_5542e979)
+	level notify(str_tower + "_pap_quest_restart");
+	level endon(#"pap_quest_completed", #"pap_quest_restart", str_tower + "_pap_quest_restart");
+	switch(str_tower)
 	{
 		case "danu":
 		{
@@ -503,7 +503,7 @@ function function_199b1814(var_5542e979, var_32af2882)
 	level flag::set(#"hash_2a7d461c7eff8179");
 	level flag::set(var_31e5b512);
 	level flag::set(#"hash_798d51388d6e10f4");
-	switch(var_5542e979)
+	switch(str_tower)
 	{
 		case "danu":
 		{
@@ -535,7 +535,7 @@ function function_199b1814(var_5542e979, var_32af2882)
 		}
 	}
 	exploder::exploder(str_exploder);
-	namespace_11c28b18::function_afd37143(var_38e7a8be);
+	zm_towers_util::function_afd37143(var_38e7a8be);
 	switch(var_32af2882)
 	{
 		case "marauder":
@@ -641,7 +641,7 @@ function function_199b1814(var_5542e979, var_32af2882)
 				}
 				else
 				{
-					switch(var_5542e979)
+					switch(str_tower)
 					{
 						case "danu":
 						{
@@ -680,7 +680,7 @@ function function_199b1814(var_5542e979, var_32af2882)
 				}
 				else
 				{
-					switch(var_5542e979)
+					switch(str_tower)
 					{
 						case "danu":
 						{
@@ -740,12 +740,12 @@ function function_199b1814(var_5542e979, var_32af2882)
 			level.var_9bd700c9 = #"marauder";
 		}
 	}
-	level thread drop_head(v_origin, var_5542e979, var_7246d429);
+	level thread drop_head(v_origin, str_tower, var_7246d429);
 	level flag::set(var_def2a519);
 	level flag::clear(#"hash_798d51388d6e10f4");
 	level.var_b2b15659 = 0;
 	function_f18e2775();
-	switch(var_5542e979)
+	switch(str_tower)
 	{
 		case "danu":
 		{
@@ -768,12 +768,12 @@ function function_199b1814(var_5542e979, var_32af2882)
 			break;
 		}
 	}
-	namespace_11c28b18::function_afd37143(var_38e7a8be);
+	zm_towers_util::function_afd37143(var_38e7a8be);
 }
 
 /*
 	Name: function_79071b9a
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x3D02A42F
 	Offset: 0x3420
 	Size: 0x172
@@ -789,17 +789,17 @@ function function_79071b9a(str_enemy, s_spawn, s_scene)
 		{
 			case "marauder":
 			{
-				ai_enemy = namespace_acd9c698::function_c9cd31(1, s_spawn);
+				ai_enemy = zombie_gladiator_util::function_c9cd31(1, s_spawn);
 				break;
 			}
 			case "destroyer":
 			{
-				ai_enemy = namespace_acd9c698::function_2efc00db(1, s_spawn);
+				ai_enemy = zombie_gladiator_util::function_2efc00db(1, s_spawn);
 				break;
 			}
 			case "tiger":
 			{
-				ai_enemy = namespace_3fe4d0d7::spawn_single(1, s_spawn);
+				ai_enemy = zombie_tiger_util::spawn_single(1, s_spawn);
 				break;
 			}
 		}
@@ -819,7 +819,7 @@ function function_79071b9a(str_enemy, s_spawn, s_scene)
 
 /*
 	Name: function_4b702fd5
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x527D1F5E
 	Offset: 0x35A0
 	Size: 0x124
@@ -845,14 +845,14 @@ function function_4b702fd5(s_scene)
 	}
 	else if(self.archetype == #"tiger")
 	{
-		self namespace_dea34b6a::function_8747b993();
+		self tigerbehavior::function_8747b993();
 	}
 	self flag::set(#"hash_368f8dee8aca386c");
 }
 
 /*
 	Name: function_9ec8ec89
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x6248E94C
 	Offset: 0x36D0
 	Size: 0x158
@@ -874,14 +874,14 @@ function function_9ec8ec89()
 	level.var_4629a597++;
 	if(level.var_4629a597 >= level.var_5c51cf1a)
 	{
-		self thread namespace_11c28b18::function_ae1b4f5b(100, 75, 75);
+		self thread zm_towers_util::function_ae1b4f5b(100, 75, 75);
 		level notify(#"hash_2ea1048758a3ff14", {#hash_1e137cec:var_1e137cec, #str_archetype:str_archetype, #hash_7246d429:var_7246d429, #v_origin:v_origin});
 	}
 }
 
 /*
 	Name: function_a73ff9f2
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x2E769859
 	Offset: 0x3830
 	Size: 0xA8
@@ -899,7 +899,7 @@ function function_a73ff9f2()
 
 /*
 	Name: function_f18e2775
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x463A42D3
 	Offset: 0x38E0
 	Size: 0xD8
@@ -920,18 +920,18 @@ function function_f18e2775()
 
 /*
 	Name: drop_head
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xA613B9AD
 	Offset: 0x39C0
 	Size: 0x3D2
 	Parameters: 3
 	Flags: Linked
 */
-function drop_head(v_origin, var_5542e979, var_5570d8de)
+function drop_head(v_origin, str_tower, var_5570d8de)
 {
 	v_position = v_origin + vectorscale((0, 0, 1), 40);
 	str_head = #"c_t8_zmb_dlc0_zombie_corpse_head_2";
-	var_32af2882 = function_67fffa0(var_5542e979);
+	var_32af2882 = function_67fffa0(str_tower);
 	b_both = 0;
 	if(var_32af2882 == #"both")
 	{
@@ -964,7 +964,7 @@ function drop_head(v_origin, var_5542e979, var_5570d8de)
 	var_483b8a0 clientfield::set("zombie_head_pickup_glow", 1);
 	if(!var_5570d8de)
 	{
-		switch(var_5542e979)
+		switch(str_tower)
 		{
 			case "danu":
 			{
@@ -991,12 +991,12 @@ function drop_head(v_origin, var_5542e979, var_5570d8de)
 		var_a0fca4e1 = s_point.origin + vectorscale((0, 0, 1), 40);
 		var_483b8a0 moveto(var_a0fca4e1, 2);
 	}
-	var_483b8a0 thread namespace_11c28b18::function_48f49769();
+	var_483b8a0 thread zm_towers_util::function_48f49769();
 	if(b_both)
 	{
 		var_32af2882 = #"both";
 	}
-	var_483b8a0 thread function_499b080d(var_5542e979, var_32af2882);
+	var_483b8a0 thread function_499b080d(str_tower, var_32af2882);
 	if(!isdefined(level.var_9ca6160c))
 	{
 		level.var_9ca6160c = array();
@@ -1017,16 +1017,16 @@ function drop_head(v_origin, var_5542e979, var_5570d8de)
 
 /*
 	Name: function_499b080d
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x9CDA6D31
 	Offset: 0x3DA0
 	Size: 0x4A0
 	Parameters: 2
 	Flags: Linked
 */
-function function_499b080d(var_5542e979, var_32af2882)
+function function_499b080d(str_tower, var_32af2882)
 {
-	level endon(#"hash_47472704726954cf");
+	level endon(#"pap_quest_restart");
 	var_903152eb = 0;
 	while(!var_903152eb)
 	{
@@ -1041,7 +1041,7 @@ function function_499b080d(var_5542e979, var_32af2882)
 		}
 		wait(0.1);
 	}
-	switch(var_5542e979)
+	switch(str_tower)
 	{
 		case "danu":
 		{
@@ -1066,7 +1066,7 @@ function function_499b080d(var_5542e979, var_32af2882)
 	}
 	level flag::set(str_flag);
 	str_clientfield = function_1191a919(var_32af2882);
-	level namespace_6747c550::function_7df6bb60(str_clientfield, 2);
+	level zm_ui_inventory::function_7df6bb60(str_clientfield, 2);
 	level.var_c22016cf++;
 	level thread function_7590a833();
 	n_scalar = zombie_utility::function_6403cf83(#"zombie_point_scalar", #"allies");
@@ -1111,7 +1111,7 @@ function function_499b080d(var_5542e979, var_32af2882)
 
 /*
 	Name: function_52411f5e
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x8E1330E7
 	Offset: 0x4248
 	Size: 0x8C
@@ -1131,7 +1131,7 @@ function function_52411f5e(var_5ea5c94d)
 
 /*
 	Name: function_156669dd
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xE3231097
 	Offset: 0x42E0
 	Size: 0x500
@@ -1145,8 +1145,8 @@ function function_156669dd(var_5ea5c94d, ended_early)
 		level flag::set(#"hash_2cf71ce4a3d1c081");
 		level flag::set("zm_towers_pap_quest_sentinel_artifact_exploded");
 		level flag::set("zm_towers_pap_quest_completed");
-		var_307566 = getentarray("mdl_pap_quest_head", "targetname");
-		foreach(mdl_head in var_307566)
+		a_mdl_heads = getentarray("mdl_pap_quest_head", "targetname");
+		foreach(mdl_head in a_mdl_heads)
 		{
 			mdl_head show();
 		}
@@ -1167,9 +1167,9 @@ function function_156669dd(var_5ea5c94d, ended_early)
 		{
 			level flag::set("power_on");
 		}
-		namespace_11c28b18::function_afd37143(#"pap_quest_completed");
-		var_307566 = getentarray("mdl_pap_quest_head", "targetname");
-		array::thread_all(var_307566, &function_9b320791);
+		zm_towers_util::function_afd37143(#"pap_quest_completed");
+		a_mdl_heads = getentarray("mdl_pap_quest_head", "targetname");
+		array::thread_all(a_mdl_heads, &function_9b320791);
 		level thread scene::play("p8_fxanim_zm_towers_pap_sarcophagus_spikes_bundle");
 		level thread scene::play("p8_fxanim_zm_towers_pap_sarcophagus_blood_01_bundle", "Shot 2");
 		level thread scene::play("p8_fxanim_zm_towers_pap_sarcophagus_blood_02_bundle", "Shot 2");
@@ -1197,7 +1197,7 @@ function function_156669dd(var_5ea5c94d, ended_early)
 
 /*
 	Name: function_9b320791
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xB25C9A66
 	Offset: 0x47E8
 	Size: 0xA4
@@ -1216,7 +1216,7 @@ function function_9b320791()
 
 /*
 	Name: function_a2f4eb85
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xE7E907F8
 	Offset: 0x4898
 	Size: 0x4C
@@ -1231,7 +1231,7 @@ function function_a2f4eb85()
 
 /*
 	Name: function_7590a833
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x99F18B84
 	Offset: 0x48F0
 	Size: 0x1CC
@@ -1272,7 +1272,7 @@ function function_7590a833()
 
 /*
 	Name: function_5ed0d968
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x4573C5E8
 	Offset: 0x4AC8
 	Size: 0x254
@@ -1281,11 +1281,11 @@ function function_7590a833()
 */
 function function_5ed0d968(v_player_origin)
 {
-	var_307566 = getentarray("mdl_pap_quest_head", "targetname");
-	var_307566 = util::get_array_of_closest(v_player_origin, var_307566);
+	a_mdl_heads = getentarray("mdl_pap_quest_head", "targetname");
+	a_mdl_heads = util::get_array_of_closest(v_player_origin, a_mdl_heads);
 	n_heads = level.var_c22016cf;
 	level.var_c22016cf = 0;
-	foreach(mdl_head in var_307566)
+	foreach(mdl_head in a_mdl_heads)
 	{
 		if(mdl_head flag::get(#"hash_26125a3306681e2"))
 		{
@@ -1318,7 +1318,7 @@ function function_5ed0d968(v_player_origin)
 
 /*
 	Name: function_f3c4aeac
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x52DCAB01
 	Offset: 0x4D28
 	Size: 0x424
@@ -1330,34 +1330,34 @@ function function_f3c4aeac()
 	if(level flag::get(#"hash_3d833ecc64915d8d") && !level flag::get(#"hash_1eda3c39867cbe53"))
 	{
 		str_flag = #"hash_1eda3c39867cbe53";
-		var_5542e979 = #"danu";
+		str_tower = #"danu";
 	}
 	else
 	{
 		if(level flag::get(#"hash_d38ff215be3a4fc") && !level flag::get(#"hash_1b7828aafd3f83f4"))
 		{
 			str_flag = #"hash_1b7828aafd3f83f4";
-			var_5542e979 = #"ra";
+			str_tower = #"ra";
 		}
 		else
 		{
 			if(level flag::get(#"hash_4142472dec557d03") && !level flag::get(#"hash_15b79db61753c205"))
 			{
 				str_flag = #"hash_15b79db61753c205";
-				var_5542e979 = #"odin";
+				str_tower = #"odin";
 			}
 			else if(level flag::get(#"hash_45b6b1ee5d5038b4") && !level flag::get(#"hash_34c1fdccaa5279bc"))
 			{
 				str_flag = #"hash_34c1fdccaa5279bc";
-				var_5542e979 = #"zeus";
+				str_tower = #"zeus";
 			}
 		}
 	}
-	str_clientfield = function_1191a919(var_5542e979);
-	level namespace_6747c550::function_7df6bb60(str_clientfield, 3);
+	str_clientfield = function_1191a919(str_tower);
+	level zm_ui_inventory::function_7df6bb60(str_clientfield, 3);
 	level flag::set(str_flag);
 	str_fx_tag = "j_neck";
-	var_32af2882 = function_67fffa0(var_5542e979);
+	var_32af2882 = function_67fffa0(str_tower);
 	if(var_32af2882 == #"both")
 	{
 		if(!isdefined(level.var_9bd700c9))
@@ -1395,16 +1395,16 @@ function function_f3c4aeac()
 
 /*
 	Name: function_67fffa0
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x772A1FA8
 	Offset: 0x5158
 	Size: 0xAE
 	Parameters: 1
 	Flags: Linked
 */
-function function_67fffa0(var_5542e979)
+function function_67fffa0(str_tower)
 {
-	switch(var_5542e979)
+	switch(str_tower)
 	{
 		case "danu":
 		{
@@ -1432,7 +1432,7 @@ function function_67fffa0(var_5542e979)
 
 /*
 	Name: function_1191a919
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x49867B7B
 	Offset: 0x5210
 	Size: 0x106
@@ -1475,7 +1475,7 @@ function function_1191a919(var_32af2882)
 
 /*
 	Name: function_61cf4d04
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0x59CB2A3
 	Offset: 0x5320
 	Size: 0x6C
@@ -1494,7 +1494,7 @@ function function_61cf4d04()
 
 /*
 	Name: function_d7c092b9
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xAD26FF85
 	Offset: 0x5398
 	Size: 0x174
@@ -1520,7 +1520,7 @@ function function_d7c092b9()
 
 /*
 	Name: function_438a415
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xF99D81DF
 	Offset: 0x5518
 	Size: 0x31C
@@ -1576,7 +1576,7 @@ function function_438a415(str_head)
 		}
 		function_a73ff9f2();
 		str_clientfield = function_1191a919(str_head);
-		level namespace_6747c550::function_7df6bb60(str_clientfield, 2);
+		level zm_ui_inventory::function_7df6bb60(str_clientfield, 2);
 		level flag::set(var_31e5b512);
 		level flag::set(var_def2a519);
 		level flag::set(var_ce6f7a4c);
@@ -1588,7 +1588,7 @@ function function_438a415(str_head)
 
 /*
 	Name: function_883e88be
-	Namespace: namespace_2ea65b04
+	Namespace: zm_towers_pap_quest
 	Checksum: 0xDDC3FBDF
 	Offset: 0x5840
 	Size: 0x1D2

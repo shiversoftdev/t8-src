@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_ac693954 : class_6aaccc24
+class czm_red_challenges_hud : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x924A4A5F
 		Offset: 0x398
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_ac693954 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x91B99D56
 		Offset: 0x8E0
 		Size: 0x14
@@ -33,50 +33,50 @@ class class_ac693954 : class_6aaccc24
 	}
 
 	/*
-		Name: function_c6703876
-		Namespace: namespace_ac693954
+		Name: set_challengeFailing
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x868E354E
 		Offset: 0x898
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_c6703876(player, value)
+	function set_challengeFailing(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "challengeFailing", value);
 	}
 
 	/*
-		Name: function_3fdd9da7
-		Namespace: namespace_ac693954
+		Name: set_rewardHidden
+		Namespace: czm_red_challenges_hud
 		Checksum: 0xBC9CE00
 		Offset: 0x850
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_3fdd9da7(player, value)
+	function set_rewardHidden(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "rewardHidden", value);
 	}
 
 	/*
-		Name: function_ac67ad85
-		Namespace: namespace_ac693954
+		Name: set_tributeAvailable
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x88B7C0A8
 		Offset: 0x808
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_ac67ad85(player, value)
+	function set_tributeAvailable(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "tributeAvailable", value);
 	}
 
 	/*
 		Name: function_96972b9c
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x4BA442A0
 		Offset: 0x7C8
 		Size: 0x34
@@ -89,50 +89,50 @@ class class_ac693954 : class_6aaccc24
 	}
 
 	/*
-		Name: function_ad9c4f0
-		Namespace: namespace_ac693954
+		Name: set_bInLocation
+		Namespace: czm_red_challenges_hud
 		Checksum: 0xAA45B088
 		Offset: 0x780
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_ad9c4f0(player, value)
+	function set_bInLocation(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "bInLocation", value);
 	}
 
 	/*
-		Name: function_2dde4d6c
-		Namespace: namespace_ac693954
+		Name: set_bottomText
+		Namespace: czm_red_challenges_hud
 		Checksum: 0xA4E318FC
 		Offset: 0x738
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_2dde4d6c(player, value)
+	function set_bottomText(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "bottomText", value);
 	}
 
 	/*
-		Name: function_1c836e71
-		Namespace: namespace_ac693954
+		Name: set_challengeText
+		Namespace: czm_red_challenges_hud
 		Checksum: 0xA114966D
 		Offset: 0x6F0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_1c836e71(player, value)
+	function set_challengeText(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "challengeText", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x2FCB7E1F
 		Offset: 0x5A8
 		Size: 0x13C
@@ -153,7 +153,7 @@ class class_ac693954 : class_6aaccc24
 			}
 			else
 			{
-				if(#"hash_5b34afcc0d053940" == state_name)
+				if(#"visiblepc" == state_name)
 				{
 					player clientfield::function_9bf78ef8(var_47e79fc, "_state", 2);
 				}
@@ -178,7 +178,7 @@ class class_ac693954 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0xF5F8599F
 		Offset: 0x578
 		Size: 0x24
@@ -187,12 +187,12 @@ class class_ac693954 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x4F9A2773
 		Offset: 0x528
 		Size: 0x44
@@ -201,12 +201,12 @@ class class_ac693954 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_red_challenges_hud", persistent);
+		cLUIelem::open_luielem(player, "zm_red_challenges_hud", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_ac693954
+		Namespace: czm_red_challenges_hud
 		Checksum: 0x150703C5
 		Offset: 0x3B8
 		Size: 0x164
@@ -215,15 +215,15 @@ class class_ac693954 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 2, "int");
-		namespace_6aaccc24::function_dcb34c80("string", "challengeText", 13000);
-		namespace_6aaccc24::function_dcb34c80("string", "bottomText", 13000);
-		namespace_6aaccc24::function_da693cbe("bInLocation", 13000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("progress", 13000, 1, "counter");
-		namespace_6aaccc24::function_da693cbe("tributeAvailable", 13000, 3, "int");
-		namespace_6aaccc24::function_da693cbe("rewardHidden", 15000, 1, "int");
-		namespace_6aaccc24::function_da693cbe("challengeFailing", 15000, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 2, "int");
+		cLUIelem::function_dcb34c80("string", "challengeText", 13000);
+		cLUIelem::function_dcb34c80("string", "bottomText", 13000);
+		cLUIelem::function_da693cbe("bInLocation", 13000, 1, "int");
+		cLUIelem::function_da693cbe("progress", 13000, 1, "counter");
+		cLUIelem::function_da693cbe("tributeAvailable", 13000, 3, "int");
+		cLUIelem::function_da693cbe("rewardHidden", 15000, 1, "int");
+		cLUIelem::function_da693cbe("challengeFailing", 15000, 1, "int");
 	}
 
 }
@@ -241,7 +241,7 @@ class class_ac693954 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_ac693954();
+	elem = new czm_red_challenges_hud();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -303,7 +303,7 @@ function set_state(player, state_name)
 }
 
 /*
-	Name: function_1c836e71
+	Name: set_challengeText
 	Namespace: zm_red_challenges_hud
 	Checksum: 0xC6F3F65E
 	Offset: 0x250
@@ -311,13 +311,13 @@ function set_state(player, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_1c836e71(player, value)
+function set_challengeText(player, value)
 {
-	[[ self ]]->function_1c836e71(player, value);
+	[[ self ]]->set_challengeText(player, value);
 }
 
 /*
-	Name: function_2dde4d6c
+	Name: set_bottomText
 	Namespace: zm_red_challenges_hud
 	Checksum: 0x22E08F7C
 	Offset: 0x280
@@ -325,13 +325,13 @@ function function_1c836e71(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_2dde4d6c(player, value)
+function set_bottomText(player, value)
 {
-	[[ self ]]->function_2dde4d6c(player, value);
+	[[ self ]]->set_bottomText(player, value);
 }
 
 /*
-	Name: function_ad9c4f0
+	Name: set_bInLocation
 	Namespace: zm_red_challenges_hud
 	Checksum: 0x25504718
 	Offset: 0x2B0
@@ -339,9 +339,9 @@ function function_2dde4d6c(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_ad9c4f0(player, value)
+function set_bInLocation(player, value)
 {
-	[[ self ]]->function_ad9c4f0(player, value);
+	[[ self ]]->set_bInLocation(player, value);
 }
 
 /*
@@ -359,7 +359,7 @@ function function_96972b9c(player)
 }
 
 /*
-	Name: function_ac67ad85
+	Name: set_tributeAvailable
 	Namespace: zm_red_challenges_hud
 	Checksum: 0xCE045DE2
 	Offset: 0x308
@@ -367,13 +367,13 @@ function function_96972b9c(player)
 	Parameters: 2
 	Flags: None
 */
-function function_ac67ad85(player, value)
+function set_tributeAvailable(player, value)
 {
-	[[ self ]]->function_ac67ad85(player, value);
+	[[ self ]]->set_tributeAvailable(player, value);
 }
 
 /*
-	Name: function_3fdd9da7
+	Name: set_rewardHidden
 	Namespace: zm_red_challenges_hud
 	Checksum: 0xAFA89D48
 	Offset: 0x338
@@ -381,13 +381,13 @@ function function_ac67ad85(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_3fdd9da7(player, value)
+function set_rewardHidden(player, value)
 {
-	[[ self ]]->function_3fdd9da7(player, value);
+	[[ self ]]->set_rewardHidden(player, value);
 }
 
 /*
-	Name: function_c6703876
+	Name: set_challengeFailing
 	Namespace: zm_red_challenges_hud
 	Checksum: 0xFB8BFC8B
 	Offset: 0x368
@@ -395,8 +395,8 @@ function function_3fdd9da7(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_c6703876(player, value)
+function set_challengeFailing(player, value)
 {
-	[[ self ]]->function_c6703876(player, value);
+	[[ self ]]->set_challengeFailing(player, value);
 }
 

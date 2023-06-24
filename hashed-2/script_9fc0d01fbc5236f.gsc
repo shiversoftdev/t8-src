@@ -5,7 +5,7 @@
 #namespace namespace_8d9c976e;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_8d9c976e
 	Checksum: 0x2BD2C8EE
 	Offset: 0xB0
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_435f2e0dff1c53c7", &init, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function function_32f95e3f(localclientnum, oldval, newval, bnewent, binitialsnap
 		for(i = 0; i < self getnumzbarrierpieces(); i++)
 		{
 			var_a6b8d2c2 = self zbarriergetpiece(i);
-			var_a6b8d2c2 function_bf9d3071("rob_zm_office_debris_clear");
+			var_a6b8d2c2 playrenderoverridebundle("rob_zm_office_debris_clear");
 		}
 	}
 	else
@@ -56,7 +56,7 @@ function function_32f95e3f(localclientnum, oldval, newval, bnewent, binitialsnap
 		for(i = 0; i < self getnumzbarrierpieces(); i++)
 		{
 			var_a6b8d2c2 = self zbarriergetpiece(i);
-			var_a6b8d2c2 function_5d482e78("rob_zm_office_debris_clear");
+			var_a6b8d2c2 stoprenderoverridebundle("rob_zm_office_debris_clear");
 		}
 	}
 }

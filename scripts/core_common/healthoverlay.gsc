@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using script_4663ec59d864e437;
-#using script_47fb62300ac0bd60;
-#using script_62d13df4c3e9336d;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\abilities\gadgets\gadget_health_regen.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\status_effects\status_effect_explosive_damage.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\math_shared.gsc;
@@ -13,7 +13,7 @@
 #namespace healthoverlay;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: healthoverlay
 	Checksum: 0x2C171865
 	Offset: 0xE8
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"healthoverlay", &__init__, undefined, undefined);
 }
@@ -61,7 +61,7 @@ function __init__()
 	}
 	if(sessionmodeismultiplayergame())
 	{
-		level.var_e2b2396a = getgametypesetting(#"specialisthealspeed_allies_1");
+		level.specialisthealspeed = getgametypesetting(#"specialisthealspeed_allies_1");
 	}
 	level thread function_b506b922();
 }
@@ -415,7 +415,7 @@ function private function_f09367a0(var_dc77251f, regen_delay)
 	{
 		var_dc77251f.var_ba47a7a3 = 1;
 	}
-	if(!(isdefined(self.ignore_health_regen_delay) && self.ignore_health_regen_delay) && (var_dc77251f.var_fc296337 - var_dc77251f.var_ba47a7a3) < regen_delay)
+	if(!(isdefined(self.ignore_health_regen_delay) && self.ignore_health_regen_delay) && (var_dc77251f.time_now - var_dc77251f.var_ba47a7a3) < regen_delay)
 	{
 		return false;
 	}
@@ -445,27 +445,27 @@ function private function_8ca62ae3()
 	{
 		return 0;
 	}
-	var_d12d33e7 = self.heal.rate;
-	if(var_d12d33e7 == 0)
+	regen_rate = self.heal.rate;
+	if(regen_rate == 0)
 	{
-		var_d12d33e7 = (isdefined(self.n_regen_rate) ? self.n_regen_rate : self.playerrole.healthhealrate);
+		regen_rate = (isdefined(self.n_regen_rate) ? self.n_regen_rate : self.playerrole.healthhealrate);
 		if(self hasperk(#"specialty_quickrevive"))
 		{
-			var_d12d33e7 = var_d12d33e7 * 1.5;
+			regen_rate = regen_rate * 1.5;
 		}
 		if(isdefined(self.var_5762241e))
 		{
-			var_d12d33e7 = var_d12d33e7 + self.var_5762241e;
+			regen_rate = regen_rate + self.var_5762241e;
 		}
-		var_d12d33e7 = var_d12d33e7 * self function_4e64ede5();
+		regen_rate = regen_rate * self function_4e64ede5();
 	}
-	if(isdefined(level.var_e2b2396a))
+	if(isdefined(level.specialisthealspeed))
 	{
-		switch(level.var_e2b2396a)
+		switch(level.specialisthealspeed)
 		{
 			case 0:
 			{
-				var_d12d33e7 = var_d12d33e7 * 0.5;
+				regen_rate = regen_rate * 0.5;
 				break;
 			}
 			case 1:
@@ -475,17 +475,17 @@ function private function_8ca62ae3()
 			}
 			case 2:
 			{
-				var_d12d33e7 = var_d12d33e7 * 2;
+				regen_rate = regen_rate * 2;
 				break;
 			}
 			case 3:
 			{
-				var_d12d33e7 = 2147483647;
+				regen_rate = 2147483647;
 				break;
 			}
 		}
 	}
-	return var_d12d33e7;
+	return regen_rate;
 }
 
 /*
@@ -549,9 +549,9 @@ function private heal(var_dc77251f)
 	{
 		return;
 	}
-	if(var_dc77251f.var_fc296337 - var_dc77251f.var_7cb44c56 > regen_delay)
+	if(var_dc77251f.time_now - var_dc77251f.var_7cb44c56 > regen_delay)
 	{
-		var_dc77251f.var_7cb44c56 = var_dc77251f.var_fc296337;
+		var_dc77251f.var_7cb44c56 = var_dc77251f.time_now;
 		self notify(#"snd_breathing_better");
 	}
 	var_bc840360 = player function_f8139729();
@@ -564,8 +564,8 @@ function private heal(var_dc77251f)
 	}
 	else
 	{
-		var_d12d33e7 = player function_8ca62ae3();
-		regen_amount = (var_d12d33e7 * (float(var_dc77251f.time_elapsed) / 1000)) / var_bc840360;
+		regen_rate = player function_8ca62ae3();
+		regen_amount = (regen_rate * (float(var_dc77251f.time_elapsed) / 1000)) / var_bc840360;
 	}
 	if(regen_amount == 0)
 	{
@@ -600,7 +600,7 @@ function private heal(var_dc77251f)
 			player decay_player_damages(change);
 			if(sessionmodeismultiplayergame())
 			{
-				player stats::function_dad108fa(#"hash_448216881a2ea3a1", change);
+				player stats::function_dad108fa(#"total_heals", change);
 			}
 		}
 	}
@@ -728,15 +728,15 @@ function private function_8f2722f6()
 	var_dc77251f.ratio = player.health / var_bc840360;
 	var_dc77251f.var_ec8863bf = var_dc77251f.ratio;
 	player function_69e7b01c(player.health / player.maxhealth);
-	var_dc77251f.var_fc296337 = gettime();
+	var_dc77251f.time_now = gettime();
 	if(player.health < var_dc77251f.old_health)
 	{
-		player.breathingstoptime = var_dc77251f.var_fc296337 + 6000;
-		var_dc77251f.var_ba47a7a3 = var_dc77251f.var_fc296337;
+		player.breathingstoptime = var_dc77251f.time_now + 6000;
+		var_dc77251f.var_ba47a7a3 = var_dc77251f.time_now;
 	}
 	else
 	{
-		var_dc77251f.time_elapsed = var_dc77251f.var_fc296337 - var_dc77251f.var_d1e06a5f;
+		var_dc77251f.time_elapsed = var_dc77251f.time_now - var_dc77251f.var_d1e06a5f;
 		player heal(var_dc77251f);
 		if(var_dc77251f.var_ec8863bf <= 0)
 		{
@@ -771,7 +771,7 @@ function private function_b506b922()
 	level endon(#"game_ended");
 	while(true)
 	{
-		var_1556c25 = function_8168c82a();
+		var_1556c25 = getlevelframenumber();
 		foreach(player in getplayers())
 		{
 			if(((player getentitynumber() + var_1556c25) & 1) != 0)

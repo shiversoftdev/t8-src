@@ -27,7 +27,7 @@ function init()
 	callback::on_ai_killed(&function_7fe4eb1d);
 	callback::function_74872db6(&function_60193f7d);
 	callback::function_74872db6(&function_dab4588);
-	callback::function_189f87c1(&function_d62a70b4);
+	callback::on_round_end(&function_d62a70b4);
 }
 
 /*

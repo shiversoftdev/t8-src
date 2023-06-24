@@ -6,7 +6,7 @@
 #namespace namespace_6fe6fb00;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_6fe6fb00
 	Checksum: 0xC9C7635E
 	Offset: 0x80
@@ -14,9 +14,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_4b0893282c45ca4", &__init__, undefined, #"hash_29467933d0da473b");
+	system::register(#"hash_4b0893282c45ca4", &__init__, undefined, #"zombie_dog_util");
 }
 
 /*

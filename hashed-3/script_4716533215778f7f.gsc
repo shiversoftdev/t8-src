@@ -18,7 +18,7 @@
 function preload()
 {
 	init_clientfields();
-	level thread function_7a324b77();
+	level thread pareidolia_ee();
 }
 
 /*
@@ -86,7 +86,7 @@ function function_48a634b7(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_7a324b77
+	Name: pareidolia_ee
 	Namespace: namespace_f9df92f
 	Checksum: 0x5F6E41F0
 	Offset: 0x2F8
@@ -94,7 +94,7 @@ function function_48a634b7(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 0
 	Flags: Linked
 */
-function function_7a324b77()
+function pareidolia_ee()
 {
 	t_pareidolia = getent(0, "t_pareidolia", "targetname");
 	waitresult = undefined;

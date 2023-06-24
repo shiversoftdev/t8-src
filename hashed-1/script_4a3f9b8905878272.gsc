@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_3aa0f32b70d4f7cb;
-#using script_6809bf766eba194a;
+#using scripts\core_common\ai\archetype_utility.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\math_shared.gsc;
 
@@ -278,11 +278,11 @@ function private function_dc503571(entity)
 {
 	if(isdefined(entity.node))
 	{
-		if(entity.node.type == #"hash_63cbb4767da2a801" || entity.node.type == #"hash_2a7b1ca393696762")
+		if(entity.node.type == #"cover left" || entity.node.type == #"cover right")
 		{
 			return true;
 		}
-		if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+		if(entity.node.type == #"cover pillar")
 		{
 			if(!(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024) || (!(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 2048) == 2048)))
 			{
@@ -310,19 +310,19 @@ function private function_eb148f38(entity)
 	}
 	yawtoenemyposition = getaimyawtoenemyfromnode(entity, entity.node, entity.enemy);
 	legalaimyaw = 0;
-	if(entity.node.type == #"hash_63cbb4767da2a801")
+	if(entity.node.type == #"cover left")
 	{
 		aimlimitsforcover = entity getaimlimitsfromentry("cover_left_lean");
 		legalaimyaw = yawtoenemyposition <= (aimlimitsforcover[#"aim_left"] + 10) && yawtoenemyposition >= -10;
 	}
 	else
 	{
-		if(entity.node.type == #"hash_2a7b1ca393696762")
+		if(entity.node.type == #"cover right")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover_right_lean");
 			legalaimyaw = yawtoenemyposition >= (aimlimitsforcover[#"aim_right"] - 10) && yawtoenemyposition <= 10;
 		}
-		else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+		else if(entity.node.type == #"cover pillar")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover");
 			supportsleft = !(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024);
@@ -388,19 +388,19 @@ function private function_7353f95b(entity)
 		yawtoenemyposition = angleclamp180((vectortoangles(pos - entity.node.origin)[1]) - entity.node.angles[1]);
 	}
 	legalaimyaw = 0;
-	if(entity.node.type == #"hash_63cbb4767da2a801")
+	if(entity.node.type == #"cover left")
 	{
 		aimlimitsforcover = entity getaimlimitsfromentry("cover_left_lean");
 		legalaimyaw = yawtoenemyposition <= (aimlimitsforcover[#"aim_left"] + 10) && yawtoenemyposition >= -10;
 	}
 	else
 	{
-		if(entity.node.type == #"hash_2a7b1ca393696762")
+		if(entity.node.type == #"cover right")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover_right_lean");
 			legalaimyaw = yawtoenemyposition >= (aimlimitsforcover[#"aim_right"] - 10) && yawtoenemyposition <= 10;
 		}
-		else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+		else if(entity.node.type == #"cover pillar")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover");
 			supportsleft = !(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024);
@@ -487,11 +487,11 @@ function private supportsleancovercondition(entity)
 {
 	if(isdefined(entity.node))
 	{
-		if(entity.node.type == #"hash_63cbb4767da2a801" || entity.node.type == #"hash_2a7b1ca393696762")
+		if(entity.node.type == #"cover left" || entity.node.type == #"cover right")
 		{
 			return true;
 		}
-		if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+		if(entity.node.type == #"cover pillar")
 		{
 			if(!(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024) || (!(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 2048) == 2048)))
 			{
@@ -519,19 +519,19 @@ function private shouldleanatcovercondition(entity)
 	}
 	yawtoenemyposition = getaimyawtoenemyfromnode(entity, entity.node, entity.enemy);
 	legalaimyaw = 0;
-	if(entity.node.type == #"hash_63cbb4767da2a801")
+	if(entity.node.type == #"cover left")
 	{
 		aimlimitsforcover = entity getaimlimitsfromentry("cover_left_lean");
 		legalaimyaw = yawtoenemyposition <= (aimlimitsforcover[#"aim_left"] + 10) && yawtoenemyposition >= -10;
 	}
 	else
 	{
-		if(entity.node.type == #"hash_2a7b1ca393696762")
+		if(entity.node.type == #"cover right")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover_right_lean");
 			legalaimyaw = yawtoenemyposition >= (aimlimitsforcover[#"aim_right"] - 10) && yawtoenemyposition <= 10;
 		}
-		else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+		else if(entity.node.type == #"cover pillar")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover");
 			supportsleft = !(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024);
@@ -597,19 +597,19 @@ function private shouldleanatcoveridlecondition(entity)
 		yawtoenemyposition = angleclamp180((vectortoangles(pos - entity.node.origin)[1]) - entity.node.angles[1]);
 	}
 	legalaimyaw = 0;
-	if(entity.node.type == #"hash_63cbb4767da2a801")
+	if(entity.node.type == #"cover left")
 	{
 		aimlimitsforcover = entity getaimlimitsfromentry("cover_left_lean");
 		legalaimyaw = yawtoenemyposition <= (aimlimitsforcover[#"aim_left"] + 10) && yawtoenemyposition >= -10;
 	}
 	else
 	{
-		if(entity.node.type == #"hash_2a7b1ca393696762")
+		if(entity.node.type == #"cover right")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover_right_lean");
 			legalaimyaw = yawtoenemyposition >= (aimlimitsforcover[#"aim_right"] - 10) && yawtoenemyposition <= 10;
 		}
-		else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+		else if(entity.node.type == #"cover pillar")
 		{
 			aimlimitsforcover = entity getaimlimitsfromentry("cover");
 			supportsleft = !(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024);
@@ -715,7 +715,7 @@ function private supportsovercovercondition(entity)
 	stance = entity getblackboardattribute("_stance");
 	if(isdefined(entity.node))
 	{
-		if(entity.node.type == #"hash_171465527444ed14" || entity.node.type == #"hash_1bb444d857814e92")
+		if(entity.node.type == #"conceal crouch" || entity.node.type == #"conceal stand")
 		{
 			return true;
 		}
@@ -723,14 +723,14 @@ function private supportsovercovercondition(entity)
 		{
 			return false;
 		}
-		if(entity.node.type == #"hash_63cbb4767da2a801" || entity.node.type == #"hash_2a7b1ca393696762" || (entity.node.type == #"hash_6d8019ab9d39bf96" || entity.node.type == #"hash_280d1247a6abdbae" || entity.node.type == #"hash_171465527444ed14"))
+		if(entity.node.type == #"cover left" || entity.node.type == #"cover right" || (entity.node.type == #"cover crouch" || entity.node.type == #"cover crouch window" || entity.node.type == #"conceal crouch"))
 		{
 			if(stance == "crouch")
 			{
 				return true;
 			}
 		}
-		else if(entity.node.type == #"hash_581529fff05853f0" || entity.node.type == #"hash_1bb444d857814e92")
+		else if(entity.node.type == #"cover stand" || entity.node.type == #"conceal stand")
 		{
 			if(stance == "stand")
 			{
@@ -1116,7 +1116,7 @@ function calculatecoverdirection(entity, stepout)
 			stepout = 0;
 		}
 		coverdirection = "cover_front_direction";
-		if(entity.node.type == #"hash_63cbb4767da2a801")
+		if(entity.node.type == #"cover left")
 		{
 			if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 4) == 4 || math::cointoss() || stepout)
 			{
@@ -1125,14 +1125,14 @@ function calculatecoverdirection(entity, stepout)
 		}
 		else
 		{
-			if(entity.node.type == #"hash_2a7b1ca393696762")
+			if(entity.node.type == #"cover right")
 			{
 				if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 4) == 4 || math::cointoss() || stepout)
 				{
 					coverdirection = "cover_right_direction";
 				}
 			}
-			else if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+			else if(entity.node.type == #"cover pillar")
 			{
 				if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024)
 				{
@@ -1158,7 +1158,7 @@ function calculatecoverdirection(entity, stepout)
 		return coverdirection;
 	}
 	coverdirection = "cover_front_direction";
-	if(entity.node.type == #"hash_7a0e62fbbe3989d4")
+	if(entity.node.type == #"cover pillar")
 	{
 		if(isdefined(entity.node.spawnflags) && (entity.node.spawnflags & 1024) == 1024)
 		{

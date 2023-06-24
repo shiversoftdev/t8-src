@@ -7,25 +7,25 @@
 #using scripts\core_common\util_shared.csc;
 #using scripts\zm_common\zm_utility.csc;
 
-#namespace namespace_652c3ad8;
+#namespace zm_escape_traps;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_652c3ad8
+	Name: __init__system__
+	Namespace: zm_escape_traps
 	Checksum: 0xE7D0C6A3
 	Offset: 0x1F0
 	Size: 0x3C
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_74eeacf89752d785", &__init__, undefined, undefined);
+	system::register(#"zm_escape_traps", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x9D67AE71
 	Offset: 0x238
 	Size: 0x422
@@ -50,13 +50,13 @@ function __init__()
 	level._effect[#"hash_294b19c300d1b482"] = #"hash_45008cc138e3bba3";
 	level._effect[#"hash_4391e5c4b43c63c9"] = #"hash_215c779c48fd6856";
 	level._effect[#"hash_5647f8e593893bce"] = #"hash_4d61168f93739083";
-	level._effect[#"hash_13b6f9efa3cf588a"] = #"hash_526060b70ce93d7e";
-	level._effect[#"hash_1a3aa0422b5a92a4"] = #"hash_358533e8293f131d";
+	level._effect[#"zombie_eye_trail"] = #"hash_526060b70ce93d7e";
+	level._effect[#"spinning_blood"] = #"hash_358533e8293f131d";
 }
 
 /*
 	Name: fan_trap_blood_fx
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0xF133933F
 	Offset: 0x668
 	Size: 0x14E
@@ -86,7 +86,7 @@ function fan_trap_blood_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: rumble_fan_trap
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x78FE4287
 	Offset: 0x7C0
 	Size: 0xDE
@@ -116,7 +116,7 @@ function rumble_fan_trap(localclientnum, oldval, newval, bnewent, binitialsnap, 
 
 /*
 	Name: acid_trap_fx
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x9399307D
 	Offset: 0x8A8
 	Size: 0x1AC
@@ -150,7 +150,7 @@ function acid_trap_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fie
 
 /*
 	Name: acid_trap_death_fx
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x9D2F1810
 	Offset: 0xA60
 	Size: 0xEE
@@ -173,7 +173,7 @@ function acid_trap_death_fx(localclientnum, oldval, newval, bnewent, binitialsna
 
 /*
 	Name: player_acid_trap_post_fx
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0xD0024089
 	Offset: 0xB58
 	Size: 0x206
@@ -195,9 +195,9 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 		self notify(#"player_acid_trap_post_fx_complete");
 		self.var_431ddde9 = self playloopsound(#"hash_341a3fa00975f232");
 		self thread function_17956e93(localclientnum);
-		self thread postfx::playpostfxbundle(#"hash_f9e59806209b8dd");
+		self thread postfx::playpostfxbundle(#"pstfx_zm_acid_dmg");
 		self.var_b1409d8f = playfxoncamera(localclientnum, level._effect[#"hash_4391e5c4b43c63c9"]);
-		self function_bf9d3071(#"hash_6efc465a2da0373a");
+		self playrenderoverridebundle(#"hash_6efc465a2da0373a");
 		if(self zm_utility::function_f8796df3(localclientnum))
 		{
 			self.var_7a7fac87 = playviewmodelfx(localclientnum, level._effect[#"hash_5647f8e593893bce"], "j_wrist_ri");
@@ -216,7 +216,7 @@ function player_acid_trap_post_fx(localclientnum, oldval, newval, bnewent, binit
 
 /*
 	Name: function_17956e93
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x61F1E63A
 	Offset: 0xD68
 	Size: 0x13C
@@ -229,7 +229,7 @@ function function_17956e93(localclientnum)
 	self waittill(#"player_acid_trap_post_fx_complete");
 	if(isdefined(self))
 	{
-		self postfx::exitpostfxbundle(#"hash_f9e59806209b8dd");
+		self postfx::exitpostfxbundle(#"pstfx_zm_acid_dmg");
 		if(isdefined(localclientnum) && isdefined(self.var_b1409d8f))
 		{
 			stopfx(localclientnum, self.var_b1409d8f);
@@ -245,13 +245,13 @@ function function_17956e93(localclientnum)
 			self stoploopsound(self.var_431ddde9);
 			self.var_431ddde9 = undefined;
 		}
-		self function_5d482e78(#"hash_6efc465a2da0373a");
+		self stoprenderoverridebundle(#"hash_6efc465a2da0373a");
 	}
 }
 
 /*
 	Name: function_502136a5
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0xB5CF8EB8
 	Offset: 0xEB0
 	Size: 0x144
@@ -263,9 +263,9 @@ function function_502136a5(str_notify)
 	if(isdefined(self))
 	{
 		localclientnum = self getlocalclientnumber();
-		if(self postfx::function_556665f2(#"hash_f9e59806209b8dd"))
+		if(self postfx::function_556665f2(#"pstfx_zm_acid_dmg"))
 		{
-			self postfx::exitpostfxbundle(#"hash_f9e59806209b8dd");
+			self postfx::exitpostfxbundle(#"pstfx_zm_acid_dmg");
 		}
 		if(isdefined(self.var_431ddde9))
 		{
@@ -282,13 +282,13 @@ function function_502136a5(str_notify)
 			stopfx(localclientnum, self.var_7a7fac87);
 			self.var_7a7fac87 = undefined;
 		}
-		self function_5d482e78(#"hash_6efc465a2da0373a");
+		self stoprenderoverridebundle(#"hash_6efc465a2da0373a");
 	}
 }
 
 /*
 	Name: spinning_trap_blood_fx
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x32C0A7B0
 	Offset: 0x1000
 	Size: 0x114
@@ -309,14 +309,14 @@ function spinning_trap_blood_fx(localclientnum, oldval, newval, bnewent, binitia
 		{
 			var_1f694afe = "j_spine1";
 		}
-		self.n_spinning_trap_blood_fx = util::playfxontag(localclientnum, level._effect[#"hash_1a3aa0422b5a92a4"], self, var_1f694afe);
+		self.n_spinning_trap_blood_fx = util::playfxontag(localclientnum, level._effect[#"spinning_blood"], self, var_1f694afe);
 		playsound(localclientnum, #"hash_5840ac12dd5f08cd", self.origin);
 	}
 }
 
 /*
 	Name: spinning_trap_eye_fx
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0x8B7427C7
 	Offset: 0x1120
 	Size: 0xBA
@@ -332,13 +332,13 @@ function spinning_trap_eye_fx(localclientnum, oldval, newval, bnewent, binitials
 	}
 	if(newval == 1)
 	{
-		self.n_spinning_trap_eye_fx = util::playfxontag(localclientnum, level._effect[#"hash_13b6f9efa3cf588a"], self, "tag_eye");
+		self.n_spinning_trap_eye_fx = util::playfxontag(localclientnum, level._effect[#"zombie_eye_trail"], self, "tag_eye");
 	}
 }
 
 /*
 	Name: rumble_spinning_trap
-	Namespace: namespace_652c3ad8
+	Namespace: zm_escape_traps
 	Checksum: 0xE309B0B6
 	Offset: 0x11E8
 	Size: 0xDE

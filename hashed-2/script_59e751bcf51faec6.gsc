@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_e6fa6527 : class_6aaccc24
+class cdeath_zone : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xF7D72CB5
 		Offset: 0x1D0
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_e6fa6527 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xC79BFFDF
 		Offset: 0x310
 		Size: 0x14
@@ -33,22 +33,22 @@ class class_e6fa6527 : class_6aaccc24
 	}
 
 	/*
-		Name: function_3820c524
-		Namespace: namespace_e6fa6527
+		Name: set_shutdown_sec
+		Namespace: cdeath_zone
 		Checksum: 0xED54BADF
 		Offset: 0x2C8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_3820c524(player, value)
+	function set_shutdown_sec(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "shutdown_sec", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0xDD1B2821
 		Offset: 0x298
 		Size: 0x24
@@ -57,12 +57,12 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0x37E43E6A
 		Offset: 0x248
 		Size: 0x44
@@ -71,12 +71,12 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "death_zone", persistent);
+		cLUIelem::open_luielem(player, "death_zone", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_e6fa6527
+		Namespace: cdeath_zone
 		Checksum: 0x9B8B17F5
 		Offset: 0x1F0
 		Size: 0x4C
@@ -85,8 +85,8 @@ class class_e6fa6527 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("shutdown_sec", 1, 9, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("shutdown_sec", 1, 9, "int");
 	}
 
 }
@@ -104,7 +104,7 @@ class class_e6fa6527 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_e6fa6527();
+	elem = new cdeath_zone();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -152,7 +152,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_3820c524
+	Name: set_shutdown_sec
 	Namespace: death_zone
 	Checksum: 0x96214F6A
 	Offset: 0x1A0
@@ -160,8 +160,8 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_3820c524(player, value)
+function set_shutdown_sec(player, value)
 {
-	[[ self ]]->function_3820c524(player, value);
+	[[ self ]]->set_shutdown_sec(player, value);
 }
 

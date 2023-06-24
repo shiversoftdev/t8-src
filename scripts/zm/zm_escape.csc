@@ -1,28 +1,28 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_11c9779550732489;
-#using script_1611421ee9b880d3;
-#using script_1de1583a62cc580f;
+#using scripts\zm_common\zm_wallbuy.csc;
+#using scripts\zm\weapons\zm_weap_cymbal_monkey.csc;
 #using script_20bca15cf8b82d6b;
-#using script_23037fdea02db280;
-#using script_27ba6748d83412fd;
+#using scripts\zm\weapons\zm_weap_gravityspikes.csc;
+#using scripts\zm_common\zm_fasttravel.csc;
 #using script_28d5e820ed15e2a7;
-#using script_2c454d63a96d2d0b;
-#using script_3619535866efa23a;
-#using script_3a10f19f96036e97;
+#using scripts\zm_common\zm_characters.csc;
+#using scripts\zm\weapons\zm_weap_minigun.csc;
+#using scripts\zm\weapons\zm_weap_flamethrower.csc;
 #using script_3c345dd878d144b7;
-#using script_3d09dc1e349814c;
+#using scripts\zm_common\trials\zm_trial_door_lockdown.csc;
 #using script_43de70169069c6ab;
 #using script_4f8f41168a7c3ea8;
 #using script_5db30ea2f37108d;
-#using script_5e109f38777fc309;
+#using scripts\zm\weapons\zm_weap_blundergat.csc;
 #using script_5fb8da2731850d9e;
-#using script_67051bc8c81031aa;
+#using scripts\zm\weapons\zm_weap_riotshield.csc;
 #using script_673ffe64518b7ffb;
 #using script_675455e5e6c0c5ad;
-#using script_6a0e50bc15d725a9;
+#using scripts\zm\weapons\zm_weap_spectral_shield.csc;
 #using script_711bbbba637da80;
-#using script_76b36ed1b7a51ed2;
-#using script_784bc1aee23dbf1f;
+#using scripts\zm_common\zm_ui_inventory.csc;
+#using scripts\zm\weapons\zm_weap_katana.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\exploder_shared.csc;
 #using scripts\core_common\struct.csc;
@@ -54,11 +54,11 @@ function autoexec opt_in()
 {
 	level.aat_in_use = 1;
 	level.bgb_in_use = 1;
-	system::ignore(#"hash_746f7956b9307f72");
-	system::ignore(#"hash_1b45fa71df7a015f");
-	system::ignore(#"hash_2aa13876578b1f89");
-	system::ignore(#"hash_19637d14ae86b4ec");
-	system::ignore(#"hash_2c7981ab6ce5ed74");
+	system::ignore(#"zm_weap_chakram");
+	system::ignore(#"zm_weap_hammer");
+	system::ignore(#"zm_weap_scepter");
+	system::ignore(#"zm_weap_sword_pistol");
+	system::ignore(#"zm_weap_homunculus");
 }
 
 /*
@@ -81,11 +81,11 @@ event main(eventstruct)
 	clientfield::register("world", "" + #"hash_29fea4571b8649a0", 1, 1, "int", &function_d8b90aba, 0, 0);
 	clientfield::register("world", "" + #"hash_cd028842e18845e", 1, 1, "counter", &function_a104a4cb, 0, 0);
 	clientfield::register("allplayers", "" + #"hash_500a87b29014ef02", 1, 1, "int", &function_5e901c8c, 0, 1);
-	clientfield::register("toplayer", "" + #"hash_237e298fc7414687", 1, 1, "int", &function_b06125f0, 0, 1);
-	clientfield::register("vehicle", "" + #"hash_4fe04b8fa56a05c6", 1, 1, "int", &function_4b10227f, 0, 1);
+	clientfield::register("toplayer", "" + #"player_pbg_bank", 1, 1, "int", &function_b06125f0, 0, 1);
+	clientfield::register("vehicle", "" + #"gondola_light", 1, 1, "int", &gondola_light, 0, 1);
 	namespace_f2502da8::init_clientfields();
 	namespace_9d58c1cd::init_clientfields();
-	namespace_54386dac::init_clientfields();
+	zm_escape_util::init_clientfields();
 	namespace_69ddf44f::init();
 	namespace_1063645::init_clientfields();
 	namespace_b99141ed::init_clientfields();
@@ -96,7 +96,7 @@ event main(eventstruct)
 	level._effect[#"animscript_gibtrail_fx"] = #"blood/fx_blood_gib_limb_trail";
 	level._effect[#"hash_4d2e5c87bde94856"] = #"hash_4948d849a833ddd5";
 	level._effect[#"hash_6dcb1f6ae15079d5"] = #"hash_52f9d9bb5648c0f3";
-	level._effect[#"hash_4fe04b8fa56a05c6"] = #"hash_45dbe6888cf8a19c";
+	level._effect[#"gondola_light"] = #"hash_45dbe6888cf8a19c";
 	namespace_f2502da8::init_fx();
 	level._uses_default_wallbuy_fx = 1;
 	level._uses_sticky_grenades = 1;
@@ -105,7 +105,7 @@ event main(eventstruct)
 	level._effect[#"hash_2bba72fdcc5508b5"] = #"hash_2ac7ec38d265c496";
 	level._effect[#"chest_light_closed"] = #"hash_5b118cefec864e37";
 	level._effect[#"hash_9d26763cbe16490"] = #"hash_5a9159bef624d260";
-	level._effect[#"hash_3f4d31da2ef72dbe"] = #"hash_2b008afec3e70add";
+	level._effect[#"magic_box_leave"] = #"hash_2b008afec3e70add";
 	level._effect[#"switch_sparks"] = #"hash_26f37488feec03c3";
 	level.var_5603a802 = "pstfx_zm_hellhole";
 	namespace_9d58c1cd::init();
@@ -114,7 +114,7 @@ event main(eventstruct)
 	level thread setup_personality_character_exerts();
 	exploder::exploder("lgt_vending_mulekick_on");
 	util::waitforclient(0);
-	level thread function_9290b227();
+	level thread startzmbspawnersoundloops();
 }
 
 /*
@@ -376,7 +376,7 @@ function function_b06125f0(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_9290b227
+	Name: startzmbspawnersoundloops
 	Namespace: zm_escape
 	Checksum: 0x12ECE5EF
 	Offset: 0x1608
@@ -384,7 +384,7 @@ function function_b06125f0(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 0
 	Flags: Linked
 */
-function function_9290b227()
+function startzmbspawnersoundloops()
 {
 	wait(2);
 	loopers = struct::get_array("spawn_location", "script_noteworthy");
@@ -505,7 +505,7 @@ function setup_personality_character_exerts()
 }
 
 /*
-	Name: function_4b10227f
+	Name: gondola_light
 	Namespace: zm_escape
 	Checksum: 0xE00E6FE1
 	Offset: 0x1BA0
@@ -513,8 +513,8 @@ function setup_personality_character_exerts()
 	Parameters: 7
 	Flags: Linked
 */
-function function_4b10227f(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
+function gondola_light(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwasdemojump)
 {
-	self.var_c4c53839 = util::playfxontag(localclientnum, level._effect[#"hash_4fe04b8fa56a05c6"], self, "tag_origin");
+	self.var_c4c53839 = util::playfxontag(localclientnum, level._effect[#"gondola_light"], self, "tag_origin");
 }
 

@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2c74a7b5eea1ec89;
-#using script_383a3b1bb18ba876;
-#using script_3fda550bc6e1089a;
-#using script_68d2ee1489345a1d;
+#using scripts\killstreaks\killstreak_bundles.gsc;
+#using scripts\killstreaks\killstreakrules_shared.gsc;
+#using scripts\killstreaks\helicopter_shared.gsc;
+#using scripts\killstreaks\killstreaks_util.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flagsys_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
@@ -36,18 +36,18 @@ function init_shared()
 	Parameters: 2
 	Flags: Linked
 */
-function function_8806675d(var_117bb375, activatefunc)
+function function_8806675d(ksweap, activatefunc)
 {
 	if(!isdefined(level.var_d2c88dc5))
 	{
 		level.var_d2c88dc5 = [];
 	}
-	else if(isdefined(level.var_d2c88dc5[var_117bb375]))
+	else if(isdefined(level.var_d2c88dc5[ksweap]))
 	{
 		return;
 	}
-	level.var_d2c88dc5[var_117bb375] = activatefunc;
-	level.var_d2c88dc5["inventory_" + var_117bb375] = activatefunc;
+	level.var_d2c88dc5[ksweap] = activatefunc;
+	level.var_d2c88dc5["inventory_" + ksweap] = activatefunc;
 }
 
 /*
@@ -390,7 +390,7 @@ function function_ef6c4a46(killstreak_id, trigger_event, supplydropweapon, conte
 				ksbundle = killstreak_bundles::get_bundle(context);
 				if(isdefined(ksbundle))
 				{
-					context.time = ksbundle.var_1a58d0e4;
+					context.time = ksbundle.kstime;
 					context.fx_name = ksbundle.var_3af79d7e;
 				}
 				var_ca7e0817 = player.markerposition;
@@ -502,13 +502,13 @@ function function_d5ca3f62(player)
 	{
 		return;
 	}
-	player notify(#"hash_50b80d70e12fbb51");
+	player notify(#"strobe_marked");
 	if(!isdefined(self))
 	{
 		return;
 	}
 	self function_2cbae477();
-	player waittilltimeout(90, #"hash_50b80d70e12fbb51", #"hash_6736343f5a9c98f2", #"hash_d843795c594bf0e", #"disconnect");
+	player waittilltimeout(90, #"strobe_marked", #"payload_delivered", #"payload_fail", #"disconnect");
 	if(!isdefined(self))
 	{
 		return;
@@ -526,7 +526,7 @@ function function_d5ca3f62(player)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_2cbae477(var_babebdbc = #"hash_2742656099567e1e", var_76361c1a = "tag_flash")
+function private function_2cbae477(var_babebdbc = #"weapon/fx8_equip_swat_smk_signal", var_76361c1a = "tag_flash")
 {
 	playfxontag(var_babebdbc, self, var_76361c1a);
 	self playsound(#"hash_6c91edfde8408dad");
@@ -566,11 +566,11 @@ function private function_f61c0c1(timeout)
 {
 	if(isdefined(timeout))
 	{
-		self waittilltimeout(timeout, #"death", #"hash_28674b59b141c8d5");
+		self waittilltimeout(timeout, #"death", #"strobe_stop");
 	}
 	else
 	{
-		self waittill(#"death", #"hash_28674b59b141c8d5");
+		self waittill(#"death", #"strobe_stop");
 	}
 	if(!isdefined(self))
 	{

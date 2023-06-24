@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1611421ee9b880d3;
-#using script_4321c2f1193f3097;
-#using script_43808e214c232a5c;
-#using script_52f584056ffc5d28;
-#using script_5eca3e484e3a306f;
-#using script_709bf7c56eb65adf;
+#using scripts\zm_common\zm_wallbuy.csc;
+#using scripts\zm\weapons\zm_weap_scepter.csc;
+#using scripts\zm\weapons\zm_weap_chakram.csc;
+#using scripts\zm\weapons\zm_weap_sword_pistol.csc;
+#using scripts\zm\weapons\zm_weap_hammer.csc;
+#using scripts\zm_common\zm_loadout.csc;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\flag_shared.csc;
@@ -16,7 +16,7 @@
 #namespace zm_weapons;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_weapons
 	Checksum: 0x190E002C
 	Offset: 0x108
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_weapons", &__init__, &__main__, undefined);
 }
@@ -84,7 +84,7 @@ function private on_player_connect(localclientnum)
 	}
 	resetweaponcosts(localclientnum);
 	level flag::wait_till("weapon_table_loaded");
-	if(getgametypesetting(#"hash_51a2cf319e12d9ae"))
+	if(getgametypesetting(#"zmwallbuysenabled"))
 	{
 		level flag::wait_till("weapon_wallbuys_created");
 	}
@@ -96,13 +96,13 @@ function private on_player_connect(localclientnum)
 			setweaponcosts(localclientnum, weaponcost.weapon, weaponcost.cost, weaponcost.ammo_cost, player_cost, weaponcost.upgradedweapon);
 			if(isdefined(level.var_5a069e6[weaponcost.weapon]))
 			{
-				var_cc9f95c9 = level.var_5a069e6[weaponcost.weapon];
+				w_dw = level.var_5a069e6[weaponcost.weapon];
 				var_8afe76d1 = level.var_5a069e6[weaponcost.upgradedweapon];
 				if(!isdefined(var_8afe76d1))
 				{
 					var_8afe76d1 = level.weaponnone;
 				}
-				setweaponcosts(localclientnum, var_cc9f95c9, weaponcost.cost, weaponcost.ammo_cost, player_cost, var_8afe76d1);
+				setweaponcosts(localclientnum, w_dw, weaponcost.cost, weaponcost.ammo_cost, player_cost, var_8afe76d1);
 			}
 		}
 	}
@@ -348,7 +348,7 @@ function init_weapons()
 */
 function load_weapon_spec_from_table(table, first_row)
 {
-	gametype = util::function_5df4294();
+	gametype = util::get_game_type();
 	index = first_row;
 	row = tablelookuprow(table, index);
 	while(isdefined(row))
@@ -415,10 +415,10 @@ function function_ec38915a()
 	{
 		level.var_44e0d625 = [];
 	}
-	function_8005e7f3(getweapon(#"smg_handling_t8"), getweapon(#"hash_1b055fadc5573c29"));
-	function_8005e7f3(getweapon(#"hash_514128f7d058cde0"), getweapon(#"hash_3b34bf98ebd70d14"));
+	function_8005e7f3(getweapon(#"smg_handling_t8"), getweapon(#"smg_handling_t8_dw"));
+	function_8005e7f3(getweapon(#"smg_handling_t8_upgraded"), getweapon(#"smg_handling_t8_upgraded_dw"));
 	function_8005e7f3(getweapon(#"special_ballisticknife_t8_dw"), getweapon(#"special_ballisticknife_t8_dw_dw"));
-	function_8005e7f3(getweapon(#"hash_3882e337d28ec4df"), getweapon(#"special_ballisticknife_t8_dw_upgraded_dw"));
+	function_8005e7f3(getweapon(#"special_ballisticknife_t8_dw_upgraded"), getweapon(#"special_ballisticknife_t8_dw_upgraded_dw"));
 }
 
 /*

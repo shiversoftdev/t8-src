@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2afa753925b20cc0;
-#using script_3f9e0dc8454d98e1;
+#using scripts\zm\ai\zm_ai_brutus.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using script_41fe08c37d53a635;
-#using script_467027ea7017462b;
-#using script_4d000493c57bb851;
-#using script_4ee0ccb42a9d88f5;
-#using script_5660bae5b402a1eb;
+#using scripts\zm_common\zm_items.gsc;
+#using scripts\zm_common\zm_crafting.gsc;
+#using scripts\core_common\ai\archetype_brutus.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
@@ -28,25 +28,25 @@
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_961cf978;
+#namespace zombie_brutus_util;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_961cf978
+	Name: __init__system__
+	Namespace: zombie_brutus_util
 	Checksum: 0x64D26825
 	Offset: 0x2D8
 	Size: 0x54
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_722ef8a2296d547e", &__init__, &__main__, #"zm_ai_brutus");
+	system::register(#"zombie_brutus_util", &__init__, &__main__, #"zm_ai_brutus");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x153B769E
 	Offset: 0x338
 	Size: 0xC4
@@ -72,7 +72,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x47905BBC
 	Offset: 0x408
 	Size: 0x1C
@@ -86,7 +86,7 @@ function __main__()
 
 /*
 	Name: enable_brutus
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x8A53CA4D
 	Offset: 0x430
 	Size: 0x346
@@ -150,7 +150,7 @@ function enable_brutus()
 
 /*
 	Name: brutus_prespawn
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x80F724D1
 	Offset: 0x780
 	Size: 0x4
@@ -163,7 +163,7 @@ function brutus_prespawn()
 
 /*
 	Name: brutus_spawning_logic
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x45AE6285
 	Offset: 0x790
 	Size: 0x2A0
@@ -215,7 +215,7 @@ function brutus_spawning_logic()
 
 /*
 	Name: function_f332f2b7
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x321D4C2C
 	Offset: 0xA38
 	Size: 0x1F0
@@ -259,7 +259,7 @@ function private function_f332f2b7(n_spawn, str_zone_name, var_dde9ff11, var_68f
 
 /*
 	Name: zombie_setup_attack_properties
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x5C9A01AC
 	Offset: 0xC30
 	Size: 0x5E
@@ -268,7 +268,7 @@ function private function_f332f2b7(n_spawn, str_zone_name, var_dde9ff11, var_68f
 */
 function zombie_setup_attack_properties()
 {
-	self val::reset(#"hash_62fca810699077f3", "ignoreall");
+	self val::reset(#"attack_properties", "ignoreall");
 	self.meleeattackdist = 64;
 	self.maxsightdistsqrd = 16384;
 	self.disablearrivals = 1;
@@ -277,7 +277,7 @@ function zombie_setup_attack_properties()
 
 /*
 	Name: brutus_spawn
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x8610BDF6
 	Offset: 0xC98
 	Size: 0x5CE
@@ -391,7 +391,7 @@ function brutus_spawn(starting_health, has_helmet, helmet_hits, explosive_dmg_ta
 
 /*
 	Name: get_best_brutus_spawn_pos
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x7A8F6248
 	Offset: 0x1270
 	Size: 0x18C
@@ -419,8 +419,8 @@ function get_best_brutus_spawn_pos(zone_name)
 		{
 			var_2a291abf = 412;
 		}
-		var_8ee30071 = arraygetclosest(level.var_57d61da9[i].origin, level.players, var_2a291abf);
-		if(isdefined(var_8ee30071))
+		e_player_closest = arraygetclosest(level.var_57d61da9[i].origin, level.players, var_2a291abf);
+		if(isdefined(e_player_closest))
 		{
 			continue;
 		}
@@ -440,7 +440,7 @@ function get_best_brutus_spawn_pos(zone_name)
 
 /*
 	Name: get_brutus_spawn_pos_val
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xBE50AEF8
 	Offset: 0x1408
 	Size: 0x198
@@ -479,7 +479,7 @@ function get_brutus_spawn_pos_val(brutus_pos)
 
 /*
 	Name: brutus_spawn_prologue
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x59CF2594
 	Offset: 0x15A8
 	Size: 0x3A
@@ -494,7 +494,7 @@ function brutus_spawn_prologue(spawn_pos)
 
 /*
 	Name: function_6340fe2
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xE4C22509
 	Offset: 0x15F0
 	Size: 0x7E
@@ -515,7 +515,7 @@ function function_6340fe2()
 
 /*
 	Name: enable_brutus_rounds
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xCD265544
 	Offset: 0x1678
 	Size: 0x44
@@ -531,7 +531,7 @@ function enable_brutus_rounds()
 
 /*
 	Name: brutus_round_tracker
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xFB7F8378
 	Offset: 0x16C8
 	Size: 0x2A2
@@ -587,7 +587,7 @@ function brutus_round_tracker()
 
 /*
 	Name: function_7265bed3
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xCF550378
 	Offset: 0x1978
 	Size: 0x76
@@ -616,7 +616,7 @@ function private function_7265bed3()
 
 /*
 	Name: brutus_round_spawn_failsafe_respawn
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xDD77D90B
 	Offset: 0x19F8
 	Size: 0x36
@@ -637,7 +637,7 @@ function brutus_round_spawn_failsafe_respawn()
 
 /*
 	Name: attempt_brutus_spawn
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x72929065
 	Offset: 0x1A38
 	Size: 0x13C
@@ -660,7 +660,7 @@ function attempt_brutus_spawn(n_spawn_num, str_zone_name, var_dde9ff11 = 0, var_
 
 /*
 	Name: function_5e4d2f31
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xAF2AD1EE
 	Offset: 0x1B80
 	Size: 0x20
@@ -675,7 +675,7 @@ function function_5e4d2f31()
 
 /*
 	Name: brutus_death
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xCFC8E1FF
 	Offset: 0x1BA8
 	Size: 0x806
@@ -692,7 +692,7 @@ function brutus_death()
 	}
 	s_result = undefined;
 	s_result = self waittill(#"death");
-	if(isdefined(s_result.weapon) && (s_result.weapon == getweapon(#"hash_19c157f2230454ad") || s_result.weapon == getweapon(#"hash_cb1cdb5b47f0226") || s_result.weapon == getweapon(#"hash_23882a5729dceca") || s_result.weapon == getweapon(#"hash_1b5092cccdb3d65b") || s_result.weapon == getweapon(#"hash_25a13b6f6232a985") || s_result.weapon == getweapon(#"hash_4c157b1aeefae09e") || s_result.weapon == getweapon(#"hash_494f5501b3f8e1e9")) && isplayer(s_result.attacker))
+	if(isdefined(s_result.weapon) && (s_result.weapon == getweapon(#"ww_blundergat_t8") || s_result.weapon == getweapon(#"ww_blundergat_t8_upgraded") || s_result.weapon == getweapon(#"ww_blundergat_fire_t8") || s_result.weapon == getweapon(#"ww_blundergat_fire_t8_upgraded") || s_result.weapon == getweapon(#"ww_blundergat_acid_t8") || s_result.weapon == getweapon(#"ww_blundergat_acid_t8_upgraded") || s_result.weapon == getweapon(#"hash_494f5501b3f8e1e9")) && isplayer(s_result.attacker))
 	{
 		s_result.attacker notify(#"hash_2e36f5f4d9622bb3", {#weapon:s_result.weapon});
 	}
@@ -716,19 +716,19 @@ function brutus_death()
 	var_6e022a91 = zm_crafting::function_31d883d7();
 	foreach(var_6645c992 in var_6e022a91)
 	{
-		if(var_6645c992.var_54a97edd == getweapon(#"hash_42a45d43be3dba42"))
+		if(var_6645c992.var_54a97edd == getweapon(#"zhield_spectral_dw"))
 		{
 			var_1982af82 = 1;
 			break;
 		}
 	}
-	if(isdefined(level.var_d95bcda9[#"hash_1e5657f6a6f09389"]) && (!(isdefined(var_1982af82) && var_1982af82)))
+	if(isdefined(level.crafting_components[#"hash_1e5657f6a6f09389"]) && (!(isdefined(var_1982af82) && var_1982af82)))
 	{
-		var_1c01fdda = zm_crafting::function_4c2f8683(#"hash_1e5657f6a6f09389");
-		if(!zm_items::player_has(level.players[0], var_1c01fdda) && (!(isdefined(self.var_eebea220) && self.var_eebea220)) && !level flag::get("round_reset"))
+		w_component = zm_crafting::get_component(#"hash_1e5657f6a6f09389");
+		if(!zm_items::player_has(level.players[0], w_component) && (!(isdefined(self.var_eebea220) && self.var_eebea220)) && !level flag::get("round_reset"))
 		{
 			self.var_db8b3627 = 1;
-			self thread function_4621cb04(var_1c01fdda);
+			self thread function_4621cb04(w_component);
 		}
 	}
 	if(!(isdefined(self.var_db8b3627) && self.var_db8b3627))
@@ -780,23 +780,23 @@ function brutus_death()
 
 /*
 	Name: function_4621cb04
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x4BFE8379
 	Offset: 0x23B8
 	Size: 0x16C
 	Parameters: 1
 	Flags: Linked
 */
-function function_4621cb04(var_1c01fdda)
+function function_4621cb04(w_component)
 {
 	var_70f6878b = groundtrace(self.origin + vectorscale((0, 0, 1), 8), self.origin + (vectorscale((0, 0, -1), 100000)), 0, self)[#"position"];
-	mdl_key = util::spawn_model(var_1c01fdda.worldmodel, var_70f6878b + vectorscale((0, 0, 1), 36), self.angles);
+	mdl_key = util::spawn_model(w_component.worldmodel, var_70f6878b + vectorscale((0, 0, 1), 36), self.angles);
 	mdl_key endon(#"death");
-	var_9c95ad05 = zm_items::spawn_item(var_1c01fdda, var_70f6878b + vectorscale((0, 0, 1), 12), self.angles);
-	var_9c95ad05 ghost();
-	mdl_key thread function_f57a7d55(var_9c95ad05);
-	mdl_key thread function_69740610(var_9c95ad05);
-	while(isdefined(var_9c95ad05))
+	w_item = zm_items::spawn_item(w_component, var_70f6878b + vectorscale((0, 0, 1), 12), self.angles);
+	w_item ghost();
+	mdl_key thread function_f57a7d55(w_item);
+	mdl_key thread function_69740610(w_item);
+	while(isdefined(w_item))
 	{
 		wait(0.25);
 	}
@@ -805,18 +805,18 @@ function function_4621cb04(var_1c01fdda)
 
 /*
 	Name: function_f57a7d55
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xEEAC69B5
 	Offset: 0x2530
 	Size: 0x168
 	Parameters: 1
 	Flags: Linked
 */
-function function_f57a7d55(var_9c95ad05)
+function function_f57a7d55(w_item)
 {
 	self endon(#"death");
 	self clientfield::set("powerup_fx", 2);
-	while(isdefined(var_9c95ad05))
+	while(isdefined(w_item))
 	{
 		waittime = randomfloatrange(2.5, 5);
 		yaw = math::clamp(randomint(360), 60, 300);
@@ -829,14 +829,14 @@ function function_f57a7d55(var_9c95ad05)
 
 /*
 	Name: function_69740610
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x7B95C8A7
 	Offset: 0x26A0
 	Size: 0x114
 	Parameters: 1
 	Flags: Linked
 */
-function function_69740610(var_9c95ad05)
+function function_69740610(w_item)
 {
 	self endon(#"death");
 	wait(15);
@@ -864,15 +864,15 @@ function function_69740610(var_9c95ad05)
 	}
 	self clientfield::set("powerup_grabbed_fx", 2);
 	util::wait_network_frame();
-	if(isdefined(var_9c95ad05))
+	if(isdefined(w_item))
 	{
-		var_9c95ad05 delete();
+		w_item delete();
 	}
 }
 
 /*
 	Name: brutus_cleanup
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x573003D4
 	Offset: 0x27C0
 	Size: 0xAA
@@ -901,7 +901,7 @@ function brutus_cleanup()
 
 /*
 	Name: brutus_cleanup_at_end_of_grief_round
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x784C918F
 	Offset: 0x2878
 	Size: 0x74
@@ -918,7 +918,7 @@ function brutus_cleanup_at_end_of_grief_round()
 
 /*
 	Name: wait_on_box_alarm
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xFC080F85
 	Offset: 0x28F8
 	Size: 0x196
@@ -970,7 +970,7 @@ function wait_on_box_alarm()
 
 /*
 	Name: check_perk_machine_valid
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x8C750A8C
 	Offset: 0x2A98
 	Size: 0xAC
@@ -996,7 +996,7 @@ function check_perk_machine_valid(player)
 
 /*
 	Name: check_craftable_table_valid
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x3D3E54D5
 	Offset: 0x2B50
 	Size: 0x194
@@ -1033,7 +1033,7 @@ function check_craftable_table_valid(player)
 
 /*
 	Name: brutus_check_zone
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x1BAE3B10
 	Offset: 0x2CF0
 	Size: 0x154
@@ -1069,7 +1069,7 @@ function brutus_check_zone()
 
 /*
 	Name: brutus_watch_enemy
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x82564694
 	Offset: 0x2E50
 	Size: 0xB0
@@ -1096,7 +1096,7 @@ function brutus_watch_enemy()
 
 /*
 	Name: function_9a78baba
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xE198FE0
 	Offset: 0x2F08
 	Size: 0x11E
@@ -1131,7 +1131,7 @@ function private function_9a78baba(var_1cc3df76)
 
 /*
 	Name: brutus_lockdown_client_effects
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xEB6C131C
 	Offset: 0x3030
 	Size: 0xA4
@@ -1159,7 +1159,7 @@ function brutus_lockdown_client_effects(delay)
 
 /*
 	Name: function_61263ebc
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x4106727E
 	Offset: 0x30E0
 	Size: 0xAE
@@ -1182,7 +1182,7 @@ function private function_61263ebc()
 
 /*
 	Name: function_b02aec83
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xB0A05BAD
 	Offset: 0x3198
 	Size: 0xB0
@@ -1191,7 +1191,7 @@ function private function_61263ebc()
 */
 function function_b02aec83()
 {
-	self endon(#"death", #"brutus_cleanup", #"hash_1b66eece3c394df8");
+	self endon(#"death", #"brutus_cleanup", #"ignore_cleanup");
 	while(true)
 	{
 		if(isdefined(self.favoriteenemy))
@@ -1213,21 +1213,21 @@ function function_b02aec83()
 
 /*
 	Name: function_ba497d2d
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x1DD2FD09
 	Offset: 0x3250
 	Size: 0x274
 	Parameters: 1
 	Flags: Linked
 */
-function function_ba497d2d(var_de86a1af)
+function function_ba497d2d(e_brutus)
 {
 	self endon(#"end_game");
-	var_de86a1af clientfield::set("brutus_spawn_clientfield", 0);
+	e_brutus clientfield::set("brutus_spawn_clientfield", 0);
 	waitframe(1);
-	if(isdefined(var_de86a1af) && isalive(var_de86a1af))
+	if(isdefined(e_brutus) && isalive(e_brutus))
 	{
-		var_1a8c05ae = {#hash_72275733:var_de86a1af.explosive_dmg_taken, #hash_1e1ce722:var_de86a1af.helmet_hits, #hash_37d3fab9:var_de86a1af.has_helmet, #n_health:var_de86a1af.health};
+		var_1a8c05ae = {#hash_72275733:e_brutus.explosive_dmg_taken, #hash_1e1ce722:e_brutus.helmet_hits, #hash_37d3fab9:e_brutus.has_helmet, #n_health:e_brutus.health};
 		if(!isdefined(level.var_f158b05c))
 		{
 			level.var_f158b05c = [];
@@ -1237,19 +1237,19 @@ function function_ba497d2d(var_de86a1af)
 			level.var_f158b05c = array(level.var_f158b05c);
 		}
 		level.var_f158b05c[level.var_f158b05c.size] = var_1a8c05ae;
-		var_de86a1af notify(#"zombie_delete");
-		var_de86a1af notify(#"brutus_cleanup");
-		var_de86a1af delete();
+		e_brutus notify(#"zombie_delete");
+		e_brutus notify(#"brutus_cleanup");
+		e_brutus delete();
 	}
-	var_103768a7 = 0;
-	while(!var_103768a7)
+	found_target = 0;
+	while(!found_target)
 	{
 		var_1cc3df76 = util::get_active_players();
 		foreach(e_target in var_1cc3df76)
 		{
 			if(zombie_utility::is_player_valid(e_target, 1))
 			{
-				var_103768a7 = 1;
+				found_target = 1;
 				break;
 			}
 		}
@@ -1260,7 +1260,7 @@ function function_ba497d2d(var_de86a1af)
 
 /*
 	Name: function_9398e511
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x3FB5167F
 	Offset: 0x34D0
 	Size: 0x6C
@@ -1280,7 +1280,7 @@ function private function_9398e511()
 
 /*
 	Name: function_60f8374c
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xBD2ED08D
 	Offset: 0x3548
 	Size: 0x44
@@ -1297,7 +1297,7 @@ function function_60f8374c()
 
 /*
 	Name: function_2e0d129b
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x1D49B56B
 	Offset: 0x3598
 	Size: 0x72

@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_35598499769dbb3d;
 #using script_3aa0f32b70d4f7cb;
-#using script_3f9e0dc8454d98e1;
-#using script_57f7003580bb15e0;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\status_effects\status_effect_util.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\spawner_shared.gsc;
@@ -13,7 +13,7 @@
 #namespace namespace_3b9dec72;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_3b9dec72
 	Checksum: 0x87E32590
 	Offset: 0x120
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_56850a719f90825a", &__init__, &__main__, undefined);
 }
@@ -41,7 +41,7 @@ function __init__()
 	/#
 		assert(isscriptfunctionptr(&function_b4b7cd20));
 	#/
-	behaviortreenetworkutility::registerbehaviortreescriptapi(#"hash_52d4464152a75fb9", &function_b4b7cd20);
+	behaviortreenetworkutility::registerbehaviortreescriptapi(#"ispablo", &function_b4b7cd20);
 	/#
 		zm_devgui::function_c7dd7a17("");
 		adddebugcommand("");

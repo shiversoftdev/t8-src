@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_44e9a2c5 : class_6aaccc24
+class czm_towers_crowd_meter : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x285461F9
 		Offset: 0x210
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x48AE58D6
 		Offset: 0x6C0
 		Size: 0x14
@@ -34,7 +34,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: set_visible
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x1D96674C
 		Offset: 0x678
 		Size: 0x3C
@@ -48,7 +48,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: set_state
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x66E966A6
 		Offset: 0x330
 		Size: 0x33C
@@ -150,7 +150,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x698353A9
 		Offset: 0x300
 		Size: 0x24
@@ -159,12 +159,12 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0xBBF27285
 		Offset: 0x2B0
 		Size: 0x44
@@ -173,12 +173,12 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_towers_crowd_meter", persistent);
+		cLUIelem::open_luielem(player, "zm_towers_crowd_meter", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x3687A054
 		Offset: 0x230
 		Size: 0x74
@@ -187,9 +187,9 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 4, "int");
-		namespace_6aaccc24::function_da693cbe("visible", 1, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 4, "int");
+		cLUIelem::function_da693cbe("visible", 1, 1, "int");
 	}
 
 }
@@ -207,7 +207,7 @@ class class_44e9a2c5 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_44e9a2c5();
+	elem = new czm_towers_crowd_meter();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

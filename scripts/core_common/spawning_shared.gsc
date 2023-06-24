@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5a63672f07149a55;
+#using scripts\weapons\tacticalinsertion.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -14,7 +14,7 @@
 #namespace spawning;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: spawning
 	Checksum: 0x23D53D98
 	Offset: 0x220
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"spawning_shared", &__init__, undefined, undefined);
 }
@@ -42,7 +42,7 @@ function __init__()
 	level.spawnprotectiontime = getgametypesetting(#"spawnprotectiontime");
 	level.spawnprotectiontimems = int(int((isdefined(level.spawnprotectiontime) ? level.spawnprotectiontime : 0) * 1000));
 	level.spawntraptriggertime = getgametypesetting(#"spawntraptriggertime");
-	level.var_f220c297 = getgametypesetting(#"hash_19400c3e10b77e6b");
+	level.deathcirclerespawn = getgametypesetting(#"deathcirclerespawn");
 	level.var_c2cc011f = getgametypesetting(#"hash_4bdd1bd86b610871");
 	level.players = [];
 	level.numplayerswaitingtoenterkillcam = 0;
@@ -198,12 +198,12 @@ function private init_spawn_system()
 	spawnsystem.ispawn_teammask_free = 1;
 	spawnsystem.ispawn_teammask[#"free"] = spawnsystem.ispawn_teammask_free;
 	spawnsystem.ispawn_teammask[#"neutral"] = spawnsystem.var_146943ea;
-	function_44c8af7f();
-	callback::add_callback(#"hash_79b2aab11c0a9902", &function_44c8af7f);
+	init_teams();
+	callback::add_callback(#"init_teams", &init_teams);
 }
 
 /*
-	Name: function_44c8af7f
+	Name: init_teams
 	Namespace: spawning
 	Checksum: 0x242C617
 	Offset: 0x958
@@ -211,7 +211,7 @@ function private init_spawn_system()
 	Parameters: 0
 	Flags: None
 */
-function function_44c8af7f()
+function init_teams()
 {
 	spawnsystem = level.spawnsystem;
 	all = spawnsystem.ispawn_teammask_free;
@@ -583,7 +583,7 @@ function onspawnplayer(predictedspawn = 0)
 */
 function private getspawnpoint(player_entity, predictedspawn = 0)
 {
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		point_team = "free";
 		influencer_team = player_entity.pers[#"team"];
@@ -1372,7 +1372,7 @@ function private function_8807475c()
 {
 	self.enabled = 1;
 	self.enabled = self.enabled && (!isdefined(self.trigger_enabled) || self.trigger_enabled);
-	self.enabled = self.enabled && (!isdefined(self.var_bb915a97) || self.var_bb915a97);
+	self.enabled = self.enabled && (!isdefined(self.filter_enabled) || self.filter_enabled);
 }
 
 /*

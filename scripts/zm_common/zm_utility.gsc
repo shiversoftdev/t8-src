@@ -1,15 +1,15 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_256b8879317373de;
-#using script_399c912938783695;
-#using script_3f9e0dc8454d98e1;
-#using script_5660bae5b402a1eb;
-#using script_56ca01b3b31455b5;
-#using script_5b18db57724ff7be;
-#using script_6021ce59143452c3;
-#using script_6ce38ab036223e6e;
-#using script_6e3c826b1814cab6;
-#using script_b52a163973f339f;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\zm_common\zm_maptable.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\abilities\ability_util.gsc;
+#using scripts\zm_common\zm_camos.gsc;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_characters.gsc;
 #using script_db06eb511bd9b36;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -46,7 +46,7 @@
 #namespace zm_utility;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_utility
 	Checksum: 0x805F5F09
 	Offset: 0x748
@@ -54,7 +54,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_utility", &__init__, &__main__, undefined);
 }
@@ -114,7 +114,7 @@ function init_utility()
 */
 function is_classic()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"zclassic")
 	{
 		return true;
@@ -133,7 +133,7 @@ function is_classic()
 */
 function is_standard()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"zstandard")
 	{
 		return true;
@@ -152,7 +152,7 @@ function is_standard()
 */
 function is_trials()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"ztrials" || level flag::exists(#"ztrial"))
 	{
 		return true;
@@ -171,7 +171,7 @@ function is_trials()
 */
 function is_tutorial()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"ztutorial")
 	{
 		return true;
@@ -190,7 +190,7 @@ function is_tutorial()
 */
 function is_grief()
 {
-	str_gametype = util::function_5df4294();
+	str_gametype = util::get_game_type();
 	if(str_gametype == #"zgrief")
 	{
 		return true;
@@ -239,7 +239,7 @@ function function_d6046228(var_67441581, var_756ee4e5, var_bcb9de3e, var_299ea95
 }
 
 /*
-	Name: function_90500af5
+	Name: get_cast
 	Namespace: zm_utility
 	Checksum: 0x40EDF07C
 	Offset: 0xB48
@@ -247,13 +247,13 @@ function function_d6046228(var_67441581, var_756ee4e5, var_bcb9de3e, var_299ea95
 	Parameters: 0
 	Flags: None
 */
-function function_90500af5()
+function get_cast()
 {
-	return namespace_cb7cafc3::function_90500af5();
+	return zm_maptable::get_cast();
 }
 
 /*
-	Name: function_166646a6
+	Name: get_story
 	Namespace: zm_utility
 	Checksum: 0x26ABA9D4
 	Offset: 0xB68
@@ -261,9 +261,9 @@ function function_90500af5()
 	Parameters: 0
 	Flags: Linked
 */
-function function_166646a6()
+function get_story()
 {
-	return namespace_cb7cafc3::function_166646a6();
+	return zm_maptable::get_story();
 }
 
 /*
@@ -1967,10 +1967,10 @@ function function_c52e1749(origin, players)
 	self.var_c6e0686b = undefined;
 	if(ispointonnavmesh(var_88e86621.origin, self))
 	{
-		var_f67d1ba2 = generatenavmeshpath(var_88e86621.origin, playerpositions, self);
-		if(isdefined(var_f67d1ba2) && var_f67d1ba2.status === "succeeded")
+		pathdata = generatenavmeshpath(var_88e86621.origin, playerpositions, self);
+		if(isdefined(pathdata) && pathdata.status === "succeeded")
 		{
-			goalpos = var_f67d1ba2.pathpoints[var_f67d1ba2.pathpoints.size - 1];
+			goalpos = pathdata.pathpoints[pathdata.pathpoints.size - 1];
 			if(getdvarint(#"hash_4477ab37a00b1492", 1) == 1)
 			{
 				position_info = arraygetclosest(goalpos, var_448ee423);
@@ -2006,7 +2006,7 @@ function function_c52e1749(origin, players)
 	self.last_closest_player = closestplayer;
 	if(isdefined(closestplayer))
 	{
-		self.var_c6e0686b = var_f67d1ba2.pathdistance * var_f67d1ba2.pathdistance;
+		self.var_c6e0686b = pathdata.pathdistance * pathdata.pathdistance;
 	}
 	self function_5dcc54a8(players);
 	return self.last_closest_player;
@@ -2059,9 +2059,9 @@ function get_closest_valid_player(origin, ignore_player = array(), var_b106b254 
 	}
 	if(isdefined(ignore_player))
 	{
-		foreach(var_7dfcc4b7 in ignore_player)
+		foreach(ignored_player in ignore_player)
 		{
-			arrayremovevalue(players, var_7dfcc4b7);
+			arrayremovevalue(players, ignored_player);
 		}
 	}
 	done = 0;
@@ -3643,7 +3643,7 @@ function get_current_zone(return_zone = 0)
 				var_3e5dca65 = self.last_valid_position;
 			}
 		}
-		self.var_3b65cdd7 = function_52c1730(var_3e5dca65, level.var_5f6d543e, 500);
+		self.var_3b65cdd7 = function_52c1730(var_3e5dca65, level.zone_nodes, 500);
 		if(isdefined(self.var_3b65cdd7))
 		{
 			if(node !== self.var_3b65cdd7 || (isdefined(node) && node.targetname !== self.var_3b65cdd7.targetname))
@@ -3651,7 +3651,7 @@ function get_current_zone(return_zone = 0)
 				self.cached_zone = level.zones[self.var_3b65cdd7.targetname];
 				self.cached_zone_name = self.cached_zone.name;
 				self.cached_zone_volume = undefined;
-				self notify(#"hash_2d4daa9e80b86b60", {#zone_name:self.cached_zone_name, #zone:self.cached_zone});
+				self notify(#"zone_change", {#zone_name:self.cached_zone_name, #zone:self.cached_zone});
 			}
 			if(return_zone)
 			{
@@ -3674,7 +3674,7 @@ function get_current_zone(return_zone = 0)
 						self.cached_zone_name = zone.name;
 						self.cached_zone_volume = i;
 						self.var_3b65cdd7 = undefined;
-						self notify(#"hash_2d4daa9e80b86b60", {#zone_name:zone.name, #zone:zone});
+						self notify(#"zone_change", {#zone_name:zone.name, #zone:zone});
 					}
 					if(isdefined(return_zone) && return_zone)
 					{
@@ -4409,11 +4409,11 @@ function function_e51dc2d8()
 	{
 		return false;
 	}
-	if(!getdvarint(#"hash_2992299f853b2039", 0))
+	if(!getdvarint(#"zm_ee_enabled", 0))
 	{
 		return false;
 	}
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_3c5363541b97ca3e"))
+	if(!zm_custom::function_901b751c(#"hash_3c5363541b97ca3e"))
 	{
 		return false;
 	}
@@ -5170,15 +5170,15 @@ function function_7a35b1d7(var_c857a96d)
 	Parameters: 2
 	Flags: None
 */
-function function_846eb7dd(var_ed5f6ed6, var_c857a96d)
+function function_846eb7dd(type_id, var_c857a96d)
 {
 	if(isplayer(self))
 	{
-		self luinotifyevent(var_ed5f6ed6, 2, var_c857a96d, self getentitynumber());
+		self luinotifyevent(type_id, 2, var_c857a96d, self getentitynumber());
 	}
 	else
 	{
-		luinotifyevent(var_ed5f6ed6, 1, var_c857a96d);
+		luinotifyevent(type_id, 1, var_c857a96d);
 	}
 }
 
@@ -5191,15 +5191,15 @@ function function_846eb7dd(var_ed5f6ed6, var_c857a96d)
 	Parameters: 2
 	Flags: Linked
 */
-function function_e64ac3b6(var_ed5f6ed6, var_c857a96d)
+function function_e64ac3b6(type_id, var_c857a96d)
 {
 	if(isplayer(self))
 	{
-		self luinotifyevent(#"hash_4e47c74793854333", 3, var_ed5f6ed6, var_c857a96d, self getentitynumber());
+		self luinotifyevent(#"zombie_special_notification", 3, type_id, var_c857a96d, self getentitynumber());
 	}
 	else
 	{
-		luinotifyevent(#"hash_4e47c74793854333", 2, var_ed5f6ed6, var_c857a96d);
+		luinotifyevent(#"zombie_special_notification", 2, type_id, var_c857a96d);
 	}
 }
 
@@ -5608,7 +5608,7 @@ function is_gametype_active(a_gametypes)
 	}
 	for(i = 0; i < a_gametypes.size; i++)
 	{
-		if(util::function_5df4294() == a_gametypes[i])
+		if(util::get_game_type() == a_gametypes[i])
 		{
 			b_is_gametype_active = 1;
 		}
@@ -5802,7 +5802,7 @@ function zombie_goto_round(n_target_round)
 	}
 	level.zombie_total = 0;
 	level.zombie_health = zombie_utility::ai_calculate_health(zombie_utility::function_d2dfacfd(#"zombie_health_start"), n_target_round);
-	namespace_a28acff3::set_round_number(n_target_round);
+	zm_round_logic::set_round_number(n_target_round);
 	zombies = zombie_utility::get_round_enemy_array();
 	if(isdefined(zombies))
 	{
@@ -5825,7 +5825,7 @@ function is_point_inside_enabled_zone(v_origin, ignore_zone)
 {
 	if(function_21f4ac36())
 	{
-		node = function_52c1730(v_origin, level.var_5f6d543e, 500);
+		node = function_52c1730(v_origin, level.zone_nodes, 500);
 		if(isdefined(node))
 		{
 			zone = level.zones[node.targetname];
@@ -6144,7 +6144,7 @@ function function_13cc9756()
 	while(true)
 	{
 		waitresult = undefined;
-		waitresult = self waittill(#"hash_2d4daa9e80b86b60");
+		waitresult = self waittill(#"zone_change");
 		if(isdefined(waitresult.zone))
 		{
 			self.inner_zigzag_radius = waitresult.zone.inner_zigzag_radius;
@@ -6474,7 +6474,7 @@ function function_ebb2f490()
 			var_dc69b88b = array(var_dc69b88b);
 		}
 		var_dc69b88b[var_dc69b88b.size] = zm_weapons::function_93cd8e76(var_5d22227d);
-		if(var_5d22227d.var_4d0c0f54 != level.weaponnone)
+		if(var_5d22227d.splitweapon != level.weaponnone)
 		{
 			if(!isdefined(var_dc69b88b))
 			{
@@ -6484,7 +6484,7 @@ function function_ebb2f490()
 			{
 				var_dc69b88b = array(var_dc69b88b);
 			}
-			var_dc69b88b[var_dc69b88b.size] = zm_weapons::function_93cd8e76(var_5d22227d.var_4d0c0f54);
+			var_dc69b88b[var_dc69b88b.size] = zm_weapons::function_93cd8e76(var_5d22227d.splitweapon);
 		}
 	}
 	return var_dc69b88b;
@@ -6541,7 +6541,7 @@ function function_28ee38f4(weapon, var_3a36e0dc, var_87f6ae5)
 			self.var_f6d3c3[var_3a36e0dc] = array(self.var_f6d3c3[var_3a36e0dc]);
 		}
 		self.var_f6d3c3[var_3a36e0dc][self.var_f6d3c3[var_3a36e0dc].size] = root_weapon;
-		if(root_weapon.var_4d0c0f54 !== level.weaponnone)
+		if(root_weapon.splitweapon !== level.weaponnone)
 		{
 			if(!isdefined(self.var_f6d3c3[var_3a36e0dc]))
 			{
@@ -6551,7 +6551,7 @@ function function_28ee38f4(weapon, var_3a36e0dc, var_87f6ae5)
 			{
 				self.var_f6d3c3[var_3a36e0dc] = array(self.var_f6d3c3[var_3a36e0dc]);
 			}
-			self.var_f6d3c3[var_3a36e0dc][self.var_f6d3c3[var_3a36e0dc].size] = root_weapon.var_4d0c0f54;
+			self.var_f6d3c3[var_3a36e0dc][self.var_f6d3c3[var_3a36e0dc].size] = root_weapon.splitweapon;
 		}
 		self thread function_13f40482();
 		if(var_87f6ae5)
@@ -6580,9 +6580,9 @@ function function_18ce0c8(weapon, var_3a36e0dc)
 		return;
 	}
 	self.var_f6d3c3[var_3a36e0dc] = array::exclude(self.var_f6d3c3[var_3a36e0dc], root_weapon);
-	if(root_weapon.var_4d0c0f54 != level.weaponnone)
+	if(root_weapon.splitweapon != level.weaponnone)
 	{
-		self.var_f6d3c3[var_3a36e0dc] = array::exclude(self.var_f6d3c3[var_3a36e0dc], root_weapon.var_4d0c0f54);
+		self.var_f6d3c3[var_3a36e0dc] = array::exclude(self.var_f6d3c3[var_3a36e0dc], root_weapon.splitweapon);
 	}
 }
 
@@ -6684,10 +6684,10 @@ function function_9ad5aeb1(var_a8d0b313 = 1, var_82ea43f2 = 1, b_hide_body = 0, 
 	else
 	{
 		var_72487f42 = var_b0e62e21[0];
-		var_413948c0 = var_b0e62e21[1];
+		n_hold = var_b0e62e21[1];
 		var_7012f1e9 = var_b0e62e21[2];
 		n_alpha = array(0.8, 1)[var_814b69d3];
-		level thread lui::screen_flash(var_72487f42, var_413948c0, var_7012f1e9, n_alpha, var_87c98387);
+		level thread lui::screen_flash(var_72487f42, n_hold, var_7012f1e9, n_alpha, var_87c98387);
 	}
 	foreach(ai in getaiteamarray(level.zombie_team))
 	{
@@ -6764,11 +6764,11 @@ function function_508f636d()
 */
 function function_850e7499(weapon, var_20c27a34 = 0)
 {
-	if(weapon === getweapon(#"hash_c78156ba6aeda14") || weapon === getweapon(#"hash_6cb687e3f8c569fd"))
+	if(weapon === getweapon(#"eq_wraith_fire") || weapon === getweapon(#"eq_wraith_fire_extra"))
 	{
 		return true;
 	}
-	if(var_20c27a34 && weapon === getweapon(#"hash_55a4aa4a1077e2cc"))
+	if(var_20c27a34 && weapon === getweapon(#"wraith_fire_fire"))
 	{
 		return true;
 	}
@@ -6786,7 +6786,7 @@ function function_850e7499(weapon, var_20c27a34 = 0)
 */
 function is_claymore(weapon)
 {
-	if(weapon === getweapon(#"claymore") || weapon === getweapon(#"hash_4a5efaceb780ecb0"))
+	if(weapon === getweapon(#"claymore") || weapon === getweapon(#"claymore_extra"))
 	{
 		return true;
 	}
@@ -6804,7 +6804,7 @@ function is_claymore(weapon)
 */
 function function_b797694c(weapon)
 {
-	if(weapon === getweapon(#"eq_acid_bomb") || weapon === getweapon(#"hash_246c869c9de45f07"))
+	if(weapon === getweapon(#"eq_acid_bomb") || weapon === getweapon(#"eq_acid_bomb_extra"))
 	{
 		return true;
 	}
@@ -6822,7 +6822,7 @@ function function_b797694c(weapon)
 */
 function is_frag_grenade(weapon)
 {
-	if(weapon === getweapon(#"hash_34b7eb9fde56bd35") || weapon === getweapon(#"hash_244eb1a096b12734"))
+	if(weapon === getweapon(#"eq_frag_grenade") || weapon === getweapon(#"eq_frag_grenade_extra"))
 	{
 		return true;
 	}

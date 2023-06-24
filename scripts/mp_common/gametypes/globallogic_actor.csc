@@ -9,7 +9,7 @@
 #namespace globallogic_actor;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic_actor
 	Checksum: 0x9888AFF3
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic_actor", &__init__, undefined, undefined);
 }

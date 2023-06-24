@@ -23,7 +23,7 @@ function init()
 			level.rat = spawnstruct();
 			level.rat.common = spawnstruct();
 			level.rat.script_command_list = [];
-			level.rat.var_e53a63ce = 0;
+			level.rat.playerskilled = 0;
 			level.rat.var_cd4fd549 = 0;
 			callback::on_player_killed(&function_cecf7c3d);
 			addratscriptcmd("", &function_5fd1a95b);
@@ -175,7 +175,7 @@ event codecallback_ratscriptcommand(params)
 }
 
 /*
-	Name: function_4337d833
+	Name: getplayer
 	Namespace: rat
 	Checksum: 0xA50A306C
 	Offset: 0x8F8
@@ -183,12 +183,12 @@ event codecallback_ratscriptcommand(params)
 	Parameters: 1
 	Flags: None
 */
-function function_4337d833(params)
+function getplayer(params)
 {
 	/#
-		if(isdefined(params.var_61e64cb8))
+		if(isdefined(params._xuid))
 		{
-			xuid = int(params.var_61e64cb8);
+			xuid = int(params._xuid);
 			foreach(player in getplayers())
 			{
 				if(!isdefined(player.bot))
@@ -241,7 +241,7 @@ function function_5fd1a95b(params)
 function function_7992a479(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		weapon = getweapon(params.weaponname);
 		player giveweapon(weapon);
 	#/
@@ -278,7 +278,7 @@ function function_1b77bedd(params)
 function rscteleport(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		pos = (float(params.x), float(params.y), float(params.z));
 		player setorigin(pos);
 		if(isdefined(params.ax))
@@ -301,7 +301,7 @@ function rscteleport(params)
 function function_696e6dd3(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		player setstance(params.stance);
 	#/
 }
@@ -318,7 +318,7 @@ function function_696e6dd3(params)
 function function_b2fe8b5a(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		return player getstance();
 	#/
 }
@@ -335,7 +335,7 @@ function function_b2fe8b5a(params)
 function function_cb62ece6(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		return player ismeleeing();
 	#/
 }
@@ -352,7 +352,7 @@ function function_cb62ece6(params)
 function function_bff535fb(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		return player playerads();
 	#/
 }
@@ -369,7 +369,7 @@ function function_bff535fb(params)
 function function_220d66d8(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		return player.health;
 	#/
 }
@@ -386,7 +386,7 @@ function function_220d66d8(params)
 function function_be6e2f9f(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		if(isdefined(params.amount))
 		{
 			player dodamage(int(params.amount), player getorigin());
@@ -410,7 +410,7 @@ function function_be6e2f9f(params)
 function function_ff0fa082(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		currentweapon = player getcurrentweapon();
 		if(isdefined(currentweapon.name))
 		{
@@ -431,7 +431,7 @@ function function_ff0fa082(params)
 function function_7d9a084b(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		currentweapon = player getcurrentweapon();
 		if(isdefined(currentweapon.name))
 		{
@@ -452,7 +452,7 @@ function function_7d9a084b(params)
 function function_aecb1023(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		currentweapon = player getcurrentweapon();
 		return player getammocount(currentweapon);
 	#/
@@ -470,7 +470,7 @@ function function_aecb1023(params)
 function function_90282828(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		currentweapon = player getcurrentweapon();
 		return player getweaponammoclip(currentweapon);
 	#/
@@ -488,9 +488,9 @@ function function_90282828(params)
 function function_3b51dc31(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		currentweapon = player getcurrentweapon();
-		return player function_f09c133d(currentweapon);
+		return player getweaponammoclipsize(currentweapon);
 	#/
 }
 
@@ -506,7 +506,7 @@ function function_3b51dc31(params)
 function function_54b7f226(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		origin = player getorigin();
 		function_55e20e75(params._id, origin);
 		angles = player getplayerangles();
@@ -552,7 +552,7 @@ function function_cecf7c3d()
 		}
 		else
 		{
-			level.rat.var_e53a63ce = level.rat.var_e53a63ce + 1;
+			level.rat.playerskilled = level.rat.playerskilled + 1;
 		}
 	#/
 }
@@ -569,7 +569,7 @@ function function_cecf7c3d()
 function function_d197a150(params)
 {
 	/#
-		return level.rat.var_e53a63ce;
+		return level.rat.playerskilled;
 	#/
 }
 
@@ -634,7 +634,7 @@ function function_51706559(params)
 function function_dec22d87(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		forward = anglestoforward(player.angles);
 		distance = 50;
 		if(isdefined(params.distance))
@@ -669,7 +669,7 @@ function function_dec22d87(params)
 function function_e3ab4393(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		forward = anglestoforward(player.angles);
 		distance = 50;
 		if(isdefined(params.distance))
@@ -706,7 +706,7 @@ function function_e3ab4393(params)
 function function_1ac5a32b(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		forward = anglestoforward(player.angles);
 		distance = 50;
 		if(isdefined(params.distance))
@@ -730,7 +730,7 @@ function function_1ac5a32b(params)
 function function_ccc178f3(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		return player isplayinganimscripted();
 	#/
 }
@@ -747,7 +747,7 @@ function function_ccc178f3(params)
 function function_6fb461e2(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		return !player arecontrolsfrozen();
 	#/
 }
@@ -985,7 +985,7 @@ function function_dbc9b57c(params)
 function function_458913b0(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		toggleplayercontrol(player);
 	#/
 }
@@ -1002,7 +1002,7 @@ function function_458913b0(params)
 function function_9efe300c(params)
 {
 	/#
-		player = function_4337d833(params);
+		player = getplayer(params);
 		spawn = 0;
 		team = "";
 		if(isdefined(params) && isdefined(params.spawn))

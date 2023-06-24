@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_e5d48e46 : class_6aaccc24
+class cscavenger_icon : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_e5d48e46
+		Namespace: cscavenger_icon
 		Checksum: 0x5A1F9D79
 		Offset: 0x1F0
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_e5d48e46 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_e5d48e46
+		Namespace: cscavenger_icon
 		Checksum: 0x38E5B514
 		Offset: 0x398
 		Size: 0x14
@@ -31,24 +31,24 @@ class class_e5d48e46 : class_6aaccc24
 	}
 
 	/*
-		Name: function_693a2be8
-		Namespace: namespace_e5d48e46
+		Name: increment_pulse
+		Namespace: cscavenger_icon
 		Checksum: 0xE043B1B9
 		Offset: 0x320
 		Size: 0x6C
 		Parameters: 1
 		Flags: Linked
 	*/
-	function function_693a2be8(localclientnum)
+	function increment_pulse(localclientnum)
 	{
-		current_val = [[ self ]]->function_92ba69fa(localclientnum, "pulse");
+		current_val = [[ self ]]->get_data(localclientnum, "pulse");
 		new_val = (current_val + 1) % 2;
-		[[ self ]]->function_d7d2fcce(localclientnum, "pulse", new_val);
+		[[ self ]]->set_data(localclientnum, "pulse", new_val);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_e5d48e46
+		Namespace: cscavenger_icon
 		Checksum: 0x62DCC94F
 		Offset: 0x2E8
 		Size: 0x2C
@@ -57,12 +57,12 @@ class class_e5d48e46 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"scavenger_icon");
+		cLUIelem::open(localclientnum, #"scavenger_icon");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_e5d48e46
+		Namespace: cscavenger_icon
 		Checksum: 0x8692CDA2
 		Offset: 0x2A0
 		Size: 0x40
@@ -71,13 +71,13 @@ class class_e5d48e46 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "pulse", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "pulse", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_e5d48e46
+		Namespace: cscavenger_icon
 		Checksum: 0x584E9E2C
 		Offset: 0x270
 		Size: 0x24
@@ -86,12 +86,12 @@ class class_e5d48e46 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_e5d48e46
+		Namespace: cscavenger_icon
 		Checksum: 0x28AD2964
 		Offset: 0x210
 		Size: 0x54
@@ -100,8 +100,8 @@ class class_e5d48e46 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_bea2552f)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("pulse", 1, 1, "counter", var_bea2552f);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("pulse", 1, 1, "counter", var_bea2552f);
 	}
 
 }
@@ -119,7 +119,7 @@ class class_e5d48e46 : class_6aaccc24
 */
 function register(uid, var_bea2552f)
 {
-	elem = new class_e5d48e46();
+	elem = new cscavenger_icon();
 	[[ elem ]]->setup_clientfields(uid, var_bea2552f);
 	return elem;
 }
@@ -135,7 +135,7 @@ function register(uid, var_bea2552f)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_e5d48e46();
+	elem = new cscavenger_icon();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -183,7 +183,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_693a2be8
+	Name: increment_pulse
 	Namespace: scavenger_icon
 	Checksum: 0xC168E99F
 	Offset: 0x1C8
@@ -191,8 +191,8 @@ function is_open(localclientnum)
 	Parameters: 1
 	Flags: None
 */
-function function_693a2be8(localclientnum)
+function increment_pulse(localclientnum)
 {
-	[[ self ]]->function_693a2be8(localclientnum);
+	[[ self ]]->increment_pulse(localclientnum);
 }
 

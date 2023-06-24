@@ -8,7 +8,7 @@
 #namespace oob;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: oob
 	Checksum: 0x8E7A412A
 	Offset: 0xF8
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"out_of_bounds", &__init__, undefined, undefined);
 }
@@ -39,7 +39,7 @@ function __init__()
 	}
 	else
 	{
-		if(function_f99d2668())
+		if(sessionmodeiswarzonegame())
 		{
 			level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 10000);
 			level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
@@ -117,11 +117,11 @@ function function_95c61f07(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval > 0)
 	{
-		self.var_f043b10a = 1;
+		self.nonplayeroobusage = 1;
 	}
 	else
 	{
-		self.var_f043b10a = undefined;
+		self.nonplayeroobusage = undefined;
 	}
 }
 
@@ -157,7 +157,7 @@ function onoutofboundschange(localclientnum, oldval, newval, bnewent, binitialsn
 			filter::init_filter_oob(localplayer);
 			filter::enable_filter_oob(localclientnum, 0);
 			localplayer.oob_effect_enabled = 1;
-			if(util::function_5df4294() === #"zstandard")
+			if(util::get_game_type() === #"zstandard")
 			{
 				level.oob_sound_ent[localclientnum] playloopsound(#"hash_6da7ae12f538ef5e", 0.5);
 			}
@@ -195,7 +195,7 @@ function onoutofboundschange(localclientnum, oldval, newval, bnewent, binitialsn
 			}
 			self.oob_active_duration = self.oob_active_duration + (self.oob_end_time - self.oob_start_time);
 		}
-		if(isdefined(self.var_f043b10a) && self.var_f043b10a)
+		if(isdefined(self.nonplayeroobusage) && self.nonplayeroobusage)
 		{
 			self.oob_active_duration = undefined;
 		}

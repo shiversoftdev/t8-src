@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
+#using scripts\zm_common\zm_loadout.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace namespace_8f0f0dc0;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_8f0f0dc0
 	Checksum: 0x174779B7
 	Offset: 0xD0
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_36f0f2f7d5c7cbfa", &__init__, undefined, undefined);
 }
@@ -67,8 +67,8 @@ function function_ba2049f5()
 {
 	level endon(#"end_game");
 	level flag::wait_till("magicbox_initialized");
-	var_db0e5dff = array::random(level.var_b1805d48);
-	zm_weapons::function_603af7a8(var_db0e5dff);
+	w_doll = array::random(level.var_b1805d48);
+	zm_weapons::function_603af7a8(w_doll);
 }
 
 /*

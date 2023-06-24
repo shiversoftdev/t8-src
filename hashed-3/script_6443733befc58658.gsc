@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_5da9076b8e4f6d28;
-#using script_68264f587357ea51;
+#using scripts\mp_common\item_world.csc;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\flagsys_shared.csc;
@@ -11,7 +11,7 @@
 #namespace namespace_3b8b8298;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_3b8b8298
 	Checksum: 0xBA11F2FE
 	Offset: 0xE0
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_4fb1e186fac435f4", &__init__, undefined, undefined);
 }
@@ -50,7 +50,7 @@ function __init__()
 */
 function private on_localclient_connect(localclientnum)
 {
-	if(isdefined(getgametypesetting(#"hash_2992e3d39d55b312")) && getgametypesetting(#"hash_2992e3d39d55b312"))
+	if(isdefined(getgametypesetting(#"wzspectrerising")) && getgametypesetting(#"wzspectrerising"))
 	{
 		level thread function_53d906fd(localclientnum);
 	}
@@ -81,7 +81,7 @@ function private function_53d906fd(localclientnum)
 					if(namespace_ad5a0cd6::function_2c7fc531(i))
 					{
 						point = function_b1702735(i);
-						if(isdefined(point) && isdefined(point.var_a6762160) && point.var_a6762160.name === #"hash_43aca7fcfd3e5949")
+						if(isdefined(point) && isdefined(point.var_a6762160) && point.var_a6762160.name === #"sig_blade_wz_item")
 						{
 							point function_6b5dfd6c(localclientnum, playfx, 0, i, player);
 						}
@@ -92,7 +92,7 @@ function private function_53d906fd(localclientnum)
 					}
 					else if(namespace_ad5a0cd6::function_da09de95(i))
 					{
-						if(isdefined(level.var_a4a4012e[i]) && isdefined(level.var_a4a4012e[i].var_a6762160) && level.var_a4a4012e[i].var_a6762160.name === #"hash_43aca7fcfd3e5949")
+						if(isdefined(level.var_a4a4012e[i]) && isdefined(level.var_a4a4012e[i].var_a6762160) && level.var_a4a4012e[i].var_a6762160.name === #"sig_blade_wz_item")
 						{
 							level.var_a4a4012e[i] function_6b5dfd6c(localclientnum, playfx, 1, i);
 						}

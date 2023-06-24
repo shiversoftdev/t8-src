@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_849c5d15 : class_6aaccc24
+class cinteractive_shot : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_849c5d15
+		Namespace: cinteractive_shot
 		Checksum: 0x340CDAD8
 		Offset: 0x1F8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_849c5d15 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_849c5d15
+		Namespace: cinteractive_shot
 		Checksum: 0x863349DE
 		Offset: 0x370
 		Size: 0x14
@@ -31,22 +31,22 @@ class class_849c5d15 : class_6aaccc24
 	}
 
 	/*
-		Name: function_d5ea17f0
-		Namespace: namespace_849c5d15
+		Name: set_text
+		Namespace: cinteractive_shot
 		Checksum: 0xE9B23DE4
 		Offset: 0x338
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_d5ea17f0(localclientnum, value)
+	function set_text(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "text", value);
+		[[ self ]]->set_data(localclientnum, "text", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_849c5d15
+		Namespace: cinteractive_shot
 		Checksum: 0x7DF4F754
 		Offset: 0x300
 		Size: 0x2C
@@ -55,12 +55,12 @@ class class_849c5d15 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"interactive_shot");
+		cLUIelem::open(localclientnum, #"interactive_shot");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_849c5d15
+		Namespace: cinteractive_shot
 		Checksum: 0x2DD4505B
 		Offset: 0x2A8
 		Size: 0x4C
@@ -69,13 +69,13 @@ class class_849c5d15 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "text", #"");
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "text", #"");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_849c5d15
+		Namespace: cinteractive_shot
 		Checksum: 0xF9634FF2
 		Offset: 0x278
 		Size: 0x24
@@ -84,12 +84,12 @@ class class_849c5d15 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_849c5d15
+		Namespace: cinteractive_shot
 		Checksum: 0x50EDB24E
 		Offset: 0x218
 		Size: 0x54
@@ -98,8 +98,8 @@ class class_849c5d15 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_f5852d69)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_dcb34c80("string", "text", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_dcb34c80("string", "text", 1);
 	}
 
 }
@@ -117,7 +117,7 @@ class class_849c5d15 : class_6aaccc24
 */
 function register(uid, var_f5852d69)
 {
-	elem = new class_849c5d15();
+	elem = new cinteractive_shot();
 	[[ elem ]]->setup_clientfields(uid, var_f5852d69);
 	return elem;
 }
@@ -133,7 +133,7 @@ function register(uid, var_f5852d69)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_849c5d15();
+	elem = new cinteractive_shot();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -181,7 +181,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_d5ea17f0
+	Name: set_text
 	Namespace: interactive_shot
 	Checksum: 0x2AC5D9C1
 	Offset: 0x1C8
@@ -189,8 +189,8 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_d5ea17f0(localclientnum, value)
+function set_text(localclientnum, value)
 {
-	[[ self ]]->function_d5ea17f0(localclientnum, value);
+	[[ self ]]->set_text(localclientnum, value);
 }
 

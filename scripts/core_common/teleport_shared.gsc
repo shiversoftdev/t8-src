@@ -83,7 +83,7 @@ function player(e_player, kvp, var_dad37549, var_b095575e = 0)
 	var_20212d26 = self function_e6615993(kvp, var_dad37549);
 	str_key = var_20212d26.str_key;
 	str_value = var_20212d26.str_value;
-	foreach(s_teleport in level.var_d941f923)
+	foreach(s_teleport in level.a_s_teleport_players)
 	{
 		if(s_teleport.(str_key) === str_value && (!(isdefined(s_teleport.b_used) && s_teleport.b_used)))
 		{
@@ -153,11 +153,11 @@ function function_ff8a7a3(kvp)
 */
 function private function_1d2a3300()
 {
-	if(!isdefined(level.var_d941f923))
+	if(!isdefined(level.a_s_teleport_players))
 	{
-		if(!isdefined(level.var_d941f923))
+		if(!isdefined(level.a_s_teleport_players))
 		{
-			level.var_d941f923 = struct::get_array("teleport_player", "variantname");
+			level.a_s_teleport_players = struct::get_array("teleport_player", "variantname");
 		}
 		if(!isdefined(level.var_c89d2304))
 		{
@@ -232,7 +232,7 @@ function private function_166effac(kvp, var_dad37549)
 	str_key = var_20212d26.str_key;
 	str_value = var_20212d26.str_value;
 	var_d7586d = [];
-	foreach(s_teleport_player in level.var_d941f923)
+	foreach(s_teleport_player in level.a_s_teleport_players)
 	{
 		if(s_teleport_player.(str_key) === str_value)
 		{

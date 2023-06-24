@@ -57,7 +57,7 @@ function private function_3aa023f1(name)
 	gibpiecelookup[32] = "leftarm";
 	gibpiecelookup[128] = "rightleg";
 	gibpiecelookup[256] = "leftleg";
-	var_90aba050 = [];
+	gibpieces = [];
 	foreach(gibflag, gibpiece in gibpiecelookup)
 	{
 		if(!isdefined(gibpiece))
@@ -76,10 +76,10 @@ function private function_3aa023f1(name)
 		gibstruct.gibcinematicfx = definition.(gibpiece + "_gibcinematicfx");
 		gibstruct.gibsound = definition.(gibpiece + "_gibsound");
 		gibstruct.gibhidetag = definition.(gibpiece + "_gibhidetag");
-		var_90aba050[gibflag] = gibstruct;
+		gibpieces[gibflag] = gibstruct;
 	}
-	level.var_ad0f5efa[name] = var_90aba050;
-	return var_90aba050;
+	level.var_ad0f5efa[name] = gibpieces;
+	return gibpieces;
 }
 
 /*
@@ -136,7 +136,7 @@ function private function_9fe14ca3(entity, gibflag)
 	gibpiecelookup = [];
 	gibpiecelookup[0] = "left";
 	gibpiecelookup[1] = "right";
-	var_90aba050 = [];
+	gibpieces = [];
 	foreach(side, gibpiece in gibpiecelookup)
 	{
 		if(!isdefined(gibpiece))
@@ -152,10 +152,10 @@ function private function_9fe14ca3(entity, gibflag)
 		gibstruct.gibcinematicfx = definition.(gibpiece + "_gibcinematicfx");
 		gibstruct.gibsound = definition.(gibpiece + "_gibsound");
 		gibstruct.gibhidetag = definition.(gibpiece + "_gibhidetag");
-		var_90aba050[side] = gibstruct;
+		gibpieces[side] = gibstruct;
 	}
-	level.var_ad0f5efa[name] = var_90aba050;
-	return var_90aba050;
+	level.var_ad0f5efa[name] = gibpieces;
+	return gibpieces;
 }
 
 /*
@@ -209,13 +209,13 @@ function private function_69db754(entity, gibflag)
 	}
 	if(isdefined(entity.gib_data))
 	{
-		var_90aba050 = function_3aa023f1(entity.gib_data.gibdef);
+		gibpieces = function_3aa023f1(entity.gib_data.gibdef);
 	}
 	else
 	{
-		var_90aba050 = function_3aa023f1(entity.gibdef);
+		gibpieces = function_3aa023f1(entity.gibdef);
 	}
-	return var_90aba050[gibflag];
+	return gibpieces[gibflag];
 }
 
 /*
@@ -461,7 +461,7 @@ function private _gibentity(localclientnum, gibflags, shouldspawngibs)
 	}
 	currentgibflag = 2;
 	gibdir = undefined;
-	var_8e57b530 = undefined;
+	gibdirscale = undefined;
 	if(isplayer(entity) || entity isplayercorpse())
 	{
 		yaw_bits = (gibflags >> 9) & (8 - 1);
@@ -506,7 +506,7 @@ function private _gibentity(localclientnum, gibflags, shouldspawngibs)
 					if(shouldspawngibs)
 					{
 						var_cd61eb7d = function_ba120c50(currentgibflag);
-						entity thread _gibpiece(localclientnum, entity, gibpiece.gibmodel, gibpiece.gibtag, gibpiece.gibdynentfx, gibdir, var_8e57b530, var_cd61eb7d);
+						entity thread _gibpiece(localclientnum, entity, gibpiece.gibmodel, gibpiece.gibtag, gibpiece.gibdynentfx, gibdir, gibdirscale, var_cd61eb7d);
 					}
 					_playgibfx(localclientnum, entity, gibpiece.gibfx, gibpiece.gibfxtag);
 					if(isdefined(gibpiece.gibcinematicfx))
@@ -677,7 +677,7 @@ function private _gibhandler(localclientnum, oldvalue, newvalue, bnewent, biniti
 	Parameters: 8
 	Flags: Linked
 */
-function _gibpiece(localclientnum, entity, gibmodel, gibtag, gibfx, gibdir, var_8e57b530, var_bf41adc0)
+function _gibpiece(localclientnum, entity, gibmodel, gibtag, gibfx, gibdir, gibdirscale, var_bf41adc0)
 {
 	if(!isdefined(gibtag) || !isdefined(gibmodel))
 	{
@@ -692,7 +692,7 @@ function _gibpiece(localclientnum, entity, gibmodel, gibtag, gibfx, gibdir, var_
 	{
 		return false;
 	}
-	if(isdefined(gibdir) && !isdefined(var_8e57b530))
+	if(isdefined(gibdir) && !isdefined(gibdirscale))
 	{
 		startposition = (0, 0, 0);
 		forwardvector = gibdir;
@@ -717,10 +717,10 @@ function _gibpiece(localclientnum, entity, gibmodel, gibtag, gibfx, gibdir, var_
 		}
 		scale = randomfloatrange(0.6, 1);
 		dir = (randomfloatrange(0, 0.2), randomfloatrange(0, 0.2), randomfloatrange(0.2, 0.7));
-		if(isdefined(gibdir) && isdefined(var_8e57b530) && var_8e57b530 > 0)
+		if(isdefined(gibdir) && isdefined(gibdirscale) && gibdirscale > 0)
 		{
 			dir = gibdir + dir;
-			scale = var_8e57b530;
+			scale = gibdirscale;
 		}
 		forwardvector = vectornormalize(endposition - startposition);
 		forwardvector = forwardvector * scale;

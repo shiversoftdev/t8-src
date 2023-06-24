@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14e569dd391faf67;
-#using script_1a0465ccc4a3ef61;
-#using script_3f9e0dc8454d98e1;
-#using script_71b31a94cdaeca53;
+#using scripts\zm\zm_office_teleporters.gsc;
+#using scripts\zm\zm_office_defcon.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm\zm_office_floors.gsc;
 #using script_db06eb511bd9b36;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -88,16 +88,16 @@ function function_7956439e(ai, target)
 */
 function function_4d58e688(e_poi)
 {
-	if(isdefined(level.elevator1.var_a231af57) && e_poi[1] istouching(level.var_83225f64[0]) && !self istouching(level.var_83225f64[0]))
+	if(isdefined(level.elevator1.moving_to) && e_poi[1] istouching(level.var_83225f64[0]) && !self istouching(level.var_83225f64[0]))
 	{
 		return false;
 	}
-	if(isdefined(level.elevator2.var_a231af57) && e_poi[1] istouching(level.var_83225f64[1]) && !self istouching(level.var_83225f64[1]))
+	if(isdefined(level.elevator2.moving_to) && e_poi[1] istouching(level.var_83225f64[1]) && !self istouching(level.var_83225f64[1]))
 	{
 		return false;
 	}
-	var_271de3da = namespace_47276bad::function_35babccd(e_poi[1]);
-	var_b2818507 = namespace_47276bad::function_35babccd(self);
+	var_271de3da = zm_office_floors::function_35babccd(e_poi[1]);
+	var_b2818507 = zm_office_floors::function_35babccd(self);
 	if(!isdefined(var_271de3da))
 	{
 		return false;
@@ -120,21 +120,21 @@ function function_4d58e688(e_poi)
 */
 function function_6c7d76d(e_player)
 {
-	if(isdefined(level.elevator1.var_a231af57) && e_player istouching(level.var_83225f64[0]) && !self istouching(level.var_83225f64[0]))
+	if(isdefined(level.elevator1.moving_to) && e_player istouching(level.var_83225f64[0]) && !self istouching(level.var_83225f64[0]))
 	{
 		return false;
 	}
-	if(isdefined(level.elevator2.var_a231af57) && e_player istouching(level.var_83225f64[1]) && !self istouching(level.var_83225f64[1]))
+	if(isdefined(level.elevator2.moving_to) && e_player istouching(level.var_83225f64[1]) && !self istouching(level.var_83225f64[1]))
 	{
 		return false;
 	}
-	var_5949c6af = namespace_47276bad::function_35babccd(e_player);
-	var_b2818507 = namespace_47276bad::function_35babccd(self);
+	var_5949c6af = zm_office_floors::function_35babccd(e_player);
+	var_b2818507 = zm_office_floors::function_35babccd(self);
 	if(!isdefined(var_5949c6af))
 	{
 		return false;
 	}
-	if(var_b2818507 != var_5949c6af && (var_b2818507 == 4 || var_5949c6af == 4 || !level flag::get(#"hash_53a41180dac96fff")))
+	if(var_b2818507 != var_5949c6af && (var_b2818507 == 4 || var_5949c6af == 4 || !level flag::get(#"portals_active")))
 	{
 		return false;
 	}
@@ -155,15 +155,15 @@ function private function_1969a102()
 	target = self.favoriteenemy;
 	if(!isdefined(self.var_3f667178))
 	{
-		if(self namespace_6cd64b2b::function_cacd3270() && namespace_6cd64b2b::is_packroom_clear())
+		if(self zm_office_defcon::function_cacd3270() && zm_office_defcon::is_packroom_clear())
 		{
-			self thread namespace_a701220b::function_9d689cc4(level.portal_pack);
+			self thread zm_office_teleporters::function_9d689cc4(level.portal_pack);
 		}
-		else if(isdefined(target) && namespace_47276bad::function_35babccd(self) != namespace_47276bad::function_35babccd(target))
+		else if(isdefined(target) && zm_office_floors::function_35babccd(self) != zm_office_floors::function_35babccd(target))
 		{
-			if(level flag::get(#"hash_53a41180dac96fff") && level.zones[#"war_room_zone_north"].is_enabled)
+			if(level flag::get(#"portals_active") && level.zones[#"war_room_zone_north"].is_enabled)
 			{
-				self thread namespace_a701220b::function_9d689cc4();
+				self thread zm_office_teleporters::function_9d689cc4();
 			}
 			else
 			{
@@ -179,7 +179,7 @@ function private function_1969a102()
 	}
 	else if(isdefined(target) && distancesquared(self.origin, target.origin) < distancesquared(self.origin, self.var_3f667178.origin))
 	{
-		self notify(#"hash_2016cf7b5d5069a7");
+		self notify(#"cancel_teleport");
 	}
 	return false;
 }

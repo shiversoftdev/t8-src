@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_b7f44132 : class_6aaccc24
+class cSpectreRisingIndicator : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_b7f44132
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0xF992259F
 		Offset: 0x210
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_b7f44132 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_b7f44132
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0xE9A390EA
 		Offset: 0x3C0
 		Size: 0x14
@@ -33,36 +33,36 @@ class class_b7f44132 : class_6aaccc24
 	}
 
 	/*
-		Name: function_7f5a9fed
-		Namespace: namespace_b7f44132
+		Name: set_isAlive
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0x1C0D9C0F
 		Offset: 0x378
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_7f5a9fed(player, value)
+	function set_isAlive(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "isAlive", value);
 	}
 
 	/*
-		Name: function_3b7b386a
-		Namespace: namespace_b7f44132
+		Name: set_clientnum
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0x1DD15873
 		Offset: 0x330
 		Size: 0x3C
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_3b7b386a(player, value)
+	function set_clientnum(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "clientnum", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_b7f44132
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0x9E112E61
 		Offset: 0x300
 		Size: 0x24
@@ -71,12 +71,12 @@ class class_b7f44132 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_b7f44132
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0x53F7AD35
 		Offset: 0x2B0
 		Size: 0x44
@@ -85,12 +85,12 @@ class class_b7f44132 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "SpectreRisingIndicator", persistent);
+		cLUIelem::open_luielem(player, "SpectreRisingIndicator", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_b7f44132
+		Namespace: cSpectreRisingIndicator
 		Checksum: 0x1B16609F
 		Offset: 0x230
 		Size: 0x74
@@ -99,9 +99,9 @@ class class_b7f44132 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("clientnum", 1, 7, "int");
-		namespace_6aaccc24::function_da693cbe("isAlive", 1, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("clientnum", 1, 7, "int");
+		cLUIelem::function_da693cbe("isAlive", 1, 1, "int");
 	}
 
 }
@@ -119,7 +119,7 @@ class class_b7f44132 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_b7f44132();
+	elem = new cSpectreRisingIndicator();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -167,7 +167,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_3b7b386a
+	Name: set_clientnum
 	Namespace: spectrerisingindicator
 	Checksum: 0xF82BBD76
 	Offset: 0x1B0
@@ -175,13 +175,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: Linked
 */
-function function_3b7b386a(player, value)
+function set_clientnum(player, value)
 {
-	[[ self ]]->function_3b7b386a(player, value);
+	[[ self ]]->set_clientnum(player, value);
 }
 
 /*
-	Name: function_7f5a9fed
+	Name: set_isAlive
 	Namespace: spectrerisingindicator
 	Checksum: 0x9A235B41
 	Offset: 0x1E0
@@ -189,8 +189,8 @@ function function_3b7b386a(player, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_7f5a9fed(player, value)
+function set_isAlive(player, value)
 {
-	[[ self ]]->function_7f5a9fed(player, value);
+	[[ self ]]->set_isAlive(player, value);
 }
 

@@ -8,7 +8,7 @@
 #namespace destructclientutils;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: destructclientutils
 	Checksum: 0x7D958756
 	Offset: 0x190
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"destructible_character", &__init__, undefined, undefined);
 }
@@ -54,7 +54,7 @@ function __init__()
 				loc_00000500:
 				piecestruct.gibdir = ((isdefined(destructible.(("piece" + index) + "_gibdirX")) ? destructible.(("piece" + index) + "_gibdirX") : 0), (isdefined(destructible.(("piece" + index) + "_gibdirY")) ? destructible.(("piece" + index) + "_gibdirY") : 0), (isdefined(destructible.(("piece" + index) + "_gibdirZ")) ? destructible.(("piece" + index) + "_gibdirZ") : 0));
 			}
-			piecestruct.var_8e57b530 = destructible.(("piece" + index) + "_gibdirscale");
+			piecestruct.gibdirscale = destructible.(("piece" + index) + "_gibdirscale");
 			piecestruct.gibdynentfx = destructible.(("piece" + index) + "_gibdynentfx");
 			piecestruct.gibsound = destructible.(("piece" + index) + "_gibsound");
 			piecestruct.hitlocation = destructible.(("piece" + index) + "_hitlocation");
@@ -62,18 +62,18 @@ function __init__()
 			piecestruct.detachmodel = destructible.(("piece" + index) + "_detachmodel");
 			if(isdefined(destructible.(("piece" + index) + "_hittags")))
 			{
-				piecestruct.var_d8fa3d82 = [];
+				piecestruct.hittags = [];
 				foreach(var_5440c126 in destructible.(("piece" + index) + "_hittags"))
 				{
-					if(!isdefined(piecestruct.var_d8fa3d82))
+					if(!isdefined(piecestruct.hittags))
 					{
-						piecestruct.var_d8fa3d82 = [];
+						piecestruct.hittags = [];
 					}
-					else if(!isarray(piecestruct.var_d8fa3d82))
+					else if(!isarray(piecestruct.hittags))
 					{
-						piecestruct.var_d8fa3d82 = array(piecestruct.var_d8fa3d82);
+						piecestruct.hittags = array(piecestruct.hittags);
 					}
-					piecestruct.var_d8fa3d82[piecestruct.var_d8fa3d82.size] = var_5440c126.var_f16c2276;
+					piecestruct.hittags[piecestruct.hittags.size] = var_5440c126.hittag;
 				}
 			}
 			destructbundle.pieces[destructbundle.pieces.size] = piecestruct;
@@ -159,7 +159,7 @@ function private _destructpiece(localclientnum, entity, piecenumber, shouldspawn
 		if(shouldspawngibs)
 		{
 			gibclientutils::_playgibfx(localclientnum, entity, piece.gibfx, piece.gibfxtag);
-			entity thread gibclientutils::_gibpiece(localclientnum, entity, piece.gibmodel, piece.gibtag, piece.gibdynentfx, piece.gibdir, piece.var_8e57b530, (1 | 2) | 4);
+			entity thread gibclientutils::_gibpiece(localclientnum, entity, piece.gibmodel, piece.gibtag, piece.gibdynentfx, piece.gibdir, piece.gibdirscale, (1 | 2) | 4);
 			gibclientutils::_playgibsound(localclientnum, entity, piece.gibsound);
 		}
 		else if(isdefined(piece.gibfx) && function_9229eb67(piece.gibfx))

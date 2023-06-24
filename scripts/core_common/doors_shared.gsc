@@ -420,7 +420,7 @@ class cdoor
 		}
 		else
 		{
-			if(isdefined(m_s_bundle.var_d6de7a25))
+			if(isdefined(m_s_bundle.door_interact))
 			{
 				thread function_323b4378();
 			}
@@ -513,7 +513,7 @@ class cdoor
 		level flagsys::wait_till("radiant_gameobjects_initialized");
 		m_e_door.func_custom_gameobject_position = &function_4fe7d9d5;
 		m_e_door.v_trigger_offset = m_s_bundle.v_trigger_offset;
-		m_e_door gameobjects::init_game_objects(m_s_bundle.var_d6de7a25);
+		m_e_door gameobjects::init_game_objects(m_s_bundle.door_interact);
 		m_e_door.mdl_gameobject.t_interact usetriggerrequirelookat();
 		thread function_2190a0ee(isdefined(m_s_bundle.door_closes) && m_s_bundle.door_closes, 1);
 	}
@@ -1360,7 +1360,7 @@ class cdoor
 	*/
 	function init_hint_trigger()
 	{
-		if(isdefined(m_s_bundle.var_d6de7a25))
+		if(isdefined(m_s_bundle.door_interact))
 		{
 			return;
 		}
@@ -1488,7 +1488,7 @@ class cdoor
 #namespace doors;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: doors
 	Checksum: 0x4F5520BF
 	Offset: 0x4818
@@ -1496,7 +1496,7 @@ class cdoor
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"doors", &__init__, &__main__, undefined);
 }
@@ -1527,7 +1527,7 @@ function __main__()
 {
 	level flagsys::wait_till("radiant_gameobjects_initialized");
 	var_1cde154f = getgametypesetting(#"use_doors");
-	var_5a23774b = getdvarint(#"hash_1da83e9a3dca0a70", 0);
+	var_5a23774b = getdvarint(#"disabledoors", 0);
 	if(!(isdefined(var_1cde154f) && var_1cde154f) || (isdefined(var_5a23774b) && var_5a23774b))
 	{
 		return;
@@ -1647,7 +1647,7 @@ function door_panel_interact(b_is_panel_reusable)
 						[[ door ]]->close();
 						if(!(isdefined(door.m_s_bundle.door_closes) && door.m_s_bundle.door_closes) && (isdefined(door.m_s_bundle.var_d37e8f3e) && door.m_s_bundle.var_d37e8f3e))
 						{
-							door notify(#"hash_32171706aecfce6a", {#player:e_player});
+							door notify(#"set_destructible", {#player:e_player});
 						}
 						continue;
 					}
@@ -2049,7 +2049,7 @@ function door_update(c_door)
 		{
 			if(isdefined(c_door.m_s_bundle.var_d37e8f3e) && c_door.m_s_bundle.var_d37e8f3e)
 			{
-				c_door notify(#"hash_32171706aecfce6a", {#player:c_door.m_e_trigger_player});
+				c_door notify(#"set_destructible", {#player:c_door.m_e_trigger_player});
 			}
 			break;
 		}
@@ -2095,13 +2095,13 @@ function door_update_lock_scripted(c_door)
 function function_dc98f943(c_door)
 {
 	e_door = c_door.m_e_door;
-	e_door endon(#"hash_d46ecc32678f28a", #"delete");
+	e_door endon(#"door_cleared", #"delete");
 	/#
 		assert(isdefined(e_door), "");
 	#/
 	e_door setcandamage(0);
 	waitresult = undefined;
-	waitresult = c_door waittill(#"hash_32171706aecfce6a");
+	waitresult = c_door waittill(#"set_destructible");
 	e_door waittill(#"door_closed");
 	e_door setcandamage(1);
 	e_door setteam(waitresult.player.team);
@@ -2158,7 +2158,7 @@ function function_dc98f943(c_door)
 	}
 	e_door notsolid();
 	e_door function_fd4aa4b5();
-	e_door notify(#"hash_d46ecc32678f28a");
+	e_door notify(#"door_cleared");
 }
 
 /*

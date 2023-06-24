@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1254ac024174d9c0;
+#using scripts\zm_common\trials\zm_trial_disable_buys.gsc;
 #using script_2f9a68261f6a17be;
 #using script_301f64a4090c381a;
-#using script_5660bae5b402a1eb;
-#using script_6e3c826b1814cab6;
-#using script_ab890501c40b73c;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\exploder_shared.gsc;
@@ -27,7 +27,7 @@
 #namespace zm_traps;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_traps
 	Checksum: 0x6ECDBD56
 	Offset: 0x3B8
@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_traps", &__init__, &__main__, undefined);
 }
@@ -71,7 +71,7 @@ function __init__()
 */
 function init()
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_4b16b22d8a0d3301"))
+	if(!zm_custom::function_901b751c(#"zmtrapsenabled"))
 	{
 		return;
 	}
@@ -90,7 +90,7 @@ function init()
 */
 function __main__()
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_4b16b22d8a0d3301"))
+	if(!zm_custom::function_901b751c(#"zmtrapsenabled"))
 	{
 		return;
 	}
@@ -334,7 +334,7 @@ function trap_main()
 */
 function function_783f63e9(var_1c9c3123 = 1)
 {
-	if(namespace_497ab7da::is_active())
+	if(zm_trial_disable_buys::is_active())
 	{
 		self trap_set_string(#"hash_55d25caf8f7bbb2f");
 	}
@@ -388,7 +388,7 @@ function trap_use_think(trap)
 		{
 			continue;
 		}
-		if(isdefined(self.var_fc36786e) && self.var_fc36786e || (isdefined(level.var_4f7df1ac) && level.var_4f7df1ac) || namespace_497ab7da::is_active())
+		if(isdefined(self.var_fc36786e) && self.var_fc36786e || (isdefined(level.var_4f7df1ac) && level.var_4f7df1ac) || zm_trial_disable_buys::is_active())
 		{
 			continue;
 		}
@@ -461,7 +461,7 @@ function trap_activate(trap, who)
 	trap thread [[trap._trap_activate_func]]();
 	trap waittill(#"trap_done");
 	trap triggerenable(0);
-	trap trap_set_string(#"hash_21db2780833a8bfd");
+	trap trap_set_string(#"zombie/trap_cooldown");
 	/#
 		if(getdvarint(#"zombie_cheat", 0) >= 1)
 		{
@@ -1248,15 +1248,15 @@ function trap_disable(var_ccf895cc = #"hash_2276db2c26ee907a")
 	if(self._trap_in_use)
 	{
 		self notify(#"trap_done");
-		self notify(#"hash_2133afbbd7534561");
+		self notify(#"trap_finished");
 		self._trap_cooldown_time = 0.05;
 		self waittill(#"available");
 	}
 	if(isarray(self._trap_use_trigs))
 	{
-		foreach(var_9bda8088 in self._trap_use_trigs)
+		foreach(t_trap in self._trap_use_trigs)
 		{
-			var_9bda8088.var_fc36786e = 1;
+			t_trap.var_fc36786e = 1;
 		}
 	}
 	self trap_lights_red();
@@ -1281,9 +1281,9 @@ function trap_enable(var_f9afc2b3 = #"hash_23c1c09e94181fdb", var_b8c50025 = #"h
 	}
 	if(isarray(self._trap_use_trigs))
 	{
-		foreach(var_9bda8088 in self._trap_use_trigs)
+		foreach(t_trap in self._trap_use_trigs)
 		{
-			var_9bda8088.var_fc36786e = undefined;
+			t_trap.var_fc36786e = undefined;
 		}
 	}
 	str_text = zm_utility::function_d6046228(var_f9afc2b3, var_b8c50025);
@@ -1302,10 +1302,10 @@ function trap_enable(var_f9afc2b3 = #"hash_23c1c09e94181fdb", var_b8c50025 = #"h
 */
 function function_6966417b(var_ccf895cc = #"hash_2276db2c26ee907a")
 {
-	var_ec9e2b1d = getentarray("zombie_trap", "targetname");
-	foreach(var_9bda8088 in var_ec9e2b1d)
+	a_t_traps = getentarray("zombie_trap", "targetname");
+	foreach(t_trap in a_t_traps)
 	{
-		var_9bda8088 thread trap_disable(var_ccf895cc);
+		t_trap thread trap_disable(var_ccf895cc);
 	}
 	level.var_4f7df1ac = 1;
 }
@@ -1321,10 +1321,10 @@ function function_6966417b(var_ccf895cc = #"hash_2276db2c26ee907a")
 */
 function function_9d0c9706(var_f9afc2b3 = #"hash_23c1c09e94181fdb", var_b8c50025 = #"hash_6e8ef1b690e98e51")
 {
-	var_ec9e2b1d = getentarray("zombie_trap", "targetname");
-	foreach(var_9bda8088 in var_ec9e2b1d)
+	a_t_traps = getentarray("zombie_trap", "targetname");
+	foreach(t_trap in a_t_traps)
 	{
-		var_9bda8088 thread trap_enable(var_f9afc2b3, var_b8c50025);
+		t_trap thread trap_enable(var_f9afc2b3, var_b8c50025);
 	}
 	level.var_4f7df1ac = undefined;
 }
@@ -1377,7 +1377,7 @@ function trap_model_type_init()
 */
 function function_3f401e8d(e_player)
 {
-	if(e_player hasperk(#"hash_6ca140703a87cd09") || (isdefined(self.var_efc76c5d) && self.var_efc76c5d) || (isdefined(e_player.var_c09a076a) && e_player.var_c09a076a))
+	if(e_player hasperk(#"specialty_mod_phdflopper") || (isdefined(self.var_efc76c5d) && self.var_efc76c5d) || (isdefined(e_player.var_c09a076a) && e_player.var_c09a076a))
 	{
 		if(e_player issliding())
 		{
@@ -1389,7 +1389,7 @@ function function_3f401e8d(e_player)
 			return true;
 		}
 	}
-	if(e_player bgb::is_enabled(#"hash_7c80df83e002a4d6"))
+	if(e_player bgb::is_enabled(#"zm_bgb_anti_entrapment"))
 	{
 		if(!isdefined(e_player.var_410e7c36))
 		{
@@ -1460,7 +1460,7 @@ function function_19d61a68()
 */
 function function_da13db45(n_cooldown, e_player)
 {
-	if(isdefined(e_player) && e_player hasperk(#"hash_37aa3a5919757781"))
+	if(isdefined(e_player) && e_player hasperk(#"specialty_cooldown"))
 	{
 		n_cooldown = n_cooldown * 0.5;
 	}

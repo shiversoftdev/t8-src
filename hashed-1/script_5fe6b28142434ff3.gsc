@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_4d000493c57bb851;
-#using script_52c6c2d1a2ef1b46;
-#using script_6a3f43063dfd1bdc;
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_crafting.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\zm\zm_hms_util.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\scene_shared.gsc;
@@ -43,7 +43,7 @@ function init()
 	level.var_aa3c02c3 = getentarray("ww_modkit_part", "targetname");
 	array::run_all(level.var_aa3c02c3, &hide);
 	level flag::init(#"hash_6f791dc137e0b695");
-	if(zm_utility::is_standard() || !namespace_59ff1d6c::function_901b751c(#"hash_541a4d5c476468f4"))
+	if(zm_utility::is_standard() || !zm_custom::function_901b751c(#"zmwonderweaponisenabled"))
 	{
 		function_456e91dd();
 		zm_crafting::function_ca244624(#"hash_586280338ab7ad11");
@@ -62,13 +62,13 @@ function init()
 */
 function function_456e91dd()
 {
-	var_167cb04c = array(getweapon(#"hash_eb070d4a71cdba8"), getweapon(#"hash_eb073d4a71ce0c1"), getweapon(#"hash_eb072d4a71cdf0e"));
-	var_58d9e0d3 = getitemarray();
-	foreach(var_2e1f34dd in var_58d9e0d3)
+	a_w_parts = array(getweapon(#"hash_eb070d4a71cdba8"), getweapon(#"hash_eb073d4a71ce0c1"), getweapon(#"hash_eb072d4a71cdf0e"));
+	a_e_items = getitemarray();
+	foreach(e_item in a_e_items)
 	{
-		if(isinarray(var_167cb04c, var_2e1f34dd.item))
+		if(isinarray(a_w_parts, e_item.item))
 		{
-			var_2e1f34dd delete();
+			e_item delete();
 		}
 	}
 }
@@ -105,12 +105,12 @@ function function_269676a2()
 */
 function function_b60df00d()
 {
-	zm_crafting::function_d1f16587(#"hash_586280338ab7ad11", &function_5d6515cb);
-	level flag::init(#"hash_69501a0ee1d7ab54");
+	zm_crafting::function_d1f16587(#"hash_586280338ab7ad11", &modkit_crafted);
+	level flag::init(#"ww_modkit_crafted");
 }
 
 /*
-	Name: function_5d6515cb
+	Name: modkit_crafted
 	Namespace: namespace_d351d90f
 	Checksum: 0xF5FBC922
 	Offset: 0x848
@@ -118,14 +118,14 @@ function function_b60df00d()
 	Parameters: 1
 	Flags: Linked
 */
-function function_5d6515cb(e_player)
+function modkit_crafted(e_player)
 {
 	array::run_all(level.var_aa3c02c3, &show);
-	level flag::set(#"hash_69501a0ee1d7ab54");
+	level flag::set(#"ww_modkit_crafted");
 	modkit_init();
 	if(zm_utility::is_classic())
 	{
-		e_player namespace_509a75d1::function_51b752a9("vox_ww_kit_built");
+		e_player zm_hms_util::function_51b752a9("vox_ww_kit_built");
 	}
 }
 
@@ -182,8 +182,8 @@ function function_ab06746b(e_player)
 	{
 		return false;
 	}
-	var_2c09b688 = e_player namespace_9cf755b::function_c7274071();
-	if(namespace_9cf755b::function_c654e39a(var_2c09b688))
+	var_2c09b688 = e_player zm_white_util::function_c7274071();
+	if(zm_white_util::function_c654e39a(var_2c09b688))
 	{
 		self sethintstring(#"hash_253d93e1249b135c");
 	}
@@ -264,10 +264,10 @@ function function_584d6092(e_user)
 	s_scene thread function_9dc2db01(0.1, level.var_380f8974[e_user.var_f7694097]);
 	if(isdefined(e_user))
 	{
-		var_ea6b9209 = e_user namespace_9cf755b::function_c7274071();
-		if(isdefined(var_ea6b9209))
+		w_ray_gun = e_user zm_white_util::function_c7274071();
+		if(isdefined(w_ray_gun))
 		{
-			e_user zm_weapons::weapon_take(var_ea6b9209);
+			e_user zm_weapons::weapon_take(w_ray_gun);
 		}
 		e_user zm_weapons::weapon_give(level.var_57f4595b[e_user.var_f7694097]);
 		e_user notify(#"hash_13f3f231b45420ef", {#e_player:e_user});
@@ -277,8 +277,8 @@ function function_584d6092(e_user)
 			level flag::set(#"hash_6f791dc137e0b695");
 		}
 	}
-	namespace_6747c550::function_7df6bb60("zm_white_ww_husk_part", 0, e_user);
-	namespace_6747c550::function_7df6bb60(level.var_88cb369b[e_user.var_f7694097], 0, e_user);
+	zm_ui_inventory::function_7df6bb60("zm_white_ww_husk_part", 0, e_user);
+	zm_ui_inventory::function_7df6bb60(level.var_88cb369b[e_user.var_f7694097], 0, e_user);
 	e_user.var_382b64f2 = undefined;
 	e_user.var_f7694097 = undefined;
 	e_user.var_9c20e2c9 = undefined;

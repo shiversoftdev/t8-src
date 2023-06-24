@@ -38,11 +38,11 @@ function private function_a760f3bf(path, var_bc114662, point_color, line_color, 
 	Parameters: 7
 	Flags: Private
 */
-function private function_d88e0349(var_ac3ff0b7, var_3e109452, center, radius, point_color, line_color, var_80bf7c44)
+function private function_d88e0349(path_1, path_2, center, radius, point_color, line_color, var_80bf7c44)
 {
 	/#
-		recordline(var_ac3ff0b7, var_3e109452, line_color, "");
-		recordsphere(var_ac3ff0b7, 2, point_color, "");
+		recordline(path_1, path_2, line_color, "");
+		recordsphere(path_1, 2, point_color, "");
 		recordcircle(center, radius, var_80bf7c44, "");
 	#/
 }
@@ -56,11 +56,11 @@ function private function_d88e0349(var_ac3ff0b7, var_3e109452, center, radius, p
 	Parameters: 7
 	Flags: Private
 */
-function private function_bb43c529(var_ac3ff0b7, var_3e109452, center, radius, point_color, line_color, var_80bf7c44)
+function private function_bb43c529(path_1, path_2, center, radius, point_color, line_color, var_80bf7c44)
 {
 	/#
-		line(var_ac3ff0b7, var_3e109452, point_color, 1, 1);
-		sphere(var_ac3ff0b7, 5, line_color, 1, 1);
+		line(path_1, path_2, point_color, 1, 1);
+		sphere(path_1, 5, line_color, 1, 1);
 		circle(center, radius, var_80bf7c44, 0, 1, 1);
 	#/
 }

@@ -7,7 +7,7 @@
 #namespace namespace_f0e0a17c;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_f0e0a17c
 	Checksum: 0x1CD8FEC3
 	Offset: 0xD8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"swat", &__init__, undefined, undefined);
 }

@@ -84,7 +84,7 @@ class csceneactor : csceneobject
 		{
 			csceneobject::set_ent_val("takedamage", 0, ent);
 		}
-		csceneobject::set_ent_val("ignoreme", !(isdefined(_s.var_c732c237) && _s.var_c732c237), ent);
+		csceneobject::set_ent_val("ignoreme", !(isdefined(_s.attackme) && _s.attackme), ent);
 		csceneobject::set_ent_val("allowdeath", isdefined(_s.allowdeath) && _s.allowdeath, ent);
 		csceneobject::set_ent_val("take_weapons", isdefined(_s.removeweapon) && _s.removeweapon, ent);
 	}

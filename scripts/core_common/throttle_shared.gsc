@@ -39,7 +39,7 @@ class throttle
 	}
 
 	/*
-		Name: function_5ef47bb4
+		Name: leavequeue
 		Namespace: throttle
 		Checksum: 0x269F96D9
 		Offset: 0x498
@@ -47,7 +47,7 @@ class throttle
 		Parameters: 1
 		Flags: Linked
 	*/
-	function function_5ef47bb4(entity)
+	function leavequeue(entity)
 	{
 		arrayremovevalue(queue_, entity);
 	}

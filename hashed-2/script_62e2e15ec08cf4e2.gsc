@@ -9,7 +9,7 @@
 #namespace namespace_87e11242;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_87e11242
 	Checksum: 0x40397EDF
 	Offset: 0x130
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_3ee2bcf1f7dc56c8", &init, undefined, undefined);
 }
@@ -52,7 +52,7 @@ function init()
 */
 function init_fx()
 {
-	level._effect[#"hash_775554ed8fe225e7"] = #"hash_620a92bcd2225e0f";
+	level._effect[#"server_spark_fx"] = #"hash_620a92bcd2225e0f";
 	level._effect[#"hash_170e9793dab7aa5b"] = #"hash_14eb4b8e52dfe0bb";
 	level._effect[#"hash_78b4a1a435fd8bf7"] = #"hash_62f9570a97e8f893";
 }
@@ -88,7 +88,7 @@ function function_eae1fc85(localclientnum, oldval, newval, bnewent, binitialsnap
 	s_fix_server_spark_fx = struct::get("fix_server_spark_fx", "targetname");
 	if(newval == 1)
 	{
-		level.var_6171ce61 = playfx(localclientnum, level._effect[#"hash_775554ed8fe225e7"], s_fix_server_spark_fx.origin);
+		level.var_6171ce61 = playfx(localclientnum, level._effect[#"server_spark_fx"], s_fix_server_spark_fx.origin);
 	}
 	else if(isdefined(level.var_6171ce61))
 	{

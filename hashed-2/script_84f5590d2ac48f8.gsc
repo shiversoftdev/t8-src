@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_7ca06143 : class_6aaccc24
+class cfull_screen_movie : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0x8A3213F
 		Offset: 0x3B8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_7ca06143 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0xB1E92033
 		Offset: 0x858
 		Size: 0x14
@@ -31,22 +31,22 @@ class class_7ca06143 : class_6aaccc24
 	}
 
 	/*
-		Name: function_251fc818
-		Namespace: namespace_7ca06143
+		Name: set_movieKey
+		Namespace: cfull_screen_movie
 		Checksum: 0x99DB496B
 		Offset: 0x820
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_251fc818(localclientnum, value)
+	function set_movieKey(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "movieKey", value);
+		[[ self ]]->set_data(localclientnum, "movieKey", value);
 	}
 
 	/*
 		Name: registerplayer_callout_traversal
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0xE353861D
 		Offset: 0x7E8
 		Size: 0x30
@@ -55,82 +55,82 @@ class class_7ca06143 : class_6aaccc24
 	*/
 	function registerplayer_callout_traversal(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "skippable", value);
+		[[ self ]]->set_data(localclientnum, "skippable", value);
 	}
 
 	/*
-		Name: function_3a81612d
-		Namespace: namespace_7ca06143
+		Name: set_playOutroMovie
+		Namespace: cfull_screen_movie
 		Checksum: 0x570D7D89
 		Offset: 0x7B0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_3a81612d(localclientnum, value)
+	function set_playOutroMovie(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "playOutroMovie", value);
+		[[ self ]]->set_data(localclientnum, "playOutroMovie", value);
 	}
 
 	/*
-		Name: function_493305af
-		Namespace: namespace_7ca06143
+		Name: set_additive
+		Namespace: cfull_screen_movie
 		Checksum: 0xB255D71A
 		Offset: 0x778
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_493305af(localclientnum, value)
+	function set_additive(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "additive", value);
+		[[ self ]]->set_data(localclientnum, "additive", value);
 	}
 
 	/*
-		Name: function_5caa21cb
-		Namespace: namespace_7ca06143
+		Name: set_looping
+		Namespace: cfull_screen_movie
 		Checksum: 0xE7B811CB
 		Offset: 0x740
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_5caa21cb(localclientnum, value)
+	function set_looping(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "looping", value);
+		[[ self ]]->set_data(localclientnum, "looping", value);
 	}
 
 	/*
-		Name: function_8f7a8b9c
-		Namespace: namespace_7ca06143
+		Name: set_showBlackScreen
+		Namespace: cfull_screen_movie
 		Checksum: 0x4AFB6C5B
 		Offset: 0x708
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_8f7a8b9c(localclientnum, value)
+	function set_showBlackScreen(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "showBlackScreen", value);
+		[[ self ]]->set_data(localclientnum, "showBlackScreen", value);
 	}
 
 	/*
-		Name: function_87bb24
-		Namespace: namespace_7ca06143
+		Name: set_movieName
+		Namespace: cfull_screen_movie
 		Checksum: 0xF88E0BB3
 		Offset: 0x6D0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_87bb24(localclientnum, value)
+	function set_movieName(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "movieName", value);
+		[[ self ]]->set_data(localclientnum, "movieName", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0x884FFAAE
 		Offset: 0x698
 		Size: 0x2C
@@ -139,12 +139,12 @@ class class_7ca06143 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"full_screen_movie");
+		cLUIelem::open(localclientnum, #"full_screen_movie");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0xAD0B02B2
 		Offset: 0x588
 		Size: 0x104
@@ -153,19 +153,19 @@ class class_7ca06143 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "movieName", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "showBlackScreen", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "looping", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "additive", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "playOutroMovie", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "skippable", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "movieKey", #"");
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "movieName", #"");
+		[[ self ]]->set_data(localclientnum, "showBlackScreen", 0);
+		[[ self ]]->set_data(localclientnum, "looping", 0);
+		[[ self ]]->set_data(localclientnum, "additive", 0);
+		[[ self ]]->set_data(localclientnum, "playOutroMovie", 0);
+		[[ self ]]->set_data(localclientnum, "skippable", 0);
+		[[ self ]]->set_data(localclientnum, "movieKey", #"");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0xB5DE22C
 		Offset: 0x558
 		Size: 0x24
@@ -174,12 +174,12 @@ class class_7ca06143 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_7ca06143
+		Namespace: cfull_screen_movie
 		Checksum: 0xE1C5B283
 		Offset: 0x3D8
 		Size: 0x174
@@ -188,14 +188,14 @@ class class_7ca06143 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_f7b454f9, var_d5b04ae3, var_e4decd0, var_e545d4b9, var_78184b90, var_8ba396cb, var_ea38d488)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_dcb34c80("moviefile", "movieName", 1);
-		namespace_6aaccc24::function_da693cbe("showBlackScreen", 1, 1, "int", var_d5b04ae3);
-		namespace_6aaccc24::function_da693cbe("looping", 1, 1, "int", var_e4decd0);
-		namespace_6aaccc24::function_da693cbe("additive", 1, 1, "int", var_e545d4b9);
-		namespace_6aaccc24::function_da693cbe("playOutroMovie", 1, 1, "int", var_78184b90);
-		namespace_6aaccc24::function_da693cbe("skippable", 1, 1, "int", var_8ba396cb);
-		namespace_6aaccc24::function_dcb34c80("moviefile", "movieKey", 18000);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_dcb34c80("moviefile", "movieName", 1);
+		cLUIelem::function_da693cbe("showBlackScreen", 1, 1, "int", var_d5b04ae3);
+		cLUIelem::function_da693cbe("looping", 1, 1, "int", var_e4decd0);
+		cLUIelem::function_da693cbe("additive", 1, 1, "int", var_e545d4b9);
+		cLUIelem::function_da693cbe("playOutroMovie", 1, 1, "int", var_78184b90);
+		cLUIelem::function_da693cbe("skippable", 1, 1, "int", var_8ba396cb);
+		cLUIelem::function_dcb34c80("moviefile", "movieKey", 18000);
 	}
 
 }
@@ -213,7 +213,7 @@ class class_7ca06143 : class_6aaccc24
 */
 function register(uid, var_f7b454f9, var_d5b04ae3, var_e4decd0, var_e545d4b9, var_78184b90, var_8ba396cb, var_ea38d488)
 {
-	elem = new class_7ca06143();
+	elem = new cfull_screen_movie();
 	[[ elem ]]->setup_clientfields(uid, var_f7b454f9, var_d5b04ae3, var_e4decd0, var_e545d4b9, var_78184b90, var_8ba396cb, var_ea38d488);
 	return elem;
 }
@@ -229,7 +229,7 @@ function register(uid, var_f7b454f9, var_d5b04ae3, var_e4decd0, var_e545d4b9, va
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_7ca06143();
+	elem = new cfull_screen_movie();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -277,7 +277,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_87bb24
+	Name: set_movieName
 	Namespace: full_screen_movie
 	Checksum: 0x6F24A61C
 	Offset: 0x268
@@ -285,13 +285,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_87bb24(localclientnum, value)
+function set_movieName(localclientnum, value)
 {
-	[[ self ]]->function_87bb24(localclientnum, value);
+	[[ self ]]->set_movieName(localclientnum, value);
 }
 
 /*
-	Name: function_8f7a8b9c
+	Name: set_showBlackScreen
 	Namespace: full_screen_movie
 	Checksum: 0x40DFC805
 	Offset: 0x298
@@ -299,13 +299,13 @@ function function_87bb24(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_8f7a8b9c(localclientnum, value)
+function set_showBlackScreen(localclientnum, value)
 {
-	[[ self ]]->function_8f7a8b9c(localclientnum, value);
+	[[ self ]]->set_showBlackScreen(localclientnum, value);
 }
 
 /*
-	Name: function_5caa21cb
+	Name: set_looping
 	Namespace: full_screen_movie
 	Checksum: 0x9E169BF8
 	Offset: 0x2C8
@@ -313,13 +313,13 @@ function function_8f7a8b9c(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5caa21cb(localclientnum, value)
+function set_looping(localclientnum, value)
 {
-	[[ self ]]->function_5caa21cb(localclientnum, value);
+	[[ self ]]->set_looping(localclientnum, value);
 }
 
 /*
-	Name: function_493305af
+	Name: set_additive
 	Namespace: full_screen_movie
 	Checksum: 0x4EB25CAA
 	Offset: 0x2F8
@@ -327,13 +327,13 @@ function function_5caa21cb(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_493305af(localclientnum, value)
+function set_additive(localclientnum, value)
 {
-	[[ self ]]->function_493305af(localclientnum, value);
+	[[ self ]]->set_additive(localclientnum, value);
 }
 
 /*
-	Name: function_3a81612d
+	Name: set_playOutroMovie
 	Namespace: full_screen_movie
 	Checksum: 0xDB2B00FA
 	Offset: 0x328
@@ -341,9 +341,9 @@ function function_493305af(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_3a81612d(localclientnum, value)
+function set_playOutroMovie(localclientnum, value)
 {
-	[[ self ]]->function_3a81612d(localclientnum, value);
+	[[ self ]]->set_playOutroMovie(localclientnum, value);
 }
 
 /*
@@ -361,7 +361,7 @@ function registerplayer_callout_traversal(localclientnum, value)
 }
 
 /*
-	Name: function_251fc818
+	Name: set_movieKey
 	Namespace: full_screen_movie
 	Checksum: 0xE8B8249B
 	Offset: 0x388
@@ -369,8 +369,8 @@ function registerplayer_callout_traversal(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_251fc818(localclientnum, value)
+function set_movieKey(localclientnum, value)
 {
-	[[ self ]]->function_251fc818(localclientnum, value);
+	[[ self ]]->set_movieKey(localclientnum, value);
 }
 

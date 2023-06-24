@@ -21,7 +21,7 @@ function init()
 	{
 		callback::function_98a0917d(&function_ca0a1ea4);
 	}
-	if(function_8b1a219a() && sessionmodeiszombiesgame() && util::function_5df4294() == "ztutorial")
+	if(function_8b1a219a() && sessionmodeiszombiesgame() && util::get_game_type() == "ztutorial")
 	{
 		thread function_8431fef6();
 	}

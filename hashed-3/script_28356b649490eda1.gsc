@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_ad2941a0 : class_6aaccc24
+class cvehicleturretoverheat : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0xB0D92252
 		Offset: 0x238
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_ad2941a0 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0x5A7082D3
 		Offset: 0x4A8
 		Size: 0x14
@@ -31,22 +31,22 @@ class class_ad2941a0 : class_6aaccc24
 	}
 
 	/*
-		Name: function_fd8c13fb
-		Namespace: namespace_ad2941a0
+		Name: set_bar_percent
+		Namespace: cvehicleturretoverheat
 		Checksum: 0x38F34591
 		Offset: 0x470
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_fd8c13fb(localclientnum, value)
+	function set_bar_percent(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "bar_percent", value);
+		[[ self ]]->set_data(localclientnum, "bar_percent", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0xB0B459A4
 		Offset: 0x3B8
 		Size: 0xAC
@@ -57,13 +57,13 @@ class class_ad2941a0 : class_6aaccc24
 	{
 		if(#"defaultstate" == state_name)
 		{
-			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
+			[[ self ]]->set_data(localclientnum, "_state", 0);
 		}
 		else
 		{
 			if(#"overheat" == state_name)
 			{
-				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
+				[[ self ]]->set_data(localclientnum, "_state", 1);
 			}
 			else
 			{
@@ -78,7 +78,7 @@ class class_ad2941a0 : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0xAB228B31
 		Offset: 0x380
 		Size: 0x2C
@@ -87,12 +87,12 @@ class class_ad2941a0 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"vehicleturretoverheat");
+		cLUIelem::open(localclientnum, #"vehicleturretoverheat");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0x21811193
 		Offset: 0x310
 		Size: 0x68
@@ -101,14 +101,14 @@ class class_ad2941a0 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 		[[ self ]]->set_state(localclientnum, #"defaultstate");
-		[[ self ]]->function_d7d2fcce(localclientnum, "bar_percent", 0);
+		[[ self ]]->set_data(localclientnum, "bar_percent", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0xA474A7F8
 		Offset: 0x2E0
 		Size: 0x24
@@ -117,12 +117,12 @@ class class_ad2941a0 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_ad2941a0
+		Namespace: cvehicleturretoverheat
 		Checksum: 0xCDCD568A
 		Offset: 0x258
 		Size: 0x7C
@@ -131,9 +131,9 @@ class class_ad2941a0 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_661989d5)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("bar_percent", 4000, 6, "float", var_661989d5);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 1, "int");
+		cLUIelem::function_da693cbe("bar_percent", 4000, 6, "float", var_661989d5);
 	}
 
 }
@@ -151,7 +151,7 @@ class class_ad2941a0 : class_6aaccc24
 */
 function register(uid, var_661989d5)
 {
-	elem = new class_ad2941a0();
+	elem = new cvehicleturretoverheat();
 	[[ elem ]]->setup_clientfields(uid, var_661989d5);
 	return elem;
 }
@@ -167,7 +167,7 @@ function register(uid, var_661989d5)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_ad2941a0();
+	elem = new cvehicleturretoverheat();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -229,7 +229,7 @@ function set_state(localclientnum, state_name)
 }
 
 /*
-	Name: function_fd8c13fb
+	Name: set_bar_percent
 	Namespace: vehicleturretoverheat
 	Checksum: 0x6B997AD2
 	Offset: 0x208
@@ -237,8 +237,8 @@ function set_state(localclientnum, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_fd8c13fb(localclientnum, value)
+function set_bar_percent(localclientnum, value)
 {
-	[[ self ]]->function_fd8c13fb(localclientnum, value);
+	[[ self ]]->set_bar_percent(localclientnum, value);
 }
 

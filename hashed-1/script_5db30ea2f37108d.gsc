@@ -9,7 +9,7 @@
 #namespace namespace_273ad667;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_273ad667
 	Checksum: 0xB1A8E7FA
 	Offset: 0x1B0
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_1f7228023b83d053", &__init__, undefined, undefined);
 }
@@ -33,12 +33,12 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("toplayer", "" + #"hash_7ac3885ce718835a", 1, 1, "int", &function_9e8baed0, 0, 0);
-	clientfield::register("toplayer", "" + #"hash_1cc99c389ebd9577", 1, 4, "int", &function_f72f97af, 0, 0);
+	clientfield::register("toplayer", "" + #"place_spoon", 1, 1, "int", &function_9e8baed0, 0, 0);
+	clientfield::register("toplayer", "" + #"fill_blood", 1, 4, "int", &function_f72f97af, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_2058d8d474a6b3e1", 1, 1, "int", &function_b42c46e3, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_cc5b97a575d4d6d", 1, 1, "int", &function_f4b5e072, 0, 0);
 	clientfield::register("world", "" + #"hash_ef497244490a0fc", 1, 3, "int", &function_1d683667, 0, 0);
-	level._effect[#"hash_7fcbe2549babd8c"] = #"zombie/fx_bmode_glint_hook_zod_zmb";
+	level._effect[#"spk_glint"] = #"zombie/fx_bmode_glint_hook_zod_zmb";
 	level._effect[#"hash_7bd7f11175082774"] = #"hash_aca33e8f743523b";
 }
 
@@ -185,7 +185,7 @@ function function_b42c46e3(localclientnum, oldval, newval, bnewent, binitialsnap
 		self.var_17825742.var_a9a3211a = self.var_17825742 gettagangles("tag_spork");
 		self.var_87d57162 = util::spawn_model(localclientnum, "wpn_t8_zm_spork_world", self.var_17825742.var_e88acf63, self.var_17825742.var_a9a3211a);
 		var_fcec724a = struct::get("s_sp_fx_glint_loc");
-		self.var_4e35f286 = playfx(localclientnum, level._effect[#"hash_7fcbe2549babd8c"], var_fcec724a.origin);
+		self.var_4e35f286 = playfx(localclientnum, level._effect[#"spk_glint"], var_fcec724a.origin);
 	}
 	else
 	{

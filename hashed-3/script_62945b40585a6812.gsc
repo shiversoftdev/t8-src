@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_4b4f4cd9;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_4b4f4cd9
 	Checksum: 0xA67B4596
 	Offset: 0xB8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_41efdc9d4eb8f646", &__init__, undefined, undefined);
 }
@@ -39,11 +39,11 @@ function __init__()
 	zombie_debris = getentarray("zombie_debris", "targetname");
 	level.var_a0f5e369 = function_d34c075e(zombie_doors);
 	level.var_3a748490 = function_d34c075e(zombie_debris);
-	zm_trial::register_challenge(#"hash_9247e3d5df46347", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_9247e3d5df46347", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_4b4f4cd9
 	Checksum: 0x53474147
 	Offset: 0x1F8
@@ -51,12 +51,12 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_d1de6a85(n_timer)
+function private on_begin(n_timer)
 {
 	level.var_d39baced = level.zombie_total_set_func;
-	level.zombie_total_set_func = &function_60845be6;
-	namespace_b22c99a5::function_2976fa44(function_d2a5d1f0());
-	namespace_b22c99a5::function_2976fa44(function_e242d7a8());
+	level.zombie_total_set_func = &set_zombie_total;
+	zm_trial_util::function_2976fa44(function_d2a5d1f0());
+	zm_trial_util::function_2976fa44(function_e242d7a8());
 	level thread function_b2fa4678();
 	if(isdefined(n_timer))
 	{
@@ -66,7 +66,7 @@ function private function_d1de6a85(n_timer)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_4b4f4cd9
 	Checksum: 0x362859B7
 	Offset: 0x2E8
@@ -74,10 +74,10 @@ function private function_d1de6a85(n_timer)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.zombie_total_set_func = level.var_d39baced;
-	namespace_b22c99a5::function_f3dbeda7();
+	zm_trial_util::function_f3dbeda7();
 	if(!round_reset)
 	{
 		var_eeba6731 = function_d2a5d1f0();
@@ -91,14 +91,14 @@ function private function_9e7b3f4d(round_reset)
 	{
 		foreach(player in getplayers())
 		{
-			player namespace_b22c99a5::function_885fb2c8();
+			player zm_trial_util::function_885fb2c8();
 		}
 	}
 	level.var_d0b04690 = undefined;
 }
 
 /*
-	Name: function_60845be6
+	Name: set_zombie_total
 	Namespace: namespace_4b4f4cd9
 	Checksum: 0xF8469D44
 	Offset: 0x440
@@ -106,7 +106,7 @@ function private function_9e7b3f4d(round_reset)
 	Parameters: 0
 	Flags: Linked
 */
-function function_60845be6()
+function set_zombie_total()
 {
 	var_92217b88 = (level.var_a0f5e369 + level.var_3a748490) * 10;
 	level.zombie_total = int(max(level.zombie_total, var_92217b88));
@@ -182,13 +182,13 @@ function private function_b2fa4678()
 		{
 			if(var_54e16eaa >= var_58161ed2)
 			{
-				namespace_b22c99a5::function_7d32b7d0(1);
+				zm_trial_util::function_7d32b7d0(1);
 				level notify(#"hash_6ba2e2da302282");
 				level.var_d0b04690 = 1;
 			}
 			else
 			{
-				namespace_b22c99a5::function_dace284(var_54e16eaa);
+				zm_trial_util::function_dace284(var_54e16eaa);
 			}
 			var_c43a6efa = var_54e16eaa;
 		}
@@ -211,12 +211,12 @@ function private function_e04dd27a(n_timer)
 	wait(12);
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_128378c9(n_timer, 1, #"hash_c2b77be4cf5b142");
+		player zm_trial_util::function_128378c9(n_timer, 1, #"hash_c2b77be4cf5b142");
 	}
 	level waittilltimeout(n_timer + 1, #"hash_6ba2e2da302282");
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_885fb2c8();
+		player zm_trial_util::function_885fb2c8();
 	}
 	if(function_d2a5d1f0() < function_e242d7a8())
 	{

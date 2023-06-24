@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_2595527427ea71eb;
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace namespace_c401fb8b;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_c401fb8b
 	Checksum: 0xE8E9DA10
 	Offset: 0xB8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_262f628396f811df", &__init__, undefined, undefined);
 }
@@ -39,11 +39,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_252ca56770c46935", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"teleporter_timeout", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_c401fb8b
 	Checksum: 0x8A8123DC
 	Offset: 0x168
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_d1de6a85(timeout_time, var_b2c60867)
+function private on_begin(timeout_time, var_b2c60867)
 {
 	callback::add_callback(#"hash_137b937fd26992be", &function_ff66b979);
 	self.timeout_time = zm_trial::function_5769f26a(timeout_time);
@@ -63,7 +63,7 @@ function private function_d1de6a85(timeout_time, var_b2c60867)
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_c401fb8b
 	Checksum: 0xAE4DAD0D
 	Offset: 0x278
@@ -71,16 +71,16 @@ function private function_d1de6a85(timeout_time, var_b2c60867)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	callback::remove_callback(#"hash_137b937fd26992be", &function_ff66b979);
 	foreach(player in getplayers())
 	{
 		player.var_b2c60867 = undefined;
 		player.var_e14296de = undefined;
-		player.var_cd0a3ad3 = undefined;
+		player.n_timeout_time = undefined;
 		player.var_60fa6139 = undefined;
-		player namespace_b22c99a5::stop_timer();
+		player zm_trial_util::stop_timer();
 		level.var_f995ece6 zm_trial_timer::close(player);
 	}
 }
@@ -104,12 +104,12 @@ function private function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28
 	}
 	self.var_b2c60867 = var_b2c60867;
 	self.var_e14296de = level.time;
-	self.var_cd0a3ad3 = timeout;
+	self.n_timeout_time = timeout;
 	self.var_60fa6139 = (level.time + (timeout * 1000)) - (var_ca735ce8 * 1000);
 	self.b_teleporting = 0;
 	level.var_f995ece6 zm_trial_timer::open(self);
-	level.var_f995ece6 zm_trial_timer::function_8ede8e82(self, var_b2c60867);
-	self namespace_b22c99a5::start_timer(timeout - var_ca735ce8);
+	level.var_f995ece6 zm_trial_timer::set_timer_text(self, var_b2c60867);
+	self zm_trial_util::start_timer(timeout - var_ca735ce8);
 	while(true)
 	{
 		self waittill(#"teleporting");
@@ -118,9 +118,9 @@ function private function_ad32d69(var_b2c60867, timeout, var_ca735ce8, var_a4a28
 		{
 			level.var_f995ece6 zm_trial_timer::close(self);
 		}
-		self namespace_b22c99a5::stop_timer();
+		self zm_trial_util::stop_timer();
 		wait(3.75);
-		self namespace_b22c99a5::start_timer(timeout);
+		self zm_trial_util::start_timer(timeout);
 		self.var_e14296de = level.time;
 		self.var_60fa6139 = level.time + (timeout * 1000);
 		self.b_teleporting = 0;
@@ -197,14 +197,14 @@ function private function_ff66b979()
 		{
 			level.var_f995ece6 zm_trial_timer::close(player);
 		}
-		player namespace_b22c99a5::stop_timer();
+		player zm_trial_util::stop_timer();
 	}
 	var_a0328dd5 = gettime();
 	wait(5);
 	foreach(player in getplayers())
 	{
 		var_d1659cdf = var_a0328dd5 - player.var_e14296de;
-		player thread function_ad32d69(player.var_b2c60867, player.var_cd0a3ad3, int(float(var_d1659cdf) / 1000), 0);
+		player thread function_ad32d69(player.var_b2c60867, player.n_timeout_time, int(float(var_d1659cdf) / 1000), 0);
 		player thread damage_monitor(0);
 	}
 }

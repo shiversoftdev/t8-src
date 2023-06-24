@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14e569dd391faf67;
-#using script_56a07ed451084ca5;
-#using script_6021ce59143452c3;
+#using scripts\zm\zm_office_teleporters.gsc;
+#using scripts\zm\zm_office_elevators.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_aa2f0fe;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_aa2f0fe
 	Checksum: 0x51CE9365
 	Offset: 0xB0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_2fe76bf0f69f1761", &__init__, undefined, undefined);
 }
@@ -35,11 +35,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_13a41fe1a6435995", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_13a41fe1a6435995", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_aa2f0fe
 	Checksum: 0x9F80C16C
 	Offset: 0x160
@@ -47,14 +47,14 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
 	self function_3b7e62cf();
 	self function_28dce407();
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_aa2f0fe
 	Checksum: 0xB6E1960D
 	Offset: 0x1A0
@@ -62,7 +62,7 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	self function_72c09628();
 	self function_8209b7a5();
@@ -100,8 +100,8 @@ function private function_98c1b6be()
 	{
 		self waittill(#"hash_26d932820f7f5373");
 	}
-	self namespace_ccdea9b1::disable_callboxes();
-	self namespace_ccdea9b1::disable_elevator_buys();
+	self zm_office_elevators::disable_callboxes();
+	self zm_office_elevators::disable_elevator_buys();
 }
 
 /*
@@ -115,7 +115,7 @@ function private function_98c1b6be()
 */
 function private function_28dce407()
 {
-	namespace_a701220b::function_a6bb56f6();
+	zm_office_teleporters::function_a6bb56f6();
 }
 
 /*
@@ -131,10 +131,10 @@ function private function_72c09628()
 {
 	elevator1 = getent("elevator1", "targetname");
 	elevator2 = getent("elevator2", "targetname");
-	elevator1 namespace_ccdea9b1::enable_callboxes();
-	elevator1 namespace_ccdea9b1::enable_elevator_buys();
-	elevator2 namespace_ccdea9b1::enable_callboxes();
-	elevator2 namespace_ccdea9b1::enable_elevator_buys();
+	elevator1 zm_office_elevators::enable_callboxes();
+	elevator1 zm_office_elevators::enable_elevator_buys();
+	elevator2 zm_office_elevators::enable_callboxes();
+	elevator2 zm_office_elevators::enable_elevator_buys();
 }
 
 /*
@@ -148,6 +148,6 @@ function private function_72c09628()
 */
 function private function_8209b7a5()
 {
-	namespace_a701220b::function_cc9b97b0();
+	zm_office_teleporters::function_cc9b97b0();
 }
 

@@ -6,7 +6,7 @@
 #namespace demo;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: demo
 	Checksum: 0x46173495
 	Offset: 0x80
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"demo", &__init__, undefined, undefined);
 }
@@ -72,7 +72,7 @@ function private function_4ba58938(bookmark, overrideentitycamera)
 }
 
 /*
-	Name: function_ae3420ca
+	Name: kill_bookmark
 	Namespace: demo
 	Checksum: 0x863BCD3
 	Offset: 0x1F8
@@ -80,7 +80,7 @@ function private function_4ba58938(bookmark, overrideentitycamera)
 	Parameters: 5
 	Flags: Linked
 */
-function function_ae3420ca(var_81538b15, var_f28fb772, einflictor, var_50d1e41a, overrideentitycamera)
+function kill_bookmark(var_81538b15, var_f28fb772, einflictor, var_50d1e41a, overrideentitycamera)
 {
 	bookmark = potm::function_5b1e9ed4(game.var_e9714926, #"kill", gettime(), var_81538b15, var_f28fb772, 0, einflictor, var_50d1e41a, overrideentitycamera);
 	function_4ba58938(bookmark, overrideentitycamera);
@@ -97,12 +97,12 @@ function function_ae3420ca(var_81538b15, var_f28fb772, einflictor, var_50d1e41a,
 */
 function function_651a5f4(var_81538b15, einflictor)
 {
-	bookmark = potm::function_5b1e9ed4(game.var_e9714926, #"hash_23fbe94cfb952f6f", gettime(), var_81538b15, undefined, 0, einflictor);
+	bookmark = potm::function_5b1e9ed4(game.var_e9714926, #"object_destroy", gettime(), var_81538b15, undefined, 0, einflictor);
 	function_4ba58938(bookmark);
 }
 
 /*
-	Name: function_dfecaa9
+	Name: event_bookmark
 	Namespace: demo
 	Checksum: 0xD5CCE6EA
 	Offset: 0x308
@@ -110,7 +110,7 @@ function function_651a5f4(var_81538b15, einflictor)
 	Parameters: 5
 	Flags: None
 */
-function function_dfecaa9(var_65e76577, time, var_81538b15, scoreeventpriority, eventdata)
+function event_bookmark(var_65e76577, time, var_81538b15, scoreeventpriority, eventdata)
 {
 	bookmark = potm::function_5b1e9ed4(game.var_e9714926, var_65e76577, time, var_81538b15, undefined, scoreeventpriority, undefined, undefined, 0, eventdata);
 	function_4ba58938(bookmark);

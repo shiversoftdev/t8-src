@@ -7,7 +7,7 @@
 #namespace drown;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: drown
 	Checksum: 0xC2D8EFEC
 	Offset: 0x110
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"drown", &__init__, undefined, undefined);
 }

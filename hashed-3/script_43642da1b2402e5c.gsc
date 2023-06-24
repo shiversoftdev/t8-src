@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_27c22e1d8df4d852;
-#using script_3f9e0dc8454d98e1;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -13,7 +13,7 @@
 #namespace namespace_a9e73d8d;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a9e73d8d
 	Checksum: 0x2CF16A42
 	Offset: 0x128
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_1f1fd12b1b87ef2c", &__init__, undefined, undefined);
 }
@@ -41,11 +41,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_3ad5e71a03ad70c1", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_3ad5e71a03ad70c1", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_a9e73d8d
 	Checksum: 0x4038CF6E
 	Offset: 0x1D8
@@ -53,16 +53,16 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
 	level.var_375482b5 = 1;
 	callback::on_ai_killed(&on_ai_killed);
 	callback::function_33f0ddd3(&function_33f0ddd3);
-	callback::function_f77ced93(&namespace_b22c99a5::function_79518194);
+	callback::function_f77ced93(&zm_trial_util::function_79518194);
 	foreach(player in getplayers())
 	{
-		player thread namespace_b22c99a5::function_bf710271(1, 1, 1, 0, 0);
-		player thread namespace_b22c99a5::function_dc9ab223(1, 0);
+		player thread zm_trial_util::function_bf710271(1, 1, 1, 0, 0);
+		player thread zm_trial_util::function_dc9ab223(1, 0);
 		player thread function_963b8c82();
 		player thread function_29ee24dd();
 	}
@@ -70,7 +70,7 @@ function private function_d1de6a85()
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_a9e73d8d
 	Checksum: 0x50C94472
 	Offset: 0x350
@@ -78,12 +78,12 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.var_375482b5 = undefined;
 	callback::remove_on_ai_killed(&on_ai_killed);
 	callback::function_824d206(&function_33f0ddd3);
-	callback::function_5a753d97(&namespace_b22c99a5::function_79518194);
+	callback::function_5a753d97(&zm_trial_util::function_79518194);
 	level zm_trial::function_25ee130(0);
 	level thread refill_ammo();
 }
@@ -107,7 +107,7 @@ function private refill_ammo()
 	}
 	foreach(player in getplayers())
 	{
-		player thread namespace_b22c99a5::function_dc0859e();
+		player thread zm_trial_util::function_dc0859e();
 		a_w_weapons = player getweaponslist(0);
 		foreach(w_weapon in a_w_weapons)
 		{
@@ -200,11 +200,11 @@ function private function_29ee24dd()
 	self endon(#"disconnect");
 	level endon(#"hash_7646638df88a3656");
 	a_w_weapons = self getweaponslist(0);
-	self function_af55104(1);
+	self reset_ammo(1);
 	while(true)
 	{
 		var_be17187b = undefined;
-		var_be17187b = self waittill(#"zmb_max_ammo", #"hash_278526d0bbdb4ce7", #"melee_reload", #"hash_52d48b9173a9eeec");
+		var_be17187b = self waittill(#"zmb_max_ammo", #"hash_278526d0bbdb4ce7", #"melee_reload", #"wallbuy_done");
 		w_current = self getcurrentweapon();
 		if(var_be17187b._notify == "melee_reload")
 		{
@@ -257,7 +257,7 @@ function private on_ai_killed(params)
 }
 
 /*
-	Name: function_af55104
+	Name: reset_ammo
 	Namespace: namespace_a9e73d8d
 	Checksum: 0x38076A49
 	Offset: 0xB78
@@ -265,7 +265,7 @@ function private on_ai_killed(params)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_af55104(var_f2c84b6b)
+function private reset_ammo(var_f2c84b6b)
 {
 	self notify("70d94e798e24bb1e");
 	self endon("70d94e798e24bb1e");

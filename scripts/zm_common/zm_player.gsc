@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_20ac552ee498eb9d;
-#using script_35b5ff21c2a0960f;
-#using script_3b034476f596d018;
-#using script_3f9e0dc8454d98e1;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\gametypes\globallogic_scriptmover.gsc;
+#using scripts\core_common\globallogic\globallogic_vehicle.gsc;
+#using scripts\core_common\status_effects\status_effects.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using script_4194df57536e11ed;
-#using script_47fb62300ac0bd60;
-#using script_5399f402045d7abd;
-#using script_53f13b381cd4251d;
-#using script_6021ce59143452c3;
-#using script_6e3c826b1814cab6;
-#using script_9e4105ea1798ccc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\weapons\weapon_utils.gsc;
+#using scripts\zm_common\bots\zm_bot.gsc;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_armor.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -51,7 +51,7 @@
 #namespace zm_player;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_player
 	Checksum: 0x1E34193A
 	Offset: 0x5D0
@@ -59,7 +59,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_player", &__init__, undefined, undefined);
 }
@@ -503,7 +503,7 @@ function callback_playerdamage(einflictor, eattacker, idamage, idflags, smeansof
 	/#
 		assert(isdefined(idamage), "");
 	#/
-	if(isdefined(level.var_4804edae) && level.var_4804edae && isbot(self) && isdefined(einflictor) && isactor(einflictor))
+	if(isdefined(level.zm_bots_scale) && level.zm_bots_scale && isbot(self) && isdefined(einflictor) && isactor(einflictor))
 	{
 		idamage = int(idamage / zm_bot::function_e16b5033(einflictor));
 	}
@@ -552,12 +552,12 @@ function callback_playerdamage(einflictor, eattacker, idamage, idflags, smeansof
 	{
 		if(isdefined(level.var_a2d8b7eb))
 		{
-			namespace_59ff1d6c::function_db030433();
+			zm_custom::function_db030433();
 			self zm_score::player_reduce_points("points_lost_on_hit_percent", level.var_a2d8b7eb);
 		}
 		else if(isdefined(level.var_39e18a71))
 		{
-			namespace_59ff1d6c::function_db030433();
+			zm_custom::function_db030433();
 			self zm_score::player_reduce_points("points_lost_on_hit_value", level.var_39e18a71);
 			if(zm_trial::function_b47f6aba())
 			{
@@ -632,7 +632,7 @@ function function_182d09fd(eattacker, idamage)
 	{
 		idamage = idamage * level.var_5db2341c;
 	}
-	if(isdefined(eattacker.archetype) && isinarray(array(#"nosferatu", #"skeleton", #"nova_crawler", #"tiger", #"catalyst", #"hash_78ca8e8e6bdbc8ab", #"hash_266b62e342076a90", #"hash_5cfa99582cc66c59", #"hash_5d6b55906fc82ff2"), eattacker.archetype) && isdefined(level.var_53c7ca1d))
+	if(isdefined(eattacker.archetype) && isinarray(array(#"nosferatu", #"skeleton", #"nova_crawler", #"tiger", #"catalyst", #"catalyst_corrosive", #"catalyst_electric", #"catalyst_plasma", #"catalyst_water"), eattacker.archetype) && isdefined(level.var_53c7ca1d))
 	{
 		idamage = idamage * level.var_53c7ca1d;
 	}
@@ -903,7 +903,7 @@ function onplayerspawned()
 				self thread val::set_for_time(3, #"player_spawn_protection", "ignoreme");
 			}
 		}
-		self notify(#"hash_6983c1a427fa8913");
+		self notify(#"perks_initialized");
 	}
 }
 
@@ -1482,7 +1482,7 @@ function player_revive_monitor()
 				self zm_audio::create_and_play_dialog(#"revive", #"up");
 			}
 			points = self.score_lost_when_downed;
-			if(!isdefined(points) || self == reviver || namespace_59ff1d6c::function_901b751c(#"hash_1fed0d9afc0b0040"))
+			if(!isdefined(points) || self == reviver || zm_custom::function_901b751c(#"hash_1fed0d9afc0b0040"))
 			{
 				points = 0;
 			}

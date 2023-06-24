@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\scene_shared.gsc;
 
-#namespace namespace_3be0b7ad;
+#namespace timecard_control;
 
 /*
 	Name: function_9b62d333
-	Namespace: namespace_3be0b7ad
+	Namespace: timecard_control
 	Checksum: 0x4D7FB0B0
 	Offset: 0x90
 	Size: 0x238
@@ -87,7 +87,7 @@ function function_9b62d333(n_hour, n_minute)
 
 /*
 	Name: function_64c53556
-	Namespace: namespace_3be0b7ad
+	Namespace: timecard_control
 	Checksum: 0x68E2EE62
 	Offset: 0x2D8
 	Size: 0x3E
@@ -104,7 +104,7 @@ function function_64c53556()
 
 /*
 	Name: function_fba6efd4
-	Namespace: namespace_3be0b7ad
+	Namespace: timecard_control
 	Checksum: 0x3FC02614
 	Offset: 0x320
 	Size: 0x1C
@@ -118,7 +118,7 @@ function function_fba6efd4()
 
 /*
 	Name: function_783891ed
-	Namespace: namespace_3be0b7ad
+	Namespace: timecard_control
 	Checksum: 0x809A18CB
 	Offset: 0x348
 	Size: 0x1C
@@ -132,7 +132,7 @@ function function_783891ed()
 
 /*
 	Name: function_9e6251db
-	Namespace: namespace_3be0b7ad
+	Namespace: timecard_control
 	Checksum: 0xE90EF784
 	Offset: 0x370
 	Size: 0x1E6

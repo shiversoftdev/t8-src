@@ -26,7 +26,7 @@ function init()
 		return;
 	}
 	level.teambased = function_b2272884();
-	setvisiblescoreboardcolumns(bundle.var_6d99d15e, bundle.var_7be9edfe, bundle.var_8f7881b, bundle.var_1744a4b5, bundle.var_267a4320, bundle.var_d4259e74, bundle.var_54dd9ff6, bundle.var_5ee7b40a, bundle.var_6d3350a1, bundle.var_26d52900);
+	setvisiblescoreboardcolumns(bundle.scoreboard_1, bundle.scoreboard_2, bundle.scoreboard_3, bundle.scoreboard_4, bundle.scoreboard_5, bundle.var_d4259e74, bundle.var_54dd9ff6, bundle.var_5ee7b40a, bundle.var_6d3350a1, bundle.var_26d52900);
 	globallogic_audio::set_leader_gametype_dialog(bundle.var_ef0e6936, bundle.var_92ea240c, bundle.var_39d466bc, bundle.var_fd58840f, "", "");
 	if(!isdefined(game.switchedsides))
 	{
@@ -109,7 +109,7 @@ function private function_788fb510(value)
 	Parameters: 10
 	Flags: Linked
 */
-function setvisiblescoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15af6c19, var_217983ad, var_eabe9600, var_9af375c9)
+function setvisiblescoreboardcolumns(col1, col2, col3, col4, col5, col6, col7, col8, col9, col10)
 {
 	col1 = function_788fb510(col1);
 	col2 = function_788fb510(col2);
@@ -117,17 +117,17 @@ function setvisiblescoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15a
 	col4 = function_788fb510(col4);
 	col5 = function_788fb510(col5);
 	col6 = function_788fb510(col6);
-	var_15af6c19 = function_788fb510(var_15af6c19);
-	var_217983ad = function_788fb510(var_217983ad);
-	var_eabe9600 = function_788fb510(var_eabe9600);
-	var_9af375c9 = function_788fb510(var_9af375c9);
+	col7 = function_788fb510(col7);
+	col8 = function_788fb510(col8);
+	col9 = function_788fb510(col9);
+	col10 = function_788fb510(col10);
 	if(!level.rankedmatch)
 	{
-		setscoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15af6c19, var_217983ad, var_eabe9600, var_9af375c9, "sbtimeplayed", "shotshit", "shotsmissed", "victory");
+		setscoreboardcolumns(col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, "sbtimeplayed", "shotshit", "shotsmissed", "victory");
 	}
 	else
 	{
-		setscoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15af6c19, var_217983ad, var_eabe9600, var_9af375c9);
+		setscoreboardcolumns(col1, col2, col3, col4, col5, col6, col7, col8, col9, col10);
 	}
 }
 

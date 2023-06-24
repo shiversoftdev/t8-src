@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_2cb831533cab2794;
-#using script_2dc48f46bfeac894;
+#using scripts\abilities\ability_player.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -22,7 +22,7 @@
 #namespace zm_equipment;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_equipment
 	Checksum: 0x82633D7B
 	Offset: 0x1E8
@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_equipment", &__init__, &__main__, undefined);
 }
@@ -87,7 +87,7 @@ function abilities_devgui_add_gadgets_custom(root, pname, pid, menu_index)
 		var_61b8f8fb = "";
 		add_cmd_with_root = (("" + var_61b8f8fb) + pname) + "";
 		a_abilities = [];
-		arrayinsert(a_abilities, getweapon(#"hash_34b7eb9fde56bd35"), 0);
+		arrayinsert(a_abilities, getweapon(#"eq_frag_grenade"), 0);
 		arrayinsert(a_abilities, getweapon(#"incendiary_grenade"), 0);
 		arrayinsert(a_abilities, getweapon(#"sticky_grenade"), 0);
 		arrayinsert(a_abilities, getweapon(#"proximity_grenade"), 0);
@@ -96,7 +96,7 @@ function abilities_devgui_add_gadgets_custom(root, pname, pid, menu_index)
 		arrayinsert(a_abilities, getweapon(#"flash_grenade"), 0);
 		arrayinsert(a_abilities, getweapon(#"emp_grenade"), 0);
 		arrayinsert(a_abilities, getweapon(#"cymbal_monkey"), 0);
-		arrayinsert(a_abilities, getweapon(#"hash_13fbf1dd07d9cf3e"), 0);
+		arrayinsert(a_abilities, getweapon(#"tesla_coil"), 0);
 		arrayinsert(a_abilities, getweapon(#"tomahawk_t8"), 0);
 		ability_player::function_174037fe(add_cmd_with_root, pid, a_abilities, "", menu_index);
 		var_ab290760 = [];
@@ -115,9 +115,9 @@ function abilities_devgui_add_gadgets_custom(root, pname, pid, menu_index)
 		arrayinsert(var_ab290760, getweapon(#"hero_hammer_lv1"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_hammer_lv2"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_hammer_lv3"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_50f35e4cfb775e02"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_50f35d4cfb775c4f"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_50f35c4cfb775a9c"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_scepter_lv1"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_scepter_lv2"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_scepter_lv3"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_sword_pistol_lv1"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_sword_pistol_lv2"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_sword_pistol_lv3"), 0);
@@ -127,24 +127,24 @@ function abilities_devgui_add_gadgets_custom(root, pname, pid, menu_index)
 		arrayinsert(var_ab290760, getweapon(#"hero_hammer_lv1"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_hammer_lv2"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_hammer_lv3"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_50f35e4cfb775e02"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_50f35d4cfb775c4f"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_50f35c4cfb775a9c"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_scepter_lv1"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_scepter_lv2"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_scepter_lv3"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_sword_pistol_lv1"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_sword_pistol_lv2"), 0);
 		arrayinsert(var_ab290760, getweapon(#"hero_sword_pistol_lv3"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_18829d56b3fbd75b"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_18829e56b3fbd90e"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_18829f56b3fbdac1"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_1d3a5509fa2c9ee6"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_1d3a5409fa2c9d33"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_1d3a5309fa2c9b80"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_6627879099b8a337"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_6627889099b8a4ea"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_6627899099b8a69d"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_74dd67dd8a46d144"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_74dd6add8a46d65d"), 0);
-		arrayinsert(var_ab290760, getweapon(#"hash_74dd69dd8a46d4aa"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_flamethrower_t8_lv1"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_flamethrower_t8_lv2"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_flamethrower_t8_lv3"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_gravityspikes_t8_lv1"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_gravityspikes_t8_lv2"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_gravityspikes_t8_lv3"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_katana_t8_lv1"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_katana_t8_lv2"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_katana_t8_lv3"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_minigun_t8_lv1"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_minigun_t8_lv2"), 0);
+		arrayinsert(var_ab290760, getweapon(#"hero_minigun_t8_lv3"), 0);
 		ability_player::function_a40d04ca(add_cmd_with_root, pid, var_ab290760, "", menu_index);
 		menu_index++;
 		menu_index = ability_player::abilities_devgui_add_power(add_cmd_with_root, pid, menu_index);
@@ -921,7 +921,7 @@ function show_hint_text(text, show_for_time = 3.2, font_scale = 1.25, ypos = 220
 	{
 		level.zm_hint_text zm_hint_text::open(self);
 	}
-	level.zm_hint_text zm_hint_text::function_d5ea17f0(self, text);
+	level.zm_hint_text zm_hint_text::set_text(self, text);
 	level.zm_hint_text zm_hint_text::set_state(self, #"visible");
 	time = undefined;
 	time = self waittilltimeout(show_for_time, #"hide_equipment_hint_text", #"death", #"disconnect");
@@ -1262,7 +1262,7 @@ function function_379f6b5d(n_base_damage, var_177ec733 = 1, var_b68e56de = 1, va
 function function_e418901e()
 {
 	/#
-		setdvar(#"hash_2554cdbcc1e45023", "");
+		setdvar(#"give_equipment", "");
 		waitframe(1);
 		level flag::wait_till("");
 		waitframe(1);
@@ -1270,7 +1270,7 @@ function function_e418901e()
 		adddebugcommand(str_cmd);
 		while(true)
 		{
-			equipment_id = getdvarstring(#"hash_2554cdbcc1e45023");
+			equipment_id = getdvarstring(#"give_equipment");
 			if(equipment_id != "")
 			{
 				foreach(player in getplayers())
@@ -1285,7 +1285,7 @@ function function_e418901e()
 						player buy(equipment_id);
 					}
 				}
-				setdvar(#"hash_2554cdbcc1e45023", "");
+				setdvar(#"give_equipment", "");
 			}
 			waitframe(1);
 		}

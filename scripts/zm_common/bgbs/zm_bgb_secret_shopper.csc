@@ -5,7 +5,7 @@
 #namespace zm_bgb_secret_shopper;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_secret_shopper
 	Checksum: 0xB5036981
 	Offset: 0x80
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_secret_shopper", &__init__, undefined, #"bgb");
 }

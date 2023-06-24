@@ -2,12 +2,12 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_1e9d002b : class_6aaccc24
+class cwz_wingsuit_hud : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_1e9d002b
+		Namespace: cwz_wingsuit_hud
 		Checksum: 0x85501C3
 		Offset: 0x190
 		Size: 0x14
@@ -20,7 +20,7 @@ class class_1e9d002b : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_1e9d002b
+		Namespace: cwz_wingsuit_hud
 		Checksum: 0x308CAE5D
 		Offset: 0x260
 		Size: 0x14
@@ -33,7 +33,7 @@ class class_1e9d002b : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_1e9d002b
+		Namespace: cwz_wingsuit_hud
 		Checksum: 0xE7E68618
 		Offset: 0x230
 		Size: 0x24
@@ -42,12 +42,12 @@ class class_1e9d002b : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_1e9d002b
+		Namespace: cwz_wingsuit_hud
 		Checksum: 0x94E11145
 		Offset: 0x1E0
 		Size: 0x44
@@ -56,12 +56,12 @@ class class_1e9d002b : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "wz_wingsuit_hud", persistent);
+		cLUIelem::open_luielem(player, "wz_wingsuit_hud", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_1e9d002b
+		Namespace: cwz_wingsuit_hud
 		Checksum: 0xC95FB542
 		Offset: 0x1B0
 		Size: 0x24
@@ -70,7 +70,7 @@ class class_1e9d002b : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -88,7 +88,7 @@ class class_1e9d002b : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_1e9d002b();
+	elem = new cwz_wingsuit_hud();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

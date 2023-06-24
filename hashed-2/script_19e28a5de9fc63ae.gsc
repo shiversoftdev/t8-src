@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_f2a6c231 : class_6aaccc24
+class cfail_screen : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0xE6F48613
 		Offset: 0x1A8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_f2a6c231 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x329DD6FB
 		Offset: 0x290
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_f2a6c231 : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0xA67AB13F
 		Offset: 0x258
 		Size: 0x2C
@@ -41,12 +41,12 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"fail_screen");
+		cLUIelem::open(localclientnum, #"fail_screen");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x5A947C4C
 		Offset: 0x228
 		Size: 0x24
@@ -55,12 +55,12 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x1CFA0079
 		Offset: 0x1F8
 		Size: 0x24
@@ -69,12 +69,12 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_f2a6c231
+		Namespace: cfail_screen
 		Checksum: 0x91696877
 		Offset: 0x1C8
 		Size: 0x24
@@ -83,7 +83,7 @@ class class_f2a6c231 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -101,7 +101,7 @@ class class_f2a6c231 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_f2a6c231();
+	elem = new cfail_screen();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -117,7 +117,7 @@ function register(uid)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_f2a6c231();
+	elem = new cfail_screen();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

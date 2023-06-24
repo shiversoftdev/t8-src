@@ -6,7 +6,7 @@
 #namespace influencers;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: influencers
 	Checksum: 0xD806C429
 	Offset: 0xF0
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"influencers_shared", &__init__, undefined, undefined);
 }

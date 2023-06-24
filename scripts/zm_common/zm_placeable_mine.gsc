@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_8988fdbc78d6c53;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\weapons\weaponobjects.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -18,7 +18,7 @@
 #namespace zm_placeable_mine;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_placeable_mine
 	Checksum: 0xB62C55BF
 	Offset: 0x168
@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"placeable_mine", undefined, &__main__, undefined);
 }

@@ -1,31 +1,31 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2a8820b4158c6689;
-#using script_70e093910fc75f4;
+#using scripts\core_common\ai\archetype_brutus.csc;
+#using scripts\zm\ai\zm_ai_brutus.csc;
 #using scripts\core_common\ai_shared.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\struct.csc;
 #using scripts\core_common\system_shared.csc;
 
-#namespace namespace_961cf978;
+#namespace zombie_brutus_util;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_961cf978
+	Name: __init__system__
+	Namespace: zombie_brutus_util
 	Checksum: 0xC892978
 	Offset: 0xD8
 	Size: 0x3C
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_722ef8a2296d547e", &__init__, undefined, undefined);
+	system::register(#"zombie_brutus_util", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0x4305C72
 	Offset: 0x120
 	Size: 0x4C
@@ -39,7 +39,7 @@ function __init__()
 
 /*
 	Name: function_6f198c81
-	Namespace: namespace_961cf978
+	Namespace: zombie_brutus_util
 	Checksum: 0xEB380BAD
 	Offset: 0x178
 	Size: 0xBC

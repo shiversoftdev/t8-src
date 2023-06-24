@@ -10,7 +10,7 @@
 #namespace duplicate_render;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: duplicate_render
 	Checksum: 0x37B13407
 	Offset: 0x2F8
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"duplicate_render", &__init__, undefined, undefined);
 }
@@ -405,7 +405,7 @@ function _update_dr_filters(localclientnum)
 			self apply_filter(localclientnum, filter, key);
 		}
 	}
-	if(sessionmodeismultiplayergame() || function_f99d2668())
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 	{
 		self thread disable_all_filters_on_game_ended();
 	}
@@ -723,7 +723,7 @@ function show_friendly_outlines(local_client_num)
 */
 function set_entity_draft_unselected(localclientnum, on_off)
 {
-	if(util::function_3f165ee8())
+	if(util::is_frontend_map())
 	{
 		rob = #"hash_79892e1d5a8f9f33";
 	}
@@ -740,11 +740,11 @@ function set_entity_draft_unselected(localclientnum, on_off)
 	}
 	if(isdefined(on_off) && on_off)
 	{
-		self function_bf9d3071(rob);
+		self playrenderoverridebundle(rob);
 	}
 	else
 	{
-		self function_5d482e78(rob);
+		self stoprenderoverridebundle(rob);
 	}
 }
 

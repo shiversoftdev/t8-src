@@ -2,12 +2,12 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_e437d293 : class_6aaccc24
+class cprototype_defend_timer : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_e437d293
+		Namespace: cprototype_defend_timer
 		Checksum: 0x8946405D
 		Offset: 0x198
 		Size: 0x14
@@ -20,7 +20,7 @@ class class_e437d293 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_e437d293
+		Namespace: cprototype_defend_timer
 		Checksum: 0x2400AC18
 		Offset: 0x268
 		Size: 0x14
@@ -33,7 +33,7 @@ class class_e437d293 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_e437d293
+		Namespace: cprototype_defend_timer
 		Checksum: 0x626B8E2B
 		Offset: 0x238
 		Size: 0x24
@@ -42,12 +42,12 @@ class class_e437d293 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_e437d293
+		Namespace: cprototype_defend_timer
 		Checksum: 0x8D1B3FAB
 		Offset: 0x1E8
 		Size: 0x44
@@ -56,12 +56,12 @@ class class_e437d293 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "prototype_defend_timer", persistent);
+		cLUIelem::open_luielem(player, "prototype_defend_timer", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_e437d293
+		Namespace: cprototype_defend_timer
 		Checksum: 0x411C30DA
 		Offset: 0x1B8
 		Size: 0x24
@@ -70,7 +70,7 @@ class class_e437d293 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -88,7 +88,7 @@ class class_e437d293 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_e437d293();
+	elem = new cprototype_defend_timer();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

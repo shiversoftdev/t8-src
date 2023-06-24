@@ -3,11 +3,11 @@
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\struct.csc;
 
-#namespace namespace_fada3c80;
+#namespace zm_office_sound;
 
 /*
 	Name: main
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0x3A83571C
 	Offset: 0xC0
 	Size: 0x34
@@ -16,20 +16,20 @@
 */
 function main()
 {
-	level thread function_9290b227();
+	level thread startzmbspawnersoundloops();
 	level thread function_6e0048f1();
 }
 
 /*
-	Name: function_9290b227
-	Namespace: namespace_fada3c80
+	Name: startzmbspawnersoundloops
+	Namespace: zm_office_sound
 	Checksum: 0xDA192BD2
 	Offset: 0x100
 	Size: 0x15C
 	Parameters: 0
 	Flags: Linked
 */
-function function_9290b227()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("spawn_location", "script_noteworthy");
 	if(isdefined(loopers) && loopers.size > 0)
@@ -64,7 +64,7 @@ function function_9290b227()
 
 /*
 	Name: soundloopthink
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0x5DFE1345
 	Offset: 0x268
 	Size: 0x18A
@@ -121,7 +121,7 @@ function soundloopthink()
 
 /*
 	Name: function_6e0048f1
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0xE1BE1901
 	Offset: 0x400
 	Size: 0xE4

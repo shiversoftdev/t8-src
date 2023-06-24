@@ -21,7 +21,7 @@ function setup()
 	level.namesindex = [];
 	if(!isdefined(level.script))
 	{
-		level.script = util::function_53bbf9d2();
+		level.script = util::get_map_name();
 	}
 	initialize_nationality("american");
 }
@@ -239,7 +239,7 @@ function get(override)
 	if(!isdefined(override) && level.script == "credits")
 	{
 		self.airank = "private";
-		self notify(#"hash_46c82ad6bdf7e76f");
+		self notify(#"set name and rank");
 		return;
 	}
 	if(isdefined(self.script_friendname))
@@ -253,7 +253,7 @@ function get(override)
 			self.propername = self.script_friendname;
 			getrankfromname(self.propername);
 		}
-		self notify(#"hash_46c82ad6bdf7e76f");
+		self notify(#"set name and rank");
 		return;
 	}
 	/#
@@ -330,7 +330,7 @@ function get(override)
 	}
 	initialize_nationality(str_nationality);
 	get_name_for_nationality(str_nationality);
-	self notify(#"hash_46c82ad6bdf7e76f");
+	self notify(#"set name and rank");
 }
 
 /*

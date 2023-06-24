@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_68d2ee1489345a1d;
-#using script_6c8abe14025b47c4;
+#using scripts\killstreaks\killstreaks_util.gsc;
+#using scripts\killstreaks\killstreaks_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\hostmigration_shared.gsc;
 #using scripts\core_common\hud_message_shared.gsc;
@@ -22,20 +22,20 @@
 	Parameters: 2
 	Flags: None
 */
-function is_winner(outcome, var_512330f1)
+function is_winner(outcome, team_or_player)
 {
-	if(isplayer(var_512330f1))
+	if(isplayer(team_or_player))
 	{
-		if(outcome.players.size && outcome.players[0] == var_512330f1)
+		if(outcome.players.size && outcome.players[0] == team_or_player)
 		{
 			return true;
 		}
-		if(isdefined(outcome.team) && outcome.team == var_512330f1.team)
+		if(isdefined(outcome.team) && outcome.team == team_or_player.team)
 		{
 			return true;
 		}
 	}
-	else if(isdefined(outcome.team) && outcome.team == var_512330f1)
+	else if(isdefined(outcome.team) && outcome.team == team_or_player)
 	{
 		return true;
 	}
@@ -424,7 +424,7 @@ function applyroundstartdelay()
 	self endon(#"disconnect", #"joined_spectators", #"death");
 	if(game.state == "pregame")
 	{
-		level waittill(#"hash_313ad43b34e74e96");
+		level waittill(#"game_playing");
 	}
 	else
 	{
@@ -681,7 +681,7 @@ function isheadshot(weapon, shitloc, smeansofdeath, einflictor)
 		case "mod_impact":
 		{
 			baseweapon = weapons::getbaseweapon(weapon);
-			if(!weapon.isballisticknife && baseweapon != level.weaponspecialcrossbow && baseweapon != level.var_9e188c0b)
+			if(!weapon.isballisticknife && baseweapon != level.weaponspecialcrossbow && baseweapon != level.weaponflechette)
 			{
 				return false;
 			}

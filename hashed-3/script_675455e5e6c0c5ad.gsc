@@ -55,8 +55,8 @@ function function_c6b07c39(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval)
 	{
 		self.var_3c43a180 = util::playfxontag(localclientnum, level._effect[#"hash_62343c2144d3f8d1"], self, "tag_animate");
-		forcestreamxmodel(#"hash_2a475dc4752c8b17");
-		forcestreamxmodel(#"hash_53d213db448a97e1");
+		forcestreamxmodel(#"p8_zm_esc_nixie_tubes");
+		forcestreamxmodel(#"p8_zm_esc_nixie_tubes_on");
 	}
 	else
 	{
@@ -64,8 +64,8 @@ function function_c6b07c39(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			stopfx(localclientnum, self.var_3c43a180);
 		}
-		stopforcestreamingxmodel(#"hash_2a475dc4752c8b17");
-		stopforcestreamingxmodel(#"hash_53d213db448a97e1");
+		stopforcestreamingxmodel(#"p8_zm_esc_nixie_tubes");
+		stopforcestreamingxmodel(#"p8_zm_esc_nixie_tubes_on");
 	}
 }
 

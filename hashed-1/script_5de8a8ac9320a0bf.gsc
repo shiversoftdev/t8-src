@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_e9d01e1c : class_6aaccc24
+class cdebug_center_screen : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0xC86E7622
 		Offset: 0x1A8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_e9d01e1c : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0xC1AB16F3
 		Offset: 0x290
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_e9d01e1c : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x8610FEF8
 		Offset: 0x258
 		Size: 0x2C
@@ -41,12 +41,12 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"debug_center_screen");
+		cLUIelem::open(localclientnum, #"debug_center_screen");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x9616BDB7
 		Offset: 0x228
 		Size: 0x24
@@ -55,12 +55,12 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0xB49B3905
 		Offset: 0x1F8
 		Size: 0x24
@@ -69,12 +69,12 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x83F875FE
 		Offset: 0x1C8
 		Size: 0x24
@@ -83,7 +83,7 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -101,7 +101,7 @@ class class_e9d01e1c : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_e9d01e1c();
+	elem = new cdebug_center_screen();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -117,7 +117,7 @@ function register(uid)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_e9d01e1c();
+	elem = new cdebug_center_screen();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

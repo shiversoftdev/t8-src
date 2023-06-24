@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_135e8f9a : class_6aaccc24
+class crevive_hud : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xF160F090
 		Offset: 0x288
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_135e8f9a : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xBC2FE78D
 		Offset: 0x508
 		Size: 0x14
@@ -31,50 +31,50 @@ class class_135e8f9a : class_6aaccc24
 	}
 
 	/*
-		Name: function_28ebf0f1
-		Namespace: namespace_135e8f9a
+		Name: set_fadeTime
+		Namespace: crevive_hud
 		Checksum: 0xFFFA0B09
 		Offset: 0x4D0
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_28ebf0f1(localclientnum, value)
+	function set_fadeTime(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "fadeTime", value);
+		[[ self ]]->set_data(localclientnum, "fadeTime", value);
 	}
 
 	/*
-		Name: function_3b7b386a
-		Namespace: namespace_135e8f9a
+		Name: set_clientnum
+		Namespace: crevive_hud
 		Checksum: 0xC098C761
 		Offset: 0x498
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_3b7b386a(localclientnum, value)
+	function set_clientnum(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "clientNum", value);
+		[[ self ]]->set_data(localclientnum, "clientNum", value);
 	}
 
 	/*
-		Name: function_d5ea17f0
-		Namespace: namespace_135e8f9a
+		Name: set_text
+		Namespace: crevive_hud
 		Checksum: 0x3D1C9A0E
 		Offset: 0x460
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_d5ea17f0(localclientnum, value)
+	function set_text(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "text", value);
+		[[ self ]]->set_data(localclientnum, "text", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xB859D4C2
 		Offset: 0x428
 		Size: 0x2C
@@ -83,12 +83,12 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"revive_hud");
+		cLUIelem::open(localclientnum, #"revive_hud");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xE11D356F
 		Offset: 0x398
 		Size: 0x84
@@ -97,15 +97,15 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "text", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "clientNum", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "fadeTime", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "text", #"");
+		[[ self ]]->set_data(localclientnum, "clientNum", 0);
+		[[ self ]]->set_data(localclientnum, "fadeTime", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0xBB6BCAE6
 		Offset: 0x368
 		Size: 0x24
@@ -114,12 +114,12 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_135e8f9a
+		Namespace: crevive_hud
 		Checksum: 0x218C541
 		Offset: 0x2A8
 		Size: 0xB4
@@ -128,10 +128,10 @@ class class_135e8f9a : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_f5852d69, var_c05c67e2, var_415094af)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_dcb34c80("string", "text", 1);
-		namespace_6aaccc24::function_da693cbe("clientNum", 1, 6, "int", var_c05c67e2);
-		namespace_6aaccc24::function_da693cbe("fadeTime", 1, 5, "int", var_415094af);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_dcb34c80("string", "text", 1);
+		cLUIelem::function_da693cbe("clientNum", 1, 6, "int", var_c05c67e2);
+		cLUIelem::function_da693cbe("fadeTime", 1, 5, "int", var_415094af);
 	}
 
 }
@@ -149,7 +149,7 @@ class class_135e8f9a : class_6aaccc24
 */
 function register(uid, var_f5852d69, var_c05c67e2, var_415094af)
 {
-	elem = new class_135e8f9a();
+	elem = new crevive_hud();
 	[[ elem ]]->setup_clientfields(uid, var_f5852d69, var_c05c67e2, var_415094af);
 	return elem;
 }
@@ -165,7 +165,7 @@ function register(uid, var_f5852d69, var_c05c67e2, var_415094af)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_135e8f9a();
+	elem = new crevive_hud();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -213,7 +213,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_d5ea17f0
+	Name: set_text
 	Namespace: revive_hud
 	Checksum: 0x4766F76B
 	Offset: 0x1F8
@@ -221,13 +221,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_d5ea17f0(localclientnum, value)
+function set_text(localclientnum, value)
 {
-	[[ self ]]->function_d5ea17f0(localclientnum, value);
+	[[ self ]]->set_text(localclientnum, value);
 }
 
 /*
-	Name: function_3b7b386a
+	Name: set_clientnum
 	Namespace: revive_hud
 	Checksum: 0x2F71A5F8
 	Offset: 0x228
@@ -235,13 +235,13 @@ function function_d5ea17f0(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_3b7b386a(localclientnum, value)
+function set_clientnum(localclientnum, value)
 {
-	[[ self ]]->function_3b7b386a(localclientnum, value);
+	[[ self ]]->set_clientnum(localclientnum, value);
 }
 
 /*
-	Name: function_28ebf0f1
+	Name: set_fadeTime
 	Namespace: revive_hud
 	Checksum: 0x2127309D
 	Offset: 0x258
@@ -249,8 +249,8 @@ function function_3b7b386a(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_28ebf0f1(localclientnum, value)
+function set_fadeTime(localclientnum, value)
 {
-	[[ self ]]->function_28ebf0f1(localclientnum, value);
+	[[ self ]]->set_fadeTime(localclientnum, value);
 }
 

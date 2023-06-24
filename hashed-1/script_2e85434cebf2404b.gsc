@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1611421ee9b880d3;
+#using scripts\zm_common\zm_wallbuy.csc;
 #using script_624a704d0f6bf28d;
 #using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\beam_shared.csc;
@@ -17,7 +17,7 @@
 #namespace namespace_8260c80e;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_8260c80e
 	Checksum: 0xD5200CD2
 	Offset: 0x170
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_5fe698dbef775801", &__init__, undefined, undefined);
 }
@@ -79,7 +79,7 @@ function init_clientfields()
 function init_fx()
 {
 	level._effect[#"hash_1e4fa83f4db14c46"] = #"hash_40a93ef9da58e006";
-	level._effect[#"hash_3704ab5bf4ec1957"] = #"hash_1cd0bfd0a3ff1817";
+	level._effect[#"fx8_boss_eye_glow"] = #"hash_1cd0bfd0a3ff1817";
 	level._effect[#"hash_420110993bafb86b"] = #"hash_4edfb7b10f36a12b";
 	level._effect[#"hash_3665813f5609df50"] = #"hash_105035871586710";
 	level._effect[#"hash_2699e8762805fbdc"] = #"hash_f378b1b7c38569c";
@@ -120,12 +120,12 @@ function function_a346a156(localclientnum, oldval, newval, bnewent, binitialsnap
 	self thread function_f389e70d(localclientnum);
 	if(newval == 1)
 	{
-		self function_bf9d3071(#"hash_c5c4890c94eb1c7");
+		self playrenderoverridebundle(#"hash_c5c4890c94eb1c7");
 		playsound(localclientnum, #"hash_8fc267f3e184882", self.origin);
 	}
 	else
 	{
-		self function_5d482e78(#"hash_c5c4890c94eb1c7");
+		self stoprenderoverridebundle(#"hash_c5c4890c94eb1c7");
 		playsound(localclientnum, #"hash_f5264369f84b89b", self.origin);
 	}
 }
@@ -148,11 +148,11 @@ function function_72efa790(localclientnum, oldval, newval, bnewent, binitialsnap
 	self thread function_f389e70d(localclientnum);
 	if(newval == 1)
 	{
-		self function_bf9d3071(#"hash_6a2d3edbb0f2c98d");
+		self playrenderoverridebundle(#"hash_6a2d3edbb0f2c98d");
 	}
 	else
 	{
-		self function_5d482e78(#"hash_6a2d3edbb0f2c98d");
+		self stoprenderoverridebundle(#"hash_6a2d3edbb0f2c98d");
 	}
 }
 
@@ -170,7 +170,7 @@ function function_f389e70d(localclientnum)
 	self endon(#"death");
 	if(!isdefined(self.var_aac4aa35))
 	{
-		self.var_aac4aa35 = util::playfxontag(localclientnum, level._effect[#"hash_3704ab5bf4ec1957"], self, "tag_eye");
+		self.var_aac4aa35 = util::playfxontag(localclientnum, level._effect[#"fx8_boss_eye_glow"], self, "tag_eye");
 	}
 	else
 	{
@@ -266,7 +266,7 @@ function function_444660d9(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(isdefined(self.var_69ab30d0))
 	{
-		self function_5d482e78(self.var_69ab30d0, "ROOT");
+		self stoprenderoverridebundle(self.var_69ab30d0, "ROOT");
 	}
 	self.var_69ab30d0 = undefined;
 	switch(newval)
@@ -295,7 +295,7 @@ function function_444660d9(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		self.var_69ab30d0 = #"hash_7de33b7647f4c33a";
 	}
-	self function_bf9d3071(self.var_69ab30d0, "ROOT");
+	self playrenderoverridebundle(self.var_69ab30d0, "ROOT");
 }
 
 /*
@@ -365,11 +365,11 @@ function function_2a48bf1c(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	if(newval)
 	{
-		self thread postfx::playpostfxbundle(#"hash_7859457bbea5aa02");
+		self thread postfx::playpostfxbundle(#"pstfx_zm_man_targeted");
 	}
 	else
 	{
-		self thread postfx::exitpostfxbundle(#"hash_7859457bbea5aa02");
+		self thread postfx::exitpostfxbundle(#"pstfx_zm_man_targeted");
 	}
 }
 

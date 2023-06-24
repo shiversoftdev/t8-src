@@ -11,7 +11,7 @@
 #namespace animation;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: animation
 	Checksum: 0xC664B82F
 	Offset: 0x2A0
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"animation", &__init__, undefined, undefined);
 }

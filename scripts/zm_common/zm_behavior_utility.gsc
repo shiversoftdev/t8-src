@@ -2,7 +2,7 @@
 #using script_3aa0f32b70d4f7cb;
 #using script_4d85e8de54b02198;
 #using script_522aeb6ae906391e;
-#using script_6809bf766eba194a;
+#using scripts\core_common\ai\archetype_utility.gsc;
 #using script_caf007e2a98afa2;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -24,7 +24,7 @@
 */
 function setupattackproperties()
 {
-	self val::reset(#"hash_62fca810699077f3", "ignoreall");
+	self val::reset(#"attack_properties", "ignoreall");
 	self.meleeattackdist = 64;
 }
 

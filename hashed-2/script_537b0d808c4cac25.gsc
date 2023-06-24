@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_600b033d : class_6aaccc24
+class cself_revive_visuals_rush : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_600b033d
+		Namespace: cself_revive_visuals_rush
 		Checksum: 0x86EC5C37
 		Offset: 0x1E0
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_600b033d : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_600b033d
+		Namespace: cself_revive_visuals_rush
 		Checksum: 0xC1B63A66
 		Offset: 0x320
 		Size: 0x14
@@ -34,7 +34,7 @@ class class_600b033d : class_6aaccc24
 
 	/*
 		Name: set_revive_time
-		Namespace: namespace_600b033d
+		Namespace: cself_revive_visuals_rush
 		Checksum: 0x21211EA8
 		Offset: 0x2D8
 		Size: 0x3C
@@ -48,7 +48,7 @@ class class_600b033d : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_600b033d
+		Namespace: cself_revive_visuals_rush
 		Checksum: 0xAC716876
 		Offset: 0x2A8
 		Size: 0x24
@@ -57,12 +57,12 @@ class class_600b033d : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_600b033d
+		Namespace: cself_revive_visuals_rush
 		Checksum: 0x3E68A457
 		Offset: 0x258
 		Size: 0x44
@@ -71,12 +71,12 @@ class class_600b033d : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "self_revive_visuals_rush", persistent);
+		cLUIelem::open_luielem(player, "self_revive_visuals_rush", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_600b033d
+		Namespace: cself_revive_visuals_rush
 		Checksum: 0x85661467
 		Offset: 0x200
 		Size: 0x4C
@@ -85,8 +85,8 @@ class class_600b033d : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("revive_time", 1, 4, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("revive_time", 1, 4, "int");
 	}
 
 }
@@ -104,7 +104,7 @@ class class_600b033d : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_600b033d();
+	elem = new cself_revive_visuals_rush();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

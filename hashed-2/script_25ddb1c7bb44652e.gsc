@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_c8e93137 : class_6aaccc24
+class czm_tut_hint_text : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_c8e93137
+		Namespace: czm_tut_hint_text
 		Checksum: 0xF2B79D68
 		Offset: 0x210
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_c8e93137 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_c8e93137
+		Namespace: czm_tut_hint_text
 		Checksum: 0x2E7C90FC
 		Offset: 0x440
 		Size: 0x14
@@ -33,22 +33,22 @@ class class_c8e93137 : class_6aaccc24
 	}
 
 	/*
-		Name: function_d5ea17f0
-		Namespace: namespace_c8e93137
+		Name: set_text
+		Namespace: czm_tut_hint_text
 		Checksum: 0xE0D368C2
 		Offset: 0x3F8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_d5ea17f0(player, value)
+	function set_text(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "text", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_c8e93137
+		Namespace: czm_tut_hint_text
 		Checksum: 0x587CFC0E
 		Offset: 0x330
 		Size: 0xBC
@@ -80,7 +80,7 @@ class class_c8e93137 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_c8e93137
+		Namespace: czm_tut_hint_text
 		Checksum: 0x6AF2363F
 		Offset: 0x300
 		Size: 0x24
@@ -89,12 +89,12 @@ class class_c8e93137 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_c8e93137
+		Namespace: czm_tut_hint_text
 		Checksum: 0x52408AD9
 		Offset: 0x2B0
 		Size: 0x44
@@ -103,12 +103,12 @@ class class_c8e93137 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_tut_hint_text", persistent);
+		cLUIelem::open_luielem(player, "zm_tut_hint_text", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_c8e93137
+		Namespace: czm_tut_hint_text
 		Checksum: 0xC73B4407
 		Offset: 0x230
 		Size: 0x74
@@ -117,9 +117,9 @@ class class_c8e93137 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 1, "int");
-		namespace_6aaccc24::function_dcb34c80("string", "text", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 1, "int");
+		cLUIelem::function_dcb34c80("string", "text", 1);
 	}
 
 }
@@ -137,7 +137,7 @@ class class_c8e93137 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_c8e93137();
+	elem = new czm_tut_hint_text();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -199,7 +199,7 @@ function set_state(player, state_name)
 }
 
 /*
-	Name: function_d5ea17f0
+	Name: set_text
 	Namespace: zm_tut_hint_text
 	Checksum: 0x5BA9C4D1
 	Offset: 0x1E0
@@ -207,8 +207,8 @@ function set_state(player, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_d5ea17f0(player, value)
+function set_text(player, value)
 {
-	[[ self ]]->function_d5ea17f0(player, value);
+	[[ self ]]->set_text(player, value);
 }
 

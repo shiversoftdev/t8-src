@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
-#using script_6ce38ab036223e6e;
-#using script_6d813fcbc979603a;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
+#using scripts\zm_common\trials\zm_trial_defend_area.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace namespace_9b24ce43;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_9b24ce43
 	Checksum: 0x4330B1FD
 	Offset: 0xA8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_678d56e299d40621", &__init__, undefined, undefined);
 }
@@ -39,11 +39,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_32cdfeca4a793d78", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_32cdfeca4a793d78", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_9b24ce43
 	Checksum: 0xBF1FD746
 	Offset: 0x158
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
 	foreach(player in getplayers())
 	{
@@ -60,7 +60,7 @@ function private function_d1de6a85()
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_9b24ce43
 	Checksum: 0x31B048E0
 	Offset: 0x1E0
@@ -68,7 +68,7 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	foreach(player in getplayers())
 	{
@@ -103,7 +103,7 @@ function is_active()
 function private movement_watcher()
 {
 	self endon(#"disconnect", #"hash_17c41292130032eb");
-	wait(namespace_a28acff3::get_delay_between_rounds() - 2);
+	wait(zm_round_logic::get_delay_between_rounds() - 2);
 	while(true)
 	{
 		var_89276ce9 = 0;
@@ -114,14 +114,14 @@ function private movement_watcher()
 		{
 			if(isdefined(self.armor) && self.armor > 0)
 			{
-				if(!namespace_115c602a::is_active() || (namespace_115c602a::is_active() && (isdefined(self.var_ccee13fc) && self.var_ccee13fc)))
+				if(!zm_trial_defend_area::is_active() || (zm_trial_defend_area::is_active() && (isdefined(self.var_ccee13fc) && self.var_ccee13fc)))
 				{
 					self playsoundtoplayer(#"hash_6df374d848ba6a60", self);
 					self dodamage(11, self.origin);
 					var_89276ce9 = 1;
 				}
 			}
-			else if(!namespace_115c602a::is_active() || (namespace_115c602a::is_active() && (isdefined(self.var_ccee13fc) && self.var_ccee13fc)))
+			else if(!zm_trial_defend_area::is_active() || (zm_trial_defend_area::is_active() && (isdefined(self.var_ccee13fc) && self.var_ccee13fc)))
 			{
 				self playsoundtoplayer(#"hash_6df374d848ba6a60", self);
 				self dodamage(6, self.origin);
@@ -130,7 +130,7 @@ function private movement_watcher()
 		}
 		if(var_89276ce9)
 		{
-			if(namespace_115c602a::is_active() && (isdefined(self.var_ccee13fc) && self.var_ccee13fc))
+			if(zm_trial_defend_area::is_active() && (isdefined(self.var_ccee13fc) && self.var_ccee13fc))
 			{
 				wait(1);
 			}

@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_b6e5ba9d : class_6aaccc24
+class cinsertion_passenger_count : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x4F07467
 		Offset: 0x1F0
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_b6e5ba9d : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0xBE7D7DAA
 		Offset: 0x358
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_b6e5ba9d : class_6aaccc24
 
 	/*
 		Name: set_count
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x2966892C
 		Offset: 0x320
 		Size: 0x30
@@ -41,12 +41,12 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function set_count(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "count", value);
+		[[ self ]]->set_data(localclientnum, "count", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x515377C3
 		Offset: 0x2E8
 		Size: 0x2C
@@ -55,12 +55,12 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"insertion_passenger_count");
+		cLUIelem::open(localclientnum, #"insertion_passenger_count");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0xFFE3B3DB
 		Offset: 0x2A0
 		Size: 0x40
@@ -69,13 +69,13 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "count", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "count", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x2A2CFAAF
 		Offset: 0x270
 		Size: 0x24
@@ -84,12 +84,12 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_b6e5ba9d
+		Namespace: cinsertion_passenger_count
 		Checksum: 0x75B74D01
 		Offset: 0x210
 		Size: 0x54
@@ -98,8 +98,8 @@ class class_b6e5ba9d : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_fbcc4763)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("count", 1, 7, "int", var_fbcc4763);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("count", 1, 7, "int", var_fbcc4763);
 	}
 
 }
@@ -117,7 +117,7 @@ class class_b6e5ba9d : class_6aaccc24
 */
 function register(uid, var_fbcc4763)
 {
-	elem = new class_b6e5ba9d();
+	elem = new cinsertion_passenger_count();
 	[[ elem ]]->setup_clientfields(uid, var_fbcc4763);
 	return elem;
 }
@@ -133,7 +133,7 @@ function register(uid, var_fbcc4763)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_b6e5ba9d();
+	elem = new cinsertion_passenger_count();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

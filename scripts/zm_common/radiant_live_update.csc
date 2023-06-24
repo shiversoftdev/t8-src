@@ -5,7 +5,7 @@
 #namespace radiant_live_udpate;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: radiant_live_udpate
 	Checksum: 0x2A01D53B
 	Offset: 0x78
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"radiant_live_udpate", &__init__, undefined, undefined);

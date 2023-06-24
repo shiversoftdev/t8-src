@@ -6,7 +6,7 @@
 #namespace art;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: art
 	Checksum: 0xBE5163E2
 	Offset: 0x88
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"art", &__init__, undefined, undefined);
 }
@@ -45,7 +45,7 @@ function __init__()
 	#/
 	if(!isdefined(level.script))
 	{
-		level.script = util::function_53bbf9d2();
+		level.script = util::get_map_name();
 	}
 }
 

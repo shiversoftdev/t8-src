@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_35598499769dbb3d;
-#using script_3f9e0dc8454d98e1;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\exploder_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -9,11 +9,11 @@
 #using scripts\zm_common\zm_perks.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_11c28b18;
+#namespace zm_towers_util;
 
 /*
 	Name: function_ae1b4f5b
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0x71901E5
 	Offset: 0x108
 	Size: 0x1EC
@@ -61,7 +61,7 @@ function function_ae1b4f5b(var_6888276a = 75, var_7d866d50 = 75, var_aadd0545 = 
 
 /*
 	Name: function_48f49769
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0xFD264F09
 	Offset: 0x300
 	Size: 0x178
@@ -95,7 +95,7 @@ function function_48f49769()
 
 /*
 	Name: function_6408c105
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0xFFA3D21
 	Offset: 0x480
 	Size: 0x398
@@ -149,15 +149,15 @@ function function_6408c105()
 }
 
 /*
-	Name: function_1008e277
-	Namespace: namespace_11c28b18
+	Name: show_zbarriers
+	Namespace: zm_towers_util
 	Checksum: 0x52838612
 	Offset: 0x820
 	Size: 0x378
 	Parameters: 0
 	Flags: Linked
 */
-function function_1008e277()
+function show_zbarriers()
 {
 	/#
 		assert(isdefined(level._spawned_wallbuys));
@@ -205,7 +205,7 @@ function function_1008e277()
 
 /*
 	Name: function_fcf197fa
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0x4C9788F1
 	Offset: 0xBA0
 	Size: 0x23A
@@ -214,10 +214,10 @@ function function_1008e277()
 */
 function private function_fcf197fa(targetname, b_show)
 {
-	var_dc3827e3 = getentarray(targetname, "targetname");
-	if(isdefined(var_dc3827e3))
+	a_e_blockers = getentarray(targetname, "targetname");
+	if(isdefined(a_e_blockers))
 	{
-		foreach(blocker in var_dc3827e3)
+		foreach(blocker in a_e_blockers)
 		{
 			if(isdefined(blocker.target))
 			{
@@ -262,7 +262,7 @@ function private function_fcf197fa(targetname, b_show)
 
 /*
 	Name: function_afd37143
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0x491FB485
 	Offset: 0xDE8
 	Size: 0x6E
@@ -282,7 +282,7 @@ function function_afd37143(str_line)
 
 /*
 	Name: function_9821b7f1
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0x8966195A
 	Offset: 0xE60
 	Size: 0x9C
@@ -301,7 +301,7 @@ function private function_9821b7f1(str_line)
 
 /*
 	Name: function_c05cc102
-	Namespace: namespace_11c28b18
+	Namespace: zm_towers_util
 	Checksum: 0xFE2FDA6A
 	Offset: 0xF08
 	Size: 0x160
@@ -311,7 +311,7 @@ function private function_9821b7f1(str_line)
 function function_c05cc102(s_params)
 {
 	self endon(#"death");
-	if(s_params.weapon != level.var_43db5ea6)
+	if(s_params.weapon != level.w_wraithfire)
 	{
 		return;
 	}

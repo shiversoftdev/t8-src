@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6a3f43063dfd1bdc;
+#using scripts\zm\zm_hms_util.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\scene_shared.gsc;
@@ -17,7 +17,7 @@
 #namespace namespace_f4159bfd;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_f4159bfd
 	Checksum: 0x53FDE7EF
 	Offset: 0x1B8
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_505f91cbac42ed30", &__init__, &__main__, undefined);
 }
@@ -75,7 +75,7 @@ function function_32639301()
 	s_trap._trap_type = "soul";
 	s_trap.v_touching = getent(s_trap.target, "targetname");
 	s_trap.v_touching._trap_type = "soul";
-	s_trap.var_54a168f2 = struct::get_array(s_trap.target2, "targetname");
+	s_trap.a_s_buttons = struct::get_array(s_trap.target2, "targetname");
 	s_trap.a_s_bullets = struct::get_array(s_trap.target3, "targetname");
 	s_trap.a_e_lights = getentarray(s_trap.target4, "targetname");
 	s_trap.var_2c0d31a5 = struct::get_array(s_trap.target5, "targetname");
@@ -83,7 +83,7 @@ function function_32639301()
 	s_trap.var_41ee2ddc = 1;
 	level flag::wait_till("all_players_spawned");
 	level flag::wait_till(#"hash_25d9cfebd2bdf1f2");
-	foreach(s_button in s_trap.var_54a168f2)
+	foreach(s_button in s_trap.a_s_buttons)
 	{
 		s_button zm_unitrigger::create(&function_d1112480, 64);
 		s_button thread function_e14376a3();
@@ -124,10 +124,10 @@ function function_d1112480(e_player)
 	}
 	if(level.s_apd_trap.var_41ee2ddc === 0)
 	{
-		self sethintstring(#"hash_21db2780833a8bfd");
+		self sethintstring(#"zombie/trap_cooldown");
 		return true;
 	}
-	if(util::function_5df4294() == "zstandard")
+	if(util::get_game_type() == "zstandard")
 	{
 		if(function_8b1a219a())
 		{
@@ -191,7 +191,7 @@ function function_e14376a3()
 			level.s_apd_trap.v_touching.activated_by_player = e_who;
 			if(!(isdefined(level.var_3c9cfd6f) && level.var_3c9cfd6f) && zm_audio::function_65e5c19a())
 			{
-				e_who thread zm_audio::create_and_play_dialog(#"hash_3f3ef774cd01d778", #"activate");
+				e_who thread zm_audio::create_and_play_dialog(#"trap_generic", #"activate");
 			}
 		}
 	}
@@ -246,7 +246,7 @@ function apd_trap_activate(e_player)
 {
 	level endon(#"end_game");
 	n_total_time = 0;
-	weapon = getweapon(#"hash_13a204ba6887b18f");
+	weapon = getweapon(#"ww_tesla_gun_t8");
 	while(n_total_time < 60)
 	{
 		var_890584df = [];

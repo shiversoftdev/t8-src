@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_6a3f43063dfd1bdc;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm\zm_hms_util.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -14,7 +14,7 @@
 #namespace music_box;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: music_box
 	Checksum: 0xBA50A0D2
 	Offset: 0x188
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"music_box", &__init__, undefined, undefined);
 }
@@ -38,7 +38,7 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	level.var_ff31c99 = getweapon(#"music_box");
+	level.w_music_box = getweapon(#"music_box");
 	clientfield::register("scriptmover", "" + #"hash_136e9d44e7e2e888", 24000, 1, "int");
 	clientfield::register("scriptmover", "" + #"hash_77a1a7cd8eb3e86c", 1, 1, "int");
 	clientfield::register("actor", "" + #"hash_4881cb6bc59fdc49", 24000, 1, "int");
@@ -65,7 +65,7 @@ function __init__()
 */
 function function_20263b9e(s_params)
 {
-	if(s_params.weapon === level.var_ff31c99 && isdefined(s_params.projectile))
+	if(s_params.weapon === level.w_music_box && isdefined(s_params.projectile))
 	{
 		s_params.projectile endon(#"death");
 		level endon(#"end_game");
@@ -104,7 +104,7 @@ function function_9d9bff80(var_2fe3186e, attacker)
 	var_b7fc8c3e = var_2fe3186e + vectorscale((0, 0, 1), 64);
 	self playsound("vox_musicbox_start_sama_" + randomint(3));
 	wait(1);
-	var_a6323eb5 = util::spawn_model("p8_zm_music_box_samantha_trap", self.var_1a61db89.origin, (0, self.angles[1] + 180, 0));
+	e_sam = util::spawn_model("p8_zm_music_box_samantha_trap", self.var_1a61db89.origin, (0, self.angles[1] + 180, 0));
 	a_zombies = getaiteamarray(level.zombie_team);
 	a_zombies = arraysortclosest(a_zombies, var_2fe3186e, 25, 0, 350);
 	a_zombies = array::filter(a_zombies, 0, &function_3adb94b4);
@@ -131,7 +131,7 @@ function function_9d9bff80(var_2fe3186e, attacker)
 			}
 		}
 	}
-	var_a6323eb5 thread scene::play(#"hash_67030b23e27f4303", "one_shot", var_a6323eb5);
+	e_sam thread scene::play(#"hash_67030b23e27f4303", "one_shot", e_sam);
 	wait(0.5);
 	self.var_1a61db89 hide();
 	self.var_1a61db89 clientfield::set("" + #"hash_136e9d44e7e2e888", 0);
@@ -179,10 +179,10 @@ function function_9d9bff80(var_2fe3186e, attacker)
 	{
 		level.var_f1907c72 notify(#"music_box");
 	}
-	var_a6323eb5 playsound("vox_musicbox_end_sama_" + randomint(3));
+	e_sam playsound("vox_musicbox_end_sama_" + randomint(3));
 	wait(1.5);
-	var_a6323eb5 thread scene::stop();
-	var_a6323eb5 delete();
+	e_sam thread scene::stop();
+	e_sam delete();
 	self.var_1a61db89 delete();
 	level thread function_6b8c9160();
 }
@@ -201,7 +201,7 @@ function function_6b8c9160()
 	wait(4);
 	if(!level flag::get(#"hash_621d31a87bd6d05b") && level.var_98138d6b >= 2)
 	{
-		level.var_1c53964e thread namespace_509a75d1::function_6a0d675d("vox_musicbox_first");
+		level.var_1c53964e thread zm_hms_util::function_6a0d675d("vox_musicbox_first");
 	}
 	level flag::set(#"hash_621d31a87bd6d05b");
 }

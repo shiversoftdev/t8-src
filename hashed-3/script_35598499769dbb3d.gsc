@@ -65,7 +65,7 @@ function private function_3aa023f1(name, entity)
 	gibpiecelookup[32] = "leftarm";
 	gibpiecelookup[128] = "rightleg";
 	gibpiecelookup[256] = "leftleg";
-	var_90aba050 = [];
+	gibpieces = [];
 	foreach(gibflag, gibpiece in gibpiecelookup)
 	{
 		if(!isdefined(gibpiece))
@@ -84,10 +84,10 @@ function private function_3aa023f1(name, entity)
 		gibstruct.gibcinematicfx = definition.(gibpiece + "_gibcinematicfx");
 		gibstruct.gibsound = definition.(gibpiece + "_gibsound");
 		gibstruct.gibhidetag = definition.(gibpiece + "_gibhidetag");
-		var_90aba050[gibflag] = gibstruct;
+		gibpieces[gibflag] = gibstruct;
 	}
-	level.var_ad0f5efa[name] = var_90aba050;
-	return var_90aba050;
+	level.var_ad0f5efa[name] = gibpieces;
+	return gibpieces;
 }
 
 /*
@@ -101,8 +101,8 @@ function private function_3aa023f1(name, entity)
 */
 function private function_69db754(name, gibflag, entity)
 {
-	var_90aba050 = function_3aa023f1(name, entity);
-	return var_90aba050[gibflag];
+	gibpieces = function_3aa023f1(name, entity);
+	return gibpieces[gibflag];
 }
 
 /*
@@ -801,8 +801,8 @@ function reapplyhiddengibpieces(entity)
 	{
 		return;
 	}
-	var_90aba050 = function_3aa023f1(entity.gibdef, entity);
-	foreach(gibflag, gib in var_90aba050)
+	gibpieces = function_3aa023f1(entity.gibdef, entity);
+	foreach(gibflag, gib in gibpieces)
 	{
 		if(!isgibbed(entity, gibflag))
 		{
@@ -837,8 +837,8 @@ function showhiddengibpieces(entity)
 	{
 		return;
 	}
-	var_90aba050 = function_3aa023f1(entity.gibdef, entity);
-	foreach(gib in var_90aba050)
+	gibpieces = function_3aa023f1(entity.gibdef, entity);
+	foreach(gib in gibpieces)
 	{
 		if(!isdefined(gib))
 		{

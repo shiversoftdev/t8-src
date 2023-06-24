@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2255a7ad3edc838f;
+#using scripts\core_common\bots\bot.gsc;
 #using script_30e0aa25775a6927;
 #using script_31e56101095f174b;
-#using script_321486e8a7c7176f;
-#using script_3d2e260ec67fded8;
+#using scripts\core_common\ai\planner_squad.gsc;
+#using scripts\core_common\ai\planner_squad_utility.gsc;
 #using script_522aeb6ae906391e;
-#using script_53b37ee2382572eb;
+#using scripts\core_common\ai\region_utility.gsc;
 #using script_59f07c660e6710a5;
-#using script_aa63c66acbb23e;
+#using scripts\core_common\ai\strategic_command.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -17,7 +17,7 @@
 #namespace namespace_83a61576;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_83a61576
 	Checksum: 0x82037293
 	Offset: 0x1A0
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_363beb0dbbf3d8bb", &namespace_9b3ab448::__init__, undefined, undefined);
 }
@@ -112,9 +112,9 @@ function private function_5cc53671(bot)
 */
 function private function_61be4b2c(bot, gameobject)
 {
-	var_8a1ac8ea = getclosestpointonnavmesh(bot.origin, 120, bot getpathfindingradius() * 1.05);
+	botpos = getclosestpointonnavmesh(bot.origin, 120, bot getpathfindingradius() * 1.05);
 	var_5bf84edd = getclosestpointonnavmesh(gameobject.origin, 200);
-	if(!isdefined(var_8a1ac8ea) || !isdefined(var_5bf84edd))
+	if(!isdefined(botpos) || !isdefined(var_5bf84edd))
 	{
 		return gameobject.origin;
 	}
@@ -123,7 +123,7 @@ function private function_61be4b2c(bot, gameobject)
 	{
 		for(i = 0; i < queryresult.data.size; i++)
 		{
-			pathsegment = generatenavmeshpath(var_8a1ac8ea, queryresult.data[i].origin, bot);
+			pathsegment = generatenavmeshpath(botpos, queryresult.data[i].origin, bot);
 			if(isdefined(pathsegment) && pathsegment.status === "succeeded")
 			{
 				return queryresult.data[i].origin;
@@ -141,34 +141,34 @@ function private function_61be4b2c(bot, gameobject)
 	Parameters: 2
 	Flags: Linked, Private
 */
-function private function_3ecc52d9(var_d3547bb1, var_d108dac6)
+function private function_3ecc52d9(var_d3547bb1, laneNum)
 {
 	if(isdefined(self.bot.var_6369695a))
 	{
-		var_81b61f1c = self.bot.var_6369695a.path;
-		if(var_81b61f1c.size > 0)
+		soundsgunnerplay = self.bot.var_6369695a.path;
+		if(soundsgunnerplay.size > 0)
 		{
-			var_3ebdf257 = var_81b61f1c[var_81b61f1c.size - 1];
+			var_3ebdf257 = soundsgunnerplay[soundsgunnerplay.size - 1];
 			if(var_3ebdf257 === var_d3547bb1)
 			{
 				return self.bot.var_6369695a;
 			}
 		}
 	}
-	tpoint = function_ad6356f5(self.origin);
+	tpoint = getclosesttacpoint(self.origin);
 	if(!isdefined(tpoint))
 	{
 		var_9f855ac9 = getclosestpointonnavmesh(self.origin, 600);
 		if(isdefined(var_9f855ac9))
 		{
-			tpoint = function_ad6356f5(var_9f855ac9);
+			tpoint = getclosesttacpoint(var_9f855ac9);
 		}
 	}
 	if(isdefined(tpoint))
 	{
 		var_55e8adf1 = tpoint.region;
 		var_8c8aa14d = spawnstruct();
-		var_8c8aa14d.path = self namespace_cb7fdaf1::function_b0f112ca(var_55e8adf1, var_d3547bb1, var_d108dac6);
+		var_8c8aa14d.path = self region_utility::function_b0f112ca(var_55e8adf1, var_d3547bb1, laneNum);
 		var_8c8aa14d.var_91fc28f4 = 0;
 		if(var_8c8aa14d.path.size == 0)
 		{
@@ -211,8 +211,8 @@ function private function_a702eb04(params, goal)
 				continue;
 			}
 			var_1f2328d0 = bot function_4794d6a3();
-			tpoint = function_ad6356f5(bot.origin);
-			if(!isdefined(tpoint) && isdefined(var_1f2328d0.var_151c9dda) && !var_1f2328d0.isatgoal)
+			tpoint = getclosesttacpoint(bot.origin);
+			if(!isdefined(tpoint) && isdefined(var_1f2328d0.regionid) && !var_1f2328d0.isatgoal)
 			{
 				continue;
 			}
@@ -284,7 +284,7 @@ function private function_3f15f776(params)
 		if(strategiccommandutility::isvalidbot(bot))
 		{
 			var_1f2328d0 = bot function_4794d6a3();
-			if(isdefined(var_1f2328d0.var_151c9dda) && !var_1f2328d0.isatgoal)
+			if(isdefined(var_1f2328d0.regionid) && !var_1f2328d0.isatgoal)
 			{
 				continue;
 			}
@@ -385,14 +385,14 @@ function function_55cc58c4(planner, var_973c5ec5)
 */
 function private function_984c7289(planner, constants)
 {
-	var_1b956c5a = planner::getblackboardattribute(planner, "mp_controlZones");
-	if(!isarray(var_1b956c5a) || var_1b956c5a.size <= 0)
+	controlzones = planner::getblackboardattribute(planner, "mp_controlZones");
+	if(!isarray(controlzones) || controlzones.size <= 0)
 	{
 		return false;
 	}
-	for(i = 0; i < var_1b956c5a.size; i++)
+	for(i = 0; i < controlzones.size; i++)
 	{
-		zone = var_1b956c5a[i][#"__unsafe__"][#"controlzone"];
+		zone = controlzones[i][#"__unsafe__"][#"controlzone"];
 		if(isdefined(zone) && isdefined(zone.gameobject))
 		{
 			return true;
@@ -546,12 +546,12 @@ function private function_c1f972ba(planner, constants)
 */
 function private function_a5c008c(planner, constants)
 {
-	var_8ddd85d1 = planner::getblackboardattribute(planner, "mp_sdDefuseObj");
-	if(!isarray(var_8ddd85d1) || var_8ddd85d1.size <= 0)
+	defuseobj = planner::getblackboardattribute(planner, "mp_sdDefuseObj");
+	if(!isarray(defuseobj) || defuseobj.size <= 0)
 	{
 		return false;
 	}
-	defuse = var_8ddd85d1[0][#"__unsafe__"][#"sddefuseobj"];
+	defuse = defuseobj[0][#"__unsafe__"][#"sddefuseobj"];
 	if(isdefined(defuse))
 	{
 		return true;
@@ -593,8 +593,8 @@ function private function_b6cc50c3(planner, constants)
 */
 function private function_5d508101(planner, constants)
 {
-	var_d108dac6 = planner::getblackboardattribute(planner, "mp_laneNum");
-	if(!isdefined(var_d108dac6) || var_d108dac6.size == 0)
+	laneNum = planner::getblackboardattribute(planner, "mp_laneNum");
+	if(!isdefined(laneNum) || laneNum.size == 0)
 	{
 		return false;
 	}
@@ -669,7 +669,7 @@ function private function_c586e586(planner, constants)
 		}
 	}
 	params.var_f76f8cf6 = planner::getblackboardattribute(planner, "mp_laneNum");
-	params.var_46b70ee6 = function_ad6356f5(params.controlzone.gameobject.origin).region;
+	params.var_46b70ee6 = getclosesttacpoint(params.controlzone.gameobject.origin).region;
 	if(isdefined(params.controlzone))
 	{
 		if(isdefined(params.var_f76f8cf6))
@@ -894,7 +894,7 @@ function private function_2b5c33a8(planner, constants)
 		return params;
 	}
 	params.var_f76f8cf6 = planner::getblackboardattribute(planner, "mp_laneNum");
-	params.var_46b70ee6 = function_ad6356f5(params.domflag.origin).region;
+	params.var_46b70ee6 = getclosesttacpoint(params.domflag.origin).region;
 	if(isdefined(params.domflag))
 	{
 		if(isdefined(params.var_f76f8cf6))
@@ -1013,10 +1013,10 @@ function private function_e32ce201(planner, constants)
 	params.bots = bots;
 	params.kothzone = kothzone[0][#"__unsafe__"][#"kothzone"];
 	params.var_f76f8cf6 = planner::getblackboardattribute(planner, "mp_laneNum");
-	params.var_46b70ee6 = function_ad6356f5(params.kothzone.gameobject.origin).region;
+	params.var_46b70ee6 = getclosesttacpoint(params.kothzone.gameobject.origin).region;
 	if(isdefined(params.kothzone))
 	{
-		if(isdefined(params.var_d108dac6))
+		if(isdefined(params.laneNum))
 		{
 			params.var_bb5fa5a7 = [];
 			for(i = 0; i < bots.size; i++)
@@ -1164,7 +1164,7 @@ function private function_3235898a(planner, params)
 			goal = params.sdbomb.origin;
 			if(!ispointonnavmesh(goal, bot))
 			{
-				var_1209f27 = function_ad6356f5(goal);
+				var_1209f27 = getclosesttacpoint(goal);
 				if(isdefined(var_1209f27))
 				{
 					goal = var_1209f27.origin;
@@ -1280,7 +1280,7 @@ function private function_bb791fc6(planner, params)
 			goal = params.sdbombzone;
 			bot setgoal(goal);
 			bot.goalradius = 128;
-			bot bot::function_7a6eea9c(params.sdbombzone);
+			bot bot::set_interact(params.sdbombzone);
 		}
 	}
 	return 1;
@@ -1375,7 +1375,7 @@ function private function_e7a81528(planner, params)
 			bot bot::function_6c280dfe();
 			bot setgoal(params.sddefuseobj);
 			bot.goalradius = 128;
-			bot bot::function_7a6eea9c(params.sddefuseobj);
+			bot bot::set_interact(params.sddefuseobj);
 		}
 	}
 	return 1;
@@ -1454,7 +1454,7 @@ function private function_458e36c0(planner, constants)
 	{
 		params.regions = array(params.regions);
 	}
-	params.regions[params.regions.size] = function_ad6356f5(params.sdbombzone.origin).region;
+	params.regions[params.regions.size] = getclosesttacpoint(params.sdbombzone.origin).region;
 	var_c1db2604 = function_b507a336(params.regions[0]);
 	foreach(neighbor in var_c1db2604.neighbors)
 	{
@@ -1559,7 +1559,7 @@ function private function_8c1624c4(planner, constants)
 	if(isdefined(bots[0].bot.var_f9954cf6))
 	{
 		var_79a83b2e = bots[0].bot.var_f9954cf6;
-		var_f6ce5982 = function_ad6356f5(bots[0].origin);
+		var_f6ce5982 = getclosesttacpoint(bots[0].origin);
 		if(isdefined(var_f6ce5982) && isdefined(var_f6ce5982.region))
 		{
 			var_65733efe = var_f6ce5982.region;
@@ -1574,11 +1574,11 @@ function private function_8c1624c4(planner, constants)
 		var_ae5ed4e = function_6d153384(bots[0].origin);
 		if(isdefined(var_ae5ed4e))
 		{
-			var_79a83b2e = function_ad6356f5(var_ae5ed4e).region;
+			var_79a83b2e = getclosesttacpoint(var_ae5ed4e).region;
 		}
 		else
 		{
-			var_79a83b2e = function_ad6356f5(bots[0].origin).region;
+			var_79a83b2e = getclosesttacpoint(bots[0].origin).region;
 		}
 		bots[0].bot.var_f9954cf6 = var_79a83b2e;
 	}
@@ -1637,7 +1637,7 @@ function private function_6203826a(planner, params)
 		bot = var_d5fcb00b.bots[i];
 		if(strategiccommandutility::isvalidbot(bot) && bot bot::in_combat() && distancesquared(bot.enemy.origin, bot.origin) < 640000)
 		{
-			var_494658cd = function_ad6356f5(bot.enemy.origin);
+			var_494658cd = getclosesttacpoint(bot.enemy.origin);
 			if(!isdefined(var_494658cd))
 			{
 				continue;

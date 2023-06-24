@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
+#using scripts\core_common\player\player_stats.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\rank_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -8,7 +8,7 @@
 #namespace persistence;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: persistence
 	Checksum: 0x6EFA365E
 	Offset: 0xA0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"persistence", &__init__, undefined, undefined);
 }
@@ -304,22 +304,22 @@ function initialize_match_stats()
 	{
 		return;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
-		level waittill(#"hash_313ad43b34e74e96");
+		level waittill(#"game_playing");
 		rankid = getrankforxp(self rank::getrankxp());
-		self stats::function_4db3fba1(#"rank", rankid);
-		self stats::function_4db3fba1(#"minxp", rank::getrankinfominxp(rankid));
-		self stats::function_4db3fba1(#"maxxp", rank::getrankinfomaxxp(rankid));
-		self stats::function_4db3fba1(#"lastxp", rank::getrankxpcapped(self.pers[#"rankxp"]));
+		self stats::set_stat_global(#"rank", rankid);
+		self stats::set_stat_global(#"minxp", rank::getrankinfominxp(rankid));
+		self stats::set_stat_global(#"maxxp", rank::getrankinfomaxxp(rankid));
+		self stats::set_stat_global(#"lastxp", rank::getrankxpcapped(self.pers[#"rankxp"]));
 	}
-	if(function_f99d2668() || sessionmodeismultiplayergame())
+	if(sessionmodeiswarzonegame() || sessionmodeismultiplayergame())
 	{
 		self stats::function_bb7eedf0(#"total_games_played", 1);
 		if(isdefined(level.hardcoremode) && level.hardcoremode)
 		{
-			var_6eba998 = self stats::get_stat(#"playerstatslist", #"hash_bbe0d2619357e0a", #"statvalue") + 1;
-			self stats::set_stat(#"playerstatslist", #"hash_bbe0d2619357e0a", #"statvalue", var_6eba998);
+			hc_games_played = self stats::get_stat(#"playerstatslist", #"hc_games_played", #"statvalue") + 1;
+			self stats::set_stat(#"playerstatslist", #"hc_games_played", #"statvalue", hc_games_played);
 		}
 	}
 	if(isdefined(level.var_12323003))
@@ -405,7 +405,7 @@ function challenge_complete(eventstruct)
 	var_c4e9517b = tablenumber + 1;
 	if(currentsessionmode() == 0)
 	{
-		tablename = (#"hash_34a621a5800b5b4a" + var_c4e9517b) + ".csv";
+		tablename = (#"gamedata/stats/zm/statsmilestones" + var_c4e9517b) + ".csv";
 		if(var_c4e9517b == 2)
 		{
 			var_a05af556 = tablelookupcolumnforrow(tablename, row, 9);
@@ -415,7 +415,7 @@ function challenge_complete(eventstruct)
 			}
 			if(getdvarint(#"hash_730fab929626f598", 0) == 0)
 			{
-				if(var_a05af556 === #"camo_gold" || var_a05af556 === #"hash_2dcaf4647cd4e672" || var_a05af556 === #"hash_229b17b6185be37")
+				if(var_a05af556 === #"camo_gold" || var_a05af556 === #"camo_diamond" || var_a05af556 === #"camo_darkmatter")
 				{
 					return;
 				}
@@ -424,7 +424,7 @@ function challenge_complete(eventstruct)
 	}
 	else
 	{
-		tablename = (#"hash_287cf26422669b76" + var_c4e9517b) + ".csv";
+		tablename = (#"gamedata/stats/mp/statsmilestones" + var_c4e9517b) + ".csv";
 	}
 	var_eb67c133 = tablelookupcolumnforrow(tablename, row, 5);
 	if(var_eb67c133 === #"hash_4a80d584aac2e7d0")

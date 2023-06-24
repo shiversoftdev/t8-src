@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1611421ee9b880d3;
-#using script_1de1583a62cc580f;
-#using script_23037fdea02db280;
-#using script_2c454d63a96d2d0b;
-#using script_356ad5dd4af06a33;
-#using script_3619535866efa23a;
-#using script_3a10f19f96036e97;
+#using scripts\zm_common\zm_wallbuy.csc;
+#using scripts\zm\weapons\zm_weap_cymbal_monkey.csc;
+#using scripts\zm\weapons\zm_weap_gravityspikes.csc;
+#using scripts\zm_common\zm_characters.csc;
+#using scripts\zm\zm_office_teleporters.csc;
+#using scripts\zm\weapons\zm_weap_minigun.csc;
+#using scripts\zm\weapons\zm_weap_flamethrower.csc;
 #using script_578af034e151f03e;
-#using script_67051bc8c81031aa;
-#using script_784bc1aee23dbf1f;
+#using scripts\zm\weapons\zm_weap_riotshield.csc;
+#using scripts\zm\weapons\zm_weap_katana.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\exploder_shared.csc;
 #using scripts\core_common\renderoverridebundle.csc;
@@ -65,7 +65,7 @@ event main(eventstruct)
 	level.var_d0ab70a2 = #"hash_2ed6ad41883dc026";
 	level.var_4016a739 = vectorscale((0, 1, 0), 90);
 	load::main();
-	level thread namespace_fada3c80::main();
+	level thread zm_office_sound::main();
 	level thread setup_personality_character_exerts();
 	exploder::exploder("lgt_vending_mulekick_on");
 	util::waitforclient(0);

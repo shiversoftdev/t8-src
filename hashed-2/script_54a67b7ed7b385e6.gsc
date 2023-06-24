@@ -27,8 +27,8 @@ function init()
 	level._effect[#"hash_619321730ebe1b49"] = #"hash_1a14ad689ef08a0d";
 	level._effect[#"hash_e24c17449fcb2f6"] = #"hash_24fc9882ede4f23c";
 	level._effect[#"hash_39f5cccf6d3254d0"] = #"hash_39d7ae4b883e7e75";
-	var_a066b028 = struct::get_array(#"hash_396f65af88a25e7d");
-	foreach(s_chest in var_a066b028)
+	a_s_chests = struct::get_array(#"hash_396f65af88a25e7d");
+	foreach(s_chest in a_s_chests)
 	{
 		namespace_617a54f4::function_d8383812(s_chest.script_noteworthy, 1, s_chest.script_noteworthy, 400, level._effect[#"soul_fx"], level._effect[#"hash_169b53a5e4572fdc"]);
 	}

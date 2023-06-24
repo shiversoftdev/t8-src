@@ -5,25 +5,25 @@
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\system_shared.gsc;
 
-#namespace namespace_9ce42227;
+#namespace aiinteractables;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_9ce42227
+	Name: __init__system__
+	Namespace: aiinteractables
 	Checksum: 0x910E3036
 	Offset: 0xA0
 	Size: 0x3C
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_7e51b62fb1d59a7b", &__init__, undefined, undefined);
+	system::register(#"ai_interactables", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_9ce42227
+	Namespace: aiinteractables
 	Checksum: 0x13A6171D
 	Offset: 0xE8
 	Size: 0x14C
@@ -49,7 +49,7 @@ function __init__()
 
 /*
 	Name: function_2f0f1b62
-	Namespace: namespace_9ce42227
+	Namespace: aiinteractables
 	Checksum: 0xE80EDDCC
 	Offset: 0x240
 	Size: 0x118
@@ -78,7 +78,7 @@ function private function_2f0f1b62()
 
 /*
 	Name: function_64d25a18
-	Namespace: namespace_9ce42227
+	Namespace: aiinteractables
 	Checksum: 0x28AAD2E1
 	Offset: 0x360
 	Size: 0xD0
@@ -116,7 +116,7 @@ function function_64d25a18(entity)
 
 /*
 	Name: function_b4bc7751
-	Namespace: namespace_9ce42227
+	Namespace: aiinteractables
 	Checksum: 0x18573AE
 	Offset: 0x438
 	Size: 0x160

@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_266240d702093827;
+#using scripts\zm\zm_towers_shield.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -29,7 +29,7 @@
 function init()
 {
 	level flag::init(#"hash_26c0c05d0a3e382f");
-	level flag::init(#"hash_549663968279d569");
+	level flag::init(#"pyre_lit");
 	level flag::init(#"hash_6205682540170b8");
 	level._effect[#"hash_3ecc995bb97331ac"] = #"hash_37631c88b85a74ec";
 	level.var_c1549bc8 = spawnstruct();
@@ -93,7 +93,7 @@ function function_aee836e9()
 	str_zone = zm_zonemgr::get_zone_from_position(self.origin);
 	if(str_zone === "zone_zeus_basement")
 	{
-		level notify(#"hash_4ee1ab78c1a0dadb");
+		level notify(#"bloodbath_kill");
 	}
 }
 
@@ -111,7 +111,7 @@ function function_125dfe69()
 	level endon(#"end_game", #"hash_26c0c05d0a3e382f");
 	while(true)
 	{
-		level waittill(#"hash_4ee1ab78c1a0dadb");
+		level waittill(#"bloodbath_kill");
 		level.var_c1549bc8.var_3e762bf6++;
 		if(level.var_c1549bc8.var_3e762bf6 >= 831)
 		{
@@ -190,7 +190,7 @@ function function_fb74fc5f()
 	/#
 		printtoprightln("");
 	#/
-	level flag::set(#"hash_549663968279d569");
+	level flag::set(#"pyre_lit");
 	exploder::exploder("exp_blue_fire");
 	level function_ad85b216();
 }
@@ -283,7 +283,7 @@ function function_135e7d64(e_player)
 */
 function function_ad85b216()
 {
-	if(getdvarint(#"hash_11ad6a9695943217", 0))
+	if(getdvarint(#"zm_debug_ee", 0))
 	{
 		var_10cba649 = 1;
 	}
@@ -386,7 +386,7 @@ function function_acbff22d()
 	self endon("4058048e430c1831");
 	level endon(#"end_game");
 	self endon(#"disconnect");
-	self waittill(#"hash_60f39c53ee3e0ec7");
+	self waittill(#"hazard_hit");
 	self flag::set(#"hash_69c9295a1129268f");
 }
 
@@ -406,11 +406,11 @@ function function_4b01369a()
 	{
 		var_be17187b = undefined;
 		var_be17187b = level waittill(#"trap_activated");
-		var_9bda8088 = var_be17187b.trap;
-		var_d7a9a6d6 = var_9bda8088.var_a1aa5fa1;
-		if(isdefined(var_d7a9a6d6))
+		t_trap = var_be17187b.trap;
+		str_triggers = t_trap.var_a1aa5fa1;
+		if(isdefined(str_triggers))
 		{
-			array::thread_all(level.players, &function_294c9ea7, var_d7a9a6d6);
+			array::thread_all(level.players, &function_294c9ea7, str_triggers);
 		}
 	}
 }
@@ -424,7 +424,7 @@ function function_4b01369a()
 	Parameters: 1
 	Flags: Linked
 */
-function function_294c9ea7(var_d7a9a6d6)
+function function_294c9ea7(str_triggers)
 {
 	level endon(#"end_game", #"hash_189e686c493a2a23");
 	self endon(#"disconnect");
@@ -432,11 +432,11 @@ function function_294c9ea7(var_d7a9a6d6)
 	{
 		return;
 	}
-	var_3520f942 = trigger::wait_till(var_d7a9a6d6, "targetname", self);
+	t_entrance = trigger::wait_till(str_triggers, "targetname", self);
 	while(true)
 	{
-		t_exit = trigger::wait_till(var_d7a9a6d6, "targetname", self);
-		if(t_exit != var_3520f942 && (!(isdefined(self.var_62b59590) && self.var_62b59590)) && zm_utility::is_player_valid(self, 0, 0))
+		t_exit = trigger::wait_till(str_triggers, "targetname", self);
+		if(t_exit != t_entrance && (!(isdefined(self.var_62b59590) && self.var_62b59590)) && zm_utility::is_player_valid(self, 0, 0))
 		{
 			self flag::set(#"hash_481ca29c700e04dd");
 			break;
@@ -545,7 +545,7 @@ function arena_rock()
 	callback::remove_on_ai_killed(&function_4670ef4d);
 	var_c2b730ca = getent("viking_salute", "targetname");
 	var_c2b730ca thread function_3ce07a2b();
-	level waittill(#"hash_621a1d521509753e");
+	level waittill(#"21_guns");
 	level flag::set(#"hash_6205682540170b8");
 	level clientfield::set("" + #"hash_39e6b14b9e5b0f3d", 1);
 }
@@ -640,7 +640,7 @@ function function_c846dfc3()
 */
 function function_3ce07a2b()
 {
-	level endon(#"game_end", #"hash_621a1d521509753e");
+	level endon(#"game_end", #"21_guns");
 	while(true)
 	{
 		var_be17187b = undefined;
@@ -656,7 +656,7 @@ function function_3ce07a2b()
 			if(str_player_zone == "zone_odin_top_floor")
 			{
 				e_attacker thread function_2ea36422();
-				level notify(#"hash_621a1d521509753e");
+				level notify(#"21_guns");
 			}
 		}
 	}

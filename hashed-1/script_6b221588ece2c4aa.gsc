@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
-#using script_8988fdbc78d6c53;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\weapons\weaponobjects.gsc;
 #using scripts\core_common\util_shared.gsc;
 
 #namespace weaponobjects;
@@ -25,7 +25,7 @@ function function_b455d5d8()
 	function_e6400478(#"hash_17ac9a2101b6ff2d", &function_1eaa3e20);
 	if(isdefined(level.var_b68902c4) && level.var_b68902c4)
 	{
-		function_e6400478(#"hash_24c644460c2b5642", &function_1eaa3e20);
+		function_e6400478(#"tr_flechette_t8_upgraded", &function_1eaa3e20);
 	}
 }
 
@@ -72,7 +72,7 @@ function function_f297d773()
 	function_e6400478(#"special_crossbow_dw", &createspecialcrossbowwatchertypes, 1);
 	if(isdefined(level.b_create_upgraded_crossbow_watchers) && level.b_create_upgraded_crossbow_watchers)
 	{
-		function_e6400478(#"hash_7a3940c928f342e7", &createspecialcrossbowwatchertypes, 1);
+		function_e6400478(#"special_crossbow_t8_upgraded", &createspecialcrossbowwatchertypes, 1);
 	}
 }
 
@@ -106,7 +106,7 @@ function createhatchetwatcher(watcher)
 	watcher.onspawn = &onspawnhatchet;
 	watcher.ondamage = &voidondamage;
 	watcher.onspawnretrievetriggers = &function_23b0aea9;
-	if(!function_f99d2668())
+	if(!sessionmodeiswarzonegame())
 	{
 		watcher.timeout = 120;
 	}

@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_24ac3512 : class_6aaccc24
+class cremote_missile_target_lockon : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x5D3F96A7
 		Offset: 0x2D0
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_24ac3512 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0xCEEBE99D
 		Offset: 0x5C8
 		Size: 0x14
@@ -31,64 +31,64 @@ class class_24ac3512 : class_6aaccc24
 	}
 
 	/*
-		Name: function_b9d6aaa7
-		Namespace: namespace_24ac3512
+		Name: set_killed
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x8B048036
 		Offset: 0x590
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_b9d6aaa7(localclientnum, value)
+	function set_killed(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "killed", value);
+		[[ self ]]->set_data(localclientnum, "killed", value);
 	}
 
 	/*
-		Name: function_505f092a
-		Namespace: namespace_24ac3512
+		Name: set_isHawkTag
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x29AF8FF5
 		Offset: 0x558
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_505f092a(localclientnum, value)
+	function set_isHawkTag(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "isHawkTag", value);
+		[[ self ]]->set_data(localclientnum, "isHawkTag", value);
 	}
 
 	/*
-		Name: function_2ecbc83c
-		Namespace: namespace_24ac3512
+		Name: set_target_locked
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x6142C403
 		Offset: 0x520
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_2ecbc83c(localclientnum, value)
+	function set_target_locked(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "target_locked", value);
+		[[ self ]]->set_data(localclientnum, "target_locked", value);
 	}
 
 	/*
-		Name: function_3b7b386a
-		Namespace: namespace_24ac3512
+		Name: set_clientnum
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0xA46A954C
 		Offset: 0x4E8
 		Size: 0x30
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_3b7b386a(localclientnum, value)
+	function set_clientnum(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "clientnum", value);
+		[[ self ]]->set_data(localclientnum, "clientnum", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x1197D043
 		Offset: 0x4B0
 		Size: 0x2C
@@ -97,12 +97,12 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"remote_missile_target_lockon");
+		cLUIelem::open(localclientnum, #"remote_missile_target_lockon");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0xA45D9768
 		Offset: 0x410
 		Size: 0x94
@@ -111,16 +111,16 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "clientnum", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "target_locked", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "isHawkTag", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "killed", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "clientnum", 0);
+		[[ self ]]->set_data(localclientnum, "target_locked", 0);
+		[[ self ]]->set_data(localclientnum, "isHawkTag", 0);
+		[[ self ]]->set_data(localclientnum, "killed", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x87355005
 		Offset: 0x3E0
 		Size: 0x24
@@ -129,12 +129,12 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_24ac3512
+		Namespace: cremote_missile_target_lockon
 		Checksum: 0x6223C699
 		Offset: 0x2F0
 		Size: 0xE4
@@ -143,11 +143,11 @@ class class_24ac3512 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_c05c67e2, var_486334bd, var_683d075d, killedcallback)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("clientnum", 1, 7, "int", var_c05c67e2);
-		namespace_6aaccc24::function_da693cbe("target_locked", 1, 1, "int", var_486334bd);
-		namespace_6aaccc24::function_da693cbe("isHawkTag", 13000, 1, "int", var_683d075d);
-		namespace_6aaccc24::function_da693cbe("killed", 13000, 1, "int", killedcallback);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("clientnum", 1, 7, "int", var_c05c67e2);
+		cLUIelem::function_da693cbe("target_locked", 1, 1, "int", var_486334bd);
+		cLUIelem::function_da693cbe("isHawkTag", 13000, 1, "int", var_683d075d);
+		cLUIelem::function_da693cbe("killed", 13000, 1, "int", killedcallback);
 	}
 
 }
@@ -165,7 +165,7 @@ class class_24ac3512 : class_6aaccc24
 */
 function register(uid, var_c05c67e2, var_486334bd, var_683d075d, killedcallback)
 {
-	elem = new class_24ac3512();
+	elem = new cremote_missile_target_lockon();
 	[[ elem ]]->setup_clientfields(uid, var_c05c67e2, var_486334bd, var_683d075d, killedcallback);
 	return elem;
 }
@@ -181,7 +181,7 @@ function register(uid, var_c05c67e2, var_486334bd, var_683d075d, killedcallback)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_24ac3512();
+	elem = new cremote_missile_target_lockon();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -229,7 +229,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_3b7b386a
+	Name: set_clientnum
 	Namespace: remote_missile_target_lockon
 	Checksum: 0xD2DBCBCD
 	Offset: 0x210
@@ -237,13 +237,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: Linked
 */
-function function_3b7b386a(localclientnum, value)
+function set_clientnum(localclientnum, value)
 {
-	[[ self ]]->function_3b7b386a(localclientnum, value);
+	[[ self ]]->set_clientnum(localclientnum, value);
 }
 
 /*
-	Name: function_2ecbc83c
+	Name: set_target_locked
 	Namespace: remote_missile_target_lockon
 	Checksum: 0x2434D575
 	Offset: 0x240
@@ -251,13 +251,13 @@ function function_3b7b386a(localclientnum, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_2ecbc83c(localclientnum, value)
+function set_target_locked(localclientnum, value)
 {
-	[[ self ]]->function_2ecbc83c(localclientnum, value);
+	[[ self ]]->set_target_locked(localclientnum, value);
 }
 
 /*
-	Name: function_505f092a
+	Name: set_isHawkTag
 	Namespace: remote_missile_target_lockon
 	Checksum: 0x6BBF3FAE
 	Offset: 0x270
@@ -265,13 +265,13 @@ function function_2ecbc83c(localclientnum, value)
 	Parameters: 2
 	Flags: Linked
 */
-function function_505f092a(localclientnum, value)
+function set_isHawkTag(localclientnum, value)
 {
-	[[ self ]]->function_505f092a(localclientnum, value);
+	[[ self ]]->set_isHawkTag(localclientnum, value);
 }
 
 /*
-	Name: function_b9d6aaa7
+	Name: set_killed
 	Namespace: remote_missile_target_lockon
 	Checksum: 0x45B5A4E2
 	Offset: 0x2A0
@@ -279,8 +279,8 @@ function function_505f092a(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_b9d6aaa7(localclientnum, value)
+function set_killed(localclientnum, value)
 {
-	[[ self ]]->function_b9d6aaa7(localclientnum, value);
+	[[ self ]]->set_killed(localclientnum, value);
 }
 

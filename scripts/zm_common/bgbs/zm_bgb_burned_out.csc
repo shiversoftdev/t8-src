@@ -8,7 +8,7 @@
 #namespace zm_bgb_burned_out;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_burned_out
 	Checksum: 0x13C58CB1
 	Offset: 0x1B8
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_burned_out", &__init__, undefined, #"bgb");
 }

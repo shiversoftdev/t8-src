@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_3cdd43e2 : class_6aaccc24
+class cmp_revive_prompt : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_3cdd43e2
+		Namespace: cmp_revive_prompt
 		Checksum: 0xF5FE5705
 		Offset: 0x258
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_3cdd43e2 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_3cdd43e2
+		Namespace: cmp_revive_prompt
 		Checksum: 0xA1D0CDD3
 		Offset: 0x478
 		Size: 0x14
@@ -33,22 +33,22 @@ class class_3cdd43e2 : class_6aaccc24
 	}
 
 	/*
-		Name: function_4b3fb8b8
-		Namespace: namespace_3cdd43e2
+		Name: set_reviveProgress
+		Namespace: cmp_revive_prompt
 		Checksum: 0x578D9F07
 		Offset: 0x430
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_4b3fb8b8(player, value)
+	function set_reviveProgress(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "reviveProgress", value);
 	}
 
 	/*
 		Name: set_health
-		Namespace: namespace_3cdd43e2
+		Namespace: cmp_revive_prompt
 		Checksum: 0x395535FF
 		Offset: 0x3E8
 		Size: 0x3C
@@ -61,22 +61,22 @@ class class_3cdd43e2 : class_6aaccc24
 	}
 
 	/*
-		Name: function_3b7b386a
-		Namespace: namespace_3cdd43e2
+		Name: set_clientnum
+		Namespace: cmp_revive_prompt
 		Checksum: 0xD95B448D
 		Offset: 0x3A0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_3b7b386a(player, value)
+	function set_clientnum(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "clientnum", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_3cdd43e2
+		Namespace: cmp_revive_prompt
 		Checksum: 0x5CE0A74B
 		Offset: 0x370
 		Size: 0x24
@@ -85,12 +85,12 @@ class class_3cdd43e2 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_3cdd43e2
+		Namespace: cmp_revive_prompt
 		Checksum: 0x368CC272
 		Offset: 0x320
 		Size: 0x44
@@ -99,12 +99,12 @@ class class_3cdd43e2 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "mp_revive_prompt", persistent);
+		cLUIelem::open_luielem(player, "mp_revive_prompt", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_3cdd43e2
+		Namespace: cmp_revive_prompt
 		Checksum: 0xD2DF4B9F
 		Offset: 0x278
 		Size: 0x9C
@@ -113,10 +113,10 @@ class class_3cdd43e2 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("clientnum", 1, 7, "int", 0);
-		namespace_6aaccc24::function_da693cbe("health", 1, 5, "float", 0);
-		namespace_6aaccc24::function_da693cbe("reviveProgress", 1, 5, "float", 0);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("clientnum", 1, 7, "int", 0);
+		cLUIelem::function_da693cbe("health", 1, 5, "float", 0);
+		cLUIelem::function_da693cbe("reviveProgress", 1, 5, "float", 0);
 	}
 
 }
@@ -134,7 +134,7 @@ class class_3cdd43e2 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_3cdd43e2();
+	elem = new cmp_revive_prompt();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -182,7 +182,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_3b7b386a
+	Name: set_clientnum
 	Namespace: mp_revive_prompt
 	Checksum: 0x505D0E79
 	Offset: 0x1C8
@@ -190,9 +190,9 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_3b7b386a(player, value)
+function set_clientnum(player, value)
 {
-	[[ self ]]->function_3b7b386a(player, value);
+	[[ self ]]->set_clientnum(player, value);
 }
 
 /*
@@ -210,7 +210,7 @@ function set_health(player, value)
 }
 
 /*
-	Name: function_4b3fb8b8
+	Name: set_reviveProgress
 	Namespace: mp_revive_prompt
 	Checksum: 0xEB3352B2
 	Offset: 0x228
@@ -218,8 +218,8 @@ function set_health(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_4b3fb8b8(player, value)
+function set_reviveProgress(player, value)
 {
-	[[ self ]]->function_4b3fb8b8(player, value);
+	[[ self ]]->set_reviveProgress(player, value);
 }
 

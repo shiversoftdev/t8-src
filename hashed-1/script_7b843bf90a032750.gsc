@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6021ce59143452c3;
-#using script_6ce38ab036223e6e;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
 #using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\math_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace namespace_a476311c;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a476311c
 	Checksum: 0x3A4D8821
 	Offset: 0xA8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_7ceb08aa364e4596", &__init__, undefined, undefined);
 }
@@ -39,11 +39,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_250115340b2e27a5", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_250115340b2e27a5", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_a476311c
 	Checksum: 0x1C76B340
 	Offset: 0x158
@@ -51,7 +51,7 @@ function __init__()
 	Parameters: 4
 	Flags: Private
 */
-function private function_d1de6a85(var_b9c6550, var_50d1120, var_43f824d6, var_73d6ae36)
+function private on_begin(var_b9c6550, var_50d1120, var_43f824d6, var_73d6ae36)
 {
 	if(isdefined(var_b9c6550))
 	{
@@ -86,7 +86,7 @@ function private function_d1de6a85(var_b9c6550, var_50d1120, var_43f824d6, var_7
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_a476311c
 	Checksum: 0xCC5C33B5
 	Offset: 0x278
@@ -94,7 +94,7 @@ function private function_d1de6a85(var_b9c6550, var_50d1120, var_43f824d6, var_7
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	zm_spawner::deregister_zombie_death_event_callback(&function_138aec8e);
 }
@@ -117,7 +117,7 @@ function private function_e997bb0b(var_73d6ae36)
 	}
 	else
 	{
-		n_delay = namespace_a28acff3::get_delay_between_rounds();
+		n_delay = zm_round_logic::get_delay_between_rounds();
 		wait(n_delay + 0);
 	}
 	while(true)

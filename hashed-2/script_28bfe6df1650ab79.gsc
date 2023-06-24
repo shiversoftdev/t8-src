@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using script_698dd790cdc4965f;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -10,7 +10,7 @@
 #namespace namespace_e01afe67;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_e01afe67
 	Checksum: 0xAE7C0C7C
 	Offset: 0xA0
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_993ee8bedbddc19", &__init__, undefined, undefined);
 }
@@ -38,11 +38,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_27897abffa9137fc", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_27897abffa9137fc", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_e01afe67
 	Checksum: 0x2AD713FB
 	Offset: 0x150
@@ -50,12 +50,12 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
 	zm::register_actor_damage_callback(&height_check);
 	callback::on_ai_spawned(&on_ai_spawned);
 	level.var_8c018a0e = 1;
-	weapon_names = array(#"hero_chakram_lv1", #"hero_chakram_lv2", #"hero_chakram_lv3", #"hash_68705e3b85992a56", #"hash_68705d3b859928a3", #"hash_68705c3b859926f0", #"hero_hammer_lv1", #"hero_hammer_lv2", #"hero_hammer_lv3", #"hash_6627879099b8a337", #"hash_6627889099b8a4ea", #"hash_6627899099b8a69d", #"hash_50f35e4cfb775e02", #"hash_50f35d4cfb775c4f", #"hash_50f35c4cfb775a9c", #"hero_sword_pistol_lv1", #"hero_sword_pistol_lv2", #"hero_sword_pistol_lv3", #"hash_65e48a2e69e81a5e", #"hash_65e4892e69e818ab", #"hash_65e4882e69e816f8");
+	weapon_names = array(#"hero_chakram_lv1", #"hero_chakram_lv2", #"hero_chakram_lv3", #"hero_chakram_lh_lv1", #"hero_chakram_lh_lv2", #"hero_chakram_lh_lv3", #"hero_hammer_lv1", #"hero_hammer_lv2", #"hero_hammer_lv3", #"hero_katana_t8_lv1", #"hero_katana_t8_lv2", #"hero_katana_t8_lv3", #"hero_scepter_lv1", #"hero_scepter_lv2", #"hero_scepter_lv3", #"hero_sword_pistol_lv1", #"hero_sword_pistol_lv2", #"hero_sword_pistol_lv3", #"hero_sword_pistol_lh_lv1", #"hero_sword_pistol_lh_lv2", #"hero_sword_pistol_lh_lv3");
 	level.var_3e2ac3b6 = [];
 	foreach(weapon_name in weapon_names)
 	{
@@ -69,13 +69,13 @@ function private function_d1de6a85()
 	{
 		player function_6a8979c9();
 		player callback::function_33f0ddd3(&function_33f0ddd3);
-		player namespace_b22c99a5::function_9bf8e274();
+		player zm_trial_util::function_9bf8e274();
 	}
 	level zm_trial::function_44200d07(1);
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_e01afe67
 	Checksum: 0x67A2CED
 	Offset: 0x4B8
@@ -83,7 +83,7 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	callback::remove_on_ai_spawned(&on_ai_spawned);
 	level.var_8c018a0e = undefined;
@@ -102,7 +102,7 @@ function private function_9e7b3f4d(round_reset)
 				player unlockweapon(weapon.dualwieldweapon);
 			}
 		}
-		player namespace_b22c99a5::function_73ff0096();
+		player zm_trial_util::function_73ff0096();
 	}
 	level.var_3e2ac3b6 = undefined;
 	level zm_trial::function_44200d07(0);

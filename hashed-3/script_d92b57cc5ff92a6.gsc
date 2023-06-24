@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_f6104ad5 : class_6aaccc24
+class cct_shared_objcounter : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_f6104ad5
+		Namespace: cct_shared_objcounter
 		Checksum: 0xA11B57CF
 		Offset: 0x2A0
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_f6104ad5 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_f6104ad5
+		Namespace: cct_shared_objcounter
 		Checksum: 0x32C0D918
 		Offset: 0x6F0
 		Size: 0x14
@@ -33,50 +33,50 @@ class class_f6104ad5 : class_6aaccc24
 	}
 
 	/*
-		Name: function_871cdcb3
-		Namespace: namespace_f6104ad5
+		Name: set_objectiveTotal
+		Namespace: cct_shared_objcounter
 		Checksum: 0xD858D50B
 		Offset: 0x6A8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_871cdcb3(player, value)
+	function set_objectiveTotal(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objectiveTotal", value);
 	}
 
 	/*
-		Name: function_d9fa867a
-		Namespace: namespace_f6104ad5
+		Name: set_objectiveLabel
+		Namespace: cct_shared_objcounter
 		Checksum: 0xC46DCDF1
 		Offset: 0x660
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_d9fa867a(player, value)
+	function set_objectiveLabel(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objectiveLabel", value);
 	}
 
 	/*
-		Name: function_e23dcbb4
-		Namespace: namespace_f6104ad5
+		Name: set_objectiveCount
+		Namespace: cct_shared_objcounter
 		Checksum: 0x7B7A794C
 		Offset: 0x618
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_e23dcbb4(player, value)
+	function set_objectiveCount(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "objectiveCount", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_f6104ad5
+		Namespace: cct_shared_objcounter
 		Checksum: 0x3931B69E
 		Offset: 0x410
 		Size: 0x1FC
@@ -91,7 +91,7 @@ class class_f6104ad5 : class_6aaccc24
 		}
 		else
 		{
-			if(#"hash_2da0af76542bf74" == state_name)
+			if(#"nototal" == state_name)
 			{
 				player clientfield::function_9bf78ef8(var_47e79fc, "_state", 1);
 			}
@@ -109,7 +109,7 @@ class class_f6104ad5 : class_6aaccc24
 					}
 					else
 					{
-						if(#"hash_3a90323ee061faef" == state_name)
+						if(#"total_update" == state_name)
 						{
 							player clientfield::function_9bf78ef8(var_47e79fc, "_state", 4);
 						}
@@ -143,7 +143,7 @@ class class_f6104ad5 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_f6104ad5
+		Namespace: cct_shared_objcounter
 		Checksum: 0x369BA90F
 		Offset: 0x3E0
 		Size: 0x24
@@ -152,12 +152,12 @@ class class_f6104ad5 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_f6104ad5
+		Namespace: cct_shared_objcounter
 		Checksum: 0xF84F6916
 		Offset: 0x390
 		Size: 0x44
@@ -166,12 +166,12 @@ class class_f6104ad5 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "ct_shared_objcounter", persistent);
+		cLUIelem::open_luielem(player, "ct_shared_objcounter", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_f6104ad5
+		Namespace: cct_shared_objcounter
 		Checksum: 0x5CFF223D
 		Offset: 0x2C0
 		Size: 0xC4
@@ -180,11 +180,11 @@ class class_f6104ad5 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 3, "int");
-		namespace_6aaccc24::function_da693cbe("objectiveCount", 1, 5, "int");
-		namespace_6aaccc24::function_dcb34c80("string", "objectiveLabel", 1);
-		namespace_6aaccc24::function_da693cbe("objectiveTotal", 1, 5, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 3, "int");
+		cLUIelem::function_da693cbe("objectiveCount", 1, 5, "int");
+		cLUIelem::function_dcb34c80("string", "objectiveLabel", 1);
+		cLUIelem::function_da693cbe("objectiveTotal", 1, 5, "int");
 	}
 
 }
@@ -202,7 +202,7 @@ class class_f6104ad5 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_f6104ad5();
+	elem = new cct_shared_objcounter();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -264,7 +264,7 @@ function set_state(player, state_name)
 }
 
 /*
-	Name: function_e23dcbb4
+	Name: set_objectiveCount
 	Namespace: ct_shared_objcounter
 	Checksum: 0xD36D4652
 	Offset: 0x210
@@ -272,13 +272,13 @@ function set_state(player, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_e23dcbb4(player, value)
+function set_objectiveCount(player, value)
 {
-	[[ self ]]->function_e23dcbb4(player, value);
+	[[ self ]]->set_objectiveCount(player, value);
 }
 
 /*
-	Name: function_d9fa867a
+	Name: set_objectiveLabel
 	Namespace: ct_shared_objcounter
 	Checksum: 0x3A83F056
 	Offset: 0x240
@@ -286,13 +286,13 @@ function function_e23dcbb4(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_d9fa867a(player, value)
+function set_objectiveLabel(player, value)
 {
-	[[ self ]]->function_d9fa867a(player, value);
+	[[ self ]]->set_objectiveLabel(player, value);
 }
 
 /*
-	Name: function_871cdcb3
+	Name: set_objectiveTotal
 	Namespace: ct_shared_objcounter
 	Checksum: 0x6F552D5C
 	Offset: 0x270
@@ -300,8 +300,8 @@ function function_d9fa867a(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_871cdcb3(player, value)
+function set_objectiveTotal(player, value)
 {
-	[[ self ]]->function_871cdcb3(player, value);
+	[[ self ]]->set_objectiveTotal(player, value);
 }
 

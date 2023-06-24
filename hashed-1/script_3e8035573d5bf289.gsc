@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_5660bae5b402a1eb;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -16,7 +16,7 @@
 #namespace namespace_e7b06f1b;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_e7b06f1b
 	Checksum: 0xFF163C2B
 	Offset: 0xD0
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_6119ea2d427fdf8a", &__init__, undefined, undefined);
 }

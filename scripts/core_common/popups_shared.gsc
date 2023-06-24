@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
+#using scripts\core_common\player\player_stats.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\medals_shared.gsc;
@@ -11,7 +11,7 @@
 #namespace popups;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: popups
 	Checksum: 0x542923DC
 	Offset: 0xA8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"popups", &__init__, undefined, undefined);
 }
@@ -111,13 +111,13 @@ function devgui_notif_getgunleveltablename()
 	/#
 		if(sessionmodeiscampaigngame())
 		{
-			return #"hash_4150230c4105dc11";
+			return #"gamedata/weapons/cp/cp_gunlevels.csv";
 		}
 		if(sessionmodeiszombiesgame())
 		{
-			return #"hash_5ea60cf27bedfa51";
+			return #"gamedata/weapons/zm/zm_gunlevels.csv";
 		}
-		return #"hash_7d6337a77ef98ad";
+		return #"gamedata/weapons/mp/mp_gunlevels.csv";
 	#/
 }
 
@@ -159,13 +159,13 @@ function devgui_notif_getchallengestablename(tableid)
 	/#
 		if(sessionmodeiscampaigngame())
 		{
-			return (#"hash_929b58638c59880" + tableid) + "";
+			return (#"gamedata/stats/cp/statsmilestones" + tableid) + "";
 		}
 		if(sessionmodeiszombiesgame())
 		{
-			return (#"hash_34a621a5800b5b4a" + tableid) + "";
+			return (#"gamedata/stats/zm/statsmilestones" + tableid) + "";
 		}
-		return (#"hash_287cf26422669b76" + tableid) + "";
+		return (#"gamedata/stats/mp/statsmilestones" + tableid) + "";
 	#/
 }
 
@@ -190,7 +190,7 @@ function devgui_create_weapon_levels_table()
 				group_s = iteminfo.itemgroupname;
 				if(issubstr(group_s, "") || group_s == "")
 				{
-					reference_s = iteminfo.var_3cf2d21;
+					reference_s = iteminfo.namehash;
 					if(reference_s != "")
 					{
 						level.tbl_weaponids[i][#"reference"] = reference_s;
@@ -229,7 +229,7 @@ function devgui_notif_init()
 		{
 			return;
 		}
-		util::function_e2e9d901("", "");
+		util::add_devgui("", "");
 		level thread function_a65863ce();
 	#/
 }
@@ -251,7 +251,7 @@ function function_a65863ce()
 		{
 			if(getdvarint(#"hash_300689cb3bb5ab4d", 0) > 0)
 			{
-				util::function_d84da933("");
+				util::remove_devgui("");
 				function_ac0bfb9c();
 				return;
 			}
@@ -609,7 +609,7 @@ function notif_devgui_challenges_think()
 							}
 							else
 							{
-								itemindex = getdvarint(#"hash_1a10d0fbf3a34f63", 0);
+								itemindex = getdvarint(#"scr_challenge_itemindex", 0);
 								if(itemindex == 0)
 								{
 									currentweaponname = player.currentweapon.name;

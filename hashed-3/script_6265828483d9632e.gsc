@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3728b3b9606c4299;
-#using script_383a3b1bb18ba876;
-#using script_4a03c204316cf33;
-#using script_4a81c26d2ddde9c;
-#using script_57c900a7e39234be;
-#using script_6c8abe14025b47c4;
+#using scripts\weapons\heatseekingmissile.gsc;
+#using scripts\killstreaks\killstreakrules_shared.gsc;
+#using scripts\killstreaks\killstreak_hacking.gsc;
+#using scripts\killstreaks\planemortar_shared.gsc;
+#using scripts\killstreaks\airsupport.gsc;
+#using scripts\killstreaks\killstreaks_shared.gsc;
 #using scripts\core_common\challenges_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\influencers_shared.gsc;
@@ -53,7 +53,7 @@ function function_5fd995a8()
 	if(killstreak_used && isdefined(self))
 	{
 		bundle = level.killstreaks[#"artillery_barrage"].script_bundle;
-		var_fa9aff9a = self gadgetgetslot(bundle.var_1ab696c6);
+		var_fa9aff9a = self gadgetgetslot(bundle.ksweapon);
 		self gadgetpowerset(var_fa9aff9a, 0);
 	}
 	return killstreak_used;
@@ -178,19 +178,19 @@ function function_496d0824(var_3bc2d545, var_e8456387, team, killstreak_id)
 	var_9bed4193 = bundle.var_32e69cad;
 	var_66e0652a = 26000;
 	height = getplaneflyheight(bundle);
-	var_81ac0168 = (level.mapcenter[0], level.mapcenter[1], height);
+	plane_start = (level.mapcenter[0], level.mapcenter[1], height);
 	var_dca1c8d4 = self getteamcenter(self.team);
 	var_d1769adf = vectornormalize((var_dca1c8d4[0], var_dca1c8d4[1], height) - (level.mapcenter[0], level.mapcenter[1], height));
 	var_675219e7 = (level.mapcenter[0], level.mapcenter[1], height) + vectorscale(var_d1769adf, var_9bed4193);
 	var_aff95821 = vectorcross((0, 0, 1), var_d1769adf);
-	var_81ac0168 = var_675219e7 - vectorscale(var_aff95821, var_6c36c4dd);
+	plane_start = var_675219e7 - vectorscale(var_aff95821, var_6c36c4dd);
 	var_f348056 = var_675219e7 + vectorscale(var_aff95821, var_66e0652a);
 	var_fe427c32 = vectortoangles(var_aff95821);
 	if(isdefined(bundle.var_c28c2429))
 	{
 		var_fe427c32 = (var_fe427c32[0], var_fe427c32[1], bundle.var_c28c2429 * 0.75);
 	}
-	plane = spawnvehicle(bundle.var_f8ca3420, var_81ac0168, var_fe427c32);
+	plane = spawnvehicle(bundle.var_f8ca3420, plane_start, var_fe427c32);
 	plane setowner(owner);
 	plane notsolid();
 	plane killstreaks::configure_team("artillery_barrage", killstreak_id, owner, undefined, undefined, &configurechopperteampost);
@@ -682,7 +682,7 @@ function function_5a0d2864(startpoint, endpoint, targetpoint, angles, team, kill
 	dvxy = dxy / droptime;
 	nvel = vectornormalize(velocity);
 	launchvel = nvel * dvxy;
-	bomb = self magicmissile(bundle.var_1ab696c6, shell.origin, launchvel);
+	bomb = self magicmissile(bundle.ksweapon, shell.origin, launchvel);
 	target_set(bomb);
 	bomb killstreaks::configure_team("artillery_barrage", killstreak_id, self);
 	bomb killstreak_hacking::enable_hacking("artillery_barrage");
@@ -700,7 +700,7 @@ function function_5a0d2864(startpoint, endpoint, targetpoint, angles, team, kill
 	bomb.owner thread watchownerevents(bomb);
 	if(isdefined(level.var_1e30ea6a))
 	{
-		bomb.owner thread [[level.var_1e30ea6a]](bundle.var_1ab696c6, bomb);
+		bomb.owner thread [[level.var_1e30ea6a]](bundle.ksweapon, bomb);
 	}
 	waitframe(1);
 	shell hide();

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_14d2d89964cae0b1;
-#using script_158d50d476435605;
+#using scripts\core_common\activecamo_shared.csc;
 #using scripts\core_common\array_shared.csc;
 #using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
@@ -16,7 +16,7 @@
 #namespace zm_pack_a_punch;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_pack_a_punch
 	Checksum: 0x194624D8
 	Offset: 0x148
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_pack_a_punch", &__init__, undefined, undefined);
 }
@@ -76,7 +76,7 @@ function function_5c574877(params)
 */
 function on_localplayer_spawned(localclientnum)
 {
-	n_story = zm_utility::function_166646a6();
+	n_story = zm_utility::get_story();
 	if(isdefined(level.var_59d3631c))
 	{
 		forcestreamxmodel(level.var_59d3631c, 1, 0);
@@ -105,7 +105,7 @@ function on_localplayer_spawned(localclientnum)
 */
 function pap_force_stream(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	n_story = zm_utility::function_166646a6();
+	n_story = zm_utility::get_story();
 	if(newval)
 	{
 		if(isdefined(level.var_59d3631c))

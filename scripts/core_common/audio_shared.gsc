@@ -8,7 +8,7 @@
 #namespace audio;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: audio
 	Checksum: 0x5DF1F3BF
 	Offset: 0x210
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"audio", &__init__, undefined, undefined);
 }
@@ -157,7 +157,7 @@ function on_player_killed()
 */
 function vehiclespawncontext()
 {
-	if(sessionmodeismultiplayergame() || function_f99d2668())
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 	{
 		self clientfield::set("sndSwitchVehicleContext", 1);
 	}
@@ -289,7 +289,7 @@ function unlockfrontendmusic(unlockname, allplayers = 1)
 */
 function function_30d4f8c4(attacker, smeansofdeath, weapon)
 {
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		self playsoundtoplayer(#"hash_686fcf059a57de6f", self);
 		return;
@@ -306,12 +306,12 @@ function function_30d4f8c4(attacker, smeansofdeath, weapon)
 			str_alias = #"hash_5e5050d7f9042fac";
 			break;
 		}
-		case "hash_4bb2d7f789b561eb":
+		case "eq_gravityslam":
 		{
 			str_alias = #"hash_191ff361b2a52032";
 			break;
 		}
-		case "hash_23dd6039fe2f36c6":
+		case "molotov_fire":
 		{
 			str_alias = #"hash_40a5f428bba291a8";
 			break;
@@ -321,7 +321,7 @@ function function_30d4f8c4(attacker, smeansofdeath, weapon)
 			str_alias = #"hash_16cc324cc4a290fc";
 			break;
 		}
-		case "hash_1d2a1156220e735c":
+		case "sig_bow_quickshot5":
 		{
 			str_alias = #"hash_1732b1323f11b7bf";
 			break;

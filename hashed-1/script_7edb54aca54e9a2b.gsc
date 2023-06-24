@@ -2,12 +2,12 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_e9d01e1c : class_6aaccc24
+class cdebug_center_screen : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x1895A1AA
 		Offset: 0x190
 		Size: 0x14
@@ -20,7 +20,7 @@ class class_e9d01e1c : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x37BBB31B
 		Offset: 0x260
 		Size: 0x14
@@ -33,7 +33,7 @@ class class_e9d01e1c : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x147A73A7
 		Offset: 0x230
 		Size: 0x24
@@ -42,12 +42,12 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0x79DA4E5C
 		Offset: 0x1E0
 		Size: 0x44
@@ -56,12 +56,12 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "debug_center_screen", persistent);
+		cLUIelem::open_luielem(player, "debug_center_screen", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_e9d01e1c
+		Namespace: cdebug_center_screen
 		Checksum: 0xDA6394BE
 		Offset: 0x1B0
 		Size: 0x24
@@ -70,7 +70,7 @@ class class_e9d01e1c : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -88,7 +88,7 @@ class class_e9d01e1c : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_e9d01e1c();
+	elem = new cdebug_center_screen();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

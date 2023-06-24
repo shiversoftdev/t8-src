@@ -2,25 +2,25 @@
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\system_shared.csc;
 
-#namespace namespace_d8d92c8b;
+#namespace zm_office_ww_quest;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_d8d92c8b
+	Name: __init__system__
+	Namespace: zm_office_ww_quest
 	Checksum: 0xD67E34BB
 	Offset: 0x90
 	Size: 0x3C
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_20bcc20891aa8bdd", &__init__, undefined, undefined);
+	system::register(#"zm_office_ww_quest", &__init__, undefined, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_d8d92c8b
+	Namespace: zm_office_ww_quest
 	Checksum: 0x974DA93C
 	Offset: 0xD8
 	Size: 0x14
@@ -34,7 +34,7 @@ function __init__()
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_d8d92c8b
+	Namespace: zm_office_ww_quest
 	Checksum: 0xC4DEB76F
 	Offset: 0xF8
 	Size: 0x5C
@@ -48,7 +48,7 @@ function init_clientfields()
 
 /*
 	Name: drawer_rumble
-	Namespace: namespace_d8d92c8b
+	Namespace: zm_office_ww_quest
 	Checksum: 0xFBA82297
 	Offset: 0x160
 	Size: 0x6C

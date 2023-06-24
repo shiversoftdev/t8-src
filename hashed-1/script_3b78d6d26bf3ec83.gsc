@@ -44,12 +44,12 @@ function private registerclientfields()
 	clientfield::register("missile", "isJammed", 9000, 1, "int", &function_43a5b68a, 0, 0);
 	clientfield::register("vehicle", "isJammed", 9000, 1, "int", &function_43a5b68a, 0, 0);
 	clientfield::register("toplayer", "isJammed", 9000, 1, "int", &player_isjammed, 0, 1);
-	clientfield::register("missile", "jammer_active", 9000, 1, "int", &function_d28eb2e, 0, 0);
+	clientfield::register("missile", "jammer_active", 9000, 1, "int", &jammeractive, 0, 0);
 	clientfield::register("toplayer", "jammedvehpostfx", 9000, 1, "int", &function_4a82368f, 0, 1);
 }
 
 /*
-	Name: function_d28eb2e
+	Name: jammeractive
 	Namespace: jammer
 	Checksum: 0xAC22788
 	Offset: 0x380
@@ -57,7 +57,7 @@ function private registerclientfields()
 	Parameters: 7
 	Flags: None
 */
-function function_d28eb2e(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function jammeractive(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	if(newval == 1)
 	{

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\callbacks.gsc;
@@ -9,7 +9,7 @@
 #namespace namespace_a7aeae56;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a7aeae56
 	Checksum: 0xCE8E3060
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_3932b346c9af0dde", &__init__, undefined, undefined);
 }
@@ -37,11 +37,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_32bd34ef989ddd03", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_32bd34ef989ddd03", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_a7aeae56
 	Checksum: 0xBB1F17A6
 	Offset: 0x148
@@ -49,20 +49,20 @@ function __init__()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_d1de6a85(n_count)
+function private on_begin(n_count)
 {
 	callback::function_aebeafc0(&function_aebeafc0);
 	level.var_195590fb = zm_trial::function_5769f26a(n_count);
 	foreach(player in getplayers())
 	{
 		player.var_92cd5237 = [];
-		player namespace_b22c99a5::function_c2cd0cba(level.var_195590fb);
-		player namespace_b22c99a5::function_2190356a(0);
+		player zm_trial_util::function_c2cd0cba(level.var_195590fb);
+		player zm_trial_util::function_2190356a(0);
 	}
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_a7aeae56
 	Checksum: 0xEBA8EDB9
 	Offset: 0x250
@@ -70,11 +70,11 @@ function private function_d1de6a85(n_count)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	foreach(player in getplayers())
 	{
-		player namespace_b22c99a5::function_f3aacffb();
+		player zm_trial_util::function_f3aacffb();
 	}
 	if(!round_reset)
 	{
@@ -126,7 +126,7 @@ function private function_aebeafc0(upgraded_weapon)
 	}
 	if(self.var_92cd5237.size <= level.var_195590fb)
 	{
-		namespace_b22c99a5::function_2190356a(self.var_92cd5237.size);
+		zm_trial_util::function_2190356a(self.var_92cd5237.size);
 	}
 }
 

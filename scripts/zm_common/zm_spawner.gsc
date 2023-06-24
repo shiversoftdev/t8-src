@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_299f56e6d0b16416;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_quick_spawning.gsc;
 #using script_35598499769dbb3d;
-#using script_3f9e0dc8454d98e1;
-#using script_47fb62300ac0bd60;
-#using script_5660bae5b402a1eb;
-#using script_5b18db57724ff7be;
-#using script_7133a4d461308099;
-#using script_7e63597649100b1c;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm_common\zm_camos.gsc;
+#using scripts\core_common\activecamo_shared.gsc;
+#using scripts\core_common\ai\zombie_shared.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -784,7 +784,7 @@ function window_notetracks(msg)
 		{
 			if(self.ignoreall)
 			{
-				self val::reset(#"hash_62fca810699077f3", "ignoreall");
+				self val::reset(#"attack_properties", "ignoreall");
 			}
 			if(isdefined(self.first_node))
 			{
@@ -1350,7 +1350,7 @@ function zombie_death_points(origin, mod, hit_location, attacker, inflictor, zom
 	str_event = "death";
 	if(isdefined(player))
 	{
-		if(inflictor.var_9fde8624 === #"hash_44aa977896e18e7f")
+		if(inflictor.var_9fde8624 === #"zombie_wolf_ally")
 		{
 			zombie.var_12745932 = 1;
 		}
@@ -2135,10 +2135,10 @@ function function_dce9f1a6(spots)
 	a_candidates = [];
 	if(isdefined(player_info) && isdefined(player_info.player))
 	{
-		v_player_dir = player_info.player namespace_df043b58::function_c5ea0b0();
+		v_player_dir = player_info.player zm_quick_spawning::function_c5ea0b0();
 		if(lengthsquared(v_player_dir) > 0)
 		{
-			zones = namespace_df043b58::function_f1ec5df(player_info.player, v_player_dir, 1);
+			zones = zm_quick_spawning::function_f1ec5df(player_info.player, v_player_dir, 1);
 			for(i = 0; i < spots.size; i++)
 			{
 				if(isdefined(spots[i].var_d51f4e2d) && (gettime() - spots[i].var_d51f4e2d) < 3000)
@@ -2760,7 +2760,7 @@ function function_45bb11e4(spot)
 	}
 	self pushplayer(1);
 	e_align = (isdefined(self.mdl_anchor) ? self.mdl_anchor : spot);
-	if(isdefined(self.has_legs) && !self.has_legs || (isdefined(self.var_eb91c296) && self.var_eb91c296))
+	if(isdefined(self.has_legs) && !self.has_legs || (isdefined(self.missing_legs) && self.missing_legs))
 	{
 		if(isinarray(scene::get_all_shot_names(spot.scriptbundlename), "crawler"))
 		{

@@ -3,12 +3,12 @@
 #using script_261ab6f031d07a15;
 #using script_31e56101095f174b;
 #using script_37e409875b3ab3b6;
-#using script_387c92656e7ac7d1;
-#using script_39c61335d85620af;
-#using script_3d2e260ec67fded8;
+#using scripts\core_common\ai\planner_generic_commander.gsc;
+#using scripts\core_common\ai\planner_commander.gsc;
+#using scripts\core_common\ai\planner_squad_utility.gsc;
 #using script_522aeb6ae906391e;
 #using script_55cdac8f3eaa44cd;
-#using script_7312bc36741c9418;
+#using scripts\core_common\ai\planner_commander_utility.gsc;
 #using script_770268ef1e664da9;
 #using script_c5bc2e592d581d0;
 

@@ -2,12 +2,12 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_5d432d7d : class_6aaccc24
+class cct_crash_kill_remaining_enemy : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_5d432d7d
+		Namespace: cct_crash_kill_remaining_enemy
 		Checksum: 0x6976581B
 		Offset: 0x1A0
 		Size: 0x14
@@ -20,7 +20,7 @@ class class_5d432d7d : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_5d432d7d
+		Namespace: cct_crash_kill_remaining_enemy
 		Checksum: 0x1F2476F9
 		Offset: 0x270
 		Size: 0x14
@@ -33,7 +33,7 @@ class class_5d432d7d : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_5d432d7d
+		Namespace: cct_crash_kill_remaining_enemy
 		Checksum: 0x31E6F50F
 		Offset: 0x240
 		Size: 0x24
@@ -42,12 +42,12 @@ class class_5d432d7d : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_5d432d7d
+		Namespace: cct_crash_kill_remaining_enemy
 		Checksum: 0x3F193464
 		Offset: 0x1F0
 		Size: 0x44
@@ -56,12 +56,12 @@ class class_5d432d7d : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "ct_crash_kill_remaining_enemy", persistent);
+		cLUIelem::open_luielem(player, "ct_crash_kill_remaining_enemy", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_5d432d7d
+		Namespace: cct_crash_kill_remaining_enemy
 		Checksum: 0x11774EFE
 		Offset: 0x1C0
 		Size: 0x24
@@ -70,7 +70,7 @@ class class_5d432d7d : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -88,7 +88,7 @@ class class_5d432d7d : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_5d432d7d();
+	elem = new cct_crash_kill_remaining_enemy();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

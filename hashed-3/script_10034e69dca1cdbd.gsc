@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\zm_utility.gsc;
@@ -8,7 +8,7 @@
 #namespace namespace_d579463e;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_d579463e
 	Checksum: 0xB096C212
 	Offset: 0x90
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_5993cb43cbe55c17", &__init__, undefined, undefined);
 }
@@ -36,11 +36,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_4803a4a42dd83650", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_4803a4a42dd83650", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_d579463e
 	Checksum: 0xD55A76D1
 	Offset: 0x140
@@ -48,14 +48,14 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-function private function_d1de6a85(weapon_name)
+function private on_begin(weapon_name)
 {
-	namespace_b22c99a5::function_7d32b7d0(0);
+	zm_trial_util::function_7d32b7d0(0);
 	level thread function_83b71e7c();
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_d579463e
 	Checksum: 0x30DA6CB5
 	Offset: 0x188
@@ -63,14 +63,14 @@ function private function_d1de6a85(weapon_name)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
-	namespace_b22c99a5::function_f3dbeda7();
+	zm_trial_util::function_f3dbeda7();
 	if(!round_reset)
 	{
 		if(!level flag::get(level.var_5bfd847e))
 		{
-			if(zm_utility::function_166646a6() == 1)
+			if(zm_utility::get_story() == 1)
 			{
 				zm_trial::fail(#"hash_ad3c47f53414b85");
 			}
@@ -98,9 +98,9 @@ function private function_83b71e7c()
 	while(true)
 	{
 		level flag::wait_till(level.var_5bfd847e);
-		namespace_b22c99a5::function_7d32b7d0(1);
+		zm_trial_util::function_7d32b7d0(1);
 		level flag::wait_till_clear(level.var_5bfd847e);
-		namespace_b22c99a5::function_7d32b7d0(0);
+		zm_trial_util::function_7d32b7d0(0);
 	}
 }
 

@@ -132,10 +132,10 @@ function private _checkregistrationprerequisites(archetype, attribute, callbackf
 {
 	/#
 		/#
-			assert(function_7a600918(archetype), "");
+			assert(ishash(archetype), "");
 		#/
 		/#
-			assert(function_7a600918(attribute), "");
+			assert(ishash(attribute), "");
 		#/
 		/#
 			assert(!isdefined(callbackfunction) || isfunctionptr(callbackfunction), "");

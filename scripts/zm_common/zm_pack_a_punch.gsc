@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1254ac024174d9c0;
-#using script_14f4a3c583c77d4b;
+#using scripts\zm_common\trials\zm_trial_disable_buys.gsc;
+#using scripts\zm_common\zm_loadout.gsc;
 #using script_301f64a4090c381a;
-#using script_47fb62300ac0bd60;
-#using script_5b18db57724ff7be;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\zm_common\zm_camos.gsc;
 #using script_698dd790cdc4965f;
-#using script_6e3c826b1814cab6;
-#using script_ab890501c40b73c;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
@@ -39,7 +39,7 @@
 #namespace zm_pack_a_punch;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_pack_a_punch
 	Checksum: 0xA4FFAE2C
 	Offset: 0x4A0
@@ -47,7 +47,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_pack_a_punch", &__init__, &__main__, undefined);
 }
@@ -73,11 +73,11 @@ function __init__()
 	{
 		level.var_a3b71a00 = 0.5;
 	}
-	if(zm_utility::function_166646a6() == 1)
+	if(zm_utility::get_story() == 1)
 	{
 		function_6309e7d5();
 	}
-	else if(zm_utility::function_166646a6() == 2)
+	else if(zm_utility::get_story() == 2)
 	{
 		function_c6d69354();
 	}
@@ -98,7 +98,7 @@ function __main__()
 	{
 		level.pap_zbarrier_state_func = &process_pap_zbarrier_state;
 	}
-	if(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 0)
+	if(zm_custom::function_901b751c(#"zmpapenabled") == 0)
 	{
 		var_ed82708a = getentarray("zm_pack_a_punch", "targetname");
 		foreach(var_4db9b7a6 in var_ed82708a)
@@ -194,7 +194,7 @@ function private spawn_init()
 		zbarriers[i] flag::init("pap_taking_gun");
 		zbarriers[i] flag::init("pap_offering_gun");
 		zbarriers[i] flag::init("pap_in_retrigger_delay");
-		if(zm_utility::function_166646a6() == 2)
+		if(zm_utility::get_story() == 2)
 		{
 			foreach(var_b6758aab in var_302c8250)
 			{
@@ -368,11 +368,11 @@ function private function_c6d69354()
 */
 function private get_start_state()
 {
-	if(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 0)
+	if(zm_custom::function_901b751c(#"zmpapenabled") == 0)
 	{
 		return false;
 	}
-	if(isdefined(level.var_ef785c4c) && level.var_ef785c4c || namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 2)
+	if(isdefined(level.var_ef785c4c) && level.var_ef785c4c || zm_custom::function_901b751c(#"zmpapenabled") == 2)
 	{
 		return true;
 	}
@@ -390,7 +390,7 @@ function private get_start_state()
 */
 function function_615ef6fe()
 {
-	self endon(#"hash_404acc7ce223033");
+	self endon(#"pack_removed");
 	self flag::wait_till("Pack_A_Punch_on");
 	self thread pap_power_on_init();
 }
@@ -481,7 +481,7 @@ function private turn_on(origin, radius)
 			return;
 		}
 	}
-	if(zm_utility::function_166646a6() != 1)
+	if(zm_utility::get_story() != 1)
 	{
 		self clientfield::set("pap_idle_fx", 1);
 	}
@@ -542,7 +542,7 @@ function private turn_off(origin, radius)
 		}
 	}
 	pap_machine flag::wait_till("pap_waiting_for_user");
-	if(zm_utility::function_166646a6() != 1)
+	if(zm_utility::get_story() != 1)
 	{
 		self clientfield::set("pap_idle_fx", 0);
 	}
@@ -615,7 +615,7 @@ function private function_e13fa347()
 */
 function private toggle_think(powered_on)
 {
-	while(!clientfield::function_6b3b55da())
+	while(!clientfield::can_set())
 	{
 		waitframe(1);
 	}
@@ -829,7 +829,7 @@ function private function_8a5fe651(pap_machine, current_weapon)
 			return false;
 		}
 	}
-	if(!self zm_magicbox::can_buy_weapon(0) || self laststand::player_is_in_laststand() || (isdefined(self.intermission) && self.intermission) || self isthrowinggrenade() || namespace_497ab7da::is_active() || namespace_83dc3729::is_active() || (!self zm_weapons::can_upgrade_weapon(current_weapon) && !zm_weapons::weapon_supports_aat(current_weapon)))
+	if(!self zm_magicbox::can_buy_weapon(0) || self laststand::player_is_in_laststand() || (isdefined(self.intermission) && self.intermission) || self isthrowinggrenade() || zm_trial_disable_buys::is_active() || namespace_83dc3729::is_active() || (!self zm_weapons::can_upgrade_weapon(current_weapon) && !zm_weapons::weapon_supports_aat(current_weapon)))
 	{
 		return false;
 	}
@@ -905,9 +905,9 @@ function private function_222c0292(current_weapon, packa_rollers, pap_machine, v
 	pap_machine flag::set("pap_taking_gun");
 	pap_machine.unitrigger_stub.current_weapon = current_weapon;
 	upgrade_weapon = zm_weapons::get_upgrade_weapon(current_weapon);
-	var_eaad2188 = self getweaponoptions(current_weapon);
+	current_weaponoptions = self getweaponoptions(current_weapon);
 	self thread function_f0fe4bae(pap_machine.unitrigger_stub);
-	self third_person_weapon_upgrade(current_weapon, var_eaad2188, upgrade_weapon, packa_rollers, pap_machine);
+	self third_person_weapon_upgrade(current_weapon, current_weaponoptions, upgrade_weapon, packa_rollers, pap_machine);
 	pap_machine flag::clear("pap_taking_gun");
 	pap_machine flag::set("pap_offering_gun");
 	pap_machine thread wait_for_timeout(pap_machine.unitrigger_stub.current_weapon, pap_machine.packa_timer, self, pap_machine.var_a86430cb, var_9c076b6, var_aa0d72d4);
@@ -920,7 +920,7 @@ function private function_222c0292(current_weapon, packa_rollers, pap_machine, v
 		{
 			weaponidx = matchrecordgetweaponindex(current_weapon);
 		}
-		self zm_stats::function_c0c6ab19(#"hash_c027c40f4adea57");
+		self zm_stats::function_c0c6ab19(#"weapons_packed");
 		self contracts::function_5b88297d(#"hash_b6b948aac4bd4c");
 		if(!pap_machine.var_a86430cb)
 		{
@@ -933,7 +933,7 @@ function private function_222c0292(current_weapon, packa_rollers, pap_machine, v
 			#/
 			self zm_stats::increment_challenge_stat(#"hash_203688d7883cf38c");
 			self zm_stats::increment_challenge_stat(#"hash_2126e77556d8e66b");
-			self stats::inc_stat(#"hash_162f9b6a10fa7d66", current_weapon.name, #"packed", #"statvalue", 1);
+			self stats::inc_stat(#"item_stats", current_weapon.name, #"packed", #"statvalue", 1);
 		}
 		if(pap_machine.var_a86430cb || var_9c076b6 || var_aa0d72d4)
 		{
@@ -948,7 +948,7 @@ function private function_222c0292(current_weapon, packa_rollers, pap_machine, v
 					self zm_challenges::debug_print("");
 				#/
 				self zm_stats::increment_challenge_stat(#"hash_300fdf15a515feda", undefined, 1);
-				self stats::inc_stat(#"hash_162f9b6a10fa7d66", current_weapon.name, #"hash_5d5a976d59876880", #"statvalue", 1);
+				self stats::inc_stat(#"item_stats", current_weapon.name, #"doublepacked", #"statvalue", 1);
 				self zm_challenges::function_e40c9d13();
 			}
 		}
@@ -978,7 +978,7 @@ function private function_222c0292(current_weapon, packa_rollers, pap_machine, v
 	Parameters: 5
 	Flags: Linked, Private
 */
-function private third_person_weapon_upgrade(current_weapon, var_eaad2188, upgrade_weapon, packa_rollers, pap_machine)
+function private third_person_weapon_upgrade(current_weapon, current_weaponoptions, upgrade_weapon, packa_rollers, pap_machine)
 {
 	pap_machine endon(#"hash_672bc8ddbec0fa33");
 	var_d85decd8 = self getbuildkitweapon(current_weapon);
@@ -992,11 +992,11 @@ function private third_person_weapon_upgrade(current_weapon, var_eaad2188, upgra
 		}
 	#/
 	pap_machine.unitrigger_stub.current_weapon = var_d85decd8;
-	var_27024943 = self zm_camos::function_6f75f3d3(var_d85decd8, var_eaad2188);
+	var_27024943 = self zm_camos::function_6f75f3d3(var_d85decd8, current_weaponoptions);
 	pap_machine.unitrigger_stub.var_f716c676 = self zm_camos::function_7c982eb6(var_d85decd8);
 	pap_machine.unitrigger_stub.current_weapon_options = self getbuildkitweaponoptions(pap_machine.unitrigger_stub.current_weapon, var_27024943, pap_machine.unitrigger_stub.var_f716c676);
 	pap_machine.unitrigger_stub.upgrade_weapon = var_1eca29de;
-	pap_machine.unitrigger_stub.var_3ded6a21 = self zm_camos::function_4f727cf5(var_d85decd8, var_eaad2188, 1);
+	pap_machine.unitrigger_stub.var_3ded6a21 = self zm_camos::function_4f727cf5(var_d85decd8, current_weaponoptions, 1);
 	pap_machine.unitrigger_stub.upgrade_weapon_options = self getbuildkitweaponoptions(pap_machine.unitrigger_stub.upgrade_weapon, pap_machine.unitrigger_stub.var_3ded6a21, pap_machine.unitrigger_stub.var_f716c676);
 	pap_machine setweapon(pap_machine.unitrigger_stub.current_weapon);
 	pap_machine setweaponoptions(pap_machine.unitrigger_stub.current_weapon_options);
@@ -1013,14 +1013,14 @@ function private third_person_weapon_upgrade(current_weapon, var_eaad2188, upgra
 	interact_offset = origin_offset + (forward * -25);
 	offsetdw = vectorscale((1, 1, 1), 3);
 	var_397d50da = (isdefined(level.var_fbca9d31) ? level.var_fbca9d31 : 3.35);
-	if(self hasperk(#"hash_37aa3a5919757781"))
+	if(self hasperk(#"specialty_cooldown"))
 	{
 		pap_machine playsound(#"hash_552a43efc3f770d");
 		var_397d50da = min(var_397d50da, 1.25);
 	}
 	else
 	{
-		if(util::function_5df4294() === #"zstandard")
+		if(util::get_game_type() === #"zstandard")
 		{
 			pap_machine playsound(#"hash_552a43efc3f770d");
 		}
@@ -1342,7 +1342,7 @@ function private function_f0fe4bae(s_unitrigger_stub)
 		{
 			s_unitrigger_stub.var_59f1d079 = 1;
 		}
-		self notify(#"hash_12922c9c5f12df1", {#w_current:original_weapon});
+		self notify(#"packing_weapon", {#w_current:original_weapon});
 		self takeweapon(original_weapon);
 	}
 	if(!(isdefined(self.intermission) && self.intermission) && (!(isdefined(self.is_drinking) && self.is_drinking)))
@@ -1362,7 +1362,7 @@ function private function_f0fe4bae(s_unitrigger_stub)
 */
 function private shutoffpapsounds(pap_machine, var_884bde3, var_1e9dad36)
 {
-	pap_machine endon(#"hash_404acc7ce223033");
+	pap_machine endon(#"pack_removed");
 	while(true)
 	{
 		pap_machine flag::wait_till("Pack_A_Punch_off");

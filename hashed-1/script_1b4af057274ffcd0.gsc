@@ -1,17 +1,17 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_30e0aa25775a6927;
 #using script_31e56101095f174b;
-#using script_321486e8a7c7176f;
-#using script_39c61335d85620af;
+#using scripts\core_common\ai\planner_squad.gsc;
+#using scripts\core_common\ai\planner_commander.gsc;
 #using script_522aeb6ae906391e;
-#using script_aa63c66acbb23e;
+#using scripts\core_common\ai\strategic_command.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
 
 #namespace namespace_e4f52212;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_e4f52212
 	Checksum: 0xF89033D0
 	Offset: 0x108
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_44a6f2632e19a5c3", &namespace_526571f4::__init__, undefined, undefined);
 }
@@ -38,11 +38,11 @@ function autoexec function_89f2df9()
 function private __init__()
 {
 	plannercommanderutility::registerutilityapi(#"commanderscoreage", &_monkey_water_corvus_vo_cleared);
-	plannercommanderutility::registerdaemonapi(#"hash_62f9340b8f782bd5", &function_ea95685);
+	plannercommanderutility::registerdaemonapi(#"daemonzmaltars", &function_ea95685);
 	plannercommanderutility::registerdaemonapi(#"daemonzmblockers", &function_80c4721f);
-	plannercommanderutility::registerdaemonapi(#"hash_5fb7ec66ffe3b9d2", &function_73588006);
-	plannercommanderutility::registerdaemonapi(#"hash_290aa7564003048d", &function_ccdf2c6f);
-	plannercommanderutility::registerdaemonapi(#"hash_5021ab98d5068338", &function_48fcded4);
+	plannercommanderutility::registerdaemonapi(#"daemonzmchests", &function_73588006);
+	plannercommanderutility::registerdaemonapi(#"daemonzmpowerups", &function_ccdf2c6f);
+	plannercommanderutility::registerdaemonapi(#"daemonzmswitches", &function_48fcded4);
 	plannercommanderutility::registerdaemonapi(#"daemonzmwallbuys", &function_873b1369);
 }
 
@@ -77,7 +77,7 @@ function private function_ea95685(commander)
 			altars[altars.size] = var_bc510a14;
 		}
 	}
-	blackboard::setstructblackboardattribute(commander, #"hash_789c87157aa8ed0c", altars);
+	blackboard::setstructblackboardattribute(commander, #"zm_altars", altars);
 }
 
 /*
@@ -176,7 +176,7 @@ function private function_73588006(commander)
 			chests[chests.size] = var_559e6014;
 		}
 	}
-	blackboard::setstructblackboardattribute(commander, #"hash_5b81c238b9038817", chests);
+	blackboard::setstructblackboardattribute(commander, #"zm_chests", chests);
 }
 
 /*
@@ -231,20 +231,20 @@ function private function_48fcded4(commander)
 	switchents = getentarray("use_elec_switch", "targetname");
 	if(isarray(switchents))
 	{
-		foreach(var_5ef756b8 in switchents)
+		foreach(switchent in switchents)
 		{
-			if(!isdefined(var_5ef756b8))
+			if(!isdefined(switchent))
 			{
 				continue;
 			}
 			var_b353dc21 = array();
-			var_b353dc21[#"origin"] = var_5ef756b8.origin;
-			var_b353dc21[#"cost"] = var_5ef756b8.zombie_cost;
+			var_b353dc21[#"origin"] = switchent.origin;
+			var_b353dc21[#"cost"] = switchent.zombie_cost;
 			if(!isdefined(var_b353dc21[#"__unsafe__"]))
 			{
 				var_b353dc21[#"__unsafe__"] = array();
 			}
-			var_b353dc21[#"__unsafe__"][#"switch"] = var_5ef756b8;
+			var_b353dc21[#"__unsafe__"][#"switch"] = switchent;
 			switches[switches.size] = var_b353dc21;
 		}
 	}
@@ -282,10 +282,10 @@ function private function_873b1369(commander)
 			var_75f73822[#"length"] = wallbuy.trigger_stub.script_length;
 			var_75f73822[#"width"] = wallbuy.trigger_stub.script_width;
 			var_75f73822[#"type"] = wallbuy.trigger_stub.script_unitrigger_type;
-			var_d9e1fd5 = level.zombie_weapons[wallbuy.weapon];
-			var_75f73822[#"ammo_cost"] = var_d9e1fd5.ammo_cost;
-			var_75f73822[#"cost"] = var_d9e1fd5.cost;
-			var_75f73822[#"upgrade_weapon"] = var_d9e1fd5.upgrade;
+			zombieweapon = level.zombie_weapons[wallbuy.weapon];
+			var_75f73822[#"ammo_cost"] = zombieweapon.ammo_cost;
+			var_75f73822[#"cost"] = zombieweapon.cost;
+			var_75f73822[#"upgrade_weapon"] = zombieweapon.upgrade;
 			if(!isdefined(var_75f73822[#"__unsafe__"]))
 			{
 				var_75f73822[#"__unsafe__"] = array();
@@ -309,9 +309,9 @@ function private function_873b1369(commander)
 function private _monkey_water_corvus_vo_cleared(commander, squad, constants)
 {
 	/#
-		assert(isdefined(constants[#"hash_2fe4d5f6cd1c7ca8"]), ("" + "") + "");
+		assert(isdefined(constants[#"maxage"]), ("" + "") + "");
 	#/
-	if(gettime() > squad.createtime + constants[#"hash_2fe4d5f6cd1c7ca8"])
+	if(gettime() > squad.createtime + constants[#"maxage"])
 	{
 		return 0;
 	}

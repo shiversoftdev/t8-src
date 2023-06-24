@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_34d5428126b56bc3;
+#using scripts\wz_common\wz_common_fixup.csc;
 #using script_731df012f3a3c2fc;
 
 #namespace namespace_46ccc531;
@@ -43,7 +43,7 @@ event main(eventstruct)
 */
 function function_b9962a73()
 {
-	if(isdefined(getgametypesetting(#"hash_2992e3d39d55b312")) && getgametypesetting(#"hash_2992e3d39d55b312"))
+	if(isdefined(getgametypesetting(#"wzspectrerising")) && getgametypesetting(#"wzspectrerising"))
 	{
 		chests = getdynentarray("world_ammo_stash_blackjack");
 		foreach(dynent in chests)
@@ -67,16 +67,16 @@ function function_63ad593a()
 	var_a12b4736 = &namespace_b0722f43::function_96ff7b88;
 	var_d2223309 = &namespace_b0722f43::function_261ab7f5;
 	var_b5014996 = &namespace_b0722f43::function_19089c75;
-	var_87d0eef8 = &namespace_b0722f43::function_63bfe27;
+	var_87d0eef8 = &namespace_b0722f43::remove_item;
 	var_74257310 = &namespace_b0722f43::function_6da5e673;
 	var_f8a4c541 = &namespace_b0722f43::function_6991057;
 	var_edfbccd0 = &namespace_b0722f43::function_e70fa91c;
-	if(isdefined(getgametypesetting(#"hash_2992e3d39d55b312")) && getgametypesetting(#"hash_2992e3d39d55b312"))
+	if(isdefined(getgametypesetting(#"wzspectrerising")) && getgametypesetting(#"wzspectrerising"))
 	{
-		namespace_da5c04c3::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_13ba73311ab5250f", #"hash_58c8b457cdf56278");
-		if(isdefined(getgametypesetting(#"hash_2fa72a7ec2d86741")) && getgametypesetting(#"hash_2fa72a7ec2d86741"))
+		wz_common_fixup::function_149cbc84(var_b5014996, var_f8a4c541, #"hash_13ba73311ab5250f", #"hash_58c8b457cdf56278");
+		if(isdefined(getgametypesetting(#"wzenablespectregrenade")) && getgametypesetting(#"wzenablespectregrenade"))
 		{
-			namespace_da5c04c3::function_149cbc84(var_d2223309, var_74257310, #"hash_745d80b3e4f28da1", #"hash_7e8c84081fafaea4");
+			wz_common_fixup::function_149cbc84(var_d2223309, var_74257310, #"smoke_grenade_wz_item", #"spectre_grenade_wz_item");
 		}
 	}
 }

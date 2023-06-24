@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_1793e0dffb81a6c8;
-#using script_31ae83578c48a594;
-#using script_3c362258ff800237;
-#using script_3d5821d793ed4c6;
+#using scripts\zm_common\trials\zm_trial_disable_hud.csc;
+#using scripts\zm_common\zm_trial.csc;
+#using scripts\zm_common\zm_trial_util.csc;
 #using script_45657e86e8f90414;
 #using script_5afd8ff8f8304cc4;
-#using script_6e6840022cbf42f4;
+#using scripts\zm_common\trials\zm_trial_disable_buys.csc;
 #using script_70ab01a7690ea256;
 #using scripts\core_common\flag_shared.csc;
 #using scripts\core_common\struct.csc;
@@ -78,6 +78,6 @@ event private function_df05c5d(eventstruct)
 	{
 		return;
 	}
-	self thread namespace_b22c99a5::function_97444b02(eventstruct.localclientnum);
+	self thread zm_trial_util::function_97444b02(eventstruct.localclientnum);
 }
 

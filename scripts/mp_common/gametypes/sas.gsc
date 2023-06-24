@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_18f0d22c75b141a7;
-#using script_2255a7ad3edc838f;
-#using script_2c49ae69cd8ce30c;
-#using script_47fb62300ac0bd60;
-#using script_5399f402045d7abd;
-#using script_56ca01b3b31455b5;
-#using script_788472602edbe3b9;
+#using scripts\core_common\player\player_loadout.gsc;
+#using scripts\core_common\bots\bot.gsc;
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\weapons\weapon_utils.gsc;
+#using scripts\abilities\ability_util.gsc;
+#using scripts\mp_common\player\player_loadout.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\bots\bot_action.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
@@ -301,7 +301,7 @@ function onplayerkilled(einflictor, attacker, idamage, smeansofdeath, weapon, vd
 			self.humiliated = self.pers[#"humiliated"];
 			if(globallogic_score::gethighestscoringplayer() === self)
 			{
-				scoreevents::processscoreevent(#"hash_4ba3fd0437520af2", attacker, self, weapon);
+				scoreevents::processscoreevent(#"humiliation_sas", attacker, self, weapon);
 			}
 			if(level.setbacks == 0)
 			{

@@ -7,7 +7,7 @@
 #namespace namespace_8eb9bc0a;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_8eb9bc0a
 	Checksum: 0xADFCE61F
 	Offset: 0xF8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_6d3c5317001d4fc6", &__init__, undefined, undefined);
 }
@@ -141,9 +141,9 @@ function function_97346595()
 				{
 					level thread zombie_open_sesame();
 				}
-				var_b2efd61b = 4 - players.size;
+				remainingplayers = 4 - players.size;
 				/#
-					adddebugcommand("" + var_b2efd61b);
+					adddebugcommand("" + remainingplayers);
 				#/
 				waitframe(1);
 				/#

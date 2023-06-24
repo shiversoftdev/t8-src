@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_44e9a2c5 : class_6aaccc24
+class czm_towers_crowd_meter : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x8664627D
 		Offset: 0x230
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x4CE8482B
 		Offset: 0x6C8
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: set_visible
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0xD6858549
 		Offset: 0x690
 		Size: 0x30
@@ -41,12 +41,12 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function set_visible(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "visible", value);
+		[[ self ]]->set_data(localclientnum, "visible", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0xE7951BD4
 		Offset: 0x3A8
 		Size: 0x2DC
@@ -57,73 +57,73 @@ class class_44e9a2c5 : class_6aaccc24
 	{
 		if(#"defaultstate" == state_name)
 		{
-			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
+			[[ self ]]->set_data(localclientnum, "_state", 0);
 		}
 		else
 		{
 			if(#"hash_2b0516887b8c733" == state_name)
 			{
-				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
+				[[ self ]]->set_data(localclientnum, "_state", 1);
 			}
 			else
 			{
 				if(#"crowd_loathes" == state_name)
 				{
-					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 2);
+					[[ self ]]->set_data(localclientnum, "_state", 2);
 				}
 				else
 				{
 					if(#"crowd_hates" == state_name)
 					{
-						[[ self ]]->function_d7d2fcce(localclientnum, "_state", 3);
+						[[ self ]]->set_data(localclientnum, "_state", 3);
 					}
 					else
 					{
 						if(#"crowd_no_love" == state_name)
 						{
-							[[ self ]]->function_d7d2fcce(localclientnum, "_state", 4);
+							[[ self ]]->set_data(localclientnum, "_state", 4);
 						}
 						else
 						{
 							if(#"crowd_warm_up" == state_name)
 							{
-								[[ self ]]->function_d7d2fcce(localclientnum, "_state", 5);
+								[[ self ]]->set_data(localclientnum, "_state", 5);
 							}
 							else
 							{
 								if(#"crowd_likes" == state_name)
 								{
-									[[ self ]]->function_d7d2fcce(localclientnum, "_state", 6);
+									[[ self ]]->set_data(localclientnum, "_state", 6);
 								}
 								else
 								{
 									if(#"crowd_loves" == state_name)
 									{
-										[[ self ]]->function_d7d2fcce(localclientnum, "_state", 7);
+										[[ self ]]->set_data(localclientnum, "_state", 7);
 									}
 									else
 									{
 										if(#"crowd_power_up_available_good" == state_name)
 										{
-											[[ self ]]->function_d7d2fcce(localclientnum, "_state", 8);
+											[[ self ]]->set_data(localclientnum, "_state", 8);
 										}
 										else
 										{
 											if(#"crowd_power_up_available_bad" == state_name)
 											{
-												[[ self ]]->function_d7d2fcce(localclientnum, "_state", 9);
+												[[ self ]]->set_data(localclientnum, "_state", 9);
 											}
 											else
 											{
 												if(#"crowd_power_up_available_good_partial" == state_name)
 												{
-													[[ self ]]->function_d7d2fcce(localclientnum, "_state", 10);
+													[[ self ]]->set_data(localclientnum, "_state", 10);
 												}
 												else
 												{
 													if(#"crowd_power_up_available_bad_partial" == state_name)
 													{
-														[[ self ]]->function_d7d2fcce(localclientnum, "_state", 11);
+														[[ self ]]->set_data(localclientnum, "_state", 11);
 													}
 													else
 													{
@@ -148,7 +148,7 @@ class class_44e9a2c5 : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x1CC81DB2
 		Offset: 0x370
 		Size: 0x2C
@@ -157,12 +157,12 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"zm_towers_crowd_meter");
+		cLUIelem::open(localclientnum, #"zm_towers_crowd_meter");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0x2A4CBC0B
 		Offset: 0x308
 		Size: 0x60
@@ -171,14 +171,14 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 		[[ self ]]->set_state(localclientnum, #"defaultstate");
-		[[ self ]]->function_d7d2fcce(localclientnum, "visible", 0);
+		[[ self ]]->set_data(localclientnum, "visible", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0xCD390F97
 		Offset: 0x2D8
 		Size: 0x24
@@ -187,12 +187,12 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_44e9a2c5
+		Namespace: czm_towers_crowd_meter
 		Checksum: 0xCE367597
 		Offset: 0x250
 		Size: 0x7C
@@ -201,9 +201,9 @@ class class_44e9a2c5 : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_6ad1a3bb)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 4, "int");
-		namespace_6aaccc24::function_da693cbe("visible", 1, 1, "int", var_6ad1a3bb);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 4, "int");
+		cLUIelem::function_da693cbe("visible", 1, 1, "int", var_6ad1a3bb);
 	}
 
 }
@@ -221,7 +221,7 @@ class class_44e9a2c5 : class_6aaccc24
 */
 function register(uid, var_6ad1a3bb)
 {
-	elem = new class_44e9a2c5();
+	elem = new czm_towers_crowd_meter();
 	[[ elem ]]->setup_clientfields(uid, var_6ad1a3bb);
 	return elem;
 }
@@ -237,7 +237,7 @@ function register(uid, var_6ad1a3bb)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_44e9a2c5();
+	elem = new czm_towers_crowd_meter();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

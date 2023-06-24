@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6a3f43063dfd1bdc;
-#using script_6c5b51f98cd04fa3;
+#using scripts\zm\zm_hms_util.gsc;
+#using scripts\zm_common\zm_sq.gsc;
 #using scripts\core_common\aat_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -12,7 +12,7 @@
 #namespace namespace_3417f8d2;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_3417f8d2
 	Checksum: 0x87CC0F87
 	Offset: 0x128
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_684e9a488b07947", &init, undefined, undefined);
 }
@@ -40,10 +40,10 @@ function init()
 	level flag::init(#"hash_7d5f27392b7264ae");
 	level flag::init(#"hash_7d5f26392b7262fb");
 	level flag::init(#"hash_51ae2a56153f7f83");
-	namespace_ee206246::register(#"hash_22d9cdbaac99885", #"step_1", #"hash_7b16b0c7f4445917", &function_a8fa5ac7, &function_8686db4c);
-	namespace_ee206246::register(#"hash_22d9cdbaac99885", #"step_2", #"hash_7b16b1c7f4445aca", &function_ebc2f134, &function_dc7d5745);
-	namespace_ee206246::register(#"hash_22d9cdbaac99885", #"step_3", #"hash_7b16b2c7f4445c7d", &function_d0d114be, &function_2beb73f6);
-	namespace_ee206246::start(#"hash_22d9cdbaac99885");
+	zm_sq::register(#"hash_22d9cdbaac99885", #"step_1", #"hash_7b16b0c7f4445917", &function_a8fa5ac7, &function_8686db4c);
+	zm_sq::register(#"hash_22d9cdbaac99885", #"step_2", #"hash_7b16b1c7f4445aca", &function_ebc2f134, &function_dc7d5745);
+	zm_sq::register(#"hash_22d9cdbaac99885", #"step_3", #"hash_7b16b2c7f4445c7d", &function_d0d114be, &function_2beb73f6);
+	zm_sq::start(#"hash_22d9cdbaac99885");
 }
 
 /*
@@ -250,7 +250,7 @@ function function_a546fd97()
 				self thread function_7dbe8985();
 				wait(1);
 			}
-			self waittill(#"hash_3b08f8f9330c59ad");
+			self waittill(#"dialog_played");
 			self.var_a96a7dbd scene::play("blinking");
 			wait(1);
 		}
@@ -270,19 +270,19 @@ function function_7dbe8985()
 {
 	if(level.var_c2e6ed5a == 0)
 	{
-		namespace_509a75d1::function_e308175e(#"hash_10486eedc1e9fad", self.origin);
+		zm_hms_util::function_e308175e(#"hash_10486eedc1e9fad", self.origin);
 		level flag::set(#"hash_7d5f27392b7264ae");
 	}
 	else
 	{
 		if(level.var_c2e6ed5a == 1)
 		{
-			namespace_509a75d1::function_e308175e(#"hash_6742a63120f41d3b", self.origin);
+			zm_hms_util::function_e308175e(#"hash_6742a63120f41d3b", self.origin);
 			level flag::set(#"hash_7d5f26392b7262fb");
 		}
 		else
 		{
-			namespace_509a75d1::function_e308175e(#"hash_1678ea887d624d95", self.origin);
+			zm_hms_util::function_e308175e(#"hash_1678ea887d624d95", self.origin);
 			level flag::set(#"hash_51ae2a56153f7f83");
 		}
 	}
@@ -302,7 +302,7 @@ function function_72d3152()
 {
 	foreach(trigger in level.var_1c33dba2)
 	{
-		trigger notify(#"hash_3b08f8f9330c59ad");
+		trigger notify(#"dialog_played");
 	}
 }
 

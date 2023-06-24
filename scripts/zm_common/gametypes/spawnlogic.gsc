@@ -7,7 +7,7 @@
 #namespace spawnlogic;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: spawnlogic
 	Checksum: 0x9FE8F208
 	Offset: 0xD8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"spawnlogic", &__init__, undefined, undefined);
 }
@@ -531,7 +531,7 @@ function finalizespawnpointchoice(spawnpoint)
 function getbestweightedspawnpoint(spawnpoints)
 {
 	maxsighttracedspawnpoints = 3;
-	for(var_65ce2e33 = 0; var_65ce2e33 <= maxsighttracedspawnpoints; var_65ce2e33++)
+	for(trycount = 0; trycount <= maxsighttracedspawnpoints; trycount++)
 	{
 		bestspawnpoints = [];
 		bestweight = undefined;
@@ -563,7 +563,7 @@ function getbestweightedspawnpoint(spawnpoints)
 			return undefined;
 		}
 		bestspawnpoint = bestspawnpoints[randomint(bestspawnpoints.size)];
-		if(var_65ce2e33 == maxsighttracedspawnpoints)
+		if(trycount == maxsighttracedspawnpoints)
 		{
 			return bestspawnpoint;
 		}

@@ -16,7 +16,7 @@
 #namespace globallogic_audio;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic_audio
 	Checksum: 0x7A15A9B1
 	Offset: 0x608
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic_audio", &__init__, undefined, undefined);
 }
@@ -321,7 +321,7 @@ function announce_game_winner(outcome)
 	wait(battlechatter::mpdialog_value("announceWinnerDelay", 0));
 	if(level.teambased)
 	{
-		if(outcome::function_5f24faac(outcome, "tie") || !match::function_c10174e7())
+		if(outcome::get_flag(outcome, "tie") || !match::function_c10174e7())
 		{
 			leader_dialog("gameDraw");
 		}
@@ -1553,7 +1553,7 @@ function set_music_on_player(state, wait_time = 0, save_state = 0, return_state 
 	{
 		return;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return;
 	}
@@ -1587,7 +1587,7 @@ function set_music_global(state, wait_time = 0, save_state = 0, return_state = 0
 	{
 		return;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return;
 	}

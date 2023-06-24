@@ -6,7 +6,7 @@
 #namespace postfx;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: postfx
 	Checksum: 0x98D999B0
 	Offset: 0x98
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"postfx_bundle", &__init__, undefined, undefined);
 }
@@ -145,21 +145,21 @@ function function_764eb053()
 			{
 				ent.origin = (self.origin + vectorscale((0, 0, 1), 70)) + (anglestoforward(self.angles) * 250);
 			}
-			bundlename = getdvarstring(#"hash_3e6eca38278b4ff6", "");
+			bundlename = getdvarstring(#"cg_playrenderoverridebundle", "");
 			if(bundlename != var_e0f0fb1d && isdefined(ent))
 			{
-				ent function_5d482e78(var_e0f0fb1d);
+				ent stoprenderoverridebundle(var_e0f0fb1d);
 				if(bundlename != "")
 				{
-					ent function_bf9d3071(bundlename);
+					ent playrenderoverridebundle(bundlename);
 				}
 			}
 			if(showviewmodel && (showviewmodel != var_4828f60f || bundlename != var_e0f0fb1d))
 			{
-				self function_5d482e78(var_e0f0fb1d);
+				self stoprenderoverridebundle(var_e0f0fb1d);
 				if(bundlename != "")
 				{
-					self function_bf9d3071(bundlename);
+					self playrenderoverridebundle(bundlename);
 				}
 			}
 			var_e0f0fb1d = bundlename;

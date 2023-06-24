@@ -8,7 +8,7 @@
 #namespace visionset_mgr;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: visionset_mgr
 	Checksum: 0xF411B1D9
 	Offset: 0x168
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"visionset_mgr", &__init__, undefined, undefined);
 }

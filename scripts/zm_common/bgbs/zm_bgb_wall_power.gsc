@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
 #using scripts\zm_common\zm_stats.gsc;
@@ -7,7 +7,7 @@
 #namespace zm_bgb_wall_power;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_wall_power
 	Checksum: 0x60AD3FB9
 	Offset: 0x90
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_wall_power", &__init__, undefined, #"bgb");
 }
@@ -67,7 +67,7 @@ function event()
 */
 function validation()
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_51a2cf319e12d9ae"))
+	if(!zm_custom::function_901b751c(#"zmwallbuysenabled"))
 	{
 		return false;
 	}

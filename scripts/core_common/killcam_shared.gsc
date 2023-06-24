@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5a63672f07149a55;
+#using scripts\weapons\tacticalinsertion.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\challenges_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -14,7 +14,7 @@
 #namespace killcam;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: killcam
 	Checksum: 0xD1234DE7
 	Offset: 0x190
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"killcam", &__init__, undefined, undefined);
 }
@@ -56,7 +56,7 @@ function init()
 	level.finalkillcam = getgametypesetting(#"allowfinalkillcam");
 	level.killcamtime = getgametypesetting(#"killcamtime");
 	level.var_a95350da = getgametypesetting(#"hash_154db5a1b2e9d757");
-	level.var_7abccc83 = !function_f99d2668();
+	level.var_7abccc83 = !sessionmodeiswarzonegame();
 	init_final_killcam();
 }
 

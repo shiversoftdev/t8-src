@@ -32,14 +32,14 @@ function function_be33348b(localclientnum, oldval, newval, bnewent, binitialsnap
 	if(newval)
 	{
 		self postfx::playpostfxbundle(#"pstfx_blood_wash");
-		self postfx::playpostfxbundle(#"hash_f9e59806209b8dd");
+		self postfx::playpostfxbundle(#"pstfx_zm_acid_dmg");
 		self postfx::playpostfxbundle(#"hash_25c3aa91c32db43c");
 		self.var_431ddde9 = self playloopsound(#"hash_341a3fa00975f232");
 	}
 	else
 	{
 		self postfx::exitpostfxbundle(#"pstfx_blood_wash");
-		self postfx::exitpostfxbundle(#"hash_f9e59806209b8dd");
+		self postfx::exitpostfxbundle(#"pstfx_zm_acid_dmg");
 		self postfx::exitpostfxbundle(#"hash_25c3aa91c32db43c");
 		if(isdefined(self.var_431ddde9))
 		{

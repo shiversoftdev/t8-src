@@ -5,7 +5,7 @@
 #namespace serverfaceanim;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: serverfaceanim
 	Checksum: 0x91DC1210
 	Offset: 0xC0
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"serverfaceanim", &__init__, undefined, undefined);
 }
@@ -53,7 +53,7 @@ function init_serverfaceanim()
 		level.face_event_handler = spawnstruct();
 		level.face_event_handler.events = [];
 		level.face_event_handler.events[#"death"] = "face_death";
-		level.face_event_handler.events[#"hash_70bb20cec150f744"] = "face_alert";
+		level.face_event_handler.events[#"grenade danger"] = "face_alert";
 		level.face_event_handler.events[#"bulletwhizby"] = "face_alert";
 		level.face_event_handler.events[#"projectile_impact"] = "face_alert";
 		level.face_event_handler.events[#"explode"] = "face_alert";

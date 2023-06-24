@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27c22e1d8df4d852;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial_util.gsc;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_35baff41;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_35baff41
 	Checksum: 0x4789B872
 	Offset: 0xB0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_62ed3e0f56513ba7", &__init__, undefined, undefined);
 }
@@ -35,11 +35,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_2c07cbb8e8fd2060", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_2c07cbb8e8fd2060", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_35baff41
 	Checksum: 0xF4975E6E
 	Offset: 0x160
@@ -47,19 +47,19 @@ function __init__()
 	Parameters: 1
 	Flags: Private
 */
-function private function_d1de6a85(var_6ad4e7c6)
+function private on_begin(var_6ad4e7c6)
 {
 	fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
 	/#
 		assert(isdefined(fasttravel_triggers));
 	#/
-	namespace_b22c99a5::function_2976fa44(fasttravel_triggers.size);
-	namespace_b22c99a5::function_dace284(0);
+	zm_trial_util::function_2976fa44(fasttravel_triggers.size);
+	zm_trial_util::function_dace284(0);
 	level thread function_25f146be();
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_35baff41
 	Checksum: 0x799E856F
 	Offset: 0x208
@@ -67,9 +67,9 @@ function private function_d1de6a85(var_6ad4e7c6)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
-	namespace_b22c99a5::function_f3dbeda7();
+	zm_trial_util::function_f3dbeda7();
 	if(!round_reset)
 	{
 		fasttravel_triggers = struct::get_array("fasttravel_trigger", "targetname");
@@ -124,7 +124,7 @@ function private function_25f146be()
 	level endon(#"hash_7646638df88a3656");
 	while(true)
 	{
-		namespace_b22c99a5::function_dace284(function_c83a4a77());
+		zm_trial_util::function_dace284(function_c83a4a77());
 		waitframe(1);
 	}
 }

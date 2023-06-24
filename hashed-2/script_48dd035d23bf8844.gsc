@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -84,7 +84,7 @@ function perks_behind_door()
 	{
 		return;
 	}
-	if(!namespace_59ff1d6c::function_901b751c("zmPowerupsActive") || namespace_59ff1d6c::function_901b751c("zmPowerupsIsLimitedRound") || !namespace_59ff1d6c::function_901b751c("zmPowerupNuke") || !namespace_59ff1d6c::function_901b751c("zmPowerupDouble") || !namespace_59ff1d6c::function_901b751c("zmPowerupInstakill") || !namespace_59ff1d6c::function_901b751c("zmPowerupFireSale") || !namespace_59ff1d6c::function_901b751c("zmPowerupMaxAmmo"))
+	if(!zm_custom::function_901b751c("zmPowerupsActive") || zm_custom::function_901b751c("zmPowerupsIsLimitedRound") || !zm_custom::function_901b751c("zmPowerupNuke") || !zm_custom::function_901b751c("zmPowerupDouble") || !zm_custom::function_901b751c("zmPowerupInstakill") || !zm_custom::function_901b751c("zmPowerupFireSale") || !zm_custom::function_901b751c("zmPowerupMaxAmmo"))
 	{
 		return;
 	}

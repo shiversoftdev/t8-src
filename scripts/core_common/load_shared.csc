@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_158d50d476435605;
+#using scripts\core_common\activecamo_shared.csc;
 #using scripts\core_common\delete.csc;
 #using scripts\core_common\dev_shared.csc;
 #using scripts\core_common\system_shared.csc;
@@ -8,7 +8,7 @@
 #namespace load;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: load
 	Checksum: 0xD172C387
 	Offset: 0xB8
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"load", &__init__, undefined, undefined);
 }

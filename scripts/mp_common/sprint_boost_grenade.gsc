@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
-#using script_8988fdbc78d6c53;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\weapons\weaponobjects.gsc;
 #using scripts\core_common\math_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
@@ -8,7 +8,7 @@
 #namespace sprint_boost_grenade;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: sprint_boost_grenade
 	Checksum: 0x769F28E9
 	Offset: 0x90
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"sprint_boost_grenade", &__init__, undefined, undefined);
 }

@@ -180,7 +180,7 @@ function hostmigrationwait()
 		thread matchstarttimerconsole("waiting_for_teams", 20);
 		hostmigrationwaitforplayers();
 	}
-	potm::function_f22ccf4a();
+	potm::forceinit();
 	level notify(#"host_migration_countdown_begin");
 	thread matchstarttimerconsole("match_starting_in", 5);
 	wait(5);

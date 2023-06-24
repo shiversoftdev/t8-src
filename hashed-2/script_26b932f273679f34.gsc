@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_6b4dd8d9 : class_6aaccc24
+class cct_shared_aar_medals : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_6b4dd8d9
+		Namespace: cct_shared_aar_medals
 		Checksum: 0x2D9A871B
 		Offset: 0x2B0
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_6b4dd8d9 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_6b4dd8d9
+		Namespace: cct_shared_aar_medals
 		Checksum: 0xBEC018D
 		Offset: 0x680
 		Size: 0x14
@@ -33,50 +33,50 @@ class class_6b4dd8d9 : class_6aaccc24
 	}
 
 	/*
-		Name: function_5f4404dc
-		Namespace: namespace_6b4dd8d9
+		Name: set_medalBronzeThreshold
+		Namespace: cct_shared_aar_medals
 		Checksum: 0x4E966A6D
 		Offset: 0x638
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_5f4404dc(player, value)
+	function set_medalBronzeThreshold(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "medalBronzeThreshold", value);
 	}
 
 	/*
-		Name: function_1037d7e0
-		Namespace: namespace_6b4dd8d9
+		Name: set_medalSilverThreshold
+		Namespace: cct_shared_aar_medals
 		Checksum: 0x28684AB2
 		Offset: 0x5F0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_1037d7e0(player, value)
+	function set_medalSilverThreshold(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "medalSilverThreshold", value);
 	}
 
 	/*
-		Name: function_58ed8be2
-		Namespace: namespace_6b4dd8d9
+		Name: set_medalGoldThreshold
+		Namespace: cct_shared_aar_medals
 		Checksum: 0x1ACE2C05
 		Offset: 0x5A8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_58ed8be2(player, value)
+	function set_medalGoldThreshold(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "medalGoldThreshold", value);
 	}
 
 	/*
 		Name: set_state
-		Namespace: namespace_6b4dd8d9
+		Namespace: cct_shared_aar_medals
 		Checksum: 0xF05766B1
 		Offset: 0x420
 		Size: 0x17C
@@ -91,25 +91,25 @@ class class_6b4dd8d9 : class_6aaccc24
 		}
 		else
 		{
-			if(#"hash_6888d33e85daf77" == state_name)
+			if(#"medal_gold" == state_name)
 			{
 				player clientfield::function_9bf78ef8(var_47e79fc, "_state", 1);
 			}
 			else
 			{
-				if(#"hash_2a6082609998ad9c" == state_name)
+				if(#"medal_silver" == state_name)
 				{
 					player clientfield::function_9bf78ef8(var_47e79fc, "_state", 2);
 				}
 				else
 				{
-					if(#"hash_6a156fe8b5495e2d" == state_name)
+					if(#"medal_bronze" == state_name)
 					{
 						player clientfield::function_9bf78ef8(var_47e79fc, "_state", 3);
 					}
 					else
 					{
-						if(#"hash_7eee9bfd6e19148f" == state_name)
+						if(#"medal_none" == state_name)
 						{
 							player clientfield::function_9bf78ef8(var_47e79fc, "_state", 4);
 						}
@@ -129,7 +129,7 @@ class class_6b4dd8d9 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_6b4dd8d9
+		Namespace: cct_shared_aar_medals
 		Checksum: 0xEA417C6F
 		Offset: 0x3F0
 		Size: 0x24
@@ -138,12 +138,12 @@ class class_6b4dd8d9 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_6b4dd8d9
+		Namespace: cct_shared_aar_medals
 		Checksum: 0x3BB2C160
 		Offset: 0x3A0
 		Size: 0x44
@@ -152,12 +152,12 @@ class class_6b4dd8d9 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "ct_shared_aar_medals", persistent);
+		cLUIelem::open_luielem(player, "ct_shared_aar_medals", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_6b4dd8d9
+		Namespace: cct_shared_aar_medals
 		Checksum: 0x31DA638E
 		Offset: 0x2D0
 		Size: 0xC4
@@ -166,11 +166,11 @@ class class_6b4dd8d9 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 3, "int");
-		namespace_6aaccc24::function_dcb34c80("string", "medalGoldThreshold", 1);
-		namespace_6aaccc24::function_dcb34c80("string", "medalSilverThreshold", 1);
-		namespace_6aaccc24::function_dcb34c80("string", "medalBronzeThreshold", 1);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 3, "int");
+		cLUIelem::function_dcb34c80("string", "medalGoldThreshold", 1);
+		cLUIelem::function_dcb34c80("string", "medalSilverThreshold", 1);
+		cLUIelem::function_dcb34c80("string", "medalBronzeThreshold", 1);
 	}
 
 }
@@ -188,7 +188,7 @@ class class_6b4dd8d9 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_6b4dd8d9();
+	elem = new cct_shared_aar_medals();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -250,7 +250,7 @@ function set_state(player, state_name)
 }
 
 /*
-	Name: function_58ed8be2
+	Name: set_medalGoldThreshold
 	Namespace: ct_shared_aar_medals
 	Checksum: 0x63952835
 	Offset: 0x220
@@ -258,13 +258,13 @@ function set_state(player, state_name)
 	Parameters: 2
 	Flags: None
 */
-function function_58ed8be2(player, value)
+function set_medalGoldThreshold(player, value)
 {
-	[[ self ]]->function_58ed8be2(player, value);
+	[[ self ]]->set_medalGoldThreshold(player, value);
 }
 
 /*
-	Name: function_1037d7e0
+	Name: set_medalSilverThreshold
 	Namespace: ct_shared_aar_medals
 	Checksum: 0x90BC229E
 	Offset: 0x250
@@ -272,13 +272,13 @@ function function_58ed8be2(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_1037d7e0(player, value)
+function set_medalSilverThreshold(player, value)
 {
-	[[ self ]]->function_1037d7e0(player, value);
+	[[ self ]]->set_medalSilverThreshold(player, value);
 }
 
 /*
-	Name: function_5f4404dc
+	Name: set_medalBronzeThreshold
 	Namespace: ct_shared_aar_medals
 	Checksum: 0x595B977E
 	Offset: 0x280
@@ -286,8 +286,8 @@ function function_1037d7e0(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5f4404dc(player, value)
+function set_medalBronzeThreshold(player, value)
 {
-	[[ self ]]->function_5f4404dc(player, value);
+	[[ self ]]->set_medalBronzeThreshold(player, value);
 }
 

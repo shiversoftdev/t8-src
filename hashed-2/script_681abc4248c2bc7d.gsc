@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_5563abae : class_6aaccc24
+class czm_zod_wonderweapon_quest : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_5563abae
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0x33995178
 		Offset: 0x288
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_5563abae : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_5563abae
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0x358C1231
 		Offset: 0x518
 		Size: 0x14
@@ -33,64 +33,64 @@ class class_5563abae : class_6aaccc24
 	}
 
 	/*
-		Name: function_940bbc52
-		Namespace: namespace_5563abae
+		Name: set_decay
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0xA75EEB4A
 		Offset: 0x4D0
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_940bbc52(player, value)
+	function set_decay(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "decay", value);
 	}
 
 	/*
-		Name: function_52773fa9
-		Namespace: namespace_5563abae
+		Name: set_purity
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0xEC16543E
 		Offset: 0x488
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_52773fa9(player, value)
+	function set_purity(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "purity", value);
 	}
 
 	/*
-		Name: function_5c237e79
-		Namespace: namespace_5563abae
+		Name: set_plasma
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0x301F9088
 		Offset: 0x440
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_5c237e79(player, value)
+	function set_plasma(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "plasma", value);
 	}
 
 	/*
-		Name: function_e5c37a19
-		Namespace: namespace_5563abae
+		Name: set_radiance
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0xAC90D776
 		Offset: 0x3F8
 		Size: 0x3C
 		Parameters: 2
 		Flags: None
 	*/
-	function function_e5c37a19(player, value)
+	function set_radiance(player, value)
 	{
 		player clientfield::function_9bf78ef8(var_47e79fc, "radiance", value);
 	}
 
 	/*
 		Name: close
-		Namespace: namespace_5563abae
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0x9DF4BB6B
 		Offset: 0x3C8
 		Size: 0x24
@@ -99,12 +99,12 @@ class class_5563abae : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_5563abae
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0x3D78BABF
 		Offset: 0x378
 		Size: 0x44
@@ -113,12 +113,12 @@ class class_5563abae : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_zod_wonderweapon_quest", persistent);
+		cLUIelem::open_luielem(player, "zm_zod_wonderweapon_quest", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_5563abae
+		Namespace: czm_zod_wonderweapon_quest
 		Checksum: 0xFAB28428
 		Offset: 0x2A8
 		Size: 0xC4
@@ -127,11 +127,11 @@ class class_5563abae : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("radiance", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("plasma", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("purity", 1, 1, "int");
-		namespace_6aaccc24::function_da693cbe("decay", 1, 1, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("radiance", 1, 1, "int");
+		cLUIelem::function_da693cbe("plasma", 1, 1, "int");
+		cLUIelem::function_da693cbe("purity", 1, 1, "int");
+		cLUIelem::function_da693cbe("decay", 1, 1, "int");
 	}
 
 }
@@ -149,7 +149,7 @@ class class_5563abae : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_5563abae();
+	elem = new czm_zod_wonderweapon_quest();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -197,7 +197,7 @@ function is_open(player)
 }
 
 /*
-	Name: function_e5c37a19
+	Name: set_radiance
 	Namespace: zm_zod_wonderweapon_quest
 	Checksum: 0x71BD35FE
 	Offset: 0x1C8
@@ -205,13 +205,13 @@ function is_open(player)
 	Parameters: 2
 	Flags: None
 */
-function function_e5c37a19(player, value)
+function set_radiance(player, value)
 {
-	[[ self ]]->function_e5c37a19(player, value);
+	[[ self ]]->set_radiance(player, value);
 }
 
 /*
-	Name: function_5c237e79
+	Name: set_plasma
 	Namespace: zm_zod_wonderweapon_quest
 	Checksum: 0xFE874A47
 	Offset: 0x1F8
@@ -219,13 +219,13 @@ function function_e5c37a19(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_5c237e79(player, value)
+function set_plasma(player, value)
 {
-	[[ self ]]->function_5c237e79(player, value);
+	[[ self ]]->set_plasma(player, value);
 }
 
 /*
-	Name: function_52773fa9
+	Name: set_purity
 	Namespace: zm_zod_wonderweapon_quest
 	Checksum: 0x944268FB
 	Offset: 0x228
@@ -233,13 +233,13 @@ function function_5c237e79(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_52773fa9(player, value)
+function set_purity(player, value)
 {
-	[[ self ]]->function_52773fa9(player, value);
+	[[ self ]]->set_purity(player, value);
 }
 
 /*
-	Name: function_940bbc52
+	Name: set_decay
 	Namespace: zm_zod_wonderweapon_quest
 	Checksum: 0x6F5DF670
 	Offset: 0x258
@@ -247,8 +247,8 @@ function function_52773fa9(player, value)
 	Parameters: 2
 	Flags: None
 */
-function function_940bbc52(player, value)
+function set_decay(player, value)
 {
-	[[ self ]]->function_940bbc52(player, value);
+	[[ self ]]->set_decay(player, value);
 }
 

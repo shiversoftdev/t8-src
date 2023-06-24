@@ -2,7 +2,7 @@
 #namespace trigger;
 
 /*
-	Name: function_521edc64
+	Name: function_thread
 	Namespace: trigger
 	Checksum: 0x46EBE4FD
 	Offset: 0x78
@@ -10,7 +10,7 @@
 	Parameters: 3
 	Flags: Linked
 */
-function function_521edc64(ent, on_enter_payload, on_exit_payload)
+function function_thread(ent, on_enter_payload, on_exit_payload)
 {
 	ent endon(#"death");
 	if(!isdefined(self))

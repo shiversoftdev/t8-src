@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14e569dd391faf67;
+#using scripts\zm\zm_office_teleporters.gsc;
 #using script_174ebb9642933bf7;
-#using script_2cd0a997aa904279;
-#using script_3f9e0dc8454d98e1;
-#using script_6ce38ab036223e6e;
+#using scripts\zm\zm_office_special_rounds.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
 #using script_ab862743b3070a;
 #using script_db06eb511bd9b36;
 #using scripts\core_common\ai_shared.gsc;
@@ -40,8 +40,8 @@ function init()
 */
 function function_fac06066()
 {
-	var_2b198109 = getaiarray();
-	foreach(e_zombie in var_2b198109)
+	a_e_zombies = getaiarray();
+	foreach(e_zombie in a_e_zombies)
 	{
 		e_zombie thread zm_cleanup::cleanup_zombie();
 	}
@@ -70,8 +70,8 @@ function function_fac06066()
 */
 function function_4074a9e2()
 {
-	var_2b198109 = getaiarray();
-	foreach(e_zombie in var_2b198109)
+	a_e_zombies = getaiarray();
+	foreach(e_zombie in a_e_zombies)
 	{
 		e_zombie.exclude_cleanup_adding_to_total = 1;
 		e_zombie thread zm_cleanup::cleanup_zombie();
@@ -123,7 +123,7 @@ function function_1cae4e0a(s_params)
 function function_b741acea()
 {
 	level.var_bdc8b034 = [];
-	level.var_bdc8b034[#"zombie"] = namespace_a28acff3::get_zombie_count_for_round(level.var_37769559, level.activeplayers.size);
+	level.var_bdc8b034[#"zombie"] = zm_round_logic::get_zombie_count_for_round(level.var_37769559, level.activeplayers.size);
 	var_d90bc041 = min((level.var_37769559 - 10) / 40, 1);
 	var_82981c27 = lerpfloat(0.1, 0.3, var_d90bc041);
 	var_2f8a58bb = lerpfloat(0.2, 0.4, var_d90bc041);
@@ -179,7 +179,7 @@ function round_spawning()
 {
 	level endon(#"hash_3e95ff63d623d736");
 	function_b741acea();
-	n_spawn_delay = namespace_a28acff3::get_zombie_spawn_delay(level.var_37769559);
+	n_spawn_delay = zm_round_logic::get_zombie_spawn_delay(level.var_37769559);
 	while(level.var_bdc8b034.size > 0)
 	{
 		var_404e4288 = zombie_utility::get_current_zombie_count();
@@ -194,7 +194,7 @@ function round_spawning()
 			wait(0.1);
 		}
 		level flag::wait_till_clear(#"hash_21921ed511559aa3");
-		str_archetype = function_80804ee4();
+		str_archetype = get_archetype();
 		ai = spawn_archetype(str_archetype);
 		if(isdefined(ai))
 		{
@@ -222,7 +222,7 @@ function round_spawning()
 }
 
 /*
-	Name: function_80804ee4
+	Name: get_archetype
 	Namespace: namespace_76ccb07a
 	Checksum: 0xAFA2250F
 	Offset: 0xAA8
@@ -230,7 +230,7 @@ function round_spawning()
 	Parameters: 0
 	Flags: None
 */
-function function_80804ee4()
+function get_archetype()
 {
 	a_keys = getarraykeys(level.var_bdc8b034);
 	return array::random(a_keys);
@@ -257,7 +257,7 @@ function spawn_archetype(str_archetype)
 		}
 		case "zombie_dog":
 		{
-			ai = namespace_c402654::function_62db7b1c();
+			ai = zombie_dog_util::function_62db7b1c();
 			break;
 		}
 		case "nova_crawler":

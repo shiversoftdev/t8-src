@@ -161,19 +161,19 @@ function private _gibpartnametogibflag(gibpartname)
 			{
 				return 8;
 			}
-			case "hash_78c0283c2cb9beaf":
+			case "right arm":
 			{
 				return 16;
 			}
-			case "hash_49764046b58adc0a":
+			case "left arm":
 			{
 				return 32;
 			}
-			case "hash_1a993f3bf7b816d9":
+			case "right leg":
 			{
 				return 128;
 			}
-			case "hash_27aaf946ea986fac":
+			case "left leg":
 			{
 				return 256;
 			}

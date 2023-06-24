@@ -2,13 +2,13 @@
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
 
-class class_12bf89f7 : class_6aaccc24
+class czm_trial_weapon_locked : cLUIelem
 {
 	var var_47e79fc;
 
 	/*
 		Name: constructor
-		Namespace: namespace_12bf89f7
+		Namespace: czm_trial_weapon_locked
 		Checksum: 0xE092AC28
 		Offset: 0x1D8
 		Size: 0x14
@@ -21,7 +21,7 @@ class class_12bf89f7 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_12bf89f7
+		Namespace: czm_trial_weapon_locked
 		Checksum: 0xAE2606F5
 		Offset: 0x310
 		Size: 0x14
@@ -34,7 +34,7 @@ class class_12bf89f7 : class_6aaccc24
 
 	/*
 		Name: function_1e74977
-		Namespace: namespace_12bf89f7
+		Namespace: czm_trial_weapon_locked
 		Checksum: 0xDF200818
 		Offset: 0x2D0
 		Size: 0x34
@@ -48,7 +48,7 @@ class class_12bf89f7 : class_6aaccc24
 
 	/*
 		Name: close
-		Namespace: namespace_12bf89f7
+		Namespace: czm_trial_weapon_locked
 		Checksum: 0x8159D702
 		Offset: 0x2A0
 		Size: 0x24
@@ -57,12 +57,12 @@ class class_12bf89f7 : class_6aaccc24
 	*/
 	function close(player)
 	{
-		namespace_6aaccc24::function_a68f6e20(player);
+		cLUIelem::close_luielem(player);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_12bf89f7
+		Namespace: czm_trial_weapon_locked
 		Checksum: 0x7A109E1B
 		Offset: 0x250
 		Size: 0x44
@@ -71,12 +71,12 @@ class class_12bf89f7 : class_6aaccc24
 	*/
 	function open(player, persistent = 0)
 	{
-		namespace_6aaccc24::function_8b8089ba(player, "zm_trial_weapon_locked", persistent);
+		cLUIelem::open_luielem(player, "zm_trial_weapon_locked", persistent);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_12bf89f7
+		Namespace: czm_trial_weapon_locked
 		Checksum: 0xD5AC8B98
 		Offset: 0x1F8
 		Size: 0x4C
@@ -85,8 +85,8 @@ class class_12bf89f7 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("show_icon", 1, 1, "counter");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("show_icon", 1, 1, "counter");
 	}
 
 }
@@ -104,7 +104,7 @@ class class_12bf89f7 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_12bf89f7();
+	elem = new czm_trial_weapon_locked();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }

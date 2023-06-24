@@ -1,10 +1,10 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_319f949ff1a59d26;
-#using script_3f9e0dc8454d98e1;
-#using script_4aeb3279b6b23a91;
-#using script_58c342edd81589fb;
-#using script_7e59d7bba853fe4b;
-#using script_d8b1f4ee30e5fc5;
+#using scripts\zm\ai\zm_ai_tiger.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\trials\zm_trial_add_special.gsc;
+#using scripts\zm_common\zm_round_spawning.gsc;
+#using scripts\zm_common\ai\zm_ai_utility.gsc;
+#using scripts\core_common\ai\archetype_tiger.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
@@ -15,25 +15,25 @@
 #using scripts\zm_common\zm_score.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_3fe4d0d7;
+#namespace zombie_tiger_util;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_3fe4d0d7
+	Name: __init__system__
+	Namespace: zombie_tiger_util
 	Checksum: 0x3F99401F
 	Offset: 0x140
 	Size: 0x54
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_2a747ac7e33453cc", &__init__, &__main__, #"hash_6c20d49019c685c7");
+	system::register(#"zombie_tiger_util", &__init__, &__main__, #"zm_ai_tiger");
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x61F94A66
 	Offset: 0x1A0
 	Size: 0xB4
@@ -50,12 +50,12 @@ function __init__()
 		#/
 		return;
 	}
-	namespace_c3287616::register_archetype(#"tiger", &function_235d0eb6, &round_spawn, &spawn_single, 25);
+	zm_round_spawning::register_archetype(#"tiger", &function_235d0eb6, &round_spawn, &spawn_single, 25);
 }
 
 /*
 	Name: __main__
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x8288F6F7
 	Offset: 0x260
 	Size: 0x7C
@@ -70,7 +70,7 @@ function __main__()
 
 /*
 	Name: function_fe4c8547
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0xE65FA07
 	Offset: 0x2E8
 	Size: 0xAC
@@ -80,7 +80,7 @@ function __main__()
 function function_fe4c8547()
 {
 	self thread function_94c9b195();
-	var_1751372a = namespace_e0710ee6::function_8d44707e(0);
+	var_1751372a = zm_ai_utility::function_8d44707e(0);
 	var_1751372a = var_1751372a * (isdefined(level.var_1eb98fb1) ? level.var_1eb98fb1 : 1);
 	var_1751372a = int(var_1751372a);
 	self.health = var_1751372a;
@@ -90,7 +90,7 @@ function function_fe4c8547()
 
 /*
 	Name: spawn_single
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x1C76925C
 	Offset: 0x3A0
 	Size: 0x1E8
@@ -141,7 +141,7 @@ function spawn_single(b_force_spawn = 0, var_eb3a8721)
 
 /*
 	Name: function_66cfd7d
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x7BEC0D6F
 	Offset: 0x590
 	Size: 0x9A
@@ -161,7 +161,7 @@ function function_66cfd7d()
 
 /*
 	Name: function_cbfb0da4
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0xA22240BC
 	Offset: 0x638
 	Size: 0xF8
@@ -194,7 +194,7 @@ function function_cbfb0da4()
 			break;
 		}
 	}
-	if(namespace_fd89d870::is_active(#"tiger"))
+	if(zm_trial_add_special::is_active(#"tiger"))
 	{
 		var_ed61bfaa = var_ed61bfaa * 4;
 	}
@@ -203,7 +203,7 @@ function function_cbfb0da4()
 
 /*
 	Name: function_ba8172ca
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x4779DA8C
 	Offset: 0x738
 	Size: 0xBC
@@ -214,9 +214,9 @@ function function_ba8172ca()
 {
 	var_cf9c1780 = getaiarchetypearray(#"tiger");
 	var_6ecc1639 = var_cf9c1780.size;
-	foreach(var_7ff26d3c in var_cf9c1780)
+	foreach(ai_tiger in var_cf9c1780)
 	{
-		if(!isalive(var_7ff26d3c))
+		if(!isalive(ai_tiger))
 		{
 			var_6ecc1639--;
 		}
@@ -226,7 +226,7 @@ function function_ba8172ca()
 
 /*
 	Name: function_ffa01525
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0xCB62AB7E
 	Offset: 0x800
 	Size: 0xD0
@@ -264,7 +264,7 @@ function function_ffa01525()
 
 /*
 	Name: function_94c9b195
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x4FD8C79D
 	Offset: 0x8D8
 	Size: 0x54
@@ -282,7 +282,7 @@ function function_94c9b195()
 
 /*
 	Name: function_235d0eb6
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0xA4DA1771
 	Offset: 0x938
 	Size: 0xC2
@@ -302,7 +302,7 @@ function function_235d0eb6(var_dbce0c44)
 
 /*
 	Name: round_spawn
-	Namespace: namespace_3fe4d0d7
+	Namespace: zombie_tiger_util
 	Checksum: 0x4E3B861D
 	Offset: 0xA08
 	Size: 0x3C

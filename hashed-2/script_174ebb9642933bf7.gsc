@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_58c342edd81589fb;
-#using script_6ce38ab036223e6e;
-#using script_6e3c826b1814cab6;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_round_spawning.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\flagsys_shared.gsc;
@@ -18,7 +18,7 @@
 #namespace namespace_df88241c;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_df88241c
 	Checksum: 0xC140230F
 	Offset: 0x170
@@ -26,7 +26,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_18c69cd2b0bf61b9", &__init__, undefined, undefined);
 }
@@ -45,7 +45,7 @@ function __init__()
 	level.var_f4f794bf = array(5, 7, 9, 12);
 	level.nova_crawler_spawner = getent("nova_crawler_spawner", "script_noteworthy");
 	spawner::add_archetype_spawn_function(#"nova_crawler", &nova_crawler_init);
-	namespace_c3287616::register_archetype(#"nova_crawler", &function_c73902fd, &crawler_round_spawn, &spawn_nova_crawler, 10);
+	zm_round_spawning::register_archetype(#"nova_crawler", &function_c73902fd, &crawler_round_spawn, &spawn_nova_crawler, 10);
 	zm_score::function_e5d6e6dd(#"nova_crawler", 60);
 }
 
@@ -173,11 +173,11 @@ function function_59257d57()
 */
 function function_4748fb49()
 {
-	var_ccd08b96 = getaiarchetypearray(#"nova_crawler");
-	var_cc9e7e12 = var_ccd08b96.size;
-	foreach(var_2c217682 in var_ccd08b96)
+	a_ai_crawler = getaiarchetypearray(#"nova_crawler");
+	var_cc9e7e12 = a_ai_crawler.size;
+	foreach(ai_crawler in a_ai_crawler)
 	{
-		if(!isalive(var_2c217682))
+		if(!isalive(ai_crawler))
 		{
 			var_cc9e7e12--;
 		}
@@ -196,7 +196,7 @@ function function_4748fb49()
 */
 function setup_crawler_round(n_round)
 {
-	namespace_c3287616::function_b4a8f95a(#"nova_crawler", n_round, &crawler_round_start, &water_drop_triggerreactidgunterminate, &function_f6e748b, &function_f726e44, 0);
+	zm_round_spawning::function_b4a8f95a(#"nova_crawler", n_round, &crawler_round_start, &water_drop_triggerreactidgunterminate, &function_f6e748b, &function_f726e44, 0);
 }
 
 /*
@@ -302,8 +302,8 @@ function private function_9a898f07(e_target)
 		}
 		var_c61e7ea7 = level.zones[var_5f3b05e8];
 		var_24f5d9f8 = array(var_c61e7ea7.name);
-		var_e15699c4 = getarraykeys(var_c61e7ea7.adjacent_zones);
-		foreach(str_zone in var_e15699c4)
+		a_str_adj_zones = getarraykeys(var_c61e7ea7.adjacent_zones);
+		foreach(str_zone in a_str_adj_zones)
 		{
 			if(var_c61e7ea7.adjacent_zones[str_zone].is_connected)
 			{
@@ -475,7 +475,7 @@ function rise_anim_watcher()
 */
 function function_c44636f2(b_ignore_cleanup = 1)
 {
-	if(!namespace_59ff1d6c::function_901b751c(#"hash_4deb3ae7a73c87f3") || (isdefined(level.var_5e45f817) && level.var_5e45f817))
+	if(!zm_custom::function_901b751c(#"hash_4deb3ae7a73c87f3") || (isdefined(level.var_5e45f817) && level.var_5e45f817))
 	{
 		return;
 	}
@@ -499,7 +499,7 @@ function function_c44636f2(b_ignore_cleanup = 1)
 function function_5b0522fa()
 {
 	level.var_f5419c22 = 20;
-	namespace_c3287616::function_b4a8f95a(#"nova_crawler", level.var_f5419c22, &function_9e97e0f7, &function_de265920, &function_70a8e26c, &function_d7e9e2ff, level.var_8167b1e);
+	zm_round_spawning::function_b4a8f95a(#"nova_crawler", level.var_f5419c22, &function_9e97e0f7, &function_de265920, &function_70a8e26c, &function_d7e9e2ff, level.var_8167b1e);
 	zm_utility::function_fdb0368(11);
 	level flagsys::set(#"hash_2a1fc2e349c48462");
 }
@@ -545,7 +545,7 @@ function function_de265920(var_d25bbdd5)
 function function_70a8e26c()
 {
 	a_e_players = getplayers();
-	n_max = namespace_a28acff3::get_zombie_count_for_round(level.var_f5419c22, a_e_players.size);
+	n_max = zm_round_logic::get_zombie_count_for_round(level.var_f5419c22, a_e_players.size);
 	return int(n_max * 0.6);
 }
 

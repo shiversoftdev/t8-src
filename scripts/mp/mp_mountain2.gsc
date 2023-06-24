@@ -22,7 +22,7 @@ event main(eventstruct)
 	screen = spawn("script_model", (2794, -860, 397));
 	if(isdefined(screen))
 	{
-		screen setmodel(#"hash_3b92b4e828277c82");
+		screen setmodel(#"p8_screen_tactical_artic_01");
 		screen.angles = vectorscale((0, 1, 0), 360);
 	}
 	paris = spawn("script_model", (2880, -579, 401));
@@ -94,10 +94,10 @@ event main(eventstruct)
 		var_342d094f setmodel(#"p7_mou_clock_wall_second_hand");
 		var_342d094f.angles = (60.0097, 179.999, -180);
 	}
-	var_ea543e47 = spawn("script_model", (2976, -579, 401));
-	if(isdefined(var_ea543e47))
+	newyork = spawn("script_model", (2976, -579, 401));
+	if(isdefined(newyork))
 	{
-		var_ea543e47 setmodel(#"p7_mou_clock_wall");
+		newyork setmodel(#"p7_mou_clock_wall");
 	}
 	var_242acc4f = spawn("script_model", (2976, -580, 412.75));
 	if(isdefined(var_242acc4f))

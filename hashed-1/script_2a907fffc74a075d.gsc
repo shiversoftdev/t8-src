@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_27ba6748d83412fd;
-#using script_2c454d63a96d2d0b;
-#using script_74f5ae6ffc8bd614;
+#using scripts\zm_common\zm_fasttravel.csc;
+#using scripts\zm_common\zm_characters.csc;
+#using scripts\zm_common\zm_audio_sq.csc;
 #using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
@@ -66,7 +66,7 @@ function function_27e22ee8()
 */
 function init_clientfields()
 {
-	clientfield::register("scriptmover", "" + #"hash_e49c6031d46d5fe", 1, 1, "int", &function_3653f153, 0, 0);
+	clientfield::register("scriptmover", "" + #"morse_star", 1, 1, "int", &function_3653f153, 0, 0);
 }
 
 /*

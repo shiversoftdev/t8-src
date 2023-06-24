@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_8a452bea : class_6aaccc24
+class cprototype_hud : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0x8AD7FA37
 		Offset: 0x6F0
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_8a452bea : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0x6BBACB80
 		Offset: 0x1050
 		Size: 0x14
@@ -31,232 +31,232 @@ class class_8a452bea : class_6aaccc24
 	}
 
 	/*
-		Name: function_19a87901
-		Namespace: namespace_8a452bea
+		Name: set_deploy_prompt_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x83443C4
 		Offset: 0x1018
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_19a87901(localclientnum, value)
+	function set_deploy_prompt_visibility(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "deploy_prompt_visibility", value);
+		[[ self ]]->set_data(localclientnum, "deploy_prompt_visibility", value);
 	}
 
 	/*
-		Name: function_1f1846cf
-		Namespace: namespace_8a452bea
+		Name: set_fail_fanfare_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x35F7FED4
 		Offset: 0xFE0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_1f1846cf(localclientnum, value)
+	function set_fail_fanfare_visibility(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "fail_fanfare_visibility", value);
+		[[ self ]]->set_data(localclientnum, "fail_fanfare_visibility", value);
 	}
 
 	/*
-		Name: function_cbcd8e48
-		Namespace: namespace_8a452bea
+		Name: set_fanfare_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x63172253
 		Offset: 0xFA8
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_cbcd8e48(localclientnum, value)
+	function set_fanfare_visibility(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "fanfare_visibility", value);
+		[[ self ]]->set_data(localclientnum, "fanfare_visibility", value);
 	}
 
 	/*
-		Name: function_8b286a2f
-		Namespace: namespace_8a452bea
+		Name: set_objective3_strike
+		Namespace: cprototype_hud
 		Checksum: 0x2A074ED0
 		Offset: 0xF70
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_8b286a2f(localclientnum, value)
+	function set_objective3_strike(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective3_strike", value);
+		[[ self ]]->set_data(localclientnum, "objective3_strike", value);
 	}
 
 	/*
-		Name: function_565d4199
-		Namespace: namespace_8a452bea
+		Name: set_objective2_strike
+		Namespace: cprototype_hud
 		Checksum: 0xBCF5371D
 		Offset: 0xF38
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_565d4199(localclientnum, value)
+	function set_objective2_strike(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective2_strike", value);
+		[[ self ]]->set_data(localclientnum, "objective2_strike", value);
 	}
 
 	/*
-		Name: function_cc538489
-		Namespace: namespace_8a452bea
+		Name: set_objective1_strike
+		Namespace: cprototype_hud
 		Checksum: 0xC13D27E2
 		Offset: 0xF00
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_cc538489(localclientnum, value)
+	function set_objective1_strike(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective1_strike", value);
+		[[ self ]]->set_data(localclientnum, "objective1_strike", value);
 	}
 
 	/*
-		Name: function_4e0e26c8
-		Namespace: namespace_8a452bea
+		Name: set_objective_prompt_visibility
+		Namespace: cprototype_hud
 		Checksum: 0xE57D23F1
 		Offset: 0xEC8
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_4e0e26c8(localclientnum, value)
+	function set_objective_prompt_visibility(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective_prompt_visibility", value);
+		[[ self ]]->set_data(localclientnum, "objective_prompt_visibility", value);
 	}
 
 	/*
-		Name: function_a18b1c70
-		Namespace: namespace_8a452bea
+		Name: set_objective3_string
+		Namespace: cprototype_hud
 		Checksum: 0xBA28CF0E
 		Offset: 0xE90
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_a18b1c70(localclientnum, value)
+	function set_objective3_string(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective3_string", value);
+		[[ self ]]->set_data(localclientnum, "objective3_string", value);
 	}
 
 	/*
-		Name: function_a7596728
-		Namespace: namespace_8a452bea
+		Name: set_objective2_string
+		Namespace: cprototype_hud
 		Checksum: 0x8382105
 		Offset: 0xE58
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_a7596728(localclientnum, value)
+	function set_objective2_string(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective2_string", value);
+		[[ self ]]->set_data(localclientnum, "objective2_string", value);
 	}
 
 	/*
-		Name: function_ad839e96
-		Namespace: namespace_8a452bea
+		Name: set_objective1_string
+		Namespace: cprototype_hud
 		Checksum: 0xCC57AED
 		Offset: 0xE20
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_ad839e96(localclientnum, value)
+	function set_objective1_string(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective1_string", value);
+		[[ self ]]->set_data(localclientnum, "objective1_string", value);
 	}
 
 	/*
-		Name: function_953da284
-		Namespace: namespace_8a452bea
+		Name: set_active_objective_string
+		Namespace: cprototype_hud
 		Checksum: 0xB0024386
 		Offset: 0xDE8
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_953da284(localclientnum, value)
+	function set_active_objective_string(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "active_objective_string", value);
+		[[ self ]]->set_data(localclientnum, "active_objective_string", value);
 	}
 
 	/*
-		Name: function_d0c21ed0
-		Namespace: namespace_8a452bea
+		Name: set_craft_progress
+		Namespace: cprototype_hud
 		Checksum: 0x575562D
 		Offset: 0xDB0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_d0c21ed0(localclientnum, value)
+	function set_craft_progress(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "craft_progress", value);
+		[[ self ]]->set_data(localclientnum, "craft_progress", value);
 	}
 
 	/*
-		Name: function_4d15d40b
-		Namespace: namespace_8a452bea
+		Name: set_resource_count_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x65D5FA3F
 		Offset: 0xD78
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_4d15d40b(localclientnum, value)
+	function set_resource_count_visibility(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "resource_count_visibility", value);
+		[[ self ]]->set_data(localclientnum, "resource_count_visibility", value);
 	}
 
 	/*
-		Name: function_db0a5e97
-		Namespace: namespace_8a452bea
+		Name: set_defense_resource_count
+		Namespace: cprototype_hud
 		Checksum: 0x36368D7F
 		Offset: 0xD40
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_db0a5e97(localclientnum, value)
+	function set_defense_resource_count(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "defense_resource_count", value);
+		[[ self ]]->set_data(localclientnum, "defense_resource_count", value);
 	}
 
 	/*
-		Name: function_bf6f7729
-		Namespace: namespace_8a452bea
+		Name: set_upgrade_resource_count
+		Namespace: cprototype_hud
 		Checksum: 0xB55B386D
 		Offset: 0xD08
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_bf6f7729(localclientnum, value)
+	function set_upgrade_resource_count(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "upgrade_resource_count", value);
+		[[ self ]]->set_data(localclientnum, "upgrade_resource_count", value);
 	}
 
 	/*
-		Name: function_67cb2b67
-		Namespace: namespace_8a452bea
+		Name: set_barrier_prompt_visibility
+		Namespace: cprototype_hud
 		Checksum: 0x345EC1CA
 		Offset: 0xCD0
 		Size: 0x30
 		Parameters: 2
 		Flags: None
 	*/
-	function function_67cb2b67(localclientnum, value)
+	function set_barrier_prompt_visibility(localclientnum, value)
 	{
-		[[ self ]]->function_d7d2fcce(localclientnum, "barrier_prompt_visibility", value);
+		[[ self ]]->set_data(localclientnum, "barrier_prompt_visibility", value);
 	}
 
 	/*
 		Name: open
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0x9ED57063
 		Offset: 0xC98
 		Size: 0x2C
@@ -265,12 +265,12 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"prototype_hud");
+		cLUIelem::open(localclientnum, #"prototype_hud");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0xA9E2B35C
 		Offset: 0xA70
 		Size: 0x220
@@ -279,28 +279,28 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
-		[[ self ]]->function_d7d2fcce(localclientnum, "barrier_prompt_visibility", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "upgrade_resource_count", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "defense_resource_count", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "resource_count_visibility", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "craft_progress", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "active_objective_string", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective1_string", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective2_string", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective3_string", #"");
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective_prompt_visibility", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective1_strike", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective2_strike", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "objective3_strike", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "fanfare_visibility", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "fail_fanfare_visibility", 0);
-		[[ self ]]->function_d7d2fcce(localclientnum, "deploy_prompt_visibility", 0);
+		cLUIelem::function_fa582112(localclientnum);
+		[[ self ]]->set_data(localclientnum, "barrier_prompt_visibility", 0);
+		[[ self ]]->set_data(localclientnum, "upgrade_resource_count", 0);
+		[[ self ]]->set_data(localclientnum, "defense_resource_count", 0);
+		[[ self ]]->set_data(localclientnum, "resource_count_visibility", 0);
+		[[ self ]]->set_data(localclientnum, "craft_progress", 0);
+		[[ self ]]->set_data(localclientnum, "active_objective_string", #"");
+		[[ self ]]->set_data(localclientnum, "objective1_string", #"");
+		[[ self ]]->set_data(localclientnum, "objective2_string", #"");
+		[[ self ]]->set_data(localclientnum, "objective3_string", #"");
+		[[ self ]]->set_data(localclientnum, "objective_prompt_visibility", 0);
+		[[ self ]]->set_data(localclientnum, "objective1_strike", 0);
+		[[ self ]]->set_data(localclientnum, "objective2_strike", 0);
+		[[ self ]]->set_data(localclientnum, "objective3_strike", 0);
+		[[ self ]]->set_data(localclientnum, "fanfare_visibility", 0);
+		[[ self ]]->set_data(localclientnum, "fail_fanfare_visibility", 0);
+		[[ self ]]->set_data(localclientnum, "deploy_prompt_visibility", 0);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0x9255C0E2
 		Offset: 0xA40
 		Size: 0x24
@@ -309,12 +309,12 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_8a452bea
+		Namespace: cprototype_hud
 		Checksum: 0x14BE2DB8
 		Offset: 0x710
 		Size: 0x324
@@ -323,23 +323,23 @@ class class_8a452bea : class_6aaccc24
 	*/
 	function setup_clientfields(uid, var_fdf544c8, var_33c5c30f, var_96284758, var_bde1ea58, var_9a41cc6b, var_532cdc1a, var_3e5d22, var_61c0f0c1, var_5dd927bd, var_7a99f2e1, var_f3632296, var_d59bef9f, var_be5884c9, var_b5ae72b8, var_2b966169, var_83a9258)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("barrier_prompt_visibility", 4000, 1, "int", var_fdf544c8);
-		namespace_6aaccc24::function_da693cbe("upgrade_resource_count", 4000, 8, "int", var_33c5c30f);
-		namespace_6aaccc24::function_da693cbe("defense_resource_count", 4000, 8, "int", var_96284758);
-		namespace_6aaccc24::function_da693cbe("resource_count_visibility", 4000, 1, "int", var_bde1ea58);
-		namespace_6aaccc24::function_da693cbe("craft_progress", 4000, 5, "float", var_9a41cc6b);
-		namespace_6aaccc24::function_dcb34c80("string", "active_objective_string", 4000);
-		namespace_6aaccc24::function_dcb34c80("string", "objective1_string", 4000);
-		namespace_6aaccc24::function_dcb34c80("string", "objective2_string", 4000);
-		namespace_6aaccc24::function_dcb34c80("string", "objective3_string", 4000);
-		namespace_6aaccc24::function_da693cbe("objective_prompt_visibility", 4000, 1, "int", var_7a99f2e1);
-		namespace_6aaccc24::function_da693cbe("objective1_strike", 4000, 1, "int", var_f3632296);
-		namespace_6aaccc24::function_da693cbe("objective2_strike", 4000, 1, "int", var_d59bef9f);
-		namespace_6aaccc24::function_da693cbe("objective3_strike", 4000, 1, "int", var_be5884c9);
-		namespace_6aaccc24::function_da693cbe("fanfare_visibility", 4000, 1, "int", var_b5ae72b8);
-		namespace_6aaccc24::function_da693cbe("fail_fanfare_visibility", 4000, 1, "int", var_2b966169);
-		namespace_6aaccc24::function_da693cbe("deploy_prompt_visibility", 4000, 1, "int", var_83a9258);
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("barrier_prompt_visibility", 4000, 1, "int", var_fdf544c8);
+		cLUIelem::function_da693cbe("upgrade_resource_count", 4000, 8, "int", var_33c5c30f);
+		cLUIelem::function_da693cbe("defense_resource_count", 4000, 8, "int", var_96284758);
+		cLUIelem::function_da693cbe("resource_count_visibility", 4000, 1, "int", var_bde1ea58);
+		cLUIelem::function_da693cbe("craft_progress", 4000, 5, "float", var_9a41cc6b);
+		cLUIelem::function_dcb34c80("string", "active_objective_string", 4000);
+		cLUIelem::function_dcb34c80("string", "objective1_string", 4000);
+		cLUIelem::function_dcb34c80("string", "objective2_string", 4000);
+		cLUIelem::function_dcb34c80("string", "objective3_string", 4000);
+		cLUIelem::function_da693cbe("objective_prompt_visibility", 4000, 1, "int", var_7a99f2e1);
+		cLUIelem::function_da693cbe("objective1_strike", 4000, 1, "int", var_f3632296);
+		cLUIelem::function_da693cbe("objective2_strike", 4000, 1, "int", var_d59bef9f);
+		cLUIelem::function_da693cbe("objective3_strike", 4000, 1, "int", var_be5884c9);
+		cLUIelem::function_da693cbe("fanfare_visibility", 4000, 1, "int", var_b5ae72b8);
+		cLUIelem::function_da693cbe("fail_fanfare_visibility", 4000, 1, "int", var_2b966169);
+		cLUIelem::function_da693cbe("deploy_prompt_visibility", 4000, 1, "int", var_83a9258);
 	}
 
 }
@@ -357,7 +357,7 @@ class class_8a452bea : class_6aaccc24
 */
 function register(uid, var_fdf544c8, var_33c5c30f, var_96284758, var_bde1ea58, var_9a41cc6b, var_532cdc1a, var_3e5d22, var_61c0f0c1, var_5dd927bd, var_7a99f2e1, var_f3632296, var_d59bef9f, var_be5884c9, var_b5ae72b8, var_2b966169, var_83a9258)
 {
-	elem = new class_8a452bea();
+	elem = new cprototype_hud();
 	[[ elem ]]->setup_clientfields(uid, var_fdf544c8, var_33c5c30f, var_96284758, var_bde1ea58, var_9a41cc6b, var_532cdc1a, var_3e5d22, var_61c0f0c1, var_5dd927bd, var_7a99f2e1, var_f3632296, var_d59bef9f, var_be5884c9, var_b5ae72b8, var_2b966169, var_83a9258);
 	return elem;
 }
@@ -373,7 +373,7 @@ function register(uid, var_fdf544c8, var_33c5c30f, var_96284758, var_bde1ea58, v
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_8a452bea();
+	elem = new cprototype_hud();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }
@@ -421,7 +421,7 @@ function is_open(localclientnum)
 }
 
 /*
-	Name: function_67cb2b67
+	Name: set_barrier_prompt_visibility
 	Namespace: prototype_hud
 	Checksum: 0xE5752EC5
 	Offset: 0x3F0
@@ -429,13 +429,13 @@ function is_open(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_67cb2b67(localclientnum, value)
+function set_barrier_prompt_visibility(localclientnum, value)
 {
-	[[ self ]]->function_67cb2b67(localclientnum, value);
+	[[ self ]]->set_barrier_prompt_visibility(localclientnum, value);
 }
 
 /*
-	Name: function_bf6f7729
+	Name: set_upgrade_resource_count
 	Namespace: prototype_hud
 	Checksum: 0xBE7BD400
 	Offset: 0x420
@@ -443,13 +443,13 @@ function function_67cb2b67(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_bf6f7729(localclientnum, value)
+function set_upgrade_resource_count(localclientnum, value)
 {
-	[[ self ]]->function_bf6f7729(localclientnum, value);
+	[[ self ]]->set_upgrade_resource_count(localclientnum, value);
 }
 
 /*
-	Name: function_db0a5e97
+	Name: set_defense_resource_count
 	Namespace: prototype_hud
 	Checksum: 0xA152AB90
 	Offset: 0x450
@@ -457,13 +457,13 @@ function function_bf6f7729(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_db0a5e97(localclientnum, value)
+function set_defense_resource_count(localclientnum, value)
 {
-	[[ self ]]->function_db0a5e97(localclientnum, value);
+	[[ self ]]->set_defense_resource_count(localclientnum, value);
 }
 
 /*
-	Name: function_4d15d40b
+	Name: set_resource_count_visibility
 	Namespace: prototype_hud
 	Checksum: 0x8B5C8FA3
 	Offset: 0x480
@@ -471,13 +471,13 @@ function function_db0a5e97(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_4d15d40b(localclientnum, value)
+function set_resource_count_visibility(localclientnum, value)
 {
-	[[ self ]]->function_4d15d40b(localclientnum, value);
+	[[ self ]]->set_resource_count_visibility(localclientnum, value);
 }
 
 /*
-	Name: function_d0c21ed0
+	Name: set_craft_progress
 	Namespace: prototype_hud
 	Checksum: 0xC34A08C2
 	Offset: 0x4B0
@@ -485,13 +485,13 @@ function function_4d15d40b(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_d0c21ed0(localclientnum, value)
+function set_craft_progress(localclientnum, value)
 {
-	[[ self ]]->function_d0c21ed0(localclientnum, value);
+	[[ self ]]->set_craft_progress(localclientnum, value);
 }
 
 /*
-	Name: function_953da284
+	Name: set_active_objective_string
 	Namespace: prototype_hud
 	Checksum: 0x8C5053C2
 	Offset: 0x4E0
@@ -499,13 +499,13 @@ function function_d0c21ed0(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_953da284(localclientnum, value)
+function set_active_objective_string(localclientnum, value)
 {
-	[[ self ]]->function_953da284(localclientnum, value);
+	[[ self ]]->set_active_objective_string(localclientnum, value);
 }
 
 /*
-	Name: function_ad839e96
+	Name: set_objective1_string
 	Namespace: prototype_hud
 	Checksum: 0xBED05BD8
 	Offset: 0x510
@@ -513,13 +513,13 @@ function function_953da284(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_ad839e96(localclientnum, value)
+function set_objective1_string(localclientnum, value)
 {
-	[[ self ]]->function_ad839e96(localclientnum, value);
+	[[ self ]]->set_objective1_string(localclientnum, value);
 }
 
 /*
-	Name: function_a7596728
+	Name: set_objective2_string
 	Namespace: prototype_hud
 	Checksum: 0xCED478E0
 	Offset: 0x540
@@ -527,13 +527,13 @@ function function_ad839e96(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_a7596728(localclientnum, value)
+function set_objective2_string(localclientnum, value)
 {
-	[[ self ]]->function_a7596728(localclientnum, value);
+	[[ self ]]->set_objective2_string(localclientnum, value);
 }
 
 /*
-	Name: function_a18b1c70
+	Name: set_objective3_string
 	Namespace: prototype_hud
 	Checksum: 0x71E995F9
 	Offset: 0x570
@@ -541,13 +541,13 @@ function function_a7596728(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_a18b1c70(localclientnum, value)
+function set_objective3_string(localclientnum, value)
 {
-	[[ self ]]->function_a18b1c70(localclientnum, value);
+	[[ self ]]->set_objective3_string(localclientnum, value);
 }
 
 /*
-	Name: function_4e0e26c8
+	Name: set_objective_prompt_visibility
 	Namespace: prototype_hud
 	Checksum: 0x6C55145
 	Offset: 0x5A0
@@ -555,13 +555,13 @@ function function_a18b1c70(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_4e0e26c8(localclientnum, value)
+function set_objective_prompt_visibility(localclientnum, value)
 {
-	[[ self ]]->function_4e0e26c8(localclientnum, value);
+	[[ self ]]->set_objective_prompt_visibility(localclientnum, value);
 }
 
 /*
-	Name: function_cc538489
+	Name: set_objective1_strike
 	Namespace: prototype_hud
 	Checksum: 0xD0218F88
 	Offset: 0x5D0
@@ -569,13 +569,13 @@ function function_4e0e26c8(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_cc538489(localclientnum, value)
+function set_objective1_strike(localclientnum, value)
 {
-	[[ self ]]->function_cc538489(localclientnum, value);
+	[[ self ]]->set_objective1_strike(localclientnum, value);
 }
 
 /*
-	Name: function_565d4199
+	Name: set_objective2_strike
 	Namespace: prototype_hud
 	Checksum: 0x23A72B1C
 	Offset: 0x600
@@ -583,13 +583,13 @@ function function_cc538489(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_565d4199(localclientnum, value)
+function set_objective2_strike(localclientnum, value)
 {
-	[[ self ]]->function_565d4199(localclientnum, value);
+	[[ self ]]->set_objective2_strike(localclientnum, value);
 }
 
 /*
-	Name: function_8b286a2f
+	Name: set_objective3_strike
 	Namespace: prototype_hud
 	Checksum: 0x3B052135
 	Offset: 0x630
@@ -597,13 +597,13 @@ function function_565d4199(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_8b286a2f(localclientnum, value)
+function set_objective3_strike(localclientnum, value)
 {
-	[[ self ]]->function_8b286a2f(localclientnum, value);
+	[[ self ]]->set_objective3_strike(localclientnum, value);
 }
 
 /*
-	Name: function_cbcd8e48
+	Name: set_fanfare_visibility
 	Namespace: prototype_hud
 	Checksum: 0x16C785E
 	Offset: 0x660
@@ -611,13 +611,13 @@ function function_8b286a2f(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_cbcd8e48(localclientnum, value)
+function set_fanfare_visibility(localclientnum, value)
 {
-	[[ self ]]->function_cbcd8e48(localclientnum, value);
+	[[ self ]]->set_fanfare_visibility(localclientnum, value);
 }
 
 /*
-	Name: function_1f1846cf
+	Name: set_fail_fanfare_visibility
 	Namespace: prototype_hud
 	Checksum: 0x16FC2E60
 	Offset: 0x690
@@ -625,13 +625,13 @@ function function_cbcd8e48(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_1f1846cf(localclientnum, value)
+function set_fail_fanfare_visibility(localclientnum, value)
 {
-	[[ self ]]->function_1f1846cf(localclientnum, value);
+	[[ self ]]->set_fail_fanfare_visibility(localclientnum, value);
 }
 
 /*
-	Name: function_19a87901
+	Name: set_deploy_prompt_visibility
 	Namespace: prototype_hud
 	Checksum: 0x412797DB
 	Offset: 0x6C0
@@ -639,8 +639,8 @@ function function_1f1846cf(localclientnum, value)
 	Parameters: 2
 	Flags: None
 */
-function function_19a87901(localclientnum, value)
+function set_deploy_prompt_visibility(localclientnum, value)
 {
-	[[ self ]]->function_19a87901(localclientnum, value);
+	[[ self ]]->set_deploy_prompt_visibility(localclientnum, value);
 }
 

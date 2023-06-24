@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_9e6034d2 : class_6aaccc24
+class cplayer_insertion_choice : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x693B4085
 		Offset: 0x1E8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_9e6034d2 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x1A8F02DF
 		Offset: 0x440
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_9e6034d2 : class_6aaccc24
 
 	/*
 		Name: set_state
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x5AA0A3AD
 		Offset: 0x318
 		Size: 0x11C
@@ -43,25 +43,25 @@ class class_9e6034d2 : class_6aaccc24
 	{
 		if(#"defaultstate" == state_name)
 		{
-			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
+			[[ self ]]->set_data(localclientnum, "_state", 0);
 		}
 		else
 		{
-			if(#"hash_bcb68d30ea251e2" == state_name)
+			if(#"groundvehicle" == state_name)
 			{
-				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
+				[[ self ]]->set_data(localclientnum, "_state", 1);
 			}
 			else
 			{
-				if(#"hash_a9365fdb97f532b" == state_name)
+				if(#"halojump" == state_name)
 				{
-					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 2);
+					[[ self ]]->set_data(localclientnum, "_state", 2);
 				}
 				else
 				{
 					if(#"heli" == state_name)
 					{
-						[[ self ]]->function_d7d2fcce(localclientnum, "_state", 3);
+						[[ self ]]->set_data(localclientnum, "_state", 3);
 					}
 					else
 					{
@@ -78,7 +78,7 @@ class class_9e6034d2 : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0xA447DE09
 		Offset: 0x2E0
 		Size: 0x2C
@@ -87,12 +87,12 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"player_insertion_choice");
+		cLUIelem::open(localclientnum, #"player_insertion_choice");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0xF5C7A3B6
 		Offset: 0x290
 		Size: 0x44
@@ -101,13 +101,13 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 		[[ self ]]->set_state(localclientnum, #"defaultstate");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0x3EDCE539
 		Offset: 0x260
 		Size: 0x24
@@ -116,12 +116,12 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_9e6034d2
+		Namespace: cplayer_insertion_choice
 		Checksum: 0xCDD77E2B
 		Offset: 0x208
 		Size: 0x4C
@@ -130,8 +130,8 @@ class class_9e6034d2 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 2, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 2, "int");
 	}
 
 }
@@ -149,7 +149,7 @@ class class_9e6034d2 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_9e6034d2();
+	elem = new cplayer_insertion_choice();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -165,7 +165,7 @@ function register(uid)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_9e6034d2();
+	elem = new cplayer_insertion_choice();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

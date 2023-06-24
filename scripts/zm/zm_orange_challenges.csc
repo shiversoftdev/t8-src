@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\clientfield_shared.csc;
 
-#namespace namespace_86eed980;
+#namespace zm_orange_challenges;
 
 /*
 	Name: init
-	Namespace: namespace_86eed980
+	Namespace: zm_orange_challenges
 	Checksum: 0x38977010
 	Offset: 0xC8
 	Size: 0x64
@@ -20,7 +20,7 @@ function init()
 
 /*
 	Name: main
-	Namespace: namespace_86eed980
+	Namespace: zm_orange_challenges
 	Checksum: 0x80F724D1
 	Offset: 0x138
 	Size: 0x4
@@ -33,7 +33,7 @@ function main()
 
 /*
 	Name: function_a1d393ad
-	Namespace: namespace_86eed980
+	Namespace: zm_orange_challenges
 	Checksum: 0xE260EE12
 	Offset: 0x148
 	Size: 0x8C

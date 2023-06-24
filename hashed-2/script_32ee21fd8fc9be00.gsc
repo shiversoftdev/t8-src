@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_a7489323 : class_6aaccc24
+class cct_shared_desc : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0x5677727
 		Offset: 0x1E8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_a7489323 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0xF6DB3857
 		Offset: 0x408
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_a7489323 : class_6aaccc24
 
 	/*
 		Name: set_state
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0xC39709D1
 		Offset: 0x318
 		Size: 0xE4
@@ -43,19 +43,19 @@ class class_a7489323 : class_6aaccc24
 	{
 		if(#"defaultstate" == state_name)
 		{
-			[[ self ]]->function_d7d2fcce(localclientnum, "_state", 0);
+			[[ self ]]->set_data(localclientnum, "_state", 0);
 		}
 		else
 		{
 			if(#"hash_3319eaa2c590a2ac" == state_name)
 			{
-				[[ self ]]->function_d7d2fcce(localclientnum, "_state", 1);
+				[[ self ]]->set_data(localclientnum, "_state", 1);
 			}
 			else
 			{
 				if(#"hash_2ac3b79c708dcfd5" == state_name)
 				{
-					[[ self ]]->function_d7d2fcce(localclientnum, "_state", 2);
+					[[ self ]]->set_data(localclientnum, "_state", 2);
 				}
 				else
 				{
@@ -71,7 +71,7 @@ class class_a7489323 : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0x74D23105
 		Offset: 0x2E0
 		Size: 0x2C
@@ -80,12 +80,12 @@ class class_a7489323 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"ct_shared_desc");
+		cLUIelem::open(localclientnum, #"ct_shared_desc");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0x8C07D54F
 		Offset: 0x290
 		Size: 0x44
@@ -94,13 +94,13 @@ class class_a7489323 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 		[[ self ]]->set_state(localclientnum, #"defaultstate");
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0x8F17F6E6
 		Offset: 0x260
 		Size: 0x24
@@ -109,12 +109,12 @@ class class_a7489323 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_a7489323
+		Namespace: cct_shared_desc
 		Checksum: 0x24C04009
 		Offset: 0x208
 		Size: 0x4C
@@ -123,8 +123,8 @@ class class_a7489323 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
-		namespace_6aaccc24::function_da693cbe("_state", 1, 2, "int");
+		cLUIelem::setup_clientfields(uid);
+		cLUIelem::function_da693cbe("_state", 1, 2, "int");
 	}
 
 }
@@ -142,7 +142,7 @@ class class_a7489323 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_a7489323();
+	elem = new cct_shared_desc();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -158,7 +158,7 @@ function register(uid)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_a7489323();
+	elem = new cct_shared_desc();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

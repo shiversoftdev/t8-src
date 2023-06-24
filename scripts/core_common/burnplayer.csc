@@ -8,7 +8,7 @@
 #namespace burnplayer;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: burnplayer
 	Checksum: 0x7CC68C0F
 	Offset: 0x110
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"burnplayer", &__init__, undefined, undefined);
 }

@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_444bc5b4fa0fe14f;
-#using script_6021ce59143452c3;
+#using scripts\zm_common\zm_trial.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_b3c73836;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_b3c73836
 	Checksum: 0x128FE37C
 	Offset: 0x90
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_5dd690a72d32d36f", &__init__, undefined, undefined);
 }
@@ -34,11 +34,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_6fd9fed5c664bc96", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_6fd9fed5c664bc96", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_b3c73836
 	Checksum: 0x79625D33
 	Offset: 0x140
@@ -46,7 +46,7 @@ function __init__()
 	Parameters: 0
 	Flags: Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
 	level.var_43fb4347 = "super_sprint";
 	level.var_102b1301 = "super_sprint";
@@ -59,7 +59,7 @@ function private function_d1de6a85()
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_b3c73836
 	Checksum: 0x75BB9B12
 	Offset: 0x1B8
@@ -67,7 +67,7 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	level.var_43fb4347 = undefined;
 	level.var_102b1301 = undefined;

@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5bb072c3abf4652c;
-#using script_6c5b51f98cd04fa3;
-#using script_b52a163973f339f;
+#using scripts\zm_common\zm_vo.gsc;
+#using scripts\zm_common\zm_sq.gsc;
+#using scripts\zm_common\zm_characters.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\struct.gsc;
@@ -11,7 +11,7 @@
 #namespace namespace_a35b0e2;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_a35b0e2
 	Checksum: 0x1EC98DAC
 	Offset: 0x1E0
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_4fac8791c22b4bd7", &init, undefined, undefined);
 }
@@ -52,10 +52,10 @@ function init()
 	level.var_2a66053e hide();
 	level.var_3830a0d3.angles = level.var_3830a0d3.angles + vectorscale((1, 0, 0), 20);
 	level flag::init(#"hash_7b1fd4fc459e497c");
-	namespace_ee206246::register(#"hash_6039fc2dd130edf5", #"step_1", #"hash_5873576264199a27", &function_4ac6cf37, &function_cb27a665);
-	namespace_ee206246::start(#"hash_6039fc2dd130edf5");
-	namespace_ee206246::register(#"hash_6039fc2dd130edf5", #"step_2", #"hash_5873586264199bda", &function_955fffb1, &function_fabb1fba);
-	namespace_ee206246::start(#"hash_6039fc2dd130edf5");
+	zm_sq::register(#"hash_6039fc2dd130edf5", #"step_1", #"hash_5873576264199a27", &function_4ac6cf37, &function_cb27a665);
+	zm_sq::start(#"hash_6039fc2dd130edf5");
+	zm_sq::register(#"hash_6039fc2dd130edf5", #"step_2", #"hash_5873586264199bda", &function_955fffb1, &function_fabb1fba);
+	zm_sq::start(#"hash_6039fc2dd130edf5");
 }
 
 /*
@@ -283,7 +283,7 @@ function function_bd81f4e2(user)
 		#/
 		if(user zm_characters::is_character(array(#"hash_1aa57ef704f24fa5", #"hash_36bc80636f0fdac4")))
 		{
-			user thread zm_vo::function_8e0f4696("vox_mcnamara_log_repair_plr_6_0");
+			user thread zm_vo::vo_say("vox_mcnamara_log_repair_plr_6_0");
 		}
 		level flag::set(#"hash_7b1fd4fc459e497c");
 	}

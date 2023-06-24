@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_6e3c826b1814cab6;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\demo_shared.gsc;
@@ -20,7 +20,7 @@
 #namespace zm_power;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_power
 	Checksum: 0x6678A63C
 	Offset: 0x210
@@ -28,7 +28,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_power", &__init__, &__main__, undefined);
 }
@@ -414,7 +414,7 @@ function standard_powered_items()
 			powered_perk thread zone_controlled_perk(trigger.script_int);
 		}
 	}
-	if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") != 0)
+	if(zm_custom::function_901b751c(#"zmpowerdoorstate") != 0)
 	{
 		zombie_doors = getentarray("zombie_door", "targetname");
 		foreach(door in zombie_doors)
@@ -1297,7 +1297,7 @@ function turn_power_on_and_open_doors(power_zone)
 	{
 		player zm_stats::function_8f10788e("boas_power_turnedon");
 	}
-	if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") != 0)
+	if(zm_custom::function_901b751c(#"zmpowerdoorstate") != 0)
 	{
 		zombie_doors = getentarray("zombie_door", "targetname");
 		foreach(door in zombie_doors)
@@ -1351,7 +1351,7 @@ function turn_power_off_and_close_doors(power_zone)
 		level flag::clear("power_on" + power_zone);
 		level clientfield::set("zombie_power_off", power_zone);
 	}
-	if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") != 0)
+	if(zm_custom::function_901b751c(#"zmpowerdoorstate") != 0)
 	{
 		zombie_doors = getentarray("zombie_door", "targetname");
 		foreach(door in zombie_doors)

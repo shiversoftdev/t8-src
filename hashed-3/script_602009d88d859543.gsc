@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_29b970364d23b9;
-#using script_3f9e0dc8454d98e1;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using script_7c62f55ce3a557ff;
-#using script_b00fcbc28051f15;
+#using scripts\zm\weapons\zm_weap_spectral_shield.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -490,7 +490,7 @@ function private function_c179676a()
 {
 	self endon(#"disconnect");
 	w_current = self getcurrentweapon();
-	if(!namespace_b4a066ff::function_98890cd8(w_current))
+	if(!zm_weap_spectral_shield::function_98890cd8(w_current))
 	{
 		return;
 	}
@@ -499,7 +499,7 @@ function private function_c179676a()
 	{
 		self switchtoweaponimmediate(var_3ba4bf7d[0], 1);
 	}
-	self waittill(#"hash_66790eb1100e11a2");
+	self waittill(#"fasttravel_finished");
 	self switchtoweaponimmediate(w_current, 1);
 }
 
@@ -600,9 +600,9 @@ function function_429e121c(var_5cc91e3c, var_8d5d092c, var_67cba496, var_374f0c4
 */
 function function_eef4fa8c(var_8d5d092c, var_418e2265)
 {
-	var_97326008 = "global_cooldown_watcher_" + var_8d5d092c;
-	level notify(var_97326008);
-	level endon(var_97326008);
+	str_notify_endon = "global_cooldown_watcher_" + var_8d5d092c;
+	level notify(str_notify_endon);
+	level endon(str_notify_endon);
 	if(level.var_8f8f85f5)
 	{
 		level.var_261ad4d[var_8d5d092c] = 1;
@@ -613,7 +613,7 @@ function function_eef4fa8c(var_8d5d092c, var_418e2265)
 		else
 		{
 			n_cooldown = 30;
-			if(isplayer(var_418e2265) && var_418e2265 hasperk(#"hash_37aa3a5919757781"))
+			if(isplayer(var_418e2265) && var_418e2265 hasperk(#"specialty_cooldown"))
 			{
 				n_cooldown = n_cooldown * 0.5;
 			}

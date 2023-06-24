@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3c362258ff800237;
-#using script_3d5821d793ed4c6;
+#using scripts\zm_common\zm_trial.csc;
+#using scripts\zm_common\zm_trial_util.csc;
 #using scripts\core_common\callbacks_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\flag_shared.csc;
@@ -13,7 +13,7 @@
 #namespace namespace_841de7df;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_841de7df
 	Checksum: 0xDCE5876C
 	Offset: 0x108
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_4ef9c479ac8da304", &__init__, undefined, undefined);
 }
@@ -44,11 +44,11 @@ function __init__()
 	clientfield::register("zbarrier", "" + #"hash_100f180bf5d2a517", 14000, 1, "int", &function_b245db69, 0, 0);
 	level._effect[#"hash_1d15a2dad558ac8c"] = "zombie/fx8_packapunch_zmb_red_gauntlet";
 	level._effect[#"hash_1d15a5dad558b1a5"] = "zombie/fx8_packapunch_zmb_red_gauntlet";
-	zm_trial::register_challenge(#"hash_28d1b9857e2ca681", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_28d1b9857e2ca681", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_841de7df
 	Checksum: 0x4FB3E590
 	Offset: 0x258
@@ -56,12 +56,12 @@ function __init__()
 	Parameters: 2
 	Flags: Private
 */
-function private function_d1de6a85(localclientnum, a_params)
+function private on_begin(localclientnum, a_params)
 {
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_841de7df
 	Checksum: 0x90276D0F
 	Offset: 0x278
@@ -69,7 +69,7 @@ function private function_d1de6a85(localclientnum, a_params)
 	Parameters: 1
 	Flags: Private
 */
-function private function_9e7b3f4d(localclientnum)
+function private on_end(localclientnum)
 {
 }
 
@@ -110,7 +110,7 @@ function private function_b245db69(localclientnum, oldval, newval, bnewent, bini
 			deletefx(localclientnum, self.var_3b071bba);
 			self.var_3b071bba = undefined;
 		}
-		if(zm_utility::function_166646a6() == 1)
+		if(zm_utility::get_story() == 1)
 		{
 			self.var_18f8b30b = util::spawn_model(localclientnum, "tag_origin", self.origin, self.angles);
 			self.var_3b071bba = util::playfxontag(localclientnum, level._effect[#"hash_1d15a2dad558ac8c"], self.var_18f8b30b, "tag_origin");

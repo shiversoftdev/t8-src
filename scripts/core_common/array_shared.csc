@@ -359,7 +359,7 @@ function add(array, item, allow_dupes = 1)
 	Parameters: 5
 	Flags: None
 */
-function add_sorted(array, item, allow_dupes = 1, var_13d5adf2, var_e19f0739 = 0)
+function add_sorted(array, item, allow_dupes = 1, func_compare, var_e19f0739 = 0)
 {
 	if(isdefined(item))
 	{
@@ -367,7 +367,7 @@ function add_sorted(array, item, allow_dupes = 1, var_13d5adf2, var_e19f0739 = 0
 		{
 			for(i = 0; i <= array.size; i++)
 			{
-				if(i == array.size || (isdefined(var_13d5adf2) && ([[var_13d5adf2]](item, array[i]) || var_e19f0739)) || (!isdefined(var_13d5adf2) && (item <= array[i] || var_e19f0739)))
+				if(i == array.size || (isdefined(func_compare) && ([[func_compare]](item, array[i]) || var_e19f0739)) || (!isdefined(func_compare) && (item <= array[i] || var_e19f0739)))
 				{
 					arrayinsert(array, item, i);
 					break;
@@ -931,11 +931,11 @@ function private function_80fe1cb6(a, b)
 	Parameters: 3
 	Flags: Linked
 */
-function find(array, ent, var_13d5adf2 = &function_80fe1cb6)
+function find(array, ent, func_compare = &function_80fe1cb6)
 {
 	for(i = 0; i < array.size; i++)
 	{
-		if([[var_13d5adf2]](array[i], ent))
+		if([[func_compare]](array[i], ent))
 		{
 			return i;
 		}

@@ -7,7 +7,7 @@
 #namespace end_game_flow;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: end_game_flow
 	Checksum: 0xBD05EA20
 	Offset: 0x88
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"end_game_flow", &__init__, undefined, undefined);
 }

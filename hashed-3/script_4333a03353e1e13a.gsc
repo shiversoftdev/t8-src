@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
+#using scripts\zm_common\zm_loadout.gsc;
 #using script_24c32478acf44108;
-#using script_3110b4b6b21db11f;
-#using script_3cebb48c37fc271;
-#using script_4d000493c57bb851;
-#using script_52c6c2d1a2ef1b46;
-#using script_56ca01b3b31455b5;
-#using script_6a3f43063dfd1bdc;
+#using scripts\zm\zm_orange_water.gsc;
+#using scripts\zm_common\zm_fasttravel.gsc;
+#using scripts\zm_common\zm_crafting.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\abilities\ability_util.gsc;
+#using scripts\zm\zm_hms_util.gsc;
 #using script_6b6fff322a8a64eb;
 #using script_db06eb511bd9b36;
 #using scripts\core_common\array_shared.gsc;
@@ -112,9 +112,9 @@ function main()
 */
 function function_e91e867d()
 {
-	level.var_4bd7384f = getentarray("v_fasttravel_flinger", "targetname");
+	level.a_v_flingers = getentarray("v_fasttravel_flinger", "targetname");
 	level.var_ad63608b = 0;
-	foreach(v_flinger in level.var_4bd7384f)
+	foreach(v_flinger in level.a_v_flingers)
 	{
 		v_flinger.var_4f952763 = struct::get_array(v_flinger.var_16c4809e + v_flinger.str_location, "targetname");
 		v_flinger.var_9b23f7b9 = struct::get(v_flinger.var_405b850e + v_flinger.str_location, "targetname");
@@ -210,26 +210,26 @@ function function_a913e7bc(e_player)
 {
 	if(isdefined(self.stub) && isdefined(self.stub.blueprint))
 	{
-		var_4b912983 = self.stub;
+		t_crafting = self.stub;
 	}
 	else if(isdefined(self.blueprint))
 	{
-		var_4b912983 = self;
+		t_crafting = self;
 	}
-	if(var_4b912983.blueprint.name == #"hash_3332ae392da799ae")
+	if(t_crafting.blueprint.name == #"hash_3332ae392da799ae")
 	{
-		var_7c0185ab = var_4b912983.var_4f749ffe;
+		var_7c0185ab = t_crafting.var_4f749ffe;
 		var_7c0185ab show();
 		var_7c0185ab zm_unitrigger::create(&function_96dcf25a, 64);
 		var_7c0185ab thread function_5d984ff3();
-		namespace_6747c550::function_7df6bb60("heat_pack_part_bottle", 0);
-		namespace_6747c550::function_7df6bb60("heat_pack_part_tube", 0);
-		namespace_6747c550::function_7df6bb60("heat_pack_part_canister", 0);
-		level namespace_6747c550::function_7df6bb60("heat_pack_phase", 1);
+		zm_ui_inventory::function_7df6bb60("heat_pack_part_bottle", 0);
+		zm_ui_inventory::function_7df6bb60("heat_pack_part_tube", 0);
+		zm_ui_inventory::function_7df6bb60("heat_pack_part_canister", 0);
+		level zm_ui_inventory::function_7df6bb60("heat_pack_phase", 1);
 		level flag::set(#"hash_3b7cff73fa5e7121");
 		if(level.var_98138d6b > 1)
 		{
-			level.var_1c53964e namespace_509a75d1::function_6a0d675d("vox_heat_pack_craft", -1, 1, 0);
+			level.var_1c53964e zm_hms_util::function_6a0d675d("vox_heat_pack_craft", -1, 1, 0);
 		}
 	}
 }
@@ -254,8 +254,8 @@ function function_5d984ff3()
 		if(!isdefined(e_who.var_2e6aa97d))
 		{
 			e_who.var_2e6aa97d = 1;
-			level namespace_6747c550::function_7df6bb60("heat_pack_complete", 1, e_who);
-			e_who namespace_3263198e::function_51b752a9("vox_heat_pack_pickup", -1, 1, 0);
+			level zm_ui_inventory::function_7df6bb60("heat_pack_complete", 1, e_who);
+			e_who zm_orange_util::function_51b752a9("vox_heat_pack_pickup", -1, 1, 0);
 			e_who clientfield::set_player_uimodel("ZMInventoryPersonal.heat_pack", 1);
 		}
 	}
@@ -291,7 +291,7 @@ function function_96dcf25a(e_player)
 */
 function function_b1ec88bc()
 {
-	foreach(v_flinger in level.var_4bd7384f)
+	foreach(v_flinger in level.a_v_flingers)
 	{
 		if(v_flinger.str_location === "island" && !zm_utility::is_standard())
 		{
@@ -441,7 +441,7 @@ function function_67769412()
 */
 function function_b5fc069b()
 {
-	self endon(#"hash_1a5c6352ea49c8ff", #"hash_741d8b09a5dcde7d");
+	self endon(#"hash_1a5c6352ea49c8ff", #"launcher_activated");
 	level endon(#"end_game");
 	self.var_cd75ce36 = 3;
 	self thread function_ac9a3646();
@@ -455,8 +455,8 @@ function function_b5fc069b()
 			{
 				if(self.str_location == "facility")
 				{
-					var_4bd7384f = array::randomize(level.var_4bd7384f);
-					foreach(v_flinger in var_4bd7384f)
+					a_v_flingers = array::randomize(level.a_v_flingers);
+					foreach(v_flinger in a_v_flingers)
 					{
 						if(v_flinger.str_location == "facility")
 						{
@@ -466,7 +466,7 @@ function function_b5fc069b()
 							{
 								self function_9b196e4f();
 							}
-							v_flinger notify(#"hash_741d8b09a5dcde7d");
+							v_flinger notify(#"launcher_activated");
 							waitframe(1);
 						}
 					}
@@ -475,7 +475,7 @@ function function_b5fc069b()
 				{
 					self function_ceb5bc97();
 					self thread function_b040671c();
-					self notify(#"hash_741d8b09a5dcde7d");
+					self notify(#"launcher_activated");
 				}
 			}
 		}
@@ -588,7 +588,7 @@ function function_1036f994()
 */
 function function_4578fdfd()
 {
-	self endon(#"hash_1a5c6352ea49c8ff", #"hash_741d8b09a5dcde7d");
+	self endon(#"hash_1a5c6352ea49c8ff", #"launcher_activated");
 	self.var_cd75ce36 = 3;
 	self thread function_ac9a3646();
 	while(true)
@@ -602,7 +602,7 @@ function function_4578fdfd()
 			{
 				if(level flag::get(#"hash_f14d343f59fc897"))
 				{
-					namespace_17555f14::function_3b77181c(1);
+					zm_orange_zones::function_3b77181c(1);
 				}
 				else
 				{
@@ -611,7 +611,7 @@ function function_4578fdfd()
 				level flag::set(#"hash_2923f30473421396");
 				self function_ceb5bc97();
 				self thread function_5fb97eb1();
-				self notify(#"hash_741d8b09a5dcde7d");
+				self notify(#"launcher_activated");
 			}
 		}
 		else
@@ -755,7 +755,7 @@ function fling_player(v_flinger)
 		self.var_e5340f3e = 0;
 		self.var_cdce7ec = 1;
 		self val::set(#"edge_of_the_world", "ignoreme");
-		level flag::set(#"hash_1e0f5a674141f03");
+		level flag::set(#"edge_launched");
 	}
 	else
 	{
@@ -767,7 +767,7 @@ function fling_player(v_flinger)
 	self clientfield::set_to_player("blur_post_fx", 1);
 	if(v_flinger.str_location === "island_return")
 	{
-		self thread namespace_3263198e::function_51b752a9("vox_flinger_react");
+		self thread zm_orange_util::function_51b752a9("vox_flinger_react");
 	}
 	else
 	{
@@ -968,7 +968,7 @@ function function_57806638(v_flinger)
 		{
 			if(v_flinger.var_745ac235.size > 0 && isdefined(v_flinger.var_745ac235[0]))
 			{
-				v_flinger.var_745ac235[0] thread namespace_3263198e::function_51b752a9("vox_generic_responses_positive", -1, 0, 0);
+				v_flinger.var_745ac235[0] thread zm_orange_util::function_51b752a9("vox_generic_responses_positive", -1, 0, 0);
 			}
 			v_flinger.var_320be97e = 1;
 			v_flinger.var_48abac67 zm_unitrigger::create(&function_8bf0a961, 64);
@@ -1018,19 +1018,19 @@ function function_ad05ccbb()
 		{
 			case 0:
 			{
-				e_part = zm_crafting::function_4c2f8683("zitem_orange_heat_pack_part_1");
+				e_part = zm_crafting::get_component("zitem_orange_heat_pack_part_1");
 				e_who giveweapon(e_part);
 				break;
 			}
 			case 1:
 			{
-				e_part = zm_crafting::function_4c2f8683("zitem_orange_heat_pack_part_2");
+				e_part = zm_crafting::get_component("zitem_orange_heat_pack_part_2");
 				e_who giveweapon(e_part);
 				break;
 			}
 			case 2:
 			{
-				e_part = zm_crafting::function_4c2f8683("zitem_orange_heat_pack_part_3");
+				e_part = zm_crafting::get_component("zitem_orange_heat_pack_part_3");
 				e_who giveweapon(e_part);
 				break;
 			}
@@ -1280,7 +1280,7 @@ function flinger_init()
 {
 	self thread scene::play("init");
 	self flagsys::wait_till(#"scene_ents_ready");
-	self.var_9d07d8dd = self.scene_ents[#"hash_7aff0ee60ddd937b"];
+	self.var_9d07d8dd = self.scene_ents[#"prop 1"];
 	if(self.targetname != "flinger_island")
 	{
 		self thread function_e468b4be();
@@ -1377,7 +1377,7 @@ function function_ac9a3646()
 	playsoundatposition(#"hash_5474570f37d75aa7", self.origin);
 	var_29c7dbd6 = spawn("script_origin", self.origin);
 	var_29c7dbd6 playsound(#"hash_5913634c5007a95");
-	self waittill(#"hash_741d8b09a5dcde7d", #"hash_1a5c6352ea49c8ff");
+	self waittill(#"launcher_activated", #"hash_1a5c6352ea49c8ff");
 	playsoundatposition(#"hash_3db70e71d59b6393", self.origin);
 	var_29c7dbd6 stopsounds();
 	waitframe(1);

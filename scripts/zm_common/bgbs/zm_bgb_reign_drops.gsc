@@ -1,5 +1,5 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\bgbs\zm_bgb_extra_credit.gsc;
 #using scripts\zm_common\zm_bgb.gsc;
@@ -7,7 +7,7 @@
 #namespace zm_bgb_reign_drops;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_reign_drops
 	Checksum: 0xA926D313
 	Offset: 0x1E0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_reign_drops", &__init__, undefined, #"bgb");
 }
@@ -68,39 +68,39 @@ function validation()
 function activation()
 {
 	self endon(#"disconnect", #"bled_out");
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_power_keg"))
+	if(zm_custom::function_3ac936c6("zm_bgb_power_keg"))
 	{
 		level thread bgb::function_c6cd71d5("hero_weapon_power", self function_dfc73f65(1), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_extra_credit"))
+	if(zm_custom::function_3ac936c6("zm_bgb_extra_credit"))
 	{
 		self thread zm_bgb_extra_credit::function_22f934e6(self function_dfc73f65(2), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_dead_of_nuclear_winter"))
+	if(zm_custom::function_3ac936c6("zm_bgb_dead_of_nuclear_winter"))
 	{
 		level thread bgb::function_c6cd71d5("nuke", self function_dfc73f65(3), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_licensed_contractor"))
+	if(zm_custom::function_3ac936c6("zm_bgb_licensed_contractor"))
 	{
 		level thread bgb::function_c6cd71d5("carpenter", self function_dfc73f65(4), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_on_the_house") && namespace_59ff1d6c::function_901b751c(#"hash_3d18f84f48bd5d1f"))
+	if(zm_custom::function_3ac936c6("zm_bgb_on_the_house") && zm_custom::function_901b751c(#"zmperksactive"))
 	{
 		level thread bgb::function_c6cd71d5("free_perk", self function_dfc73f65(5), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_immolation_liquidation"))
+	if(zm_custom::function_3ac936c6("zm_bgb_immolation_liquidation"))
 	{
 		level thread bgb::function_c6cd71d5("fire_sale", self function_dfc73f65(6), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_kill_joy"))
+	if(zm_custom::function_3ac936c6("zm_bgb_kill_joy"))
 	{
 		level thread bgb::function_c6cd71d5("insta_kill", self function_dfc73f65(7), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_cache_back"))
+	if(zm_custom::function_3ac936c6("zm_bgb_cache_back"))
 	{
 		level thread bgb::function_c6cd71d5("full_ammo", self function_dfc73f65(8), 96);
 	}
-	if(namespace_59ff1d6c::function_3ac936c6("zm_bgb_whos_keeping_score"))
+	if(zm_custom::function_3ac936c6("zm_bgb_whos_keeping_score"))
 	{
 		level thread bgb::function_c6cd71d5("double_points", self function_dfc73f65(9), 96);
 	}

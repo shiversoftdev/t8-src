@@ -12,7 +12,7 @@
 #namespace namespace_82497b8a;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_82497b8a
 	Checksum: 0xF50E6CF3
 	Offset: 0x520
@@ -20,9 +20,9 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_4e3cb1bcbc6c3c25", &__init__, undefined, undefined);
+	system::register(#"mansion_ww", &__init__, undefined, undefined);
 }
 
 /*
@@ -463,7 +463,7 @@ function function_84884488(localclientnum)
 	self endon(#"death");
 	self zm_utility::good_barricade_damaged(localclientnum);
 	wait(0.7);
-	self function_bf9d3071(#"hash_429426f01ad84c8b");
+	self playrenderoverridebundle(#"hash_429426f01ad84c8b");
 	wait(0.7);
 	if(self.archetype === #"zombie" || self.archetype === #"catalyst" || self.archetype === #"nosferatu")
 	{

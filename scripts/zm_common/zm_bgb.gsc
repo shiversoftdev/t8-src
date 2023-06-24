@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
-#using script_61a734c95edc17aa;
-#using script_6e3c826b1814cab6;
-#using script_ab890501c40b73c;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\zm_common\zm_bgb_pack.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
@@ -27,7 +27,7 @@
 #namespace bgb;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: bgb
 	Checksum: 0x9C672F76
 	Offset: 0x2B8
@@ -35,7 +35,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"bgb", &__init__, &__main__, undefined);
 }
@@ -151,14 +151,14 @@ function private bgb_player_init()
 		{
 			continue;
 		}
-		if(namespace_59ff1d6c::function_3ac936c6(str_bgb))
+		if(zm_custom::function_3ac936c6(str_bgb))
 		{
 			var_6e18a410[i] = str_bgb;
 			continue;
 		}
 		if(str_bgb != #"weapon_null" && self getbgbremaining(str_bgb) > 0)
 		{
-			self thread namespace_59ff1d6c::function_deae84ba();
+			self thread zm_custom::function_deae84ba();
 		}
 	}
 	self.bgb_pack = var_6e18a410;
@@ -200,17 +200,17 @@ function private bgb_player_init()
 			self bgb_pack::function_7b91e81c(i, level.bgb[self.bgb_pack[i]].item_index);
 		}
 	}
-	if(namespace_59ff1d6c::function_901b751c(#"hash_3ab7cedcfef7eacc"))
+	if(zm_custom::function_901b751c(#"hash_3ab7cedcfef7eacc"))
 	{
-		var_66dd5e25 = array(#"hash_a303f67afd6f4a8", #"zm_bgb_now_you_see_me");
+		var_66dd5e25 = array(#"zm_bgb_nowhere_but_there", #"zm_bgb_now_you_see_me");
 		n_rank = self rank::getrank() + 1;
 		foreach(bgb in level.bgb)
 		{
 			str_name = bgb.name;
-			if(bgb.rarity === 0 && str_name != #"hash_177ea318753f5418" && !array::contains(self.bgb_pack, str_name))
+			if(bgb.rarity === 0 && str_name != #"zm_bgb_point_drops" && !array::contains(self.bgb_pack, str_name))
 			{
 				var_544e77f8 = level.bgb[str_name].var_a1750d43;
-				if(!isdefined(var_544e77f8) || (isdefined(var_544e77f8) && n_rank >= var_544e77f8 || function_bea73b01() == 1) && namespace_59ff1d6c::function_3ac936c6(str_name))
+				if(!isdefined(var_544e77f8) || (isdefined(var_544e77f8) && n_rank >= var_544e77f8 || function_bea73b01() == 1) && zm_custom::function_3ac936c6(str_name))
 				{
 					if(!isinarray(var_66dd5e25, str_name))
 					{
@@ -279,11 +279,11 @@ function private bgb_finalize()
 			#/
 			continue;
 		}
-		if(!isdefined(var_5415dfb9.var_f5aaa47e))
+		if(!isdefined(var_5415dfb9.bgbrarity))
 		{
-			var_5415dfb9.var_f5aaa47e = 0;
+			var_5415dfb9.bgbrarity = 0;
 		}
-		v.rarity = var_5415dfb9.var_f5aaa47e;
+		v.rarity = var_5415dfb9.bgbrarity;
 		if(0 == v.rarity || 1 == v.rarity)
 		{
 			v.consumable = 0;
@@ -708,7 +708,7 @@ function function_a6c704c(bgb)
 	level endon(#"end_game");
 	self thread function_b331a28c(bgb);
 	self thread function_1f3eb76f(bgb);
-	util::delay(#"hash_7b6a55a9b65e3194", "death", &zm_audio::create_and_play_dialog, #"elixir", #"drink");
+	util::delay(#"offhand_fire", "death", &zm_audio::create_and_play_dialog, #"elixir", #"drink");
 	if(isdefined(level.bgb[bgb].var_4a9b0cdc) && level.bgb[bgb].var_4a9b0cdc || self function_e98aa964(1))
 	{
 		self notify(#"hash_27b238d082f65849", bgb);
@@ -753,10 +753,10 @@ function private bgb_get_gumball_anim_weapon(bgb)
 	var_ab8d8da3 = undefined;
 	if(isdefined(level.bgb[bgb]))
 	{
-		var_c16a4a5b = level.bgb[bgb].rarity;
-		if(isdefined(level.var_ddff6359) && isdefined(var_c16a4a5b))
+		n_rarity = level.bgb[bgb].rarity;
+		if(isdefined(level.var_ddff6359) && isdefined(n_rarity))
 		{
-			var_ab8d8da3 = level.var_ddff6359[var_c16a4a5b];
+			var_ab8d8da3 = level.var_ddff6359[n_rarity];
 		}
 	}
 	return var_ab8d8da3;

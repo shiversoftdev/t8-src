@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\lui_shared.csc;
 
-class class_81599b35 : class_6aaccc24
+class cbountyhunterbuy : cLUIelem
 {
 
 	/*
 		Name: constructor
-		Namespace: namespace_81599b35
+		Namespace: cbountyhunterbuy
 		Checksum: 0xD307BD93
 		Offset: 0x1A8
 		Size: 0x14
@@ -19,7 +19,7 @@ class class_81599b35 : class_6aaccc24
 
 	/*
 		Name: destructor
-		Namespace: namespace_81599b35
+		Namespace: cbountyhunterbuy
 		Checksum: 0xAEC7D2D4
 		Offset: 0x290
 		Size: 0x14
@@ -32,7 +32,7 @@ class class_81599b35 : class_6aaccc24
 
 	/*
 		Name: open
-		Namespace: namespace_81599b35
+		Namespace: cbountyhunterbuy
 		Checksum: 0x7FD1ABA6
 		Offset: 0x258
 		Size: 0x2C
@@ -41,12 +41,12 @@ class class_81599b35 : class_6aaccc24
 	*/
 	function open(localclientnum)
 	{
-		namespace_6aaccc24::open(localclientnum, #"bountyhunterbuy");
+		cLUIelem::open(localclientnum, #"bountyhunterbuy");
 	}
 
 	/*
 		Name: function_fa582112
-		Namespace: namespace_81599b35
+		Namespace: cbountyhunterbuy
 		Checksum: 0x4B8940AD
 		Offset: 0x228
 		Size: 0x24
@@ -55,12 +55,12 @@ class class_81599b35 : class_6aaccc24
 	*/
 	function function_fa582112(localclientnum)
 	{
-		namespace_6aaccc24::function_fa582112(localclientnum);
+		cLUIelem::function_fa582112(localclientnum);
 	}
 
 	/*
 		Name: function_5c1bb138
-		Namespace: namespace_81599b35
+		Namespace: cbountyhunterbuy
 		Checksum: 0xAA0C1B60
 		Offset: 0x1F8
 		Size: 0x24
@@ -69,12 +69,12 @@ class class_81599b35 : class_6aaccc24
 	*/
 	function function_5c1bb138(uid)
 	{
-		namespace_6aaccc24::function_5c1bb138(uid);
+		cLUIelem::function_5c1bb138(uid);
 	}
 
 	/*
 		Name: setup_clientfields
-		Namespace: namespace_81599b35
+		Namespace: cbountyhunterbuy
 		Checksum: 0xAE47EBA5
 		Offset: 0x1C8
 		Size: 0x24
@@ -83,7 +83,7 @@ class class_81599b35 : class_6aaccc24
 	*/
 	function setup_clientfields(uid)
 	{
-		namespace_6aaccc24::setup_clientfields(uid);
+		cLUIelem::setup_clientfields(uid);
 	}
 
 }
@@ -101,7 +101,7 @@ class class_81599b35 : class_6aaccc24
 */
 function register(uid)
 {
-	elem = new class_81599b35();
+	elem = new cbountyhunterbuy();
 	[[ elem ]]->setup_clientfields(uid);
 	return elem;
 }
@@ -117,7 +117,7 @@ function register(uid)
 */
 function function_5c1bb138(uid)
 {
-	elem = new class_81599b35();
+	elem = new cbountyhunterbuy();
 	[[ elem ]]->function_5c1bb138(uid);
 	return elem;
 }

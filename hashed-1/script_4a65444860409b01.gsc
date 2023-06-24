@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_57f7003580bb15e0;
+#using scripts\core_common\status_effects\status_effect_util.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_dafacbee;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_dafacbee
 	Checksum: 0xB0B7759C
 	Offset: 0x88
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_221a828ea2610a47", &__init__, undefined, undefined);
 }
@@ -29,7 +29,7 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	status_effect::function_6f4eaf88(function_4d1e7b48("movement"));
+	status_effect::function_6f4eaf88(getstatuseffect("movement"));
 	status_effect::function_5bae5120(8, &function_f7e9c0bb);
 }
 

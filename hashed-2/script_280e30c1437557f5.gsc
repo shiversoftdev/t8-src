@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_8abfb58852911dd;
+#using scripts\mp_common\item_world.gsc;
 #using scripts\core_common\struct.gsc;
 #using scripts\core_common\system_shared.gsc;
 
 #namespace namespace_d0937679;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_d0937679
 	Checksum: 0xDDD7F5DF
 	Offset: 0xC8
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_1f56d362760c2c6b", &__init__, undefined, undefined);
 }
@@ -45,10 +45,10 @@ function __init__()
 */
 function function_61a426a5()
 {
-	var_37f8a843 = getdvarint(#"hash_79ed3a19e0cdd3c5", -1);
-	if(var_37f8a843 < 0)
+	debug_pos = getdvarint(#"hash_79ed3a19e0cdd3c5", -1);
+	if(debug_pos < 0)
 	{
-		var_37f8a843 = undefined;
+		debug_pos = undefined;
 	}
 	zombie_apoc_homunculus = getdynent("zombie_apoc_homunculus");
 	if(!isdefined(zombie_apoc_homunculus) && (!(isdefined(level.var_fdbdcdfd) && level.var_fdbdcdfd)))
@@ -69,10 +69,10 @@ function function_61a426a5()
 				points[randindex] = var_521b73a;
 			}
 			randindex = function_d59c2d03(points.size);
-			if(isdefined(var_37f8a843))
+			if(isdefined(debug_pos))
 			{
-				zombie_apoc_homunculus.origin = points[var_37f8a843].origin;
-				zombie_apoc_homunculus.angles = points[var_37f8a843].angles;
+				zombie_apoc_homunculus.origin = points[debug_pos].origin;
+				zombie_apoc_homunculus.angles = points[debug_pos].angles;
 			}
 			else
 			{

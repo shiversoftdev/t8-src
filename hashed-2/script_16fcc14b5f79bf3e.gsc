@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_52c6c2d1a2ef1b46;
-#using script_6021ce59143452c3;
-#using script_64ef785dc7ba19d9;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm\zm_red_main_quest.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
@@ -9,7 +9,7 @@
 #namespace namespace_efec71f7;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: namespace_efec71f7
 	Checksum: 0xE552E8F9
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hash_3db89e7dfe4633b0", &__init__, undefined, undefined);
 }
@@ -37,11 +37,11 @@ function __init__()
 	{
 		return;
 	}
-	zm_trial::register_challenge(#"hash_285312733a97eea3", &function_d1de6a85, &function_9e7b3f4d);
+	zm_trial::register_challenge(#"hash_285312733a97eea3", &on_begin, &on_end);
 }
 
 /*
-	Name: function_d1de6a85
+	Name: on_begin
 	Namespace: namespace_efec71f7
 	Checksum: 0x9F359C0E
 	Offset: 0x148
@@ -49,9 +49,9 @@ function __init__()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_d1de6a85()
+function private on_begin()
 {
-	level namespace_6747c550::function_7df6bb60(#"hash_566a6ec283e2360a", 5);
+	level zm_ui_inventory::function_7df6bb60(#"hash_566a6ec283e2360a", 5);
 	if(!(isdefined(level.var_4e4909a6) && level.var_4e4909a6))
 	{
 		level thread function_57755268();
@@ -59,7 +59,7 @@ function private function_d1de6a85()
 }
 
 /*
-	Name: function_9e7b3f4d
+	Name: on_end
 	Namespace: namespace_efec71f7
 	Checksum: 0x897829D7
 	Offset: 0x1B8
@@ -67,7 +67,7 @@ function private function_d1de6a85()
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9e7b3f4d(round_reset)
+function private on_end(round_reset)
 {
 	if(!round_reset)
 	{
@@ -92,8 +92,8 @@ function function_57755268()
 {
 	level endon(#"end_game");
 	level.var_4e4909a6 = 1;
-	namespace_31170709::play_think();
-	namespace_31170709::play_cleanup(0, 0);
+	zm_red_main_quest::play_think();
+	zm_red_main_quest::play_cleanup(0, 0);
 	level.var_84199d1 = 1;
 	level.var_4e4909a6 = undefined;
 	level endon(#"hash_7646638df88a3656");
