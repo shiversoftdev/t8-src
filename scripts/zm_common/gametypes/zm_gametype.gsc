@@ -1,44 +1,44 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_256b8879317373de;
 #using script_4194df57536e11ed;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\hud_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\lui_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\music_shared.gsc;
-#using scripts\core_common\spawner_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\zm_common\gametypes\globallogic.gsc;
-#using scripts\zm_common\gametypes\globallogic_defaults.gsc;
-#using scripts\zm_common\gametypes\globallogic_score.gsc;
-#using scripts\zm_common\gametypes\globallogic_spawn.gsc;
-#using scripts\zm_common\gametypes\globallogic_ui.gsc;
-#using scripts\zm_common\gametypes\globallogic_utils.gsc;
-#using scripts\zm_common\gametypes\hud_message.gsc;
-#using scripts\zm_common\gametypes\spawning.gsc;
-#using scripts\zm_common\util.gsc;
-#using scripts\zm_common\zm.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_blockers.gsc;
-#using scripts\zm_common\zm_game_module.gsc;
-#using scripts\zm_common\zm_laststand.gsc;
-#using scripts\zm_common\zm_player.gsc;
-#using scripts\zm_common\zm_spawner.gsc;
-#using scripts\zm_common\zm_stats.gsc;
 #using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_spawner.gsc;
+#using scripts\zm_common\zm_player.gsc;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_laststand.gsc;
+#using scripts\zm_common\zm_game_module.gsc;
+#using scripts\zm_common\zm_blockers.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\zm_common\zm.gsc;
+#using scripts\zm_common\util.gsc;
+#using scripts\zm_common\gametypes\spawning.gsc;
+#using scripts\zm_common\gametypes\hud_message.gsc;
+#using scripts\zm_common\gametypes\globallogic_utils.gsc;
+#using scripts\zm_common\gametypes\globallogic_ui.gsc;
+#using scripts\zm_common\gametypes\globallogic_spawn.gsc;
+#using scripts\zm_common\gametypes\globallogic_score.gsc;
+#using scripts\zm_common\gametypes\globallogic_defaults.gsc;
+#using scripts\zm_common\gametypes\globallogic.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\spawner_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\music_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\lui_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\hud_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace zm_gametype;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_gametype
 	Checksum: 0x8616FA34
 	Offset: 0x570
@@ -46,7 +46,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_gametype", &__init__, undefined, undefined);
 }
@@ -114,7 +114,7 @@ function main()
 	game._team1_num = 0;
 	game._team2_num = 0;
 	map_name = level.script;
-	mode = util::function_5df4294();
+	mode = util::get_game_type();
 	if(!isdefined(mode) || mode == "" && isdefined(level.default_game_mode))
 	{
 		mode = level.default_game_mode;
@@ -136,7 +136,7 @@ function main()
 	{
 		game.switchedsides = 0;
 	}
-	gametype = util::function_5df4294();
+	gametype = util::get_game_type();
 	game.dialog[#"gametype"] = gametype + "_start";
 	game.dialog[#"gametype_hardcore"] = gametype + "_start";
 	game.dialog[#"offense_obj"] = "generic_boost";
@@ -146,7 +146,7 @@ function main()
 	zm_utility::set_gamemode_var("match_end_notify", undefined);
 	zm_utility::set_gamemode_var("match_end_func", undefined);
 	bundle = function_302bd0b9();
-	setvisiblescoreboardcolumns(bundle.var_6d99d15e, bundle.var_7be9edfe, bundle.var_8f7881b, bundle.var_1744a4b5, bundle.var_267a4320, bundle.var_d4259e74, bundle.var_54dd9ff6, bundle.var_5ee7b40a);
+	setvisiblescoreboardcolumns(bundle.scoreboard_1, bundle.scoreboard_2, bundle.scoreboard_3, bundle.scoreboard_4, bundle.scoreboard_5, bundle.var_d4259e74, bundle.var_54dd9ff6, bundle.var_5ee7b40a);
 	callback::on_connect(&onplayerconnect_check_for_hotjoin);
 }
 
@@ -537,7 +537,7 @@ function onspawnplayer(predictedspawn = 0)
 */
 function get_player_spawns_for_gametype()
 {
-	var_19c35ca = [];
+	a_s_player_spawns = [];
 	a_structs = struct::get_array("player_respawn_point", "targetname");
 	foreach(struct in a_structs)
 	{
@@ -548,30 +548,30 @@ function get_player_spawns_for_gametype()
 			{
 				if(var_5d975b01 == level.scr_zm_ui_gametype)
 				{
-					if(!isdefined(var_19c35ca))
+					if(!isdefined(a_s_player_spawns))
 					{
-						var_19c35ca = [];
+						a_s_player_spawns = [];
 					}
-					else if(!isarray(var_19c35ca))
+					else if(!isarray(a_s_player_spawns))
 					{
-						var_19c35ca = array(var_19c35ca);
+						a_s_player_spawns = array(a_s_player_spawns);
 					}
-					var_19c35ca[var_19c35ca.size] = struct;
+					a_s_player_spawns[a_s_player_spawns.size] = struct;
 				}
 			}
 			continue;
 		}
-		if(!isdefined(var_19c35ca))
+		if(!isdefined(a_s_player_spawns))
 		{
-			var_19c35ca = [];
+			a_s_player_spawns = [];
 		}
-		else if(!isarray(var_19c35ca))
+		else if(!isarray(a_s_player_spawns))
 		{
-			var_19c35ca = array(var_19c35ca);
+			a_s_player_spawns = array(a_s_player_spawns);
 		}
-		var_19c35ca[var_19c35ca.size] = struct;
+		a_s_player_spawns[a_s_player_spawns.size] = struct;
 	}
-	return var_19c35ca;
+	return a_s_player_spawns;
 }
 
 /*
@@ -638,7 +638,7 @@ function menu_init()
 	game.menu[#"menu_changeclass"] = "ChooseClass_InGame";
 	game.menu[#"menu_changeclass_offline"] = "ChooseClass_InGame";
 	game.menu[#"menu_changeclass_custom"] = "changeclass_custom";
-	game.menu[#"hash_644a9c94f3d35a8a"] = "PositionDraft";
+	game.menu[#"menu_draft"] = "PositionDraft";
 	game.menu[#"menu_controls"] = "ingame_controls";
 	game.menu[#"menu_options"] = "ingame_options";
 	game.menu[#"menu_leavegame"] = "popup_leavegame";
@@ -660,7 +660,7 @@ function menu_onplayerconnect()
 }
 
 /*
-	Name: function_22d79e6e
+	Name: zm_map_restart
 	Namespace: zm_gametype
 	Checksum: 0x6C84FDB
 	Offset: 0x2230
@@ -668,7 +668,7 @@ function menu_onplayerconnect()
 	Parameters: 0
 	Flags: Linked
 */
-function function_22d79e6e()
+function zm_map_restart()
 {
 	self endon(#"disconnect");
 	while(!function_65f7de49())
@@ -1061,7 +1061,7 @@ function player_hotjoin()
 */
 function initialblackend()
 {
-	initial_black = lui::function_e810a527("InitialBlack");
+	initial_black = lui::get_luimenu("InitialBlack");
 	initial_black initial_black::close(self);
 }
 
@@ -1092,7 +1092,7 @@ function private function_788fb510(value)
 	Parameters: 8
 	Flags: Linked
 */
-function setvisiblescoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15af6c19, var_217983ad)
+function setvisiblescoreboardcolumns(col1, col2, col3, col4, col5, col6, col7, col8)
 {
 	col1 = function_788fb510(col1);
 	col2 = function_788fb510(col2);
@@ -1100,8 +1100,8 @@ function setvisiblescoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15a
 	col4 = function_788fb510(col4);
 	col5 = function_788fb510(col5);
 	col6 = function_788fb510(col6);
-	var_15af6c19 = function_788fb510(var_15af6c19);
-	var_217983ad = function_788fb510(var_217983ad);
-	setscoreboardcolumns(col1, col2, col3, col4, col5, col6, var_15af6c19, var_217983ad);
+	col7 = function_788fb510(col7);
+	col8 = function_788fb510(col8);
+	setscoreboardcolumns(col1, col2, col3, col4, col5, col6, col7, col8);
 }
 

@@ -1,17 +1,17 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\animation_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace scene;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: scene
 	Checksum: 0xCAA30233
 	Offset: 0xA8
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"scene_debug", &function_c3c9d0e5, undefined, undefined);
@@ -403,7 +403,7 @@ function display_scene_menu(str_type, str_scene)
 		{
 			selected = 0;
 		}
-		if(!b_shot_menu && !level flagsys::get(#"hash_20a4053fe3e70f8"))
+		if(!b_shot_menu && !level flagsys::get(#"scene_menu_disable"))
 		{
 			debug2dtext((150, 410 + 400, 0), "", (1, 1, 1), 1, (0, 0, 0), 1, 2);
 		}
@@ -646,7 +646,7 @@ function display_scene_menu(str_type, str_scene)
 function function_c0f30783(s_scenedef)
 {
 	/#
-		if(!(isdefined(s_scenedef.var_241c5f3c) && s_scenedef.var_241c5f3c) || (isdefined(s_scenedef.var_241c5f3c) && s_scenedef.var_241c5f3c && getdvarint(#"hash_11ad6a9695943217", 0)))
+		if(!(isdefined(s_scenedef.var_241c5f3c) && s_scenedef.var_241c5f3c) || (isdefined(s_scenedef.var_241c5f3c) && s_scenedef.var_241c5f3c && getdvarint(#"zm_debug_ee", 0)))
 		{
 			return true;
 		}
@@ -706,15 +706,15 @@ function function_940c526f()
 function scene_list_settext(strings, n_selected, str_title, b_shot_menu, var_444abf97)
 {
 	/#
-		if(!level flagsys::get(#"hash_20a4053fe3e70f8"))
+		if(!level flagsys::get(#"scene_menu_disable"))
 		{
-			thread function_e67dabcc(strings, n_selected, str_title, b_shot_menu, var_444abf97);
+			thread _scene_list_settext(strings, n_selected, str_title, b_shot_menu, var_444abf97);
 		}
 	#/
 }
 
 /*
-	Name: function_e67dabcc
+	Name: _scene_list_settext
 	Namespace: scene
 	Checksum: 0xA9684AF9
 	Offset: 0x2050
@@ -722,7 +722,7 @@ function scene_list_settext(strings, n_selected, str_title, b_shot_menu, var_444
 	Parameters: 5
 	Flags: Private
 */
-function private function_e67dabcc(strings, n_selected, str_title, b_shot_menu, var_444abf97)
+function private _scene_list_settext(strings, n_selected, str_title, b_shot_menu, var_444abf97)
 {
 	/#
 		if(!isdefined(b_shot_menu))
@@ -839,7 +839,7 @@ function function_3bafd088(var_a572f325)
 {
 	/#
 		/#
-			if(getdvarint(#"hash_356851cac5b69fb7", 0) > 0 && getdvarint(#"hash_2aa16f268802da43", 0) > 0)
+			if(getdvarint(#"dvr_enable", 0) > 0 && getdvarint(#"scr_scene_dvr", 0) > 0)
 			{
 				if(!isdefined(var_a572f325))
 				{
@@ -872,7 +872,7 @@ function function_d2785094(var_a572f325)
 {
 	/#
 		/#
-			if(getdvarint(#"hash_356851cac5b69fb7", 0) > 0 && getdvarint(#"hash_2aa16f268802da43", 0) > 0)
+			if(getdvarint(#"dvr_enable", 0) > 0 && getdvarint(#"scr_scene_dvr", 0) > 0)
 			{
 				var_3ee40508 = 0;
 				var_2640d68e = 0;
@@ -1017,7 +1017,7 @@ function debug_display(debug_frames)
 			}
 			else if(isdefined(self.scriptbundlename))
 			{
-				if(function_7a600918(self.scriptbundlename))
+				if(ishash(self.scriptbundlename))
 				{
 					str_scene = function_9e72a96(self.scriptbundlename);
 				}
@@ -1209,9 +1209,9 @@ function function_42edf155()
 			var_45ec9741 = getdvarint(#"hash_1c68b689a2dac0fa", 0);
 			if(var_45ec9741 != 0)
 			{
-				var_ddf8730e = 0;
-				var_d039d791 = 0;
-				var_506e57f8 = 0;
+				position_x = 0;
+				position_y = 0;
+				position_z = 0;
 				angle_x = 0;
 				angle_y = 0;
 				angle_z = 0;
@@ -1224,16 +1224,16 @@ function function_42edf155()
 					{
 						s = animation::_get_align_pos(s, align_tag);
 					}
-					var_ddf8730e = s.origin[0];
-					var_d039d791 = s.origin[1];
-					var_506e57f8 = s.origin[2];
+					position_x = s.origin[0];
+					position_y = s.origin[1];
+					position_z = s.origin[2];
 					angle_x = s.angles[0];
 					angle_y = s.angles[1];
 					angle_z = s.angles[2];
 				}
-				setdvar(#"hash_6c03d4e558bf8abd", var_ddf8730e);
-				setdvar(#"hash_6c03d3e558bf890a", var_d039d791);
-				setdvar(#"hash_6c03d2e558bf8757", var_506e57f8);
+				setdvar(#"hash_6c03d4e558bf8abd", position_x);
+				setdvar(#"hash_6c03d3e558bf890a", position_y);
+				setdvar(#"hash_6c03d2e558bf8757", position_z);
 				setdvar(#"hash_277ac0be2726df0f", angle_x);
 				setdvar(#"hash_277abfbe2726dd5c", angle_y);
 				setdvar(#"hash_277ac2be2726e275", angle_z);

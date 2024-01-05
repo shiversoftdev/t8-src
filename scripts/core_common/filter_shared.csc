@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\postfx_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
 
 #namespace filter;
 
@@ -118,10 +118,10 @@ function function_74649ba9(player, filterid, pass, enable)
 	Parameters: 4
 	Flags: Linked
 */
-function function_83a54227(var_c0105b9a, filterid, pass, enable)
+function function_83a54227(locaclientnum, filterid, pass, enable)
 {
 	util::function_89a98f85();
-	setfilterpassenabled(var_c0105b9a, filterid, pass, enable);
+	setfilterpassenabled(locaclientnum, filterid, pass, enable);
 }
 
 /*

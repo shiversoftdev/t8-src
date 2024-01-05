@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6e3c826b1814cab6;
-#using script_782b5203722a7801;
+#using scripts\zm\weapons\zm_weap_crossbow.gsc;
+#using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_challenges.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
-#using scripts\zm_common\zm_challenges.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_utility.gsc;
-#using scripts\zm_common\zm_zonemgr.gsc;
 
-#namespace namespace_26ab2959;
+#namespace zm_towers_achievements;
 
 /*
 	Name: init
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x7939A4F2
 	Offset: 0x248
 	Size: 0x1A4
@@ -39,7 +39,7 @@ function init()
 
 /*
 	Name: function_45057dc4
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x20BD41E4
 	Offset: 0x3F8
 	Size: 0x7C
@@ -53,13 +53,13 @@ function function_45057dc4()
 	self waittill(#"challenges_complete");
 	self zm_utility::giveachievement_wrapper("zm_towers_challenges");
 	/#
-		self function_53b04cab("");
+		self debug_notification("");
 	#/
 }
 
 /*
 	Name: function_131495a5
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x9CA42380
 	Offset: 0x480
 	Size: 0xE4
@@ -74,23 +74,23 @@ function function_131495a5()
 	self endon(#"disconnect");
 	while(true)
 	{
-		var_be17187b = undefined;
-		var_be17187b = self waittill(#"weapon_change");
-		w_weapon = var_be17187b.weapon;
-		if(namespace_10f9f462::function_a2c527e5(w_weapon))
+		s_waitresult = undefined;
+		s_waitresult = self waittill(#"weapon_change");
+		w_weapon = s_waitresult.weapon;
+		if(zm_weap_crossbow::function_a2c527e5(w_weapon))
 		{
 			break;
 		}
 	}
 	self zm_utility::giveachievement_wrapper("zm_towers_get_ww");
 	/#
-		self function_53b04cab("");
+		self debug_notification("");
 	#/
 }
 
 /*
 	Name: function_7b7ba154
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0xE5BF8A9
 	Offset: 0x570
 	Size: 0x174
@@ -104,8 +104,8 @@ function function_7b7ba154(s_params)
 	{
 		return;
 	}
-	var_64c09f7f = e_attacker.activated_by_player;
-	if(!isplayer(var_64c09f7f))
+	e_activator = e_attacker.activated_by_player;
+	if(!isplayer(e_activator))
 	{
 		return;
 	}
@@ -144,13 +144,13 @@ function function_7b7ba154(s_params)
 			return;
 		}
 	}
-	var_64c09f7f zm_stats::increment_client_stat(var_378e29b9, 1);
-	var_64c09f7f thread function_9bb7596b();
+	e_activator zm_stats::increment_client_stat(var_378e29b9, 1);
+	e_activator thread function_9bb7596b();
 }
 
 /*
 	Name: function_9bb7596b
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x811762DB
 	Offset: 0x6F0
 	Size: 0xEC
@@ -159,10 +159,10 @@ function function_7b7ba154(s_params)
 */
 function function_9bb7596b()
 {
-	b_ra = self zm_stats::function_eb50d9bf("towers_acid_trap_built_ra");
-	b_danu = self zm_stats::function_eb50d9bf("towers_acid_trap_built_danu");
-	b_odin = self zm_stats::function_eb50d9bf("towers_acid_trap_built_odin");
-	b_zeus = self zm_stats::function_eb50d9bf("towers_acid_trap_built_zeus");
+	b_ra = self zm_stats::get_client_stat("towers_acid_trap_built_ra");
+	b_danu = self zm_stats::get_client_stat("towers_acid_trap_built_danu");
+	b_odin = self zm_stats::get_client_stat("towers_acid_trap_built_odin");
+	b_zeus = self zm_stats::get_client_stat("towers_acid_trap_built_zeus");
 	if(b_ra && b_danu && b_odin && b_zeus)
 	{
 		self zm_utility::giveachievement_wrapper("zm_towers_trap_build");
@@ -171,7 +171,7 @@ function function_9bb7596b()
 
 /*
 	Name: function_3cbde7f5
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x77F9E2E8
 	Offset: 0x7E8
 	Size: 0x154
@@ -201,14 +201,14 @@ function function_3cbde7f5(s_params)
 		e_player flag::set(#"hash_599401a7cc5b8a84");
 		e_player zm_utility::giveachievement_wrapper("zm_towers_ww_kills");
 		/#
-			e_player function_53b04cab("");
+			e_player debug_notification("");
 		#/
 	}
 }
 
 /*
 	Name: function_5180cfce
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x95C781AB
 	Offset: 0x948
 	Size: 0xE0
@@ -219,7 +219,7 @@ function function_5180cfce(s_params)
 {
 	e_projectile = s_params.einflictor;
 	w_weapon = s_params.weapon;
-	if(!isdefined(w_weapon) || !namespace_10f9f462::is_crossbow(w_weapon) || namespace_10f9f462::function_c6da1395(w_weapon))
+	if(!isdefined(w_weapon) || !zm_weap_crossbow::is_crossbow(w_weapon) || zm_weap_crossbow::function_c6da1395(w_weapon))
 	{
 		return undefined;
 	}
@@ -228,7 +228,7 @@ function function_5180cfce(s_params)
 		return undefined;
 	}
 	var_73e48d1a = e_projectile.weapon;
-	if(!isdefined(var_73e48d1a) || !namespace_10f9f462::is_crossbow(var_73e48d1a) || namespace_10f9f462::function_c6da1395(var_73e48d1a))
+	if(!isdefined(var_73e48d1a) || !zm_weap_crossbow::is_crossbow(var_73e48d1a) || zm_weap_crossbow::function_c6da1395(var_73e48d1a))
 	{
 		return undefined;
 	}
@@ -237,7 +237,7 @@ function function_5180cfce(s_params)
 
 /*
 	Name: function_b43c1bad
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x95705AF6
 	Offset: 0xA30
 	Size: 0x13C
@@ -263,14 +263,14 @@ function function_b43c1bad(s_params)
 		e_player flag::set(#"hash_4969e1eae9bf556f");
 		e_player zm_utility::giveachievement_wrapper("zm_towers_kitty_kitty");
 		/#
-			e_player function_53b04cab("");
+			e_player debug_notification("");
 		#/
 	}
 }
 
 /*
 	Name: function_cda4b8ba
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x549B488B
 	Offset: 0xB78
 	Size: 0x13C
@@ -294,14 +294,14 @@ function function_cda4b8ba(e_attacker)
 		e_attacker flag::set(#"hash_2086e93d2f58efce");
 		e_attacker zm_utility::giveachievement_wrapper("zm_towers_dismember");
 		/#
-			e_attacker function_53b04cab("");
+			e_attacker debug_notification("");
 		#/
 	}
 }
 
 /*
 	Name: function_a24ba4fc
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x499F37DA
 	Offset: 0xCC0
 	Size: 0xAC
@@ -312,7 +312,7 @@ function function_a24ba4fc()
 {
 	zm_utility::giveachievement_wrapper("zm_towers_boss_kill", 1);
 	/#
-		self function_53b04cab("");
+		self debug_notification("");
 	#/
 	self zm_challenges::function_9a9ab6f6(#"hash_6d5340d9e43ed73d");
 	if(isdefined(level.var_2d744147) && level.var_2d744147 <= 5940000)
@@ -323,7 +323,7 @@ function function_a24ba4fc()
 
 /*
 	Name: function_a87d82d1
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0xF237F5E3
 	Offset: 0xD78
 	Size: 0x74
@@ -340,7 +340,7 @@ function function_a87d82d1()
 
 /*
 	Name: function_6fdb733f
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x8E90193C
 	Offset: 0xDF8
 	Size: 0x124
@@ -367,13 +367,13 @@ function function_6fdb733f()
 	}
 	self zm_utility::giveachievement_wrapper("zm_towers_arena_survive");
 	/#
-		self function_53b04cab("");
+		self debug_notification("");
 	#/
 }
 
 /*
 	Name: function_cbdb5e70
-	Namespace: namespace_26ab2959
+	Namespace: zm_towers_achievements
 	Checksum: 0x41A4CB89
 	Offset: 0xF28
 	Size: 0x1A8
@@ -383,7 +383,7 @@ function function_6fdb733f()
 function function_cbdb5e70()
 {
 	level endon(#"end_game");
-	if(namespace_59ff1d6c::function_901b751c(#"hash_19d48a0d4490b0a2") == 2)
+	if(zm_custom::function_901b751c(#"zmpapenabled") == 2)
 	{
 		return;
 	}
@@ -402,7 +402,7 @@ function function_cbdb5e70()
 			{
 				e_player zm_utility::giveachievement_wrapper("zm_towers_fast_pap");
 				/#
-					e_player function_53b04cab("");
+					e_player debug_notification("");
 				#/
 			}
 		}
@@ -410,15 +410,15 @@ function function_cbdb5e70()
 }
 
 /*
-	Name: function_53b04cab
-	Namespace: namespace_26ab2959
+	Name: debug_notification
+	Namespace: zm_towers_achievements
 	Checksum: 0xC5C61DD6
 	Offset: 0x10D8
 	Size: 0x74
 	Parameters: 1
 	Flags: Private
 */
-function private function_53b04cab(var_378e29b9)
+function private debug_notification(var_378e29b9)
 {
 	/#
 		if(!isdefined(var_378e29b9))

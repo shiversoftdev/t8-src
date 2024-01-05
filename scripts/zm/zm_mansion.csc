@@ -1,37 +1,37 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_13a302ecb87a29fe;
-#using script_14d2d89964cae0b1;
-#using script_168eb2ab39a74080;
-#using script_1ebb85ae10368663;
-#using script_21b99e2f421608bf;
-#using script_27ba6748d83412fd;
-#using script_2c454d63a96d2d0b;
-#using script_2d9c4a173633aa72;
-#using script_2e85434cebf2404b;
-#using script_30ace59de1b1bb3a;
-#using script_3cd7be071a3f1ce0;
+#using scripts\zm_common\zm_ui_inventory.csc;
 #using script_42dd312945896668;
-#using script_47c293f002042d7e;
-#using script_5fb8da2731850d9e;
-#using script_67051bc8c81031aa;
-#using script_6b91760bb3045851;
-#using script_6c494cd6189bb8dc;
-#using script_74f5ae6ffc8bd614;
-#using script_76b36ed1b7a51ed2;
-#using script_7ef002db7fb88ad0;
-#using scripts\core_common\ai_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\fx_shared.csc;
-#using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm\zm_mansion_pap_quest.csc;
-#using scripts\zm\zm_mansion_sound.csc;
+#using scripts\zm\weapons\zm_weap_riotshield.csc;
+#using scripts\zm\zm_mansion_traps_firegates.csc;
 #using scripts\zm\zm_trap_electric.csc;
-#using scripts\zm_common\load.csc;
+#using script_14d2d89964cae0b1;
+#using scripts\zm\ai\zm_ai_bat.csc;
+#using script_5fb8da2731850d9e;
+#using scripts\zm\zm_mansion_storage.csc;
+#using scripts\zm\zm_mansion_impaler.csc;
+#using scripts\zm\zm_mansion_triad.csc;
+#using script_3cd7be071a3f1ce0;
+#using scripts\zm\zm_mansion_sound.csc;
+#using scripts\zm\zm_mansion_ww_lvl3_quest.csc;
+#using scripts\zm\zm_mansion_silver_bullet.csc;
+#using scripts\zm\zm_mansion_pap_quest.csc;
+#using script_2d9c4a173633aa72;
+#using scripts\zm\zm_mansion_jordans.csc;
+#using scripts\zm\zm_mansion_boss_ww.csc;
+#using script_6c494cd6189bb8dc;
+#using scripts\zm_common\zm_characters.csc;
 #using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
+#using scripts\zm_common\zm_fasttravel.csc;
+#using scripts\zm_common\zm_audio_sq.csc;
+#using scripts\zm_common\load.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\struct.csc;
+#using scripts\core_common\fx_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\ai_shared.csc;
 
 #namespace zm_mansion;
 
@@ -66,15 +66,15 @@ event main(eventstruct)
 	clientfield::register("world", "" + #"hash_42e03f9ae74a1070", 8000, 1, "int", &function_64968a3c, 0, 0);
 	clientfield::register("vehicle", "" + #"hash_602ae5683c010563", 8000, 1, "int", &function_94cf8d37, 0, 0);
 	clientfield::register("vehicle", "" + #"hash_4bd91c5285da0899", 8000, 1, "counter", &function_cb417790, 0, 0);
-	clientfield::register("scriptmover", "" + #"soul_fx", 8000, 1, "int", &namespace_b8f22955::soul_release, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_60051e21f8eb4af", 8000, 1, "int", &function_39b69f3f, 0, 0);
+	clientfield::register("scriptmover", "" + #"soul_fx", 8000, 1, "int", &mansion_pap::soul_release, 0, 0);
+	clientfield::register("scriptmover", "" + #"stone_pickup", 8000, 1, "int", &function_39b69f3f, 0, 0);
 	clientfield::register("actor", "" + #"clock_zombie", 8000, 1, "int", &clock_zombie_fx, 0, 0);
-	clientfield::register("actor", "" + #"hash_1d0080ad80fd0913", 8000, 1, "int", &function_8048af7e, 0, 0);
+	clientfield::register("actor", "" + #"wisp_kill", 8000, 1, "int", &function_8048af7e, 0, 0);
 	clientfield::register("scriptmover", "" + #"blocker_fx", 8000, 1, "int", &function_328d64bd, 0, 0);
-	clientfield::register("item", "" + #"hash_524ec892754aeb34", 8000, 1, "int", &function_d86e0cb2, 0, 0);
+	clientfield::register("item", "" + #"ww_pickup_part", 8000, 1, "int", &function_d86e0cb2, 0, 0);
 	clientfield::register("item", "" + #"hash_35ce4034ca7e543c", 8000, 3, "int", &function_46bf4199, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_487e544e29aa8e45", 8000, 1, "int", &function_97aef6ef, 0, 0);
-	clientfield::register("scriptmover", "" + #"hash_65180cdab951d111", 8000, getminbitcountfornum(3), "int", &function_be42dd6a, 0, 0);
+	clientfield::register("scriptmover", "" + #"activate_mansion_artifact", 8000, getminbitcountfornum(3), "int", &function_be42dd6a, 0, 0);
 	clientfield::register("scriptmover", "" + #"hash_44ee99a6591fe600", 8000, 1, "int", &function_9e061782, 0, 0);
 	clientfield::register("toplayer", "" + #"hash_6a4f537da00ae3f9", 8000, 1, "int", &function_dba1f701, 0, 0);
 	clientfield::register("world", "" + #"hash_7fcdc47572bdbafa", 8000, 1, "int", &function_ce859d3a, 0, 0);
@@ -85,15 +85,15 @@ event main(eventstruct)
 	level._effect[#"bloodspurt"] = #"zombie/fx_bul_flesh_neck_spurt_zmb";
 	level._effect[#"animscript_gib_fx"] = #"zombie/fx_blood_torso_explo_zmb";
 	level._effect[#"animscript_gibtrail_fx"] = #"blood/fx_blood_gib_limb_trail";
-	level._effect[#"hash_6afea56d1e14f1c8"] = #"hash_6009053e911b946a";
+	level._effect[#"power_on_projectile"] = #"hash_6009053e911b946a";
 	level._effect[#"hash_50da8a1de7ce18da"] = #"hash_6c0eb029adb5f6c6";
 	level._effect[#"clock_zombie"] = #"hash_52239162cbb1d01f";
 	level._effect[#"clock_zombie_le"] = #"hash_5a3bedd0f4e1fb20";
 	level._effect[#"clock_zombie_ri"] = #"hash_5a7915d0f515ed36";
 	level._effect[#"clock_zombie_eye"] = #"hash_482a9c9681f3db75";
 	level._effect[#"wisp_impact"] = #"zm_weapons/fx8_equip_mltv_fire_human_torso_loop_zm";
-	level._effect[#"hash_60051e21f8eb4af"] = #"zombie/fx8_wallbuy_reveal";
-	level._effect[#"hash_3bae53461accaa0b"] = #"hash_425c28d5fded81f2";
+	level._effect[#"stone_pickup"] = #"zombie/fx8_wallbuy_reveal";
+	level._effect[#"zone_lockdown"] = #"hash_425c28d5fded81f2";
 	level._effect[#"hash_1a4566b6595544b4"] = #"hash_5b773dbbac0012ff";
 	level._effect[#"hash_1a46c58a5032bb15"] = #"zombie/fx_ritual_barrier_defend_door_wide_zod_zmb";
 	level._effect[#"ww_pickup"] = #"hash_4b275679ef930b50";
@@ -101,7 +101,7 @@ event main(eventstruct)
 	level._effect[#"hash_6f8a5a3faaac0b2d"] = #"hash_531e5c5efe735df0";
 	level._effect[#"hash_6e809770685a03ce"] = #"hash_57e793068bee3c8e";
 	level._effect[#"hash_5b93caeacd0dbde4"] = #"hash_37a3c4156a246da4";
-	level._effect[#"hash_6afea56d1e14f1c8"] = #"hash_6009053e911b946a";
+	level._effect[#"power_on_projectile"] = #"hash_6009053e911b946a";
 	level._effect[#"hash_50da8a1de7ce18da"] = #"hash_6c0eb029adb5f6c6";
 	level._effect[#"hash_55cc40c5ca8b259d"] = #"zombie/fx_ritual_sacrafice_glow_head_zod_zmb";
 	level._effect[#"hash_679e221c06d83988"] = #"hash_3c61e7e3069ee8a7";
@@ -114,7 +114,7 @@ event main(eventstruct)
 	level._effect[#"hash_8f58d28b0b40b2d"] = #"hash_18d057b947ae0c00";
 	level._effect[#"hash_36f6dd55e72db9a6"] = #"hash_59dbd1f9476a0415";
 	level._effect[#"hash_487e544e29aa8e45"] = #"hash_7ad8856e251bee77";
-	level._effect[#"hash_581c81003eac976f"] = #"hash_3def678deb7f4078";
+	level._effect[#"artifact_aura"] = #"hash_3def678deb7f4078";
 	level._effect[#"artifact_activate"] = #"hash_464f27bfbf0ce7bf";
 	level._effect[#"artifact_glow"] = #"hash_41b2c270f26faabc";
 	level._effect[#"hash_6b03597da0a3c2ae"] = #"hash_43b3118edb88df8c";
@@ -124,20 +124,20 @@ event main(eventstruct)
 	level.var_d0ab70a2 = #"hash_67972fca091f2c13";
 	namespace_a8113e97::init_clientfields();
 	namespace_b6ca3ccc::init_clientfields();
-	namespace_7922d3d4::init_clientfields();
-	namespace_bfa7c2ed::init_clientfields();
-	namespace_c2ad41c5::init();
-	namespace_b8f22955::init_fx();
-	namespace_b8f22955::init_clientfields();
-	namespace_1bf74f9e::init();
-	namespace_d0842c8b::init();
+	mansion_triad::init_clientfields();
+	mansion_impaler::init_clientfields();
+	mansion_storage::init();
+	mansion_pap::init_fx();
+	mansion_pap::init_clientfields();
+	mansion_ww_lvl3_quest::init();
+	mansion_silver_bullet::init();
 	namespace_59d4913f::init();
-	namespace_a34af286::init();
-	namespace_8f39dfb1::init();
+	mansion_jordans::init();
+	zm_audio_sq::init();
 	ai::add_archetype_spawn_function(#"zombie_dog", &zombie_dog_spawned);
 	load::main();
 	util::waitforclient(0);
-	namespace_48607e17::main();
+	zm_mansion_sound::main();
 	setdvar(#"hash_6d05981efd5d8d74", 400);
 }
 
@@ -300,7 +300,7 @@ function private function_33593a44(localclientnum, var_312d65d1, var_68f7ce2e, n
 */
 function function_8f945669(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	util::playfxontag(localclientnum, level._effect[#"hash_3bae53461accaa0b"], self, "tag_origin");
+	util::playfxontag(localclientnum, level._effect[#"zone_lockdown"], self, "tag_origin");
 }
 
 /*
@@ -318,7 +318,7 @@ function function_94cf8d37(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(!isdefined(self.var_4b7a5b1b))
 		{
-			self.var_4b7a5b1b = util::playfxontag(localclientnum, level._effect[#"hash_6afea56d1e14f1c8"], self, "tag_origin");
+			self.var_4b7a5b1b = util::playfxontag(localclientnum, level._effect[#"power_on_projectile"], self, "tag_origin");
 		}
 		if(!isdefined(self.var_353ff2a))
 		{
@@ -369,7 +369,7 @@ function function_39b69f3f(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval)
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_60051e21f8eb4af"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"stone_pickup"], self, "tag_origin");
 	}
 }
 
@@ -703,8 +703,8 @@ function function_be42dd6a(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self.var_2ea06178 = util::playfxontag(localclientnum, level._effect[#"hash_581c81003eac976f"], self, "tag_fx_x_pos");
-		self function_bf9d3071(#"hash_8cb3b94ffea62fe");
+		self.var_2ea06178 = util::playfxontag(localclientnum, level._effect[#"artifact_aura"], self, "tag_fx_x_pos");
+		self playrenderoverridebundle(#"hash_8cb3b94ffea62fe");
 		self.var_b3673abf = self playloopsound(#"hash_66df9cab2c64f968");
 	}
 	else
@@ -721,14 +721,14 @@ function function_be42dd6a(localclientnum, oldval, newval, bnewent, binitialsnap
 				self.var_2ea06178 = undefined;
 			}
 			util::playfxontag(localclientnum, level._effect[#"artifact_activate"], self, "tag_fx_x_pos");
-			self function_5d482e78(#"hash_8cb3b94ffea62fe");
+			self stoprenderoverridebundle(#"hash_8cb3b94ffea62fe");
 		}
 		else
 		{
 			if(newval == 3)
 			{
 				self.var_f7a393 = util::playfxontag(localclientnum, level._effect[#"artifact_glow"], self, "tag_fx_x_pos");
-				self function_bf9d3071(#"hash_4192ceb1c828492f");
+				self playrenderoverridebundle(#"hash_4192ceb1c828492f");
 				self playsound(localclientnum, #"zmb_sq_souls_release");
 			}
 			else
@@ -748,7 +748,7 @@ function function_be42dd6a(localclientnum, oldval, newval, bnewent, binitialsnap
 					stopfx(localclientnum, self.var_f7a393);
 					self.var_f7a393 = undefined;
 				}
-				self function_5d482e78(#"hash_4192ceb1c828492f");
+				self stoprenderoverridebundle(#"hash_4192ceb1c828492f");
 				self playsound(localclientnum, #"hash_5de064f33e9e49b8");
 			}
 		}
@@ -768,11 +768,11 @@ function function_9e061782(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self function_bf9d3071(#"hash_798166dc35b7e58");
+		self playrenderoverridebundle(#"hash_798166dc35b7e58");
 	}
 	else
 	{
-		self function_5d482e78(#"hash_798166dc35b7e58");
+		self stoprenderoverridebundle(#"hash_798166dc35b7e58");
 	}
 }
 

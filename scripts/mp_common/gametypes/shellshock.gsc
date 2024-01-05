@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\mp_common\util.gsc;
 #using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\util.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace shellshock;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: shellshock
 	Checksum: 0xDCC135E4
 	Offset: 0x108
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"shellshock", &__init__, undefined, undefined);
 }

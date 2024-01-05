@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\system_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\array_shared.csc;
 
 #namespace aat;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: aat
 	Checksum: 0x28894D6
 	Offset: 0xC8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"aat", &__init__, undefined, undefined);
 }

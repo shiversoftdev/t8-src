@@ -1,22 +1,22 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using script_2c49ae69cd8ce30c;
+#using scripts\weapons\weapons.gsc;
+#using scripts\weapons\weapon_utils.gsc;
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\challenges.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\spawner_shared.gsc;
+#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\globallogic\globallogic_player.gsc;
+#using scripts\core_common\gamestate.gsc;
+#using scripts\core_common\damagefeedback_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\challenges_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 #using script_35598499769dbb3d;
 #using script_41fe08c37d53a635;
-#using script_5399f402045d7abd;
-#using script_70a43d6ba27cff6a;
-#using script_7bafaa95bb1b427e;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\challenges_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\damagefeedback_shared.gsc;
-#using scripts\core_common\gamestate.gsc;
-#using scripts\core_common\scoreevents_shared.gsc;
-#using scripts\core_common\spawner_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\challenges.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\gametypes\globallogic_utils.gsc;
 
 #namespace globallogic_actor;
 

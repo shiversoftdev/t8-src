@@ -1,18 +1,18 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
 #using script_35598499769dbb3d;
-#using script_460f2e04fb3cff8a;
-#using script_47fb62300ac0bd60;
-#using scripts\core_common\ai_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\zm\zm_lightning_chain.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\zm_common\trials\zm_trial_headshots_only.gsc;
 #using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\ai_shared.gsc;
 
 #namespace zm_bgb_pop_shocks;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_pop_shocks
 	Checksum: 0x7F21295E
 	Offset: 0xE8
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_pop_shocks", &__init__, undefined, #"bgb");
 }
@@ -76,7 +76,7 @@ function event()
 */
 function actor_damage_override(inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, shitloc, psoffsettime, boneindex, surfacetype)
 {
-	if(meansofdeath === "MOD_MELEE" && !namespace_25f0796c::is_active() && !zm_loadout::is_hero_weapon(weapon) && weapon != level.weaponnone)
+	if(meansofdeath === "MOD_MELEE" && !zm_trial_headshots_only::is_active() && !zm_loadout::is_hero_weapon(weapon) && weapon != level.weaponnone)
 	{
 		attacker function_40383770(self);
 	}
@@ -234,7 +234,7 @@ function tesla_death(player)
 		if(weapon.statname == #"bowie_knife")
 		{
 			player stats::function_e24eec31(weapon, #"hash_657e22dcdd18da77", 1);
-			player stats::inc_stat(#"hash_162f9b6a10fa7d66", weapon.name, #"hash_657e22dcdd18da77", #"statvalue", 1);
+			player stats::inc_stat(#"item_stats", weapon.name, #"hash_657e22dcdd18da77", #"statvalue", 1);
 		}
 	}
 	self dodamage(self.health + 1, self.origin, player, undefined, undefined, "MOD_ELECTROCUTED", 0, level.var_78032351);

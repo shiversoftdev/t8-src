@@ -1,22 +1,22 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1f2f7ef27f2aabba;
-#using script_68d2ee1489345a1d;
-#using script_6c8abe14025b47c4;
-#using script_75be2950b381443;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\gamestate.gsc;
-#using scripts\core_common\infection.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\rank_shared.gsc;
-#using scripts\core_common\spawning_shared.gsc;
-#using scripts\core_common\spectating.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\gametypes\globallogic_audio.gsc;
-#using scripts\mp_common\gametypes\globallogic_score.gsc;
-#using scripts\mp_common\gametypes\match.gsc;
-#using scripts\mp_common\gametypes\round.gsc;
 #using scripts\mp_common\util.gsc;
+#using scripts\mp_common\teams\platoons.gsc;
+#using scripts\mp_common\gametypes\round.gsc;
+#using scripts\mp_common\gametypes\match.gsc;
+#using scripts\mp_common\gametypes\globallogic_score.gsc;
+#using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\killstreaks\killstreaks_util.gsc;
+#using scripts\killstreaks\killstreaks_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\spectating.gsc;
+#using scripts\core_common\spawning_shared.gsc;
+#using scripts\core_common\rank_shared.gsc;
+#using scripts\core_common\platoons.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\infection.gsc;
+#using scripts\core_common\gamestate.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace globallogic_defaults;
 
@@ -50,8 +50,8 @@ function getwinningteamfromloser(losing_team)
 function default_onforfeit(params)
 {
 	level.gameforfeited = 1;
-	level notify(#"hash_7c63ed1f465e8e8e");
-	level endon(#"hash_7c63ed1f465e8e8e", #"hash_39a00a79045884ca");
+	level notify(#"forfeit in progress");
+	level endon(#"forfeit in progress", #"abort forfeit");
 	forfeit_delay = 20;
 	announcement(game.strings[#"opponent_forfeiting_in"], forfeit_delay, 0);
 	wait(10);
@@ -59,7 +59,7 @@ function default_onforfeit(params)
 	wait(10);
 	if(!isdefined(params))
 	{
-		round::function_d1e740f6(level.players[0]);
+		round::set_winner(level.players[0]);
 	}
 	else
 	{
@@ -69,7 +69,7 @@ function default_onforfeit(params)
 		}
 		if(params.var_6eb69269.size)
 		{
-			round::function_d1e740f6(params.var_6eb69269[0]);
+			round::set_winner(params.var_6eb69269[0]);
 		}
 	}
 	level.forcedend = 1;
@@ -88,14 +88,14 @@ function default_onforfeit(params)
 */
 function default_ondeadevent(team)
 {
-	var_2e0d5506 = round::function_9b24638f();
+	var_2e0d5506 = round::get_winner();
 	if(isdefined(var_2e0d5506) && var_2e0d5506 != #"free")
 	{
 		return;
 	}
 	if(isdefined(level.teams[team]))
 	{
-		round::function_d1e740f6(getwinningteamfromloser(team));
+		round::set_winner(getwinningteamfromloser(team));
 		thread globallogic::end_round(6);
 	}
 	else
@@ -156,7 +156,7 @@ function function_dcf41142(params)
 */
 function function_daa7e9d5()
 {
-	level callback::remove_callback(#"hash_84d8c1164d90313", &function_dcf41142);
+	level callback::remove_callback(#"on_last_alive", &function_dcf41142);
 }
 
 /*
@@ -203,7 +203,7 @@ function default_ononeleftevent(team)
 {
 	if(!level.teambased)
 	{
-		round::function_d1e740f6(globallogic_score::gethighestscoringplayer());
+		round::set_winner(globallogic_score::gethighestscoringplayer());
 		thread globallogic::end_round(6);
 	}
 	else
@@ -339,9 +339,9 @@ function default_onspawnintermission(endgame)
 function default_gettimelimit()
 {
 	/#
-		if((getdvarfloat(#"hash_5424bc2a81bcb188", -1)) != -1)
+		if((getdvarfloat(#"timelimit_override", -1)) != -1)
 		{
-			return math::clamp(getdvarfloat(#"hash_5424bc2a81bcb188", -1), level.timelimitmin, level.timelimitmax);
+			return math::clamp(getdvarfloat(#"timelimit_override", -1), level.timelimitmin, level.timelimitmax);
 		}
 	#/
 	return math::clamp(getgametypesetting(#"timelimit"), level.timelimitmin, level.timelimitmax);
@@ -434,7 +434,7 @@ function function_108c4b65()
 		{
 			return var_2927adba[0];
 		}
-		platoon = function_22448d6c(self.team);
+		platoon = getteamplatoon(self.team);
 		var_bf97e486 = platoons::function_a214d798(platoon);
 		return spectating::function_18b8b7e4(var_bf97e486, self.origin);
 	}

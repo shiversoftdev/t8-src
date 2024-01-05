@@ -55,17 +55,17 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 						lerpratio = 1;
 						break;
 					}
-					case "hash_6bfc507c11820d06":
+					case "ease in":
 					{
 						lerpratio = timeratio * timeratio;
 						break;
 					}
-					case "hash_6debf0d1b5b68767":
+					case "ease out":
 					{
 						lerpratio = (timeratio * -1) * (timeratio - 2);
 						break;
 					}
-					case "hash_275b09ce780d184a":
+					case "ease inout":
 					{
 						timeratio = timeratio * 2;
 						if(timeratio < 1)
@@ -79,12 +79,12 @@ function setstage(localclientnum, bundle, filterid, stageprefix, stagelength, ac
 						}
 						break;
 					}
-					case "hash_5556c5be08049c8f":
+					case "linear repeat":
 					{
 						lerpratio = timeratio;
 						break;
 					}
-					case "hash_a46103968b51983":
+					case "linear mirror":
 					{
 						if(timeratio > 0.5)
 						{

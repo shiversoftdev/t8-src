@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace spectating;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: spectating
 	Checksum: 0x61E01D0E
 	Offset: 0xB0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"spectating", &__init__, undefined, undefined);
 }
@@ -160,7 +160,7 @@ function set_permissions()
 		}
 		if(team == #"spectator")
 		{
-			self.var_92e86779 = #"invalid";
+			self.spectatorteam = #"invalid";
 			self allowspectateallteams(1);
 			self allowspectateteam("freelook", 0);
 			self allowspectateteam(#"none", 1);
@@ -175,14 +175,14 @@ function set_permissions()
 	{
 		case 0:
 		{
-			self.var_92e86779 = #"invalid";
+			self.spectatorteam = #"invalid";
 			self allowspectateteam(#"none", 1);
 			self allowspectateteam("localplayers", 0);
 			break;
 		}
 		case 3:
 		{
-			self.var_92e86779 = #"invalid";
+			self.spectatorteam = #"invalid";
 			if(self issplitscreen() && self other_local_player_still_alive())
 			{
 				self allowspectateteam(#"none", 0);
@@ -191,7 +191,7 @@ function set_permissions()
 		}
 		case 1:
 		{
-			self.var_92e86779 = #"invalid";
+			self.spectatorteam = #"invalid";
 			if(!level.teambased)
 			{
 				self allowspectateallteams(1);
@@ -213,7 +213,7 @@ function set_permissions()
 		}
 		case 2:
 		{
-			self.var_92e86779 = #"invalid";
+			self.spectatorteam = #"invalid";
 			self allowspectateteam(#"none", 1);
 			self allowspectateallteams(1);
 			foreach(team in level.teams)
@@ -266,7 +266,7 @@ function function_4c37bb21(var_2b7584f0)
 	var_156b3879 = self function_b7c8d984(undefined, 0);
 	if(isdefined(var_156b3879) && isplayer(var_156b3879))
 	{
-		self.var_92e86779 = var_156b3879.team;
+		self.spectatorteam = var_156b3879.team;
 		if(var_2b7584f0)
 		{
 			self setcurrentspectatorclient(var_156b3879);
@@ -274,7 +274,7 @@ function function_4c37bb21(var_2b7584f0)
 	}
 	else
 	{
-		var_78d7160b = undefined;
+		spectator_team = undefined;
 		players = getplayers(self.team);
 		foreach(player in players)
 		{
@@ -282,26 +282,26 @@ function function_4c37bb21(var_2b7584f0)
 			{
 				continue;
 			}
-			if(player.var_92e86779 != #"invalid")
+			if(player.spectatorteam != #"invalid")
 			{
-				var_78d7160b = player.var_92e86779;
+				spectator_team = player.spectatorteam;
 				break;
 			}
 		}
-		if(!isdefined(var_78d7160b))
+		if(!isdefined(spectator_team))
 		{
 			foreach(team, count in level.alivecount)
 			{
 				if(count > 0)
 				{
-					self.var_92e86779 = team;
+					self.spectatorteam = team;
 					break;
 				}
 			}
 		}
-		if(isdefined(var_78d7160b))
+		if(isdefined(spectator_team))
 		{
-			self.var_92e86779 = var_78d7160b;
+			self.spectatorteam = spectator_team;
 		}
 	}
 }
@@ -317,7 +317,7 @@ function function_4c37bb21(var_2b7584f0)
 */
 function set_permissions_for_machine()
 {
-	if(level.spectatetype == 4 && self.var_92e86779 != #"invalid")
+	if(level.spectatetype == 4 && self.spectatorteam != #"invalid")
 	{
 		var_c37023cb = 1;
 		if(sessionmodeismultiplayergame())
@@ -521,23 +521,23 @@ function function_b7c8d984(attacker, var_1178af52)
 		return undefined;
 	}
 	teammate = function_7ad5ad8();
-	var_be8a6dc7 = undefined;
+	spectate_player = undefined;
 	if(var_1178af52 && attacker.team == self.team)
 	{
-		var_be8a6dc7 = attacker;
+		spectate_player = attacker;
 	}
 	else
 	{
 		if(isdefined(teammate))
 		{
-			var_be8a6dc7 = teammate;
+			spectate_player = teammate;
 		}
 		else if(var_1178af52)
 		{
-			var_be8a6dc7 = attacker;
+			spectate_player = attacker;
 		}
 	}
-	return var_be8a6dc7;
+	return spectate_player;
 }
 
 /*
@@ -588,12 +588,12 @@ function function_2b728d67(attacker)
 	if(isdefined(var_156b3879) && isplayer(var_156b3879))
 	{
 		self.spectatorclient = -1;
-		self.var_92e86779 = var_156b3879.team;
+		self.spectatorteam = var_156b3879.team;
 		self setcurrentspectatorclient(var_156b3879);
 	}
 	else
 	{
-		self.var_92e86779 = self.team;
+		self.spectatorteam = self.team;
 	}
 }
 

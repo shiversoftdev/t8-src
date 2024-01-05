@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14d4cc4687ff9afd;
-#using script_2fcb47e3735a6edd;
-#using script_5c6694d7aa0f1490;
-#using script_5e177698fdcdbe2c;
-#using script_6c5b51f98cd04fa3;
-#using script_72eca4c9e2aea110;
+#using scripts\zm\zm_orange_mq_sendoff.gsc;
+#using scripts\zm\zm_orange_challenges.gsc;
+#using scripts\zm\zm_orange_ee_dynamite.gsc;
+#using scripts\zm\zm_orange_zones.gsc;
+#using scripts\zm\zm_orange_mq_hell.gsc;
+#using scripts\zm\zm_orange_pap.gsc;
+#using scripts\zm\zm_orange_fasttravel_ziplines.gsc;
+#using scripts\zm_common\zm_sq.gsc;
+#using scripts\zm_common\zm_devgui.gsc;
+#using scripts\core_common\spawner_shared.gsc;
 #using scripts\core_common\exploder_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\spawner_shared.gsc;
 #using scripts\core_common\struct.gsc;
-#using scripts\zm\zm_orange_challenges.gsc;
-#using scripts\zm\zm_orange_zones.gsc;
-#using scripts\zm_common\zm_devgui.gsc;
 
-#namespace namespace_c3bb1e21;
+#namespace zm_orange_devgui;
 
 /*
 	Name: init
-	Namespace: namespace_c3bb1e21
+	Namespace: zm_orange_devgui
 	Checksum: 0x60DA2A13
 	Offset: 0xD0
 	Size: 0x1C
@@ -33,7 +33,7 @@ function init()
 
 /*
 	Name: jump_to
-	Namespace: namespace_c3bb1e21
+	Namespace: zm_orange_devgui
 	Checksum: 0x58721BFF
 	Offset: 0xF8
 	Size: 0x6C
@@ -51,7 +51,7 @@ function private jump_to(str_dest)
 
 /*
 	Name: devgui
-	Namespace: namespace_c3bb1e21
+	Namespace: zm_orange_devgui
 	Checksum: 0x591A5E3
 	Offset: 0x170
 	Size: 0x8A8
@@ -87,7 +87,7 @@ function private devgui()
 		while(true)
 		{
 			waitframe(1);
-			str_command = getdvarstring(#"hash_8ba12660bfba5e4", "");
+			str_command = getdvarstring(#"zm_orange_debug_cmd", "");
 			switch(str_command)
 			{
 				case "hash_78bca375c84177d4":
@@ -97,55 +97,55 @@ function private devgui()
 				}
 				case "hash_18769c2b6ae60247":
 				{
-					level thread namespace_99a6629b::function_80a9077f();
+					level thread zm_orange_fasttravel_ziplines::function_80a9077f();
 					break;
 				}
 				case "hash_24668a82eef6ed20":
 				{
-					level thread namespace_44916ada::function_79946aff();
+					level thread zm_orange_pap::function_79946aff();
 					break;
 				}
-				case "hash_5aeb6018289cc278":
+				case "lava_toggle":
 				{
-					namespace_bfc8ee03::lava_control();
+					zm_orange_mq_hell::lava_control();
 					break;
 				}
 				case "hash_75c01ef1f8005214":
 				{
 					iprintln("");
-					level flag::set(#"hash_6dcc421d5fbf8d22");
+					level flag::set(#"soul_fill");
 					break;
 				}
 				case "hash_7db70cb23b9d2739":
 				{
 					iprintln("");
-					level flag::clear(#"hash_6dcc421d5fbf8d22");
+					level flag::clear(#"soul_fill");
 					break;
 				}
 				case "hash_58843c67593e2cfe":
 				{
-					namespace_86eed980::function_e4b04738();
+					zm_orange_challenges::function_e4b04738();
 					break;
 				}
 				case "test_last_stand":
 				{
 					zm_devgui::zombie_devgui_open_sesame();
-					namespace_99a6629b::function_80a9077f();
-					namespace_17555f14::function_3b77181c(1);
+					zm_orange_fasttravel_ziplines::function_80a9077f();
+					zm_orange_zones::function_3b77181c(1);
 					if(level flag::get(#"hash_6f7fd3d4d070db87") == 0)
 					{
 						exploder::exploder("");
 						level.var_9cc989a5 delete();
 						level flag::set(#"hash_6f7fd3d4d070db87");
 					}
-					namespace_bfc8ee03::function_405f867d();
+					zm_orange_mq_hell::function_405f867d();
 					break;
 				}
 				case "hash_1ff4cd3ce63b00f9":
 				{
-					namespace_be178848::function_61511fcf(0);
-					namespace_be178848::function_61511fcf(1);
-					namespace_be178848::function_61511fcf(2);
+					zm_orange_ee_dynamite::function_61511fcf(0);
+					zm_orange_ee_dynamite::function_61511fcf(1);
+					zm_orange_ee_dynamite::function_61511fcf(2);
 					break;
 				}
 				case "hash_3c6c8aaf444d0e1a":
@@ -172,64 +172,64 @@ function private devgui()
 				}
 				case "play_portal":
 				{
-					level thread namespace_13b4b4b::function_d096f18f();
+					level thread zm_orange_mq_sendoff::function_d096f18f();
 					break;
 				}
 				case "hash_86a620951049404":
 				{
-					namespace_bfc8ee03::function_fe36418c();
+					zm_orange_mq_hell::function_fe36418c();
 					break;
 				}
 				case "move_pap_boathouse":
 				{
-					namespace_44916ada::function_ccc079bc("");
+					zm_orange_pap::function_ccc079bc("");
 					break;
 				}
 				case "move_pap_beach":
 				{
-					namespace_44916ada::function_ccc079bc("");
+					zm_orange_pap::function_ccc079bc("");
 					break;
 				}
 				case "move_pap_ship":
 				{
-					namespace_44916ada::function_ccc079bc("");
+					zm_orange_pap::function_ccc079bc("");
 					break;
 				}
 				case "move_pap_lagoon":
 				{
-					namespace_44916ada::function_ccc079bc("");
+					zm_orange_pap::function_ccc079bc("");
 					break;
 				}
 				case "hash_7bfd0d4950600d9a":
 				{
-					namespace_44916ada::function_ccc079bc("");
+					zm_orange_pap::function_ccc079bc("");
 					break;
 				}
-				case "hash_5175915502a19219":
+				case "full_unlock":
 				{
 					zm_devgui::zombie_devgui_open_sesame();
-					namespace_99a6629b::function_80a9077f();
-					namespace_17555f14::function_3b77181c(1);
-					level thread namespace_ee206246::function_f2dd8601(#"hash_5e9262eb6796af0a", 1);
+					zm_orange_fasttravel_ziplines::function_80a9077f();
+					zm_orange_zones::function_3b77181c(1);
+					level thread zm_sq::function_f2dd8601(#"pap_rock", 1);
 					break;
 				}
 				case "hash_2918cc0fd8ab72cd":
 				{
-					level thread namespace_44916ada::function_eaaea036();
+					level thread zm_orange_pap::function_eaaea036();
 					break;
 				}
 				case "hash_3da3831f62e16b2c":
 				{
-					level thread namespace_44916ada::function_96ef31b7();
+					level thread zm_orange_pap::function_96ef31b7();
 					break;
 				}
 				case "test_hell":
 				{
-					namespace_bfc8ee03::test_hell();
+					zm_orange_mq_hell::test_hell();
 					break;
 				}
 			}
-			setdvar(#"hash_8ba12660bfba5e4", "");
+			setdvar(#"zm_orange_debug_cmd", "");
 		}
 	#/
 }

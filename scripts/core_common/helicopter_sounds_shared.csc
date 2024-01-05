@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\audio_shared.csc;
-#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\audio_shared.csc;
 
 #namespace helicopter_sounds;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: helicopter_sounds
 	Checksum: 0x5D286EA6
 	Offset: 0x210
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"helicopter_sounds", &__init__, undefined, undefined);
 }

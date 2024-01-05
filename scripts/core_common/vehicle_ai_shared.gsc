@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\animation_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\statemachine_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
 #using scripts\core_common\vehicle_death_shared.gsc;
 #using scripts\core_common\vehicle_shared.gsc;
+#using scripts\core_common\statemachine_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\animation_shared.gsc;
 
 #namespace vehicle_ai;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: vehicle_ai
 	Checksum: 0x68A0FBD6
 	Offset: 0x290
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"vehicle_ai", &__init__, undefined, undefined);
 }
@@ -2955,7 +2955,7 @@ function private function_e057db25(var_2d1cbdd9, goalpos, vararg)
 	Parameters: 1
 	Flags: Variadic
 */
-function function_1d436633(vararg)
+function function_1d436633(...)
 {
 	/#
 		assert(isdefined(self.ai));
@@ -3167,12 +3167,12 @@ function function_1e0d693b(goal, enemy)
 				{
 					point._scoredebug = [];
 				}
-				if(!isdefined(point._scoredebug[#"hash_3f8a9579ce4600de"]))
+				if(!isdefined(point._scoredebug[#"no visibility"]))
 				{
-					point._scoredebug[#"hash_3f8a9579ce4600de"] = spawnstruct();
+					point._scoredebug[#"no visibility"] = spawnstruct();
 				}
-				point._scoredebug[#"hash_3f8a9579ce4600de"].score = -5000;
-				point._scoredebug[#"hash_3f8a9579ce4600de"].scorename = "";
+				point._scoredebug[#"no visibility"].score = -5000;
+				point._scoredebug[#"no visibility"].scorename = "";
 			#/
 			point.score = point.score + -5000;
 		}

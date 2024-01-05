@@ -4,7 +4,7 @@
 #namespace teamset;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: teamset
 	Checksum: 0x34B177DC
 	Offset: 0x70
@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"teamset_seals", &__init__, undefined, undefined);
 }

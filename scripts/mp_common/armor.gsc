@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5399f402045d7abd;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\perks.gsc;
+#using scripts\weapons\weapon_utils.gsc;
 #using scripts\core_common\weapons_shared.gsc;
+#using scripts\core_common\perks.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace armor;
 
@@ -34,7 +34,7 @@ event main(eventstruct)
 */
 function function_9c8b5737()
 {
-	self.var_98a174a7 = {#hash_cdeeec29:1, #hash_2274e560:1, #max:0, #amount:0};
+	self.lightarmor = {#hash_cdeeec29:1, #hash_2274e560:1, #max:0, #amount:0};
 	self.var_59a874a7 = {#hash_cdeeec29:1, #hash_2274e560:1};
 	self set_armor(0, 0, 0, 1, 0);
 }
@@ -66,17 +66,17 @@ function setlightarmorhp(newvalue)
 {
 	if(isdefined(newvalue))
 	{
-		self.var_98a174a7.amount = newvalue;
-		if(isplayer(self) && self.var_98a174a7.max > 0)
+		self.lightarmor.amount = newvalue;
+		if(isplayer(self) && self.lightarmor.max > 0)
 		{
-			lightarmorpercent = math::clamp(self.var_98a174a7.amount / self.var_98a174a7.max, 0, 1);
+			lightarmorpercent = math::clamp(self.lightarmor.amount / self.lightarmor.max, 0, 1);
 			self setcontrolleruimodelvalue("hudItems.armorPercent", lightarmorpercent);
 		}
 	}
 	else
 	{
-		self.var_98a174a7.amount = 0;
-		self.var_98a174a7.max = 0;
+		self.lightarmor.amount = 0;
+		self.lightarmor.max = 0;
 		self setcontrolleruimodelvalue("hudItems.armorPercent", 0);
 	}
 }
@@ -93,7 +93,7 @@ function setlightarmorhp(newvalue)
 function setlightarmor(optionalarmorvalue, var_2274e560, var_cdeeec29)
 {
 	self notify(#"give_light_armor");
-	if(isdefined(self.var_98a174a7.amount))
+	if(isdefined(self.lightarmor.amount))
 	{
 		unsetlightarmor();
 	}
@@ -103,18 +103,18 @@ function setlightarmor(optionalarmorvalue, var_2274e560, var_cdeeec29)
 	{
 		optionalarmorvalue = 150;
 	}
-	self.var_98a174a7.max = optionalarmorvalue;
+	self.lightarmor.max = optionalarmorvalue;
 	if(!isdefined(var_2274e560))
 	{
 		var_2274e560 = 1;
 	}
-	self.var_98a174a7.var_2274e560 = var_2274e560;
+	self.lightarmor.var_2274e560 = var_2274e560;
 	if(!isdefined(var_cdeeec29))
 	{
 		var_cdeeec29 = 1;
 	}
-	self.var_98a174a7.var_cdeeec29 = var_cdeeec29;
-	self setlightarmorhp(self.var_98a174a7.max);
+	self.lightarmor.var_cdeeec29 = var_cdeeec29;
+	self setlightarmorhp(self.lightarmor.max);
 }
 
 /*
@@ -175,7 +175,7 @@ function removelightarmoronmatchend()
 */
 function haslightarmor()
 {
-	return self.var_98a174a7.amount > 0;
+	return self.lightarmor.amount > 0;
 }
 
 /*
@@ -189,7 +189,7 @@ function haslightarmor()
 */
 function function_a77114f2(einflictor, eattacker, idamage, smeansofdeath, weapon, shitloc)
 {
-	if(isdefined(self.var_98a174a7) && self.var_98a174a7.amount > 0)
+	if(isdefined(self.lightarmor) && self.lightarmor.amount > 0)
 	{
 		if(weapon.ignoreslightarmor && smeansofdeath != "MOD_MELEE")
 		{
@@ -201,12 +201,12 @@ function function_a77114f2(einflictor, eattacker, idamage, smeansofdeath, weapon
 		}
 		if(smeansofdeath != "MOD_FALLING" && !weapon_utils::ismeleemod(smeansofdeath) && !weapons::isheadshot(shitloc, smeansofdeath))
 		{
-			var_fa8901ee = idamage * self.var_98a174a7.var_cdeeec29;
-			self.var_98a174a7.amount = self.lightarmorhp - var_fa8901ee;
+			damage_to_armor = idamage * self.lightarmor.var_cdeeec29;
+			self.lightarmor.amount = self.lightarmorhp - damage_to_armor;
 			idamage = 0;
-			if(self.var_98a174a7.amount <= 0)
+			if(self.lightarmor.amount <= 0)
 			{
-				idamage = abs(self.var_98a174a7.amount);
+				idamage = abs(self.lightarmor.amount);
 				unsetlightarmor();
 			}
 		}
@@ -215,7 +215,7 @@ function function_a77114f2(einflictor, eattacker, idamage, smeansofdeath, weapon
 }
 
 /*
-	Name: function_4f977182
+	Name: get_armor
 	Namespace: armor
 	Checksum: 0xA160A368
 	Offset: 0x7A0
@@ -223,7 +223,7 @@ function function_a77114f2(einflictor, eattacker, idamage, smeansofdeath, weapon
 	Parameters: 0
 	Flags: Linked
 */
-function function_4f977182()
+function get_armor()
 {
 	if(!isdefined(self))
 	{
@@ -234,9 +234,9 @@ function function_4f977182()
 	{
 		total_armor = self.armor;
 	}
-	if(isdefined(self.var_98a174a7) && isdefined(self.var_98a174a7.amount))
+	if(isdefined(self.lightarmor) && isdefined(self.lightarmor.amount))
 	{
-		total_armor = total_armor + self.var_98a174a7.amount;
+		total_armor = total_armor + self.lightarmor.amount;
 	}
 	return total_armor;
 }
@@ -250,7 +250,7 @@ function function_4f977182()
 	Parameters: 13
 	Flags: Linked
 */
-function set_armor(amount, var_8814a91, armortier, var_2274e560 = 1, var_cdeeec29 = 1, var_5164d2e2 = 1, var_e6683a43 = 1, var_22c3ab38 = 1, var_9f307988 = 1, var_7a80f06e = 1, var_c899f877 = 1, var_35e3563e = 1, var_4aad1e44 = undefined)
+function set_armor(amount, max_armor, armortier, var_2274e560 = 1, var_cdeeec29 = 1, var_5164d2e2 = 1, var_e6683a43 = 1, var_22c3ab38 = 1, var_9f307988 = 1, var_7a80f06e = 1, explosive_damage_scale = 1, var_35e3563e = 1, var_4aad1e44 = undefined)
 {
 	/#
 		assert(isdefined(amount));
@@ -268,7 +268,7 @@ function set_armor(amount, var_8814a91, armortier, var_2274e560 = 1, var_cdeeec2
 	self.var_59a874a7.var_cdeeec29 = var_cdeeec29;
 	self.var_59a874a7.var_5164d2e2 = var_5164d2e2;
 	self.var_59a874a7.var_e6683a43 = var_e6683a43;
-	self.var_59a874a7.var_c899f877 = var_c899f877;
+	self.var_59a874a7.explosive_damage_scale = explosive_damage_scale;
 	self.var_59a874a7.var_35e3563e = var_35e3563e;
 	self.var_59a874a7.var_4aad1e44 = var_4aad1e44;
 	if(isdefined(var_4aad1e44))
@@ -276,7 +276,7 @@ function set_armor(amount, var_8814a91, armortier, var_2274e560 = 1, var_cdeeec2
 		self.var_59a874a7.var_735ae1ee = getscriptbundle(var_4aad1e44);
 	}
 	self.armortier = armortier;
-	self.maxarmor = var_8814a91;
+	self.maxarmor = max_armor;
 	self.armor = amount;
 }
 
@@ -291,7 +291,7 @@ function set_armor(amount, var_8814a91, armortier, var_2274e560 = 1, var_cdeeec2
 */
 function has_armor()
 {
-	return self function_4f977182() > 0;
+	return self get_armor() > 0;
 }
 
 /*
@@ -482,7 +482,7 @@ function private function_37f4e0e0(smeansofdeath, shitloc)
 			return true;
 		}
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		if(smeansofdeath == "MOD_BULLET" || smeansofdeath == "MOD_RIFLE_BULLET" || smeansofdeath == "MOD_PISTOL_BULLET" || smeansofdeath == "MOD_MELEE" || smeansofdeath == "MOD_MELEE_WEAPON_BUTT")
 		{
@@ -518,7 +518,7 @@ function private function_37f4e0e0(smeansofdeath, shitloc)
 */
 function private function_7538fede(weapon)
 {
-	if(weapon.name == #"hash_3458fd4dff2bd9e8")
+	if(weapon.name == #"ar_stealth_t8_operator")
 	{
 		return true;
 	}
@@ -563,13 +563,13 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 	}
 	var_737c8f6e = var_737c8f6e * (isdefined(weapon.var_ed6ea786) && (weapon.var_ed6ea786 ? self.var_59a874a7.var_e6683a43 : self.var_59a874a7.var_cdeeec29));
 	var_2274e560 = weapon.var_7b0ea85;
-	if(getdvarint(#"hash_4cfef227405e3c46", 0))
+	if(getdvarint(#"survival_prototype", 0))
 	{
 		var_2274e560 = self.var_59a874a7.var_5164d2e2;
 	}
 	if(weapon_utils::isexplosivedamage(smeansofdeath))
 	{
-		var_2274e560 = self.var_59a874a7.var_c899f877;
+		var_2274e560 = self.var_59a874a7.explosive_damage_scale;
 		var_737c8f6e = self.var_59a874a7.var_35e3563e;
 	}
 	else
@@ -638,19 +638,19 @@ function apply_damage(weapon, damage, smeansofdeath, eattacker, shitloc)
 		self playsoundtoplayer(#"hash_22f2a16e63651515", self);
 		self thread function_386de852();
 		self function_51df9c0c(#"hash_6be738527a4213aa");
-		if(perks::function_be94fe26(#"specialty_armor"))
+		if(perks::perk_hasperk(#"specialty_armor"))
 		{
-			self perks::function_45d12554(#"specialty_armor");
+			self perks::perk_unsetperk(#"specialty_armor");
 			playfxontag(#"hash_4a955131370a3720", self, "j_spineupper");
 		}
-		if(perks::function_be94fe26(#"specialty_armor_tier_two"))
+		if(perks::perk_hasperk(#"specialty_armor_tier_two"))
 		{
-			self perks::function_45d12554(#"specialty_armor_tier_two");
+			self perks::perk_unsetperk(#"specialty_armor_tier_two");
 			playfxontag(#"hash_56c8182de62c1c6", self, "j_spineupper");
 		}
-		if(perks::function_be94fe26(#"specialty_armor_tier_three"))
+		if(perks::perk_hasperk(#"specialty_armor_tier_three"))
 		{
-			self perks::function_45d12554(#"specialty_armor_tier_three");
+			self perks::perk_unsetperk(#"specialty_armor_tier_three");
 			playfxontag(#"hash_3c6a01bd4394d4f3", self, "j_spineupper");
 		}
 		if(isdefined(level.var_67f4fd41))

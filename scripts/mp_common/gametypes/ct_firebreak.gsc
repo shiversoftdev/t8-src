@@ -1,0 +1,725 @@
+// Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\mp_common\player\player_loadout.gsc;
+#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
+#using scripts\mp_common\gametypes\ct_utils.gsc;
+#using scripts\mp_common\gametypes\ct_gadgets.gsc;
+#using scripts\mp_common\gametypes\ct_firebreak_tutorial.gsc;
+#using scripts\mp_common\gametypes\ct_core.gsc;
+#using scripts\mp_common\gametypes\ct_bots.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\spawning_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\oob.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using script_366b8782ff72bb1d;
+
+#namespace ct_firebreak;
+
+/*
+	Name: main
+	Namespace: ct_firebreak
+	Checksum: 0xCFE0EB1B
+	Offset: 0x238
+	Size: 0x2BC
+	Parameters: 1
+	Flags: Event
+*/
+event main(eventstruct)
+{
+	ct_core::function_46e95cc7();
+	level.var_d6d98fbe = 0;
+	level.select_character = ct_utils::get_roleindex(#"prt_mp_firebreak");
+	level.var_820c5561 = "FIREBREAK";
+	ct_utils::function_be3a76b7(level.var_820c5561);
+	ct_core::function_fa03fc55();
+	level.var_4c2ecc6f = &function_6db6572b;
+	level.var_c01b7f8b = &function_ba542258;
+	level.var_49240db3 = &function_b89106ad;
+	level.var_8b9d690e = &function_cf3224fe;
+	level.onspawnplayer = &function_7c4ef26b;
+	player::function_cf3aa03d(&function_9d65db70);
+	level.var_cdb8ae2c = &ct_utils::function_a8da260c;
+	level.resurrect_override_spawn = &ct_utils::function_78469779;
+	level.var_e31c5d7a = &ct_bots::function_e31c5d7a;
+	callback::on_game_playing(&ct_core::function_1e84c767);
+	globallogic_spawn::addsupportedspawnpointtype("ct");
+	ct_utils::function_6046a5e3(#"ar_modular_t8", array("rf", "steadyanim", "mixclip"));
+	ct_utils::function_c3e647e2(#"pistol_standard_t8");
+	level.ct_firebreak_multi_kill = ct_firebreak_multi_kill::register("ct_firebreak_multi_kill");
+	level.a_s_beacons = struct::get_array("s_beacon", "targetname");
+	level.var_2392bd18 = level.a_s_beacons.size;
+	if(level.ctdifficulty == 0)
+	{
+		level ct_firebreak_tutorial::init();
+	}
+	level flag::init("combat_training_started");
+}
+
+/*
+	Name: function_7c4ef26b
+	Namespace: ct_firebreak
+	Checksum: 0xFC3977A1
+	Offset: 0x500
+	Size: 0xE4
+	Parameters: 1
+	Flags: None
+*/
+function function_7c4ef26b(predictedspawn)
+{
+	self thread ct_core::function_d2845186();
+	spawning::onspawnplayer(predictedspawn);
+	if(level.ctdifficulty == 0)
+	{
+		self ct_firebreak_tutorial::function_c9ff0dce();
+		return;
+	}
+	if(self.team == #"allies")
+	{
+		self thread function_d6c7161f();
+	}
+	if(isbot(self))
+	{
+		if(isdefined(level.var_e31c5d7a))
+		{
+			self [[level.var_e31c5d7a]]();
+		}
+		self thread function_db31e447();
+	}
+}
+
+/*
+	Name: function_db31e447
+	Namespace: ct_firebreak
+	Checksum: 0x70AF2378
+	Offset: 0x5F0
+	Size: 0x1AE
+	Parameters: 0
+	Flags: None
+*/
+function function_db31e447()
+{
+	self endon(#"death");
+	s_beacon = function_3192c7f3();
+	self setorigin(s_beacon.origin);
+	self setplayerangles(s_beacon.angles);
+	if(!isdefined(s_beacon.guard1))
+	{
+		self.var_ef59b90 = 4;
+		self.var_59860ee1 = 1000;
+		self.var_dd940df3 = 5000;
+		self.var_bab91f2 = 800;
+		self.var_4c7240f1 = 1;
+		self.var_b1fd680c = 1;
+		self.var_9a79d89d = s_beacon.origin;
+		self.var_5ab7c19c = s_beacon.angles;
+		s_beacon.guard1 = self;
+		self.beacon = s_beacon;
+	}
+	else if(!isdefined(s_beacon.guard2))
+	{
+		self.var_ef59b90 = 4;
+		self.var_59860ee1 = 1000;
+		self.var_dd940df3 = 5000;
+		self.var_bab91f2 = 800;
+		self.var_4c7240f1 = 1;
+		self.var_b1fd680c = 1;
+		self.var_9a79d89d = s_beacon.origin;
+		self.var_5ab7c19c = s_beacon.angles;
+		s_beacon.guard2 = self;
+		self.beacon = s_beacon;
+	}
+}
+
+/*
+	Name: function_9d65db70
+	Namespace: ct_firebreak
+	Checksum: 0x772F2A9C
+	Offset: 0x7A8
+	Size: 0x2CC
+	Parameters: 9
+	Flags: None
+*/
+function function_9d65db70(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration)
+{
+	if(level.ctdifficulty == 0)
+	{
+		self ct_firebreak_tutorial::function_72ba0df6(einflictor, attacker, idamage, smeansofdeath, weapon, vdir, shitloc, psoffsettime, deathanimduration);
+		return;
+	}
+	if(self.team == #"allies")
+	{
+		if(!isdefined(level.var_20361ed4))
+		{
+			level.var_20361ed4 = -1;
+		}
+		self thread ct_utils::function_ee4639dd(10 * level.var_20361ed4);
+		if(level.var_20361ed4 > -6)
+		{
+			level.var_20361ed4--;
+		}
+	}
+	else
+	{
+		if(isdefined(weapon))
+		{
+			if(weapon.name == #"hero_flamethrower")
+			{
+				level.var_6bac32f8++;
+			}
+			if(weapon.name == #"gadget_radiation_field")
+			{
+				e_player = getplayers()[0];
+				trace = bullettrace(e_player.origin + vectorscale((0, 0, 1), 40), self.origin + vectorscale((0, 0, 1), 40), 0, self);
+				if(trace[#"fraction"] < 1)
+				{
+					e_player thread ct_utils::function_d471f8fa(15, undefined, 1);
+					level thread function_db3dc2c2();
+				}
+			}
+		}
+		if(isdefined(self.beacon))
+		{
+			s_beacon = self.beacon;
+			self.beacon = undefined;
+			if(s_beacon.guard1 === self)
+			{
+				s_beacon.guard1 = undefined;
+			}
+			if(s_beacon.guard2 === self)
+			{
+				s_beacon.guard2 = undefined;
+			}
+		}
+		if(isdefined(level.var_a2cbd584) && level.var_a2cbd584)
+		{
+			attacker ct_utils::function_785eb2ca();
+		}
+	}
+}
+
+/*
+	Name: function_6db6572b
+	Namespace: ct_firebreak
+	Checksum: 0xE6A2E7E4
+	Offset: 0xA80
+	Size: 0xE0
+	Parameters: 0
+	Flags: None
+*/
+function function_6db6572b()
+{
+	level flag::init("mission_success");
+	level flag::init("mission_failed");
+	level flag::init("gamemode_started");
+	foreach(s_beacon in level.a_s_beacons)
+	{
+		s_beacon function_ca63e908();
+	}
+}
+
+/*
+	Name: function_ba542258
+	Namespace: ct_firebreak
+	Checksum: 0xEF064796
+	Offset: 0xB68
+	Size: 0x1CE
+	Parameters: 1
+	Flags: None
+*/
+function function_ba542258(mode)
+{
+	level flag::clear("mission_success");
+	level flag::clear("mission_failed");
+	level flag::clear("gamemode_started");
+	if(isdefined(level.var_1ecfe3a2))
+	{
+		self.var_71a70093 = level.var_1ecfe3a2;
+	}
+	self thread ct_gadgets::function_19181566();
+	var_61ca8276 = 420000;
+	self function_9270ab93(0, var_61ca8276);
+	self loadout::function_cdb86a18();
+	if(level.ctdifficulty == 0)
+	{
+		level ct_firebreak_tutorial::setup();
+	}
+	else
+	{
+		level.var_20361ed4 = -1;
+		level.var_f3bb2d59 = 0;
+		level.a_s_beacons = struct::get_array("s_beacon", "targetname");
+		foreach(s_beacon in level.a_s_beacons)
+		{
+			s_beacon.guard1 = undefined;
+			s_beacon.guard2 = undefined;
+		}
+	}
+}
+
+/*
+	Name: function_9270ab93
+	Namespace: ct_firebreak
+	Checksum: 0xD6A11952
+	Offset: 0xD40
+	Size: 0x224
+	Parameters: 2
+	Flags: None
+*/
+function function_9270ab93(var_db89c655, var_27875ecd)
+{
+	var_e7cc5e43 = [];
+	var_e7cc5e43[#"mp_frenetic"][1] = 240000;
+	var_e7cc5e43[#"mp_frenetic"][2] = 180000;
+	var_e7cc5e43[#"mp_frenetic"][3] = 120000;
+	var_e7cc5e43[#"mp_offshore"][1] = 240000;
+	var_e7cc5e43[#"mp_offshore"][2] = 180000;
+	var_e7cc5e43[#"mp_offshore"][3] = 120000;
+	var_e7cc5e43[#"mp_seaside"][1] = 240000;
+	var_e7cc5e43[#"mp_seaside"][2] = 180000;
+	var_e7cc5e43[#"mp_seaside"][3] = 120000;
+	var_e7cc5e43[#"mp_silo"][1] = 240000;
+	var_e7cc5e43[#"mp_silo"][2] = 180000;
+	var_e7cc5e43[#"mp_silo"][3] = 120000;
+	str_map = hash(getrootmapname());
+	ct_utils::function_7a21ac57(var_db89c655, var_27875ecd, var_e7cc5e43[str_map][1], var_e7cc5e43[str_map][2], var_e7cc5e43[str_map][3]);
+}
+
+/*
+	Name: function_b89106ad
+	Namespace: ct_firebreak
+	Checksum: 0xB215657C
+	Offset: 0xF70
+	Size: 0x11E
+	Parameters: 1
+	Flags: None
+*/
+function function_b89106ad(gamedifficulty)
+{
+	level endon(#"combattraining_logic_finished");
+	level notify(#"hash_2a473e02881ca991");
+	level.usingscorestreaks = 0;
+	level.disablescoreevents = 1;
+	level.disablemomentum = 1;
+	if(gamedifficulty == 0)
+	{
+		ct_firebreak_tutorial::function_9b9525e9();
+	}
+	else
+	{
+		function_72e84e64();
+	}
+	if(level flag::get("mission_failed"))
+	{
+		level notify(#"combattraining_logic_finished", {#success:0});
+	}
+	else
+	{
+		level notify(#"combattraining_logic_finished", {#success:1});
+	}
+	waitframe(1);
+}
+
+/*
+	Name: function_cf3224fe
+	Namespace: ct_firebreak
+	Checksum: 0xC35255C8
+	Offset: 0x1098
+	Size: 0xD8
+	Parameters: 1
+	Flags: None
+*/
+function function_cf3224fe(b_success)
+{
+	setbombtimer("A", 0);
+	setmatchflag("bomb_timer_a", 0);
+	ct_utils::get_player() ct_utils::function_8b7a2fdd();
+	if(level.ctdifficulty === 0)
+	{
+		level.var_38c87b5 = 0;
+		var_cd803a6b = gettime();
+	}
+	else
+	{
+		level.var_38c87b5 = b_success && level.var_bd8b567a;
+		var_cd803a6b = gettime() - level.var_ebad4ea8;
+	}
+	ct_utils::function_1a477dd();
+	return var_cd803a6b;
+}
+
+/*
+	Name: function_72e84e64
+	Namespace: ct_firebreak
+	Checksum: 0x7D13D9AF
+	Offset: 0x1178
+	Size: 0x2D4
+	Parameters: 0
+	Flags: None
+*/
+function function_72e84e64()
+{
+	level endon(#"combattraining_logic_finished");
+	level thread registerslicendice_enemy_entrance();
+	self thread ct_utils::objcounter_init(undefined, 0, level.a_s_beacons.size, 1);
+	level.var_ebad4ea8 = gettime();
+	level.var_bd8b567a = 0;
+	level flag::set("gamemode_started");
+	level thread function_d2ae88f1();
+	level thread ct_utils::function_289b4b9f(#"hash_29f6daee1e40b3af", undefined, 50, "stop_nag", &function_ce452e0);
+	level thread ct_bots::activate_bots(12, #"axis");
+	level thread function_95f8a9b5();
+	n_bomb_timer = int((gettime() + 1000) + (int(480 * 1000)));
+	setmatchflag("bomb_timer_a", 1);
+	setbombtimer("A", n_bomb_timer);
+	level.var_a2cbd584 = 0;
+	while(true)
+	{
+		var_e8d6f89 = ct_bots::function_2a8fc6b2();
+		if(var_e8d6f89 == 0 && level.var_f3bb2d59 >= level.var_2392bd18)
+		{
+			level flag::set("mission_success");
+			break;
+		}
+		if(level flag::get("mission_failed"))
+		{
+			break;
+		}
+		var_f08fde43 = function_4c27be22("A");
+		currenttime = gettime();
+		if(currenttime > var_f08fde43)
+		{
+			level flag::set("mission_failed");
+			break;
+		}
+		waitframe(1);
+	}
+	setbombtimer("A", 0);
+	setmatchflag("bomb_timer_a", 0);
+	wait(0.1);
+}
+
+/*
+	Name: function_ca63e908
+	Namespace: ct_firebreak
+	Checksum: 0x1108AA1
+	Offset: 0x1458
+	Size: 0x112
+	Parameters: 0
+	Flags: None
+*/
+function function_ca63e908()
+{
+	waypointname = #"hash_2ec158c9943b9697";
+	var_90cfcf43 = spawn("script_model", self.origin);
+	var_90cfcf43.objectiveid = gameobjects::get_next_obj_id();
+	var_90cfcf43.curorigin = self.origin;
+	var_90cfcf43.ownerteam = game.defenders;
+	var_90cfcf43.team = game.defenders;
+	var_90cfcf43.type = "Waypoint";
+	objective_add(var_90cfcf43.objectiveid, "invisible", var_90cfcf43, waypointname);
+	var_90cfcf43 gameobjects::set_visible_team("none");
+	self.waypoint = var_90cfcf43;
+}
+
+/*
+	Name: registerslicendice_enemy_entrance
+	Namespace: ct_firebreak
+	Checksum: 0x6566FA6A
+	Offset: 0x1578
+	Size: 0x19A
+	Parameters: 0
+	Flags: None
+*/
+function registerslicendice_enemy_entrance()
+{
+	foreach(s_beacon in level.a_s_beacons)
+	{
+		s_beacon.waypoint gameobjects::set_visible_team(#"any");
+		s_beacon.e_beacon = spawn("script_model", s_beacon.origin);
+		s_beacon.e_beacon setmodel("wpn_t8_eqp_spawnbeacon_world");
+		s_beacon.e_beacon clientfield::set("animate_spawn_beacon", 1);
+	}
+	while(level.a_s_beacons.size > 0)
+	{
+		level waittill(#"beacon_destroyed");
+		if(level.a_s_beacons.size > 0)
+		{
+			level thread function_965614a5();
+		}
+		else
+		{
+			level thread function_2add9e5f();
+			level notify(#"stop_nag");
+		}
+	}
+	level.var_e6db911d = 1;
+}
+
+/*
+	Name: function_3192c7f3
+	Namespace: ct_firebreak
+	Checksum: 0x17D2B5F
+	Offset: 0x1720
+	Size: 0x8C
+	Parameters: 0
+	Flags: None
+*/
+function function_3192c7f3()
+{
+	if(level.a_s_beacons.size == 0)
+	{
+		return undefined;
+	}
+	if(!isdefined(level.var_24593a52))
+	{
+		level.var_24593a52 = 0;
+	}
+	if(level.var_24593a52 >= level.a_s_beacons.size)
+	{
+		level.var_24593a52 = 0;
+	}
+	s_beacon = level.a_s_beacons[level.var_24593a52];
+	level.var_24593a52++;
+	return s_beacon;
+}
+
+/*
+	Name: function_d6c7161f
+	Namespace: ct_firebreak
+	Checksum: 0x1CD3B336
+	Offset: 0x17B8
+	Size: 0x33C
+	Parameters: 0
+	Flags: None
+*/
+function function_d6c7161f()
+{
+	self endon(#"death");
+	level endon(#"combattraining_logic_finished");
+	while(true)
+	{
+		self waittill(#"hash_477083bb681cce64");
+		var_326df4eb = undefined;
+		foreach(s_beacon in level.a_s_beacons)
+		{
+			n_dist = distance(s_beacon.origin, self.origin);
+			if(n_dist < 500)
+			{
+				s_beacon thread function_66a805d4(self);
+				var_326df4eb = s_beacon;
+				break;
+			}
+		}
+		if(isdefined(var_326df4eb))
+		{
+			var_583c5a3b = 1.75 + (0.6 * level.var_f3bb2d59);
+			n_start_time = gettime() / 1000;
+			self waittilltimeout(var_583c5a3b, #"hash_4aaf6d6479e7cf20");
+			dt = (gettime() / 1000) - n_start_time;
+			if(dt >= 1.75)
+			{
+				arrayremovevalue(level.a_s_beacons, s_beacon);
+				s_beacon.e_beacon clientfield::set("animate_spawn_beacon", 0);
+				level.var_d4722aa0 = 1;
+				s_beacon.waypoint gameobjects::set_visible_team("none");
+				if(isdefined(s_beacon.guard1))
+				{
+					s_beacon.guard1.beacon = undefined;
+					s_beacon.guard1.var_ef59b90 = 1;
+					s_beacon.guard1 = undefined;
+				}
+				if(isdefined(s_beacon.guard2))
+				{
+					s_beacon.guard2.beacon = undefined;
+					s_beacon.guard2.var_ef59b90 = 1;
+					s_beacon.guard2 = undefined;
+				}
+				level notify(#"beacon_destroyed");
+				e_player = getplayers()[0];
+				e_player thread ct_utils::function_785eb2ca();
+				wait(0.1);
+				s_beacon.e_beacon delete();
+				wait(1);
+				level thread ct_utils::function_bfa522d1(0);
+				level.var_f3bb2d59++;
+			}
+		}
+	}
+}
+
+/*
+	Name: function_66a805d4
+	Namespace: ct_firebreak
+	Checksum: 0xC28462CF
+	Offset: 0x1B00
+	Size: 0xF8
+	Parameters: 1
+	Flags: None
+*/
+function function_66a805d4(e_player)
+{
+	e_player endon(#"death", #"hash_4aaf6d6479e7cf20");
+	while(true)
+	{
+		n_wait = randomfloatrange(0.1, 0.4);
+		wait(n_wait);
+		n_offset = randomfloatrange(0.2, 60);
+		v_pos = (self.origin[0], self.origin[1], self.origin[2] + n_offset);
+		playfx(#"explosions/fx_exp_robot_stage3_evb", v_pos);
+	}
+}
+
+/*
+	Name: function_95f8a9b5
+	Namespace: ct_firebreak
+	Checksum: 0xFF98B716
+	Offset: 0x1C00
+	Size: 0x15C
+	Parameters: 0
+	Flags: None
+*/
+function function_95f8a9b5()
+{
+	level endon(#"combattraining_logic_finished");
+	level.var_6bac32f8 = 0;
+	var_b01b427f = -1000;
+	while(true)
+	{
+		if(level.var_6bac32f8 >= 2)
+		{
+			e_player = ct_utils::get_player();
+			e_player thread ct_utils::function_d471f8fa(10, undefined, 0);
+			level.players[0] potm::bookmark(#"ct_firebreak", gettime(), level.players[0]);
+			level.var_bd8b567a = 1;
+			level thread function_d6cd1a2d();
+			wait(4);
+			level.var_6bac32f8 = 0;
+		}
+		n_time = gettime() / 1000;
+		dt = n_time - var_b01b427f;
+		if(dt > 2)
+		{
+			var_b01b427f = n_time;
+			level.var_6bac32f8 = 0;
+		}
+		waitframe(1);
+	}
+}
+
+/*
+	Name: function_ce452e0
+	Namespace: ct_firebreak
+	Checksum: 0x108D2BF8
+	Offset: 0x1D68
+	Size: 0xBA
+	Parameters: 0
+	Flags: None
+*/
+function function_ce452e0()
+{
+	n_time = gettime() / 1000;
+	if(!isdefined(level.var_9e5d6c86))
+	{
+		level.var_9e5d6c86 = n_time;
+	}
+	if(isdefined(level.var_d4722aa0) && level.var_d4722aa0)
+	{
+		level.var_d4722aa0 = 0;
+		level.var_9e5d6c86 = n_time;
+		return true;
+	}
+	dt = n_time - level.var_9e5d6c86;
+	if(dt < 50.1)
+	{
+		return false;
+	}
+	level.var_9e5d6c86 = n_time;
+	return true;
+}
+
+/*
+	Name: function_d6cd1a2d
+	Namespace: ct_firebreak
+	Checksum: 0x3FCF3E04
+	Offset: 0x1E30
+	Size: 0x6C
+	Parameters: 0
+	Flags: None
+*/
+function function_d6cd1a2d()
+{
+	e_player = getplayers(#"allies")[0];
+	e_player endon(#"death");
+	e_player ct_utils::function_329f9ba6(#"hash_543a5a1c6eed9669", 3, "green");
+}
+
+/*
+	Name: function_965614a5
+	Namespace: ct_firebreak
+	Checksum: 0x19E3EDCA
+	Offset: 0x1EA8
+	Size: 0x5C
+	Parameters: 0
+	Flags: None
+*/
+function function_965614a5()
+{
+	e_player = getplayers(#"allies")[0];
+	e_player ct_utils::function_329f9ba6(#"hash_1b301c864ab49c7a", 3, "green");
+}
+
+/*
+	Name: function_2add9e5f
+	Namespace: ct_firebreak
+	Checksum: 0xD9A0E35F
+	Offset: 0x1F10
+	Size: 0xD4
+	Parameters: 0
+	Flags: None
+*/
+function function_2add9e5f()
+{
+	e_player = getplayers(#"allies")[0];
+	e_player ct_utils::function_329f9ba6(#"hash_49da6342b2ffd978", 3, "green");
+	level.var_a2cbd584 = 1;
+	a_hostiles = util::get_active_players(#"axis");
+	n_hostiles = a_hostiles.size;
+	e_player ct_utils::objcounter_init(#"hash_6ad369658d92591d", n_hostiles, n_hostiles, 0, 0);
+}
+
+/*
+	Name: function_db3dc2c2
+	Namespace: ct_firebreak
+	Checksum: 0xAB6BC646
+	Offset: 0x1FF0
+	Size: 0x64
+	Parameters: 0
+	Flags: None
+*/
+function function_db3dc2c2()
+{
+	e_player = getplayers(#"allies")[0];
+	e_player ct_utils::function_329f9ba6(#"hash_1e1ef1194ce5ad64", 1.5, "green");
+}
+
+/*
+	Name: function_d2ae88f1
+	Namespace: ct_firebreak
+	Checksum: 0x96007DF6
+	Offset: 0x2060
+	Size: 0x5C
+	Parameters: 0
+	Flags: None
+*/
+function function_d2ae88f1()
+{
+	e_player = getplayers(#"allies")[0];
+	e_player thread ct_utils::function_329f9ba6(#"hash_c95709abcf47cdb", 5, "green");
+}
+

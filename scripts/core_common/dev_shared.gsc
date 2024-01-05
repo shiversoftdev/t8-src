@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\gestures.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\gestures.gsc;
 
 #namespace dev;
 
@@ -386,7 +386,7 @@ function function_5639909a(bodytype, outfitindex)
 		foreach(player in players)
 		{
 			player setcharacterbodytype(bodytype);
-			player function_8fd843dd(outfitindex);
+			player setcharacteroutfit(outfitindex);
 		}
 	#/
 }
@@ -417,7 +417,7 @@ function function_f413b4d5(bodytype, outfitindex, var_c1154821, index)
 			{
 				if(var_c1154821 == "")
 				{
-					player function_9b48a8e5(outfitindex);
+					player setcharacterwarpaintoutfit(outfitindex);
 				}
 				player function_ab96a9b5(var_c1154821, index);
 			}
@@ -497,14 +497,14 @@ function body_customization_process_command(character_index)
 	Parameters: 5
 	Flags: None
 */
-function function_3cec5609(arr, var_7956c7ac, bodytype, outfitindex, optiontype)
+function function_3cec5609(&arr, devgui_path, bodytype, outfitindex, optiontype)
 {
 	/#
 		foreach(index, option in arr)
 		{
 			if(option.isvalid)
 			{
-				util::function_345e5b9a((((((((((((((var_7956c7ac + index) + "") + "") + "") + "") + bodytype) + "") + "") + outfitindex) + "") + optiontype) + "") + index) + "");
+				util::add_debug_command((((((((((((((devgui_path + index) + "") + "") + "") + "") + bodytype) + "") + "") + outfitindex) + "") + optiontype) + "") + index) + "");
 			}
 		}
 	#/
@@ -519,11 +519,11 @@ function function_3cec5609(arr, var_7956c7ac, bodytype, outfitindex, optiontype)
 	Parameters: 1
 	Flags: None
 */
-function function_2c6232e5(var_4148b6dc)
+function function_2c6232e5(in_string)
 {
 	/#
-		var_8d9c8a5d = function_ea13f55(var_4148b6dc, "", "");
-		return var_8d9c8a5d;
+		out_string = strreplace(in_string, "", "");
+		return out_string;
 	#/
 }
 
@@ -543,7 +543,7 @@ function function_970d4891(mode)
 		foreach(playerbodytype in bodies)
 		{
 			body_name = (function_2c6232e5(makelocalizedstring(getcharacterdisplayname(playerbodytype, mode))) + "") + function_9e72a96(getcharacterassetname(playerbodytype, mode));
-			util::function_e2e9d901(("" + body_name) + "", (("" + "") + "") + body_name);
+			util::add_devgui(("" + body_name) + "", (("" + "") + "") + body_name);
 		}
 	#/
 }
@@ -569,7 +569,7 @@ function body_customization_populate(mode, var_ef4940a5)
 			{
 				continue;
 			}
-			util::function_345e5b9a((((((((body_customization_devgui_base + body_name) + "") + "") + "") + "") + "") + playerbodytype) + "");
+			util::add_debug_command((((((((body_customization_devgui_base + body_name) + "") + "") + "") + "") + "") + playerbodytype) + "");
 			var_13240050 = function_d299ef16(playerbodytype, mode);
 			for(outfitindex = 0; outfitindex < var_13240050; outfitindex++)
 			{
@@ -577,9 +577,9 @@ function body_customization_populate(mode, var_ef4940a5)
 				if(var_9cf37283.valid)
 				{
 					var_346660ac = function_2c6232e5(makelocalizedstring(function_9e72a96(var_9cf37283.var_74996050)));
-					var_1bf829f2 = ((((outfitindex + "") + var_346660ac) + "") + function_9e72a96(var_9cf37283.var_3cf2d21) + "") + outfitindex;
+					var_1bf829f2 = ((((outfitindex + "") + var_346660ac) + "") + function_9e72a96(var_9cf37283.namehash) + "") + outfitindex;
 					var_a818c4e = ((body_customization_devgui_base + body_name) + "") + var_1bf829f2;
-					util::function_345e5b9a((((((((((var_a818c4e + "") + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "");
+					util::add_debug_command((((((((((var_a818c4e + "") + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "");
 					types = [7:{#field:"", #path:""}, 6:{#field:"", #path:""}, 5:{#field:"", #path:""}, 4:{#field:"", #path:""}, 3:{#field:"", #path:""}, 2:{#field:"", #path:""}, 1:{#field:"", #path:""}, 0:{#field:"", #path:""}];
 					foreach(type, data in types)
 					{
@@ -588,7 +588,7 @@ function body_customization_populate(mode, var_ef4940a5)
 							if(option.isvalid)
 							{
 								util::waittill_can_add_debug_command();
-								util::function_345e5b9a(((((((((((((((((((var_a818c4e + "") + data.path) + "") + index) + "") + index) + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "") + data.field) + "") + index) + "");
+								util::add_debug_command(((((((((((((((((((var_a818c4e + "") + data.path) + "") + index) + "") + index) + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "") + data.field) + "") + index) + "");
 							}
 						}
 					}
@@ -600,12 +600,12 @@ function body_customization_populate(mode, var_ef4940a5)
 							continue;
 						}
 						util::waittill_can_add_debug_command();
-						util::function_345e5b9a((((((((((((((((((var_a818c4e + "") + "") + var_56fe70a0) + "") + var_56fe70a0) + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "") + "") + "") + var_56fe70a0) + "");
+						util::add_debug_command((((((((((((((((((var_a818c4e + "") + "") + var_56fe70a0) + "") + var_56fe70a0) + "") + "") + "") + "") + playerbodytype) + "") + "") + outfitindex) + "") + "") + "") + var_56fe70a0) + "");
 					}
 				}
 				if(isdefined(var_ef4940a5))
 				{
-					util::function_d84da933(("" + body_name) + "");
+					util::remove_devgui(("" + body_name) + "");
 				}
 			}
 		}
@@ -659,7 +659,7 @@ function add_perk_devgui(name, specialties)
 		perk_devgui_base = "";
 		perk_name = name;
 		test = (((((perk_devgui_base + perk_name) + "") + "") + "") + specialties) + "";
-		util::function_345e5b9a((((((perk_devgui_base + perk_name) + "") + "") + "") + specialties) + "");
+		util::add_debug_command((((((perk_devgui_base + perk_name) + "") + "") + "") + specialties) + "");
 	#/
 }
 
@@ -690,7 +690,7 @@ function function_373068ca(name, postfix)
 		util::waittill_can_add_debug_command();
 		talentname = ("" + name) + postfix;
 		cmd = (("" + "") + "") + talentname;
-		util::function_e2e9d901("" + talentname, cmd);
+		util::add_devgui("" + talentname, cmd);
 	#/
 }
 
@@ -721,7 +721,7 @@ function function_8263c0d5(name, postfix)
 		util::waittill_can_add_debug_command();
 		talentname = ("" + getsubstr(name, 7)) + postfix;
 		cmd = (("" + "") + "") + talentname;
-		util::function_e2e9d901("" + talentname, cmd);
+		util::add_devgui("" + talentname, cmd);
 	#/
 }
 
@@ -737,7 +737,7 @@ function function_8263c0d5(name, postfix)
 function function_a432e633()
 {
 	/#
-		gesture = getdvarstring(#"hash_69042953f03fb8a4");
+		gesture = getdvarstring(#"scr_givegesture");
 		if(isdefined(gesture) && gesture != "")
 		{
 			foreach(player in level.players)
@@ -746,15 +746,15 @@ function function_a432e633()
 				{
 					continue;
 				}
-				player gestures::function_ae63f496();
+				player gestures::clear_gesture();
 				player.loadoutgesture = getweapon(gesture);
 				if(isdefined(player.loadoutgesture) && player.loadoutgesture != level.weaponnone)
 				{
-					player gestures::function_f8ae6f87(player.loadoutgesture);
+					player gestures::give_gesture(player.loadoutgesture);
 				}
 			}
 		}
-		setdvar(#"hash_69042953f03fb8a4", "");
+		setdvar(#"scr_givegesture", "");
 	#/
 }
 
@@ -772,12 +772,12 @@ function function_487bf571()
 	/#
 		for(;;)
 		{
-			gesture = getdvarstring(#"hash_69042953f03fb8a4");
+			gesture = getdvarstring(#"scr_givegesture");
 			if(gesture != "")
 			{
 				function_a432e633();
 			}
-			setdvar(#"hash_69042953f03fb8a4", "");
+			setdvar(#"scr_givegesture", "");
 			wait(0.5);
 		}
 	#/

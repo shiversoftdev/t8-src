@@ -1,20 +1,20 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5a63672f07149a55;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\influencers_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\weapons\tacticalinsertion.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\influencers_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace spawning;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: spawning
 	Checksum: 0x23D53D98
 	Offset: 0x220
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"spawning_shared", &__init__, undefined, undefined);
 }
@@ -42,7 +42,7 @@ function __init__()
 	level.spawnprotectiontime = getgametypesetting(#"spawnprotectiontime");
 	level.spawnprotectiontimems = int(int((isdefined(level.spawnprotectiontime) ? level.spawnprotectiontime : 0) * 1000));
 	level.spawntraptriggertime = getgametypesetting(#"spawntraptriggertime");
-	level.var_f220c297 = getgametypesetting(#"hash_19400c3e10b77e6b");
+	level.deathcirclerespawn = getgametypesetting(#"deathcirclerespawn");
 	level.var_c2cc011f = getgametypesetting(#"hash_4bdd1bd86b610871");
 	level.players = [];
 	level.numplayerswaitingtoenterkillcam = 0;
@@ -198,12 +198,12 @@ function private init_spawn_system()
 	spawnsystem.ispawn_teammask_free = 1;
 	spawnsystem.ispawn_teammask[#"free"] = spawnsystem.ispawn_teammask_free;
 	spawnsystem.ispawn_teammask[#"neutral"] = spawnsystem.var_146943ea;
-	function_44c8af7f();
-	callback::add_callback(#"hash_79b2aab11c0a9902", &function_44c8af7f);
+	init_teams();
+	callback::add_callback(#"init_teams", &init_teams);
 }
 
 /*
-	Name: function_44c8af7f
+	Name: init_teams
 	Namespace: spawning
 	Checksum: 0x242C617
 	Offset: 0x958
@@ -211,7 +211,7 @@ function private init_spawn_system()
 	Parameters: 0
 	Flags: None
 */
-function function_44c8af7f()
+function init_teams()
 {
 	spawnsystem = level.spawnsystem;
 	all = spawnsystem.ispawn_teammask_free;
@@ -583,7 +583,7 @@ function onspawnplayer(predictedspawn = 0)
 */
 function private getspawnpoint(player_entity, predictedspawn = 0)
 {
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		point_team = "free";
 		influencer_team = player_entity.pers[#"team"];
@@ -803,7 +803,7 @@ function private add_spawn_points_internal(team, spawnpoints, list = 0)
 	Parameters: 3
 	Flags: Variadic
 */
-function clear_and_add_spawn_points(str_team, classnames, vararg)
+function clear_and_add_spawn_points(str_team, classnames, ...)
 {
 	str_team = util::get_team_mapping(str_team);
 	/#
@@ -1372,7 +1372,7 @@ function private function_8807475c()
 {
 	self.enabled = 1;
 	self.enabled = self.enabled && (!isdefined(self.trigger_enabled) || self.trigger_enabled);
-	self.enabled = self.enabled && (!isdefined(self.var_bb915a97) || self.var_bb915a97);
+	self.enabled = self.enabled && (!isdefined(self.filter_enabled) || self.filter_enabled);
 }
 
 /*
@@ -1703,24 +1703,24 @@ function get_random_intermission_point()
 */
 function move_spawn_point(var_75347e0b, start_point, new_point, new_angles)
 {
-	var_690d7ade = [];
+	targetnamearray = [];
 	if(isarray(var_75347e0b))
 	{
-		var_690d7ade = var_75347e0b;
+		targetnamearray = var_75347e0b;
 	}
 	else
 	{
-		if(!isdefined(var_690d7ade))
+		if(!isdefined(targetnamearray))
 		{
-			var_690d7ade = [];
+			targetnamearray = [];
 		}
-		else if(!isarray(var_690d7ade))
+		else if(!isarray(targetnamearray))
 		{
-			var_690d7ade = array(var_690d7ade);
+			targetnamearray = array(targetnamearray);
 		}
-		var_690d7ade[var_690d7ade.size] = var_75347e0b;
+		targetnamearray[targetnamearray.size] = var_75347e0b;
 	}
-	foreach(targetname in var_690d7ade)
+	foreach(targetname in targetnamearray)
 	{
 		spawn_points = get_spawnpoint_array(targetname);
 		for(i = 0; i < spawn_points.size; i++)

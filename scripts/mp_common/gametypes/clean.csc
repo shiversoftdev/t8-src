@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
 
 #namespace clean;
 
@@ -23,7 +23,7 @@ event main(eventstruct)
 	clientfield::register("scriptmover", "taco_player_entnum", 14000, 4, "int", &function_568727a2, 0, 0);
 	level.var_aaaae0b = "ui/fx8_fracture_plyr_marker";
 	level.var_5844252c = "ui/fx8_fracture_drop_marker";
-	level.var_ce64ea3e = #"hash_77d505035209b8d6";
+	level.var_ce64ea3e = #"clean_taco";
 	if(isdefined(getgametypesetting(#"hash_5cc4c3042b7d4935")) && getgametypesetting(#"hash_5cc4c3042b7d4935"))
 	{
 		level.var_aaaae0b = "ui/fx8_fracture_plyr_marker_shamrock";
@@ -58,7 +58,7 @@ function private on_localclient_connect(localclientnum)
 */
 function function_11abf5b2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self notify(#"hash_7117a0f5c62d8c3d");
+	self notify(#"stopbounce");
 	if(isdefined(self.var_47b256ef))
 	{
 		self.var_47b256ef unlink();
@@ -132,7 +132,7 @@ function function_81431153(localclientnum)
 */
 function function_d1834e16(localclientnum)
 {
-	self endon(#"hash_7117a0f5c62d8c3d");
+	self endon(#"stopbounce");
 	self endon(#"death");
 	toppos = self.origin + vectorscale((0, 0, 1), 12);
 	bottompos = self.origin;
@@ -219,7 +219,7 @@ function function_d91ca1f1(localclientnum)
 		level.var_ccb8d7fb[localclientnum][i] = spawnstruct();
 		objid = util::getnextobjid(localclientnum);
 		level.var_ccb8d7fb[localclientnum][i].id = objid;
-		level.var_ccb8d7fb[localclientnum][i].var_336f0669 = undefined;
+		level.var_ccb8d7fb[localclientnum][i].tacoentnum = undefined;
 		objective_add(localclientnum, objid, "invisible", level.var_ce64ea3e);
 	}
 }
@@ -233,13 +233,13 @@ function function_d91ca1f1(localclientnum)
 	Parameters: 2
 	Flags: None
 */
-function function_5d02c098(localclientnum, var_336f0669)
+function function_5d02c098(localclientnum, tacoentnum)
 {
 	for(i = 0; i < 16; i++)
 	{
-		if(!isdefined(level.var_ccb8d7fb[localclientnum][i].var_336f0669))
+		if(!isdefined(level.var_ccb8d7fb[localclientnum][i].tacoentnum))
 		{
-			level.var_ccb8d7fb[localclientnum][i].var_336f0669 = var_336f0669;
+			level.var_ccb8d7fb[localclientnum][i].tacoentnum = tacoentnum;
 			return level.var_ccb8d7fb[localclientnum][i].id;
 		}
 	}
@@ -255,13 +255,13 @@ function function_5d02c098(localclientnum, var_336f0669)
 	Parameters: 2
 	Flags: None
 */
-function function_53576950(localclientnum, var_336f0669)
+function function_53576950(localclientnum, tacoentnum)
 {
 	for(i = 0; i < 16; i++)
 	{
-		if(level.var_ccb8d7fb[localclientnum][i].var_336f0669 === var_336f0669)
+		if(level.var_ccb8d7fb[localclientnum][i].tacoentnum === tacoentnum)
 		{
-			level.var_ccb8d7fb[localclientnum][i].var_336f0669 = undefined;
+			level.var_ccb8d7fb[localclientnum][i].tacoentnum = undefined;
 			return level.var_ccb8d7fb[localclientnum][i].id;
 		}
 	}

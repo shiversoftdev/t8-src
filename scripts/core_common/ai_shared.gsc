@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_4c5c4a64a59247a2;
 #using script_59f07c660e6710a5;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\colors_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\util_shared.gsc;
+#using script_4c5c4a64a59247a2;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\colors_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace ai;
 
@@ -227,7 +227,7 @@ function waittill_dead(guys, num, timeoutlength)
 	array::thread_all(guys, &waittill_dead_thread, ent);
 	while(ent.count > 0)
 	{
-		ent waittill(#"hash_1619fcb8878d16b1");
+		ent waittill(#"waittill_dead guy died");
 	}
 }
 
@@ -282,7 +282,7 @@ function private waittill_dead_thread(ent)
 {
 	self waittill(#"death");
 	ent.count--;
-	ent notify(#"hash_1619fcb8878d16b1");
+	ent notify(#"waittill_dead guy died");
 }
 
 /*
@@ -565,7 +565,7 @@ function _force_goal(s_tracker, goto, b_shoot = 1, str_end_on, b_keep_colors = 0
 	grenadeawareness = self.grenadeawareness;
 	if(!b_shoot)
 	{
-		self val::set(#"hash_6bc9266ffa66387c", "ignoreall", 1);
+		self val::set(#"ai_forcegoal", "ignoreall", 1);
 	}
 	else if(self has_behavior_attribute("move_mode"))
 	{
@@ -578,7 +578,7 @@ function _force_goal(s_tracker, goto, b_shoot = 1, str_end_on, b_keep_colors = 0
 	}
 	self.ignoresuppression = 1;
 	self.grenadeawareness = 0;
-	self val::set(#"hash_6bc9266ffa66387c", "ignoreme", 1);
+	self val::set(#"ai_forcegoal", "ignoreme", 1);
 	self disable_pain();
 	if(!isplayer(self))
 	{
@@ -598,8 +598,8 @@ function _force_goal(s_tracker, goto, b_shoot = 1, str_end_on, b_keep_colors = 0
 		self pushplayer(0);
 	}
 	self clearforcedgoal();
-	self val::reset(#"hash_6bc9266ffa66387c", "ignoreme");
-	self val::reset(#"hash_6bc9266ffa66387c", "ignoreall");
+	self val::reset(#"ai_forcegoal", "ignoreme");
+	self val::reset(#"ai_forcegoal", "ignoreall");
 	if(isdefined(allowpain) && allowpain)
 	{
 		self enable_pain();
@@ -691,7 +691,7 @@ function patrol(start_path_node)
 	/#
 		assert(isdefined(start_path_node), self.targetname + "");
 	#/
-	if(start_path_node.type === #"hash_397b1509f632dd34")
+	if(start_path_node.type === #"bad node")
 	{
 		/#
 			errormsg = (((("" + start_path_node.targetname) + "") + int(start_path_node.origin[0]) + "") + int(start_path_node.origin[1]) + "") + int(start_path_node.origin[2]) + "";
@@ -1113,7 +1113,7 @@ function function_aa4579e2(fovcosine, maxsightdistsqrd)
 function function_1628d95b(cansee = 0, var_9a21f98d = 1, var_2dd9c403 = self.origin)
 {
 	var_56203bf4 = function_4d8c71ce(util::get_enemy_team(self.team), #"team3");
-	var_c719c76b = undefined;
+	nearesttarget = undefined;
 	var_46e1d165 = undefined;
 	foreach(target in var_56203bf4)
 	{
@@ -1137,13 +1137,13 @@ function function_1628d95b(cansee = 0, var_9a21f98d = 1, var_2dd9c403 = self.ori
 			}
 		}
 		distsq = distancesquared(var_2dd9c403, target.origin);
-		if(!isdefined(var_c719c76b) || distsq < var_46e1d165)
+		if(!isdefined(nearesttarget) || distsq < var_46e1d165)
 		{
-			var_c719c76b = target;
+			nearesttarget = target;
 			var_46e1d165 = distsq;
 		}
 	}
-	return var_c719c76b;
+	return nearesttarget;
 }
 
 /*
@@ -1248,7 +1248,7 @@ function is_stunned()
 }
 
 /*
-	Name: function_62795e55
+	Name: clear_stun
 	Namespace: ai
 	Checksum: 0x7A8993C3
 	Offset: 0x2DD8
@@ -1256,7 +1256,7 @@ function is_stunned()
 	Parameters: 0
 	Flags: Linked
 */
-function function_62795e55()
+function clear_stun()
 {
 	self.var_3d461e6f = undefined;
 }
@@ -1274,26 +1274,26 @@ function function_9139c839()
 {
 	if(!isdefined(self.var_76167463))
 	{
-		if(isdefined(self.var_ae8ec545))
+		if(isdefined(self.aisettingsbundle))
 		{
-			var_51d5c26f = self.var_ae8ec545;
+			settingsbundle = self.aisettingsbundle;
 		}
 		else
 		{
 			if(isspawner(self) && isdefined(self.aitype))
 			{
-				var_51d5c26f = function_edf479a3(self.aitype);
+				settingsbundle = function_edf479a3(self.aitype);
 			}
 			else if(isvehicle(self) && isdefined(self.scriptbundlesettings))
 			{
-				var_51d5c26f = getscriptbundle(self.scriptbundlesettings).var_ae8ec545;
+				settingsbundle = getscriptbundle(self.scriptbundlesettings).aisettingsbundle;
 			}
 		}
-		if(!isdefined(var_51d5c26f))
+		if(!isdefined(settingsbundle))
 		{
 			return undefined;
 		}
-		self.var_76167463 = var_51d5c26f;
+		self.var_76167463 = settingsbundle;
 		if(!isdefined(level.var_e3a467cf))
 		{
 			level.var_e3a467cf = [];

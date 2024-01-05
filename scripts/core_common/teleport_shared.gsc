@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\animation_shared.gsc;
-#using scripts\core_common\lui_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\vehicle_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\lui_shared.gsc;
+#using scripts\core_common\animation_shared.gsc;
 
 #namespace teleport;
 
@@ -24,7 +24,7 @@ function team(kvp, var_dad37549, var_b095575e = 0)
 	{
 		return 0;
 	}
-	if(var_bac46abd.var_d7586d.size < level.players.size)
+	if(var_bac46abd.a_s_players.size < level.players.size)
 	{
 		/#
 			assertmsg("");
@@ -33,7 +33,7 @@ function team(kvp, var_dad37549, var_b095575e = 0)
 	}
 	foreach(e_player in level.players)
 	{
-		foreach(s_teleport in var_bac46abd.var_d7586d)
+		foreach(s_teleport in var_bac46abd.a_s_players)
 		{
 			if(!(isdefined(s_teleport.b_used) && s_teleport.b_used))
 			{
@@ -46,7 +46,7 @@ function team(kvp, var_dad37549, var_b095575e = 0)
 	{
 		foreach(ai_hero in level.heroes)
 		{
-			foreach(s_teleport in var_bac46abd.var_10b2deb1)
+			foreach(s_teleport in var_bac46abd.a_s_heroes)
 			{
 				if(isdefined(s_teleport.var_f7486b69) && s_teleport.var_f7486b69 != ai_hero.targetname)
 				{
@@ -83,7 +83,7 @@ function player(e_player, kvp, var_dad37549, var_b095575e = 0)
 	var_20212d26 = self function_e6615993(kvp, var_dad37549);
 	str_key = var_20212d26.str_key;
 	str_value = var_20212d26.str_value;
-	foreach(s_teleport in level.var_d941f923)
+	foreach(s_teleport in level.a_s_teleport_players)
 	{
 		if(s_teleport.(str_key) === str_value && (!(isdefined(s_teleport.b_used) && s_teleport.b_used)))
 		{
@@ -153,11 +153,11 @@ function function_ff8a7a3(kvp)
 */
 function private function_1d2a3300()
 {
-	if(!isdefined(level.var_d941f923))
+	if(!isdefined(level.a_s_teleport_players))
 	{
-		if(!isdefined(level.var_d941f923))
+		if(!isdefined(level.a_s_teleport_players))
 		{
-			level.var_d941f923 = struct::get_array("teleport_player", "variantname");
+			level.a_s_teleport_players = struct::get_array("teleport_player", "variantname");
 		}
 		if(!isdefined(level.var_c89d2304))
 		{
@@ -231,47 +231,47 @@ function private function_166effac(kvp, var_dad37549)
 	}
 	str_key = var_20212d26.str_key;
 	str_value = var_20212d26.str_value;
-	var_d7586d = [];
-	foreach(s_teleport_player in level.var_d941f923)
+	a_s_players = [];
+	foreach(s_teleport_player in level.a_s_teleport_players)
 	{
 		if(s_teleport_player.(str_key) === str_value)
 		{
-			if(!isdefined(var_d7586d))
+			if(!isdefined(a_s_players))
 			{
-				var_d7586d = [];
+				a_s_players = [];
 			}
-			else if(!isarray(var_d7586d))
+			else if(!isarray(a_s_players))
 			{
-				var_d7586d = array(var_d7586d);
+				a_s_players = array(a_s_players);
 			}
-			if(!isinarray(var_d7586d, s_teleport_player))
+			if(!isinarray(a_s_players, s_teleport_player))
 			{
-				var_d7586d[var_d7586d.size] = s_teleport_player;
+				a_s_players[a_s_players.size] = s_teleport_player;
 			}
 		}
 	}
-	var_10b2deb1 = [];
+	a_s_heroes = [];
 	if(isdefined(level.heroes))
 	{
 		foreach(s_teleport_hero in level.var_c89d2304)
 		{
 			if(s_teleport_hero.(str_key) === str_value)
 			{
-				if(!isdefined(var_10b2deb1))
+				if(!isdefined(a_s_heroes))
 				{
-					var_10b2deb1 = [];
+					a_s_heroes = [];
 				}
-				else if(!isarray(var_10b2deb1))
+				else if(!isarray(a_s_heroes))
 				{
-					var_10b2deb1 = array(var_10b2deb1);
+					a_s_heroes = array(a_s_heroes);
 				}
-				if(!isinarray(var_10b2deb1, s_teleport_hero))
+				if(!isinarray(a_s_heroes, s_teleport_hero))
 				{
-					var_10b2deb1[var_10b2deb1.size] = s_teleport_hero;
+					a_s_heroes[a_s_heroes.size] = s_teleport_hero;
 				}
 			}
 		}
-		if(var_10b2deb1.size < level.heroes.size)
+		if(a_s_heroes.size < level.heroes.size)
 		{
 			/#
 				assertmsg("");
@@ -279,7 +279,7 @@ function private function_166effac(kvp, var_dad37549)
 			return undefined;
 		}
 	}
-	return {#hash_dad37549:var_20212d26.var_dad37549, #hash_10b2deb1:var_10b2deb1, #hash_d7586d:var_d7586d};
+	return {#hash_dad37549:var_20212d26.var_dad37549, #a_s_heroes:a_s_heroes, #a_s_players:a_s_players};
 }
 
 /*

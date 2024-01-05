@@ -1,28 +1,28 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using scripts\core_common\ai_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\util.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_laststand.gsc;
-#using scripts\zm_common\zm_net.gsc;
-#using scripts\zm_common\zm_score.gsc;
+#using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_spawner.gsc;
 #using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_utility.gsc;
-#using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_score.gsc;
+#using scripts\zm_common\zm_net.gsc;
+#using scripts\zm_common\zm_laststand.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\zm_common\util.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\ai_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace lightning_chain;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: lightning_chain
 	Checksum: 0xEA813CA6
 	Offset: 0x230
@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"lightning_chain", &init, undefined, undefined);
 }
@@ -302,7 +302,7 @@ function private lc_flag_hit(enemy, hit)
 						enemy[i] ai::stun();
 						continue;
 					}
-					enemy[i] ai::function_62795e55();
+					enemy[i] ai::clear_stun();
 				}
 			}
 		}
@@ -314,7 +314,7 @@ function private lc_flag_hit(enemy, hit)
 			}
 			else
 			{
-				enemy ai::function_62795e55();
+				enemy ai::clear_stun();
 			}
 		}
 	}
@@ -438,8 +438,8 @@ function private function_915d4fec(params, v_origin, player)
 {
 	if(isdefined(params.var_a9255d36))
 	{
-		var_be17187b = undefined;
-		var_be17187b = self waittill(params.var_a9255d36, #"death");
+		s_waitresult = undefined;
+		s_waitresult = self waittill(params.var_a9255d36, #"death");
 	}
 	weapon = (isdefined(params.weapon) ? params.weapon : level.weaponnone);
 	str_mod = (isdefined(params.str_mod) ? params.str_mod : "MOD_UNKNOWN");

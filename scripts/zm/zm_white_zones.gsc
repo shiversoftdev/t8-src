@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_5b4f7a8178990872;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\spawner_shared.gsc;
 #using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_hud.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\spawner_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
-#namespace namespace_9146fc8b;
+#namespace zm_white_zones;
 
 /*
 	Name: init
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0xABA70B6
 	Offset: 0x510
 	Size: 0x24
@@ -27,7 +27,7 @@ function init()
 
 /*
 	Name: zone_init
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0xD388FD0D
 	Offset: 0x540
 	Size: 0x914
@@ -99,7 +99,7 @@ function zone_init()
 
 /*
 	Name: function_fb29f7ca
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0xFF748EE9
 	Offset: 0xE60
 	Size: 0x76
@@ -119,7 +119,7 @@ function function_fb29f7ca()
 
 /*
 	Name: function_3673cfa1
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0x7A21919A
 	Offset: 0xEE0
 	Size: 0x64
@@ -135,7 +135,7 @@ function function_3673cfa1()
 
 /*
 	Name: function_57ea545d
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0x801D5CD4
 	Offset: 0xF50
 	Size: 0xC4
@@ -156,7 +156,7 @@ function function_57ea545d(str_flag)
 
 /*
 	Name: is_bunker_zone
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0x61436315
 	Offset: 0x1020
 	Size: 0x104
@@ -195,7 +195,7 @@ function is_bunker_zone(str_zone)
 
 /*
 	Name: function_29ec1ad7
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0xE96B3859
 	Offset: 0x1130
 	Size: 0x1C
@@ -209,7 +209,7 @@ function function_29ec1ad7()
 
 /*
 	Name: function_8e0b371
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0x3405F7E5
 	Offset: 0x1158
 	Size: 0xB8
@@ -236,7 +236,7 @@ function function_8e0b371()
 
 /*
 	Name: function_ab7f70b9
-	Namespace: namespace_9146fc8b
+	Namespace: zm_white_zones
 	Checksum: 0x96B5D8CA
 	Offset: 0x1218
 	Size: 0x45E
@@ -293,7 +293,7 @@ function function_ab7f70b9(e_player)
 			var_601fee0 = #"hash_1277174ca2ba0df";
 			break;
 		}
-		case "hash_11aeb684f2449edb":
+		case "zone_truck":
 		{
 			var_601fee0 = #"hash_5ff3990c30bac4bc";
 			break;

@@ -1,18 +1,18 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.csc;
-#using scripts\core_common\beam_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\duplicaterender_mgr.csc;
-#using scripts\core_common\filter_shared.csc;
-#using scripts\core_common\flagsys_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\flagsys_shared.csc;
+#using scripts\core_common\filter_shared.csc;
+#using scripts\core_common\duplicaterender_mgr.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\beam_shared.csc;
+#using scripts\core_common\array_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace zm_grappler;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_grappler
 	Checksum: 0xCEE7CE95
 	Offset: 0x128
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_grappler", &__init__, undefined, undefined);
 }
@@ -36,16 +36,16 @@ function autoexec function_89f2df9()
 */
 function __init__()
 {
-	clientfield::register("scriptmover", "grappler_beam_source", 1, getminbitcountfornum(5), "int", &function_3adb9228, 1, 0);
-	clientfield::register("scriptmover", "grappler_beam_target", 1, getminbitcountfornum(5), "int", &function_7e79839e, 1, 0);
-	if(!isdefined(level.var_7e79839e))
+	clientfield::register("scriptmover", "grappler_beam_source", 1, getminbitcountfornum(5), "int", &grappler_source, 1, 0);
+	clientfield::register("scriptmover", "grappler_beam_target", 1, getminbitcountfornum(5), "int", &grappler_beam, 1, 0);
+	if(!isdefined(level.grappler_beam))
 	{
-		level.var_7e79839e = "zod_beast_grapple_beam";
+		level.grappler_beam = "zod_beast_grapple_beam";
 	}
 }
 
 /*
-	Name: function_3adb9228
+	Name: grappler_source
 	Namespace: zm_grappler
 	Checksum: 0x13D83088
 	Offset: 0x250
@@ -53,21 +53,21 @@ function __init__()
 	Parameters: 7
 	Flags: Linked
 */
-function function_3adb9228(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function grappler_source(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(!isdefined(level.var_da8e7aa4))
+	if(!isdefined(level.grappler_sources))
 	{
-		level.var_da8e7aa4 = [];
+		level.grappler_sources = [];
 	}
 	/#
-		assert(!isdefined(level.var_da8e7aa4[newval]));
+		assert(!isdefined(level.grappler_sources[newval]));
 	#/
-	level.var_da8e7aa4[newval] = self;
+	level.grappler_sources[newval] = self;
 	level notify("grapple_id_" + newval);
 }
 
 /*
-	Name: function_7e79839e
+	Name: grappler_beam
 	Namespace: zm_grappler
 	Checksum: 0x5387DE38
 	Offset: 0x308
@@ -75,21 +75,21 @@ function function_3adb9228(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_7e79839e(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function grappler_beam(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	self endon(#"death");
-	if(!isdefined(level.var_da8e7aa4))
+	if(!isdefined(level.grappler_sources))
 	{
-		level.var_da8e7aa4 = [];
+		level.grappler_sources = [];
 	}
-	if(!isdefined(level.var_da8e7aa4[newval]))
+	if(!isdefined(level.grappler_sources[newval]))
 	{
 		level waittilltimeout(1, "grapple_id_" + newval);
 	}
 	/#
-		assert(isdefined(level.var_da8e7aa4[newval]));
+		assert(isdefined(level.grappler_sources[newval]));
 	#/
-	pivot = level.var_da8e7aa4[newval];
+	pivot = level.grappler_sources[newval];
 	if(!isdefined(pivot))
 	{
 		return;
@@ -100,7 +100,7 @@ function function_7e79839e(localclientnum, oldval, newval, bnewent, binitialsnap
 	}
 	else
 	{
-		self notify(#"hash_1550b3a3e9b816f3");
+		self notify(#"grappler_done");
 	}
 }
 
@@ -115,7 +115,7 @@ function function_7e79839e(localclientnum, oldval, newval, bnewent, binitialsnap
 */
 function function_34e3f163(player, tag, pivot, delay)
 {
-	player endon(#"hash_1550b3a3e9b816f3", #"death");
+	player endon(#"grappler_done", #"death");
 	pivot endon(#"death");
 	wait(delay);
 	thread grapple_beam(player, tag, pivot);
@@ -132,7 +132,7 @@ function function_34e3f163(player, tag, pivot, delay)
 */
 function function_f4b9c325(notifyhash)
 {
-	level beam::kill(self.player, self.tag, self.pivot, "tag_origin", level.var_7e79839e);
+	level beam::kill(self.player, self.tag, self.pivot, "tag_origin", level.grappler_beam);
 }
 
 /*
@@ -150,8 +150,8 @@ function grapple_beam(player, tag, pivot)
 	self.player = player;
 	self.tag = tag;
 	self.pivot = pivot;
-	level beam::launch(player, tag, pivot, "tag_origin", level.var_7e79839e, 1);
-	player waittill(#"hash_1550b3a3e9b816f3");
-	level beam::kill(player, tag, pivot, "tag_origin", level.var_7e79839e);
+	level beam::launch(player, tag, pivot, "tag_origin", level.grappler_beam, 1);
+	player waittill(#"grappler_done");
+	level beam::kill(player, tag, pivot, "tag_origin", level.grappler_beam);
 }
 

@@ -41,7 +41,7 @@ function is_overtime_round()
 }
 
 /*
-	Name: function_6343685
+	Name: round_stats_init
 	Namespace: overtime
 	Checksum: 0x7742F650
 	Offset: 0xE8
@@ -49,7 +49,7 @@ function is_overtime_round()
 	Parameters: 0
 	Flags: Linked
 */
-function function_6343685()
+function round_stats_init()
 {
 	if(is_overtime_round())
 	{

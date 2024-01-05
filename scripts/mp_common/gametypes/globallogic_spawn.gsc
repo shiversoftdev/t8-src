@@ -1,49 +1,49 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_18f0d22c75b141a7;
-#using script_1d1e03233039d175;
-#using script_256b8879317373de;
-#using script_29ed825598140ca0;
-#using script_2c49ae69cd8ce30c;
-#using script_3f27a7b2232674db;
-#using script_3f9e54c7a9a7e1e2;
-#using script_6c8abe14025b47c4;
-#using script_6eb0d63d4a90adcf;
-#using script_788472602edbe3b9;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\gamestate.gsc;
-#using scripts\core_common\hostmigration_shared.gsc;
-#using scripts\core_common\hud_message_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\match_record.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\oob.gsc;
-#using scripts\core_common\spawning_shared.gsc;
-#using scripts\core_common\spectating.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\mp_common\armor.gsc;
-#using scripts\mp_common\callbacks.gsc;
-#using scripts\mp_common\draft.gsc;
-#using scripts\mp_common\gametypes\battlechatter.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\gametypes\globallogic_audio.gsc;
-#using scripts\mp_common\gametypes\globallogic_defaults.gsc;
-#using scripts\mp_common\gametypes\globallogic_score.gsc;
-#using scripts\mp_common\gametypes\globallogic_ui.gsc;
-#using scripts\mp_common\gametypes\globallogic_utils.gsc;
-#using scripts\mp_common\gametypes\hostmigration.gsc;
-#using scripts\mp_common\gametypes\hud_message.gsc;
-#using scripts\mp_common\userspawnselection.gsc;
 #using scripts\mp_common\util.gsc;
+#using scripts\mp_common\userspawnselection.gsc;
+#using scripts\mp_common\callbacks.gsc;
+#using scripts\mp_common\teams\teams.gsc;
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\mp_common\player\player_monitor.gsc;
+#using scripts\mp_common\player\player_loadout.gsc;
+#using scripts\mp_common\player\player_killed.gsc;
+#using scripts\mp_common\gametypes\hud_message.gsc;
+#using scripts\mp_common\gametypes\hostmigration.gsc;
+#using scripts\mp_common\gametypes\globallogic_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic_ui.gsc;
+#using scripts\mp_common\gametypes\globallogic_score.gsc;
+#using scripts\mp_common\gametypes\globallogic_defaults.gsc;
+#using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\gametypes\battlechatter.gsc;
+#using scripts\mp_common\draft.gsc;
+#using scripts\mp_common\bots\mp_bot.gsc;
+#using scripts\mp_common\armor.gsc;
+#using scripts\killstreaks\killstreaks_shared.gsc;
+#using scripts\core_common\match_record.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\spectating.gsc;
+#using scripts\core_common\spawning_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\player\player_role.gsc;
+#using scripts\core_common\player\player_loadout.gsc;
+#using scripts\core_common\oob.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hud_message_shared.gsc;
+#using scripts\core_common\hostmigration_shared.gsc;
+#using scripts\core_common\gamestate.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace globallogic_spawn;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic_spawn
 	Checksum: 0xD1FEF0F3
 	Offset: 0x350
@@ -51,7 +51,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic_spawn", &__init__, undefined, undefined);
 }
@@ -227,7 +227,7 @@ function function_82ca1565(spawnpoint, gametype)
 		}
 		case "dem_overtime":
 		{
-			return isdefined(spawnpoint.var_21f814f) && spawnpoint.var_21f814f;
+			return isdefined(spawnpoint.demolition_overtime) && spawnpoint.demolition_overtime;
 			break;
 		}
 		case "hash_7cb9d0a58715cebe":
@@ -381,7 +381,7 @@ function function_d3d4ff67(spawn)
 	Parameters: 4
 	Flags: Linked
 */
-function addspawnsforteamname(teamname, searchentity, spawnarray, startspawns)
+function addspawnsforteamname(teamname, searchentity, &spawnarray, &startspawns)
 {
 	rawspawns = struct::get_array(searchentity, "targetname");
 	foreach(spawn in rawspawns)
@@ -403,16 +403,16 @@ function addspawnsforteamname(teamname, searchentity, spawnarray, startspawns)
 					continue;
 				}
 			}
-			var_61a53e63 = ((isdefined(spawn._human_were) ? spawn._human_were : 0) ? startspawns : spawnarray);
-			if(!isdefined(var_61a53e63[teamname]))
+			usespawnarray = ((isdefined(spawn._human_were) ? spawn._human_were : 0) ? startspawns : spawnarray);
+			if(!isdefined(usespawnarray[teamname]))
 			{
-				var_61a53e63[teamname] = [];
+				usespawnarray[teamname] = [];
 			}
 			if(!isdefined(spawn.enabled))
 			{
 				spawn.enabled = -1;
 			}
-			array::add(var_61a53e63[teamname], spawn);
+			array::add(usespawnarray[teamname], spawn);
 		}
 	}
 }
@@ -426,13 +426,13 @@ function addspawnsforteamname(teamname, searchentity, spawnarray, startspawns)
 	Parameters: 2
 	Flags: None
 */
-function function_d400d613(targetname, var_37c5ce49)
+function function_d400d613(targetname, typesarray)
 {
 	returnarray = [];
 	rawspawns = struct::get_array(targetname, "targetname");
 	foreach(spawn in rawspawns)
 	{
-		foreach(supportedspawntype in var_37c5ce49)
+		foreach(supportedspawntype in typesarray)
 		{
 			if(!function_82ca1565(spawn, supportedspawntype))
 			{
@@ -478,7 +478,7 @@ function private function_68312709()
 	{
 		if(spawnteam == "all")
 		{
-			if(function_f99d2668())
+			if(sessionmodeiswarzonegame())
 			{
 				addspawnpoints("free", spawnstoadd[spawnteam], "auto_normal");
 				addspawnpoints(#"axis", spawnstoadd[spawnteam], "fallback");
@@ -565,12 +565,12 @@ function function_8acd9309()
 				{
 					continue;
 				}
-				var_61a53e63 = ((isdefined(spawn._human_were) ? spawn._human_were : 0) ? startspawns : spawnarray);
+				usespawnarray = ((isdefined(spawn._human_were) ? spawn._human_were : 0) ? startspawns : spawnarray);
 				if(!isdefined(spawn.enabled))
 				{
 					spawn.enabled = -1;
 				}
-				array::add(var_61a53e63, spawn);
+				array::add(usespawnarray, spawn);
 			}
 		}
 	}
@@ -700,7 +700,7 @@ function timeuntilspawn(includeteamkilldelay)
 			respawndelay = respawndelay + player::function_821200bb();
 		}
 	}
-	if(isdefined(level.var_f220c297) && level.var_f220c297)
+	if(isdefined(level.deathcirclerespawn) && level.deathcirclerespawn)
 	{
 		return self function_ac5b273c(respawndelay);
 	}
@@ -1090,7 +1090,7 @@ function spawnplayer()
 		self loadout::function_53b62db1(self.curclass);
 	}
 	self loadout::give_loadout(self.team, self.curclass);
-	if(sessionmodeismultiplayergame() || function_f99d2668())
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 	{
 		specialist = function_b14806c6(role, currentsessionmode());
 		if(isdefined(specialist))
@@ -1098,21 +1098,21 @@ function spawnplayer()
 			self function_6c3348ac(specialist);
 		}
 		var_be574bd8 = self function_b568258e();
-		outfitindex = self function_50a9aad5();
+		outfitindex = self getcharacteroutfit();
 		gender = self getplayergendertype();
 		var_34ba1b60 = self function_3d1a97c6();
 		var_8fa79650 = self function_564cfaeb();
-		var_9cc50881 = self function_e1c06cd0();
+		decallootid = self function_e1c06cd0();
 		var_b3d9cfaa = self function_11d0e790();
 		var_f8e6b703 = self match_record::get_player_stat(#"hash_ec4aea1a8bbd82");
 		if(isdefined(var_f8e6b703))
 		{
-			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_4fb5a848ac8329a8", gender);
-			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_7f98574cf2a03360", var_9cc50881);
-			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_38198df3d9b2c8b8", var_be574bd8);
-			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_77e4495eb46e7e2b", var_8fa79650);
+			self match_record::set_stat(#"lives", var_f8e6b703, #"character_gender", gender);
+			self match_record::set_stat(#"lives", var_f8e6b703, #"character_decal_lootid", decallootid);
+			self match_record::set_stat(#"lives", var_f8e6b703, #"character_outfit_lootid", var_be574bd8);
+			self match_record::set_stat(#"lives", var_f8e6b703, #"character_warpaint_lootid", var_8fa79650);
 			self match_record::set_stat(#"lives", var_f8e6b703, #"character_outfit", outfitindex);
-			self match_record::set_stat(#"lives", var_f8e6b703, #"hash_3e4aa1baa6e0dd0f", var_34ba1b60);
+			self match_record::set_stat(#"lives", var_f8e6b703, #"character_warpaint_outfit", var_34ba1b60);
 			for(i = 0; i < var_b3d9cfaa.size; i++)
 			{
 				self match_record::set_stat(#"lives", var_f8e6b703, #"hash_20d6751cb2f9ca09", i, var_b3d9cfaa[i]);
@@ -1128,7 +1128,7 @@ function spawnplayer()
 			self ghost();
 			self notsolid();
 		}
-		self callback::function_10006d25(&doinitialspawnmessaging);
+		self callback::on_prematch_end(&doinitialspawnmessaging);
 	}
 	else
 	{
@@ -1253,14 +1253,14 @@ function respawn_asspectator(origin, angles)
 */
 function function_3ee5119e()
 {
-	if(self.pers[#"team"] != #"spectator" && level.spectatetype == 4 && self.var_92e86779 == #"invalid")
+	if(self.pers[#"team"] != #"spectator" && level.spectatetype == 4 && self.spectatorteam == #"invalid")
 	{
 		team_players = getplayers(self.team);
 		foreach(player in team_players)
 		{
 			if(player != self && isalive(player))
 			{
-				self.var_92e86779 = player.team;
+				self.spectatorteam = player.team;
 				/#
 					println(((((((("" + player.team) + "") + self.name) + "") + self.team) + "") + player.name) + "");
 				#/
@@ -1269,18 +1269,18 @@ function function_3ee5119e()
 		}
 		foreach(player in team_players)
 		{
-			if(player != self && player.var_92e86779 != #"invalid")
+			if(player != self && player.spectatorteam != #"invalid")
 			{
-				self.var_92e86779 = player.var_92e86779;
+				self.spectatorteam = player.spectatorteam;
 				/#
-					println(((((((("" + player.var_92e86779) + "") + self.name) + "") + self.team) + "") + player.name) + "");
+					println(((((((("" + player.spectatorteam) + "") + self.name) + "") + self.team) + "") + player.name) + "");
 				#/
 				return;
 			}
 		}
-		self.var_92e86779 = self.team;
+		self.spectatorteam = self.team;
 		/#
-			println(((((("" + self.var_92e86779) + "") + self.name) + "") + self.team) + "");
+			println(((((("" + self.spectatorteam) + "") + self.name) + "") + self.team) + "");
 		#/
 	}
 }
@@ -1807,7 +1807,7 @@ function waitandspawnclient(timealreadypassed)
 	}
 	if(timeuntilspawn > 0)
 	{
-		if(!function_f99d2668())
+		if(!sessionmodeiswarzonegame())
 		{
 			if(level.playerqueuedrespawn)
 			{
@@ -1834,7 +1834,7 @@ function waitandspawnclient(timealreadypassed)
 			self thread respawn_asspectator(spawnorigin, spawnangles);
 		}
 		spawnedasspectator = 1;
-		if(!function_f99d2668())
+		if(!sessionmodeiswarzonegame())
 		{
 			self function_6c23d45b(timeuntilspawn, "force_spawn");
 		}

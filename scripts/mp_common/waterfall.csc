@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\filter_shared.csc;
-#using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\trigger_shared.csc;
 #using scripts\core_common\water_surface.csc;
+#using scripts\core_common\trigger_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
+#using scripts\core_common\filter_shared.csc;
 
 #namespace waterfall;
 

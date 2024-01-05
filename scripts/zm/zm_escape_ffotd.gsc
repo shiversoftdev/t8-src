@@ -1,26 +1,26 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 
-#namespace namespace_d30e5d6;
+#namespace zm_escape_ffotd;
 
 /*
-	Name: function_89f2df9
-	Namespace: namespace_d30e5d6
+	Name: __init__system__
+	Namespace: zm_escape_ffotd
 	Checksum: 0x32D51B4B
 	Offset: 0xC8
 	Size: 0x44
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
-	system::register(#"hash_60e7a4fa05470734", &__init__, &__main__, undefined);
+	system::register(#"zm_escape_ffotd", &__init__, &__main__, undefined);
 }
 
 /*
 	Name: __init__
-	Namespace: namespace_d30e5d6
+	Namespace: zm_escape_ffotd
 	Checksum: 0x80F724D1
 	Offset: 0x118
 	Size: 0x4
@@ -33,7 +33,7 @@ function __init__()
 
 /*
 	Name: __main__
-	Namespace: namespace_d30e5d6
+	Namespace: zm_escape_ffotd
 	Checksum: 0xADBA1690
 	Offset: 0x128
 	Size: 0xCC

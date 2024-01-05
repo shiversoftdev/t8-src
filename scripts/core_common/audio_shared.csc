@@ -1,17 +1,17 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\dialog_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\trigger_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\struct.csc;
+#using scripts\core_common\trigger_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\dialog_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\array_shared.csc;
 
 #namespace audio;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: audio
 	Checksum: 0x1E5E14F4
 	Offset: 0x540
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"audio", &__init__, undefined, undefined);
 }
@@ -89,7 +89,7 @@ function local_player_spawn(localclientnum)
 		return;
 	}
 	setsoundcontext("foley", "normal");
-	if(!sessionmodeismultiplayergame() && !function_f99d2668())
+	if(!sessionmodeismultiplayergame() && !sessionmodeiswarzonegame())
 	{
 		self thread sndmusicdeathwatcher();
 	}
@@ -207,7 +207,7 @@ function snd_snapshot_init()
 {
 	level._sndactivesnapshot = "default";
 	level._sndnextsnapshot = "default";
-	if(!util::function_3f165ee8())
+	if(!util::is_frontend_map())
 	{
 		if(sessionmodeiscampaigngame() && !function_22a92b8b() && !function_c9705ad4())
 		{
@@ -252,7 +252,7 @@ function sndlevelstartduck_shutoff()
 function function_22a92b8b()
 {
 	ignore = 1;
-	mapname = util::function_53bbf9d2();
+	mapname = util::get_map_name();
 	switch(mapname)
 	{
 		case "hash_15642edd0e4376f1":
@@ -265,7 +265,7 @@ function function_22a92b8b()
 			break;
 		}
 	}
-	gametype = hash(util::function_5df4294());
+	gametype = hash(util::get_game_type());
 	switch(gametype)
 	{
 		case "download":
@@ -289,7 +289,7 @@ function function_22a92b8b()
 function function_c9705ad4()
 {
 	ignore = 1;
-	gametype = hash(util::function_5df4294());
+	gametype = hash(util::get_game_type());
 	switch(gametype)
 	{
 		case "coop":
@@ -1168,7 +1168,7 @@ function absolute_value(fowd)
 */
 function closest_point_on_line_to_point(point, linestart, lineend)
 {
-	self endon(#"hash_66fcfbe39e07bd83");
+	self endon(#"end line sound");
 	linemagsqrd = lengthsquared(lineend - linestart);
 	t = (point[0] - linestart[0]) * (lineend[0] - linestart[0]) + (point[1] - linestart[1]) * (lineend[1] - linestart[1]) + (point[2] - linestart[2]) * (lineend[2] - linestart[2]) / linemagsqrd;
 	if(t < 0)
@@ -1763,7 +1763,7 @@ function set_sound_context_defaults()
 */
 function sndmatchsnapshot(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return;
 	}
@@ -2119,7 +2119,7 @@ function sndchyronloop(localclientnum, oldval, newval, bnewent, binitialsnap, fi
 function sndsprintbreath(localclientnum)
 {
 	self endon(#"death");
-	if(sessionmodeismultiplayergame() || function_f99d2668())
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 	{
 		self.var_29054134 = 0;
 		var_63112f76 = self dialog_shared::get_player_dialog_alias("exertBreatheSprinting");

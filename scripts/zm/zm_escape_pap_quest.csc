@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\struct.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\struct.csc;
+#using scripts\core_common\clientfield_shared.csc;
 
 #namespace pap_quest;
 
@@ -18,11 +18,11 @@ function init()
 {
 	level._effect[#"lightning_near"] = "maps/zm_escape/fx8_pap_lightning_near";
 	level._effect[#"lightning_bridge"] = "maps/zm_escape/fx8_pap_lightning_bridge";
-	function_842831cf();
+	init_clientfield();
 }
 
 /*
-	Name: function_842831cf
+	Name: init_clientfield
 	Namespace: pap_quest
 	Checksum: 0xD66CB6C2
 	Offset: 0x190
@@ -30,9 +30,9 @@ function init()
 	Parameters: 0
 	Flags: Linked
 */
-function function_842831cf()
+function init_clientfield()
 {
-	clientfield::register("world", "" + #"hash_3fcd3bbe36f86e4b", 1, 1, "counter", &function_5cb90582, 0, 0);
+	clientfield::register("world", "" + #"lightning_far", 1, 1, "counter", &function_5cb90582, 0, 0);
 	clientfield::register("scriptmover", "" + #"lightning_near", 1, 1, "counter", &lightning_near_fx, 0, 0);
 }
 

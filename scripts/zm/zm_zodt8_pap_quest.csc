@@ -1,32 +1,32 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_13e019f139d2aa4e;
-#using script_234f79e7e5737561;
-#using script_27ba6748d83412fd;
-#using script_2c454d63a96d2d0b;
-#using script_52ab76d6216ed2cc;
+#using scripts\zm\weapons\zm_weap_riotshield.csc;
 #using script_54a67b7ed7b385e6;
+#using scripts\zm\zm_zodt8_tutorial.csc;
 #using script_5504fe574aed77a8;
-#using script_67051bc8c81031aa;
-#using script_74f5ae6ffc8bd614;
-#using scripts\core_common\audio_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\flag_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm\zm_zodt8_gamemodes.csc;
+#using scripts\zm\zm_zodt8_sentinel_trial.csc;
+#using scripts\zm\zm_zodt8_eye.csc;
 #using scripts\zm\zm_zodt8_sound.csc;
-#using scripts\zm_common\load.csc;
-#using scripts\zm_common\zm.csc;
-#using scripts\zm_common\zm_pack_a_punch.csc;
-#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm\zm_zodt8_gamemodes.csc;
+#using scripts\zm_common\zm_characters.csc;
 #using scripts\zm_common\zm_weapons.csc;
+#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm_common\zm_pack_a_punch.csc;
+#using scripts\zm_common\zm_fasttravel.csc;
+#using scripts\zm_common\zm_audio_sq.csc;
+#using scripts\zm_common\zm.csc;
+#using scripts\zm_common\load.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\struct.csc;
+#using scripts\core_common\flag_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\audio_shared.csc;
 
-#namespace namespace_e80d0291;
+#namespace zodt8_pap_quest;
 
 /*
 	Name: init
-	Namespace: namespace_e80d0291
+	Namespace: zodt8_pap_quest
 	Checksum: 0x6B9A6CD3
 	Offset: 0x328
 	Size: 0x1F4
@@ -47,7 +47,7 @@ function init()
 
 /*
 	Name: pap_chunk_big_rune
-	Namespace: namespace_e80d0291
+	Namespace: zodt8_pap_quest
 	Checksum: 0xF24E39DD
 	Offset: 0x528
 	Size: 0x432
@@ -108,7 +108,7 @@ function pap_chunk_big_rune(localclientnum, oldval, newval, bnewent, binitialsna
 
 /*
 	Name: pap_chunk_small_rune
-	Namespace: namespace_e80d0291
+	Namespace: zodt8_pap_quest
 	Checksum: 0x6FB42737
 	Offset: 0x968
 	Size: 0xA4C
@@ -259,7 +259,7 @@ function pap_chunk_small_rune(localclientnum, oldval, newval, bnewent, binitials
 
 /*
 	Name: function_a2c01e49
-	Namespace: namespace_e80d0291
+	Namespace: zodt8_pap_quest
 	Checksum: 0x6C58C952
 	Offset: 0x13C0
 	Size: 0x19A
@@ -314,7 +314,7 @@ function function_a2c01e49(localclientnum, var_705d414e, n_state)
 
 /*
 	Name: pap_machine_rune
-	Namespace: namespace_e80d0291
+	Namespace: zodt8_pap_quest
 	Checksum: 0x28C15984
 	Offset: 0x1568
 	Size: 0x362
@@ -371,7 +371,7 @@ function pap_machine_rune(localclientnum, oldval, newval, bnewent, binitialsnap,
 
 /*
 	Name: function_c976f028
-	Namespace: namespace_e80d0291
+	Namespace: zodt8_pap_quest
 	Checksum: 0x894D304F
 	Offset: 0x18D8
 	Size: 0x1E2

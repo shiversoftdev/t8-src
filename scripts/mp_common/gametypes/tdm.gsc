@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_229f24b1662651c4;
-#using script_2c49ae69cd8ce30c;
-#using script_3f27a7b2232674db;
+#using scripts\mp_common\bb.gsc;
+#using scripts\mp_common\util.gsc;
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\mp_common\gametypes\match.gsc;
+#using scripts\mp_common\gametypes\dogtags.gsc;
+#using scripts\killstreaks\mp\killstreaks.gsc;
+#using scripts\mp_common\gametypes\spawning.gsc;
+#using scripts\mp_common\gametypes\globallogic_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
+#using scripts\mp_common\gametypes\globallogic_score.gsc;
+#using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\gametypes\gametype.gsc;
 #using script_4c8dba49908aecc2;
-#using script_6c8abe14025b47c4;
-#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\killstreaks\killstreaks_shared.gsc;
 #using scripts\core_common\spawning_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\bb.gsc;
-#using scripts\mp_common\gametypes\dogtags.gsc;
-#using scripts\mp_common\gametypes\gametype.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\gametypes\globallogic_audio.gsc;
-#using scripts\mp_common\gametypes\globallogic_score.gsc;
-#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
-#using scripts\mp_common\gametypes\globallogic_utils.gsc;
-#using scripts\mp_common\gametypes\match.gsc;
-#using scripts\mp_common\gametypes\spawning.gsc;
-#using scripts\mp_common\util.gsc;
+#using scripts\core_common\player\player_role.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
 
 #namespace tdm;
 
@@ -51,7 +51,7 @@ event main(eventstruct)
 	level.onstartgametype = &onstartgametype;
 	level.onspawnplayer = &onspawnplayer;
 	level.onroundswitch = &onroundswitch;
-	level.var_f6d301b = &function_f6d301b;
+	level.onendround = &onendround;
 	level.var_cdb8ae2c = &function_a8da260c;
 	player::function_cf3aa03d(&onplayerkilled);
 	globallogic_audio::set_leader_gametype_dialog("startTeamDeathmatch", "hcStartTeamDeathmatch", "gameBoost", "gameBoost", "bbStartTeamDeathmatch", "hcbbStartTeamDeathmatch");
@@ -153,7 +153,7 @@ function onroundswitch()
 }
 
 /*
-	Name: function_f6d301b
+	Name: onendround
 	Namespace: tdm
 	Checksum: 0x73B850F6
 	Offset: 0x798
@@ -161,7 +161,7 @@ function onroundswitch()
 	Parameters: 1
 	Flags: None
 */
-function function_f6d301b(var_c1e98979)
+function onendround(var_c1e98979)
 {
 	function_e596b745(var_c1e98979);
 }

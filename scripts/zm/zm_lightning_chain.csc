@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\zm_common\zm_weapons.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm_common\zm_weapons.csc;
 
 #namespace lightning_chain;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: lightning_chain
 	Checksum: 0xECD5F183
 	Offset: 0x130
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"lightning_chain", &init, undefined, undefined);
 }

@@ -1,25 +1,25 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_12282e6b2cc91b42;
-#using script_235cad39dd72e0ac;
-#using script_45e0fb7326469ccf;
-#using script_730b372fb9c41b81;
-#using scripts\core_common\clientfaceanim_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\flagsys_shared.csc;
+#using scripts\zm_common\zm_aoe.csc;
+#using scripts\weapons\zm\weaponobjects.csc;
+#using scripts\zm_common\zm_traps.csc;
+#using scripts\zm_common\zm_score.csc;
+#using scripts\zm_common\zm_magicbox.csc;
+#using scripts\zm_common\zm_customgame.csc;
+#using scripts\zm_common\zm_audio.csc;
+#using scripts\zm_common\zm.csc;
+#using scripts\zm_common\global_fx.csc;
+#using scripts\zm_common\ambient.csc;
+#using scripts\core_common\vehicles\driving_fx.csc;
+#using scripts\core_common\vehicle_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\turret_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\load_shared.csc;
 #using scripts\core_common\footsteps_shared.csc;
 #using scripts\core_common\fx_shared.csc;
-#using scripts\core_common\load_shared.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\turret_shared.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\core_common\vehicle_shared.csc;
-#using scripts\zm_common\ambient.csc;
-#using scripts\zm_common\global_fx.csc;
-#using scripts\zm_common\zm.csc;
-#using scripts\zm_common\zm_audio.csc;
-#using scripts\zm_common\zm_magicbox.csc;
-#using scripts\zm_common\zm_score.csc;
-#using scripts\zm_common\zm_traps.csc;
+#using scripts\core_common\flagsys_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\clientfaceanim_shared.csc;
 
 #namespace load;
 

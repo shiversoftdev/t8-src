@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\scene_shared.csc;
 #using script_64914218f744517b;
-#using scripts\core_common\animation_shared.csc;
-#using scripts\core_common\array_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\filter_shared.csc;
-#using scripts\core_common\flagsys_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\scriptbundle_shared.csc;
+#using scripts\core_common\scene_debug_shared.csc;
 #using scripts\core_common\lui_shared.csc;
 #using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\scene_debug_shared.csc;
-#using scripts\core_common\scene_shared.csc;
-#using scripts\core_common\scriptbundle_shared.csc;
+#using scripts\core_common\flagsys_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\array_shared.csc;
+#using scripts\core_common\animation_shared.csc;
 #using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
 
 class csceneplayer : cscriptbundleobjectbase, csceneobject
 {
@@ -73,7 +73,7 @@ class csceneplayer : cscriptbundleobjectbase, csceneobject
 	}
 
 	/*
-		Name: function_35a524cf
+		Name: _play_camera_anim
 		Namespace: csceneplayer
 		Checksum: 0xEFE5E5B3
 		Offset: 0xA08
@@ -81,7 +81,7 @@ class csceneplayer : cscriptbundleobjectbase, csceneobject
 		Parameters: 3
 		Flags: Linked
 	*/
-	function function_35a524cf(clientnum, animation, n_start_time = 0)
+	function _play_camera_anim(clientnum, animation, n_start_time = 0)
 	{
 		var_8395d6f1 = (isdefined(_s.lerptime) ? _s.lerptime : 0);
 		align = csceneobject::get_align_ent(clientnum);
@@ -453,7 +453,7 @@ class csceneobject : cscriptbundleobjectbase
 		{
 			return;
 		}
-		if(isdefined(var_55b4f21e.var_71ce74a1) && var_55b4f21e.var_71ce74a1)
+		if(isdefined(var_55b4f21e.cleanupdelete) && var_55b4f21e.cleanupdelete)
 		{
 			_e_array[clientnum] delete();
 			return;
@@ -470,11 +470,11 @@ class csceneobject : cscriptbundleobjectbase
 		}
 		if(!(isdefined(_e_array[clientnum].var_463f8196) && _e_array[clientnum].var_463f8196))
 		{
-			if(isdefined(var_55b4f21e.var_6d848d4b) && var_55b4f21e.var_6d848d4b)
+			if(isdefined(var_55b4f21e.cleanuphide) && var_55b4f21e.cleanuphide)
 			{
 				_e_array[clientnum] hide();
 			}
-			else if(isdefined(var_55b4f21e.var_78089fee) && var_55b4f21e.var_78089fee)
+			else if(isdefined(var_55b4f21e.cleanupshow) && var_55b4f21e.cleanupshow)
 			{
 				_e_array[clientnum] show();
 			}
@@ -528,7 +528,7 @@ class csceneobject : cscriptbundleobjectbase
 		{
 			return;
 		}
-		if(isdefined(var_55b4f21e.var_a4b8685d) && var_55b4f21e.var_a4b8685d)
+		if(isdefined(var_55b4f21e.preparedelete) && var_55b4f21e.preparedelete)
 		{
 			_e_array[clientnum] delete();
 			return;
@@ -545,11 +545,11 @@ class csceneobject : cscriptbundleobjectbase
 		}
 		if(!(isdefined(_e_array[clientnum].var_463f8196) && _e_array[clientnum].var_463f8196))
 		{
-			if(isdefined(var_55b4f21e.var_562f4281) && var_55b4f21e.var_562f4281)
+			if(isdefined(var_55b4f21e.preparehide) && var_55b4f21e.preparehide)
 			{
 				_e_array[clientnum] hide();
 			}
-			else if(isdefined(var_55b4f21e.var_4f4c4730) && var_55b4f21e.var_4f4c4730)
+			else if(isdefined(var_55b4f21e.prepareshow) && var_55b4f21e.prepareshow)
 			{
 				_e_array[clientnum] show();
 			}
@@ -948,7 +948,7 @@ class csceneobject : cscriptbundleobjectbase
 					{
 						case "cameraswitcher":
 						{
-							thread [[ self ]]->function_35a524cf(clientnum, entry, n_start_time);
+							thread [[ self ]]->_play_camera_anim(clientnum, entry, n_start_time);
 							break;
 						}
 						case "anim":
@@ -1107,7 +1107,7 @@ class csceneobject : cscriptbundleobjectbase
 	}
 
 	/*
-		Name: function_dc9b0249
+		Name: find_entry
 		Namespace: csceneobject
 		Checksum: 0xB794EA6F
 		Offset: 0x1FB8
@@ -1115,7 +1115,7 @@ class csceneobject : cscriptbundleobjectbase
 		Parameters: 2
 		Flags: Linked
 	*/
-	function function_dc9b0249(n_shot = 0, str_entry_type)
+	function find_entry(n_shot = 0, str_entry_type)
 	{
 		if(isdefined(_s.shots[n_shot]) && isdefined(_s.shots[n_shot].entry))
 		{
@@ -1694,7 +1694,7 @@ class cscene : cscriptbundlebase
 	}
 
 	/*
-		Name: function_c9f40212
+		Name: get_next_shot
 		Namespace: cscene
 		Checksum: 0xE30369DB
 		Offset: 0x6B48
@@ -1702,7 +1702,7 @@ class cscene : cscriptbundlebase
 		Parameters: 0
 		Flags: Linked
 	*/
-	function function_c9f40212()
+	function get_next_shot()
 	{
 		if(_s.scenetype === "scene")
 		{
@@ -1851,7 +1851,7 @@ class cscene : cscriptbundlebase
 		}
 		else
 		{
-			var_1a15e649 = function_c9f40212();
+			var_1a15e649 = get_next_shot();
 			function_ea4a6812(str_current_shot);
 			if(isdefined(var_1a15e649))
 			{
@@ -1986,7 +1986,7 @@ class cscene : cscriptbundlebase
 	*/
 	function function_1013fc5b()
 	{
-		if(isstring(_s.cameraswitcher) || function_7a600918(_s.cameraswitcher))
+		if(isstring(_s.cameraswitcher) || ishash(_s.cameraswitcher))
 		{
 			a_players = getlocalplayers();
 			foreach(player in a_players)
@@ -2329,7 +2329,7 @@ function get_existing_ent(clientnum, str_name)
 }
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: scene
 	Checksum: 0x10B23919
 	Offset: 0x8198
@@ -2337,7 +2337,7 @@ function get_existing_ent(clientnum, str_name)
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"scene", &__init__, &__main__, undefined);
 }
@@ -3122,14 +3122,14 @@ function __main__()
 function _trigger_init(trig)
 {
 	trig endon(#"death");
-	var_be17187b = undefined;
-	var_be17187b = trig waittill(#"trigger");
+	s_waitresult = undefined;
+	s_waitresult = trig waittill(#"trigger");
 	a_ents = [];
 	if(get_player_count(self.scriptbundlename) > 0)
 	{
-		if(isplayer(var_be17187b.activator))
+		if(isplayer(s_waitresult.activator))
 		{
-			a_ents[0] = var_be17187b.activator;
+			a_ents[0] = s_waitresult.activator;
 		}
 	}
 	self thread init(a_ents);
@@ -3149,14 +3149,14 @@ function _trigger_play(trig)
 	trig endon(#"death");
 	do
 	{
-		var_be17187b = undefined;
-		var_be17187b = trig waittill(#"trigger");
+		s_waitresult = undefined;
+		s_waitresult = trig waittill(#"trigger");
 		a_ents = [];
 		if(get_player_count(self.scriptbundlename) > 0)
 		{
-			if(isplayer(var_be17187b.activator))
+			if(isplayer(s_waitresult.activator))
 			{
-				a_ents[0] = var_be17187b.activator;
+				a_ents[0] = s_waitresult.activator;
 			}
 		}
 		self thread play(a_ents);
@@ -3189,7 +3189,7 @@ function _trigger_stop(trig)
 	Parameters: 4
 	Flags: Linked, Variadic
 */
-function add_scene_func(str_scenedef, func, var_e21c4c4c = "play", vararg)
+function add_scene_func(str_scenedef, func, var_e21c4c4c = "play", ...)
 {
 	/#
 		/#
@@ -3422,7 +3422,7 @@ function fixup_scenedef(s_scenedef)
 	}
 	s_scenedef.editaction = undefined;
 	s_scenedef.newobject = undefined;
-	if(isstring(s_scenedef.femalebundle) || function_7a600918(s_scenedef.femalebundle))
+	if(isstring(s_scenedef.femalebundle) || ishash(s_scenedef.femalebundle))
 	{
 		s_female_bundle = struct::get_script_bundle("scene", s_scenedef.femalebundle);
 		s_female_bundle.malebundle = s_scenedef.name;
@@ -3449,7 +3449,7 @@ function fixup_scenedef(s_scenedef)
 	{
 		level.scene_streamer_ignore[s_scenedef.name] = 1;
 	}
-	if(isstring(s_scenedef.nextscenebundle) || function_7a600918(s_scenedef.nextscenebundle))
+	if(isstring(s_scenedef.nextscenebundle) || ishash(s_scenedef.nextscenebundle))
 	{
 		s_next_bundle = s_scenedef;
 		while(isdefined(s_next_bundle))
@@ -3830,19 +3830,19 @@ function convert_to_new_format(s_scenedef)
 	Parameters: 3
 	Flags: None
 */
-function function_8d8ec9b5(str_scenedef, var_b5d05f70, s_instance)
+function function_8d8ec9b5(str_scenedef, a_str_shot_names, s_instance)
 {
 	if(isdefined(s_instance))
 	{
-		s_instance.var_b5d05f70 = var_b5d05f70;
-		s_instance.var_418c40ac = var_b5d05f70[var_b5d05f70.size - 1];
+		s_instance.a_str_shot_names = a_str_shot_names;
+		s_instance.var_418c40ac = a_str_shot_names[a_str_shot_names.size - 1];
 	}
 	else
 	{
 		s_scenedef = get_scenedef(str_scenedef);
-		s_scenedef.var_b5d05f70 = var_b5d05f70;
-		level.var_1e798f4c[str_scenedef] = var_b5d05f70;
-		s_scenedef.var_418c40ac = var_b5d05f70[var_b5d05f70.size - 1];
+		s_scenedef.a_str_shot_names = a_str_shot_names;
+		level.var_1e798f4c[str_scenedef] = a_str_shot_names;
+		s_scenedef.var_418c40ac = a_str_shot_names[a_str_shot_names.size - 1];
 	}
 }
 
@@ -3857,9 +3857,9 @@ function function_8d8ec9b5(str_scenedef, var_b5d05f70, s_instance)
 */
 function get_all_shot_names(str_scenedef, s_instance, var_8c4d2266 = 0)
 {
-	if(isdefined(s_instance) && isdefined(s_instance.var_b5d05f70))
+	if(isdefined(s_instance) && isdefined(s_instance.a_str_shot_names))
 	{
-		a_shots = s_instance.var_b5d05f70;
+		a_shots = s_instance.a_str_shot_names;
 		if(var_8c4d2266)
 		{
 			arrayremovevalue(a_shots, "init");
@@ -3876,14 +3876,14 @@ function get_all_shot_names(str_scenedef, s_instance, var_8c4d2266 = 0)
 		return a_shots;
 	}
 	s_scenedef = get_scenedef(str_scenedef);
-	if(isdefined(s_scenedef.var_b5d05f70))
+	if(isdefined(s_scenedef.a_str_shot_names))
 	{
-		a_shots = s_scenedef.var_b5d05f70;
+		a_shots = s_scenedef.a_str_shot_names;
 		if(var_8c4d2266)
 		{
 			arrayremovevalue(a_shots, "init");
 		}
-		return s_scenedef.var_b5d05f70;
+		return s_scenedef.a_str_shot_names;
 	}
 	a_shots = [];
 	foreach(s_object in s_scenedef.objects)
@@ -3907,7 +3907,7 @@ function get_all_shot_names(str_scenedef, s_instance, var_8c4d2266 = 0)
 			}
 		}
 	}
-	s_scenedef.var_b5d05f70 = a_shots;
+	s_scenedef.a_str_shot_names = a_shots;
 	s_scenedef.var_418c40ac = a_shots[a_shots.size - 1];
 	if(var_8c4d2266)
 	{
@@ -4022,11 +4022,11 @@ function _init_instance(str_scenedef = self.scriptbundlename, a_ents, b_test_run
 */
 function function_6f382548(struct, str_scene_name)
 {
-	if(!isdefined(struct.var_87403372) || !(getdvarint(#"splitscreen_playercount", 1) > 1))
+	if(!isdefined(struct.disableinsplitscreen) || !(getdvarint(#"splitscreen_playercount", 1) > 1))
 	{
 		return true;
 	}
-	if(struct.var_87403372 == 2 && getdvarint(#"splitscreen_playercount", 1) > 1 || (struct.var_87403372 == 3 && getdvarint(#"splitscreen_playercount", 1) > 2) || (struct.var_87403372 == 4 && getdvarint(#"splitscreen_playercount", 1) > 3))
+	if(struct.disableinsplitscreen == 2 && getdvarint(#"splitscreen_playercount", 1) > 1 || (struct.disableinsplitscreen == 3 && getdvarint(#"splitscreen_playercount", 1) > 2) || (struct.disableinsplitscreen == 4 && getdvarint(#"splitscreen_playercount", 1) > 3))
 	{
 		/#
 			if(struct.type === "")
@@ -4225,7 +4225,7 @@ function function_dde5f483(str_scenedef, n_elapsed_time)
 */
 function function_8582657c(var_b9a72490, str_shot)
 {
-	if(isstring(var_b9a72490) || function_7a600918(var_b9a72490))
+	if(isstring(var_b9a72490) || ishash(var_b9a72490))
 	{
 		s_scenedef = get_scenedef(var_b9a72490);
 	}
@@ -4302,7 +4302,7 @@ function play(arg1, arg2, arg3, b_test_run = 0, str_mode = "", n_time)
 	if(self == level)
 	{
 		a_instances = [];
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			if(isstring(arg1) && issubstr(arg1, ","))
 			{
@@ -4442,7 +4442,7 @@ function function_46546b5c(s_tracker, str_scenedef)
 */
 function _play_on_self(s_tracker, arg1, arg2, arg3, b_test_run = 0, str_mode = "", n_time)
 {
-	if(isstring(arg1) || function_7a600918(arg1))
+	if(isstring(arg1) || ishash(arg1))
 	{
 		if(isinarray(level.scenedefs, hash(arg1)))
 		{
@@ -4613,7 +4613,7 @@ function stop(arg1, arg2, arg3, b_cancel, b_no_assert = 0)
 {
 	if(self == level)
 	{
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			if(isstring(arg2))
 			{
@@ -4659,7 +4659,7 @@ function stop(arg1, arg2, arg3, b_cancel, b_no_assert = 0)
 	}
 	else
 	{
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			_stop_instance(arg2, arg1, b_cancel);
 		}
@@ -4722,7 +4722,7 @@ function delete_scene_spawned_ents(localclientnum, arg1)
 	if(self == level)
 	{
 		a_instances = [];
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			if(isstring(arg1) && issubstr(arg1, ","))
 			{
@@ -4754,7 +4754,7 @@ function delete_scene_spawned_ents(localclientnum, arg1)
 	}
 	else
 	{
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			str_scenedef = arg1;
 		}
@@ -5103,8 +5103,8 @@ function get_inactive_scenes(str_scenedef)
 	Parameters: 2
 	Flags: None
 */
-function function_9730988a(str_scenedef, var_6a688dba)
+function function_9730988a(str_scenedef, str_shotname)
 {
-	return isinarray(get_all_shot_names(str_scenedef), var_6a688dba);
+	return isinarray(get_all_shot_names(str_scenedef), str_shotname);
 }
 

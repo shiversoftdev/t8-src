@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 
 #namespace debug;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: debug
 	Checksum: 0x60A229C1
 	Offset: 0x80
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"debug", &__init__, undefined, undefined);

@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\visionset_mgr_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\visionset_mgr_shared.gsc;
 
 #namespace drown;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: drown
 	Checksum: 0xC2D8EFEC
 	Offset: 0x110
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"drown", &__init__, undefined, undefined);
 }

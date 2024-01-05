@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\zm_common\zm_spawner.gsc;
 #using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_spawner.gsc;
 
 #namespace zm_puppet;
 

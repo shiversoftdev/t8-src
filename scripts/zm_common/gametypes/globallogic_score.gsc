@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
-#using scripts\core_common\bb_shared.gsc;
-#using scripts\core_common\challenges_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\rank_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\bb.gsc;
-#using scripts\zm_common\gametypes\globallogic.gsc;
-#using scripts\zm_common\gametypes\globallogic_audio.gsc;
-#using scripts\zm_common\gametypes\globallogic_utils.gsc;
 #using scripts\zm_common\util.gsc;
+#using scripts\zm_common\bb.gsc;
+#using scripts\zm_common\gametypes\globallogic_utils.gsc;
+#using scripts\zm_common\gametypes\globallogic_audio.gsc;
+#using scripts\zm_common\gametypes\globallogic.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\rank_shared.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\challenges_shared.gsc;
+#using scripts\core_common\bb_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace globallogic_score;
 
@@ -347,8 +347,8 @@ function giveteamscore(event, team, player, victim)
 	[[level.onteamscore]](event, team);
 	pixendevent();
 	newscore = game.stat[#"teamscores"][team];
-	var_c5fef2b3 = {#score:newscore, #diff:newscore - teamscore, #team:team, #event:event, #gametime:function_f8d53445()};
-	function_92d1707f(#"hash_6823717ff11a304a", var_c5fef2b3);
+	zmteamscores = {#score:newscore, #diff:newscore - teamscore, #team:team, #event:event, #gametime:function_f8d53445()};
+	function_92d1707f(#"hash_6823717ff11a304a", zmteamscores);
 	if(teamscore == newscore)
 	{
 		return;

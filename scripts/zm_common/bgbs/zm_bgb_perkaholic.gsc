@@ -1,15 +1,15 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_6115a5707cfb78b3;
-#using script_6ef496a1b77e83a4;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\zm_common\trials\zm_trial_randomize_perks.gsc;
+#using scripts\zm_common\trials\zm_trial_disable_perks.gsc;
 #using scripts\zm_common\zm_perks.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
 
 #namespace zm_bgb_perkaholic;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_perkaholic
 	Checksum: 0x26551737
 	Offset: 0xB0
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_perkaholic", &__init__, undefined, #"bgb");
 }
@@ -55,7 +55,7 @@ function validation()
 	{
 		return false;
 	}
-	if(namespace_5f71460c::is_active() || namespace_7b1a5a90::is_active())
+	if(zm_trial_disable_perks::is_active() || zm_trial_randomize_perks::is_active())
 	{
 		return false;
 	}

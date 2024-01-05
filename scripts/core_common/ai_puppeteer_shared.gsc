@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 
 #namespace ai_puppeteer;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: ai_puppeteer
 	Checksum: 0x47178BB6
 	Offset: 0x78
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"ai_puppeteer", &__init__, undefined, undefined);
@@ -53,7 +53,7 @@ function ai_puppeteer_think()
 			if(getdvar(#"debug_ai_puppeteer", 0) && (!(isdefined(level.ai_puppeteer_active) && level.ai_puppeteer_active)))
 			{
 				level.ai_puppeteer_active = 1;
-				level notify(#"hash_1cbbb18d9beca1f3");
+				level notify(#"kill ai puppeteer");
 				adddebugcommand("");
 				thread ai_puppeteer();
 			}
@@ -61,7 +61,7 @@ function ai_puppeteer_think()
 			{
 				level.ai_puppeteer_active = 0;
 				adddebugcommand("");
-				level notify(#"hash_1cbbb18d9beca1f3");
+				level notify(#"kill ai puppeteer");
 			}
 			waitframe(1);
 		}
@@ -91,7 +91,7 @@ function ai_puppeteer()
 		player thread ai_puppet_cursor_tracker();
 		player thread ai_puppet_manager();
 		player val::set(#"ai_puppeteer", "", 1);
-		level waittill(#"hash_1cbbb18d9beca1f3");
+		level waittill(#"kill ai puppeteer");
 		player val::reset(#"ai_puppeteer", "");
 		ai_puppet_release(1);
 		if(isdefined(level.ai_puppet_target))
@@ -114,7 +114,7 @@ function ai_puppeteer()
 function ai_puppet_manager()
 {
 	/#
-		level endon(#"hash_1cbbb18d9beca1f3");
+		level endon(#"kill ai puppeteer");
 		self endon(#"death");
 		while(true)
 		{
@@ -441,7 +441,7 @@ function ai_puppet_release(restore)
 function ai_puppet_cursor_tracker()
 {
 	/#
-		level endon(#"hash_1cbbb18d9beca1f3");
+		level endon(#"kill ai puppeteer");
 		self endon(#"death");
 		while(true)
 		{
@@ -664,7 +664,7 @@ function ai_puppeteer_render_ai(ai, color)
 function ai_puppeteer_highlight_point(point, normal, forward, color)
 {
 	/#
-		level endon(#"hash_1cbbb18d9beca1f3");
+		level endon(#"kill ai puppeteer");
 		self endon(#"death");
 		level.ai_puppet_highlighting = 1;
 		timer = 0;
@@ -690,7 +690,7 @@ function ai_puppeteer_highlight_point(point, normal, forward, color)
 function ai_puppeteer_highlight_node(node)
 {
 	/#
-		level endon(#"hash_1cbbb18d9beca1f3");
+		level endon(#"kill ai puppeteer");
 		self endon(#"death");
 		level.ai_puppet_highlighting = 1;
 		timer = 0;
@@ -716,7 +716,7 @@ function ai_puppeteer_highlight_node(node)
 function ai_puppeteer_highlight_ai(ai, color)
 {
 	/#
-		level endon(#"hash_1cbbb18d9beca1f3");
+		level endon(#"kill ai puppeteer");
 		self endon(#"death");
 		level.ai_puppet_highlighting = 1;
 		timer = 0;

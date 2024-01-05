@@ -1,38 +1,38 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_102fa70a8153e81f;
-#using script_12549eb8cb2580e4;
-#using script_14e736d5e4272b3d;
-#using script_1611421ee9b880d3;
-#using script_1de1583a62cc580f;
-#using script_23037fdea02db280;
-#using script_27a4aedb3d2a899b;
-#using script_28144a2871e71a78;
-#using script_2c454d63a96d2d0b;
-#using script_2cb5724648b5b416;
-#using script_318816742cac11da;
-#using script_3619535866efa23a;
-#using script_3a10f19f96036e97;
-#using script_3ba495e039989116;
-#using script_412188df54bb77d9;
-#using script_4c9e3a985ae04008;
-#using script_4deda6ab11ad22af;
-#using script_518e526a2898bf6d;
-#using script_5d65ba89fe134c5c;
-#using script_67051bc8c81031aa;
-#using script_784bc1aee23dbf1f;
-#using script_84f5590d2ac48f8;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\lui_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm\zm_white_main_quest.csc;
-#using scripts\zm\zm_white_sound.csc;
 #using scripts\zm\zm_white_util.csc;
-#using scripts\zm_common\load.csc;
-#using scripts\zm_common\zm.csc;
-#using scripts\zm_common\zm_pack_a_punch.csc;
-#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm\weapons\zm_weap_flamethrower.csc;
+#using scripts\zm\weapons\zm_weap_gravityspikes.csc;
+#using scripts\zm\weapons\zm_weap_katana.csc;
+#using scripts\zm\weapons\zm_weap_minigun.csc;
+#using scripts\zm\weapons\zm_weap_cymbal_monkey.csc;
+#using scripts\zm\weapons\zm_weap_riotshield.csc;
+#using scripts\zm_common\zm_characters.csc;
+#using scripts\zm\zm_white_sound.csc;
+#using script_518e526a2898bf6d;
+#using script_27a4aedb3d2a899b;
+#using script_3ba495e039989116;
+#using script_14e736d5e4272b3d;
+#using script_102fa70a8153e81f;
+#using script_412188df54bb77d9;
+#using script_4deda6ab11ad22af;
+#using scripts\zm\zm_white_special_rounds.csc;
+#using scripts\zm\zm_white_main_quest.csc;
+#using scripts\zm\zm_white_portals.csc;
+#using scripts\zm\zm_white_toast.csc;
+#using scripts\zm\zm_white_insanity_mode.csc;
+#using script_28144a2871e71a78;
+#using scripts\zm\zm_white_zstandard.csc;
 #using scripts\zm_common\zm_weapons.csc;
+#using scripts\zm_common\zm_wallbuy.csc;
+#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm_common\zm_pack_a_punch.csc;
+#using scripts\zm_common\zm.csc;
+#using scripts\zm_common\load.csc;
+#using scripts\core_common\lui_shared.csc;
+#using script_84f5590d2ac48f8;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace zm_white;
 
@@ -83,12 +83,12 @@ event main(eventstruct)
 	clientfield::register("world", "portal_map_fire_sale", 1, 1, "int", &portal_map_fire_sale, 0, 0);
 	clientfield::register("world", "portal_map_cul_de_sac_chest", 1, 1, "int", &portal_map_cul_de_sac_chest, 0, 0);
 	clientfield::register("world", "power_pbg_control", 1, 1, "int", &power_pbg_control, 0, 0);
-	namespace_29f39efb::init_fx();
-	namespace_29f39efb::init_clientfields();
-	namespace_4e1a75d3::init_fx();
-	namespace_4e1a75d3::init_clientfields();
-	namespace_92cb027a::init_fx();
-	namespace_92cb027a::init_clientfields();
+	zm_white_insanity_mode::init_fx();
+	zm_white_insanity_mode::init_clientfields();
+	white_main_quest::init_fx();
+	white_main_quest::init_clientfields();
+	zm_white_toast::init_fx();
+	zm_white_toast::init_clientfields();
 	level._uses_default_wallbuy_fx = 1;
 	level._uses_sticky_grenades = 1;
 	level._uses_taser_knuckles = 1;
@@ -97,10 +97,10 @@ event main(eventstruct)
 	level.zombiemode_using_revive_perk = 1;
 	level.zombiemode_using_sleightofhand_perk = 1;
 	level.var_d0ab70a2 = #"hash_6dcfc619b819ab4f";
-	level namespace_2eb2d493::main();
+	level zm_white_zstandard::main();
 	level namespace_7d8e6ec3::preload();
-	level namespace_5c160465::register_clientfields();
-	level namespace_1846c963::init_clientfields();
+	level zm_white_special_rounds::register_clientfields();
+	level zm_white_portals::init_clientfields();
 	level namespace_a01a2431::preload();
 	level namespace_87b5173f::init();
 	level namespace_ca03bbb4::preload();
@@ -109,9 +109,9 @@ event main(eventstruct)
 	level namespace_90b0490e::preload();
 	level namespace_fddd83bd::init();
 	load::main();
-	level thread namespace_e313550c::main();
-	level thread namespace_1846c963::init();
-	level thread namespace_5c160465::init();
+	level thread zm_white_sound::main();
+	level thread zm_white_portals::init();
+	level thread zm_white_special_rounds::init();
 	level thread setup_personality_character_exerts();
 	level thread function_b8da6f44();
 	zm_utility::function_beed5764("rob_zm_eyes_blue_light", #"hash_7fcc925775fa9101");
@@ -203,11 +203,11 @@ function function_61c6d401(localclientnum, oldval, newval, bnewent, binitialsnap
 {
 	if(newval == 1)
 	{
-		self function_bf9d3071("rob_zm_white_crate_clear");
+		self playrenderoverridebundle("rob_zm_white_crate_clear");
 	}
 	else
 	{
-		self function_5d482e78("rob_zm_white_crate_clear");
+		self stoprenderoverridebundle("rob_zm_white_crate_clear");
 	}
 }
 
@@ -220,7 +220,7 @@ function function_61c6d401(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_magicbox_lights_init(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_magicbox_lights_init(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	level.var_17199db2[0] = "tag_start_chest1";
 	level.var_17199db2[1] = "tag_start_chest2";
@@ -244,7 +244,7 @@ function portal_map_magicbox_lights_init(localclientnum, oldval, newval, bnewent
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_start_chest1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_start_chest1(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -265,7 +265,7 @@ function portal_map_start_chest1(localclientnum, oldval, newval, bnewent, biniti
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_start_chest2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_start_chest2(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -286,7 +286,7 @@ function portal_map_start_chest2(localclientnum, oldval, newval, bnewent, biniti
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_green_backyard_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_green_backyard_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -307,7 +307,7 @@ function portal_map_green_backyard_chest(localclientnum, oldval, newval, bnewent
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_yellow_backyard_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_yellow_backyard_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -328,7 +328,7 @@ function portal_map_yellow_backyard_chest(localclientnum, oldval, newval, bnewen
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_bunker1_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_bunker1_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -349,7 +349,7 @@ function portal_map_bunker1_chest(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_bunker2_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_bunker2_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -370,7 +370,7 @@ function portal_map_bunker2_chest(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_cul_de_sac_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_cul_de_sac_chest(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{
@@ -391,7 +391,7 @@ function portal_map_cul_de_sac_chest(localclientnum, oldval, newval, bnewent, bi
 	Parameters: 7
 	Flags: Linked
 */
-function portal_map_fire_sale(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function portal_map_fire_sale(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(!isdefined(level.var_8f14a19))
 	{
@@ -474,7 +474,7 @@ function function_86b85486(localclientnum, tag)
 	Parameters: 7
 	Flags: Linked
 */
-function power_pbg_control(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function power_pbg_control(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval == 1)
 	{

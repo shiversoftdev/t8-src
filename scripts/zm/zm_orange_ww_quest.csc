@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_624a704d0f6bf28d;
-#using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
 
 #namespace zm_orange_ww_quest;
 

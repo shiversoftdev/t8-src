@@ -1,20 +1,20 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3b8f43c68572f06;
-#using script_6409d04aa560106c;
-#using script_70ab01a7690ea256;
 #using script_cb847e6c2204e74;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm_common\load.csc;
-#using scripts\zm_common\util.csc;
+#using script_6409d04aa560106c;
+#using script_3b8f43c68572f06;
+#using script_70ab01a7690ea256;
 #using scripts\zm_common\zm_hero_weapon.csc;
+#using scripts\zm_common\util.csc;
+#using scripts\zm_common\load.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
 
 #namespace zm_laststand;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_laststand
 	Checksum: 0x736C82C1
 	Offset: 0x250
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_laststand", &__init__, undefined, undefined);
 }
@@ -149,7 +149,7 @@ function function_be34e28f(localclientnum, var_d2c301e0)
 	self endoncallback(&function_ac994c83, #"death", #"hash_2f1dc2ea83ba9e2");
 	self postfx::playpostfxbundle("pstfx_zm_last_stand");
 	var_6c2f58e2 = var_d2c301e0 + (int(level.var_629da31e * 1000));
-	if(util::function_cd6c95db(localclientnum) || namespace_a6aea2c6::is_active(#"hash_65cfe78dc61dd3af"))
+	if(util::function_cd6c95db(localclientnum) || namespace_a6aea2c6::is_active(#"silent_film"))
 	{
 		self postfx::function_c8b5f318("pstfx_zm_last_stand", "Desaturation", 1);
 	}

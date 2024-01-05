@@ -1,15 +1,15 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\tracker_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\tracker_shared.gsc;
 
 #namespace tracker;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: tracker
 	Checksum: 0xDC6EC3D9
 	Offset: 0x98
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"tracker", &__init__, undefined, undefined);
 }

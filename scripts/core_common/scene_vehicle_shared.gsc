@@ -47,8 +47,8 @@ class cscenevehicle : csceneobject
 		self notify(#"hash_3451c0bca5c1ca69");
 		self endon(#"hash_3451c0bca5c1ca69");
 		_o_scene endon(#"scene_done", #"scene_stop", #"scene_skip_completed", #"hash_3168dab591a18b9b");
-		var_be17187b = undefined;
-		var_be17187b = _e waittill(#"death");
+		s_waitresult = undefined;
+		s_waitresult = _e waittill(#"death");
 		self.var_1f97724a = 1;
 		_e notify(#"hash_6e7fd8207fd988c6", {#str_scene:_o_scene._str_name});
 		csceneobject::function_1e19d813();
@@ -97,7 +97,7 @@ class cscenevehicle : csceneobject
 			scene::prepare_generic_model_anim(ent);
 		}
 		csceneobject::set_ent_val("takedamage", isdefined(_s.takedamage) && _s.takedamage, ent);
-		csceneobject::set_ent_val("ignoreme", !(isdefined(_s.var_c732c237) && _s.var_c732c237), ent);
+		csceneobject::set_ent_val("ignoreme", !(isdefined(_s.attackme) && _s.attackme), ent);
 		csceneobject::set_ent_val("allowdeath", isdefined(_s.allowdeath) && _s.allowdeath, ent);
 	}
 

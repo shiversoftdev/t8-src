@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\perks.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\perks.gsc;
 
 #namespace zm_bgb_stock_option;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_stock_option
 	Checksum: 0x7E9447DF
 	Offset: 0xB8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_stock_option", &__init__, undefined, #"bgb");
 }
@@ -51,7 +51,7 @@ function __init__()
 function enable()
 {
 	self thread function_1ff1beff();
-	w_previous = self.var_1d838ee9;
+	w_previous = self.previousweapon;
 	if(w_previous.isprimary)
 	{
 		n_clip = self getweaponammoclip(w_previous);
@@ -92,7 +92,7 @@ function disable()
 	wait(0.1);
 	if(self hasperk("specialty_ammodrainsfromstockfirst"))
 	{
-		self perks::function_45d12554("specialty_ammodrainsfromstockfirst");
+		self perks::perk_unsetperk("specialty_ammodrainsfromstockfirst");
 	}
 }
 
@@ -130,23 +130,23 @@ function function_1ff1beff()
 	w_current = self getcurrentweapon();
 	if(!(isdefined(w_current.isheroweapon) && w_current.isheroweapon) && !zm_weapons::is_wonder_weapon(w_current))
 	{
-		self perks::function_7637bafa("specialty_ammodrainsfromstockfirst");
+		self perks::perk_setperk("specialty_ammodrainsfromstockfirst");
 	}
 	while(true)
 	{
 		s_notify = undefined;
 		s_notify = self waittill(#"weapon_change");
-		var_1c114591 = s_notify.weapon;
-		if(isdefined(var_1c114591.isheroweapon) && var_1c114591.isheroweapon || zm_weapons::is_wonder_weapon(var_1c114591))
+		w_check = s_notify.weapon;
+		if(isdefined(w_check.isheroweapon) && w_check.isheroweapon || zm_weapons::is_wonder_weapon(w_check))
 		{
 			if(self hasperk("specialty_ammodrainsfromstockfirst"))
 			{
-				self perks::function_45d12554("specialty_ammodrainsfromstockfirst");
+				self perks::perk_unsetperk("specialty_ammodrainsfromstockfirst");
 			}
 		}
 		else if(!self hasperk("specialty_ammodrainsfromstockfirst"))
 		{
-			self perks::function_7637bafa("specialty_ammodrainsfromstockfirst");
+			self perks::perk_setperk("specialty_ammodrainsfromstockfirst");
 		}
 	}
 }

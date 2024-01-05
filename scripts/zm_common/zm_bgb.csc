@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3d4e88c949caf53e;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
+#using scripts\zm_common\zm_bgb_pack.csc;
 #using scripts\zm_common\load.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace bgb;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: bgb
 	Checksum: 0x52BEAEF6
 	Offset: 0x1D8
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"bgb", &__init__, &__main__, undefined);
 }
@@ -158,11 +158,11 @@ function private bgb_finalize()
 			#/
 			continue;
 		}
-		if(!isdefined(var_5415dfb9.var_f5aaa47e))
+		if(!isdefined(var_5415dfb9.bgbrarity))
 		{
-			var_5415dfb9.var_f5aaa47e = 0;
+			var_5415dfb9.bgbrarity = 0;
 		}
-		v.rarity = var_5415dfb9.var_f5aaa47e;
+		v.rarity = var_5415dfb9.bgbrarity;
 		if(0 == v.rarity || 1 == v.rarity)
 		{
 			v.consumable = 0;

@@ -1,18 +1,18 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_5660bae5b402a1eb;
-#using script_57f7003580bb15e0;
-#using script_ab890501c40b73c;
+#using scripts\core_common\ai\zombie_death.gsc;
+#using scripts\zm_common\zm_traps.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
+#using scripts\core_common\status_effects\status_effect_util.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
 #using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_traps.gsc;
 
 #namespace zm_trap_electric;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_trap_electric
 	Checksum: 0x953042D3
 	Offset: 0x178
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_trap_electric", &__init__, undefined, undefined);
 }
@@ -137,11 +137,11 @@ function play_electrical_sound(trap)
 */
 function player_damage(trigger)
 {
-	var_5b857980 = function_4d1e7b48(#"hash_19533caf858a9f3b");
+	shock_status_effect = getstatuseffect(#"hash_19533caf858a9f3b");
 	if(!(isdefined(self.b_no_trap_damage) && self.b_no_trap_damage))
 	{
 		self thread zm_traps::player_elec_damage(trigger);
-		status_effect::status_effect_apply(var_5b857980, undefined, self, 0);
+		status_effect::status_effect_apply(shock_status_effect, undefined, self, 0);
 	}
 }
 
@@ -167,7 +167,7 @@ function damage(trap)
 	if(isdefined(trap.activated_by_player) && isplayer(trap.activated_by_player))
 	{
 		trap.activated_by_player zm_stats::increment_challenge_stat(#"zombie_hunter_kill_trap");
-		trap.activated_by_player contracts::function_5b88297d(#"hash_1f11b620a6de486b");
+		trap.activated_by_player contracts::increment_zm_contract(#"hash_1f11b620a6de486b");
 		if(isdefined(trap.activated_by_player.zapped_zombies))
 		{
 			trap.activated_by_player.zapped_zombies++;

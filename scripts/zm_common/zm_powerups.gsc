@@ -1,30 +1,30 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_3f9e0dc8454d98e1;
-#using script_460f2e04fb3cff8a;
-#using script_6021ce59143452c3;
-#using script_6e3c826b1814cab6;
-#using script_6ffdcde0fe52cb6f;
-#using script_7e59d7bba853fe4b;
-#using script_ab890501c40b73c;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\demo_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\bb.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
-#using scripts\zm_common\zm_net.gsc;
-#using scripts\zm_common\zm_score.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_utility.gsc;
-#using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\trials\zm_trial_headshots_only.gsc;
+#using scripts\zm_common\trials\zm_trial_no_powerups.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_trial.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_score.gsc;
+#using scripts\zm_common\zm_net.gsc;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\zm_common\bb.gsc;
+#using scripts\zm_common\ai\zm_ai_utility.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\demo_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace zm_powerups;
 
@@ -51,9 +51,9 @@ function init()
 	zombie_utility::set_zombie_var(#"zombie_powerup_insta_kill_time", 30, undefined, undefined, 1);
 	zombie_utility::set_zombie_var(#"zombie_powerup_double_points_on", 0, undefined, undefined, 1);
 	zombie_utility::set_zombie_var(#"zombie_powerup_double_points_time", 30, undefined, undefined, 1);
-	if(namespace_59ff1d6c::function_901b751c(#"zmpowerupsislimitedround"))
+	if(zm_custom::function_901b751c(#"zmpowerupsislimitedround"))
 	{
-		zombie_utility::set_zombie_var(#"zombie_powerup_drop_max_per_round", namespace_59ff1d6c::function_901b751c(#"hash_d46a4e7a41e005c"));
+		zombie_utility::set_zombie_var(#"zombie_powerup_drop_max_per_round", zm_custom::function_901b751c(#"hash_d46a4e7a41e005c"));
 	}
 	else
 	{
@@ -75,7 +75,7 @@ function init()
 	}
 	level._effect[#"powerup_off"] = #"zombie/fx_powerup_off_green_zmb";
 	init_powerups();
-	if(!level.enable_magic || !namespace_59ff1d6c::function_901b751c(#"zmpowerupsactive"))
+	if(!level.enable_magic || !zm_custom::function_901b751c(#"zmpowerupsactive"))
 	{
 		return;
 	}
@@ -94,7 +94,7 @@ function init()
 function init_powerups()
 {
 	level flag::init("zombie_drop_powerups");
-	if(isdefined(level.enable_magic) && level.enable_magic && (isdefined(namespace_59ff1d6c::function_901b751c(#"zmpowerupsactive")) && namespace_59ff1d6c::function_901b751c(#"zmpowerupsactive")))
+	if(isdefined(level.enable_magic) && level.enable_magic && (isdefined(zm_custom::function_901b751c(#"zmpowerupsactive")) && zm_custom::function_901b751c(#"zmpowerupsactive")))
 	{
 		level flag::set("zombie_drop_powerups");
 	}
@@ -336,7 +336,7 @@ function get_next_powerup()
 	}
 	else
 	{
-		if(level.zm_genesis_robot_pay_towardsreactswordstart == 0 && namespace_59ff1d6c::function_901b751c(#"zmpowerupmaxammo") && isdefined(level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups) && [[level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups]]())
+		if(level.zm_genesis_robot_pay_towardsreactswordstart == 0 && zm_custom::function_901b751c(#"zmpowerupmaxammo") && isdefined(level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups) && [[level.zombie_powerups[#"full_ammo"].func_should_drop_with_regular_powerups]]())
 		{
 			powerup = "full_ammo";
 		}
@@ -508,18 +508,18 @@ function function_2ff352cc()
 	{
 		n_players = a_e_players.size;
 	}
-	n_kill_count = function_21a3a673(zombie_utility::function_d2dfacfd(#"hash_434b3261c607850" + n_players), zombie_utility::function_d2dfacfd(#"hash_3f4e6b25f57677da" + n_players));
-	if(namespace_59ff1d6c::function_901b751c(#"hash_393fb6bd6c5874aa") == 0)
+	n_kill_count = function_21a3a673(zombie_utility::function_d2dfacfd(#"hash_434b3261c607850" + n_players), zombie_utility::function_d2dfacfd(#"zombie_powerup_drop_max_" + n_players));
+	if(zm_custom::function_901b751c(#"zmpowerupfrequency") == 0)
 	{
 		n_kill_count = n_kill_count * 2;
 	}
-	else if(namespace_59ff1d6c::function_901b751c(#"hash_393fb6bd6c5874aa") == 2)
+	else if(zm_custom::function_901b751c(#"zmpowerupfrequency") == 2)
 	{
 		n_kill_count = floor(n_kill_count / 2);
 	}
-	if(namespace_e4df2f52::is_active())
+	if(zm_trial_no_powerups::is_active())
 	{
-		n_kill_count = n_kill_count / namespace_e4df2f52::function_2fc5f13();
+		n_kill_count = n_kill_count / zm_trial_no_powerups::function_2fc5f13();
 	}
 	if(n_kill_count < 1)
 	{
@@ -542,7 +542,7 @@ function private function_a7a5570e()
 	for(i = 1; i <= 4; i++)
 	{
 		zombie_utility::set_zombie_var(#"hash_434b3261c607850" + i, int(min(990, (zombie_utility::function_d2dfacfd(#"hash_434b3261c607850" + i)) + 1)));
-		zombie_utility::set_zombie_var(#"hash_3f4e6b25f57677da" + i, int(min(999, (zombie_utility::function_d2dfacfd(#"hash_3f4e6b25f57677da" + i)) + 1)));
+		zombie_utility::set_zombie_var(#"zombie_powerup_drop_max_" + i, int(min(999, (zombie_utility::function_d2dfacfd(#"zombie_powerup_drop_max_" + i)) + 1)));
 	}
 }
 
@@ -557,7 +557,7 @@ function private function_a7a5570e()
 */
 function zombie_can_drop_powerups(weapon)
 {
-	if(namespace_e4df2f52::is_active() && isdefined(weapon) && (isdefined(weapon.isriotshield) && weapon.isriotshield || (isdefined(weapon.isheroweapon) && weapon.isheroweapon)))
+	if(zm_trial_no_powerups::is_active() && isdefined(weapon) && (isdefined(weapon.isriotshield) && weapon.isriotshield || (isdefined(weapon.isheroweapon) && weapon.isheroweapon)))
 	{
 		return true;
 	}
@@ -686,7 +686,7 @@ function get_regular_random_powerup_name()
 */
 function function_cc33adc8()
 {
-	return util::function_5df4294() != "zcleansed";
+	return util::get_game_type() != "zcleansed";
 }
 
 /*
@@ -759,7 +759,7 @@ function add_zombie_powerup(powerup_name, model_name, hint, func_should_drop_wit
 			var_f530d747 = "";
 		}
 	}
-	if(var_f530d747 != "" && (!(isdefined(namespace_59ff1d6c::function_901b751c(var_f530d747)) && namespace_59ff1d6c::function_901b751c(var_f530d747))))
+	if(var_f530d747 != "" && (!(isdefined(zm_custom::function_901b751c(var_f530d747)) && zm_custom::function_901b751c(var_f530d747))))
 	{
 		return;
 	}
@@ -975,11 +975,11 @@ function powerup_round_start()
 	Parameters: 1
 	Flags: Linked
 */
-function function_5326bd06(var_7d81025)
+function function_5326bd06(e_powerup)
 {
-	if(isdefined(var_7d81025))
+	if(isdefined(e_powerup))
 	{
-		var_7d81025 delete();
+		e_powerup delete();
 	}
 }
 
@@ -994,7 +994,7 @@ function function_5326bd06(var_7d81025)
 */
 function powerup_drop(drop_point, powerup, var_4e31704a = 1)
 {
-	if(namespace_59ff1d6c::function_e1f04ede())
+	if(zm_custom::function_e1f04ede())
 	{
 		function_5326bd06(powerup);
 		return;
@@ -1084,7 +1084,7 @@ function function_37e79fb6(powerup)
 	{
 		level.playable_area = getentarray("player_volume", "script_noteworthy");
 	}
-	if(namespace_e0710ee6::function_54054394(powerup))
+	if(zm_ai_utility::function_54054394(powerup))
 	{
 		return false;
 	}
@@ -1171,7 +1171,7 @@ function function_27437dae()
 */
 function specific_powerup_drop(var_5a63971, powerup_location, powerup_team, pickup_delay = 0.1, powerup_player, b_stay_forever, var_6f4cb533 = 0, var_a6d11a96, var_73b4ca3f = 1, var_45eaa114)
 {
-	if(!var_6f4cb533 && namespace_59ff1d6c::function_e1f04ede() || !namespace_59ff1d6c::function_901b751c(#"zmpowerupsactive"))
+	if(!var_6f4cb533 && zm_custom::function_e1f04ede() || !zm_custom::function_901b751c(#"zmpowerupsactive"))
 	{
 		return;
 	}
@@ -1237,7 +1237,7 @@ function specific_powerup_drop(var_5a63971, powerup_location, powerup_team, pick
 			var_f530d747 = "";
 		}
 	}
-	if(var_f530d747 != "" && (!(isdefined(namespace_59ff1d6c::function_901b751c(var_f530d747)) && namespace_59ff1d6c::function_901b751c(var_f530d747))))
+	if(var_f530d747 != "" && (!(isdefined(zm_custom::function_901b751c(var_f530d747)) && zm_custom::function_901b751c(var_f530d747))))
 	{
 		return;
 	}
@@ -1604,7 +1604,7 @@ function powerup_grab(powerup_team)
 						continue;
 					}
 				}
-				if(namespace_e4df2f52::is_active())
+				if(zm_trial_no_powerups::is_active())
 				{
 					var_57807cdc = [];
 					array::add(var_57807cdc, player, 0);
@@ -1662,11 +1662,11 @@ function powerup_grab(powerup_team)
 					player zm_stats::increment_player_stat(self.powerup_name + "_pickedup");
 					player zm_stats::increment_challenge_stat(#"survivalist_powerup");
 					player zm_stats::function_8f10788e(("boas_" + self.powerup_name) + "_pickedup");
-					player contracts::function_5b88297d(#"hash_456b19c561097c1b");
+					player contracts::increment_zm_contract(#"hash_456b19c561097c1b");
 					if(zm_utility::is_standard())
 					{
 						player zm_stats::increment_challenge_stat(#"hash_35ab7dfe675d26e9");
-						player zm_stats::function_c0c6ab19(#"hash_5d17ceae070dc3c1");
+						player zm_stats::function_c0c6ab19(#"rush_powerups");
 					}
 				}
 				if(isdefined(level.var_50b95271))
@@ -2186,7 +2186,7 @@ function powerup_delete_delayed(time)
 */
 function function_bcfcc27e()
 {
-	if(zm_utility::function_166646a6() == 1)
+	if(zm_utility::get_story() == 1)
 	{
 		return "zombie_pickup_perk_bottle";
 	}
@@ -2222,7 +2222,7 @@ function is_insta_kill_active()
 */
 function function_fe6d6eac(player, mod, hit_location, weapon, damage)
 {
-	if(!("head" == hit_location || "helmet" == hit_location || "neck" == hit_location) && (isdefined(level.headshots_only) && level.headshots_only || namespace_25f0796c::is_active()))
+	if(!("head" == hit_location || "helmet" == hit_location || "neck" == hit_location) && (isdefined(level.headshots_only) && level.headshots_only || zm_trial_headshots_only::is_active()))
 	{
 		return damage;
 	}

@@ -409,10 +409,10 @@ function function_acc83382()
 		}
 		owner notify(#"hash_616497f187c816cf");
 		owner endon(#"death", #"hash_616497f187c816cf");
-		var_88791e00 = owner getmaxs()[2];
-		if(!isdefined(var_88791e00))
+		heightstart = owner getmaxs()[2];
+		if(!isdefined(heightstart))
 		{
-			var_88791e00 = 20;
+			heightstart = 20;
 		}
 		while(true)
 		{
@@ -426,7 +426,7 @@ function function_acc83382()
 				}
 				if(!getdvarint(#"recorder_enablerec", 0))
 				{
-					heightoffset = var_88791e00 * i;
+					heightoffset = heightstart * i;
 					print3d(owner.origin + (0, 0, heightoffset), (("" + state_machine.name) + "") + statename, (1, 1, 0));
 				}
 				else

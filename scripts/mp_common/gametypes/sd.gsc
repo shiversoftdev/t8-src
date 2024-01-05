@@ -1,44 +1,44 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2c49ae69cd8ce30c;
-#using script_38af8be38c6709ff;
-#using script_47fb62300ac0bd60;
-#using script_4c8dba49908aecc2;
-#using script_7b8ad364b9de169e;
-#using scripts\core_common\challenges_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\demo_shared.gsc;
-#using scripts\core_common\exploder_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\hostmigration_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\medals_shared.gsc;
-#using scripts\core_common\persistence_shared.gsc;
-#using scripts\core_common\popups_shared.gsc;
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\rank_shared.gsc;
-#using scripts\core_common\scoreevents_shared.gsc;
-#using scripts\core_common\sound_shared.gsc;
-#using scripts\core_common\spawnbeacon_shared.gsc;
-#using scripts\core_common\spawning_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\bb.gsc;
-#using scripts\mp_common\challenges.gsc;
-#using scripts\mp_common\contracts.gsc;
-#using scripts\mp_common\gametypes\battlechatter.gsc;
-#using scripts\mp_common\gametypes\dogtags.gsc;
-#using scripts\mp_common\gametypes\gametype.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\gametypes\globallogic_audio.gsc;
-#using scripts\mp_common\gametypes\globallogic_defaults.gsc;
-#using scripts\mp_common\gametypes\globallogic_score.gsc;
-#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
-#using scripts\mp_common\gametypes\globallogic_utils.gsc;
-#using scripts\mp_common\gametypes\hostmigration.gsc;
-#using scripts\mp_common\gametypes\hud_message.gsc;
-#using scripts\mp_common\gametypes\round.gsc;
-#using scripts\mp_common\userspawnselection.gsc;
 #using scripts\mp_common\util.gsc;
+#using scripts\mp_common\challenges.gsc;
+#using scripts\mp_common\bb.gsc;
+#using scripts\core_common\spawning_shared.gsc;
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\mp_common\gametypes\round.gsc;
+#using scripts\mp_common\gametypes\hostmigration.gsc;
+#using scripts\mp_common\gametypes\globallogic_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic_score.gsc;
+#using scripts\mp_common\gametypes\globallogic_defaults.gsc;
+#using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\gametypes\gametype.gsc;
+#using script_4c8dba49908aecc2;
+#using scripts\mp_common\gametypes\battlechatter.gsc;
+#using scripts\abilities\mp\gadgets\gadget_concertina_wire.gsc;
+#using scripts\abilities\mp\gadgets\gadget_smart_cover.gsc;
+#using scripts\core_common\persistence_shared.gsc;
+#using scripts\mp_common\gametypes\hud_message.gsc;
+#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
+#using scripts\mp_common\gametypes\dogtags.gsc;
+#using scripts\mp_common\contracts.gsc;
+#using scripts\mp_common\userspawnselection.gsc;
+#using scripts\core_common\spawnbeacon_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\sound_shared.gsc;
+#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\popups_shared.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\rank_shared.gsc;
+#using scripts\core_common\medals_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hostmigration_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\exploder_shared.gsc;
+#using scripts\core_common\demo_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\challenges_shared.gsc;
 
 #namespace sd;
 
@@ -726,7 +726,7 @@ function bombs()
 		smart_cover::function_18f38647(trigger);
 		concertina_wire::function_18f38647(trigger);
 		name = #"sd" + trigger.script_label;
-		waypointname = #"hash_2797ef96a09741f0" + trigger.script_label;
+		waypointname = #"sd_waypoint" + trigger.script_label;
 		trigger.angles = visuals[0].angles;
 		bombzone = gameobjects::create_use_object(game.defenders, trigger, visuals, (0, 0, 0), name, 1, 1);
 		bombzone.angles = visuals[0].angles;
@@ -1032,7 +1032,7 @@ function onuseplantobject(player)
 	demo::bookmark(#"event", gettime(), player);
 	potm::bookmark(#"event", gettime(), player);
 	player stats::function_bb7eedf0(#"plants", 1);
-	player stats::function_dad108fa(#"hash_6ed8aab88512306b", 1);
+	player stats::function_dad108fa(#"plants_defuses", 1);
 	player globallogic_score::incpersstat(#"objectivescore", 1, 0, 1);
 	globallogic_audio::leader_dialog("bombPlanted");
 	scoreevents::processscoreevent(#"planted_bomb", player, undefined, undefined);
@@ -1076,7 +1076,7 @@ function onusedefuseobject(player)
 	player.pers[#"objectives"]++;
 	player.objectives = player.pers[#"objectives"];
 	player stats::function_bb7eedf0(#"defuses", 1);
-	player stats::function_dad108fa(#"hash_6ed8aab88512306b", 1);
+	player stats::function_dad108fa(#"plants_defuses", 1);
 	demo::bookmark(#"event", gettime(), player);
 	potm::bookmark(#"event", gettime(), player);
 	globallogic_audio::leader_dialog("bombDefused");
@@ -1090,7 +1090,7 @@ function onusedefuseobject(player)
 	{
 		scoreevents::processscoreevent(#"defused_bomb", player, undefined, undefined);
 	}
-	player globallogic_score::incpersstat(#"hash_2dadc7ba42ffd04d", 1, 0, 1);
+	player globallogic_score::incpersstat(#"objectivedefends", 1, 0, 1);
 	player recordgameevent("defuse");
 }
 
@@ -1251,7 +1251,7 @@ function bombplanted(destroyedobj, player)
 		dropangles = vectortoangles(forward);
 		level.sdbombmodel = spawn("script_model", trace[#"position"]);
 		level.sdbombmodel.angles = dropangles;
-		level.sdbombmodel setmodel(#"hash_5426eab51c4c10bc");
+		level.sdbombmodel setmodel(#"wpn_t8_eqp_briefcase_bomb_stow");
 	}
 	destroyedobj gameobjects::allow_use(#"none");
 	destroyedobj gameobjects::set_visible_team("none");

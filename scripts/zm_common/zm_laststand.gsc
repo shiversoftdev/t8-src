@@ -1,40 +1,40 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14f4a3c583c77d4b;
-#using script_243ea03c7a285692;
 #using script_30a4b3e6d6d5e540;
-#using script_3f9e0dc8454d98e1;
-#using script_47fb62300ac0bd60;
 #using script_48f7c4ab73137f8;
-#using script_5bb072c3abf4652c;
-#using script_6e3c826b1814cab6;
-#using script_6ef496a1b77e83a4;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\demo_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\scoreevents_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
+#using script_243ea03c7a285692;
 #using scripts\zm_common\gametypes\globallogic_player.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_equipment.gsc;
-#using scripts\zm_common\zm_hero_weapon.gsc;
-#using scripts\zm_common\zm_perks.gsc;
-#using scripts\zm_common\zm_player.gsc;
-#using scripts\zm_common\zm_score.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\trials\zm_trial_disable_perks.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_vo.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_score.gsc;
+#using scripts\zm_common\zm_player.gsc;
+#using scripts\zm_common\zm_perks.gsc;
+#using scripts\zm_common\zm_loadout.gsc;
+#using scripts\zm_common\zm_hero_weapon.gsc;
+#using scripts\zm_common\zm_equipment.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\demo_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace zm_laststand;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_laststand
 	Checksum: 0xECEF637C
 	Offset: 0x458
@@ -42,7 +42,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_laststand", &__init__, undefined, undefined);
 }
@@ -129,8 +129,8 @@ function player_last_stand_stats(einflictor, attacker, idamage, smeansofdeath, w
 	{
 		if("zcleansed" == level.gametype)
 		{
-			demo::function_ae3420ca(attacker, self, einflictor);
-			potm::function_ae3420ca(attacker, self, einflictor);
+			demo::kill_bookmark(attacker, self, einflictor);
+			potm::kill_bookmark(attacker, self, einflictor);
 		}
 		if("zcleansed" == level.gametype)
 		{
@@ -197,7 +197,7 @@ function increment_downed_stat()
 	Parameters: 1
 	Flags: Linked
 */
-function registerfxanim_warehouse_explo(var_c247e7dc)
+function registerfxanim_warehouse_explo(pause_enabled)
 {
 	for(slot = 0; slot < 3; slot++)
 	{
@@ -207,10 +207,10 @@ function registerfxanim_warehouse_explo(var_c247e7dc)
 		}
 		if(isdefined(level.var_a53a05b5) && level.var_a53a05b5 == slot)
 		{
-			self zm_hero_weapon::function_76505465(slot, var_c247e7dc);
+			self zm_hero_weapon::function_76505465(slot, pause_enabled);
 			continue;
 		}
-		self function_19ed70ca(slot, var_c247e7dc);
+		self function_19ed70ca(slot, pause_enabled);
 	}
 }
 
@@ -335,7 +335,7 @@ function playerlaststand(einflictor, attacker, idamage, smeansofdeath, weapon, v
 	}
 	self.n_downs = self.n_downs + 1;
 	bleedout_time = getdvarfloat(#"hash_1116ba0f929df636", (isdefined(self.var_b92e42da) ? self.var_b92e42da : getdvarfloat(#"player_laststandbleedouttime", 0)));
-	if(namespace_59ff1d6c::function_901b751c(#"hash_2d34a5d9024db85f") && self.n_downs > namespace_59ff1d6c::function_901b751c(#"hash_2d34a5d9024db85f"))
+	if(zm_custom::function_901b751c(#"hash_2d34a5d9024db85f") && self.n_downs > zm_custom::function_901b751c(#"hash_2d34a5d9024db85f"))
 	{
 		bleedout_time = 0;
 	}
@@ -692,10 +692,10 @@ function function_5ff83684()
 	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_fullauto_t8");
 	level.pistol_value_solo_replace_below = level.pistol_values.size - 1;
 	level.pistol_values[level.pistol_values.size] = level.default_solo_laststandpistol;
-	level.pistol_values[level.pistol_values.size] = getweapon(#"hash_cd53ea4d4ee864c");
-	level.pistol_values[level.pistol_values.size] = getweapon(#"hash_2df0835a53060b95");
-	level.pistol_values[level.pistol_values.size] = getweapon(#"hash_c2a620242d1636a");
-	level.pistol_values[level.pistol_values.size] = getweapon(#"hash_7dc8f3611c942007");
+	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_standard_t8_upgraded");
+	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_burst_t8_upgraded");
+	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_revolver_t8_upgraded");
+	level.pistol_values[level.pistol_values.size] = getweapon(#"pistol_fullauto_t8_upgraded");
 	level.pistol_values[level.pistol_values.size] = getweapon(#"ray_gun");
 	level.pistol_values[level.pistol_values.size] = getweapon(#"ray_gun_upgraded");
 }
@@ -741,7 +741,7 @@ function function_6155752d()
 		}
 		switch(s_result.weapon.weapclass)
 		{
-			case "hash_69055a4af9ca989":
+			case "pistol spread":
 			case "pistolspread":
 			case "pistol":
 			{
@@ -1021,7 +1021,7 @@ function wait_switch_weapon(n_delay, w_weapon)
 */
 function laststand_bleedout(delay)
 {
-	self endon(#"player_revived", #"zombified", #"disconnect", #"hash_257d7f8fe6f97830");
+	self endon(#"player_revived", #"zombified", #"disconnect", #"instakill_player");
 	level endon(#"end_game", #"round_reset");
 	if(level flag::get("round_reset"))
 	{
@@ -1046,13 +1046,13 @@ function laststand_bleedout(delay)
 	self.bleedout_time = delay;
 	n_default_bleedout_time = getdvarfloat(#"player_laststandbleedouttime", 0);
 	level.var_ff482f76 zm_laststand_client::open(self, 0);
-	level.var_ff482f76 zm_laststand_client::function_65194707(self, self.n_downs);
-	level.var_ff482f76 zm_laststand_client::function_d50fdde9(self, 0);
+	level.var_ff482f76 zm_laststand_client::set_num_downs(self, self.n_downs);
+	level.var_ff482f76 zm_laststand_client::set_revive_progress(self, 0);
 	while(self.bleedout_time > 0)
 	{
 		self.bleedout_time = self.bleedout_time - 1;
 		level clientfield::set("laststand_update" + self getentitynumber(), self.bleedout_time / delay);
-		level.var_ff482f76 zm_laststand_client::function_67bdfe40(self, self.bleedout_time / delay);
+		level.var_ff482f76 zm_laststand_client::set_bleedout_progress(self, self.bleedout_time / delay);
 		wait(1);
 	}
 	while(self.var_16735873 === 1)
@@ -1225,11 +1225,11 @@ function function_4d3cb10()
 	Parameters: 1
 	Flags: Linked
 */
-function function_3d685b5f(var_7f2e1d50)
+function function_3d685b5f(self_revive_count)
 {
-	var_7f2e1d50 = int(max(var_7f2e1d50, 0));
-	self.var_72249004 = var_7f2e1d50;
-	self clientfield::set_player_uimodel("ZMInventoryPersonal.self_revive_count", var_7f2e1d50);
+	self_revive_count = int(max(self_revive_count, 0));
+	self.var_72249004 = self_revive_count;
+	self clientfield::set_player_uimodel("ZMInventoryPersonal.self_revive_count", self_revive_count);
 	if(isdefined(level.var_c1fe3c83))
 	{
 		self [[level.var_c1fe3c83]]();
@@ -1308,14 +1308,14 @@ function function_b7c101fa()
 	level flag::wait_till("start_zombie_round_logic");
 	if(getplayers().size == 1)
 	{
-		var_7f2e1d50 = self.var_d66589da;
+		self_revive_count = self.var_d66589da;
 		self.var_240cf7be = 1;
 	}
 	else
 	{
-		var_7f2e1d50 = self.var_5d4c5daf;
+		self_revive_count = self.var_5d4c5daf;
 	}
-	var_48f2f554 = namespace_59ff1d6c::function_901b751c(#"hash_21ae4d5b707b063");
+	var_48f2f554 = zm_custom::function_901b751c(#"zmselfreviveamount");
 	if(var_48f2f554)
 	{
 		self.var_d66589da = int(var_48f2f554);
@@ -1324,7 +1324,7 @@ function function_b7c101fa()
 	}
 	else
 	{
-		self function_3d685b5f(var_7f2e1d50);
+		self function_3d685b5f(self_revive_count);
 	}
 }
 
@@ -1466,14 +1466,14 @@ function function_73d6c609(n_duration)
 		{
 			waitframe(1);
 			var_722c6f25 = var_722c6f25 + 0.05;
-			level.var_1c957023 self_revive_visuals::function_d50fdde9(self, var_722c6f25 / n_duration);
+			level.var_1c957023 self_revive_visuals::set_revive_progress(self, var_722c6f25 / n_duration);
 			if(var_722c6f25 >= n_duration)
 			{
 				b_success = 1;
 				break;
 			}
 		}
-		level.var_1c957023 self_revive_visuals::function_d50fdde9(self, 0);
+		level.var_1c957023 self_revive_visuals::set_revive_progress(self, 0);
 		var_722c6f25 = 0;
 		if(isdefined(b_success) && b_success)
 		{
@@ -1496,7 +1496,7 @@ function function_a7f11faa(var_c34665fc)
 {
 	if(var_c34665fc != "disconnect")
 	{
-		level.var_1c957023 self_revive_visuals::function_d50fdde9(self, 0);
+		level.var_1c957023 self_revive_visuals::set_revive_progress(self, 0);
 	}
 }
 
@@ -1606,7 +1606,7 @@ function revive_trigger_think(t_secondary)
 					e_reviver setweaponammostock(w_revive_tool, 1);
 					e_reviver disableweaponcycling();
 					e_reviver disableoffhandweapons();
-					e_reviver function_432f99ff();
+					e_reviver disableweaponswitchhero();
 					e_reviver thread revive_give_back_weapons_when_done(w_reviver, w_revive_tool, self);
 				}
 				else
@@ -1615,9 +1615,9 @@ function revive_trigger_think(t_secondary)
 					w_revive_tool = undefined;
 				}
 			}
-			if(isdefined(self.var_a66c06b6) && (!(isdefined(self.var_54cb40e6) && self.var_54cb40e6)))
+			if(isdefined(self.revivevox) && (!(isdefined(self.var_54cb40e6) && self.var_54cb40e6)))
 			{
-				e_reviver thread zm_audio::create_and_play_dialog(#"revive", self.var_a66c06b6);
+				e_reviver thread zm_audio::create_and_play_dialog(#"revive", self.revivevox);
 			}
 			b_revive_successful = e_reviver revive_do_revive(self, w_reviver, w_revive_tool, t_secondary);
 			if(isdefined(e_reviver))
@@ -1641,7 +1641,7 @@ function revive_trigger_think(t_secondary)
 			}
 			if(isdefined(e_reviver))
 			{
-				e_reviver zm_vo::function_57b8cd17();
+				e_reviver zm_vo::vo_stop();
 			}
 		}
 	}
@@ -1659,7 +1659,7 @@ function revive_trigger_think(t_secondary)
 function function_8fd9d8b9(e_reviver)
 {
 	self endon(#"death");
-	zm_vo::function_57b8cd17();
+	zm_vo::vo_stop();
 	if(e_reviver === self && isdefined(self.var_ff5f8752))
 	{
 		self.last_vo_played_time = 0;
@@ -1722,7 +1722,7 @@ function revive_give_back_weapons(w_reviver, w_revive_tool)
 	self enableoffhandweapons();
 	if(!(isdefined(self.var_b6840ea0) && self.var_b6840ea0))
 	{
-		self function_6c22c47a();
+		self enableweaponswitchhero();
 	}
 	if(self laststand::player_is_in_laststand())
 	{
@@ -1928,7 +1928,7 @@ function revive_do_revive(e_revivee, w_reviver, w_revive_tool, t_secondary)
 	{
 		waitframe(1);
 		e_revivee.var_6fc48a11 = e_revivee.var_6fc48a11 + 0.05;
-		level.var_ff482f76 zm_laststand_client::function_d50fdde9(e_revivee, e_revivee.var_6fc48a11 / revivetime);
+		level.var_ff482f76 zm_laststand_client::set_revive_progress(e_revivee, e_revivee.var_6fc48a11 / revivetime);
 		if(isdefined(e_revivee.revivetrigger.auto_revive) && e_revivee.revivetrigger.auto_revive)
 		{
 			break;
@@ -1973,7 +1973,7 @@ function revive_do_revive(e_revivee, w_reviver, w_revive_tool, t_secondary)
 	else
 	{
 		e_revivee.var_6fc48a11 = 0;
-		level.var_ff482f76 zm_laststand_client::function_d50fdde9(e_revivee, 0);
+		level.var_ff482f76 zm_laststand_client::set_revive_progress(e_revivee, 0);
 	}
 	return revived;
 }
@@ -1993,7 +1993,7 @@ function function_2cc9a315(revivetime)
 	while(!(isdefined(self.var_c6a6f334) && self.var_c6a6f334) && isdefined(self.var_6fc48a11) && self.var_6fc48a11 >= 0)
 	{
 		self.var_6fc48a11 = self.var_6fc48a11 - 0.05;
-		level.var_ff482f76 zm_laststand_client::function_d50fdde9(self, self.var_6fc48a11 / revivetime);
+		level.var_ff482f76 zm_laststand_client::set_revive_progress(self, self.var_6fc48a11 / revivetime);
 		waitframe(1);
 	}
 }
@@ -2120,11 +2120,11 @@ function revive_success(reviver, b_track_stats = 1, var_c0ab6a65)
 			reviver thread check_for_sacrifice();
 		}
 	}
-	self function_54e3af3c(reviver, b_track_stats, var_c0ab6a65);
+	self revive_internal(reviver, b_track_stats, var_c0ab6a65);
 }
 
 /*
-	Name: function_54e3af3c
+	Name: revive_internal
 	Namespace: zm_laststand
 	Checksum: 0xC46682BE
 	Offset: 0x58B8
@@ -2132,10 +2132,10 @@ function revive_success(reviver, b_track_stats = 1, var_c0ab6a65)
 	Parameters: 3
 	Flags: Linked, Private
 */
-function private function_54e3af3c(reviver, b_track_stats, var_c0ab6a65 = 0)
+function private revive_internal(reviver, b_track_stats, var_c0ab6a65 = 0)
 {
 	self reviveplayer();
-	self zm_utility::function_e0448fec();
+	self zm_utility::set_max_health();
 	self clientfield::set("zmbLastStand", 0);
 	if(isdefined(self.revivetrigger))
 	{
@@ -2279,7 +2279,7 @@ function revive_hud_think()
 				{
 					continue;
 				}
-				if(util::function_5df4294() == "vs")
+				if(util::get_game_type() == "vs")
 				{
 					if(players[i].team != playertorevive.team)
 					{
@@ -2475,7 +2475,7 @@ function is_reviving_via_override(e_revivee)
 }
 
 /*
-	Name: function_16c5dddd
+	Name: instakill_player
 	Namespace: zm_laststand
 	Checksum: 0x3871D187
 	Offset: 0x6658
@@ -2483,10 +2483,10 @@ function is_reviving_via_override(e_revivee)
 	Parameters: 0
 	Flags: Linked
 */
-function function_16c5dddd()
+function instakill_player()
 {
 	self.var_39c78617 = 1;
-	self notify(#"hash_257d7f8fe6f97830");
+	self notify(#"instakill_player");
 	if(self laststand::player_is_in_laststand())
 	{
 		level.var_ff482f76 zm_laststand_client::close(self);

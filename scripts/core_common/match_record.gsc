@@ -15,8 +15,8 @@
 function function_d92cb558(result, vararg)
 {
 	/#
-		var_2f3fa528 = "";
-		return var_2f3fa528;
+		pathstr = "";
+		return pathstr;
 	#/
 }
 
@@ -29,7 +29,7 @@ function function_d92cb558(result, vararg)
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function get_stat(vararg)
+function get_stat(...)
 {
 	/#
 		assert(vararg.size > 0);
@@ -38,7 +38,7 @@ function get_stat(vararg)
 	{
 		return undefined;
 	}
-	result = function_644a3b03(vararg);
+	result = readmatchstat(vararg);
 	/#
 		function_d92cb558(result, vararg);
 	#/
@@ -54,7 +54,7 @@ function get_stat(vararg)
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function set_stat(vararg)
+function set_stat(...)
 {
 	/#
 		assert(vararg.size > 1);
@@ -65,7 +65,7 @@ function set_stat(vararg)
 	}
 	value = vararg[vararg.size - 1];
 	arrayremoveindex(vararg, vararg.size - 1);
-	result = function_484b4b09(vararg, value);
+	result = writematchstat(vararg, value);
 	/#
 		function_d92cb558(result, vararg);
 	#/
@@ -81,14 +81,14 @@ function set_stat(vararg)
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function function_7a93acec(vararg)
+function function_7a93acec(...)
 {
 	vec = vararg[vararg.size - 1];
 	arrayremoveindex(vararg, vararg.size - 1);
-	var_22f1ed01 = set_stat(vararg, 0, int(vec[0]));
-	var_531b181 = set_stat(vararg, 1, int(vec[1]));
-	var_bea5a46a = set_stat(vararg, 2, int(vec[2]));
-	return isdefined(var_22f1ed01) && var_22f1ed01 && (isdefined(var_531b181) && var_531b181) && (isdefined(var_bea5a46a) && var_bea5a46a);
+	vec_0 = set_stat(vararg, 0, int(vec[0]));
+	vec_1 = set_stat(vararg, 1, int(vec[1]));
+	vec_2 = set_stat(vararg, 2, int(vec[2]));
+	return isdefined(vec_0) && vec_0 && (isdefined(vec_1) && vec_1) && (isdefined(vec_2) && vec_2);
 }
 
 /*
@@ -100,7 +100,7 @@ function function_7a93acec(vararg)
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function inc_stat(vararg)
+function inc_stat(...)
 {
 	/#
 		assert(vararg.size > 1);
@@ -111,7 +111,7 @@ function inc_stat(vararg)
 	}
 	value = vararg[vararg.size - 1];
 	arrayremoveindex(vararg, vararg.size - 1);
-	result = function_976e9113(vararg, value);
+	result = incrementmatchstat(vararg, value);
 	/#
 		function_d92cb558(result, vararg);
 	#/
@@ -148,7 +148,7 @@ function get_player_index()
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function get_player_stat(vararg)
+function get_player_stat(...)
 {
 	player = self;
 	/#
@@ -169,7 +169,7 @@ function get_player_stat(vararg)
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function set_player_stat(vararg)
+function set_player_stat(...)
 {
 	player = self;
 	/#
@@ -192,7 +192,7 @@ function set_player_stat(vararg)
 	Parameters: 1
 	Flags: Variadic
 */
-function function_ded5f5b6(vararg)
+function function_ded5f5b6(...)
 {
 	player = self;
 	/#
@@ -202,10 +202,10 @@ function function_ded5f5b6(vararg)
 	{
 		vec = vararg[vararg.size - 1];
 		arrayremoveindex(vararg, vararg.size - 1);
-		var_22f1ed01 = set_player_stat(vararg, 0, int(vec[0]));
-		var_531b181 = set_player_stat(vararg, 1, int(vec[1]));
-		var_bea5a46a = set_player_stat(vararg, 2, int(vec[2]));
-		return isdefined(var_22f1ed01) && var_22f1ed01 && (isdefined(var_531b181) && var_531b181) && (isdefined(var_bea5a46a) && var_bea5a46a);
+		vec_0 = set_player_stat(vararg, 0, int(vec[0]));
+		vec_1 = set_player_stat(vararg, 1, int(vec[1]));
+		vec_2 = set_player_stat(vararg, 2, int(vec[2]));
+		return isdefined(vec_0) && vec_0 && (isdefined(vec_1) && vec_1) && (isdefined(vec_2) && vec_2);
 	}
 }
 
@@ -218,7 +218,7 @@ function function_ded5f5b6(vararg)
 	Parameters: 1
 	Flags: Linked, Variadic
 */
-function function_34800eec(vararg)
+function function_34800eec(...)
 {
 	player = self;
 	/#

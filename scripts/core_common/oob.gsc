@@ -1,18 +1,18 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\hostmigration_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\hostmigration_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace oob;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: oob
 	Checksum: 0x4EDF9298
 	Offset: 0x1C0
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"out_of_bounds", &__init__, undefined, undefined);
 }
@@ -48,7 +48,7 @@ function __init__()
 	}
 	else
 	{
-		if(function_f99d2668())
+		if(sessionmodeiswarzonegame())
 		{
 			level.oob_timekeep_ms = getdvarint(#"oob_timekeep_ms", 3000);
 			level.oob_timelimit_ms = getdvarint(#"oob_timelimit_ms", 10000);
@@ -303,7 +303,7 @@ function waitforplayertouch()
 	self endon(#"death");
 	while(true)
 	{
-		if(sessionmodeismultiplayergame() || function_f99d2668())
+		if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 		{
 			hostmigration::waittillhostmigrationdone();
 		}
@@ -341,12 +341,12 @@ function waitforplayertouch()
 		{
 			continue;
 		}
-		player function_11c959d9(entity);
+		player enter_oob(entity);
 	}
 }
 
 /*
-	Name: function_11c959d9
+	Name: enter_oob
 	Namespace: oob
 	Checksum: 0xE4B32947
 	Offset: 0xF78
@@ -354,7 +354,7 @@ function waitforplayertouch()
 	Parameters: 1
 	Flags: Linked
 */
-function function_11c959d9(entity)
+function enter_oob(entity)
 {
 	player = self;
 	player notify(#"oob_enter");
@@ -372,7 +372,7 @@ function function_11c959d9(entity)
 	player val::set(#"oob", "show_hud", 0);
 	player thread watchforleave(entity);
 	player thread watchfordeath(entity);
-	if(sessionmodeismultiplayergame() || function_f99d2668())
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 	{
 		player thread watchforhostmigration(entity);
 	}
@@ -401,7 +401,7 @@ function function_c5278cb0(vehicle)
 	{
 		if(!vehicle isinsideheightlock())
 		{
-			self function_11c959d9(vehicle);
+			self enter_oob(vehicle);
 			self waittill(#"oob_exit");
 		}
 		wait(0.1);

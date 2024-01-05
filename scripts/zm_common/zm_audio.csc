@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.csc;
-#using scripts\core_common\audio_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\audio_shared.csc;
+#using scripts\core_common\array_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace zm_audio;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_audio
 	Checksum: 0x18EC45E
 	Offset: 0x270
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_audio", &__init__, undefined, undefined);
 }
@@ -295,9 +295,9 @@ function function_42e50d5()
 	{
 		switch(self.weapon.name)
 		{
-			case "hash_50f35c4cfb775a9c":
-			case "hash_50f35d4cfb775c4f":
-			case "hash_50f35e4cfb775e02":
+			case "hero_scepter_lv3":
+			case "hero_scepter_lv2":
+			case "hero_scepter_lv1":
 			{
 				return true;
 			}

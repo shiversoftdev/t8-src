@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using scripts\core_common\animation_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\string_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\string_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\animation_shared.gsc;
 
 #namespace val;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: val
 	Checksum: 0x65E81D0E
 	Offset: 0x200
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"values", &__init__, undefined, undefined);
 }
@@ -37,7 +37,7 @@ function __init__()
 	register("takedamage", 1, "$self", &set_takedamage, "$value");
 	default_func("takedamage", "$self", &default_takedamage);
 	register("allowdeath", 1);
-	default_func("allowdeath", "$self", &function_d5397f5b);
+	default_func("allowdeath", "$self", &default_allowdeath);
 	register("ignoreme", 1, "$self", &set_ignoreme, "$value");
 	default_value("ignoreme", 0);
 	register("ignoreall", 1);
@@ -46,34 +46,34 @@ function __init__()
 	default_value("take_weapons", 0);
 	register("disable_weapons", 1, "$self", &set_disableweapons, "$value");
 	default_value("disable_weapons", 0);
-	register("disable_offhand_weapons", 1, "$self", &function_9492c418, "$value");
+	register("disable_offhand_weapons", 1, "$self", &set_disableoffhandweapons, "$value");
 	default_value("disable_offhand_weapons", 0);
 	register("freezecontrols", 1, "$self", &freezecontrols, "$value");
 	default_value("freezecontrols", 0);
 	register("freezecontrols_allowlook", 1, "$self", &freezecontrolsallowlook, "$value");
 	default_value("freezecontrols_allowlook", 0);
-	register("disablegadgets", 1, "$self", &function_cd5fec49, "$value");
+	register("disablegadgets", 1, "$self", &gadgetsdisabled, "$value");
 	default_value("disablegadgets", 0);
-	register("hide", 1, "$self", &function_b981952a, "$value");
+	register("hide", 1, "$self", &set_hide, "$value");
 	default_value("hide", 0);
-	register("health_regen", 1, "$self", &function_a8c51b69, "$value");
+	register("health_regen", 1, "$self", &set_health_regen, "$value");
 	default_value("health_regen", 1);
-	register("disable_health_regen_delay", 1, "$self", &function_a89d2031, "$value");
+	register("disable_health_regen_delay", 1, "$self", &set_disable_health_regen_delay, "$value");
 	default_value("disable_health_regen_delay", 0);
-	register("ignore_health_regen_delay", 1, "$self", &function_ee2e556b, "$value");
+	register("ignore_health_regen_delay", 1, "$self", &set_ignore_health_regen_delay, "$value");
 	default_value("ignore_health_regen_delay", 0);
 	register("show_hud", 1, "$self", &setclientuivisibilityflag, "hud_visible", "$value");
 	default_value("show_hud", 1);
 	register("show_weapon_hud", 1, "$self", &setclientuivisibilityflag, "weapon_hud_visible", "$value");
 	default_value("show_weapon_hud", 1);
-	register("disable_gestures", 1, "$self", &function_8210793d, "$value");
+	register("disable_gestures", 1, "$self", &set_disablegestures, "$value");
 	default_value("disable_gestures", 0);
 	/#
 		level thread debug_values();
 		validate("", "", &validate_takedamage);
 		validate("", "", &arecontrolsfrozen);
 		validate("", "", &function_5972c3cf);
-		validate("", "", &function_cd5fec49);
+		validate("", "", &gadgetsdisabled);
 		validate("", "", &ishidden);
 	#/
 }
@@ -87,7 +87,7 @@ function __init__()
 	Parameters: 5
 	Flags: Linked, Variadic
 */
-function register(str_name, var_3509ed3e, call_on = "$self", func, vararg)
+function register(str_name, var_3509ed3e, call_on = "$self", func, ...)
 {
 	if(!isdefined(level.values))
 	{
@@ -143,7 +143,7 @@ function private assert_registered(str_name)
 	Parameters: 4
 	Flags: Linked, Variadic
 */
-function default_func(str_name, call_on, value, vararg)
+function default_func(str_name, call_on, value, ...)
 {
 	if(assert_registered(str_name))
 	{
@@ -420,7 +420,7 @@ function default_takedamage()
 }
 
 /*
-	Name: function_d5397f5b
+	Name: default_allowdeath
 	Namespace: val
 	Checksum: 0x5149C9C3
 	Offset: 0x12F0
@@ -428,7 +428,7 @@ function default_takedamage()
 	Parameters: 0
 	Flags: Linked
 */
-function function_d5397f5b()
+function default_allowdeath()
 {
 	return issentient(self) || isvehicle(self);
 }
@@ -511,7 +511,7 @@ function private set_disableweapons(b_value = 1)
 }
 
 /*
-	Name: function_9492c418
+	Name: set_disableoffhandweapons
 	Namespace: val
 	Checksum: 0xA195CC5C
 	Offset: 0x14B8
@@ -519,7 +519,7 @@ function private set_disableweapons(b_value = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_9492c418(b_value = 1)
+function private set_disableoffhandweapons(b_value = 1)
 {
 	if(b_value)
 	{
@@ -567,7 +567,7 @@ function private set_ignoreme(b_value = 1)
 }
 
 /*
-	Name: function_8210793d
+	Name: set_disablegestures
 	Namespace: val
 	Checksum: 0xD4A8E1D3
 	Offset: 0x15B8
@@ -575,16 +575,16 @@ function private set_ignoreme(b_value = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_8210793d(b_value = 1)
+function private set_disablegestures(b_value = 1)
 {
 	if(isplayer(self))
 	{
-		self.var_89b32012 = b_value;
+		self.disablegestures = b_value;
 	}
 }
 
 /*
-	Name: function_b981952a
+	Name: set_hide
 	Namespace: val
 	Checksum: 0x6F86A78
 	Offset: 0x1608
@@ -592,7 +592,7 @@ function private function_8210793d(b_value = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_b981952a(b_value = 1)
+function private set_hide(b_value = 1)
 {
 	if(b_value)
 	{
@@ -612,7 +612,7 @@ function private function_b981952a(b_value = 1)
 }
 
 /*
-	Name: function_a8c51b69
+	Name: set_health_regen
 	Namespace: val
 	Checksum: 0x11EB3634
 	Offset: 0x1688
@@ -620,7 +620,7 @@ function private function_b981952a(b_value = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_a8c51b69(b_value = 1)
+function private set_health_regen(b_value = 1)
 {
 	if(b_value)
 	{
@@ -633,7 +633,7 @@ function private function_a8c51b69(b_value = 1)
 }
 
 /*
-	Name: function_a89d2031
+	Name: set_disable_health_regen_delay
 	Namespace: val
 	Checksum: 0x8160CB18
 	Offset: 0x16E0
@@ -641,7 +641,7 @@ function private function_a8c51b69(b_value = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_a89d2031(b_value = 1)
+function private set_disable_health_regen_delay(b_value = 1)
 {
 	if(b_value)
 	{
@@ -654,7 +654,7 @@ function private function_a89d2031(b_value = 1)
 }
 
 /*
-	Name: function_ee2e556b
+	Name: set_ignore_health_regen_delay
 	Namespace: val
 	Checksum: 0x6F81C590
 	Offset: 0x1730
@@ -662,7 +662,7 @@ function private function_a89d2031(b_value = 1)
 	Parameters: 1
 	Flags: Linked, Private
 */
-function private function_ee2e556b(b_value = 1)
+function private set_ignore_health_regen_delay(b_value = 1)
 {
 	if(b_value)
 	{
@@ -683,7 +683,7 @@ function private function_ee2e556b(b_value = 1)
 	Parameters: 4
 	Flags: Private, Variadic
 */
-function private validate(str_name, call_on, func, vararg)
+function private validate(str_name, call_on, func, ...)
 {
 	/#
 		a_registered = getarraykeys(level.values);
@@ -833,11 +833,11 @@ function display_value(index, str_name, str_id, value, b_valid, on_hud)
 		{
 			on_hud = 0;
 		}
-		if(function_7a600918(str_name))
+		if(ishash(str_name))
 		{
 			str_name = function_9e72a96(str_name);
 		}
-		if(function_7a600918(str_id))
+		if(ishash(str_id))
 		{
 			str_id = function_9e72a96(str_id);
 		}

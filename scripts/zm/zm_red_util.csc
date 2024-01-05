@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_63fbdc46fe0ddab1;
 #using scripts\core_common\clientfield_shared.csc;
+#using script_63fbdc46fe0ddab1;
 
-#namespace namespace_159b5b5b;
+#namespace zm_red_util;
 
 /*
 	Name: init
-	Namespace: namespace_159b5b5b
+	Namespace: zm_red_util
 	Checksum: 0x26C1E05C
 	Offset: 0xD0
 	Size: 0x7E
@@ -21,7 +21,7 @@ function init()
 
 /*
 	Name: function_bb753058
-	Namespace: namespace_159b5b5b
+	Namespace: zm_red_util
 	Checksum: 0xD528E481
 	Offset: 0x158
 	Size: 0x124
@@ -53,7 +53,7 @@ function private function_bb753058(localclientnum, oldval, newval, bnewent, bini
 
 /*
 	Name: function_c8b7588d
-	Namespace: namespace_159b5b5b
+	Namespace: zm_red_util
 	Checksum: 0xABAD58F4
 	Offset: 0x288
 	Size: 0x4A

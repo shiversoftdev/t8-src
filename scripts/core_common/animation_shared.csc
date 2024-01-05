@@ -1,17 +1,17 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\animation_debug_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\flag_shared.csc;
-#using scripts\core_common\flagsys_shared.csc;
-#using scripts\core_common\math_shared.csc;
-#using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\shaderanim_shared.csc;
 #using scripts\core_common\system_shared.csc;
+#using scripts\core_common\shaderanim_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
+#using scripts\core_common\math_shared.csc;
+#using scripts\core_common\flagsys_shared.csc;
+#using scripts\core_common\flag_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\animation_debug_shared.csc;
 
 #namespace animation;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: animation
 	Checksum: 0xC664B82F
 	Offset: 0x2A0
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"animation", &__init__, undefined, undefined);
 }
@@ -290,7 +290,7 @@ function add_notetrack_func(funcname, func)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function add_global_notetrack_handler(str_note, func, vararg)
+function add_global_notetrack_handler(str_note, func, ...)
 {
 	if(!isdefined(level._animnotetrackhandlers))
 	{

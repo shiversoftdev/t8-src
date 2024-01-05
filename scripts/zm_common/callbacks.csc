@@ -1,20 +1,20 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2085e6c323075d03;
-#using script_6fe18f6a76bd7e8d;
-#using scripts\core_common\audio_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\exploder_shared.csc;
-#using scripts\core_common\filter_shared.csc;
-#using scripts\core_common\footsteps_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
+#using scripts\zm\weapons\zm_weap_sticky_grenade.csc;
+#using scripts\weapons\acid_bomb.csc;
 #using scripts\core_common\vehicle_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\footsteps_shared.csc;
+#using scripts\core_common\filter_shared.csc;
+#using scripts\core_common\exploder_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\audio_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace callback;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: callback
 	Checksum: 0x30280D7F
 	Offset: 0x108
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"callback", &__init__, undefined, undefined);
 }
@@ -169,7 +169,7 @@ function entityspawned(localclientnum)
 		{
 			case "eq_acid_bomb":
 			{
-				self thread namespace_e6ad7806::spawned(localclientnum);
+				self thread acid_bomb::spawned(localclientnum);
 				break;
 			}
 			case "sticky_grenade":

@@ -1,6 +1,6 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\trigger_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\trigger_shared.gsc;
 
 #namespace flag;
 
@@ -261,7 +261,7 @@ function get(str_flag)
 	Parameters: 1
 	Flags: Linked
 */
-function get_any(array)
+function get_any(&array)
 {
 	foreach(str_flag in array)
 	{
@@ -282,7 +282,7 @@ function get_any(array)
 	Parameters: 1
 	Flags: None
 */
-function get_all(array)
+function get_all(&array)
 {
 	foreach(str_flag in array)
 	{

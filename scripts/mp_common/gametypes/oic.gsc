@@ -1,38 +1,38 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_18f0d22c75b141a7;
-#using script_2255a7ad3edc838f;
-#using script_2c49ae69cd8ce30c;
-#using script_47fb62300ac0bd60;
-#using script_5399f402045d7abd;
-#using script_56ca01b3b31455b5;
-#using script_788472602edbe3b9;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\bots\bot_action.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\hostmigration_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\bots\bot.gsc;
+#using scripts\weapons\weapon_utils.gsc;
+#using scripts\mp_common\player\player_utils.gsc;
+#using scripts\abilities\ability_util.gsc;
+#using scripts\core_common\spectating.gsc;
+#using scripts\mp_common\gametypes\round.gsc;
+#using scripts\mp_common\util.gsc;
+#using scripts\mp_common\player\player_loadout.gsc;
+#using scripts\mp_common\gametypes\spawning.gsc;
+#using scripts\mp_common\gametypes\outcome.gsc;
+#using scripts\mp_common\gametypes\globallogic_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic_ui.gsc;
+#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
+#using scripts\mp_common\gametypes\globallogic_score.gsc;
+#using scripts\mp_common\gametypes\globallogic_defaults.gsc;
+#using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\gametypes\match.gsc;
+#using scripts\core_common\player\player_loadout.gsc;
+#using scripts\core_common\player\player_stats.gsc;
 #using scripts\core_common\influencers_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\sound_shared.gsc;
 #using scripts\core_common\spawning_shared.gsc;
-#using scripts\core_common\spectating.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\gametypes\globallogic_audio.gsc;
-#using scripts\mp_common\gametypes\globallogic_defaults.gsc;
-#using scripts\mp_common\gametypes\globallogic_score.gsc;
-#using scripts\mp_common\gametypes\globallogic_spawn.gsc;
-#using scripts\mp_common\gametypes\globallogic_ui.gsc;
-#using scripts\mp_common\gametypes\globallogic_utils.gsc;
-#using scripts\mp_common\gametypes\match.gsc;
-#using scripts\mp_common\gametypes\outcome.gsc;
-#using scripts\mp_common\gametypes\round.gsc;
-#using scripts\mp_common\gametypes\spawning.gsc;
-#using scripts\mp_common\util.gsc;
+#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hostmigration_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\bots\bot_action.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
 
 #namespace oic;
 
@@ -219,22 +219,22 @@ function givecustomloadout()
 	self setweaponammostock(weapon, stockammo);
 	self setspawnweapon(weapon);
 	self giveperks();
-	var_5a17505c = (isdefined(getgametypesetting(#"hash_4ca06c610b5d53bd")) ? getgametypesetting(#"hash_4ca06c610b5d53bd") : 0);
-	if(!var_5a17505c)
+	e_whippings = (isdefined(getgametypesetting(#"hash_4ca06c610b5d53bd")) ? getgametypesetting(#"hash_4ca06c610b5d53bd") : 0);
+	if(!e_whippings)
 	{
 		secondaryoffhand = getweapon(#"gadget_health_regen");
 		secondaryoffhandcount = 1;
 		self giveweapon(secondaryoffhand);
 		self setweaponammoclip(secondaryoffhand, secondaryoffhandcount);
 		self switchtooffhand(secondaryoffhand);
-		loadout = self loadout::function_e27dc453("specialgrenade");
+		loadout = self loadout::get_loadout_slot("specialgrenade");
 		loadout.weapon = secondaryoffhand;
 		loadout.count = secondaryoffhandcount;
 		self ability_util::function_36a15b60(secondaryoffhand);
 	}
-	if(isbot(self) && !isdefined(level.botweapons[#"hash_67d4fc759f718a27"]))
+	if(isbot(self) && !isdefined(level.botweapons[#"hero_annihilator_oic"]))
 	{
-		bot_action::function_ab03ca93(#"hash_67d4fc759f718a27");
+		bot_action::register_bulletweapon(#"hero_annihilator_oic");
 	}
 	return weapon;
 }
@@ -312,7 +312,7 @@ function onspawnplayer(predictedspawn)
 function onendgame(var_c1e98979)
 {
 	player = round::function_b5f4c9d8();
-	match::function_d1e740f6(player);
+	match::set_winner(player);
 }
 
 /*

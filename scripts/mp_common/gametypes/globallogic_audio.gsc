@@ -1,22 +1,22 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\audio_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\music_shared.gsc;
-#using scripts\core_common\sound_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\gametypes\battlechatter.gsc;
-#using scripts\mp_common\gametypes\globallogic_audio.gsc;
-#using scripts\mp_common\gametypes\globallogic_utils.gsc;
-#using scripts\mp_common\gametypes\match.gsc;
-#using scripts\mp_common\gametypes\outcome.gsc;
 #using scripts\mp_common\gametypes\round.gsc;
+#using scripts\mp_common\gametypes\outcome.gsc;
+#using scripts\mp_common\gametypes\match.gsc;
+#using scripts\mp_common\gametypes\globallogic_utils.gsc;
+#using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\battlechatter.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\sound_shared.gsc;
+#using scripts\core_common\music_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\audio_shared.gsc;
 
 #namespace globallogic_audio;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic_audio
 	Checksum: 0x7A15A9B1
 	Offset: 0x608
@@ -24,7 +24,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic_audio", &__init__, undefined, undefined);
 }
@@ -279,7 +279,7 @@ function announce_round_winner(delay)
 	{
 		wait(delay);
 	}
-	winner = round::function_9b24638f();
+	winner = round::get_winner();
 	if(!isdefined(winner) || isplayer(winner))
 	{
 		return;
@@ -321,14 +321,14 @@ function announce_game_winner(outcome)
 	wait(battlechatter::mpdialog_value("announceWinnerDelay", 0));
 	if(level.teambased)
 	{
-		if(outcome::function_5f24faac(outcome, "tie") || !match::function_c10174e7())
+		if(outcome::get_flag(outcome, "tie") || !match::function_c10174e7())
 		{
 			leader_dialog("gameDraw");
 		}
 		else
 		{
-			leader_dialog("gameWon", outcome::function_9b24638f(outcome));
-			leader_dialog_for_other_teams("gameLost", outcome::function_9b24638f(outcome));
+			leader_dialog("gameWon", outcome::get_winner(outcome));
+			leader_dialog_for_other_teams("gameLost", outcome::get_winner(outcome));
 		}
 	}
 }
@@ -1553,7 +1553,7 @@ function set_music_on_player(state, wait_time = 0, save_state = 0, return_state 
 	{
 		return;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return;
 	}
@@ -1587,7 +1587,7 @@ function set_music_global(state, wait_time = 0, save_state = 0, return_state = 0
 	{
 		return;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return;
 	}

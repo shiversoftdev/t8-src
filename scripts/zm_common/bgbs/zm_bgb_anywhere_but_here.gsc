@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_7e59d7bba853fe4b;
+#using scripts\zm_common\ai\zm_ai_utility.gsc;
+#using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_utility.gsc;
-#using scripts\zm_common\zm_zonemgr.gsc;
 
 #namespace zm_bgb_anywhere_but_here;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_anywhere_but_here
 	Checksum: 0x98EE2FA0
 	Offset: 0x1C0
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_anywhere_but_here", &__init__, undefined, #"bgb");
 }
@@ -63,7 +63,7 @@ function activation(var_fad9ed02 = 1)
 	self endon(#"disconnect");
 	self val::set(#"hash_7d2b25df35ca5b3", "ignoreme");
 	self.var_ffe2c4d7 = 1;
-	namespace_e0710ee6::function_594bb7bd(self);
+	zm_ai_utility::function_594bb7bd(self);
 	if(self zm_utility::function_ab9a9770())
 	{
 		self.var_b520496e = 1;
@@ -190,9 +190,9 @@ function validation()
 	{
 		return 0;
 	}
-	if(isdefined(level.var_4dab59a0))
+	if(isdefined(level.zm_bgb_anywhere_but_here_validation_override))
 	{
-		return [[level.var_4dab59a0]]();
+		return [[level.zm_bgb_anywhere_but_here_validation_override]]();
 	}
 	s_point = function_91a62549();
 	if(!isdefined(s_point))
@@ -222,31 +222,31 @@ function function_91a62549()
 	{
 		var_599d66bd = level.zones[var_c73799d9];
 	}
-	var_de1edcdb = struct::get_array("player_respawn_point", "targetname");
-	var_65500f70 = [];
-	foreach(s_respawn_point in var_de1edcdb)
+	a_s_respawn_points = struct::get_array("player_respawn_point", "targetname");
+	a_s_valid_respawn_points = [];
+	foreach(s_respawn_point in a_s_respawn_points)
 	{
 		if(zm_utility::is_point_inside_enabled_zone(s_respawn_point.origin, var_599d66bd))
 		{
-			if(!isdefined(var_65500f70))
+			if(!isdefined(a_s_valid_respawn_points))
 			{
-				var_65500f70 = [];
+				a_s_valid_respawn_points = [];
 			}
-			else if(!isarray(var_65500f70))
+			else if(!isarray(a_s_valid_respawn_points))
 			{
-				var_65500f70 = array(var_65500f70);
+				a_s_valid_respawn_points = array(a_s_valid_respawn_points);
 			}
-			var_65500f70[var_65500f70.size] = s_respawn_point;
+			a_s_valid_respawn_points[a_s_valid_respawn_points.size] = s_respawn_point;
 		}
 	}
 	if(isdefined(level.var_e120ae98))
 	{
-		var_65500f70 = [[level.var_e120ae98]](var_65500f70);
+		a_s_valid_respawn_points = [[level.var_e120ae98]](a_s_valid_respawn_points);
 	}
 	s_player_respawn = undefined;
-	if(var_65500f70.size > 0)
+	if(a_s_valid_respawn_points.size > 0)
 	{
-		var_53b1aa43 = array::random(var_65500f70);
+		var_53b1aa43 = array::random(a_s_valid_respawn_points);
 		var_5ce8e5f9 = struct::get_array(var_53b1aa43.target, "targetname");
 		foreach(var_5aff2c2c in var_5ce8e5f9)
 		{

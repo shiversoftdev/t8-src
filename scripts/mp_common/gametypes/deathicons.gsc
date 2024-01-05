@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace deathicons;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: deathicons
 	Checksum: 0x725DE01F
 	Offset: 0xA8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"deathicons", &__init__, undefined, undefined);
 }
@@ -117,11 +117,11 @@ function add(entity, dyingplayer, team)
 	{
 		return;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return;
 	}
-	objectivename = (function_f99d2668() ? #"hash_2fc33ea98b703187" : #"headicon_dead");
+	objectivename = (sessionmodeiswarzonegame() ? #"headicon_dead_wz" : #"headicon_dead");
 	deathiconobjid = gameobjects::get_next_obj_id();
 	objective_add(deathiconobjid, "active", iconorg, objectivename, dyingplayer);
 	objective_setteam(deathiconobjid, team);

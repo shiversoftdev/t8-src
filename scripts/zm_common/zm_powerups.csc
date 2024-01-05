@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\util_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\struct.csc;
-#using scripts\core_common\util_shared.csc;
 
 #namespace zm_powerups;
 
@@ -341,6 +341,6 @@ function private play_powerup_fx(localclientnum, str_fx, var_6df65756 = 0)
 */
 function function_cc33adc8()
 {
-	return util::function_5df4294() != "zcleansed";
+	return util::get_game_type() != "zcleansed";
 }
 

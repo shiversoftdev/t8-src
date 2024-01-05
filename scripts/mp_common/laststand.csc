@@ -1,15 +1,15 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_330e1a53a92b38cc;
 #using script_3b8f43c68572f06;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
 
 #namespace laststand;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: laststand
 	Checksum: 0xAFDB1CF4
 	Offset: 0x288
@@ -17,7 +17,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"laststand", &__init__, undefined, undefined);
 }
@@ -38,7 +38,7 @@ function __init__()
 	mp_revive_prompt::register("mp_revive_prompt_2");
 	mp_revive_prompt::register("mp_revive_prompt_3");
 	mp_revive_prompt::register("mp_revive_prompt_4");
-	clientfield::register("clientuimodel", "hudItems.laststand.progress", 1, 5, "float", &function_e71af9c9, 0, 0);
+	clientfield::register("clientuimodel", "hudItems.laststand.progress", 1, 5, "float", &laststand_postfx, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.laststand.beingRevived", 1, 1, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.laststand.revivingClientNum", 1, 7, "int", undefined, 0, 0);
 	clientfield::register("clientuimodel", "hudItems.laststand.reviveProgress", 1, 5, "float", undefined, 0, 0);
@@ -49,7 +49,7 @@ function __init__()
 }
 
 /*
-	Name: function_e71af9c9
+	Name: laststand_postfx
 	Namespace: laststand
 	Checksum: 0x5304E534
 	Offset: 0x518
@@ -57,7 +57,7 @@ function __init__()
 	Parameters: 7
 	Flags: None
 */
-function function_e71af9c9(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
+function laststand_postfx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	player = function_5c10bd79(localclientnum);
 	if(newval)
@@ -66,8 +66,8 @@ function function_e71af9c9(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			self postfx::playpostfxbundle("pstfx_drowning");
 			value = 0.99;
-			self postfx::function_c8b5f318("pstfx_drowning", #"hash_529f62d9ea291b22", value);
-			self postfx::function_c8b5f318("pstfx_drowning", #"hash_5043dadd8f112a93", value - 0.3);
+			self postfx::function_c8b5f318("pstfx_drowning", #"outer radius", value);
+			self postfx::function_c8b5f318("pstfx_drowning", #"inner radius", value - 0.3);
 			self postfx::function_c8b5f318("pstfx_drowning", #"opacity", 1);
 		}
 		if(newval > 0.5)
@@ -130,8 +130,8 @@ function function_8960f852(oldval, newval)
 	{
 		value = oldval - (oldval - newval) * (1 - duration);
 		duration = duration - 0.1;
-		self postfx::function_c8b5f318("pstfx_drowning", #"hash_529f62d9ea291b22", value);
-		self postfx::function_c8b5f318("pstfx_drowning", #"hash_5043dadd8f112a93", value - 0.8);
+		self postfx::function_c8b5f318("pstfx_drowning", #"outer radius", value);
+		self postfx::function_c8b5f318("pstfx_drowning", #"inner radius", value - 0.8);
 		wait(0.1);
 	}
 }

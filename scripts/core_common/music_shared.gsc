@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 
 #namespace music;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: music
 	Checksum: 0x45ADBF53
 	Offset: 0xA8
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"music", &__init__, undefined, undefined);
 }
@@ -36,7 +36,7 @@ function __init__()
 	{
 		callback::on_spawned(&on_player_spawned);
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		callback::on_connect(&function_cbeeecf);
 	}

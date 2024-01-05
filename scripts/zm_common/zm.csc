@@ -1,47 +1,47 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_13581d8481dff471;
-#using script_1611421ee9b880d3;
-#using script_17179876e0e27f8c;
-#using script_1f0690730d18d827;
-#using script_22073723f8f4cda2;
-#using script_2630b7cb2596f8e4;
-#using script_3762ce8163e304e6;
-#using script_3e87d9314f0597ef;
-#using script_4548e05a471de3f5;
-#using script_4c3385b0ecce078c;
-#using script_4e8f5e71e8d29a03;
-#using script_50d6f39176a340a9;
-#using script_6d85b093d74cdfdd;
+#using scripts\zm\weapons\zm_weap_proximity_grenade.csc;
+#using scripts\zm\weapons\zm_weap_mini_turret.csc;
+#using scripts\zm\weapons\zm_weap_homunculus.csc;
+#using scripts\zm_common\aats\zm_aat_plasmatic_burst.csc;
+#using scripts\zm_common\aats\zm_aat_kill_o_watt.csc;
+#using scripts\zm_common\aats\zm_aat_frostbite.csc;
+#using scripts\zm_common\aats\zm_aat_brain_decay.csc;
 #using script_7520bf82a814057c;
-#using script_76b36ed1b7a51ed2;
-#using scripts\core_common\aat_shared.csc;
-#using scripts\core_common\array_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\duplicaterender_mgr.csc;
-#using scripts\core_common\flag_shared.csc;
-#using scripts\core_common\fx_shared.csc;
+#using scripts\zm_common\zm_ui_inventory.csc;
+#using scripts\zm_common\gametypes\globallogic.csc;
+#using scripts\zm_common\zm_zdraw.csc;
+#using scripts\zm_common\zm_weapons.csc;
+#using scripts\zm_common\zm_wallbuy.csc;
+#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm_common\zm_powerups.csc;
+#using scripts\zm_common\zm_vapor_random.csc;
+#using scripts\zm_common\zm_perks.csc;
+#using scripts\zm_common\zm_laststand.csc;
+#using scripts\zm_common\zm_hud.csc;
+#using scripts\zm_common\zm_hero_weapon.csc;
+#using scripts\zm_common\zm_ffotd.csc;
+#using scripts\zm_common\zm_equipment.csc;
+#using scripts\zm_common\zm_demo.csc;
+#using scripts\zm_common\zm_crafting.csc;
+#using scripts\zm_common\zm_blockers.csc;
+#using scripts\zm_common\zm_bgb.csc;
+#using scripts\zm_common\zm_audio.csc;
+#using scripts\zm_common\load.csc;
+#using scripts\core_common\visionset_mgr_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\status_effects\status_effects.csc;
+#using scripts\core_common\scene_shared.csc;
 #using scripts\core_common\postfx_shared.csc;
 #using scripts\core_common\renderoverridebundle.csc;
-#using scripts\core_common\scene_shared.csc;
+#using scripts\core_common\fx_shared.csc;
+#using scripts\core_common\flag_shared.csc;
+#using scripts\core_common\duplicaterender_mgr.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\array_shared.csc;
+#using scripts\core_common\aat_shared.csc;
 #using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\core_common\visionset_mgr_shared.csc;
-#using scripts\zm_common\gametypes\globallogic.csc;
-#using scripts\zm_common\load.csc;
-#using scripts\zm_common\zm_audio.csc;
-#using scripts\zm_common\zm_bgb.csc;
-#using scripts\zm_common\zm_blockers.csc;
-#using scripts\zm_common\zm_equipment.csc;
-#using scripts\zm_common\zm_ffotd.csc;
-#using scripts\zm_common\zm_hero_weapon.csc;
-#using scripts\zm_common\zm_laststand.csc;
-#using scripts\zm_common\zm_perks.csc;
-#using scripts\zm_common\zm_powerups.csc;
-#using scripts\zm_common\zm_utility.csc;
-#using scripts\zm_common\zm_weapons.csc;
-#using scripts\zm_common\zm_zdraw.csc;
 
 #namespace zm;
 
@@ -64,7 +64,7 @@ function autoexec ignore_systems()
 	system::ignore(#"gadget_overdrive");
 	system::ignore(#"gadget_security_breach");
 	system::ignore(#"gadget_cleanse");
-	system::ignore(#"hash_52aca7c35be649b8");
+	system::ignore(#"gadget_health_boost");
 	system::ignore(#"gadget_combat_efficiency");
 	system::ignore(#"gadget_other");
 	system::ignore(#"gadget_vision_pulse");
@@ -83,7 +83,7 @@ function autoexec ignore_systems()
 }
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm
 	Checksum: 0x5B9393D2
 	Offset: 0x848
@@ -91,7 +91,7 @@ function autoexec ignore_systems()
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm", &__init__, undefined, "renderoverridebundle");
 }
@@ -111,7 +111,7 @@ function __init__()
 	{
 		level.zombie_vars = [];
 	}
-	level.scr_zm_ui_gametype = util::function_5df4294();
+	level.scr_zm_ui_gametype = util::get_game_type();
 	level.scr_zm_ui_gametype_group = "";
 	level.scr_zm_map_start_location = "";
 	callback::on_laststand(&on_player_laststand);
@@ -173,7 +173,7 @@ function init()
 	level._zombie_gib_piece_index_head = 5;
 	level._zombie_gib_piece_index_guts = 6;
 	level._zombie_gib_piece_index_hat = 7;
-	setdvar(#"hash_442d42efc73d739a", 50);
+	setdvar(#"cg_healthperbar", 50);
 	setdvar(#"hash_52a4767bd6da84f1", 0);
 	callback::add_callback(#"on_localclient_connect", &basic_player_connect);
 	callback::on_spawned(&function_92f0c63);
@@ -605,7 +605,7 @@ function rob_zm_prop_fade(localclientnum, oldval, newval, bnewent, binitialsnap,
 {
 	if(newval)
 	{
-		self function_bf9d3071(#"rob_zm_prop_fade");
+		self playrenderoverridebundle(#"rob_zm_prop_fade");
 		if(!isdefined(self.sndlooper))
 		{
 			self.sndlooper = self playloopsound(#"hash_66df9cab2c64f968");
@@ -613,7 +613,7 @@ function rob_zm_prop_fade(localclientnum, oldval, newval, bnewent, binitialsnap,
 	}
 	else
 	{
-		self function_5d482e78(#"rob_zm_prop_fade");
+		self stoprenderoverridebundle(#"rob_zm_prop_fade");
 		if(isdefined(self.sndlooper))
 		{
 			self stoploopsound(self.sndlooper);
@@ -1727,8 +1727,8 @@ function function_bbea98ae(localclientnum, b_igc_active)
 */
 function function_92f0c63(localclientnum)
 {
-	self renderoverridebundle::function_c8d97b8e(localclientnum, #"hash_5d0631b016d4fe26", #"hash_60913f86a5a5a3f1");
-	self renderoverridebundle::function_c8d97b8e(localclientnum, #"hash_7c0db17218fac872", #"hash_60913f86a5a5a3f1");
+	self renderoverridebundle::function_c8d97b8e(localclientnum, #"zm_friendly", #"hash_60913f86a5a5a3f1");
+	self renderoverridebundle::function_c8d97b8e(localclientnum, #"zm_friendly_ls", #"hash_60913f86a5a5a3f1");
 }
 
 /*

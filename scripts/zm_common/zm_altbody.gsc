@@ -1,32 +1,32 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_b52a163973f339f;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\lui_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\core_common\visionset_mgr_shared.gsc;
-#using scripts\zm_common\util.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
-#using scripts\zm_common\zm_equipment.gsc;
-#using scripts\zm_common\zm_laststand.gsc;
-#using scripts\zm_common\zm_perks.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_unitrigger.gsc;
-#using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_unitrigger.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_perks.gsc;
+#using scripts\zm_common\zm_laststand.gsc;
+#using scripts\zm_common\zm_equipment.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\zm_common\util.gsc;
+#using scripts\zm_common\zm_characters.gsc;
+#using scripts\core_common\visionset_mgr_shared.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\lui_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace zm_altbody;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_altbody
 	Checksum: 0x80F98D21
 	Offset: 0x240
@@ -34,7 +34,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_altbody", &__init__, undefined, undefined);
 }

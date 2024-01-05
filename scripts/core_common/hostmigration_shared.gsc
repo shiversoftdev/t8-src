@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
 
 #namespace hostmigration;
 
@@ -180,7 +180,7 @@ function hostmigrationwait()
 		thread matchstarttimerconsole("waiting_for_teams", 20);
 		hostmigrationwaitforplayers();
 	}
-	potm::function_f22ccf4a();
+	potm::forceinit();
 	level notify(#"host_migration_countdown_begin");
 	thread matchstarttimerconsole("match_starting_in", 5);
 	wait(5);

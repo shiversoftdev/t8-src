@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\dev_shared.gsc;
-#using scripts\core_common\hud_message_shared.gsc;
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\sound_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\gametypes\dev_class.gsc;
-#using scripts\zm_common\gametypes\globallogic.gsc;
-#using scripts\zm_common\gametypes\globallogic_score.gsc;
-#using scripts\zm_common\gametypes\globallogic_utils.gsc;
 #using scripts\zm_common\util.gsc;
+#using scripts\zm_common\gametypes\globallogic_utils.gsc;
+#using scripts\zm_common\gametypes\globallogic_score.gsc;
+#using scripts\zm_common\gametypes\globallogic.gsc;
+#using scripts\zm_common\gametypes\dev_class.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\sound_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\hud_message_shared.gsc;
+#using scripts\core_common\dev_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace dev;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: dev
 	Checksum: 0xDB2CBB4E
 	Offset: 0xD8
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"dev", &__init__, undefined, #"spawnlogic");
@@ -570,9 +570,9 @@ function updatedevsettings()
 			}
 			setdvar(#"scr_giveperk", "");
 		}
-		if(getdvarstring(#"hash_6fdd112130a541d4") != "")
+		if(getdvarstring(#"scr_toggleperk") != "")
 		{
-			perk = getdvarstring(#"hash_6fdd112130a541d4");
+			perk = getdvarstring(#"scr_toggleperk");
 			specialties = strtok(perk, "");
 			players = getplayers();
 			iprintln(("" + perk) + "");
@@ -594,7 +594,7 @@ function updatedevsettings()
 					player.extraperks[specialty] = 1;
 				}
 			}
-			setdvar(#"hash_6fdd112130a541d4", "");
+			setdvar(#"scr_toggleperk", "");
 		}
 		if(getdvarstring(#"scr_forceevent") != "")
 		{

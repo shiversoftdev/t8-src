@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\struct.gsc;
-#using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace zm_clone;
 

@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
 #using scripts\core_common\vehicle_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
 
 #namespace weapons_shared;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: weapons_shared
 	Checksum: 0xFEE13C20
 	Offset: 0xF8
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"weapon_shared", &__init__, undefined, undefined);
 }
@@ -33,7 +33,7 @@ function __init__()
 {
 	callback::on_spawned(&on_player_spawned);
 	level.weaponnone = getweapon(#"none");
-	level.var_697e9965 = getweapon(#"sig_minigun");
+	level.weapon_sig_minigun = getweapon(#"sig_minigun");
 	vehicle::add_vehicletype_callback("swivel_mount", &function_5e4b481b);
 }
 
@@ -116,7 +116,7 @@ function function_1c61050d(local_client_num, objective_id)
 function function_7a677105(weapon)
 {
 	/#
-		assert(isdefined(weapon.var_4dd46f8a), "" + weapon.name);
+		assert(isdefined(weapon.customsettings), "" + weapon.name);
 	#/
 	if(!isdefined(level.var_825acea))
 	{
@@ -125,7 +125,7 @@ function function_7a677105(weapon)
 	var_f0bf9259 = hash(weapon.name);
 	if(!isdefined(level.var_825acea[var_f0bf9259]))
 	{
-		level.var_825acea[var_f0bf9259] = getscriptbundle(weapon.var_4dd46f8a);
+		level.var_825acea[var_f0bf9259] = getscriptbundle(weapon.customsettings);
 	}
 	return level.var_825acea[var_f0bf9259];
 }
@@ -141,7 +141,7 @@ function function_7a677105(weapon)
 */
 function function_903d2d4c(local_client_num)
 {
-	if(level.var_697e9965 == level.weaponnone)
+	if(level.weapon_sig_minigun == level.weaponnone)
 	{
 		return;
 	}
@@ -154,7 +154,7 @@ function function_903d2d4c(local_client_num)
 	}
 	while(true)
 	{
-		var_8cf0e703 = function_4878c786(local_client_num, level.var_697e9965);
+		var_8cf0e703 = function_4878c786(local_client_num, level.weapon_sig_minigun);
 		if(!var_8cf0e703 && level.var_644fb9ec)
 		{
 			stopforcestreamingxmodel(#"hash_253fe56e77e698b3");
@@ -183,11 +183,11 @@ function function_ec73770b(local_client_num)
 	player = self;
 	player endon(#"death", #"disconnect");
 	wait(randomfloatrange(0.1, 0.5));
-	var_935615f7 = #"hash_1e34233a951a9cdb";
+	var_935615f7 = #"mountable_point";
 	obj_id = undefined;
 	var_8e35a928 = 0;
 	var_4798772a = 0;
-	var_53dceb67 = (0, 0, 0);
+	mountable_point = (0, 0, 0);
 	var_982f06c8 = 0;
 	var_5a5b4ff7 = 0;
 	while(true)
@@ -196,12 +196,12 @@ function function_ec73770b(local_client_num)
 		{
 			if(!var_5a5b4ff7 && var_8e35a928)
 			{
-				objective_add(local_client_num, obj_id, "active", var_935615f7, var_53dceb67);
+				objective_add(local_client_num, obj_id, "active", var_935615f7, mountable_point);
 				objective_setgamemodeflags(local_client_num, obj_id, var_982f06c8);
 				/#
 					if(getdvarint(#"hash_45f38774fd8ac214", 0) > 0)
 					{
-						sphere(var_53dceb67, 2, (0.1, 0.9, 0.1), 0.8, 1, 16, 1);
+						sphere(mountable_point, 2, (0.1, 0.9, 0.1), 0.8, 1, 16, 1);
 					}
 				#/
 			}
@@ -228,7 +228,7 @@ function function_ec73770b(local_client_num)
 		{
 			continue;
 		}
-		if(!current_weapon.var_93295a64)
+		if(!current_weapon.mountable)
 		{
 			continue;
 		}
@@ -248,7 +248,7 @@ function function_ec73770b(local_client_num)
 			continue;
 		}
 		origin = getlocalclientpos(local_client_num);
-		var_53dceb67 = origin;
+		mountable_point = origin;
 		cam_angles = getcamanglesbylocalclientnum(local_client_num);
 		forward = anglestoforward(cam_angles);
 		forward = vectornormalize((forward[0], forward[1], 0));
@@ -260,10 +260,10 @@ function function_ec73770b(local_client_num)
 		trace_result = bullettrace(trace_start, trace_end, 0, player);
 		if(trace_result[#"fraction"] < 1 && trace_result[#"normal"][2] < 0.7)
 		{
-			var_79483ca0 = trace_result[#"fraction"] * trace_distance;
+			hit_distance = trace_result[#"fraction"] * trace_distance;
 			player_radius = 15;
 			var_91900283 = 100;
-			var_3083dd99 = trace_start + (vectorscale(forward, var_79483ca0 - player_radius));
+			var_3083dd99 = trace_start + (vectorscale(forward, hit_distance - player_radius));
 			var_1ddb7a9a = var_3083dd99 + (0, 0, var_91900283 * -1);
 			ground_trace = bullettrace(var_3083dd99, var_1ddb7a9a, 0, player);
 			if(ground_trace[#"fraction"] < 1)
@@ -284,10 +284,10 @@ function function_ec73770b(local_client_num)
 					var_f7fa6d81 = var_dd4ed37 + (vectorscale((0, 0, -1), var_8e88861f[#"fraction"] * var_3ee12918));
 					var_1b1c8c9f = var_f7fa6d81[2];
 				}
-				var_53dceb67 = (trace_result[#"position"][0], trace_result[#"position"][1], var_1b1c8c9f);
+				mountable_point = (trace_result[#"position"][0], trace_result[#"position"][1], var_1b1c8c9f);
 				if(var_8e35a928)
 				{
-					if(var_79483ca0 < current_weapon.var_cddb5cd0 + player_radius)
+					if(hit_distance < current_weapon.var_cddb5cd0 + player_radius)
 					{
 						var_982f06c8 = 1;
 					}

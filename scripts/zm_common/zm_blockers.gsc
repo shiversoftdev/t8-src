@@ -1,34 +1,34 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_1254ac024174d9c0;
-#using script_301f64a4090c381a;
-#using script_3f9e0dc8454d98e1;
-#using script_6e3c826b1814cab6;
-#using script_ab890501c40b73c;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\demo_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\scoreevents_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\bb.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_daily_challenges.gsc;
-#using scripts\zm_common\zm_score.gsc;
-#using scripts\zm_common\zm_spawner.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_unitrigger.gsc;
-#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\trials\zm_trial_disable_buys.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_unitrigger.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_spawner.gsc;
+#using scripts\zm_common\zm_score.gsc;
+#using script_301f64a4090c381a;
+#using scripts\zm_common\zm_daily_challenges.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
+#using scripts\zm_common\zm_contracts.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\zm_common\bb.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\demo_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace zm_blockers;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_blockers
 	Checksum: 0xB5F0BE97
 	Offset: 0x878
@@ -36,7 +36,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_blockers", &__init__, &__main__, undefined);
 }
@@ -145,8 +145,8 @@ function door_init()
 	self.type = undefined;
 	self.purchaser = undefined;
 	self._door_open = 0;
-	var_ecc45b8c = struct::get_array(self.target, "targetname");
-	foreach(s_symbol in var_ecc45b8c)
+	a_s_symbols = struct::get_array(self.target, "targetname");
+	foreach(s_symbol in a_s_symbols)
 	{
 		if(s_symbol.model === "p8_zm_door_buy_symbol_01" || s_symbol.model === "p8_zm_debris_buy_symbol_01" || s_symbol.model === "p8_zm_power_door_symbol_01")
 		{
@@ -181,7 +181,7 @@ function door_init()
 			targets[i].og_angles = targets[i].angles;
 		}
 	}
-	if(namespace_59ff1d6c::function_901b751c(#"hash_2c6b5594940cc305") == 0)
+	if(zm_custom::function_901b751c(#"zmdoorstate") == 0)
 	{
 		self setinvisibletoall();
 		self.var_1661d836 = 1;
@@ -195,7 +195,7 @@ function door_init()
 	{
 		if(self.script_noteworthy == "electric_door" || self.script_noteworthy == "electric_buyable_door")
 		{
-			if(zm_utility::is_grief() || namespace_59ff1d6c::function_901b751c(#"zmpowerstate") == 0)
+			if(zm_utility::is_grief() || zm_custom::function_901b751c(#"zmpowerstate") == 0)
 			{
 				self setinvisibletoall();
 				return;
@@ -341,7 +341,7 @@ function door_buy()
 	{
 		return false;
 	}
-	if(namespace_497ab7da::is_active())
+	if(zm_trial_disable_buys::is_active())
 	{
 		return false;
 	}
@@ -369,7 +369,7 @@ function door_buy()
 				who zm_stats::increment_challenge_stat(#"survivalist_buy_door");
 				who zm_stats::function_8f10788e("boas_doors_purchased");
 				who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
-				who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
+				who contracts::increment_zm_contract(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
 				self.purchaser = who;
 				who namespace_e38c57c1::function_c3f3716();
 			}
@@ -415,8 +415,8 @@ function door_buy()
 */
 function function_db84b4f4()
 {
-	var_4506f72b = getentarray("zombie_door", "targetname");
-	level thread function_5989dd12(var_4506f72b);
+	a_zombie_doors = getentarray("zombie_door", "targetname");
+	level thread function_5989dd12(a_zombie_doors);
 	var_38a6b7d0 = getentarray("zombie_airlock_buy", "targetname");
 	level thread function_5989dd12(var_38a6b7d0);
 	a_zombie_debris = getentarray("zombie_debris", "targetname");
@@ -450,9 +450,9 @@ function function_5989dd12(a_doors)
 	Parameters: 1
 	Flags: Linked
 */
-function force_open_door(var_64c09f7f)
+function force_open_door(e_activator)
 {
-	self notify(#"trigger", {#is_forced:1, #activator:var_64c09f7f});
+	self notify(#"trigger", {#is_forced:1, #activator:e_activator});
 }
 
 /*
@@ -945,7 +945,7 @@ function door_think()
 		{
 			case "local_electric_door":
 			{
-				if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") == 0)
+				if(zm_custom::function_901b751c(#"zmpowerdoorstate") == 0)
 				{
 					return;
 				}
@@ -986,7 +986,7 @@ function door_think()
 			}
 			case "electric_door":
 			{
-				if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") == 0)
+				if(zm_custom::function_901b751c(#"zmpowerdoorstate") == 0)
 				{
 					return;
 				}
@@ -1031,7 +1031,7 @@ function door_think()
 			}
 			case "electric_buyable_door":
 			{
-				if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") == 0)
+				if(zm_custom::function_901b751c(#"zmpowerdoorstate") == 0)
 				{
 					return;
 				}
@@ -1393,8 +1393,8 @@ function debris_init()
 	{
 		level flag::init(self.script_flag);
 	}
-	var_ecc45b8c = struct::get_array(self.target, "targetname");
-	foreach(s_symbol in var_ecc45b8c)
+	a_s_symbols = struct::get_array(self.target, "targetname");
+	foreach(s_symbol in a_s_symbols)
 	{
 		s_symbol function_23cbcd8();
 	}
@@ -1407,7 +1407,7 @@ function debris_init()
 		self zm_utility::set_hint_string(self, "default_buy_debris", n_cost);
 	}
 	self setcursorhint("HINT_NOICON");
-	if(namespace_59ff1d6c::function_901b751c(#"hash_2c6b5594940cc305") == 0)
+	if(zm_custom::function_901b751c(#"zmdoorstate") == 0)
 	{
 		self setinvisibletoall();
 		self.var_1661d836 = 1;
@@ -1507,7 +1507,7 @@ function debris_think()
 						zm_utility::play_sound_at_pos("no_purchase", self.origin);
 						continue;
 					}
-					if(namespace_497ab7da::is_active())
+					if(zm_trial_disable_buys::is_active())
 					{
 						continue;
 					}
@@ -1534,7 +1534,7 @@ function debris_think()
 					who zm_stats::increment_challenge_stat(#"survivalist_buy_door", undefined, 1);
 					who zm_stats::function_8f10788e("boas_doors_purchased");
 					who zm_stats::function_c0c6ab19(#"doorbuys", 1, 1);
-					who contracts::function_5b88297d(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
+					who contracts::increment_zm_contract(#"hash_1a937aa7eeb3cde3", 1, #"zstandard");
 					who namespace_e38c57c1::function_c3f3716();
 				}
 				else
@@ -1556,7 +1556,7 @@ function debris_think()
 				}
 			}
 			zm_utility::play_sound_at_pos("purchase", self.origin);
-			level notify(#"hash_6147a4961fd69a6e", {#t_blocker:self, #e_player:who});
+			level notify(#"junk purchased", {#t_blocker:self, #e_player:who});
 			move_ent = undefined;
 			a_clip = [];
 			for(i = 0; i < junk.size; i++)
@@ -1647,7 +1647,7 @@ function debris_think()
 			{
 				self [[level.var_a9944fbd]]();
 			}
-			var_2b975c1a = getentarray(self.target, "targetname");
+			a_e_junk = getentarray(self.target, "targetname");
 			if(isdefined(self.script_flag))
 			{
 				tokens = strtok(self.script_flag, ",");
@@ -1658,53 +1658,53 @@ function debris_think()
 			}
 			move_ent = undefined;
 			a_clip = [];
-			for(i = 0; i < var_2b975c1a.size; i++)
+			for(i = 0; i < a_e_junk.size; i++)
 			{
-				var_2b975c1a[i] connectpaths();
-				if(isdefined(var_2b975c1a[i].script_noteworthy))
+				a_e_junk[i] connectpaths();
+				if(isdefined(a_e_junk[i].script_noteworthy))
 				{
-					if(var_2b975c1a[i].script_noteworthy == "clip")
+					if(a_e_junk[i].script_noteworthy == "clip")
 					{
-						a_clip[a_clip.size] = var_2b975c1a[i];
+						a_clip[a_clip.size] = a_e_junk[i];
 						continue;
 					}
 				}
 				struct = undefined;
-				if(var_2b975c1a[i] iszbarrier())
+				if(a_e_junk[i] iszbarrier())
 				{
-					move_ent = var_2b975c1a[i];
-					var_2b975c1a[i] thread debris_zbarrier_move();
+					move_ent = a_e_junk[i];
+					a_e_junk[i] thread debris_zbarrier_move();
 					continue;
 				}
-				if(isdefined(var_2b975c1a[i].script_linkto))
+				if(isdefined(a_e_junk[i].script_linkto))
 				{
-					struct = struct::get(var_2b975c1a[i].script_linkto, "script_linkname");
+					struct = struct::get(a_e_junk[i].script_linkto, "script_linkname");
 					if(isdefined(struct))
 					{
-						move_ent = var_2b975c1a[i];
-						var_2b975c1a[i] thread debris_move(struct);
+						move_ent = a_e_junk[i];
+						a_e_junk[i] thread debris_move(struct);
 					}
 					else
 					{
-						var_2b975c1a[i] delete();
+						a_e_junk[i] delete();
 					}
 					continue;
 				}
-				if(isdefined(var_2b975c1a[i].target))
+				if(isdefined(a_e_junk[i].target))
 				{
-					struct = struct::get(var_2b975c1a[i].target, "targetname");
+					struct = struct::get(a_e_junk[i].target, "targetname");
 					if(isdefined(struct))
 					{
-						move_ent = var_2b975c1a[i];
-						var_2b975c1a[i] thread debris_move(struct);
+						move_ent = a_e_junk[i];
+						a_e_junk[i] thread debris_move(struct);
 					}
 					else
 					{
-						var_2b975c1a[i] delete();
+						a_e_junk[i] delete();
 					}
 					continue;
 				}
-				var_2b975c1a[i] delete();
+				a_e_junk[i] delete();
 			}
 			a_nd_targets = getnodearray(self.target, "targetname");
 			foreach(nd_target in a_nd_targets)
@@ -2229,8 +2229,8 @@ function blocker_init()
 		self.zbarrier delete();
 		return;
 	}
-	var_575ce9bb = struct::get_array(self.target);
-	foreach(s_part in var_575ce9bb)
+	a_s_parts = struct::get_array(self.target);
+	foreach(s_part in a_s_parts)
 	{
 		if(s_part.script_noteworthy === "trigger_location")
 		{
@@ -2266,12 +2266,12 @@ function should_delete_zbarriers()
 */
 function function_22642075()
 {
-	var_734c61ee = struct::get_array("exterior_goal", "targetname");
+	a_s_barriers = struct::get_array("exterior_goal", "targetname");
 	if(isdefined(level._additional_carpenter_nodes))
 	{
-		var_734c61ee = arraycombine(var_734c61ee, level._additional_carpenter_nodes, 0, 0);
+		a_s_barriers = arraycombine(a_s_barriers, level._additional_carpenter_nodes, 0, 0);
 	}
-	foreach(s_barrier in var_734c61ee)
+	foreach(s_barrier in a_s_barriers)
 	{
 		if(isdefined(s_barrier.zbarrier))
 		{
@@ -2341,8 +2341,8 @@ function destructible_glass_barricade(unbroken_section, node)
 function blocker_attack_spots()
 {
 	spots = [];
-	var_575ce9bb = struct::get_array(self.target);
-	foreach(s_part in var_575ce9bb)
+	a_s_parts = struct::get_array(self.target);
+	foreach(s_part in a_s_parts)
 	{
 		if(s_part.script_noteworthy === "attack_spots")
 		{
@@ -2683,7 +2683,7 @@ function blocker_trigger_think()
 		}
 		if(zm_utility::no_valid_repairable_boards(self, self.barrier_chunks))
 		{
-			self notify(#"hash_3562759a2cd48f89");
+			self notify(#"no valid boards");
 			return;
 		}
 		if(isdefined(level._zm_blocker_trigger_think_return_override))
@@ -2773,7 +2773,7 @@ function blocker_trigger_think()
 				break;
 			}
 			player handle_post_board_repair_rewards(cost, self);
-			level notify(#"hash_747f63d86cb99870", {#s_board:self, #player:player});
+			level notify(#"board_repaired", {#s_board:self, #player:player});
 			if(zm_utility::all_chunks_intact(self, self.barrier_chunks))
 			{
 				self notify(#"all_boards_repaired");
@@ -2782,7 +2782,7 @@ function blocker_trigger_think()
 			}
 			if(zm_utility::no_valid_repairable_boards(self, self.barrier_chunks))
 			{
-				self notify(#"hash_3562759a2cd48f89");
+				self notify(#"no valid boards");
 				player increment_window_repaired(self);
 				return;
 			}
@@ -3317,7 +3317,7 @@ function replace_chunk(barrier, chunk, has_perk, via_powerup)
 }
 
 /*
-	Name: function_b193ea5c
+	Name: open_zbarrier
 	Namespace: zm_blockers
 	Checksum: 0x214329D3
 	Offset: 0x97A8
@@ -3325,7 +3325,7 @@ function replace_chunk(barrier, chunk, has_perk, via_powerup)
 	Parameters: 2
 	Flags: Linked
 */
-function function_b193ea5c(barrier, var_56646e12 = 0)
+function open_zbarrier(barrier, var_56646e12 = 0)
 {
 	if(isdefined(barrier.zbarrier))
 	{
@@ -3366,7 +3366,7 @@ function open_all_zbarriers()
 {
 	foreach(barrier in level.exterior_goals)
 	{
-		function_b193ea5c(barrier);
+		open_zbarrier(barrier);
 	}
 }
 
@@ -3381,25 +3381,25 @@ function open_all_zbarriers()
 */
 function function_6f01c3cf(str_value, str_key, b_hidden = 0)
 {
-	var_734c61ee = [];
+	a_s_barriers = [];
 	foreach(s_barrier in level.exterior_goals)
 	{
 		if(s_barrier.(str_key) === str_value && s_barrier.targetname === "exterior_goal")
 		{
-			if(!isdefined(var_734c61ee))
+			if(!isdefined(a_s_barriers))
 			{
-				var_734c61ee = [];
+				a_s_barriers = [];
 			}
-			else if(!isarray(var_734c61ee))
+			else if(!isarray(a_s_barriers))
 			{
-				var_734c61ee = array(var_734c61ee);
+				a_s_barriers = array(a_s_barriers);
 			}
-			var_734c61ee[var_734c61ee.size] = s_barrier;
+			a_s_barriers[a_s_barriers.size] = s_barrier;
 		}
 	}
-	for(i = 0; i < var_734c61ee.size; i++)
+	for(i = 0; i < a_s_barriers.size; i++)
 	{
-		barrier = var_734c61ee[i];
+		barrier = a_s_barriers[i];
 		if(isdefined(barrier.zbarrier))
 		{
 			a_pieces = barrier.zbarrier getzbarrierpieceindicesinstate("closed");

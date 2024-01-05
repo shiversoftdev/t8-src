@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_14feb11d757fd194;
+#using scripts\core_common\voice\voice.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\string_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\ai_shared.gsc;
 #using scripts\core_common\animation_debug_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\string_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 
 #namespace animation;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: animation
 	Checksum: 0x68B48246
 	Offset: 0x330
@@ -21,7 +21,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"animation", &__init__, undefined, undefined);
 }
@@ -103,13 +103,13 @@ function last_frame(animation, v_origin_or_ent, v_angles_or_tag)
 */
 function play_siege(str_anim, n_rate = 1)
 {
-	self notify(#"hash_10506de382288d3");
-	self endon(#"death", #"scene_stop", #"hash_10506de382288d3");
+	self notify(#"stop_siege_anim");
+	self endon(#"death", #"scene_stop", #"stop_siege_anim");
 	b_loop = function_35c3fa74(str_anim);
 	self function_cf6be307(str_anim, "default", n_rate, b_loop);
 	if(b_loop)
 	{
-		self waittill(#"hash_10506de382288d3");
+		self waittill(#"stop_siege_anim");
 	}
 	else
 	{
@@ -690,7 +690,7 @@ function add_notetrack_func(funcname, func)
 	Parameters: 4
 	Flags: Linked, Variadic
 */
-function add_global_notetrack_handler(str_note, func, pass_notify_params, vararg)
+function add_global_notetrack_handler(str_note, func, pass_notify_params, ...)
 {
 	if(!isdefined(level._animnotetrackhandlers))
 	{
@@ -1072,10 +1072,10 @@ function function_eb0aa7cf(n_pulse = 100, bone)
 		}
 		else
 		{
-			var_57a69262 = (math::cointoss() ? 1 : -1);
-			var_2059cf18 = (math::cointoss() ? 1 : -1);
-			var_f98659c0 = (math::cointoss() ? 1 : -1);
-			var_236556ec = vectorscale((var_57a69262, var_2059cf18, var_f98659c0), n_pulse);
+			x_dir = (math::cointoss() ? 1 : -1);
+			y_dir = (math::cointoss() ? 1 : -1);
+			z_dir = (math::cointoss() ? 1 : -1);
+			var_236556ec = vectorscale((x_dir, y_dir, z_dir), n_pulse);
 			color = (1, 1, 0);
 		}
 		self physicslaunch(var_8ef160cb, var_236556ec);

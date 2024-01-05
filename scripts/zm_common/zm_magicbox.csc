@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
 
 #namespace zm_magicbox;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_magicbox
 	Checksum: 0x8AACC73F
 	Offset: 0x228
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_magicbox", &__init__, undefined, undefined);
 }

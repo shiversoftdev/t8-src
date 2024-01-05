@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\gamestate.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\mp_common\gametypes\match.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\gamestate.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace arena;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: arena
 	Checksum: 0x87ECD8BC
 	Offset: 0xB8
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"arena", &__init__, undefined, undefined);
 }
@@ -36,7 +36,7 @@ function __init__()
 	callback::on_disconnect(&on_disconnect);
 	if(gamemodeisarena())
 	{
-		callback::function_98a0917d(&function_98a0917d);
+		callback::on_game_playing(&on_game_playing);
 		level.var_a962eeb6 = &function_51203700;
 	}
 }
@@ -144,7 +144,7 @@ function update_arena_challenge_seasons()
 		}
 		case 1:
 		{
-			eventstate = #"hash_60f1e9335197f661";
+			eventstate = #"leagueplaystats";
 			break;
 		}
 		case 4:
@@ -157,7 +157,7 @@ function update_arena_challenge_seasons()
 			return;
 		}
 	}
-	perseasonwins = self stats::get_stat(#"arenaperseasonstats", eventstate, #"hash_2f54ed970fcecc95", #"wins");
+	perseasonwins = self stats::get_stat(#"arenaperseasonstats", eventstate, #"matchesstats", #"wins");
 	if(perseasonwins >= getdvarint(#"arena_seasonvetchallengewins", 0))
 	{
 		arenaslot = arenagetslot();
@@ -195,7 +195,7 @@ function match_end()
 		player = level.players[index];
 		if(isdefined(player.pers[#"arenainit"]) && player.pers[#"arenainit"] == 1)
 		{
-			if(match::function_5f24faac("tie"))
+			if(match::get_flag("tie"))
 			{
 				player arenaendmatch(0);
 			}
@@ -216,7 +216,7 @@ function match_end()
 			}
 		}
 	}
-	if(match::function_5f24faac("tie") || !isdefined(game.outcome.team))
+	if(match::get_flag("tie") || !isdefined(game.outcome.team))
 	{
 		function_a357a2b8(0);
 	}
@@ -248,7 +248,7 @@ function function_51203700()
 }
 
 /*
-	Name: function_98a0917d
+	Name: on_game_playing
 	Namespace: arena
 	Checksum: 0xE746A95E
 	Offset: 0x9D8
@@ -256,7 +256,7 @@ function function_51203700()
 	Parameters: 0
 	Flags: Linked
 */
-function function_98a0917d()
+function on_game_playing()
 {
 	function_e938380b();
 }

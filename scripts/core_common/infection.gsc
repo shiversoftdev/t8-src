@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f27a7b2232674db;
-#using script_75be2950b381443;
-#using scripts\core_common\spectating.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\teams.gsc;
+#using scripts\core_common\player\player_role.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\spectating.gsc;
+#using scripts\core_common\platoons.gsc;
 
 #namespace infection;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: infection
 	Checksum: 0xD8EAAAAB
 	Offset: 0x100
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"infection", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 */
 function initialize()
 {
-	level.infection = {#hash_c0879807:[], #hash_c4b373ef:[], #platoon:#"invalid", #team:#"none", #hash_e088b6aa:undefined, #primary_weapon:undefined, #bodies:[], #perks:[]};
+	level.infection = {#platoon_team:[], #hash_c4b373ef:[], #platoon:#"invalid", #team:#"none", #offhand_weapon:undefined, #primary_weapon:undefined, #bodies:[], #perks:[]};
 }
 
 /*
@@ -237,7 +237,7 @@ function give_loadout()
 }
 
 /*
-	Name: function_f3a05d39
+	Name: reset_character
 	Namespace: infection
 	Checksum: 0x9978CB69
 	Offset: 0x668
@@ -245,7 +245,7 @@ function give_loadout()
 	Parameters: 0
 	Flags: Linked
 */
-function function_f3a05d39()
+function reset_character()
 {
 	if(!isplayer(self))
 	{
@@ -254,8 +254,8 @@ function function_f3a05d39()
 		#/
 		return;
 	}
-	self function_8fd843dd(0);
-	self function_9b48a8e5(0);
+	self setcharacteroutfit(0);
+	self setcharacterwarpaintoutfit(0);
 	self function_ab96a9b5("head", 0);
 	self function_ab96a9b5("headgear", 0);
 	self function_ab96a9b5("arms", 0);
@@ -267,7 +267,7 @@ function function_f3a05d39()
 }
 
 /*
-	Name: function_c37a6757
+	Name: give_body
 	Namespace: infection
 	Checksum: 0x5A6A7A9E
 	Offset: 0x7D8
@@ -275,7 +275,7 @@ function function_f3a05d39()
 	Parameters: 0
 	Flags: None
 */
-function function_c37a6757()
+function give_body()
 {
 	if(self hasdobj() && self haspart("j_spine4"))
 	{
@@ -287,13 +287,13 @@ function function_c37a6757()
 	{
 		if(current_role == body)
 		{
-			self function_f3a05d39();
+			self reset_character();
 			return;
 		}
 	}
 	body_index = (self getplayergendertype() == "male" ? 0 : 1);
 	self player_role::set(level.infection.bodies[body_index], 1);
-	self function_f3a05d39();
+	self reset_character();
 }
 
 /*
@@ -363,7 +363,7 @@ function function_687661ea()
 }
 
 /*
-	Name: function_896b35be
+	Name: get_infected_team
 	Namespace: infection
 	Checksum: 0xBD4EAA24
 	Offset: 0xB80
@@ -371,7 +371,7 @@ function function_687661ea()
 	Parameters: 0
 	Flags: Linked, Private
 */
-function private function_896b35be()
+function private get_infected_team()
 {
 	if(level.infection.platoon != #"invalid")
 	{
@@ -379,9 +379,9 @@ function private function_896b35be()
 		{
 			return self.team;
 		}
-		if(isdefined(level.infection.var_c0879807[self.team]))
+		if(isdefined(level.infection.platoon_team[self.team]))
 		{
-			return level.infection.var_c0879807[self.team];
+			return level.infection.platoon_team[self.team];
 		}
 		team = self.team;
 		if(team != #"spectator")
@@ -423,11 +423,11 @@ function function_76601b7d()
 */
 function function_d3da95cf()
 {
-	team = self function_896b35be();
+	team = self get_infected_team();
 	platoon = function_76601b7d();
 	if(platoon != #"invalid")
 	{
-		level.infection.var_c0879807[self.team] = team;
+		level.infection.platoon_team[self.team] = team;
 		platoons::function_334c4bec(team, platoon);
 	}
 	if(!isdefined(level.everexisted[team]))

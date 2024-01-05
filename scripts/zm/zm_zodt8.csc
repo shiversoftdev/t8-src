@@ -1,31 +1,31 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_13e019f139d2aa4e;
-#using script_234f79e7e5737561;
-#using script_27ba6748d83412fd;
-#using script_2a907fffc74a075d;
-#using script_2c454d63a96d2d0b;
-#using script_52ab76d6216ed2cc;
+#using scripts\zm\weapons\zm_weap_riotshield.csc;
 #using script_54a67b7ed7b385e6;
+#using scripts\zm\zm_zodt8_tutorial.csc;
 #using script_5504fe574aed77a8;
-#using script_67051bc8c81031aa;
-#using script_67b98aa634d9decc;
-#using script_74f5ae6ffc8bd614;
-#using scripts\core_common\audio_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\flag_shared.csc;
-#using scripts\core_common\postfx_shared.csc;
-#using scripts\core_common\scene_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm\zm_zodt8_gamemodes.csc;
+#using scripts\zm\zm_zodt8_sentinel_trial.csc;
 #using scripts\zm\zm_zodt8_pap_quest.csc;
+#using script_2a907fffc74a075d;
+#using scripts\zm\zm_zodt8_eye.csc;
 #using scripts\zm\zm_zodt8_sound.csc;
-#using scripts\zm_common\load.csc;
-#using scripts\zm_common\zm.csc;
-#using scripts\zm_common\zm_pack_a_punch.csc;
-#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm\powerup\zm_powerup_free_perk.csc;
+#using scripts\zm\zm_zodt8_gamemodes.csc;
+#using scripts\zm_common\zm_characters.csc;
 #using scripts\zm_common\zm_weapons.csc;
+#using scripts\zm_common\zm_utility.csc;
+#using scripts\zm_common\zm_pack_a_punch.csc;
+#using scripts\zm_common\zm_fasttravel.csc;
+#using scripts\zm_common\zm_audio_sq.csc;
+#using scripts\zm_common\zm.csc;
+#using scripts\zm_common\load.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\struct.csc;
+#using scripts\core_common\scene_shared.csc;
+#using scripts\core_common\postfx_shared.csc;
+#using scripts\core_common\flag_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\audio_shared.csc;
 
 #namespace zm_zodt8;
 
@@ -76,28 +76,28 @@ event main(eventstruct)
 	clientfield::register("actor", "sndActorUnderwater", 1, 1, "int", &sndactorunderwater, 0, 1);
 	setdvar(#"player_shallowwaterwadescale", 1);
 	setdvar(#"player_waistwaterwadescale", 1);
-	setdvar(#"hash_70d60913dea5aadd", 1);
+	setdvar(#"player_deepwaterwadescale", 1);
 	level._effect[#"headshot"] = #"zombie/fx_bul_flesh_head_fatal_zmb";
 	level._effect[#"headshot_nochunks"] = #"zombie/fx_bul_flesh_head_nochunks_zmb";
 	level._effect[#"bloodspurt"] = #"zombie/fx_bul_flesh_neck_spurt_zmb";
 	level._effect[#"animscript_gib_fx"] = #"zombie/fx_blood_torso_explo_zmb";
 	level._effect[#"animscript_gibtrail_fx"] = #"blood/fx_blood_gib_limb_trail";
-	level._effect[#"hash_51c7bc3539ed5540"] = #"hash_6009053e911b946a";
-	level._effect[#"hash_68213763a7707b92"] = #"hash_6c0eb029adb5f6c6";
+	level._effect[#"pap_projectile"] = #"hash_6009053e911b946a";
+	level._effect[#"pap_projectile_end"] = #"hash_6c0eb029adb5f6c6";
 	level.var_24cb6ae8 = findvolumedecalindexarray("cargo_hold_water_puddles");
 	level.var_ec4c3b67 = findvolumedecalindexarray("engine_room_water_puddles");
 	level.var_59d3631c = #"hash_129339f4a4da8ea2";
 	level.var_d0ab70a2 = #"hash_3180c9ba4da02927";
-	namespace_e80d0291::init();
-	namespace_74905749::init();
+	zodt8_pap_quest::init();
+	zodt8_sentinel::init();
 	namespace_4a807bff::init();
 	namespace_b45e3f05::init();
 	namespace_57873b62::init();
-	namespace_8f39dfb1::init();
+	zm_audio_sq::init();
 	load::main();
-	function_99e9d1fa();
+	init_water();
 	init_flags();
-	namespace_64be5677::main();
+	zm_zodt8_sound::main();
 	level thread setup_personality_character_exerts();
 	callback::on_localplayer_spawned(&on_localplayer_spawned);
 }
@@ -113,16 +113,16 @@ event main(eventstruct)
 */
 function on_localplayer_spawned(localclientnum)
 {
-	var_71714553 = function_5c10bd79(localclientnum);
-	var_71714553 function_24f8e5f9();
-	var_630fc8b = var_71714553 isplayerswimmingunderwater();
-	var_71714553 function_33eae096(localclientnum, var_630fc8b);
+	e_localplayer = function_5c10bd79(localclientnum);
+	e_localplayer function_24f8e5f9();
+	var_630fc8b = e_localplayer isplayerswimmingunderwater();
+	e_localplayer function_33eae096(localclientnum, var_630fc8b);
 	if(function_65b9eb0f(localclientnum))
 	{
-		var_71714553 thread function_2dca9b5b(localclientnum, var_630fc8b);
+		e_localplayer thread function_2dca9b5b(localclientnum, var_630fc8b);
 		return;
 	}
-	var_71714553 thread function_efae9657(localclientnum, var_630fc8b);
+	e_localplayer thread function_efae9657(localclientnum, var_630fc8b);
 }
 
 /*
@@ -388,8 +388,8 @@ function function_5b0384a(localclientnum, oldval, newval, bnewent, binitialsnap,
 function function_53da552d(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
 	var_a1b31107 = #"hash_d3b7cb6eb2177fb";
-	var_cfa35904 = getweapon(#"hash_5b8d1ff4b772bd85");
-	addzombieboxweapon(var_cfa35904, var_a1b31107, 0);
+	ww_base = getweapon(#"ww_tricannon_t8");
+	addzombieboxweapon(ww_base, var_a1b31107, 0);
 }
 
 /*
@@ -414,7 +414,7 @@ function function_94a217a5(localclientnum, oldval, newval, bnewent, binitialsnap
 }
 
 /*
-	Name: function_99e9d1fa
+	Name: init_water
 	Namespace: zm_zodt8
 	Checksum: 0xF53A68F5
 	Offset: 0x1BA0
@@ -422,7 +422,7 @@ function function_94a217a5(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 0
 	Flags: Linked
 */
-function function_99e9d1fa()
+function init_water()
 {
 	setdvar(#"phys_buoyancy", 1);
 	setdvar(#"hash_7016ead6b3c7a246", 1);
@@ -438,7 +438,7 @@ function function_99e9d1fa()
 	Parameters: 7
 	Flags: Linked
 */
-function function_f31c22d6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function function_f31c22d6(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval)
 	{
@@ -465,7 +465,7 @@ function function_f31c22d6(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function function_1e917f6a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function function_1e917f6a(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	if(newval)
 	{
@@ -492,7 +492,7 @@ function function_1e917f6a(localclientnum, oldval, newval, bnewent, binitialsnap
 	Parameters: 7
 	Flags: Linked
 */
-function update_wave_water_height(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function update_wave_water_height(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	player = function_5c10bd79(localclientnum);
 	player endon(#"death");
@@ -503,7 +503,7 @@ function update_wave_water_height(localclientnum, oldval, newval, bnewent, binit
 	}
 	if(self flag::get("update_water"))
 	{
-		self thread function_6749eef5(localclientnum);
+		self thread update_wave_water(localclientnum);
 	}
 	else
 	{
@@ -522,7 +522,7 @@ function update_wave_water_height(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 7
 	Flags: Linked
 */
-function change_wave_water_height(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, var_1e231644)
+function change_wave_water_height(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejum)
 {
 	level endon(#"demo_jump");
 	if(newval)
@@ -536,7 +536,7 @@ function change_wave_water_height(localclientnum, oldval, newval, bnewent, binit
 		{
 			self flag::init("water_drained");
 		}
-		self function_6749eef5(localclientnum);
+		self update_wave_water(localclientnum);
 		if(!self flag::get("water_drained"))
 		{
 			self flag::set("water_drained");
@@ -553,7 +553,7 @@ function change_wave_water_height(localclientnum, oldval, newval, bnewent, binit
 }
 
 /*
-	Name: function_6749eef5
+	Name: update_wave_water
 	Namespace: zm_zodt8
 	Checksum: 0x16AB2EBE
 	Offset: 0x21C0
@@ -561,7 +561,7 @@ function change_wave_water_height(localclientnum, oldval, newval, bnewent, binit
 	Parameters: 1
 	Flags: Linked
 */
-function function_6749eef5(localclientnum)
+function update_wave_water(localclientnum)
 {
 	self notify("318e077d5d5c0461");
 	self endon("318e077d5d5c0461");
@@ -746,7 +746,7 @@ function pap_projectile_fx(localclientnum, oldval, newval, bnewent, binitialsnap
 	{
 		if(!isdefined(self.var_4b7a5b1b))
 		{
-			self.var_4b7a5b1b = util::playfxontag(localclientnum, level._effect[#"hash_51c7bc3539ed5540"], self, "tag_origin");
+			self.var_4b7a5b1b = util::playfxontag(localclientnum, level._effect[#"pap_projectile"], self, "tag_origin");
 		}
 		if(!isdefined(self.var_353ff2a))
 		{
@@ -779,7 +779,7 @@ function pap_projectile_end_fx(localclientnum, oldval, newval, bnewent, binitial
 {
 	if(newval == 1)
 	{
-		util::playfxontag(localclientnum, level._effect[#"hash_68213763a7707b92"], self, "tag_origin");
+		util::playfxontag(localclientnum, level._effect[#"pap_projectile_end"], self, "tag_origin");
 	}
 }
 
@@ -797,8 +797,8 @@ function sentinel_artifact_activated(localclientnum, oldval, newval, bnewent, bi
 	self endon(#"death");
 	if(newval == 1)
 	{
-		self.fx = util::playfxontag(localclientnum, level._effect[#"hash_4e794284db75a3f5"], self, "tag_fx_x_pos");
-		self function_bf9d3071(#"hash_1589a47f2fdc6c67");
+		self.fx = util::playfxontag(localclientnum, level._effect[#"sentinel_aura"], self, "tag_fx_x_pos");
+		self playrenderoverridebundle(#"hash_1589a47f2fdc6c67");
 		self.sfx_id = self playloopsound(#"hash_66df9cab2c64f968");
 	}
 	else
@@ -810,7 +810,7 @@ function sentinel_artifact_activated(localclientnum, oldval, newval, bnewent, bi
 				self stoploopsound(self.sfx_id);
 			}
 			self playsound(localclientnum, #"hash_75b9c9ad6ebe8af2");
-			self function_5d482e78(#"hash_1589a47f2fdc6c67");
+			self stoprenderoverridebundle(#"hash_1589a47f2fdc6c67");
 			if(isdefined(self.fx))
 			{
 				stopfx(localclientnum, self.fx);
@@ -821,9 +821,9 @@ function sentinel_artifact_activated(localclientnum, oldval, newval, bnewent, bi
 			{
 				waitframe(1);
 			}
-			self.fx = util::playfxontag(localclientnum, level._effect[#"hash_2b40b14fc8577053"], self, "tag_fx_x_pos");
+			self.fx = util::playfxontag(localclientnum, level._effect[#"sentinel_glow"], self, "tag_fx_x_pos");
 			waitframe(1);
-			self function_bf9d3071(#"hash_111d3e86bf2007e4");
+			self playrenderoverridebundle(#"hash_111d3e86bf2007e4");
 		}
 		else
 		{

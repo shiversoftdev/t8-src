@@ -1,15 +1,15 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_unitrigger.gsc;
+#using scripts\zm_common\zm_audio.gsc;
 #using scripts\core_common\array_shared.gsc;
 #using scripts\core_common\struct.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_unitrigger.gsc;
-#using scripts\zm_common\zm_utility.gsc;
 
-#namespace namespace_fada3c80;
+#namespace zm_office_sound;
 
 /*
 	Name: main
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0xB5D78733
 	Offset: 0xE0
 	Size: 0x34
@@ -24,7 +24,7 @@ function main()
 
 /*
 	Name: function_7624a4cd
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0xD52EA851
 	Offset: 0x120
 	Size: 0x64
@@ -40,7 +40,7 @@ function function_7624a4cd()
 
 /*
 	Name: function_f71796ca
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0x5E07D4CB
 	Offset: 0x190
 	Size: 0x15A
@@ -74,7 +74,7 @@ function function_f71796ca()
 
 /*
 	Name: function_e856acd2
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0xC66CA105
 	Offset: 0x2F8
 	Size: 0x78
@@ -93,7 +93,7 @@ function function_e856acd2()
 
 /*
 	Name: function_bc327ddf
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0xF612772B
 	Offset: 0x378
 	Size: 0x1EE
@@ -144,7 +144,7 @@ function function_bc327ddf()
 
 /*
 	Name: function_b72b5f36
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0xCDC8D5BB
 	Offset: 0x570
 	Size: 0x4C
@@ -159,7 +159,7 @@ function function_b72b5f36()
 
 /*
 	Name: function_43e2a503
-	Namespace: namespace_fada3c80
+	Namespace: zm_office_sound
 	Checksum: 0x5072B0C6
 	Offset: 0x5C8
 	Size: 0x154
@@ -174,7 +174,7 @@ function function_43e2a503()
 	}
 	var_26d86758 = spawn("script_origin", self.origin);
 	var_26d86758 playloopsound(#"hash_368d31ed538206b0");
-	var_64c09f7f = self zm_unitrigger::function_fac87205(undefined, 40);
+	e_activator = self zm_unitrigger::function_fac87205(undefined, 40);
 	if(!isdefined(level.var_ec4c747a))
 	{
 		level.var_ec4c747a = 0;

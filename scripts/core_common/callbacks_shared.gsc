@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_64176e152a2cbf82;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\hud_shared.gsc;
-#using scripts\core_common\simple_hostmigration.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\voice\voice_events.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\simple_hostmigration.gsc;
+#using scripts\core_common\hud_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace callback;
 
@@ -330,7 +330,7 @@ function on_finalize_initialization(func, obj)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function on_connect(func, obj, vararg)
+function on_connect(func, obj, ...)
 {
 	add_callback(#"on_player_connect", func, obj, vararg);
 }
@@ -434,7 +434,7 @@ function remove_on_spawned(func, obj)
 }
 
 /*
-	Name: function_61f038c
+	Name: remove_on_revived
 	Namespace: callback
 	Checksum: 0x1C26A8A7
 	Offset: 0xE80
@@ -442,7 +442,7 @@ function remove_on_spawned(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_61f038c(func, obj)
+function remove_on_revived(func, obj)
 {
 	remove_callback(#"on_player_revived", func, obj);
 }
@@ -574,7 +574,7 @@ function function_14dae612(func, obj)
 }
 
 /*
-	Name: function_98a0917d
+	Name: on_game_playing
 	Namespace: callback
 	Checksum: 0x43B76AD6
 	Offset: 0x1150
@@ -582,9 +582,9 @@ function function_14dae612(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_98a0917d(func, obj)
+function on_game_playing(func, obj)
 {
-	add_callback(#"hash_361e06db4b210e", func, obj);
+	add_callback(#"on_game_playing", func, obj);
 }
 
 /*
@@ -672,7 +672,7 @@ function remove_on_player_killed(func, obj)
 }
 
 /*
-	Name: function_e2ca0af6
+	Name: remove_on_player_killed_with_params
 	Namespace: callback
 	Checksum: 0x601C160E
 	Offset: 0x1348
@@ -680,7 +680,7 @@ function remove_on_player_killed(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_e2ca0af6(func, obj)
+function remove_on_player_killed_with_params(func, obj)
 {
 	remove_callback(#"on_player_killed_with_params", func, obj);
 }
@@ -696,7 +696,7 @@ function function_e2ca0af6(func, obj)
 */
 function function_80270643(func, obj)
 {
-	add_callback(#"hash_4b1a02a87458f191", func, obj);
+	add_callback(#"on_team_eliminated", func, obj);
 }
 
 /*
@@ -710,7 +710,7 @@ function function_80270643(func, obj)
 */
 function function_c53a8ab8(func, obj)
 {
-	remove_callback(#"hash_4b1a02a87458f191", func, obj);
+	remove_callback(#"on_team_eliminated", func, obj);
 }
 
 /*
@@ -812,7 +812,7 @@ function on_vehicle_killed(func, obj)
 }
 
 /*
-	Name: function_36aab2f3
+	Name: on_vehicle_collision
 	Namespace: callback
 	Checksum: 0x5AF19C5F
 	Offset: 0x1618
@@ -820,7 +820,7 @@ function on_vehicle_killed(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_36aab2f3(func, obj)
+function on_vehicle_collision(func, obj)
 {
 	function_d8abfc3d(#"veh_collision", func, obj);
 }
@@ -980,7 +980,7 @@ function remove_on_vehicle_damage(func, obj)
 }
 
 /*
-	Name: function_1475a073
+	Name: on_downed
 	Namespace: callback
 	Checksum: 0x454AC3AD
 	Offset: 0x1978
@@ -988,13 +988,13 @@ function remove_on_vehicle_damage(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_1475a073(func, obj)
+function on_downed(func, obj)
 {
-	add_callback(#"hash_65626f47d6c0717c", func, obj);
+	add_callback(#"on_player_downed", func, obj);
 }
 
 /*
-	Name: function_626c1390
+	Name: remove_on_downed
 	Namespace: callback
 	Checksum: 0x4390435
 	Offset: 0x19C0
@@ -1002,9 +1002,9 @@ function function_1475a073(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_626c1390(func, obj)
+function remove_on_downed(func, obj)
 {
-	remove_callback(#"hash_65626f47d6c0717c", func, obj);
+	remove_callback(#"on_player_downed", func, obj);
 }
 
 /*
@@ -1022,7 +1022,7 @@ function on_laststand(func, obj)
 }
 
 /*
-	Name: function_53888e7f
+	Name: remove_on_laststand
 	Namespace: callback
 	Checksum: 0x3D1933D7
 	Offset: 0x1A50
@@ -1030,7 +1030,7 @@ function on_laststand(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_53888e7f(func, obj)
+function remove_on_laststand(func, obj)
 {
 	remove_callback(#"on_player_laststand", func, obj);
 }
@@ -1092,7 +1092,7 @@ function on_challenge_complete(func, obj)
 }
 
 /*
-	Name: function_f77ced93
+	Name: on_weapon_change
 	Namespace: callback
 	Checksum: 0x3ED583EA
 	Offset: 0x1BB8
@@ -1100,13 +1100,13 @@ function on_challenge_complete(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_f77ced93(func, obj)
+function on_weapon_change(func, obj)
 {
 	add_callback(#"weapon_change", func, obj);
 }
 
 /*
-	Name: function_5a753d97
+	Name: remove_on_weapon_change
 	Namespace: callback
 	Checksum: 0xB325B099
 	Offset: 0x1C00
@@ -1114,13 +1114,13 @@ function function_f77ced93(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_5a753d97(func, obj)
+function remove_on_weapon_change(func, obj)
 {
 	remove_callback(#"weapon_change", func, obj);
 }
 
 /*
-	Name: function_78ccee50
+	Name: on_weapon_fired
 	Namespace: callback
 	Checksum: 0xEE4E1D97
 	Offset: 0x1C48
@@ -1128,13 +1128,13 @@ function function_5a753d97(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_78ccee50(func, obj)
+function on_weapon_fired(func, obj)
 {
 	add_callback(#"weapon_fired", func, obj);
 }
 
 /*
-	Name: function_deba137d
+	Name: remove_on_weapon_fired
 	Namespace: callback
 	Checksum: 0x8E15FE5A
 	Offset: 0x1C90
@@ -1142,13 +1142,13 @@ function function_78ccee50(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_deba137d(func, obj)
+function remove_on_weapon_fired(func, obj)
 {
 	remove_callback(#"weapon_fired", func, obj);
 }
 
 /*
-	Name: function_20263b9e
+	Name: on_grenade_fired
 	Namespace: callback
 	Checksum: 0x8EA2A6D9
 	Offset: 0x1CD8
@@ -1156,13 +1156,13 @@ function function_deba137d(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_20263b9e(func, obj)
+function on_grenade_fired(func, obj)
 {
-	add_callback(#"hash_5989c4f123e1fb1a", func, obj);
+	add_callback(#"grenade_fired", func, obj);
 }
 
 /*
-	Name: function_311bb575
+	Name: remove_on_grenade_fired
 	Namespace: callback
 	Checksum: 0x21318271
 	Offset: 0x1D20
@@ -1170,13 +1170,13 @@ function function_20263b9e(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_311bb575(func, obj)
+function remove_on_grenade_fired(func, obj)
 {
-	remove_callback(#"hash_5989c4f123e1fb1a", func, obj);
+	remove_callback(#"grenade_fired", func, obj);
 }
 
 /*
-	Name: function_ce4a7c15
+	Name: on_offhand_fire
 	Namespace: callback
 	Checksum: 0xE4FEF738
 	Offset: 0x1D68
@@ -1184,13 +1184,13 @@ function function_311bb575(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_ce4a7c15(func, obj)
+function on_offhand_fire(func, obj)
 {
-	add_callback(#"hash_7b6a55a9b65e3194", func, obj);
+	add_callback(#"offhand_fire", func, obj);
 }
 
 /*
-	Name: function_229f88c7
+	Name: remove_on_offhand_fire
 	Namespace: callback
 	Checksum: 0x44A90068
 	Offset: 0x1DB0
@@ -1198,9 +1198,9 @@ function function_ce4a7c15(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_229f88c7(func, obj)
+function remove_on_offhand_fire(func, obj)
 {
-	remove_callback(#"hash_7b6a55a9b65e3194", func, obj);
+	remove_callback(#"offhand_fire", func, obj);
 }
 
 /*
@@ -1232,7 +1232,7 @@ function function_61583a71(func, obj)
 }
 
 /*
-	Name: function_e0b66c97
+	Name: on_detonate
 	Namespace: callback
 	Checksum: 0xB80C13E5
 	Offset: 0x1E88
@@ -1240,13 +1240,13 @@ function function_61583a71(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_e0b66c97(func, obj)
+function on_detonate(func, obj)
 {
 	function_d8abfc3d(#"detonate", func, obj);
 }
 
 /*
-	Name: function_a96b9a74
+	Name: remove_on_detonate
 	Namespace: callback
 	Checksum: 0xBD40B1E5
 	Offset: 0x1ED0
@@ -1254,13 +1254,13 @@ function function_e0b66c97(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_a96b9a74(func, obj)
+function remove_on_detonate(func, obj)
 {
 	function_52ac9652(#"detonate", func, obj);
 }
 
 /*
-	Name: function_d800788e
+	Name: on_double_tap_detonate
 	Namespace: callback
 	Checksum: 0xB772467A
 	Offset: 0x1F18
@@ -1268,13 +1268,13 @@ function function_a96b9a74(func, obj)
 	Parameters: 2
 	Flags: Linked
 */
-function function_d800788e(func, obj)
+function on_double_tap_detonate(func, obj)
 {
 	function_d8abfc3d(#"doubletap_detonate", func, obj);
 }
 
 /*
-	Name: function_da4517ea
+	Name: remove_on_double_tap_detonate
 	Namespace: callback
 	Checksum: 0x2FC056B4
 	Offset: 0x1F60
@@ -1282,7 +1282,7 @@ function function_d800788e(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_da4517ea(func, obj)
+function remove_on_double_tap_detonate(func, obj)
 {
 	function_52ac9652(#"doubletap_detonate", func, obj);
 }
@@ -1330,7 +1330,7 @@ function function_27d9ab8(func, obj)
 }
 
 /*
-	Name: function_35a12f19
+	Name: on_trigger
 	Namespace: callback
 	Checksum: 0xAD8DDD2F
 	Offset: 0x2080
@@ -1338,13 +1338,13 @@ function function_27d9ab8(func, obj)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function function_35a12f19(func, obj, vararg)
+function on_trigger(func, obj, ...)
 {
-	function_d8abfc3d(#"hash_1bd0411eb5169b", func, obj, vararg);
+	function_d8abfc3d(#"on_trigger", func, obj, vararg);
 }
 
 /*
-	Name: function_b74bf3e
+	Name: remove_on_trigger
 	Namespace: callback
 	Checksum: 0xE0034CC6
 	Offset: 0x20D0
@@ -1352,13 +1352,13 @@ function function_35a12f19(func, obj, vararg)
 	Parameters: 2
 	Flags: None
 */
-function function_b74bf3e(func, obj)
+function remove_on_trigger(func, obj)
 {
-	function_52ac9652(#"hash_1bd0411eb5169b", func, obj);
+	function_52ac9652(#"on_trigger", func, obj);
 }
 
 /*
-	Name: function_a04381e0
+	Name: on_trigger_once
 	Namespace: callback
 	Checksum: 0xFAA7ACC
 	Offset: 0x2118
@@ -1366,13 +1366,13 @@ function function_b74bf3e(func, obj)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function function_a04381e0(func, obj, vararg)
+function on_trigger_once(func, obj, ...)
 {
-	function_d8abfc3d(#"hash_46d459e3750a3345", func, obj, vararg);
+	function_d8abfc3d(#"on_trigger_once", func, obj, vararg);
 }
 
 /*
-	Name: function_3507ed1f
+	Name: remove_on_trigger_once
 	Namespace: callback
 	Checksum: 0xACDAC15
 	Offset: 0x2168
@@ -1380,9 +1380,9 @@ function function_a04381e0(func, obj, vararg)
 	Parameters: 2
 	Flags: Linked
 */
-function function_3507ed1f(func, obj)
+function remove_on_trigger_once(func, obj)
 {
-	function_52ac9652(#"hash_46d459e3750a3345", func, obj);
+	function_52ac9652(#"on_trigger_once", func, obj);
 }
 
 /*
@@ -1414,7 +1414,7 @@ function function_824d206(func, obj)
 }
 
 /*
-	Name: function_4b1aff2
+	Name: on_boast
 	Namespace: callback
 	Checksum: 0x8F34252E
 	Offset: 0x2240
@@ -1422,13 +1422,13 @@ function function_824d206(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_4b1aff2(func, obj)
+function on_boast(func, obj)
 {
-	add_callback(#"hash_6c189017e0e91d02", func, obj);
+	add_callback(#"on_boast", func, obj);
 }
 
 /*
-	Name: function_d935a5b6
+	Name: remove_on_boast
 	Namespace: callback
 	Checksum: 0xFC4C89E7
 	Offset: 0x2288
@@ -1436,9 +1436,9 @@ function function_4b1aff2(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_d935a5b6(func, obj)
+function remove_on_boast(func, obj)
 {
-	remove_callback(#"hash_6c189017e0e91d02", func, obj);
+	remove_callback(#"on_boast", func, obj);
 }
 
 /*
@@ -1484,7 +1484,7 @@ function on_menu_response(func, obj)
 }
 
 /*
-	Name: function_10a4dd0a
+	Name: on_item_pickup
 	Namespace: callback
 	Checksum: 0x1B6691D0
 	Offset: 0x23A8
@@ -1492,13 +1492,13 @@ function on_menu_response(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_10a4dd0a(func, obj)
+function on_item_pickup(func, obj)
 {
-	add_callback(#"hash_56d1805bfff3e65b", func, obj);
+	add_callback(#"on_item_pickup", func, obj);
 }
 
 /*
-	Name: function_7897dfe6
+	Name: on_item_drop
 	Namespace: callback
 	Checksum: 0xC70847ED
 	Offset: 0x23F0
@@ -1506,13 +1506,13 @@ function function_10a4dd0a(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_7897dfe6(func, obj)
+function on_item_drop(func, obj)
 {
-	add_callback(#"hash_4d3e34c3c8f8bb2a", func, obj);
+	add_callback(#"on_drop_item", func, obj);
 }
 
 /*
-	Name: function_28a6c197
+	Name: on_drop_inventory
 	Namespace: callback
 	Checksum: 0x475D4D10
 	Offset: 0x2438
@@ -1520,13 +1520,13 @@ function function_7897dfe6(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_28a6c197(func, obj)
+function on_drop_inventory(func, obj)
 {
-	add_callback(#"hash_27e13b9438e33053", func, obj);
+	add_callback(#"on_drop_inventory", func, obj);
 }
 
 /*
-	Name: function_955a779c
+	Name: on_item_use
 	Namespace: callback
 	Checksum: 0xA80B4B56
 	Offset: 0x2480
@@ -1534,13 +1534,13 @@ function function_28a6c197(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_955a779c(func, obj)
+function on_item_use(func, obj)
 {
-	add_callback(#"hash_41c107b83320aba2", func, obj);
+	add_callback(#"on_item_use", func, obj);
 }
 
 /*
-	Name: function_c55a0479
+	Name: on_stash_open
 	Namespace: callback
 	Checksum: 0x4DFD68BB
 	Offset: 0x24C8
@@ -1548,13 +1548,13 @@ function function_955a779c(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_c55a0479(func, obj)
+function on_stash_open(func, obj)
 {
-	add_callback(#"hash_20eb78148e01f7c3", func, obj);
+	add_callback(#"on_stash_open", func, obj);
 }
 
 /*
-	Name: function_ed93a653
+	Name: on_character_unlock
 	Namespace: callback
 	Checksum: 0x3F88FE8E
 	Offset: 0x2510
@@ -1562,13 +1562,13 @@ function function_c55a0479(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_ed93a653(func, obj)
+function on_character_unlock(func, obj)
 {
-	add_callback(#"hash_7fc16e58d454945", func, obj);
+	add_callback(#"on_character_unlock", func, obj);
 }
 
 /*
-	Name: function_1ae8059
+	Name: on_contract_complete
 	Namespace: callback
 	Checksum: 0xA84A0571
 	Offset: 0x2558
@@ -1576,7 +1576,7 @@ function function_ed93a653(func, obj)
 	Parameters: 2
 	Flags: None
 */
-function function_1ae8059(func, obj)
+function on_contract_complete(func, obj)
 {
 	add_callback(#"contract_complete", func, obj);
 }
@@ -1657,7 +1657,7 @@ function callback_weapon_damage(eattacker, einflictor, weapon, meansofdeath, dam
 }
 
 /*
-	Name: function_34dea974
+	Name: add_weapon_fired
 	Namespace: callback
 	Checksum: 0x95A05DA1
 	Offset: 0x2770
@@ -1665,7 +1665,7 @@ function callback_weapon_damage(eattacker, einflictor, weapon, meansofdeath, dam
 	Parameters: 2
 	Flags: Linked
 */
-function function_34dea974(weapon, callback)
+function add_weapon_fired(weapon, callback)
 {
 	if(!isdefined(level.var_129c2069))
 	{
@@ -1675,7 +1675,7 @@ function function_34dea974(weapon, callback)
 }
 
 /*
-	Name: function_f19add2
+	Name: callback_weapon_fired
 	Namespace: callback
 	Checksum: 0x3A6C7E69
 	Offset: 0x27C8
@@ -1683,7 +1683,7 @@ function function_34dea974(weapon, callback)
 	Parameters: 1
 	Flags: Linked
 */
-function function_f19add2(weapon)
+function callback_weapon_fired(weapon)
 {
 	if(isdefined(weapon) && isdefined(level.var_129c2069))
 	{
@@ -1898,7 +1898,7 @@ event function_73e8e3f9(eventstruct)
 event function_323548ba(eventstruct)
 {
 	self endon(#"disconnect");
-	[[level.var_7509c7d8]](eventstruct.damage);
+	[[level.callbackplayershielddamageblocked]](eventstruct.damage);
 }
 
 /*
@@ -2020,7 +2020,7 @@ event function_3b159f77(eventstruct)
 	{
 		[[level.var_4268159]](eventstruct.gestureindex, eventstruct.animlength);
 	}
-	callback(#"hash_6c189017e0e91d02", eventstruct);
+	callback(#"on_boast", eventstruct);
 }
 
 /*
@@ -2314,7 +2314,7 @@ function menu_response_queue_pump()
 			if(isdefined(level.menuresponsequeue[0].ent))
 			{
 				level.menuresponsequeue[0].ent notify(#"menuresponse", level.menuresponsequeue[0].eventstruct);
-				level.menuresponsequeue[0].ent callback(#"hash_4e1a50a35ec44bcc", level.menuresponsequeue[0].eventstruct);
+				level.menuresponsequeue[0].ent callback(#"menu_response", level.menuresponsequeue[0].eventstruct);
 			}
 			arrayremoveindex(level.menuresponsequeue, 0, 0);
 			waitframe(1);
@@ -2394,9 +2394,9 @@ event function_2073f6dc(eventstruct)
 	magnitude = float(eventstruct.magnitude);
 	innerradius = float(eventstruct.innerradius);
 	outerradius = int(eventstruct.outerradius);
-	var_489a8c6f = (isdefined(self.var_f501d778) ? self.var_f501d778 : 50);
-	var_5143872f = (isdefined(self.var_e14c1b5c) ? self.var_e14c1b5c : 25);
-	physicsexplosionsphere(origin, outerradius, innerradius, magnitude, var_5143872f, var_489a8c6f);
+	innerdamage = (isdefined(self.var_f501d778) ? self.var_f501d778 : 50);
+	outerdamage = (isdefined(self.var_e14c1b5c) ? self.var_e14c1b5c : 25);
+	physicsexplosionsphere(origin, outerradius, innerradius, magnitude, outerdamage, innerdamage);
 }
 
 /*
@@ -2534,7 +2534,7 @@ event function_87b05fa3(eventstruct)
 }
 
 /*
-	Name: function_8a53b367
+	Name: codecallback_swimming
 	Namespace: callback
 	Checksum: 0xBAE084F6
 	Offset: 0x42D0
@@ -2542,13 +2542,13 @@ event function_87b05fa3(eventstruct)
 	Parameters: 1
 	Flags: Event
 */
-event function_8a53b367(eventstruct)
+event codecallback_swimming(eventstruct)
 {
 	self callback(#"swimming", eventstruct);
 }
 
 /*
-	Name: function_df998213
+	Name: codecallback_underwater
 	Namespace: callback
 	Checksum: 0x5F1CA4AA
 	Offset: 0x4308
@@ -2556,7 +2556,7 @@ event function_8a53b367(eventstruct)
 	Parameters: 1
 	Flags: Event
 */
-event function_df998213(eventstruct)
+event codecallback_underwater(eventstruct)
 {
 	self callback(#"underwater", eventstruct);
 }
@@ -2587,7 +2587,7 @@ event function_8877d89(eventstruct)
 event function_930ce3c3(eventstruct)
 {
 	/#
-		self callback(#"hash_36b1b305064a7cf8", eventstruct);
+		self callback(#"debug_movement", eventstruct);
 	#/
 }
 
@@ -2608,7 +2608,7 @@ event function_7d45bff(eventstruct)
 }
 
 /*
-	Name: function_6eb09118
+	Name: codecallback_trigger
 	Namespace: callback
 	Checksum: 0x71DA971F
 	Offset: 0x4420
@@ -2616,14 +2616,14 @@ event function_7d45bff(eventstruct)
 	Parameters: 2
 	Flags: Linked, Event
 */
-event function_6eb09118(eventstruct, look_trigger = 0)
+event codecallback_trigger(eventstruct, look_trigger = 0)
 {
 	if(look_trigger || !trigger::is_look_trigger())
 	{
 		self util::script_delay();
-		self callback(#"hash_1bd0411eb5169b", eventstruct);
-		self callback(#"hash_46d459e3750a3345", eventstruct);
-		self function_3507ed1f("all");
+		self callback(#"on_trigger", eventstruct);
+		self callback(#"on_trigger_once", eventstruct);
+		self remove_on_trigger_once("all");
 	}
 }
 
@@ -2652,7 +2652,7 @@ event codecallback_entitydeleted(eventstruct)
 */
 event codecallback_botentereduseredge(eventstruct)
 {
-	self [[level.callbackbotentereduseredge]](eventstruct.start_node, eventstruct.end_node, eventstruct.var_3de2a65c, eventstruct.start_position, eventstruct.end_position, eventstruct.var_a8cc518d);
+	self [[level.callbackbotentereduseredge]](eventstruct.start_node, eventstruct.end_node, eventstruct.mantle_node, eventstruct.start_position, eventstruct.end_position, eventstruct.var_a8cc518d);
 }
 
 /*
@@ -2694,7 +2694,7 @@ event codecallback_botstopupdate(eventstruct)
 */
 event function_451258ba(eventstruct)
 {
-	self namespace_8e41fc17::function_c710099c(eventstruct.event, eventstruct.params);
+	self voice_events::function_c710099c(eventstruct.event, eventstruct.params);
 }
 
 /*
@@ -2758,7 +2758,7 @@ event function_f4449e63(eventstruct)
 }
 
 /*
-	Name: function_8e693523
+	Name: codecallback_detonate
 	Namespace: callback
 	Checksum: 0xE4B0DA1C
 	Offset: 0x47A0
@@ -2766,7 +2766,7 @@ event function_f4449e63(eventstruct)
 	Parameters: 1
 	Flags: Event
 */
-event function_8e693523(eventstruct)
+event codecallback_detonate(eventstruct)
 {
 	self callback(#"detonate", eventstruct);
 }
@@ -2786,7 +2786,7 @@ event function_92aba4c4(eventstruct)
 }
 
 /*
-	Name: function_2eb17944
+	Name: codecallback_death
 	Namespace: callback
 	Checksum: 0xE6FF4420
 	Offset: 0x4810
@@ -2794,7 +2794,7 @@ event function_92aba4c4(eventstruct)
 	Parameters: 1
 	Flags: Event
 */
-event function_2eb17944(eventstruct)
+event codecallback_death(eventstruct)
 {
 	self callback(#"death", eventstruct);
 }

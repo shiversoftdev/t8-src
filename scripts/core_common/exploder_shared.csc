@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\fx_shared.csc;
-#using scripts\core_common\sound_shared.csc;
-#using scripts\core_common\struct.csc;
 #using scripts\core_common\system_shared.csc;
+#using scripts\core_common\sound_shared.csc;
+#using scripts\core_common\fx_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace exploder;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: exploder
 	Checksum: 0xB548D8DC
 	Offset: 0x108
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"exploder", &__init__, undefined, undefined);
 }
@@ -103,7 +103,7 @@ function player_init(clientnum)
 		level.createfxent = [];
 	}
 	acceptabletargetnames = [];
-	acceptabletargetnames[#"hash_7a9dcee99d931917"] = 1;
+	acceptabletargetnames[#"exploderchunk visible"] = 1;
 	acceptabletargetnames[#"exploderchunk"] = 1;
 	acceptabletargetnames[#"exploder"] = 1;
 	exploder_id = 1;
@@ -361,7 +361,7 @@ function activate_radiant_exploder(string)
 */
 function stop_exploder(exploder_id)
 {
-	if(isstring(exploder_id) || function_7a600918(exploder_id))
+	if(isstring(exploder_id) || ishash(exploder_id))
 	{
 		for(localclientnum = 0; localclientnum < level.localplayers.size; localclientnum++)
 		{
@@ -402,7 +402,7 @@ function stop_exploder(exploder_id)
 */
 function kill_exploder(exploder_id)
 {
-	if(isstring(exploder_id) || function_7a600918(exploder_id))
+	if(isstring(exploder_id) || ishash(exploder_id))
 	{
 		for(localclientnum = 0; localclientnum < level.localplayers.size; localclientnum++)
 		{

@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_28a20e497bd69c36;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\shoutcaster.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\shoutcaster.csc;
+#using scripts\core_common\callbacks_shared.csc;
 
 #namespace dom;
 

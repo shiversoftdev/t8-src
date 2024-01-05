@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
 
-#namespace namespace_54386dac;
+#namespace zm_escape_util;
 
 /*
 	Name: init_clientfields
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0xCDF18D4A
 	Offset: 0xB8
 	Size: 0x192
@@ -24,7 +24,7 @@ function init_clientfields()
 
 /*
 	Name: function_6799fbc4
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0x3EEA0193
 	Offset: 0x258
 	Size: 0x176
@@ -47,8 +47,8 @@ function function_6799fbc4(localclientnum, oldval, newval, bnewent, binitialsnap
 		{
 			level.var_22a393d4[level.var_22a393d4.size] = self;
 		}
-		self.var_922c0c5c = &function_c06aed2;
-		self.var_ffeecdb6 = &function_59cd4ca1;
+		self.show_function = &function_c06aed2;
+		self.hide_function = &function_59cd4ca1;
 		self hide();
 	}
 	else
@@ -61,7 +61,7 @@ function function_6799fbc4(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_c06aed2
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0x302271C5
 	Offset: 0x3D8
 	Size: 0x36
@@ -76,7 +76,7 @@ function private function_c06aed2(localclientnum)
 
 /*
 	Name: function_59cd4ca1
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0xD0FD499C
 	Offset: 0x418
 	Size: 0x36
@@ -86,12 +86,12 @@ function private function_c06aed2(localclientnum)
 function private function_59cd4ca1(localclientnum)
 {
 	self hide();
-	self notify(#"hash_488fe0f467820fcf");
+	self notify(#"set_invisible");
 }
 
 /*
 	Name: function_e2c78db9
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0x334D2394
 	Offset: 0x458
 	Size: 0x112
@@ -119,7 +119,7 @@ function function_e2c78db9(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_41f46060
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0x821D1FE3
 	Offset: 0x578
 	Size: 0xBA
@@ -141,7 +141,7 @@ function function_41f46060(localclientnum, oldval, newval, bnewent, binitialsnap
 
 /*
 	Name: function_b334fc71
-	Namespace: namespace_54386dac
+	Namespace: zm_escape_util
 	Checksum: 0xB6F6CA37
 	Offset: 0x640
 	Size: 0x7C

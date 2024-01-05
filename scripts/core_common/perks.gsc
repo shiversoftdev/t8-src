@@ -2,7 +2,7 @@
 #namespace perks;
 
 /*
-	Name: function_7637bafa
+	Name: perk_setperk
 	Namespace: perks
 	Checksum: 0x8219A3D3
 	Offset: 0x68
@@ -10,7 +10,7 @@
 	Parameters: 1
 	Flags: Linked
 */
-function function_7637bafa(str_perk)
+function perk_setperk(str_perk)
 {
 	if(!isdefined(self.var_fb3c9d6a))
 	{
@@ -31,7 +31,7 @@ function function_7637bafa(str_perk)
 }
 
 /*
-	Name: function_45d12554
+	Name: perk_unsetperk
 	Namespace: perks
 	Checksum: 0x789E35B0
 	Offset: 0x148
@@ -39,7 +39,7 @@ function function_7637bafa(str_perk)
 	Parameters: 1
 	Flags: Linked
 */
-function function_45d12554(str_perk)
+function perk_unsetperk(str_perk)
 {
 	if(!isdefined(self.var_fb3c9d6a))
 	{
@@ -60,7 +60,7 @@ function function_45d12554(str_perk)
 }
 
 /*
-	Name: function_be94fe26
+	Name: perk_hasperk
 	Namespace: perks
 	Checksum: 0x2C0FB884
 	Offset: 0x208
@@ -68,7 +68,7 @@ function function_45d12554(str_perk)
 	Parameters: 1
 	Flags: Linked
 */
-function function_be94fe26(str_perk)
+function perk_hasperk(str_perk)
 {
 	if(isdefined(self.var_fb3c9d6a) && isdefined(self.var_fb3c9d6a[str_perk]) && self.var_fb3c9d6a[str_perk] > 0)
 	{
@@ -78,7 +78,7 @@ function function_be94fe26(str_perk)
 }
 
 /*
-	Name: function_3cd6f625
+	Name: perk_reset_all
 	Namespace: perks
 	Checksum: 0x69DD788
 	Offset: 0x260
@@ -86,7 +86,7 @@ function function_be94fe26(str_perk)
 	Parameters: 0
 	Flags: None
 */
-function function_3cd6f625()
+function perk_reset_all()
 {
 	self clearperks();
 	self.var_fb3c9d6a = [];

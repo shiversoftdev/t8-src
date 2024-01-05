@@ -1,9 +1,9 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_41cafc795b1dc903;
-#using scripts\core_common\compass.gsc;
 #using scripts\core_common\exploder_shared.gsc;
 #using scripts\core_common\struct.gsc;
 #using scripts\mp_common\load.gsc;
+#using scripts\core_common\compass.gsc;
 
 #namespace mp_mountain2;
 
@@ -22,7 +22,7 @@ event main(eventstruct)
 	screen = spawn("script_model", (2794, -860, 397));
 	if(isdefined(screen))
 	{
-		screen setmodel(#"hash_3b92b4e828277c82");
+		screen setmodel(#"p8_screen_tactical_artic_01");
 		screen.angles = vectorscale((0, 1, 0), 360);
 	}
 	paris = spawn("script_model", (2880, -579, 401));
@@ -71,10 +71,10 @@ event main(eventstruct)
 		var_514f5b9e setmodel(#"p7_mou_clock_wall_second_hand");
 		var_514f5b9e.angles = (29.9897, 179.999, -180);
 	}
-	var_bb574d06 = spawn("script_model", (2944, -579, 401));
-	if(isdefined(var_bb574d06))
+	tokyo = spawn("script_model", (2944, -579, 401));
+	if(isdefined(tokyo))
 	{
-		var_bb574d06 setmodel(#"p7_mou_clock_wall");
+		tokyo setmodel(#"p7_mou_clock_wall");
 	}
 	var_2a4a4014 = spawn("script_model", (2944, -580, 412.75));
 	if(isdefined(var_2a4a4014))
@@ -94,10 +94,10 @@ event main(eventstruct)
 		var_342d094f setmodel(#"p7_mou_clock_wall_second_hand");
 		var_342d094f.angles = (60.0097, 179.999, -180);
 	}
-	var_ea543e47 = spawn("script_model", (2976, -579, 401));
-	if(isdefined(var_ea543e47))
+	newyork = spawn("script_model", (2976, -579, 401));
+	if(isdefined(newyork))
 	{
-		var_ea543e47 setmodel(#"p7_mou_clock_wall");
+		newyork setmodel(#"p7_mou_clock_wall");
 	}
 	var_242acc4f = spawn("script_model", (2976, -580, 412.75));
 	if(isdefined(var_242acc4f))

@@ -1,40 +1,40 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_35598499769dbb3d;
-#using script_3f9e0dc8454d98e1;
-#using script_467027ea7017462b;
-#using script_4d000493c57bb851;
-#using script_52c6c2d1a2ef1b46;
-#using script_5bb072c3abf4652c;
-#using script_760946ab27d685b4;
-#using script_b52a163973f339f;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\exploder_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\fx_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\trigger_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
+#using scripts\zm\zm_mansion_jordans.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
 #using scripts\zm_common\bgbs\zm_bgb_anywhere_but_here.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_equipment.gsc;
-#using scripts\zm_common\zm_player.gsc;
-#using scripts\zm_common\zm_powerups.gsc;
-#using scripts\zm_common\zm_spawner.gsc;
-#using scripts\zm_common\zm_unitrigger.gsc;
-#using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_vo.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_unitrigger.gsc;
+#using scripts\zm_common\zm_ui_inventory.gsc;
+#using scripts\zm_common\zm_spawner.gsc;
+#using scripts\zm_common\zm_powerups.gsc;
+#using scripts\zm_common\zm_items.gsc;
+#using scripts\zm_common\zm_equipment.gsc;
+#using scripts\zm_common\zm_crafting.gsc;
+#using scripts\zm_common\zm_characters.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\zm_common\zm_player.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\fx_shared.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\exploder_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using script_35598499769dbb3d;
 
-#namespace namespace_c05f06c7;
+#namespace mansion_util;
 
 /*
 	Name: create_unitrigger
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x23D430E9
 	Offset: 0x370
 	Size: 0x1CE
@@ -70,7 +70,7 @@ function create_unitrigger(s_loc, func_think, hint_string, b_lookat, n_cost, var
 
 /*
 	Name: function_ab834b07
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xB49CFD54
 	Offset: 0x548
 	Size: 0x98
@@ -93,7 +93,7 @@ function function_ab834b07(player)
 
 /*
 	Name: zombie_death_gib
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x9A83AF9E
 	Offset: 0x5E8
 	Size: 0xC4
@@ -122,7 +122,7 @@ function zombie_death_gib()
 
 /*
 	Name: function_89e9bca5
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x432A9C3
 	Offset: 0x6B8
 	Size: 0x6A
@@ -131,14 +131,14 @@ function zombie_death_gib()
 */
 function function_89e9bca5(var_df1a3385, v_origin, v_angles)
 {
-	var_1c01fdda = zm_crafting::function_4c2f8683(var_df1a3385);
-	var_b1ea95c6 = zm_items::spawn_item(var_1c01fdda, v_origin, v_angles);
-	return var_b1ea95c6;
+	w_component = zm_crafting::get_component(var_df1a3385);
+	crafting_component = zm_items::spawn_item(w_component, v_origin, v_angles);
+	return crafting_component;
 }
 
 /*
 	Name: function_57423f
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x49B57BF4
 	Offset: 0x730
 	Size: 0xC0
@@ -159,7 +159,7 @@ function function_57423f(var_a4107301)
 
 /*
 	Name: get_player_index
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x454823B7
 	Offset: 0x7F8
 	Size: 0x6E
@@ -180,7 +180,7 @@ function get_player_index(e_player)
 
 /*
 	Name: function_5f42b3e2
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x7581F3F8
 	Offset: 0x870
 	Size: 0x156
@@ -217,7 +217,7 @@ function function_5f42b3e2(s_anim)
 
 /*
 	Name: function_58dfa337
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD60416A
 	Offset: 0x9D0
 	Size: 0x3E
@@ -234,7 +234,7 @@ function function_58dfa337(n_time)
 
 /*
 	Name: function_a113df82
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xA2B7FF9
 	Offset: 0xA18
 	Size: 0xF0
@@ -257,7 +257,7 @@ function function_a113df82(n_time)
 
 /*
 	Name: function_ca2d69a
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD31E5B9A
 	Offset: 0xB10
 	Size: 0x36
@@ -274,7 +274,7 @@ function function_ca2d69a(n_time)
 
 /*
 	Name: function_656e5fd1
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x9D16F096
 	Offset: 0xB50
 	Size: 0x86
@@ -298,7 +298,7 @@ function function_656e5fd1()
 
 /*
 	Name: function_ebad0e52
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD2645533
 	Offset: 0xBE0
 	Size: 0x10C
@@ -324,7 +324,7 @@ function function_ebad0e52(var_88f1eaa8)
 
 /*
 	Name: is_valid
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x915EEFA0
 	Offset: 0xCF8
 	Size: 0x76
@@ -354,7 +354,7 @@ function is_valid()
 
 /*
 	Name: function_a8176b98
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xEE3BBE0E
 	Offset: 0xD78
 	Size: 0xE4
@@ -384,7 +384,7 @@ function function_a8176b98(v_pos, n_radius)
 
 /*
 	Name: waittill_player_nearby
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x9AA5AF51
 	Offset: 0xE68
 	Size: 0x37A
@@ -451,7 +451,7 @@ function waittill_player_nearby(e_player, var_5a365909 = 0)
 
 /*
 	Name: function_6a523c8c
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x4CCC9F95
 	Offset: 0x11F0
 	Size: 0x198
@@ -460,7 +460,7 @@ function waittill_player_nearby(e_player, var_5a365909 = 0)
 */
 function function_6a523c8c(v_wobble = (0, 0, 1))
 {
-	self endoncallback(&function_43ac0bb7, #"death", #"stop_wobble", #"hash_7e05ecbcf6c25592");
+	self endoncallback(&function_43ac0bb7, #"death", #"stop_wobble", #"finish_wobble");
 	if(!isdefined(self.v_start_origin))
 	{
 		self.v_start_origin = self.origin;
@@ -484,7 +484,7 @@ function function_6a523c8c(v_wobble = (0, 0, 1))
 
 /*
 	Name: function_43ac0bb7
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xA91EF6EE
 	Offset: 0x1390
 	Size: 0x8C
@@ -508,7 +508,7 @@ function function_43ac0bb7(str_notify)
 
 /*
 	Name: function_da5cd631
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x122FBB5B
 	Offset: 0x1428
 	Size: 0xEA
@@ -517,8 +517,8 @@ function function_43ac0bb7(str_notify)
 */
 function function_da5cd631(v_spin = vectorscale((0, 0, 1), 180))
 {
-	self endon(#"death", #"hash_3946eb0fdd8a2c0e");
-	self notify(#"hash_7e05ecbcf6c25592");
+	self endon(#"death", #"stop_spin");
+	self notify(#"finish_wobble");
 	n_wait = 6;
 	while(true)
 	{
@@ -530,7 +530,7 @@ function function_da5cd631(v_spin = vectorscale((0, 0, 1), 180))
 
 /*
 	Name: function_9e147e0c
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x8104AEF0
 	Offset: 0x1520
 	Size: 0x2AC
@@ -573,7 +573,7 @@ function function_9e147e0c(s_params)
 
 /*
 	Name: function_9e4c5bfb
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x2361F1BA
 	Offset: 0x17D8
 	Size: 0x19A
@@ -598,7 +598,7 @@ function function_9e4c5bfb()
 
 /*
 	Name: function_6e9bca65
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD466B615
 	Offset: 0x1980
 	Size: 0x114
@@ -611,11 +611,11 @@ function function_6e9bca65(w_weapon)
 	{
 		if(!(isdefined(self.var_d8cb9364) && self.var_d8cb9364))
 		{
-			self.var_d8cb9364 = self zm_audio::create_and_play_dialog(#"hash_598274de09f76c96", #"kill", undefined, 1);
+			self.var_d8cb9364 = self zm_audio::create_and_play_dialog(#"silver_bullets", #"kill", undefined, 1);
 		}
 		else if(math::cointoss(20))
 		{
-			self zm_audio::create_and_play_dialog(#"hash_598274de09f76c96", #"kill");
+			self zm_audio::create_and_play_dialog(#"silver_bullets", #"kill");
 		}
 	}
 	else if(math::cointoss(20))
@@ -626,7 +626,7 @@ function function_6e9bca65(w_weapon)
 
 /*
 	Name: function_e7d4e4f0
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xB3CAEE1A
 	Offset: 0x1AA0
 	Size: 0x33C
@@ -668,7 +668,7 @@ function function_e7d4e4f0()
 	if(!level flag::get("flag_player_grabbed_werewolf_material"))
 	{
 		e_holder thread zm_vo::function_a2bd5a0c(#"hash_161206ddd7dcc321", 1);
-		level namespace_6747c550::function_7df6bb60(#"hash_3761ebdf006d549e", 1);
+		level zm_ui_inventory::function_7df6bb60(#"ww_p1_2", 1);
 		self.var_817342a7 delete();
 		self struct::delete();
 		level.var_98cb7c84 = undefined;
@@ -678,7 +678,7 @@ function function_e7d4e4f0()
 
 /*
 	Name: function_3cfa50
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD3839A3A
 	Offset: 0x1DE8
 	Size: 0x94
@@ -701,7 +701,7 @@ function function_3cfa50(s_notify)
 
 /*
 	Name: function_f3d694d6
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xE08803A2
 	Offset: 0x1E88
 	Size: 0xB0
@@ -724,7 +724,7 @@ function function_f3d694d6(player)
 
 /*
 	Name: function_4aea06b0
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x8AFB7ED2
 	Offset: 0x1F40
 	Size: 0x72
@@ -747,7 +747,7 @@ function function_4aea06b0(b_disable = 1)
 
 /*
 	Name: return_false
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xE50712D
 	Offset: 0x1FC0
 	Size: 0xE
@@ -761,7 +761,7 @@ function return_false(player)
 
 /*
 	Name: function_d1e2d722
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xF2DAEB49
 	Offset: 0x1FD8
 	Size: 0x6
@@ -775,7 +775,7 @@ function function_d1e2d722()
 
 /*
 	Name: function_7d92a49c
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xC3E19E02
 	Offset: 0x1FE8
 	Size: 0x4E
@@ -796,7 +796,7 @@ function function_7d92a49c(b_disable = 1)
 
 /*
 	Name: function_b1fb2b71
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD8BC9518
 	Offset: 0x2040
 	Size: 0xC4
@@ -824,7 +824,7 @@ function function_b1fb2b71()
 
 /*
 	Name: function_45ac4bb8
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x5A647DC1
 	Offset: 0x2110
 	Size: 0x44
@@ -839,7 +839,7 @@ function function_45ac4bb8()
 
 /*
 	Name: function_5904a8e1
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xB6055B72
 	Offset: 0x2160
 	Size: 0x44
@@ -854,7 +854,7 @@ function function_5904a8e1()
 
 /*
 	Name: function_98ca58fc
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x2B1DFBE5
 	Offset: 0x21B0
 	Size: 0xB6
@@ -875,7 +875,7 @@ function function_98ca58fc(e_trigger)
 
 /*
 	Name: function_91dfc9d4
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xA867604B
 	Offset: 0x2270
 	Size: 0x118
@@ -905,7 +905,7 @@ function function_91dfc9d4(e_trigger)
 
 /*
 	Name: function_7b248ec9
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x98C12FE0
 	Offset: 0x2390
 	Size: 0xA0
@@ -923,7 +923,7 @@ function function_7b248ec9()
 
 /*
 	Name: function_f1c106b
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x6D018786
 	Offset: 0x2438
 	Size: 0x298
@@ -985,7 +985,7 @@ function function_f1c106b(var_da816ebe, b_solid)
 
 /*
 	Name: function_5f310cf9
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xC6CC90A7
 	Offset: 0x26D8
 	Size: 0x23C
@@ -1047,7 +1047,7 @@ function function_5f310cf9()
 
 /*
 	Name: is_shield
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xF76F0904
 	Offset: 0x2920
 	Size: 0x3E
@@ -1065,7 +1065,7 @@ function is_shield(w_current)
 
 /*
 	Name: function_f15c4657
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xC3A49C16
 	Offset: 0x2968
 	Size: 0x124
@@ -1094,7 +1094,7 @@ function function_f15c4657()
 
 /*
 	Name: _print_player_out
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x33FD0F7B
 	Offset: 0x2A98
 	Size: 0xD4
@@ -1120,7 +1120,7 @@ function _print_player_out(n_range_sq = 9000000)
 
 /*
 	Name: get_closest_valid_player
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x357E8581
 	Offset: 0x2B78
 	Size: 0x144
@@ -1145,7 +1145,7 @@ function get_closest_valid_player(n_range_sq = 9000000)
 
 /*
 	Name: create_hudelem
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xBECECC6
 	Offset: 0x2CC8
 	Size: 0xBE
@@ -1169,27 +1169,27 @@ function create_hudelem(x, y)
 
 /*
 	Name: function_bb613572
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xF11F4736
 	Offset: 0x2D90
 	Size: 0x2F0
 	Parameters: 4
 	Flags: Linked
 */
-function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round = 20)
+function function_bb613572(a_s_spawns, a_str_endons, n_spawn_delay = 1, n_round = 20)
 {
 	level flag::clear(#"hash_29b12646045186fa");
-	if(isdefined(var_8b518bb0))
+	if(isdefined(a_str_endons))
 	{
-		if(!isdefined(var_8b518bb0))
+		if(!isdefined(a_str_endons))
 		{
-			var_8b518bb0 = [];
+			a_str_endons = [];
 		}
-		else if(!isarray(var_8b518bb0))
+		else if(!isarray(a_str_endons))
 		{
-			var_8b518bb0 = array(var_8b518bb0);
+			a_str_endons = array(a_str_endons);
 		}
-		foreach(str_endon in var_8b518bb0)
+		foreach(str_endon in a_str_endons)
 		{
 			level endon(str_endon);
 		}
@@ -1202,8 +1202,8 @@ function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round
 	}
 	n_spawn_delay = n_spawn_delay / n_players;
 	var_e8711f44 = 14 + (n_players * 2);
-	var_3a615dd8 = getspawnerarray("spawner_zm_zombie", "targetname");
-	var_7c332548 = arraycopy(var_eb3b90d);
+	a_sp_zombies = getspawnerarray("spawner_zm_zombie", "targetname");
+	var_7c332548 = arraycopy(a_s_spawns);
 	while(true)
 	{
 		while(getaiteamarray(level.zombie_team).size >= var_e8711f44 || level flag::get(#"hash_29b12646045186fa"))
@@ -1211,7 +1211,7 @@ function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round
 			wait(0.5);
 		}
 		s_spawn = array::random(var_7c332548);
-		sp_zombie = array::random(var_3a615dd8);
+		sp_zombie = array::random(a_sp_zombies);
 		ai = zombie_utility::spawn_zombie(sp_zombie, undefined, s_spawn, n_round);
 		if(isdefined(ai))
 		{
@@ -1220,7 +1220,7 @@ function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round
 			arrayremovevalue(var_7c332548, s_spawn, 0);
 			if(!var_7c332548.size)
 			{
-				var_7c332548 = var_eb3b90d;
+				var_7c332548 = a_s_spawns;
 			}
 			wait(n_spawn_delay);
 		}
@@ -1229,7 +1229,7 @@ function function_bb613572(var_eb3b90d, var_8b518bb0, n_spawn_delay = 1, n_round
 
 /*
 	Name: any_player_looking_at
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xBC757A5E
 	Offset: 0x3088
 	Size: 0xBA
@@ -1250,7 +1250,7 @@ function any_player_looking_at(v_origin, n_dot, b_do_trace, e_ignore)
 
 /*
 	Name: function_268efa09
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xA6BCA4D0
 	Offset: 0x3150
 	Size: 0x3C
@@ -1264,7 +1264,7 @@ function function_268efa09(b_active = 0)
 
 /*
 	Name: function_dce687ca
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xD734AD4C
 	Offset: 0x3198
 	Size: 0x8E
@@ -1284,7 +1284,7 @@ function function_dce687ca()
 
 /*
 	Name: draw_arrow
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0xB94EA890
 	Offset: 0x3230
 	Size: 0x33C
@@ -1329,14 +1329,14 @@ function draw_arrow(org, ang, opcolor, str)
 
 /*
 	Name: function_2057ddc1
-	Namespace: namespace_c05f06c7
+	Namespace: mansion_util
 	Checksum: 0x1ECE246F
 	Offset: 0x3578
 	Size: 0x344
 	Parameters: 9
 	Flags: Linked
 */
-function function_2057ddc1(v_loc, var_9fa0c0f, var_bff0cf99, var_440d7980, var_d8ad5f6e, var_1ef7b21 = 10, b_wait_if_busy = 1, var_39238c39 = 0, var_eb20a7c = 0)
+function function_2057ddc1(v_loc, str_cat, var_bff0cf99, var_440d7980, var_d8ad5f6e, var_1ef7b21 = 10, b_wait_if_busy = 1, var_39238c39 = 0, var_eb20a7c = 0)
 {
 	level endon(#"end_game", #"intermission");
 	if(!isdefined(level.var_f1028094))
@@ -1373,7 +1373,7 @@ function function_2057ddc1(v_loc, var_9fa0c0f, var_bff0cf99, var_440d7980, var_d
 				{
 					vox_idgun_upgrade_ready_orb_ = 0;
 				}
-				str_vo = (((((("vox_" + var_9fa0c0f) + "_") + var_bff0cf99) + "_plr_") + n_character_index) + "_") + vox_idgun_upgrade_ready_orb_;
+				str_vo = (((((("vox_" + str_cat) + "_") + var_bff0cf99) + "_plr_") + n_character_index) + "_") + vox_idgun_upgrade_ready_orb_;
 				if(isdefined(var_eb20a7c) && var_eb20a7c)
 				{
 					e_player stopsounds();
@@ -1381,7 +1381,7 @@ function function_2057ddc1(v_loc, var_9fa0c0f, var_bff0cf99, var_440d7980, var_d
 				}
 				if(isalive(e_player))
 				{
-					e_player zm_vo::function_8e0f4696(str_vo, 0, b_wait_if_busy, 9999);
+					e_player zm_vo::vo_say(str_vo, 0, b_wait_if_busy, 9999);
 				}
 				wait(var_1ef7b21);
 				level.var_f1028094[var_d8ad5f6e] = 0;

@@ -1,26 +1,26 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_39e954a546d3baf;
-#using script_3f9e0dc8454d98e1;
-#using script_5b4f7a8178990872;
-#using script_6a3f43063dfd1bdc;
-#using script_6e3c826b1814cab6;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\spawner_shared.gsc;
-#using scripts\core_common\struct.gsc;
+#using scripts\zm\zm_hms_util.gsc;
 #using scripts\zm\zm_orange_util.gsc;
-#using scripts\zm_common\zm_audio.gsc;
-#using scripts\zm_common\zm_blockers.gsc;
-#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_customgame.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_utility_zstandard.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_hud.gsc;
+#using scripts\zm_common\zm_blockers.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\spawner_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
 
-#namespace namespace_17555f14;
+#namespace zm_orange_zones;
 
 /*
 	Name: main
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x9C65BF93
 	Offset: 0x6F8
 	Size: 0x24
@@ -34,7 +34,7 @@ function main()
 
 /*
 	Name: zone_init
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x77BEF6B
 	Offset: 0x728
 	Size: 0xE8C
@@ -108,22 +108,22 @@ function zone_init()
 	zm_zonemgr::add_adjacent_zone("artifact_storage", "forecastle", "artifact_storage_to_forecastle", 0);
 	zm_zonemgr::add_adjacent_zone("hidden_path", "cargo_hold", "hidden_path_open", 0);
 	zm_zonemgr::add_adjacent_zone("hidden_path", "beach", "hidden_path_open", 1);
-	zm_zonemgr::add_adjacent_zone("main_entrance", "security_lobby", #"hash_24952374a6e863b8", 0);
+	zm_zonemgr::add_adjacent_zone("main_entrance", "security_lobby", #"facility_available", 0);
 	zm_zonemgr::add_adjacent_zone("security_lobby", "geological_processing", "geological_processing_doors", 0);
 	zm_zonemgr::add_adjacent_zone("security_lobby", "decontamination", "decontamination_doors", 0);
 	zm_zonemgr::add_adjacent_zone("decontamination", "upper_catwalk", "decontamination_doors", 0);
 	zm_zonemgr::add_adjacent_zone("geological_processing", "upper_catwalk", "geological_processing_doors", 0);
 	zm_zonemgr::add_adjacent_zone("upper_catwalk", "human_infusion", "upper_catwalk_to_human_infusion", 0);
 	zm_zonemgr::add_adjacent_zone("upper_catwalk", "specimen_storage", "specimen_storage_doors", 0);
-	zm_zonemgr::add_adjacent_zone("specimen_storage", "loading_platform", #"hash_24952374a6e863b8", 0);
+	zm_zonemgr::add_adjacent_zone("specimen_storage", "loading_platform", #"facility_available", 0);
 	zm_zonemgr::add_adjacent_zone("sunken_path", "artifact_storage", #"hash_6f7fd3d4d070db87", 0);
-	if(namespace_59ff1d6c::function_901b751c(#"hash_29004a67830922b6") == 2)
+	if(zm_custom::function_901b751c(#"zmpowerdoorstate") == 2)
 	{
 		zm_zonemgr::add_adjacent_zone("lagoon", "sunken_path", "frozen_crevasse_open", 0);
 		zm_zonemgr::add_adjacent_zone("lagoon", "sunken_path", #"hash_6f7fd3d4d070db87", 0);
 		zm_zonemgr::add_adjacent_zone("lagoon", "sunken_path", "docks_to_boathouse", 0);
-		zm_zonemgr::add_adjacent_zone("main_entrance", "outer_walkway", #"hash_24952374a6e863b8", 0);
-		zm_zonemgr::add_adjacent_zone("outer_walkway", "loading_platform", #"hash_24952374a6e863b8", 0);
+		zm_zonemgr::add_adjacent_zone("main_entrance", "outer_walkway", #"facility_available", 0);
+		zm_zonemgr::add_adjacent_zone("outer_walkway", "loading_platform", #"facility_available", 0);
 		zm_zonemgr::add_adjacent_zone("beach", "lighthouse_cove", "frozen_crevasse_open", 0);
 		zm_zonemgr::add_adjacent_zone("beach", "lighthouse_cove", "beach_to_lighthouse_approach", 0);
 		zm_zonemgr::add_adjacent_zone("beach", "lighthouse_cove", "beach_to_gangway", 0);
@@ -154,7 +154,7 @@ function zone_init()
 
 /*
 	Name: main_deck_to_forecastle_watcher
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x5985136F
 	Offset: 0x15C0
 	Size: 0x5C
@@ -170,7 +170,7 @@ function main_deck_to_forecastle_watcher()
 
 /*
 	Name: function_4d5bea6e
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x15BB675E
 	Offset: 0x1628
 	Size: 0x5C
@@ -179,14 +179,14 @@ function main_deck_to_forecastle_watcher()
 */
 function function_4d5bea6e()
 {
-	level flag::init(#"hash_24952374a6e863b8");
-	level flag::wait_till(#"hash_24952374a6e863b8");
+	level flag::init(#"facility_available");
+	level flag::wait_till(#"facility_available");
 	zm_zonemgr::enable_zone("main_entrance");
 }
 
 /*
 	Name: function_734d8b08
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x3626DEB6
 	Offset: 0x1690
 	Size: 0x5C
@@ -202,7 +202,7 @@ function function_734d8b08()
 
 /*
 	Name: function_3b77181c
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x74A672B5
 	Offset: 0x16F8
 	Size: 0x3E
@@ -216,7 +216,7 @@ function function_3b77181c(b_enable = 1)
 
 /*
 	Name: function_49054104
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x1F6A4984
 	Offset: 0x1740
 	Size: 0x94
@@ -234,7 +234,7 @@ function function_49054104()
 
 /*
 	Name: grotto_tunnel_watcher
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x1AF6B002
 	Offset: 0x17E0
 	Size: 0x1EA
@@ -264,7 +264,7 @@ function grotto_tunnel_watcher()
 
 /*
 	Name: cargo_hold_to_artifact_storage_watcher
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x395082F5
 	Offset: 0x19D8
 	Size: 0x4C
@@ -275,12 +275,12 @@ function cargo_hold_to_artifact_storage_watcher()
 {
 	level endon(#"end_game");
 	level flag::wait_till("cargo_hold_to_artifact_storage");
-	namespace_3263198e::function_8a7521db("cargo_hold_hatch_door");
+	zm_orange_util::function_8a7521db("cargo_hold_hatch_door");
 }
 
 /*
 	Name: sun_deck_to_bridge_watcher
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xB7A77C9F
 	Offset: 0x1A30
 	Size: 0xC4
@@ -295,12 +295,12 @@ function sun_deck_to_bridge_watcher()
 	level flag::wait_till("sun_deck_to_bridge");
 	e_door_clip solid();
 	e_door_clip disconnectpaths();
-	namespace_3263198e::function_8a7521db("bridge_hatch_door");
+	zm_orange_util::function_8a7521db("bridge_hatch_door");
 }
 
 /*
 	Name: function_cbaec34a
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xA7225D83
 	Offset: 0x1B00
 	Size: 0x5C
@@ -320,7 +320,7 @@ function function_cbaec34a()
 
 /*
 	Name: function_8355a4a8
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x82161580
 	Offset: 0x1B68
 	Size: 0x5C
@@ -340,7 +340,7 @@ function function_8355a4a8()
 
 /*
 	Name: function_c3bf42e9
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xF59704BC
 	Offset: 0x1BD0
 	Size: 0xB4
@@ -362,7 +362,7 @@ function function_c3bf42e9()
 
 /*
 	Name: function_a2888093
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xA24E70A3
 	Offset: 0x1C90
 	Size: 0xD6
@@ -381,7 +381,7 @@ function function_a2888093(str_zone)
 
 /*
 	Name: function_94b7a4bd
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xB64AA88
 	Offset: 0x1D70
 	Size: 0x8A
@@ -399,7 +399,7 @@ function function_94b7a4bd(str_zone)
 
 /*
 	Name: function_502f97fa
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x5496F9B5
 	Offset: 0x1E08
 	Size: 0x252
@@ -466,7 +466,7 @@ function private function_502f97fa()
 
 /*
 	Name: function_8a80437
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x65BF990B
 	Offset: 0x2068
 	Size: 0xAE
@@ -490,7 +490,7 @@ function private function_8a80437(target)
 
 /*
 	Name: function_29ec1ad7
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xEAFAD9CB
 	Offset: 0x2120
 	Size: 0x44
@@ -508,7 +508,7 @@ function function_29ec1ad7()
 
 /*
 	Name: function_8e0b371
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xC2611400
 	Offset: 0x2170
 	Size: 0xB8
@@ -535,7 +535,7 @@ function function_8e0b371()
 
 /*
 	Name: function_ab7f70b9
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x92EDB4F9
 	Offset: 0x2230
 	Size: 0x5FE
@@ -741,7 +741,7 @@ function function_ab7f70b9(e_player, str_zone)
 
 /*
 	Name: function_17ac86f7
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x9A02E2B2
 	Offset: 0x2838
 	Size: 0x2DC
@@ -753,23 +753,23 @@ function function_17ac86f7()
 	self thread zm_audio::function_713192b1(#"hash_6b2f9edfc77ea9b2", #"boathouse");
 	self thread zm_audio::function_713192b1(#"hash_2fb0927a65d8a9e", #"lighthouse_cove");
 	self thread zm_audio::function_713192b1(#"hash_75f05448c75c06f", #"beach");
-	self thread zm_audio::function_713192b1(#"hash_4c328e01a462f48a", #"hash_48aba3bfe56ed7f6");
-	self thread zm_audio::function_713192b1(#"hash_5dbcb178cb1573c1", #"hash_1eefffaa31be9005");
-	self thread zm_audio::function_713192b1(#"hash_38990c0828e68602", #"hash_1eefffaa31be9005");
-	self thread zm_audio::function_713192b1(#"hash_75d26f96a738d2a3", #"hash_534f154b78edc12d");
-	self thread zm_audio::function_713192b1(#"hash_335d7ee067ac0e68", #"hash_773a9696fd8ecf0c");
-	self thread zm_audio::function_713192b1(#"hash_520e403cdf1ae8", #"hash_d22663e205c54c8");
-	self thread zm_audio::function_713192b1(#"hash_12750e3f1d3659e4", #"hash_7dafd21054dda3db");
+	self thread zm_audio::function_713192b1(#"hash_4c328e01a462f48a", #"ship_stern");
+	self thread zm_audio::function_713192b1(#"hash_5dbcb178cb1573c1", #"ship_bridge");
+	self thread zm_audio::function_713192b1(#"hash_38990c0828e68602", #"ship_bridge");
+	self thread zm_audio::function_713192b1(#"hash_75d26f96a738d2a3", #"ship_main");
+	self thread zm_audio::function_713192b1(#"hash_335d7ee067ac0e68", #"ship_cargo");
+	self thread zm_audio::function_713192b1(#"hash_520e403cdf1ae8", #"facility_main");
+	self thread zm_audio::function_713192b1(#"hash_12750e3f1d3659e4", #"facility_specimen");
 	self thread zm_audio::function_713192b1(#"hash_6571eafdcddb13ab", #"hash_2781f0de96fa6e4e");
-	self thread zm_audio::function_713192b1(#"hash_46ef5a594e42c371", #"hash_4ce194dcbbf4d0aa");
-	self thread zm_audio::function_713192b1(#"hash_65457ae6fbfe6c32", #"hash_4ce194dcbbf4d0aa");
-	self thread zm_audio::function_713192b1(#"hash_21450c4a4a6646d6", #"hash_6a7fddcbe301f21d");
+	self thread zm_audio::function_713192b1(#"hash_46ef5a594e42c371", #"facility_infusion");
+	self thread zm_audio::function_713192b1(#"hash_65457ae6fbfe6c32", #"facility_infusion");
+	self thread zm_audio::function_713192b1(#"hash_21450c4a4a6646d6", #"facility_geological");
 	self thread function_f7a190a8(undefined, 15, #"hash_99011c41f3d5380", #"docks");
 }
 
 /*
 	Name: function_f7a190a8
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x1DA23D9D
 	Offset: 0x2B20
 	Size: 0x14C
@@ -806,7 +806,7 @@ function function_f7a190a8(str_wait_flag, var_ab660f9a, str_location, var_39acfd
 
 /*
 	Name: function_9d1d7efd
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x9CE1E9F
 	Offset: 0x2C78
 	Size: 0x2A2
@@ -818,7 +818,7 @@ function function_9d1d7efd()
 	level endon(#"end_game");
 	var_de23a374 = array("lighthouse_level_1", "lighthouse_level_2", "lighthouse_level_3");
 	level waittill(#"start_zombie_round_logic");
-	level flag::wait_till(#"hash_1c52b843cb50942c");
+	level flag::wait_till(#"pablo_intro");
 	while(true)
 	{
 		a_players = [];
@@ -841,10 +841,10 @@ function function_9d1d7efd()
 		}
 		if(a_players.size > 0 && level.pablo_npc.var_f75b1f16.size < 1)
 		{
-			if(a_players[0] zm_audio::function_65e5c19a() && !level flag::get(#"hash_9cfd45106ac760d"))
+			if(a_players[0] zm_audio::can_speak() && !level flag::get(#"hell_on_earth"))
 			{
 				player = array::random(a_players);
-				player thread namespace_3263198e::function_51b752a9(#"hash_14a884c0dda265b2", -1, 0, 1);
+				player thread zm_orange_util::function_51b752a9(#"hash_14a884c0dda265b2", -1, 0, 1);
 				break;
 			}
 		}
@@ -854,7 +854,7 @@ function function_9d1d7efd()
 
 /*
 	Name: function_58db1b78
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0xF9E9BEEA
 	Offset: 0x2F28
 	Size: 0x19A
@@ -874,7 +874,7 @@ function function_58db1b78()
 			{
 				if(player istouching(vol_ext))
 				{
-					b_played = player zm_audio::create_and_play_dialog(#"hash_20b463357f4ae8f", #"hash_3380edae9bb10779");
+					b_played = player zm_audio::create_and_play_dialog(#"location_enter", #"lighthouse_ext");
 					if(b_played)
 					{
 						return;
@@ -888,7 +888,7 @@ function function_58db1b78()
 
 /*
 	Name: function_cbb8e588
-	Namespace: namespace_17555f14
+	Namespace: zm_orange_zones
 	Checksum: 0x8214D1FB
 	Offset: 0x30D0
 	Size: 0x1AC
@@ -907,9 +907,9 @@ function function_cbb8e588()
 			if(player zm_zonemgr::get_player_zone() === "artifact_storage" && player cansee(blood))
 			{
 				wait(1);
-				if(player cansee(blood) && player zm_audio::function_65e5c19a() && !level flag::get(#"hash_9cfd45106ac760d"))
+				if(player cansee(blood) && player zm_audio::can_speak() && !level flag::get(#"hell_on_earth"))
 				{
-					player namespace_3263198e::function_51b752a9(#"hash_21c0a11438981749");
+					player zm_orange_util::function_51b752a9(#"hash_21c0a11438981749");
 					return;
 				}
 			}

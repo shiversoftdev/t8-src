@@ -1,18 +1,18 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace dialog_shared;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: dialog_shared
 	Checksum: 0x441B026A
 	Offset: 0xCB8
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"dialog_shared", &__init__, undefined, undefined);
 }
@@ -39,7 +39,7 @@ function __init__()
 	/#
 		level thread devgui_think();
 	#/
-	if(!sessionmodeismultiplayergame() || !function_f99d2668())
+	if(!sessionmodeismultiplayergame() || !sessionmodeiswarzonegame())
 	{
 		callback::on_joined_team(&on_joined_team);
 		callback::on_spawned(&on_player_spawned);
@@ -111,7 +111,7 @@ function __init__()
 		count_keys(keycounts, bundle, "killSpectre");
 	}
 	level.var_f53efe5c = keycounts;
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		level.var_f53efe5c = undefined;
 	}
@@ -1371,7 +1371,7 @@ function get_player_dialog_alias(dialogkey)
 	Parameters: 3
 	Flags: Linked
 */
-function count_keys(keycounts, bundle, dialogkey)
+function count_keys(&keycounts, bundle, dialogkey)
 {
 	i = 0;
 	field = dialogkey + i;
@@ -1410,10 +1410,10 @@ function get_random_key(dialogkey)
 	{
 		return dialogkey;
 	}
-	var_4b7f8a7b = level.var_f53efe5c[bundlename][dialogkey];
-	if(var_4b7f8a7b > 0)
+	keycount = level.var_f53efe5c[bundlename][dialogkey];
+	if(keycount > 0)
 	{
-		return dialogkey + randomint(var_4b7f8a7b);
+		return dialogkey + randomint(keycount);
 	}
 	return dialogkey + 0;
 }

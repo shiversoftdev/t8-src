@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f27a7b2232674db;
-#using script_47fb62300ac0bd60;
-#using script_788472602edbe3b9;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\rat_shared.gsc;
-#using scripts\core_common\serverfield_shared.gsc;
-#using scripts\core_common\spectating.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\player\player_loadout.gsc;
 #using scripts\mp_common\gametypes\globallogic_audio.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\core_common\serverfield_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\spectating.gsc;
+#using scripts\core_common\rat_shared.gsc;
+#using scripts\core_common\player\player_role.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace draft;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: draft
 	Checksum: 0x7C21ECAC
 	Offset: 0x240
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"draft", &__init__, undefined, undefined);
 }
@@ -261,7 +261,7 @@ function start_cooldown()
 }
 
 /*
-	Name: function_2427a351
+	Name: clear_cooldown
 	Namespace: draft
 	Checksum: 0x535FDCBC
 	Offset: 0xA08
@@ -269,7 +269,7 @@ function start_cooldown()
 	Parameters: 0
 	Flags: Linked
 */
-function function_2427a351()
+function clear_cooldown()
 {
 	player = self;
 	/#
@@ -433,7 +433,7 @@ function function_9f408cf7(oldval, newval)
 }
 
 /*
-	Name: function_3e46326b
+	Name: client_ready
 	Namespace: draft
 	Checksum: 0x9B069BE6
 	Offset: 0x1000
@@ -441,7 +441,7 @@ function function_9f408cf7(oldval, newval)
 	Parameters: 0
 	Flags: Linked
 */
-function function_3e46326b()
+function client_ready()
 {
 	player = self;
 	player function_427981d0(1);
@@ -634,7 +634,7 @@ function decrement(timeremaining)
 }
 
 /*
-	Name: function_2c9af4b9
+	Name: pause_draft
 	Namespace: draft
 	Checksum: 0xDD8FEBCE
 	Offset: 0x1828
@@ -642,7 +642,7 @@ function decrement(timeremaining)
 	Parameters: 0
 	Flags: None
 */
-function function_2c9af4b9()
+function pause_draft()
 {
 	level.var_297320a8 = 1;
 }
@@ -683,7 +683,7 @@ function draft_run()
 		{
 			player player_role::clear();
 		}
-		class_num = player stats::get_stat(#"hash_2a738807be622e31");
+		class_num = player stats::get_stat(#"selectedcustomclass");
 		player setplayerstateloadoutweapons(class_num);
 	}
 	if(timeremaining == 0)
@@ -757,7 +757,7 @@ function draft_run()
 		{
 			assign_remaining_players(player);
 		}
-		player function_3e46326b();
+		player client_ready();
 	}
 }
 
@@ -808,12 +808,12 @@ function assign_remaining_players(only_assign_player)
 	playerroletemplatecount = getplayerroletemplatecount(currentsessionmode());
 	for(i = 0; i < playerroletemplatecount; i++)
 	{
-		var_1404a093 = function_fb05c532(i, currentsessionmode());
-		var_bacff7f = getcharacterfields(i, currentsessionmode());
+		playerrolefields = getplayerrolefields(i, currentsessionmode());
+		characterfields = getcharacterfields(i, currentsessionmode());
 		characters[i] = spawnstruct();
 		characters[i].index = i;
 		characters[i].available = 0;
-		characters[i].enabled = function_f4bf7e3f(i) && (isdefined(var_1404a093.var_422e172f) && var_1404a093.var_422e172f) && (!util::function_8570168d() || (isdefined(var_bacff7f.var_49a55967) && var_bacff7f.var_49a55967)) && !isdefined(var_bacff7f.var_b12a801f);
+		characters[i].enabled = function_f4bf7e3f(i) && (isdefined(playerrolefields.var_422e172f) && playerrolefields.var_422e172f) && (!util::function_8570168d() || (isdefined(characterfields.var_49a55967) && characterfields.var_49a55967)) && !isdefined(characterfields.var_b12a801f);
 		characters[i].category = player_role::get_category_for_index(i);
 		characters[i].var_9a6db9eb = getgametypesetting(#"maxuniquerolesperteam", i);
 		if(characters[i].enabled && player_role::is_valid(i) && characters[i].category != "default" && characters[i].var_9a6db9eb != 0)
@@ -1042,7 +1042,7 @@ function game_start()
 		if(timeremaining == 0)
 		{
 			wait(0.75);
-			luinotifyevent(#"hash_529bc32407856cbf", 0);
+			luinotifyevent(#"quick_fade", 0);
 			wait(0.25);
 		}
 		else
@@ -1083,10 +1083,10 @@ function draft_finalize()
 			player enableweapons();
 			player val::reset(#"spawn_player", "freezecontrols");
 			player val::reset(#"spawn_player", "disablegadgets");
-			player callback::callback(#"hash_1303178bdaf337b5");
+			player callback::callback(#"prematch_end");
 		}
 	}
-	level callback::callback(#"hash_1303178bdaf337b5");
+	level callback::callback(#"prematch_end");
 	foreach(player in level.players)
 	{
 		player clientfield::set_player_uimodel("PositionDraft.autoSelected", 0);

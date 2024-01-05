@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_47fb62300ac0bd60;
-#using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\rank_shared.gsc;
-#using scripts\core_common\scoreevents_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scoreevents_shared.gsc;
+#using scripts\core_common\rank_shared.gsc;
+#using scripts\core_common\player\player_stats.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace rank;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: rank
 	Checksum: 0xFB84FD23
 	Offset: 0x118
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"rank", &__init__, undefined, undefined);
 }
@@ -49,7 +49,7 @@ function __init__()
 function init()
 {
 	level.scoreinfo = [];
-	level.rankxpcap = function_a33811dd();
+	level.rankxpcap = getxpcap();
 	level.usingmomentum = 1;
 	level.usingscorestreaks = getdvarint(#"scr_scorestreaks", 0) != 0;
 	level.scorestreaksmaxstacking = getdvarint(#"scr_scorestreaks_maxstacking", 0);
@@ -73,12 +73,12 @@ function init()
 		}
 	}
 	initscoreinfo();
-	level.maxrank = int(function_a2f05227());
-	level.maxprestige = int(function_29500b6c());
+	level.maxrank = int(getrankcap());
+	level.maxprestige = int(getprestigecap());
 	for(rankid = 0; rankid <= level.maxrank; rankid++)
 	{
-		level.ranktable[rankid][0] = function_3a2469b8(rankid);
-		level.ranktable[rankid][1] = function_a9c3ae72(rankid);
+		level.ranktable[rankid][0] = getrankminxp(rankid);
+		level.ranktable[rankid][1] = getrankmaxxp(rankid);
 		level.ranktable[rankid][2] = level.ranktable[rankid][1] - level.ranktable[rankid][0];
 	}
 	callback::on_connect(&on_player_connect);
@@ -96,13 +96,13 @@ function init()
 function initscoreinfo()
 {
 	scoreinfotablename = scoreevents::getscoreeventtablename(level.gametype);
-	var_f0b4da50 = tablelookuprowcount(scoreinfotablename);
-	if(sessionmodeismultiplayergame() && var_f0b4da50 === 0)
+	rowcount = tablelookuprowcount(scoreinfotablename);
+	if(sessionmodeismultiplayergame() && rowcount === 0)
 	{
 		scoreinfotablename = #"hash_44588d37c7fe1bf3" + "_base.csv";
-		var_f0b4da50 = tablelookuprowcount(scoreinfotablename);
+		rowcount = tablelookuprowcount(scoreinfotablename);
 	}
-	for(row = 0; row < var_f0b4da50; row++)
+	for(row = 0; row < rowcount; row++)
 	{
 		type = tablelookupcolumnforrow(scoreinfotablename, row, 0);
 		if(isdefined(type) && type != "")
@@ -122,15 +122,15 @@ function initscoreinfo()
 			dp = int(tablelookupcolumnforrow(scoreinfotablename, row, 7));
 			is_objective = tablelookupcolumnforrow(scoreinfotablename, row, 8);
 			medalname = tablelookupcolumnforrow(scoreinfotablename, row, 11);
-			var_812e5448 = tablelookupcolumnforrow(scoreinfotablename, row, 16);
+			job_type = tablelookupcolumnforrow(scoreinfotablename, row, 16);
 			var_b6593614 = tablelookupcolumnforrow(scoreinfotablename, row, 17);
 			var_1a39d14 = tablelookupcolumnforrow(scoreinfotablename, row, 18);
 			var_bdbfb0e = tablelookupcolumnforrow(scoreinfotablename, row, 19);
 			var_a434fd2d = tablelookupcolumnforrow(scoreinfotablename, row, 20);
-			var_f49811d1 = tablelookupcolumnforrow(scoreinfotablename, row, 21);
-			var_604c21c7 = tablelookupcolumnforrow(scoreinfotablename, row, 22);
+			is_deprecated = tablelookupcolumnforrow(scoreinfotablename, row, 21);
+			bounty_reward = tablelookupcolumnforrow(scoreinfotablename, row, 22);
 			var_65181181 = int((isdefined(tablelookupcolumnforrow(scoreinfotablename, row, 24)) ? tablelookupcolumnforrow(scoreinfotablename, row, 24) : 0));
-			registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_objective, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181);
+			registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_objective, label, medalname, job_type, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, is_deprecated, bounty_reward, var_65181181);
 			if(!isdefined(game.scoreinfoinitialized))
 			{
 				setddlstat = tablelookupcolumnforrow(scoreinfotablename, row, 12);
@@ -180,7 +180,7 @@ function getrankxpcapped(inrankxp)
 	Parameters: 20
 	Flags: Linked
 */
-function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_obj, label, medalname, var_812e5448, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, var_f49811d1, var_604c21c7, var_65181181)
+function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_obj, label, medalname, job_type, var_b6593614, var_1a39d14, var_bdbfb0e, var_a434fd2d, is_deprecated, bounty_reward, var_65181181)
 {
 	overridedvar = (("scr_" + level.gametype) + "_score_") + type;
 	if(getdvarstring(overridedvar) != "")
@@ -198,7 +198,7 @@ function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_
 	{
 		level.scoreinfo[type][#"sp"] = sp;
 	}
-	if(sessionmodeismultiplayergame() || function_f99d2668())
+	if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 	{
 		level.scoreinfo[type][#"row"] = row;
 		if(isdefined(lp) && lp)
@@ -223,7 +223,7 @@ function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_
 		}
 		if(isdefined(is_obj) && is_obj)
 		{
-			level.scoreinfo[type][#"hash_49b115fae591f06a"] = is_obj;
+			level.scoreinfo[type][#"isobj"] = is_obj;
 		}
 		if(isdefined(medalname))
 		{
@@ -245,11 +245,11 @@ function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_
 		}
 		if(isdefined(medalname) && medalname != #"")
 		{
-			level.scoreinfo[type][#"hash_17ffe407dca54dd7"] = medalname;
+			level.scoreinfo[type][#"medalnamehash"] = medalname;
 		}
-		if(var_812e5448 != "")
+		if(job_type != "")
 		{
-			level.scoreinfo[type][#"hash_7fe1763a3ac14691"] = var_812e5448;
+			level.scoreinfo[type][#"job_type"] = job_type;
 		}
 		if(var_b6593614 != "")
 		{
@@ -267,13 +267,13 @@ function registerscoreinfo(type, row, lp, xp, sp, hs, res, var_e775f7ed, dp, is_
 		{
 			level.scoreinfo[type][#"hash_6f22dfa8ea741f95"] = var_a434fd2d;
 		}
-		if(isdefined(var_f49811d1) && var_f49811d1)
+		if(isdefined(is_deprecated) && is_deprecated)
 		{
-			level.scoreinfo[type][#"hash_7b64eabf26f777c7"] = var_f49811d1;
+			level.scoreinfo[type][#"is_deprecated"] = is_deprecated;
 		}
-		if(isdefined(var_604c21c7) && var_604c21c7)
+		if(isdefined(bounty_reward) && bounty_reward)
 		{
-			level.scoreinfo[type][#"hash_505dd55ad702ef6c"] = var_604c21c7;
+			level.scoreinfo[type][#"bounty_reward"] = bounty_reward;
 		}
 		if(isdefined(var_65181181) && var_65181181)
 		{
@@ -328,7 +328,7 @@ function function_ca5d4a8(type)
 */
 function getscoreinfovalue(type)
 {
-	playerrole = function_4de41611();
+	playerrole = getrole();
 	if(isdefined(level.scoreinfo[type]))
 	{
 		n_score = (isdefined(level.scoreinfo[type][#"sp"]) ? level.scoreinfo[type][#"sp"] : 0);
@@ -360,7 +360,7 @@ function function_4587103(type)
 }
 
 /*
-	Name: function_4de41611
+	Name: getrole
 	Namespace: rank
 	Checksum: 0x1B768AAE
 	Offset: 0x14B8
@@ -368,7 +368,7 @@ function function_4587103(type)
 	Parameters: 0
 	Flags: Linked
 */
-function function_4de41611()
+function getrole()
 {
 	return "prc_mp_slayer";
 }
@@ -384,7 +384,7 @@ function function_4de41611()
 */
 function getscoreinfoposition(type)
 {
-	playerrole = function_4de41611();
+	playerrole = getrole();
 	if(isdefined(level.scoreinfo[type]))
 	{
 		n_pos = (isdefined(level.scoreinfo[type][#"hash_7c1f7c7897445706"]) ? level.scoreinfo[type][#"hash_7c1f7c7897445706"] : 0);
@@ -408,7 +408,7 @@ function getscoreinfoposition(type)
 */
 function getscoreinforesource(type)
 {
-	playerrole = function_4de41611();
+	playerrole = getrole();
 	if(isdefined(level.scoreinfo[type]))
 	{
 		n_resource = (isdefined(level.scoreinfo[type][#"res"]) ? level.scoreinfo[type][#"res"] : 0);
@@ -432,7 +432,7 @@ function getscoreinforesource(type)
 */
 function getscoreinfoxp(type)
 {
-	playerrole = function_4de41611();
+	playerrole = getrole();
 	if(isdefined(level.scoreinfo[type]))
 	{
 		n_xp = (isdefined(level.scoreinfo[type][#"xp"]) ? level.scoreinfo[type][#"xp"] : 0);
@@ -516,7 +516,7 @@ function doesscoreinfocounttowardrampage(type)
 */
 function function_f7b5d9fa(type)
 {
-	playerrole = function_4de41611();
+	playerrole = getrole();
 	if(isdefined(level.scoreinfo[type]))
 	{
 		return true;
@@ -610,7 +610,7 @@ function shouldkickbyrank()
 */
 function getrankxpstat()
 {
-	rankxp = self stats::function_441050ca(#"rankxp", 1);
+	rankxp = self stats::get_stat_global(#"rankxp", 1);
 	if(!isdefined(rankxp))
 	{
 		return 0;
@@ -618,7 +618,7 @@ function getrankxpstat()
 	rankxpcapped = getrankxpcapped(rankxp);
 	if(rankxp > rankxpcapped)
 	{
-		self stats::function_4db3fba1(#"rankxp", rankxpcapped, 1);
+		self stats::set_stat_global(#"rankxp", rankxpcapped, 1);
 	}
 	return rankxpcapped;
 }
@@ -653,7 +653,7 @@ function on_player_connect()
 	self.pers[#"rankxp"] = self getrankxpstat();
 	rankid = getrankforxp(self getrankxp());
 	self.pers[#"rank"] = rankid;
-	self.pers[#"plevel"] = self stats::function_441050ca(#"plevel", 1);
+	self.pers[#"plevel"] = self stats::get_stat_global(#"plevel", 1);
 	if(!isdefined(self.pers[#"plevel"]))
 	{
 		self.pers[#"plevel"] = 0;
@@ -712,7 +712,7 @@ function on_player_connect()
 	/#
 		assert(isdefined(self.cur_ranknum), ("" + rankid) + "");
 	#/
-	prestige = self stats::function_441050ca(#"plevel", 1);
+	prestige = self stats::get_stat_global(#"plevel", 1);
 	if(!isdefined(prestige))
 	{
 		prestige = 0;
@@ -721,7 +721,7 @@ function on_player_connect()
 	self.pers[#"prestige"] = prestige;
 	if(sessionmodeismultiplayergame() && gamemodeisusingstats() || (sessionmodeiszombiesgame() && sessionmodeisonlinegame()))
 	{
-		paragonrank = self stats::function_441050ca(#"paragon_rank", 1);
+		paragonrank = self stats::get_stat_global(#"paragon_rank", 1);
 		if(!isdefined(paragonrank))
 		{
 			paragonrank = 0;
@@ -729,7 +729,7 @@ function on_player_connect()
 		paragonrank = int(min(paragonrank, 1000));
 		self setparagonrank(paragonrank);
 		self.pers[#"paragonrank"] = paragonrank;
-		paragoniconid = self stats::function_441050ca(#"paragon_icon_id", 1);
+		paragoniconid = self stats::get_stat_global(#"paragon_icon_id", 1);
 		if(!isdefined(paragoniconid))
 		{
 			paragoniconid = 0;
@@ -737,7 +737,7 @@ function on_player_connect()
 		self setparagoniconid(paragoniconid);
 		self.pers[#"paragoniconid"] = paragoniconid;
 	}
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		self setparagonrank(0);
 		self.pers[#"paragonrank"] = 0;
@@ -763,12 +763,12 @@ function on_player_connect()
 	self.explosivekills[0] = 0;
 	if(level.rankedmatch)
 	{
-		if(!function_f99d2668())
+		if(!sessionmodeiswarzonegame())
 		{
-			self stats::function_4db3fba1(#"rank", rankid, 1);
-			self stats::function_4db3fba1(#"minxp", getrankinfominxp(rankid), 1);
-			self stats::function_4db3fba1(#"maxxp", getrankinfomaxxp(rankid), 1);
-			self stats::function_4db3fba1(#"lastxp", getrankxpcapped(self.pers[#"rankxp"]), 1);
+			self stats::set_stat_global(#"rank", rankid, 1);
+			self stats::set_stat_global(#"minxp", getrankinfominxp(rankid), 1);
+			self stats::set_stat_global(#"maxxp", getrankinfomaxxp(rankid), 1);
+			self stats::set_stat_global(#"lastxp", getrankxpcapped(self.pers[#"rankxp"]), 1);
 		}
 	}
 }
@@ -830,13 +830,13 @@ function updaterank()
 	self.pers[#"rank"] = newrankid;
 	while(rankid <= newrankid)
 	{
-		self stats::function_4db3fba1(#"rank", rankid, 1);
-		self stats::function_4db3fba1(#"minxp", int(self getrankinfominxp(rankid)), 1);
-		self stats::function_4db3fba1(#"maxxp", int(self getrankinfomaxxp(rankid)), 1);
+		self stats::set_stat_global(#"rank", rankid, 1);
+		self stats::set_stat_global(#"minxp", int(self getrankinfominxp(rankid)), 1);
+		self stats::set_stat_global(#"maxxp", int(self getrankinfomaxxp(rankid)), 1);
 		rankid++;
 	}
 	/#
-		print((((("" + oldrank) + "") + newrankid) + "") + self stats::function_441050ca(#"time_played_total"));
+		print((((("" + oldrank) + "") + newrankid) + "") + self stats::get_stat_global(#"time_played_total"));
 	#/
 	self setrank(newrankid);
 	return true;
@@ -865,7 +865,7 @@ event codecallback_rankup(eventstruct)
 		}
 	}
 	self.pers[#"rank"] = eventstruct.rank;
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		self stats::function_62b271d8(#"rank", self.pers[#"rank"]);
 		self stats::function_62b271d8(#"plevel", self.pers[#"plevel"]);
@@ -946,7 +946,7 @@ function getspm()
 {
 	if(isarenamode())
 	{
-		ranklevel = function_a2f05227() + 1;
+		ranklevel = getrankcap() + 1;
 	}
 	else
 	{
@@ -981,9 +981,9 @@ function getrankxp()
 function function_bcb5e246(type)
 {
 	var_920d60e7 = 0;
-	if(isdefined(level.scoreinfo[type][#"hash_505dd55ad702ef6c"]))
+	if(isdefined(level.scoreinfo[type][#"bounty_reward"]))
 	{
-		var_920d60e7 = level.scoreinfo[type][#"hash_505dd55ad702ef6c"];
+		var_920d60e7 = level.scoreinfo[type][#"bounty_reward"];
 	}
 	return var_920d60e7;
 }

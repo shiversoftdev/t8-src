@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
 #using scripts\zm_common\zm_utility.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
-#namespace namespace_4810a820;
+#namespace mansion_achievements;
 
 /*
 	Name: init
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x30682A78
 	Offset: 0x230
 	Size: 0xC4
@@ -27,7 +27,7 @@ function init()
 
 /*
 	Name: on_player_connect
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x5D3AF9B7
 	Offset: 0x300
 	Size: 0x94
@@ -46,7 +46,7 @@ function on_player_connect()
 
 /*
 	Name: on_player_damage
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x42479C63
 	Offset: 0x3A0
 	Size: 0xE6
@@ -71,7 +71,7 @@ function on_player_damage(params)
 
 /*
 	Name: on_ai_killed
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0xA2276EA
 	Offset: 0x490
 	Size: 0x280
@@ -90,7 +90,7 @@ function on_ai_killed(params)
 			{
 				str_weapon = params.weapon.name;
 			}
-			if(str_zone === "zone_dining_room" && str_weapon === #"hash_19a4271a5452dc0b")
+			if(str_zone === "zone_dining_room" && str_weapon === #"stake_knife")
 			{
 				e_attacker notify(#"hash_4505abb76e48700a");
 			}
@@ -102,8 +102,8 @@ function on_ai_killed(params)
 			{
 				str_weapon = params.weapon.name;
 			}
-			var_846ddcf9 = array(#"pistol_topbreak_t8", #"hash_6a0c4101e88a4707", #"pistol_revolver_t8", #"hash_6d4623559d21eea0", #"hash_c2a620242d1636a", #"hash_138efe2bb30be63c", #"hash_138f012bb30beb55", #"hash_46ad37ce8122812e", #"hash_138f002bb30be9a2", #"hash_3a8348f19a7e7629");
-			if(str_zone === "zone_library" && isdefined(str_weapon) && isinarray(var_846ddcf9, str_weapon))
+			a_revolvers = array(#"pistol_topbreak_t8", #"pistol_topbreak_t8_upgraded", #"pistol_revolver_t8", #"pistol_revolver_t8_gold", #"pistol_revolver_t8_upgraded", #"hash_138efe2bb30be63c", #"hash_138f012bb30beb55", #"hash_46ad37ce8122812e", #"hash_138f002bb30be9a2", #"hash_3a8348f19a7e7629");
+			if(str_zone === "zone_library" && isdefined(str_weapon) && isinarray(a_revolvers, str_weapon))
 			{
 				e_attacker notify(#"hash_1ac06d8c0149a66c");
 			}
@@ -113,7 +113,7 @@ function on_ai_killed(params)
 
 /*
 	Name: function_51e43f4f
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0xAF1B0485
 	Offset: 0x718
 	Size: 0x7C
@@ -132,7 +132,7 @@ function function_51e43f4f()
 
 /*
 	Name: function_783dcd31
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x1D77B38C
 	Offset: 0x7A0
 	Size: 0x94
@@ -152,7 +152,7 @@ function function_783dcd31()
 
 /*
 	Name: function_87a4fba4
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0xB1EA89CF
 	Offset: 0x840
 	Size: 0x94
@@ -172,7 +172,7 @@ function function_87a4fba4()
 
 /*
 	Name: function_51328dc2
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0xEEA03F78
 	Offset: 0x8E0
 	Size: 0x94
@@ -192,7 +192,7 @@ function function_51328dc2()
 
 /*
 	Name: function_f4b6212
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x7F79B755
 	Offset: 0x980
 	Size: 0x84
@@ -211,7 +211,7 @@ function function_f4b6212()
 
 /*
 	Name: function_c91cfd5a
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x479CCD84
 	Offset: 0xA10
 	Size: 0x9C
@@ -233,7 +233,7 @@ function function_c91cfd5a()
 
 /*
 	Name: function_a46f4413
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0xCF8C0904
 	Offset: 0xAB8
 	Size: 0x164
@@ -252,7 +252,7 @@ function function_a46f4413()
 	level thread function_8dc740fa("zblueprint_mansion_a_skeet_fink");
 	while(true)
 	{
-		level waittill(#"hash_26829dcfe188bdee");
+		level waittill(#"crafting_table_completed");
 		if(level.var_f5ad5bac >= 6)
 		{
 			/#
@@ -266,7 +266,7 @@ function function_a46f4413()
 
 /*
 	Name: function_8dc740fa
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0xC803CFBD
 	Offset: 0xC28
 	Size: 0x88
@@ -278,11 +278,11 @@ function function_8dc740fa(var_c75beecc)
 	while(true)
 	{
 		waitresult = undefined;
-		waitresult = level waittill(#"hash_656719782f57ca1a");
+		waitresult = level waittill(#"blueprint_completed");
 		if(waitresult.blueprint.name === var_c75beecc)
 		{
 			level.var_f5ad5bac++;
-			level notify(#"hash_26829dcfe188bdee");
+			level notify(#"crafting_table_completed");
 			break;
 		}
 	}
@@ -290,7 +290,7 @@ function function_8dc740fa(var_c75beecc)
 
 /*
 	Name: function_e1ae38eb
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x64218D85
 	Offset: 0xCB8
 	Size: 0x94
@@ -310,7 +310,7 @@ function function_e1ae38eb()
 
 /*
 	Name: function_dd592c16
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x280BED59
 	Offset: 0xD58
 	Size: 0x94
@@ -330,7 +330,7 @@ function function_dd592c16()
 
 /*
 	Name: function_18c92a4f
-	Namespace: namespace_4810a820
+	Namespace: mansion_achievements
 	Checksum: 0x5B3CD14C
 	Offset: 0xDF8
 	Size: 0x94

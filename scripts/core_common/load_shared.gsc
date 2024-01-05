@@ -1,20 +1,20 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_7133a4d461308099;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\delete.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\trigger_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\activecamo_shared.gsc;
+#using scripts\core_common\delete.gsc;
 
 #namespace load;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: load
 	Checksum: 0x5CEBCCFA
 	Offset: 0x240
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"load", &__init__, undefined, undefined);
 }
@@ -97,7 +97,7 @@ function __init__()
 			defaultaspectratio = 1.777778;
 		}
 	}
-	level.script = util::function_53bbf9d2();
+	level.script = util::get_map_name();
 	level.clientscripts = getdvarstring(#"cg_usingclientscripts") != "";
 	level.campaign = "american";
 	level.clientscripts = getdvarstring(#"cg_usingclientscripts") != "";
@@ -539,7 +539,7 @@ function calculate_map_center()
 		}
 		for(index = 0; index < nodes.size; index++)
 		{
-			if(nodes[index].type == #"hash_397b1509f632dd34")
+			if(nodes[index].type == #"bad node")
 			{
 				/#
 					println("", nodes[index].origin);
@@ -871,9 +871,9 @@ function hide_ents()
 {
 	foreach(ent in getentarray())
 	{
-		if(isdefined(ent.var_8c43d611) && ent.var_8c43d611)
+		if(isdefined(ent.script_hide) && ent.script_hide)
 		{
-			ent val::set(#"hash_231dddc2afe6275f", "hide", 1);
+			ent val::set(#"script_hide", "hide", 1);
 		}
 	}
 }

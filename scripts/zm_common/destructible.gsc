@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\challenges_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\zm_common\gametypes\globallogic_player.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\challenges_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace destructible;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: destructible
 	Checksum: 0xC8853A8F
 	Offset: 0x1D0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"destructible", &__init__, undefined, undefined);
 }

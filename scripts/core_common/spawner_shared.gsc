@@ -1,20 +1,20 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2255a7ad3edc838f;
-#using scripts\core_common\ai_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\colors_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\colors_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\bots\bot.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\ai_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace spawner;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: spawner
 	Checksum: 0x81DD415A
 	Offset: 0x160
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"spawner", &__init__, &__main__, undefined);
 }
@@ -54,7 +54,7 @@ function __init__()
 	add_global_spawn_function(#"allies", &global_ai_array);
 	add_global_spawn_function(#"team3", &global_ai_array);
 	/#
-		level thread function_fe02300();
+		level thread aigroup_debug();
 	#/
 }
 
@@ -265,7 +265,7 @@ function spawn_think(spawner)
 	}
 	self thread run_spawn_functions();
 	self.finished_spawning = 1;
-	self notify(#"hash_a8d38936f5f8fa4");
+	self notify(#"finished spawning");
 }
 
 /*
@@ -1058,7 +1058,7 @@ function get_goal(str_goal, str_key = "targetname")
 }
 
 /*
-	Name: function_fe02300
+	Name: aigroup_debug
 	Namespace: spawner
 	Checksum: 0xFCC056FA
 	Offset: 0x2568
@@ -1066,19 +1066,19 @@ function get_goal(str_goal, str_key = "targetname")
 	Parameters: 0
 	Flags: None
 */
-function function_fe02300()
+function aigroup_debug()
 {
 	/#
-		var_e7463378 = [];
+		a_aigroups = [];
 		a_spawners = getspawnerarray();
 		foreach(spawner in a_spawners)
 		{
-			if(isdefined(spawner.script_aigroup) && !isinarray(var_e7463378, spawner.script_aigroup))
+			if(isdefined(spawner.script_aigroup) && !isinarray(a_aigroups, spawner.script_aigroup))
 			{
-				array::add(var_e7463378, spawner.script_aigroup, 0);
+				array::add(a_aigroups, spawner.script_aigroup, 0);
 			}
 		}
-		foreach(aigroup in var_e7463378)
+		foreach(aigroup in a_aigroups)
 		{
 			cmd = ((("" + aigroup) + "") + aigroup) + "";
 			adddebugcommand(cmd);
@@ -1087,7 +1087,7 @@ function function_fe02300()
 		adddebugcommand(cmd);
 		while(true)
 		{
-			var_d4f26db9 = getdvarstring(#"hash_c7bb03f6ed72246", "");
+			var_d4f26db9 = getdvarstring(#"debug_aigroup", "");
 			var_c708e6e1 = 120;
 			if(var_d4f26db9 != "")
 			{
@@ -1335,9 +1335,9 @@ function spawn(b_force = 0, str_targetname, v_origin, v_angles, bignorespawningl
 		infinitespawn = 1;
 	}
 	/#
-		var_ca330541 = self.classname == "";
-		var_cff301a5 = !var_ca330541 || (!(isdefined(level.var_3313aeb2) && level.var_3313aeb2));
-		if(isdefined(level.archetype_spawners) && isarray(level.archetype_spawners) && var_cff301a5)
+		vehiclespawner = self.classname == "";
+		overridevehicle = !vehiclespawner || (!(isdefined(level.var_3313aeb2) && level.var_3313aeb2));
+		if(isdefined(level.archetype_spawners) && isarray(level.archetype_spawners) && overridevehicle)
 		{
 			archetype = undefined;
 			archetype_spawner = undefined;
@@ -1615,7 +1615,7 @@ function spawn_failed(spawn)
 	{
 		if(!isdefined(spawn.finished_spawning))
 		{
-			spawn waittill(#"hash_a8d38936f5f8fa4");
+			spawn waittill(#"finished spawning");
 		}
 		waittillframeend();
 		if(isalive(spawn))
@@ -1825,7 +1825,7 @@ function get_ai_group_ai(aigroup)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function add_global_spawn_function(team, spawn_func, vararg)
+function add_global_spawn_function(team, spawn_func, ...)
 {
 	if(!isdefined(level.spawn_funcs))
 	{
@@ -1858,7 +1858,7 @@ function add_global_spawn_function(team, spawn_func, vararg)
 	Parameters: 2
 	Flags: Linked, Variadic
 */
-function add_ai_spawn_function(spawn_func, vararg)
+function add_ai_spawn_function(spawn_func, ...)
 {
 	if(!isdefined(level.spawn_funcs))
 	{
@@ -1891,7 +1891,7 @@ function add_ai_spawn_function(spawn_func, vararg)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function add_archetype_spawn_function(archetype, spawn_func, vararg)
+function add_archetype_spawn_function(archetype, spawn_func, ...)
 {
 	if(!isdefined(level.spawn_funcs))
 	{
@@ -1924,7 +1924,7 @@ function add_archetype_spawn_function(archetype, spawn_func, vararg)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function function_89a2cd87(archetype, spawn_func, vararg)
+function function_89a2cd87(archetype, spawn_func, ...)
 {
 	if(!isdefined(level.spawn_funcs))
 	{
@@ -1982,7 +1982,7 @@ function remove_global_spawn_function(team, func)
 	Parameters: 2
 	Flags: Linked, Variadic
 */
-function add_spawn_function(spawn_func, vararg)
+function add_spawn_function(spawn_func, ...)
 {
 	/#
 		assert(!isdefined(level._loadstarted) || !isalive(self), "");
@@ -2100,7 +2100,7 @@ function remove_spawn_function_ai_group(str_aigroup, func_spawn, param_1, param_
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function simple_spawn(name_or_spawners, spawn_func, vararg)
+function simple_spawn(name_or_spawners, spawn_func, ...)
 {
 	spawners = [];
 	if(isstring(name_or_spawners))
@@ -2155,7 +2155,7 @@ function simple_spawn(name_or_spawners, spawn_func, vararg)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function simple_spawn_single(name_or_spawner, spawn_func, vararg)
+function simple_spawn_single(name_or_spawner, spawn_func, ...)
 {
 	a_args = arraycombine(array(name_or_spawner, spawn_func), vararg, 1, 0);
 	ai = util::single_func_argarray(undefined, &simple_spawn, a_args);

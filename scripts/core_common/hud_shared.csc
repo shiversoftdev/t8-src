@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_40114edfb27a2dd9;
 #using scripts\core_common\system_shared.csc;
+#using script_40114edfb27a2dd9;
 
 #namespace hud;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: hud
 	Checksum: 0x1C8456E
 	Offset: 0x90
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hud", &__init__, undefined, undefined);
 }

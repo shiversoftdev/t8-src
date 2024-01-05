@@ -1,28 +1,28 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_439e9618e516580f;
-#using scripts\core_common\ai_shared.gsc;
-#using scripts\core_common\animation_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
 #using scripts\core_common\lui_shared.gsc;
-#using scripts\core_common\music_shared.gsc;
-#using scripts\core_common\oob.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\teleport_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\scene_debug_shared.gsc;
 #using scripts\core_common\scene_objects_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\teleport_shared.gsc;
-#using scripts\core_common\trigger_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\oob.gsc;
+#using scripts\core_common\music_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\animation_shared.gsc;
+#using scripts\core_common\ai_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace scene;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: scene
 	Checksum: 0xD71819AB
 	Offset: 0x5B0
@@ -30,7 +30,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"scene", &__init__, &__main__, undefined);
 }
@@ -59,7 +59,7 @@ function __init__()
 	level.inactive_scenes = [];
 	level.active_scenes = [];
 	level.sceneskippedcount = 0;
-	lui::function_b95a3ba5("cp_skip_scene_menu", &cp_skip_scene_menu::register, "cp_skip_scene_menu");
+	lui::add_luimenu("cp_skip_scene_menu", &cp_skip_scene_menu::register, "cp_skip_scene_menu");
 	streamerrequest("clear");
 	foreach(s_scenedef in getscriptbundles("scene"))
 	{
@@ -283,7 +283,7 @@ function fixup_scenedef(s_scenedef)
 	}
 	s_scenedef.editaction = undefined;
 	s_scenedef.newobject = undefined;
-	if(isstring(s_scenedef.femalebundle) || function_7a600918(s_scenedef.femalebundle))
+	if(isstring(s_scenedef.femalebundle) || ishash(s_scenedef.femalebundle))
 	{
 		s_female_bundle = struct::get_script_bundle("scene", s_scenedef.femalebundle);
 		s_female_bundle.malebundle = s_scenedef.name;
@@ -310,7 +310,7 @@ function fixup_scenedef(s_scenedef)
 	{
 		level.scene_streamer_ignore[s_scenedef.name] = 1;
 	}
-	if(isstring(s_scenedef.nextscenebundle) || function_7a600918(s_scenedef.nextscenebundle))
+	if(isstring(s_scenedef.nextscenebundle) || ishash(s_scenedef.nextscenebundle))
 	{
 		s_next_bundle = s_scenedef;
 		while(isdefined(s_next_bundle))
@@ -389,7 +389,7 @@ function fixup_scenedef(s_scenedef)
 			s_object.type = "fakeplayer";
 		}
 	}
-	if(isstring(s_scenedef.cameraswitcher) || function_7a600918(s_scenedef.cameraswitcher))
+	if(isstring(s_scenedef.cameraswitcher) || ishash(s_scenedef.cameraswitcher))
 	{
 		s_scenedef.igc = 1;
 	}
@@ -694,9 +694,9 @@ function convert_to_new_format(s_scenedef)
 function get_all_shot_names(str_scenedef, var_8c4d2266 = 0)
 {
 	s_scenedef = get_scenedef(str_scenedef);
-	if(isdefined(s_scenedef.var_b5d05f70))
+	if(isdefined(s_scenedef.a_str_shot_names))
 	{
-		a_shots = arraycopy(s_scenedef.var_b5d05f70);
+		a_shots = arraycopy(s_scenedef.a_str_shot_names);
 		if(var_8c4d2266)
 		{
 			arrayremovevalue(a_shots, "init");
@@ -725,7 +725,7 @@ function get_all_shot_names(str_scenedef, var_8c4d2266 = 0)
 			}
 		}
 	}
-	s_scenedef.var_b5d05f70 = a_shots;
+	s_scenedef.a_str_shot_names = a_shots;
 	if(var_8c4d2266)
 	{
 		arrayremovevalue(a_shots, "init");
@@ -1166,7 +1166,7 @@ function _trigger_stop(trig)
 	Parameters: 4
 	Flags: Linked, Variadic
 */
-function add_scene_func(str_scenedef, func, var_e21c4c4c = "play", vararg)
+function add_scene_func(str_scenedef, func, var_e21c4c4c = "play", ...)
 {
 	/#
 		/#
@@ -1206,7 +1206,7 @@ function add_scene_func(str_scenedef, func, var_e21c4c4c = "play", vararg)
 	Parameters: 4
 	Flags: Linked, Variadic
 */
-function function_d8a83a50(str_scenedef, func, var_e21c4c4c = "play", vararg)
+function function_d8a83a50(str_scenedef, func, var_e21c4c4c = "play", ...)
 {
 	/#
 		/#
@@ -1503,7 +1503,7 @@ function function_cef06dcb()
 function init_streamer(str_scenedef, var_1b38cf1d, var_b6213032 = 0, b_invulnerable = 1)
 {
 	s_scenedef = get_scenedef(str_scenedef);
-	if(isstring(var_1b38cf1d) || function_7a600918(var_1b38cf1d))
+	if(isstring(var_1b38cf1d) || ishash(var_1b38cf1d))
 	{
 		var_1b38cf1d = util::get_team_mapping(var_1b38cf1d);
 	}
@@ -1662,11 +1662,11 @@ function _init_instance(str_scenedef = self.scriptbundlename, a_ents, b_test_run
 */
 function function_6f382548(struct, str_scene_name)
 {
-	if(!isdefined(struct.var_87403372) || !(getdvarint(#"splitscreen_playercount", 1) > 1))
+	if(!isdefined(struct.disableinsplitscreen) || !(getdvarint(#"splitscreen_playercount", 1) > 1))
 	{
 		return true;
 	}
-	if(struct.var_87403372 == 2 && getdvarint(#"splitscreen_playercount", 1) > 1 || (struct.var_87403372 == 3 && getdvarint(#"splitscreen_playercount", 1) > 2) || (struct.var_87403372 == 4 && getdvarint(#"splitscreen_playercount", 1) > 3))
+	if(struct.disableinsplitscreen == 2 && getdvarint(#"splitscreen_playercount", 1) > 1 || (struct.disableinsplitscreen == 3 && getdvarint(#"splitscreen_playercount", 1) > 2) || (struct.disableinsplitscreen == 4 && getdvarint(#"splitscreen_playercount", 1) > 3))
 	{
 		/#
 			if(struct.type === "")
@@ -1804,7 +1804,7 @@ function play(arg1, arg2, arg3, b_test_run = 0, str_mode = "", n_time, var_f7d56
 	/#
 		if(getdvarint(#"debug_scene", 0) > 0)
 		{
-			if(isdefined(arg1) && (isstring(arg1) || function_7a600918(arg1)))
+			if(isdefined(arg1) && (isstring(arg1) || ishash(arg1)))
 			{
 				printtoprightln("" + function_9e72a96(arg1));
 			}
@@ -1819,7 +1819,7 @@ function play(arg1, arg2, arg3, b_test_run = 0, str_mode = "", n_time, var_f7d56
 	if(self == level)
 	{
 		a_instances = [];
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			if(isstring(arg1) && issubstr(arg1, ","))
 			{
@@ -1991,7 +1991,7 @@ function function_1d2f3816(arg1, arg2, arg3, var_f7d56e76)
 function function_845e67f0(var_b93683c = 0, var_3667c53d = 4, var_f7d56e76 = array())
 {
 	self thread play("breach_init");
-	if(isstring(var_b93683c) || function_7a600918(var_b93683c))
+	if(isstring(var_b93683c) || ishash(var_b93683c))
 	{
 		level waittill(var_b93683c);
 	}
@@ -2039,7 +2039,7 @@ function breach_slow_time(var_3667c53d)
 		e_player setmovespeedscale(0.3);
 	}
 	wait(0.3);
-	if(isstring(var_3667c53d) || function_7a600918(var_3667c53d))
+	if(isstring(var_3667c53d) || ishash(var_3667c53d))
 	{
 		util::waittill_any_ents(self, "breach_cleared", level, var_3667c53d);
 	}
@@ -2169,7 +2169,7 @@ function function_cae579da(str_team)
 */
 function _play_on_self(s_tracker, arg1, arg2, arg3, b_test_run = 0, str_mode = "", n_time)
 {
-	if(isstring(arg1) || function_7a600918(arg1))
+	if(isstring(arg1) || ishash(arg1))
 	{
 		if(isinarray(level.scenedefs, hash(arg1)))
 		{
@@ -2379,7 +2379,7 @@ function delete_scene_spawned_ents(arg1)
 	if(self == level)
 	{
 		a_instances = [];
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			if(isstring(arg1) && issubstr(arg1, ","))
 			{
@@ -2411,7 +2411,7 @@ function delete_scene_spawned_ents(arg1)
 	}
 	else
 	{
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			str_scenedef = arg1;
 		}
@@ -2661,7 +2661,7 @@ function function_dde5f483(str_scenedef, n_elapsed_time)
 */
 function function_8582657c(var_b9a72490, str_shot)
 {
-	if(isstring(var_b9a72490) || function_7a600918(var_b9a72490))
+	if(isstring(var_b9a72490) || ishash(var_b9a72490))
 	{
 		s_scenedef = get_scenedef(var_b9a72490);
 	}
@@ -2730,7 +2730,7 @@ function stop(arg1, arg2, arg3)
 {
 	if(self == level)
 	{
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			if(isstring(arg2))
 			{
@@ -2776,7 +2776,7 @@ function stop(arg1, arg2, arg3)
 	}
 	else
 	{
-		if(isstring(arg1) || function_7a600918(arg1))
+		if(isstring(arg1) || ishash(arg1))
 		{
 			_stop_instance(arg2, arg1);
 		}
@@ -2834,9 +2834,9 @@ function has_init_state(str_scenedef)
 	Parameters: 2
 	Flags: Linked
 */
-function function_9730988a(str_scenedef, var_6a688dba)
+function function_9730988a(str_scenedef, str_shotname)
 {
-	return isinarray(get_all_shot_names(str_scenedef), var_6a688dba);
+	return isinarray(get_all_shot_names(str_scenedef), str_shotname);
 }
 
 /*
@@ -3157,7 +3157,7 @@ function delete_scene_data(str_scenename)
 */
 function is_igc()
 {
-	return isdefined(self.igc) && self.igc || isstring(self.cameraswitcher) || function_7a600918(self.cameraswitcher);
+	return isdefined(self.igc) && self.igc || isstring(self.cameraswitcher) || ishash(self.cameraswitcher);
 }
 
 /*
@@ -3322,7 +3322,7 @@ function set_igc_active(b_in_igc, str_scene_name)
 	if(b_in_igc)
 	{
 		n_players_in_igc_field = n_players_in_igc_field | (1 << n_ent_num);
-		self notify(#"hash_57d4f53c12705eac", {#str_scene:str_scene_name});
+		self notify(#"scene_igc_shot_started", {#str_scene:str_scene_name});
 	}
 	else
 	{
@@ -3550,23 +3550,23 @@ function function_a4ad0308(o_scene)
 		var_6b859e8c = 0;
 		var_d60120 = 2500;
 	}
-	self.skip_scene_menu_handle = lui::function_e810a527("cp_skip_scene_menu");
+	self.skip_scene_menu_handle = lui::get_luimenu("cp_skip_scene_menu");
 	self.skip_scene_menu_handle cp_skip_scene_menu::open(self);
-	self.skip_scene_menu_handle cp_skip_scene_menu::function_6c680730(self, 0);
-	self.skip_scene_menu_handle cp_skip_scene_menu::function_300eba00(self, 0);
-	self.skip_scene_menu_handle cp_skip_scene_menu::function_5d0d17fd(self, 0);
-	self.skip_scene_menu_handle cp_skip_scene_menu::function_dad9a8ef(self, 0);
+	self.skip_scene_menu_handle cp_skip_scene_menu::set_showskipbutton(self, 0);
+	self.skip_scene_menu_handle cp_skip_scene_menu::set_hostisskipping(self, 0);
+	self.skip_scene_menu_handle cp_skip_scene_menu::set_votedtoskip(self, 0);
+	self.skip_scene_menu_handle cp_skip_scene_menu::set_sceneskipendtime(self, 0);
 	while(true)
 	{
 		if(isdefined(self.var_fc92900f) && self.var_fc92900f && isdefined(self.skip_scene_menu_handle))
 		{
-			self.skip_scene_menu_handle cp_skip_scene_menu::function_5d0d17fd(self, 1);
-			self.skip_scene_menu_handle cp_skip_scene_menu::function_6c680730(self, 2);
+			self.skip_scene_menu_handle cp_skip_scene_menu::set_votedtoskip(self, 1);
+			self.skip_scene_menu_handle cp_skip_scene_menu::set_showskipbutton(self, 2);
 			self.scene_skip_timer = undefined;
 			p_host = util::gethostplayer();
 			if(isdefined(p_host) && isdefined(p_host.skip_scene_menu_handle))
 			{
-				p_host.skip_scene_menu_handle cp_skip_scene_menu::function_5d0d17fd(p_host, 1);
+				p_host.skip_scene_menu_handle cp_skip_scene_menu::set_votedtoskip(p_host, 1);
 			}
 		}
 		else
@@ -3575,7 +3575,7 @@ function function_a4ad0308(o_scene)
 			{
 				if(!isdefined(self.scene_skip_timer) && isdefined(self.skip_scene_menu_handle))
 				{
-					self.skip_scene_menu_handle cp_skip_scene_menu::function_6c680730(self, 1);
+					self.skip_scene_menu_handle cp_skip_scene_menu::set_showskipbutton(self, 1);
 				}
 				self.scene_skip_timer = gettime();
 			}
@@ -3583,7 +3583,7 @@ function function_a4ad0308(o_scene)
 			{
 				if(gettime() - self.scene_skip_timer > var_d60120)
 				{
-					self.skip_scene_menu_handle cp_skip_scene_menu::function_6c680730(self, 2);
+					self.skip_scene_menu_handle cp_skip_scene_menu::set_showskipbutton(self, 2);
 					self.scene_skip_timer = undefined;
 				}
 			}
@@ -3597,7 +3597,7 @@ function function_a4ad0308(o_scene)
 		{
 			if(!isdefined(self.scene_skip_start_time) && isdefined(self.skip_scene_menu_handle))
 			{
-				self.skip_scene_menu_handle cp_skip_scene_menu::function_dad9a8ef(self, gettime() + var_d60120);
+				self.skip_scene_menu_handle cp_skip_scene_menu::set_sceneskipendtime(self, gettime() + var_d60120);
 				self.scene_skip_start_time = gettime();
 				if(self ishost())
 				{
@@ -3605,7 +3605,7 @@ function function_a4ad0308(o_scene)
 					{
 						if(isdefined(player.skip_scene_menu_handle) && !player ishost())
 						{
-							player.skip_scene_menu_handle cp_skip_scene_menu::function_300eba00(player, 1);
+							player.skip_scene_menu_handle cp_skip_scene_menu::set_hostisskipping(player, 1);
 						}
 					}
 				}
@@ -3638,7 +3638,7 @@ function function_a4ad0308(o_scene)
 		}
 		else if(isdefined(self.scene_skip_start_time) && isdefined(self.skip_scene_menu_handle))
 		{
-			self.skip_scene_menu_handle cp_skip_scene_menu::function_dad9a8ef(self, 0);
+			self.skip_scene_menu_handle cp_skip_scene_menu::set_sceneskipendtime(self, 0);
 			self.scene_skip_start_time = undefined;
 			if(self ishost())
 			{
@@ -3646,7 +3646,7 @@ function function_a4ad0308(o_scene)
 				{
 					if(isdefined(player.skip_scene_menu_handle) && !player ishost())
 					{
-						player.skip_scene_menu_handle cp_skip_scene_menu::function_300eba00(player, 0);
+						player.skip_scene_menu_handle cp_skip_scene_menu::set_hostisskipping(player, 0);
 					}
 				}
 			}

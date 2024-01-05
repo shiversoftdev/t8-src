@@ -1,19 +1,19 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f9e0dc8454d98e1;
-#using script_5b4f7a8178990872;
-#using script_6ce38ab036223e6e;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\spawner_shared.gsc;
-#using scripts\zm_common\zm_audio.gsc;
 #using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_audio.gsc;
+#using scripts\zm_common\zm_round_logic.gsc;
 #using scripts\zm_common\zm_zonemgr.gsc;
+#using scripts\zm_common\zm_hud.gsc;
+#using scripts\core_common\ai\zombie_utility.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\spawner_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
 
-#namespace namespace_31edf1d5;
+#namespace zm_towers_zones;
 
 /*
 	Name: init
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x50818607
 	Offset: 0x718
 	Size: 0x2E6
@@ -49,7 +49,7 @@ function init()
 
 /*
 	Name: zone_init
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0xACA5377E
 	Offset: 0xA08
 	Size: 0xC34
@@ -147,7 +147,7 @@ function zone_init()
 
 /*
 	Name: connect_danu_tower
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x2E4AE6F9
 	Offset: 0x1648
 	Size: 0x74
@@ -163,7 +163,7 @@ function connect_danu_tower()
 
 /*
 	Name: connect_ra_tower
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x5FA2646F
 	Offset: 0x16C8
 	Size: 0x74
@@ -179,7 +179,7 @@ function connect_ra_tower()
 
 /*
 	Name: connect_odin_tower
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x1BF9AB2C
 	Offset: 0x1748
 	Size: 0x74
@@ -195,7 +195,7 @@ function connect_odin_tower()
 
 /*
 	Name: connect_zeus_tower
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x5F4614B6
 	Offset: 0x17C8
 	Size: 0x74
@@ -211,7 +211,7 @@ function connect_zeus_tower()
 
 /*
 	Name: connect_odin_zeus_tunnels
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x71EA99E6
 	Offset: 0x1848
 	Size: 0x6C
@@ -227,7 +227,7 @@ function connect_odin_zeus_tunnels()
 
 /*
 	Name: connect_danu_ra_tunnels
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0xD09A893F
 	Offset: 0x18C0
 	Size: 0x6C
@@ -243,7 +243,7 @@ function connect_danu_ra_tunnels()
 
 /*
 	Name: function_7d0a038c
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x82C40515
 	Offset: 0x1938
 	Size: 0xAC
@@ -261,7 +261,7 @@ function function_7d0a038c()
 
 /*
 	Name: function_d63cd762
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x572BC75D
 	Offset: 0x19F0
 	Size: 0xB4
@@ -274,7 +274,7 @@ function function_d63cd762()
 	waitframe(1);
 	if(!isdefined(level.var_4b5a684c))
 	{
-		level.var_4b5a684c = namespace_a28acff3::get_zombie_count_for_round(level.round_number, level.players.size);
+		level.var_4b5a684c = zm_round_logic::get_zombie_count_for_round(level.round_number, level.players.size);
 	}
 	if(level.var_13473346 < level.var_4b5a684c / 2)
 	{
@@ -286,7 +286,7 @@ function function_d63cd762()
 
 /*
 	Name: function_3a81c97b
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0xC61EA45E
 	Offset: 0x1AB0
 	Size: 0x84
@@ -306,7 +306,7 @@ function function_3a81c97b()
 
 /*
 	Name: function_4e4594ab
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0xB8D97360
 	Offset: 0x1B40
 	Size: 0x74
@@ -330,7 +330,7 @@ function function_4e4594ab()
 
 /*
 	Name: on_player_spawned
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0xD2079971
 	Offset: 0x1BC0
 	Size: 0x17C
@@ -341,18 +341,18 @@ function on_player_spawned()
 {
 	self endon(#"death");
 	self thread function_8e0b371();
-	self thread zm_audio::function_713192b1(#"hash_7a784e915fb4da82", #"hash_46b1dc3f08952257");
-	self thread zm_audio::function_713192b1(#"hash_2a27c4b2d37ac547", #"hash_645754d1b8650c14");
-	self thread zm_audio::function_713192b1(#"hash_f06f1d12b9e06bb", #"hash_1eff8bf5485daa04");
+	self thread zm_audio::function_713192b1(#"hash_7a784e915fb4da82", #"body_pit");
+	self thread zm_audio::function_713192b1(#"hash_2a27c4b2d37ac547", #"odin_floor");
+	self thread zm_audio::function_713192b1(#"hash_f06f1d12b9e06bb", #"ra_base");
 	self thread zm_audio::function_713192b1(#"hash_54ab01103f8534bd", #"temple");
-	self thread zm_audio::function_713192b1(#"hash_3bf0a3cc4bf210d3", #"hash_70e9a458e0807d54");
+	self thread zm_audio::function_713192b1(#"hash_3bf0a3cc4bf210d3", #"zeus_base");
 	self thread zm_audio::function_713192b1(#"hash_397ee221838b64ee", #"danu");
 	self thread zm_audio::function_713192b1(#"hash_5c1dcbfe0b5001dd", #"danu");
 }
 
 /*
 	Name: function_8e0b371
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0xCC13E4F5
 	Offset: 0x1D48
 	Size: 0xB8
@@ -379,7 +379,7 @@ function function_8e0b371()
 
 /*
 	Name: function_ab7f70b9
-	Namespace: namespace_31edf1d5
+	Namespace: zm_towers_zones
 	Checksum: 0x2D0109A2
 	Offset: 0x1E08
 	Size: 0x57E

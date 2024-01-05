@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_6103fadfc4a82745;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\gameobjects_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\lui_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\core_common\lui_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\gameobjects_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
 
 #namespace hud;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: hud
 	Checksum: 0x260C3289
 	Offset: 0x350
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"hud", &__init__, undefined, undefined);
 }
@@ -192,7 +192,7 @@ function flash_scavenger_icon()
 {
 	if(level.scavenger_icon scavenger_icon::is_open(self))
 	{
-		level.scavenger_icon scavenger_icon::function_693a2be8(self);
+		level.scavenger_icon scavenger_icon::increment_pulse(self);
 	}
 }
 
@@ -216,7 +216,7 @@ function function_6cf4a466()
 }
 
 /*
-	Name: function_1a5d6fff
+	Name: set_team_objective
 	Namespace: hud
 	Checksum: 0xB8789F55
 	Offset: 0x9A8
@@ -224,7 +224,7 @@ function function_6cf4a466()
 	Parameters: 6
 	Flags: Linked
 */
-function function_1a5d6fff(var_3c9f56bd, var_cc966c56, n_obj_id, n_widget, var_48d81699, b_pvp)
+function set_team_objective(var_3c9f56bd, var_cc966c56, n_obj_id, n_widget, var_48d81699, b_pvp)
 {
 	if(!isdefined(level.var_6371e281))
 	{
@@ -1328,7 +1328,7 @@ function private function_cbf3f034(s_objective)
 }
 
 /*
-	Name: function_215b60ea
+	Name: set_pvp_objective
 	Namespace: hud
 	Checksum: 0x67C64370
 	Offset: 0x3B90
@@ -1336,7 +1336,7 @@ function private function_cbf3f034(s_objective)
 	Parameters: 6
 	Flags: None
 */
-function function_215b60ea(str_identifier, n_obj_id, n_widget, var_48d81699, var_94fe5aa5, var_23b4190)
+function set_pvp_objective(str_identifier, n_obj_id, n_widget, var_48d81699, var_94fe5aa5, var_23b4190)
 {
 	foreach(str_flag in array("pvp_objective_set_allies", "pvp_objective_set_axis"))
 	{
@@ -1358,10 +1358,10 @@ function function_215b60ea(str_identifier, n_obj_id, n_widget, var_48d81699, var
 		if(isdefined(var_ae4241f) && var_ae4241f)
 		{
 			var_ae4241f = undefined;
-			self thread function_1a5d6fff(str_identifier, var_cc966c56, n_obj_id, var_fc6b273a, var_48d81699, 1);
+			self thread set_team_objective(str_identifier, var_cc966c56, n_obj_id, var_fc6b273a, var_48d81699, 1);
 			continue;
 		}
-		self function_1a5d6fff(str_identifier, var_cc966c56, n_obj_id, var_fc6b273a, var_48d81699, 1);
+		self set_team_objective(str_identifier, var_cc966c56, n_obj_id, var_fc6b273a, var_48d81699, 1);
 	}
 	flag::wait_till_all(array("pvp_objective_set_allies", "pvp_objective_set_axis"));
 	mission flag::clear("pvp_objectives_updating");
@@ -1671,17 +1671,17 @@ function mission_result(str_winning_team, var_db3d629e = #"hash_6ef5bcff7fb1d1ab
 		array::thread_all(a_players, &val::set, "mission_result", "takedamage", 0);
 		if(str_winning_team == #"allies")
 		{
-			var_ef387694 = {#targetname:level.mission_name, #side:#"allies", #team:#"allies"};
-			function_58ca2822("mssn_succ", undefined, var_ef387694);
-			var_ef387694 = {#targetname:level.mission_name, #side:#"axis", #team:#"axis"};
-			function_58ca2822("mssn_fail", undefined, var_ef387694);
+			voiceparams = {#targetname:level.mission_name, #side:#"allies", #team:#"allies"};
+			voiceevent("mssn_succ", undefined, voiceparams);
+			voiceparams = {#targetname:level.mission_name, #side:#"axis", #team:#"axis"};
+			voiceevent("mssn_fail", undefined, voiceparams);
 		}
 		else
 		{
-			var_ef387694 = {#targetname:level.mission_name, #side:#"axis", #team:#"axis"};
-			function_58ca2822("mssn_succ", undefined, var_ef387694);
-			var_ef387694 = {#targetname:level.mission_name, #side:#"allies", #team:#"allies"};
-			function_58ca2822("mssn_fail", undefined, var_ef387694);
+			voiceparams = {#targetname:level.mission_name, #side:#"axis", #team:#"axis"};
+			voiceevent("mssn_succ", undefined, voiceparams);
+			voiceparams = {#targetname:level.mission_name, #side:#"allies", #team:#"allies"};
+			voiceevent("mssn_fail", undefined, voiceparams);
 		}
 		wait(1);
 		array::thread_all(a_players, &val::set, "mission_result", "freezecontrols_allowlook", 1);

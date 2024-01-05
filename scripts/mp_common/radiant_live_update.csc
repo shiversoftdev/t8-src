@@ -4,7 +4,7 @@
 #namespace radiant_live_update;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: radiant_live_update
 	Checksum: 0xBF11FA24
 	Offset: 0x70
@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"radiant_live_update", &__init__, undefined, undefined);

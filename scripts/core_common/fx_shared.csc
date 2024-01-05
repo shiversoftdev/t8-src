@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\exploder_shared.csc;
-#using scripts\core_common\sound_shared.csc;
-#using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\sound_shared.csc;
+#using scripts\core_common\exploder_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
 
 #namespace fx;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: fx
 	Checksum: 0x4F193E39
 	Offset: 0xF0
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"fx", &__init__, undefined, undefined);
 }

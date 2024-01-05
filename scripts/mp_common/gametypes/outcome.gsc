@@ -1,7 +1,7 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
 #using scripts\mp_common\gametypes\globallogic_score.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
 
 #namespace outcome;
 
@@ -16,8 +16,8 @@
 */
 function autoexec main()
 {
-	level.var_9b671c3c[#"tie"] = {#hash_6cab3b8e:1, #flag:"tie"};
-	level.var_9b671c3c[#"overtime"] = {#hash_6cab3b8e:2, #flag:"overtime"};
+	level.var_9b671c3c[#"tie"] = {#code_flag:1, #flag:"tie"};
+	level.var_9b671c3c[#"overtime"] = {#code_flag:2, #flag:"overtime"};
 }
 
 /*
@@ -54,20 +54,20 @@ function function_a1a81955()
 	Parameters: 2
 	Flags: Linked
 */
-function is_winner(outcome, var_512330f1)
+function is_winner(outcome, team_or_player)
 {
-	if(isplayer(var_512330f1))
+	if(isplayer(team_or_player))
 	{
-		if(isdefined(outcome.players) && outcome.players.size && outcome.players[0] == var_512330f1)
+		if(isdefined(outcome.players) && outcome.players.size && outcome.players[0] == team_or_player)
 		{
 			return true;
 		}
-		if(isdefined(outcome.team) && outcome.team == var_512330f1.team)
+		if(isdefined(outcome.team) && outcome.team == team_or_player.team)
 		{
 			return true;
 		}
 	}
-	else if(isdefined(outcome.team) && outcome.team == var_512330f1)
+	else if(isdefined(outcome.team) && outcome.team == team_or_player)
 	{
 		return true;
 	}
@@ -89,7 +89,7 @@ function set_flag(outcome, flag)
 }
 
 /*
-	Name: function_5f24faac
+	Name: get_flag
 	Namespace: outcome
 	Checksum: 0xDA160E79
 	Offset: 0x370
@@ -97,13 +97,13 @@ function set_flag(outcome, flag)
 	Parameters: 2
 	Flags: Linked
 */
-function function_5f24faac(outcome, flag)
+function get_flag(outcome, flag)
 {
 	return outcome flagsys::get(flag);
 }
 
 /*
-	Name: function_46cb766c
+	Name: clear_flag
 	Namespace: outcome
 	Checksum: 0x5457B92B
 	Offset: 0x3A8
@@ -111,7 +111,7 @@ function function_5f24faac(outcome, flag)
 	Parameters: 2
 	Flags: Linked
 */
-function function_46cb766c(outcome, flag)
+function clear_flag(outcome, flag)
 {
 	return outcome flagsys::clear(flag);
 }
@@ -132,7 +132,7 @@ function function_2e00fa44(outcome)
 	{
 		if(outcome flagsys::get(var_b4a9554f.flag))
 		{
-			flags = flags | var_b4a9554f.var_6cab3b8e;
+			flags = flags | var_b4a9554f.code_flag;
 		}
 	}
 	return flags;
@@ -207,7 +207,7 @@ function function_b5f4c9d8(outcome)
 }
 
 /*
-	Name: function_9b24638f
+	Name: get_winner
 	Namespace: outcome
 	Checksum: 0xC3977A02
 	Offset: 0x590
@@ -215,7 +215,7 @@ function function_b5f4c9d8(outcome)
 	Parameters: 1
 	Flags: Linked
 */
-function function_9b24638f(outcome)
+function get_winner(outcome)
 {
 	if(isdefined(outcome.team))
 	{
@@ -243,7 +243,7 @@ function function_d30d1a2e(outcome)
 }
 
 /*
-	Name: function_d1e740f6
+	Name: set_winner
 	Namespace: outcome
 	Checksum: 0x357C5877
 	Offset: 0x608
@@ -251,20 +251,20 @@ function function_d30d1a2e(outcome)
 	Parameters: 2
 	Flags: Linked
 */
-function function_d1e740f6(outcome, var_512330f1)
+function set_winner(outcome, team_or_player)
 {
-	if(!isdefined(var_512330f1))
+	if(!isdefined(team_or_player))
 	{
 		return;
 	}
-	if(isplayer(var_512330f1))
+	if(isplayer(team_or_player))
 	{
-		outcome.players[outcome.players.size] = var_512330f1;
-		outcome.team = var_512330f1.team;
+		outcome.players[outcome.players.size] = team_or_player;
+		outcome.team = team_or_player.team;
 	}
 	else
 	{
-		outcome.team = var_512330f1;
+		outcome.team = team_or_player;
 	}
 }
 
@@ -299,7 +299,7 @@ function function_af2e264f(outcome, winner)
 {
 	if(isdefined(winner))
 	{
-		function_d1e740f6(outcome, winner);
+		set_winner(outcome, winner);
 	}
 	else
 	{

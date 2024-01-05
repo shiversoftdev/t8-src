@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\system_shared.gsc;
-#using scripts\zm_common\zm_bgb.gsc;
-#using scripts\zm_common\zm_player.gsc;
 #using scripts\zm_common\zm_powerups.gsc;
+#using scripts\zm_common\zm_player.gsc;
+#using scripts\zm_common\zm_bgb.gsc;
+#using scripts\core_common\system_shared.gsc;
 
 #namespace zm_bgb_extra_credit;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_bgb_extra_credit
 	Checksum: 0x1F391117
 	Offset: 0xB0
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_bgb_extra_credit", &__init__, undefined, #"bgb");
 }
@@ -65,12 +65,12 @@ function activation()
 function function_22f934e6(origin, var_22a4c702)
 {
 	self endon(#"disconnect", #"bled_out");
-	var_7d81025 = zm_powerups::specific_powerup_drop("bonus_points_player", origin, undefined, 0.1, undefined, undefined, 1, 1, 1, 1);
+	e_powerup = zm_powerups::specific_powerup_drop("bonus_points_player", origin, undefined, 0.1, undefined, undefined, 1, 1, 1, 1);
 	if(isdefined(level.var_5a2df97b))
 	{
-		var_7d81025 thread [[level.var_5a2df97b]]();
+		e_powerup thread [[level.var_5a2df97b]]();
 	}
-	var_7d81025.bonus_points_powerup_override = &function_19e7d278;
+	e_powerup.bonus_points_powerup_override = &function_19e7d278;
 }
 
 /*

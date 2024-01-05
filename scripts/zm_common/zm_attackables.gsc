@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\laststand_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\table_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\weapons_shared.gsc;
-#using scripts\zm_common\zm.gsc;
-#using scripts\zm_common\zm_powerups.gsc;
-#using scripts\zm_common\zm_spawner.gsc;
-#using scripts\zm_common\zm_stats.gsc;
-#using scripts\zm_common\zm_utility.gsc;
 #using scripts\zm_common\zm_weapons.gsc;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm_spawner.gsc;
+#using scripts\zm_common\zm_powerups.gsc;
+#using scripts\zm_common\zm.gsc;
+#using scripts\core_common\weapons_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\table_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\laststand_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace zm_attackables;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_attackables
 	Checksum: 0x65C5C234
 	Offset: 0x178
@@ -25,7 +25,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_attackables", &__init__, &__main__, undefined);
 }

@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\challenges_shared.gsc;
-#using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\mp_common\gametypes\battlechatter.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\clientfield_shared.gsc;
+#using scripts\core_common\challenges_shared.gsc;
 
 #namespace destructible;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: destructible
 	Checksum: 0x5A43C771
 	Offset: 0x208
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"destructible", &__init__, undefined, undefined);
 }

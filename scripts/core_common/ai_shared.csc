@@ -28,7 +28,7 @@ function autoexec main()
 	Parameters: 2
 	Flags: Linked, Variadic
 */
-function add_ai_spawn_function(func_spawn, vararg)
+function add_ai_spawn_function(func_spawn, ...)
 {
 	if(!isdefined(level.var_71b23817))
 	{
@@ -84,7 +84,7 @@ function function_932006d1(func_spawn)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function add_archetype_spawn_function(str_archetype, func_spawn, vararg)
+function add_archetype_spawn_function(str_archetype, func_spawn, ...)
 {
 	if(!isdefined(level.var_c18b23c1))
 	{
@@ -174,19 +174,19 @@ function function_9139c839()
 {
 	if(!isdefined(self.var_76167463))
 	{
-		if(isdefined(self.var_ae8ec545))
+		if(isdefined(self.aisettingsbundle))
 		{
-			var_51d5c26f = self.var_ae8ec545;
+			settingsbundle = self.aisettingsbundle;
 		}
 		else if(isdefined(self.scriptbundlesettings))
 		{
-			var_51d5c26f = getscriptbundle(self.scriptbundlesettings).var_ae8ec545;
+			settingsbundle = getscriptbundle(self.scriptbundlesettings).aisettingsbundle;
 		}
-		if(!isdefined(var_51d5c26f))
+		if(!isdefined(settingsbundle))
 		{
 			return undefined;
 		}
-		self.var_76167463 = var_51d5c26f;
+		self.var_76167463 = settingsbundle;
 		if(!isdefined(level.var_e3a467cf))
 		{
 			level.var_e3a467cf = [];

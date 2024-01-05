@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace influencers;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: influencers
 	Checksum: 0xD806C429
 	Offset: 0xF0
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"influencers_shared", &__init__, undefined, undefined);
 }
@@ -69,7 +69,7 @@ function onplayerspawned()
 function onplayerconnect()
 {
 	level endon(#"game_ended");
-	self callback::function_20263b9e(&function_20263b9e);
+	self callback::on_grenade_fired(&on_grenade_fired);
 	self callback::on_death(&on_player_death);
 }
 
@@ -106,7 +106,7 @@ function on_joined_team(params)
 }
 
 /*
-	Name: function_20263b9e
+	Name: on_grenade_fired
 	Namespace: influencers
 	Checksum: 0x9F5C575F
 	Offset: 0x2F8
@@ -114,7 +114,7 @@ function on_joined_team(params)
 	Parameters: 1
 	Flags: Linked
 */
-function function_20263b9e(params)
+function on_grenade_fired(params)
 {
 	grenade = params.projectile;
 	weapon = params.weapon;

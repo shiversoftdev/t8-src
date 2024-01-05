@@ -4,7 +4,7 @@
 #namespace infection;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: infection
 	Checksum: 0x74506222
 	Offset: 0x80
@@ -12,7 +12,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"infection", &__init__, undefined, undefined);
 }

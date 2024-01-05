@@ -1,20 +1,20 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\hud_message_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\zm_common\gametypes\globallogic.gsc;
-#using scripts\zm_common\gametypes\globallogic_player.gsc;
-#using scripts\zm_common\gametypes\spectating.gsc;
 #using scripts\zm_common\util.gsc;
+#using scripts\zm_common\gametypes\spectating.gsc;
+#using scripts\zm_common\gametypes\globallogic_player.gsc;
+#using scripts\zm_common\gametypes\globallogic.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hud_message_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace globallogic_ui;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: globallogic_ui
 	Checksum: 0x7DF4D212
 	Offset: 0x118
@@ -22,7 +22,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"globallogic_ui", &__init__, undefined, undefined);
 }

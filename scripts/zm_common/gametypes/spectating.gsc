@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
+#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
 
 #namespace spectating;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: spectating
 	Checksum: 0x6C0475AC
 	Offset: 0xB0
@@ -14,7 +14,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_spectating", &__init__, undefined, undefined);
 }

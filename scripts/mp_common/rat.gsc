@@ -1,16 +1,16 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_2255a7ad3edc838f;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\rat_shared.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\bots\bot.gsc;
 #using scripts\mp_common\gametypes\dev.gsc;
 #using scripts\mp_common\util.gsc;
+#using scripts\core_common\rat_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 #namespace rat;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: rat
 	Checksum: 0x4631C421
 	Offset: 0xA0
@@ -18,7 +18,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	/#
 		system::register(#"rat", &__init__, undefined, undefined);
@@ -129,7 +129,7 @@ function testenemy(team)
 		{
 			params = {#intpayload:0, #response:level.teams[team], #menu:game.menu[#"menu_team"]};
 			self notify(#"menuresponse", params);
-			self callback::callback(#"hash_4e1a50a35ec44bcc", params);
+			self callback::callback(#"menu_response", params);
 		}
 	#/
 }

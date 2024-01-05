@@ -5,7 +5,7 @@
 #namespace flagsys;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: flagsys
 	Checksum: 0x256D21C
 	Offset: 0xA0
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"flagsys", &__init__, undefined, undefined);
 }

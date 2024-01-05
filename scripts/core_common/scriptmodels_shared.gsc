@@ -1,11 +1,11 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
 
 #namespace scriptmodels;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: scriptmodels
 	Checksum: 0x151079A9
 	Offset: 0xA8
@@ -13,7 +13,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"scriptmodels", &__init__, undefined, undefined);
 }
@@ -62,7 +62,7 @@ function private function_9abee270(model)
 	}
 	if(isdefined(model.var_3ee8e0e2) && model.var_3ee8e0e2)
 	{
-		model util::function_c596f193();
+		model util::make_sentient();
 	}
 	if(isdefined(model.script_team) && model.script_team != "none")
 	{

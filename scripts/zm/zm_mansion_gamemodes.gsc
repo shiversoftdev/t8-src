@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_696e327e00824120;
+#using scripts\zm\zm_mansion_zstandard.gsc;
 #using scripts\core_common\util_shared.gsc;
 
-#namespace namespace_b623f8ef;
+#namespace zm_mansion_gamemodes;
 
 /*
 	Name: main
-	Namespace: namespace_b623f8ef
+	Namespace: zm_mansion_gamemodes
 	Checksum: 0xA4EA617E
 	Offset: 0x78
 	Size: 0xE2
@@ -19,12 +19,12 @@ event main(eventstruct)
 	{
 		level waittill(#"load_main_complete");
 	}
-	gametype = hash(util::function_5df4294());
+	gametype = hash(util::get_game_type());
 	switch(gametype)
 	{
 		case "zstandard":
 		{
-			namespace_6569a107::main();
+			zm_mansion_zstandard::main();
 			break;
 		}
 	}

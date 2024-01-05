@@ -1,14 +1,14 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\fx_shared.gsc;
-#using scripts\core_common\sound_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
 #using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\sound_shared.gsc;
+#using scripts\core_common\fx_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace exploder;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: exploder
 	Checksum: 0xC88494B1
 	Offset: 0x178
@@ -16,7 +16,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"exploder", &__init__, &__main__, undefined);
 }
@@ -143,7 +143,7 @@ function __main__()
 		level.createfxent = [];
 	}
 	acceptabletargetnames = [];
-	acceptabletargetnames[#"hash_7a9dcee99d931917"] = 1;
+	acceptabletargetnames[#"exploderchunk visible"] = 1;
 	acceptabletargetnames[#"exploderchunk"] = 1;
 	acceptabletargetnames[#"exploder"] = 1;
 	for(i = 0; i < script_exploders.size; i++)

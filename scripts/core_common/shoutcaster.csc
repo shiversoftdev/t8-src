@@ -1,8 +1,8 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_ecbb3819941bb69;
-#using scripts\core_common\flag_shared.csc;
-#using scripts\core_common\renderoverridebundle.csc;
+#using scripts\abilities\gadgets\gadget_vision_pulse.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\renderoverridebundle.csc;
+#using scripts\core_common\flag_shared.csc;
 
 #namespace shoutcaster;
 
@@ -153,7 +153,7 @@ function private shoutcaster_monitor_xray_change(local_client_num)
 	util::waitforclient(local_client_num);
 	firsttime = 1;
 	localplayer = function_5c10bd79(local_client_num);
-	var_2c491b2b = localplayer.team;
+	lastteam = localplayer.team;
 	var_f4e066d = 0;
 	var_821a5c52 = 0;
 	var_28f6bf0f = 0;
@@ -182,19 +182,19 @@ function private shoutcaster_monitor_xray_change(local_client_num)
 		loc_00000816:
 		var_c1e644b1 = (getshoutcastersetting(local_client_num, "shoutcaster_ds_xray_air_allies") ? 1 : 0) + (getshoutcastersetting(local_client_num, "shoutcaster_ds_xray_air_enemies") ? 2 : 0);
 		var_36f13a21 = function_2e6e4ee0(local_client_num);
-		var_504a9922 = 0;
+		needupdate = 0;
 		if(firsttime)
 		{
 			firsttime = 0;
-			var_504a9922 = 1;
+			needupdate = 1;
 		}
-		else if(team != var_2c491b2b || var_52fe6881 != var_f4e066d || var_a6f20d43 != var_821a5c52 || var_c1e644b1 != var_28f6bf0f || var_c1935186 != var_36f13a21)
+		else if(team != lastteam || var_52fe6881 != var_f4e066d || var_a6f20d43 != var_821a5c52 || var_c1e644b1 != var_28f6bf0f || var_c1935186 != var_36f13a21)
 		{
-			var_504a9922 = 1;
+			needupdate = 1;
 		}
-		if(var_504a9922)
+		if(needupdate)
 		{
-			var_2c491b2b = team;
+			lastteam = team;
 			var_f4e066d = var_52fe6881;
 			var_821a5c52 = var_a6f20d43;
 			var_28f6bf0f = var_c1e644b1;
@@ -247,25 +247,25 @@ function private function_4c4946d4(local_client_num, localplayerteam, var_52fe68
 	foreach(array in var_f2a410c9)
 	{
 		entity = array[0];
-		var_c43ac0da = array[1];
+		robkey = array[1];
 		rob = array[2];
 		if(!var_52fe6881 || var_faa7a3fb == 0)
 		{
-			if(entity flag::exists(#"hash_3a8caf1d07ba0251"))
+			if(entity flag::exists(#"shoutcaster_flag"))
 			{
-				entity renderoverridebundle::stop_bundle(#"hash_3a8caf1d07ba0251", rob, 0);
+				entity renderoverridebundle::stop_bundle(#"shoutcaster_flag", rob, 0);
 			}
 			continue;
 		}
 		if(var_faa7a3fb == 2 && localplayerteam == entity.team || (var_faa7a3fb == 1 && localplayerteam != entity.team))
 		{
-			if(entity flag::exists(#"hash_3a8caf1d07ba0251"))
+			if(entity flag::exists(#"shoutcaster_flag"))
 			{
-				entity renderoverridebundle::stop_bundle(#"hash_3a8caf1d07ba0251", rob, 0);
+				entity renderoverridebundle::stop_bundle(#"shoutcaster_flag", rob, 0);
 			}
 			continue;
 		}
-		entity function_a0b844f1(local_client_num, var_c43ac0da, rob);
+		entity function_a0b844f1(local_client_num, robkey, rob);
 	}
 }
 
@@ -278,7 +278,7 @@ function private function_4c4946d4(local_client_num, localplayerteam, var_52fe68
 	Parameters: 3
 	Flags: Linked
 */
-function function_a0b844f1(local_client_num, var_c6fc7911, rob)
+function function_a0b844f1(local_client_num, rob_key, rob)
 {
 	var_52fe6881 = getshoutcastersetting(local_client_num, "shoutcaster_qs_xray");
 	loc_00000E16:
@@ -296,7 +296,7 @@ function function_a0b844f1(local_client_num, var_c6fc7911, rob)
 	{
 		return;
 	}
-	self renderoverridebundle::function_c8d97b8e(local_client_num, #"hash_3a8caf1d07ba0251", var_c6fc7911);
+	self renderoverridebundle::function_c8d97b8e(local_client_num, #"shoutcaster_flag", rob_key);
 	teamcolor = (self.team == #"allies" ? (0.13, 0.87, 0.94) : (0.98, 0.18, 0.1));
 	if(is_shoutcaster_using_team_identity(local_client_num))
 	{
@@ -324,11 +324,11 @@ function private function_7ed4edd3(playername)
 	{
 		return false;
 	}
-	if(!isdefined(level.var_b541c509))
+	if(!isdefined(level.shoutcasterpucks))
 	{
 		return false;
 	}
-	if(!isdefined(level.var_b541c509[playername]))
+	if(!isdefined(level.shoutcasterpucks[playername]))
 	{
 		return false;
 	}
@@ -384,7 +384,7 @@ function function_995e01b6(localclientnum, player)
 	{
 		var_11792f05 = #"hash_40193ed2b55dd6b6";
 	}
-	level.var_b541c509[player.name] = util::playfxontag(localclientnum, var_11792f05, self, "tag_origin");
+	level.shoutcasterpucks[player.name] = util::playfxontag(localclientnum, var_11792f05, self, "tag_origin");
 }
 
 /*
@@ -421,10 +421,10 @@ function private function_8e1e7736(localclientnum, player)
 */
 function private function_35248a94(localclientnum, playername)
 {
-	if(isdefined(level.var_b541c509[playername]))
+	if(isdefined(level.shoutcasterpucks[playername]))
 	{
-		stopfx(localclientnum, level.var_b541c509[playername]);
-		level.var_b541c509[playername] = undefined;
+		stopfx(localclientnum, level.shoutcasterpucks[playername]);
+		level.shoutcasterpucks[playername] = undefined;
 	}
 }
 

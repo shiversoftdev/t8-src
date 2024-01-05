@@ -1,18 +1,18 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\audio_shared.csc;
-#using scripts\core_common\callbacks_shared.csc;
-#using scripts\core_common\clientfield_shared.csc;
-#using scripts\core_common\flag_shared.csc;
-#using scripts\core_common\struct.csc;
-#using scripts\core_common\system_shared.csc;
-#using scripts\core_common\util_shared.csc;
-#using scripts\zm_common\zm_utility.csc;
 #using scripts\zm_common\zm_weapons.csc;
+#using scripts\zm_common\zm_utility.csc;
+#using scripts\core_common\audio_shared.csc;
+#using scripts\core_common\util_shared.csc;
+#using scripts\core_common\system_shared.csc;
+#using scripts\core_common\flag_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
+#using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\struct.csc;
 
 #namespace zm_blockers;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: zm_blockers
 	Checksum: 0x3D9C5B4E
 	Offset: 0x2B8
@@ -20,7 +20,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"zm_blockers", &__init__, undefined, undefined);
 }
@@ -40,8 +40,8 @@ function __init__()
 	level._effect[#"doorbuy_bought_fx"] = "zombie/fx8_doorbuy_death";
 	level._effect[#"debrisbuy_ambient_fx"] = "zombie/fx8_debrisbuy_amb";
 	level._effect[#"debrisbuy_bought_fx"] = "zombie/fx8_debrisbuy_death";
-	level._effect[#"hash_69c64db3e88de22c"] = "zombie/fx8_power_door_amb";
-	level._effect[#"hash_2599f6b58bd6457"] = "zombie/fx8_power_door_death";
+	level._effect[#"powerdoor_ambient_fx"] = "zombie/fx8_power_door_amb";
+	level._effect[#"powerdoor_bought_fx"] = "zombie/fx8_power_door_death";
 	level._effect[#"power_debris_ambient_fx"] = "zombie/fx8_power_debris_amb";
 	level._effect[#"power_debris_bought_fx"] = "zombie/fx8_power_debris_death";
 	clientfield::register("scriptmover", "doorbuy_ambient_fx", 1, 1, "int", &doorbuy_ambient_fx, 0, 0);
@@ -106,7 +106,7 @@ function debrisbuy_ambient_fx(localclientnum, oldval, newval, bnewent, binitials
 */
 function power_door_ambient_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self function_aa07bb71(level._effect[#"hash_69c64db3e88de22c"], "zmb_blocker_powerdoor_lp", localclientnum, newval);
+	self function_aa07bb71(level._effect[#"powerdoor_ambient_fx"], "zmb_blocker_powerdoor_lp", localclientnum, newval);
 }
 
 /*
@@ -162,7 +162,7 @@ function debrisbuy_bought_fx(localclientnum, oldval, newval, bnewent, binitialsn
 */
 function power_door_bought_fx(localclientnum, oldval, newval, bnewent, binitialsnap, fieldname, bwastimejump)
 {
-	self function_e6eed4fe(level._effect[#"hash_2599f6b58bd6457"], #"hash_5dcb54d98c9787b1", localclientnum, newval);
+	self function_e6eed4fe(level._effect[#"powerdoor_bought_fx"], #"hash_5dcb54d98c9787b1", localclientnum, newval);
 }
 
 /*
@@ -188,9 +188,9 @@ function power_debris_bought_fx(localclientnum, oldval, newval, bnewent, binitia
 	Parameters: 4
 	Flags: Linked
 */
-function function_aa07bb71(str_fx_name, var_bd367366, var_6142f944, var_ee0af263)
+function function_aa07bb71(str_fx_name, var_bd367366, var_6142f944, n_new_val)
 {
-	if(var_ee0af263)
+	if(n_new_val)
 	{
 		if(isdefined(self) && !isdefined(self.var_907b36d0))
 		{
@@ -218,9 +218,9 @@ function function_aa07bb71(str_fx_name, var_bd367366, var_6142f944, var_ee0af263
 	Parameters: 4
 	Flags: Linked
 */
-function function_e6eed4fe(str_fx_name, var_d34b6d2b, var_6142f944, var_ee0af263)
+function function_e6eed4fe(str_fx_name, var_d34b6d2b, var_6142f944, n_new_val)
 {
-	if(var_ee0af263)
+	if(n_new_val)
 	{
 		if(!isdefined(self.var_4da473fc))
 		{

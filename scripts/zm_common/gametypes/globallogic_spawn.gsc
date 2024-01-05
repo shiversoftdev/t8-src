@@ -1,26 +1,26 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
+#using scripts\zm_common\zm_utility.gsc;
+#using scripts\zm_common\util.gsc;
+#using scripts\zm_common\gametypes\spectating.gsc;
+#using scripts\zm_common\gametypes\spawnlogic.gsc;
+#using scripts\zm_common\gametypes\spawning.gsc;
+#using scripts\zm_common\gametypes\hostmigration.gsc;
+#using scripts\zm_common\gametypes\globallogic_utils.gsc;
+#using scripts\zm_common\gametypes\globallogic_ui.gsc;
+#using scripts\zm_common\gametypes\globallogic_score.gsc;
+#using scripts\zm_common\gametypes\globallogic_player.gsc;
+#using scripts\zm_common\gametypes\globallogic_defaults.gsc;
+#using scripts\zm_common\gametypes\globallogic_audio.gsc;
+#using scripts\zm_common\gametypes\globallogic.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hud_message_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
 #using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\clientfield_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\hud_message_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
 #using scripts\core_common\struct.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\zm_common\gametypes\globallogic.gsc;
-#using scripts\zm_common\gametypes\globallogic_audio.gsc;
-#using scripts\zm_common\gametypes\globallogic_defaults.gsc;
-#using scripts\zm_common\gametypes\globallogic_player.gsc;
-#using scripts\zm_common\gametypes\globallogic_score.gsc;
-#using scripts\zm_common\gametypes\globallogic_ui.gsc;
-#using scripts\zm_common\gametypes\globallogic_utils.gsc;
-#using scripts\zm_common\gametypes\hostmigration.gsc;
-#using scripts\zm_common\gametypes\spawning.gsc;
-#using scripts\zm_common\gametypes\spawnlogic.gsc;
-#using scripts\zm_common\gametypes\spectating.gsc;
-#using scripts\zm_common\util.gsc;
-#using scripts\zm_common\zm_utility.gsc;
 
 #namespace globallogic_spawn;
 
@@ -357,11 +357,11 @@ function spawnplayer()
 		self.momentum = self.pers[#"momentum"];
 	}
 	pixendevent();
-	self thread function_7455b680();
+	self thread _spawnplayer();
 }
 
 /*
-	Name: function_7455b680
+	Name: _spawnplayer
 	Namespace: globallogic_spawn
 	Checksum: 0xAA8AF5DC
 	Offset: 0xDF0
@@ -369,7 +369,7 @@ function spawnplayer()
 	Parameters: 0
 	Flags: Linked
 */
-function function_7455b680()
+function _spawnplayer()
 {
 	self endon(#"disconnect", #"joined_spectators");
 	waittillframeend();
@@ -379,7 +379,7 @@ function function_7455b680()
 		print(((((("" + self.origin[0]) + "") + self.origin[1]) + "") + self.origin[2]) + "");
 	#/
 	setdvar(#"scr_selecting_location", "");
-	self zm_utility::function_e0448fec();
+	self zm_utility::set_max_health();
 	if(game.state == "postgame")
 	{
 		/#

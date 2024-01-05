@@ -1,12 +1,12 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_97704057afe43ee;
+#using scripts\zm\zm_red_zstandard.gsc;
 #using scripts\core_common\util_shared.gsc;
 
-#namespace namespace_bf320535;
+#namespace zm_red_gamemodes;
 
 /*
 	Name: main
-	Namespace: namespace_bf320535
+	Namespace: zm_red_gamemodes
 	Checksum: 0x85C3B57D
 	Offset: 0x78
 	Size: 0xE2
@@ -19,12 +19,12 @@ event main(eventstruct)
 	{
 		level waittill(#"load_main_complete");
 	}
-	gametype = hash(util::function_5df4294());
+	gametype = hash(util::get_game_type());
 	switch(gametype)
 	{
 		case "zstandard":
 		{
-			namespace_be363582::main();
+			zm_red_zstandard::main();
 			break;
 		}
 	}

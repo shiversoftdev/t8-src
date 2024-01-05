@@ -1,17 +1,17 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\callbacks_shared.gsc;
 #using scripts\core_common\gestures.gsc;
-#using scripts\core_common\killcam_shared.gsc;
-#using scripts\core_common\popups_shared.gsc;
 #using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\popups_shared.gsc;
+#using scripts\core_common\killcam_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\mp_common\util.gsc;
 #using scripts\mp_common\draft.gsc;
 #using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\util.gsc;
 
 #namespace menus;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: menus
 	Checksum: 0xC2DB4088
 	Offset: 0x280
@@ -19,7 +19,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"menus", &__init__, undefined, undefined);
 }
@@ -78,7 +78,7 @@ function init()
 function on_player_connect()
 {
 	self.menu_response_callbacks = [];
-	self callback::function_d8abfc3d(#"hash_4e1a50a35ec44bcc", &on_menu_response);
+	self callback::function_d8abfc3d(#"menu_response", &on_menu_response);
 	self thread function_8e00969();
 }
 
@@ -139,7 +139,7 @@ function on_menu_response(params)
 	}
 	if(response == "endround")
 	{
-		if(function_f99d2668())
+		if(sessionmodeiswarzonegame())
 		{
 			level.var_67a68459 = 1;
 		}
@@ -154,7 +154,7 @@ function on_menu_response(params)
 			{
 				self closeingamemenu();
 			}
-			if(function_f99d2668())
+			if(sessionmodeiswarzonegame())
 			{
 				level notify(#"hash_197c640e2f684a74");
 			}
@@ -170,12 +170,12 @@ function on_menu_response(params)
 		self [[level.autocontrolplayer]]();
 		return;
 	}
-	if(response == #"hash_37a46164a47ed885")
+	if(response == #"play_deathcam")
 	{
 		self killcam::start_deathcam();
 		return;
 	}
-	if(response == #"hash_aa9fde2b084d482")
+	if(response == #"skip_deathcam")
 	{
 		self.sessionstate = "spectator";
 		self.spectatorclient = -1;
@@ -282,7 +282,7 @@ function function_2d1eb0ec(intpayload)
 {
 	if(!isdefined(level.var_4a38c46e))
 	{
-		level.var_4a38c46e = getscriptbundlelist(#"hash_1499732db058e6fb");
+		level.var_4a38c46e = getscriptbundlelist(#"callout_wheel");
 	}
 	var_a4d879fa = intpayload % 100;
 	var_f4cd8d56 = (int(intpayload / 100)) % 10;
@@ -348,7 +348,7 @@ function function_2d1eb0ec(intpayload)
 			}
 			if(isdefined(gesture))
 			{
-				self gestures::function_b204f6e3(gesture, undefined, 0);
+				self gestures::play_gesture(gesture, undefined, 0);
 			}
 		}
 		team = self.pers[#"team"];
@@ -373,7 +373,7 @@ function function_2d1eb0ec(intpayload)
 function function_8e00969()
 {
 	self endon(#"disconnect", #"death");
-	if(function_8b1a219a() && function_f99d2668())
+	if(function_8b1a219a() && sessionmodeiswarzonegame())
 	{
 		while(true)
 		{

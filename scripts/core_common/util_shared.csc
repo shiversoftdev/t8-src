@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
 #using script_72d4466ce2e2cc7b;
-#using scripts\core_common\clientfield_shared.csc;
 #using scripts\core_common\system_shared.csc;
 #using scripts\core_common\util_shared.csc;
+#using scripts\core_common\clientfield_shared.csc;
 
 #namespace util;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: util
 	Checksum: 0x8883E8A7
 	Offset: 0x180
@@ -15,7 +15,7 @@
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"util_shared", &__init__, undefined, undefined);
 }
@@ -274,7 +274,7 @@ function waittill_string(msg, ent)
 	Parameters: 1
 	Flags: Variadic
 */
-function waittill_multiple(vararg)
+function waittill_multiple(...)
 {
 	s_tracker = spawnstruct();
 	s_tracker._wait_count = 0;
@@ -312,7 +312,7 @@ function waittill_either(msg1, msg2)
 	Parameters: 1
 	Flags: Variadic
 */
-function waittill_multiple_ents(vararg)
+function waittill_multiple_ents(...)
 {
 	a_ents = [];
 	a_notifies = [];
@@ -502,7 +502,7 @@ function waittill_any_ents_two(ent1, string1, ent2, string2)
 	Parameters: 3
 	Flags: Linked, Variadic
 */
-function single_func(entity, func, vararg)
+function single_func(entity, func, ...)
 {
 	return _single_func(entity, func, vararg);
 }
@@ -661,7 +661,7 @@ function _single_func(entity, func, a_vars)
 	Parameters: 1
 	Flags: Linked
 */
-function _clean_up_arg_array(a_vars)
+function _clean_up_arg_array(&a_vars)
 {
 	for(i = a_vars.size - 1; i >= 0; i--)
 	{
@@ -885,7 +885,7 @@ function _delay(time_or_notify, str_endon, func, arg1, arg2, arg3, arg4, arg5, a
 	{
 		self endon(str_endon);
 	}
-	if(function_7a600918(time_or_notify) || isstring(time_or_notify))
+	if(ishash(time_or_notify) || isstring(time_or_notify))
 	{
 		self waittill(time_or_notify);
 	}
@@ -926,7 +926,7 @@ function _delay_notify(time_or_notify, str_notify, str_endon)
 	{
 		self endon(str_endon);
 	}
-	if(function_7a600918(time_or_notify) || isstring(time_or_notify))
+	if(ishash(time_or_notify) || isstring(time_or_notify))
 	{
 		self waittill(time_or_notify);
 	}
@@ -1059,7 +1059,7 @@ function timer_wait(n_wait)
 	Parameters: 2
 	Flags: Linked
 */
-function add_remove_list(a = [], on_off)
+function add_remove_list(&a = [], on_off)
 {
 	if(on_off)
 	{
@@ -1083,7 +1083,7 @@ function add_remove_list(a = [], on_off)
 	Parameters: 1
 	Flags: Linked
 */
-function clean_deleted(array)
+function clean_deleted(&array)
 {
 	arrayremovevalue(array, undefined);
 }
@@ -1610,7 +1610,7 @@ function note_elapsed_time(start_time, label = "unspecified")
 	Parameters: 2
 	Flags: Linked
 */
-function record_elapsed_time(start_time, elapsed_time_array)
+function record_elapsed_time(start_time, &elapsed_time_array)
 {
 	elapsed_time = get_elapsed_time(start_time, getmicrosecondsraw());
 	if(!isdefined(elapsed_time_array))
@@ -1633,7 +1633,7 @@ function record_elapsed_time(start_time, elapsed_time_array)
 	Parameters: 2
 	Flags: Linked
 */
-function note_elapsed_times(elapsed_time_array, label = "unspecified")
+function note_elapsed_times(&elapsed_time_array, label = "unspecified")
 {
 	/#
 		if(!isarray(elapsed_time_array))
@@ -2161,7 +2161,7 @@ function releaseobjid(localclientnum, objid)
 	Parameters: 1
 	Flags: None
 */
-function is_safehouse(str_next_map = function_53bbf9d2())
+function is_safehouse(str_next_map = get_map_name())
 {
 	return false;
 }
@@ -2362,7 +2362,7 @@ function waittill_down_button_pressed()
 */
 function function_4c1656d5()
 {
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		return getdvarfloat(#"hash_4e7a02edee964bf9", 250);
 	}
@@ -2380,7 +2380,7 @@ function function_4c1656d5()
 */
 function function_16fb0a3b()
 {
-	if(function_f99d2668())
+	if(sessionmodeiswarzonegame())
 	{
 		if(getdvarint(#"hash_23a1d3a9139af42b", 0) > 0)
 		{
@@ -2404,7 +2404,7 @@ function function_16fb0a3b()
 	Parameters: 4
 	Flags: Linked, Variadic
 */
-function lerp_generic(localclientnum, duration, callback, vararg)
+function lerp_generic(localclientnum, duration, callback, ...)
 {
 	starttime = getservertime(localclientnum);
 	currenttime = starttime;
@@ -2449,8 +2449,8 @@ function function_c16f65a3(enemy_a, enemy_b)
 	/#
 		assert(enemy_a != enemy_b, "");
 	#/
-	level.var_766875b1[enemy_a] = enemy_b;
-	level.var_766875b1[enemy_b] = enemy_a;
+	level.team_enemy_mapping[enemy_a] = enemy_b;
+	level.team_enemy_mapping[enemy_b] = enemy_a;
 }
 
 /*
@@ -2518,7 +2518,7 @@ function preload_frontend(localclientnum, oldval, newval, bnewent, binitialsnap,
 {
 	if(newval == 1)
 	{
-		function_223e25d3();
+		preloadfrontend();
 	}
 }
 
@@ -2606,9 +2606,9 @@ function get_enemy_team(team)
 	{
 		return undefined;
 	}
-	if(isdefined(level.var_766875b1) && isdefined(level.var_766875b1[team]))
+	if(isdefined(level.team_enemy_mapping) && isdefined(level.team_enemy_mapping[team]))
 	{
-		return level.var_766875b1[team];
+		return level.team_enemy_mapping[team];
 	}
 	return #"none";
 }
@@ -2634,26 +2634,26 @@ function function_35aed314(teama, teamb)
 	{
 		return false;
 	}
-	if(isdefined(level.var_766875b1))
+	if(isdefined(level.team_enemy_mapping))
 	{
-		if(isdefined(level.var_766875b1[teama]))
+		if(isdefined(level.team_enemy_mapping[teama]))
 		{
-			if(#"any" == level.var_766875b1[teama])
+			if(#"any" == level.team_enemy_mapping[teama])
 			{
 				return true;
 			}
-			if(teamb == level.var_766875b1[teama])
+			if(teamb == level.team_enemy_mapping[teama])
 			{
 				return true;
 			}
 		}
-		if(isdefined(level.var_766875b1[teamb]))
+		if(isdefined(level.team_enemy_mapping[teamb]))
 		{
-			if(#"any" == level.var_766875b1[teamb])
+			if(#"any" == level.team_enemy_mapping[teamb])
 			{
 				return true;
 			}
-			if(teama == level.var_766875b1[teamb])
+			if(teama == level.team_enemy_mapping[teamb])
 			{
 				return true;
 			}
@@ -2677,7 +2677,7 @@ function is_on_side(str_team)
 }
 
 /*
-	Name: function_5df4294
+	Name: get_game_type
 	Namespace: util
 	Checksum: 0x48C206BC
 	Offset: 0x4C20
@@ -2685,13 +2685,13 @@ function is_on_side(str_team)
 	Parameters: 0
 	Flags: Linked
 */
-function function_5df4294()
+function get_game_type()
 {
 	return tolower(getdvarstring(#"g_gametype"));
 }
 
 /*
-	Name: function_53bbf9d2
+	Name: get_map_name
 	Namespace: util
 	Checksum: 0x1A5EF152
 	Offset: 0x4C60
@@ -2699,13 +2699,13 @@ function function_5df4294()
 	Parameters: 0
 	Flags: Linked
 */
-function function_53bbf9d2()
+function get_map_name()
 {
-	return tolower(getdvarstring(#"hash_3b7b241b78207c96"));
+	return tolower(getdvarstring(#"sv_mapname"));
 }
 
 /*
-	Name: function_3f165ee8
+	Name: is_frontend_map
 	Namespace: util
 	Checksum: 0x637A394C
 	Offset: 0x4CA0
@@ -2713,9 +2713,9 @@ function function_53bbf9d2()
 	Parameters: 0
 	Flags: Linked
 */
-function function_3f165ee8()
+function is_frontend_map()
 {
-	return function_53bbf9d2() === "core_frontend";
+	return get_map_name() === "core_frontend";
 }
 
 /*
@@ -2730,15 +2730,15 @@ function function_3f165ee8()
 function function_26489405()
 {
 	isnightmap = 0;
-	mapname = function_53bbf9d2();
+	mapname = get_map_name();
 	switch(mapname)
 	{
-		case "hash_623073ec102c587a":
+		case "mp_casino":
 		{
 			isnightmap = 1;
 			break;
 		}
-		case "hash_5a24b2b75032fad0":
+		case "mp_austria":
 		{
 			isnightmap = 1;
 			break;
@@ -2780,7 +2780,7 @@ function function_8570168d()
 }
 
 /*
-	Name: function_bca268b3
+	Name: is_arena_lobby
 	Namespace: util
 	Checksum: 0x230D820C
 	Offset: 0x4DF0
@@ -2788,7 +2788,7 @@ function function_8570168d()
 	Parameters: 0
 	Flags: Linked
 */
-function function_bca268b3()
+function is_arena_lobby()
 {
 	mode = function_bea73b01();
 	if(mode == 3)
@@ -2958,7 +2958,7 @@ function function_48e57e36(var_1f1d12d8)
 }
 
 /*
-	Name: function_e2e9d901
+	Name: add_devgui
 	Namespace: util
 	Checksum: 0xF9D0BD1C
 	Offset: 0x52E0
@@ -2966,7 +2966,7 @@ function function_48e57e36(var_1f1d12d8)
 	Parameters: 3
 	Flags: None
 */
-function function_e2e9d901(localclientnum, menu_path, commands)
+function add_devgui(localclientnum, menu_path, commands)
 {
 	/#
 		adddebugcommand(localclientnum, ((("" + menu_path) + "") + commands) + "");
@@ -2974,7 +2974,7 @@ function function_e2e9d901(localclientnum, menu_path, commands)
 }
 
 /*
-	Name: function_d84da933
+	Name: remove_devgui
 	Namespace: util
 	Checksum: 0xA50D1339
 	Offset: 0x5348
@@ -2982,7 +2982,7 @@ function function_e2e9d901(localclientnum, menu_path, commands)
 	Parameters: 2
 	Flags: None
 */
-function function_d84da933(localclientnum, menu_path)
+function remove_devgui(localclientnum, menu_path)
 {
 	/#
 		adddebugcommand(localclientnum, ("" + menu_path) + "");

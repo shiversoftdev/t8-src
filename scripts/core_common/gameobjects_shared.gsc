@@ -1,24 +1,24 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_3f27a7b2232674db;
-#using script_68d2ee1489345a1d;
-#using scripts\core_common\animation_shared.gsc;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\hostmigration_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\math_shared.gsc;
 #using scripts\core_common\oob.gsc;
-#using scripts\core_common\potm_shared.gsc;
-#using scripts\core_common\scene_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\system_shared.gsc;
-#using scripts\core_common\trigger_shared.gsc;
-#using scripts\core_common\tweakables_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
 #using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\animation_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
 #using scripts\core_common\weapons_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\tweakables_shared.gsc;
+#using scripts\core_common\trigger_shared.gsc;
+#using scripts\core_common\system_shared.gsc;
+#using scripts\core_common\struct.gsc;
+#using scripts\core_common\scene_shared.gsc;
+#using scripts\core_common\potm_shared.gsc;
+#using scripts\core_common\player\player_role.gsc;
+#using scripts\core_common\math_shared.gsc;
+#using scripts\killstreaks\killstreaks_util.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hostmigration_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
 
 class cinteractobj 
 {
@@ -80,7 +80,7 @@ class cinteractobj
 	destructor()
 	{
 		/#
-			if(getdvarint(#"hash_69e71fbd49bdaa8a", 0))
+			if(getdvarint(#"scr_debug_gameobjects", 0))
 			{
 				iprintlnbold("");
 			}
@@ -132,16 +132,16 @@ class cinteractobj
 			{
 				if(function_aa070e6f(e_player) && !isinarray(var_2854e7f7, e_player.team) && !e_player isinvehicle())
 				{
-					var_ef387694 = {#targetname:e_object.var_f66cebb1, #side:var_9c2f0815, #team:m_str_team};
+					voiceparams = {#targetname:e_object.var_f66cebb1, #side:var_9c2f0815, #team:m_str_team};
 					if(isdefined(e_object.var_fa2dfcb4))
 					{
-						function_58ca2822("itfr_dis_obj", undefined, var_ef387694);
+						voiceevent("itfr_dis_obj", undefined, voiceparams);
 					}
 					else
 					{
 						if(isdefined(e_object.var_ff3c99c5))
 						{
-							function_58ca2822("mini_hint_itct", undefined, var_ef387694);
+							voiceevent("mini_hint_itct", undefined, voiceparams);
 						}
 						else if(isdefined(var_426bccfd))
 						{
@@ -149,32 +149,32 @@ class cinteractobj
 							{
 								case "door":
 								{
-									function_58ca2822("door_hint_itct", undefined, var_ef387694);
+									voiceevent("door_hint_itct", undefined, voiceparams);
 									break;
 								}
 								case "panel":
 								{
-									function_58ca2822("panl_hint_itct", undefined, var_ef387694);
+									voiceevent("panl_hint_itct", undefined, voiceparams);
 									break;
 								}
 								case "radio":
 								{
-									function_58ca2822("rdio_hint_itct", undefined, var_ef387694);
+									voiceevent("rdio_hint_itct", undefined, voiceparams);
 									break;
 								}
 								case "console":
 								{
-									function_58ca2822("cnsl_hint_itct", undefined, var_ef387694);
+									voiceevent("cnsl_hint_itct", undefined, voiceparams);
 									break;
 								}
 								case "climb":
 								{
-									function_58ca2822("clmb_hint_itct", undefined, var_ef387694);
+									voiceevent("clmb_hint_itct", undefined, voiceparams);
 									break;
 								}
 								default:
 								{
-									function_58ca2822("gobj_hint_itct", undefined, var_ef387694);
+									voiceevent("gobj_hint_itct", undefined, voiceparams);
 									break;
 								}
 							}
@@ -552,7 +552,7 @@ class cinteractobj
 #namespace gameobjects;
 
 /*
-	Name: function_89f2df9
+	Name: __init__system__
 	Namespace: gameobjects
 	Checksum: 0xDE25BA0B
 	Offset: 0x4A8
@@ -560,7 +560,7 @@ class cinteractobj
 	Parameters: 0
 	Flags: AutoExec
 */
-function autoexec function_89f2df9()
+function autoexec __init__system__()
 {
 	system::register(#"gameobjects", &__init__, undefined, undefined);
 }
@@ -780,9 +780,9 @@ function filter_script_vehicles_from_vehicle_descriptors(allowed_game_modes)
 */
 function function_71699fe2()
 {
-	level.var_c3977917 = struct::get_script_bundle_instances("gameobject");
+	level.a_s_gameobjects = struct::get_script_bundle_instances("gameobject");
 	n_count = 1;
-	foreach(s_radiant in level.var_c3977917)
+	foreach(s_radiant in level.a_s_gameobjects)
 	{
 		if(isdefined(s_radiant.targetname))
 		{
@@ -810,7 +810,7 @@ function function_71699fe2()
 function function_176070dc()
 {
 	waittillframeend();
-	foreach(s_radiant in level.var_c3977917)
+	foreach(s_radiant in level.a_s_gameobjects)
 	{
 		if(isdefined(s_radiant.script_team) && s_radiant.script_team != #"none")
 		{
@@ -1008,12 +1008,12 @@ function private function_2f3ba1ad()
 		if(isdefined(s_key.var_51676529))
 		{
 			var_fac9218d = strtok(s_key.var_51676529, " ");
-			s_key.var_db1edf58 = [];
+			s_key.a_s_locks = [];
 			foreach(var_9d32a381 in var_fac9218d)
 			{
-				s_key.var_db1edf58 = arraycombine(s_key.var_db1edf58, struct::get_array(var_9d32a381, "script_carry_object_key_target"), 0, 0);
+				s_key.a_s_locks = arraycombine(s_key.a_s_locks, struct::get_array(var_9d32a381, "script_carry_object_key_target"), 0, 0);
 			}
-			foreach(s_lock in s_key.var_db1edf58)
+			foreach(s_lock in s_key.a_s_locks)
 			{
 				if(isdefined(s_lock.mdl_gameobject))
 				{
@@ -1022,7 +1022,7 @@ function private function_2f3ba1ad()
 				}
 				s_lock.var_4cd30731 = s_key;
 			}
-			if(isdefined(s_key.var_3a8907ff) && s_key.var_3a8907ff && isdefined(s_key.var_db1edf58))
+			if(isdefined(s_key.var_3a8907ff) && s_key.var_3a8907ff && isdefined(s_key.a_s_locks))
 			{
 				s_key thread function_2e028a0e();
 			}
@@ -1046,7 +1046,7 @@ function function_2e028a0e()
 	{
 		self.mdl_gameobject waittill(#"pickup_object");
 		self hide_waypoint();
-		foreach(s_lock in self.var_db1edf58)
+		foreach(s_lock in self.a_s_locks)
 		{
 			if(isdefined(s_lock.mdl_gameobject))
 			{
@@ -1061,7 +1061,7 @@ function function_2e028a0e()
 		}
 		self.mdl_gameobject waittill(#"dropped");
 		self show_waypoint();
-		foreach(s_lock in self.var_db1edf58)
+		foreach(s_lock in self.a_s_locks)
 		{
 			if(isdefined(s_lock.mdl_gameobject))
 			{
@@ -1253,14 +1253,14 @@ function function_9e7fca5f()
 	self endon(#"hash_767d05d04b5ba2f6");
 	while(true)
 	{
-		var_be17187b = undefined;
-		var_be17187b = self.mdl_gameobject waittill(#"gameobject_end_use_player");
+		s_waitresult = undefined;
+		s_waitresult = self.mdl_gameobject waittill(#"gameobject_end_use_player");
 		foreach(s_scene in self.var_abba8d92)
 		{
-			if(isplayer(var_be17187b.player) && scene::get_player_count(s_scene.scriptbundlename) >= 1)
+			if(isplayer(s_waitresult.player) && scene::get_player_count(s_scene.scriptbundlename) >= 1)
 			{
-				var_be17187b.player animation::stop(0);
-				s_scene thread scene::play(var_be17187b.player);
+				s_waitresult.player animation::stop(0);
+				s_scene thread scene::play(s_waitresult.player);
 				continue;
 			}
 			s_scene thread scene::play();
@@ -2371,7 +2371,7 @@ function pickup_timeout(minz, maxz)
 	if(self.var_22389d70 && !ispointonnavmesh(self.visuals[0].origin, 32))
 	{
 		v_pos = getclosestpointonnavmesh(self.visuals[0].origin, 256, 16);
-		if(!isdefined(v_pos) || sessionmodeismultiplayergame() || function_f99d2668())
+		if(!isdefined(v_pos) || sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 		{
 			self thread return_home();
 			return;
@@ -3276,7 +3276,7 @@ function use_object_use_think(disableinitialholddelay, disableweaponcyclingdurin
 		{
 			continue;
 		}
-		if(!self function_a34c1761(player) && (!(isdefined(waitresult.forced) && waitresult.forced)))
+		if(!self can_touch(player) && (!(isdefined(waitresult.forced) && waitresult.forced)))
 		{
 			continue;
 		}
@@ -3882,7 +3882,7 @@ function check_gameobject_reenable()
 	}
 	if(!(isdefined(self.b_reusable) && self.b_reusable))
 	{
-		self.e_object flagsys::set(#"hash_3c75783d64e76e20");
+		self.e_object flagsys::set(#"gameobject_destroyed");
 		util::wait_network_frame();
 		self thread destroy_object(1, 1);
 	}
@@ -3952,7 +3952,7 @@ function private function_dfec159b(player)
 	{
 		return false;
 	}
-	if(isdefined(player.laststand) && player.laststand && (!(isdefined(player.var_de39e480) && player.var_de39e480)) && (!(isdefined(player.var_4835f0a0) && player.var_4835f0a0)))
+	if(isdefined(player.laststand) && player.laststand && (!(isdefined(player.can_capture) && player.can_capture)) && (!(isdefined(player.can_contest) && player.can_contest)))
 	{
 		return false;
 	}
@@ -4046,7 +4046,7 @@ function prox_trigger_think()
 		waitresult = undefined;
 		waitresult = self.trigger waittill(#"trigger");
 		sentient = waitresult.activator;
-		if(!self function_a34c1761(sentient) || !isdefined(sentient.touchtriggers))
+		if(!self can_touch(sentient) || !isdefined(sentient.touchtriggers))
 		{
 			continue;
 		}
@@ -4079,7 +4079,7 @@ function is_excluded(sentient)
 	}
 	foreach(exclusion in self.exclusions)
 	{
-		if(isdefined(exclusion) && sentient function_59e66d9(exclusion))
+		if(isdefined(exclusion) && sentient is_touching_trigger(exclusion))
 		{
 			return true;
 		}
@@ -4124,9 +4124,9 @@ function function_98aae7cf()
 	}
 	foreach(var_1dbb2b2b in self.var_1dbb2b2b)
 	{
-		foreach(var_9b38d2c0 in var_1dbb2b2b)
+		foreach(contributor in var_1dbb2b2b)
 		{
-			var_9b38d2c0.contribution = 0;
+			contributor.contribution = 0;
 		}
 	}
 }
@@ -4191,7 +4191,7 @@ function get_claim_team()
 }
 
 /*
-	Name: function_59e66d9
+	Name: is_touching_trigger
 	Namespace: gameobjects
 	Checksum: 0xF5183E0
 	Offset: 0x9C58
@@ -4199,7 +4199,7 @@ function get_claim_team()
 	Parameters: 1
 	Flags: Linked
 */
-function function_59e66d9(trigger)
+function is_touching_trigger(trigger)
 {
 	return self istouching(trigger);
 }
@@ -4228,7 +4228,7 @@ function continue_trigger_touch_think(team, object)
 	{
 		return false;
 	}
-	if(isdefined(self.laststand) && self.laststand && (!(isdefined(self.var_de39e480) && self.var_de39e480)) && (!(isdefined(self.var_4835f0a0) && self.var_4835f0a0)))
+	if(isdefined(self.laststand) && self.laststand && (!(isdefined(self.can_capture) && self.can_capture)) && (!(isdefined(self.can_contest) && self.can_contest)))
 	{
 		return false;
 	}
@@ -4240,11 +4240,11 @@ function continue_trigger_touch_think(team, object)
 	{
 		return false;
 	}
-	if(!object function_a34c1761(self))
+	if(!object can_touch(self))
 	{
 		return false;
 	}
-	if(!self function_59e66d9(object.trigger))
+	if(!self is_touching_trigger(object.trigger))
 	{
 		return false;
 	}
@@ -4579,7 +4579,7 @@ function use_hold_think(player, disableweaponcyclingduringhold)
 	self.var_bca8171a.player = player;
 	if(!(isdefined(self.dontlinkplayertotrigger) && self.dontlinkplayertotrigger))
 	{
-		if(!sessionmodeismultiplayergame() && !function_f99d2668())
+		if(!sessionmodeismultiplayergame() && !sessionmodeiswarzonegame())
 		{
 			gameobject_link = util::spawn_model("tag_origin", player.origin, player.angles);
 			player playerlinkto(gameobject_link);
@@ -4597,7 +4597,7 @@ function use_hold_think(player, disableweaponcyclingduringhold)
 	{
 		if(isdefined(useweapon.var_d2751f9d) && useweapon.var_d2751f9d)
 		{
-			player val::set(#"hash_18142cb460526d28", "disable_gestures");
+			player val::set(#"gameobject_use", "disable_gestures");
 		}
 		player giveweapon(useweapon);
 		player setweaponammostock(useweapon, 0);
@@ -4606,7 +4606,7 @@ function use_hold_think(player, disableweaponcyclingduringhold)
 	}
 	else if(self.keepweapon !== 1)
 	{
-		player val::set(#"hash_18142cb460526d28", "disable_weapons");
+		player val::set(#"gameobject_use", "disable_weapons");
 	}
 	self clear_progress();
 	self.inuse = 1;
@@ -4666,7 +4666,7 @@ function use_hold_think(player, disableweaponcyclingduringhold)
 		}
 		else if(self.keepweapon !== 1)
 		{
-			player val::reset(#"hash_18142cb460526d28", "disable_weapons");
+			player val::reset(#"gameobject_use", "disable_weapons");
 		}
 		if(!(isdefined(self.dontlinkplayertotrigger) && self.dontlinkplayertotrigger))
 		{
@@ -4726,7 +4726,7 @@ function take_use_weapon(useweapon)
 	}
 	if(isdefined(useweapon.var_d2751f9d) && useweapon.var_d2751f9d)
 	{
-		self val::reset(#"hash_18142cb460526d28", "disable_gestures");
+		self val::reset(#"gameobject_use", "disable_gestures");
 	}
 	self takeweapon(useweapon);
 }
@@ -4799,7 +4799,7 @@ function continue_hold_think_loop(player, waitforweapon, timedout, usetime)
 	{
 		return false;
 	}
-	if(!player function_59e66d9(self.trigger))
+	if(!player is_touching_trigger(self.trigger))
 	{
 		if(!isdefined(player.cursorhintent) || player.cursorhintent != self)
 		{
@@ -4905,7 +4905,7 @@ function use_hold_think_loop(player)
 		{
 			self.userate = 0;
 		}
-		if(sessionmodeismultiplayergame() || function_f99d2668())
+		if(sessionmodeismultiplayergame() || sessionmodeiswarzonegame())
 		{
 			if(self.curprogress >= self.usetime)
 			{
@@ -5633,7 +5633,7 @@ function make_solid()
 	{
 		for(i = 0; i < level.players.size; i++)
 		{
-			if(level.players[i] function_59e66d9(self))
+			if(level.players[i] is_touching_trigger(self))
 			{
 				break;
 			}
@@ -5960,7 +5960,7 @@ function destroy_object(deletetrigger, forcehide, b_connect_paths = 0, b_success
 	mdl_gameobject = function_fd4a5f2f();
 	if(isdefined(mdl_gameobject.e_object))
 	{
-		mdl_gameobject.e_object flagsys::set(#"hash_3c75783d64e76e20");
+		mdl_gameobject.e_object flagsys::set(#"gameobject_destroyed");
 	}
 	mdl_gameobject endon(#"death");
 	if(!isdefined(forcehide))
@@ -5972,7 +5972,7 @@ function destroy_object(deletetrigger, forcehide, b_connect_paths = 0, b_success
 	{
 		if(isdefined(self.c_door.m_e_door))
 		{
-			self.c_door.m_e_door notify(#"hash_d46ecc32678f28a");
+			self.c_door.m_e_door notify(#"door_cleared");
 		}
 	}
 	waittillframeend();
@@ -6206,7 +6206,7 @@ function is_friendly_team(team)
 }
 
 /*
-	Name: function_a34c1761
+	Name: can_touch
 	Namespace: gameobjects
 	Checksum: 0xB13AAA12
 	Offset: 0xE040
@@ -6214,7 +6214,7 @@ function is_friendly_team(team)
 	Parameters: 1
 	Flags: Linked
 */
-function function_a34c1761(sentient)
+function can_touch(sentient)
 {
 	var_47a62b7b = isvehicle(sentient) || (isplayer(sentient) && sentient isinvehicle() && !sentient function_a867284b());
 	if(var_47a62b7b && (!(isdefined(level.b_allow_vehicle_proximity_pickup) && level.b_allow_vehicle_proximity_pickup)) && (!(isdefined(self.b_allow_vehicle_proximity_pickup) && self.b_allow_vehicle_proximity_pickup)))
@@ -7107,9 +7107,9 @@ function play_interact_anim(e_player)
 		}
 		if(isdefined(self.var_a7ef92ac) && self.var_a7ef92ac)
 		{
-			var_be17187b = undefined;
-			var_be17187b = self waittill(#"gameobject_end_use_player", #"gameobject_abort", #"death");
-			if(var_be17187b._notify === "gameobject_end_use_player")
+			s_waitresult = undefined;
+			s_waitresult = self waittill(#"gameobject_end_use_player", #"gameobject_abort", #"death");
+			if(s_waitresult._notify === "gameobject_end_use_player")
 			{
 				e_align thread scene::play(str_player_scene, a_ents);
 			}
@@ -7223,7 +7223,7 @@ function function_c6fa00c2()
 	{
 		return;
 	}
-	var_5b307a20 = [];
+	contributors = [];
 	var_1dbb2b2b = self.var_1dbb2b2b[self.team];
 	if(!var_1dbb2b2b.size)
 	{
@@ -7231,22 +7231,22 @@ function function_c6fa00c2()
 	}
 	foreach(contribution in var_1dbb2b2b)
 	{
-		var_9b38d2c0 = contribution.player;
+		contributor = contribution.player;
 		percentage = (100 * contribution.contribution) / self.usetime;
-		var_9b38d2c0.var_759a143b = int(0.5 + percentage);
-		if(var_9b38d2c0.var_759a143b > getgametypesetting(#"hash_1c94fa23e276efe9"))
+		contributor.var_759a143b = int(0.5 + percentage);
+		if(contributor.var_759a143b > getgametypesetting(#"contributionmin"))
 		{
-			if(!isdefined(var_5b307a20))
+			if(!isdefined(contributors))
 			{
-				var_5b307a20 = [];
+				contributors = [];
 			}
-			else if(!isarray(var_5b307a20))
+			else if(!isarray(contributors))
 			{
-				var_5b307a20 = array(var_5b307a20);
+				contributors = array(contributors);
 			}
-			var_5b307a20[var_5b307a20.size] = var_9b38d2c0;
+			contributors[contributors.size] = contributor;
 		}
 	}
-	return var_5b307a20;
+	return contributors;
 }
 

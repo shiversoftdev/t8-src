@@ -1,36 +1,36 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_256b8879317373de;
-#using script_5399f402045d7abd;
-#using script_545a0bac37bda541;
-#using script_70a43d6ba27cff6a;
-#using script_b52a163973f339f;
-#using scripts\core_common\array_shared.gsc;
-#using scripts\core_common\bb_shared.gsc;
-#using scripts\core_common\callbacks_shared.gsc;
-#using scripts\core_common\challenges_shared.gsc;
-#using scripts\core_common\demo_shared.gsc;
-#using scripts\core_common\flag_shared.gsc;
-#using scripts\core_common\flagsys_shared.gsc;
-#using scripts\core_common\hud_message_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\struct.gsc;
-#using scripts\core_common\tweakables_shared.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\core_common\values_shared.gsc;
-#using scripts\core_common\weapons_shared.gsc;
-#using scripts\zm_common\gametypes\globallogic.gsc;
-#using scripts\zm_common\gametypes\globallogic_audio.gsc;
-#using scripts\zm_common\gametypes\globallogic_score.gsc;
-#using scripts\zm_common\gametypes\globallogic_spawn.gsc;
-#using scripts\zm_common\gametypes\globallogic_ui.gsc;
-#using scripts\zm_common\gametypes\globallogic_utils.gsc;
-#using scripts\zm_common\gametypes\hostmigration.gsc;
-#using scripts\zm_common\gametypes\spawning.gsc;
-#using scripts\zm_common\gametypes\spawnlogic.gsc;
-#using scripts\zm_common\gametypes\spectating.gsc;
-#using scripts\zm_common\util.gsc;
-#using scripts\zm_common\zm.gsc;
+#using scripts\zm_common\zm_characters.gsc;
 #using scripts\zm_common\zm_stats.gsc;
+#using scripts\zm_common\zm.gsc;
+#using scripts\zm_common\util.gsc;
+#using scripts\zm_common\gametypes\spectating.gsc;
+#using scripts\zm_common\gametypes\spawnlogic.gsc;
+#using scripts\zm_common\gametypes\spawning.gsc;
+#using scripts\zm_common\gametypes\hostmigration.gsc;
+#using scripts\zm_common\gametypes\globallogic_utils.gsc;
+#using scripts\zm_common\gametypes\globallogic_ui.gsc;
+#using scripts\zm_common\gametypes\globallogic_spawn.gsc;
+#using scripts\zm_common\gametypes\globallogic_score.gsc;
+#using scripts\zm_common\gametypes\globallogic_audio.gsc;
+#using scripts\zm_common\gametypes\globallogic.gsc;
+#using scripts\core_common\globallogic\globallogic_score.gsc;
+#using scripts\core_common\globallogic\globallogic_player.gsc;
+#using scripts\weapons\weapon_utils.gsc;
+#using scripts\core_common\weapons_shared.gsc;
+#using scripts\core_common\values_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\tweakables_shared.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hud_message_shared.gsc;
+#using scripts\core_common\flagsys_shared.gsc;
+#using scripts\core_common\flag_shared.gsc;
+#using scripts\core_common\demo_shared.gsc;
+#using scripts\core_common\challenges_shared.gsc;
+#using scripts\core_common\callbacks_shared.gsc;
+#using scripts\core_common\bb_shared.gsc;
+#using scripts\core_common\array_shared.gsc;
+#using scripts\core_common\struct.gsc;
 
 #namespace globallogic_player;
 
@@ -84,7 +84,7 @@ function callback_playerconnect()
 	}
 	if(!level.splitscreen && !isdefined(self.pers[#"score"]))
 	{
-		iprintln(#"hash_2bff59245c345d80", self);
+		iprintln(#"mp/connected", self);
 	}
 	if(!isdefined(self.pers[#"score"]))
 	{
@@ -189,7 +189,7 @@ function callback_playerconnect()
 	self.deathtime = 0;
 	self.lastgrenadesuicidetime = -1;
 	self.teamkillsthisround = 0;
-	player::function_5ae8566b(1, 1);
+	player::init_heal(1, 1);
 	if(!isdefined(level.livesdonotreset) || !level.livesdonotreset || !isdefined(self.pers[#"lives"]))
 	{
 		self.pers[#"lives"] = level.numlives;
@@ -485,7 +485,7 @@ function function_7314957c(player, result)
 	var_906bdcf3.game_variant = "zm";
 	var_906bdcf3.game_mode = level.gametype;
 	var_906bdcf3.private_match = sessionmodeisprivate();
-	var_906bdcf3.game_map = util::function_53bbf9d2();
+	var_906bdcf3.game_map = util::get_map_name();
 	var_906bdcf3.player_xuid = player getxuid(1);
 	var_906bdcf3.player_ip = player getipaddress();
 	var_906bdcf3.season_pass_owned = player hasseasonpass(0);
@@ -510,13 +510,13 @@ function function_7314957c(player, result)
 	var_a14ea2be.loadout_secondary_weapon = secondaryweaponname;
 	var_a14ea2be.loadout_primary_attachments = primaryweaponattachstr;
 	var_a14ea2be.loadout_secondary_attachments = secondaryweaponattachstr;
-	var_bbe5aef7 = spawnstruct();
-	var_bbe5aef7.money = player.score;
-	var_bbe5aef7.zombie_waves = level.round_number;
-	var_bbe5aef7.revives = player player::function_2abc116("revives");
-	var_bbe5aef7.doors = player player::function_2abc116("doors_purchased");
-	var_bbe5aef7.downs = player player::function_2abc116("downs");
-	function_92d1707f(#"hash_4c5946fa1191bc64", #"hash_71960e91f80c3365", var_906bdcf3, #"hash_4682ee0eb5071d2", var_811ed119, #"hash_209c80d657442a83", var_a14ea2be, #"hash_5011ec4bbbc5f760", var_bbe5aef7);
+	end_match_zm = spawnstruct();
+	end_match_zm.money = player.score;
+	end_match_zm.zombie_waves = level.round_number;
+	end_match_zm.revives = player player::function_2abc116("revives");
+	end_match_zm.doors = player player::function_2abc116("doors_purchased");
+	end_match_zm.downs = player player::function_2abc116("downs");
+	function_92d1707f(#"hash_4c5946fa1191bc64", #"hash_71960e91f80c3365", var_906bdcf3, #"hash_4682ee0eb5071d2", var_811ed119, #"hash_209c80d657442a83", var_a14ea2be, #"end_match_zm", end_match_zm);
 }
 
 /*

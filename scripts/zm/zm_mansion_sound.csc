@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\struct.csc;
 
-#namespace namespace_48607e17;
+#namespace zm_mansion_sound;
 
 /*
 	Name: main
-	Namespace: namespace_48607e17
+	Namespace: zm_mansion_sound
 	Checksum: 0x9A54727D
 	Offset: 0xC0
 	Size: 0x14
@@ -16,19 +16,19 @@
 */
 function main()
 {
-	thread function_9290b227();
+	thread startzmbspawnersoundloops();
 }
 
 /*
-	Name: function_9290b227
-	Namespace: namespace_48607e17
+	Name: startzmbspawnersoundloops
+	Namespace: zm_mansion_sound
 	Checksum: 0x973614A4
 	Offset: 0xE0
 	Size: 0x15C
 	Parameters: 0
 	Flags: Linked
 */
-function function_9290b227()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("spawn_location", "script_noteworthy");
 	if(isdefined(loopers) && loopers.size > 0)
@@ -63,7 +63,7 @@ function function_9290b227()
 
 /*
 	Name: soundloopthink
-	Namespace: namespace_48607e17
+	Namespace: zm_mansion_sound
 	Checksum: 0x2BD61AD5
 	Offset: 0x248
 	Size: 0x18A

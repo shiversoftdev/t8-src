@@ -24,13 +24,13 @@ function register(str_pool_name, str_name, n_version, n_bits, str_type, func_cal
 	Parameters: 8
 	Flags: Linked
 */
-function function_346f95ba(var_a832fdfa, field_name, n_version, n_bits, str_type, func_callback, b_host, b_callback_for_zero_when_new)
+function function_346f95ba(unique_name, field_name, n_version, n_bits, str_type, func_callback, b_host, b_callback_for_zero_when_new)
 {
-	registerclientfield("clientuimodel", (("luielement." + var_a832fdfa) + ".") + field_name, n_version, n_bits, str_type, func_callback, b_host, b_callback_for_zero_when_new);
+	registerclientfield("clientuimodel", (("luielement." + unique_name) + ".") + field_name, n_version, n_bits, str_type, func_callback, b_host, b_callback_for_zero_when_new);
 }
 
 /*
-	Name: function_78175813
+	Name: register_bgcache
 	Namespace: clientfield
 	Checksum: 0xC0D5C26F
 	Offset: 0x1A8
@@ -38,7 +38,7 @@ function function_346f95ba(var_a832fdfa, field_name, n_version, n_bits, str_type
 	Parameters: 7
 	Flags: Linked
 */
-function function_78175813(poolname, var_b693fec6, uniqueid, version, func_callback, b_host, b_callback_for_zero_when_new)
+function register_bgcache(poolname, var_b693fec6, uniqueid, version, func_callback, b_host, b_callback_for_zero_when_new)
 {
 	function_3ff577e6(poolname, var_b693fec6, uniqueid, version, func_callback, b_host, b_callback_for_zero_when_new);
 }
@@ -98,8 +98,8 @@ function get_player_uimodel(field_name)
 	Parameters: 2
 	Flags: None
 */
-function function_f7ae6994(var_a832fdfa, str_field_name)
+function function_f7ae6994(unique_name, str_field_name)
 {
-	return codegetuimodelclientfield(self, (("luielement." + var_a832fdfa) + ".") + str_field_name);
+	return codegetuimodelclientfield(self, (("luielement." + unique_name) + ".") + str_field_name);
 }
 

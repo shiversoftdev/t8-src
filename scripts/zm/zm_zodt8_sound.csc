@@ -1,13 +1,13 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\callbacks_shared.csc;
+#using scripts\core_common\audio_shared.csc;
 #using scripts\core_common\struct.csc;
 
-#namespace namespace_64be5677;
+#namespace zm_zodt8_sound;
 
 /*
 	Name: main
-	Namespace: namespace_64be5677
+	Namespace: zm_zodt8_sound
 	Checksum: 0x3DE38D16
 	Offset: 0x118
 	Size: 0x34
@@ -16,20 +16,20 @@
 */
 function main()
 {
-	level thread function_9290b227();
+	level thread startzmbspawnersoundloops();
 	level thread function_9466dec0();
 }
 
 /*
-	Name: function_9290b227
-	Namespace: namespace_64be5677
+	Name: startzmbspawnersoundloops
+	Namespace: zm_zodt8_sound
 	Checksum: 0x4CD73F6C
 	Offset: 0x158
 	Size: 0x15C
 	Parameters: 0
 	Flags: Linked
 */
-function function_9290b227()
+function startzmbspawnersoundloops()
 {
 	loopers = struct::get_array("spawn_location", "script_noteworthy");
 	if(isdefined(loopers) && loopers.size > 0)
@@ -64,7 +64,7 @@ function function_9290b227()
 
 /*
 	Name: soundloopthink
-	Namespace: namespace_64be5677
+	Namespace: zm_zodt8_sound
 	Checksum: 0xA348C19
 	Offset: 0x2C0
 	Size: 0x18A
@@ -121,7 +121,7 @@ function soundloopthink()
 
 /*
 	Name: function_a6e35dcd
-	Namespace: namespace_64be5677
+	Namespace: zm_zodt8_sound
 	Checksum: 0xF413FE2
 	Offset: 0x458
 	Size: 0x34
@@ -136,7 +136,7 @@ function function_a6e35dcd()
 
 /*
 	Name: function_9466dec0
-	Namespace: namespace_64be5677
+	Namespace: zm_zodt8_sound
 	Checksum: 0x20B9E932
 	Offset: 0x498
 	Size: 0x266

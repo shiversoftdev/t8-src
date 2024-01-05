@@ -171,13 +171,13 @@ function setpoint(point, relativepoint, xoffset, yoffset, movetime)
 				break;
 			}
 			case "bottom_right":
-			case "hash_31d201c731ea62b4":
+			case "bottom right":
 			{
 				self.aligny = "";
 				self.alignx = "";
 				break;
 			}
-			case "hash_1d059cd2dd48b7ab":
+			case "bottom left":
 			case "bottom_left":
 			{
 				self.aligny = "";
@@ -244,13 +244,13 @@ function setpoint(point, relativepoint, xoffset, yoffset, movetime)
 				break;
 			}
 			case "bottom_right":
-			case "hash_31d201c731ea62b4":
+			case "bottom right":
 			{
 				relativey = "";
 				relativex = "";
 				break;
 			}
-			case "hash_1d059cd2dd48b7ab":
+			case "bottom left":
 			case "bottom_left":
 			{
 				relativey = "";

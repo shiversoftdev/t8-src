@@ -1,23 +1,23 @@
 // Decompiled by Serious. Credits to Scoba for his original tool, Cerberus, which I heavily upgraded to support remaining features, other games, and other platforms.
-#using script_16cb0a6a492a6a4f;
-#using script_18f0d22c75b141a7;
-#using script_1bd0552c85e48ebe;
-#using script_1f2f7ef27f2aabba;
-#using script_256b8879317373de;
-#using script_2dc48f46bfeac894;
-#using script_3f27a7b2232674db;
-#using script_6c8abe14025b47c4;
-#using script_788472602edbe3b9;
-#using scripts\core_common\gamestate.gsc;
-#using scripts\core_common\hud_message_shared.gsc;
-#using scripts\core_common\hud_util_shared.gsc;
-#using scripts\core_common\spectating.gsc;
-#using scripts\core_common\teams.gsc;
-#using scripts\core_common\util_shared.gsc;
-#using scripts\mp_common\draft.gsc;
-#using scripts\mp_common\gametypes\globallogic.gsc;
-#using scripts\mp_common\userspawnselection.gsc;
+#using scripts\abilities\ability_player.gsc;
 #using scripts\mp_common\util.gsc;
+#using scripts\mp_common\userspawnselection.gsc;
+#using scripts\mp_common\teams\team_assignment.gsc;
+#using scripts\mp_common\teams\platoons.gsc;
+#using scripts\mp_common\player\player_loadout.gsc;
+#using scripts\mp_common\player\player.gsc;
+#using scripts\mp_common\gametypes\globallogic.gsc;
+#using scripts\mp_common\draft.gsc;
+#using scripts\killstreaks\killstreaks_shared.gsc;
+#using scripts\core_common\util_shared.gsc;
+#using scripts\core_common\teams.gsc;
+#using scripts\core_common\spectating.gsc;
+#using scripts\core_common\player\player_shared.gsc;
+#using scripts\core_common\player\player_role.gsc;
+#using scripts\core_common\player\player_loadout.gsc;
+#using scripts\core_common\hud_util_shared.gsc;
+#using scripts\core_common\hud_message_shared.gsc;
+#using scripts\core_common\gamestate.gsc;
 
 #namespace globallogic_ui;
 
@@ -320,7 +320,7 @@ function beginclasschoice(comingfrommenu)
 		[[level.spawnspectator]]();
 		self userspawnselection::closespawnselect();
 		self userspawnselection::clearcacheforplayer();
-		self draft::function_2427a351();
+		self draft::clear_cooldown();
 		if(comingfrommenu || !player_role::is_valid(player_role::get()))
 		{
 			self draft::open();
@@ -580,8 +580,8 @@ function function_9ed118fe(characterindex)
 	}
 	spawns = self.pers[#"spawns"];
 	self draft::select_character(characterindex, 0);
-	var_2488d780 = getcharacterdisplayname(characterindex, currentsessionmode());
-	iprintln(#"hash_52f20b5836b29e3", self, var_2488d780);
+	specialist_name = getcharacterdisplayname(characterindex, currentsessionmode());
+	iprintln(#"hash_52f20b5836b29e3", self, specialist_name);
 	if(isdefined(self.pers[#"changed_specialist"]) && self.pers[#"changed_specialist"])
 	{
 		self notify(#"changed_specialist_death");
@@ -656,7 +656,7 @@ function menupositiondraft(response, intpayload)
 		{
 			if(response == "ready")
 			{
-				self draft::function_3e46326b();
+				self draft::client_ready();
 			}
 			else
 			{
