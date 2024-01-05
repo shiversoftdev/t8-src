@@ -230,7 +230,7 @@ function function_6661621a()
 	mploadout.killstreak2 = (self.killstreak.size > 1 ? hash(self.killstreak[1]) : 0);
 	mploadout.killstreak3 = (self.killstreak.size > 2 ? hash(self.killstreak[2]) : 0);
 	talents = self function_4a9f1384(self.class_num);
-	mploadout.var_942f949 = (talents.size > 0 ? talents[0] : 0);
+	mploadout.talent0 = (talents.size > 0 ? talents[0] : 0);
 	mploadout.talent1 = (talents.size > 1 ? talents[1] : 0);
 	mploadout.talent2 = (talents.size > 2 ? talents[2] : 0);
 	mploadout.talent3 = (talents.size > 3 ? talents[3] : 0);
@@ -239,7 +239,7 @@ function function_6661621a()
 	wildcards = self function_6f2c0492(self.class_num);
 	mploadout.wildcard0 = (wildcards.size > 0 ? wildcards[0] : 0);
 	mploadout.wildcard1 = (wildcards.size > 1 ? wildcards[1] : 0);
-	mploadout.var_13573300 = (wildcards.size > 2 ? wildcards[2] : 0);
+	mploadout.wildcard2 = (wildcards.size > 2 ? wildcards[2] : 0);
 	if(isdefined(self.playerrole) && isdefined(self.playerrole.var_c21d61e9))
 	{
 		var_c0f05cbb = getweapon((isdefined(self.playerrole.var_c21d61e9) ? self.playerrole.var_c21d61e9 : level.weaponnone));

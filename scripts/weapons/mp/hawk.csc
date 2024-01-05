@@ -42,7 +42,7 @@ function __init__()
 	for(ti = 0; ti < 6; ti++)
 	{
 		level.remote_missile_targets[ti] = spawnstruct();
-		clientfield::function_346f95ba("hawk_target_lockon" + ti, "target_visible", 13000, 1, "int", undefined, 0, 0);
+		clientfield::register_luielem("hawk_target_lockon" + ti, "target_visible", 13000, 1, "int", undefined, 0, 0);
 	}
 	clientfield::register("vehicle", "hawk_range", 13000, 1, "int", &function_6701affc, 0, 1);
 	vehicle::add_vehicletype_callback("veh_hawk_player_mp", &hawk_spawned);

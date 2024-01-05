@@ -189,7 +189,7 @@ class cluielem
 		/#
 			assert(!var_47d8642e, "");
 		#/
-		clientfield::function_346f95ba(var_47e79fc, field_name, version, bits, type, callback, 0, 0);
+		clientfield::register_luielem(var_47e79fc, field_name, version, bits, type, callback, 0, 0);
 	}
 
 	/*

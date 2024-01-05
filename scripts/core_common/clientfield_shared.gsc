@@ -32,7 +32,7 @@ function register_clientuimodel(str_name, n_version, n_bits, str_type, var_59f69
 }
 
 /*
-	Name: function_346f95ba
+	Name: register_luielem
 	Namespace: clientfield
 	Checksum: 0xB3ABB931
 	Offset: 0x158
@@ -40,7 +40,7 @@ function register_clientuimodel(str_name, n_version, n_bits, str_type, var_59f69
 	Parameters: 6
 	Flags: Linked
 */
-function function_346f95ba(unique_name, field_name, n_version, n_bits, str_type, var_59f69872)
+function register_luielem(unique_name, field_name, n_version, n_bits, str_type, var_59f69872)
 {
 	registerclientfield("clientuimodel", (("luielement." + unique_name) + ".") + field_name, n_version, n_bits, str_type, var_59f69872);
 }

@@ -139,7 +139,7 @@ class cluielem
 	*/
 	function add_clientfield(field_name, version, bits, type, var_59f69872 = 1)
 	{
-		clientfield::function_346f95ba(var_47e79fc, field_name, version, bits, type, var_59f69872);
+		clientfield::register_luielem(var_47e79fc, field_name, version, bits, type, var_59f69872);
 	}
 
 	/*
