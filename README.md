@@ -13,3 +13,4 @@ SyGnUs - string decryption help\
 alexisloic21 - Found and reported a bug with for loops\
 Kenshin9977 - Additional hashes\
 Scobalula - Original T7 decompiler
+ate47 - hashes
